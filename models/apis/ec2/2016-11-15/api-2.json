@@ -2802,6 +2802,13 @@
         "modifying"
       ]
     },
+    "BillingProductList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"item"
+      }
+    },
     "Blob":{"type":"blob"},
     "BlobAttributeValue":{
       "type":"structure",
@@ -11384,6 +11391,10 @@
         "RamdiskId":{
           "shape":"String",
           "locationName":"ramdiskId"
+        },
+        "BillingProducts":{
+          "shape":"BillingProductList",
+          "locationName":"BillingProduct"
         },
         "RootDeviceName":{
           "shape":"String",
