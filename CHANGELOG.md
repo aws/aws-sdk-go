@@ -1,3 +1,11 @@
+Release v1.6.26 (2017-02-21)
+===
+
+Service Client Updates
+---
+* `service/ec2`: Updates service API and documentation
+  * Added the billingProduct parameter to the RegisterImage API.
+
 Release v1.6.25 (2017-02-17)
 ===
 

@@ -6597,6 +6597,10 @@ func ExampleEC2_RegisterImage() {
 	params := &ec2.RegisterImageInput{
 		Name:         aws.String("String"), // Required
 		Architecture: aws.String("ArchitectureValues"),
+		BillingProducts: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
 		BlockDeviceMappings: []*ec2.BlockDeviceMapping{
 			{ // Required
 				DeviceName: aws.String("String"),
