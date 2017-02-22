@@ -149,7 +149,7 @@ type Options struct {
 	SharedConfigState SharedConfigState
 
 	// When the SDK's shared config is configured to assume a role with MFA
-	// this option is required in order to provide the mechinisum that will
+	// this option is required in order to provide the mechanism that will
 	// retrieve the MFA token. There is no default value for this field. If
 	// it is not set an error will be returned when creating the session.
 	//
@@ -162,10 +162,10 @@ type Options struct {
 	// share the session where possible.
 	//
 	// stscreds.StdinTokenProvider is a basic implementation that will prompt
-	// from stdin for a string value that will be used as the MFA token.
+	// from stdin for the MFA token code.
 	//
-	// This field is only used if the shared config enables assume role with
-	// MFA support.
+	// This field is only used if the shared configuration is enabled, and
+	// the config enables assume role wit MFA via the mfa_serial field.
 	AssumeRoleTokenProvider func() (string, error)
 }
 
