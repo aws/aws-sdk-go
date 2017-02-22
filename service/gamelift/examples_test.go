@@ -173,6 +173,38 @@ func ExampleGameLift_CreateGameSession() {
 	fmt.Println(resp)
 }
 
+func ExampleGameLift_CreateGameSessionQueue() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := gamelift.New(sess)
+
+	params := &gamelift.CreateGameSessionQueueInput{
+		Name: aws.String("GameSessionQueueName"), // Required
+		Destinations: []*gamelift.GameSessionQueueDestination{
+			{ // Required
+				DestinationArn: aws.String("ArnStringModel"),
+			},
+			// More values...
+		},
+		TimeoutInSeconds: aws.Int64(1),
+	}
+	resp, err := svc.CreateGameSessionQueue(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleGameLift_CreatePlayerSession() {
 	sess, err := session.NewSession()
 	if err != nil {
@@ -185,6 +217,7 @@ func ExampleGameLift_CreatePlayerSession() {
 	params := &gamelift.CreatePlayerSessionInput{
 		GameSessionId: aws.String("ArnStringModel"),      // Required
 		PlayerId:      aws.String("NonZeroAndMaxString"), // Required
+		PlayerData:    aws.String("PlayerData"),
 	}
 	resp, err := svc.CreatePlayerSession(params)
 
@@ -212,6 +245,10 @@ func ExampleGameLift_CreatePlayerSessions() {
 		GameSessionId: aws.String("ArnStringModel"), // Required
 		PlayerIds: []*string{ // Required
 			aws.String("NonZeroAndMaxString"), // Required
+			// More values...
+		},
+		PlayerDataMap: map[string]*string{
+			"Key": aws.String("PlayerData"), // Required
 			// More values...
 		},
 	}
@@ -291,6 +328,31 @@ func ExampleGameLift_DeleteFleet() {
 		FleetId: aws.String("FleetId"), // Required
 	}
 	resp, err := svc.DeleteFleet(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleGameLift_DeleteGameSessionQueue() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := gamelift.New(sess)
+
+	params := &gamelift.DeleteGameSessionQueueInput{
+		Name: aws.String("GameSessionQueueName"), // Required
+	}
+	resp, err := svc.DeleteGameSessionQueue(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -566,6 +628,61 @@ func ExampleGameLift_DescribeGameSessionDetails() {
 		StatusFilter:  aws.String("NonZeroAndMaxString"),
 	}
 	resp, err := svc.DescribeGameSessionDetails(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleGameLift_DescribeGameSessionPlacement() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := gamelift.New(sess)
+
+	params := &gamelift.DescribeGameSessionPlacementInput{
+		PlacementId: aws.String("IdStringModel"), // Required
+	}
+	resp, err := svc.DescribeGameSessionPlacement(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleGameLift_DescribeGameSessionQueues() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := gamelift.New(sess)
+
+	params := &gamelift.DescribeGameSessionQueuesInput{
+		Limit: aws.Int64(1),
+		Names: []*string{
+			aws.String("GameSessionQueueName"), // Required
+			// More values...
+		},
+		NextToken: aws.String("NonZeroAndMaxString"),
+	}
+	resp, err := svc.DescribeGameSessionQueues(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -964,6 +1081,81 @@ func ExampleGameLift_SearchGameSessions() {
 	fmt.Println(resp)
 }
 
+func ExampleGameLift_StartGameSessionPlacement() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := gamelift.New(sess)
+
+	params := &gamelift.StartGameSessionPlacementInput{
+		GameSessionQueueName:      aws.String("GameSessionQueueName"), // Required
+		MaximumPlayerSessionCount: aws.Int64(1),                       // Required
+		PlacementId:               aws.String("IdStringModel"),        // Required
+		DesiredPlayerSessions: []*gamelift.DesiredPlayerSession{
+			{ // Required
+				PlayerData: aws.String("PlayerData"),
+				PlayerId:   aws.String("NonZeroAndMaxString"),
+			},
+			// More values...
+		},
+		GameProperties: []*gamelift.GameProperty{
+			{ // Required
+				Key:   aws.String("GamePropertyKey"),   // Required
+				Value: aws.String("GamePropertyValue"), // Required
+			},
+			// More values...
+		},
+		GameSessionName: aws.String("NonZeroAndMaxString"),
+		PlayerLatencies: []*gamelift.PlayerLatency{
+			{ // Required
+				LatencyInMilliseconds: aws.Float64(1.0),
+				PlayerId:              aws.String("NonZeroAndMaxString"),
+				RegionIdentifier:      aws.String("NonZeroAndMaxString"),
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.StartGameSessionPlacement(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleGameLift_StopGameSessionPlacement() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := gamelift.New(sess)
+
+	params := &gamelift.StopGameSessionPlacementInput{
+		PlacementId: aws.String("IdStringModel"), // Required
+	}
+	resp, err := svc.StopGameSessionPlacement(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleGameLift_UpdateAlias() {
 	sess, err := session.NewSession()
 	if err != nil {
@@ -1143,6 +1335,38 @@ func ExampleGameLift_UpdateGameSession() {
 		ProtectionPolicy:            aws.String("ProtectionPolicy"),
 	}
 	resp, err := svc.UpdateGameSession(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleGameLift_UpdateGameSessionQueue() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := gamelift.New(sess)
+
+	params := &gamelift.UpdateGameSessionQueueInput{
+		Name: aws.String("GameSessionQueueName"), // Required
+		Destinations: []*gamelift.GameSessionQueueDestination{
+			{ // Required
+				DestinationArn: aws.String("ArnStringModel"),
+			},
+			// More values...
+		},
+		TimeoutInSeconds: aws.Int64(1),
+	}
+	resp, err := svc.UpdateGameSessionQueue(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

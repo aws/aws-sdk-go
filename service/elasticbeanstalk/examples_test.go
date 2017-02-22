@@ -232,6 +232,7 @@ func ExampleElasticBeanstalk_CreateConfigurationTemplate() {
 			},
 			// More values...
 		},
+		PlatformArn:       aws.String("PlatformArn"),
 		SolutionStackName: aws.String("SolutionStackName"),
 		SourceConfiguration: &elasticbeanstalk.SourceConfiguration{
 			ApplicationName: aws.String("ApplicationName"),
@@ -283,6 +284,7 @@ func ExampleElasticBeanstalk_CreateEnvironment() {
 			},
 			// More values...
 		},
+		PlatformArn:       aws.String("PlatformArn"),
 		SolutionStackName: aws.String("SolutionStackName"),
 		Tags: []*elasticbeanstalk.Tag{
 			{ // Required
@@ -300,6 +302,46 @@ func ExampleElasticBeanstalk_CreateEnvironment() {
 		VersionLabel: aws.String("VersionLabel"),
 	}
 	resp, err := svc.CreateEnvironment(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleElasticBeanstalk_CreatePlatformVersion() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := elasticbeanstalk.New(sess)
+
+	params := &elasticbeanstalk.CreatePlatformVersionInput{
+		PlatformDefinitionBundle: &elasticbeanstalk.S3Location{ // Required
+			S3Bucket: aws.String("S3Bucket"),
+			S3Key:    aws.String("S3Key"),
+		},
+		PlatformName:    aws.String("PlatformName"),    // Required
+		PlatformVersion: aws.String("PlatformVersion"), // Required
+		EnvironmentName: aws.String("EnvironmentName"),
+		OptionSettings: []*elasticbeanstalk.ConfigurationOptionSetting{
+			{ // Required
+				Namespace:    aws.String("OptionNamespace"),
+				OptionName:   aws.String("ConfigurationOptionName"),
+				ResourceName: aws.String("ResourceName"),
+				Value:        aws.String("ConfigurationOptionValue"),
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.CreatePlatformVersion(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -440,6 +482,31 @@ func ExampleElasticBeanstalk_DeleteEnvironmentConfiguration() {
 	fmt.Println(resp)
 }
 
+func ExampleElasticBeanstalk_DeletePlatformVersion() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := elasticbeanstalk.New(sess)
+
+	params := &elasticbeanstalk.DeletePlatformVersionInput{
+		PlatformArn: aws.String("PlatformArn"),
+	}
+	resp, err := svc.DeletePlatformVersion(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleElasticBeanstalk_DescribeApplicationVersions() {
 	sess, err := session.NewSession()
 	if err != nil {
@@ -519,6 +586,7 @@ func ExampleElasticBeanstalk_DescribeConfigurationOptions() {
 			},
 			// More values...
 		},
+		PlatformArn:       aws.String("PlatformArn"),
 		SolutionStackName: aws.String("SolutionStackName"),
 		TemplateName:      aws.String("ConfigurationTemplateName"),
 	}
@@ -725,6 +793,7 @@ func ExampleElasticBeanstalk_DescribeEvents() {
 		EnvironmentName: aws.String("EnvironmentName"),
 		MaxRecords:      aws.Int64(1),
 		NextToken:       aws.String("Token"),
+		PlatformArn:     aws.String("PlatformArn"),
 		RequestId:       aws.String("RequestId"),
 		Severity:        aws.String("EventSeverity"),
 		StartTime:       aws.Time(time.Now()),
@@ -775,6 +844,31 @@ func ExampleElasticBeanstalk_DescribeInstancesHealth() {
 	fmt.Println(resp)
 }
 
+func ExampleElasticBeanstalk_DescribePlatformVersion() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := elasticbeanstalk.New(sess)
+
+	params := &elasticbeanstalk.DescribePlatformVersionInput{
+		PlatformArn: aws.String("PlatformArn"),
+	}
+	resp, err := svc.DescribePlatformVersion(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleElasticBeanstalk_ListAvailableSolutionStacks() {
 	sess, err := session.NewSession()
 	if err != nil {
@@ -786,6 +880,43 @@ func ExampleElasticBeanstalk_ListAvailableSolutionStacks() {
 
 	var params *elasticbeanstalk.ListAvailableSolutionStacksInput
 	resp, err := svc.ListAvailableSolutionStacks(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleElasticBeanstalk_ListPlatformVersions() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := elasticbeanstalk.New(sess)
+
+	params := &elasticbeanstalk.ListPlatformVersionsInput{
+		Filters: []*elasticbeanstalk.PlatformFilter{
+			{ // Required
+				Operator: aws.String("PlatformFilterOperator"),
+				Type:     aws.String("PlatformFilterType"),
+				Values: []*string{
+					aws.String("PlatformFilterValue"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		MaxRecords: aws.Int64(1),
+		NextToken:  aws.String("Token"),
+	}
+	resp, err := svc.ListPlatformVersions(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -1129,6 +1260,7 @@ func ExampleElasticBeanstalk_UpdateEnvironment() {
 			},
 			// More values...
 		},
+		PlatformArn:       aws.String("PlatformArn"),
 		SolutionStackName: aws.String("SolutionStackName"),
 		TemplateName:      aws.String("ConfigurationTemplateName"),
 		Tier: &elasticbeanstalk.EnvironmentTier{
