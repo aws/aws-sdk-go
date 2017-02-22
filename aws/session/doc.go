@@ -138,21 +138,51 @@ the other two fields are also provided.
 
 Assume Role values allow you to configure the SDK to assume an IAM role using
 a set of credentials provided in a config file via the source_profile field.
-Both "role_arn" and "source_profile" are required. The SDK does not support
-assuming a role with MFA token Via the Session's constructor. You can use the
-stscreds.AssumeRoleProvider credentials provider to specify custom
-configuration and support for MFA.
+Both "role_arn" and "source_profile" are required. The SDK supports assuming
+a role with MFA token if the session option AssumeRoleTokenProvider
+is set.
 
 	role_arn = arn:aws:iam::<account_number>:role/<role_name>
 	source_profile = profile_with_creds
 	external_id = 1234
-	mfa_serial = not supported!
+	mfa_serial = <serial or mfa arn>
 	role_session_name = session_name
 
 Region is the region the SDK should use for looking up AWS service endpoints
 and signing requests.
 
 	region = us-east-1
+
+Assume Role with MFA token
+
+To create a session with support for assuming an IAM role with MFA set the
+session option AssumeRoleTokenProvider to a function that will prompt for the
+MFA token code when the SDK assumes the role and refreshes the role's credentials.
+This allows you to configure the SDK via the shared config to assumea role
+with MFA tokens.
+
+In order for the SDK to assume a role with MFA the SharedConfigState
+session option must be set to SharedConfigEnable, or AWS_SDK_LOAD_CONFIG
+environment variable set.
+
+The shared configuration instructs the SDK to assume an IAM role with MFA
+when the mfa_serial configuration field is set in the shared config 
+(~/.aws/config) or shared credentials (~/.aws/credentials) file. 
+
+If mfa_serial is set in the configuration, the SDK will assume the role, and
+the AssumeRoleTokenProvider session option is not set an an error will
+be returned when creating the session.
+
+    sess := session.Must(session.NewSessionWithOptions(session.Options{
+        AssumeRoleTokenProvider: stscreds.StdinTokenProvider,
+    }))
+
+    // Create service client value configured for credentials
+    // from assumed role.
+    svc := s3.New(sess)
+
+To setup assume role outside of a session see the stscrds.AssumeRoleProvider
+documentation.
 
 Environment Variables
 
