@@ -4,11 +4,15 @@ Package stscreds are credential Providers to retrieve STS AWS credentials.
 STS provides multiple ways to retrieve credentials which can be used when making
 future AWS service API operation calls.
 
+The SDK will ensure that per instance of credentials.Credentials all requests
+to refresh the credentials will be synchronized. But, the SDK is unable to
+ensure synchronous usage of the AssumeRoleProvider if the value is shared
+between multiple Credentials, Sessions or service clients.
+
 Assume Role
 
 To assume an IAM role using STS with the SDK you can create a new Credentials
-value with the SDKs's stscreds package. This allows configuration of how the
-SDK will request the credentials for the role specified.
+with the SDKs's stscreds package. 
 
 	// Initial credentials loaded from SDK's default credential chain. Such as
 	// the environment, shared credentials (~/.aws/credentials), or EC2 Instance
@@ -25,11 +29,14 @@ SDK will request the credentials for the role specified.
 
 Assume Role with static MFA Token
 
-With IAM roles configured to require MFA to assume the role you can either
-specify the MFA token code directly when creating the Credentials value or
-with a TokenProvider that will prompt each time a TokenCode is needed. In general
-This method should only be used for short lived operations as the returned
-credentials have a short (15 minute) expiration time by default.
+To assume an IAM role with a MFA token you can either specify a MFA token code
+directly or provide a function to prompt the user each time the credentials
+need to refresh the role's credentials. Specifying the TokenCode should be used
+for short lived operations that will not need to be refreshed, and when you do
+not want to have direct control over the user provides their MFA token.
+
+With TokenCode the AssumeRoleProvider will be not be able to refresh the role's
+credentials.
 
 	// Create the credentials from AssumeRoleProvider to assume the role
 	// referenced by the "myRoleARN" ARN using the MFA token code provided.
@@ -44,17 +51,18 @@ credentials have a short (15 minute) expiration time by default.
 
 Assume Role with MFA Token Provider
 
-To use IAM roles configured to require MFA for longer running tasks where the
-credentials need to be refreshed setting the TokenProvider field of AssumeRoleProvider
-will cause the credential provider to attempt to retrieve the MFA token code
-from a source you control.
+To assume an IAM role with MFA for longer running tasks where the credentials
+may need to be refreshed setting the TokenProvider field of AssumeRoleProvider
+will allow the credential provider to prompt for new MFA token code when the
+role's credentials need to be refreshed.
 
-The StdinTokenProvider implements basic stdin prompt that can be used to
-retrieve the MFA token code from the user. The SDK will ensure that per instance
-of credentials.Credentials all requests to refresh the credentials will be
-synchronized. But, the SDK is unable to ensure synchronous usage of the
-AssumeRoleProvider and TokenProvider If multiple instances of the Credentials
-share the same AssumeRoleProvider or TokenProvider.
+The StdinTokenProvider function is available to prompt on stdin to retrieve
+the MFA token code from the user. You can also implement custom prompts by
+satisfing the TokenProvider function signature.
+
+Using StdinTokenProvider with multiple AssumeRoleProviders, or Credentials will
+have undesirable results as the StdinTokenProvider will not be synchronized. A
+single Credentials with an AssumeRoleProvider can be shared safely.
 
 	// Create the credentials from AssumeRoleProvider to assume the role
 	// referenced by the "myRoleARN" ARN. Prompting for MFA token from stdin.
@@ -87,6 +95,10 @@ import (
 // Use this function go read MFA tokens from stdin. The function makes no attempt
 // to make atomic prompts from stdin across multiple gorouties.
 //
+// Using StdinTokenProvider with multiple AssumeRoleProviders, or Credentials will
+// have undesirable results as the StdinTokenProvider will not be synchronized. A
+// single Credentials with an AssumeRoleProvider can be shared safely
+//
 // Will wait forever until something is provided on the stdin.
 func StdinTokenProvider() (string, error) {
 	var v string
@@ -116,8 +128,8 @@ var DefaultDuration = time.Duration(15) * time.Minute
 // file configure assume role. See Session docs for how to do this.
 //
 // AssumeRoleProvider does not provide any synchronization and it is not safe
-// to share this value across multiple Sessions and service clients without
-// also sharing the same Credentials instance.
+// to share this value across multiple Credentials, Sessions, or service clients
+// without also sharing the same Credentials instance.
 type AssumeRoleProvider struct {
 	credentials.Expiry
 
@@ -159,17 +171,13 @@ type AssumeRoleProvider struct {
 	// set an error will be returned.
 	TokenCode *string
 
-	// TokenProvider if set will be used to retrieve a MFA token from. The value
-	// returned by the function will be used as the TokenCode in the Retrieve
-	// call. A basic implementation of the token provider is credentials.StdinTokenProvide.
+	// Async method of providing MFA token code for assuming an IAM role with MFA.
+	// The value returned by the function will be used as the TokenCode in the Retrieve
+	// call. See StdinTokenProvider for a provider that prompts and reads from stdin.
 	//
 	// This token provider will be called when ever the assumed role's
-	// credentials need to be refreshed. Within the context of service clients
-	// all sharing the same session the SDK will ensure calls to the token
-	// provider are atomic. When sharing a token provider across multiple
-	// sessions additional synchronization logic is needed to ensure the
-	// token providers do not introduce race conditions. It is recommend to
-	// share the session where possible.
+	// credentials need to be refreshed when SerialNumber is also set and
+	// TokenCode is not set.
 	//
 	// If both TokenCode and TokenProvider is set, TokenProvider will be used and
 	// TokenCode is ignored.
@@ -195,7 +203,8 @@ type AssumeRoleProvider struct {
 // satisfied by the session.Session type.
 //
 // It is safe to share the returned Credentials with multiple Sessions and
-// service clients. All access will be synchronized.
+// service clients. All access to the credentials and refreshing them
+// will be synchronized.
 func NewCredentials(c client.ConfigProvider, roleARN string, options ...func(*AssumeRoleProvider)) *credentials.Credentials {
 	p := &AssumeRoleProvider{
 		Client:   sts.New(c),
@@ -217,7 +226,8 @@ func NewCredentials(c client.ConfigProvider, roleARN string, options ...func(*As
 // Takes an AssumeRoler which can be satisfied by the STS client.
 //
 // It is safe to share the returned Credentials with multiple Sessions and
-// service clients. All access will be synchronized.
+// service clients. All access to the credentials and refreshing them
+// will be synchronized.
 func NewCredentialsWithClient(svc AssumeRoler, roleARN string, options ...func(*AssumeRoleProvider)) *credentials.Credentials {
 	p := &AssumeRoleProvider{
 		Client:   svc,
