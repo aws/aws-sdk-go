@@ -1,3 +1,17 @@
+Release v1.6.27 (2017-02-22)
+===
+
+Service Client Updates
+---
+* `service/clouddirectory`: Updates service documentation
+  * ListObjectAttributes documentation updated based on forum feedback
+* `service/elasticbeanstalk`: Updates service API, documentation, and paginators
+  * Elastic Beanstalk adds support for creating and managing custom platform.
+* `service/gamelift`: Updates service API, documentation, and paginators
+  * Allow developers to configure global queues for creating GameSessions. Allow PlayerData on PlayerSessions to store player-specific data.
+* `service/route53`: Updates service API, documentation, and examples
+  * Added support for operations CreateVPCAssociationAuthorization and DeleteVPCAssociationAuthorization to throw a ConcurrentModification error when a conflicting modification occurs in parallel to the authorizations in place for a given hosted zone.
+
 Release v1.6.26 (2017-02-21)
 ===
 
