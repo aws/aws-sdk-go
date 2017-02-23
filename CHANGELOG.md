@@ -1,3 +1,22 @@
+Release v1.7.0 (2017-02-23)
+===
+
+Service Client Updates
+---
+* `service/ec2`: Updates service API
+  * New EC2 I3 instance type
+
+SDK Bug
+---
+* `service/s3/s3manager`: Adding support for SSE (#1097)
+  * Fixes SSE fields not being applied to a part during multi part upload.
+
+SDK Feature
+---
+* `aws/session`: Add support for AssumeRoles with MFA (#1088)
+  * Adds support for assuming IAM roles with MFA enabled. A TokenProvider func was added to stscreds.AssumeRoleProvider that will be called each time the role's credentials need to be refreshed. A basic token provider that sources the MFA token from stdin as stscreds.StdinTokenProvider.
+* `aws/session`: Update SDK examples and docs to use session.Must (#1099)
+  * Updates the SDK's example and docs to use session.Must where possible to highlight its usage as apposed to session error checking that is most cases errors will be terminal to the application anyways.
 Release v1.6.27 (2017-02-22)
 ===
 
