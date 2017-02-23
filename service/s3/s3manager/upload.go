@@ -608,11 +608,13 @@ func (u *multiuploader) readChunk(ch chan chunk) {
 // part information.
 func (u *multiuploader) send(c chunk) error {
 	req, resp := u.ctx.S3.UploadPartRequest(&s3.UploadPartInput{
-		Bucket:     u.in.Bucket,
-		Key:        u.in.Key,
-		Body:       c.buf,
-		UploadId:   &u.uploadID,
-		PartNumber: &c.num,
+		Bucket:               u.in.Bucket,
+		Key:                  u.in.Key,
+		Body:                 c.buf,
+		UploadId:             &u.uploadID,
+		SSECustomerAlgorithm: u.in.SSECustomerAlgorithm,
+		SSECustomerKey:       u.in.SSECustomerKey,
+		PartNumber:           &c.num,
 	})
 	req.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("S3Manager"))
 	if err := req.Send(); err != nil {
