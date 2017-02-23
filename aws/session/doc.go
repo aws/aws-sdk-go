@@ -45,16 +45,16 @@ region, and profile loaded from the environment and shared config automatically.
 Requires the AWS_PROFILE to be set, or "default" is used.
 
 	// Create Session
-	sess, err := session.NewSession()
+	sess := session.Must(session.NewSession())
 
 	// Create a Session with a custom region
-	sess, err := session.NewSession(&aws.Config{Region: aws.String("us-east-1")})
+	sess := session.Must(session.NewSession(&aws.Config{
+		Region: aws.String("us-east-1"),
+	}))
 
 	// Create a S3 client instance from a session
-	sess, err := session.NewSession()
-	if err != nil {
-		// Handle Session creation error
-	}
+	sess := session.Must(session.NewSession())
+
 	svc := s3.New(sess)
 
 Create Session With Option Overrides
@@ -67,23 +67,25 @@ Use NewSessionWithOptions when you want to provide the config profile, or
 override the shared config state (AWS_SDK_LOAD_CONFIG).
 
 	// Equivalent to session.NewSession()
-	sess, err := session.NewSessionWithOptions(session.Options{})
+	sess := session.Must(session.NewSessionWithOptions(session.Options{
+		// Options
+	}))
 
 	// Specify profile to load for the session's config
-	sess, err := session.NewSessionWithOptions(session.Options{
+	sess := session.Must(session.NewSessionWithOptions(session.Options{
 		 Profile: "profile_name",
-	})
+	}))
 
 	// Specify profile for config and region for requests
-	sess, err := session.NewSessionWithOptions(session.Options{
+	sess := session.Must(session.NewSessionWithOptions(session.Options{
 		 Config: aws.Config{Region: aws.String("us-east-1")},
 		 Profile: "profile_name",
-	})
+	}))
 
 	// Force enable Shared Config support
-	sess, err := session.NewSessionWithOptions(session.Options{
+	sess := session.Must(session.NewSessionWithOptions(session.Options{
 		SharedConfigState: SharedConfigEnable,
-	})
+	}))
 
 Adding Handlers
 
@@ -93,7 +95,8 @@ handler logs every request and its payload made by a service client:
 
 	// Create a session, and add additional handlers for all service
 	// clients created with the Session to inherit. Adds logging handler.
-	sess, err := session.NewSession()
+	sess := session.Must(session.NewSession())
+	
 	sess.Handlers.Send.PushFront(func(r *request.Request) {
 		// Log every request made and its payload
 		logger.Println("Request: %s/%s, Payload: %s",
