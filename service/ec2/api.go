@@ -53320,6 +53320,24 @@ const (
 	// InstanceTypeI28xlarge is a InstanceType enum value
 	InstanceTypeI28xlarge = "i2.8xlarge"
 
+	// InstanceTypeI3Large is a InstanceType enum value
+	InstanceTypeI3Large = "i3.large"
+
+	// InstanceTypeI3Xlarge is a InstanceType enum value
+	InstanceTypeI3Xlarge = "i3.xlarge"
+
+	// InstanceTypeI32xlarge is a InstanceType enum value
+	InstanceTypeI32xlarge = "i3.2xlarge"
+
+	// InstanceTypeI34xlarge is a InstanceType enum value
+	InstanceTypeI34xlarge = "i3.4xlarge"
+
+	// InstanceTypeI38xlarge is a InstanceType enum value
+	InstanceTypeI38xlarge = "i3.8xlarge"
+
+	// InstanceTypeI316xlarge is a InstanceType enum value
+	InstanceTypeI316xlarge = "i3.16xlarge"
+
 	// InstanceTypeHi14xlarge is a InstanceType enum value
 	InstanceTypeHi14xlarge = "hi1.4xlarge"
 
