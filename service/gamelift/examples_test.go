@@ -16,11 +16,7 @@ var _ time.Duration
 var _ bytes.Buffer
 
 func ExampleGameLift_CreateAlias() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -47,11 +43,7 @@ func ExampleGameLift_CreateAlias() {
 }
 
 func ExampleGameLift_CreateBuild() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -79,11 +71,7 @@ func ExampleGameLift_CreateBuild() {
 }
 
 func ExampleGameLift_CreateFleet() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -137,11 +125,7 @@ func ExampleGameLift_CreateFleet() {
 }
 
 func ExampleGameLift_CreateGameSession() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -174,11 +158,7 @@ func ExampleGameLift_CreateGameSession() {
 }
 
 func ExampleGameLift_CreateGameSessionQueue() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -206,11 +186,7 @@ func ExampleGameLift_CreateGameSessionQueue() {
 }
 
 func ExampleGameLift_CreatePlayerSession() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -233,11 +209,7 @@ func ExampleGameLift_CreatePlayerSession() {
 }
 
 func ExampleGameLift_CreatePlayerSessions() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -266,11 +238,7 @@ func ExampleGameLift_CreatePlayerSessions() {
 }
 
 func ExampleGameLift_DeleteAlias() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -291,11 +259,7 @@ func ExampleGameLift_DeleteAlias() {
 }
 
 func ExampleGameLift_DeleteBuild() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -316,11 +280,7 @@ func ExampleGameLift_DeleteBuild() {
 }
 
 func ExampleGameLift_DeleteFleet() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -341,11 +301,7 @@ func ExampleGameLift_DeleteFleet() {
 }
 
 func ExampleGameLift_DeleteGameSessionQueue() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -366,11 +322,7 @@ func ExampleGameLift_DeleteGameSessionQueue() {
 }
 
 func ExampleGameLift_DeleteScalingPolicy() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -392,11 +344,7 @@ func ExampleGameLift_DeleteScalingPolicy() {
 }
 
 func ExampleGameLift_DescribeAlias() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -417,11 +365,7 @@ func ExampleGameLift_DescribeAlias() {
 }
 
 func ExampleGameLift_DescribeBuild() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -442,11 +386,7 @@ func ExampleGameLift_DescribeBuild() {
 }
 
 func ExampleGameLift_DescribeEC2InstanceLimits() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -467,11 +407,7 @@ func ExampleGameLift_DescribeEC2InstanceLimits() {
 }
 
 func ExampleGameLift_DescribeFleetAttributes() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -497,11 +433,7 @@ func ExampleGameLift_DescribeFleetAttributes() {
 }
 
 func ExampleGameLift_DescribeFleetCapacity() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -527,11 +459,7 @@ func ExampleGameLift_DescribeFleetCapacity() {
 }
 
 func ExampleGameLift_DescribeFleetEvents() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -556,11 +484,7 @@ func ExampleGameLift_DescribeFleetEvents() {
 }
 
 func ExampleGameLift_DescribeFleetPortSettings() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -581,11 +505,7 @@ func ExampleGameLift_DescribeFleetPortSettings() {
 }
 
 func ExampleGameLift_DescribeFleetUtilization() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -611,11 +531,7 @@ func ExampleGameLift_DescribeFleetUtilization() {
 }
 
 func ExampleGameLift_DescribeGameSessionDetails() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -641,11 +557,7 @@ func ExampleGameLift_DescribeGameSessionDetails() {
 }
 
 func ExampleGameLift_DescribeGameSessionPlacement() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -666,11 +578,7 @@ func ExampleGameLift_DescribeGameSessionPlacement() {
 }
 
 func ExampleGameLift_DescribeGameSessionQueues() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -696,11 +604,7 @@ func ExampleGameLift_DescribeGameSessionQueues() {
 }
 
 func ExampleGameLift_DescribeGameSessions() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -726,11 +630,7 @@ func ExampleGameLift_DescribeGameSessions() {
 }
 
 func ExampleGameLift_DescribeInstances() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -754,11 +654,7 @@ func ExampleGameLift_DescribeInstances() {
 }
 
 func ExampleGameLift_DescribePlayerSessions() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -784,11 +680,7 @@ func ExampleGameLift_DescribePlayerSessions() {
 }
 
 func ExampleGameLift_DescribeRuntimeConfiguration() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -809,11 +701,7 @@ func ExampleGameLift_DescribeRuntimeConfiguration() {
 }
 
 func ExampleGameLift_DescribeScalingPolicies() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -837,11 +725,7 @@ func ExampleGameLift_DescribeScalingPolicies() {
 }
 
 func ExampleGameLift_GetGameSessionLogUrl() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -862,11 +746,7 @@ func ExampleGameLift_GetGameSessionLogUrl() {
 }
 
 func ExampleGameLift_GetInstanceAccess() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -888,11 +768,7 @@ func ExampleGameLift_GetInstanceAccess() {
 }
 
 func ExampleGameLift_ListAliases() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -916,11 +792,7 @@ func ExampleGameLift_ListAliases() {
 }
 
 func ExampleGameLift_ListBuilds() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -943,11 +815,7 @@ func ExampleGameLift_ListBuilds() {
 }
 
 func ExampleGameLift_ListFleets() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -970,11 +838,7 @@ func ExampleGameLift_ListFleets() {
 }
 
 func ExampleGameLift_PutScalingPolicy() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -1002,11 +866,7 @@ func ExampleGameLift_PutScalingPolicy() {
 }
 
 func ExampleGameLift_RequestUploadCredentials() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -1027,11 +887,7 @@ func ExampleGameLift_RequestUploadCredentials() {
 }
 
 func ExampleGameLift_ResolveAlias() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -1052,11 +908,7 @@ func ExampleGameLift_ResolveAlias() {
 }
 
 func ExampleGameLift_SearchGameSessions() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -1082,11 +934,7 @@ func ExampleGameLift_SearchGameSessions() {
 }
 
 func ExampleGameLift_StartGameSessionPlacement() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -1132,11 +980,7 @@ func ExampleGameLift_StartGameSessionPlacement() {
 }
 
 func ExampleGameLift_StopGameSessionPlacement() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -1157,11 +1001,7 @@ func ExampleGameLift_StopGameSessionPlacement() {
 }
 
 func ExampleGameLift_UpdateAlias() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -1189,11 +1029,7 @@ func ExampleGameLift_UpdateAlias() {
 }
 
 func ExampleGameLift_UpdateBuild() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -1216,11 +1052,7 @@ func ExampleGameLift_UpdateBuild() {
 }
 
 func ExampleGameLift_UpdateFleetAttributes() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -1248,11 +1080,7 @@ func ExampleGameLift_UpdateFleetAttributes() {
 }
 
 func ExampleGameLift_UpdateFleetCapacity() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -1276,11 +1104,7 @@ func ExampleGameLift_UpdateFleetCapacity() {
 }
 
 func ExampleGameLift_UpdateFleetPortSettings() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -1319,11 +1143,7 @@ func ExampleGameLift_UpdateFleetPortSettings() {
 }
 
 func ExampleGameLift_UpdateGameSession() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -1348,11 +1168,7 @@ func ExampleGameLift_UpdateGameSession() {
 }
 
 func ExampleGameLift_UpdateGameSessionQueue() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 
@@ -1380,11 +1196,7 @@ func ExampleGameLift_UpdateGameSessionQueue() {
 }
 
 func ExampleGameLift_UpdateRuntimeConfiguration() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := gamelift.New(sess)
 

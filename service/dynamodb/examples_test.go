@@ -16,11 +16,7 @@ var _ time.Duration
 var _ bytes.Buffer
 
 func ExampleDynamoDB_BatchGetItem() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := dynamodb.New(sess)
 
@@ -93,11 +89,7 @@ func ExampleDynamoDB_BatchGetItem() {
 }
 
 func ExampleDynamoDB_BatchWriteItem() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := dynamodb.New(sess)
 
@@ -199,11 +191,7 @@ func ExampleDynamoDB_BatchWriteItem() {
 }
 
 func ExampleDynamoDB_CreateTable() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := dynamodb.New(sess)
 
@@ -290,11 +278,7 @@ func ExampleDynamoDB_CreateTable() {
 }
 
 func ExampleDynamoDB_DeleteItem() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := dynamodb.New(sess)
 
@@ -464,11 +448,7 @@ func ExampleDynamoDB_DeleteItem() {
 }
 
 func ExampleDynamoDB_DeleteTable() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := dynamodb.New(sess)
 
@@ -489,11 +469,7 @@ func ExampleDynamoDB_DeleteTable() {
 }
 
 func ExampleDynamoDB_DescribeLimits() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := dynamodb.New(sess)
 
@@ -512,11 +488,7 @@ func ExampleDynamoDB_DescribeLimits() {
 }
 
 func ExampleDynamoDB_DescribeTable() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := dynamodb.New(sess)
 
@@ -537,11 +509,7 @@ func ExampleDynamoDB_DescribeTable() {
 }
 
 func ExampleDynamoDB_GetItem() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := dynamodb.New(sess)
 
@@ -607,11 +575,7 @@ func ExampleDynamoDB_GetItem() {
 }
 
 func ExampleDynamoDB_ListTables() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := dynamodb.New(sess)
 
@@ -633,11 +597,7 @@ func ExampleDynamoDB_ListTables() {
 }
 
 func ExampleDynamoDB_ListTagsOfResource() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := dynamodb.New(sess)
 
@@ -659,11 +619,7 @@ func ExampleDynamoDB_ListTagsOfResource() {
 }
 
 func ExampleDynamoDB_PutItem() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := dynamodb.New(sess)
 
@@ -833,11 +789,7 @@ func ExampleDynamoDB_PutItem() {
 }
 
 func ExampleDynamoDB_Query() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := dynamodb.New(sess)
 
@@ -1024,11 +976,7 @@ func ExampleDynamoDB_Query() {
 }
 
 func ExampleDynamoDB_Scan() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := dynamodb.New(sess)
 
@@ -1175,11 +1123,7 @@ func ExampleDynamoDB_Scan() {
 }
 
 func ExampleDynamoDB_TagResource() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := dynamodb.New(sess)
 
@@ -1207,11 +1151,7 @@ func ExampleDynamoDB_TagResource() {
 }
 
 func ExampleDynamoDB_UntagResource() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := dynamodb.New(sess)
 
@@ -1236,11 +1176,7 @@ func ExampleDynamoDB_UntagResource() {
 }
 
 func ExampleDynamoDB_UpdateItem() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := dynamodb.New(sess)
 
@@ -1448,11 +1384,7 @@ func ExampleDynamoDB_UpdateItem() {
 }
 
 func ExampleDynamoDB_UpdateTable() {
-	sess, err := session.NewSession()
-	if err != nil {
-		fmt.Println("failed to create session,", err)
-		return
-	}
+	sess := session.Must(session.NewSession())
 
 	svc := dynamodb.New(sess)
 
