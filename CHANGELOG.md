@@ -1,3 +1,11 @@
+Release v1.7.1 (2017-02-24)
+===
+
+Service Client Updates
+---
+* `service/elasticsearchservice`: Updates service API, documentation, paginators, and examples
+  * Added three new API calls to existing Amazon Elasticsearch service to expose Amazon Elasticsearch imposed limits to customers.
+
 Release v1.7.0 (2017-02-23)
 ===
 

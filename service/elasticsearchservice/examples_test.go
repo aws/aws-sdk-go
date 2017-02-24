@@ -174,6 +174,29 @@ func ExampleElasticsearchService_DescribeElasticsearchDomains() {
 	fmt.Println(resp)
 }
 
+func ExampleElasticsearchService_DescribeElasticsearchInstanceTypeLimits() {
+	sess := session.Must(session.NewSession())
+
+	svc := elasticsearchservice.New(sess)
+
+	params := &elasticsearchservice.DescribeElasticsearchInstanceTypeLimitsInput{
+		ElasticsearchVersion: aws.String("ElasticsearchVersionString"), // Required
+		InstanceType:         aws.String("ESPartitionInstanceType"),    // Required
+		DomainName:           aws.String("DomainName"),
+	}
+	resp, err := svc.DescribeElasticsearchInstanceTypeLimits(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleElasticsearchService_ListDomainNames() {
 	sess := session.Must(session.NewSession())
 
@@ -181,6 +204,52 @@ func ExampleElasticsearchService_ListDomainNames() {
 
 	var params *elasticsearchservice.ListDomainNamesInput
 	resp, err := svc.ListDomainNames(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleElasticsearchService_ListElasticsearchInstanceTypes() {
+	sess := session.Must(session.NewSession())
+
+	svc := elasticsearchservice.New(sess)
+
+	params := &elasticsearchservice.ListElasticsearchInstanceTypesInput{
+		ElasticsearchVersion: aws.String("ElasticsearchVersionString"), // Required
+		DomainName:           aws.String("DomainName"),
+		MaxResults:           aws.Int64(1),
+		NextToken:            aws.String("NextToken"),
+	}
+	resp, err := svc.ListElasticsearchInstanceTypes(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleElasticsearchService_ListElasticsearchVersions() {
+	sess := session.Must(session.NewSession())
+
+	svc := elasticsearchservice.New(sess)
+
+	params := &elasticsearchservice.ListElasticsearchVersionsInput{
+		MaxResults: aws.Int64(1),
+		NextToken:  aws.String("NextToken"),
+	}
+	resp, err := svc.ListElasticsearchVersions(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
