@@ -508,6 +508,27 @@ func ExampleDynamoDB_DescribeTable() {
 	fmt.Println(resp)
 }
 
+func ExampleDynamoDB_DescribeTimeToLive() {
+	sess := session.Must(session.NewSession())
+
+	svc := dynamodb.New(sess)
+
+	params := &dynamodb.DescribeTimeToLiveInput{
+		TableName: aws.String("TableName"), // Required
+	}
+	resp, err := svc.DescribeTimeToLive(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleDynamoDB_GetItem() {
 	sess := session.Must(session.NewSession())
 
@@ -1443,6 +1464,31 @@ func ExampleDynamoDB_UpdateTable() {
 		},
 	}
 	resp, err := svc.UpdateTable(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleDynamoDB_UpdateTimeToLive() {
+	sess := session.Must(session.NewSession())
+
+	svc := dynamodb.New(sess)
+
+	params := &dynamodb.UpdateTimeToLiveInput{
+		TableName: aws.String("TableName"), // Required
+		TimeToLiveSpecification: &dynamodb.TimeToLiveSpecification{ // Required
+			AttributeName: aws.String("TimeToLiveAttributeName"), // Required
+			Enabled:       aws.Bool(true),                        // Required
+		},
+	}
+	resp, err := svc.UpdateTimeToLive(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
