@@ -1,3 +1,19 @@
+Release v1.7.2 (2017-02-27)
+===
+
+Service Client Updates
+---
+* `service/dynamodb`: Updates service API and documentation
+  * Release notes: Time to Live (TTL) is a feature that allows you to define when items in a table expire and can be purged from the database, so that you don't have to track expired data and delete it manually. With TTL enabled on a DynamoDB table, you can set a timestamp for deletion on a per-item basis, allowing you to limit storage usage to only those records that are relevant.
+* `service/iam`: Updates service API, documentation, and paginators
+  * This release adds support for AWS Organizations service control policies (SCPs) to SimulatePrincipalPolicy operation. If there are SCPs associated with the simulated user's account, their effect on the result is captured in the OrganizationDecisionDetail element in the EvaluationResult.
+* `service/mechanicalturkrequesterservice`: Adds new service
+* `service/organizations`: Adds new service
+* `service/dynamodbstreams`: Updates service API, documentation, and paginators
+* `service/waf`: Updates service API, documentation, and paginators
+  * Aws WAF - For GetSampledRequests action, changed max number of samples from 100 to 500.
+* `service/wafregional`: Updates service API, documentation, and paginators
+
 Release v1.7.1 (2017-02-24)
 ===
 
