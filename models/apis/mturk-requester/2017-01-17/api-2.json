@@ -5,7 +5,8 @@
     "endpointPrefix":"mturk-requester",
     "jsonVersion":"1.1",
     "protocol":"json",
-    "serviceFullName":"Amazon Mechanical Turk Requester Service",
+    "serviceAbbreviation":"Amazon MTurk",
+    "serviceFullName":"Amazon Mechanical Turk",
     "signatureVersion":"v4",
     "targetPrefix":"MTurkRequesterServiceV20170117",
     "uid":"mturk-requester-2017-01-17"

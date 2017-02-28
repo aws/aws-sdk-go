@@ -1,3 +1,13 @@
+
+Release v1.7.3 (2017-02-28)
+===
+
+Service Client Updates
+* `service/mturk`: Adds new service
+  * Amazon Mechanical Turk is a web service that provides an on-demand,
+	scalable, human workforce to complete jobs that humans can do better than
+	computers, for example, recognizing objects in photos.
+
 Release v1.7.2 (2017-02-28)
 ===
 
