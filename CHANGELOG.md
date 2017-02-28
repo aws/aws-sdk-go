@@ -1,3 +1,11 @@
+
+Release v1.7.3 (2017-02-28)
+===
+
+Service Client Updates
+* `service/mturk`: Renaming service
+  * service/mechanicalturkrequesterservice was renamed to service/mturk. Be sure to change any references of the old client to the new.
+
 Release v1.7.2 (2017-02-28)
 ===
 
