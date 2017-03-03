@@ -194,6 +194,11 @@ var AfterRetryHandler = request.NamedHandler{Name: "core.AfterRetryHandler", Fn:
 // region is not valid.
 var ValidateEndpointHandler = request.NamedHandler{Name: "core.ValidateEndpointHandler", Fn: func(r *request.Request) {
 	if r.ClientInfo.SigningRegion == "" && aws.StringValue(r.Config.Region) == "" {
+		if r.ClientInfo.Endpoint != "" && r.Config.Credentials == credentials.AnonymousCredentials {
+			// If a custom endpoint is used, and the request will not be signed
+			// the is no reason for the SDK to require the region also be present
+			return
+		}
 		r.Error = aws.ErrMissingRegion
 	} else if r.ClientInfo.Endpoint == "" {
 		r.Error = aws.ErrMissingEndpoint
