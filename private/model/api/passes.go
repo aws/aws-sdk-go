@@ -70,6 +70,14 @@ type referenceResolver struct {
 	visited map[*ShapeRef]bool
 }
 
+var jsonvalueShape = &Shape{
+	ShapeName: "JSONValue",
+	Type:      "jsonvalue",
+	ValueRef: ShapeRef{
+		JSONValue: true,
+	},
+}
+
 // resolveReference updates a shape reference to reference the API and
 // its shape definition. All other nested references are also resolved.
 func (r *referenceResolver) resolveReference(ref *ShapeRef) {
@@ -78,6 +86,11 @@ func (r *referenceResolver) resolveReference(ref *ShapeRef) {
 	}
 
 	if shape, ok := r.API.Shapes[ref.ShapeName]; ok {
+		if ref.JSONValue {
+			ref.ShapeName = "JSONValue"
+			r.API.Shapes[ref.ShapeName] = jsonvalueShape
+		}
+
 		ref.API = r.API   // resolve reference back to API
 		ref.Shape = shape // resolve shape reference
 
