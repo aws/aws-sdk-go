@@ -638,7 +638,7 @@ func (c *EC2) WaitUntilSnapshotCompleted(input *DescribeSnapshotsInput) error {
 	waiterCfg := waiter.Config{
 		Operation:   "DescribeSnapshots",
 		Delay:       15,
-		MaxAttempts: 40,
+		MaxAttempts: 60,
 		Acceptors: []waiter.WaitAcceptor{
 			{
 				State:    "success",
