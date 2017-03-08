@@ -79,7 +79,11 @@ single Credentials with an AssumeRoleProvider can be shared safely.
 package stscreds
 
 import (
+	"encoding/json"
 	"fmt"
+	"os"
+	"path/filepath"
+	"strings"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -135,6 +139,9 @@ type AssumeRoleProvider struct {
 
 	// STS client to make assume role request with.
 	Client AssumeRoler
+
+	// Profile name where the configuration came from.
+	Profile string
 
 	// Role to be assumed.
 	RoleARN string
@@ -193,6 +200,10 @@ type AssumeRoleProvider struct {
 	//
 	// If ExpiryWindow is 0 or less it will be ignored.
 	ExpiryWindow time.Duration
+
+	// CLICredentialsCacheDir specifies the location of the awscli/botocore
+	// credentials cache. At the moment aws-sdk-go only reads this cache.
+	CLICredentialsCacheDir string
 }
 
 // NewCredentials returns a pointer to a new Credentials object wrapping the
@@ -242,8 +253,52 @@ func NewCredentialsWithClient(svc AssumeRoler, roleARN string, options ...func(*
 	return credentials.NewCredentials(p)
 }
 
+// readCache uses credentials cached by awscli/botocore, if available.
+// At the moment, aws-sdk-go does not write into this cache.
+func (p *AssumeRoleProvider) readCache() (credentials.Value, bool) {
+	role := strings.Replace(p.RoleARN, ":", "_", -1)
+	var keyName string
+	if p.RoleSessionName != "" {
+		keyName = fmt.Sprintf("%s--%s--%s.json", p.Profile, role, p.RoleSessionName)
+	} else {
+		keyName = fmt.Sprintf("%s--%s.json", p.Profile, role)
+	}
+	keyName = strings.Replace(keyName, "/", "-", -1)
+	fileName := filepath.Join(p.CLICredentialsCacheDir, keyName)
+
+	fd, err := os.Open(fileName)
+	if err != nil {
+		return credentials.Value{}, false
+	}
+	defer fd.Close()
+	dec := json.NewDecoder(fd)
+
+	var m struct {
+		Credentials struct {
+			Expiration time.Time
+			credentials.Value
+		}
+	}
+	err = dec.Decode(&m)
+	if err != nil {
+		return credentials.Value{}, false
+	}
+
+	remaining := -time.Since(m.Credentials.Expiration)
+	if remaining < p.ExpiryWindow {
+		return credentials.Value{}, false
+	}
+
+	p.SetExpiration(m.Credentials.Expiration, p.ExpiryWindow)
+
+	return m.Credentials.Value, true
+}
+
 // Retrieve generates a new set of temporary credentials using STS.
 func (p *AssumeRoleProvider) Retrieve() (credentials.Value, error) {
+	if creds, ok := p.readCache(); ok {
+		return creds, nil
+	}
 
 	// Apply defaults where parameters are not set.
 	if p.RoleSessionName == "" {

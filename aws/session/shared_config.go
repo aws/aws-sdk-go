@@ -32,6 +32,7 @@ const (
 )
 
 type assumeRoleConfig struct {
+	Profile         string
 	RoleARN         string
 	SourceProfile   string
 	ExternalID      string
@@ -197,6 +198,7 @@ func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile) e
 	srcProfile := section.Key(sourceProfileKey).String()
 	if len(roleArn) > 0 && len(srcProfile) > 0 {
 		cfg.AssumeRole = assumeRoleConfig{
+			Profile:         profile,
 			RoleARN:         roleArn,
 			SourceProfile:   srcProfile,
 			ExternalID:      section.Key(externalIDKey).String(),
