@@ -1,3 +1,13 @@
+Release v1.7.6 (2017-03-09)
+===
+
+Service Client Updates
+---
+* `service/organizations`: Updates service documentation and examples
+  * Doc-only Update for Organizations: Add SDK Code Snippets
+* `service/workdocs`: Adds new service
+  * The Administrative SDKs for Amazon WorkDocs provides full administrator level access to WorkDocs site resources, allowing developers to integrate their applications to manage WorkDocs users, content and permissions programmatically
+
 Release v1.7.5 (2017-03-08)
 ===
 
