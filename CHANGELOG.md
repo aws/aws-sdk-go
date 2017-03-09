@@ -1,3 +1,13 @@
+Release v1.7.7 (2017-03-09)
+===
+
+Service Client Updates
+---
+* `service/apigateway`: Updates service API, documentation, and paginators
+  * API Gateway has added support for ACM certificates on custom domain names. Both Amazon-issued certificates and uploaded third-part certificates are supported.
+* `service/clouddirectory`: Updates service API, documentation, and paginators
+  * Introduces a new Cloud Directory API that enables you to retrieve all available parent paths for any type of object (a node, leaf node, policy node, and index node) in a hierarchy.
+
 Release v1.7.6 (2017-03-09)
 ===
 
