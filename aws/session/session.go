@@ -98,9 +98,10 @@ func New(cfgs ...*aws.Config) *Session {
 // control through code how the Session will be created. Such as specifying the
 // config profile, and controlling if shared config is enabled or not.
 func NewSession(cfgs ...*aws.Config) (*Session, error) {
-	envCfg := loadEnvConfig()
+	opts := Options{}
+	opts.Config.MergeIn(cfgs...)
 
-	return newSession(Options{}, envCfg, cfgs...)
+	return NewSessionWithOptions(opts)
 }
 
 // SharedConfigState provides the ability to optionally override the state
@@ -241,8 +242,8 @@ func NewSessionWithOptions(opts Options) (*Session, error) {
 	if len(envCfg.CustomCABundle) != 0 && opts.CustomCABundle == nil {
 		f, err := os.Open(envCfg.CustomCABundle)
 		if err != nil {
-			// TODO wrap error
-			return nil, err
+			return nil, awserr.New("LoadCustomCABundleError",
+				"failed to open custom CA bundle PEM file", err)
 		}
 		defer f.Close()
 		opts.CustomCABundle = f
@@ -345,9 +346,8 @@ func loadCustomCABundle(s *Session, bundle io.Reader) error {
 		t = v
 	default:
 		if s.Config.HTTPClient.Transport != nil {
-			// Transport is set to a type that is unsupported.
-			// TODO report an error?
-			return nil
+			return awserr.New("LoadCustomCABundleError",
+				"unable to load custom CA bundle, HTTPClient's transport unsupported type", nil)
 		}
 	}
 	if t == nil {
@@ -371,14 +371,14 @@ func loadCustomCABundle(s *Session, bundle io.Reader) error {
 func loadCertPool(r io.Reader) (*x509.CertPool, error) {
 	b, err := ioutil.ReadAll(r)
 	if err != nil {
-		// TODO better error
-		return nil, fmt.Errorf("failed to read pem file, %v", err)
+		return nil, awserr.New("LoadCustomCABundleError",
+			"failed to read custom CA bundle PEM file", err)
 	}
 
 	p := x509.NewCertPool()
 	if !p.AppendCertsFromPEM(b) {
-		// TODO better error
-		return nil, fmt.Errorf("failed to load cert bundle")
+		return nil, awserr.New("LoadCustomCABundleError",
+			"failed to load custom CA bundle PEM file", err)
 	}
 
 	return p, nil

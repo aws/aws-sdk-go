@@ -70,6 +70,7 @@ func TestNewSession_WithCustomCABundle_Env(t *testing.T) {
 	os.Setenv("AWS_CA_BUNDLE", caFilename)
 
 	s, err := NewSession(&aws.Config{
+		HTTPClient:  &http.Client{},
 		Endpoint:    aws.String(server.URL),
 		Region:      aws.String("mock-region"),
 		Credentials: credentials.AnonymousCredentials,
@@ -94,6 +95,7 @@ func TestNewSession_WithCustomCABundle_Option(t *testing.T) {
 
 	s, err := NewSessionWithOptions(Options{
 		Config: aws.Config{
+			HTTPClient:  &http.Client{},
 			Endpoint:    aws.String(server.URL),
 			Region:      aws.String("mock-region"),
 			Credentials: credentials.AnonymousCredentials,
