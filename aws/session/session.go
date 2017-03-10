@@ -182,7 +182,8 @@ type Options struct {
 	// Enabling this option will attempt to merge the Transport into the SDK's HTTP
 	// client. If the client's Transport is not a http.Transport an error will be
 	// returned. If the Transport's TLS config is set this option will cause the SDK
-	// to overwrite the Transport's TLS config's  RootCAs value.
+	// to overwrite the Transport's TLS config's  RootCAs value. If the CA
+	// bundle reader contains multiple certificates all of them will be loaded.
 	//
 	// The Session option CustomCABundle is also available when creating sessions
 	// to also enable this feature. CustomCABundle session option field has priority
