@@ -196,15 +196,12 @@ func TestNewSession_WithCustomCABundle_TransportSet(t *testing.T) {
 			HTTPClient: &http.Client{
 				Transport: &http.Transport{
 					Proxy: http.ProxyFromEnvironment,
-					DialContext: (&net.Dialer{
+					Dial: (&net.Dialer{
 						Timeout:   30 * time.Second,
 						KeepAlive: 30 * time.Second,
 						DualStack: true,
-					}).DialContext,
-					MaxIdleConns:          100,
-					IdleConnTimeout:       90 * time.Second,
-					TLSHandshakeTimeout:   10 * time.Second,
-					ExpectContinueTimeout: 1 * time.Second,
+					}).Dial,
+					TLSHandshakeTimeout: 2 * time.Second,
 				},
 			},
 		},
