@@ -4,10 +4,12 @@ import (
 	"bytes"
 	"crypto/tls"
 	"io/ioutil"
+	"net"
 	"net/http"
 	"net/http/httptest"
 	"os"
 	"testing"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
@@ -141,6 +143,70 @@ func TestNewSession_WithCustomCABundle_OptionPriority(t *testing.T) {
 			Endpoint:    aws.String(server.URL),
 			Region:      aws.String("mock-region"),
 			Credentials: credentials.AnonymousCredentials,
+		},
+		CustomCABundle: bytes.NewReader(testTLSBundleCA),
+	})
+	assert.NoError(t, err)
+	assert.NotNil(t, s)
+
+	req, _ := http.NewRequest("GET", *s.Config.Endpoint, nil)
+	resp, err := s.Config.HTTPClient.Do(req)
+	assert.NoError(t, err)
+
+	assert.Equal(t, http.StatusOK, resp.StatusCode)
+}
+
+type mockRoundTripper struct{}
+
+func (m *mockRoundTripper) RoundTrip(r *http.Request) (*http.Response, error) {
+	return nil, nil
+}
+
+func TestNewSession_WithCustomCABundle_UnsupportedTransport(t *testing.T) {
+	oldEnv := initSessionTestEnv()
+	defer popEnv(oldEnv)
+
+	s, err := NewSessionWithOptions(Options{
+		Config: aws.Config{
+			HTTPClient: &http.Client{
+				Transport: &mockRoundTripper{},
+			},
+		},
+		CustomCABundle: bytes.NewReader(testTLSBundleCA),
+	})
+	assert.Error(t, err)
+	assert.Equal(t, "LoadCustomCABundleError", err.(awserr.Error).Code())
+	assert.Contains(t, err.(awserr.Error).Message(), "transport unsupported type")
+	assert.Nil(t, s)
+}
+
+func TestNewSession_WithCustomCABundle_TransportSet(t *testing.T) {
+	oldEnv := initSessionTestEnv()
+	defer popEnv(oldEnv)
+
+	done := make(chan struct{})
+	server, err := createTLSServer(testTLSBundleCert, testTLSBundleKey, done)
+	assert.NoError(t, err)
+
+	s, err := NewSessionWithOptions(Options{
+		Config: aws.Config{
+			Endpoint:    aws.String(server.URL),
+			Region:      aws.String("mock-region"),
+			Credentials: credentials.AnonymousCredentials,
+			HTTPClient: &http.Client{
+				Transport: &http.Transport{
+					Proxy: http.ProxyFromEnvironment,
+					DialContext: (&net.Dialer{
+						Timeout:   30 * time.Second,
+						KeepAlive: 30 * time.Second,
+						DualStack: true,
+					}).DialContext,
+					MaxIdleConns:          100,
+					IdleConnTimeout:       90 * time.Second,
+					TLSHandshakeTimeout:   10 * time.Second,
+					ExpectContinueTimeout: 1 * time.Second,
+				},
+			},
 		},
 		CustomCABundle: bytes.NewReader(testTLSBundleCA),
 	})
