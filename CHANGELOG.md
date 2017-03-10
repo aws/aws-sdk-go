@@ -1,3 +1,13 @@
+Release v1.7.8 (2017-03-10)
+===
+
+Service Client Updates
+---
+* `service/codedeploy`: Updates service paginators
+  * Add paginators for Codedeploy
+* `service/emr`: Updates service API, documentation, and paginators
+  * This release includes support for instance fleets in Amazon EMR.
+
 Release v1.7.7 (2017-03-09)
 ===
 
