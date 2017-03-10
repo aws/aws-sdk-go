@@ -10,6 +10,7 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/stretchr/testify/assert"
 )
@@ -85,6 +86,18 @@ func TestNewSession_WithCustomCABundle_Env(t *testing.T) {
 	assert.Equal(t, http.StatusOK, resp.StatusCode)
 }
 
+func TestNewSession_WithCustomCABundle_EnvNotExists(t *testing.T) {
+	oldEnv := initSessionTestEnv()
+	defer popEnv(oldEnv)
+
+	os.Setenv("AWS_CA_BUNDLE", "file-not-exists")
+
+	s, err := NewSession()
+	assert.Error(t, err)
+	assert.Equal(t, "LoadCustomCABundleError", err.(awserr.Error).Code())
+	assert.Nil(t, s)
+}
+
 func TestNewSession_WithCustomCABundle_Option(t *testing.T) {
 	oldEnv := initSessionTestEnv()
 	defer popEnv(oldEnv)
@@ -92,6 +105,35 @@ func TestNewSession_WithCustomCABundle_Option(t *testing.T) {
 	done := make(chan struct{})
 	server, err := createTLSServer(testTLSBundleCert, testTLSBundleKey, done)
 	assert.NoError(t, err)
+
+	s, err := NewSessionWithOptions(Options{
+		Config: aws.Config{
+			HTTPClient:  &http.Client{},
+			Endpoint:    aws.String(server.URL),
+			Region:      aws.String("mock-region"),
+			Credentials: credentials.AnonymousCredentials,
+		},
+		CustomCABundle: bytes.NewReader(testTLSBundleCA),
+	})
+	assert.NoError(t, err)
+	assert.NotNil(t, s)
+
+	req, _ := http.NewRequest("GET", *s.Config.Endpoint, nil)
+	resp, err := s.Config.HTTPClient.Do(req)
+	assert.NoError(t, err)
+
+	assert.Equal(t, http.StatusOK, resp.StatusCode)
+}
+
+func TestNewSession_WithCustomCABundle_OptionPriority(t *testing.T) {
+	oldEnv := initSessionTestEnv()
+	defer popEnv(oldEnv)
+
+	done := make(chan struct{})
+	server, err := createTLSServer(testTLSBundleCert, testTLSBundleKey, done)
+	assert.NoError(t, err)
+
+	os.Setenv("AWS_CA_BUNDLE", "file-not-exists")
 
 	s, err := NewSessionWithOptions(Options{
 		Config: aws.Config{
