@@ -199,25 +199,37 @@ type IoTAPI interface {
 
 	ListCACertificates(*iot.ListCACertificatesInput) (*iot.ListCACertificatesOutput, error)
 
+	ListCACertificatesPages(*iot.ListCACertificatesInput, func(*iot.ListCACertificatesOutput, bool) bool) error
+
 	ListCertificatesRequest(*iot.ListCertificatesInput) (*request.Request, *iot.ListCertificatesOutput)
 
 	ListCertificates(*iot.ListCertificatesInput) (*iot.ListCertificatesOutput, error)
+
+	ListCertificatesPages(*iot.ListCertificatesInput, func(*iot.ListCertificatesOutput, bool) bool) error
 
 	ListCertificatesByCARequest(*iot.ListCertificatesByCAInput) (*request.Request, *iot.ListCertificatesByCAOutput)
 
 	ListCertificatesByCA(*iot.ListCertificatesByCAInput) (*iot.ListCertificatesByCAOutput, error)
 
+	ListCertificatesByCAPages(*iot.ListCertificatesByCAInput, func(*iot.ListCertificatesByCAOutput, bool) bool) error
+
 	ListOutgoingCertificatesRequest(*iot.ListOutgoingCertificatesInput) (*request.Request, *iot.ListOutgoingCertificatesOutput)
 
 	ListOutgoingCertificates(*iot.ListOutgoingCertificatesInput) (*iot.ListOutgoingCertificatesOutput, error)
+
+	ListOutgoingCertificatesPages(*iot.ListOutgoingCertificatesInput, func(*iot.ListOutgoingCertificatesOutput, bool) bool) error
 
 	ListPoliciesRequest(*iot.ListPoliciesInput) (*request.Request, *iot.ListPoliciesOutput)
 
 	ListPolicies(*iot.ListPoliciesInput) (*iot.ListPoliciesOutput, error)
 
+	ListPoliciesPages(*iot.ListPoliciesInput, func(*iot.ListPoliciesOutput, bool) bool) error
+
 	ListPolicyPrincipalsRequest(*iot.ListPolicyPrincipalsInput) (*request.Request, *iot.ListPolicyPrincipalsOutput)
 
 	ListPolicyPrincipals(*iot.ListPolicyPrincipalsInput) (*iot.ListPolicyPrincipalsOutput, error)
+
+	ListPolicyPrincipalsPages(*iot.ListPolicyPrincipalsInput, func(*iot.ListPolicyPrincipalsOutput, bool) bool) error
 
 	ListPolicyVersionsRequest(*iot.ListPolicyVersionsInput) (*request.Request, *iot.ListPolicyVersionsOutput)
 
@@ -227,9 +239,13 @@ type IoTAPI interface {
 
 	ListPrincipalPolicies(*iot.ListPrincipalPoliciesInput) (*iot.ListPrincipalPoliciesOutput, error)
 
+	ListPrincipalPoliciesPages(*iot.ListPrincipalPoliciesInput, func(*iot.ListPrincipalPoliciesOutput, bool) bool) error
+
 	ListPrincipalThingsRequest(*iot.ListPrincipalThingsInput) (*request.Request, *iot.ListPrincipalThingsOutput)
 
 	ListPrincipalThings(*iot.ListPrincipalThingsInput) (*iot.ListPrincipalThingsOutput, error)
+
+	ListPrincipalThingsPages(*iot.ListPrincipalThingsInput, func(*iot.ListPrincipalThingsOutput, bool) bool) error
 
 	ListThingPrincipalsRequest(*iot.ListThingPrincipalsInput) (*request.Request, *iot.ListThingPrincipalsOutput)
 
@@ -239,13 +255,19 @@ type IoTAPI interface {
 
 	ListThingTypes(*iot.ListThingTypesInput) (*iot.ListThingTypesOutput, error)
 
+	ListThingTypesPages(*iot.ListThingTypesInput, func(*iot.ListThingTypesOutput, bool) bool) error
+
 	ListThingsRequest(*iot.ListThingsInput) (*request.Request, *iot.ListThingsOutput)
 
 	ListThings(*iot.ListThingsInput) (*iot.ListThingsOutput, error)
 
+	ListThingsPages(*iot.ListThingsInput, func(*iot.ListThingsOutput, bool) bool) error
+
 	ListTopicRulesRequest(*iot.ListTopicRulesInput) (*request.Request, *iot.ListTopicRulesOutput)
 
 	ListTopicRules(*iot.ListTopicRulesInput) (*iot.ListTopicRulesOutput, error)
+
+	ListTopicRulesPages(*iot.ListTopicRulesInput, func(*iot.ListTopicRulesOutput, bool) bool) error
 
 	RegisterCACertificateRequest(*iot.RegisterCACertificateInput) (*request.Request, *iot.RegisterCACertificateOutput)
 

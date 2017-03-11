@@ -1,0 +1,63 @@
+{
+  "pagination": {
+    "ListCACertificates": {
+      "input_token": "marker",
+      "output_token": "nextMarker",
+      "result_key": "certificates"
+    },
+    "ListCertificates": {
+      "input_token": "marker",
+      "output_token": "nextMarker",
+      "result_key": "certificates"
+    },
+    "ListCertificatesByCA": {
+      "input_token": "marker",
+      "output_token": "nextMarker",
+      "result_key": "certificates"
+    },
+    "ListOutgoingCertificates": {
+      "input_token": "marker",
+      "output_token": "nextMarker",
+      "result_key": "outgoingCertificates"
+    },
+    "ListPolicies": {
+      "input_token": "marker",
+      "output_token": "nextMarker",
+      "result_key": "policies"
+    },
+    "ListPolicyPrincipals": {
+      "input_token": "marker",
+      "output_token": "nextMarker",
+      "result_key": "principals"
+    },
+    "ListPrincipalPolicies": {
+      "input_token": "marker",
+      "output_token": "nextMarker",
+      "result_key": "policies"
+    },
+    "ListPrincipalThings": {
+      "limit_key": "maxResults",
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "result_key": "things"
+    },
+    "ListThings": {
+      "limit_key": "maxResults",
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "result_key": "things"
+    },
+    "ListThingTypes": {
+      "limit_key": "maxResults",
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "result_key": "thingTypes"
+    },
+    "ListTopicRules": {
+      "limit_key": "maxResults",
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "result_key": "rules"
+    }
+  }
+}

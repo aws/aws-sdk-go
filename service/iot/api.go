@@ -2760,6 +2760,12 @@ func (c *IoT) ListCACertificatesRequest(input *ListCACertificatesInput) (req *re
 		Name:       opListCACertificates,
 		HTTPMethod: "GET",
 		HTTPPath:   "/cacertificates",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"marker"},
+			OutputTokens:    []string{"nextMarker"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2807,6 +2813,31 @@ func (c *IoT) ListCACertificates(input *ListCACertificatesInput) (*ListCACertifi
 	return out, err
 }
 
+// ListCACertificatesPages iterates over the pages of a ListCACertificates operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCACertificates method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListCACertificates operation.
+//    pageNum := 0
+//    err := client.ListCACertificatesPages(params,
+//        func(page *ListCACertificatesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoT) ListCACertificatesPages(input *ListCACertificatesInput, fn func(p *ListCACertificatesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListCACertificatesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListCACertificatesOutput), lastPage)
+	})
+}
+
 const opListCertificates = "ListCertificates"
 
 // ListCertificatesRequest generates a "aws/request.Request" representing the
@@ -2837,6 +2868,12 @@ func (c *IoT) ListCertificatesRequest(input *ListCertificatesInput) (req *reques
 		Name:       opListCertificates,
 		HTTPMethod: "GET",
 		HTTPPath:   "/certificates",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"marker"},
+			OutputTokens:    []string{"nextMarker"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2884,6 +2921,31 @@ func (c *IoT) ListCertificates(input *ListCertificatesInput) (*ListCertificatesO
 	return out, err
 }
 
+// ListCertificatesPages iterates over the pages of a ListCertificates operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCertificates method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListCertificates operation.
+//    pageNum := 0
+//    err := client.ListCertificatesPages(params,
+//        func(page *ListCertificatesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoT) ListCertificatesPages(input *ListCertificatesInput, fn func(p *ListCertificatesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListCertificatesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListCertificatesOutput), lastPage)
+	})
+}
+
 const opListCertificatesByCA = "ListCertificatesByCA"
 
 // ListCertificatesByCARequest generates a "aws/request.Request" representing the
@@ -2914,6 +2976,12 @@ func (c *IoT) ListCertificatesByCARequest(input *ListCertificatesByCAInput) (req
 		Name:       opListCertificatesByCA,
 		HTTPMethod: "GET",
 		HTTPPath:   "/certificates-by-ca/{caCertificateId}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"marker"},
+			OutputTokens:    []string{"nextMarker"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2958,6 +3026,31 @@ func (c *IoT) ListCertificatesByCA(input *ListCertificatesByCAInput) (*ListCerti
 	return out, err
 }
 
+// ListCertificatesByCAPages iterates over the pages of a ListCertificatesByCA operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCertificatesByCA method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListCertificatesByCA operation.
+//    pageNum := 0
+//    err := client.ListCertificatesByCAPages(params,
+//        func(page *ListCertificatesByCAOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoT) ListCertificatesByCAPages(input *ListCertificatesByCAInput, fn func(p *ListCertificatesByCAOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListCertificatesByCARequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListCertificatesByCAOutput), lastPage)
+	})
+}
+
 const opListOutgoingCertificates = "ListOutgoingCertificates"
 
 // ListOutgoingCertificatesRequest generates a "aws/request.Request" representing the
@@ -2988,6 +3081,12 @@ func (c *IoT) ListOutgoingCertificatesRequest(input *ListOutgoingCertificatesInp
 		Name:       opListOutgoingCertificates,
 		HTTPMethod: "GET",
 		HTTPPath:   "/certificates-out-going",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"marker"},
+			OutputTokens:    []string{"nextMarker"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3032,6 +3131,31 @@ func (c *IoT) ListOutgoingCertificates(input *ListOutgoingCertificatesInput) (*L
 	return out, err
 }
 
+// ListOutgoingCertificatesPages iterates over the pages of a ListOutgoingCertificates operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListOutgoingCertificates method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListOutgoingCertificates operation.
+//    pageNum := 0
+//    err := client.ListOutgoingCertificatesPages(params,
+//        func(page *ListOutgoingCertificatesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoT) ListOutgoingCertificatesPages(input *ListOutgoingCertificatesInput, fn func(p *ListOutgoingCertificatesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListOutgoingCertificatesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListOutgoingCertificatesOutput), lastPage)
+	})
+}
+
 const opListPolicies = "ListPolicies"
 
 // ListPoliciesRequest generates a "aws/request.Request" representing the
@@ -3062,6 +3186,12 @@ func (c *IoT) ListPoliciesRequest(input *ListPoliciesInput) (req *request.Reques
 		Name:       opListPolicies,
 		HTTPMethod: "GET",
 		HTTPPath:   "/policies",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"marker"},
+			OutputTokens:    []string{"nextMarker"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3106,6 +3236,31 @@ func (c *IoT) ListPolicies(input *ListPoliciesInput) (*ListPoliciesOutput, error
 	return out, err
 }
 
+// ListPoliciesPages iterates over the pages of a ListPolicies operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPolicies method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListPolicies operation.
+//    pageNum := 0
+//    err := client.ListPoliciesPages(params,
+//        func(page *ListPoliciesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoT) ListPoliciesPages(input *ListPoliciesInput, fn func(p *ListPoliciesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListPoliciesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListPoliciesOutput), lastPage)
+	})
+}
+
 const opListPolicyPrincipals = "ListPolicyPrincipals"
 
 // ListPolicyPrincipalsRequest generates a "aws/request.Request" representing the
@@ -3136,6 +3291,12 @@ func (c *IoT) ListPolicyPrincipalsRequest(input *ListPolicyPrincipalsInput) (req
 		Name:       opListPolicyPrincipals,
 		HTTPMethod: "GET",
 		HTTPPath:   "/policy-principals",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"marker"},
+			OutputTokens:    []string{"nextMarker"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3181,6 +3342,31 @@ func (c *IoT) ListPolicyPrincipals(input *ListPolicyPrincipalsInput) (*ListPolic
 	req, out := c.ListPolicyPrincipalsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+// ListPolicyPrincipalsPages iterates over the pages of a ListPolicyPrincipals operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPolicyPrincipals method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListPolicyPrincipals operation.
+//    pageNum := 0
+//    err := client.ListPolicyPrincipalsPages(params,
+//        func(page *ListPolicyPrincipalsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoT) ListPolicyPrincipalsPages(input *ListPolicyPrincipalsInput, fn func(p *ListPolicyPrincipalsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListPolicyPrincipalsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListPolicyPrincipalsOutput), lastPage)
+	})
 }
 
 const opListPolicyVersions = "ListPolicyVersions"
@@ -3290,6 +3476,12 @@ func (c *IoT) ListPrincipalPoliciesRequest(input *ListPrincipalPoliciesInput) (r
 		Name:       opListPrincipalPolicies,
 		HTTPMethod: "GET",
 		HTTPPath:   "/principal-policies",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"marker"},
+			OutputTokens:    []string{"nextMarker"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3338,6 +3530,31 @@ func (c *IoT) ListPrincipalPolicies(input *ListPrincipalPoliciesInput) (*ListPri
 	return out, err
 }
 
+// ListPrincipalPoliciesPages iterates over the pages of a ListPrincipalPolicies operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPrincipalPolicies method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListPrincipalPolicies operation.
+//    pageNum := 0
+//    err := client.ListPrincipalPoliciesPages(params,
+//        func(page *ListPrincipalPoliciesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoT) ListPrincipalPoliciesPages(input *ListPrincipalPoliciesInput, fn func(p *ListPrincipalPoliciesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListPrincipalPoliciesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListPrincipalPoliciesOutput), lastPage)
+	})
+}
+
 const opListPrincipalThings = "ListPrincipalThings"
 
 // ListPrincipalThingsRequest generates a "aws/request.Request" representing the
@@ -3368,6 +3585,12 @@ func (c *IoT) ListPrincipalThingsRequest(input *ListPrincipalThingsInput) (req *
 		Name:       opListPrincipalThings,
 		HTTPMethod: "GET",
 		HTTPPath:   "/principals/things",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3413,6 +3636,31 @@ func (c *IoT) ListPrincipalThings(input *ListPrincipalThingsInput) (*ListPrincip
 	req, out := c.ListPrincipalThingsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+// ListPrincipalThingsPages iterates over the pages of a ListPrincipalThings operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPrincipalThings method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListPrincipalThings operation.
+//    pageNum := 0
+//    err := client.ListPrincipalThingsPages(params,
+//        func(page *ListPrincipalThingsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoT) ListPrincipalThingsPages(input *ListPrincipalThingsInput, fn func(p *ListPrincipalThingsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListPrincipalThingsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListPrincipalThingsOutput), lastPage)
+	})
 }
 
 const opListThingPrincipals = "ListThingPrincipals"
@@ -3522,6 +3770,12 @@ func (c *IoT) ListThingTypesRequest(input *ListThingTypesInput) (req *request.Re
 		Name:       opListThingTypes,
 		HTTPMethod: "GET",
 		HTTPPath:   "/thing-types",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3566,6 +3820,31 @@ func (c *IoT) ListThingTypes(input *ListThingTypesInput) (*ListThingTypesOutput,
 	return out, err
 }
 
+// ListThingTypesPages iterates over the pages of a ListThingTypes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListThingTypes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListThingTypes operation.
+//    pageNum := 0
+//    err := client.ListThingTypesPages(params,
+//        func(page *ListThingTypesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoT) ListThingTypesPages(input *ListThingTypesInput, fn func(p *ListThingTypesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListThingTypesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListThingTypesOutput), lastPage)
+	})
+}
+
 const opListThings = "ListThings"
 
 // ListThingsRequest generates a "aws/request.Request" representing the
@@ -3596,6 +3875,12 @@ func (c *IoT) ListThingsRequest(input *ListThingsInput) (req *request.Request, o
 		Name:       opListThings,
 		HTTPMethod: "GET",
 		HTTPPath:   "/things",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3643,6 +3928,31 @@ func (c *IoT) ListThings(input *ListThingsInput) (*ListThingsOutput, error) {
 	return out, err
 }
 
+// ListThingsPages iterates over the pages of a ListThings operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListThings method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListThings operation.
+//    pageNum := 0
+//    err := client.ListThingsPages(params,
+//        func(page *ListThingsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoT) ListThingsPages(input *ListThingsInput, fn func(p *ListThingsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListThingsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListThingsOutput), lastPage)
+	})
+}
+
 const opListTopicRules = "ListTopicRules"
 
 // ListTopicRulesRequest generates a "aws/request.Request" representing the
@@ -3673,6 +3983,12 @@ func (c *IoT) ListTopicRulesRequest(input *ListTopicRulesInput) (req *request.Re
 		Name:       opListTopicRules,
 		HTTPMethod: "GET",
 		HTTPPath:   "/rules",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3709,6 +4025,31 @@ func (c *IoT) ListTopicRules(input *ListTopicRulesInput) (*ListTopicRulesOutput,
 	req, out := c.ListTopicRulesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+// ListTopicRulesPages iterates over the pages of a ListTopicRules operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTopicRules method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListTopicRules operation.
+//    pageNum := 0
+//    err := client.ListTopicRulesPages(params,
+//        func(page *ListTopicRulesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoT) ListTopicRulesPages(input *ListTopicRulesInput, fn func(p *ListTopicRulesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListTopicRulesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListTopicRulesOutput), lastPage)
+	})
 }
 
 const opRegisterCACertificate = "RegisterCACertificate"
