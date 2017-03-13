@@ -33,7 +33,7 @@ func (client *DecryptionClient) wrapFromEnvelope(env Envelope) (CipherDataDecryp
 // the CEK algorithm consiting of AES GCM with no padding.
 const AESGCMNoPadding = "AES/GCM/NoPadding"
 
-// AESCBC ...
+// AESCBC is the string constant that signifies the AES CBC algorithm cipher.
 const AESCBC = "AES/CBC"
 
 func (client *DecryptionClient) cekFromEnvelope(env Envelope, decrypter CipherDataDecrypter) (ContentCipher, error) {
