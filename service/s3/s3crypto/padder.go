@@ -1,7 +1,5 @@
 package s3crypto
 
-import ()
-
 // Padder handles padding of crypto data
 type Padder interface {
 	// Pad will pad the byte array.

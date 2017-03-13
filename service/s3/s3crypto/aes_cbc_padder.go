@@ -1,7 +1,5 @@
 package s3crypto
 
-import ()
-
 const (
 	pkcs5BlockSize = 16
 )
