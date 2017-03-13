@@ -17,6 +17,10 @@ import (
 // This type is useful as an alterntitive to the struct tag `unixtime` when you
 // want to have your time value marshaled as Unix time in seconds intead of
 // the default time.RFC3339.
+//
+// Important to note that zero value time as unixtime is not 0 seconds
+// from January 1, 1970 UTC, but -62135596800. Which is seconds between
+// January 1, 0001 UTC, and January 1, 0001 UTC.
 type UnixTime time.Time
 
 // MarshalDynamoDBAttributeValue implements the Marshaler interface so that
@@ -114,6 +118,9 @@ type Marshaler interface {
 //
 //		// Field will be marshaled as Unix time number in seconds.
 //		// This tag is only valid with time.Time typed struct fields.
+//		// Important to note that zero value time as unixtime is not 0 seconds
+//		// from January 1, 1970 UTC, but -62135596800. Which is seconds between
+//		// January 1, 0001 UTC, and January 1, 0001 UTC.
 //		Field time.Time `dynamodbav:",unixtime"`
 //
 // The omitempty tag is only used during Marshaling and is ignored for

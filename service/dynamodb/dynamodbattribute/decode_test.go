@@ -503,7 +503,7 @@ func TestDecodeUnixTime(t *testing.T) {
 	}
 
 	expect := A{
-		Normal: time.Unix(123, 0),
+		Normal: time.Unix(123, 0).UTC(),
 		Tagged: time.Unix(456, 0),
 		Typed:  UnixTime(time.Unix(789, 0)),
 	}
@@ -511,7 +511,7 @@ func TestDecodeUnixTime(t *testing.T) {
 	input := &dynamodb.AttributeValue{
 		M: map[string]*dynamodb.AttributeValue{
 			"Normal": {
-				S: aws.String("1969-12-31T16:02:03-08:00"),
+				S: aws.String("1970-01-01T00:02:03Z"),
 			},
 			"Tagged": {
 				N: aws.String("456"),
