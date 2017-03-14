@@ -8,8 +8,6 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
-
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -143,7 +141,7 @@ var testUnmarshalCases = []testErrorCase{
 }
 
 func TestUnmarshalError(t *testing.T) {
-	for _, c := range testUnmarshalCases {
+	for i, c := range testUnmarshalCases {
 		s := s3.New(unit.Session)
 		s.Handlers.Send.Clear()
 		s.Handlers.Send.PushBack(func(r *request.Request) {
@@ -158,11 +156,21 @@ func TestUnmarshalError(t *testing.T) {
 			Bucket: aws.String("bucket"), ACL: aws.String("public-read"),
 		})
 
-		assert.Error(t, err)
-		assert.Equal(t, c.Code, err.(awserr.Error).Code())
-		assert.Equal(t, c.Msg, err.(awserr.Error).Message())
-		assert.Equal(t, c.ReqID, err.(awserr.RequestFailure).RequestID())
-		assert.Equal(t, c.HostID, err.(s3.RequestFailure).HostID())
+		if err == nil {
+			t.Fatalf("%d, expected error, got nil", i)
+		}
+		if e, a := c.Code, err.(awserr.Error).Code(); e != a {
+			t.Errorf("%d, Code: expect %s, got %s", i, e, a)
+		}
+		if e, a := c.Msg, err.(awserr.Error).Message(); e != a {
+			t.Errorf("%d, Message: expect %s, got %s", i, e, a)
+		}
+		if e, a := c.ReqID, err.(awserr.RequestFailure).RequestID(); e != a {
+			t.Errorf("%d, RequestID: expect %s, got %s", i, e, a)
+		}
+		if e, a := c.HostID, err.(s3.RequestFailure).HostID(); e != a {
+			t.Errorf("%d, HostID: expect %s, got %s", i, e, a)
+		}
 	}
 }
 
@@ -197,7 +205,9 @@ func Test200NoErrorUnmarshalError(t *testing.T) {
 		}},
 	})
 
-	assert.NoError(t, err)
+	if err != nil {
+		t.Fatalf("expect no error, got %v", err)
+	}
 }
 
 const completeMultiErrResp = `<Error><Code>SomeException</Code><Message>Exception message</Message></Error>`
@@ -225,10 +235,19 @@ func Test200WithErrorUnmarshalError(t *testing.T) {
 		}},
 	})
 
-	assert.Error(t, err)
-
-	assert.Equal(t, "SomeException", err.(awserr.Error).Code())
-	assert.Equal(t, "Exception message", err.(awserr.Error).Message())
-	assert.Equal(t, "abc123", err.(s3.RequestFailure).RequestID())
-	assert.Equal(t, "321cba", err.(s3.RequestFailure).HostID())
+	if err == nil {
+		t.Fatalf("expected error, got nil")
+	}
+	if e, a := "SomeException", err.(awserr.Error).Code(); e != a {
+		t.Errorf("Code: expect %s, got %s", e, a)
+	}
+	if e, a := "Exception message", err.(awserr.Error).Message(); e != a {
+		t.Errorf("Message: expect %s, got %s", e, a)
+	}
+	if e, a := "abc123", err.(s3.RequestFailure).RequestID(); e != a {
+		t.Errorf("RequestID: expect %s, got %s", e, a)
+	}
+	if e, a := "321cba", err.(s3.RequestFailure).HostID(); e != a {
+		t.Errorf("HostID: expect %s, got %s", e, a)
+	}
 }
