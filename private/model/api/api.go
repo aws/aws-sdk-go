@@ -638,6 +638,12 @@ func resolveShapeValidations(s *Shape, ancestry ...*Shape) {
 	ancestry = append(ancestry, s)
 	for _, name := range children {
 		ref := s.MemberRefs[name]
+		// Since this is a grab bag we will just continue since
+		// we can't validate because we don't know the valued shape.
+		if ref.JSONValue {
+			continue
+		}
+
 		nestedShape := ref.Shape.NestedShape()
 
 		var v *ShapeValidation

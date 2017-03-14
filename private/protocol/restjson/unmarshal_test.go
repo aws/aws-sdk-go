@@ -9,6 +9,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"reflect"
 	"testing"
 	"time"
 
@@ -38,6 +39,7 @@ var _ = url.Values{}
 var _ = io.EOF
 var _ = aws.String
 var _ = fmt.Println
+var _ = reflect.Value{}
 
 func init() {
 	protocol.RandReader = &awstesting.ZeroReader{}
@@ -1580,6 +1582,131 @@ func (s *OutputService11TestShapeOutputService11TestCaseOperation1Output) SetStr
 	return s
 }
 
+// The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
+type OutputService12ProtocolTest struct {
+	*client.Client
+}
+
+// New creates a new instance of the OutputService12ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a OutputService12ProtocolTest client from just a session.
+//     svc := outputservice12protocoltest.New(mySession)
+//
+//     // Create a OutputService12ProtocolTest client with additional configuration
+//     svc := outputservice12protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewOutputService12ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService12ProtocolTest {
+	c := p.ClientConfig("outputservice12protocoltest", cfgs...)
+	return newOutputService12ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newOutputService12ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *OutputService12ProtocolTest {
+	svc := &OutputService12ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "outputservice12protocoltest",
+				SigningName:   signingName,
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "",
+			},
+			handlers,
+		),
+	}
+
+	// Handlers
+	svc.Handlers.Sign.PushBackNamed(v4.SignRequestHandler)
+	svc.Handlers.Build.PushBackNamed(restjson.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed(restjson.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed(restjson.UnmarshalMetaHandler)
+	svc.Handlers.UnmarshalError.PushBackNamed(restjson.UnmarshalErrorHandler)
+
+	return svc
+}
+
+// newRequest creates a new request for a OutputService12ProtocolTest operation and runs any
+// custom request initialization.
+func (c *OutputService12ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(op, params, data)
+
+	return req
+}
+
+const opOutputService12TestCaseOperation1 = "OperationName"
+
+// OutputService12TestCaseOperation1Request generates a "aws/request.Request" representing the
+// client's request for the OutputService12TestCaseOperation1 operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See OutputService12TestCaseOperation1 for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the OutputService12TestCaseOperation1 method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the OutputService12TestCaseOperation1Request method.
+//    req, resp := client.OutputService12TestCaseOperation1Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1Request(input *OutputService12TestShapeOutputService12TestCaseOperation1Input) (req *request.Request, output *OutputService12TestShapeOutputService12TestCaseOperation1Output) {
+	op := &request.Operation{
+		Name:     opOutputService12TestCaseOperation1,
+		HTTPPath: "/",
+	}
+
+	if input == nil {
+		input = &OutputService12TestShapeOutputService12TestCaseOperation1Input{}
+	}
+
+	output = &OutputService12TestShapeOutputService12TestCaseOperation1Output{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// OutputService12TestCaseOperation1 API operation for .
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for 's
+// API operation OutputService12TestCaseOperation1 for usage and error information.
+func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1(input *OutputService12TestShapeOutputService12TestCaseOperation1Input) (*OutputService12TestShapeOutputService12TestCaseOperation1Output, error) {
+	req, out := c.OutputService12TestCaseOperation1Request(input)
+	err := req.Send()
+	return out, err
+}
+
+type OutputService12TestShapeOutputService12TestCaseOperation1Input struct {
+	_ struct{} `type:"structure"`
+}
+
+type OutputService12TestShapeOutputService12TestCaseOperation1Output struct {
+	_ struct{} `type:"structure"`
+
+	Attr aws.JSONValue `location:"header" locationName:"X-Amz-Foo" type:"jsonvalue"`
+}
+
+// SetAttr sets the Attr field's value.
+func (s *OutputService12TestShapeOutputService12TestCaseOperation1Output) SetAttr(v aws.JSONValue) *OutputService12TestShapeOutputService12TestCaseOperation1Output {
+	s.Attr = v
+	return s
+}
+
 //
 // Tests begin here
 //
@@ -1830,4 +1957,24 @@ func TestOutputService11ProtocolTestStreamingPayloadCase1(t *testing.T) {
 	assert.NotNil(t, out) // ensure out variable is used
 	assert.Equal(t, "abc", string(out.Stream))
 
+}
+
+func TestOutputService12ProtocolTestJSONValueTraitCase1(t *testing.T) {
+	svc := NewOutputService12ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
+
+	buf := bytes.NewReader([]byte(""))
+	req, out := svc.OutputService12TestCaseOperation1Request(nil)
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
+	req.HTTPResponse.Header.Set("X-Amz-Foo", "eyJGb28iOiJCYXIifQ==")
+
+	// unmarshal response
+	restjson.UnmarshalMeta(req)
+	restjson.Unmarshal(req)
+	assert.NoError(t, req.Error)
+
+	// assert response
+	assert.NotNil(t, out) // ensure out variable is used
+	reflect.DeepEqual(out.Attr, map[string]interface{}{"Foo": "Bar"})
 }

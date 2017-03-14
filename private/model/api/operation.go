@@ -271,6 +271,11 @@ func (e *example) traverseAny(s *Shape, required, payload bool) string {
 		str = e.traverseList(s, required, payload)
 	case "map":
 		str = e.traverseMap(s, required, payload)
+	case "jsonvalue":
+		str = "aws.JSONValue{\"key\": \"value\"}"
+		if required {
+			str += " // Required"
+		}
 	default:
 		str = e.traverseScalar(s, required, payload)
 	}
