@@ -19,7 +19,7 @@ import (
 
 type testErrorCase struct {
 	RespFn           func() *http.Response
-	ReqID            string
+	ReqID, HostID    string
 	Code, Msg        string
 	WithoutStatusMsg bool
 }
@@ -28,87 +28,117 @@ var testUnmarshalCases = []testErrorCase{
 	{
 		RespFn: func() *http.Response {
 			return &http.Response{
-				StatusCode:    301,
-				Header:        http.Header{"X-Amz-Request-Id": []string{"abc123"}},
+				StatusCode: 301,
+				Header: http.Header{
+					"X-Amz-Request-Id": []string{"abc123"},
+					"X-Amz-Id-2":       []string{"321cba"},
+				},
 				Body:          ioutil.NopCloser(bytes.NewReader(nil)),
 				ContentLength: -1,
 			}
 		},
-		ReqID: "abc123",
-		Code:  "BucketRegionError", Msg: "incorrect region, the bucket is not in 'mock-region' region",
+		ReqID:  "abc123",
+		HostID: "321cba",
+		Code:   "BucketRegionError", Msg: "incorrect region, the bucket is not in 'mock-region' region",
 	},
 	{
 		RespFn: func() *http.Response {
 			return &http.Response{
-				StatusCode:    403,
-				Header:        http.Header{"X-Amz-Request-Id": []string{"abc123"}},
+				StatusCode: 403,
+				Header: http.Header{
+					"X-Amz-Request-Id": []string{"abc123"},
+					"X-Amz-Id-2":       []string{"321cba"},
+				},
 				Body:          ioutil.NopCloser(bytes.NewReader(nil)),
 				ContentLength: 0,
 			}
 		},
-		ReqID: "abc123",
-		Code:  "Forbidden", Msg: "Forbidden",
+		ReqID:  "abc123",
+		HostID: "321cba",
+		Code:   "Forbidden", Msg: "Forbidden",
 	},
 	{
 		RespFn: func() *http.Response {
 			return &http.Response{
-				StatusCode:    400,
-				Header:        http.Header{"X-Amz-Request-Id": []string{"abc123"}},
+				StatusCode: 400,
+				Header: http.Header{
+					"X-Amz-Request-Id": []string{"abc123"},
+					"X-Amz-Id-2":       []string{"321cba"},
+				},
 				Body:          ioutil.NopCloser(bytes.NewReader(nil)),
 				ContentLength: 0,
 			}
 		},
-		ReqID: "abc123",
-		Code:  "BadRequest", Msg: "Bad Request",
+		ReqID:  "abc123",
+		HostID: "321cba",
+		Code:   "BadRequest", Msg: "Bad Request",
 	},
 	{
 		RespFn: func() *http.Response {
 			return &http.Response{
-				StatusCode:    404,
-				Header:        http.Header{"X-Amz-Request-Id": []string{"abc123"}},
+				StatusCode: 404,
+				Header: http.Header{
+					"X-Amz-Request-Id": []string{"abc123"},
+					"X-Amz-Id-2":       []string{"321cba"},
+				},
 				Body:          ioutil.NopCloser(bytes.NewReader(nil)),
 				ContentLength: 0,
 			}
 		},
-		ReqID: "abc123",
-		Code:  "NotFound", Msg: "Not Found",
+		ReqID:  "abc123",
+		HostID: "321cba",
+		Code:   "NotFound", Msg: "Not Found",
 	},
 	{
+		// SDK only reads request ID and host ID from the header. The values
+		// in message body are ignored.
 		RespFn: func() *http.Response {
-			body := `<Error><Code>SomeException</Code><Message>Exception message</Message></Error>`
+			body := `<Error><Code>SomeException</Code><Message>Exception message</Message><RequestId>ignored-request-id</RequestId><HostId>ignored-host-id</HostId></Error>`
 			return &http.Response{
-				StatusCode:    500,
-				Header:        http.Header{"X-Amz-Request-Id": []string{"abc123"}},
+				StatusCode: 500,
+				Header: http.Header{
+					"X-Amz-Request-Id": []string{"taken-request-id"},
+					"X-Amz-Id-2":       []string{"taken-host-id"},
+				},
 				Body:          ioutil.NopCloser(strings.NewReader(body)),
 				ContentLength: int64(len(body)),
 			}
 		},
-		ReqID: "abc123",
-		Code:  "SomeException", Msg: "Exception message",
+		ReqID:  "taken-request-id",
+		HostID: "taken-host-id",
+		Code:   "SomeException", Msg: "Exception message",
 	},
 	{
 		RespFn: func() *http.Response {
 			return &http.Response{
-				StatusCode:    404,
-				Header:        http.Header{"X-Amz-Request-Id": []string{"abc123"}},
+				StatusCode: 404,
+				Header: http.Header{
+					"X-Amz-Request-Id": []string{"abc123"},
+					"X-Amz-Id-2":       []string{"321cba"},
+				},
 				Body:          ioutil.NopCloser(bytes.NewReader(nil)),
 				ContentLength: -1,
 			}
 		},
-		ReqID: "abc123",
-		Code:  "NotFound", Msg: "Not Found", WithoutStatusMsg: true,
+		ReqID:  "abc123",
+		HostID: "321cba",
+		Code:   "NotFound", Msg: "Not Found", WithoutStatusMsg: true,
 	},
 	{
 		RespFn: func() *http.Response {
 			return &http.Response{
-				StatusCode:    404,
-				Header:        http.Header{"X-Amz-Request-Id": []string{"abc123"}},
+				StatusCode: 404,
+				Header: http.Header{
+					"X-Amz-Request-Id": []string{"abc123"},
+					"X-Amz-Id-2":       []string{"321cba"},
+				},
 				Body:          ioutil.NopCloser(bytes.NewReader(nil)),
 				ContentLength: -1,
 			}
 		},
-		ReqID: "abc123",
-		Code:  "NotFound", Msg: "Not Found",
+		ReqID:  "abc123",
+		HostID: "321cba",
+		Code:   "NotFound", Msg: "Not Found",
 	},
 }
 
@@ -132,6 +162,7 @@ func TestUnmarshalError(t *testing.T) {
 		assert.Equal(t, c.Code, err.(awserr.Error).Code())
 		assert.Equal(t, c.Msg, err.(awserr.Error).Message())
 		assert.Equal(t, c.ReqID, err.(awserr.RequestFailure).RequestID())
+		assert.Equal(t, c.HostID, err.(s3.RequestFailure).HostID())
 	}
 }
 
@@ -148,8 +179,11 @@ func Test200NoErrorUnmarshalError(t *testing.T) {
 	s.Handlers.Send.Clear()
 	s.Handlers.Send.PushBack(func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
-			StatusCode:    200,
-			Header:        http.Header{"X-Amz-Request-Id": []string{"abc123"}},
+			StatusCode: 200,
+			Header: http.Header{
+				"X-Amz-Request-Id": []string{"abc123"},
+				"X-Amz-Id-2":       []string{"321cba"},
+			},
 			Body:          ioutil.NopCloser(strings.NewReader(completeMultiResp)),
 			ContentLength: -1,
 		}
@@ -173,8 +207,11 @@ func Test200WithErrorUnmarshalError(t *testing.T) {
 	s.Handlers.Send.Clear()
 	s.Handlers.Send.PushBack(func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
-			StatusCode:    200,
-			Header:        http.Header{"X-Amz-Request-Id": []string{"abc123"}},
+			StatusCode: 200,
+			Header: http.Header{
+				"X-Amz-Request-Id": []string{"abc123"},
+				"X-Amz-Id-2":       []string{"321cba"},
+			},
 			Body:          ioutil.NopCloser(strings.NewReader(completeMultiErrResp)),
 			ContentLength: -1,
 		}
@@ -192,5 +229,6 @@ func Test200WithErrorUnmarshalError(t *testing.T) {
 
 	assert.Equal(t, "SomeException", err.(awserr.Error).Code())
 	assert.Equal(t, "Exception message", err.(awserr.Error).Message())
-	assert.Equal(t, "abc123", err.(awserr.RequestFailure).RequestID())
+	assert.Equal(t, "abc123", err.(s3.RequestFailure).RequestID())
+	assert.Equal(t, "321cba", err.(s3.RequestFailure).HostID())
 }

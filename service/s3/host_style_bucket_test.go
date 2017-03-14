@@ -2,6 +2,7 @@ package s3_test
 
 import (
 	"net/url"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -64,8 +65,12 @@ func runTests(t *testing.T, svc *s3.S3, tests []s3BucketTest) {
 		req.Build()
 		assert.Equal(t, test.url, req.HTTPRequest.URL.String(), "test case %d", i)
 		if test.errCode != "" {
-			require.Error(t, req.Error, "test case %d", i)
-			assert.Contains(t, req.Error.(awserr.Error).Code(), test.errCode, "test case %d", i)
+			if err := req.Error; err == nil {
+				t.Fatalf("%d, expect no error, got %v", err)
+			}
+			if a, e := req.Error.(awserr.Error).Code(), test.errCode; !strings.Contains(a, e) {
+				t.Errorf("%d, expect error code to contain %q, got %q", i, e, a)
+			}
 		}
 	}
 }
