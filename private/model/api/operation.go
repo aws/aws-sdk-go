@@ -44,6 +44,25 @@ func (o *Operation) HasOutput() bool {
 	return o.OutputRef.ShapeName != ""
 }
 
+func (o *Operation) GetSigner() string {
+	if o.AuthType == "v4-unsigned-body" {
+		o.API.imports["github.com/aws/aws-sdk-go/aws/signer/v4"] = true
+	}
+
+	buf := bytes.NewBuffer(nil)
+
+	switch o.AuthType {
+	case "none":
+		buf.WriteString("req.Config.Credentials = credentials.AnonymousCredentials")
+	case "v4-unsigned-body":
+		buf.WriteString("req.Handlers.Sign.Clear()\n")
+		buf.WriteString("req.Handlers.Sign.PushBackNamed(v4.UnsignedBodyRequestHandler)")
+	}
+
+	buf.WriteString("\n")
+	return buf.String()
+}
+
 // tplOperation defines a template for rendering an API Operation
 var tplOperation = template.Must(template.New("operation").Funcs(template.FuncMap{
 	"GetCrosslinkURL": GetCrosslinkURL,
@@ -104,8 +123,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	req = c.newRequest(op, input, output){{ if eq .OutputRef.Shape.Placeholder true }}
 	req.Handlers.Unmarshal.Remove({{ .API.ProtocolPackage }}.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler){{ end }}
-	{{ if eq .AuthType "none" }}req.Config.Credentials = credentials.AnonymousCredentials
-	{{ end -}}
+	{{ if ne .AuthType "" }}{{ .GetSigner }}{{ end -}}
 	return
 }
 
