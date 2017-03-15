@@ -55,8 +55,9 @@ func (o *Operation) GetSigner() string {
 	case "none":
 		buf.WriteString("req.Config.Credentials = credentials.AnonymousCredentials")
 	case "v4-unsigned-body":
-		buf.WriteString("req.Handlers.Sign.Clear()\n")
-		buf.WriteString("req.Handlers.Sign.PushBackNamed(v4.UnsignedBodyRequestHandler)")
+		buf.WriteString("req.Handlers.Sign.Remove(v4.SignRequestHandler)\n")
+		buf.WriteString("handler := v4.BuildNamedHandler(\"v4.CustomSignerHandler\", v4.WithUnsignedPayload(true))\n")
+		buf.WriteString("req.Handlers.Sign.PushFrontNamed(handler)")
 	}
 
 	buf.WriteString("\n")
@@ -289,6 +290,11 @@ func (e *example) traverseAny(s *Shape, required, payload bool) string {
 		str = e.traverseList(s, required, payload)
 	case "map":
 		str = e.traverseMap(s, required, payload)
+	case "jsonvalue":
+		str = "aws.JSONValue{\"key\": \"value\"}"
+		if required {
+			str += " // Required"
+		}
 	default:
 		str = e.traverseScalar(s, required, payload)
 	}

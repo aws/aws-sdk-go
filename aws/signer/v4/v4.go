@@ -195,8 +195,9 @@ type Signer struct {
 	// time.Now will be used.
 	currentTimeFn func() time.Time
 
-	// unsignedBody is a flag to signify whether or not the body should be signed.
-	unsignedBody bool
+	// UnsignedPayload will prevent signing of the payload. This will only
+	// work for services that have support for this.
+	UnsignedPayload bool
 }
 
 // NewSigner returns a Signer pointer configured with the credentials and optional
@@ -230,7 +231,7 @@ type signingCtx struct {
 	isPresign          bool
 	formattedTime      string
 	formattedShortTime string
-	unsignedBody       bool
+	unsignedPayload    bool
 
 	bodyDigest       string
 	signedHeaders    string
@@ -321,7 +322,7 @@ func (v4 Signer) signWithBody(r *http.Request, body io.ReadSeeker, service, regi
 		ServiceName:            service,
 		Region:                 region,
 		DisableURIPathEscaping: v4.DisableURIPathEscaping,
-		unsignedBody:           v4.unsignedBody,
+		unsignedPayload:        v4.UnsignedPayload,
 	}
 
 	for key := range ctx.Query {
@@ -400,12 +401,6 @@ var SignRequestHandler = request.NamedHandler{
 	Name: "v4.SignRequestHandler", Fn: SignSDKRequest,
 }
 
-// UnsignedBodyRequestHandler is a named request handler the SDK will use to sign
-// all but the body.
-var UnsignedBodyRequestHandler = request.NamedHandler{
-	Name: "v4.UnsignedBodyRequestHandler", Fn: unsignedBodySDKRequest,
-}
-
 // SignSDKRequest signs an AWS request with the V4 signature. This
 // request handler is bested used only with the SDK's built in service client's
 // API operation requests.
@@ -418,13 +413,20 @@ var UnsignedBodyRequestHandler = request.NamedHandler{
 // If the credentials of the request's config are set to
 // credentials.AnonymousCredentials the request will not be signed.
 func SignSDKRequest(req *request.Request) {
-	signSDKRequestWithCurrTime(req, time.Now, false)
+	signSDKRequestWithCurrTime(req, time.Now)
 }
 
-func unsignedBodySDKRequest(req *request.Request) {
-	signSDKRequestWithCurrTime(req, time.Now, true)
+// BuildNamedHandler will build a generic handler for signing.
+func BuildNamedHandler(name string, opts ...Option) request.NamedHandler {
+	return request.NamedHandler{
+		Name: name,
+		Fn: func(req *request.Request) {
+			signSDKRequestWithCurrTime(req, time.Now, opts...)
+		},
+	}
 }
-func signSDKRequestWithCurrTime(req *request.Request, curTimeFn func() time.Time, unsignedBody bool) {
+
+func signSDKRequestWithCurrTime(req *request.Request, curTimeFn func() time.Time, opts ...Option) {
 	// If the request does not need to be signed ignore the signing of the
 	// request if the AnonymousCredentials object is used.
 	if req.Config.Credentials == credentials.AnonymousCredentials {
@@ -446,7 +448,6 @@ func signSDKRequestWithCurrTime(req *request.Request, curTimeFn func() time.Time
 		v4.Logger = req.Config.Logger
 		v4.DisableHeaderHoisting = req.NotHoist
 		v4.currentTimeFn = curTimeFn
-		v4.unsignedBody = unsignedBody
 		if name == "s3" {
 			// S3 service should not have any escaping applied
 			v4.DisableURIPathEscaping = true
@@ -456,6 +457,10 @@ func signSDKRequestWithCurrTime(req *request.Request, curTimeFn func() time.Time
 		// on top of by the signer.
 		v4.DisableRequestBodyOverwrite = true
 	})
+
+	for _, opt := range opts {
+		opt(v4)
+	}
 
 	signingTime := req.Time
 	if !req.LastSignedAt.IsZero() {
@@ -650,14 +655,14 @@ func (ctx *signingCtx) buildSignature() {
 func (ctx *signingCtx) buildBodyDigest() {
 	hash := ctx.Request.Header.Get("X-Amz-Content-Sha256")
 	if hash == "" {
-		if ctx.unsignedBody || (ctx.isPresign && ctx.ServiceName == "s3") {
+		if ctx.unsignedPayload || (ctx.isPresign && ctx.ServiceName == "s3") {
 			hash = "UNSIGNED-PAYLOAD"
 		} else if ctx.Body == nil {
 			hash = emptyStringSHA256
 		} else {
 			hash = hex.EncodeToString(makeSha256Reader(ctx.Body))
 		}
-		if ctx.unsignedBody || ctx.ServiceName == "s3" || ctx.ServiceName == "glacier" {
+		if ctx.unsignedPayload || ctx.ServiceName == "s3" || ctx.ServiceName == "glacier" {
 			ctx.Request.Header.Set("X-Amz-Content-Sha256", hash)
 		}
 	}
