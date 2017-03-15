@@ -14,7 +14,6 @@ import (
 // Pinpoint is a client for Amazon Pinpoint.
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/
 type Pinpoint struct {
 	*client.Client
 }
