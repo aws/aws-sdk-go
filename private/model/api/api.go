@@ -311,7 +311,7 @@ var noCrossLinkServices = map[string]struct{}{
 
 func GetCrosslinkURL(baseURL, name, uid string, params ...string) string {
 	_, ok := noCrossLinkServices[strings.ToLower(name)]
-	if baseURL != "" && !ok {
+	if uid != "" && baseURL != "" && !ok {
 		return strings.Join(append([]string{baseURL, "goto", "WebAPI", uid}, params...), "/")
 	}
 	return ""
