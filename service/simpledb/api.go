@@ -37,8 +37,6 @@ const opBatchDeleteAttributes = "BatchDeleteAttributes"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//BatchDeleteAttributes
 func (c *SimpleDB) BatchDeleteAttributesRequest(input *BatchDeleteAttributesInput) (req *request.Request, output *BatchDeleteAttributesOutput) {
 	op := &request.Operation{
 		Name:       opBatchDeleteAttributes,
@@ -90,7 +88,6 @@ func (c *SimpleDB) BatchDeleteAttributesRequest(input *BatchDeleteAttributesInpu
 //
 // See the AWS API reference guide for Amazon SimpleDB's
 // API operation BatchDeleteAttributes for usage and error information.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//BatchDeleteAttributes
 func (c *SimpleDB) BatchDeleteAttributes(input *BatchDeleteAttributesInput) (*BatchDeleteAttributesOutput, error) {
 	req, out := c.BatchDeleteAttributesRequest(input)
 	err := req.Send()
@@ -122,8 +119,6 @@ const opBatchPutAttributes = "BatchPutAttributes"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//BatchPutAttributes
 func (c *SimpleDB) BatchPutAttributesRequest(input *BatchPutAttributesInput) (req *request.Request, output *BatchPutAttributesOutput) {
 	op := &request.Operation{
 		Name:       opBatchPutAttributes,
@@ -223,7 +218,6 @@ func (c *SimpleDB) BatchPutAttributesRequest(input *BatchPutAttributesInput) (re
 //   * ErrCodeNumberSubmittedAttributesExceeded "NumberSubmittedAttributesExceeded"
 //   Too many attributes exist in a single call.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//BatchPutAttributes
 func (c *SimpleDB) BatchPutAttributes(input *BatchPutAttributesInput) (*BatchPutAttributesOutput, error) {
 	req, out := c.BatchPutAttributesRequest(input)
 	err := req.Send()
@@ -255,8 +249,6 @@ const opCreateDomain = "CreateDomain"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//CreateDomain
 func (c *SimpleDB) CreateDomainRequest(input *CreateDomainInput) (req *request.Request, output *CreateDomainOutput) {
 	op := &request.Operation{
 		Name:       opCreateDomain,
@@ -304,7 +296,6 @@ func (c *SimpleDB) CreateDomainRequest(input *CreateDomainInput) (req *request.R
 //   * ErrCodeNumberDomainsExceeded "NumberDomainsExceeded"
 //   Too many domains exist per this account.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//CreateDomain
 func (c *SimpleDB) CreateDomain(input *CreateDomainInput) (*CreateDomainOutput, error) {
 	req, out := c.CreateDomainRequest(input)
 	err := req.Send()
@@ -336,8 +327,6 @@ const opDeleteAttributes = "DeleteAttributes"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//DeleteAttributes
 func (c *SimpleDB) DeleteAttributesRequest(input *DeleteAttributesInput) (req *request.Request, output *DeleteAttributesOutput) {
 	op := &request.Operation{
 		Name:       opDeleteAttributes,
@@ -390,7 +379,6 @@ func (c *SimpleDB) DeleteAttributesRequest(input *DeleteAttributesInput) (req *r
 //   * ErrCodeAttributeDoesNotExist "AttributeDoesNotExist"
 //   The specified attribute does not exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//DeleteAttributes
 func (c *SimpleDB) DeleteAttributes(input *DeleteAttributesInput) (*DeleteAttributesOutput, error) {
 	req, out := c.DeleteAttributesRequest(input)
 	err := req.Send()
@@ -422,8 +410,6 @@ const opDeleteDomain = "DeleteDomain"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//DeleteDomain
 func (c *SimpleDB) DeleteDomainRequest(input *DeleteDomainInput) (req *request.Request, output *DeleteDomainOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDomain,
@@ -462,7 +448,6 @@ func (c *SimpleDB) DeleteDomainRequest(input *DeleteDomainInput) (req *request.R
 //   * ErrCodeMissingParameter "MissingParameter"
 //   The request must contain the specified missing parameter.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//DeleteDomain
 func (c *SimpleDB) DeleteDomain(input *DeleteDomainInput) (*DeleteDomainOutput, error) {
 	req, out := c.DeleteDomainRequest(input)
 	err := req.Send()
@@ -494,8 +479,6 @@ const opDomainMetadata = "DomainMetadata"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//DomainMetadata
 func (c *SimpleDB) DomainMetadataRequest(input *DomainMetadataInput) (req *request.Request, output *DomainMetadataOutput) {
 	op := &request.Operation{
 		Name:       opDomainMetadata,
@@ -532,7 +515,6 @@ func (c *SimpleDB) DomainMetadataRequest(input *DomainMetadataInput) (req *reque
 //   * ErrCodeNoSuchDomain "NoSuchDomain"
 //   The specified domain does not exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//DomainMetadata
 func (c *SimpleDB) DomainMetadata(input *DomainMetadataInput) (*DomainMetadataOutput, error) {
 	req, out := c.DomainMetadataRequest(input)
 	err := req.Send()
@@ -564,8 +546,6 @@ const opGetAttributes = "GetAttributes"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//GetAttributes
 func (c *SimpleDB) GetAttributesRequest(input *GetAttributesInput) (req *request.Request, output *GetAttributesOutput) {
 	op := &request.Operation{
 		Name:       opGetAttributes,
@@ -612,7 +592,6 @@ func (c *SimpleDB) GetAttributesRequest(input *GetAttributesInput) (req *request
 //   * ErrCodeNoSuchDomain "NoSuchDomain"
 //   The specified domain does not exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//GetAttributes
 func (c *SimpleDB) GetAttributes(input *GetAttributesInput) (*GetAttributesOutput, error) {
 	req, out := c.GetAttributesRequest(input)
 	err := req.Send()
@@ -644,8 +623,6 @@ const opListDomains = "ListDomains"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//ListDomains
 func (c *SimpleDB) ListDomainsRequest(input *ListDomainsInput) (req *request.Request, output *ListDomainsOutput) {
 	op := &request.Operation{
 		Name:       opListDomains,
@@ -691,7 +668,6 @@ func (c *SimpleDB) ListDomainsRequest(input *ListDomainsInput) (req *request.Req
 //   * ErrCodeInvalidNextToken "InvalidNextToken"
 //   The specified NextToken is not valid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//ListDomains
 func (c *SimpleDB) ListDomains(input *ListDomainsInput) (*ListDomainsOutput, error) {
 	req, out := c.ListDomainsRequest(input)
 	err := req.Send()
@@ -748,8 +724,6 @@ const opPutAttributes = "PutAttributes"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//PutAttributes
 func (c *SimpleDB) PutAttributesRequest(input *PutAttributesInput) (req *request.Request, output *PutAttributesOutput) {
 	op := &request.Operation{
 		Name:       opPutAttributes,
@@ -831,7 +805,6 @@ func (c *SimpleDB) PutAttributesRequest(input *PutAttributesInput) (req *request
 //   * ErrCodeAttributeDoesNotExist "AttributeDoesNotExist"
 //   The specified attribute does not exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//PutAttributes
 func (c *SimpleDB) PutAttributes(input *PutAttributesInput) (*PutAttributesOutput, error) {
 	req, out := c.PutAttributesRequest(input)
 	err := req.Send()
@@ -863,8 +836,6 @@ const opSelect = "Select"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//Select
 func (c *SimpleDB) SelectRequest(input *SelectInput) (req *request.Request, output *SelectOutput) {
 	op := &request.Operation{
 		Name:       opSelect,
@@ -937,7 +908,6 @@ func (c *SimpleDB) SelectRequest(input *SelectInput) (req *request.Request, outp
 //   * ErrCodeTooManyRequestedAttributes "TooManyRequestedAttributes"
 //   Too many attributes requested.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//Select
 func (c *SimpleDB) Select(input *SelectInput) (*SelectOutput, error) {
 	req, out := c.SelectRequest(input)
 	err := req.Send()
@@ -969,7 +939,6 @@ func (c *SimpleDB) SelectPages(input *SelectInput, fn func(p *SelectOutput, last
 	})
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//Attribute
 type Attribute struct {
 	_ struct{} `type:"structure"`
 
@@ -1022,7 +991,6 @@ func (s *Attribute) SetValue(v string) *Attribute {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//BatchDeleteAttributesRequest
 type BatchDeleteAttributesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1085,7 +1053,6 @@ func (s *BatchDeleteAttributesInput) SetItems(v []*DeletableItem) *BatchDeleteAt
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//BatchDeleteAttributesOutput
 type BatchDeleteAttributesOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1100,7 +1067,6 @@ func (s BatchDeleteAttributesOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//BatchPutAttributesRequest
 type BatchPutAttributesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1163,7 +1129,6 @@ func (s *BatchPutAttributesInput) SetItems(v []*ReplaceableItem) *BatchPutAttrib
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//BatchPutAttributesOutput
 type BatchPutAttributesOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1178,7 +1143,6 @@ func (s BatchPutAttributesOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//CreateDomainRequest
 type CreateDomainInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1218,7 +1182,6 @@ func (s *CreateDomainInput) SetDomainName(v string) *CreateDomainInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//CreateDomainOutput
 type CreateDomainOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1233,7 +1196,6 @@ func (s CreateDomainOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//DeletableAttribute
 type DeletableAttribute struct {
 	_ struct{} `type:"structure"`
 
@@ -1281,7 +1243,6 @@ func (s *DeletableAttribute) SetValue(v string) *DeletableAttribute {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//DeletableItem
 type DeletableItem struct {
 	_ struct{} `type:"structure"`
 
@@ -1336,7 +1297,6 @@ func (s *DeletableItem) SetName(v string) *DeletableItem {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//DeleteAttributesRequest
 type DeleteAttributesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1421,7 +1381,6 @@ func (s *DeleteAttributesInput) SetItemName(v string) *DeleteAttributesInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//DeleteAttributesOutput
 type DeleteAttributesOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1436,7 +1395,6 @@ func (s DeleteAttributesOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//DeleteDomainRequest
 type DeleteDomainInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1475,7 +1433,6 @@ func (s *DeleteDomainInput) SetDomainName(v string) *DeleteDomainInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//DeleteDomainOutput
 type DeleteDomainOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1490,7 +1447,6 @@ func (s DeleteDomainOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//DomainMetadataRequest
 type DomainMetadataInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1529,7 +1485,6 @@ func (s *DomainMetadataInput) SetDomainName(v string) *DomainMetadataInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//DomainMetadataResult
 type DomainMetadataOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1607,7 +1562,6 @@ func (s *DomainMetadataOutput) SetTimestamp(v int64) *DomainMetadataOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//GetAttributesRequest
 type GetAttributesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1679,7 +1633,6 @@ func (s *GetAttributesInput) SetItemName(v string) *GetAttributesInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//GetAttributesResult
 type GetAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1703,7 +1656,6 @@ func (s *GetAttributesOutput) SetAttributes(v []*Attribute) *GetAttributesOutput
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//Item
 type Item struct {
 	_ struct{} `type:"structure"`
 
@@ -1748,7 +1700,6 @@ func (s *Item) SetName(v string) *Item {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//ListDomainsRequest
 type ListDomainsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1783,7 +1734,6 @@ func (s *ListDomainsInput) SetNextToken(v string) *ListDomainsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//ListDomainsResult
 type ListDomainsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1817,7 +1767,6 @@ func (s *ListDomainsOutput) SetNextToken(v string) *ListDomainsOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//PutAttributesRequest
 type PutAttributesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1905,7 +1854,6 @@ func (s *PutAttributesInput) SetItemName(v string) *PutAttributesInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//PutAttributesOutput
 type PutAttributesOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1920,7 +1868,6 @@ func (s PutAttributesOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//ReplaceableAttribute
 type ReplaceableAttribute struct {
 	_ struct{} `type:"structure"`
 
@@ -1983,7 +1930,6 @@ func (s *ReplaceableAttribute) SetValue(v string) *ReplaceableAttribute {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//ReplaceableItem
 type ReplaceableItem struct {
 	_ struct{} `type:"structure"`
 
@@ -2046,7 +1992,6 @@ func (s *ReplaceableItem) SetName(v string) *ReplaceableItem {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//SelectRequest
 type SelectInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2104,7 +2049,6 @@ func (s *SelectInput) SetSelectExpression(v string) *SelectInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//SelectResult
 type SelectOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2141,7 +2085,6 @@ func (s *SelectOutput) SetNextToken(v string) *SelectOutput {
 // condition is specified for a request, the data will only be updated if the
 // condition is satisfied. For example, if an attribute with a specific name
 // and value exists, or if a specific attribute doesn't exist.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI//UpdateCondition
 type UpdateCondition struct {
 	_ struct{} `type:"structure"`
 
