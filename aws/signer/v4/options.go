@@ -4,10 +4,8 @@ package v4
 // signed.
 type Option func(*Signer)
 
-// WithUnsignedPayload will return an option that will not sign
-// the payload.
-func WithUnsignedPayload(b bool) Option {
-	return func(v4 *Signer) {
-		v4.UnsignedPayload = b
-	}
+// WithUnsignedPayload will enable and set the UnsignedPayload field to
+// true of the signer.
+func WithUnsignedPayload(v4 *Signer) {
+	v4.UnsignedPayload = true
 }

@@ -77,7 +77,7 @@ AWS_SECRET_ACCESS_KEY=MY-SECRET-KEY
 ```
 
 ### AWS shared config file (`~/.aws/config`)
-The AWS SDK for Go added support the shared config file in release [v1.3.0](https://github.com/aws/aws-sdk-go/releases/tag/v1.3.0). You can opt into enabling support for the shared config by setting the environment variable `AWS_SDK_LOAD_CONFIG` to a truthy value. See the [Session](https://github.com/aws/aws-sdk-go/wiki/sessions) wiki for more information about this feature.
+The AWS SDK for Go added support the shared config file in release [v1.3.0](https://github.com/aws/aws-sdk-go/releases/tag/v1.3.0). You can opt into enabling support for the shared config by setting the environment variable `AWS_SDK_LOAD_CONFIG` to a truthy value. See the [Session](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/sessions.html) docs for more information about this feature.
 
 ## Using the Go SDK
 

@@ -161,7 +161,12 @@ func unmarshalHeaderMap(r reflect.Value, headers http.Header, prefix string) err
 }
 
 func unmarshalHeader(v reflect.Value, header string, tag reflect.StructTag) error {
-	if !v.IsValid() || (tag.Get("type") != "jsonvalue" && header == "" && v.Elem().Kind() != reflect.String) {
+	isJSONValue := tag.Get("type") == "jsonvalue"
+	if isJSONValue {
+		if len(header) == 0 {
+			return nil
+		}
+	} else if !v.IsValid() || (header == "" && v.Elem().Kind() != reflect.String) {
 		return nil
 	}
 

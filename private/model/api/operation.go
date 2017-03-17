@@ -56,7 +56,7 @@ func (o *Operation) GetSigner() string {
 		buf.WriteString("req.Config.Credentials = credentials.AnonymousCredentials")
 	case "v4-unsigned-body":
 		buf.WriteString("req.Handlers.Sign.Remove(v4.SignRequestHandler)\n")
-		buf.WriteString("handler := v4.BuildNamedHandler(\"v4.CustomSignerHandler\", v4.WithUnsignedPayload(true))\n")
+		buf.WriteString("handler := v4.BuildNamedHandler(\"v4.CustomSignerHandler\", v4.WithUnsignedPayload)\n")
 		buf.WriteString("req.Handlers.Sign.PushFrontNamed(handler)")
 	}
 
