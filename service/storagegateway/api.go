@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 )
@@ -85,8 +86,23 @@ func (c *StorageGateway) ActivateGatewayRequest(input *ActivateGatewayInput) (re
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/ActivateGateway
 func (c *StorageGateway) ActivateGateway(input *ActivateGatewayInput) (*ActivateGatewayOutput, error) {
 	req, out := c.ActivateGatewayRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ActivateGatewayWithContext is the same as ActivateGateway with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ActivateGateway for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) ActivateGatewayWithContext(ctx aws.Context, input *ActivateGatewayInput, opts ...request.Option) (*ActivateGatewayOutput, error) {
+	req, out := c.ActivateGatewayRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opAddCache = "AddCache"
@@ -161,8 +177,23 @@ func (c *StorageGateway) AddCacheRequest(input *AddCacheInput) (req *request.Req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/AddCache
 func (c *StorageGateway) AddCache(input *AddCacheInput) (*AddCacheOutput, error) {
 	req, out := c.AddCacheRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// AddCacheWithContext is the same as AddCache with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AddCache for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) AddCacheWithContext(ctx aws.Context, input *AddCacheInput, opts ...request.Option) (*AddCacheOutput, error) {
+	req, out := c.AddCacheRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opAddTagsToResource = "AddTagsToResource"
@@ -244,8 +275,23 @@ func (c *StorageGateway) AddTagsToResourceRequest(input *AddTagsToResourceInput)
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/AddTagsToResource
 func (c *StorageGateway) AddTagsToResource(input *AddTagsToResourceInput) (*AddTagsToResourceOutput, error) {
 	req, out := c.AddTagsToResourceRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// AddTagsToResourceWithContext is the same as AddTagsToResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AddTagsToResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) AddTagsToResourceWithContext(ctx aws.Context, input *AddTagsToResourceInput, opts ...request.Option) (*AddTagsToResourceOutput, error) {
+	req, out := c.AddTagsToResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opAddUploadBuffer = "AddUploadBuffer"
@@ -320,8 +366,23 @@ func (c *StorageGateway) AddUploadBufferRequest(input *AddUploadBufferInput) (re
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/AddUploadBuffer
 func (c *StorageGateway) AddUploadBuffer(input *AddUploadBufferInput) (*AddUploadBufferOutput, error) {
 	req, out := c.AddUploadBufferRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// AddUploadBufferWithContext is the same as AddUploadBuffer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AddUploadBuffer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) AddUploadBufferWithContext(ctx aws.Context, input *AddUploadBufferInput, opts ...request.Option) (*AddUploadBufferOutput, error) {
+	req, out := c.AddUploadBufferRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opAddWorkingStorage = "AddWorkingStorage"
@@ -400,8 +461,23 @@ func (c *StorageGateway) AddWorkingStorageRequest(input *AddWorkingStorageInput)
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/AddWorkingStorage
 func (c *StorageGateway) AddWorkingStorage(input *AddWorkingStorageInput) (*AddWorkingStorageOutput, error) {
 	req, out := c.AddWorkingStorageRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// AddWorkingStorageWithContext is the same as AddWorkingStorage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AddWorkingStorage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) AddWorkingStorageWithContext(ctx aws.Context, input *AddWorkingStorageInput, opts ...request.Option) (*AddWorkingStorageOutput, error) {
+	req, out := c.AddWorkingStorageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCancelArchival = "CancelArchival"
@@ -471,8 +547,23 @@ func (c *StorageGateway) CancelArchivalRequest(input *CancelArchivalInput) (req 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/CancelArchival
 func (c *StorageGateway) CancelArchival(input *CancelArchivalInput) (*CancelArchivalOutput, error) {
 	req, out := c.CancelArchivalRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CancelArchivalWithContext is the same as CancelArchival with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelArchival for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) CancelArchivalWithContext(ctx aws.Context, input *CancelArchivalInput, opts ...request.Option) (*CancelArchivalOutput, error) {
+	req, out := c.CancelArchivalRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCancelRetrieval = "CancelRetrieval"
@@ -543,8 +634,23 @@ func (c *StorageGateway) CancelRetrievalRequest(input *CancelRetrievalInput) (re
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/CancelRetrieval
 func (c *StorageGateway) CancelRetrieval(input *CancelRetrievalInput) (*CancelRetrievalOutput, error) {
 	req, out := c.CancelRetrievalRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CancelRetrievalWithContext is the same as CancelRetrieval with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelRetrieval for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) CancelRetrievalWithContext(ctx aws.Context, input *CancelRetrievalInput, opts ...request.Option) (*CancelRetrievalOutput, error) {
+	req, out := c.CancelRetrievalRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateCachediSCSIVolume = "CreateCachediSCSIVolume"
@@ -629,8 +735,23 @@ func (c *StorageGateway) CreateCachediSCSIVolumeRequest(input *CreateCachediSCSI
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/CreateCachediSCSIVolume
 func (c *StorageGateway) CreateCachediSCSIVolume(input *CreateCachediSCSIVolumeInput) (*CreateCachediSCSIVolumeOutput, error) {
 	req, out := c.CreateCachediSCSIVolumeRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateCachediSCSIVolumeWithContext is the same as CreateCachediSCSIVolume with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateCachediSCSIVolume for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) CreateCachediSCSIVolumeWithContext(ctx aws.Context, input *CreateCachediSCSIVolumeInput, opts ...request.Option) (*CreateCachediSCSIVolumeOutput, error) {
+	req, out := c.CreateCachediSCSIVolumeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateNFSFileShare = "CreateNFSFileShare"
@@ -701,8 +822,23 @@ func (c *StorageGateway) CreateNFSFileShareRequest(input *CreateNFSFileShareInpu
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/CreateNFSFileShare
 func (c *StorageGateway) CreateNFSFileShare(input *CreateNFSFileShareInput) (*CreateNFSFileShareOutput, error) {
 	req, out := c.CreateNFSFileShareRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateNFSFileShareWithContext is the same as CreateNFSFileShare with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateNFSFileShare for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) CreateNFSFileShareWithContext(ctx aws.Context, input *CreateNFSFileShareInput, opts ...request.Option) (*CreateNFSFileShareOutput, error) {
+	req, out := c.CreateNFSFileShareRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateSnapshot = "CreateSnapshot"
@@ -798,8 +934,23 @@ func (c *StorageGateway) CreateSnapshotRequest(input *CreateSnapshotInput) (req 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/CreateSnapshot
 func (c *StorageGateway) CreateSnapshot(input *CreateSnapshotInput) (*CreateSnapshotOutput, error) {
 	req, out := c.CreateSnapshotRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateSnapshotWithContext is the same as CreateSnapshot with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateSnapshot for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) CreateSnapshotWithContext(ctx aws.Context, input *CreateSnapshotInput, opts ...request.Option) (*CreateSnapshotOutput, error) {
+	req, out := c.CreateSnapshotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateSnapshotFromVolumeRecoveryPoint = "CreateSnapshotFromVolumeRecoveryPoint"
@@ -888,8 +1039,23 @@ func (c *StorageGateway) CreateSnapshotFromVolumeRecoveryPointRequest(input *Cre
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/CreateSnapshotFromVolumeRecoveryPoint
 func (c *StorageGateway) CreateSnapshotFromVolumeRecoveryPoint(input *CreateSnapshotFromVolumeRecoveryPointInput) (*CreateSnapshotFromVolumeRecoveryPointOutput, error) {
 	req, out := c.CreateSnapshotFromVolumeRecoveryPointRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateSnapshotFromVolumeRecoveryPointWithContext is the same as CreateSnapshotFromVolumeRecoveryPoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateSnapshotFromVolumeRecoveryPoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) CreateSnapshotFromVolumeRecoveryPointWithContext(ctx aws.Context, input *CreateSnapshotFromVolumeRecoveryPointInput, opts ...request.Option) (*CreateSnapshotFromVolumeRecoveryPointOutput, error) {
+	req, out := c.CreateSnapshotFromVolumeRecoveryPointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateStorediSCSIVolume = "CreateStorediSCSIVolume"
@@ -970,8 +1136,23 @@ func (c *StorageGateway) CreateStorediSCSIVolumeRequest(input *CreateStorediSCSI
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/CreateStorediSCSIVolume
 func (c *StorageGateway) CreateStorediSCSIVolume(input *CreateStorediSCSIVolumeInput) (*CreateStorediSCSIVolumeOutput, error) {
 	req, out := c.CreateStorediSCSIVolumeRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateStorediSCSIVolumeWithContext is the same as CreateStorediSCSIVolume with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateStorediSCSIVolume for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) CreateStorediSCSIVolumeWithContext(ctx aws.Context, input *CreateStorediSCSIVolumeInput, opts ...request.Option) (*CreateStorediSCSIVolumeOutput, error) {
+	req, out := c.CreateStorediSCSIVolumeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateTapeWithBarcode = "CreateTapeWithBarcode"
@@ -1044,8 +1225,23 @@ func (c *StorageGateway) CreateTapeWithBarcodeRequest(input *CreateTapeWithBarco
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/CreateTapeWithBarcode
 func (c *StorageGateway) CreateTapeWithBarcode(input *CreateTapeWithBarcodeInput) (*CreateTapeWithBarcodeOutput, error) {
 	req, out := c.CreateTapeWithBarcodeRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateTapeWithBarcodeWithContext is the same as CreateTapeWithBarcode with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateTapeWithBarcode for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) CreateTapeWithBarcodeWithContext(ctx aws.Context, input *CreateTapeWithBarcodeInput, opts ...request.Option) (*CreateTapeWithBarcodeOutput, error) {
+	req, out := c.CreateTapeWithBarcodeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateTapes = "CreateTapes"
@@ -1118,8 +1314,23 @@ func (c *StorageGateway) CreateTapesRequest(input *CreateTapesInput) (req *reque
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/CreateTapes
 func (c *StorageGateway) CreateTapes(input *CreateTapesInput) (*CreateTapesOutput, error) {
 	req, out := c.CreateTapesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateTapesWithContext is the same as CreateTapes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateTapes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) CreateTapesWithContext(ctx aws.Context, input *CreateTapesInput, opts ...request.Option) (*CreateTapesOutput, error) {
+	req, out := c.CreateTapesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteBandwidthRateLimit = "DeleteBandwidthRateLimit"
@@ -1192,8 +1403,23 @@ func (c *StorageGateway) DeleteBandwidthRateLimitRequest(input *DeleteBandwidthR
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DeleteBandwidthRateLimit
 func (c *StorageGateway) DeleteBandwidthRateLimit(input *DeleteBandwidthRateLimitInput) (*DeleteBandwidthRateLimitOutput, error) {
 	req, out := c.DeleteBandwidthRateLimitRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteBandwidthRateLimitWithContext is the same as DeleteBandwidthRateLimit with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteBandwidthRateLimit for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DeleteBandwidthRateLimitWithContext(ctx aws.Context, input *DeleteBandwidthRateLimitInput, opts ...request.Option) (*DeleteBandwidthRateLimitOutput, error) {
+	req, out := c.DeleteBandwidthRateLimitRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteChapCredentials = "DeleteChapCredentials"
@@ -1263,8 +1489,23 @@ func (c *StorageGateway) DeleteChapCredentialsRequest(input *DeleteChapCredentia
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DeleteChapCredentials
 func (c *StorageGateway) DeleteChapCredentials(input *DeleteChapCredentialsInput) (*DeleteChapCredentialsOutput, error) {
 	req, out := c.DeleteChapCredentialsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteChapCredentialsWithContext is the same as DeleteChapCredentials with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteChapCredentials for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DeleteChapCredentialsWithContext(ctx aws.Context, input *DeleteChapCredentialsInput, opts ...request.Option) (*DeleteChapCredentialsOutput, error) {
+	req, out := c.DeleteChapCredentialsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteFileShare = "DeleteFileShare"
@@ -1333,8 +1574,23 @@ func (c *StorageGateway) DeleteFileShareRequest(input *DeleteFileShareInput) (re
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DeleteFileShare
 func (c *StorageGateway) DeleteFileShare(input *DeleteFileShareInput) (*DeleteFileShareOutput, error) {
 	req, out := c.DeleteFileShareRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteFileShareWithContext is the same as DeleteFileShare with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFileShare for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DeleteFileShareWithContext(ctx aws.Context, input *DeleteFileShareInput, opts ...request.Option) (*DeleteFileShareOutput, error) {
+	req, out := c.DeleteFileShareRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteGateway = "DeleteGateway"
@@ -1418,8 +1674,23 @@ func (c *StorageGateway) DeleteGatewayRequest(input *DeleteGatewayInput) (req *r
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DeleteGateway
 func (c *StorageGateway) DeleteGateway(input *DeleteGatewayInput) (*DeleteGatewayOutput, error) {
 	req, out := c.DeleteGatewayRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteGatewayWithContext is the same as DeleteGateway with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteGateway for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DeleteGatewayWithContext(ctx aws.Context, input *DeleteGatewayInput, opts ...request.Option) (*DeleteGatewayOutput, error) {
+	req, out := c.DeleteGatewayRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteSnapshotSchedule = "DeleteSnapshotSchedule"
@@ -1497,8 +1768,23 @@ func (c *StorageGateway) DeleteSnapshotScheduleRequest(input *DeleteSnapshotSche
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DeleteSnapshotSchedule
 func (c *StorageGateway) DeleteSnapshotSchedule(input *DeleteSnapshotScheduleInput) (*DeleteSnapshotScheduleOutput, error) {
 	req, out := c.DeleteSnapshotScheduleRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteSnapshotScheduleWithContext is the same as DeleteSnapshotSchedule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteSnapshotSchedule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DeleteSnapshotScheduleWithContext(ctx aws.Context, input *DeleteSnapshotScheduleInput, opts ...request.Option) (*DeleteSnapshotScheduleOutput, error) {
+	req, out := c.DeleteSnapshotScheduleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteTape = "DeleteTape"
@@ -1567,8 +1853,23 @@ func (c *StorageGateway) DeleteTapeRequest(input *DeleteTapeInput) (req *request
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DeleteTape
 func (c *StorageGateway) DeleteTape(input *DeleteTapeInput) (*DeleteTapeOutput, error) {
 	req, out := c.DeleteTapeRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteTapeWithContext is the same as DeleteTape with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteTape for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DeleteTapeWithContext(ctx aws.Context, input *DeleteTapeInput, opts ...request.Option) (*DeleteTapeOutput, error) {
+	req, out := c.DeleteTapeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteTapeArchive = "DeleteTapeArchive"
@@ -1637,8 +1938,23 @@ func (c *StorageGateway) DeleteTapeArchiveRequest(input *DeleteTapeArchiveInput)
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DeleteTapeArchive
 func (c *StorageGateway) DeleteTapeArchive(input *DeleteTapeArchiveInput) (*DeleteTapeArchiveOutput, error) {
 	req, out := c.DeleteTapeArchiveRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteTapeArchiveWithContext is the same as DeleteTapeArchive with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteTapeArchive for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DeleteTapeArchiveWithContext(ctx aws.Context, input *DeleteTapeArchiveInput, opts ...request.Option) (*DeleteTapeArchiveOutput, error) {
+	req, out := c.DeleteTapeArchiveRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteVolume = "DeleteVolume"
@@ -1720,8 +2036,23 @@ func (c *StorageGateway) DeleteVolumeRequest(input *DeleteVolumeInput) (req *req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DeleteVolume
 func (c *StorageGateway) DeleteVolume(input *DeleteVolumeInput) (*DeleteVolumeOutput, error) {
 	req, out := c.DeleteVolumeRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteVolumeWithContext is the same as DeleteVolume with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteVolume for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DeleteVolumeWithContext(ctx aws.Context, input *DeleteVolumeInput, opts ...request.Option) (*DeleteVolumeOutput, error) {
+	req, out := c.DeleteVolumeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeBandwidthRateLimit = "DescribeBandwidthRateLimit"
@@ -1796,8 +2127,23 @@ func (c *StorageGateway) DescribeBandwidthRateLimitRequest(input *DescribeBandwi
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DescribeBandwidthRateLimit
 func (c *StorageGateway) DescribeBandwidthRateLimit(input *DescribeBandwidthRateLimitInput) (*DescribeBandwidthRateLimitOutput, error) {
 	req, out := c.DescribeBandwidthRateLimitRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeBandwidthRateLimitWithContext is the same as DescribeBandwidthRateLimit with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeBandwidthRateLimit for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DescribeBandwidthRateLimitWithContext(ctx aws.Context, input *DescribeBandwidthRateLimitInput, opts ...request.Option) (*DescribeBandwidthRateLimitOutput, error) {
+	req, out := c.DescribeBandwidthRateLimitRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeCache = "DescribeCache"
@@ -1870,8 +2216,23 @@ func (c *StorageGateway) DescribeCacheRequest(input *DescribeCacheInput) (req *r
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DescribeCache
 func (c *StorageGateway) DescribeCache(input *DescribeCacheInput) (*DescribeCacheOutput, error) {
 	req, out := c.DescribeCacheRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeCacheWithContext is the same as DescribeCache with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeCache for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DescribeCacheWithContext(ctx aws.Context, input *DescribeCacheInput, opts ...request.Option) (*DescribeCacheOutput, error) {
+	req, out := c.DescribeCacheRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeCachediSCSIVolumes = "DescribeCachediSCSIVolumes"
@@ -1945,8 +2306,23 @@ func (c *StorageGateway) DescribeCachediSCSIVolumesRequest(input *DescribeCached
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DescribeCachediSCSIVolumes
 func (c *StorageGateway) DescribeCachediSCSIVolumes(input *DescribeCachediSCSIVolumesInput) (*DescribeCachediSCSIVolumesOutput, error) {
 	req, out := c.DescribeCachediSCSIVolumesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeCachediSCSIVolumesWithContext is the same as DescribeCachediSCSIVolumes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeCachediSCSIVolumes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DescribeCachediSCSIVolumesWithContext(ctx aws.Context, input *DescribeCachediSCSIVolumesInput, opts ...request.Option) (*DescribeCachediSCSIVolumesOutput, error) {
+	req, out := c.DescribeCachediSCSIVolumesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeChapCredentials = "DescribeChapCredentials"
@@ -2016,8 +2392,23 @@ func (c *StorageGateway) DescribeChapCredentialsRequest(input *DescribeChapCrede
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DescribeChapCredentials
 func (c *StorageGateway) DescribeChapCredentials(input *DescribeChapCredentialsInput) (*DescribeChapCredentialsOutput, error) {
 	req, out := c.DescribeChapCredentialsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeChapCredentialsWithContext is the same as DescribeChapCredentials with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeChapCredentials for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DescribeChapCredentialsWithContext(ctx aws.Context, input *DescribeChapCredentialsInput, opts ...request.Option) (*DescribeChapCredentialsOutput, error) {
+	req, out := c.DescribeChapCredentialsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeGatewayInformation = "DescribeGatewayInformation"
@@ -2089,8 +2480,23 @@ func (c *StorageGateway) DescribeGatewayInformationRequest(input *DescribeGatewa
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DescribeGatewayInformation
 func (c *StorageGateway) DescribeGatewayInformation(input *DescribeGatewayInformationInput) (*DescribeGatewayInformationOutput, error) {
 	req, out := c.DescribeGatewayInformationRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeGatewayInformationWithContext is the same as DescribeGatewayInformation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeGatewayInformation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DescribeGatewayInformationWithContext(ctx aws.Context, input *DescribeGatewayInformationInput, opts ...request.Option) (*DescribeGatewayInformationOutput, error) {
+	req, out := c.DescribeGatewayInformationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeMaintenanceStartTime = "DescribeMaintenanceStartTime"
@@ -2160,8 +2566,23 @@ func (c *StorageGateway) DescribeMaintenanceStartTimeRequest(input *DescribeMain
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DescribeMaintenanceStartTime
 func (c *StorageGateway) DescribeMaintenanceStartTime(input *DescribeMaintenanceStartTimeInput) (*DescribeMaintenanceStartTimeOutput, error) {
 	req, out := c.DescribeMaintenanceStartTimeRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeMaintenanceStartTimeWithContext is the same as DescribeMaintenanceStartTime with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeMaintenanceStartTime for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DescribeMaintenanceStartTimeWithContext(ctx aws.Context, input *DescribeMaintenanceStartTimeInput, opts ...request.Option) (*DescribeMaintenanceStartTimeOutput, error) {
+	req, out := c.DescribeMaintenanceStartTimeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeNFSFileShares = "DescribeNFSFileShares"
@@ -2230,8 +2651,23 @@ func (c *StorageGateway) DescribeNFSFileSharesRequest(input *DescribeNFSFileShar
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DescribeNFSFileShares
 func (c *StorageGateway) DescribeNFSFileShares(input *DescribeNFSFileSharesInput) (*DescribeNFSFileSharesOutput, error) {
 	req, out := c.DescribeNFSFileSharesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeNFSFileSharesWithContext is the same as DescribeNFSFileShares with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeNFSFileShares for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DescribeNFSFileSharesWithContext(ctx aws.Context, input *DescribeNFSFileSharesInput, opts ...request.Option) (*DescribeNFSFileSharesOutput, error) {
+	req, out := c.DescribeNFSFileSharesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeSnapshotSchedule = "DescribeSnapshotSchedule"
@@ -2302,8 +2738,23 @@ func (c *StorageGateway) DescribeSnapshotScheduleRequest(input *DescribeSnapshot
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DescribeSnapshotSchedule
 func (c *StorageGateway) DescribeSnapshotSchedule(input *DescribeSnapshotScheduleInput) (*DescribeSnapshotScheduleOutput, error) {
 	req, out := c.DescribeSnapshotScheduleRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeSnapshotScheduleWithContext is the same as DescribeSnapshotSchedule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeSnapshotSchedule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DescribeSnapshotScheduleWithContext(ctx aws.Context, input *DescribeSnapshotScheduleInput, opts ...request.Option) (*DescribeSnapshotScheduleOutput, error) {
+	req, out := c.DescribeSnapshotScheduleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeStorediSCSIVolumes = "DescribeStorediSCSIVolumes"
@@ -2375,8 +2826,23 @@ func (c *StorageGateway) DescribeStorediSCSIVolumesRequest(input *DescribeStored
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DescribeStorediSCSIVolumes
 func (c *StorageGateway) DescribeStorediSCSIVolumes(input *DescribeStorediSCSIVolumesInput) (*DescribeStorediSCSIVolumesOutput, error) {
 	req, out := c.DescribeStorediSCSIVolumesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeStorediSCSIVolumesWithContext is the same as DescribeStorediSCSIVolumes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeStorediSCSIVolumes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DescribeStorediSCSIVolumesWithContext(ctx aws.Context, input *DescribeStorediSCSIVolumesInput, opts ...request.Option) (*DescribeStorediSCSIVolumesOutput, error) {
+	req, out := c.DescribeStorediSCSIVolumesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeTapeArchives = "DescribeTapeArchives"
@@ -2455,8 +2921,23 @@ func (c *StorageGateway) DescribeTapeArchivesRequest(input *DescribeTapeArchives
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DescribeTapeArchives
 func (c *StorageGateway) DescribeTapeArchives(input *DescribeTapeArchivesInput) (*DescribeTapeArchivesOutput, error) {
 	req, out := c.DescribeTapeArchivesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeTapeArchivesWithContext is the same as DescribeTapeArchives with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeTapeArchives for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DescribeTapeArchivesWithContext(ctx aws.Context, input *DescribeTapeArchivesInput, opts ...request.Option) (*DescribeTapeArchivesOutput, error) {
+	req, out := c.DescribeTapeArchivesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // DescribeTapeArchivesPages iterates over the pages of a DescribeTapeArchives operation,
@@ -2476,12 +2957,33 @@ func (c *StorageGateway) DescribeTapeArchives(input *DescribeTapeArchivesInput) 
 //            return pageNum <= 3
 //        })
 //
-func (c *StorageGateway) DescribeTapeArchivesPages(input *DescribeTapeArchivesInput, fn func(p *DescribeTapeArchivesOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeTapeArchivesRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*DescribeTapeArchivesOutput), lastPage)
-	})
+func (c *StorageGateway) DescribeTapeArchivesPages(input *DescribeTapeArchivesInput, fn func(*DescribeTapeArchivesOutput, bool) bool) error {
+	return c.DescribeTapeArchivesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeTapeArchivesPagesWithContext same as DescribeTapeArchivesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DescribeTapeArchivesPagesWithContext(ctx aws.Context, input *DescribeTapeArchivesInput, fn func(*DescribeTapeArchivesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.DescribeTapeArchivesRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*DescribeTapeArchivesOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opDescribeTapeRecoveryPoints = "DescribeTapeRecoveryPoints"
@@ -2561,8 +3063,23 @@ func (c *StorageGateway) DescribeTapeRecoveryPointsRequest(input *DescribeTapeRe
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DescribeTapeRecoveryPoints
 func (c *StorageGateway) DescribeTapeRecoveryPoints(input *DescribeTapeRecoveryPointsInput) (*DescribeTapeRecoveryPointsOutput, error) {
 	req, out := c.DescribeTapeRecoveryPointsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeTapeRecoveryPointsWithContext is the same as DescribeTapeRecoveryPoints with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeTapeRecoveryPoints for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DescribeTapeRecoveryPointsWithContext(ctx aws.Context, input *DescribeTapeRecoveryPointsInput, opts ...request.Option) (*DescribeTapeRecoveryPointsOutput, error) {
+	req, out := c.DescribeTapeRecoveryPointsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // DescribeTapeRecoveryPointsPages iterates over the pages of a DescribeTapeRecoveryPoints operation,
@@ -2582,12 +3099,33 @@ func (c *StorageGateway) DescribeTapeRecoveryPoints(input *DescribeTapeRecoveryP
 //            return pageNum <= 3
 //        })
 //
-func (c *StorageGateway) DescribeTapeRecoveryPointsPages(input *DescribeTapeRecoveryPointsInput, fn func(p *DescribeTapeRecoveryPointsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeTapeRecoveryPointsRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*DescribeTapeRecoveryPointsOutput), lastPage)
-	})
+func (c *StorageGateway) DescribeTapeRecoveryPointsPages(input *DescribeTapeRecoveryPointsInput, fn func(*DescribeTapeRecoveryPointsOutput, bool) bool) error {
+	return c.DescribeTapeRecoveryPointsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeTapeRecoveryPointsPagesWithContext same as DescribeTapeRecoveryPointsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DescribeTapeRecoveryPointsPagesWithContext(ctx aws.Context, input *DescribeTapeRecoveryPointsInput, fn func(*DescribeTapeRecoveryPointsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.DescribeTapeRecoveryPointsRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*DescribeTapeRecoveryPointsOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opDescribeTapes = "DescribeTapes"
@@ -2664,8 +3202,23 @@ func (c *StorageGateway) DescribeTapesRequest(input *DescribeTapesInput) (req *r
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DescribeTapes
 func (c *StorageGateway) DescribeTapes(input *DescribeTapesInput) (*DescribeTapesOutput, error) {
 	req, out := c.DescribeTapesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeTapesWithContext is the same as DescribeTapes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeTapes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DescribeTapesWithContext(ctx aws.Context, input *DescribeTapesInput, opts ...request.Option) (*DescribeTapesOutput, error) {
+	req, out := c.DescribeTapesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // DescribeTapesPages iterates over the pages of a DescribeTapes operation,
@@ -2685,12 +3238,33 @@ func (c *StorageGateway) DescribeTapes(input *DescribeTapesInput) (*DescribeTape
 //            return pageNum <= 3
 //        })
 //
-func (c *StorageGateway) DescribeTapesPages(input *DescribeTapesInput, fn func(p *DescribeTapesOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeTapesRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*DescribeTapesOutput), lastPage)
-	})
+func (c *StorageGateway) DescribeTapesPages(input *DescribeTapesInput, fn func(*DescribeTapesOutput, bool) bool) error {
+	return c.DescribeTapesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeTapesPagesWithContext same as DescribeTapesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DescribeTapesPagesWithContext(ctx aws.Context, input *DescribeTapesInput, fn func(*DescribeTapesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.DescribeTapesRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*DescribeTapesOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opDescribeUploadBuffer = "DescribeUploadBuffer"
@@ -2763,8 +3337,23 @@ func (c *StorageGateway) DescribeUploadBufferRequest(input *DescribeUploadBuffer
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DescribeUploadBuffer
 func (c *StorageGateway) DescribeUploadBuffer(input *DescribeUploadBufferInput) (*DescribeUploadBufferOutput, error) {
 	req, out := c.DescribeUploadBufferRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeUploadBufferWithContext is the same as DescribeUploadBuffer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeUploadBuffer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DescribeUploadBufferWithContext(ctx aws.Context, input *DescribeUploadBufferInput, opts ...request.Option) (*DescribeUploadBufferOutput, error) {
+	req, out := c.DescribeUploadBufferRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeVTLDevices = "DescribeVTLDevices"
@@ -2842,8 +3431,23 @@ func (c *StorageGateway) DescribeVTLDevicesRequest(input *DescribeVTLDevicesInpu
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DescribeVTLDevices
 func (c *StorageGateway) DescribeVTLDevices(input *DescribeVTLDevicesInput) (*DescribeVTLDevicesOutput, error) {
 	req, out := c.DescribeVTLDevicesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeVTLDevicesWithContext is the same as DescribeVTLDevices with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeVTLDevices for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DescribeVTLDevicesWithContext(ctx aws.Context, input *DescribeVTLDevicesInput, opts ...request.Option) (*DescribeVTLDevicesOutput, error) {
+	req, out := c.DescribeVTLDevicesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // DescribeVTLDevicesPages iterates over the pages of a DescribeVTLDevices operation,
@@ -2863,12 +3467,33 @@ func (c *StorageGateway) DescribeVTLDevices(input *DescribeVTLDevicesInput) (*De
 //            return pageNum <= 3
 //        })
 //
-func (c *StorageGateway) DescribeVTLDevicesPages(input *DescribeVTLDevicesInput, fn func(p *DescribeVTLDevicesOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeVTLDevicesRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*DescribeVTLDevicesOutput), lastPage)
-	})
+func (c *StorageGateway) DescribeVTLDevicesPages(input *DescribeVTLDevicesInput, fn func(*DescribeVTLDevicesOutput, bool) bool) error {
+	return c.DescribeVTLDevicesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeVTLDevicesPagesWithContext same as DescribeVTLDevicesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DescribeVTLDevicesPagesWithContext(ctx aws.Context, input *DescribeVTLDevicesInput, fn func(*DescribeVTLDevicesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.DescribeVTLDevicesRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*DescribeVTLDevicesOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opDescribeWorkingStorage = "DescribeWorkingStorage"
@@ -2946,8 +3571,23 @@ func (c *StorageGateway) DescribeWorkingStorageRequest(input *DescribeWorkingSto
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DescribeWorkingStorage
 func (c *StorageGateway) DescribeWorkingStorage(input *DescribeWorkingStorageInput) (*DescribeWorkingStorageOutput, error) {
 	req, out := c.DescribeWorkingStorageRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeWorkingStorageWithContext is the same as DescribeWorkingStorage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeWorkingStorage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DescribeWorkingStorageWithContext(ctx aws.Context, input *DescribeWorkingStorageInput, opts ...request.Option) (*DescribeWorkingStorageOutput, error) {
+	req, out := c.DescribeWorkingStorageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDisableGateway = "DisableGateway"
@@ -3022,8 +3662,23 @@ func (c *StorageGateway) DisableGatewayRequest(input *DisableGatewayInput) (req 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DisableGateway
 func (c *StorageGateway) DisableGateway(input *DisableGatewayInput) (*DisableGatewayOutput, error) {
 	req, out := c.DisableGatewayRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DisableGatewayWithContext is the same as DisableGateway with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisableGateway for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DisableGatewayWithContext(ctx aws.Context, input *DisableGatewayInput, opts ...request.Option) (*DisableGatewayOutput, error) {
+	req, out := c.DisableGatewayRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListFileShares = "ListFileShares"
@@ -3093,8 +3748,23 @@ func (c *StorageGateway) ListFileSharesRequest(input *ListFileSharesInput) (req 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/ListFileShares
 func (c *StorageGateway) ListFileShares(input *ListFileSharesInput) (*ListFileSharesOutput, error) {
 	req, out := c.ListFileSharesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListFileSharesWithContext is the same as ListFileShares with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFileShares for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) ListFileSharesWithContext(ctx aws.Context, input *ListFileSharesInput, opts ...request.Option) (*ListFileSharesOutput, error) {
+	req, out := c.ListFileSharesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListGateways = "ListGateways"
@@ -3179,8 +3849,23 @@ func (c *StorageGateway) ListGatewaysRequest(input *ListGatewaysInput) (req *req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/ListGateways
 func (c *StorageGateway) ListGateways(input *ListGatewaysInput) (*ListGatewaysOutput, error) {
 	req, out := c.ListGatewaysRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListGatewaysWithContext is the same as ListGateways with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListGateways for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) ListGatewaysWithContext(ctx aws.Context, input *ListGatewaysInput, opts ...request.Option) (*ListGatewaysOutput, error) {
+	req, out := c.ListGatewaysRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListGatewaysPages iterates over the pages of a ListGateways operation,
@@ -3200,12 +3885,33 @@ func (c *StorageGateway) ListGateways(input *ListGatewaysInput) (*ListGatewaysOu
 //            return pageNum <= 3
 //        })
 //
-func (c *StorageGateway) ListGatewaysPages(input *ListGatewaysInput, fn func(p *ListGatewaysOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListGatewaysRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListGatewaysOutput), lastPage)
-	})
+func (c *StorageGateway) ListGatewaysPages(input *ListGatewaysInput, fn func(*ListGatewaysOutput, bool) bool) error {
+	return c.ListGatewaysPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListGatewaysPagesWithContext same as ListGatewaysPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) ListGatewaysPagesWithContext(ctx aws.Context, input *ListGatewaysInput, fn func(*ListGatewaysOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListGatewaysRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListGatewaysOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListLocalDisks = "ListLocalDisks"
@@ -3283,8 +3989,23 @@ func (c *StorageGateway) ListLocalDisksRequest(input *ListLocalDisksInput) (req 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/ListLocalDisks
 func (c *StorageGateway) ListLocalDisks(input *ListLocalDisksInput) (*ListLocalDisksOutput, error) {
 	req, out := c.ListLocalDisksRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListLocalDisksWithContext is the same as ListLocalDisks with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListLocalDisks for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) ListLocalDisksWithContext(ctx aws.Context, input *ListLocalDisksInput, opts ...request.Option) (*ListLocalDisksOutput, error) {
+	req, out := c.ListLocalDisksRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListTagsForResource = "ListTagsForResource"
@@ -3353,8 +4074,23 @@ func (c *StorageGateway) ListTagsForResourceRequest(input *ListTagsForResourceIn
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/ListTagsForResource
 func (c *StorageGateway) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListTapes = "ListTapes"
@@ -3432,8 +4168,23 @@ func (c *StorageGateway) ListTapesRequest(input *ListTapesInput) (req *request.R
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/ListTapes
 func (c *StorageGateway) ListTapes(input *ListTapesInput) (*ListTapesOutput, error) {
 	req, out := c.ListTapesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListTapesWithContext is the same as ListTapes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTapes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) ListTapesWithContext(ctx aws.Context, input *ListTapesInput, opts ...request.Option) (*ListTapesOutput, error) {
+	req, out := c.ListTapesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListVolumeInitiators = "ListVolumeInitiators"
@@ -3503,8 +4254,23 @@ func (c *StorageGateway) ListVolumeInitiatorsRequest(input *ListVolumeInitiators
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/ListVolumeInitiators
 func (c *StorageGateway) ListVolumeInitiators(input *ListVolumeInitiatorsInput) (*ListVolumeInitiatorsOutput, error) {
 	req, out := c.ListVolumeInitiatorsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListVolumeInitiatorsWithContext is the same as ListVolumeInitiators with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListVolumeInitiators for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) ListVolumeInitiatorsWithContext(ctx aws.Context, input *ListVolumeInitiatorsInput, opts ...request.Option) (*ListVolumeInitiatorsOutput, error) {
+	req, out := c.ListVolumeInitiatorsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListVolumeRecoveryPoints = "ListVolumeRecoveryPoints"
@@ -3579,8 +4345,23 @@ func (c *StorageGateway) ListVolumeRecoveryPointsRequest(input *ListVolumeRecove
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/ListVolumeRecoveryPoints
 func (c *StorageGateway) ListVolumeRecoveryPoints(input *ListVolumeRecoveryPointsInput) (*ListVolumeRecoveryPointsOutput, error) {
 	req, out := c.ListVolumeRecoveryPointsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListVolumeRecoveryPointsWithContext is the same as ListVolumeRecoveryPoints with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListVolumeRecoveryPoints for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) ListVolumeRecoveryPointsWithContext(ctx aws.Context, input *ListVolumeRecoveryPointsInput, opts ...request.Option) (*ListVolumeRecoveryPointsOutput, error) {
+	req, out := c.ListVolumeRecoveryPointsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListVolumes = "ListVolumes"
@@ -3665,8 +4446,23 @@ func (c *StorageGateway) ListVolumesRequest(input *ListVolumesInput) (req *reque
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/ListVolumes
 func (c *StorageGateway) ListVolumes(input *ListVolumesInput) (*ListVolumesOutput, error) {
 	req, out := c.ListVolumesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListVolumesWithContext is the same as ListVolumes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListVolumes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) ListVolumesWithContext(ctx aws.Context, input *ListVolumesInput, opts ...request.Option) (*ListVolumesOutput, error) {
+	req, out := c.ListVolumesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListVolumesPages iterates over the pages of a ListVolumes operation,
@@ -3686,12 +4482,33 @@ func (c *StorageGateway) ListVolumes(input *ListVolumesInput) (*ListVolumesOutpu
 //            return pageNum <= 3
 //        })
 //
-func (c *StorageGateway) ListVolumesPages(input *ListVolumesInput, fn func(p *ListVolumesOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListVolumesRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListVolumesOutput), lastPage)
-	})
+func (c *StorageGateway) ListVolumesPages(input *ListVolumesInput, fn func(*ListVolumesOutput, bool) bool) error {
+	return c.ListVolumesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListVolumesPagesWithContext same as ListVolumesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) ListVolumesPagesWithContext(ctx aws.Context, input *ListVolumesInput, fn func(*ListVolumesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListVolumesRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListVolumesOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opRemoveTagsFromResource = "RemoveTagsFromResource"
@@ -3760,8 +4577,23 @@ func (c *StorageGateway) RemoveTagsFromResourceRequest(input *RemoveTagsFromReso
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/RemoveTagsFromResource
 func (c *StorageGateway) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*RemoveTagsFromResourceOutput, error) {
 	req, out := c.RemoveTagsFromResourceRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// RemoveTagsFromResourceWithContext is the same as RemoveTagsFromResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RemoveTagsFromResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) RemoveTagsFromResourceWithContext(ctx aws.Context, input *RemoveTagsFromResourceInput, opts ...request.Option) (*RemoveTagsFromResourceOutput, error) {
+	req, out := c.RemoveTagsFromResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opResetCache = "ResetCache"
@@ -3840,8 +4672,23 @@ func (c *StorageGateway) ResetCacheRequest(input *ResetCacheInput) (req *request
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/ResetCache
 func (c *StorageGateway) ResetCache(input *ResetCacheInput) (*ResetCacheOutput, error) {
 	req, out := c.ResetCacheRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ResetCacheWithContext is the same as ResetCache with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ResetCache for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) ResetCacheWithContext(ctx aws.Context, input *ResetCacheInput, opts ...request.Option) (*ResetCacheOutput, error) {
+	req, out := c.ResetCacheRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opRetrieveTapeArchive = "RetrieveTapeArchive"
@@ -3917,8 +4764,23 @@ func (c *StorageGateway) RetrieveTapeArchiveRequest(input *RetrieveTapeArchiveIn
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/RetrieveTapeArchive
 func (c *StorageGateway) RetrieveTapeArchive(input *RetrieveTapeArchiveInput) (*RetrieveTapeArchiveOutput, error) {
 	req, out := c.RetrieveTapeArchiveRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// RetrieveTapeArchiveWithContext is the same as RetrieveTapeArchive with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RetrieveTapeArchive for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) RetrieveTapeArchiveWithContext(ctx aws.Context, input *RetrieveTapeArchiveInput, opts ...request.Option) (*RetrieveTapeArchiveOutput, error) {
+	req, out := c.RetrieveTapeArchiveRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opRetrieveTapeRecoveryPoint = "RetrieveTapeRecoveryPoint"
@@ -3995,8 +4857,23 @@ func (c *StorageGateway) RetrieveTapeRecoveryPointRequest(input *RetrieveTapeRec
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/RetrieveTapeRecoveryPoint
 func (c *StorageGateway) RetrieveTapeRecoveryPoint(input *RetrieveTapeRecoveryPointInput) (*RetrieveTapeRecoveryPointOutput, error) {
 	req, out := c.RetrieveTapeRecoveryPointRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// RetrieveTapeRecoveryPointWithContext is the same as RetrieveTapeRecoveryPoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RetrieveTapeRecoveryPoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) RetrieveTapeRecoveryPointWithContext(ctx aws.Context, input *RetrieveTapeRecoveryPointInput, opts ...request.Option) (*RetrieveTapeRecoveryPointOutput, error) {
+	req, out := c.RetrieveTapeRecoveryPointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opSetLocalConsolePassword = "SetLocalConsolePassword"
@@ -4068,8 +4945,23 @@ func (c *StorageGateway) SetLocalConsolePasswordRequest(input *SetLocalConsolePa
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/SetLocalConsolePassword
 func (c *StorageGateway) SetLocalConsolePassword(input *SetLocalConsolePasswordInput) (*SetLocalConsolePasswordOutput, error) {
 	req, out := c.SetLocalConsolePasswordRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// SetLocalConsolePasswordWithContext is the same as SetLocalConsolePassword with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SetLocalConsolePassword for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) SetLocalConsolePasswordWithContext(ctx aws.Context, input *SetLocalConsolePasswordInput, opts ...request.Option) (*SetLocalConsolePasswordOutput, error) {
+	req, out := c.SetLocalConsolePasswordRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opShutdownGateway = "ShutdownGateway"
@@ -4158,8 +5050,23 @@ func (c *StorageGateway) ShutdownGatewayRequest(input *ShutdownGatewayInput) (re
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/ShutdownGateway
 func (c *StorageGateway) ShutdownGateway(input *ShutdownGatewayInput) (*ShutdownGatewayOutput, error) {
 	req, out := c.ShutdownGatewayRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ShutdownGatewayWithContext is the same as ShutdownGateway with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ShutdownGateway for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) ShutdownGatewayWithContext(ctx aws.Context, input *ShutdownGatewayInput, opts ...request.Option) (*ShutdownGatewayOutput, error) {
+	req, out := c.ShutdownGatewayRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opStartGateway = "StartGateway"
@@ -4239,8 +5146,23 @@ func (c *StorageGateway) StartGatewayRequest(input *StartGatewayInput) (req *req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/StartGateway
 func (c *StorageGateway) StartGateway(input *StartGatewayInput) (*StartGatewayOutput, error) {
 	req, out := c.StartGatewayRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// StartGatewayWithContext is the same as StartGateway with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartGateway for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) StartGatewayWithContext(ctx aws.Context, input *StartGatewayInput, opts ...request.Option) (*StartGatewayOutput, error) {
+	req, out := c.StartGatewayRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateBandwidthRateLimit = "UpdateBandwidthRateLimit"
@@ -4318,8 +5240,23 @@ func (c *StorageGateway) UpdateBandwidthRateLimitRequest(input *UpdateBandwidthR
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/UpdateBandwidthRateLimit
 func (c *StorageGateway) UpdateBandwidthRateLimit(input *UpdateBandwidthRateLimitInput) (*UpdateBandwidthRateLimitOutput, error) {
 	req, out := c.UpdateBandwidthRateLimitRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateBandwidthRateLimitWithContext is the same as UpdateBandwidthRateLimit with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateBandwidthRateLimit for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) UpdateBandwidthRateLimitWithContext(ctx aws.Context, input *UpdateBandwidthRateLimitInput, opts ...request.Option) (*UpdateBandwidthRateLimitOutput, error) {
+	req, out := c.UpdateBandwidthRateLimitRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateChapCredentials = "UpdateChapCredentials"
@@ -4393,8 +5330,23 @@ func (c *StorageGateway) UpdateChapCredentialsRequest(input *UpdateChapCredentia
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/UpdateChapCredentials
 func (c *StorageGateway) UpdateChapCredentials(input *UpdateChapCredentialsInput) (*UpdateChapCredentialsOutput, error) {
 	req, out := c.UpdateChapCredentialsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateChapCredentialsWithContext is the same as UpdateChapCredentials with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateChapCredentials for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) UpdateChapCredentialsWithContext(ctx aws.Context, input *UpdateChapCredentialsInput, opts ...request.Option) (*UpdateChapCredentialsOutput, error) {
+	req, out := c.UpdateChapCredentialsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateGatewayInformation = "UpdateGatewayInformation"
@@ -4469,8 +5421,23 @@ func (c *StorageGateway) UpdateGatewayInformationRequest(input *UpdateGatewayInf
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/UpdateGatewayInformation
 func (c *StorageGateway) UpdateGatewayInformation(input *UpdateGatewayInformationInput) (*UpdateGatewayInformationOutput, error) {
 	req, out := c.UpdateGatewayInformationRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateGatewayInformationWithContext is the same as UpdateGatewayInformation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateGatewayInformation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) UpdateGatewayInformationWithContext(ctx aws.Context, input *UpdateGatewayInformationInput, opts ...request.Option) (*UpdateGatewayInformationOutput, error) {
+	req, out := c.UpdateGatewayInformationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateGatewaySoftwareNow = "UpdateGatewaySoftwareNow"
@@ -4553,8 +5520,23 @@ func (c *StorageGateway) UpdateGatewaySoftwareNowRequest(input *UpdateGatewaySof
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/UpdateGatewaySoftwareNow
 func (c *StorageGateway) UpdateGatewaySoftwareNow(input *UpdateGatewaySoftwareNowInput) (*UpdateGatewaySoftwareNowOutput, error) {
 	req, out := c.UpdateGatewaySoftwareNowRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateGatewaySoftwareNowWithContext is the same as UpdateGatewaySoftwareNow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateGatewaySoftwareNow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) UpdateGatewaySoftwareNowWithContext(ctx aws.Context, input *UpdateGatewaySoftwareNowInput, opts ...request.Option) (*UpdateGatewaySoftwareNowOutput, error) {
+	req, out := c.UpdateGatewaySoftwareNowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateMaintenanceStartTime = "UpdateMaintenanceStartTime"
@@ -4625,8 +5607,23 @@ func (c *StorageGateway) UpdateMaintenanceStartTimeRequest(input *UpdateMaintena
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/UpdateMaintenanceStartTime
 func (c *StorageGateway) UpdateMaintenanceStartTime(input *UpdateMaintenanceStartTimeInput) (*UpdateMaintenanceStartTimeOutput, error) {
 	req, out := c.UpdateMaintenanceStartTimeRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateMaintenanceStartTimeWithContext is the same as UpdateMaintenanceStartTime with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateMaintenanceStartTime for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) UpdateMaintenanceStartTimeWithContext(ctx aws.Context, input *UpdateMaintenanceStartTimeInput, opts ...request.Option) (*UpdateMaintenanceStartTimeOutput, error) {
+	req, out := c.UpdateMaintenanceStartTimeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateNFSFileShare = "UpdateNFSFileShare"
@@ -4698,8 +5695,23 @@ func (c *StorageGateway) UpdateNFSFileShareRequest(input *UpdateNFSFileShareInpu
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/UpdateNFSFileShare
 func (c *StorageGateway) UpdateNFSFileShare(input *UpdateNFSFileShareInput) (*UpdateNFSFileShareOutput, error) {
 	req, out := c.UpdateNFSFileShareRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateNFSFileShareWithContext is the same as UpdateNFSFileShare with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateNFSFileShare for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) UpdateNFSFileShareWithContext(ctx aws.Context, input *UpdateNFSFileShareInput, opts ...request.Option) (*UpdateNFSFileShareOutput, error) {
+	req, out := c.UpdateNFSFileShareRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateSnapshotSchedule = "UpdateSnapshotSchedule"
@@ -4776,8 +5788,23 @@ func (c *StorageGateway) UpdateSnapshotScheduleRequest(input *UpdateSnapshotSche
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/UpdateSnapshotSchedule
 func (c *StorageGateway) UpdateSnapshotSchedule(input *UpdateSnapshotScheduleInput) (*UpdateSnapshotScheduleOutput, error) {
 	req, out := c.UpdateSnapshotScheduleRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateSnapshotScheduleWithContext is the same as UpdateSnapshotSchedule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSnapshotSchedule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) UpdateSnapshotScheduleWithContext(ctx aws.Context, input *UpdateSnapshotScheduleInput, opts ...request.Option) (*UpdateSnapshotScheduleOutput, error) {
+	req, out := c.UpdateSnapshotScheduleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateVTLDeviceType = "UpdateVTLDeviceType"
@@ -4849,8 +5876,23 @@ func (c *StorageGateway) UpdateVTLDeviceTypeRequest(input *UpdateVTLDeviceTypeIn
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/UpdateVTLDeviceType
 func (c *StorageGateway) UpdateVTLDeviceType(input *UpdateVTLDeviceTypeInput) (*UpdateVTLDeviceTypeOutput, error) {
 	req, out := c.UpdateVTLDeviceTypeRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateVTLDeviceTypeWithContext is the same as UpdateVTLDeviceType with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateVTLDeviceType for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) UpdateVTLDeviceTypeWithContext(ctx aws.Context, input *UpdateVTLDeviceTypeInput, opts ...request.Option) (*UpdateVTLDeviceTypeOutput, error) {
+	req, out := c.UpdateVTLDeviceTypeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // A JSON object containing one or more of the following fields:

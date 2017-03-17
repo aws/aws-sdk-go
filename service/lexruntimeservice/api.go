@@ -4,6 +4,7 @@
 package lexruntimeservice
 
 import (
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 )
@@ -114,8 +115,23 @@ func (c *LexRuntimeService) PostTextRequest(input *PostTextInput) (req *request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/runtime.lex-2016-11-28/PostText
 func (c *LexRuntimeService) PostText(input *PostTextInput) (*PostTextOutput, error) {
 	req, out := c.PostTextRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// PostTextWithContext is the same as PostText with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PostText for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexRuntimeService) PostTextWithContext(ctx aws.Context, input *PostTextInput, opts ...request.Option) (*PostTextOutput, error) {
+	req, out := c.PostTextRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // Represents an option to be shown on the client platform (Facebook, Slack,

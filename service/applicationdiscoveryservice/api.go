@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 )
@@ -83,8 +84,23 @@ func (c *ApplicationDiscoveryService) AssociateConfigurationItemsToApplicationRe
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/AssociateConfigurationItemsToApplication
 func (c *ApplicationDiscoveryService) AssociateConfigurationItemsToApplication(input *AssociateConfigurationItemsToApplicationInput) (*AssociateConfigurationItemsToApplicationOutput, error) {
 	req, out := c.AssociateConfigurationItemsToApplicationRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// AssociateConfigurationItemsToApplicationWithContext is the same as AssociateConfigurationItemsToApplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateConfigurationItemsToApplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) AssociateConfigurationItemsToApplicationWithContext(ctx aws.Context, input *AssociateConfigurationItemsToApplicationInput, opts ...request.Option) (*AssociateConfigurationItemsToApplicationOutput, error) {
+	req, out := c.AssociateConfigurationItemsToApplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateApplication = "CreateApplication"
@@ -159,8 +175,23 @@ func (c *ApplicationDiscoveryService) CreateApplicationRequest(input *CreateAppl
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/CreateApplication
 func (c *ApplicationDiscoveryService) CreateApplication(input *CreateApplicationInput) (*CreateApplicationOutput, error) {
 	req, out := c.CreateApplicationRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateApplicationWithContext is the same as CreateApplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateApplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) CreateApplicationWithContext(ctx aws.Context, input *CreateApplicationInput, opts ...request.Option) (*CreateApplicationOutput, error) {
+	req, out := c.CreateApplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateTags = "CreateTags"
@@ -241,8 +272,23 @@ func (c *ApplicationDiscoveryService) CreateTagsRequest(input *CreateTagsInput) 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/CreateTags
 func (c *ApplicationDiscoveryService) CreateTags(input *CreateTagsInput) (*CreateTagsOutput, error) {
 	req, out := c.CreateTagsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateTagsWithContext is the same as CreateTags with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateTags for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) CreateTagsWithContext(ctx aws.Context, input *CreateTagsInput, opts ...request.Option) (*CreateTagsOutput, error) {
+	req, out := c.CreateTagsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteApplications = "DeleteApplications"
@@ -318,8 +364,23 @@ func (c *ApplicationDiscoveryService) DeleteApplicationsRequest(input *DeleteApp
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DeleteApplications
 func (c *ApplicationDiscoveryService) DeleteApplications(input *DeleteApplicationsInput) (*DeleteApplicationsOutput, error) {
 	req, out := c.DeleteApplicationsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteApplicationsWithContext is the same as DeleteApplications with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteApplications for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) DeleteApplicationsWithContext(ctx aws.Context, input *DeleteApplicationsInput, opts ...request.Option) (*DeleteApplicationsOutput, error) {
+	req, out := c.DeleteApplicationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteTags = "DeleteTags"
@@ -399,8 +460,23 @@ func (c *ApplicationDiscoveryService) DeleteTagsRequest(input *DeleteTagsInput) 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DeleteTags
 func (c *ApplicationDiscoveryService) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, error) {
 	req, out := c.DeleteTagsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteTagsWithContext is the same as DeleteTags with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteTags for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) DeleteTagsWithContext(ctx aws.Context, input *DeleteTagsInput, opts ...request.Option) (*DeleteTagsOutput, error) {
+	req, out := c.DeleteTagsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeAgents = "DescribeAgents"
@@ -476,8 +552,23 @@ func (c *ApplicationDiscoveryService) DescribeAgentsRequest(input *DescribeAgent
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeAgents
 func (c *ApplicationDiscoveryService) DescribeAgents(input *DescribeAgentsInput) (*DescribeAgentsOutput, error) {
 	req, out := c.DescribeAgentsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeAgentsWithContext is the same as DescribeAgents with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAgents for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) DescribeAgentsWithContext(ctx aws.Context, input *DescribeAgentsInput, opts ...request.Option) (*DescribeAgentsOutput, error) {
+	req, out := c.DescribeAgentsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeConfigurations = "DescribeConfigurations"
@@ -559,8 +650,23 @@ func (c *ApplicationDiscoveryService) DescribeConfigurationsRequest(input *Descr
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeConfigurations
 func (c *ApplicationDiscoveryService) DescribeConfigurations(input *DescribeConfigurationsInput) (*DescribeConfigurationsOutput, error) {
 	req, out := c.DescribeConfigurationsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeConfigurationsWithContext is the same as DescribeConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) DescribeConfigurationsWithContext(ctx aws.Context, input *DescribeConfigurationsInput, opts ...request.Option) (*DescribeConfigurationsOutput, error) {
+	req, out := c.DescribeConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeExportConfigurations = "DescribeExportConfigurations"
@@ -640,8 +746,23 @@ func (c *ApplicationDiscoveryService) DescribeExportConfigurationsRequest(input 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeExportConfigurations
 func (c *ApplicationDiscoveryService) DescribeExportConfigurations(input *DescribeExportConfigurationsInput) (*DescribeExportConfigurationsOutput, error) {
 	req, out := c.DescribeExportConfigurationsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeExportConfigurationsWithContext is the same as DescribeExportConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeExportConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) DescribeExportConfigurationsWithContext(ctx aws.Context, input *DescribeExportConfigurationsInput, opts ...request.Option) (*DescribeExportConfigurationsOutput, error) {
+	req, out := c.DescribeExportConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeTags = "DescribeTags"
@@ -721,8 +842,23 @@ func (c *ApplicationDiscoveryService) DescribeTagsRequest(input *DescribeTagsInp
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeTags
 func (c *ApplicationDiscoveryService) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, error) {
 	req, out := c.DescribeTagsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeTagsWithContext is the same as DescribeTags with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeTags for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) DescribeTagsWithContext(ctx aws.Context, input *DescribeTagsInput, opts ...request.Option) (*DescribeTagsOutput, error) {
+	req, out := c.DescribeTagsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDisassociateConfigurationItemsFromApplication = "DisassociateConfigurationItemsFromApplication"
@@ -797,8 +933,23 @@ func (c *ApplicationDiscoveryService) DisassociateConfigurationItemsFromApplicat
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DisassociateConfigurationItemsFromApplication
 func (c *ApplicationDiscoveryService) DisassociateConfigurationItemsFromApplication(input *DisassociateConfigurationItemsFromApplicationInput) (*DisassociateConfigurationItemsFromApplicationOutput, error) {
 	req, out := c.DisassociateConfigurationItemsFromApplicationRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DisassociateConfigurationItemsFromApplicationWithContext is the same as DisassociateConfigurationItemsFromApplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateConfigurationItemsFromApplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) DisassociateConfigurationItemsFromApplicationWithContext(ctx aws.Context, input *DisassociateConfigurationItemsFromApplicationInput, opts ...request.Option) (*DisassociateConfigurationItemsFromApplicationOutput, error) {
+	req, out := c.DisassociateConfigurationItemsFromApplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opExportConfigurations = "ExportConfigurations"
@@ -880,8 +1031,23 @@ func (c *ApplicationDiscoveryService) ExportConfigurationsRequest(input *ExportC
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ExportConfigurations
 func (c *ApplicationDiscoveryService) ExportConfigurations(input *ExportConfigurationsInput) (*ExportConfigurationsOutput, error) {
 	req, out := c.ExportConfigurationsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ExportConfigurationsWithContext is the same as ExportConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ExportConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) ExportConfigurationsWithContext(ctx aws.Context, input *ExportConfigurationsInput, opts ...request.Option) (*ExportConfigurationsOutput, error) {
+	req, out := c.ExportConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetDiscoverySummary = "GetDiscoverySummary"
@@ -956,8 +1122,23 @@ func (c *ApplicationDiscoveryService) GetDiscoverySummaryRequest(input *GetDisco
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/GetDiscoverySummary
 func (c *ApplicationDiscoveryService) GetDiscoverySummary(input *GetDiscoverySummaryInput) (*GetDiscoverySummaryOutput, error) {
 	req, out := c.GetDiscoverySummaryRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetDiscoverySummaryWithContext is the same as GetDiscoverySummary with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDiscoverySummary for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) GetDiscoverySummaryWithContext(ctx aws.Context, input *GetDiscoverySummaryInput, opts ...request.Option) (*GetDiscoverySummaryOutput, error) {
+	req, out := c.GetDiscoverySummaryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListConfigurations = "ListConfigurations"
@@ -1037,8 +1218,23 @@ func (c *ApplicationDiscoveryService) ListConfigurationsRequest(input *ListConfi
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ListConfigurations
 func (c *ApplicationDiscoveryService) ListConfigurations(input *ListConfigurationsInput) (*ListConfigurationsOutput, error) {
 	req, out := c.ListConfigurationsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListConfigurationsWithContext is the same as ListConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) ListConfigurationsWithContext(ctx aws.Context, input *ListConfigurationsInput, opts ...request.Option) (*ListConfigurationsOutput, error) {
+	req, out := c.ListConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListServerNeighbors = "ListServerNeighbors"
@@ -1114,8 +1310,23 @@ func (c *ApplicationDiscoveryService) ListServerNeighborsRequest(input *ListServ
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ListServerNeighbors
 func (c *ApplicationDiscoveryService) ListServerNeighbors(input *ListServerNeighborsInput) (*ListServerNeighborsOutput, error) {
 	req, out := c.ListServerNeighborsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListServerNeighborsWithContext is the same as ListServerNeighbors with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListServerNeighbors for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) ListServerNeighborsWithContext(ctx aws.Context, input *ListServerNeighborsInput, opts ...request.Option) (*ListServerNeighborsOutput, error) {
+	req, out := c.ListServerNeighborsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opStartDataCollectionByAgentIds = "StartDataCollectionByAgentIds"
@@ -1190,8 +1401,23 @@ func (c *ApplicationDiscoveryService) StartDataCollectionByAgentIdsRequest(input
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StartDataCollectionByAgentIds
 func (c *ApplicationDiscoveryService) StartDataCollectionByAgentIds(input *StartDataCollectionByAgentIdsInput) (*StartDataCollectionByAgentIdsOutput, error) {
 	req, out := c.StartDataCollectionByAgentIdsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// StartDataCollectionByAgentIdsWithContext is the same as StartDataCollectionByAgentIds with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartDataCollectionByAgentIds for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) StartDataCollectionByAgentIdsWithContext(ctx aws.Context, input *StartDataCollectionByAgentIdsInput, opts ...request.Option) (*StartDataCollectionByAgentIdsOutput, error) {
+	req, out := c.StartDataCollectionByAgentIdsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opStopDataCollectionByAgentIds = "StopDataCollectionByAgentIds"
@@ -1266,8 +1492,23 @@ func (c *ApplicationDiscoveryService) StopDataCollectionByAgentIdsRequest(input 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StopDataCollectionByAgentIds
 func (c *ApplicationDiscoveryService) StopDataCollectionByAgentIds(input *StopDataCollectionByAgentIdsInput) (*StopDataCollectionByAgentIdsOutput, error) {
 	req, out := c.StopDataCollectionByAgentIdsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// StopDataCollectionByAgentIdsWithContext is the same as StopDataCollectionByAgentIds with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopDataCollectionByAgentIds for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) StopDataCollectionByAgentIdsWithContext(ctx aws.Context, input *StopDataCollectionByAgentIdsInput, opts ...request.Option) (*StopDataCollectionByAgentIdsOutput, error) {
+	req, out := c.StopDataCollectionByAgentIdsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateApplication = "UpdateApplication"
@@ -1342,8 +1583,23 @@ func (c *ApplicationDiscoveryService) UpdateApplicationRequest(input *UpdateAppl
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/UpdateApplication
 func (c *ApplicationDiscoveryService) UpdateApplication(input *UpdateApplicationInput) (*UpdateApplicationOutput, error) {
 	req, out := c.UpdateApplicationRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateApplicationWithContext is the same as UpdateApplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateApplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) UpdateApplicationWithContext(ctx aws.Context, input *UpdateApplicationInput, opts ...request.Option) (*UpdateApplicationOutput, error) {
+	req, out := c.UpdateApplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // Information about agents or Connectors that were instructed to start collecting

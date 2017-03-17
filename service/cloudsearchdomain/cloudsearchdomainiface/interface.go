@@ -9,6 +9,7 @@
 package cloudsearchdomainiface
 
 import (
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/cloudsearchdomain"
 )
@@ -59,17 +60,17 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type CloudSearchDomainAPI interface {
+	Search(*cloudsearchdomain.SearchInput) (*cloudsearchdomain.SearchOutput, error)
+	SearchWithContext(aws.Context, *cloudsearchdomain.SearchInput, ...request.Option) (*cloudsearchdomain.SearchOutput, error)
 	SearchRequest(*cloudsearchdomain.SearchInput) (*request.Request, *cloudsearchdomain.SearchOutput)
 
-	Search(*cloudsearchdomain.SearchInput) (*cloudsearchdomain.SearchOutput, error)
-
+	Suggest(*cloudsearchdomain.SuggestInput) (*cloudsearchdomain.SuggestOutput, error)
+	SuggestWithContext(aws.Context, *cloudsearchdomain.SuggestInput, ...request.Option) (*cloudsearchdomain.SuggestOutput, error)
 	SuggestRequest(*cloudsearchdomain.SuggestInput) (*request.Request, *cloudsearchdomain.SuggestOutput)
 
-	Suggest(*cloudsearchdomain.SuggestInput) (*cloudsearchdomain.SuggestOutput, error)
-
-	UploadDocumentsRequest(*cloudsearchdomain.UploadDocumentsInput) (*request.Request, *cloudsearchdomain.UploadDocumentsOutput)
-
 	UploadDocuments(*cloudsearchdomain.UploadDocumentsInput) (*cloudsearchdomain.UploadDocumentsOutput, error)
+	UploadDocumentsWithContext(aws.Context, *cloudsearchdomain.UploadDocumentsInput, ...request.Option) (*cloudsearchdomain.UploadDocumentsOutput, error)
+	UploadDocumentsRequest(*cloudsearchdomain.UploadDocumentsInput) (*request.Request, *cloudsearchdomain.UploadDocumentsOutput)
 }
 
 var _ CloudSearchDomainAPI = (*cloudsearchdomain.CloudSearchDomain)(nil)

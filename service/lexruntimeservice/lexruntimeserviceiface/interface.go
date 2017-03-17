@@ -9,6 +9,7 @@
 package lexruntimeserviceiface
 
 import (
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/lexruntimeservice"
 )
@@ -59,9 +60,9 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type LexRuntimeServiceAPI interface {
-	PostTextRequest(*lexruntimeservice.PostTextInput) (*request.Request, *lexruntimeservice.PostTextOutput)
-
 	PostText(*lexruntimeservice.PostTextInput) (*lexruntimeservice.PostTextOutput, error)
+	PostTextWithContext(aws.Context, *lexruntimeservice.PostTextInput, ...request.Option) (*lexruntimeservice.PostTextOutput, error)
+	PostTextRequest(*lexruntimeservice.PostTextInput) (*request.Request, *lexruntimeservice.PostTextOutput)
 }
 
 var _ LexRuntimeServiceAPI = (*lexruntimeservice.LexRuntimeService)(nil)

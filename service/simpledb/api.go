@@ -6,6 +6,7 @@ package simpledb
 import (
 	"fmt"
 
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
@@ -90,8 +91,23 @@ func (c *SimpleDB) BatchDeleteAttributesRequest(input *BatchDeleteAttributesInpu
 // API operation BatchDeleteAttributes for usage and error information.
 func (c *SimpleDB) BatchDeleteAttributes(input *BatchDeleteAttributesInput) (*BatchDeleteAttributesOutput, error) {
 	req, out := c.BatchDeleteAttributesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// BatchDeleteAttributesWithContext is the same as BatchDeleteAttributes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchDeleteAttributes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SimpleDB) BatchDeleteAttributesWithContext(ctx aws.Context, input *BatchDeleteAttributesInput, opts ...request.Option) (*BatchDeleteAttributesOutput, error) {
+	req, out := c.BatchDeleteAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opBatchPutAttributes = "BatchPutAttributes"
@@ -220,8 +236,23 @@ func (c *SimpleDB) BatchPutAttributesRequest(input *BatchPutAttributesInput) (re
 //
 func (c *SimpleDB) BatchPutAttributes(input *BatchPutAttributesInput) (*BatchPutAttributesOutput, error) {
 	req, out := c.BatchPutAttributesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// BatchPutAttributesWithContext is the same as BatchPutAttributes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchPutAttributes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SimpleDB) BatchPutAttributesWithContext(ctx aws.Context, input *BatchPutAttributesInput, opts ...request.Option) (*BatchPutAttributesOutput, error) {
+	req, out := c.BatchPutAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateDomain = "CreateDomain"
@@ -298,8 +329,23 @@ func (c *SimpleDB) CreateDomainRequest(input *CreateDomainInput) (req *request.R
 //
 func (c *SimpleDB) CreateDomain(input *CreateDomainInput) (*CreateDomainOutput, error) {
 	req, out := c.CreateDomainRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateDomainWithContext is the same as CreateDomain with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateDomain for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SimpleDB) CreateDomainWithContext(ctx aws.Context, input *CreateDomainInput, opts ...request.Option) (*CreateDomainOutput, error) {
+	req, out := c.CreateDomainRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteAttributes = "DeleteAttributes"
@@ -381,8 +427,23 @@ func (c *SimpleDB) DeleteAttributesRequest(input *DeleteAttributesInput) (req *r
 //
 func (c *SimpleDB) DeleteAttributes(input *DeleteAttributesInput) (*DeleteAttributesOutput, error) {
 	req, out := c.DeleteAttributesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteAttributesWithContext is the same as DeleteAttributes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAttributes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SimpleDB) DeleteAttributesWithContext(ctx aws.Context, input *DeleteAttributesInput, opts ...request.Option) (*DeleteAttributesOutput, error) {
+	req, out := c.DeleteAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteDomain = "DeleteDomain"
@@ -450,8 +511,23 @@ func (c *SimpleDB) DeleteDomainRequest(input *DeleteDomainInput) (req *request.R
 //
 func (c *SimpleDB) DeleteDomain(input *DeleteDomainInput) (*DeleteDomainOutput, error) {
 	req, out := c.DeleteDomainRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteDomainWithContext is the same as DeleteDomain with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDomain for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SimpleDB) DeleteDomainWithContext(ctx aws.Context, input *DeleteDomainInput, opts ...request.Option) (*DeleteDomainOutput, error) {
+	req, out := c.DeleteDomainRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDomainMetadata = "DomainMetadata"
@@ -517,8 +593,23 @@ func (c *SimpleDB) DomainMetadataRequest(input *DomainMetadataInput) (req *reque
 //
 func (c *SimpleDB) DomainMetadata(input *DomainMetadataInput) (*DomainMetadataOutput, error) {
 	req, out := c.DomainMetadataRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DomainMetadataWithContext is the same as DomainMetadata with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DomainMetadata for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SimpleDB) DomainMetadataWithContext(ctx aws.Context, input *DomainMetadataInput, opts ...request.Option) (*DomainMetadataOutput, error) {
+	req, out := c.DomainMetadataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetAttributes = "GetAttributes"
@@ -594,8 +685,23 @@ func (c *SimpleDB) GetAttributesRequest(input *GetAttributesInput) (req *request
 //
 func (c *SimpleDB) GetAttributes(input *GetAttributesInput) (*GetAttributesOutput, error) {
 	req, out := c.GetAttributesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetAttributesWithContext is the same as GetAttributes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAttributes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SimpleDB) GetAttributesWithContext(ctx aws.Context, input *GetAttributesInput, opts ...request.Option) (*GetAttributesOutput, error) {
+	req, out := c.GetAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListDomains = "ListDomains"
@@ -670,8 +776,23 @@ func (c *SimpleDB) ListDomainsRequest(input *ListDomainsInput) (req *request.Req
 //
 func (c *SimpleDB) ListDomains(input *ListDomainsInput) (*ListDomainsOutput, error) {
 	req, out := c.ListDomainsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListDomainsWithContext is the same as ListDomains with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDomains for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SimpleDB) ListDomainsWithContext(ctx aws.Context, input *ListDomainsInput, opts ...request.Option) (*ListDomainsOutput, error) {
+	req, out := c.ListDomainsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListDomainsPages iterates over the pages of a ListDomains operation,
@@ -691,12 +812,33 @@ func (c *SimpleDB) ListDomains(input *ListDomainsInput) (*ListDomainsOutput, err
 //            return pageNum <= 3
 //        })
 //
-func (c *SimpleDB) ListDomainsPages(input *ListDomainsInput, fn func(p *ListDomainsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListDomainsRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListDomainsOutput), lastPage)
-	})
+func (c *SimpleDB) ListDomainsPages(input *ListDomainsInput, fn func(*ListDomainsOutput, bool) bool) error {
+	return c.ListDomainsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDomainsPagesWithContext same as ListDomainsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SimpleDB) ListDomainsPagesWithContext(ctx aws.Context, input *ListDomainsInput, fn func(*ListDomainsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListDomainsRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListDomainsOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opPutAttributes = "PutAttributes"
@@ -807,8 +949,23 @@ func (c *SimpleDB) PutAttributesRequest(input *PutAttributesInput) (req *request
 //
 func (c *SimpleDB) PutAttributes(input *PutAttributesInput) (*PutAttributesOutput, error) {
 	req, out := c.PutAttributesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// PutAttributesWithContext is the same as PutAttributes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutAttributes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SimpleDB) PutAttributesWithContext(ctx aws.Context, input *PutAttributesInput, opts ...request.Option) (*PutAttributesOutput, error) {
+	req, out := c.PutAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opSelect = "Select"
@@ -910,8 +1067,23 @@ func (c *SimpleDB) SelectRequest(input *SelectInput) (req *request.Request, outp
 //
 func (c *SimpleDB) Select(input *SelectInput) (*SelectOutput, error) {
 	req, out := c.SelectRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// SelectWithContext is the same as Select with the addition of
+// the ability to pass a context and additional request options.
+//
+// See Select for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SimpleDB) SelectWithContext(ctx aws.Context, input *SelectInput, opts ...request.Option) (*SelectOutput, error) {
+	req, out := c.SelectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // SelectPages iterates over the pages of a Select operation,
@@ -931,12 +1103,33 @@ func (c *SimpleDB) Select(input *SelectInput) (*SelectOutput, error) {
 //            return pageNum <= 3
 //        })
 //
-func (c *SimpleDB) SelectPages(input *SelectInput, fn func(p *SelectOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.SelectRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*SelectOutput), lastPage)
-	})
+func (c *SimpleDB) SelectPages(input *SelectInput, fn func(*SelectOutput, bool) bool) error {
+	return c.SelectPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SelectPagesWithContext same as SelectPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SimpleDB) SelectPagesWithContext(ctx aws.Context, input *SelectInput, fn func(*SelectOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.SelectRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*SelectOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 type Attribute struct {

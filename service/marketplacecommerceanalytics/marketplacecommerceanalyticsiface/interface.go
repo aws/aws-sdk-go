@@ -9,6 +9,7 @@
 package marketplacecommerceanalyticsiface
 
 import (
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/marketplacecommerceanalytics"
 )
@@ -59,13 +60,13 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type MarketplaceCommerceAnalyticsAPI interface {
+	GenerateDataSet(*marketplacecommerceanalytics.GenerateDataSetInput) (*marketplacecommerceanalytics.GenerateDataSetOutput, error)
+	GenerateDataSetWithContext(aws.Context, *marketplacecommerceanalytics.GenerateDataSetInput, ...request.Option) (*marketplacecommerceanalytics.GenerateDataSetOutput, error)
 	GenerateDataSetRequest(*marketplacecommerceanalytics.GenerateDataSetInput) (*request.Request, *marketplacecommerceanalytics.GenerateDataSetOutput)
 
-	GenerateDataSet(*marketplacecommerceanalytics.GenerateDataSetInput) (*marketplacecommerceanalytics.GenerateDataSetOutput, error)
-
-	StartSupportDataExportRequest(*marketplacecommerceanalytics.StartSupportDataExportInput) (*request.Request, *marketplacecommerceanalytics.StartSupportDataExportOutput)
-
 	StartSupportDataExport(*marketplacecommerceanalytics.StartSupportDataExportInput) (*marketplacecommerceanalytics.StartSupportDataExportOutput, error)
+	StartSupportDataExportWithContext(aws.Context, *marketplacecommerceanalytics.StartSupportDataExportInput, ...request.Option) (*marketplacecommerceanalytics.StartSupportDataExportOutput, error)
+	StartSupportDataExportRequest(*marketplacecommerceanalytics.StartSupportDataExportInput) (*request.Request, *marketplacecommerceanalytics.StartSupportDataExportOutput)
 }
 
 var _ MarketplaceCommerceAnalyticsAPI = (*marketplacecommerceanalytics.MarketplaceCommerceAnalytics)(nil)

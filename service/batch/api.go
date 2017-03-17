@@ -6,6 +6,7 @@ package batch
 import (
 	"fmt"
 
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 )
@@ -80,8 +81,23 @@ func (c *Batch) CancelJobRequest(input *CancelJobInput) (req *request.Request, o
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CancelJob
 func (c *Batch) CancelJob(input *CancelJobInput) (*CancelJobOutput, error) {
 	req, out := c.CancelJobRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CancelJobWithContext is the same as CancelJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) CancelJobWithContext(ctx aws.Context, input *CancelJobInput, opts ...request.Option) (*CancelJobOutput, error) {
+	req, out := c.CancelJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateComputeEnvironment = "CreateComputeEnvironment"
@@ -171,8 +187,23 @@ func (c *Batch) CreateComputeEnvironmentRequest(input *CreateComputeEnvironmentI
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CreateComputeEnvironment
 func (c *Batch) CreateComputeEnvironment(input *CreateComputeEnvironmentInput) (*CreateComputeEnvironmentOutput, error) {
 	req, out := c.CreateComputeEnvironmentRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateComputeEnvironmentWithContext is the same as CreateComputeEnvironment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateComputeEnvironment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) CreateComputeEnvironmentWithContext(ctx aws.Context, input *CreateComputeEnvironmentInput, opts ...request.Option) (*CreateComputeEnvironmentOutput, error) {
+	req, out := c.CreateComputeEnvironmentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateJobQueue = "CreateJobQueue"
@@ -249,8 +280,23 @@ func (c *Batch) CreateJobQueueRequest(input *CreateJobQueueInput) (req *request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CreateJobQueue
 func (c *Batch) CreateJobQueue(input *CreateJobQueueInput) (*CreateJobQueueOutput, error) {
 	req, out := c.CreateJobQueueRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateJobQueueWithContext is the same as CreateJobQueue with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateJobQueue for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) CreateJobQueueWithContext(ctx aws.Context, input *CreateJobQueueInput, opts ...request.Option) (*CreateJobQueueOutput, error) {
+	req, out := c.CreateJobQueueRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteComputeEnvironment = "DeleteComputeEnvironment"
@@ -323,8 +369,23 @@ func (c *Batch) DeleteComputeEnvironmentRequest(input *DeleteComputeEnvironmentI
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeleteComputeEnvironment
 func (c *Batch) DeleteComputeEnvironment(input *DeleteComputeEnvironmentInput) (*DeleteComputeEnvironmentOutput, error) {
 	req, out := c.DeleteComputeEnvironmentRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteComputeEnvironmentWithContext is the same as DeleteComputeEnvironment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteComputeEnvironment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) DeleteComputeEnvironmentWithContext(ctx aws.Context, input *DeleteComputeEnvironmentInput, opts ...request.Option) (*DeleteComputeEnvironmentOutput, error) {
+	req, out := c.DeleteComputeEnvironmentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteJobQueue = "DeleteJobQueue"
@@ -398,8 +459,23 @@ func (c *Batch) DeleteJobQueueRequest(input *DeleteJobQueueInput) (req *request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeleteJobQueue
 func (c *Batch) DeleteJobQueue(input *DeleteJobQueueInput) (*DeleteJobQueueOutput, error) {
 	req, out := c.DeleteJobQueueRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteJobQueueWithContext is the same as DeleteJobQueue with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteJobQueue for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) DeleteJobQueueWithContext(ctx aws.Context, input *DeleteJobQueueInput, opts ...request.Option) (*DeleteJobQueueOutput, error) {
+	req, out := c.DeleteJobQueueRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeregisterJobDefinition = "DeregisterJobDefinition"
@@ -468,8 +544,23 @@ func (c *Batch) DeregisterJobDefinitionRequest(input *DeregisterJobDefinitionInp
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeregisterJobDefinition
 func (c *Batch) DeregisterJobDefinition(input *DeregisterJobDefinitionInput) (*DeregisterJobDefinitionOutput, error) {
 	req, out := c.DeregisterJobDefinitionRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeregisterJobDefinitionWithContext is the same as DeregisterJobDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeregisterJobDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) DeregisterJobDefinitionWithContext(ctx aws.Context, input *DeregisterJobDefinitionInput, opts ...request.Option) (*DeregisterJobDefinitionOutput, error) {
+	req, out := c.DeregisterJobDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeComputeEnvironments = "DescribeComputeEnvironments"
@@ -542,8 +633,23 @@ func (c *Batch) DescribeComputeEnvironmentsRequest(input *DescribeComputeEnviron
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeComputeEnvironments
 func (c *Batch) DescribeComputeEnvironments(input *DescribeComputeEnvironmentsInput) (*DescribeComputeEnvironmentsOutput, error) {
 	req, out := c.DescribeComputeEnvironmentsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeComputeEnvironmentsWithContext is the same as DescribeComputeEnvironments with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeComputeEnvironments for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) DescribeComputeEnvironmentsWithContext(ctx aws.Context, input *DescribeComputeEnvironmentsInput, opts ...request.Option) (*DescribeComputeEnvironmentsOutput, error) {
+	req, out := c.DescribeComputeEnvironmentsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeJobDefinitions = "DescribeJobDefinitions"
@@ -613,8 +719,23 @@ func (c *Batch) DescribeJobDefinitionsRequest(input *DescribeJobDefinitionsInput
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeJobDefinitions
 func (c *Batch) DescribeJobDefinitions(input *DescribeJobDefinitionsInput) (*DescribeJobDefinitionsOutput, error) {
 	req, out := c.DescribeJobDefinitionsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeJobDefinitionsWithContext is the same as DescribeJobDefinitions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeJobDefinitions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) DescribeJobDefinitionsWithContext(ctx aws.Context, input *DescribeJobDefinitionsInput, opts ...request.Option) (*DescribeJobDefinitionsOutput, error) {
+	req, out := c.DescribeJobDefinitionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeJobQueues = "DescribeJobQueues"
@@ -683,8 +804,23 @@ func (c *Batch) DescribeJobQueuesRequest(input *DescribeJobQueuesInput) (req *re
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeJobQueues
 func (c *Batch) DescribeJobQueues(input *DescribeJobQueuesInput) (*DescribeJobQueuesOutput, error) {
 	req, out := c.DescribeJobQueuesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeJobQueuesWithContext is the same as DescribeJobQueues with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeJobQueues for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) DescribeJobQueuesWithContext(ctx aws.Context, input *DescribeJobQueuesInput, opts ...request.Option) (*DescribeJobQueuesOutput, error) {
+	req, out := c.DescribeJobQueuesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeJobs = "DescribeJobs"
@@ -753,8 +889,23 @@ func (c *Batch) DescribeJobsRequest(input *DescribeJobsInput) (req *request.Requ
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeJobs
 func (c *Batch) DescribeJobs(input *DescribeJobsInput) (*DescribeJobsOutput, error) {
 	req, out := c.DescribeJobsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeJobsWithContext is the same as DescribeJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) DescribeJobsWithContext(ctx aws.Context, input *DescribeJobsInput, opts ...request.Option) (*DescribeJobsOutput, error) {
+	req, out := c.DescribeJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListJobs = "ListJobs"
@@ -824,8 +975,23 @@ func (c *Batch) ListJobsRequest(input *ListJobsInput) (req *request.Request, out
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/ListJobs
 func (c *Batch) ListJobs(input *ListJobsInput) (*ListJobsOutput, error) {
 	req, out := c.ListJobsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListJobsWithContext is the same as ListJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) ListJobsWithContext(ctx aws.Context, input *ListJobsInput, opts ...request.Option) (*ListJobsOutput, error) {
+	req, out := c.ListJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opRegisterJobDefinition = "RegisterJobDefinition"
@@ -894,8 +1060,23 @@ func (c *Batch) RegisterJobDefinitionRequest(input *RegisterJobDefinitionInput) 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/RegisterJobDefinition
 func (c *Batch) RegisterJobDefinition(input *RegisterJobDefinitionInput) (*RegisterJobDefinitionOutput, error) {
 	req, out := c.RegisterJobDefinitionRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// RegisterJobDefinitionWithContext is the same as RegisterJobDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RegisterJobDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) RegisterJobDefinitionWithContext(ctx aws.Context, input *RegisterJobDefinitionInput, opts ...request.Option) (*RegisterJobDefinitionOutput, error) {
+	req, out := c.RegisterJobDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opSubmitJob = "SubmitJob"
@@ -965,8 +1146,23 @@ func (c *Batch) SubmitJobRequest(input *SubmitJobInput) (req *request.Request, o
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/SubmitJob
 func (c *Batch) SubmitJob(input *SubmitJobInput) (*SubmitJobOutput, error) {
 	req, out := c.SubmitJobRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// SubmitJobWithContext is the same as SubmitJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SubmitJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) SubmitJobWithContext(ctx aws.Context, input *SubmitJobInput, opts ...request.Option) (*SubmitJobOutput, error) {
+	req, out := c.SubmitJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opTerminateJob = "TerminateJob"
@@ -1037,8 +1233,23 @@ func (c *Batch) TerminateJobRequest(input *TerminateJobInput) (req *request.Requ
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/TerminateJob
 func (c *Batch) TerminateJob(input *TerminateJobInput) (*TerminateJobOutput, error) {
 	req, out := c.TerminateJobRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// TerminateJobWithContext is the same as TerminateJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TerminateJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) TerminateJobWithContext(ctx aws.Context, input *TerminateJobInput, opts ...request.Option) (*TerminateJobOutput, error) {
+	req, out := c.TerminateJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateComputeEnvironment = "UpdateComputeEnvironment"
@@ -1107,8 +1318,23 @@ func (c *Batch) UpdateComputeEnvironmentRequest(input *UpdateComputeEnvironmentI
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/UpdateComputeEnvironment
 func (c *Batch) UpdateComputeEnvironment(input *UpdateComputeEnvironmentInput) (*UpdateComputeEnvironmentOutput, error) {
 	req, out := c.UpdateComputeEnvironmentRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateComputeEnvironmentWithContext is the same as UpdateComputeEnvironment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateComputeEnvironment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) UpdateComputeEnvironmentWithContext(ctx aws.Context, input *UpdateComputeEnvironmentInput, opts ...request.Option) (*UpdateComputeEnvironmentOutput, error) {
+	req, out := c.UpdateComputeEnvironmentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateJobQueue = "UpdateJobQueue"
@@ -1177,8 +1403,23 @@ func (c *Batch) UpdateJobQueueRequest(input *UpdateJobQueueInput) (req *request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/UpdateJobQueue
 func (c *Batch) UpdateJobQueue(input *UpdateJobQueueInput) (*UpdateJobQueueOutput, error) {
 	req, out := c.UpdateJobQueueRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateJobQueueWithContext is the same as UpdateJobQueue with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateJobQueue for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) UpdateJobQueueWithContext(ctx aws.Context, input *UpdateJobQueueInput, opts ...request.Option) (*UpdateJobQueueOutput, error) {
+	req, out := c.UpdateJobQueueRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CancelJobRequest
