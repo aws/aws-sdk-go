@@ -166,6 +166,16 @@ func HandlerListStopOnError(item HandlerListRunItem) bool {
 	return item.Request.Error == nil
 }
 
+// WithAppendUserAgent will add a string to the user agent prefixed with a
+// single white space.
+func WithAppendUserAgent(s string) Option {
+	return func(r *Request) {
+		r.Handlers.Build.PushBack(func(r2 *Request) {
+			AddToUserAgent(r, s)
+		})
+	}
+}
+
 // MakeAddToUserAgentHandler will add the name/version pair to the User-Agent request
 // header. If the extra parameters are provided they will be added as metadata to the
 // name/version pair resulting in the following format.
