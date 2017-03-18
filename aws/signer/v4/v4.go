@@ -417,7 +417,7 @@ func SignSDKRequest(req *request.Request) {
 }
 
 // BuildNamedHandler will build a generic handler for signing.
-func BuildNamedHandler(name string, opts ...Option) request.NamedHandler {
+func BuildNamedHandler(name string, opts ...func(*Signer)) request.NamedHandler {
 	return request.NamedHandler{
 		Name: name,
 		Fn: func(req *request.Request) {
@@ -426,7 +426,7 @@ func BuildNamedHandler(name string, opts ...Option) request.NamedHandler {
 	}
 }
 
-func signSDKRequestWithCurrTime(req *request.Request, curTimeFn func() time.Time, opts ...Option) {
+func signSDKRequestWithCurrTime(req *request.Request, curTimeFn func() time.Time, opts ...func(*Signer)) {
 	// If the request does not need to be signed ignore the signing of the
 	// request if the AnonymousCredentials object is used.
 	if req.Config.Credentials == credentials.AnonymousCredentials {
