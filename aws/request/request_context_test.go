@@ -33,3 +33,14 @@ func TestRequest_SetContext(t *testing.T) {
 		t.Errorf("expect %q to be in %q, but was not", e, a)
 	}
 }
+
+func TestRequest_SetContextPanic(t *testing.T) {
+	defer func() {
+		if r := recover(); r == nil {
+			t.Fatalf("expect SetContext to panic, did not")
+		}
+	}()
+	r := &request.Request{}
+
+	r.SetContext(nil)
+}
