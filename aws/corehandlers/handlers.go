@@ -168,22 +168,13 @@ var AfterRetryHandler = request.NamedHandler{Name: "core.AfterRetryHandler", Fn:
 		r.RetryDelay = r.RetryRules(r)
 
 		if sleepFn := r.Config.SleepDelay; sleepFn != nil {
-			// Fallback to default retry delay
+			// Support SleepDelay for backwards compatibility and testing
 			sleepFn(r.RetryDelay)
-		} else {
-			t := time.NewTimer(r.RetryDelay)
-			defer t.Stop()
-
-			ctx := r.Context()
-			select {
-			case <-t.C:
-				break
-			case <-ctx.Done():
-				r.Error = awserr.New(request.CanceledErrorCode,
-					"request context canceled", ctx.Err())
-				r.Retryable = aws.Bool(false)
-				return
-			}
+		} else if err := aws.SleepWithContext(r.Context(), r.RetryDelay); err != nil {
+			r.Error = awserr.New(request.CanceledErrorCode,
+				"request context canceled", err)
+			r.Retryable = aws.Bool(false)
+			return
 		}
 
 		// when the expired token exception occurs the credentials

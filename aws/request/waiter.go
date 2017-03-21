@@ -199,15 +199,10 @@ func (w Waiter) WaitWithContext(ctx aws.Context) error {
 		// Delay to wait before inspecting the resource again
 		delay := w.Delay(attempt)
 		if sleepFn := req.Config.SleepDelay; sleepFn != nil {
+			// Support SleepDelay for backwards compatibility and testing
 			sleepFn(delay)
-		} else {
-			select {
-			case <-time.After(delay):
-				break
-			case <-ctx.Done():
-				return awserr.New(CanceledErrorCode,
-					"waiter context canceled", ctx.Err())
-			}
+		} else if err := aws.SleepWithContext(ctx, delay); err != nil {
+			return awserr.New(CanceledErrorCode, "waiter context canceled", err)
 		}
 	}
 
