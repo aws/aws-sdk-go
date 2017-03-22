@@ -2671,14 +2671,15 @@ type ProjectSource struct {
 	//    bucket, the path to the ZIP file that contains the source code (for example,
 	//    bucket-name/path/to/object-name.zip)
 	//
-	//    * For source code in a GitHub repository, instead of specifying a value
-	//    here, you connect your AWS account to your GitHub account. To do this,
-	//    use the AWS CodeBuild console to begin creating a build project, and follow
-	//    the on-screen instructions to complete the connection. (After you have
-	//    connected to your GitHub account, you do not need to finish creating the
-	//    build project, and you may then leave the AWS CodeBuild console.) To instruct
-	//    AWS CodeBuild to then use this connection, in the source object, set the
-	//    auth object's type value to OAUTH.
+	//    * For source code in a GitHub repository, the HTTPS clone URL to the repository
+	//    that contains the source and the build spec. Also, you must connect your
+	//    AWS account to your GitHub account. To do this, use the AWS CodeBuild
+	//    console to begin creating a build project, and follow the on-screen instructions
+	//    to complete the connection. (After you have connected to your GitHub account,
+	//    you do not need to finish creating the build project, and you may then
+	//    leave the AWS CodeBuild console.) To instruct AWS CodeBuild to then use
+	//    this connection, in the source object, set the auth object's type value
+	//    to OAUTH.
 	Location *string `locationName:"location" type:"string"`
 
 	// The type of repository that contains the source code to be built. Valid values
