@@ -40,6 +40,9 @@ const opAllocateConnectionOnInterconnect = "AllocateConnectionOnInterconnect"
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/AllocateConnectionOnInterconnect
 func (c *DirectConnect) AllocateConnectionOnInterconnectRequest(input *AllocateConnectionOnInterconnectInput) (req *request.Request, output *Connection) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, AllocateConnectionOnInterconnect, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opAllocateConnectionOnInterconnect,
 		HTTPMethod: "POST",
@@ -1997,6 +2000,9 @@ const opDescribeConnectionLoa = "DescribeConnectionLoa"
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/DescribeConnectionLoa
 func (c *DirectConnect) DescribeConnectionLoaRequest(input *DescribeConnectionLoaInput) (req *request.Request, output *DescribeConnectionLoaOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, DescribeConnectionLoa, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opDescribeConnectionLoa,
 		HTTPMethod: "POST",
@@ -2177,6 +2183,9 @@ const opDescribeConnectionsOnInterconnect = "DescribeConnectionsOnInterconnect"
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/DescribeConnectionsOnInterconnect
 func (c *DirectConnect) DescribeConnectionsOnInterconnectRequest(input *DescribeConnectionsOnInterconnectInput) (req *request.Request, output *Connections) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, DescribeConnectionsOnInterconnect, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opDescribeConnectionsOnInterconnect,
 		HTTPMethod: "POST",
@@ -2354,6 +2363,9 @@ const opDescribeInterconnectLoa = "DescribeInterconnectLoa"
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/DescribeInterconnectLoa
 func (c *DirectConnect) DescribeInterconnectLoaRequest(input *DescribeInterconnectLoaInput) (req *request.Request, output *DescribeInterconnectLoaOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, DescribeInterconnectLoa, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opDescribeInterconnectLoa,
 		HTTPMethod: "POST",

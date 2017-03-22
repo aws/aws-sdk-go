@@ -254,6 +254,8 @@ type GenerateDataSetInput struct {
 	// 2015-10-01.
 	// sales_compensation_billed_revenue - Available monthly on the 4th day of the
 	// month by 5:00 PM Pacific Time since 2016-12.
+	// us_sales_and_use_tax_records - Available monthly on the 15th day of the month
+	// by 5:00 PM Pacific Time since 2017-02-15.
 	//
 	// DataSetType is a required field
 	DataSetType *string `locationName:"dataSetType" min:"1" type:"string" required:"true" enum:"DataSetType"`
@@ -639,6 +641,9 @@ const (
 
 	// DataSetTypeSalesCompensationBilledRevenue is a DataSetType enum value
 	DataSetTypeSalesCompensationBilledRevenue = "sales_compensation_billed_revenue"
+
+	// DataSetTypeUsSalesAndUseTaxRecords is a DataSetType enum value
+	DataSetTypeUsSalesAndUseTaxRecords = "us_sales_and_use_tax_records"
 )
 
 const (

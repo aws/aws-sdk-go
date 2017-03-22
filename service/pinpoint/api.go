@@ -469,6 +469,98 @@ func (c *Pinpoint) DeleteCampaignWithContext(ctx aws.Context, input *DeleteCampa
 	return out, req.Send()
 }
 
+const opDeleteEventStream = "DeleteEventStream"
+
+// DeleteEventStreamRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEventStream operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See DeleteEventStream for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteEventStream method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteEventStreamRequest method.
+//    req, resp := client.DeleteEventStreamRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Pinpoint) DeleteEventStreamRequest(input *DeleteEventStreamInput) (req *request.Request, output *DeleteEventStreamOutput) {
+	op := &request.Operation{
+		Name:       opDeleteEventStream,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v1/apps/{application-id}/eventstream",
+	}
+
+	if input == nil {
+		input = &DeleteEventStreamInput{}
+	}
+
+	output = &DeleteEventStreamOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteEventStream API operation for Amazon Pinpoint.
+//
+// Deletes the event stream for an app.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint's
+// API operation DeleteEventStream for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   400 response
+//
+//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   500 response
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   403 response
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   404 response
+//
+//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//   405 response
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   429 response
+//
+func (c *Pinpoint) DeleteEventStream(input *DeleteEventStreamInput) (*DeleteEventStreamOutput, error) {
+	req, out := c.DeleteEventStreamRequest(input)
+	return out, req.Send()
+}
+
+// DeleteEventStreamWithContext is the same as DeleteEventStream with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteEventStream for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) DeleteEventStreamWithContext(ctx aws.Context, input *DeleteEventStreamInput, opts ...request.Option) (*DeleteEventStreamOutput, error) {
+	req, out := c.DeleteEventStreamRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteGcmChannel = "DeleteGcmChannel"
 
 // DeleteGcmChannelRequest generates a "aws/request.Request" representing the
@@ -1064,7 +1156,7 @@ func (c *Pinpoint) GetCampaignVersionRequest(input *GetCampaignVersionInput) (re
 
 // GetCampaignVersion API operation for Amazon Pinpoint.
 //
-// Returns information about your campaign versions.
+// Returns information about a specific version of a campaign.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1384,6 +1476,98 @@ func (c *Pinpoint) GetEndpoint(input *GetEndpointInput) (*GetEndpointOutput, err
 // for more information on using Contexts.
 func (c *Pinpoint) GetEndpointWithContext(ctx aws.Context, input *GetEndpointInput, opts ...request.Option) (*GetEndpointOutput, error) {
 	req, out := c.GetEndpointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetEventStream = "GetEventStream"
+
+// GetEventStreamRequest generates a "aws/request.Request" representing the
+// client's request for the GetEventStream operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See GetEventStream for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetEventStream method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetEventStreamRequest method.
+//    req, resp := client.GetEventStreamRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Pinpoint) GetEventStreamRequest(input *GetEventStreamInput) (req *request.Request, output *GetEventStreamOutput) {
+	op := &request.Operation{
+		Name:       opGetEventStream,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/apps/{application-id}/eventstream",
+	}
+
+	if input == nil {
+		input = &GetEventStreamInput{}
+	}
+
+	output = &GetEventStreamOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetEventStream API operation for Amazon Pinpoint.
+//
+// Returns the event stream for an app.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint's
+// API operation GetEventStream for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   400 response
+//
+//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   500 response
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   403 response
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   404 response
+//
+//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//   405 response
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   429 response
+//
+func (c *Pinpoint) GetEventStream(input *GetEventStreamInput) (*GetEventStreamOutput, error) {
+	req, out := c.GetEventStreamRequest(input)
+	return out, req.Send()
+}
+
+// GetEventStreamWithContext is the same as GetEventStream with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetEventStream for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetEventStreamWithContext(ctx aws.Context, input *GetEventStreamInput, opts ...request.Option) (*GetEventStreamOutput, error) {
+	req, out := c.GetEventStreamRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2125,6 +2309,98 @@ func (c *Pinpoint) GetSegmentsWithContext(ctx aws.Context, input *GetSegmentsInp
 	return out, req.Send()
 }
 
+const opPutEventStream = "PutEventStream"
+
+// PutEventStreamRequest generates a "aws/request.Request" representing the
+// client's request for the PutEventStream operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See PutEventStream for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PutEventStream method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PutEventStreamRequest method.
+//    req, resp := client.PutEventStreamRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Pinpoint) PutEventStreamRequest(input *PutEventStreamInput) (req *request.Request, output *PutEventStreamOutput) {
+	op := &request.Operation{
+		Name:       opPutEventStream,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/apps/{application-id}/eventstream",
+	}
+
+	if input == nil {
+		input = &PutEventStreamInput{}
+	}
+
+	output = &PutEventStreamOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutEventStream API operation for Amazon Pinpoint.
+//
+// Use to create or update the event stream for an app.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint's
+// API operation PutEventStream for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   400 response
+//
+//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   500 response
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   403 response
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   404 response
+//
+//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//   405 response
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   429 response
+//
+func (c *Pinpoint) PutEventStream(input *PutEventStreamInput) (*PutEventStreamOutput, error) {
+	req, out := c.PutEventStreamRequest(input)
+	return out, req.Send()
+}
+
+// PutEventStreamWithContext is the same as PutEventStream with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutEventStream for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) PutEventStreamWithContext(ctx aws.Context, input *PutEventStreamInput, opts ...request.Option) (*PutEventStreamOutput, error) {
+	req, out := c.PutEventStreamRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateApnsChannel = "UpdateApnsChannel"
 
 // UpdateApnsChannelRequest generates a "aws/request.Request" representing the
@@ -2536,7 +2812,7 @@ func (c *Pinpoint) UpdateEndpointsBatchRequest(input *UpdateEndpointsBatchInput)
 
 // UpdateEndpointsBatch API operation for Amazon Pinpoint.
 //
-// Use to update your endpoints.
+// Use to update a batch of endpoints.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2769,6 +3045,7 @@ func (c *Pinpoint) UpdateSegmentWithContext(ctx aws.Context, input *UpdateSegmen
 	return out, req.Send()
 }
 
+// Apple Push Notification Service channel definition.
 type APNSChannelRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -2801,14 +3078,17 @@ func (s *APNSChannelRequest) SetPrivateKey(v string) *APNSChannelRequest {
 	return s
 }
 
+// Apple Distribution Push Notification Service channel definition.
 type APNSChannelResponse struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the application to which the channel applies.
 	ApplicationId *string `type:"string"`
 
 	// When was this segment created
 	CreationDate *string `type:"string"`
 
+	// The unique channel ID.
 	Id *string `type:"string"`
 
 	// Is this channel archived
@@ -2885,6 +3165,7 @@ func (s *APNSChannelResponse) SetVersion(v int64) *APNSChannelResponse {
 	return s
 }
 
+// Activities for campaign.
 type ActivitiesResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -2908,6 +3189,7 @@ func (s *ActivitiesResponse) SetItem(v []*ActivityResponse) *ActivitiesResponse 
 	return s
 }
 
+// Activity definition
 type ActivityResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -2940,6 +3222,12 @@ type ActivityResponse struct {
 	// The total number of endpoints to which the campaign successfully delivered
 	// messages.
 	SuccessfulEndpointCount *int64 `type:"integer"`
+
+	// The total number of timezones completed.
+	TimezonesCompletedCount *int64 `type:"integer"`
+
+	// The total number of unique timezones present in the segment.
+	TimezonesTotalCount *int64 `type:"integer"`
 
 	// The total number of endpoints to which the campaign attempts to deliver messages.
 	TotalEndpointCount *int64 `type:"integer"`
@@ -3012,6 +3300,18 @@ func (s *ActivityResponse) SetSuccessfulEndpointCount(v int64) *ActivityResponse
 	return s
 }
 
+// SetTimezonesCompletedCount sets the TimezonesCompletedCount field's value.
+func (s *ActivityResponse) SetTimezonesCompletedCount(v int64) *ActivityResponse {
+	s.TimezonesCompletedCount = &v
+	return s
+}
+
+// SetTimezonesTotalCount sets the TimezonesTotalCount field's value.
+func (s *ActivityResponse) SetTimezonesTotalCount(v int64) *ActivityResponse {
+	s.TimezonesTotalCount = &v
+	return s
+}
+
 // SetTotalEndpointCount sets the TotalEndpointCount field's value.
 func (s *ActivityResponse) SetTotalEndpointCount(v int64) *ActivityResponse {
 	s.TotalEndpointCount = &v
@@ -3024,6 +3324,7 @@ func (s *ActivityResponse) SetTreatmentId(v string) *ActivityResponse {
 	return s
 }
 
+// Application settings.
 type ApplicationSettingsResource struct {
 	_ struct{} `type:"structure"`
 
@@ -3078,9 +3379,13 @@ func (s *ApplicationSettingsResource) SetQuietTime(v *QuietTime) *ApplicationSet
 	return s
 }
 
+// Custom attibute dimension
 type AttributeDimension struct {
 	_ struct{} `type:"structure"`
 
+	// The type of dimension:INCLUSIVE – Endpoints that match the criteria are included
+	// in the segment.EXCLUSIVE – Endpoints that match the criteria are excluded
+	// from the segment.
 	AttributeType *string `type:"string" enum:"AttributeType"`
 
 	Values []*string `type:"list"`
@@ -3108,6 +3413,8 @@ func (s *AttributeDimension) SetValues(v []*string) *AttributeDimension {
 	return s
 }
 
+// Campaign Limits are used to limit the number of messages that can be sent
+// to a user.
 type CampaignLimits struct {
 	_ struct{} `type:"structure"`
 
@@ -3140,6 +3447,7 @@ func (s *CampaignLimits) SetTotal(v int64) *CampaignLimits {
 	return s
 }
 
+// Campaign definition
 type CampaignResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -3329,9 +3637,13 @@ func (s *CampaignResponse) SetVersion(v int64) *CampaignResponse {
 	return s
 }
 
+// State of the Campaign
 type CampaignState struct {
 	_ struct{} `type:"structure"`
 
+	// The status of the campaign, or the status of a treatment that belongs to
+	// an A/B test campaign.Valid values: SCHEDULED, EXECUTING, PENDING_NEXT_RUN,
+	// COMPLETED, PAUSED
 	CampaignStatus *string `type:"string" enum:"CampaignStatus"`
 }
 
@@ -3351,6 +3663,7 @@ func (s *CampaignState) SetCampaignStatus(v string) *CampaignState {
 	return s
 }
 
+// List of available campaigns.
 type CampaignsResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -3390,6 +3703,8 @@ type CreateCampaignInput struct {
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
 
+	// Used to create a campaign.
+	//
 	// WriteCampaignRequest is a required field
 	WriteCampaignRequest *WriteCampaignRequest `type:"structure" required:"true"`
 }
@@ -3435,6 +3750,8 @@ func (s *CreateCampaignInput) SetWriteCampaignRequest(v *WriteCampaignRequest) *
 type CreateCampaignOutput struct {
 	_ struct{} `type:"structure" payload:"CampaignResponse"`
 
+	// Campaign definition
+	//
 	// CampaignResponse is a required field
 	CampaignResponse *CampaignResponse `type:"structure" required:"true"`
 }
@@ -3532,6 +3849,8 @@ type CreateSegmentInput struct {
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
 
+	// Segment definition.
+	//
 	// WriteSegmentRequest is a required field
 	WriteSegmentRequest *WriteSegmentRequest `type:"structure" required:"true"`
 }
@@ -3577,6 +3896,8 @@ func (s *CreateSegmentInput) SetWriteSegmentRequest(v *WriteSegmentRequest) *Cre
 type CreateSegmentOutput struct {
 	_ struct{} `type:"structure" payload:"SegmentResponse"`
 
+	// Segment definition.
+	//
 	// SegmentResponse is a required field
 	SegmentResponse *SegmentResponse `type:"structure" required:"true"`
 }
@@ -3636,6 +3957,8 @@ func (s *DeleteApnsChannelInput) SetApplicationId(v string) *DeleteApnsChannelIn
 type DeleteApnsChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSChannelResponse"`
 
+	// Apple Distribution Push Notification Service channel definition.
+	//
 	// APNSChannelResponse is a required field
 	APNSChannelResponse *APNSChannelResponse `type:"structure" required:"true"`
 }
@@ -3707,6 +4030,8 @@ func (s *DeleteCampaignInput) SetCampaignId(v string) *DeleteCampaignInput {
 type DeleteCampaignOutput struct {
 	_ struct{} `type:"structure" payload:"CampaignResponse"`
 
+	// Campaign definition
+	//
 	// CampaignResponse is a required field
 	CampaignResponse *CampaignResponse `type:"structure" required:"true"`
 }
@@ -3724,6 +4049,69 @@ func (s DeleteCampaignOutput) GoString() string {
 // SetCampaignResponse sets the CampaignResponse field's value.
 func (s *DeleteCampaignOutput) SetCampaignResponse(v *CampaignResponse) *DeleteCampaignOutput {
 	s.CampaignResponse = v
+	return s
+}
+
+type DeleteEventStreamInput struct {
+	_ struct{} `type:"structure"`
+
+	// Application Id.
+	//
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteEventStreamInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteEventStreamInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEventStreamInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEventStreamInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *DeleteEventStreamInput) SetApplicationId(v string) *DeleteEventStreamInput {
+	s.ApplicationId = &v
+	return s
+}
+
+type DeleteEventStreamOutput struct {
+	_ struct{} `type:"structure" payload:"EventStream"`
+
+	// Model for an event publishing subscription export.
+	//
+	// EventStream is a required field
+	EventStream *EventStream `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteEventStreamOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteEventStreamOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventStream sets the EventStream field's value.
+func (s *DeleteEventStreamOutput) SetEventStream(v *EventStream) *DeleteEventStreamOutput {
+	s.EventStream = v
 	return s
 }
 
@@ -3766,6 +4154,8 @@ func (s *DeleteGcmChannelInput) SetApplicationId(v string) *DeleteGcmChannelInpu
 type DeleteGcmChannelOutput struct {
 	_ struct{} `type:"structure" payload:"GCMChannelResponse"`
 
+	// Google Cloud Messaging channel definition
+	//
 	// GCMChannelResponse is a required field
 	GCMChannelResponse *GCMChannelResponse `type:"structure" required:"true"`
 }
@@ -3837,6 +4227,8 @@ func (s *DeleteSegmentInput) SetSegmentId(v string) *DeleteSegmentInput {
 type DeleteSegmentOutput struct {
 	_ struct{} `type:"structure" payload:"SegmentResponse"`
 
+	// Segment definition.
+	//
 	// SegmentResponse is a required field
 	SegmentResponse *SegmentResponse `type:"structure" required:"true"`
 }
@@ -3857,14 +4249,17 @@ func (s *DeleteSegmentOutput) SetSegmentResponse(v *SegmentResponse) *DeleteSegm
 	return s
 }
 
+// Endpoint update request
 type EndpointBatchItem struct {
 	_ struct{} `type:"structure"`
 
-	// The address or token of the endpoint.
+	// The address or token of the endpoint as provided by your push provider (e.g.
+	// DeviceToken or RegistrationId).
 	Address *string `type:"string"`
 
 	Attributes map[string][]*string `type:"map"`
 
+	// The channel type.Valid values: APNS, GCM
 	ChannelType *string `type:"string" enum:"ChannelType"`
 
 	// The endpoint demographic attributes.
@@ -3877,6 +4272,7 @@ type EndpointBatchItem struct {
 	// if a delivery fails. Will be set to ACTIVE if the address is updated.
 	EndpointStatus *string `type:"string"`
 
+	// The unique Id for the Endpoint in the batch.
 	Id *string `type:"string"`
 
 	// The endpoint location attributes.
@@ -3978,6 +4374,7 @@ func (s *EndpointBatchItem) SetUser(v *EndpointUser) *EndpointBatchItem {
 	return s
 }
 
+// Endpoint batch update request.
 type EndpointBatchRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -4001,6 +4398,7 @@ func (s *EndpointBatchRequest) SetItem(v []*EndpointBatchItem) *EndpointBatchReq
 	return s
 }
 
+// Endpoint demographic data
 type EndpointDemographic struct {
 	_ struct{} `type:"structure"`
 
@@ -4088,6 +4486,7 @@ func (s *EndpointDemographic) SetTimezone(v string) *EndpointDemographic {
 	return s
 }
 
+// Endpoint location data
 type EndpointLocation struct {
 	_ struct{} `type:"structure"`
 
@@ -4159,14 +4558,17 @@ func (s *EndpointLocation) SetRegion(v string) *EndpointLocation {
 	return s
 }
 
+// Endpoint update request
 type EndpointRequest struct {
 	_ struct{} `type:"structure"`
 
-	// The address or token of the endpoint.
+	// The address or token of the endpoint as provided by your push provider (e.g.
+	// DeviceToken or RegistrationId).
 	Address *string `type:"string"`
 
 	Attributes map[string][]*string `type:"map"`
 
+	// The channel type.Valid values: APNS, GCM
 	ChannelType *string `type:"string" enum:"ChannelType"`
 
 	// The endpoint demographic attributes.
@@ -4272,10 +4674,12 @@ func (s *EndpointRequest) SetUser(v *EndpointUser) *EndpointRequest {
 	return s
 }
 
+// Endpoint response
 type EndpointResponse struct {
 	_ struct{} `type:"structure"`
 
-	// The address or token of the endpoint.
+	// The address or token of the endpoint as provided by your push provider (e.g.
+	// DeviceToken or RegistrationId).
 	Address *string `type:"string"`
 
 	// The ID of the application associated with the endpoint.
@@ -4283,6 +4687,7 @@ type EndpointResponse struct {
 
 	Attributes map[string][]*string `type:"map"`
 
+	// The channel type.Valid values: APNS, GCM
 	ChannelType *string `type:"string" enum:"ChannelType"`
 
 	// A number from 0 - 99 that represents the cohort the endpoint is assigned
@@ -4435,6 +4840,7 @@ func (s *EndpointResponse) SetUser(v *EndpointUser) *EndpointResponse {
 	return s
 }
 
+// Endpoint user specific custom userAttributes
 type EndpointUser struct {
 	_ struct{} `type:"structure"`
 
@@ -4466,6 +4872,80 @@ func (s *EndpointUser) SetUserId(v string) *EndpointUser {
 	return s
 }
 
+// Model for an event publishing subscription export.
+type EventStream struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the application from which events should be published.
+	ApplicationId *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the Amazon Kinesis stream or Firehose delivery
+	// stream to which you want to publish events. Firehose ARN: arn:aws:firehose:REGION:ACCOUNT_ID:deliverystream/STREAM_NAME
+	// Kinesis ARN: arn:aws:kinesis:REGION:ACCOUNT_ID:stream/STREAM_NAME
+	DestinationStreamArn *string `type:"string"`
+
+	// The external ID assigned the IAM role that authorizes Amazon Pinpoint to
+	// publish to the stream.
+	ExternalId *string `type:"string"`
+
+	// The date the event stream was last updated in ISO 8601 format.
+	LastModifiedDate *string `type:"string"`
+
+	// The IAM user who last modified the event stream.
+	LastUpdatedBy *string `type:"string"`
+
+	// The IAM role that authorizes Amazon Pinpoint to publish events to the stream
+	// in your account.
+	RoleArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s EventStream) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EventStream) GoString() string {
+	return s.String()
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *EventStream) SetApplicationId(v string) *EventStream {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetDestinationStreamArn sets the DestinationStreamArn field's value.
+func (s *EventStream) SetDestinationStreamArn(v string) *EventStream {
+	s.DestinationStreamArn = &v
+	return s
+}
+
+// SetExternalId sets the ExternalId field's value.
+func (s *EventStream) SetExternalId(v string) *EventStream {
+	s.ExternalId = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *EventStream) SetLastModifiedDate(v string) *EventStream {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetLastUpdatedBy sets the LastUpdatedBy field's value.
+func (s *EventStream) SetLastUpdatedBy(v string) *EventStream {
+	s.LastUpdatedBy = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *EventStream) SetRoleArn(v string) *EventStream {
+	s.RoleArn = &v
+	return s
+}
+
+// Google Cloud Messaging credentials
 type GCMChannelRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -4489,9 +4969,11 @@ func (s *GCMChannelRequest) SetApiKey(v string) *GCMChannelRequest {
 	return s
 }
 
+// Google Cloud Messaging channel definition
 type GCMChannelResponse struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the application to which the channel applies.
 	ApplicationId *string `type:"string"`
 
 	// When was this segment created
@@ -4500,6 +4982,7 @@ type GCMChannelResponse struct {
 	// The GCM API key from Google.
 	Credential *string `type:"string"`
 
+	// The unique channel ID.
 	Id *string `type:"string"`
 
 	// Is this channel archived
@@ -4621,6 +5104,8 @@ func (s *GetApnsChannelInput) SetApplicationId(v string) *GetApnsChannelInput {
 type GetApnsChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSChannelResponse"`
 
+	// Apple Distribution Push Notification Service channel definition.
+	//
 	// APNSChannelResponse is a required field
 	APNSChannelResponse *APNSChannelResponse `type:"structure" required:"true"`
 }
@@ -4680,6 +5165,8 @@ func (s *GetApplicationSettingsInput) SetApplicationId(v string) *GetApplication
 type GetApplicationSettingsOutput struct {
 	_ struct{} `type:"structure" payload:"ApplicationSettingsResource"`
 
+	// Application settings.
+	//
 	// ApplicationSettingsResource is a required field
 	ApplicationSettingsResource *ApplicationSettingsResource `type:"structure" required:"true"`
 }
@@ -4767,6 +5254,8 @@ func (s *GetCampaignActivitiesInput) SetToken(v string) *GetCampaignActivitiesIn
 type GetCampaignActivitiesOutput struct {
 	_ struct{} `type:"structure" payload:"ActivitiesResponse"`
 
+	// Activities for campaign.
+	//
 	// ActivitiesResponse is a required field
 	ActivitiesResponse *ActivitiesResponse `type:"structure" required:"true"`
 }
@@ -4838,6 +5327,8 @@ func (s *GetCampaignInput) SetCampaignId(v string) *GetCampaignInput {
 type GetCampaignOutput struct {
 	_ struct{} `type:"structure" payload:"CampaignResponse"`
 
+	// Campaign definition
+	//
 	// CampaignResponse is a required field
 	CampaignResponse *CampaignResponse `type:"structure" required:"true"`
 }
@@ -4921,6 +5412,8 @@ func (s *GetCampaignVersionInput) SetVersion(v string) *GetCampaignVersionInput 
 type GetCampaignVersionOutput struct {
 	_ struct{} `type:"structure" payload:"CampaignResponse"`
 
+	// Campaign definition
+	//
 	// CampaignResponse is a required field
 	CampaignResponse *CampaignResponse `type:"structure" required:"true"`
 }
@@ -5008,6 +5501,8 @@ func (s *GetCampaignVersionsInput) SetToken(v string) *GetCampaignVersionsInput 
 type GetCampaignVersionsOutput struct {
 	_ struct{} `type:"structure" payload:"CampaignsResponse"`
 
+	// List of available campaigns.
+	//
 	// CampaignsResponse is a required field
 	CampaignsResponse *CampaignsResponse `type:"structure" required:"true"`
 }
@@ -5083,6 +5578,8 @@ func (s *GetCampaignsInput) SetToken(v string) *GetCampaignsInput {
 type GetCampaignsOutput struct {
 	_ struct{} `type:"structure" payload:"CampaignsResponse"`
 
+	// List of available campaigns.
+	//
 	// CampaignsResponse is a required field
 	CampaignsResponse *CampaignsResponse `type:"structure" required:"true"`
 }
@@ -5154,6 +5651,8 @@ func (s *GetEndpointInput) SetEndpointId(v string) *GetEndpointInput {
 type GetEndpointOutput struct {
 	_ struct{} `type:"structure" payload:"EndpointResponse"`
 
+	// Endpoint response
+	//
 	// EndpointResponse is a required field
 	EndpointResponse *EndpointResponse `type:"structure" required:"true"`
 }
@@ -5171,6 +5670,69 @@ func (s GetEndpointOutput) GoString() string {
 // SetEndpointResponse sets the EndpointResponse field's value.
 func (s *GetEndpointOutput) SetEndpointResponse(v *EndpointResponse) *GetEndpointOutput {
 	s.EndpointResponse = v
+	return s
+}
+
+type GetEventStreamInput struct {
+	_ struct{} `type:"structure"`
+
+	// Application Id.
+	//
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetEventStreamInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetEventStreamInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetEventStreamInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetEventStreamInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *GetEventStreamInput) SetApplicationId(v string) *GetEventStreamInput {
+	s.ApplicationId = &v
+	return s
+}
+
+type GetEventStreamOutput struct {
+	_ struct{} `type:"structure" payload:"EventStream"`
+
+	// Model for an event publishing subscription export.
+	//
+	// EventStream is a required field
+	EventStream *EventStream `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s GetEventStreamOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetEventStreamOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventStream sets the EventStream field's value.
+func (s *GetEventStreamOutput) SetEventStream(v *EventStream) *GetEventStreamOutput {
+	s.EventStream = v
 	return s
 }
 
@@ -5213,6 +5775,8 @@ func (s *GetGcmChannelInput) SetApplicationId(v string) *GetGcmChannelInput {
 type GetGcmChannelOutput struct {
 	_ struct{} `type:"structure" payload:"GCMChannelResponse"`
 
+	// Google Cloud Messaging channel definition
+	//
 	// GCMChannelResponse is a required field
 	GCMChannelResponse *GCMChannelResponse `type:"structure" required:"true"`
 }
@@ -5359,6 +5923,8 @@ func (s *GetImportJobsInput) SetToken(v string) *GetImportJobsInput {
 type GetImportJobsOutput struct {
 	_ struct{} `type:"structure" payload:"ImportJobsResponse"`
 
+	// Import job list.
+	//
 	// ImportJobsResponse is a required field
 	ImportJobsResponse *ImportJobsResponse `type:"structure" required:"true"`
 }
@@ -5446,6 +6012,8 @@ func (s *GetSegmentImportJobsInput) SetToken(v string) *GetSegmentImportJobsInpu
 type GetSegmentImportJobsOutput struct {
 	_ struct{} `type:"structure" payload:"ImportJobsResponse"`
 
+	// Import job list.
+	//
 	// ImportJobsResponse is a required field
 	ImportJobsResponse *ImportJobsResponse `type:"structure" required:"true"`
 }
@@ -5517,6 +6085,8 @@ func (s *GetSegmentInput) SetSegmentId(v string) *GetSegmentInput {
 type GetSegmentOutput struct {
 	_ struct{} `type:"structure" payload:"SegmentResponse"`
 
+	// Segment definition.
+	//
 	// SegmentResponse is a required field
 	SegmentResponse *SegmentResponse `type:"structure" required:"true"`
 }
@@ -5600,6 +6170,8 @@ func (s *GetSegmentVersionInput) SetVersion(v string) *GetSegmentVersionInput {
 type GetSegmentVersionOutput struct {
 	_ struct{} `type:"structure" payload:"SegmentResponse"`
 
+	// Segment definition.
+	//
 	// SegmentResponse is a required field
 	SegmentResponse *SegmentResponse `type:"structure" required:"true"`
 }
@@ -5687,6 +6259,8 @@ func (s *GetSegmentVersionsInput) SetToken(v string) *GetSegmentVersionsInput {
 type GetSegmentVersionsOutput struct {
 	_ struct{} `type:"structure" payload:"SegmentsResponse"`
 
+	// Segments in your account.
+	//
 	// SegmentsResponse is a required field
 	SegmentsResponse *SegmentsResponse `type:"structure" required:"true"`
 }
@@ -5762,6 +6336,8 @@ func (s *GetSegmentsInput) SetToken(v string) *GetSegmentsInput {
 type GetSegmentsOutput struct {
 	_ struct{} `type:"structure" payload:"SegmentsResponse"`
 
+	// Segments in your account.
+	//
 	// SegmentsResponse is a required field
 	SegmentsResponse *SegmentsResponse `type:"structure" required:"true"`
 }
@@ -5792,6 +6368,8 @@ type ImportJobRequest struct {
 	// the role.
 	ExternalId *string `type:"string"`
 
+	// The format of the files that contain the endpoint definitions.Valid values:
+	// CSV, JSON
 	Format *string `type:"string" enum:"Format"`
 
 	// Sets whether the endpoints are registered with Amazon Pinpoint when they
@@ -5885,6 +6463,8 @@ type ImportJobResource struct {
 	// the role.
 	ExternalId *string `type:"string"`
 
+	// The format of the files that contain the endpoint definitions.Valid values:
+	// CSV, JSON
 	Format *string `type:"string" enum:"Format"`
 
 	// Sets whether the endpoints are registered with Amazon Pinpoint when they
@@ -5995,6 +6575,9 @@ type ImportJobResponse struct {
 	// The unique ID of the import job.
 	Id *string `type:"string"`
 
+	// The status of the import job.Valid values: CREATED, INITIALIZING, PROCESSING,
+	// COMPLETING, COMPLETED, FAILING, FAILEDThe job status is FAILED if one or
+	// more pieces failed to import.
 	JobStatus *string `type:"string" enum:"JobStatus"`
 
 	// The number of endpoints that failed to import; for example, because of syntax
@@ -6100,6 +6683,7 @@ func (s *ImportJobResponse) SetType(v string) *ImportJobResponse {
 	return s
 }
 
+// Import job list.
 type ImportJobsResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -6136,6 +6720,12 @@ func (s *ImportJobsResponse) SetNextToken(v string) *ImportJobsResponse {
 type Message struct {
 	_ struct{} `type:"structure"`
 
+	// The action that occurs if the user taps a push notification delivered by
+	// the campaign:OPEN_APP – Your app launches, or it becomes the foreground app
+	// if it has been sent to the background. This is the default action.DEEP_LINK
+	// – Uses deep linking features in iOS and Android to open your app and display
+	// a designated user interface within the app.URL – The default mobile browser
+	// on the user's device launches and opens a web page at the URL you specify.
 	Action *string `type:"string" enum:"Action"`
 
 	// The message body. Can include up to 140 characters.
@@ -6230,11 +6820,14 @@ func (s *Message) SetUrl(v string) *Message {
 	return s
 }
 
+// Simple message object.
 type MessageBody struct {
 	_ struct{} `type:"structure"`
 
+	// The error message returned from the API.
 	Message *string `type:"string"`
 
+	// The unique message body ID.
 	RequestID *string `type:"string"`
 }
 
@@ -6260,6 +6853,7 @@ func (s *MessageBody) SetRequestID(v string) *MessageBody {
 	return s
 }
 
+// Message configuration for a campaign.
 type MessageConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -6303,6 +6897,84 @@ func (s *MessageConfiguration) SetGCMMessage(v *Message) *MessageConfiguration {
 	return s
 }
 
+type PutEventStreamInput struct {
+	_ struct{} `type:"structure" payload:"WriteEventStream"`
+
+	// Application Id.
+	//
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
+
+	// Write event stream wrapper.
+	//
+	// WriteEventStream is a required field
+	WriteEventStream *WriteEventStream `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s PutEventStreamInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutEventStreamInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutEventStreamInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutEventStreamInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+	if s.WriteEventStream == nil {
+		invalidParams.Add(request.NewErrParamRequired("WriteEventStream"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *PutEventStreamInput) SetApplicationId(v string) *PutEventStreamInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetWriteEventStream sets the WriteEventStream field's value.
+func (s *PutEventStreamInput) SetWriteEventStream(v *WriteEventStream) *PutEventStreamInput {
+	s.WriteEventStream = v
+	return s
+}
+
+type PutEventStreamOutput struct {
+	_ struct{} `type:"structure" payload:"EventStream"`
+
+	// Model for an event publishing subscription export.
+	//
+	// EventStream is a required field
+	EventStream *EventStream `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s PutEventStreamOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutEventStreamOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventStream sets the EventStream field's value.
+func (s *PutEventStreamOutput) SetEventStream(v *EventStream) *PutEventStreamOutput {
+	s.EventStream = v
+	return s
+}
+
+// Quiet Time
 type QuietTime struct {
 	_ struct{} `type:"structure"`
 
@@ -6335,11 +7007,17 @@ func (s *QuietTime) SetStart(v string) *QuietTime {
 	return s
 }
 
+// Define how a segment based on recency of use.
 type RecencyDimension struct {
 	_ struct{} `type:"structure"`
 
+	// The length of time during which users have been active or inactive with your
+	// app.Valid values: HR_24, DAY_7, DAY_14, DAY_30
 	Duration *string `type:"string" enum:"Duration"`
 
+	// The recency dimension type:ACTIVE – Users who have used your app within the
+	// specified duration are included in the segment.INACTIVE – Users who have
+	// not used your app within the specified duration are included in the segment.
 	RecencyType *string `type:"string" enum:"RecencyType"`
 }
 
@@ -6365,12 +7043,15 @@ func (s *RecencyDimension) SetRecencyType(v string) *RecencyDimension {
 	return s
 }
 
+// Shcedule that defines when a campaign is run.
 type Schedule struct {
 	_ struct{} `type:"structure"`
 
 	// The scheduled time that the campaign ends in ISO 8601 format.
 	EndTime *string `type:"string"`
 
+	// How often the campaign delivers messages.Valid values: ONCE, HOURLY, DAILY,
+	// WEEKLY, MONTHLY
 	Frequency *string `type:"string" enum:"Frequency"`
 
 	// Indicates whether the campaign schedule takes effect according to each user's
@@ -6434,6 +7115,7 @@ func (s *Schedule) SetTimezone(v string) *Schedule {
 	return s
 }
 
+// Segment behavior dimensions
 type SegmentBehaviors struct {
 	_ struct{} `type:"structure"`
 
@@ -6457,6 +7139,7 @@ func (s *SegmentBehaviors) SetRecency(v *RecencyDimension) *SegmentBehaviors {
 	return s
 }
 
+// Segment demographic dimensions
 type SegmentDemographics struct {
 	_ struct{} `type:"structure"`
 
@@ -6516,6 +7199,7 @@ func (s *SegmentDemographics) SetPlatform(v *SetDimension) *SegmentDemographics 
 	return s
 }
 
+// Segment dimensions
 type SegmentDimensions struct {
 	_ struct{} `type:"structure"`
 
@@ -6530,6 +7214,9 @@ type SegmentDimensions struct {
 
 	// The segment location attributes.
 	Location *SegmentLocation `type:"structure"`
+
+	// Custom segment user attributes.
+	UserAttributes map[string]*AttributeDimension `type:"map"`
 }
 
 // String returns the string representation
@@ -6566,6 +7253,13 @@ func (s *SegmentDimensions) SetLocation(v *SegmentLocation) *SegmentDimensions {
 	return s
 }
 
+// SetUserAttributes sets the UserAttributes field's value.
+func (s *SegmentDimensions) SetUserAttributes(v map[string]*AttributeDimension) *SegmentDimensions {
+	s.UserAttributes = v
+	return s
+}
+
+// Segment import definition.
 type SegmentImportResource struct {
 	_ struct{} `type:"structure"`
 
@@ -6573,6 +7267,8 @@ type SegmentImportResource struct {
 	// the role.
 	ExternalId *string `type:"string"`
 
+	// The format of the endpoint files that were imported to create this segment.Valid
+	// values: CSV, JSON
 	Format *string `type:"string" enum:"Format"`
 
 	// The Amazon Resource Name (ARN) of an IAM role that grants Amazon Pinpoint
@@ -6627,6 +7323,7 @@ func (s *SegmentImportResource) SetSize(v int64) *SegmentImportResource {
 	return s
 }
 
+// Segment location dimensions
 type SegmentLocation struct {
 	_ struct{} `type:"structure"`
 
@@ -6650,6 +7347,7 @@ func (s *SegmentLocation) SetCountry(v *SetDimension) *SegmentLocation {
 	return s
 }
 
+// Segment definition.
 type SegmentResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -6674,6 +7372,13 @@ type SegmentResponse struct {
 	// The name of segment
 	Name *string `type:"string"`
 
+	// The segment type:DIMENSIONAL – A dynamic segment built from selection criteria
+	// based on endpoint data reported by your app. You create this type of segment
+	// by using the segment builder in the Amazon Pinpoint console or by making
+	// a POST request to the segments resource.IMPORT – A static segment built from
+	// an imported set of endpoint definitions. You create this type of segment
+	// by importing a segment in the Amazon Pinpoint console or by making a POST
+	// request to the jobs/import resource.
 	SegmentType *string `type:"string" enum:"SegmentType"`
 
 	// The segment version number.
@@ -6744,6 +7449,7 @@ func (s *SegmentResponse) SetVersion(v int64) *SegmentResponse {
 	return s
 }
 
+// Segments in your account.
 type SegmentsResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -6777,9 +7483,13 @@ func (s *SegmentsResponse) SetNextToken(v string) *SegmentsResponse {
 	return s
 }
 
+// Dimension specification of a segment.
 type SetDimension struct {
 	_ struct{} `type:"structure"`
 
+	// The type of dimension:INCLUSIVE – Endpoints that match the criteria are included
+	// in the segment.EXCLUSIVE – Endpoints that match the criteria are excluded
+	// from the segment.
 	DimensionType *string `type:"string" enum:"DimensionType"`
 
 	Values []*string `type:"list"`
@@ -6807,6 +7517,7 @@ func (s *SetDimension) SetValues(v []*string) *SetDimension {
 	return s
 }
 
+// Treatment resource
 type TreatmentResource struct {
 	_ struct{} `type:"structure"`
 
@@ -6887,6 +7598,8 @@ func (s *TreatmentResource) SetTreatmentName(v string) *TreatmentResource {
 type UpdateApnsChannelInput struct {
 	_ struct{} `type:"structure" payload:"APNSChannelRequest"`
 
+	// Apple Push Notification Service channel definition.
+	//
 	// APNSChannelRequest is a required field
 	APNSChannelRequest *APNSChannelRequest `type:"structure" required:"true"`
 
@@ -6935,6 +7648,8 @@ func (s *UpdateApnsChannelInput) SetApplicationId(v string) *UpdateApnsChannelIn
 type UpdateApnsChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSChannelResponse"`
 
+	// Apple Distribution Push Notification Service channel definition.
+	//
 	// APNSChannelResponse is a required field
 	APNSChannelResponse *APNSChannelResponse `type:"structure" required:"true"`
 }
@@ -6961,6 +7676,8 @@ type UpdateApplicationSettingsInput struct {
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
 
+	// Creating application setting request
+	//
 	// WriteApplicationSettingsRequest is a required field
 	WriteApplicationSettingsRequest *WriteApplicationSettingsRequest `type:"structure" required:"true"`
 }
@@ -7006,6 +7723,8 @@ func (s *UpdateApplicationSettingsInput) SetWriteApplicationSettingsRequest(v *W
 type UpdateApplicationSettingsOutput struct {
 	_ struct{} `type:"structure" payload:"ApplicationSettingsResource"`
 
+	// Application settings.
+	//
 	// ApplicationSettingsResource is a required field
 	ApplicationSettingsResource *ApplicationSettingsResource `type:"structure" required:"true"`
 }
@@ -7035,6 +7754,8 @@ type UpdateCampaignInput struct {
 	// CampaignId is a required field
 	CampaignId *string `location:"uri" locationName:"campaign-id" type:"string" required:"true"`
 
+	// Used to create a campaign.
+	//
 	// WriteCampaignRequest is a required field
 	WriteCampaignRequest *WriteCampaignRequest `type:"structure" required:"true"`
 }
@@ -7089,6 +7810,8 @@ func (s *UpdateCampaignInput) SetWriteCampaignRequest(v *WriteCampaignRequest) *
 type UpdateCampaignOutput struct {
 	_ struct{} `type:"structure" payload:"CampaignResponse"`
 
+	// Campaign definition
+	//
 	// CampaignResponse is a required field
 	CampaignResponse *CampaignResponse `type:"structure" required:"true"`
 }
@@ -7118,6 +7841,8 @@ type UpdateEndpointInput struct {
 	// EndpointId is a required field
 	EndpointId *string `location:"uri" locationName:"endpoint-id" type:"string" required:"true"`
 
+	// Endpoint update request
+	//
 	// EndpointRequest is a required field
 	EndpointRequest *EndpointRequest `type:"structure" required:"true"`
 }
@@ -7172,6 +7897,8 @@ func (s *UpdateEndpointInput) SetEndpointRequest(v *EndpointRequest) *UpdateEndp
 type UpdateEndpointOutput struct {
 	_ struct{} `type:"structure" payload:"MessageBody"`
 
+	// Simple message object.
+	//
 	// MessageBody is a required field
 	MessageBody *MessageBody `type:"structure" required:"true"`
 }
@@ -7198,6 +7925,8 @@ type UpdateEndpointsBatchInput struct {
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
 
+	// Endpoint batch update request.
+	//
 	// EndpointBatchRequest is a required field
 	EndpointBatchRequest *EndpointBatchRequest `type:"structure" required:"true"`
 }
@@ -7243,6 +7972,8 @@ func (s *UpdateEndpointsBatchInput) SetEndpointBatchRequest(v *EndpointBatchRequ
 type UpdateEndpointsBatchOutput struct {
 	_ struct{} `type:"structure" payload:"MessageBody"`
 
+	// Simple message object.
+	//
 	// MessageBody is a required field
 	MessageBody *MessageBody `type:"structure" required:"true"`
 }
@@ -7269,6 +8000,8 @@ type UpdateGcmChannelInput struct {
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
 
+	// Google Cloud Messaging credentials
+	//
 	// GCMChannelRequest is a required field
 	GCMChannelRequest *GCMChannelRequest `type:"structure" required:"true"`
 }
@@ -7314,6 +8047,8 @@ func (s *UpdateGcmChannelInput) SetGCMChannelRequest(v *GCMChannelRequest) *Upda
 type UpdateGcmChannelOutput struct {
 	_ struct{} `type:"structure" payload:"GCMChannelResponse"`
 
+	// Google Cloud Messaging channel definition
+	//
 	// GCMChannelResponse is a required field
 	GCMChannelResponse *GCMChannelResponse `type:"structure" required:"true"`
 }
@@ -7343,6 +8078,8 @@ type UpdateSegmentInput struct {
 	// SegmentId is a required field
 	SegmentId *string `location:"uri" locationName:"segment-id" type:"string" required:"true"`
 
+	// Segment definition.
+	//
 	// WriteSegmentRequest is a required field
 	WriteSegmentRequest *WriteSegmentRequest `type:"structure" required:"true"`
 }
@@ -7397,6 +8134,8 @@ func (s *UpdateSegmentInput) SetWriteSegmentRequest(v *WriteSegmentRequest) *Upd
 type UpdateSegmentOutput struct {
 	_ struct{} `type:"structure" payload:"SegmentResponse"`
 
+	// Segment definition.
+	//
 	// SegmentResponse is a required field
 	SegmentResponse *SegmentResponse `type:"structure" required:"true"`
 }
@@ -7417,6 +8156,7 @@ func (s *UpdateSegmentOutput) SetSegmentResponse(v *SegmentResponse) *UpdateSegm
 	return s
 }
 
+// Creating application setting request
 type WriteApplicationSettingsRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -7453,6 +8193,7 @@ func (s *WriteApplicationSettingsRequest) SetQuietTime(v *QuietTime) *WriteAppli
 	return s
 }
 
+// Used to create a campaign.
 type WriteCampaignRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -7577,6 +8318,53 @@ func (s *WriteCampaignRequest) SetTreatmentName(v string) *WriteCampaignRequest 
 	return s
 }
 
+// Request to save an EventStream.
+type WriteEventStream struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Amazon Kinesis stream or Firehose delivery
+	// stream to which you want to publish events. Firehose ARN: arn:aws:firehose:REGION:ACCOUNT_ID:deliverystream/STREAM_NAME
+	// Kinesis ARN: arn:aws:kinesis:REGION:ACCOUNT_ID:stream/STREAM_NAME
+	DestinationStreamArn *string `type:"string"`
+
+	// The external ID assigned the IAM role that authorizes Amazon Pinpoint to
+	// publish to the stream.
+	ExternalId *string `type:"string"`
+
+	// The IAM role that authorizes Amazon Pinpoint to publish events to the stream
+	// in your account.
+	RoleArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s WriteEventStream) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s WriteEventStream) GoString() string {
+	return s.String()
+}
+
+// SetDestinationStreamArn sets the DestinationStreamArn field's value.
+func (s *WriteEventStream) SetDestinationStreamArn(v string) *WriteEventStream {
+	s.DestinationStreamArn = &v
+	return s
+}
+
+// SetExternalId sets the ExternalId field's value.
+func (s *WriteEventStream) SetExternalId(v string) *WriteEventStream {
+	s.ExternalId = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *WriteEventStream) SetRoleArn(v string) *WriteEventStream {
+	s.RoleArn = &v
+	return s
+}
+
+// Segment definition.
 type WriteSegmentRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -7609,6 +8397,7 @@ func (s *WriteSegmentRequest) SetName(v string) *WriteSegmentRequest {
 	return s
 }
 
+// Used to create a campaign treatment.
 type WriteTreatmentResource struct {
 	_ struct{} `type:"structure"`
 
