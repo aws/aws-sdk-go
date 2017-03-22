@@ -6,6 +6,7 @@ package devicefarm
 import (
 	"time"
 
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 )
@@ -80,8 +81,23 @@ func (c *DeviceFarm) CreateDevicePoolRequest(input *CreateDevicePoolInput) (req 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateDevicePool
 func (c *DeviceFarm) CreateDevicePool(input *CreateDevicePoolInput) (*CreateDevicePoolOutput, error) {
 	req, out := c.CreateDevicePoolRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateDevicePoolWithContext is the same as CreateDevicePool with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateDevicePool for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) CreateDevicePoolWithContext(ctx aws.Context, input *CreateDevicePoolInput, opts ...request.Option) (*CreateDevicePoolOutput, error) {
+	req, out := c.CreateDevicePoolRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateNetworkProfile = "CreateNetworkProfile"
@@ -154,8 +170,23 @@ func (c *DeviceFarm) CreateNetworkProfileRequest(input *CreateNetworkProfileInpu
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateNetworkProfile
 func (c *DeviceFarm) CreateNetworkProfile(input *CreateNetworkProfileInput) (*CreateNetworkProfileOutput, error) {
 	req, out := c.CreateNetworkProfileRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateNetworkProfileWithContext is the same as CreateNetworkProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateNetworkProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) CreateNetworkProfileWithContext(ctx aws.Context, input *CreateNetworkProfileInput, opts ...request.Option) (*CreateNetworkProfileOutput, error) {
+	req, out := c.CreateNetworkProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateProject = "CreateProject"
@@ -228,8 +259,23 @@ func (c *DeviceFarm) CreateProjectRequest(input *CreateProjectInput) (req *reque
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateProject
 func (c *DeviceFarm) CreateProject(input *CreateProjectInput) (*CreateProjectOutput, error) {
 	req, out := c.CreateProjectRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateProjectWithContext is the same as CreateProject with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateProject for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) CreateProjectWithContext(ctx aws.Context, input *CreateProjectInput, opts ...request.Option) (*CreateProjectOutput, error) {
+	req, out := c.CreateProjectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateRemoteAccessSession = "CreateRemoteAccessSession"
@@ -302,8 +348,23 @@ func (c *DeviceFarm) CreateRemoteAccessSessionRequest(input *CreateRemoteAccessS
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateRemoteAccessSession
 func (c *DeviceFarm) CreateRemoteAccessSession(input *CreateRemoteAccessSessionInput) (*CreateRemoteAccessSessionOutput, error) {
 	req, out := c.CreateRemoteAccessSessionRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateRemoteAccessSessionWithContext is the same as CreateRemoteAccessSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateRemoteAccessSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) CreateRemoteAccessSessionWithContext(ctx aws.Context, input *CreateRemoteAccessSessionInput, opts ...request.Option) (*CreateRemoteAccessSessionOutput, error) {
+	req, out := c.CreateRemoteAccessSessionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateUpload = "CreateUpload"
@@ -376,8 +437,23 @@ func (c *DeviceFarm) CreateUploadRequest(input *CreateUploadInput) (req *request
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateUpload
 func (c *DeviceFarm) CreateUpload(input *CreateUploadInput) (*CreateUploadOutput, error) {
 	req, out := c.CreateUploadRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateUploadWithContext is the same as CreateUpload with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateUpload for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) CreateUploadWithContext(ctx aws.Context, input *CreateUploadInput, opts ...request.Option) (*CreateUploadOutput, error) {
+	req, out := c.CreateUploadRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteDevicePool = "DeleteDevicePool"
@@ -451,8 +527,23 @@ func (c *DeviceFarm) DeleteDevicePoolRequest(input *DeleteDevicePoolInput) (req 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteDevicePool
 func (c *DeviceFarm) DeleteDevicePool(input *DeleteDevicePoolInput) (*DeleteDevicePoolOutput, error) {
 	req, out := c.DeleteDevicePoolRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteDevicePoolWithContext is the same as DeleteDevicePool with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDevicePool for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) DeleteDevicePoolWithContext(ctx aws.Context, input *DeleteDevicePoolInput, opts ...request.Option) (*DeleteDevicePoolOutput, error) {
+	req, out := c.DeleteDevicePoolRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteNetworkProfile = "DeleteNetworkProfile"
@@ -525,8 +616,23 @@ func (c *DeviceFarm) DeleteNetworkProfileRequest(input *DeleteNetworkProfileInpu
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteNetworkProfile
 func (c *DeviceFarm) DeleteNetworkProfile(input *DeleteNetworkProfileInput) (*DeleteNetworkProfileOutput, error) {
 	req, out := c.DeleteNetworkProfileRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteNetworkProfileWithContext is the same as DeleteNetworkProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteNetworkProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) DeleteNetworkProfileWithContext(ctx aws.Context, input *DeleteNetworkProfileInput, opts ...request.Option) (*DeleteNetworkProfileOutput, error) {
+	req, out := c.DeleteNetworkProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteProject = "DeleteProject"
@@ -601,8 +707,23 @@ func (c *DeviceFarm) DeleteProjectRequest(input *DeleteProjectInput) (req *reque
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteProject
 func (c *DeviceFarm) DeleteProject(input *DeleteProjectInput) (*DeleteProjectOutput, error) {
 	req, out := c.DeleteProjectRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteProjectWithContext is the same as DeleteProject with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteProject for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) DeleteProjectWithContext(ctx aws.Context, input *DeleteProjectInput, opts ...request.Option) (*DeleteProjectOutput, error) {
+	req, out := c.DeleteProjectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteRemoteAccessSession = "DeleteRemoteAccessSession"
@@ -675,8 +796,23 @@ func (c *DeviceFarm) DeleteRemoteAccessSessionRequest(input *DeleteRemoteAccessS
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteRemoteAccessSession
 func (c *DeviceFarm) DeleteRemoteAccessSession(input *DeleteRemoteAccessSessionInput) (*DeleteRemoteAccessSessionOutput, error) {
 	req, out := c.DeleteRemoteAccessSessionRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteRemoteAccessSessionWithContext is the same as DeleteRemoteAccessSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteRemoteAccessSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) DeleteRemoteAccessSessionWithContext(ctx aws.Context, input *DeleteRemoteAccessSessionInput, opts ...request.Option) (*DeleteRemoteAccessSessionOutput, error) {
+	req, out := c.DeleteRemoteAccessSessionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteRun = "DeleteRun"
@@ -751,8 +887,23 @@ func (c *DeviceFarm) DeleteRunRequest(input *DeleteRunInput) (req *request.Reque
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteRun
 func (c *DeviceFarm) DeleteRun(input *DeleteRunInput) (*DeleteRunOutput, error) {
 	req, out := c.DeleteRunRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteRunWithContext is the same as DeleteRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) DeleteRunWithContext(ctx aws.Context, input *DeleteRunInput, opts ...request.Option) (*DeleteRunOutput, error) {
+	req, out := c.DeleteRunRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteUpload = "DeleteUpload"
@@ -825,8 +976,23 @@ func (c *DeviceFarm) DeleteUploadRequest(input *DeleteUploadInput) (req *request
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteUpload
 func (c *DeviceFarm) DeleteUpload(input *DeleteUploadInput) (*DeleteUploadOutput, error) {
 	req, out := c.DeleteUploadRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteUploadWithContext is the same as DeleteUpload with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteUpload for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) DeleteUploadWithContext(ctx aws.Context, input *DeleteUploadInput, opts ...request.Option) (*DeleteUploadOutput, error) {
+	req, out := c.DeleteUploadRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetAccountSettings = "GetAccountSettings"
@@ -900,8 +1066,23 @@ func (c *DeviceFarm) GetAccountSettingsRequest(input *GetAccountSettingsInput) (
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetAccountSettings
 func (c *DeviceFarm) GetAccountSettings(input *GetAccountSettingsInput) (*GetAccountSettingsOutput, error) {
 	req, out := c.GetAccountSettingsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetAccountSettingsWithContext is the same as GetAccountSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAccountSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) GetAccountSettingsWithContext(ctx aws.Context, input *GetAccountSettingsInput, opts ...request.Option) (*GetAccountSettingsOutput, error) {
+	req, out := c.GetAccountSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetDevice = "GetDevice"
@@ -974,8 +1155,23 @@ func (c *DeviceFarm) GetDeviceRequest(input *GetDeviceInput) (req *request.Reque
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetDevice
 func (c *DeviceFarm) GetDevice(input *GetDeviceInput) (*GetDeviceOutput, error) {
 	req, out := c.GetDeviceRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetDeviceWithContext is the same as GetDevice with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDevice for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) GetDeviceWithContext(ctx aws.Context, input *GetDeviceInput, opts ...request.Option) (*GetDeviceOutput, error) {
+	req, out := c.GetDeviceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetDevicePool = "GetDevicePool"
@@ -1048,8 +1244,23 @@ func (c *DeviceFarm) GetDevicePoolRequest(input *GetDevicePoolInput) (req *reque
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetDevicePool
 func (c *DeviceFarm) GetDevicePool(input *GetDevicePoolInput) (*GetDevicePoolOutput, error) {
 	req, out := c.GetDevicePoolRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetDevicePoolWithContext is the same as GetDevicePool with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDevicePool for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) GetDevicePoolWithContext(ctx aws.Context, input *GetDevicePoolInput, opts ...request.Option) (*GetDevicePoolOutput, error) {
+	req, out := c.GetDevicePoolRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetDevicePoolCompatibility = "GetDevicePoolCompatibility"
@@ -1122,8 +1333,23 @@ func (c *DeviceFarm) GetDevicePoolCompatibilityRequest(input *GetDevicePoolCompa
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetDevicePoolCompatibility
 func (c *DeviceFarm) GetDevicePoolCompatibility(input *GetDevicePoolCompatibilityInput) (*GetDevicePoolCompatibilityOutput, error) {
 	req, out := c.GetDevicePoolCompatibilityRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetDevicePoolCompatibilityWithContext is the same as GetDevicePoolCompatibility with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDevicePoolCompatibility for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) GetDevicePoolCompatibilityWithContext(ctx aws.Context, input *GetDevicePoolCompatibilityInput, opts ...request.Option) (*GetDevicePoolCompatibilityOutput, error) {
+	req, out := c.GetDevicePoolCompatibilityRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetJob = "GetJob"
@@ -1196,8 +1422,23 @@ func (c *DeviceFarm) GetJobRequest(input *GetJobInput) (req *request.Request, ou
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetJob
 func (c *DeviceFarm) GetJob(input *GetJobInput) (*GetJobOutput, error) {
 	req, out := c.GetJobRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetJobWithContext is the same as GetJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) GetJobWithContext(ctx aws.Context, input *GetJobInput, opts ...request.Option) (*GetJobOutput, error) {
+	req, out := c.GetJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetNetworkProfile = "GetNetworkProfile"
@@ -1270,8 +1511,23 @@ func (c *DeviceFarm) GetNetworkProfileRequest(input *GetNetworkProfileInput) (re
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetNetworkProfile
 func (c *DeviceFarm) GetNetworkProfile(input *GetNetworkProfileInput) (*GetNetworkProfileOutput, error) {
 	req, out := c.GetNetworkProfileRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetNetworkProfileWithContext is the same as GetNetworkProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetNetworkProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) GetNetworkProfileWithContext(ctx aws.Context, input *GetNetworkProfileInput, opts ...request.Option) (*GetNetworkProfileOutput, error) {
+	req, out := c.GetNetworkProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetOfferingStatus = "GetOfferingStatus"
@@ -1359,8 +1615,23 @@ func (c *DeviceFarm) GetOfferingStatusRequest(input *GetOfferingStatusInput) (re
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetOfferingStatus
 func (c *DeviceFarm) GetOfferingStatus(input *GetOfferingStatusInput) (*GetOfferingStatusOutput, error) {
 	req, out := c.GetOfferingStatusRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetOfferingStatusWithContext is the same as GetOfferingStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetOfferingStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) GetOfferingStatusWithContext(ctx aws.Context, input *GetOfferingStatusInput, opts ...request.Option) (*GetOfferingStatusOutput, error) {
+	req, out := c.GetOfferingStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // GetOfferingStatusPages iterates over the pages of a GetOfferingStatus operation,
@@ -1380,12 +1651,33 @@ func (c *DeviceFarm) GetOfferingStatus(input *GetOfferingStatusInput) (*GetOffer
 //            return pageNum <= 3
 //        })
 //
-func (c *DeviceFarm) GetOfferingStatusPages(input *GetOfferingStatusInput, fn func(p *GetOfferingStatusOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.GetOfferingStatusRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*GetOfferingStatusOutput), lastPage)
-	})
+func (c *DeviceFarm) GetOfferingStatusPages(input *GetOfferingStatusInput, fn func(*GetOfferingStatusOutput, bool) bool) error {
+	return c.GetOfferingStatusPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetOfferingStatusPagesWithContext same as GetOfferingStatusPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) GetOfferingStatusPagesWithContext(ctx aws.Context, input *GetOfferingStatusInput, fn func(*GetOfferingStatusOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.GetOfferingStatusRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*GetOfferingStatusOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opGetProject = "GetProject"
@@ -1458,8 +1750,23 @@ func (c *DeviceFarm) GetProjectRequest(input *GetProjectInput) (req *request.Req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetProject
 func (c *DeviceFarm) GetProject(input *GetProjectInput) (*GetProjectOutput, error) {
 	req, out := c.GetProjectRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetProjectWithContext is the same as GetProject with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetProject for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) GetProjectWithContext(ctx aws.Context, input *GetProjectInput, opts ...request.Option) (*GetProjectOutput, error) {
+	req, out := c.GetProjectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetRemoteAccessSession = "GetRemoteAccessSession"
@@ -1532,8 +1839,23 @@ func (c *DeviceFarm) GetRemoteAccessSessionRequest(input *GetRemoteAccessSession
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetRemoteAccessSession
 func (c *DeviceFarm) GetRemoteAccessSession(input *GetRemoteAccessSessionInput) (*GetRemoteAccessSessionOutput, error) {
 	req, out := c.GetRemoteAccessSessionRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetRemoteAccessSessionWithContext is the same as GetRemoteAccessSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetRemoteAccessSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) GetRemoteAccessSessionWithContext(ctx aws.Context, input *GetRemoteAccessSessionInput, opts ...request.Option) (*GetRemoteAccessSessionOutput, error) {
+	req, out := c.GetRemoteAccessSessionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetRun = "GetRun"
@@ -1606,8 +1928,23 @@ func (c *DeviceFarm) GetRunRequest(input *GetRunInput) (req *request.Request, ou
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetRun
 func (c *DeviceFarm) GetRun(input *GetRunInput) (*GetRunOutput, error) {
 	req, out := c.GetRunRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetRunWithContext is the same as GetRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) GetRunWithContext(ctx aws.Context, input *GetRunInput, opts ...request.Option) (*GetRunOutput, error) {
+	req, out := c.GetRunRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetSuite = "GetSuite"
@@ -1680,8 +2017,23 @@ func (c *DeviceFarm) GetSuiteRequest(input *GetSuiteInput) (req *request.Request
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetSuite
 func (c *DeviceFarm) GetSuite(input *GetSuiteInput) (*GetSuiteOutput, error) {
 	req, out := c.GetSuiteRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetSuiteWithContext is the same as GetSuite with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSuite for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) GetSuiteWithContext(ctx aws.Context, input *GetSuiteInput, opts ...request.Option) (*GetSuiteOutput, error) {
+	req, out := c.GetSuiteRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetTest = "GetTest"
@@ -1754,8 +2106,23 @@ func (c *DeviceFarm) GetTestRequest(input *GetTestInput) (req *request.Request, 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetTest
 func (c *DeviceFarm) GetTest(input *GetTestInput) (*GetTestOutput, error) {
 	req, out := c.GetTestRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetTestWithContext is the same as GetTest with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetTest for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) GetTestWithContext(ctx aws.Context, input *GetTestInput, opts ...request.Option) (*GetTestOutput, error) {
+	req, out := c.GetTestRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetUpload = "GetUpload"
@@ -1828,8 +2195,23 @@ func (c *DeviceFarm) GetUploadRequest(input *GetUploadInput) (req *request.Reque
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetUpload
 func (c *DeviceFarm) GetUpload(input *GetUploadInput) (*GetUploadOutput, error) {
 	req, out := c.GetUploadRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetUploadWithContext is the same as GetUpload with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetUpload for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) GetUploadWithContext(ctx aws.Context, input *GetUploadInput, opts ...request.Option) (*GetUploadOutput, error) {
+	req, out := c.GetUploadRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opInstallToRemoteAccessSession = "InstallToRemoteAccessSession"
@@ -1904,8 +2286,23 @@ func (c *DeviceFarm) InstallToRemoteAccessSessionRequest(input *InstallToRemoteA
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/InstallToRemoteAccessSession
 func (c *DeviceFarm) InstallToRemoteAccessSession(input *InstallToRemoteAccessSessionInput) (*InstallToRemoteAccessSessionOutput, error) {
 	req, out := c.InstallToRemoteAccessSessionRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// InstallToRemoteAccessSessionWithContext is the same as InstallToRemoteAccessSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See InstallToRemoteAccessSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) InstallToRemoteAccessSessionWithContext(ctx aws.Context, input *InstallToRemoteAccessSessionInput, opts ...request.Option) (*InstallToRemoteAccessSessionOutput, error) {
+	req, out := c.InstallToRemoteAccessSessionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListArtifacts = "ListArtifacts"
@@ -1984,8 +2381,23 @@ func (c *DeviceFarm) ListArtifactsRequest(input *ListArtifactsInput) (req *reque
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListArtifacts
 func (c *DeviceFarm) ListArtifacts(input *ListArtifactsInput) (*ListArtifactsOutput, error) {
 	req, out := c.ListArtifactsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListArtifactsWithContext is the same as ListArtifacts with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListArtifacts for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListArtifactsWithContext(ctx aws.Context, input *ListArtifactsInput, opts ...request.Option) (*ListArtifactsOutput, error) {
+	req, out := c.ListArtifactsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListArtifactsPages iterates over the pages of a ListArtifacts operation,
@@ -2005,12 +2417,33 @@ func (c *DeviceFarm) ListArtifacts(input *ListArtifactsInput) (*ListArtifactsOut
 //            return pageNum <= 3
 //        })
 //
-func (c *DeviceFarm) ListArtifactsPages(input *ListArtifactsInput, fn func(p *ListArtifactsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListArtifactsRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListArtifactsOutput), lastPage)
-	})
+func (c *DeviceFarm) ListArtifactsPages(input *ListArtifactsInput, fn func(*ListArtifactsOutput, bool) bool) error {
+	return c.ListArtifactsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListArtifactsPagesWithContext same as ListArtifactsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListArtifactsPagesWithContext(ctx aws.Context, input *ListArtifactsInput, fn func(*ListArtifactsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListArtifactsRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListArtifactsOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListDevicePools = "ListDevicePools"
@@ -2089,8 +2522,23 @@ func (c *DeviceFarm) ListDevicePoolsRequest(input *ListDevicePoolsInput) (req *r
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListDevicePools
 func (c *DeviceFarm) ListDevicePools(input *ListDevicePoolsInput) (*ListDevicePoolsOutput, error) {
 	req, out := c.ListDevicePoolsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListDevicePoolsWithContext is the same as ListDevicePools with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDevicePools for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListDevicePoolsWithContext(ctx aws.Context, input *ListDevicePoolsInput, opts ...request.Option) (*ListDevicePoolsOutput, error) {
+	req, out := c.ListDevicePoolsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListDevicePoolsPages iterates over the pages of a ListDevicePools operation,
@@ -2110,12 +2558,33 @@ func (c *DeviceFarm) ListDevicePools(input *ListDevicePoolsInput) (*ListDevicePo
 //            return pageNum <= 3
 //        })
 //
-func (c *DeviceFarm) ListDevicePoolsPages(input *ListDevicePoolsInput, fn func(p *ListDevicePoolsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListDevicePoolsRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListDevicePoolsOutput), lastPage)
-	})
+func (c *DeviceFarm) ListDevicePoolsPages(input *ListDevicePoolsInput, fn func(*ListDevicePoolsOutput, bool) bool) error {
+	return c.ListDevicePoolsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDevicePoolsPagesWithContext same as ListDevicePoolsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListDevicePoolsPagesWithContext(ctx aws.Context, input *ListDevicePoolsInput, fn func(*ListDevicePoolsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListDevicePoolsRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListDevicePoolsOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListDevices = "ListDevices"
@@ -2194,8 +2663,23 @@ func (c *DeviceFarm) ListDevicesRequest(input *ListDevicesInput) (req *request.R
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListDevices
 func (c *DeviceFarm) ListDevices(input *ListDevicesInput) (*ListDevicesOutput, error) {
 	req, out := c.ListDevicesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListDevicesWithContext is the same as ListDevices with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDevices for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListDevicesWithContext(ctx aws.Context, input *ListDevicesInput, opts ...request.Option) (*ListDevicesOutput, error) {
+	req, out := c.ListDevicesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListDevicesPages iterates over the pages of a ListDevices operation,
@@ -2215,12 +2699,33 @@ func (c *DeviceFarm) ListDevices(input *ListDevicesInput) (*ListDevicesOutput, e
 //            return pageNum <= 3
 //        })
 //
-func (c *DeviceFarm) ListDevicesPages(input *ListDevicesInput, fn func(p *ListDevicesOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListDevicesRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListDevicesOutput), lastPage)
-	})
+func (c *DeviceFarm) ListDevicesPages(input *ListDevicesInput, fn func(*ListDevicesOutput, bool) bool) error {
+	return c.ListDevicesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDevicesPagesWithContext same as ListDevicesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListDevicesPagesWithContext(ctx aws.Context, input *ListDevicesInput, fn func(*ListDevicesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListDevicesRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListDevicesOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListJobs = "ListJobs"
@@ -2299,8 +2804,23 @@ func (c *DeviceFarm) ListJobsRequest(input *ListJobsInput) (req *request.Request
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListJobs
 func (c *DeviceFarm) ListJobs(input *ListJobsInput) (*ListJobsOutput, error) {
 	req, out := c.ListJobsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListJobsWithContext is the same as ListJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListJobsWithContext(ctx aws.Context, input *ListJobsInput, opts ...request.Option) (*ListJobsOutput, error) {
+	req, out := c.ListJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListJobsPages iterates over the pages of a ListJobs operation,
@@ -2320,12 +2840,33 @@ func (c *DeviceFarm) ListJobs(input *ListJobsInput) (*ListJobsOutput, error) {
 //            return pageNum <= 3
 //        })
 //
-func (c *DeviceFarm) ListJobsPages(input *ListJobsInput, fn func(p *ListJobsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListJobsRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListJobsOutput), lastPage)
-	})
+func (c *DeviceFarm) ListJobsPages(input *ListJobsInput, fn func(*ListJobsOutput, bool) bool) error {
+	return c.ListJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListJobsPagesWithContext same as ListJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListJobsPagesWithContext(ctx aws.Context, input *ListJobsInput, fn func(*ListJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListJobsRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListJobsOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListNetworkProfiles = "ListNetworkProfiles"
@@ -2398,8 +2939,23 @@ func (c *DeviceFarm) ListNetworkProfilesRequest(input *ListNetworkProfilesInput)
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListNetworkProfiles
 func (c *DeviceFarm) ListNetworkProfiles(input *ListNetworkProfilesInput) (*ListNetworkProfilesOutput, error) {
 	req, out := c.ListNetworkProfilesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListNetworkProfilesWithContext is the same as ListNetworkProfiles with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListNetworkProfiles for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListNetworkProfilesWithContext(ctx aws.Context, input *ListNetworkProfilesInput, opts ...request.Option) (*ListNetworkProfilesOutput, error) {
+	req, out := c.ListNetworkProfilesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListOfferingTransactions = "ListOfferingTransactions"
@@ -2487,8 +3043,23 @@ func (c *DeviceFarm) ListOfferingTransactionsRequest(input *ListOfferingTransact
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListOfferingTransactions
 func (c *DeviceFarm) ListOfferingTransactions(input *ListOfferingTransactionsInput) (*ListOfferingTransactionsOutput, error) {
 	req, out := c.ListOfferingTransactionsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListOfferingTransactionsWithContext is the same as ListOfferingTransactions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListOfferingTransactions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListOfferingTransactionsWithContext(ctx aws.Context, input *ListOfferingTransactionsInput, opts ...request.Option) (*ListOfferingTransactionsOutput, error) {
+	req, out := c.ListOfferingTransactionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListOfferingTransactionsPages iterates over the pages of a ListOfferingTransactions operation,
@@ -2508,12 +3079,33 @@ func (c *DeviceFarm) ListOfferingTransactions(input *ListOfferingTransactionsInp
 //            return pageNum <= 3
 //        })
 //
-func (c *DeviceFarm) ListOfferingTransactionsPages(input *ListOfferingTransactionsInput, fn func(p *ListOfferingTransactionsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListOfferingTransactionsRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListOfferingTransactionsOutput), lastPage)
-	})
+func (c *DeviceFarm) ListOfferingTransactionsPages(input *ListOfferingTransactionsInput, fn func(*ListOfferingTransactionsOutput, bool) bool) error {
+	return c.ListOfferingTransactionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListOfferingTransactionsPagesWithContext same as ListOfferingTransactionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListOfferingTransactionsPagesWithContext(ctx aws.Context, input *ListOfferingTransactionsInput, fn func(*ListOfferingTransactionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListOfferingTransactionsRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListOfferingTransactionsOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListOfferings = "ListOfferings"
@@ -2601,8 +3193,23 @@ func (c *DeviceFarm) ListOfferingsRequest(input *ListOfferingsInput) (req *reque
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListOfferings
 func (c *DeviceFarm) ListOfferings(input *ListOfferingsInput) (*ListOfferingsOutput, error) {
 	req, out := c.ListOfferingsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListOfferingsWithContext is the same as ListOfferings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListOfferings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListOfferingsWithContext(ctx aws.Context, input *ListOfferingsInput, opts ...request.Option) (*ListOfferingsOutput, error) {
+	req, out := c.ListOfferingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListOfferingsPages iterates over the pages of a ListOfferings operation,
@@ -2622,12 +3229,33 @@ func (c *DeviceFarm) ListOfferings(input *ListOfferingsInput) (*ListOfferingsOut
 //            return pageNum <= 3
 //        })
 //
-func (c *DeviceFarm) ListOfferingsPages(input *ListOfferingsInput, fn func(p *ListOfferingsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListOfferingsRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListOfferingsOutput), lastPage)
-	})
+func (c *DeviceFarm) ListOfferingsPages(input *ListOfferingsInput, fn func(*ListOfferingsOutput, bool) bool) error {
+	return c.ListOfferingsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListOfferingsPagesWithContext same as ListOfferingsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListOfferingsPagesWithContext(ctx aws.Context, input *ListOfferingsInput, fn func(*ListOfferingsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListOfferingsRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListOfferingsOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListProjects = "ListProjects"
@@ -2706,8 +3334,23 @@ func (c *DeviceFarm) ListProjectsRequest(input *ListProjectsInput) (req *request
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListProjects
 func (c *DeviceFarm) ListProjects(input *ListProjectsInput) (*ListProjectsOutput, error) {
 	req, out := c.ListProjectsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListProjectsWithContext is the same as ListProjects with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListProjects for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListProjectsWithContext(ctx aws.Context, input *ListProjectsInput, opts ...request.Option) (*ListProjectsOutput, error) {
+	req, out := c.ListProjectsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListProjectsPages iterates over the pages of a ListProjects operation,
@@ -2727,12 +3370,33 @@ func (c *DeviceFarm) ListProjects(input *ListProjectsInput) (*ListProjectsOutput
 //            return pageNum <= 3
 //        })
 //
-func (c *DeviceFarm) ListProjectsPages(input *ListProjectsInput, fn func(p *ListProjectsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListProjectsRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListProjectsOutput), lastPage)
-	})
+func (c *DeviceFarm) ListProjectsPages(input *ListProjectsInput, fn func(*ListProjectsOutput, bool) bool) error {
+	return c.ListProjectsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListProjectsPagesWithContext same as ListProjectsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListProjectsPagesWithContext(ctx aws.Context, input *ListProjectsInput, fn func(*ListProjectsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListProjectsRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListProjectsOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListRemoteAccessSessions = "ListRemoteAccessSessions"
@@ -2805,8 +3469,23 @@ func (c *DeviceFarm) ListRemoteAccessSessionsRequest(input *ListRemoteAccessSess
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListRemoteAccessSessions
 func (c *DeviceFarm) ListRemoteAccessSessions(input *ListRemoteAccessSessionsInput) (*ListRemoteAccessSessionsOutput, error) {
 	req, out := c.ListRemoteAccessSessionsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListRemoteAccessSessionsWithContext is the same as ListRemoteAccessSessions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRemoteAccessSessions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListRemoteAccessSessionsWithContext(ctx aws.Context, input *ListRemoteAccessSessionsInput, opts ...request.Option) (*ListRemoteAccessSessionsOutput, error) {
+	req, out := c.ListRemoteAccessSessionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListRuns = "ListRuns"
@@ -2885,8 +3564,23 @@ func (c *DeviceFarm) ListRunsRequest(input *ListRunsInput) (req *request.Request
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListRuns
 func (c *DeviceFarm) ListRuns(input *ListRunsInput) (*ListRunsOutput, error) {
 	req, out := c.ListRunsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListRunsWithContext is the same as ListRuns with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRuns for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListRunsWithContext(ctx aws.Context, input *ListRunsInput, opts ...request.Option) (*ListRunsOutput, error) {
+	req, out := c.ListRunsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListRunsPages iterates over the pages of a ListRuns operation,
@@ -2906,12 +3600,33 @@ func (c *DeviceFarm) ListRuns(input *ListRunsInput) (*ListRunsOutput, error) {
 //            return pageNum <= 3
 //        })
 //
-func (c *DeviceFarm) ListRunsPages(input *ListRunsInput, fn func(p *ListRunsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListRunsRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListRunsOutput), lastPage)
-	})
+func (c *DeviceFarm) ListRunsPages(input *ListRunsInput, fn func(*ListRunsOutput, bool) bool) error {
+	return c.ListRunsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRunsPagesWithContext same as ListRunsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListRunsPagesWithContext(ctx aws.Context, input *ListRunsInput, fn func(*ListRunsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListRunsRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListRunsOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListSamples = "ListSamples"
@@ -2990,8 +3705,23 @@ func (c *DeviceFarm) ListSamplesRequest(input *ListSamplesInput) (req *request.R
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListSamples
 func (c *DeviceFarm) ListSamples(input *ListSamplesInput) (*ListSamplesOutput, error) {
 	req, out := c.ListSamplesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListSamplesWithContext is the same as ListSamples with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSamples for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListSamplesWithContext(ctx aws.Context, input *ListSamplesInput, opts ...request.Option) (*ListSamplesOutput, error) {
+	req, out := c.ListSamplesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListSamplesPages iterates over the pages of a ListSamples operation,
@@ -3011,12 +3741,33 @@ func (c *DeviceFarm) ListSamples(input *ListSamplesInput) (*ListSamplesOutput, e
 //            return pageNum <= 3
 //        })
 //
-func (c *DeviceFarm) ListSamplesPages(input *ListSamplesInput, fn func(p *ListSamplesOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListSamplesRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListSamplesOutput), lastPage)
-	})
+func (c *DeviceFarm) ListSamplesPages(input *ListSamplesInput, fn func(*ListSamplesOutput, bool) bool) error {
+	return c.ListSamplesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSamplesPagesWithContext same as ListSamplesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListSamplesPagesWithContext(ctx aws.Context, input *ListSamplesInput, fn func(*ListSamplesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListSamplesRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListSamplesOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListSuites = "ListSuites"
@@ -3095,8 +3846,23 @@ func (c *DeviceFarm) ListSuitesRequest(input *ListSuitesInput) (req *request.Req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListSuites
 func (c *DeviceFarm) ListSuites(input *ListSuitesInput) (*ListSuitesOutput, error) {
 	req, out := c.ListSuitesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListSuitesWithContext is the same as ListSuites with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSuites for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListSuitesWithContext(ctx aws.Context, input *ListSuitesInput, opts ...request.Option) (*ListSuitesOutput, error) {
+	req, out := c.ListSuitesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListSuitesPages iterates over the pages of a ListSuites operation,
@@ -3116,12 +3882,33 @@ func (c *DeviceFarm) ListSuites(input *ListSuitesInput) (*ListSuitesOutput, erro
 //            return pageNum <= 3
 //        })
 //
-func (c *DeviceFarm) ListSuitesPages(input *ListSuitesInput, fn func(p *ListSuitesOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListSuitesRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListSuitesOutput), lastPage)
-	})
+func (c *DeviceFarm) ListSuitesPages(input *ListSuitesInput, fn func(*ListSuitesOutput, bool) bool) error {
+	return c.ListSuitesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSuitesPagesWithContext same as ListSuitesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListSuitesPagesWithContext(ctx aws.Context, input *ListSuitesInput, fn func(*ListSuitesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListSuitesRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListSuitesOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListTests = "ListTests"
@@ -3200,8 +3987,23 @@ func (c *DeviceFarm) ListTestsRequest(input *ListTestsInput) (req *request.Reque
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListTests
 func (c *DeviceFarm) ListTests(input *ListTestsInput) (*ListTestsOutput, error) {
 	req, out := c.ListTestsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListTestsWithContext is the same as ListTests with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTests for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListTestsWithContext(ctx aws.Context, input *ListTestsInput, opts ...request.Option) (*ListTestsOutput, error) {
+	req, out := c.ListTestsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListTestsPages iterates over the pages of a ListTests operation,
@@ -3221,12 +4023,33 @@ func (c *DeviceFarm) ListTests(input *ListTestsInput) (*ListTestsOutput, error) 
 //            return pageNum <= 3
 //        })
 //
-func (c *DeviceFarm) ListTestsPages(input *ListTestsInput, fn func(p *ListTestsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListTestsRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListTestsOutput), lastPage)
-	})
+func (c *DeviceFarm) ListTestsPages(input *ListTestsInput, fn func(*ListTestsOutput, bool) bool) error {
+	return c.ListTestsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTestsPagesWithContext same as ListTestsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListTestsPagesWithContext(ctx aws.Context, input *ListTestsInput, fn func(*ListTestsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListTestsRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListTestsOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListUniqueProblems = "ListUniqueProblems"
@@ -3305,8 +4128,23 @@ func (c *DeviceFarm) ListUniqueProblemsRequest(input *ListUniqueProblemsInput) (
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListUniqueProblems
 func (c *DeviceFarm) ListUniqueProblems(input *ListUniqueProblemsInput) (*ListUniqueProblemsOutput, error) {
 	req, out := c.ListUniqueProblemsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListUniqueProblemsWithContext is the same as ListUniqueProblems with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListUniqueProblems for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListUniqueProblemsWithContext(ctx aws.Context, input *ListUniqueProblemsInput, opts ...request.Option) (*ListUniqueProblemsOutput, error) {
+	req, out := c.ListUniqueProblemsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListUniqueProblemsPages iterates over the pages of a ListUniqueProblems operation,
@@ -3326,12 +4164,33 @@ func (c *DeviceFarm) ListUniqueProblems(input *ListUniqueProblemsInput) (*ListUn
 //            return pageNum <= 3
 //        })
 //
-func (c *DeviceFarm) ListUniqueProblemsPages(input *ListUniqueProblemsInput, fn func(p *ListUniqueProblemsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListUniqueProblemsRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListUniqueProblemsOutput), lastPage)
-	})
+func (c *DeviceFarm) ListUniqueProblemsPages(input *ListUniqueProblemsInput, fn func(*ListUniqueProblemsOutput, bool) bool) error {
+	return c.ListUniqueProblemsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListUniqueProblemsPagesWithContext same as ListUniqueProblemsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListUniqueProblemsPagesWithContext(ctx aws.Context, input *ListUniqueProblemsInput, fn func(*ListUniqueProblemsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListUniqueProblemsRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListUniqueProblemsOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListUploads = "ListUploads"
@@ -3410,8 +4269,23 @@ func (c *DeviceFarm) ListUploadsRequest(input *ListUploadsInput) (req *request.R
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListUploads
 func (c *DeviceFarm) ListUploads(input *ListUploadsInput) (*ListUploadsOutput, error) {
 	req, out := c.ListUploadsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListUploadsWithContext is the same as ListUploads with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListUploads for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListUploadsWithContext(ctx aws.Context, input *ListUploadsInput, opts ...request.Option) (*ListUploadsOutput, error) {
+	req, out := c.ListUploadsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListUploadsPages iterates over the pages of a ListUploads operation,
@@ -3431,12 +4305,33 @@ func (c *DeviceFarm) ListUploads(input *ListUploadsInput) (*ListUploadsOutput, e
 //            return pageNum <= 3
 //        })
 //
-func (c *DeviceFarm) ListUploadsPages(input *ListUploadsInput, fn func(p *ListUploadsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListUploadsRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListUploadsOutput), lastPage)
-	})
+func (c *DeviceFarm) ListUploadsPages(input *ListUploadsInput, fn func(*ListUploadsOutput, bool) bool) error {
+	return c.ListUploadsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListUploadsPagesWithContext same as ListUploadsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListUploadsPagesWithContext(ctx aws.Context, input *ListUploadsInput, fn func(*ListUploadsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListUploadsRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListUploadsOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opPurchaseOffering = "PurchaseOffering"
@@ -3518,8 +4413,23 @@ func (c *DeviceFarm) PurchaseOfferingRequest(input *PurchaseOfferingInput) (req 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/PurchaseOffering
 func (c *DeviceFarm) PurchaseOffering(input *PurchaseOfferingInput) (*PurchaseOfferingOutput, error) {
 	req, out := c.PurchaseOfferingRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// PurchaseOfferingWithContext is the same as PurchaseOffering with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PurchaseOffering for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) PurchaseOfferingWithContext(ctx aws.Context, input *PurchaseOfferingInput, opts ...request.Option) (*PurchaseOfferingOutput, error) {
+	req, out := c.PurchaseOfferingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opRenewOffering = "RenewOffering"
@@ -3600,8 +4510,23 @@ func (c *DeviceFarm) RenewOfferingRequest(input *RenewOfferingInput) (req *reque
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/RenewOffering
 func (c *DeviceFarm) RenewOffering(input *RenewOfferingInput) (*RenewOfferingOutput, error) {
 	req, out := c.RenewOfferingRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// RenewOfferingWithContext is the same as RenewOffering with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RenewOffering for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) RenewOfferingWithContext(ctx aws.Context, input *RenewOfferingInput, opts ...request.Option) (*RenewOfferingOutput, error) {
+	req, out := c.RenewOfferingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opScheduleRun = "ScheduleRun"
@@ -3677,8 +4602,23 @@ func (c *DeviceFarm) ScheduleRunRequest(input *ScheduleRunInput) (req *request.R
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ScheduleRun
 func (c *DeviceFarm) ScheduleRun(input *ScheduleRunInput) (*ScheduleRunOutput, error) {
 	req, out := c.ScheduleRunRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ScheduleRunWithContext is the same as ScheduleRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ScheduleRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ScheduleRunWithContext(ctx aws.Context, input *ScheduleRunInput, opts ...request.Option) (*ScheduleRunOutput, error) {
+	req, out := c.ScheduleRunRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opStopRemoteAccessSession = "StopRemoteAccessSession"
@@ -3751,8 +4691,23 @@ func (c *DeviceFarm) StopRemoteAccessSessionRequest(input *StopRemoteAccessSessi
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/StopRemoteAccessSession
 func (c *DeviceFarm) StopRemoteAccessSession(input *StopRemoteAccessSessionInput) (*StopRemoteAccessSessionOutput, error) {
 	req, out := c.StopRemoteAccessSessionRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// StopRemoteAccessSessionWithContext is the same as StopRemoteAccessSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopRemoteAccessSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) StopRemoteAccessSessionWithContext(ctx aws.Context, input *StopRemoteAccessSessionInput, opts ...request.Option) (*StopRemoteAccessSessionOutput, error) {
+	req, out := c.StopRemoteAccessSessionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opStopRun = "StopRun"
@@ -3830,8 +4785,23 @@ func (c *DeviceFarm) StopRunRequest(input *StopRunInput) (req *request.Request, 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/StopRun
 func (c *DeviceFarm) StopRun(input *StopRunInput) (*StopRunOutput, error) {
 	req, out := c.StopRunRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// StopRunWithContext is the same as StopRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) StopRunWithContext(ctx aws.Context, input *StopRunInput, opts ...request.Option) (*StopRunOutput, error) {
+	req, out := c.StopRunRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateDevicePool = "UpdateDevicePool"
@@ -3906,8 +4876,23 @@ func (c *DeviceFarm) UpdateDevicePoolRequest(input *UpdateDevicePoolInput) (req 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/UpdateDevicePool
 func (c *DeviceFarm) UpdateDevicePool(input *UpdateDevicePoolInput) (*UpdateDevicePoolOutput, error) {
 	req, out := c.UpdateDevicePoolRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateDevicePoolWithContext is the same as UpdateDevicePool with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateDevicePool for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) UpdateDevicePoolWithContext(ctx aws.Context, input *UpdateDevicePoolInput, opts ...request.Option) (*UpdateDevicePoolOutput, error) {
+	req, out := c.UpdateDevicePoolRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateNetworkProfile = "UpdateNetworkProfile"
@@ -3980,8 +4965,23 @@ func (c *DeviceFarm) UpdateNetworkProfileRequest(input *UpdateNetworkProfileInpu
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/UpdateNetworkProfile
 func (c *DeviceFarm) UpdateNetworkProfile(input *UpdateNetworkProfileInput) (*UpdateNetworkProfileOutput, error) {
 	req, out := c.UpdateNetworkProfileRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateNetworkProfileWithContext is the same as UpdateNetworkProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateNetworkProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) UpdateNetworkProfileWithContext(ctx aws.Context, input *UpdateNetworkProfileInput, opts ...request.Option) (*UpdateNetworkProfileOutput, error) {
+	req, out := c.UpdateNetworkProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateProject = "UpdateProject"
@@ -4054,8 +5054,23 @@ func (c *DeviceFarm) UpdateProjectRequest(input *UpdateProjectInput) (req *reque
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/UpdateProject
 func (c *DeviceFarm) UpdateProject(input *UpdateProjectInput) (*UpdateProjectOutput, error) {
 	req, out := c.UpdateProjectRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateProjectWithContext is the same as UpdateProject with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateProject for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) UpdateProjectWithContext(ctx aws.Context, input *UpdateProjectInput, opts ...request.Option) (*UpdateProjectOutput, error) {
+	req, out := c.UpdateProjectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // A container for account-level settings within AWS Device Farm.

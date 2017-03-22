@@ -4,6 +4,7 @@
 package pinpoint
 
 import (
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 )
@@ -81,8 +82,23 @@ func (c *Pinpoint) CreateCampaignRequest(input *CreateCampaignInput) (req *reque
 //
 func (c *Pinpoint) CreateCampaign(input *CreateCampaignInput) (*CreateCampaignOutput, error) {
 	req, out := c.CreateCampaignRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateCampaignWithContext is the same as CreateCampaign with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateCampaign for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) CreateCampaignWithContext(ctx aws.Context, input *CreateCampaignInput, opts ...request.Option) (*CreateCampaignOutput, error) {
+	req, out := c.CreateCampaignRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateImportJob = "CreateImportJob"
@@ -158,8 +174,23 @@ func (c *Pinpoint) CreateImportJobRequest(input *CreateImportJobInput) (req *req
 //
 func (c *Pinpoint) CreateImportJob(input *CreateImportJobInput) (*CreateImportJobOutput, error) {
 	req, out := c.CreateImportJobRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateImportJobWithContext is the same as CreateImportJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateImportJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) CreateImportJobWithContext(ctx aws.Context, input *CreateImportJobInput, opts ...request.Option) (*CreateImportJobOutput, error) {
+	req, out := c.CreateImportJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateSegment = "CreateSegment"
@@ -235,8 +266,23 @@ func (c *Pinpoint) CreateSegmentRequest(input *CreateSegmentInput) (req *request
 //
 func (c *Pinpoint) CreateSegment(input *CreateSegmentInput) (*CreateSegmentOutput, error) {
 	req, out := c.CreateSegmentRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateSegmentWithContext is the same as CreateSegment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateSegment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) CreateSegmentWithContext(ctx aws.Context, input *CreateSegmentInput, opts ...request.Option) (*CreateSegmentOutput, error) {
+	req, out := c.CreateSegmentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteApnsChannel = "DeleteApnsChannel"
@@ -312,8 +358,23 @@ func (c *Pinpoint) DeleteApnsChannelRequest(input *DeleteApnsChannelInput) (req 
 //
 func (c *Pinpoint) DeleteApnsChannel(input *DeleteApnsChannelInput) (*DeleteApnsChannelOutput, error) {
 	req, out := c.DeleteApnsChannelRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteApnsChannelWithContext is the same as DeleteApnsChannel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteApnsChannel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) DeleteApnsChannelWithContext(ctx aws.Context, input *DeleteApnsChannelInput, opts ...request.Option) (*DeleteApnsChannelOutput, error) {
+	req, out := c.DeleteApnsChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteCampaign = "DeleteCampaign"
@@ -389,8 +450,23 @@ func (c *Pinpoint) DeleteCampaignRequest(input *DeleteCampaignInput) (req *reque
 //
 func (c *Pinpoint) DeleteCampaign(input *DeleteCampaignInput) (*DeleteCampaignOutput, error) {
 	req, out := c.DeleteCampaignRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteCampaignWithContext is the same as DeleteCampaign with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteCampaign for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) DeleteCampaignWithContext(ctx aws.Context, input *DeleteCampaignInput, opts ...request.Option) (*DeleteCampaignOutput, error) {
+	req, out := c.DeleteCampaignRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteGcmChannel = "DeleteGcmChannel"
@@ -466,8 +542,23 @@ func (c *Pinpoint) DeleteGcmChannelRequest(input *DeleteGcmChannelInput) (req *r
 //
 func (c *Pinpoint) DeleteGcmChannel(input *DeleteGcmChannelInput) (*DeleteGcmChannelOutput, error) {
 	req, out := c.DeleteGcmChannelRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteGcmChannelWithContext is the same as DeleteGcmChannel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteGcmChannel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) DeleteGcmChannelWithContext(ctx aws.Context, input *DeleteGcmChannelInput, opts ...request.Option) (*DeleteGcmChannelOutput, error) {
+	req, out := c.DeleteGcmChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteSegment = "DeleteSegment"
@@ -543,8 +634,23 @@ func (c *Pinpoint) DeleteSegmentRequest(input *DeleteSegmentInput) (req *request
 //
 func (c *Pinpoint) DeleteSegment(input *DeleteSegmentInput) (*DeleteSegmentOutput, error) {
 	req, out := c.DeleteSegmentRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteSegmentWithContext is the same as DeleteSegment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteSegment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) DeleteSegmentWithContext(ctx aws.Context, input *DeleteSegmentInput, opts ...request.Option) (*DeleteSegmentOutput, error) {
+	req, out := c.DeleteSegmentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetApnsChannel = "GetApnsChannel"
@@ -620,8 +726,23 @@ func (c *Pinpoint) GetApnsChannelRequest(input *GetApnsChannelInput) (req *reque
 //
 func (c *Pinpoint) GetApnsChannel(input *GetApnsChannelInput) (*GetApnsChannelOutput, error) {
 	req, out := c.GetApnsChannelRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetApnsChannelWithContext is the same as GetApnsChannel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetApnsChannel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetApnsChannelWithContext(ctx aws.Context, input *GetApnsChannelInput, opts ...request.Option) (*GetApnsChannelOutput, error) {
+	req, out := c.GetApnsChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetApplicationSettings = "GetApplicationSettings"
@@ -697,8 +818,23 @@ func (c *Pinpoint) GetApplicationSettingsRequest(input *GetApplicationSettingsIn
 //
 func (c *Pinpoint) GetApplicationSettings(input *GetApplicationSettingsInput) (*GetApplicationSettingsOutput, error) {
 	req, out := c.GetApplicationSettingsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetApplicationSettingsWithContext is the same as GetApplicationSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetApplicationSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetApplicationSettingsWithContext(ctx aws.Context, input *GetApplicationSettingsInput, opts ...request.Option) (*GetApplicationSettingsOutput, error) {
+	req, out := c.GetApplicationSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetCampaign = "GetCampaign"
@@ -774,8 +910,23 @@ func (c *Pinpoint) GetCampaignRequest(input *GetCampaignInput) (req *request.Req
 //
 func (c *Pinpoint) GetCampaign(input *GetCampaignInput) (*GetCampaignOutput, error) {
 	req, out := c.GetCampaignRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetCampaignWithContext is the same as GetCampaign with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCampaign for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetCampaignWithContext(ctx aws.Context, input *GetCampaignInput, opts ...request.Option) (*GetCampaignOutput, error) {
+	req, out := c.GetCampaignRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetCampaignActivities = "GetCampaignActivities"
@@ -851,8 +1002,23 @@ func (c *Pinpoint) GetCampaignActivitiesRequest(input *GetCampaignActivitiesInpu
 //
 func (c *Pinpoint) GetCampaignActivities(input *GetCampaignActivitiesInput) (*GetCampaignActivitiesOutput, error) {
 	req, out := c.GetCampaignActivitiesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetCampaignActivitiesWithContext is the same as GetCampaignActivities with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCampaignActivities for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetCampaignActivitiesWithContext(ctx aws.Context, input *GetCampaignActivitiesInput, opts ...request.Option) (*GetCampaignActivitiesOutput, error) {
+	req, out := c.GetCampaignActivitiesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetCampaignVersion = "GetCampaignVersion"
@@ -928,8 +1094,23 @@ func (c *Pinpoint) GetCampaignVersionRequest(input *GetCampaignVersionInput) (re
 //
 func (c *Pinpoint) GetCampaignVersion(input *GetCampaignVersionInput) (*GetCampaignVersionOutput, error) {
 	req, out := c.GetCampaignVersionRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetCampaignVersionWithContext is the same as GetCampaignVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCampaignVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetCampaignVersionWithContext(ctx aws.Context, input *GetCampaignVersionInput, opts ...request.Option) (*GetCampaignVersionOutput, error) {
+	req, out := c.GetCampaignVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetCampaignVersions = "GetCampaignVersions"
@@ -1005,8 +1186,23 @@ func (c *Pinpoint) GetCampaignVersionsRequest(input *GetCampaignVersionsInput) (
 //
 func (c *Pinpoint) GetCampaignVersions(input *GetCampaignVersionsInput) (*GetCampaignVersionsOutput, error) {
 	req, out := c.GetCampaignVersionsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetCampaignVersionsWithContext is the same as GetCampaignVersions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCampaignVersions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetCampaignVersionsWithContext(ctx aws.Context, input *GetCampaignVersionsInput, opts ...request.Option) (*GetCampaignVersionsOutput, error) {
+	req, out := c.GetCampaignVersionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetCampaigns = "GetCampaigns"
@@ -1082,8 +1278,23 @@ func (c *Pinpoint) GetCampaignsRequest(input *GetCampaignsInput) (req *request.R
 //
 func (c *Pinpoint) GetCampaigns(input *GetCampaignsInput) (*GetCampaignsOutput, error) {
 	req, out := c.GetCampaignsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetCampaignsWithContext is the same as GetCampaigns with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCampaigns for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetCampaignsWithContext(ctx aws.Context, input *GetCampaignsInput, opts ...request.Option) (*GetCampaignsOutput, error) {
+	req, out := c.GetCampaignsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetEndpoint = "GetEndpoint"
@@ -1159,8 +1370,23 @@ func (c *Pinpoint) GetEndpointRequest(input *GetEndpointInput) (req *request.Req
 //
 func (c *Pinpoint) GetEndpoint(input *GetEndpointInput) (*GetEndpointOutput, error) {
 	req, out := c.GetEndpointRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetEndpointWithContext is the same as GetEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetEndpointWithContext(ctx aws.Context, input *GetEndpointInput, opts ...request.Option) (*GetEndpointOutput, error) {
+	req, out := c.GetEndpointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetGcmChannel = "GetGcmChannel"
@@ -1236,8 +1462,23 @@ func (c *Pinpoint) GetGcmChannelRequest(input *GetGcmChannelInput) (req *request
 //
 func (c *Pinpoint) GetGcmChannel(input *GetGcmChannelInput) (*GetGcmChannelOutput, error) {
 	req, out := c.GetGcmChannelRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetGcmChannelWithContext is the same as GetGcmChannel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetGcmChannel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetGcmChannelWithContext(ctx aws.Context, input *GetGcmChannelInput, opts ...request.Option) (*GetGcmChannelOutput, error) {
+	req, out := c.GetGcmChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetImportJob = "GetImportJob"
@@ -1313,8 +1554,23 @@ func (c *Pinpoint) GetImportJobRequest(input *GetImportJobInput) (req *request.R
 //
 func (c *Pinpoint) GetImportJob(input *GetImportJobInput) (*GetImportJobOutput, error) {
 	req, out := c.GetImportJobRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetImportJobWithContext is the same as GetImportJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetImportJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetImportJobWithContext(ctx aws.Context, input *GetImportJobInput, opts ...request.Option) (*GetImportJobOutput, error) {
+	req, out := c.GetImportJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetImportJobs = "GetImportJobs"
@@ -1390,8 +1646,23 @@ func (c *Pinpoint) GetImportJobsRequest(input *GetImportJobsInput) (req *request
 //
 func (c *Pinpoint) GetImportJobs(input *GetImportJobsInput) (*GetImportJobsOutput, error) {
 	req, out := c.GetImportJobsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetImportJobsWithContext is the same as GetImportJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetImportJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetImportJobsWithContext(ctx aws.Context, input *GetImportJobsInput, opts ...request.Option) (*GetImportJobsOutput, error) {
+	req, out := c.GetImportJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetSegment = "GetSegment"
@@ -1467,8 +1738,23 @@ func (c *Pinpoint) GetSegmentRequest(input *GetSegmentInput) (req *request.Reque
 //
 func (c *Pinpoint) GetSegment(input *GetSegmentInput) (*GetSegmentOutput, error) {
 	req, out := c.GetSegmentRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetSegmentWithContext is the same as GetSegment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSegment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetSegmentWithContext(ctx aws.Context, input *GetSegmentInput, opts ...request.Option) (*GetSegmentOutput, error) {
+	req, out := c.GetSegmentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetSegmentImportJobs = "GetSegmentImportJobs"
@@ -1544,8 +1830,23 @@ func (c *Pinpoint) GetSegmentImportJobsRequest(input *GetSegmentImportJobsInput)
 //
 func (c *Pinpoint) GetSegmentImportJobs(input *GetSegmentImportJobsInput) (*GetSegmentImportJobsOutput, error) {
 	req, out := c.GetSegmentImportJobsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetSegmentImportJobsWithContext is the same as GetSegmentImportJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSegmentImportJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetSegmentImportJobsWithContext(ctx aws.Context, input *GetSegmentImportJobsInput, opts ...request.Option) (*GetSegmentImportJobsOutput, error) {
+	req, out := c.GetSegmentImportJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetSegmentVersion = "GetSegmentVersion"
@@ -1621,8 +1922,23 @@ func (c *Pinpoint) GetSegmentVersionRequest(input *GetSegmentVersionInput) (req 
 //
 func (c *Pinpoint) GetSegmentVersion(input *GetSegmentVersionInput) (*GetSegmentVersionOutput, error) {
 	req, out := c.GetSegmentVersionRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetSegmentVersionWithContext is the same as GetSegmentVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSegmentVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetSegmentVersionWithContext(ctx aws.Context, input *GetSegmentVersionInput, opts ...request.Option) (*GetSegmentVersionOutput, error) {
+	req, out := c.GetSegmentVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetSegmentVersions = "GetSegmentVersions"
@@ -1698,8 +2014,23 @@ func (c *Pinpoint) GetSegmentVersionsRequest(input *GetSegmentVersionsInput) (re
 //
 func (c *Pinpoint) GetSegmentVersions(input *GetSegmentVersionsInput) (*GetSegmentVersionsOutput, error) {
 	req, out := c.GetSegmentVersionsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetSegmentVersionsWithContext is the same as GetSegmentVersions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSegmentVersions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetSegmentVersionsWithContext(ctx aws.Context, input *GetSegmentVersionsInput, opts ...request.Option) (*GetSegmentVersionsOutput, error) {
+	req, out := c.GetSegmentVersionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetSegments = "GetSegments"
@@ -1775,8 +2106,23 @@ func (c *Pinpoint) GetSegmentsRequest(input *GetSegmentsInput) (req *request.Req
 //
 func (c *Pinpoint) GetSegments(input *GetSegmentsInput) (*GetSegmentsOutput, error) {
 	req, out := c.GetSegmentsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetSegmentsWithContext is the same as GetSegments with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSegments for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetSegmentsWithContext(ctx aws.Context, input *GetSegmentsInput, opts ...request.Option) (*GetSegmentsOutput, error) {
+	req, out := c.GetSegmentsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateApnsChannel = "UpdateApnsChannel"
@@ -1852,8 +2198,23 @@ func (c *Pinpoint) UpdateApnsChannelRequest(input *UpdateApnsChannelInput) (req 
 //
 func (c *Pinpoint) UpdateApnsChannel(input *UpdateApnsChannelInput) (*UpdateApnsChannelOutput, error) {
 	req, out := c.UpdateApnsChannelRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateApnsChannelWithContext is the same as UpdateApnsChannel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateApnsChannel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) UpdateApnsChannelWithContext(ctx aws.Context, input *UpdateApnsChannelInput, opts ...request.Option) (*UpdateApnsChannelOutput, error) {
+	req, out := c.UpdateApnsChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateApplicationSettings = "UpdateApplicationSettings"
@@ -1929,8 +2290,23 @@ func (c *Pinpoint) UpdateApplicationSettingsRequest(input *UpdateApplicationSett
 //
 func (c *Pinpoint) UpdateApplicationSettings(input *UpdateApplicationSettingsInput) (*UpdateApplicationSettingsOutput, error) {
 	req, out := c.UpdateApplicationSettingsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateApplicationSettingsWithContext is the same as UpdateApplicationSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateApplicationSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) UpdateApplicationSettingsWithContext(ctx aws.Context, input *UpdateApplicationSettingsInput, opts ...request.Option) (*UpdateApplicationSettingsOutput, error) {
+	req, out := c.UpdateApplicationSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateCampaign = "UpdateCampaign"
@@ -2006,8 +2382,23 @@ func (c *Pinpoint) UpdateCampaignRequest(input *UpdateCampaignInput) (req *reque
 //
 func (c *Pinpoint) UpdateCampaign(input *UpdateCampaignInput) (*UpdateCampaignOutput, error) {
 	req, out := c.UpdateCampaignRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateCampaignWithContext is the same as UpdateCampaign with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateCampaign for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) UpdateCampaignWithContext(ctx aws.Context, input *UpdateCampaignInput, opts ...request.Option) (*UpdateCampaignOutput, error) {
+	req, out := c.UpdateCampaignRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateEndpoint = "UpdateEndpoint"
@@ -2083,8 +2474,23 @@ func (c *Pinpoint) UpdateEndpointRequest(input *UpdateEndpointInput) (req *reque
 //
 func (c *Pinpoint) UpdateEndpoint(input *UpdateEndpointInput) (*UpdateEndpointOutput, error) {
 	req, out := c.UpdateEndpointRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateEndpointWithContext is the same as UpdateEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) UpdateEndpointWithContext(ctx aws.Context, input *UpdateEndpointInput, opts ...request.Option) (*UpdateEndpointOutput, error) {
+	req, out := c.UpdateEndpointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateEndpointsBatch = "UpdateEndpointsBatch"
@@ -2160,8 +2566,23 @@ func (c *Pinpoint) UpdateEndpointsBatchRequest(input *UpdateEndpointsBatchInput)
 //
 func (c *Pinpoint) UpdateEndpointsBatch(input *UpdateEndpointsBatchInput) (*UpdateEndpointsBatchOutput, error) {
 	req, out := c.UpdateEndpointsBatchRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateEndpointsBatchWithContext is the same as UpdateEndpointsBatch with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateEndpointsBatch for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) UpdateEndpointsBatchWithContext(ctx aws.Context, input *UpdateEndpointsBatchInput, opts ...request.Option) (*UpdateEndpointsBatchOutput, error) {
+	req, out := c.UpdateEndpointsBatchRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateGcmChannel = "UpdateGcmChannel"
@@ -2237,8 +2658,23 @@ func (c *Pinpoint) UpdateGcmChannelRequest(input *UpdateGcmChannelInput) (req *r
 //
 func (c *Pinpoint) UpdateGcmChannel(input *UpdateGcmChannelInput) (*UpdateGcmChannelOutput, error) {
 	req, out := c.UpdateGcmChannelRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateGcmChannelWithContext is the same as UpdateGcmChannel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateGcmChannel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) UpdateGcmChannelWithContext(ctx aws.Context, input *UpdateGcmChannelInput, opts ...request.Option) (*UpdateGcmChannelOutput, error) {
+	req, out := c.UpdateGcmChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateSegment = "UpdateSegment"
@@ -2314,8 +2750,23 @@ func (c *Pinpoint) UpdateSegmentRequest(input *UpdateSegmentInput) (req *request
 //
 func (c *Pinpoint) UpdateSegment(input *UpdateSegmentInput) (*UpdateSegmentOutput, error) {
 	req, out := c.UpdateSegmentRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateSegmentWithContext is the same as UpdateSegment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSegment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) UpdateSegmentWithContext(ctx aws.Context, input *UpdateSegmentInput, opts ...request.Option) (*UpdateSegmentOutput, error) {
+	req, out := c.UpdateSegmentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 type APNSChannelRequest struct {

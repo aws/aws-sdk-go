@@ -6,6 +6,7 @@ package marketplacecommerceanalytics
 import (
 	"time"
 
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 )
@@ -80,8 +81,23 @@ func (c *MarketplaceCommerceAnalytics) GenerateDataSetRequest(input *GenerateDat
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/marketplacecommerceanalytics-2015-07-01/GenerateDataSet
 func (c *MarketplaceCommerceAnalytics) GenerateDataSet(input *GenerateDataSetInput) (*GenerateDataSetOutput, error) {
 	req, out := c.GenerateDataSetRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GenerateDataSetWithContext is the same as GenerateDataSet with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GenerateDataSet for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MarketplaceCommerceAnalytics) GenerateDataSetWithContext(ctx aws.Context, input *GenerateDataSetInput, opts ...request.Option) (*GenerateDataSetOutput, error) {
+	req, out := c.GenerateDataSetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opStartSupportDataExport = "StartSupportDataExport"
@@ -155,8 +171,23 @@ func (c *MarketplaceCommerceAnalytics) StartSupportDataExportRequest(input *Star
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/marketplacecommerceanalytics-2015-07-01/StartSupportDataExport
 func (c *MarketplaceCommerceAnalytics) StartSupportDataExport(input *StartSupportDataExportInput) (*StartSupportDataExportOutput, error) {
 	req, out := c.StartSupportDataExportRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// StartSupportDataExportWithContext is the same as StartSupportDataExport with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartSupportDataExport for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MarketplaceCommerceAnalytics) StartSupportDataExportWithContext(ctx aws.Context, input *StartSupportDataExportInput, opts ...request.Option) (*StartSupportDataExportOutput, error) {
+	req, out := c.StartSupportDataExportRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // Container for the parameters to the GenerateDataSet operation.

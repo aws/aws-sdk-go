@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 )
@@ -94,8 +95,23 @@ func (c *ApplicationAutoScaling) DeleteScalingPolicyRequest(input *DeleteScaling
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/DeleteScalingPolicy
 func (c *ApplicationAutoScaling) DeleteScalingPolicy(input *DeleteScalingPolicyInput) (*DeleteScalingPolicyOutput, error) {
 	req, out := c.DeleteScalingPolicyRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteScalingPolicyWithContext is the same as DeleteScalingPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteScalingPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationAutoScaling) DeleteScalingPolicyWithContext(ctx aws.Context, input *DeleteScalingPolicyInput, opts ...request.Option) (*DeleteScalingPolicyOutput, error) {
+	req, out := c.DeleteScalingPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeregisterScalableTarget = "DeregisterScalableTarget"
@@ -180,8 +196,23 @@ func (c *ApplicationAutoScaling) DeregisterScalableTargetRequest(input *Deregist
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/DeregisterScalableTarget
 func (c *ApplicationAutoScaling) DeregisterScalableTarget(input *DeregisterScalableTargetInput) (*DeregisterScalableTargetOutput, error) {
 	req, out := c.DeregisterScalableTargetRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeregisterScalableTargetWithContext is the same as DeregisterScalableTarget with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeregisterScalableTarget for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationAutoScaling) DeregisterScalableTargetWithContext(ctx aws.Context, input *DeregisterScalableTargetInput, opts ...request.Option) (*DeregisterScalableTargetOutput, error) {
+	req, out := c.DeregisterScalableTargetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeScalableTargets = "DescribeScalableTargets"
@@ -269,8 +300,23 @@ func (c *ApplicationAutoScaling) DescribeScalableTargetsRequest(input *DescribeS
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/DescribeScalableTargets
 func (c *ApplicationAutoScaling) DescribeScalableTargets(input *DescribeScalableTargetsInput) (*DescribeScalableTargetsOutput, error) {
 	req, out := c.DescribeScalableTargetsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeScalableTargetsWithContext is the same as DescribeScalableTargets with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeScalableTargets for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationAutoScaling) DescribeScalableTargetsWithContext(ctx aws.Context, input *DescribeScalableTargetsInput, opts ...request.Option) (*DescribeScalableTargetsOutput, error) {
+	req, out := c.DescribeScalableTargetsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // DescribeScalableTargetsPages iterates over the pages of a DescribeScalableTargets operation,
@@ -290,12 +336,33 @@ func (c *ApplicationAutoScaling) DescribeScalableTargets(input *DescribeScalable
 //            return pageNum <= 3
 //        })
 //
-func (c *ApplicationAutoScaling) DescribeScalableTargetsPages(input *DescribeScalableTargetsInput, fn func(p *DescribeScalableTargetsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeScalableTargetsRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*DescribeScalableTargetsOutput), lastPage)
-	})
+func (c *ApplicationAutoScaling) DescribeScalableTargetsPages(input *DescribeScalableTargetsInput, fn func(*DescribeScalableTargetsOutput, bool) bool) error {
+	return c.DescribeScalableTargetsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeScalableTargetsPagesWithContext same as DescribeScalableTargetsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationAutoScaling) DescribeScalableTargetsPagesWithContext(ctx aws.Context, input *DescribeScalableTargetsInput, fn func(*DescribeScalableTargetsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.DescribeScalableTargetsRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*DescribeScalableTargetsOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opDescribeScalingActivities = "DescribeScalingActivities"
@@ -384,8 +451,23 @@ func (c *ApplicationAutoScaling) DescribeScalingActivitiesRequest(input *Describ
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/DescribeScalingActivities
 func (c *ApplicationAutoScaling) DescribeScalingActivities(input *DescribeScalingActivitiesInput) (*DescribeScalingActivitiesOutput, error) {
 	req, out := c.DescribeScalingActivitiesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeScalingActivitiesWithContext is the same as DescribeScalingActivities with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeScalingActivities for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationAutoScaling) DescribeScalingActivitiesWithContext(ctx aws.Context, input *DescribeScalingActivitiesInput, opts ...request.Option) (*DescribeScalingActivitiesOutput, error) {
+	req, out := c.DescribeScalingActivitiesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // DescribeScalingActivitiesPages iterates over the pages of a DescribeScalingActivities operation,
@@ -405,12 +487,33 @@ func (c *ApplicationAutoScaling) DescribeScalingActivities(input *DescribeScalin
 //            return pageNum <= 3
 //        })
 //
-func (c *ApplicationAutoScaling) DescribeScalingActivitiesPages(input *DescribeScalingActivitiesInput, fn func(p *DescribeScalingActivitiesOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeScalingActivitiesRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*DescribeScalingActivitiesOutput), lastPage)
-	})
+func (c *ApplicationAutoScaling) DescribeScalingActivitiesPages(input *DescribeScalingActivitiesInput, fn func(*DescribeScalingActivitiesOutput, bool) bool) error {
+	return c.DescribeScalingActivitiesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeScalingActivitiesPagesWithContext same as DescribeScalingActivitiesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationAutoScaling) DescribeScalingActivitiesPagesWithContext(ctx aws.Context, input *DescribeScalingActivitiesInput, fn func(*DescribeScalingActivitiesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.DescribeScalingActivitiesRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*DescribeScalingActivitiesOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opDescribeScalingPolicies = "DescribeScalingPolicies"
@@ -507,8 +610,23 @@ func (c *ApplicationAutoScaling) DescribeScalingPoliciesRequest(input *DescribeS
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/DescribeScalingPolicies
 func (c *ApplicationAutoScaling) DescribeScalingPolicies(input *DescribeScalingPoliciesInput) (*DescribeScalingPoliciesOutput, error) {
 	req, out := c.DescribeScalingPoliciesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeScalingPoliciesWithContext is the same as DescribeScalingPolicies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeScalingPolicies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationAutoScaling) DescribeScalingPoliciesWithContext(ctx aws.Context, input *DescribeScalingPoliciesInput, opts ...request.Option) (*DescribeScalingPoliciesOutput, error) {
+	req, out := c.DescribeScalingPoliciesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // DescribeScalingPoliciesPages iterates over the pages of a DescribeScalingPolicies operation,
@@ -528,12 +646,33 @@ func (c *ApplicationAutoScaling) DescribeScalingPolicies(input *DescribeScalingP
 //            return pageNum <= 3
 //        })
 //
-func (c *ApplicationAutoScaling) DescribeScalingPoliciesPages(input *DescribeScalingPoliciesInput, fn func(p *DescribeScalingPoliciesOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeScalingPoliciesRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*DescribeScalingPoliciesOutput), lastPage)
-	})
+func (c *ApplicationAutoScaling) DescribeScalingPoliciesPages(input *DescribeScalingPoliciesInput, fn func(*DescribeScalingPoliciesOutput, bool) bool) error {
+	return c.DescribeScalingPoliciesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeScalingPoliciesPagesWithContext same as DescribeScalingPoliciesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationAutoScaling) DescribeScalingPoliciesPagesWithContext(ctx aws.Context, input *DescribeScalingPoliciesInput, fn func(*DescribeScalingPoliciesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.DescribeScalingPoliciesRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*DescribeScalingPoliciesOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opPutScalingPolicy = "PutScalingPolicy"
@@ -630,8 +769,23 @@ func (c *ApplicationAutoScaling) PutScalingPolicyRequest(input *PutScalingPolicy
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/PutScalingPolicy
 func (c *ApplicationAutoScaling) PutScalingPolicy(input *PutScalingPolicyInput) (*PutScalingPolicyOutput, error) {
 	req, out := c.PutScalingPolicyRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// PutScalingPolicyWithContext is the same as PutScalingPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutScalingPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationAutoScaling) PutScalingPolicyWithContext(ctx aws.Context, input *PutScalingPolicyInput, opts ...request.Option) (*PutScalingPolicyOutput, error) {
+	req, out := c.PutScalingPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opRegisterScalableTarget = "RegisterScalableTarget"
@@ -716,8 +870,23 @@ func (c *ApplicationAutoScaling) RegisterScalableTargetRequest(input *RegisterSc
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/RegisterScalableTarget
 func (c *ApplicationAutoScaling) RegisterScalableTarget(input *RegisterScalableTargetInput) (*RegisterScalableTargetOutput, error) {
 	req, out := c.RegisterScalableTargetRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// RegisterScalableTargetWithContext is the same as RegisterScalableTarget with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RegisterScalableTarget for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationAutoScaling) RegisterScalableTargetWithContext(ctx aws.Context, input *RegisterScalableTargetInput, opts ...request.Option) (*RegisterScalableTargetOutput, error) {
+	req, out := c.RegisterScalableTargetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // Represents a CloudWatch alarm associated with a scaling policy.

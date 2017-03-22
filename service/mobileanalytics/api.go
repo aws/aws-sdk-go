@@ -6,6 +6,7 @@ package mobileanalytics
 import (
 	"fmt"
 
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
@@ -74,8 +75,23 @@ func (c *MobileAnalytics) PutEventsRequest(input *PutEventsInput) (req *request.
 //
 func (c *MobileAnalytics) PutEvents(input *PutEventsInput) (*PutEventsOutput, error) {
 	req, out := c.PutEventsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// PutEventsWithContext is the same as PutEvents with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutEvents for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MobileAnalytics) PutEventsWithContext(ctx aws.Context, input *PutEventsInput, opts ...request.Option) (*PutEventsOutput, error) {
+	req, out := c.PutEventsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // A JSON object representing a batch of unique event occurrences in your app.

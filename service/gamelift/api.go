@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
@@ -109,8 +110,23 @@ func (c *GameLift) CreateAliasRequest(input *CreateAliasInput) (req *request.Req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/CreateAlias
 func (c *GameLift) CreateAlias(input *CreateAliasInput) (*CreateAliasOutput, error) {
 	req, out := c.CreateAliasRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateAliasWithContext is the same as CreateAlias with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAlias for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) CreateAliasWithContext(ctx aws.Context, input *CreateAliasInput, opts ...request.Option) (*CreateAliasOutput, error) {
+	req, out := c.CreateAliasRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateBuild = "CreateBuild"
@@ -206,8 +222,23 @@ func (c *GameLift) CreateBuildRequest(input *CreateBuildInput) (req *request.Req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/CreateBuild
 func (c *GameLift) CreateBuild(input *CreateBuildInput) (*CreateBuildOutput, error) {
 	req, out := c.CreateBuildRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateBuildWithContext is the same as CreateBuild with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateBuild for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) CreateBuildWithContext(ctx aws.Context, input *CreateBuildInput, opts ...request.Option) (*CreateBuildOutput, error) {
+	req, out := c.CreateBuildRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateFleet = "CreateFleet"
@@ -344,8 +375,23 @@ func (c *GameLift) CreateFleetRequest(input *CreateFleetInput) (req *request.Req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/CreateFleet
 func (c *GameLift) CreateFleet(input *CreateFleetInput) (*CreateFleetOutput, error) {
 	req, out := c.CreateFleetRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateFleetWithContext is the same as CreateFleet with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateFleet for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) CreateFleetWithContext(ctx aws.Context, input *CreateFleetInput, opts ...request.Option) (*CreateFleetOutput, error) {
+	req, out := c.CreateFleetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateGameSession = "CreateGameSession"
@@ -466,8 +512,23 @@ func (c *GameLift) CreateGameSessionRequest(input *CreateGameSessionInput) (req 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/CreateGameSession
 func (c *GameLift) CreateGameSession(input *CreateGameSessionInput) (*CreateGameSessionOutput, error) {
 	req, out := c.CreateGameSessionRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateGameSessionWithContext is the same as CreateGameSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateGameSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) CreateGameSessionWithContext(ctx aws.Context, input *CreateGameSessionInput, opts ...request.Option) (*CreateGameSessionOutput, error) {
+	req, out := c.CreateGameSessionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateGameSessionQueue = "CreateGameSessionQueue"
@@ -554,8 +615,23 @@ func (c *GameLift) CreateGameSessionQueueRequest(input *CreateGameSessionQueueIn
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/CreateGameSessionQueue
 func (c *GameLift) CreateGameSessionQueue(input *CreateGameSessionQueueInput) (*CreateGameSessionQueueOutput, error) {
 	req, out := c.CreateGameSessionQueueRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateGameSessionQueueWithContext is the same as CreateGameSessionQueue with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateGameSessionQueue for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) CreateGameSessionQueueWithContext(ctx aws.Context, input *CreateGameSessionQueueInput, opts ...request.Option) (*CreateGameSessionQueueOutput, error) {
+	req, out := c.CreateGameSessionQueueRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreatePlayerSession = "CreatePlayerSession"
@@ -655,8 +731,23 @@ func (c *GameLift) CreatePlayerSessionRequest(input *CreatePlayerSessionInput) (
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/CreatePlayerSession
 func (c *GameLift) CreatePlayerSession(input *CreatePlayerSessionInput) (*CreatePlayerSessionOutput, error) {
 	req, out := c.CreatePlayerSessionRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreatePlayerSessionWithContext is the same as CreatePlayerSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreatePlayerSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) CreatePlayerSessionWithContext(ctx aws.Context, input *CreatePlayerSessionInput, opts ...request.Option) (*CreatePlayerSessionOutput, error) {
+	req, out := c.CreatePlayerSessionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreatePlayerSessions = "CreatePlayerSessions"
@@ -757,8 +848,23 @@ func (c *GameLift) CreatePlayerSessionsRequest(input *CreatePlayerSessionsInput)
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/CreatePlayerSessions
 func (c *GameLift) CreatePlayerSessions(input *CreatePlayerSessionsInput) (*CreatePlayerSessionsOutput, error) {
 	req, out := c.CreatePlayerSessionsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreatePlayerSessionsWithContext is the same as CreatePlayerSessions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreatePlayerSessions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) CreatePlayerSessionsWithContext(ctx aws.Context, input *CreatePlayerSessionsInput, opts ...request.Option) (*CreatePlayerSessionsOutput, error) {
+	req, out := c.CreatePlayerSessionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteAlias = "DeleteAlias"
@@ -839,8 +945,23 @@ func (c *GameLift) DeleteAliasRequest(input *DeleteAliasInput) (req *request.Req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DeleteAlias
 func (c *GameLift) DeleteAlias(input *DeleteAliasInput) (*DeleteAliasOutput, error) {
 	req, out := c.DeleteAliasRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteAliasWithContext is the same as DeleteAlias with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAlias for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) DeleteAliasWithContext(ctx aws.Context, input *DeleteAliasInput, opts ...request.Option) (*DeleteAliasOutput, error) {
+	req, out := c.DeleteAliasRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteBuild = "DeleteBuild"
@@ -924,8 +1045,23 @@ func (c *GameLift) DeleteBuildRequest(input *DeleteBuildInput) (req *request.Req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DeleteBuild
 func (c *GameLift) DeleteBuild(input *DeleteBuildInput) (*DeleteBuildOutput, error) {
 	req, out := c.DeleteBuildRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteBuildWithContext is the same as DeleteBuild with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteBuild for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) DeleteBuildWithContext(ctx aws.Context, input *DeleteBuildInput, opts ...request.Option) (*DeleteBuildOutput, error) {
+	req, out := c.DeleteBuildRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteFleet = "DeleteFleet"
@@ -1013,8 +1149,23 @@ func (c *GameLift) DeleteFleetRequest(input *DeleteFleetInput) (req *request.Req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DeleteFleet
 func (c *GameLift) DeleteFleet(input *DeleteFleetInput) (*DeleteFleetOutput, error) {
 	req, out := c.DeleteFleetRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteFleetWithContext is the same as DeleteFleet with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFleet for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) DeleteFleetWithContext(ctx aws.Context, input *DeleteFleetInput, opts ...request.Option) (*DeleteFleetOutput, error) {
+	req, out := c.DeleteFleetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteGameSessionQueue = "DeleteGameSessionQueue"
@@ -1093,8 +1244,23 @@ func (c *GameLift) DeleteGameSessionQueueRequest(input *DeleteGameSessionQueueIn
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DeleteGameSessionQueue
 func (c *GameLift) DeleteGameSessionQueue(input *DeleteGameSessionQueueInput) (*DeleteGameSessionQueueOutput, error) {
 	req, out := c.DeleteGameSessionQueueRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteGameSessionQueueWithContext is the same as DeleteGameSessionQueue with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteGameSessionQueue for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) DeleteGameSessionQueueWithContext(ctx aws.Context, input *DeleteGameSessionQueueInput, opts ...request.Option) (*DeleteGameSessionQueueOutput, error) {
+	req, out := c.DeleteGameSessionQueueRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteScalingPolicy = "DeleteScalingPolicy"
@@ -1175,8 +1341,23 @@ func (c *GameLift) DeleteScalingPolicyRequest(input *DeleteScalingPolicyInput) (
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DeleteScalingPolicy
 func (c *GameLift) DeleteScalingPolicy(input *DeleteScalingPolicyInput) (*DeleteScalingPolicyOutput, error) {
 	req, out := c.DeleteScalingPolicyRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteScalingPolicyWithContext is the same as DeleteScalingPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteScalingPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) DeleteScalingPolicyWithContext(ctx aws.Context, input *DeleteScalingPolicyInput, opts ...request.Option) (*DeleteScalingPolicyOutput, error) {
+	req, out := c.DeleteScalingPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeAlias = "DescribeAlias"
@@ -1258,8 +1439,23 @@ func (c *GameLift) DescribeAliasRequest(input *DescribeAliasInput) (req *request
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeAlias
 func (c *GameLift) DescribeAlias(input *DescribeAliasInput) (*DescribeAliasOutput, error) {
 	req, out := c.DescribeAliasRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeAliasWithContext is the same as DescribeAlias with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAlias for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) DescribeAliasWithContext(ctx aws.Context, input *DescribeAliasInput, opts ...request.Option) (*DescribeAliasOutput, error) {
+	req, out := c.DescribeAliasRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeBuild = "DescribeBuild"
@@ -1337,8 +1533,23 @@ func (c *GameLift) DescribeBuildRequest(input *DescribeBuildInput) (req *request
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeBuild
 func (c *GameLift) DescribeBuild(input *DescribeBuildInput) (*DescribeBuildOutput, error) {
 	req, out := c.DescribeBuildRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeBuildWithContext is the same as DescribeBuild with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeBuild for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) DescribeBuildWithContext(ctx aws.Context, input *DescribeBuildInput, opts ...request.Option) (*DescribeBuildOutput, error) {
+	req, out := c.DescribeBuildRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeEC2InstanceLimits = "DescribeEC2InstanceLimits"
@@ -1419,8 +1630,23 @@ func (c *GameLift) DescribeEC2InstanceLimitsRequest(input *DescribeEC2InstanceLi
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeEC2InstanceLimits
 func (c *GameLift) DescribeEC2InstanceLimits(input *DescribeEC2InstanceLimitsInput) (*DescribeEC2InstanceLimitsOutput, error) {
 	req, out := c.DescribeEC2InstanceLimitsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeEC2InstanceLimitsWithContext is the same as DescribeEC2InstanceLimits with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeEC2InstanceLimits for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) DescribeEC2InstanceLimitsWithContext(ctx aws.Context, input *DescribeEC2InstanceLimitsInput, opts ...request.Option) (*DescribeEC2InstanceLimitsOutput, error) {
+	req, out := c.DescribeEC2InstanceLimitsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeFleetAttributes = "DescribeFleetAttributes"
@@ -1507,8 +1733,23 @@ func (c *GameLift) DescribeFleetAttributesRequest(input *DescribeFleetAttributes
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeFleetAttributes
 func (c *GameLift) DescribeFleetAttributes(input *DescribeFleetAttributesInput) (*DescribeFleetAttributesOutput, error) {
 	req, out := c.DescribeFleetAttributesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeFleetAttributesWithContext is the same as DescribeFleetAttributes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFleetAttributes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) DescribeFleetAttributesWithContext(ctx aws.Context, input *DescribeFleetAttributesInput, opts ...request.Option) (*DescribeFleetAttributesOutput, error) {
+	req, out := c.DescribeFleetAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeFleetCapacity = "DescribeFleetCapacity"
@@ -1596,8 +1837,23 @@ func (c *GameLift) DescribeFleetCapacityRequest(input *DescribeFleetCapacityInpu
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeFleetCapacity
 func (c *GameLift) DescribeFleetCapacity(input *DescribeFleetCapacityInput) (*DescribeFleetCapacityOutput, error) {
 	req, out := c.DescribeFleetCapacityRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeFleetCapacityWithContext is the same as DescribeFleetCapacity with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFleetCapacity for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) DescribeFleetCapacityWithContext(ctx aws.Context, input *DescribeFleetCapacityInput, opts ...request.Option) (*DescribeFleetCapacityOutput, error) {
+	req, out := c.DescribeFleetCapacityRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeFleetEvents = "DescribeFleetEvents"
@@ -1677,8 +1933,23 @@ func (c *GameLift) DescribeFleetEventsRequest(input *DescribeFleetEventsInput) (
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeFleetEvents
 func (c *GameLift) DescribeFleetEvents(input *DescribeFleetEventsInput) (*DescribeFleetEventsOutput, error) {
 	req, out := c.DescribeFleetEventsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeFleetEventsWithContext is the same as DescribeFleetEvents with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFleetEvents for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) DescribeFleetEventsWithContext(ctx aws.Context, input *DescribeFleetEventsInput, opts ...request.Option) (*DescribeFleetEventsOutput, error) {
+	req, out := c.DescribeFleetEventsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeFleetPortSettings = "DescribeFleetPortSettings"
@@ -1760,8 +2031,23 @@ func (c *GameLift) DescribeFleetPortSettingsRequest(input *DescribeFleetPortSett
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeFleetPortSettings
 func (c *GameLift) DescribeFleetPortSettings(input *DescribeFleetPortSettingsInput) (*DescribeFleetPortSettingsOutput, error) {
 	req, out := c.DescribeFleetPortSettingsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeFleetPortSettingsWithContext is the same as DescribeFleetPortSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFleetPortSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) DescribeFleetPortSettingsWithContext(ctx aws.Context, input *DescribeFleetPortSettingsInput, opts ...request.Option) (*DescribeFleetPortSettingsOutput, error) {
+	req, out := c.DescribeFleetPortSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeFleetUtilization = "DescribeFleetUtilization"
@@ -1847,8 +2133,23 @@ func (c *GameLift) DescribeFleetUtilizationRequest(input *DescribeFleetUtilizati
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeFleetUtilization
 func (c *GameLift) DescribeFleetUtilization(input *DescribeFleetUtilizationInput) (*DescribeFleetUtilizationOutput, error) {
 	req, out := c.DescribeFleetUtilizationRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeFleetUtilizationWithContext is the same as DescribeFleetUtilization with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFleetUtilization for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) DescribeFleetUtilizationWithContext(ctx aws.Context, input *DescribeFleetUtilizationInput, opts ...request.Option) (*DescribeFleetUtilizationOutput, error) {
+	req, out := c.DescribeFleetUtilizationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeGameSessionDetails = "DescribeGameSessionDetails"
@@ -1942,8 +2243,23 @@ func (c *GameLift) DescribeGameSessionDetailsRequest(input *DescribeGameSessionD
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeGameSessionDetails
 func (c *GameLift) DescribeGameSessionDetails(input *DescribeGameSessionDetailsInput) (*DescribeGameSessionDetailsOutput, error) {
 	req, out := c.DescribeGameSessionDetailsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeGameSessionDetailsWithContext is the same as DescribeGameSessionDetails with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeGameSessionDetails for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) DescribeGameSessionDetailsWithContext(ctx aws.Context, input *DescribeGameSessionDetailsInput, opts ...request.Option) (*DescribeGameSessionDetailsOutput, error) {
+	req, out := c.DescribeGameSessionDetailsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeGameSessionPlacement = "DescribeGameSessionPlacement"
@@ -2022,8 +2338,23 @@ func (c *GameLift) DescribeGameSessionPlacementRequest(input *DescribeGameSessio
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeGameSessionPlacement
 func (c *GameLift) DescribeGameSessionPlacement(input *DescribeGameSessionPlacementInput) (*DescribeGameSessionPlacementOutput, error) {
 	req, out := c.DescribeGameSessionPlacementRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeGameSessionPlacementWithContext is the same as DescribeGameSessionPlacement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeGameSessionPlacement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) DescribeGameSessionPlacementWithContext(ctx aws.Context, input *DescribeGameSessionPlacementInput, opts ...request.Option) (*DescribeGameSessionPlacementOutput, error) {
+	req, out := c.DescribeGameSessionPlacementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeGameSessionQueues = "DescribeGameSessionQueues"
@@ -2104,8 +2435,23 @@ func (c *GameLift) DescribeGameSessionQueuesRequest(input *DescribeGameSessionQu
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeGameSessionQueues
 func (c *GameLift) DescribeGameSessionQueues(input *DescribeGameSessionQueuesInput) (*DescribeGameSessionQueuesOutput, error) {
 	req, out := c.DescribeGameSessionQueuesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeGameSessionQueuesWithContext is the same as DescribeGameSessionQueues with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeGameSessionQueues for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) DescribeGameSessionQueuesWithContext(ctx aws.Context, input *DescribeGameSessionQueuesInput, opts ...request.Option) (*DescribeGameSessionQueuesOutput, error) {
+	req, out := c.DescribeGameSessionQueuesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeGameSessions = "DescribeGameSessions"
@@ -2198,8 +2544,23 @@ func (c *GameLift) DescribeGameSessionsRequest(input *DescribeGameSessionsInput)
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeGameSessions
 func (c *GameLift) DescribeGameSessions(input *DescribeGameSessionsInput) (*DescribeGameSessionsOutput, error) {
 	req, out := c.DescribeGameSessionsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeGameSessionsWithContext is the same as DescribeGameSessions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeGameSessions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) DescribeGameSessionsWithContext(ctx aws.Context, input *DescribeGameSessionsInput, opts ...request.Option) (*DescribeGameSessionsOutput, error) {
+	req, out := c.DescribeGameSessionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeInstances = "DescribeInstances"
@@ -2283,8 +2644,23 @@ func (c *GameLift) DescribeInstancesRequest(input *DescribeInstancesInput) (req 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeInstances
 func (c *GameLift) DescribeInstances(input *DescribeInstancesInput) (*DescribeInstancesOutput, error) {
 	req, out := c.DescribeInstancesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeInstancesWithContext is the same as DescribeInstances with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeInstances for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) DescribeInstancesWithContext(ctx aws.Context, input *DescribeInstancesInput, opts ...request.Option) (*DescribeInstancesOutput, error) {
+	req, out := c.DescribeInstancesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribePlayerSessions = "DescribePlayerSessions"
@@ -2372,8 +2748,23 @@ func (c *GameLift) DescribePlayerSessionsRequest(input *DescribePlayerSessionsIn
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribePlayerSessions
 func (c *GameLift) DescribePlayerSessions(input *DescribePlayerSessionsInput) (*DescribePlayerSessionsOutput, error) {
 	req, out := c.DescribePlayerSessionsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribePlayerSessionsWithContext is the same as DescribePlayerSessions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribePlayerSessions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) DescribePlayerSessionsWithContext(ctx aws.Context, input *DescribePlayerSessionsInput, opts ...request.Option) (*DescribePlayerSessionsOutput, error) {
+	req, out := c.DescribePlayerSessionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeRuntimeConfiguration = "DescribeRuntimeConfiguration"
@@ -2452,8 +2843,23 @@ func (c *GameLift) DescribeRuntimeConfigurationRequest(input *DescribeRuntimeCon
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeRuntimeConfiguration
 func (c *GameLift) DescribeRuntimeConfiguration(input *DescribeRuntimeConfigurationInput) (*DescribeRuntimeConfigurationOutput, error) {
 	req, out := c.DescribeRuntimeConfigurationRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeRuntimeConfigurationWithContext is the same as DescribeRuntimeConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeRuntimeConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) DescribeRuntimeConfigurationWithContext(ctx aws.Context, input *DescribeRuntimeConfigurationInput, opts ...request.Option) (*DescribeRuntimeConfigurationOutput, error) {
+	req, out := c.DescribeRuntimeConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeScalingPolicies = "DescribeScalingPolicies"
@@ -2535,8 +2941,23 @@ func (c *GameLift) DescribeScalingPoliciesRequest(input *DescribeScalingPolicies
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeScalingPolicies
 func (c *GameLift) DescribeScalingPolicies(input *DescribeScalingPoliciesInput) (*DescribeScalingPoliciesOutput, error) {
 	req, out := c.DescribeScalingPoliciesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DescribeScalingPoliciesWithContext is the same as DescribeScalingPolicies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeScalingPolicies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) DescribeScalingPoliciesWithContext(ctx aws.Context, input *DescribeScalingPoliciesInput, opts ...request.Option) (*DescribeScalingPoliciesOutput, error) {
+	req, out := c.DescribeScalingPoliciesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetGameSessionLogUrl = "GetGameSessionLogUrl"
@@ -2619,8 +3040,23 @@ func (c *GameLift) GetGameSessionLogUrlRequest(input *GetGameSessionLogUrlInput)
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/GetGameSessionLogUrl
 func (c *GameLift) GetGameSessionLogUrl(input *GetGameSessionLogUrlInput) (*GetGameSessionLogUrlOutput, error) {
 	req, out := c.GetGameSessionLogUrlRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetGameSessionLogUrlWithContext is the same as GetGameSessionLogUrl with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetGameSessionLogUrl for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) GetGameSessionLogUrlWithContext(ctx aws.Context, input *GetGameSessionLogUrlInput, opts ...request.Option) (*GetGameSessionLogUrlOutput, error) {
+	req, out := c.GetGameSessionLogUrlRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetInstanceAccess = "GetInstanceAccess"
@@ -2712,8 +3148,23 @@ func (c *GameLift) GetInstanceAccessRequest(input *GetInstanceAccessInput) (req 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/GetInstanceAccess
 func (c *GameLift) GetInstanceAccess(input *GetInstanceAccessInput) (*GetInstanceAccessOutput, error) {
 	req, out := c.GetInstanceAccessRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetInstanceAccessWithContext is the same as GetInstanceAccess with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetInstanceAccess for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) GetInstanceAccessWithContext(ctx aws.Context, input *GetInstanceAccessInput, opts ...request.Option) (*GetInstanceAccessOutput, error) {
+	req, out := c.GetInstanceAccessRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListAliases = "ListAliases"
@@ -2790,8 +3241,23 @@ func (c *GameLift) ListAliasesRequest(input *ListAliasesInput) (req *request.Req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/ListAliases
 func (c *GameLift) ListAliases(input *ListAliasesInput) (*ListAliasesOutput, error) {
 	req, out := c.ListAliasesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListAliasesWithContext is the same as ListAliases with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAliases for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) ListAliasesWithContext(ctx aws.Context, input *ListAliasesInput, opts ...request.Option) (*ListAliasesOutput, error) {
+	req, out := c.ListAliasesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListBuilds = "ListBuilds"
@@ -2869,8 +3335,23 @@ func (c *GameLift) ListBuildsRequest(input *ListBuildsInput) (req *request.Reque
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/ListBuilds
 func (c *GameLift) ListBuilds(input *ListBuildsInput) (*ListBuildsOutput, error) {
 	req, out := c.ListBuildsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListBuildsWithContext is the same as ListBuilds with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListBuilds for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) ListBuildsWithContext(ctx aws.Context, input *ListBuildsInput, opts ...request.Option) (*ListBuildsOutput, error) {
+	req, out := c.ListBuildsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListFleets = "ListFleets"
@@ -2951,8 +3432,23 @@ func (c *GameLift) ListFleetsRequest(input *ListFleetsInput) (req *request.Reque
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/ListFleets
 func (c *GameLift) ListFleets(input *ListFleetsInput) (*ListFleetsOutput, error) {
 	req, out := c.ListFleetsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListFleetsWithContext is the same as ListFleets with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFleets for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) ListFleetsWithContext(ctx aws.Context, input *ListFleetsInput, opts ...request.Option) (*ListFleetsOutput, error) {
+	req, out := c.ListFleetsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opPutScalingPolicy = "PutScalingPolicy"
@@ -3050,8 +3546,23 @@ func (c *GameLift) PutScalingPolicyRequest(input *PutScalingPolicyInput) (req *r
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/PutScalingPolicy
 func (c *GameLift) PutScalingPolicy(input *PutScalingPolicyInput) (*PutScalingPolicyOutput, error) {
 	req, out := c.PutScalingPolicyRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// PutScalingPolicyWithContext is the same as PutScalingPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutScalingPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) PutScalingPolicyWithContext(ctx aws.Context, input *PutScalingPolicyInput, opts ...request.Option) (*PutScalingPolicyOutput, error) {
+	req, out := c.PutScalingPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opRequestUploadCredentials = "RequestUploadCredentials"
@@ -3130,8 +3641,23 @@ func (c *GameLift) RequestUploadCredentialsRequest(input *RequestUploadCredentia
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/RequestUploadCredentials
 func (c *GameLift) RequestUploadCredentials(input *RequestUploadCredentialsInput) (*RequestUploadCredentialsOutput, error) {
 	req, out := c.RequestUploadCredentialsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// RequestUploadCredentialsWithContext is the same as RequestUploadCredentials with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RequestUploadCredentials for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) RequestUploadCredentialsWithContext(ctx aws.Context, input *RequestUploadCredentialsInput, opts ...request.Option) (*RequestUploadCredentialsOutput, error) {
+	req, out := c.RequestUploadCredentialsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opResolveAlias = "ResolveAlias"
@@ -3215,8 +3741,23 @@ func (c *GameLift) ResolveAliasRequest(input *ResolveAliasInput) (req *request.R
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/ResolveAlias
 func (c *GameLift) ResolveAlias(input *ResolveAliasInput) (*ResolveAliasOutput, error) {
 	req, out := c.ResolveAliasRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ResolveAliasWithContext is the same as ResolveAlias with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ResolveAlias for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) ResolveAliasWithContext(ctx aws.Context, input *ResolveAliasInput, opts ...request.Option) (*ResolveAliasOutput, error) {
+	req, out := c.ResolveAliasRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opSearchGameSessions = "SearchGameSessions"
@@ -3344,8 +3885,23 @@ func (c *GameLift) SearchGameSessionsRequest(input *SearchGameSessionsInput) (re
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/SearchGameSessions
 func (c *GameLift) SearchGameSessions(input *SearchGameSessionsInput) (*SearchGameSessionsOutput, error) {
 	req, out := c.SearchGameSessionsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// SearchGameSessionsWithContext is the same as SearchGameSessions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchGameSessions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) SearchGameSessionsWithContext(ctx aws.Context, input *SearchGameSessionsInput, opts ...request.Option) (*SearchGameSessionsOutput, error) {
+	req, out := c.SearchGameSessionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opStartGameSessionPlacement = "StartGameSessionPlacement"
@@ -3452,8 +4008,23 @@ func (c *GameLift) StartGameSessionPlacementRequest(input *StartGameSessionPlace
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/StartGameSessionPlacement
 func (c *GameLift) StartGameSessionPlacement(input *StartGameSessionPlacementInput) (*StartGameSessionPlacementOutput, error) {
 	req, out := c.StartGameSessionPlacementRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// StartGameSessionPlacementWithContext is the same as StartGameSessionPlacement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartGameSessionPlacement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) StartGameSessionPlacementWithContext(ctx aws.Context, input *StartGameSessionPlacementInput, opts ...request.Option) (*StartGameSessionPlacementOutput, error) {
+	req, out := c.StartGameSessionPlacementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opStopGameSessionPlacement = "StopGameSessionPlacement"
@@ -3532,8 +4103,23 @@ func (c *GameLift) StopGameSessionPlacementRequest(input *StopGameSessionPlaceme
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/StopGameSessionPlacement
 func (c *GameLift) StopGameSessionPlacement(input *StopGameSessionPlacementInput) (*StopGameSessionPlacementOutput, error) {
 	req, out := c.StopGameSessionPlacementRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// StopGameSessionPlacementWithContext is the same as StopGameSessionPlacement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopGameSessionPlacement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) StopGameSessionPlacementWithContext(ctx aws.Context, input *StopGameSessionPlacementInput, opts ...request.Option) (*StopGameSessionPlacementOutput, error) {
+	req, out := c.StopGameSessionPlacementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateAlias = "UpdateAlias"
@@ -3613,8 +4199,23 @@ func (c *GameLift) UpdateAliasRequest(input *UpdateAliasInput) (req *request.Req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/UpdateAlias
 func (c *GameLift) UpdateAlias(input *UpdateAliasInput) (*UpdateAliasOutput, error) {
 	req, out := c.UpdateAliasRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateAliasWithContext is the same as UpdateAlias with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAlias for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) UpdateAliasWithContext(ctx aws.Context, input *UpdateAliasInput, opts ...request.Option) (*UpdateAliasOutput, error) {
+	req, out := c.UpdateAliasRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateBuild = "UpdateBuild"
@@ -3694,8 +4295,23 @@ func (c *GameLift) UpdateBuildRequest(input *UpdateBuildInput) (req *request.Req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/UpdateBuild
 func (c *GameLift) UpdateBuild(input *UpdateBuildInput) (*UpdateBuildOutput, error) {
 	req, out := c.UpdateBuildRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateBuildWithContext is the same as UpdateBuild with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateBuild for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) UpdateBuildWithContext(ctx aws.Context, input *UpdateBuildInput, opts ...request.Option) (*UpdateBuildOutput, error) {
+	req, out := c.UpdateBuildRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateFleetAttributes = "UpdateFleetAttributes"
@@ -3788,8 +4404,23 @@ func (c *GameLift) UpdateFleetAttributesRequest(input *UpdateFleetAttributesInpu
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/UpdateFleetAttributes
 func (c *GameLift) UpdateFleetAttributes(input *UpdateFleetAttributesInput) (*UpdateFleetAttributesOutput, error) {
 	req, out := c.UpdateFleetAttributesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateFleetAttributesWithContext is the same as UpdateFleetAttributes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFleetAttributes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) UpdateFleetAttributesWithContext(ctx aws.Context, input *UpdateFleetAttributesInput, opts ...request.Option) (*UpdateFleetAttributesOutput, error) {
+	req, out := c.UpdateFleetAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateFleetCapacity = "UpdateFleetCapacity"
@@ -3894,8 +4525,23 @@ func (c *GameLift) UpdateFleetCapacityRequest(input *UpdateFleetCapacityInput) (
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/UpdateFleetCapacity
 func (c *GameLift) UpdateFleetCapacity(input *UpdateFleetCapacityInput) (*UpdateFleetCapacityOutput, error) {
 	req, out := c.UpdateFleetCapacityRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateFleetCapacityWithContext is the same as UpdateFleetCapacity with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFleetCapacity for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) UpdateFleetCapacityWithContext(ctx aws.Context, input *UpdateFleetCapacityInput, opts ...request.Option) (*UpdateFleetCapacityOutput, error) {
+	req, out := c.UpdateFleetCapacityRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateFleetPortSettings = "UpdateFleetPortSettings"
@@ -3991,8 +4637,23 @@ func (c *GameLift) UpdateFleetPortSettingsRequest(input *UpdateFleetPortSettings
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/UpdateFleetPortSettings
 func (c *GameLift) UpdateFleetPortSettings(input *UpdateFleetPortSettingsInput) (*UpdateFleetPortSettingsOutput, error) {
 	req, out := c.UpdateFleetPortSettingsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateFleetPortSettingsWithContext is the same as UpdateFleetPortSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFleetPortSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) UpdateFleetPortSettingsWithContext(ctx aws.Context, input *UpdateFleetPortSettingsInput, opts ...request.Option) (*UpdateFleetPortSettingsOutput, error) {
+	req, out := c.UpdateFleetPortSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateGameSession = "UpdateGameSession"
@@ -4085,8 +4746,23 @@ func (c *GameLift) UpdateGameSessionRequest(input *UpdateGameSessionInput) (req 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/UpdateGameSession
 func (c *GameLift) UpdateGameSession(input *UpdateGameSessionInput) (*UpdateGameSessionOutput, error) {
 	req, out := c.UpdateGameSessionRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateGameSessionWithContext is the same as UpdateGameSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateGameSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) UpdateGameSessionWithContext(ctx aws.Context, input *UpdateGameSessionInput, opts ...request.Option) (*UpdateGameSessionOutput, error) {
+	req, out := c.UpdateGameSessionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateGameSessionQueue = "UpdateGameSessionQueue"
@@ -4166,8 +4842,23 @@ func (c *GameLift) UpdateGameSessionQueueRequest(input *UpdateGameSessionQueueIn
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/UpdateGameSessionQueue
 func (c *GameLift) UpdateGameSessionQueue(input *UpdateGameSessionQueueInput) (*UpdateGameSessionQueueOutput, error) {
 	req, out := c.UpdateGameSessionQueueRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateGameSessionQueueWithContext is the same as UpdateGameSessionQueue with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateGameSessionQueue for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) UpdateGameSessionQueueWithContext(ctx aws.Context, input *UpdateGameSessionQueueInput, opts ...request.Option) (*UpdateGameSessionQueueOutput, error) {
+	req, out := c.UpdateGameSessionQueueRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateRuntimeConfiguration = "UpdateRuntimeConfiguration"
@@ -4264,8 +4955,23 @@ func (c *GameLift) UpdateRuntimeConfigurationRequest(input *UpdateRuntimeConfigu
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/UpdateRuntimeConfiguration
 func (c *GameLift) UpdateRuntimeConfiguration(input *UpdateRuntimeConfigurationInput) (*UpdateRuntimeConfigurationOutput, error) {
 	req, out := c.UpdateRuntimeConfigurationRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateRuntimeConfigurationWithContext is the same as UpdateRuntimeConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateRuntimeConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) UpdateRuntimeConfigurationWithContext(ctx aws.Context, input *UpdateRuntimeConfigurationInput, opts ...request.Option) (*UpdateRuntimeConfigurationOutput, error) {
+	req, out := c.UpdateRuntimeConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // Properties describing a fleet alias.

@@ -150,8 +150,23 @@ func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(inp
 // API operation OutputService1TestCaseOperation1 for usage and error information.
 func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (*OutputService1TestShapeOutputShape, error) {
 	req, out := c.OutputService1TestCaseOperation1Request(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// OutputService1TestCaseOperation1WithContext is the same as OutputService1TestCaseOperation1 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See OutputService1TestCaseOperation1 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1WithContext(ctx aws.Context, input *OutputService1TestShapeOutputService1TestCaseOperation1Input, opts ...request.Option) (*OutputService1TestShapeOutputShape, error) {
+	req, out := c.OutputService1TestCaseOperation1Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opOutputService1TestCaseOperation2 = "OperationName"
@@ -204,8 +219,23 @@ func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation2Request(inp
 // API operation OutputService1TestCaseOperation2 for usage and error information.
 func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation2(input *OutputService1TestShapeOutputService1TestCaseOperation2Input) (*OutputService1TestShapeOutputShape, error) {
 	req, out := c.OutputService1TestCaseOperation2Request(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// OutputService1TestCaseOperation2WithContext is the same as OutputService1TestCaseOperation2 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See OutputService1TestCaseOperation2 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation2WithContext(ctx aws.Context, input *OutputService1TestShapeOutputService1TestCaseOperation2Input, opts ...request.Option) (*OutputService1TestShapeOutputShape, error) {
+	req, out := c.OutputService1TestCaseOperation2Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 type OutputService1TestShapeOutputService1TestCaseOperation1Input struct {
@@ -413,8 +443,23 @@ func (c *OutputService2ProtocolTest) OutputService2TestCaseOperation1Request(inp
 // API operation OutputService2TestCaseOperation1 for usage and error information.
 func (c *OutputService2ProtocolTest) OutputService2TestCaseOperation1(input *OutputService2TestShapeOutputService2TestCaseOperation1Input) (*OutputService2TestShapeOutputService2TestCaseOperation1Output, error) {
 	req, out := c.OutputService2TestCaseOperation1Request(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// OutputService2TestCaseOperation1WithContext is the same as OutputService2TestCaseOperation1 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See OutputService2TestCaseOperation1 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OutputService2ProtocolTest) OutputService2TestCaseOperation1WithContext(ctx aws.Context, input *OutputService2TestShapeOutputService2TestCaseOperation1Input, opts ...request.Option) (*OutputService2TestShapeOutputService2TestCaseOperation1Output, error) {
+	req, out := c.OutputService2TestCaseOperation1Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 type OutputService2TestShapeOutputService2TestCaseOperation1Input struct {
@@ -539,8 +584,23 @@ func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation1Request(inp
 // API operation OutputService3TestCaseOperation1 for usage and error information.
 func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation1(input *OutputService3TestShapeOutputService3TestCaseOperation1Input) (*OutputService3TestShapeOutputService3TestCaseOperation1Output, error) {
 	req, out := c.OutputService3TestCaseOperation1Request(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// OutputService3TestCaseOperation1WithContext is the same as OutputService3TestCaseOperation1 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See OutputService3TestCaseOperation1 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation1WithContext(ctx aws.Context, input *OutputService3TestShapeOutputService3TestCaseOperation1Input, opts ...request.Option) (*OutputService3TestShapeOutputService3TestCaseOperation1Output, error) {
+	req, out := c.OutputService3TestCaseOperation1Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 type OutputService3TestShapeOutputService3TestCaseOperation1Input struct {
@@ -664,8 +724,23 @@ func (c *OutputService4ProtocolTest) OutputService4TestCaseOperation1Request(inp
 // API operation OutputService4TestCaseOperation1 for usage and error information.
 func (c *OutputService4ProtocolTest) OutputService4TestCaseOperation1(input *OutputService4TestShapeOutputService4TestCaseOperation1Input) (*OutputService4TestShapeOutputService4TestCaseOperation1Output, error) {
 	req, out := c.OutputService4TestCaseOperation1Request(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// OutputService4TestCaseOperation1WithContext is the same as OutputService4TestCaseOperation1 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See OutputService4TestCaseOperation1 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OutputService4ProtocolTest) OutputService4TestCaseOperation1WithContext(ctx aws.Context, input *OutputService4TestShapeOutputService4TestCaseOperation1Input, opts ...request.Option) (*OutputService4TestShapeOutputService4TestCaseOperation1Output, error) {
+	req, out := c.OutputService4TestCaseOperation1Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 type OutputService4TestShapeOutputService4TestCaseOperation1Input struct {
@@ -789,8 +864,23 @@ func (c *OutputService5ProtocolTest) OutputService5TestCaseOperation1Request(inp
 // API operation OutputService5TestCaseOperation1 for usage and error information.
 func (c *OutputService5ProtocolTest) OutputService5TestCaseOperation1(input *OutputService5TestShapeOutputService5TestCaseOperation1Input) (*OutputService5TestShapeOutputService5TestCaseOperation1Output, error) {
 	req, out := c.OutputService5TestCaseOperation1Request(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// OutputService5TestCaseOperation1WithContext is the same as OutputService5TestCaseOperation1 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See OutputService5TestCaseOperation1 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OutputService5ProtocolTest) OutputService5TestCaseOperation1WithContext(ctx aws.Context, input *OutputService5TestShapeOutputService5TestCaseOperation1Input, opts ...request.Option) (*OutputService5TestShapeOutputService5TestCaseOperation1Output, error) {
+	req, out := c.OutputService5TestCaseOperation1Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 type OutputService5TestShapeOutputService5TestCaseOperation1Input struct {
@@ -914,8 +1004,23 @@ func (c *OutputService6ProtocolTest) OutputService6TestCaseOperation1Request(inp
 // API operation OutputService6TestCaseOperation1 for usage and error information.
 func (c *OutputService6ProtocolTest) OutputService6TestCaseOperation1(input *OutputService6TestShapeOutputService6TestCaseOperation1Input) (*OutputService6TestShapeOutputService6TestCaseOperation1Output, error) {
 	req, out := c.OutputService6TestCaseOperation1Request(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// OutputService6TestCaseOperation1WithContext is the same as OutputService6TestCaseOperation1 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See OutputService6TestCaseOperation1 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OutputService6ProtocolTest) OutputService6TestCaseOperation1WithContext(ctx aws.Context, input *OutputService6TestShapeOutputService6TestCaseOperation1Input, opts ...request.Option) (*OutputService6TestShapeOutputService6TestCaseOperation1Output, error) {
+	req, out := c.OutputService6TestCaseOperation1Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 type OutputService6TestShapeOutputService6TestCaseOperation1Input struct {
@@ -1051,8 +1156,23 @@ func (c *OutputService7ProtocolTest) OutputService7TestCaseOperation1Request(inp
 // API operation OutputService7TestCaseOperation1 for usage and error information.
 func (c *OutputService7ProtocolTest) OutputService7TestCaseOperation1(input *OutputService7TestShapeOutputService7TestCaseOperation1Input) (*OutputService7TestShapeOutputService7TestCaseOperation1Output, error) {
 	req, out := c.OutputService7TestCaseOperation1Request(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// OutputService7TestCaseOperation1WithContext is the same as OutputService7TestCaseOperation1 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See OutputService7TestCaseOperation1 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OutputService7ProtocolTest) OutputService7TestCaseOperation1WithContext(ctx aws.Context, input *OutputService7TestShapeOutputService7TestCaseOperation1Input, opts ...request.Option) (*OutputService7TestShapeOutputService7TestCaseOperation1Output, error) {
+	req, out := c.OutputService7TestCaseOperation1Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 type OutputService7TestShapeOutputService7TestCaseOperation1Input struct {
@@ -1176,8 +1296,23 @@ func (c *OutputService8ProtocolTest) OutputService8TestCaseOperation1Request(inp
 // API operation OutputService8TestCaseOperation1 for usage and error information.
 func (c *OutputService8ProtocolTest) OutputService8TestCaseOperation1(input *OutputService8TestShapeOutputService8TestCaseOperation1Input) (*OutputService8TestShapeOutputService8TestCaseOperation1Output, error) {
 	req, out := c.OutputService8TestCaseOperation1Request(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// OutputService8TestCaseOperation1WithContext is the same as OutputService8TestCaseOperation1 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See OutputService8TestCaseOperation1 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OutputService8ProtocolTest) OutputService8TestCaseOperation1WithContext(ctx aws.Context, input *OutputService8TestShapeOutputService8TestCaseOperation1Input, opts ...request.Option) (*OutputService8TestShapeOutputService8TestCaseOperation1Output, error) {
+	req, out := c.OutputService8TestCaseOperation1Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 type OutputService8TestShapeOutputService8TestCaseOperation1Input struct {
@@ -1301,8 +1436,23 @@ func (c *OutputService9ProtocolTest) OutputService9TestCaseOperation1Request(inp
 // API operation OutputService9TestCaseOperation1 for usage and error information.
 func (c *OutputService9ProtocolTest) OutputService9TestCaseOperation1(input *OutputService9TestShapeOutputService9TestCaseOperation1Input) (*OutputService9TestShapeOutputService9TestCaseOperation1Output, error) {
 	req, out := c.OutputService9TestCaseOperation1Request(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// OutputService9TestCaseOperation1WithContext is the same as OutputService9TestCaseOperation1 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See OutputService9TestCaseOperation1 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OutputService9ProtocolTest) OutputService9TestCaseOperation1WithContext(ctx aws.Context, input *OutputService9TestShapeOutputService9TestCaseOperation1Input, opts ...request.Option) (*OutputService9TestShapeOutputService9TestCaseOperation1Output, error) {
+	req, out := c.OutputService9TestCaseOperation1Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 type OutputService9TestShapeOutputService9TestCaseOperation1Input struct {
@@ -1446,8 +1596,23 @@ func (c *OutputService10ProtocolTest) OutputService10TestCaseOperation1Request(i
 // API operation OutputService10TestCaseOperation1 for usage and error information.
 func (c *OutputService10ProtocolTest) OutputService10TestCaseOperation1(input *OutputService10TestShapeOutputService10TestCaseOperation1Input) (*OutputService10TestShapeOutputService10TestCaseOperation1Output, error) {
 	req, out := c.OutputService10TestCaseOperation1Request(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// OutputService10TestCaseOperation1WithContext is the same as OutputService10TestCaseOperation1 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See OutputService10TestCaseOperation1 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OutputService10ProtocolTest) OutputService10TestCaseOperation1WithContext(ctx aws.Context, input *OutputService10TestShapeOutputService10TestCaseOperation1Input, opts ...request.Option) (*OutputService10TestShapeOutputService10TestCaseOperation1Output, error) {
+	req, out := c.OutputService10TestCaseOperation1Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 type OutputService10TestShapeOutputService10TestCaseOperation1Input struct {
@@ -1571,8 +1736,23 @@ func (c *OutputService11ProtocolTest) OutputService11TestCaseOperation1Request(i
 // API operation OutputService11TestCaseOperation1 for usage and error information.
 func (c *OutputService11ProtocolTest) OutputService11TestCaseOperation1(input *OutputService11TestShapeOutputService11TestCaseOperation1Input) (*OutputService11TestShapeOutputService11TestCaseOperation1Output, error) {
 	req, out := c.OutputService11TestCaseOperation1Request(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// OutputService11TestCaseOperation1WithContext is the same as OutputService11TestCaseOperation1 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See OutputService11TestCaseOperation1 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OutputService11ProtocolTest) OutputService11TestCaseOperation1WithContext(ctx aws.Context, input *OutputService11TestShapeOutputService11TestCaseOperation1Input, opts ...request.Option) (*OutputService11TestShapeOutputService11TestCaseOperation1Output, error) {
+	req, out := c.OutputService11TestCaseOperation1Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 type OutputService11TestShapeOutputService11TestCaseOperation1Input struct {
@@ -1760,8 +1940,23 @@ func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1Request(i
 // API operation OutputService12TestCaseOperation1 for usage and error information.
 func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1(input *OutputService12TestShapeOutputService12TestCaseOperation1Input) (*OutputService12TestShapeOutputService12TestCaseOperation1Output, error) {
 	req, out := c.OutputService12TestCaseOperation1Request(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// OutputService12TestCaseOperation1WithContext is the same as OutputService12TestCaseOperation1 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See OutputService12TestCaseOperation1 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1WithContext(ctx aws.Context, input *OutputService12TestShapeOutputService12TestCaseOperation1Input, opts ...request.Option) (*OutputService12TestShapeOutputService12TestCaseOperation1Output, error) {
+	req, out := c.OutputService12TestCaseOperation1Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 type OutputService12TestShapeOutputService12TestCaseOperation1Input struct {

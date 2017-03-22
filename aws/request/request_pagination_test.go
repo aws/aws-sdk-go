@@ -7,6 +7,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/awstesting"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/route53"
@@ -378,6 +379,81 @@ func TestPaginationNilToken(t *testing.T) {
 	assert.NoError(t, err)
 	assert.Equal(t, []string{"", "second", ""}, idents)
 	assert.Equal(t, []string{"first.example.com.", "second.example.com.", "third.example.com."}, results)
+}
+
+type testPageInput struct {
+	NextToken string
+}
+type testPageOutput struct {
+	Value     string
+	NextToken *string
+}
+
+func TestPagination_Standalone(t *testing.T) {
+	expect := []struct {
+		Value, PrevToken, NextToken string
+	}{
+		{"FirstValue", "InitalToken", "FirstToken"},
+		{"SecondValue", "FirstToken", "SecondToken"},
+		{"ThirdValue", "SecondToken", ""},
+	}
+	input := testPageInput{
+		NextToken: expect[0].PrevToken,
+	}
+
+	c := awstesting.NewClient()
+	i := 0
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			r := c.NewRequest(
+				&request.Operation{
+					Name: "Operation",
+					Paginator: &request.Paginator{
+						InputTokens:  []string{"NextToken"},
+						OutputTokens: []string{"NextToken"},
+					},
+				},
+				&input, &testPageOutput{},
+			)
+			// Setup handlers for testing
+			r.Handlers.Clear()
+			r.Handlers.Build.PushBack(func(req *request.Request) {
+				in := req.Params.(*testPageInput)
+				if e, a := expect[i].PrevToken, in.NextToken; e != a {
+					t.Errorf("%d, expect NextToken input %q, got %q", i, e, a)
+				}
+			})
+			r.Handlers.Unmarshal.PushBack(func(req *request.Request) {
+				out := &testPageOutput{
+					Value: expect[i].Value,
+				}
+				if len(expect[i].NextToken) > 0 {
+					out.NextToken = aws.String(expect[i].NextToken)
+				}
+				req.Data = out
+			})
+			return r, nil
+		},
+	}
+
+	for p.Next() {
+		data := p.Page().(*testPageOutput)
+
+		if e, a := expect[i].Value, data.Value; e != a {
+			t.Errorf("%d, expect Value to be %q, got %q", i, e, a)
+		}
+		if e, a := expect[i].NextToken, aws.StringValue(data.NextToken); e != a {
+			t.Errorf("%d, expect NextToken to be %q, got %q", i, e, a)
+		}
+
+		i++
+	}
+	if e, a := len(expect), i; e != a {
+		t.Errorf("expected to process %d pages, did %d", e, a)
+	}
+	if err := p.Err(); err != nil {
+		t.Fatalf("%d, expected no error, got %v", i, err)
+	}
 }
 
 // Benchmarks

@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 )
@@ -106,8 +107,23 @@ func (c *CloudDirectory) AddFacetToObjectRequest(input *AddFacetToObjectInput) (
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/AddFacetToObject
 func (c *CloudDirectory) AddFacetToObject(input *AddFacetToObjectInput) (*AddFacetToObjectOutput, error) {
 	req, out := c.AddFacetToObjectRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// AddFacetToObjectWithContext is the same as AddFacetToObject with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AddFacetToObject for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) AddFacetToObjectWithContext(ctx aws.Context, input *AddFacetToObjectInput, opts ...request.Option) (*AddFacetToObjectOutput, error) {
+	req, out := c.AddFacetToObjectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opApplySchema = "ApplySchema"
@@ -204,8 +220,23 @@ func (c *CloudDirectory) ApplySchemaRequest(input *ApplySchemaInput) (req *reque
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/ApplySchema
 func (c *CloudDirectory) ApplySchema(input *ApplySchemaInput) (*ApplySchemaOutput, error) {
 	req, out := c.ApplySchemaRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ApplySchemaWithContext is the same as ApplySchema with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ApplySchema for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ApplySchemaWithContext(ctx aws.Context, input *ApplySchemaInput, opts ...request.Option) (*ApplySchemaOutput, error) {
+	req, out := c.ApplySchemaRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opAttachObject = "AttachObject"
@@ -316,8 +347,23 @@ func (c *CloudDirectory) AttachObjectRequest(input *AttachObjectInput) (req *req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/AttachObject
 func (c *CloudDirectory) AttachObject(input *AttachObjectInput) (*AttachObjectOutput, error) {
 	req, out := c.AttachObjectRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// AttachObjectWithContext is the same as AttachObject with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AttachObject for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) AttachObjectWithContext(ctx aws.Context, input *AttachObjectInput, opts ...request.Option) (*AttachObjectOutput, error) {
+	req, out := c.AttachObjectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opAttachPolicy = "AttachPolicy"
@@ -418,8 +464,23 @@ func (c *CloudDirectory) AttachPolicyRequest(input *AttachPolicyInput) (req *req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/AttachPolicy
 func (c *CloudDirectory) AttachPolicy(input *AttachPolicyInput) (*AttachPolicyOutput, error) {
 	req, out := c.AttachPolicyRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// AttachPolicyWithContext is the same as AttachPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AttachPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) AttachPolicyWithContext(ctx aws.Context, input *AttachPolicyInput, opts ...request.Option) (*AttachPolicyOutput, error) {
+	req, out := c.AttachPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opAttachToIndex = "AttachToIndex"
@@ -524,8 +585,23 @@ func (c *CloudDirectory) AttachToIndexRequest(input *AttachToIndexInput) (req *r
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/AttachToIndex
 func (c *CloudDirectory) AttachToIndex(input *AttachToIndexInput) (*AttachToIndexOutput, error) {
 	req, out := c.AttachToIndexRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// AttachToIndexWithContext is the same as AttachToIndex with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AttachToIndex for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) AttachToIndexWithContext(ctx aws.Context, input *AttachToIndexInput, opts ...request.Option) (*AttachToIndexOutput, error) {
+	req, out := c.AttachToIndexRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opBatchRead = "BatchRead"
@@ -616,8 +692,23 @@ func (c *CloudDirectory) BatchReadRequest(input *BatchReadInput) (req *request.R
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/BatchRead
 func (c *CloudDirectory) BatchRead(input *BatchReadInput) (*BatchReadOutput, error) {
 	req, out := c.BatchReadRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// BatchReadWithContext is the same as BatchRead with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchRead for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) BatchReadWithContext(ctx aws.Context, input *BatchReadInput, opts ...request.Option) (*BatchReadOutput, error) {
+	req, out := c.BatchReadRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opBatchWrite = "BatchWrite"
@@ -712,8 +803,23 @@ func (c *CloudDirectory) BatchWriteRequest(input *BatchWriteInput) (req *request
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/BatchWrite
 func (c *CloudDirectory) BatchWrite(input *BatchWriteInput) (*BatchWriteOutput, error) {
 	req, out := c.BatchWriteRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// BatchWriteWithContext is the same as BatchWrite with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchWrite for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) BatchWriteWithContext(ctx aws.Context, input *BatchWriteInput, opts ...request.Option) (*BatchWriteOutput, error) {
+	req, out := c.BatchWriteRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateDirectory = "CreateDirectory"
@@ -812,8 +918,23 @@ func (c *CloudDirectory) CreateDirectoryRequest(input *CreateDirectoryInput) (re
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/CreateDirectory
 func (c *CloudDirectory) CreateDirectory(input *CreateDirectoryInput) (*CreateDirectoryOutput, error) {
 	req, out := c.CreateDirectoryRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateDirectoryWithContext is the same as CreateDirectory with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateDirectory for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) CreateDirectoryWithContext(ctx aws.Context, input *CreateDirectoryInput, opts ...request.Option) (*CreateDirectoryOutput, error) {
+	req, out := c.CreateDirectoryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateFacet = "CreateFacet"
@@ -911,8 +1032,23 @@ func (c *CloudDirectory) CreateFacetRequest(input *CreateFacetInput) (req *reque
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/CreateFacet
 func (c *CloudDirectory) CreateFacet(input *CreateFacetInput) (*CreateFacetOutput, error) {
 	req, out := c.CreateFacetRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateFacetWithContext is the same as CreateFacet with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateFacet for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) CreateFacetWithContext(ctx aws.Context, input *CreateFacetInput, opts ...request.Option) (*CreateFacetOutput, error) {
+	req, out := c.CreateFacetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateIndex = "CreateIndex"
@@ -1018,8 +1154,23 @@ func (c *CloudDirectory) CreateIndexRequest(input *CreateIndexInput) (req *reque
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/CreateIndex
 func (c *CloudDirectory) CreateIndex(input *CreateIndexInput) (*CreateIndexOutput, error) {
 	req, out := c.CreateIndexRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateIndexWithContext is the same as CreateIndex with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateIndex for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) CreateIndexWithContext(ctx aws.Context, input *CreateIndexInput, opts ...request.Option) (*CreateIndexOutput, error) {
+	req, out := c.CreateIndexRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateObject = "CreateObject"
@@ -1130,8 +1281,23 @@ func (c *CloudDirectory) CreateObjectRequest(input *CreateObjectInput) (req *req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/CreateObject
 func (c *CloudDirectory) CreateObject(input *CreateObjectInput) (*CreateObjectOutput, error) {
 	req, out := c.CreateObjectRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateObjectWithContext is the same as CreateObject with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateObject for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) CreateObjectWithContext(ctx aws.Context, input *CreateObjectInput, opts ...request.Option) (*CreateObjectOutput, error) {
+	req, out := c.CreateObjectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateSchema = "CreateSchema"
@@ -1238,8 +1404,23 @@ func (c *CloudDirectory) CreateSchemaRequest(input *CreateSchemaInput) (req *req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/CreateSchema
 func (c *CloudDirectory) CreateSchema(input *CreateSchemaInput) (*CreateSchemaOutput, error) {
 	req, out := c.CreateSchemaRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// CreateSchemaWithContext is the same as CreateSchema with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateSchema for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) CreateSchemaWithContext(ctx aws.Context, input *CreateSchemaInput, opts ...request.Option) (*CreateSchemaOutput, error) {
+	req, out := c.CreateSchemaRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteDirectory = "DeleteDirectory"
@@ -1335,8 +1516,23 @@ func (c *CloudDirectory) DeleteDirectoryRequest(input *DeleteDirectoryInput) (re
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/DeleteDirectory
 func (c *CloudDirectory) DeleteDirectory(input *DeleteDirectoryInput) (*DeleteDirectoryOutput, error) {
 	req, out := c.DeleteDirectoryRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteDirectoryWithContext is the same as DeleteDirectory with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDirectory for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) DeleteDirectoryWithContext(ctx aws.Context, input *DeleteDirectoryInput, opts ...request.Option) (*DeleteDirectoryOutput, error) {
+	req, out := c.DeleteDirectoryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteFacet = "DeleteFacet"
@@ -1435,8 +1631,23 @@ func (c *CloudDirectory) DeleteFacetRequest(input *DeleteFacetInput) (req *reque
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/DeleteFacet
 func (c *CloudDirectory) DeleteFacet(input *DeleteFacetInput) (*DeleteFacetOutput, error) {
 	req, out := c.DeleteFacetRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteFacetWithContext is the same as DeleteFacet with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFacet for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) DeleteFacetWithContext(ctx aws.Context, input *DeleteFacetInput, opts ...request.Option) (*DeleteFacetOutput, error) {
+	req, out := c.DeleteFacetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteObject = "DeleteObject"
@@ -1535,8 +1746,23 @@ func (c *CloudDirectory) DeleteObjectRequest(input *DeleteObjectInput) (req *req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/DeleteObject
 func (c *CloudDirectory) DeleteObject(input *DeleteObjectInput) (*DeleteObjectOutput, error) {
 	req, out := c.DeleteObjectRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteObjectWithContext is the same as DeleteObject with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteObject for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) DeleteObjectWithContext(ctx aws.Context, input *DeleteObjectInput, opts ...request.Option) (*DeleteObjectOutput, error) {
+	req, out := c.DeleteObjectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteSchema = "DeleteSchema"
@@ -1632,8 +1858,23 @@ func (c *CloudDirectory) DeleteSchemaRequest(input *DeleteSchemaInput) (req *req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/DeleteSchema
 func (c *CloudDirectory) DeleteSchema(input *DeleteSchemaInput) (*DeleteSchemaOutput, error) {
 	req, out := c.DeleteSchemaRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DeleteSchemaWithContext is the same as DeleteSchema with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteSchema for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) DeleteSchemaWithContext(ctx aws.Context, input *DeleteSchemaInput, opts ...request.Option) (*DeleteSchemaOutput, error) {
+	req, out := c.DeleteSchemaRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDetachFromIndex = "DetachFromIndex"
@@ -1733,8 +1974,23 @@ func (c *CloudDirectory) DetachFromIndexRequest(input *DetachFromIndexInput) (re
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/DetachFromIndex
 func (c *CloudDirectory) DetachFromIndex(input *DetachFromIndexInput) (*DetachFromIndexOutput, error) {
 	req, out := c.DetachFromIndexRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DetachFromIndexWithContext is the same as DetachFromIndex with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DetachFromIndex for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) DetachFromIndexWithContext(ctx aws.Context, input *DetachFromIndexInput, opts ...request.Option) (*DetachFromIndexOutput, error) {
+	req, out := c.DetachFromIndexRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDetachObject = "DetachObject"
@@ -1829,8 +2085,23 @@ func (c *CloudDirectory) DetachObjectRequest(input *DetachObjectInput) (req *req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/DetachObject
 func (c *CloudDirectory) DetachObject(input *DetachObjectInput) (*DetachObjectOutput, error) {
 	req, out := c.DetachObjectRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DetachObjectWithContext is the same as DetachObject with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DetachObject for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) DetachObjectWithContext(ctx aws.Context, input *DetachObjectInput, opts ...request.Option) (*DetachObjectOutput, error) {
+	req, out := c.DetachObjectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDetachPolicy = "DetachPolicy"
@@ -1930,8 +2201,23 @@ func (c *CloudDirectory) DetachPolicyRequest(input *DetachPolicyInput) (req *req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/DetachPolicy
 func (c *CloudDirectory) DetachPolicy(input *DetachPolicyInput) (*DetachPolicyOutput, error) {
 	req, out := c.DetachPolicyRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DetachPolicyWithContext is the same as DetachPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DetachPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) DetachPolicyWithContext(ctx aws.Context, input *DetachPolicyInput, opts ...request.Option) (*DetachPolicyOutput, error) {
+	req, out := c.DetachPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDisableDirectory = "DisableDirectory"
@@ -2025,8 +2311,23 @@ func (c *CloudDirectory) DisableDirectoryRequest(input *DisableDirectoryInput) (
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/DisableDirectory
 func (c *CloudDirectory) DisableDirectory(input *DisableDirectoryInput) (*DisableDirectoryOutput, error) {
 	req, out := c.DisableDirectoryRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// DisableDirectoryWithContext is the same as DisableDirectory with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisableDirectory for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) DisableDirectoryWithContext(ctx aws.Context, input *DisableDirectoryInput, opts ...request.Option) (*DisableDirectoryOutput, error) {
+	req, out := c.DisableDirectoryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opEnableDirectory = "EnableDirectory"
@@ -2119,8 +2420,23 @@ func (c *CloudDirectory) EnableDirectoryRequest(input *EnableDirectoryInput) (re
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/EnableDirectory
 func (c *CloudDirectory) EnableDirectory(input *EnableDirectoryInput) (*EnableDirectoryOutput, error) {
 	req, out := c.EnableDirectoryRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// EnableDirectoryWithContext is the same as EnableDirectory with the addition of
+// the ability to pass a context and additional request options.
+//
+// See EnableDirectory for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) EnableDirectoryWithContext(ctx aws.Context, input *EnableDirectoryInput, opts ...request.Option) (*EnableDirectoryOutput, error) {
+	req, out := c.EnableDirectoryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetDirectory = "GetDirectory"
@@ -2208,8 +2524,23 @@ func (c *CloudDirectory) GetDirectoryRequest(input *GetDirectoryInput) (req *req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/GetDirectory
 func (c *CloudDirectory) GetDirectory(input *GetDirectoryInput) (*GetDirectoryOutput, error) {
 	req, out := c.GetDirectoryRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetDirectoryWithContext is the same as GetDirectory with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDirectory for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) GetDirectoryWithContext(ctx aws.Context, input *GetDirectoryInput, opts ...request.Option) (*GetDirectoryOutput, error) {
+	req, out := c.GetDirectoryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetFacet = "GetFacet"
@@ -2305,8 +2636,23 @@ func (c *CloudDirectory) GetFacetRequest(input *GetFacetInput) (req *request.Req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/GetFacet
 func (c *CloudDirectory) GetFacet(input *GetFacetInput) (*GetFacetOutput, error) {
 	req, out := c.GetFacetRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetFacetWithContext is the same as GetFacet with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetFacet for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) GetFacetWithContext(ctx aws.Context, input *GetFacetInput, opts ...request.Option) (*GetFacetOutput, error) {
+	req, out := c.GetFacetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetObjectInformation = "GetObjectInformation"
@@ -2400,8 +2746,23 @@ func (c *CloudDirectory) GetObjectInformationRequest(input *GetObjectInformation
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/GetObjectInformation
 func (c *CloudDirectory) GetObjectInformation(input *GetObjectInformationInput) (*GetObjectInformationOutput, error) {
 	req, out := c.GetObjectInformationRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetObjectInformationWithContext is the same as GetObjectInformation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetObjectInformation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) GetObjectInformationWithContext(ctx aws.Context, input *GetObjectInformationInput, opts ...request.Option) (*GetObjectInformationOutput, error) {
+	req, out := c.GetObjectInformationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetSchemaAsJson = "GetSchemaAsJson"
@@ -2496,8 +2857,23 @@ func (c *CloudDirectory) GetSchemaAsJsonRequest(input *GetSchemaAsJsonInput) (re
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/GetSchemaAsJson
 func (c *CloudDirectory) GetSchemaAsJson(input *GetSchemaAsJsonInput) (*GetSchemaAsJsonOutput, error) {
 	req, out := c.GetSchemaAsJsonRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// GetSchemaAsJsonWithContext is the same as GetSchemaAsJson with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSchemaAsJson for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) GetSchemaAsJsonWithContext(ctx aws.Context, input *GetSchemaAsJsonInput, opts ...request.Option) (*GetSchemaAsJsonOutput, error) {
+	req, out := c.GetSchemaAsJsonRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListAppliedSchemaArns = "ListAppliedSchemaArns"
@@ -2597,8 +2973,23 @@ func (c *CloudDirectory) ListAppliedSchemaArnsRequest(input *ListAppliedSchemaAr
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/ListAppliedSchemaArns
 func (c *CloudDirectory) ListAppliedSchemaArns(input *ListAppliedSchemaArnsInput) (*ListAppliedSchemaArnsOutput, error) {
 	req, out := c.ListAppliedSchemaArnsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListAppliedSchemaArnsWithContext is the same as ListAppliedSchemaArns with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAppliedSchemaArns for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListAppliedSchemaArnsWithContext(ctx aws.Context, input *ListAppliedSchemaArnsInput, opts ...request.Option) (*ListAppliedSchemaArnsOutput, error) {
+	req, out := c.ListAppliedSchemaArnsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListAppliedSchemaArnsPages iterates over the pages of a ListAppliedSchemaArns operation,
@@ -2618,12 +3009,33 @@ func (c *CloudDirectory) ListAppliedSchemaArns(input *ListAppliedSchemaArnsInput
 //            return pageNum <= 3
 //        })
 //
-func (c *CloudDirectory) ListAppliedSchemaArnsPages(input *ListAppliedSchemaArnsInput, fn func(p *ListAppliedSchemaArnsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListAppliedSchemaArnsRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListAppliedSchemaArnsOutput), lastPage)
-	})
+func (c *CloudDirectory) ListAppliedSchemaArnsPages(input *ListAppliedSchemaArnsInput, fn func(*ListAppliedSchemaArnsOutput, bool) bool) error {
+	return c.ListAppliedSchemaArnsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAppliedSchemaArnsPagesWithContext same as ListAppliedSchemaArnsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListAppliedSchemaArnsPagesWithContext(ctx aws.Context, input *ListAppliedSchemaArnsInput, fn func(*ListAppliedSchemaArnsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListAppliedSchemaArnsRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListAppliedSchemaArnsOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListAttachedIndices = "ListAttachedIndices"
@@ -2723,8 +3135,23 @@ func (c *CloudDirectory) ListAttachedIndicesRequest(input *ListAttachedIndicesIn
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/ListAttachedIndices
 func (c *CloudDirectory) ListAttachedIndices(input *ListAttachedIndicesInput) (*ListAttachedIndicesOutput, error) {
 	req, out := c.ListAttachedIndicesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListAttachedIndicesWithContext is the same as ListAttachedIndices with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAttachedIndices for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListAttachedIndicesWithContext(ctx aws.Context, input *ListAttachedIndicesInput, opts ...request.Option) (*ListAttachedIndicesOutput, error) {
+	req, out := c.ListAttachedIndicesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListAttachedIndicesPages iterates over the pages of a ListAttachedIndices operation,
@@ -2744,12 +3171,33 @@ func (c *CloudDirectory) ListAttachedIndices(input *ListAttachedIndicesInput) (*
 //            return pageNum <= 3
 //        })
 //
-func (c *CloudDirectory) ListAttachedIndicesPages(input *ListAttachedIndicesInput, fn func(p *ListAttachedIndicesOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListAttachedIndicesRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListAttachedIndicesOutput), lastPage)
-	})
+func (c *CloudDirectory) ListAttachedIndicesPages(input *ListAttachedIndicesInput, fn func(*ListAttachedIndicesOutput, bool) bool) error {
+	return c.ListAttachedIndicesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAttachedIndicesPagesWithContext same as ListAttachedIndicesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListAttachedIndicesPagesWithContext(ctx aws.Context, input *ListAttachedIndicesInput, fn func(*ListAttachedIndicesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListAttachedIndicesRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListAttachedIndicesOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListDevelopmentSchemaArns = "ListDevelopmentSchemaArns"
@@ -2849,8 +3297,23 @@ func (c *CloudDirectory) ListDevelopmentSchemaArnsRequest(input *ListDevelopment
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/ListDevelopmentSchemaArns
 func (c *CloudDirectory) ListDevelopmentSchemaArns(input *ListDevelopmentSchemaArnsInput) (*ListDevelopmentSchemaArnsOutput, error) {
 	req, out := c.ListDevelopmentSchemaArnsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListDevelopmentSchemaArnsWithContext is the same as ListDevelopmentSchemaArns with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDevelopmentSchemaArns for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListDevelopmentSchemaArnsWithContext(ctx aws.Context, input *ListDevelopmentSchemaArnsInput, opts ...request.Option) (*ListDevelopmentSchemaArnsOutput, error) {
+	req, out := c.ListDevelopmentSchemaArnsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListDevelopmentSchemaArnsPages iterates over the pages of a ListDevelopmentSchemaArns operation,
@@ -2870,12 +3333,33 @@ func (c *CloudDirectory) ListDevelopmentSchemaArns(input *ListDevelopmentSchemaA
 //            return pageNum <= 3
 //        })
 //
-func (c *CloudDirectory) ListDevelopmentSchemaArnsPages(input *ListDevelopmentSchemaArnsInput, fn func(p *ListDevelopmentSchemaArnsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListDevelopmentSchemaArnsRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListDevelopmentSchemaArnsOutput), lastPage)
-	})
+func (c *CloudDirectory) ListDevelopmentSchemaArnsPages(input *ListDevelopmentSchemaArnsInput, fn func(*ListDevelopmentSchemaArnsOutput, bool) bool) error {
+	return c.ListDevelopmentSchemaArnsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDevelopmentSchemaArnsPagesWithContext same as ListDevelopmentSchemaArnsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListDevelopmentSchemaArnsPagesWithContext(ctx aws.Context, input *ListDevelopmentSchemaArnsInput, fn func(*ListDevelopmentSchemaArnsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListDevelopmentSchemaArnsRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListDevelopmentSchemaArnsOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListDirectories = "ListDirectories"
@@ -2972,8 +3456,23 @@ func (c *CloudDirectory) ListDirectoriesRequest(input *ListDirectoriesInput) (re
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/ListDirectories
 func (c *CloudDirectory) ListDirectories(input *ListDirectoriesInput) (*ListDirectoriesOutput, error) {
 	req, out := c.ListDirectoriesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListDirectoriesWithContext is the same as ListDirectories with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDirectories for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListDirectoriesWithContext(ctx aws.Context, input *ListDirectoriesInput, opts ...request.Option) (*ListDirectoriesOutput, error) {
+	req, out := c.ListDirectoriesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListDirectoriesPages iterates over the pages of a ListDirectories operation,
@@ -2993,12 +3492,33 @@ func (c *CloudDirectory) ListDirectories(input *ListDirectoriesInput) (*ListDire
 //            return pageNum <= 3
 //        })
 //
-func (c *CloudDirectory) ListDirectoriesPages(input *ListDirectoriesInput, fn func(p *ListDirectoriesOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListDirectoriesRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListDirectoriesOutput), lastPage)
-	})
+func (c *CloudDirectory) ListDirectoriesPages(input *ListDirectoriesInput, fn func(*ListDirectoriesOutput, bool) bool) error {
+	return c.ListDirectoriesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDirectoriesPagesWithContext same as ListDirectoriesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListDirectoriesPagesWithContext(ctx aws.Context, input *ListDirectoriesInput, fn func(*ListDirectoriesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListDirectoriesRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListDirectoriesOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListFacetAttributes = "ListFacetAttributes"
@@ -3101,8 +3621,23 @@ func (c *CloudDirectory) ListFacetAttributesRequest(input *ListFacetAttributesIn
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/ListFacetAttributes
 func (c *CloudDirectory) ListFacetAttributes(input *ListFacetAttributesInput) (*ListFacetAttributesOutput, error) {
 	req, out := c.ListFacetAttributesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListFacetAttributesWithContext is the same as ListFacetAttributes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFacetAttributes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListFacetAttributesWithContext(ctx aws.Context, input *ListFacetAttributesInput, opts ...request.Option) (*ListFacetAttributesOutput, error) {
+	req, out := c.ListFacetAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListFacetAttributesPages iterates over the pages of a ListFacetAttributes operation,
@@ -3122,12 +3657,33 @@ func (c *CloudDirectory) ListFacetAttributes(input *ListFacetAttributesInput) (*
 //            return pageNum <= 3
 //        })
 //
-func (c *CloudDirectory) ListFacetAttributesPages(input *ListFacetAttributesInput, fn func(p *ListFacetAttributesOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListFacetAttributesRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListFacetAttributesOutput), lastPage)
-	})
+func (c *CloudDirectory) ListFacetAttributesPages(input *ListFacetAttributesInput, fn func(*ListFacetAttributesOutput, bool) bool) error {
+	return c.ListFacetAttributesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFacetAttributesPagesWithContext same as ListFacetAttributesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListFacetAttributesPagesWithContext(ctx aws.Context, input *ListFacetAttributesInput, fn func(*ListFacetAttributesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListFacetAttributesRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListFacetAttributesOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListFacetNames = "ListFacetNames"
@@ -3227,8 +3783,23 @@ func (c *CloudDirectory) ListFacetNamesRequest(input *ListFacetNamesInput) (req 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/ListFacetNames
 func (c *CloudDirectory) ListFacetNames(input *ListFacetNamesInput) (*ListFacetNamesOutput, error) {
 	req, out := c.ListFacetNamesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListFacetNamesWithContext is the same as ListFacetNames with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFacetNames for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListFacetNamesWithContext(ctx aws.Context, input *ListFacetNamesInput, opts ...request.Option) (*ListFacetNamesOutput, error) {
+	req, out := c.ListFacetNamesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListFacetNamesPages iterates over the pages of a ListFacetNames operation,
@@ -3248,12 +3819,33 @@ func (c *CloudDirectory) ListFacetNames(input *ListFacetNamesInput) (*ListFacetN
 //            return pageNum <= 3
 //        })
 //
-func (c *CloudDirectory) ListFacetNamesPages(input *ListFacetNamesInput, fn func(p *ListFacetNamesOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListFacetNamesRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListFacetNamesOutput), lastPage)
-	})
+func (c *CloudDirectory) ListFacetNamesPages(input *ListFacetNamesInput, fn func(*ListFacetNamesOutput, bool) bool) error {
+	return c.ListFacetNamesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFacetNamesPagesWithContext same as ListFacetNamesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListFacetNamesPagesWithContext(ctx aws.Context, input *ListFacetNamesInput, fn func(*ListFacetNamesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListFacetNamesRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListFacetNamesOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListIndex = "ListIndex"
@@ -3356,8 +3948,23 @@ func (c *CloudDirectory) ListIndexRequest(input *ListIndexInput) (req *request.R
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/ListIndex
 func (c *CloudDirectory) ListIndex(input *ListIndexInput) (*ListIndexOutput, error) {
 	req, out := c.ListIndexRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListIndexWithContext is the same as ListIndex with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListIndex for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListIndexWithContext(ctx aws.Context, input *ListIndexInput, opts ...request.Option) (*ListIndexOutput, error) {
+	req, out := c.ListIndexRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListIndexPages iterates over the pages of a ListIndex operation,
@@ -3377,12 +3984,33 @@ func (c *CloudDirectory) ListIndex(input *ListIndexInput) (*ListIndexOutput, err
 //            return pageNum <= 3
 //        })
 //
-func (c *CloudDirectory) ListIndexPages(input *ListIndexInput, fn func(p *ListIndexOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListIndexRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListIndexOutput), lastPage)
-	})
+func (c *CloudDirectory) ListIndexPages(input *ListIndexInput, fn func(*ListIndexOutput, bool) bool) error {
+	return c.ListIndexPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListIndexPagesWithContext same as ListIndexPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListIndexPagesWithContext(ctx aws.Context, input *ListIndexInput, fn func(*ListIndexOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListIndexRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListIndexOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListObjectAttributes = "ListObjectAttributes"
@@ -3488,8 +4116,23 @@ func (c *CloudDirectory) ListObjectAttributesRequest(input *ListObjectAttributes
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/ListObjectAttributes
 func (c *CloudDirectory) ListObjectAttributes(input *ListObjectAttributesInput) (*ListObjectAttributesOutput, error) {
 	req, out := c.ListObjectAttributesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListObjectAttributesWithContext is the same as ListObjectAttributes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListObjectAttributes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListObjectAttributesWithContext(ctx aws.Context, input *ListObjectAttributesInput, opts ...request.Option) (*ListObjectAttributesOutput, error) {
+	req, out := c.ListObjectAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListObjectAttributesPages iterates over the pages of a ListObjectAttributes operation,
@@ -3509,12 +4152,33 @@ func (c *CloudDirectory) ListObjectAttributes(input *ListObjectAttributesInput) 
 //            return pageNum <= 3
 //        })
 //
-func (c *CloudDirectory) ListObjectAttributesPages(input *ListObjectAttributesInput, fn func(p *ListObjectAttributesOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListObjectAttributesRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListObjectAttributesOutput), lastPage)
-	})
+func (c *CloudDirectory) ListObjectAttributesPages(input *ListObjectAttributesInput, fn func(*ListObjectAttributesOutput, bool) bool) error {
+	return c.ListObjectAttributesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListObjectAttributesPagesWithContext same as ListObjectAttributesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListObjectAttributesPagesWithContext(ctx aws.Context, input *ListObjectAttributesInput, fn func(*ListObjectAttributesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListObjectAttributesRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListObjectAttributesOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListObjectChildren = "ListObjectChildren"
@@ -3624,8 +4288,23 @@ func (c *CloudDirectory) ListObjectChildrenRequest(input *ListObjectChildrenInpu
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/ListObjectChildren
 func (c *CloudDirectory) ListObjectChildren(input *ListObjectChildrenInput) (*ListObjectChildrenOutput, error) {
 	req, out := c.ListObjectChildrenRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListObjectChildrenWithContext is the same as ListObjectChildren with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListObjectChildren for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListObjectChildrenWithContext(ctx aws.Context, input *ListObjectChildrenInput, opts ...request.Option) (*ListObjectChildrenOutput, error) {
+	req, out := c.ListObjectChildrenRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListObjectChildrenPages iterates over the pages of a ListObjectChildren operation,
@@ -3645,12 +4324,33 @@ func (c *CloudDirectory) ListObjectChildren(input *ListObjectChildrenInput) (*Li
 //            return pageNum <= 3
 //        })
 //
-func (c *CloudDirectory) ListObjectChildrenPages(input *ListObjectChildrenInput, fn func(p *ListObjectChildrenOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListObjectChildrenRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListObjectChildrenOutput), lastPage)
-	})
+func (c *CloudDirectory) ListObjectChildrenPages(input *ListObjectChildrenInput, fn func(*ListObjectChildrenOutput, bool) bool) error {
+	return c.ListObjectChildrenPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListObjectChildrenPagesWithContext same as ListObjectChildrenPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListObjectChildrenPagesWithContext(ctx aws.Context, input *ListObjectChildrenInput, fn func(*ListObjectChildrenOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListObjectChildrenRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListObjectChildrenOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListObjectParentPaths = "ListObjectParentPaths"
@@ -3762,8 +4462,23 @@ func (c *CloudDirectory) ListObjectParentPathsRequest(input *ListObjectParentPat
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/ListObjectParentPaths
 func (c *CloudDirectory) ListObjectParentPaths(input *ListObjectParentPathsInput) (*ListObjectParentPathsOutput, error) {
 	req, out := c.ListObjectParentPathsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListObjectParentPathsWithContext is the same as ListObjectParentPaths with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListObjectParentPaths for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListObjectParentPathsWithContext(ctx aws.Context, input *ListObjectParentPathsInput, opts ...request.Option) (*ListObjectParentPathsOutput, error) {
+	req, out := c.ListObjectParentPathsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListObjectParentPathsPages iterates over the pages of a ListObjectParentPaths operation,
@@ -3783,12 +4498,33 @@ func (c *CloudDirectory) ListObjectParentPaths(input *ListObjectParentPathsInput
 //            return pageNum <= 3
 //        })
 //
-func (c *CloudDirectory) ListObjectParentPathsPages(input *ListObjectParentPathsInput, fn func(p *ListObjectParentPathsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListObjectParentPathsRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListObjectParentPathsOutput), lastPage)
-	})
+func (c *CloudDirectory) ListObjectParentPathsPages(input *ListObjectParentPathsInput, fn func(*ListObjectParentPathsOutput, bool) bool) error {
+	return c.ListObjectParentPathsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListObjectParentPathsPagesWithContext same as ListObjectParentPathsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListObjectParentPathsPagesWithContext(ctx aws.Context, input *ListObjectParentPathsInput, fn func(*ListObjectParentPathsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListObjectParentPathsRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListObjectParentPathsOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListObjectParents = "ListObjectParents"
@@ -3897,8 +4633,23 @@ func (c *CloudDirectory) ListObjectParentsRequest(input *ListObjectParentsInput)
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/ListObjectParents
 func (c *CloudDirectory) ListObjectParents(input *ListObjectParentsInput) (*ListObjectParentsOutput, error) {
 	req, out := c.ListObjectParentsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListObjectParentsWithContext is the same as ListObjectParents with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListObjectParents for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListObjectParentsWithContext(ctx aws.Context, input *ListObjectParentsInput, opts ...request.Option) (*ListObjectParentsOutput, error) {
+	req, out := c.ListObjectParentsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListObjectParentsPages iterates over the pages of a ListObjectParents operation,
@@ -3918,12 +4669,33 @@ func (c *CloudDirectory) ListObjectParents(input *ListObjectParentsInput) (*List
 //            return pageNum <= 3
 //        })
 //
-func (c *CloudDirectory) ListObjectParentsPages(input *ListObjectParentsInput, fn func(p *ListObjectParentsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListObjectParentsRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListObjectParentsOutput), lastPage)
-	})
+func (c *CloudDirectory) ListObjectParentsPages(input *ListObjectParentsInput, fn func(*ListObjectParentsOutput, bool) bool) error {
+	return c.ListObjectParentsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListObjectParentsPagesWithContext same as ListObjectParentsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListObjectParentsPagesWithContext(ctx aws.Context, input *ListObjectParentsInput, fn func(*ListObjectParentsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListObjectParentsRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListObjectParentsOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListObjectPolicies = "ListObjectPolicies"
@@ -4026,8 +4798,23 @@ func (c *CloudDirectory) ListObjectPoliciesRequest(input *ListObjectPoliciesInpu
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/ListObjectPolicies
 func (c *CloudDirectory) ListObjectPolicies(input *ListObjectPoliciesInput) (*ListObjectPoliciesOutput, error) {
 	req, out := c.ListObjectPoliciesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListObjectPoliciesWithContext is the same as ListObjectPolicies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListObjectPolicies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListObjectPoliciesWithContext(ctx aws.Context, input *ListObjectPoliciesInput, opts ...request.Option) (*ListObjectPoliciesOutput, error) {
+	req, out := c.ListObjectPoliciesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListObjectPoliciesPages iterates over the pages of a ListObjectPolicies operation,
@@ -4047,12 +4834,33 @@ func (c *CloudDirectory) ListObjectPolicies(input *ListObjectPoliciesInput) (*Li
 //            return pageNum <= 3
 //        })
 //
-func (c *CloudDirectory) ListObjectPoliciesPages(input *ListObjectPoliciesInput, fn func(p *ListObjectPoliciesOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListObjectPoliciesRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListObjectPoliciesOutput), lastPage)
-	})
+func (c *CloudDirectory) ListObjectPoliciesPages(input *ListObjectPoliciesInput, fn func(*ListObjectPoliciesOutput, bool) bool) error {
+	return c.ListObjectPoliciesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListObjectPoliciesPagesWithContext same as ListObjectPoliciesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListObjectPoliciesPagesWithContext(ctx aws.Context, input *ListObjectPoliciesInput, fn func(*ListObjectPoliciesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListObjectPoliciesRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListObjectPoliciesOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListPolicyAttachments = "ListPolicyAttachments"
@@ -4161,8 +4969,23 @@ func (c *CloudDirectory) ListPolicyAttachmentsRequest(input *ListPolicyAttachmen
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/ListPolicyAttachments
 func (c *CloudDirectory) ListPolicyAttachments(input *ListPolicyAttachmentsInput) (*ListPolicyAttachmentsOutput, error) {
 	req, out := c.ListPolicyAttachmentsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListPolicyAttachmentsWithContext is the same as ListPolicyAttachments with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListPolicyAttachments for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListPolicyAttachmentsWithContext(ctx aws.Context, input *ListPolicyAttachmentsInput, opts ...request.Option) (*ListPolicyAttachmentsOutput, error) {
+	req, out := c.ListPolicyAttachmentsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListPolicyAttachmentsPages iterates over the pages of a ListPolicyAttachments operation,
@@ -4182,12 +5005,33 @@ func (c *CloudDirectory) ListPolicyAttachments(input *ListPolicyAttachmentsInput
 //            return pageNum <= 3
 //        })
 //
-func (c *CloudDirectory) ListPolicyAttachmentsPages(input *ListPolicyAttachmentsInput, fn func(p *ListPolicyAttachmentsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListPolicyAttachmentsRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListPolicyAttachmentsOutput), lastPage)
-	})
+func (c *CloudDirectory) ListPolicyAttachmentsPages(input *ListPolicyAttachmentsInput, fn func(*ListPolicyAttachmentsOutput, bool) bool) error {
+	return c.ListPolicyAttachmentsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPolicyAttachmentsPagesWithContext same as ListPolicyAttachmentsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListPolicyAttachmentsPagesWithContext(ctx aws.Context, input *ListPolicyAttachmentsInput, fn func(*ListPolicyAttachmentsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListPolicyAttachmentsRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListPolicyAttachmentsOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListPublishedSchemaArns = "ListPublishedSchemaArns"
@@ -4287,8 +5131,23 @@ func (c *CloudDirectory) ListPublishedSchemaArnsRequest(input *ListPublishedSche
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/ListPublishedSchemaArns
 func (c *CloudDirectory) ListPublishedSchemaArns(input *ListPublishedSchemaArnsInput) (*ListPublishedSchemaArnsOutput, error) {
 	req, out := c.ListPublishedSchemaArnsRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListPublishedSchemaArnsWithContext is the same as ListPublishedSchemaArns with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListPublishedSchemaArns for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListPublishedSchemaArnsWithContext(ctx aws.Context, input *ListPublishedSchemaArnsInput, opts ...request.Option) (*ListPublishedSchemaArnsOutput, error) {
+	req, out := c.ListPublishedSchemaArnsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListPublishedSchemaArnsPages iterates over the pages of a ListPublishedSchemaArns operation,
@@ -4308,12 +5167,33 @@ func (c *CloudDirectory) ListPublishedSchemaArns(input *ListPublishedSchemaArnsI
 //            return pageNum <= 3
 //        })
 //
-func (c *CloudDirectory) ListPublishedSchemaArnsPages(input *ListPublishedSchemaArnsInput, fn func(p *ListPublishedSchemaArnsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListPublishedSchemaArnsRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListPublishedSchemaArnsOutput), lastPage)
-	})
+func (c *CloudDirectory) ListPublishedSchemaArnsPages(input *ListPublishedSchemaArnsInput, fn func(*ListPublishedSchemaArnsOutput, bool) bool) error {
+	return c.ListPublishedSchemaArnsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPublishedSchemaArnsPagesWithContext same as ListPublishedSchemaArnsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListPublishedSchemaArnsPagesWithContext(ctx aws.Context, input *ListPublishedSchemaArnsInput, fn func(*ListPublishedSchemaArnsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListPublishedSchemaArnsRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListPublishedSchemaArnsOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListTagsForResource = "ListTagsForResource"
@@ -4417,8 +5297,23 @@ func (c *CloudDirectory) ListTagsForResourceRequest(input *ListTagsForResourceIn
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/ListTagsForResource
 func (c *CloudDirectory) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // ListTagsForResourcePages iterates over the pages of a ListTagsForResource operation,
@@ -4438,12 +5333,33 @@ func (c *CloudDirectory) ListTagsForResource(input *ListTagsForResourceInput) (*
 //            return pageNum <= 3
 //        })
 //
-func (c *CloudDirectory) ListTagsForResourcePages(input *ListTagsForResourceInput, fn func(p *ListTagsForResourceOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.ListTagsForResourceRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListTagsForResourceOutput), lastPage)
-	})
+func (c *CloudDirectory) ListTagsForResourcePages(input *ListTagsForResourceInput, fn func(*ListTagsForResourceOutput, bool) bool) error {
+	return c.ListTagsForResourcePagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTagsForResourcePagesWithContext same as ListTagsForResourcePages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) ListTagsForResourcePagesWithContext(ctx aws.Context, input *ListTagsForResourceInput, fn func(*ListTagsForResourceOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.ListTagsForResourceRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListTagsForResourceOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opLookupPolicy = "LookupPolicy"
@@ -4554,8 +5470,23 @@ func (c *CloudDirectory) LookupPolicyRequest(input *LookupPolicyInput) (req *req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/LookupPolicy
 func (c *CloudDirectory) LookupPolicy(input *LookupPolicyInput) (*LookupPolicyOutput, error) {
 	req, out := c.LookupPolicyRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// LookupPolicyWithContext is the same as LookupPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See LookupPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) LookupPolicyWithContext(ctx aws.Context, input *LookupPolicyInput, opts ...request.Option) (*LookupPolicyOutput, error) {
+	req, out := c.LookupPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // LookupPolicyPages iterates over the pages of a LookupPolicy operation,
@@ -4575,12 +5506,33 @@ func (c *CloudDirectory) LookupPolicy(input *LookupPolicyInput) (*LookupPolicyOu
 //            return pageNum <= 3
 //        })
 //
-func (c *CloudDirectory) LookupPolicyPages(input *LookupPolicyInput, fn func(p *LookupPolicyOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.LookupPolicyRequest(input)
-	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
-	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*LookupPolicyOutput), lastPage)
-	})
+func (c *CloudDirectory) LookupPolicyPages(input *LookupPolicyInput, fn func(*LookupPolicyOutput, bool) bool) error {
+	return c.LookupPolicyPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// LookupPolicyPagesWithContext same as LookupPolicyPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) LookupPolicyPagesWithContext(ctx aws.Context, input *LookupPolicyInput, fn func(*LookupPolicyOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			inCpy := *input
+			req, _ := c.LookupPolicyRequest(&inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*LookupPolicyOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opPublishSchema = "PublishSchema"
@@ -4677,8 +5629,23 @@ func (c *CloudDirectory) PublishSchemaRequest(input *PublishSchemaInput) (req *r
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/PublishSchema
 func (c *CloudDirectory) PublishSchema(input *PublishSchemaInput) (*PublishSchemaOutput, error) {
 	req, out := c.PublishSchemaRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// PublishSchemaWithContext is the same as PublishSchema with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PublishSchema for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) PublishSchemaWithContext(ctx aws.Context, input *PublishSchemaInput, opts ...request.Option) (*PublishSchemaOutput, error) {
+	req, out := c.PublishSchemaRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opPutSchemaFromJson = "PutSchemaFromJson"
@@ -4774,8 +5741,23 @@ func (c *CloudDirectory) PutSchemaFromJsonRequest(input *PutSchemaFromJsonInput)
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/PutSchemaFromJson
 func (c *CloudDirectory) PutSchemaFromJson(input *PutSchemaFromJsonInput) (*PutSchemaFromJsonOutput, error) {
 	req, out := c.PutSchemaFromJsonRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// PutSchemaFromJsonWithContext is the same as PutSchemaFromJson with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutSchemaFromJson for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) PutSchemaFromJsonWithContext(ctx aws.Context, input *PutSchemaFromJsonInput, opts ...request.Option) (*PutSchemaFromJsonOutput, error) {
+	req, out := c.PutSchemaFromJsonRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opRemoveFacetFromObject = "RemoveFacetFromObject"
@@ -4873,8 +5855,23 @@ func (c *CloudDirectory) RemoveFacetFromObjectRequest(input *RemoveFacetFromObje
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/RemoveFacetFromObject
 func (c *CloudDirectory) RemoveFacetFromObject(input *RemoveFacetFromObjectInput) (*RemoveFacetFromObjectOutput, error) {
 	req, out := c.RemoveFacetFromObjectRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// RemoveFacetFromObjectWithContext is the same as RemoveFacetFromObject with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RemoveFacetFromObject for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) RemoveFacetFromObjectWithContext(ctx aws.Context, input *RemoveFacetFromObjectInput, opts ...request.Option) (*RemoveFacetFromObjectOutput, error) {
+	req, out := c.RemoveFacetFromObjectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opTagResource = "TagResource"
@@ -4970,8 +5967,23 @@ func (c *CloudDirectory) TagResourceRequest(input *TagResourceInput) (req *reque
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/TagResource
 func (c *CloudDirectory) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
 	req, out := c.TagResourceRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUntagResource = "UntagResource"
@@ -5067,8 +6079,23 @@ func (c *CloudDirectory) UntagResourceRequest(input *UntagResourceInput) (req *r
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/UntagResource
 func (c *CloudDirectory) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateFacet = "UpdateFacet"
@@ -5174,8 +6201,23 @@ func (c *CloudDirectory) UpdateFacetRequest(input *UpdateFacetInput) (req *reque
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/UpdateFacet
 func (c *CloudDirectory) UpdateFacet(input *UpdateFacetInput) (*UpdateFacetOutput, error) {
 	req, out := c.UpdateFacetRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateFacetWithContext is the same as UpdateFacet with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFacet for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) UpdateFacetWithContext(ctx aws.Context, input *UpdateFacetInput, opts ...request.Option) (*UpdateFacetOutput, error) {
+	req, out := c.UpdateFacetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateObjectAttributes = "UpdateObjectAttributes"
@@ -5273,8 +6315,23 @@ func (c *CloudDirectory) UpdateObjectAttributesRequest(input *UpdateObjectAttrib
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/UpdateObjectAttributes
 func (c *CloudDirectory) UpdateObjectAttributes(input *UpdateObjectAttributesInput) (*UpdateObjectAttributesOutput, error) {
 	req, out := c.UpdateObjectAttributesRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateObjectAttributesWithContext is the same as UpdateObjectAttributes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateObjectAttributes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) UpdateObjectAttributesWithContext(ctx aws.Context, input *UpdateObjectAttributesInput, opts ...request.Option) (*UpdateObjectAttributesOutput, error) {
+	req, out := c.UpdateObjectAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateSchema = "UpdateSchema"
@@ -5366,8 +6423,23 @@ func (c *CloudDirectory) UpdateSchemaRequest(input *UpdateSchemaInput) (req *req
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/UpdateSchema
 func (c *CloudDirectory) UpdateSchema(input *UpdateSchemaInput) (*UpdateSchemaOutput, error) {
 	req, out := c.UpdateSchemaRequest(input)
-	err := req.Send()
-	return out, err
+	return out, req.Send()
+}
+
+// UpdateSchemaWithContext is the same as UpdateSchema with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSchema for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) UpdateSchemaWithContext(ctx aws.Context, input *UpdateSchemaInput, opts ...request.Option) (*UpdateSchemaOutput, error) {
+	req, out := c.UpdateSchemaRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/AddFacetToObjectRequest
