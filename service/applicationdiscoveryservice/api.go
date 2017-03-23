@@ -622,8 +622,8 @@ func (c *ApplicationDiscoveryService) DescribeConfigurationsRequest(input *Descr
 // for a server configuration item includes a list of attributes about the server,
 // such as host name, operating system, and number of network cards.
 //
-// For a complete list of outputs for each asset type, see Querying Discovered
-// Configuration Items (http://docs.aws.amazon.com/application-discovery/latest/APIReference/querying-configuration-items.html#DescribeConfigurations).
+// For a complete list of outputs for each asset type, see Using the DescribeConfigurations
+// Action (http://docs.aws.amazon.com/application-discovery/latest/APIReference/discovery-api-queries.html#DescribeConfigurations).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -697,6 +697,9 @@ const opDescribeExportConfigurations = "DescribeExportConfigurations"
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeExportConfigurations
 func (c *ApplicationDiscoveryService) DescribeExportConfigurationsRequest(input *DescribeExportConfigurationsInput) (req *request.Request, output *DescribeExportConfigurationsOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, DescribeExportConfigurations, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opDescribeExportConfigurations,
 		HTTPMethod: "POST",
@@ -713,6 +716,8 @@ func (c *ApplicationDiscoveryService) DescribeExportConfigurationsRequest(input 
 }
 
 // DescribeExportConfigurations API operation for AWS Application Discovery Service.
+//
+// Deprecated. Use DescribeExportTasks instead.
 //
 // Retrieves the status of a given export process. You can retrieve status from
 // a maximum of 100 processes.
@@ -760,6 +765,98 @@ func (c *ApplicationDiscoveryService) DescribeExportConfigurations(input *Descri
 // for more information on using Contexts.
 func (c *ApplicationDiscoveryService) DescribeExportConfigurationsWithContext(ctx aws.Context, input *DescribeExportConfigurationsInput, opts ...request.Option) (*DescribeExportConfigurationsOutput, error) {
 	req, out := c.DescribeExportConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeExportTasks = "DescribeExportTasks"
+
+// DescribeExportTasksRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeExportTasks operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See DescribeExportTasks for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeExportTasks method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeExportTasksRequest method.
+//    req, resp := client.DescribeExportTasksRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeExportTasks
+func (c *ApplicationDiscoveryService) DescribeExportTasksRequest(input *DescribeExportTasksInput) (req *request.Request, output *DescribeExportTasksOutput) {
+	op := &request.Operation{
+		Name:       opDescribeExportTasks,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeExportTasksInput{}
+	}
+
+	output = &DescribeExportTasksOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeExportTasks API operation for AWS Application Discovery Service.
+//
+// Retrieve status of one or more export tasks. You can retrieve the status
+// of up to 100 export tasks.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Application Discovery Service's
+// API operation DescribeExportTasks for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+//   The AWS user account does not have permission to perform the action. Check
+//   the IAM policy associated with this account.
+//
+//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   One or more parameters are not valid. Verify the parameters and try again.
+//
+//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   The value of one or more parameters are either invalid or out of range. Verify
+//   the parameter values and try again.
+//
+//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   The server experienced an internal error. Try again.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeExportTasks
+func (c *ApplicationDiscoveryService) DescribeExportTasks(input *DescribeExportTasksInput) (*DescribeExportTasksOutput, error) {
+	req, out := c.DescribeExportTasksRequest(input)
+	return out, req.Send()
+}
+
+// DescribeExportTasksWithContext is the same as DescribeExportTasks with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeExportTasks for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) DescribeExportTasksWithContext(ctx aws.Context, input *DescribeExportTasksInput, opts ...request.Option) (*DescribeExportTasksOutput, error) {
+	req, out := c.DescribeExportTasksRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -980,6 +1077,9 @@ const opExportConfigurations = "ExportConfigurations"
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ExportConfigurations
 func (c *ApplicationDiscoveryService) ExportConfigurationsRequest(input *ExportConfigurationsInput) (req *request.Request, output *ExportConfigurationsOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, ExportConfigurations, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opExportConfigurations,
 		HTTPMethod: "POST",
@@ -997,10 +1097,12 @@ func (c *ApplicationDiscoveryService) ExportConfigurationsRequest(input *ExportC
 
 // ExportConfigurations API operation for AWS Application Discovery Service.
 //
+// Deprecated. Use StartExportTask instead.
+//
 // Exports all discovered configuration data to an Amazon S3 bucket or an application
 // that enables you to view and evaluate the data. Data includes tags and tag
 // associations, processes, connections, servers, and system performance. This
-// API returns an export ID which you can query using the DescribeExportConfigurations
+// API returns an export ID that you can query using the DescribeExportConfigurations
 // API. The system imposes a limit of two configuration exports in six hours.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1186,8 +1288,8 @@ func (c *ApplicationDiscoveryService) ListConfigurationsRequest(input *ListConfi
 
 // ListConfigurations API operation for AWS Application Discovery Service.
 //
-// Retrieves a list of configuration items according to criteria you specify
-// in a filter. The filter criteria identify relationship requirements.
+// Retrieves a list of configuration items according to criteria that you specify
+// in a filter. The filter criteria identifies the relationship requirements.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1282,7 +1384,7 @@ func (c *ApplicationDiscoveryService) ListServerNeighborsRequest(input *ListServ
 
 // ListServerNeighbors API operation for AWS Application Discovery Service.
 //
-// Retrieves a list of servers which are one network hop away from a specified
+// Retrieves a list of servers that are one network hop away from a specified
 // server.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1374,7 +1476,7 @@ func (c *ApplicationDiscoveryService) StartDataCollectionByAgentIdsRequest(input
 
 // StartDataCollectionByAgentIds API operation for AWS Application Discovery Service.
 //
-// Instructs the specified agents or Connectors to start collecting data.
+// Instructs the specified agents or connectors to start collecting data.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1415,6 +1517,101 @@ func (c *ApplicationDiscoveryService) StartDataCollectionByAgentIds(input *Start
 // for more information on using Contexts.
 func (c *ApplicationDiscoveryService) StartDataCollectionByAgentIdsWithContext(ctx aws.Context, input *StartDataCollectionByAgentIdsInput, opts ...request.Option) (*StartDataCollectionByAgentIdsOutput, error) {
 	req, out := c.StartDataCollectionByAgentIdsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartExportTask = "StartExportTask"
+
+// StartExportTaskRequest generates a "aws/request.Request" representing the
+// client's request for the StartExportTask operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See StartExportTask for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the StartExportTask method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the StartExportTaskRequest method.
+//    req, resp := client.StartExportTaskRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StartExportTask
+func (c *ApplicationDiscoveryService) StartExportTaskRequest(input *StartExportTaskInput) (req *request.Request, output *StartExportTaskOutput) {
+	op := &request.Operation{
+		Name:       opStartExportTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartExportTaskInput{}
+	}
+
+	output = &StartExportTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartExportTask API operation for AWS Application Discovery Service.
+//
+// Export the configuration data about discovered configuration items and relationships
+// to an S3 bucket in a specified format.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Application Discovery Service's
+// API operation StartExportTask for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+//   The AWS user account does not have permission to perform the action. Check
+//   the IAM policy associated with this account.
+//
+//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   One or more parameters are not valid. Verify the parameters and try again.
+//
+//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   The value of one or more parameters are either invalid or out of range. Verify
+//   the parameter values and try again.
+//
+//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   The server experienced an internal error. Try again.
+//
+//   * ErrCodeOperationNotPermittedException "OperationNotPermittedException"
+//   This operation is not permitted.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StartExportTask
+func (c *ApplicationDiscoveryService) StartExportTask(input *StartExportTaskInput) (*StartExportTaskOutput, error) {
+	req, out := c.StartExportTaskRequest(input)
+	return out, req.Send()
+}
+
+// StartExportTaskWithContext is the same as StartExportTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartExportTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ApplicationDiscoveryService) StartExportTaskWithContext(ctx aws.Context, input *StartExportTaskInput, opts ...request.Option) (*StartExportTaskOutput, error) {
+	req, out := c.StartExportTaskRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1465,7 +1662,7 @@ func (c *ApplicationDiscoveryService) StopDataCollectionByAgentIdsRequest(input 
 
 // StopDataCollectionByAgentIds API operation for AWS Application Discovery Service.
 //
-// Instructs the specified agents or Connectors to stop collecting data.
+// Instructs the specified agents or connectors to stop collecting data.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1602,21 +1799,21 @@ func (c *ApplicationDiscoveryService) UpdateApplicationWithContext(ctx aws.Conte
 	return out, req.Send()
 }
 
-// Information about agents or Connectors that were instructed to start collecting
-// data. Information includes the agent/Connector ID, a description of the operation,
-// and whether or not the agent/Connector configuration was updated.
+// Information about agents or connectors that were instructed to start collecting
+// data. Information includes the agent/connector ID, a description of the operation,
+// and whether the agent/connector configuration was updated.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/AgentConfigurationStatus
 type AgentConfigurationStatus struct {
 	_ struct{} `type:"structure"`
 
-	// The agent/Connector ID.
+	// The agent/connector ID.
 	AgentId *string `locationName:"agentId" type:"string"`
 
 	// A description of the operation performed.
 	Description *string `locationName:"description" type:"string"`
 
 	// Information about the status of the StartDataCollection and StopDataCollection
-	// operations. The system has recorded the data collection operation. The agent/Connector
+	// operations. The system has recorded the data collection operation. The agent/connector
 	// receives this command the next time it polls for a new command.
 	OperationSucceeded *bool `locationName:"operationSucceeded" type:"boolean"`
 }
@@ -1682,7 +1879,7 @@ type AgentInfo struct {
 	// Time since agent or connector health was reported.
 	LastHealthPingTime *string `locationName:"lastHealthPingTime" type:"string"`
 
-	// Agent's first registration time stamp in UTC.
+	// Agent's first registration timestamp in UTC.
 	RegisteredTime *string `locationName:"registeredTime" type:"string"`
 
 	// The agent or connector version.
@@ -1759,15 +1956,15 @@ func (s *AgentInfo) SetVersion(v string) *AgentInfo {
 	return s
 }
 
-// Network details about the host where the agent/Connector resides.
+// Network details about the host where the agent/connector resides.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/AgentNetworkInfo
 type AgentNetworkInfo struct {
 	_ struct{} `type:"structure"`
 
-	// The IP address for the host where the agent/Connector resides.
+	// The IP address for the host where the agent/connector resides.
 	IpAddress *string `locationName:"ipAddress" type:"string"`
 
-	// The MAC address for the host where the agent/Connector resides.
+	// The MAC address for the host where the agent/connector resides.
 	MacAddress *string `locationName:"macAddress" type:"string"`
 }
 
@@ -1867,21 +2064,22 @@ func (s AssociateConfigurationItemsToApplicationOutput) GoString() string {
 type ConfigurationTag struct {
 	_ struct{} `type:"structure"`
 
-	// The configuration ID for the item you want to tag. You can specify a list
-	// of keys and values.
+	// The configuration ID for the item to tag. You can specify a list of keys
+	// and values.
 	ConfigurationId *string `locationName:"configurationId" type:"string"`
 
-	// A type of IT asset that you want to tag.
+	// A type of IT asset to tag.
 	ConfigurationType *string `locationName:"configurationType" type:"string" enum:"ConfigurationItemType"`
 
-	// A type of tag to filter on. For example, serverType.
+	// A type of tag on which to filter. For example, serverType.
 	Key *string `locationName:"key" type:"string"`
 
 	// The time the configuration tag was created in Coordinated Universal Time
 	// (UTC).
 	TimeOfCreation *time.Time `locationName:"timeOfCreation" type:"timestamp" timestampFormat:"unix"`
 
-	// A value to filter on. For example key = serverType and value = web server.
+	// A value on which to filter. For example key = serverType and value = web
+	// server.
 	Value *string `locationName:"value" type:"string"`
 }
 
@@ -2407,10 +2605,6 @@ type DescribeAgentsInput struct {
 	// format. For example:
 	//
 	// {"key": "collectionStatus", "value": "STARTED"}
-	//
-	// For a complete list of filter options and guidance about using them with
-	// this action, see Managing AWS Application Discovery Service Agents and the
-	// AWS Application Discovery Connector  (http://docs.aws.amazon.com/application-discovery/latest/APIReference/managing-agent.html).
 	Filters []*Filter `locationName:"filters" type:"list"`
 
 	// The total number of agents/Connectors to return in a single page of output.
@@ -2591,10 +2785,10 @@ type DescribeExportConfigurationsInput struct {
 	// The maximum number of results that you want to display as a part of the query.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
-	// A token to get the next set of results. For example, if you specified 100
-	// IDs for DescribeExportConfigurationsRequest$exportIds but set DescribeExportConfigurationsRequest$maxResults
-	// to 10, you will get results in a set of 10. Use the token in the query to
-	// get the next set of 10.
+	// A token to get the next set of results. For example, if you specify 100 IDs
+	// for DescribeExportConfigurationsRequest$exportIds but set DescribeExportConfigurationsRequest$maxResults
+	// to 10, you get results in a set of 10. Use the token in the query to get
+	// the next set of 10.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -2634,10 +2828,10 @@ type DescribeExportConfigurationsOutput struct {
 	// a URL for an Amazon S3 bucket where you can view the data in a CSV file.
 	ExportsInfo []*ExportInfo `locationName:"exportsInfo" type:"list"`
 
-	// A token to get the next set of results. For example, if you specified 100
-	// IDs for DescribeExportConfigurationsRequest$exportIds but set DescribeExportConfigurationsRequest$maxResults
-	// to 10, you will get results in a set of 10. Use the token in the query to
-	// get the next set of 10.
+	// A token to get the next set of results. For example, if you specify 100 IDs
+	// for DescribeExportConfigurationsRequest$exportIds but set DescribeExportConfigurationsRequest$maxResults
+	// to 10, you get results in a set of 10. Use the token in the query to get
+	// the next set of 10.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -2663,6 +2857,92 @@ func (s *DescribeExportConfigurationsOutput) SetNextToken(v string) *DescribeExp
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeExportTasksRequest
+type DescribeExportTasksInput struct {
+	_ struct{} `type:"structure"`
+
+	// One or more unique identifiers used to query the status of an export request.
+	ExportIds []*string `locationName:"exportIds" type:"list"`
+
+	// The maximum number of volume results returned by DescribeExportTasks in paginated
+	// output. When this parameter is used, DescribeExportTasks only returns maxResults
+	// results in a single page along with a nextToken response element.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// The nextToken value returned from a previous paginated DescribeExportTasks
+	// request where maxResults was used and the results exceeded the value of that
+	// parameter. Pagination continues from the end of the previous results that
+	// returned the nextToken value. This value is null when there are no more results
+	// to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeExportTasksInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeExportTasksInput) GoString() string {
+	return s.String()
+}
+
+// SetExportIds sets the ExportIds field's value.
+func (s *DescribeExportTasksInput) SetExportIds(v []*string) *DescribeExportTasksInput {
+	s.ExportIds = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeExportTasksInput) SetMaxResults(v int64) *DescribeExportTasksInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeExportTasksInput) SetNextToken(v string) *DescribeExportTasksInput {
+	s.NextToken = &v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeExportTasksResponse
+type DescribeExportTasksOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains one or more sets of export request details. When the status of a
+	// request is SUCCEEDED, the response includes a URL for an Amazon S3 bucket
+	// where you can view the data in a CSV file.
+	ExportsInfo []*ExportInfo `locationName:"exportsInfo" type:"list"`
+
+	// The nextToken value to include in a future DescribeExportTasks request. When
+	// the results of a DescribeExportTasks request exceed maxResults, this value
+	// can be used to retrieve the next page of results. This value is null when
+	// there are no more results to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeExportTasksOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeExportTasksOutput) GoString() string {
+	return s.String()
+}
+
+// SetExportsInfo sets the ExportsInfo field's value.
+func (s *DescribeExportTasksOutput) SetExportsInfo(v []*ExportInfo) *DescribeExportTasksOutput {
+	s.ExportsInfo = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeExportTasksOutput) SetNextToken(v string) *DescribeExportTasksOutput {
+	s.NextToken = &v
+	return s
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeTagsRequest
 type DescribeTagsInput struct {
 	_ struct{} `type:"structure"`
@@ -2670,10 +2950,6 @@ type DescribeTagsInput struct {
 	// You can filter the list using a key-value format. You can separate these
 	// items by using logical operators. Allowed filters include tagKey, tagValue,
 	// and configurationId.
-	//
-	// For a complete list of filter options and guidance about using them with
-	// this action, see Managing AWS Application Discovery Service Agents and the
-	// AWS Application Discovery Connector  (http://docs.aws.amazon.com/application-discovery/latest/APIReference/managing-agents.html).
 	Filters []*TagFilter `locationName:"filters" type:"list"`
 
 	// The total number of items to return in a single page of output. The maximum
@@ -2770,12 +3046,12 @@ func (s *DescribeTagsOutput) SetTags(v []*ConfigurationTag) *DescribeTagsOutput 
 type DisassociateConfigurationItemsFromApplicationInput struct {
 	_ struct{} `type:"structure"`
 
-	// Configuration ID of an application from which each item will be disassociated.
+	// Configuration ID of an application from which each item is disassociated.
 	//
 	// ApplicationConfigurationId is a required field
 	ApplicationConfigurationId *string `locationName:"applicationConfigurationId" type:"string" required:"true"`
 
-	// Configuration ID of each item be be disassociated from an application.
+	// Configuration ID of each item to be disassociated from an application.
 	//
 	// ConfigurationIds is a required field
 	ConfigurationIds []*string `locationName:"configurationIds" type:"list" required:"true"`
@@ -2888,7 +3164,7 @@ type ExportInfo struct {
 	// ExportId is a required field
 	ExportId *string `locationName:"exportId" type:"string" required:"true"`
 
-	// The time the configuration data export was initiated.
+	// The time that the configuration data export was initiated.
 	//
 	// ExportRequestTime is a required field
 	ExportRequestTime *time.Time `locationName:"exportRequestTime" type:"timestamp" timestampFormat:"unix" required:"true"`
@@ -2948,8 +3224,8 @@ func (s *ExportInfo) SetStatusMessage(v string) *ExportInfo {
 
 // A filter that can use conditional operators.
 //
-// for a complete list of filters and guidance for using them with the Application
-// Discovery Service, see Querying Discovered Configuration Items (http://docs.aws.amazon.com/application-discovery/latest/APIReference/querying-configuration-items.html).
+// For more information about filters, see Querying Discovered Configuration
+// Items (http://docs.aws.amazon.com/application-discovery/latest/APIReference/discovery-api-queries.html).
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/Filter
 type Filter struct {
 	_ struct{} `type:"structure"`
@@ -2969,9 +3245,8 @@ type Filter struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// A string value that you want to filter on. For example, if you choose the
-	// destinationServer.osVersion filter name, you could specify Ubuntu for the
-	// value.
+	// A string value on which to filter. For example, if you choose the destinationServer.osVersion
+	// filter name, you could specify Ubuntu for the value.
 	//
 	// Values is a required field
 	Values []*string `locationName:"values" locationNameList:"item" type:"list" required:"true"`
@@ -3046,19 +3321,19 @@ type GetDiscoverySummaryOutput struct {
 	// Details about discovered agents, including agent status and health.
 	AgentSummary *CustomerAgentInfo `locationName:"agentSummary" type:"structure"`
 
-	// Number of applications discovered.
+	// The number of applications discovered.
 	Applications *int64 `locationName:"applications" type:"long"`
 
 	// Details about discovered connectors, including connector status and health.
 	ConnectorSummary *CustomerConnectorInfo `locationName:"connectorSummary" type:"structure"`
 
-	// Number of servers discovered.
+	// The number of servers discovered.
 	Servers *int64 `locationName:"servers" type:"long"`
 
-	// Number of servers mapped to applications.
+	// The number of servers mapped to applications.
 	ServersMappedToApplications *int64 `locationName:"serversMappedToApplications" type:"long"`
 
-	// Number of servers mapped to tags.
+	// The number of servers mapped to tags.
 	ServersMappedtoTags *int64 `locationName:"serversMappedtoTags" type:"long"`
 }
 
@@ -3112,7 +3387,7 @@ func (s *GetDiscoverySummaryOutput) SetServersMappedtoTags(v int64) *GetDiscover
 type ListConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// A valid configuration identified by the Discovery Service.
+	// A valid configuration identified by Application Discovery Service.
 	//
 	// ConfigurationType is a required field
 	ConfigurationType *string `locationName:"configurationType" type:"string" required:"true" enum:"ConfigurationItemType"`
@@ -3123,7 +3398,7 @@ type ListConfigurationsInput struct {
 	// {"key": "serverType", "value": "webServer"}
 	//
 	// For a complete list of filter options and guidance about using them with
-	// this action, see Querying Discovered Configuration Items (http://docs.aws.amazon.com/application-discovery/latest/APIReference/querying-configuration-items.html#ListConfigurations).
+	// this action, see Querying Discovered Configuration Items (http://docs.aws.amazon.com/application-discovery/latest/APIReference/discovery-api-queries.html#ListConfigurations).
 	Filters []*Filter `locationName:"filters" type:"list"`
 
 	// The total number of items to return. The maximum value is 100.
@@ -3137,7 +3412,7 @@ type ListConfigurationsInput struct {
 
 	// Certain filter criteria return output that can be sorted in ascending or
 	// descending order. For a list of output characteristics for each filter, see
-	// Querying Discovered Configuration Items (http://docs.aws.amazon.com/application-discovery/latest/APIReference/querying-configuration-items.html#ListConfigurations).
+	// Using the ListConfigurations Action (http://docs.aws.amazon.com/application-discovery/latest/APIReference/discovery-api-queries.html#ListConfigurations).
 	OrderBy []*OrderByElement `locationName:"orderBy" type:"list"`
 }
 
@@ -3383,25 +3658,25 @@ func (s *ListServerNeighborsOutput) SetNextToken(v string) *ListServerNeighborsO
 type NeighborConnectionDetail struct {
 	_ struct{} `type:"structure"`
 
-	// Number of open network connections with the neighboring server.
+	// The number of open network connections with the neighboring server.
 	//
 	// ConnectionsCount is a required field
 	ConnectionsCount *int64 `locationName:"connectionsCount" type:"long" required:"true"`
 
-	// Destination network port for the connection.
+	// The destination network port for the connection.
 	DestinationPort *int64 `locationName:"destinationPort" type:"integer"`
 
-	// ID of the server that accepted the networker connection.
+	// The ID of the server that accepted the network connection.
 	//
 	// DestinationServerId is a required field
 	DestinationServerId *string `locationName:"destinationServerId" type:"string" required:"true"`
 
-	// ID of server that opened the network connection.
+	// The ID of the server that opened the network connection.
 	//
 	// SourceServerId is a required field
 	SourceServerId *string `locationName:"sourceServerId" type:"string" required:"true"`
 
-	// Network protocol used for the connection.
+	// The network protocol used for the connection.
 	TransportProtocol *string `locationName:"transportProtocol" type:"string"`
 }
 
@@ -3445,12 +3720,12 @@ func (s *NeighborConnectionDetail) SetTransportProtocol(v string) *NeighborConne
 	return s
 }
 
-// Field and direction for ordered output.
+// A field and direction for ordered output.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/OrderByElement
 type OrderByElement struct {
 	_ struct{} `type:"structure"`
 
-	// Field to order on.
+	// The field on which to order.
 	//
 	// FieldName is a required field
 	FieldName *string `locationName:"fieldName" type:"string" required:"true"`
@@ -3498,12 +3773,12 @@ func (s *OrderByElement) SetSortOrder(v string) *OrderByElement {
 type StartDataCollectionByAgentIdsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The IDs of the agents or Connectors that you want to start collecting data.
-	// If you send a request to an agent/Connector ID that you do not have permission
+	// The IDs of the agents or connectors from which to start collecting data.
+	// If you send a request to an agent/connector ID that you do not have permission
 	// to contact, according to your AWS account, the service does not throw an
 	// exception. Instead, it returns the error in the Description field. If you
-	// send a request to multiple agents/Connectors and you do not have permission
-	// to contact some of those agents/Connectors, the system does not throw an
+	// send a request to multiple agents/connectors and you do not have permission
+	// to contact some of those agents/connectors, the system does not throw an
 	// exception. Instead, the system shows Failed in the Description field.
 	//
 	// AgentIds is a required field
@@ -3543,9 +3818,9 @@ func (s *StartDataCollectionByAgentIdsInput) SetAgentIds(v []*string) *StartData
 type StartDataCollectionByAgentIdsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about agents or the Connector that were instructed to start collecting
-	// data. Information includes the agent/Connector ID, a description of the operation
-	// performed, and whether or not the agent/Connector configuration was updated.
+	// Information about agents or the connector that were instructed to start collecting
+	// data. Information includes the agent/connector ID, a description of the operation
+	// performed, and whether the agent/connector configuration was updated.
 	AgentsConfigurationStatus []*AgentConfigurationStatus `locationName:"agentsConfigurationStatus" type:"list"`
 }
 
@@ -3565,11 +3840,59 @@ func (s *StartDataCollectionByAgentIdsOutput) SetAgentsConfigurationStatus(v []*
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StartExportTaskRequest
+type StartExportTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	// The file format for the returned export data. Default value is CSV.
+	ExportDataFormat []*string `locationName:"exportDataFormat" type:"list"`
+}
+
+// String returns the string representation
+func (s StartExportTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartExportTaskInput) GoString() string {
+	return s.String()
+}
+
+// SetExportDataFormat sets the ExportDataFormat field's value.
+func (s *StartExportTaskInput) SetExportDataFormat(v []*string) *StartExportTaskInput {
+	s.ExportDataFormat = v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StartExportTaskResponse
+type StartExportTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier used to query the status of an export request.
+	ExportId *string `locationName:"exportId" type:"string"`
+}
+
+// String returns the string representation
+func (s StartExportTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartExportTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetExportId sets the ExportId field's value.
+func (s *StartExportTaskOutput) SetExportId(v string) *StartExportTaskOutput {
+	s.ExportId = &v
+	return s
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StopDataCollectionByAgentIdsRequest
 type StopDataCollectionByAgentIdsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The IDs of the agents or Connectors that you want to stop collecting data.
+	// The IDs of the agents or connectors from which to stop collecting data.
 	//
 	// AgentIds is a required field
 	AgentIds []*string `locationName:"agentIds" type:"list" required:"true"`
@@ -3608,9 +3931,9 @@ func (s *StopDataCollectionByAgentIdsInput) SetAgentIds(v []*string) *StopDataCo
 type StopDataCollectionByAgentIdsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about agents or the Connector that were instructed to stop collecting
-	// data. Information includes the agent/Connector ID, a description of the operation
-	// performed, and whether or not the agent/Connector configuration was updated.
+	// Information about the agents or connector that were instructed to stop collecting
+	// data. Information includes the agent/connector ID, a description of the operation
+	// performed, and whether the agent/connector configuration was updated.
 	AgentsConfigurationStatus []*AgentConfigurationStatus `locationName:"agentsConfigurationStatus" type:"list"`
 }
 
@@ -3635,12 +3958,12 @@ func (s *StopDataCollectionByAgentIdsOutput) SetAgentsConfigurationStatus(v []*A
 type Tag struct {
 	_ struct{} `type:"structure"`
 
-	// A type of tag to filter on.
+	// The type of tag on which to filter.
 	//
 	// Key is a required field
 	Key *string `locationName:"key" type:"string" required:"true"`
 
-	// A value for a tag key to filter on.
+	// A value for a tag key on which to filter.
 	//
 	// Value is a required field
 	Value *string `locationName:"value" type:"string" required:"true"`
@@ -3684,17 +4007,17 @@ func (s *Tag) SetValue(v string) *Tag {
 	return s
 }
 
-// The name of a tag filter. Valid names are: tagKey, tagValue, configurationId.
+// The tag filter. Valid names are: tagKey, tagValue, configurationId.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/TagFilter
 type TagFilter struct {
 	_ struct{} `type:"structure"`
 
-	// A name of a tag filter.
+	// A name of the tag filter.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// Values of a tag filter.
+	// Values for the tag filter.
 	//
 	// Values is a required field
 	Values []*string `locationName:"values" locationNameList:"item" type:"list" required:"true"`
@@ -3842,6 +4165,14 @@ const (
 
 	// ConfigurationItemTypeApplication is a ConfigurationItemType enum value
 	ConfigurationItemTypeApplication = "APPLICATION"
+)
+
+const (
+	// ExportDataFormatCsv is a ExportDataFormat enum value
+	ExportDataFormatCsv = "CSV"
+
+	// ExportDataFormatGraphml is a ExportDataFormat enum value
+	ExportDataFormatGraphml = "GRAPHML"
 )
 
 const (

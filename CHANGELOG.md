@@ -1,3 +1,15 @@
+Release v1.8.1 (2017-03-23)
+===
+
+Service Client Updates
+---
+* `service/applicationdiscoveryservice`: Updates service API, documentation, and paginators
+  * Adds export configuration options to the AWS Discovery Service API.
+* `service/elbv2`: Updates waiters
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/lambda`: Updates service API and paginators
+  * Adds support for new runtime Node.js v6.10 for AWS Lambda service
+
 Release v1.8.0 (2017-03-22)
 ===
 
