@@ -188,6 +188,12 @@ type ELBV2API interface {
 	SetSubnets(*elbv2.SetSubnetsInput) (*elbv2.SetSubnetsOutput, error)
 	SetSubnetsWithContext(aws.Context, *elbv2.SetSubnetsInput, ...request.Option) (*elbv2.SetSubnetsOutput, error)
 	SetSubnetsRequest(*elbv2.SetSubnetsInput) (*request.Request, *elbv2.SetSubnetsOutput)
+
+	WaitUntilLoadBalancerAvailable(*elbv2.DescribeLoadBalancersInput) error
+	WaitUntilLoadBalancerAvailableWithContext(aws.Context, *elbv2.DescribeLoadBalancersInput, ...request.WaiterOption) error
+
+	WaitUntilLoadBalancerExists(*elbv2.DescribeLoadBalancersInput) error
+	WaitUntilLoadBalancerExistsWithContext(aws.Context, *elbv2.DescribeLoadBalancersInput, ...request.WaiterOption) error
 }
 
 var _ ELBV2API = (*elbv2.ELBV2)(nil)

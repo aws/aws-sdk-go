@@ -92,6 +92,10 @@ type ApplicationDiscoveryServiceAPI interface {
 	DescribeExportConfigurationsWithContext(aws.Context, *applicationdiscoveryservice.DescribeExportConfigurationsInput, ...request.Option) (*applicationdiscoveryservice.DescribeExportConfigurationsOutput, error)
 	DescribeExportConfigurationsRequest(*applicationdiscoveryservice.DescribeExportConfigurationsInput) (*request.Request, *applicationdiscoveryservice.DescribeExportConfigurationsOutput)
 
+	DescribeExportTasks(*applicationdiscoveryservice.DescribeExportTasksInput) (*applicationdiscoveryservice.DescribeExportTasksOutput, error)
+	DescribeExportTasksWithContext(aws.Context, *applicationdiscoveryservice.DescribeExportTasksInput, ...request.Option) (*applicationdiscoveryservice.DescribeExportTasksOutput, error)
+	DescribeExportTasksRequest(*applicationdiscoveryservice.DescribeExportTasksInput) (*request.Request, *applicationdiscoveryservice.DescribeExportTasksOutput)
+
 	DescribeTags(*applicationdiscoveryservice.DescribeTagsInput) (*applicationdiscoveryservice.DescribeTagsOutput, error)
 	DescribeTagsWithContext(aws.Context, *applicationdiscoveryservice.DescribeTagsInput, ...request.Option) (*applicationdiscoveryservice.DescribeTagsOutput, error)
 	DescribeTagsRequest(*applicationdiscoveryservice.DescribeTagsInput) (*request.Request, *applicationdiscoveryservice.DescribeTagsOutput)
@@ -119,6 +123,10 @@ type ApplicationDiscoveryServiceAPI interface {
 	StartDataCollectionByAgentIds(*applicationdiscoveryservice.StartDataCollectionByAgentIdsInput) (*applicationdiscoveryservice.StartDataCollectionByAgentIdsOutput, error)
 	StartDataCollectionByAgentIdsWithContext(aws.Context, *applicationdiscoveryservice.StartDataCollectionByAgentIdsInput, ...request.Option) (*applicationdiscoveryservice.StartDataCollectionByAgentIdsOutput, error)
 	StartDataCollectionByAgentIdsRequest(*applicationdiscoveryservice.StartDataCollectionByAgentIdsInput) (*request.Request, *applicationdiscoveryservice.StartDataCollectionByAgentIdsOutput)
+
+	StartExportTask(*applicationdiscoveryservice.StartExportTaskInput) (*applicationdiscoveryservice.StartExportTaskOutput, error)
+	StartExportTaskWithContext(aws.Context, *applicationdiscoveryservice.StartExportTaskInput, ...request.Option) (*applicationdiscoveryservice.StartExportTaskOutput, error)
+	StartExportTaskRequest(*applicationdiscoveryservice.StartExportTaskInput) (*request.Request, *applicationdiscoveryservice.StartExportTaskOutput)
 
 	StopDataCollectionByAgentIds(*applicationdiscoveryservice.StopDataCollectionByAgentIdsInput) (*applicationdiscoveryservice.StopDataCollectionByAgentIdsOutput, error)
 	StopDataCollectionByAgentIdsWithContext(aws.Context, *applicationdiscoveryservice.StopDataCollectionByAgentIdsInput, ...request.Option) (*applicationdiscoveryservice.StopDataCollectionByAgentIdsOutput, error)

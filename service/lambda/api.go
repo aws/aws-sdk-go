@@ -5840,6 +5840,9 @@ const (
 	// RuntimeNodejs43 is a Runtime enum value
 	RuntimeNodejs43 = "nodejs4.3"
 
+	// RuntimeNodejs610 is a Runtime enum value
+	RuntimeNodejs610 = "nodejs6.10"
+
 	// RuntimeJava8 is a Runtime enum value
 	RuntimeJava8 = "java8"
 
