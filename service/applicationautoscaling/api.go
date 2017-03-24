@@ -948,6 +948,9 @@ type DeleteScalingPolicyInput struct {
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
 	//
+	//    * AppStream 2.0 fleet - The resource type is fleet and the unique identifier
+	//    is the fleet name. Example: fleet/sample-fleet.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -961,6 +964,9 @@ type DeleteScalingPolicyInput struct {
 	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
+	//    2.0 fleet.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -1066,6 +1072,9 @@ type DeregisterScalableTargetInput struct {
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
 	//
+	//    * AppStream 2.0 fleet - The resource type is fleet and the unique identifier
+	//    is the fleet name. Example: fleet/sample-fleet.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -1079,6 +1088,9 @@ type DeregisterScalableTargetInput struct {
 	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
+	//    2.0 fleet.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -1184,6 +1196,9 @@ type DescribeScalableTargetsInput struct {
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
+	//
+	//    * AppStream 2.0 fleet - The resource type is fleet and the unique identifier
+	//    is the fleet name. Example: fleet/sample-fleet.
 	ResourceIds []*string `type:"list"`
 
 	// The scalable dimension associated with the scalable target. This string consists
@@ -1197,6 +1212,9 @@ type DescribeScalableTargetsInput struct {
 	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
+	//    2.0 fleet.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The namespace of the AWS service. For more information, see AWS Service Namespaces
@@ -1322,6 +1340,9 @@ type DescribeScalingActivitiesInput struct {
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
+	//
+	//    * AppStream 2.0 fleet - The resource type is fleet and the unique identifier
+	//    is the fleet name. Example: fleet/sample-fleet.
 	ResourceId *string `min:"1" type:"string"`
 
 	// The scalable dimension. This string consists of the service namespace, resource
@@ -1335,6 +1356,9 @@ type DescribeScalingActivitiesInput struct {
 	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
+	//    2.0 fleet.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The namespace of the AWS service. For more information, see AWS Service Namespaces
@@ -1466,6 +1490,9 @@ type DescribeScalingPoliciesInput struct {
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
+	//
+	//    * AppStream 2.0 fleet - The resource type is fleet and the unique identifier
+	//    is the fleet name. Example: fleet/sample-fleet.
 	ResourceId *string `min:"1" type:"string"`
 
 	// The scalable dimension. This string consists of the service namespace, resource
@@ -1479,6 +1506,9 @@ type DescribeScalingPoliciesInput struct {
 	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
+	//    2.0 fleet.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The namespace of the AWS service. For more information, see AWS Service Namespaces
@@ -1610,6 +1640,9 @@ type PutScalingPolicyInput struct {
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
 	//
+	//    * AppStream 2.0 fleet - The resource type is fleet and the unique identifier
+	//    is the fleet name. Example: fleet/sample-fleet.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -1623,6 +1656,9 @@ type PutScalingPolicyInput struct {
 	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
+	//    2.0 fleet.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -1772,6 +1808,9 @@ type RegisterScalableTargetInput struct {
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
 	//
+	//    * AppStream 2.0 fleet - The resource type is fleet and the unique identifier
+	//    is the fleet name. Example: fleet/sample-fleet.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -1790,6 +1829,9 @@ type RegisterScalableTargetInput struct {
 	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
+	//    2.0 fleet.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -1920,6 +1962,9 @@ type ScalableTarget struct {
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
 	//
+	//    * AppStream 2.0 fleet - The resource type is fleet and the unique identifier
+	//    is the fleet name. Example: fleet/sample-fleet.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -1939,6 +1984,9 @@ type ScalableTarget struct {
 	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
+	//    2.0 fleet.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -2041,6 +2089,9 @@ type ScalingActivity struct {
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
 	//
+	//    * AppStream 2.0 fleet - The resource type is fleet and the unique identifier
+	//    is the fleet name. Example: fleet/sample-fleet.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -2054,6 +2105,9 @@ type ScalingActivity struct {
 	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
+	//    2.0 fleet.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -2195,6 +2249,9 @@ type ScalingPolicy struct {
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
 	//
+	//    * AppStream 2.0 fleet - The resource type is fleet and the unique identifier
+	//    is the fleet name. Example: fleet/sample-fleet.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -2208,6 +2265,9 @@ type ScalingPolicy struct {
 	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
+	//    2.0 fleet.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -2527,6 +2587,9 @@ const (
 
 	// ScalableDimensionElasticmapreduceInstancegroupInstanceCount is a ScalableDimension enum value
 	ScalableDimensionElasticmapreduceInstancegroupInstanceCount = "elasticmapreduce:instancegroup:InstanceCount"
+
+	// ScalableDimensionAppstreamFleetDesiredCapacity is a ScalableDimension enum value
+	ScalableDimensionAppstreamFleetDesiredCapacity = "appstream:fleet:DesiredCapacity"
 )
 
 const (
@@ -2558,4 +2621,7 @@ const (
 
 	// ServiceNamespaceEc2 is a ServiceNamespace enum value
 	ServiceNamespaceEc2 = "ec2"
+
+	// ServiceNamespaceAppstream is a ServiceNamespace enum value
+	ServiceNamespaceAppstream = "appstream"
 )

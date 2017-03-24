@@ -2464,7 +2464,9 @@ type GetEventSelectorsInput struct {
 	// If you specify a trail ARN, it must be in the format:
 	//
 	// arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
-	TrailName *string `type:"string"`
+	//
+	// TrailName is a required field
+	TrailName *string `type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -2475,6 +2477,19 @@ func (s GetEventSelectorsInput) String() string {
 // GoString returns the string representation
 func (s GetEventSelectorsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetEventSelectorsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetEventSelectorsInput"}
+	if s.TrailName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TrailName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetTrailName sets the TrailName field's value.
@@ -3173,7 +3188,9 @@ type PutEventSelectorsInput struct {
 
 	// Specifies the settings for your event selectors. You can configure up to
 	// five event selectors for a trail.
-	EventSelectors []*EventSelector `type:"list"`
+	//
+	// EventSelectors is a required field
+	EventSelectors []*EventSelector `type:"list" required:"true"`
 
 	// Specifies the name of the trail or trail ARN. If you specify a trail name,
 	// the string must meet the following requirements:
@@ -3193,7 +3210,9 @@ type PutEventSelectorsInput struct {
 	// If you specify a trail ARN, it must be in the format:
 	//
 	// arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
-	TrailName *string `type:"string"`
+	//
+	// TrailName is a required field
+	TrailName *string `type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -3204,6 +3223,22 @@ func (s PutEventSelectorsInput) String() string {
 // GoString returns the string representation
 func (s PutEventSelectorsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutEventSelectorsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutEventSelectorsInput"}
+	if s.EventSelectors == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventSelectors"))
+	}
+	if s.TrailName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TrailName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetEventSelectors sets the EventSelectors field's value.

@@ -1,3 +1,13 @@
+Release v1.8.2 (2017-03-24)
+===
+
+Service Client Updates
+---
+* `service/applicationautoscaling`: Updates service API, documentation, and paginators
+  * Application AutoScaling is launching support for a new target resource (AppStream 2.0 Fleets) as a scalable target.
+* `service/cloudtrail`: Updates service API and documentation
+  * Doc-only Update for CloudTrail: Add required parameters for GetEventSelectors and PutEventSelectors
+
 Release v1.8.1 (2017-03-23)
 ===
 

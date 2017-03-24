@@ -125,7 +125,7 @@ func ExampleCloudTrail_GetEventSelectors() {
 	svc := cloudtrail.New(sess)
 
 	params := &cloudtrail.GetEventSelectorsInput{
-		TrailName: aws.String("String"),
+		TrailName: aws.String("String"), // Required
 	}
 	resp, err := svc.GetEventSelectors(params)
 
@@ -246,7 +246,7 @@ func ExampleCloudTrail_PutEventSelectors() {
 	svc := cloudtrail.New(sess)
 
 	params := &cloudtrail.PutEventSelectorsInput{
-		EventSelectors: []*cloudtrail.EventSelector{
+		EventSelectors: []*cloudtrail.EventSelector{ // Required
 			{ // Required
 				DataResources: []*cloudtrail.DataResource{
 					{ // Required
@@ -263,7 +263,7 @@ func ExampleCloudTrail_PutEventSelectors() {
 			},
 			// More values...
 		},
-		TrailName: aws.String("String"),
+		TrailName: aws.String("String"), // Required
 	}
 	resp, err := svc.PutEventSelectors(params)
 
