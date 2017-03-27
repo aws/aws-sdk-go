@@ -124,15 +124,25 @@ func (a *API) renameToplevelShapes() {
 	for _, v := range a.Operations {
 		if v.HasInput() {
 			name := v.ExportedName + "Input"
-			switch n := len(v.InputRef.Shape.refs); {
-			case n == 1 && a.Shapes[name] == nil:
+			switch {
+			case a.Shapes[name] == nil:
+				if service, ok := shamelist[a.name]; ok {
+					if check, ok := service[v.Name]; ok && check.input {
+						break
+					}
+				}
 				v.InputRef.Shape.Rename(name)
 			}
 		}
 		if v.HasOutput() {
 			name := v.ExportedName + "Output"
-			switch n := len(v.OutputRef.Shape.refs); {
-			case n == 1 && a.Shapes[name] == nil:
+			switch {
+			case a.Shapes[name] == nil:
+				if service, ok := shamelist[a.name]; ok {
+					if check, ok := service[v.Name]; ok && check.output {
+						break
+					}
+				}
 				v.OutputRef.Shape.Rename(name)
 			}
 		}
