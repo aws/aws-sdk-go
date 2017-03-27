@@ -1,3 +1,9 @@
+Release v1.8.3 (2017-03-27)
+===
+
+## Service Client Updates
+* `service/ssm`: Updates service API, documentation, and paginators
+  * Updated validation rules for SendCommand and RegisterTaskWithMaintenanceWindow APIs.
 Release v1.8.2 (2017-03-24)
 ===
 

@@ -187,12 +187,12 @@ func (c *SSM) CancelCommandRequest(input *CancelCommandInput) (req *request.Requ
 //
 //   You do not have permission to access the instance.
 //
-//   The SSM agent is not running. On managed instances and Linux instances, verify
-//   that the SSM agent is running. On EC2 Windows instances, verify that the
+//   The SSM Agent is not running. On managed instances and Linux instances, verify
+//   that the SSM Agent is running. On EC2 Windows instances, verify that the
 //   EC2Config service is running.
 //
-//   The SSM agent or EC2Config service is not registered to the SSM endpoint.
-//   Try reinstalling the SSM agent or EC2Config service.
+//   The SSM Agent or EC2Config service is not registered to the SSM endpoint.
+//   Try reinstalling the SSM Agent or EC2Config service.
 //
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
@@ -270,10 +270,8 @@ func (c *SSM) CreateActivationRequest(input *CreateActivationInput) (req *reques
 // Registers your on-premises server or virtual machine with Amazon EC2 so that
 // you can manage these resources using Run Command. An on-premises server or
 // virtual machine that has been registered with EC2 is called a managed instance.
-// For more information about activations, see Setting Up Managed Instances
-// (Linux) (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managed-instances.html)
-// or Setting Up Managed Instances (Windows) (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/managed-instances.html)
-// in the Amazon EC2 User Guide.
+// For more information about activations, see Setting Up Systems Manager in
+// Hybrid Environments (http://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-managedinstances.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -353,11 +351,12 @@ func (c *SSM) CreateAssociationRequest(input *CreateAssociationInput) (req *requ
 
 // CreateAssociation API operation for Amazon Simple Systems Manager (SSM).
 //
-// Associates the specified SSM document with the specified instances or targets.
+// Associates the specified Systems Manager document with the specified instances
+// or targets.
 //
-// When you associate an SSM document with one or more instances using instance
-// IDs or tags, the SSM agent running on the instance processes the document
-// and configures the instance as specified.
+// When you associate a document with one or more instances using instance IDs
+// or tags, the SSM Agent running on the instance processes the document and
+// configures the instance as specified.
 //
 // If you associate a document with an instance that already has an associated
 // document, the system throws the AssociationAlreadyExists exception.
@@ -390,19 +389,19 @@ func (c *SSM) CreateAssociationRequest(input *CreateAssociationInput) (req *requ
 //
 //   You do not have permission to access the instance.
 //
-//   The SSM agent is not running. On managed instances and Linux instances, verify
-//   that the SSM agent is running. On EC2 Windows instances, verify that the
+//   The SSM Agent is not running. On managed instances and Linux instances, verify
+//   that the SSM Agent is running. On EC2 Windows instances, verify that the
 //   EC2Config service is running.
 //
-//   The SSM agent or EC2Config service is not registered to the SSM endpoint.
-//   Try reinstalling the SSM agent or EC2Config service.
+//   The SSM Agent or EC2Config service is not registered to the SSM endpoint.
+//   Try reinstalling the SSM Agent or EC2Config service.
 //
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
 //
 //   * ErrCodeUnsupportedPlatformType "UnsupportedPlatformType"
 //   The document does not support the platform type of the given instance ID(s).
-//   For example, you sent an SSM document for a Windows instance to a Linux instance.
+//   For example, you sent an document for a Windows instance to a Linux instance.
 //
 //   * ErrCodeInvalidOutputLocation "InvalidOutputLocation"
 //   The output location is not valid or does not exist.
@@ -485,11 +484,12 @@ func (c *SSM) CreateAssociationBatchRequest(input *CreateAssociationBatchInput) 
 
 // CreateAssociationBatch API operation for Amazon Simple Systems Manager (SSM).
 //
-// Associates the specified SSM document with the specified instances or targets.
+// Associates the specified Systems Manager document with the specified instances
+// or targets.
 //
-// When you associate an SSM document with one or more instances using instance
-// IDs or tags, the SSM agent running on the instance processes the document
-// and configures the instance as specified.
+// When you associate a document with one or more instances using instance IDs
+// or tags, the SSM Agent running on the instance processes the document and
+// configures the instance as specified.
 //
 // If you associate a document with an instance that already has an associated
 // document, the system throws the AssociationAlreadyExists exception.
@@ -516,12 +516,12 @@ func (c *SSM) CreateAssociationBatchRequest(input *CreateAssociationBatchInput) 
 //
 //   You do not have permission to access the instance.
 //
-//   The SSM agent is not running. On managed instances and Linux instances, verify
-//   that the SSM agent is running. On EC2 Windows instances, verify that the
+//   The SSM Agent is not running. On managed instances and Linux instances, verify
+//   that the SSM Agent is running. On EC2 Windows instances, verify that the
 //   EC2Config service is running.
 //
-//   The SSM agent or EC2Config service is not registered to the SSM endpoint.
-//   Try reinstalling the SSM agent or EC2Config service.
+//   The SSM Agent or EC2Config service is not registered to the SSM endpoint.
+//   Try reinstalling the SSM Agent or EC2Config service.
 //
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
@@ -538,7 +538,7 @@ func (c *SSM) CreateAssociationBatchRequest(input *CreateAssociationBatchInput) 
 //
 //   * ErrCodeUnsupportedPlatformType "UnsupportedPlatformType"
 //   The document does not support the platform type of the given instance ID(s).
-//   For example, you sent an SSM document for a Windows instance to a Linux instance.
+//   For example, you sent an document for a Windows instance to a Linux instance.
 //
 //   * ErrCodeInvalidOutputLocation "InvalidOutputLocation"
 //   The output location is not valid or does not exist.
@@ -617,10 +617,10 @@ func (c *SSM) CreateDocumentRequest(input *CreateDocumentInput) (req *request.Re
 
 // CreateDocument API operation for Amazon Simple Systems Manager (SSM).
 //
-// Creates an SSM document.
+// Creates a Systems Manager document.
 //
-// After you create an SSM document, you can use CreateAssociation to associate
-// it with one or more running instances.
+// After you create a document, you can use CreateAssociation to associate it
+// with one or more running instances.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -631,16 +631,16 @@ func (c *SSM) CreateDocumentRequest(input *CreateDocumentInput) (req *request.Re
 //
 // Returned Error Codes:
 //   * ErrCodeDocumentAlreadyExists "DocumentAlreadyExists"
-//   The specified SSM document already exists.
+//   The specified document already exists.
 //
 //   * ErrCodeMaxDocumentSizeExceeded "MaxDocumentSizeExceeded"
-//   The size limit of an SSM document is 64 KB.
+//   The size limit of a document is 64 KB.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 //   * ErrCodeInvalidDocumentContent "InvalidDocumentContent"
-//   The content for the SSM document is not valid.
+//   The content for the document is not valid.
 //
 //   * ErrCodeDocumentLimitExceeded "DocumentLimitExceeded"
 //   You can have at most 200 active SSM documents.
@@ -982,12 +982,12 @@ func (c *SSM) DeleteAssociationRequest(input *DeleteAssociationInput) (req *requ
 
 // DeleteAssociation API operation for Amazon Simple Systems Manager (SSM).
 //
-// Disassociates the specified SSM document from the specified instance.
+// Disassociates the specified Systems Manager document from the specified instance.
 //
-// When you disassociate an SSM document from an instance, it does not change
-// the configuration of the instance. To change the configuration state of an
-// instance after you disassociate a document, you must create a new document
-// with the desired configuration and associate it with the instance.
+// When you disassociate a document from an instance, it does not change the
+// configuration of the instance. To change the configuration state of an instance
+// after you disassociate a document, you must create a new document with the
+// desired configuration and associate it with the instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1011,12 +1011,12 @@ func (c *SSM) DeleteAssociationRequest(input *DeleteAssociationInput) (req *requ
 //
 //   You do not have permission to access the instance.
 //
-//   The SSM agent is not running. On managed instances and Linux instances, verify
-//   that the SSM agent is running. On EC2 Windows instances, verify that the
+//   The SSM Agent is not running. On managed instances and Linux instances, verify
+//   that the SSM Agent is running. On EC2 Windows instances, verify that the
 //   EC2Config service is running.
 //
-//   The SSM agent or EC2Config service is not registered to the SSM endpoint.
-//   Try reinstalling the SSM agent or EC2Config service.
+//   The SSM Agent or EC2Config service is not registered to the SSM endpoint.
+//   Try reinstalling the SSM Agent or EC2Config service.
 //
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
@@ -1092,9 +1092,10 @@ func (c *SSM) DeleteDocumentRequest(input *DeleteDocumentInput) (req *request.Re
 
 // DeleteDocument API operation for Amazon Simple Systems Manager (SSM).
 //
-// Deletes the SSM document and all instance associations to the document.
+// Deletes the Systems Manager document and all instance associations to the
+// document.
 //
-// Before you delete the SSM document, we recommend that you use DeleteAssociation
+// Before you delete the document, we recommend that you use DeleteAssociation
 // to disassociate all instances that are associated with the document.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1116,7 +1117,7 @@ func (c *SSM) DeleteDocumentRequest(input *DeleteDocumentInput) (req *request.Re
 //   sharing the document before you can delete it.
 //
 //   * ErrCodeAssociatedInstances "AssociatedInstances"
-//   You must disassociate an SSM document from all instances before you can delete
+//   You must disassociate a document from all instances before you can delete
 //   it.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DeleteDocument
@@ -1435,7 +1436,7 @@ func (c *SSM) DeregisterManagedInstanceRequest(input *DeregisterManagedInstanceI
 //
 // Removes the server or virtual machine from the list of registered servers.
 // You can reregister the instance again at any time. If you don’t plan to use
-// Run Command on the server, we suggest uninstalling the SSM agent first.
+// Run Command on the server, we suggest uninstalling the SSM Agent first.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1450,12 +1451,12 @@ func (c *SSM) DeregisterManagedInstanceRequest(input *DeregisterManagedInstanceI
 //
 //   You do not have permission to access the instance.
 //
-//   The SSM agent is not running. On managed instances and Linux instances, verify
-//   that the SSM agent is running. On EC2 Windows instances, verify that the
+//   The SSM Agent is not running. On managed instances and Linux instances, verify
+//   that the SSM Agent is running. On EC2 Windows instances, verify that the
 //   EC2Config service is running.
 //
-//   The SSM agent or EC2Config service is not registered to the SSM endpoint.
-//   Try reinstalling the SSM agent or EC2Config service.
+//   The SSM Agent or EC2Config service is not registered to the SSM endpoint.
+//   Try reinstalling the SSM Agent or EC2Config service.
 //
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
@@ -1923,7 +1924,8 @@ func (c *SSM) DescribeAssociationRequest(input *DescribeAssociationInput) (req *
 
 // DescribeAssociation API operation for Amazon Simple Systems Manager (SSM).
 //
-// Describes the associations for the specified SSM document or instance.
+// Describes the associations for the specified Systems Manager document or
+// instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1947,12 +1949,12 @@ func (c *SSM) DescribeAssociationRequest(input *DescribeAssociationInput) (req *
 //
 //   You do not have permission to access the instance.
 //
-//   The SSM agent is not running. On managed instances and Linux instances, verify
-//   that the SSM agent is running. On EC2 Windows instances, verify that the
+//   The SSM Agent is not running. On managed instances and Linux instances, verify
+//   that the SSM Agent is running. On EC2 Windows instances, verify that the
 //   EC2Config service is running.
 //
-//   The SSM agent or EC2Config service is not registered to the SSM endpoint.
-//   Try reinstalling the SSM agent or EC2Config service.
+//   The SSM Agent or EC2Config service is not registered to the SSM endpoint.
+//   Try reinstalling the SSM Agent or EC2Config service.
 //
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
@@ -2273,9 +2275,9 @@ func (c *SSM) DescribeDocumentPermissionRequest(input *DescribeDocumentPermissio
 
 // DescribeDocumentPermission API operation for Amazon Simple Systems Manager (SSM).
 //
-// Describes the permissions for an SSM document. If you created the document,
-// you are the owner. If a document is shared, it can either be shared privately
-// (by specifying a user’s AWS account ID) or publicly (All).
+// Describes the permissions for a Systems Manager document. If you created
+// the document, you are the owner. If a document is shared, it can either be
+// shared privately (by specifying a user’s AWS account ID) or publicly (All).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2380,12 +2382,12 @@ func (c *SSM) DescribeEffectiveInstanceAssociationsRequest(input *DescribeEffect
 //
 //   You do not have permission to access the instance.
 //
-//   The SSM agent is not running. On managed instances and Linux instances, verify
-//   that the SSM agent is running. On EC2 Windows instances, verify that the
+//   The SSM Agent is not running. On managed instances and Linux instances, verify
+//   that the SSM Agent is running. On EC2 Windows instances, verify that the
 //   EC2Config service is running.
 //
-//   The SSM agent or EC2Config service is not registered to the SSM endpoint.
-//   Try reinstalling the SSM agent or EC2Config service.
+//   The SSM Agent or EC2Config service is not registered to the SSM endpoint.
+//   Try reinstalling the SSM Agent or EC2Config service.
 //
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
@@ -2567,12 +2569,12 @@ func (c *SSM) DescribeInstanceAssociationsStatusRequest(input *DescribeInstanceA
 //
 //   You do not have permission to access the instance.
 //
-//   The SSM agent is not running. On managed instances and Linux instances, verify
-//   that the SSM agent is running. On EC2 Windows instances, verify that the
+//   The SSM Agent is not running. On managed instances and Linux instances, verify
+//   that the SSM Agent is running. On EC2 Windows instances, verify that the
 //   EC2Config service is running.
 //
-//   The SSM agent or EC2Config service is not registered to the SSM endpoint.
-//   Try reinstalling the SSM agent or EC2Config service.
+//   The SSM Agent or EC2Config service is not registered to the SSM endpoint.
+//   Try reinstalling the SSM Agent or EC2Config service.
 //
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
@@ -2654,7 +2656,7 @@ func (c *SSM) DescribeInstanceInformationRequest(input *DescribeInstanceInformat
 // DescribeInstanceInformation API operation for Amazon Simple Systems Manager (SSM).
 //
 // Describes one or more of your instances. You can use this to get information
-// about instances like the operating system platform, the SSM agent version
+// about instances like the operating system platform, the SSM Agent version
 // (Linux), status etc. If you specify one or more instance IDs, it returns
 // information for those instances. If you do not specify instance IDs, it returns
 // information for all your instances. If you specify an instance ID that is
@@ -2676,12 +2678,12 @@ func (c *SSM) DescribeInstanceInformationRequest(input *DescribeInstanceInformat
 //
 //   You do not have permission to access the instance.
 //
-//   The SSM agent is not running. On managed instances and Linux instances, verify
-//   that the SSM agent is running. On EC2 Windows instances, verify that the
+//   The SSM Agent is not running. On managed instances and Linux instances, verify
+//   that the SSM Agent is running. On EC2 Windows instances, verify that the
 //   EC2Config service is running.
 //
-//   The SSM agent or EC2Config service is not registered to the SSM endpoint.
-//   Try reinstalling the SSM agent or EC2Config service.
+//   The SSM Agent or EC2Config service is not registered to the SSM endpoint.
+//   Try reinstalling the SSM Agent or EC2Config service.
 //
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
@@ -2998,12 +3000,12 @@ func (c *SSM) DescribeInstancePatchesRequest(input *DescribeInstancePatchesInput
 //
 //   You do not have permission to access the instance.
 //
-//   The SSM agent is not running. On managed instances and Linux instances, verify
-//   that the SSM agent is running. On EC2 Windows instances, verify that the
+//   The SSM Agent is not running. On managed instances and Linux instances, verify
+//   that the SSM Agent is running. On EC2 Windows instances, verify that the
 //   EC2Config service is running.
 //
-//   The SSM agent or EC2Config service is not registered to the SSM endpoint.
-//   Try reinstalling the SSM agent or EC2Config service.
+//   The SSM Agent or EC2Config service is not registered to the SSM endpoint.
+//   Try reinstalling the SSM Agent or EC2Config service.
 //
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
@@ -4015,12 +4017,12 @@ func (c *SSM) GetCommandInvocationRequest(input *GetCommandInvocationInput) (req
 //
 //   You do not have permission to access the instance.
 //
-//   The SSM agent is not running. On managed instances and Linux instances, verify
-//   that the SSM agent is running. On EC2 Windows instances, verify that the
+//   The SSM Agent is not running. On managed instances and Linux instances, verify
+//   that the SSM Agent is running. On EC2 Windows instances, verify that the
 //   EC2Config service is running.
 //
-//   The SSM agent or EC2Config service is not registered to the SSM endpoint.
-//   Try reinstalling the SSM agent or EC2Config service.
+//   The SSM Agent or EC2Config service is not registered to the SSM endpoint.
+//   Try reinstalling the SSM Agent or EC2Config service.
 //
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
@@ -4867,7 +4869,7 @@ func (c *SSM) GetParametersRequest(input *GetParametersInput) (req *request.Requ
 
 // GetParameters API operation for Amazon Simple Systems Manager (SSM).
 //
-// Get a list of parameters used by the AWS account.>
+// Get details of a parameter.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5122,7 +5124,7 @@ func (c *SSM) ListAssociationsRequest(input *ListAssociationsInput) (req *reques
 
 // ListAssociations API operation for Amazon Simple Systems Manager (SSM).
 //
-// Lists the associations for the specified SSM document or instance.
+// Lists the associations for the specified Systems Manager document or instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5281,12 +5283,12 @@ func (c *SSM) ListCommandInvocationsRequest(input *ListCommandInvocationsInput) 
 //
 //   You do not have permission to access the instance.
 //
-//   The SSM agent is not running. On managed instances and Linux instances, verify
-//   that the SSM agent is running. On EC2 Windows instances, verify that the
+//   The SSM Agent is not running. On managed instances and Linux instances, verify
+//   that the SSM Agent is running. On EC2 Windows instances, verify that the
 //   EC2Config service is running.
 //
-//   The SSM agent or EC2Config service is not registered to the SSM endpoint.
-//   Try reinstalling the SSM agent or EC2Config service.
+//   The SSM Agent or EC2Config service is not registered to the SSM endpoint.
+//   Try reinstalling the SSM Agent or EC2Config service.
 //
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
@@ -5436,12 +5438,12 @@ func (c *SSM) ListCommandsRequest(input *ListCommandsInput) (req *request.Reques
 //
 //   You do not have permission to access the instance.
 //
-//   The SSM agent is not running. On managed instances and Linux instances, verify
-//   that the SSM agent is running. On EC2 Windows instances, verify that the
+//   The SSM Agent is not running. On managed instances and Linux instances, verify
+//   that the SSM Agent is running. On EC2 Windows instances, verify that the
 //   EC2Config service is running.
 //
-//   The SSM agent or EC2Config service is not registered to the SSM endpoint.
-//   Try reinstalling the SSM agent or EC2Config service.
+//   The SSM Agent or EC2Config service is not registered to the SSM endpoint.
+//   Try reinstalling the SSM Agent or EC2Config service.
 //
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
@@ -5807,12 +5809,12 @@ func (c *SSM) ListInventoryEntriesRequest(input *ListInventoryEntriesInput) (req
 //
 //   You do not have permission to access the instance.
 //
-//   The SSM agent is not running. On managed instances and Linux instances, verify
-//   that the SSM agent is running. On EC2 Windows instances, verify that the
+//   The SSM Agent is not running. On managed instances and Linux instances, verify
+//   that the SSM Agent is running. On EC2 Windows instances, verify that the
 //   EC2Config service is running.
 //
-//   The SSM agent or EC2Config service is not registered to the SSM endpoint.
-//   Try reinstalling the SSM agent or EC2Config service.
+//   The SSM Agent or EC2Config service is not registered to the SSM endpoint.
+//   Try reinstalling the SSM Agent or EC2Config service.
 //
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
@@ -5982,10 +5984,10 @@ func (c *SSM) ModifyDocumentPermissionRequest(input *ModifyDocumentPermissionInp
 
 // ModifyDocumentPermission API operation for Amazon Simple Systems Manager (SSM).
 //
-// Share a document publicly or privately. If you share a document privately,
-// you must specify the AWS user account IDs for those people who can use the
-// document. If you share a document publicly, you must specify All as the account
-// ID.
+// Shares a Systems Manager document publicly or privately. If you share a document
+// privately, you must specify the AWS user account IDs for those people who
+// can use the document. If you share a document publicly, you must specify
+// All as the account ID.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6100,12 +6102,12 @@ func (c *SSM) PutInventoryRequest(input *PutInventoryInput) (req *request.Reques
 //
 //   You do not have permission to access the instance.
 //
-//   The SSM agent is not running. On managed instances and Linux instances, verify
-//   that the SSM agent is running. On EC2 Windows instances, verify that the
+//   The SSM Agent is not running. On managed instances and Linux instances, verify
+//   that the SSM Agent is running. On EC2 Windows instances, verify that the
 //   EC2Config service is running.
 //
-//   The SSM agent or EC2Config service is not registered to the SSM endpoint.
-//   Try reinstalling the SSM agent or EC2Config service.
+//   The SSM Agent or EC2Config service is not registered to the SSM endpoint.
+//   Try reinstalling the SSM Agent or EC2Config service.
 //
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
@@ -6775,12 +6777,12 @@ func (c *SSM) SendCommandRequest(input *SendCommandInput) (req *request.Request,
 //
 //   You do not have permission to access the instance.
 //
-//   The SSM agent is not running. On managed instances and Linux instances, verify
-//   that the SSM agent is running. On EC2 Windows instances, verify that the
+//   The SSM Agent is not running. On managed instances and Linux instances, verify
+//   that the SSM Agent is running. On EC2 Windows instances, verify that the
 //   EC2Config service is running.
 //
-//   The SSM agent or EC2Config service is not registered to the SSM endpoint.
-//   Try reinstalling the SSM agent or EC2Config service.
+//   The SSM Agent or EC2Config service is not registered to the SSM endpoint.
+//   Try reinstalling the SSM Agent or EC2Config service.
 //
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
@@ -6797,17 +6799,17 @@ func (c *SSM) SendCommandRequest(input *SendCommandInput) (req *request.Request,
 //
 //   * ErrCodeUnsupportedPlatformType "UnsupportedPlatformType"
 //   The document does not support the platform type of the given instance ID(s).
-//   For example, you sent an SSM document for a Windows instance to a Linux instance.
+//   For example, you sent an document for a Windows instance to a Linux instance.
 //
 //   * ErrCodeMaxDocumentSizeExceeded "MaxDocumentSizeExceeded"
-//   The size limit of an SSM document is 64 KB.
+//   The size limit of a document is 64 KB.
 //
 //   * ErrCodeInvalidRole "InvalidRole"
 //   The role name can't contain invalid characters. Also verify that you specified
 //   an IAM role for notifications that includes the required trust policy. For
 //   information about configuring the IAM role for Run Command notifications,
-//   see Getting Amazon SNS Notifications When a Command Changes Status (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/rc-sns.html)
-//   in the Amazon Elastic Compute Cloud User Guide .
+//   see Configuring Amazon SNS Notifications for Run Command (http://docs.aws.amazon.com/systems-manager/latest/userguide/rc-sns-notifications.html)
+//   in the Amazon EC2 Systems Manager User Guide.
 //
 //   * ErrCodeInvalidNotificationConfig "InvalidNotificationConfig"
 //   One or more configuration items is not valid. Verify that a valid Amazon
@@ -7163,7 +7165,8 @@ func (c *SSM) UpdateAssociationStatusRequest(input *UpdateAssociationStatusInput
 
 // UpdateAssociationStatus API operation for Amazon Simple Systems Manager (SSM).
 //
-// Updates the status of the SSM document associated with the specified instance.
+// Updates the status of the Systems Manager document associated with the specified
+// instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7181,12 +7184,12 @@ func (c *SSM) UpdateAssociationStatusRequest(input *UpdateAssociationStatusInput
 //
 //   You do not have permission to access the instance.
 //
-//   The SSM agent is not running. On managed instances and Linux instances, verify
-//   that the SSM agent is running. On EC2 Windows instances, verify that the
+//   The SSM Agent is not running. On managed instances and Linux instances, verify
+//   that the SSM Agent is running. On EC2 Windows instances, verify that the
 //   EC2Config service is running.
 //
-//   The SSM agent or EC2Config service is not registered to the SSM endpoint.
-//   Try reinstalling the SSM agent or EC2Config service.
+//   The SSM Agent or EC2Config service is not registered to the SSM endpoint.
+//   Try reinstalling the SSM Agent or EC2Config service.
 //
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
@@ -7282,7 +7285,7 @@ func (c *SSM) UpdateDocumentRequest(input *UpdateDocumentInput) (req *request.Re
 //
 // Returned Error Codes:
 //   * ErrCodeMaxDocumentSizeExceeded "MaxDocumentSizeExceeded"
-//   The size limit of an SSM document is 64 KB.
+//   The size limit of a document is 64 KB.
 //
 //   * ErrCodeDocumentVersionLimitExceeded "DocumentVersionLimitExceeded"
 //   The document has too many versions. Delete one or more document versions
@@ -7296,7 +7299,7 @@ func (c *SSM) UpdateDocumentRequest(input *UpdateDocumentInput) (req *request.Re
 //   the content of the document and try again.
 //
 //   * ErrCodeInvalidDocumentContent "InvalidDocumentContent"
-//   The content for the SSM document is not valid.
+//   The content for the document is not valid.
 //
 //   * ErrCodeInvalidDocumentVersion "InvalidDocumentVersion"
 //   The document version is not valid or does not exist.
@@ -7563,12 +7566,12 @@ func (c *SSM) UpdateManagedInstanceRoleRequest(input *UpdateManagedInstanceRoleI
 //
 //   You do not have permission to access the instance.
 //
-//   The SSM agent is not running. On managed instances and Linux instances, verify
-//   that the SSM agent is running. On EC2 Windows instances, verify that the
+//   The SSM Agent is not running. On managed instances and Linux instances, verify
+//   that the SSM Agent is running. On EC2 Windows instances, verify that the
 //   EC2Config service is running.
 //
-//   The SSM agent or EC2Config service is not registered to the SSM endpoint.
-//   Try reinstalling the SSM agent or EC2Config service.
+//   The SSM Agent or EC2Config service is not registered to the SSM endpoint.
+//   Try reinstalling the SSM Agent or EC2Config service.
 //
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
@@ -7878,7 +7881,7 @@ func (s AddTagsToResourceOutput) GoString() string {
 	return s.String()
 }
 
-// Describes an association of an SSM document and an instance.
+// Describes an association of a Systems Manager document and an instance.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/Association
 type Association struct {
 	_ struct{} `type:"structure"`
@@ -8646,7 +8649,7 @@ type Command struct {
 	// Timed Out, Delivery Timed Out, Canceled, Terminated, or Undeliverable.
 	CompletedCount *int64 `type:"integer"`
 
-	// The name of the SSM document requested for execution.
+	// The name of the document requested for execution.
 	DocumentName *string `type:"string"`
 
 	// The number of targets for which the status is Failed or Execution Timed Out.
@@ -8663,19 +8666,15 @@ type Command struct {
 	// The maximum number of instances that are allowed to execute the command at
 	// the same time. You can specify a number of instances, such as 10, or a percentage
 	// of instances, such as 10%. The default value is 50. For more information
-	// about how to use MaxConcurrency, see Executing a Command Using Amazon EC2
-	// Run Command (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html)
-	// (Linux) or Executing a Command Using Amazon EC2 Run Command (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html)
-	// (Windows).
+	// about how to use MaxConcurrency, see Executing a Command Using Systems Manager
+	// Run Command (http://docs.aws.amazon.com/systems-manager/latest/userguide/run-command.html).
 	MaxConcurrency *string `min:"1" type:"string"`
 
 	// The maximum number of errors allowed before the system stops sending the
 	// command to additional targets. You can specify a number of errors, such as
 	// 10, or a percentage or errors, such as 10%. The default value is 50. For
 	// more information about how to use MaxErrors, see Executing a Command Using
-	// Amazon EC2 Run Command (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html)
-	// (Linux) or Executing a Command Using Amazon EC2 Run Command (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html)
-	// (Windows).
+	// Systems Manager Run Command (http://docs.aws.amazon.com/systems-manager/latest/userguide/run-command.html).
 	MaxErrors *string `min:"1" type:"string"`
 
 	// Configurations for sending notifications about command status changes.
@@ -8693,8 +8692,7 @@ type Command struct {
 	// is located. The default value is the region where Run Command is being called.
 	OutputS3Region *string `min:"3" type:"string"`
 
-	// The parameter values to be inserted in the SSM document when executing the
-	// command.
+	// The parameter values to be inserted in the document when executing the command.
 	Parameters map[string][]*string `type:"map"`
 
 	// The date and time the command was requested.
@@ -8710,9 +8708,8 @@ type Command struct {
 	// A detailed status of the command execution. StatusDetails includes more information
 	// than Status because it includes states resulting from error and concurrency
 	// control parameters. StatusDetails can show different results than Status.
-	// For more information about these statuses, see Monitor Commands (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitor-commands.html)
-	// (Linux) or Monitor Commands (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/monitor-commands.html)
-	// (Windows). StatusDetails can be one of the following values:
+	// For more information about these statuses, see Run Command Status (http://docs.aws.amazon.com/systems-manager/latest/userguide/monitor-about-status.html).
+	// StatusDetails can be one of the following values:
 	//
 	//    * Pending – The command has not been sent to any instances.
 	//
@@ -8746,7 +8743,7 @@ type Command struct {
 	// The number of targets for the command.
 	TargetCount *int64 `type:"integer"`
 
-	// An array of search criteria that targets instances using a Key;Value combination
+	// An array of search criteria that targets instances using a Key,Value combination
 	// that you specify. Targets is required if you don't provide one or more instance
 	// IDs in the call.
 	Targets []*Target `type:"list"`
@@ -8998,9 +8995,8 @@ type CommandInvocation struct {
 	// targeted by the command). StatusDetails includes more information than Status
 	// because it includes states resulting from error and concurrency control parameters.
 	// StatusDetails can show different results than Status. For more information
-	// about these statuses, see Monitor Commands (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitor-commands.html)
-	// (Linux) or Monitor Commands (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/monitor-commands.html)
-	// (Windows). StatusDetails can be one of the following values:
+	// about these statuses, see Run Command Status (http://docs.aws.amazon.com/systems-manager/latest/userguide/monitor-about-status.html).
+	// StatusDetails can be one of the following values:
 	//
 	//    * Pending – The command has not been sent to the instance.
 	//
@@ -9208,9 +9204,8 @@ type CommandPlugin struct {
 	// A detailed status of the plugin execution. StatusDetails includes more information
 	// than Status because it includes states resulting from error and concurrency
 	// control parameters. StatusDetails can show different results than Status.
-	// For more information about these statuses, see Monitor Commands (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitor-commands.html)
-	// (Linux) or Monitor Commands (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/monitor-commands.html)
-	// (Windows). StatusDetails can be one of the following values:
+	// For more information about these statuses, see Run Command Status (http://docs.aws.amazon.com/systems-manager/latest/userguide/monitor-about-status.html).
+	// StatusDetails can be one of the following values:
 	//
 	//    * Pending – The command has not been sent to the instance.
 	//
@@ -9535,7 +9530,7 @@ func (s *CreateAssociationBatchOutput) SetSuccessful(v []*AssociationDescription
 	return s
 }
 
-// Describes the association of an SSM document and an instance.
+// Describes the association of a Systems Manager document and an instance.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/CreateAssociationBatchRequestEntry
 type CreateAssociationBatchRequestEntry struct {
 	_ struct{} `type:"structure"`
@@ -9658,7 +9653,7 @@ type CreateAssociationInput struct {
 	// The instance ID.
 	InstanceId *string `type:"string"`
 
-	// The name of the SSM document.
+	// The name of the Systems Manager document.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -9806,7 +9801,7 @@ type CreateDocumentInput struct {
 	// and Command.
 	DocumentType *string `type:"string" enum:"DocumentType"`
 
-	// A name for the SSM document.
+	// A name for the Systems Manager document.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -9863,7 +9858,7 @@ func (s *CreateDocumentInput) SetName(v string) *CreateDocumentInput {
 type CreateDocumentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the SSM document.
+	// Information about the Systems Manager document.
 	DocumentDescription *DocumentDescription `type:"structure"`
 }
 
@@ -10225,7 +10220,7 @@ type DeleteAssociationInput struct {
 	// The ID of the instance.
 	InstanceId *string `type:"string"`
 
-	// The name of the SSM document.
+	// The name of the Systems Manager document.
 	Name *string `type:"string"`
 }
 
@@ -10276,7 +10271,7 @@ func (s DeleteAssociationOutput) GoString() string {
 type DeleteDocumentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the SSM document.
+	// The name of the document.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -13332,7 +13327,7 @@ func (s *DocumentDefaultVersionDescription) SetName(v string) *DocumentDefaultVe
 type DocumentDescription struct {
 	_ struct{} `type:"structure"`
 
-	// The date when the SSM document was created.
+	// The date when the document was created.
 	CreatedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The default version.
@@ -13609,8 +13604,8 @@ func (s *DocumentIdentifier) SetSchemaVersion(v string) *DocumentIdentifier {
 	return s
 }
 
-// Parameters specified in the SSM document that execute on the server when
-// the command is run.
+// Parameters specified in a System Manager document that execute on the server
+// when the command is run.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DocumentParameter
 type DocumentParameter struct {
 	_ struct{} `type:"structure"`
@@ -13886,8 +13881,8 @@ type GetCommandInvocationInput struct {
 	InstanceId *string `type:"string" required:"true"`
 
 	// (Optional) The name of the plugin for which you want detailed results. If
-	// the SSM document contains only one plugin, the name can be omitted and the
-	// details will be returned.
+	// the document contains only one plugin, the name can be omitted and the details
+	// will be returned.
 	PluginName *string `min:"4" type:"string"`
 }
 
@@ -13951,8 +13946,7 @@ type GetCommandInvocationOutput struct {
 	// The comment text for the command.
 	Comment *string `type:"string"`
 
-	// The name of the SSM document that was executed. For example, AWS-RunShellScript
-	// is an SSM document.
+	// The name of the document that was executed. For example, AWS-RunShellScript.
 	DocumentName *string `type:"string"`
 
 	// Duration since ExecutionStartDateTime.
@@ -14006,10 +14000,9 @@ type GetCommandInvocationOutput struct {
 	// A detailed status of the command execution for an invocation. StatusDetails
 	// includes more information than Status because it includes states resulting
 	// from error and concurrency control parameters. StatusDetails can show different
-	// results than Status. For more information about these statuses, see Monitor
-	// Commands (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitor-commands.html)
-	// (Linux) or Monitor Commands (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/monitor-commands.html)
-	// (Windows). StatusDetails can be one of the following values:
+	// results than Status. For more information about these statuses, see Run Command
+	// Status (http://docs.aws.amazon.com/systems-manager/latest/userguide/monitor-about-status.html).
+	// StatusDetails can be one of the following values:
 	//
 	//    * Pending – The command has not been sent to the instance.
 	//
@@ -15231,7 +15224,7 @@ type GetParametersOutput struct {
 	// executed.
 	InvalidParameters []*string `min:"1" type:"list"`
 
-	// A list of parameters used by the AWS account.
+	// A list of details for a parameter.
 	Parameters []*Parameter `type:"list"`
 }
 
@@ -15736,7 +15729,7 @@ type InstanceInformation struct {
 	// The activation ID created by Systems Manager when the server or VM was registered.
 	ActivationId *string `type:"string"`
 
-	// The version of the SSM agent running on your Linux instance.
+	// The version of the SSM Agent running on your Linux instance.
 	AgentVersion *string `type:"string"`
 
 	// Information about the association.
@@ -15758,7 +15751,7 @@ type InstanceInformation struct {
 	// The instance ID.
 	InstanceId *string `type:"string"`
 
-	// Indicates whether latest version of the SSM agent is running on your instance.
+	// Indicates whether latest version of the SSM Agent is running on your instance.
 	IsLatestVersion *bool `type:"boolean"`
 
 	// The date the association was last executed.
@@ -15773,7 +15766,7 @@ type InstanceInformation struct {
 	// The name of the managed instance.
 	Name *string `type:"string"`
 
-	// Connection status of the SSM agent.
+	// Connection status of the SSM Agent.
 	PingStatus *string `type:"string" enum:"PingStatus"`
 
 	// The name of the operating system platform running on your instance.
@@ -18221,8 +18214,9 @@ type NotificationConfig struct {
 
 	// The different events for which you can receive notifications. These events
 	// include the following: All (events), InProgress, Success, TimedOut, Cancelled,
-	// Failed. To learn more about these events, see Monitoring Commands (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitor-commands.html)
-	// in the Amazon Elastic Compute Cloud User Guide .
+	// Failed. To learn more about these events, see Setting Up Events and Notifications
+	// (http://docs.aws.amazon.com/systems-manager/latest/userguide/monitor-commands.html)
+	// in the Amazon EC2 Systems Manager User Guide.
 	NotificationEvents []*string `type:"list"`
 
 	// Command: Receive notification when the status of a command changes. Invocation:
@@ -19206,7 +19200,7 @@ type PutParameterInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// Overwrite an existing parameter.
+	// Overwrite an existing parameter. If not specified, will default to "false".
 	Overwrite *bool `type:"boolean"`
 
 	// The type of parameter that you want to add to the system.
@@ -20047,8 +20041,8 @@ type SendCommandInput struct {
 	// Sha1 hashes have been deprecated.
 	DocumentHashType *string `type:"string" enum:"DocumentHashType"`
 
-	// Required. The name of the SSM document to execute. This can be an SSM public
-	// document or a custom document.
+	// Required. The name of the Systems Manager document to execute. This can be
+	// a public document or a custom document.
 	//
 	// DocumentName is a required field
 	DocumentName *string `type:"string" required:"true"`
@@ -20060,20 +20054,16 @@ type SendCommandInput struct {
 	// (Optional) The maximum number of instances that are allowed to execute the
 	// command at the same time. You can specify a number such as “10” or a percentage
 	// such as “10%”. The default value is 50. For more information about how to
-	// use MaxConcurrency, see Executing a Command Using Amazon EC2 Run Command
-	// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html) (Linux)
-	// or Executing a Command Using Amazon EC2 Run Command (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html)
-	// (Windows).
+	// use MaxConcurrency, see Executing a Command Using Systems Manager Run Command
+	// (http://docs.aws.amazon.com/systems-manager/latest/userguide/run-command.html).
 	MaxConcurrency *string `min:"1" type:"string"`
 
 	// The maximum number of errors allowed without the command failing. When the
 	// command fails one more time beyond the value of MaxErrors, the systems stops
 	// sending the command to additional targets. You can specify a number like
 	// “10” or a percentage like “10%”. The default value is 50. For more information
-	// about how to use MaxErrors, see Executing a Command Using Amazon EC2 Run
-	// Command (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html)
-	// (Linux) or Executing a Command Using Amazon EC2 Run Command (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html)
-	// (Windows).
+	// about how to use MaxErrors, see Executing a Command Using Systems Manager
+	// Run Command (http://docs.aws.amazon.com/systems-manager/latest/userguide/run-command.html).
 	MaxErrors *string `min:"1" type:"string"`
 
 	// Configurations for sending notifications.
@@ -20091,19 +20081,16 @@ type SendCommandInput struct {
 	// is being called.
 	OutputS3Region *string `min:"3" type:"string"`
 
-	// The required and optional parameters specified in the SSM document being
-	// executed.
+	// The required and optional parameters specified in the document being executed.
 	Parameters map[string][]*string `type:"map"`
 
 	// The IAM role that Systems Manager uses to send notifications.
 	ServiceRoleArn *string `type:"string"`
 
-	// (Optional) An array of search criteria that targets instances using a Key;Value
+	// (Optional) An array of search criteria that targets instances using a Key,Value
 	// combination that you specify. Targets is required if you don't provide one
 	// or more instance IDs in the call. For more information about how to use Targets,
-	// see Executing a Command Using Amazon EC2 Run Command (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html)
-	// (Linux) or Executing a Command Using Amazon EC2 Run Command (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html)
-	// (Windows).
+	// see Executing a Command Using Systems Manager Run Command (http://docs.aws.amazon.com/systems-manager/latest/userguide/run-command.html).
 	Targets []*Target `type:"list"`
 
 	// If this time is reached and the command has not already started executing,
@@ -20588,7 +20575,7 @@ func (s *Tag) SetValue(v string) *Tag {
 	return s
 }
 
-// An array of search criteria that targets instances using a Key;Value combination
+// An array of search criteria that targets instances using a Key,Value combination
 // that you specify. Targets is required if you don't provide one or more instance
 // IDs in the call.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/Target
@@ -20596,21 +20583,16 @@ type Target struct {
 	_ struct{} `type:"structure"`
 
 	// User-defined criteria for sending commands that target instances that meet
-	// the criteria. Key can be tag:<Amazon EC2 tag> or name:<Amazon EC2 instance
-	// ID>. For example, tag:ServerRole or name:0123456789012345. For more information
-	// about how to send commands that target instances using Key;Value parameters,
-	// see Executing a Command Using Amazon EC2 Run Command (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html)
-	// (Linux) or Executing a Command Using Amazon EC2 Run Command (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html)
-	// (Windows).
+	// the criteria. Key can be tag:<Amazon EC2 tag> or InstanceIds. For more information
+	// about how to send commands that target instances using Key,Value parameters,
+	// see Executing a Command Using Systems Manager Run Command (http://docs.aws.amazon.com/systems-manager/latest/userguide/run-command.html).
 	Key *string `min:"1" type:"string"`
 
 	// User-defined criteria that maps to Key. For example, if you specified tag:ServerRole,
 	// you could specify value:WebServer to execute a command on instances that
-	// include Amazon EC2 tags of ServerRole;WebServer. For more information about
-	// how to send commands that target instances using Key;Value parameters, see
-	// Executing a Command Using Amazon EC2 Run Command (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html)
-	// (Linux) or Executing a Command Using Amazon EC2 Run Command (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html)
-	// (Windows).
+	// include Amazon EC2 tags of ServerRole,WebServer. For more information about
+	// how to send commands that target instances using Key,Value parameters, see
+	// Executing a Command Using Systems Manager Run Command (http://docs.aws.amazon.com/systems-manager/latest/userguide/run-command.html).
 	Values []*string `type:"list"`
 }
 
