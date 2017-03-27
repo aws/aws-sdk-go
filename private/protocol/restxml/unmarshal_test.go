@@ -125,7 +125,7 @@ const opOutputService1TestCaseOperation1 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (req *request.Request, output *OutputService1TestShapeOutputShape) {
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (req *request.Request, output *OutputService1TestShapeOutputService1TestCaseOperation2Output) {
 	op := &request.Operation{
 		Name:     opOutputService1TestCaseOperation1,
 		HTTPPath: "/",
@@ -135,7 +135,7 @@ func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(inp
 		input = &OutputService1TestShapeOutputService1TestCaseOperation1Input{}
 	}
 
-	output = &OutputService1TestShapeOutputShape{}
+	output = &OutputService1TestShapeOutputService1TestCaseOperation2Output{}
 	req = c.newRequest(op, input, output)
 	return
 }
@@ -148,7 +148,7 @@ func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(inp
 //
 // See the AWS API reference guide for 's
 // API operation OutputService1TestCaseOperation1 for usage and error information.
-func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (*OutputService1TestShapeOutputShape, error) {
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (*OutputService1TestShapeOutputService1TestCaseOperation2Output, error) {
 	req, out := c.OutputService1TestCaseOperation1Request(input)
 	return out, req.Send()
 }
@@ -162,7 +162,7 @@ func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1(input *Out
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1WithContext(ctx aws.Context, input *OutputService1TestShapeOutputService1TestCaseOperation1Input, opts ...request.Option) (*OutputService1TestShapeOutputShape, error) {
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1WithContext(ctx aws.Context, input *OutputService1TestShapeOutputService1TestCaseOperation1Input, opts ...request.Option) (*OutputService1TestShapeOutputService1TestCaseOperation2Output, error) {
 	req, out := c.OutputService1TestCaseOperation1Request(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
@@ -194,7 +194,7 @@ const opOutputService1TestCaseOperation2 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation2Request(input *OutputService1TestShapeOutputService1TestCaseOperation2Input) (req *request.Request, output *OutputService1TestShapeOutputShape) {
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation2Request(input *OutputService1TestShapeOutputService1TestCaseOperation2Input) (req *request.Request, output *OutputService1TestShapeOutputService1TestCaseOperation2Output) {
 	op := &request.Operation{
 		Name:     opOutputService1TestCaseOperation2,
 		HTTPPath: "/",
@@ -204,7 +204,7 @@ func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation2Request(inp
 		input = &OutputService1TestShapeOutputService1TestCaseOperation2Input{}
 	}
 
-	output = &OutputService1TestShapeOutputShape{}
+	output = &OutputService1TestShapeOutputService1TestCaseOperation2Output{}
 	req = c.newRequest(op, input, output)
 	return
 }
@@ -217,7 +217,7 @@ func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation2Request(inp
 //
 // See the AWS API reference guide for 's
 // API operation OutputService1TestCaseOperation2 for usage and error information.
-func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation2(input *OutputService1TestShapeOutputService1TestCaseOperation2Input) (*OutputService1TestShapeOutputShape, error) {
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation2(input *OutputService1TestShapeOutputService1TestCaseOperation2Input) (*OutputService1TestShapeOutputService1TestCaseOperation2Output, error) {
 	req, out := c.OutputService1TestCaseOperation2Request(input)
 	return out, req.Send()
 }
@@ -231,7 +231,7 @@ func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation2(input *Out
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation2WithContext(ctx aws.Context, input *OutputService1TestShapeOutputService1TestCaseOperation2Input, opts ...request.Option) (*OutputService1TestShapeOutputShape, error) {
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation2WithContext(ctx aws.Context, input *OutputService1TestShapeOutputService1TestCaseOperation2Input, opts ...request.Option) (*OutputService1TestShapeOutputService1TestCaseOperation2Output, error) {
 	req, out := c.OutputService1TestCaseOperation2Request(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
@@ -246,7 +246,7 @@ type OutputService1TestShapeOutputService1TestCaseOperation2Input struct {
 	_ struct{} `type:"structure"`
 }
 
-type OutputService1TestShapeOutputShape struct {
+type OutputService1TestShapeOutputService1TestCaseOperation2Output struct {
 	_ struct{} `type:"structure"`
 
 	Char *string `type:"character"`
@@ -273,67 +273,67 @@ type OutputService1TestShapeOutputShape struct {
 }
 
 // SetChar sets the Char field's value.
-func (s *OutputService1TestShapeOutputShape) SetChar(v string) *OutputService1TestShapeOutputShape {
+func (s *OutputService1TestShapeOutputService1TestCaseOperation2Output) SetChar(v string) *OutputService1TestShapeOutputService1TestCaseOperation2Output {
 	s.Char = &v
 	return s
 }
 
 // SetDouble sets the Double field's value.
-func (s *OutputService1TestShapeOutputShape) SetDouble(v float64) *OutputService1TestShapeOutputShape {
+func (s *OutputService1TestShapeOutputService1TestCaseOperation2Output) SetDouble(v float64) *OutputService1TestShapeOutputService1TestCaseOperation2Output {
 	s.Double = &v
 	return s
 }
 
 // SetFalseBool sets the FalseBool field's value.
-func (s *OutputService1TestShapeOutputShape) SetFalseBool(v bool) *OutputService1TestShapeOutputShape {
+func (s *OutputService1TestShapeOutputService1TestCaseOperation2Output) SetFalseBool(v bool) *OutputService1TestShapeOutputService1TestCaseOperation2Output {
 	s.FalseBool = &v
 	return s
 }
 
 // SetFloat sets the Float field's value.
-func (s *OutputService1TestShapeOutputShape) SetFloat(v float64) *OutputService1TestShapeOutputShape {
+func (s *OutputService1TestShapeOutputService1TestCaseOperation2Output) SetFloat(v float64) *OutputService1TestShapeOutputService1TestCaseOperation2Output {
 	s.Float = &v
 	return s
 }
 
 // SetImaHeader sets the ImaHeader field's value.
-func (s *OutputService1TestShapeOutputShape) SetImaHeader(v string) *OutputService1TestShapeOutputShape {
+func (s *OutputService1TestShapeOutputService1TestCaseOperation2Output) SetImaHeader(v string) *OutputService1TestShapeOutputService1TestCaseOperation2Output {
 	s.ImaHeader = &v
 	return s
 }
 
 // SetImaHeaderLocation sets the ImaHeaderLocation field's value.
-func (s *OutputService1TestShapeOutputShape) SetImaHeaderLocation(v string) *OutputService1TestShapeOutputShape {
+func (s *OutputService1TestShapeOutputService1TestCaseOperation2Output) SetImaHeaderLocation(v string) *OutputService1TestShapeOutputService1TestCaseOperation2Output {
 	s.ImaHeaderLocation = &v
 	return s
 }
 
 // SetLong sets the Long field's value.
-func (s *OutputService1TestShapeOutputShape) SetLong(v int64) *OutputService1TestShapeOutputShape {
+func (s *OutputService1TestShapeOutputService1TestCaseOperation2Output) SetLong(v int64) *OutputService1TestShapeOutputService1TestCaseOperation2Output {
 	s.Long = &v
 	return s
 }
 
 // SetNum sets the Num field's value.
-func (s *OutputService1TestShapeOutputShape) SetNum(v int64) *OutputService1TestShapeOutputShape {
+func (s *OutputService1TestShapeOutputService1TestCaseOperation2Output) SetNum(v int64) *OutputService1TestShapeOutputService1TestCaseOperation2Output {
 	s.Num = &v
 	return s
 }
 
 // SetStr sets the Str field's value.
-func (s *OutputService1TestShapeOutputShape) SetStr(v string) *OutputService1TestShapeOutputShape {
+func (s *OutputService1TestShapeOutputService1TestCaseOperation2Output) SetStr(v string) *OutputService1TestShapeOutputService1TestCaseOperation2Output {
 	s.Str = &v
 	return s
 }
 
 // SetTimestamp sets the Timestamp field's value.
-func (s *OutputService1TestShapeOutputShape) SetTimestamp(v time.Time) *OutputService1TestShapeOutputShape {
+func (s *OutputService1TestShapeOutputService1TestCaseOperation2Output) SetTimestamp(v time.Time) *OutputService1TestShapeOutputService1TestCaseOperation2Output {
 	s.Timestamp = &v
 	return s
 }
 
 // SetTrueBool sets the TrueBool field's value.
-func (s *OutputService1TestShapeOutputShape) SetTrueBool(v bool) *OutputService1TestShapeOutputShape {
+func (s *OutputService1TestShapeOutputService1TestCaseOperation2Output) SetTrueBool(v bool) *OutputService1TestShapeOutputService1TestCaseOperation2Output {
 	s.TrueBool = &v
 	return s
 }
