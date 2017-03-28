@@ -39,11 +39,12 @@ func (c *Kinesis) WaitUntilStreamExistsWithContext(ctx aws.Context, input *Descr
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy DescribeStreamInput
+			var inCpy *DescribeStreamInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeStreamRequest(&inCpy)
+			req, _ := c.DescribeStreamRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

@@ -1894,11 +1894,12 @@ func (c *MTurk) ListAssignmentsForHITPages(input *ListAssignmentsForHITInput, fn
 func (c *MTurk) ListAssignmentsForHITPagesWithContext(ctx aws.Context, input *ListAssignmentsForHITInput, fn func(*ListAssignmentsForHITOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListAssignmentsForHITInput
+			var inCpy *ListAssignmentsForHITInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListAssignmentsForHITRequest(&inCpy)
+			req, _ := c.ListAssignmentsForHITRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -2034,11 +2035,12 @@ func (c *MTurk) ListBonusPaymentsPages(input *ListBonusPaymentsInput, fn func(*L
 func (c *MTurk) ListBonusPaymentsPagesWithContext(ctx aws.Context, input *ListBonusPaymentsInput, fn func(*ListBonusPaymentsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListBonusPaymentsInput
+			var inCpy *ListBonusPaymentsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListBonusPaymentsRequest(&inCpy)
+			req, _ := c.ListBonusPaymentsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -2175,11 +2177,12 @@ func (c *MTurk) ListHITsPages(input *ListHITsInput, fn func(*ListHITsOutput, boo
 func (c *MTurk) ListHITsPagesWithContext(ctx aws.Context, input *ListHITsInput, fn func(*ListHITsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListHITsInput
+			var inCpy *ListHITsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListHITsRequest(&inCpy)
+			req, _ := c.ListHITsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -2317,11 +2320,12 @@ func (c *MTurk) ListHITsForQualificationTypePages(input *ListHITsForQualificatio
 func (c *MTurk) ListHITsForQualificationTypePagesWithContext(ctx aws.Context, input *ListHITsForQualificationTypeInput, fn func(*ListHITsForQualificationTypeOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListHITsForQualificationTypeInput
+			var inCpy *ListHITsForQualificationTypeInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListHITsForQualificationTypeRequest(&inCpy)
+			req, _ := c.ListHITsForQualificationTypeRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -2459,11 +2463,12 @@ func (c *MTurk) ListQualificationRequestsPages(input *ListQualificationRequestsI
 func (c *MTurk) ListQualificationRequestsPagesWithContext(ctx aws.Context, input *ListQualificationRequestsInput, fn func(*ListQualificationRequestsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListQualificationRequestsInput
+			var inCpy *ListQualificationRequestsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListQualificationRequestsRequest(&inCpy)
+			req, _ := c.ListQualificationRequestsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -2601,11 +2606,12 @@ func (c *MTurk) ListQualificationTypesPages(input *ListQualificationTypesInput, 
 func (c *MTurk) ListQualificationTypesPagesWithContext(ctx aws.Context, input *ListQualificationTypesInput, fn func(*ListQualificationTypesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListQualificationTypesInput
+			var inCpy *ListQualificationTypesInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListQualificationTypesRequest(&inCpy)
+			req, _ := c.ListQualificationTypesRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -2744,11 +2750,12 @@ func (c *MTurk) ListReviewPolicyResultsForHITPages(input *ListReviewPolicyResult
 func (c *MTurk) ListReviewPolicyResultsForHITPagesWithContext(ctx aws.Context, input *ListReviewPolicyResultsForHITInput, fn func(*ListReviewPolicyResultsForHITOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListReviewPolicyResultsForHITInput
+			var inCpy *ListReviewPolicyResultsForHITInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListReviewPolicyResultsForHITRequest(&inCpy)
+			req, _ := c.ListReviewPolicyResultsForHITRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -2885,11 +2892,12 @@ func (c *MTurk) ListReviewableHITsPages(input *ListReviewableHITsInput, fn func(
 func (c *MTurk) ListReviewableHITsPagesWithContext(ctx aws.Context, input *ListReviewableHITsInput, fn func(*ListReviewableHITsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListReviewableHITsInput
+			var inCpy *ListReviewableHITsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListReviewableHITsRequest(&inCpy)
+			req, _ := c.ListReviewableHITsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -3025,11 +3033,12 @@ func (c *MTurk) ListWorkerBlocksPages(input *ListWorkerBlocksInput, fn func(*Lis
 func (c *MTurk) ListWorkerBlocksPagesWithContext(ctx aws.Context, input *ListWorkerBlocksInput, fn func(*ListWorkerBlocksOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListWorkerBlocksInput
+			var inCpy *ListWorkerBlocksInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListWorkerBlocksRequest(&inCpy)
+			req, _ := c.ListWorkerBlocksRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -3165,11 +3174,12 @@ func (c *MTurk) ListWorkersWithQualificationTypePages(input *ListWorkersWithQual
 func (c *MTurk) ListWorkersWithQualificationTypePagesWithContext(ctx aws.Context, input *ListWorkersWithQualificationTypeInput, fn func(*ListWorkersWithQualificationTypeOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListWorkersWithQualificationTypeInput
+			var inCpy *ListWorkersWithQualificationTypeInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListWorkersWithQualificationTypeRequest(&inCpy)
+			req, _ := c.ListWorkersWithQualificationTypeRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

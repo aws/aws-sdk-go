@@ -811,11 +811,12 @@ func (c *CloudFormation) DescribeStackEventsPages(input *DescribeStackEventsInpu
 func (c *CloudFormation) DescribeStackEventsPagesWithContext(ctx aws.Context, input *DescribeStackEventsInput, fn func(*DescribeStackEventsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy DescribeStackEventsInput
+			var inCpy *DescribeStackEventsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeStackEventsRequest(&inCpy)
+			req, _ := c.DescribeStackEventsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -1114,11 +1115,12 @@ func (c *CloudFormation) DescribeStacksPages(input *DescribeStacksInput, fn func
 func (c *CloudFormation) DescribeStacksPagesWithContext(ctx aws.Context, input *DescribeStacksInput, fn func(*DescribeStacksOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy DescribeStacksInput
+			var inCpy *DescribeStacksInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeStacksRequest(&inCpy)
+			req, _ := c.DescribeStacksRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -1911,11 +1913,12 @@ func (c *CloudFormation) ListStackResourcesPages(input *ListStackResourcesInput,
 func (c *CloudFormation) ListStackResourcesPagesWithContext(ctx aws.Context, input *ListStackResourcesInput, fn func(*ListStackResourcesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListStackResourcesInput
+			var inCpy *ListStackResourcesInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListStackResourcesRequest(&inCpy)
+			req, _ := c.ListStackResourcesRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -2045,11 +2048,12 @@ func (c *CloudFormation) ListStacksPages(input *ListStacksInput, fn func(*ListSt
 func (c *CloudFormation) ListStacksPagesWithContext(ctx aws.Context, input *ListStacksInput, fn func(*ListStacksOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListStacksInput
+			var inCpy *ListStacksInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListStacksRequest(&inCpy)
+			req, _ := c.ListStacksRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

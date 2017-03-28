@@ -617,11 +617,12 @@ func (c *DataPipeline) DescribeObjectsPages(input *DescribeObjectsInput, fn func
 func (c *DataPipeline) DescribeObjectsPagesWithContext(ctx aws.Context, input *DescribeObjectsInput, fn func(*DescribeObjectsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy DescribeObjectsInput
+			var inCpy *DescribeObjectsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeObjectsRequest(&inCpy)
+			req, _ := c.DescribeObjectsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -1048,11 +1049,12 @@ func (c *DataPipeline) ListPipelinesPages(input *ListPipelinesInput, fn func(*Li
 func (c *DataPipeline) ListPipelinesPagesWithContext(ctx aws.Context, input *ListPipelinesInput, fn func(*ListPipelinesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListPipelinesInput
+			var inCpy *ListPipelinesInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListPipelinesRequest(&inCpy)
+			req, _ := c.ListPipelinesRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -1402,11 +1404,12 @@ func (c *DataPipeline) QueryObjectsPages(input *QueryObjectsInput, fn func(*Quer
 func (c *DataPipeline) QueryObjectsPagesWithContext(ctx aws.Context, input *QueryObjectsInput, fn func(*QueryObjectsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy QueryObjectsInput
+			var inCpy *QueryObjectsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.QueryObjectsRequest(&inCpy)
+			req, _ := c.QueryObjectsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

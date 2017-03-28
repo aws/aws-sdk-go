@@ -1053,11 +1053,12 @@ func (c *Route53Domains) ListDomainsPages(input *ListDomainsInput, fn func(*List
 func (c *Route53Domains) ListDomainsPagesWithContext(ctx aws.Context, input *ListDomainsInput, fn func(*ListDomainsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListDomainsInput
+			var inCpy *ListDomainsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListDomainsRequest(&inCpy)
+			req, _ := c.ListDomainsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -1190,11 +1191,12 @@ func (c *Route53Domains) ListOperationsPages(input *ListOperationsInput, fn func
 func (c *Route53Domains) ListOperationsPagesWithContext(ctx aws.Context, input *ListOperationsInput, fn func(*ListOperationsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListOperationsInput
+			var inCpy *ListOperationsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListOperationsRequest(&inCpy)
+			req, _ := c.ListOperationsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

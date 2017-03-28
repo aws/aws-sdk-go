@@ -44,11 +44,12 @@ func (c *AutoScaling) WaitUntilGroupExistsWithContext(ctx aws.Context, input *De
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy DescribeAutoScalingGroupsInput
+			var inCpy *DescribeAutoScalingGroupsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeAutoScalingGroupsRequest(&inCpy)
+			req, _ := c.DescribeAutoScalingGroupsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -94,11 +95,12 @@ func (c *AutoScaling) WaitUntilGroupInServiceWithContext(ctx aws.Context, input 
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy DescribeAutoScalingGroupsInput
+			var inCpy *DescribeAutoScalingGroupsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeAutoScalingGroupsRequest(&inCpy)
+			req, _ := c.DescribeAutoScalingGroupsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -144,11 +146,12 @@ func (c *AutoScaling) WaitUntilGroupNotExistsWithContext(ctx aws.Context, input 
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy DescribeAutoScalingGroupsInput
+			var inCpy *DescribeAutoScalingGroupsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeAutoScalingGroupsRequest(&inCpy)
+			req, _ := c.DescribeAutoScalingGroupsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

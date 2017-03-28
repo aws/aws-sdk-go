@@ -1874,11 +1874,12 @@ func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesPages(input *ListCloudF
 func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesPagesWithContext(ctx aws.Context, input *ListCloudFrontOriginAccessIdentitiesInput, fn func(*ListCloudFrontOriginAccessIdentitiesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListCloudFrontOriginAccessIdentitiesInput
+			var inCpy *ListCloudFrontOriginAccessIdentitiesInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListCloudFrontOriginAccessIdentitiesRequest(&inCpy)
+			req, _ := c.ListCloudFrontOriginAccessIdentitiesRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -2009,11 +2010,12 @@ func (c *CloudFront) ListDistributionsPages(input *ListDistributionsInput, fn fu
 func (c *CloudFront) ListDistributionsPagesWithContext(ctx aws.Context, input *ListDistributionsInput, fn func(*ListDistributionsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListDistributionsInput
+			var inCpy *ListDistributionsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListDistributionsRequest(&inCpy)
+			req, _ := c.ListDistributionsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -2232,11 +2234,12 @@ func (c *CloudFront) ListInvalidationsPages(input *ListInvalidationsInput, fn fu
 func (c *CloudFront) ListInvalidationsPagesWithContext(ctx aws.Context, input *ListInvalidationsInput, fn func(*ListInvalidationsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListInvalidationsInput
+			var inCpy *ListInvalidationsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListInvalidationsRequest(&inCpy)
+			req, _ := c.ListInvalidationsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -2367,11 +2370,12 @@ func (c *CloudFront) ListStreamingDistributionsPages(input *ListStreamingDistrib
 func (c *CloudFront) ListStreamingDistributionsPagesWithContext(ctx aws.Context, input *ListStreamingDistributionsInput, fn func(*ListStreamingDistributionsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListStreamingDistributionsInput
+			var inCpy *ListStreamingDistributionsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListStreamingDistributionsRequest(&inCpy)
+			req, _ := c.ListStreamingDistributionsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

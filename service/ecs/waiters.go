@@ -44,11 +44,12 @@ func (c *ECS) WaitUntilServicesInactiveWithContext(ctx aws.Context, input *Descr
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy DescribeServicesInput
+			var inCpy *DescribeServicesInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeServicesRequest(&inCpy)
+			req, _ := c.DescribeServicesRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -104,11 +105,12 @@ func (c *ECS) WaitUntilServicesStableWithContext(ctx aws.Context, input *Describ
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy DescribeServicesInput
+			var inCpy *DescribeServicesInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeServicesRequest(&inCpy)
+			req, _ := c.DescribeServicesRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -159,11 +161,12 @@ func (c *ECS) WaitUntilTasksRunningWithContext(ctx aws.Context, input *DescribeT
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy DescribeTasksInput
+			var inCpy *DescribeTasksInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeTasksRequest(&inCpy)
+			req, _ := c.DescribeTasksRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -204,11 +207,12 @@ func (c *ECS) WaitUntilTasksStoppedWithContext(ctx aws.Context, input *DescribeT
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy DescribeTasksInput
+			var inCpy *DescribeTasksInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeTasksRequest(&inCpy)
+			req, _ := c.DescribeTasksRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

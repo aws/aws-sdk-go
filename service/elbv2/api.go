@@ -1107,11 +1107,12 @@ func (c *ELBV2) DescribeListenersPages(input *DescribeListenersInput, fn func(*D
 func (c *ELBV2) DescribeListenersPagesWithContext(ctx aws.Context, input *DescribeListenersInput, fn func(*DescribeListenersOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy DescribeListenersInput
+			var inCpy *DescribeListenersInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeListenersRequest(&inCpy)
+			req, _ := c.DescribeListenersRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -1326,11 +1327,12 @@ func (c *ELBV2) DescribeLoadBalancersPages(input *DescribeLoadBalancersInput, fn
 func (c *ELBV2) DescribeLoadBalancersPagesWithContext(ctx aws.Context, input *DescribeLoadBalancersInput, fn func(*DescribeLoadBalancersOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy DescribeLoadBalancersInput
+			var inCpy *DescribeLoadBalancersInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeLoadBalancersRequest(&inCpy)
+			req, _ := c.DescribeLoadBalancersRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -1805,11 +1807,12 @@ func (c *ELBV2) DescribeTargetGroupsPages(input *DescribeTargetGroupsInput, fn f
 func (c *ELBV2) DescribeTargetGroupsPagesWithContext(ctx aws.Context, input *DescribeTargetGroupsInput, fn func(*DescribeTargetGroupsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy DescribeTargetGroupsInput
+			var inCpy *DescribeTargetGroupsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeTargetGroupsRequest(&inCpy)
+			req, _ := c.DescribeTargetGroupsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

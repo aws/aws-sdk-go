@@ -191,11 +191,12 @@ func (c *DynamoDB) BatchGetItemPages(input *BatchGetItemInput, fn func(*BatchGet
 func (c *DynamoDB) BatchGetItemPagesWithContext(ctx aws.Context, input *BatchGetItemInput, fn func(*BatchGetItemOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy BatchGetItemInput
+			var inCpy *BatchGetItemInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.BatchGetItemRequest(&inCpy)
+			req, _ := c.BatchGetItemRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -1240,11 +1241,12 @@ func (c *DynamoDB) ListTablesPages(input *ListTablesInput, fn func(*ListTablesOu
 func (c *DynamoDB) ListTablesPagesWithContext(ctx aws.Context, input *ListTablesInput, fn func(*ListTablesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListTablesInput
+			var inCpy *ListTablesInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListTablesRequest(&inCpy)
+			req, _ := c.ListTablesRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -1621,11 +1623,12 @@ func (c *DynamoDB) QueryPages(input *QueryInput, fn func(*QueryOutput, bool) boo
 func (c *DynamoDB) QueryPagesWithContext(ctx aws.Context, input *QueryInput, fn func(*QueryOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy QueryInput
+			var inCpy *QueryInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.QueryRequest(&inCpy)
+			req, _ := c.QueryRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -1788,11 +1791,12 @@ func (c *DynamoDB) ScanPages(input *ScanInput, fn func(*ScanOutput, bool) bool) 
 func (c *DynamoDB) ScanPagesWithContext(ctx aws.Context, input *ScanInput, fn func(*ScanOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ScanInput
+			var inCpy *ScanInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ScanRequest(&inCpy)
+			req, _ := c.ScanRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

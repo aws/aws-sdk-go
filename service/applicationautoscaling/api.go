@@ -350,11 +350,12 @@ func (c *ApplicationAutoScaling) DescribeScalableTargetsPages(input *DescribeSca
 func (c *ApplicationAutoScaling) DescribeScalableTargetsPagesWithContext(ctx aws.Context, input *DescribeScalableTargetsInput, fn func(*DescribeScalableTargetsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy DescribeScalableTargetsInput
+			var inCpy *DescribeScalableTargetsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeScalableTargetsRequest(&inCpy)
+			req, _ := c.DescribeScalableTargetsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -504,11 +505,12 @@ func (c *ApplicationAutoScaling) DescribeScalingActivitiesPages(input *DescribeS
 func (c *ApplicationAutoScaling) DescribeScalingActivitiesPagesWithContext(ctx aws.Context, input *DescribeScalingActivitiesInput, fn func(*DescribeScalingActivitiesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy DescribeScalingActivitiesInput
+			var inCpy *DescribeScalingActivitiesInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeScalingActivitiesRequest(&inCpy)
+			req, _ := c.DescribeScalingActivitiesRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -666,11 +668,12 @@ func (c *ApplicationAutoScaling) DescribeScalingPoliciesPages(input *DescribeSca
 func (c *ApplicationAutoScaling) DescribeScalingPoliciesPagesWithContext(ctx aws.Context, input *DescribeScalingPoliciesInput, fn func(*DescribeScalingPoliciesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy DescribeScalingPoliciesInput
+			var inCpy *DescribeScalingPoliciesInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeScalingPoliciesRequest(&inCpy)
+			req, _ := c.DescribeScalingPoliciesRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
