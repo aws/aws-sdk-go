@@ -69,7 +69,11 @@ func (c *CloudFormation) WaitUntilStackCreateCompleteWithContext(ctx aws.Context
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeStacksRequest(input)
+			var inCpy DescribeStacksInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeStacksRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -140,7 +144,11 @@ func (c *CloudFormation) WaitUntilStackDeleteCompleteWithContext(ctx aws.Context
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeStacksRequest(input)
+			var inCpy DescribeStacksInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeStacksRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -186,7 +194,11 @@ func (c *CloudFormation) WaitUntilStackExistsWithContext(ctx aws.Context, input 
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeStacksRequest(input)
+			var inCpy DescribeStacksInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeStacksRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -247,7 +259,11 @@ func (c *CloudFormation) WaitUntilStackUpdateCompleteWithContext(ctx aws.Context
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeStacksRequest(input)
+			var inCpy DescribeStacksInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeStacksRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

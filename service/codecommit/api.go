@@ -991,7 +991,10 @@ func (c *CodeCommit) GetDifferencesPages(input *GetDifferencesInput, fn func(*Ge
 func (c *CodeCommit) GetDifferencesPagesWithContext(ctx aws.Context, input *GetDifferencesInput, fn func(*GetDifferencesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy GetDifferencesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.GetDifferencesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -1367,7 +1370,10 @@ func (c *CodeCommit) ListBranchesPages(input *ListBranchesInput, fn func(*ListBr
 func (c *CodeCommit) ListBranchesPagesWithContext(ctx aws.Context, input *ListBranchesInput, fn func(*ListBranchesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListBranchesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListBranchesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -1505,7 +1511,10 @@ func (c *CodeCommit) ListRepositoriesPages(input *ListRepositoriesInput, fn func
 func (c *CodeCommit) ListRepositoriesPagesWithContext(ctx aws.Context, input *ListRepositoriesInput, fn func(*ListRepositoriesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListRepositoriesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListRepositoriesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

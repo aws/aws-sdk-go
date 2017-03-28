@@ -3023,7 +3023,10 @@ func (c *CloudDirectory) ListAppliedSchemaArnsPages(input *ListAppliedSchemaArns
 func (c *CloudDirectory) ListAppliedSchemaArnsPagesWithContext(ctx aws.Context, input *ListAppliedSchemaArnsInput, fn func(*ListAppliedSchemaArnsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListAppliedSchemaArnsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListAppliedSchemaArnsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -3185,7 +3188,10 @@ func (c *CloudDirectory) ListAttachedIndicesPages(input *ListAttachedIndicesInpu
 func (c *CloudDirectory) ListAttachedIndicesPagesWithContext(ctx aws.Context, input *ListAttachedIndicesInput, fn func(*ListAttachedIndicesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListAttachedIndicesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListAttachedIndicesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -3347,7 +3353,10 @@ func (c *CloudDirectory) ListDevelopmentSchemaArnsPages(input *ListDevelopmentSc
 func (c *CloudDirectory) ListDevelopmentSchemaArnsPagesWithContext(ctx aws.Context, input *ListDevelopmentSchemaArnsInput, fn func(*ListDevelopmentSchemaArnsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListDevelopmentSchemaArnsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListDevelopmentSchemaArnsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -3506,7 +3515,10 @@ func (c *CloudDirectory) ListDirectoriesPages(input *ListDirectoriesInput, fn fu
 func (c *CloudDirectory) ListDirectoriesPagesWithContext(ctx aws.Context, input *ListDirectoriesInput, fn func(*ListDirectoriesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListDirectoriesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListDirectoriesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -3671,7 +3683,10 @@ func (c *CloudDirectory) ListFacetAttributesPages(input *ListFacetAttributesInpu
 func (c *CloudDirectory) ListFacetAttributesPagesWithContext(ctx aws.Context, input *ListFacetAttributesInput, fn func(*ListFacetAttributesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListFacetAttributesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListFacetAttributesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -3833,7 +3848,10 @@ func (c *CloudDirectory) ListFacetNamesPages(input *ListFacetNamesInput, fn func
 func (c *CloudDirectory) ListFacetNamesPagesWithContext(ctx aws.Context, input *ListFacetNamesInput, fn func(*ListFacetNamesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListFacetNamesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListFacetNamesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -3998,7 +4016,10 @@ func (c *CloudDirectory) ListIndexPages(input *ListIndexInput, fn func(*ListInde
 func (c *CloudDirectory) ListIndexPagesWithContext(ctx aws.Context, input *ListIndexInput, fn func(*ListIndexOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListIndexInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListIndexRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -4166,7 +4187,10 @@ func (c *CloudDirectory) ListObjectAttributesPages(input *ListObjectAttributesIn
 func (c *CloudDirectory) ListObjectAttributesPagesWithContext(ctx aws.Context, input *ListObjectAttributesInput, fn func(*ListObjectAttributesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListObjectAttributesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListObjectAttributesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -4338,7 +4362,10 @@ func (c *CloudDirectory) ListObjectChildrenPages(input *ListObjectChildrenInput,
 func (c *CloudDirectory) ListObjectChildrenPagesWithContext(ctx aws.Context, input *ListObjectChildrenInput, fn func(*ListObjectChildrenOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListObjectChildrenInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListObjectChildrenRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -4512,7 +4539,10 @@ func (c *CloudDirectory) ListObjectParentPathsPages(input *ListObjectParentPaths
 func (c *CloudDirectory) ListObjectParentPathsPagesWithContext(ctx aws.Context, input *ListObjectParentPathsInput, fn func(*ListObjectParentPathsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListObjectParentPathsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListObjectParentPathsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -4683,7 +4713,10 @@ func (c *CloudDirectory) ListObjectParentsPages(input *ListObjectParentsInput, f
 func (c *CloudDirectory) ListObjectParentsPagesWithContext(ctx aws.Context, input *ListObjectParentsInput, fn func(*ListObjectParentsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListObjectParentsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListObjectParentsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -4848,7 +4881,10 @@ func (c *CloudDirectory) ListObjectPoliciesPages(input *ListObjectPoliciesInput,
 func (c *CloudDirectory) ListObjectPoliciesPagesWithContext(ctx aws.Context, input *ListObjectPoliciesInput, fn func(*ListObjectPoliciesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListObjectPoliciesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListObjectPoliciesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -5019,7 +5055,10 @@ func (c *CloudDirectory) ListPolicyAttachmentsPages(input *ListPolicyAttachments
 func (c *CloudDirectory) ListPolicyAttachmentsPagesWithContext(ctx aws.Context, input *ListPolicyAttachmentsInput, fn func(*ListPolicyAttachmentsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListPolicyAttachmentsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListPolicyAttachmentsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -5181,7 +5220,10 @@ func (c *CloudDirectory) ListPublishedSchemaArnsPages(input *ListPublishedSchema
 func (c *CloudDirectory) ListPublishedSchemaArnsPagesWithContext(ctx aws.Context, input *ListPublishedSchemaArnsInput, fn func(*ListPublishedSchemaArnsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListPublishedSchemaArnsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListPublishedSchemaArnsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -5347,7 +5389,10 @@ func (c *CloudDirectory) ListTagsForResourcePages(input *ListTagsForResourceInpu
 func (c *CloudDirectory) ListTagsForResourcePagesWithContext(ctx aws.Context, input *ListTagsForResourceInput, fn func(*ListTagsForResourceOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListTagsForResourceInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListTagsForResourceRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -5520,7 +5565,10 @@ func (c *CloudDirectory) LookupPolicyPages(input *LookupPolicyInput, fn func(*Lo
 func (c *CloudDirectory) LookupPolicyPagesWithContext(ctx aws.Context, input *LookupPolicyInput, fn func(*LookupPolicyOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy LookupPolicyInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.LookupPolicyRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

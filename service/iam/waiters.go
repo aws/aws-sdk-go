@@ -44,7 +44,11 @@ func (c *IAM) WaitUntilInstanceProfileExistsWithContext(ctx aws.Context, input *
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.GetInstanceProfileRequest(input)
+			var inCpy GetInstanceProfileInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.GetInstanceProfileRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -90,7 +94,11 @@ func (c *IAM) WaitUntilUserExistsWithContext(ctx aws.Context, input *GetUserInpu
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.GetUserRequest(input)
+			var inCpy GetUserInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.GetUserRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

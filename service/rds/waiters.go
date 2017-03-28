@@ -64,7 +64,11 @@ func (c *RDS) WaitUntilDBInstanceAvailableWithContext(ctx aws.Context, input *De
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeDBInstancesRequest(input)
+			var inCpy DescribeDBInstancesInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeDBInstancesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -130,7 +134,11 @@ func (c *RDS) WaitUntilDBInstanceDeletedWithContext(ctx aws.Context, input *Desc
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeDBInstancesRequest(input)
+			var inCpy DescribeDBInstancesInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeDBInstancesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

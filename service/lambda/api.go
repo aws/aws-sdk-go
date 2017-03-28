@@ -1763,7 +1763,10 @@ func (c *Lambda) ListEventSourceMappingsPages(input *ListEventSourceMappingsInpu
 func (c *Lambda) ListEventSourceMappingsPagesWithContext(ctx aws.Context, input *ListEventSourceMappingsInput, fn func(*ListEventSourceMappingsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListEventSourceMappingsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListEventSourceMappingsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -1902,7 +1905,10 @@ func (c *Lambda) ListFunctionsPages(input *ListFunctionsInput, fn func(*ListFunc
 func (c *Lambda) ListFunctionsPagesWithContext(ctx aws.Context, input *ListFunctionsInput, fn func(*ListFunctionsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListFunctionsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListFunctionsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

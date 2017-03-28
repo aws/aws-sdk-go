@@ -44,7 +44,11 @@ func (c *DynamoDB) WaitUntilTableExistsWithContext(ctx aws.Context, input *Descr
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeTableRequest(input)
+			var inCpy DescribeTableInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeTableRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -85,7 +89,11 @@ func (c *DynamoDB) WaitUntilTableNotExistsWithContext(ctx aws.Context, input *De
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeTableRequest(input)
+			var inCpy DescribeTableInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeTableRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

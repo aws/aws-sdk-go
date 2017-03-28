@@ -49,7 +49,11 @@ func (c *Redshift) WaitUntilClusterAvailableWithContext(ctx aws.Context, input *
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeClustersRequest(input)
+			var inCpy DescribeClustersInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeClustersRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -100,7 +104,11 @@ func (c *Redshift) WaitUntilClusterDeletedWithContext(ctx aws.Context, input *De
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeClustersRequest(input)
+			var inCpy DescribeClustersInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeClustersRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -146,7 +154,11 @@ func (c *Redshift) WaitUntilClusterRestoredWithContext(ctx aws.Context, input *D
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeClustersRequest(input)
+			var inCpy DescribeClustersInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeClustersRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -197,7 +209,11 @@ func (c *Redshift) WaitUntilSnapshotAvailableWithContext(ctx aws.Context, input 
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeClusterSnapshotsRequest(input)
+			var inCpy DescribeClusterSnapshotsInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeClusterSnapshotsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

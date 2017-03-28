@@ -812,7 +812,10 @@ func (c *ECR) DescribeImagesPages(input *DescribeImagesInput, fn func(*DescribeI
 func (c *ECR) DescribeImagesPagesWithContext(ctx aws.Context, input *DescribeImagesInput, fn func(*DescribeImagesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeImagesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeImagesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -952,7 +955,10 @@ func (c *ECR) DescribeRepositoriesPages(input *DescribeRepositoriesInput, fn fun
 func (c *ECR) DescribeRepositoriesPagesWithContext(ctx aws.Context, input *DescribeRepositoriesInput, fn func(*DescribeRepositoriesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeRepositoriesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeRepositoriesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -1474,7 +1480,10 @@ func (c *ECR) ListImagesPages(input *ListImagesInput, fn func(*ListImagesOutput,
 func (c *ECR) ListImagesPagesWithContext(ctx aws.Context, input *ListImagesInput, fn func(*ListImagesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListImagesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListImagesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

@@ -49,7 +49,11 @@ func (c *AppStream) WaitUntilFleetStartedWithContext(ctx aws.Context, input *Des
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeFleetsRequest(input)
+			var inCpy DescribeFleetsInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeFleetsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -100,7 +104,11 @@ func (c *AppStream) WaitUntilFleetStoppedWithContext(ctx aws.Context, input *Des
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeFleetsRequest(input)
+			var inCpy DescribeFleetsInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeFleetsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

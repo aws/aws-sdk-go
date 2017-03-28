@@ -2386,7 +2386,10 @@ func (c *SES) ListIdentitiesPages(input *ListIdentitiesInput, fn func(*ListIdent
 func (c *SES) ListIdentitiesPagesWithContext(ctx aws.Context, input *ListIdentitiesInput, fn func(*ListIdentitiesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListIdentitiesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListIdentitiesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

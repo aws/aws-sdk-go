@@ -39,7 +39,11 @@ func (c *CloudWatch) WaitUntilAlarmExistsWithContext(ctx aws.Context, input *Des
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeAlarmsRequest(input)
+			var inCpy DescribeAlarmsInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeAlarmsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

@@ -981,7 +981,10 @@ func (c *Rekognition) ListCollectionsPages(input *ListCollectionsInput, fn func(
 func (c *Rekognition) ListCollectionsPagesWithContext(ctx aws.Context, input *ListCollectionsInput, fn func(*ListCollectionsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListCollectionsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListCollectionsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -1136,7 +1139,10 @@ func (c *Rekognition) ListFacesPages(input *ListFacesInput, fn func(*ListFacesOu
 func (c *Rekognition) ListFacesPagesWithContext(ctx aws.Context, input *ListFacesInput, fn func(*ListFacesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListFacesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListFacesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

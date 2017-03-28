@@ -2451,7 +2451,10 @@ func (c *Glacier) ListJobsPages(input *ListJobsInput, fn func(*ListJobsOutput, b
 func (c *Glacier) ListJobsPagesWithContext(ctx aws.Context, input *ListJobsInput, fn func(*ListJobsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListJobsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListJobsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -2619,7 +2622,10 @@ func (c *Glacier) ListMultipartUploadsPages(input *ListMultipartUploadsInput, fn
 func (c *Glacier) ListMultipartUploadsPagesWithContext(ctx aws.Context, input *ListMultipartUploadsInput, fn func(*ListMultipartUploadsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListMultipartUploadsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListMultipartUploadsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -2781,7 +2787,10 @@ func (c *Glacier) ListPartsPages(input *ListPartsInput, fn func(*ListPartsOutput
 func (c *Glacier) ListPartsPagesWithContext(ctx aws.Context, input *ListPartsInput, fn func(*ListPartsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListPartsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListPartsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -3112,7 +3121,10 @@ func (c *Glacier) ListVaultsPages(input *ListVaultsInput, fn func(*ListVaultsOut
 func (c *Glacier) ListVaultsPagesWithContext(ctx aws.Context, input *ListVaultsInput, fn func(*ListVaultsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListVaultsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListVaultsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

@@ -211,7 +211,10 @@ func (c *CostandUsageReportService) DescribeReportDefinitionsPages(input *Descri
 func (c *CostandUsageReportService) DescribeReportDefinitionsPagesWithContext(ctx aws.Context, input *DescribeReportDefinitionsInput, fn func(*DescribeReportDefinitionsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeReportDefinitionsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeReportDefinitionsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

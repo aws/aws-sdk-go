@@ -2200,7 +2200,10 @@ func (c *ElasticBeanstalk) DescribeEventsPages(input *DescribeEventsInput, fn fu
 func (c *ElasticBeanstalk) DescribeEventsPagesWithContext(ctx aws.Context, input *DescribeEventsInput, fn func(*DescribeEventsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeEventsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeEventsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
