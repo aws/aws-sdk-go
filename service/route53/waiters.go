@@ -39,11 +39,12 @@ func (c *Route53) WaitUntilResourceRecordSetsChangedWithContext(ctx aws.Context,
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy GetChangeInput
+			var inCpy *GetChangeInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.GetChangeRequest(&inCpy)
+			req, _ := c.GetChangeRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

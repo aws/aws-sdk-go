@@ -44,11 +44,12 @@ func (c *OpsWorks) WaitUntilAppExistsWithContext(ctx aws.Context, input *Describ
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy DescribeAppsInput
+			var inCpy *DescribeAppsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeAppsRequest(&inCpy)
+			req, _ := c.DescribeAppsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -94,11 +95,12 @@ func (c *OpsWorks) WaitUntilDeploymentSuccessfulWithContext(ctx aws.Context, inp
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy DescribeDeploymentsInput
+			var inCpy *DescribeDeploymentsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeDeploymentsRequest(&inCpy)
+			req, _ := c.DescribeDeploymentsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -179,11 +181,12 @@ func (c *OpsWorks) WaitUntilInstanceOnlineWithContext(ctx aws.Context, input *De
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy DescribeInstancesInput
+			var inCpy *DescribeInstancesInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeInstancesRequest(&inCpy)
+			req, _ := c.DescribeInstancesRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -259,11 +262,12 @@ func (c *OpsWorks) WaitUntilInstanceRegisteredWithContext(ctx aws.Context, input
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy DescribeInstancesInput
+			var inCpy *DescribeInstancesInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeInstancesRequest(&inCpy)
+			req, _ := c.DescribeInstancesRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -349,11 +353,12 @@ func (c *OpsWorks) WaitUntilInstanceStoppedWithContext(ctx aws.Context, input *D
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy DescribeInstancesInput
+			var inCpy *DescribeInstancesInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeInstancesRequest(&inCpy)
+			req, _ := c.DescribeInstancesRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -439,11 +444,12 @@ func (c *OpsWorks) WaitUntilInstanceTerminatedWithContext(ctx aws.Context, input
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy DescribeInstancesInput
+			var inCpy *DescribeInstancesInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeInstancesRequest(&inCpy)
+			req, _ := c.DescribeInstancesRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

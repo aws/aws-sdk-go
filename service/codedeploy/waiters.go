@@ -49,11 +49,12 @@ func (c *CodeDeploy) WaitUntilDeploymentSuccessfulWithContext(ctx aws.Context, i
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy GetDeploymentInput
+			var inCpy *GetDeploymentInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.GetDeploymentRequest(&inCpy)
+			req, _ := c.GetDeploymentRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

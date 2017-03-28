@@ -49,11 +49,12 @@ func (c *Redshift) WaitUntilClusterAvailableWithContext(ctx aws.Context, input *
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy DescribeClustersInput
+			var inCpy *DescribeClustersInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeClustersRequest(&inCpy)
+			req, _ := c.DescribeClustersRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -104,11 +105,12 @@ func (c *Redshift) WaitUntilClusterDeletedWithContext(ctx aws.Context, input *De
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy DescribeClustersInput
+			var inCpy *DescribeClustersInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeClustersRequest(&inCpy)
+			req, _ := c.DescribeClustersRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -154,11 +156,12 @@ func (c *Redshift) WaitUntilClusterRestoredWithContext(ctx aws.Context, input *D
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy DescribeClustersInput
+			var inCpy *DescribeClustersInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeClustersRequest(&inCpy)
+			req, _ := c.DescribeClustersRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -209,11 +212,12 @@ func (c *Redshift) WaitUntilSnapshotAvailableWithContext(ctx aws.Context, input 
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy DescribeClusterSnapshotsInput
+			var inCpy *DescribeClusterSnapshotsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeClusterSnapshotsRequest(&inCpy)
+			req, _ := c.DescribeClusterSnapshotsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

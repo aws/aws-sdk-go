@@ -1864,11 +1864,12 @@ func (c *SSM) DescribeActivationsPages(input *DescribeActivationsInput, fn func(
 func (c *SSM) DescribeActivationsPagesWithContext(ctx aws.Context, input *DescribeActivationsInput, fn func(*DescribeActivationsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy DescribeActivationsInput
+			var inCpy *DescribeActivationsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeActivationsRequest(&inCpy)
+			req, _ := c.DescribeActivationsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -2753,11 +2754,12 @@ func (c *SSM) DescribeInstanceInformationPages(input *DescribeInstanceInformatio
 func (c *SSM) DescribeInstanceInformationPagesWithContext(ctx aws.Context, input *DescribeInstanceInformationInput, fn func(*DescribeInstanceInformationOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy DescribeInstanceInformationInput
+			var inCpy *DescribeInstanceInformationInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeInstanceInformationRequest(&inCpy)
+			req, _ := c.DescribeInstanceInformationRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -5199,11 +5201,12 @@ func (c *SSM) ListAssociationsPages(input *ListAssociationsInput, fn func(*ListA
 func (c *SSM) ListAssociationsPagesWithContext(ctx aws.Context, input *ListAssociationsInput, fn func(*ListAssociationsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListAssociationsInput
+			var inCpy *ListAssociationsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListAssociationsRequest(&inCpy)
+			req, _ := c.ListAssociationsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -5361,11 +5364,12 @@ func (c *SSM) ListCommandInvocationsPages(input *ListCommandInvocationsInput, fn
 func (c *SSM) ListCommandInvocationsPagesWithContext(ctx aws.Context, input *ListCommandInvocationsInput, fn func(*ListCommandInvocationsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListCommandInvocationsInput
+			var inCpy *ListCommandInvocationsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListCommandInvocationsRequest(&inCpy)
+			req, _ := c.ListCommandInvocationsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -5519,11 +5523,12 @@ func (c *SSM) ListCommandsPages(input *ListCommandsInput, fn func(*ListCommandsO
 func (c *SSM) ListCommandsPagesWithContext(ctx aws.Context, input *ListCommandsInput, fn func(*ListCommandsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListCommandsInput
+			var inCpy *ListCommandsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListCommandsRequest(&inCpy)
+			req, _ := c.ListCommandsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -5746,11 +5751,12 @@ func (c *SSM) ListDocumentsPages(input *ListDocumentsInput, fn func(*ListDocumen
 func (c *SSM) ListDocumentsPagesWithContext(ctx aws.Context, input *ListDocumentsInput, fn func(*ListDocumentsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListDocumentsInput
+			var inCpy *ListDocumentsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListDocumentsRequest(&inCpy)
+			req, _ := c.ListDocumentsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

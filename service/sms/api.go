@@ -526,11 +526,12 @@ func (c *SMS) GetConnectorsPages(input *GetConnectorsInput, fn func(*GetConnecto
 func (c *SMS) GetConnectorsPagesWithContext(ctx aws.Context, input *GetConnectorsInput, fn func(*GetConnectorsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy GetConnectorsInput
+			var inCpy *GetConnectorsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.GetConnectorsRequest(&inCpy)
+			req, _ := c.GetConnectorsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -671,11 +672,12 @@ func (c *SMS) GetReplicationJobsPages(input *GetReplicationJobsInput, fn func(*G
 func (c *SMS) GetReplicationJobsPagesWithContext(ctx aws.Context, input *GetReplicationJobsInput, fn func(*GetReplicationJobsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy GetReplicationJobsInput
+			var inCpy *GetReplicationJobsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.GetReplicationJobsRequest(&inCpy)
+			req, _ := c.GetReplicationJobsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -816,11 +818,12 @@ func (c *SMS) GetReplicationRunsPages(input *GetReplicationRunsInput, fn func(*G
 func (c *SMS) GetReplicationRunsPagesWithContext(ctx aws.Context, input *GetReplicationRunsInput, fn func(*GetReplicationRunsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy GetReplicationRunsInput
+			var inCpy *GetReplicationRunsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.GetReplicationRunsRequest(&inCpy)
+			req, _ := c.GetReplicationRunsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -952,11 +955,12 @@ func (c *SMS) GetServersPages(input *GetServersInput, fn func(*GetServersOutput,
 func (c *SMS) GetServersPagesWithContext(ctx aws.Context, input *GetServersInput, fn func(*GetServersOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy GetServersInput
+			var inCpy *GetServersInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.GetServersRequest(&inCpy)
+			req, _ := c.GetServersRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

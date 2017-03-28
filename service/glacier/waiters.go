@@ -44,11 +44,12 @@ func (c *Glacier) WaitUntilVaultExistsWithContext(ctx aws.Context, input *Descri
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy DescribeVaultInput
+			var inCpy *DescribeVaultInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeVaultRequest(&inCpy)
+			req, _ := c.DescribeVaultRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -94,11 +95,12 @@ func (c *Glacier) WaitUntilVaultNotExistsWithContext(ctx aws.Context, input *Des
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy DescribeVaultInput
+			var inCpy *DescribeVaultInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeVaultRequest(&inCpy)
+			req, _ := c.DescribeVaultRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

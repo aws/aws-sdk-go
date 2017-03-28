@@ -670,11 +670,12 @@ func (c *Kinesis) DescribeStreamPages(input *DescribeStreamInput, fn func(*Descr
 func (c *Kinesis) DescribeStreamPagesWithContext(ctx aws.Context, input *DescribeStreamInput, fn func(*DescribeStreamOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy DescribeStreamInput
+			var inCpy *DescribeStreamInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.DescribeStreamRequest(&inCpy)
+			req, _ := c.DescribeStreamRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -1386,11 +1387,12 @@ func (c *Kinesis) ListStreamsPages(input *ListStreamsInput, fn func(*ListStreams
 func (c *Kinesis) ListStreamsPagesWithContext(ctx aws.Context, input *ListStreamsInput, fn func(*ListStreamsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListStreamsInput
+			var inCpy *ListStreamsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListStreamsRequest(&inCpy)
+			req, _ := c.ListStreamsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

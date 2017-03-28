@@ -909,11 +909,12 @@ func (c *ElasticsearchService) ListElasticsearchInstanceTypesPages(input *ListEl
 func (c *ElasticsearchService) ListElasticsearchInstanceTypesPagesWithContext(ctx aws.Context, input *ListElasticsearchInstanceTypesInput, fn func(*ListElasticsearchInstanceTypesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListElasticsearchInstanceTypesInput
+			var inCpy *ListElasticsearchInstanceTypesInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListElasticsearchInstanceTypesRequest(&inCpy)
+			req, _ := c.ListElasticsearchInstanceTypesRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -1057,11 +1058,12 @@ func (c *ElasticsearchService) ListElasticsearchVersionsPages(input *ListElastic
 func (c *ElasticsearchService) ListElasticsearchVersionsPagesWithContext(ctx aws.Context, input *ListElasticsearchVersionsInput, fn func(*ListElasticsearchVersionsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			var inCpy ListElasticsearchVersionsInput
+			var inCpy *ListElasticsearchVersionsInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.ListElasticsearchVersionsRequest(&inCpy)
+			req, _ := c.ListElasticsearchVersionsRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

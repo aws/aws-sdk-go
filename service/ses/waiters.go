@@ -39,11 +39,12 @@ func (c *SES) WaitUntilIdentityExistsWithContext(ctx aws.Context, input *GetIden
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy GetIdentityVerificationAttributesInput
+			var inCpy *GetIdentityVerificationAttributesInput
 			if input != nil {
-				inCpy = *input
+				tmp := *input
+				inCpy = &tmp
 			}
-			req, _ := c.GetIdentityVerificationAttributesRequest(&inCpy)
+			req, _ := c.GetIdentityVerificationAttributesRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
