@@ -1374,8 +1374,11 @@ func (c *EC2) AttachVpnGatewayRequest(input *AttachVpnGatewayInput) (req *reques
 
 // AttachVpnGateway API operation for Amazon Elastic Compute Cloud.
 //
-// Attaches a virtual private gateway to a VPC. For more information, see Adding
-// a Hardware Virtual Private Gateway to Your VPC (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html)
+// Attaches a virtual private gateway to a VPC. You can attach one virtual private
+// gateway to one VPC at a time.
+//
+// For more information, see Adding a Hardware Virtual Private Gateway to Your
+// VPC (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html)
 // in the Amazon Virtual Private Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4400,7 +4403,10 @@ func (c *EC2) CreateVolumeRequest(input *CreateVolumeInput) (req *request.Reques
 // encrypted. For more information, see Amazon EBS Encryption (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
-// For more information, see Creating or Restoring an Amazon EBS Volume (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-creating-volume.html)
+// You can tag your volumes during creation. For more information, see Tagging
+// Your Amazon EC2 Resources (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html).
+//
+// For more information, see Creating an Amazon EBS Volume (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-creating-volume.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -17119,8 +17125,8 @@ func (c *EC2) RegisterImageRequest(input *RegisterImageInput) (req *request.Requ
 //
 // You can also use RegisterImage to create an Amazon EBS-backed Linux AMI from
 // a snapshot of a root device volume. You specify the snapshot using the block
-// device mapping. For more information, see Launching an Instance from a Snapshot
-// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_LaunchingInstanceFromSnapshot.html)
+// device mapping. For more information, see Launching a Linux Instance from
+// a Backup (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-launch-snapshot.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // You can't register an image where a secondary (non-root) snapshot has AWS
@@ -18736,9 +18742,9 @@ func (c *EC2) RunInstancesRequest(input *RunInstancesInput) (req *request.Reques
 // each instead of 1 launch request for 500 instances.
 //
 // An instance is ready for you to use when it's in the running state. You can
-// check the state of your instance using DescribeInstances. After launch, you
-// can apply tags to your running instance (requires a resource ID). For more
-// information, see CreateTags and Tagging Your Amazon EC2 Resources (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html).
+// check the state of your instance using DescribeInstances. You can tag instances
+// and EBS volumes during launch, after launch, or both. For more information,
+// see CreateTags and Tagging Your Amazon EC2 Resources (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html).
 //
 // Linux instances have access to the public key of the key pair at boot. You
 // can use this key to provide secure access to the instance. Amazon EC2 public
@@ -19613,8 +19619,8 @@ func (s *AccountAttributeValue) SetAttributeValue(v string) *AccountAttributeVal
 type ActiveInstance struct {
 	_ struct{} `type:"structure"`
 
-	// The health status of the instance. If the status of both the instance status
-	// check and the system status check is impaired, the health status of the instance
+	// The health status of the instance. If the status of either the instance status
+	// check or the system status check is impaired, the health status of the instance
 	// is unhealthy. Otherwise, the health status is healthy.
 	InstanceHealth *string `locationName:"instanceHealth" type:"string" enum:"InstanceHealthStatus"`
 
@@ -25494,6 +25500,9 @@ type CreateVolumeInput struct {
 	// The snapshot from which to create the volume.
 	SnapshotId *string `type:"string"`
 
+	// The tags to apply to the volume during creation.
+	TagSpecifications []*TagSpecification `locationName:"TagSpecification" locationNameList:"item" type:"list"`
+
 	// The volume type. This can be gp2 for General Purpose SSD, io1 for Provisioned
 	// IOPS SSD, st1 for Throughput Optimized HDD, sc1 for Cold HDD, or standard
 	// for Magnetic volumes.
@@ -25564,6 +25573,12 @@ func (s *CreateVolumeInput) SetSize(v int64) *CreateVolumeInput {
 // SetSnapshotId sets the SnapshotId field's value.
 func (s *CreateVolumeInput) SetSnapshotId(v string) *CreateVolumeInput {
 	s.SnapshotId = &v
+	return s
+}
+
+// SetTagSpecifications sets the TagSpecifications field's value.
+func (s *CreateVolumeInput) SetTagSpecifications(v []*TagSpecification) *CreateVolumeInput {
+	s.TagSpecifications = v
 	return s
 }
 
@@ -46915,7 +46930,9 @@ type RegisterImageInput struct {
 	// the architecture specified in the manifest file.
 	Architecture *string `locationName:"architecture" type:"string" enum:"ArchitectureValues"`
 
-	// The billing product codes.
+	// The billing product codes. Your account must be authorized to specify billing
+	// product codes. Otherwise, you can use the AWS Marketplace to bill for the
+	// use of an AMI.
 	BillingProducts []*string `locationName:"BillingProduct" locationNameList:"item" type:"list"`
 
 	// One or more block device mapping entries.
@@ -50464,6 +50481,11 @@ type RunInstancesInput struct {
 	// [EC2-VPC] The ID of the subnet to launch the instance into.
 	SubnetId *string `type:"string"`
 
+	// The tags to apply to the resources during launch. You can tag instances and
+	// volumes. The specified tags are applied to all instances or volumes that
+	// are created during launch.
+	TagSpecifications []*TagSpecification `locationName:"TagSpecification" locationNameList:"item" type:"list"`
+
 	// The user data to make available to the instance. For more information, see
 	// Running Commands on Your Linux Instance at Launch (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html)
 	// (Linux) and Adding User Data (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-instance-metadata.html#instancedata-add-user-data)
@@ -50658,6 +50680,12 @@ func (s *RunInstancesInput) SetSecurityGroups(v []*string) *RunInstancesInput {
 // SetSubnetId sets the SubnetId field's value.
 func (s *RunInstancesInput) SetSubnetId(v string) *RunInstancesInput {
 	s.SubnetId = &v
+	return s
+}
+
+// SetTagSpecifications sets the TagSpecifications field's value.
+func (s *RunInstancesInput) SetTagSpecifications(v []*TagSpecification) *RunInstancesInput {
+	s.TagSpecifications = v
 	return s
 }
 
@@ -54198,6 +54226,41 @@ func (s *TagDescription) SetResourceType(v string) *TagDescription {
 // SetValue sets the Value field's value.
 func (s *TagDescription) SetValue(v string) *TagDescription {
 	s.Value = &v
+	return s
+}
+
+// The tags to apply to a resource when the resource is being created.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ec2-2016-11-15/TagSpecification
+type TagSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The type of resource to tag. Currently, the resource types that support tagging
+	// on creation are instance and volume.
+	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
+
+	// The tags to apply to the resource.
+	Tags []*Tag `locationName:"Tag" locationNameList:"item" type:"list"`
+}
+
+// String returns the string representation
+func (s TagSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagSpecification) GoString() string {
+	return s.String()
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *TagSpecification) SetResourceType(v string) *TagSpecification {
+	s.ResourceType = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagSpecification) SetTags(v []*Tag) *TagSpecification {
+	s.Tags = v
 	return s
 }
 

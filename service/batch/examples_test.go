@@ -365,6 +365,9 @@ func ExampleBatch_RegisterJobDefinition() {
 			"Key": aws.String("String"), // Required
 			// More values...
 		},
+		RetryStrategy: &batch.RetryStrategy{
+			Attempts: aws.Int64(1),
+		},
 	}
 	resp, err := svc.RegisterJobDefinition(params)
 
@@ -412,6 +415,9 @@ func ExampleBatch_SubmitJob() {
 		Parameters: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
+		},
+		RetryStrategy: &batch.RetryStrategy{
+			Attempts: aws.Int64(1),
 		},
 	}
 	resp, err := svc.SubmitJob(params)
