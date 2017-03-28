@@ -216,7 +216,10 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}PagesWithContext(` +
 	`opts ...request.Option) error {
 	p := request.Pagination {
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy {{ .InputRef.GoTypeElem }}
+			if input != nil  {
+				inCpy = *input
+			}
 			req, _ := c.{{ .ExportedName }}Request(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

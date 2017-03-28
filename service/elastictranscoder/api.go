@@ -734,7 +734,10 @@ func (c *ElasticTranscoder) ListJobsByPipelinePages(input *ListJobsByPipelineInp
 func (c *ElasticTranscoder) ListJobsByPipelinePagesWithContext(ctx aws.Context, input *ListJobsByPipelineInput, fn func(*ListJobsByPipelineOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListJobsByPipelineInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListJobsByPipelineRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -879,7 +882,10 @@ func (c *ElasticTranscoder) ListJobsByStatusPages(input *ListJobsByStatusInput, 
 func (c *ElasticTranscoder) ListJobsByStatusPagesWithContext(ctx aws.Context, input *ListJobsByStatusInput, fn func(*ListJobsByStatusOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListJobsByStatusInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListJobsByStatusRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -1018,7 +1024,10 @@ func (c *ElasticTranscoder) ListPipelinesPages(input *ListPipelinesInput, fn fun
 func (c *ElasticTranscoder) ListPipelinesPagesWithContext(ctx aws.Context, input *ListPipelinesInput, fn func(*ListPipelinesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListPipelinesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListPipelinesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -1157,7 +1166,10 @@ func (c *ElasticTranscoder) ListPresetsPages(input *ListPresetsInput, fn func(*L
 func (c *ElasticTranscoder) ListPresetsPagesWithContext(ctx aws.Context, input *ListPresetsInput, fn func(*ListPresetsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListPresetsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListPresetsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

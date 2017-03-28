@@ -39,7 +39,11 @@ func (c *CloudFront) WaitUntilDistributionDeployedWithContext(ctx aws.Context, i
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.GetDistributionRequest(input)
+			var inCpy GetDistributionInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.GetDistributionRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -80,7 +84,11 @@ func (c *CloudFront) WaitUntilInvalidationCompletedWithContext(ctx aws.Context, 
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.GetInvalidationRequest(input)
+			var inCpy GetInvalidationInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.GetInvalidationRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -121,7 +129,11 @@ func (c *CloudFront) WaitUntilStreamingDistributionDeployedWithContext(ctx aws.C
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.GetStreamingDistributionRequest(input)
+			var inCpy GetStreamingDistributionInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.GetStreamingDistributionRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

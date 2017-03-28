@@ -3903,7 +3903,10 @@ func (c *RDS) DescribeDBEngineVersionsPages(input *DescribeDBEngineVersionsInput
 func (c *RDS) DescribeDBEngineVersionsPagesWithContext(ctx aws.Context, input *DescribeDBEngineVersionsInput, fn func(*DescribeDBEngineVersionsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeDBEngineVersionsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeDBEngineVersionsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -4035,7 +4038,10 @@ func (c *RDS) DescribeDBInstancesPages(input *DescribeDBInstancesInput, fn func(
 func (c *RDS) DescribeDBInstancesPagesWithContext(ctx aws.Context, input *DescribeDBInstancesInput, fn func(*DescribeDBInstancesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeDBInstancesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeDBInstancesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -4167,7 +4173,10 @@ func (c *RDS) DescribeDBLogFilesPages(input *DescribeDBLogFilesInput, fn func(*D
 func (c *RDS) DescribeDBLogFilesPagesWithContext(ctx aws.Context, input *DescribeDBLogFilesInput, fn func(*DescribeDBLogFilesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeDBLogFilesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeDBLogFilesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -4301,7 +4310,10 @@ func (c *RDS) DescribeDBParameterGroupsPages(input *DescribeDBParameterGroupsInp
 func (c *RDS) DescribeDBParameterGroupsPagesWithContext(ctx aws.Context, input *DescribeDBParameterGroupsInput, fn func(*DescribeDBParameterGroupsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeDBParameterGroupsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeDBParameterGroupsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -4433,7 +4445,10 @@ func (c *RDS) DescribeDBParametersPages(input *DescribeDBParametersInput, fn fun
 func (c *RDS) DescribeDBParametersPagesWithContext(ctx aws.Context, input *DescribeDBParametersInput, fn func(*DescribeDBParametersOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeDBParametersInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeDBParametersRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -4567,7 +4582,10 @@ func (c *RDS) DescribeDBSecurityGroupsPages(input *DescribeDBSecurityGroupsInput
 func (c *RDS) DescribeDBSecurityGroupsPagesWithContext(ctx aws.Context, input *DescribeDBSecurityGroupsInput, fn func(*DescribeDBSecurityGroupsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeDBSecurityGroupsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeDBSecurityGroupsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -4790,7 +4808,10 @@ func (c *RDS) DescribeDBSnapshotsPages(input *DescribeDBSnapshotsInput, fn func(
 func (c *RDS) DescribeDBSnapshotsPagesWithContext(ctx aws.Context, input *DescribeDBSnapshotsInput, fn func(*DescribeDBSnapshotsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeDBSnapshotsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeDBSnapshotsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -4925,7 +4946,10 @@ func (c *RDS) DescribeDBSubnetGroupsPages(input *DescribeDBSubnetGroupsInput, fn
 func (c *RDS) DescribeDBSubnetGroupsPagesWithContext(ctx aws.Context, input *DescribeDBSubnetGroupsInput, fn func(*DescribeDBSubnetGroupsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeDBSubnetGroupsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeDBSubnetGroupsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -5132,7 +5156,10 @@ func (c *RDS) DescribeEngineDefaultParametersPages(input *DescribeEngineDefaultP
 func (c *RDS) DescribeEngineDefaultParametersPagesWithContext(ctx aws.Context, input *DescribeEngineDefaultParametersInput, fn func(*DescribeEngineDefaultParametersOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeEngineDefaultParametersInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeEngineDefaultParametersRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -5346,7 +5373,10 @@ func (c *RDS) DescribeEventSubscriptionsPages(input *DescribeEventSubscriptionsI
 func (c *RDS) DescribeEventSubscriptionsPagesWithContext(ctx aws.Context, input *DescribeEventSubscriptionsInput, fn func(*DescribeEventSubscriptionsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeEventSubscriptionsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeEventSubscriptionsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -5477,7 +5507,10 @@ func (c *RDS) DescribeEventsPages(input *DescribeEventsInput, fn func(*DescribeE
 func (c *RDS) DescribeEventsPagesWithContext(ctx aws.Context, input *DescribeEventsInput, fn func(*DescribeEventsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeEventsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeEventsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -5604,7 +5637,10 @@ func (c *RDS) DescribeOptionGroupOptionsPages(input *DescribeOptionGroupOptionsI
 func (c *RDS) DescribeOptionGroupOptionsPagesWithContext(ctx aws.Context, input *DescribeOptionGroupOptionsInput, fn func(*DescribeOptionGroupOptionsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeOptionGroupOptionsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeOptionGroupOptionsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -5736,7 +5772,10 @@ func (c *RDS) DescribeOptionGroupsPages(input *DescribeOptionGroupsInput, fn fun
 func (c *RDS) DescribeOptionGroupsPagesWithContext(ctx aws.Context, input *DescribeOptionGroupsInput, fn func(*DescribeOptionGroupsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeOptionGroupsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeOptionGroupsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -5863,7 +5902,10 @@ func (c *RDS) DescribeOrderableDBInstanceOptionsPages(input *DescribeOrderableDB
 func (c *RDS) DescribeOrderableDBInstanceOptionsPagesWithContext(ctx aws.Context, input *DescribeOrderableDBInstanceOptionsInput, fn func(*DescribeOrderableDBInstanceOptionsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeOrderableDBInstanceOptionsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeOrderableDBInstanceOptionsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -6077,7 +6119,10 @@ func (c *RDS) DescribeReservedDBInstancesPages(input *DescribeReservedDBInstance
 func (c *RDS) DescribeReservedDBInstancesPagesWithContext(ctx aws.Context, input *DescribeReservedDBInstancesInput, fn func(*DescribeReservedDBInstancesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeReservedDBInstancesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeReservedDBInstancesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -6209,7 +6254,10 @@ func (c *RDS) DescribeReservedDBInstancesOfferingsPages(input *DescribeReservedD
 func (c *RDS) DescribeReservedDBInstancesOfferingsPagesWithContext(ctx aws.Context, input *DescribeReservedDBInstancesOfferingsInput, fn func(*DescribeReservedDBInstancesOfferingsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeReservedDBInstancesOfferingsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeReservedDBInstancesOfferingsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -6421,7 +6469,10 @@ func (c *RDS) DownloadDBLogFilePortionPages(input *DownloadDBLogFilePortionInput
 func (c *RDS) DownloadDBLogFilePortionPagesWithContext(ctx aws.Context, input *DownloadDBLogFilePortionInput, fn func(*DownloadDBLogFilePortionOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DownloadDBLogFilePortionInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DownloadDBLogFilePortionRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

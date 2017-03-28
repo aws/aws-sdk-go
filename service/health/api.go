@@ -139,7 +139,10 @@ func (c *Health) DescribeAffectedEntitiesPages(input *DescribeAffectedEntitiesIn
 func (c *Health) DescribeAffectedEntitiesPagesWithContext(ctx aws.Context, input *DescribeAffectedEntitiesInput, fn func(*DescribeAffectedEntitiesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeAffectedEntitiesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeAffectedEntitiesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -350,7 +353,10 @@ func (c *Health) DescribeEventAggregatesPages(input *DescribeEventAggregatesInpu
 func (c *Health) DescribeEventAggregatesPagesWithContext(ctx aws.Context, input *DescribeEventAggregatesInput, fn func(*DescribeEventAggregatesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeEventAggregatesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeEventAggregatesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -573,7 +579,10 @@ func (c *Health) DescribeEventTypesPages(input *DescribeEventTypesInput, fn func
 func (c *Health) DescribeEventTypesPagesWithContext(ctx aws.Context, input *DescribeEventTypesInput, fn func(*DescribeEventTypesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeEventTypesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeEventTypesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -715,7 +724,10 @@ func (c *Health) DescribeEventsPages(input *DescribeEventsInput, fn func(*Descri
 func (c *Health) DescribeEventsPagesWithContext(ctx aws.Context, input *DescribeEventsInput, fn func(*DescribeEventsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeEventsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeEventsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

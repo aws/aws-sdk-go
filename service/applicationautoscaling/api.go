@@ -350,7 +350,10 @@ func (c *ApplicationAutoScaling) DescribeScalableTargetsPages(input *DescribeSca
 func (c *ApplicationAutoScaling) DescribeScalableTargetsPagesWithContext(ctx aws.Context, input *DescribeScalableTargetsInput, fn func(*DescribeScalableTargetsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeScalableTargetsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeScalableTargetsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -501,7 +504,10 @@ func (c *ApplicationAutoScaling) DescribeScalingActivitiesPages(input *DescribeS
 func (c *ApplicationAutoScaling) DescribeScalingActivitiesPagesWithContext(ctx aws.Context, input *DescribeScalingActivitiesInput, fn func(*DescribeScalingActivitiesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeScalingActivitiesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeScalingActivitiesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -660,7 +666,10 @@ func (c *ApplicationAutoScaling) DescribeScalingPoliciesPages(input *DescribeSca
 func (c *ApplicationAutoScaling) DescribeScalingPoliciesPagesWithContext(ctx aws.Context, input *DescribeScalingPoliciesInput, fn func(*DescribeScalingPoliciesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeScalingPoliciesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeScalingPoliciesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

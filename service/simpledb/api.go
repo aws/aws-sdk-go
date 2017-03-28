@@ -826,7 +826,10 @@ func (c *SimpleDB) ListDomainsPages(input *ListDomainsInput, fn func(*ListDomain
 func (c *SimpleDB) ListDomainsPagesWithContext(ctx aws.Context, input *ListDomainsInput, fn func(*ListDomainsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListDomainsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListDomainsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -1117,7 +1120,10 @@ func (c *SimpleDB) SelectPages(input *SelectInput, fn func(*SelectOutput, bool) 
 func (c *SimpleDB) SelectPagesWithContext(ctx aws.Context, input *SelectInput, fn func(*SelectOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy SelectInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.SelectRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

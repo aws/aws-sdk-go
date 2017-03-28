@@ -1686,7 +1686,10 @@ func (c *ConfigService) GetResourceConfigHistoryPages(input *GetResourceConfigHi
 func (c *ConfigService) GetResourceConfigHistoryPagesWithContext(ctx aws.Context, input *GetResourceConfigHistoryInput, fn func(*GetResourceConfigHistoryOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy GetResourceConfigHistoryInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.GetResourceConfigHistoryRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

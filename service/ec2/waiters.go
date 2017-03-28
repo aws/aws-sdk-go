@@ -44,7 +44,11 @@ func (c *EC2) WaitUntilBundleTaskCompleteWithContext(ctx aws.Context, input *Des
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeBundleTasksRequest(input)
+			var inCpy DescribeBundleTasksInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeBundleTasksRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -85,7 +89,11 @@ func (c *EC2) WaitUntilConversionTaskCancelledWithContext(ctx aws.Context, input
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeConversionTasksRequest(input)
+			var inCpy DescribeConversionTasksInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeConversionTasksRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -136,7 +144,11 @@ func (c *EC2) WaitUntilConversionTaskCompletedWithContext(ctx aws.Context, input
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeConversionTasksRequest(input)
+			var inCpy DescribeConversionTasksInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeConversionTasksRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -177,7 +189,11 @@ func (c *EC2) WaitUntilConversionTaskDeletedWithContext(ctx aws.Context, input *
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeConversionTasksRequest(input)
+			var inCpy DescribeConversionTasksInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeConversionTasksRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -228,7 +244,11 @@ func (c *EC2) WaitUntilCustomerGatewayAvailableWithContext(ctx aws.Context, inpu
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeCustomerGatewaysRequest(input)
+			var inCpy DescribeCustomerGatewaysInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeCustomerGatewaysRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -269,7 +289,11 @@ func (c *EC2) WaitUntilExportTaskCancelledWithContext(ctx aws.Context, input *De
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeExportTasksRequest(input)
+			var inCpy DescribeExportTasksInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeExportTasksRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -310,7 +334,11 @@ func (c *EC2) WaitUntilExportTaskCompletedWithContext(ctx aws.Context, input *De
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeExportTasksRequest(input)
+			var inCpy DescribeExportTasksInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeExportTasksRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -356,7 +384,11 @@ func (c *EC2) WaitUntilImageAvailableWithContext(ctx aws.Context, input *Describ
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeImagesRequest(input)
+			var inCpy DescribeImagesInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeImagesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -402,7 +434,11 @@ func (c *EC2) WaitUntilImageExistsWithContext(ctx aws.Context, input *DescribeIm
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeImagesRequest(input)
+			var inCpy DescribeImagesInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeImagesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -448,7 +484,11 @@ func (c *EC2) WaitUntilInstanceExistsWithContext(ctx aws.Context, input *Describ
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeInstancesRequest(input)
+			var inCpy DescribeInstancesInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeInstancesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -509,7 +549,11 @@ func (c *EC2) WaitUntilInstanceRunningWithContext(ctx aws.Context, input *Descri
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeInstancesRequest(input)
+			var inCpy DescribeInstancesInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeInstancesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -555,7 +599,11 @@ func (c *EC2) WaitUntilInstanceStatusOkWithContext(ctx aws.Context, input *Descr
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeInstanceStatusRequest(input)
+			var inCpy DescribeInstanceStatusInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeInstanceStatusRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -606,7 +654,11 @@ func (c *EC2) WaitUntilInstanceStoppedWithContext(ctx aws.Context, input *Descri
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeInstancesRequest(input)
+			var inCpy DescribeInstancesInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeInstancesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -657,7 +709,11 @@ func (c *EC2) WaitUntilInstanceTerminatedWithContext(ctx aws.Context, input *Des
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeInstancesRequest(input)
+			var inCpy DescribeInstancesInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeInstancesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -703,7 +759,11 @@ func (c *EC2) WaitUntilKeyPairExistsWithContext(ctx aws.Context, input *Describe
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeKeyPairsRequest(input)
+			var inCpy DescribeKeyPairsInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeKeyPairsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -764,7 +824,11 @@ func (c *EC2) WaitUntilNatGatewayAvailableWithContext(ctx aws.Context, input *De
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeNatGatewaysRequest(input)
+			var inCpy DescribeNatGatewaysInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeNatGatewaysRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -810,7 +874,11 @@ func (c *EC2) WaitUntilNetworkInterfaceAvailableWithContext(ctx aws.Context, inp
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeNetworkInterfacesRequest(input)
+			var inCpy DescribeNetworkInterfacesInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeNetworkInterfacesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -851,7 +919,11 @@ func (c *EC2) WaitUntilPasswordDataAvailableWithContext(ctx aws.Context, input *
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.GetPasswordDataRequest(input)
+			var inCpy GetPasswordDataInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.GetPasswordDataRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -892,7 +964,11 @@ func (c *EC2) WaitUntilSnapshotCompletedWithContext(ctx aws.Context, input *Desc
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeSnapshotsRequest(input)
+			var inCpy DescribeSnapshotsInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeSnapshotsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -953,7 +1029,11 @@ func (c *EC2) WaitUntilSpotInstanceRequestFulfilledWithContext(ctx aws.Context, 
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeSpotInstanceRequestsRequest(input)
+			var inCpy DescribeSpotInstanceRequestsInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeSpotInstanceRequestsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -994,7 +1074,11 @@ func (c *EC2) WaitUntilSubnetAvailableWithContext(ctx aws.Context, input *Descri
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeSubnetsRequest(input)
+			var inCpy DescribeSubnetsInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeSubnetsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -1035,7 +1119,11 @@ func (c *EC2) WaitUntilSystemStatusOkWithContext(ctx aws.Context, input *Describ
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeInstanceStatusRequest(input)
+			var inCpy DescribeInstanceStatusInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeInstanceStatusRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -1081,7 +1169,11 @@ func (c *EC2) WaitUntilVolumeAvailableWithContext(ctx aws.Context, input *Descri
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeVolumesRequest(input)
+			var inCpy DescribeVolumesInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeVolumesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -1127,7 +1219,11 @@ func (c *EC2) WaitUntilVolumeDeletedWithContext(ctx aws.Context, input *Describe
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeVolumesRequest(input)
+			var inCpy DescribeVolumesInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeVolumesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -1173,7 +1269,11 @@ func (c *EC2) WaitUntilVolumeInUseWithContext(ctx aws.Context, input *DescribeVo
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeVolumesRequest(input)
+			var inCpy DescribeVolumesInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeVolumesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -1214,7 +1314,11 @@ func (c *EC2) WaitUntilVpcAvailableWithContext(ctx aws.Context, input *DescribeV
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeVpcsRequest(input)
+			var inCpy DescribeVpcsInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeVpcsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -1260,7 +1364,11 @@ func (c *EC2) WaitUntilVpcExistsWithContext(ctx aws.Context, input *DescribeVpcs
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeVpcsRequest(input)
+			var inCpy DescribeVpcsInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeVpcsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -1306,7 +1414,11 @@ func (c *EC2) WaitUntilVpcPeeringConnectionDeletedWithContext(ctx aws.Context, i
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeVpcPeeringConnectionsRequest(input)
+			var inCpy DescribeVpcPeeringConnectionsInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeVpcPeeringConnectionsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -1352,7 +1464,11 @@ func (c *EC2) WaitUntilVpcPeeringConnectionExistsWithContext(ctx aws.Context, in
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeVpcPeeringConnectionsRequest(input)
+			var inCpy DescribeVpcPeeringConnectionsInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeVpcPeeringConnectionsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -1403,7 +1519,11 @@ func (c *EC2) WaitUntilVpnConnectionAvailableWithContext(ctx aws.Context, input 
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeVpnConnectionsRequest(input)
+			var inCpy DescribeVpnConnectionsInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeVpnConnectionsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -1449,7 +1569,11 @@ func (c *EC2) WaitUntilVpnConnectionDeletedWithContext(ctx aws.Context, input *D
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeVpnConnectionsRequest(input)
+			var inCpy DescribeVpnConnectionsInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeVpnConnectionsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

@@ -1864,7 +1864,10 @@ func (c *SSM) DescribeActivationsPages(input *DescribeActivationsInput, fn func(
 func (c *SSM) DescribeActivationsPagesWithContext(ctx aws.Context, input *DescribeActivationsInput, fn func(*DescribeActivationsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeActivationsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeActivationsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -2750,7 +2753,10 @@ func (c *SSM) DescribeInstanceInformationPages(input *DescribeInstanceInformatio
 func (c *SSM) DescribeInstanceInformationPagesWithContext(ctx aws.Context, input *DescribeInstanceInformationInput, fn func(*DescribeInstanceInformationOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeInstanceInformationInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeInstanceInformationRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -5193,7 +5199,10 @@ func (c *SSM) ListAssociationsPages(input *ListAssociationsInput, fn func(*ListA
 func (c *SSM) ListAssociationsPagesWithContext(ctx aws.Context, input *ListAssociationsInput, fn func(*ListAssociationsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListAssociationsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListAssociationsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -5352,7 +5361,10 @@ func (c *SSM) ListCommandInvocationsPages(input *ListCommandInvocationsInput, fn
 func (c *SSM) ListCommandInvocationsPagesWithContext(ctx aws.Context, input *ListCommandInvocationsInput, fn func(*ListCommandInvocationsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListCommandInvocationsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListCommandInvocationsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -5507,7 +5519,10 @@ func (c *SSM) ListCommandsPages(input *ListCommandsInput, fn func(*ListCommandsO
 func (c *SSM) ListCommandsPagesWithContext(ctx aws.Context, input *ListCommandsInput, fn func(*ListCommandsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListCommandsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListCommandsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -5731,7 +5746,10 @@ func (c *SSM) ListDocumentsPages(input *ListDocumentsInput, fn func(*ListDocumen
 func (c *SSM) ListDocumentsPagesWithContext(ctx aws.Context, input *ListDocumentsInput, fn func(*ListDocumentsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListDocumentsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListDocumentsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

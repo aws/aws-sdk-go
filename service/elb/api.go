@@ -1719,7 +1719,10 @@ func (c *ELB) DescribeLoadBalancersPages(input *DescribeLoadBalancersInput, fn f
 func (c *ELB) DescribeLoadBalancersPagesWithContext(ctx aws.Context, input *DescribeLoadBalancersInput, fn func(*DescribeLoadBalancersOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeLoadBalancersInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeLoadBalancersRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

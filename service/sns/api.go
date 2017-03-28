@@ -1465,7 +1465,10 @@ func (c *SNS) ListEndpointsByPlatformApplicationPages(input *ListEndpointsByPlat
 func (c *SNS) ListEndpointsByPlatformApplicationPagesWithContext(ctx aws.Context, input *ListEndpointsByPlatformApplicationInput, fn func(*ListEndpointsByPlatformApplicationOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListEndpointsByPlatformApplicationInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListEndpointsByPlatformApplicationRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -1708,7 +1711,10 @@ func (c *SNS) ListPlatformApplicationsPages(input *ListPlatformApplicationsInput
 func (c *SNS) ListPlatformApplicationsPagesWithContext(ctx aws.Context, input *ListPlatformApplicationsInput, fn func(*ListPlatformApplicationsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListPlatformApplicationsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListPlatformApplicationsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -1849,7 +1855,10 @@ func (c *SNS) ListSubscriptionsPages(input *ListSubscriptionsInput, fn func(*Lis
 func (c *SNS) ListSubscriptionsPagesWithContext(ctx aws.Context, input *ListSubscriptionsInput, fn func(*ListSubscriptionsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListSubscriptionsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListSubscriptionsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -1993,7 +2002,10 @@ func (c *SNS) ListSubscriptionsByTopicPages(input *ListSubscriptionsByTopicInput
 func (c *SNS) ListSubscriptionsByTopicPagesWithContext(ctx aws.Context, input *ListSubscriptionsByTopicInput, fn func(*ListSubscriptionsByTopicOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListSubscriptionsByTopicInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListSubscriptionsByTopicRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -2133,7 +2145,10 @@ func (c *SNS) ListTopicsPages(input *ListTopicsInput, fn func(*ListTopicsOutput,
 func (c *SNS) ListTopicsPagesWithContext(ctx aws.Context, input *ListTopicsInput, fn func(*ListTopicsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListTopicsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListTopicsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

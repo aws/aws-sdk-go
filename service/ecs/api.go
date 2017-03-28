@@ -1532,7 +1532,10 @@ func (c *ECS) ListClustersPages(input *ListClustersInput, fn func(*ListClustersO
 func (c *ECS) ListClustersPagesWithContext(ctx aws.Context, input *ListClustersInput, fn func(*ListClustersOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListClustersInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListClustersRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -1681,7 +1684,10 @@ func (c *ECS) ListContainerInstancesPages(input *ListContainerInstancesInput, fn
 func (c *ECS) ListContainerInstancesPagesWithContext(ctx aws.Context, input *ListContainerInstancesInput, fn func(*ListContainerInstancesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListContainerInstancesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListContainerInstancesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -1826,7 +1832,10 @@ func (c *ECS) ListServicesPages(input *ListServicesInput, fn func(*ListServicesO
 func (c *ECS) ListServicesPagesWithContext(ctx aws.Context, input *ListServicesInput, fn func(*ListServicesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListServicesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListServicesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -1973,7 +1982,10 @@ func (c *ECS) ListTaskDefinitionFamiliesPages(input *ListTaskDefinitionFamiliesI
 func (c *ECS) ListTaskDefinitionFamiliesPagesWithContext(ctx aws.Context, input *ListTaskDefinitionFamiliesInput, fn func(*ListTaskDefinitionFamiliesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListTaskDefinitionFamiliesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListTaskDefinitionFamiliesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -2116,7 +2128,10 @@ func (c *ECS) ListTaskDefinitionsPages(input *ListTaskDefinitionsInput, fn func(
 func (c *ECS) ListTaskDefinitionsPagesWithContext(ctx aws.Context, input *ListTaskDefinitionsInput, fn func(*ListTaskDefinitionsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListTaskDefinitionsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListTaskDefinitionsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -2270,7 +2285,10 @@ func (c *ECS) ListTasksPages(input *ListTasksInput, fn func(*ListTasksOutput, bo
 func (c *ECS) ListTasksPagesWithContext(ctx aws.Context, input *ListTasksInput, fn func(*ListTasksOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListTasksInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListTasksRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

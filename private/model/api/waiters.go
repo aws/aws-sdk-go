@@ -144,7 +144,11 @@ func (c *{{ .Operation.API.StructName }}) WaitUntil{{ .Name }}WithContext(` +
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.{{ .OperationName }}Request(input)
+			var inCpy {{ .Operation.InputRef.GoTypeElem }}
+			if input != nil  {
+				inCpy = *input
+			}
+			req, _ := c.{{ .OperationName }}Request(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

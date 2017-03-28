@@ -49,7 +49,11 @@ func (c *ElasticTranscoder) WaitUntilJobCompleteWithContext(ctx aws.Context, inp
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.ReadJobRequest(input)
+			var inCpy ReadJobInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.ReadJobRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

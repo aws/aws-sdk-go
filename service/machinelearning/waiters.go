@@ -44,7 +44,11 @@ func (c *MachineLearning) WaitUntilBatchPredictionAvailableWithContext(ctx aws.C
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeBatchPredictionsRequest(input)
+			var inCpy DescribeBatchPredictionsInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeBatchPredictionsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -90,7 +94,11 @@ func (c *MachineLearning) WaitUntilDataSourceAvailableWithContext(ctx aws.Contex
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeDataSourcesRequest(input)
+			var inCpy DescribeDataSourcesInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeDataSourcesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -136,7 +144,11 @@ func (c *MachineLearning) WaitUntilEvaluationAvailableWithContext(ctx aws.Contex
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeEvaluationsRequest(input)
+			var inCpy DescribeEvaluationsInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeEvaluationsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -182,7 +194,11 @@ func (c *MachineLearning) WaitUntilMLModelAvailableWithContext(ctx aws.Context, 
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeMLModelsRequest(input)
+			var inCpy DescribeMLModelsInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeMLModelsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

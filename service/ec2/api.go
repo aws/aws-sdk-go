@@ -8892,7 +8892,10 @@ func (c *EC2) DescribeInstanceStatusPages(input *DescribeInstanceStatusInput, fn
 func (c *EC2) DescribeInstanceStatusPagesWithContext(ctx aws.Context, input *DescribeInstanceStatusInput, fn func(*DescribeInstanceStatusOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeInstanceStatusInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeInstanceStatusRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -9034,7 +9037,10 @@ func (c *EC2) DescribeInstancesPages(input *DescribeInstancesInput, fn func(*Des
 func (c *EC2) DescribeInstancesPagesWithContext(ctx aws.Context, input *DescribeInstancesInput, fn func(*DescribeInstancesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeInstancesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeInstancesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -9391,7 +9397,10 @@ func (c *EC2) DescribeNatGatewaysPages(input *DescribeNatGatewaysInput, fn func(
 func (c *EC2) DescribeNatGatewaysPagesWithContext(ctx aws.Context, input *DescribeNatGatewaysInput, fn func(*DescribeNatGatewaysOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeNatGatewaysInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeNatGatewaysRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -10161,7 +10170,10 @@ func (c *EC2) DescribeReservedInstancesModificationsPages(input *DescribeReserve
 func (c *EC2) DescribeReservedInstancesModificationsPagesWithContext(ctx aws.Context, input *DescribeReservedInstancesModificationsInput, fn func(*DescribeReservedInstancesModificationsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeReservedInstancesModificationsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeReservedInstancesModificationsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -10299,7 +10311,10 @@ func (c *EC2) DescribeReservedInstancesOfferingsPages(input *DescribeReservedIns
 func (c *EC2) DescribeReservedInstancesOfferingsPagesWithContext(ctx aws.Context, input *DescribeReservedInstancesOfferingsInput, fn func(*DescribeReservedInstancesOfferingsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeReservedInstancesOfferingsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeReservedInstancesOfferingsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -10949,7 +10964,10 @@ func (c *EC2) DescribeSnapshotsPages(input *DescribeSnapshotsInput, fn func(*Des
 func (c *EC2) DescribeSnapshotsPagesWithContext(ctx aws.Context, input *DescribeSnapshotsInput, fn func(*DescribeSnapshotsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeSnapshotsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeSnapshotsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -11311,7 +11329,10 @@ func (c *EC2) DescribeSpotFleetRequestsPages(input *DescribeSpotFleetRequestsInp
 func (c *EC2) DescribeSpotFleetRequestsPagesWithContext(ctx aws.Context, input *DescribeSpotFleetRequestsInput, fn func(*DescribeSpotFleetRequestsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeSpotFleetRequestsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeSpotFleetRequestsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -11534,7 +11555,10 @@ func (c *EC2) DescribeSpotPriceHistoryPages(input *DescribeSpotPriceHistoryInput
 func (c *EC2) DescribeSpotPriceHistoryPagesWithContext(ctx aws.Context, input *DescribeSpotPriceHistoryInput, fn func(*DescribeSpotPriceHistoryOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeSpotPriceHistoryInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeSpotPriceHistoryRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -11820,7 +11844,10 @@ func (c *EC2) DescribeTagsPages(input *DescribeTagsInput, fn func(*DescribeTagsO
 func (c *EC2) DescribeTagsPagesWithContext(ctx aws.Context, input *DescribeTagsInput, fn func(*DescribeTagsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeTagsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeTagsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -12060,7 +12087,10 @@ func (c *EC2) DescribeVolumeStatusPages(input *DescribeVolumeStatusInput, fn fun
 func (c *EC2) DescribeVolumeStatusPagesWithContext(ctx aws.Context, input *DescribeVolumeStatusInput, fn func(*DescribeVolumeStatusOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeVolumeStatusInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeVolumeStatusRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -12197,7 +12227,10 @@ func (c *EC2) DescribeVolumesPages(input *DescribeVolumesInput, fn func(*Describ
 func (c *EC2) DescribeVolumesPagesWithContext(ctx aws.Context, input *DescribeVolumesInput, fn func(*DescribeVolumesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeVolumesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeVolumesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

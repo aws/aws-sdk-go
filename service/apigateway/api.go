@@ -3169,7 +3169,10 @@ func (c *APIGateway) GetApiKeysPages(input *GetApiKeysInput, fn func(*GetApiKeys
 func (c *APIGateway) GetApiKeysPagesWithContext(ctx aws.Context, input *GetApiKeysInput, fn func(*GetApiKeysOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy GetApiKeysInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.GetApiKeysRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -3547,7 +3550,10 @@ func (c *APIGateway) GetBasePathMappingsPages(input *GetBasePathMappingsInput, f
 func (c *APIGateway) GetBasePathMappingsPagesWithContext(ctx aws.Context, input *GetBasePathMappingsInput, fn func(*GetBasePathMappingsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy GetBasePathMappingsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.GetBasePathMappingsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -3759,7 +3765,10 @@ func (c *APIGateway) GetClientCertificatesPages(input *GetClientCertificatesInpu
 func (c *APIGateway) GetClientCertificatesPagesWithContext(ctx aws.Context, input *GetClientCertificatesInput, fn func(*GetClientCertificatesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy GetClientCertificatesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.GetClientCertificatesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -3975,7 +3984,10 @@ func (c *APIGateway) GetDeploymentsPages(input *GetDeploymentsInput, fn func(*Ge
 func (c *APIGateway) GetDeploymentsPagesWithContext(ctx aws.Context, input *GetDeploymentsInput, fn func(*GetDeploymentsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy GetDeploymentsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.GetDeploymentsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -4506,7 +4518,10 @@ func (c *APIGateway) GetDomainNamesPages(input *GetDomainNamesInput, fn func(*Ge
 func (c *APIGateway) GetDomainNamesPagesWithContext(ctx aws.Context, input *GetDomainNamesInput, fn func(*GetDomainNamesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy GetDomainNamesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.GetDomainNamesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -5205,7 +5220,10 @@ func (c *APIGateway) GetModelsPages(input *GetModelsInput, fn func(*GetModelsOut
 func (c *APIGateway) GetModelsPagesWithContext(ctx aws.Context, input *GetModelsInput, fn func(*GetModelsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy GetModelsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.GetModelsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -5419,7 +5437,10 @@ func (c *APIGateway) GetResourcesPages(input *GetResourcesInput, fn func(*GetRes
 func (c *APIGateway) GetResourcesPagesWithContext(ctx aws.Context, input *GetResourcesInput, fn func(*GetResourcesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy GetResourcesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.GetResourcesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -5631,7 +5652,10 @@ func (c *APIGateway) GetRestApisPages(input *GetRestApisInput, fn func(*GetRestA
 func (c *APIGateway) GetRestApisPagesWithContext(ctx aws.Context, input *GetRestApisInput, fn func(*GetRestApisOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy GetRestApisInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.GetRestApisRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -6161,7 +6185,10 @@ func (c *APIGateway) GetUsagePages(input *GetUsageInput, fn func(*Usage, bool) b
 func (c *APIGateway) GetUsagePagesWithContext(ctx aws.Context, input *GetUsageInput, fn func(*Usage, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy GetUsageInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.GetUsageRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -6460,7 +6487,10 @@ func (c *APIGateway) GetUsagePlanKeysPages(input *GetUsagePlanKeysInput, fn func
 func (c *APIGateway) GetUsagePlanKeysPagesWithContext(ctx aws.Context, input *GetUsagePlanKeysInput, fn func(*GetUsagePlanKeysOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy GetUsagePlanKeysInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.GetUsagePlanKeysRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -6596,7 +6626,10 @@ func (c *APIGateway) GetUsagePlansPages(input *GetUsagePlansInput, fn func(*GetU
 func (c *APIGateway) GetUsagePlansPagesWithContext(ctx aws.Context, input *GetUsagePlansInput, fn func(*GetUsagePlansOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy GetUsagePlansInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.GetUsagePlansRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

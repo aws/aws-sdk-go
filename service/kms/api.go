@@ -2419,7 +2419,10 @@ func (c *KMS) ListAliasesPages(input *ListAliasesInput, fn func(*ListAliasesOutp
 func (c *KMS) ListAliasesPagesWithContext(ctx aws.Context, input *ListAliasesInput, fn func(*ListAliasesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListAliasesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListAliasesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -2575,7 +2578,10 @@ func (c *KMS) ListGrantsPages(input *ListGrantsInput, fn func(*ListGrantsRespons
 func (c *KMS) ListGrantsPagesWithContext(ctx aws.Context, input *ListGrantsInput, fn func(*ListGrantsResponse, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListGrantsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListGrantsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -2727,7 +2733,10 @@ func (c *KMS) ListKeyPoliciesPages(input *ListKeyPoliciesInput, fn func(*ListKey
 func (c *KMS) ListKeyPoliciesPagesWithContext(ctx aws.Context, input *ListKeyPoliciesInput, fn func(*ListKeyPoliciesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListKeyPoliciesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListKeyPoliciesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -2868,7 +2877,10 @@ func (c *KMS) ListKeysPages(input *ListKeysInput, fn func(*ListKeysOutput, bool)
 func (c *KMS) ListKeysPagesWithContext(ctx aws.Context, input *ListKeysInput, fn func(*ListKeysOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListKeysInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListKeysRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

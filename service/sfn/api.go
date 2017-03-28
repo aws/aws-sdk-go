@@ -825,7 +825,10 @@ func (c *SFN) GetExecutionHistoryPages(input *GetExecutionHistoryInput, fn func(
 func (c *SFN) GetExecutionHistoryPagesWithContext(ctx aws.Context, input *GetExecutionHistoryInput, fn func(*GetExecutionHistoryOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy GetExecutionHistoryInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.GetExecutionHistoryRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -959,7 +962,10 @@ func (c *SFN) ListActivitiesPages(input *ListActivitiesInput, fn func(*ListActiv
 func (c *SFN) ListActivitiesPagesWithContext(ctx aws.Context, input *ListActivitiesInput, fn func(*ListActivitiesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListActivitiesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListActivitiesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -1099,7 +1105,10 @@ func (c *SFN) ListExecutionsPages(input *ListExecutionsInput, fn func(*ListExecu
 func (c *SFN) ListExecutionsPagesWithContext(ctx aws.Context, input *ListExecutionsInput, fn func(*ListExecutionsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListExecutionsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListExecutionsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -1233,7 +1242,10 @@ func (c *SFN) ListStateMachinesPages(input *ListStateMachinesInput, fn func(*Lis
 func (c *SFN) ListStateMachinesPagesWithContext(ctx aws.Context, input *ListStateMachinesInput, fn func(*ListStateMachinesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListStateMachinesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListStateMachinesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

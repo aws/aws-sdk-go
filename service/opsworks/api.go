@@ -2405,7 +2405,10 @@ func (c *OpsWorks) DescribeEcsClustersPages(input *DescribeEcsClustersInput, fn 
 func (c *OpsWorks) DescribeEcsClustersPagesWithContext(ctx aws.Context, input *DescribeEcsClustersInput, fn func(*DescribeEcsClustersOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeEcsClustersInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeEcsClustersRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

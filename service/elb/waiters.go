@@ -39,7 +39,11 @@ func (c *ELB) WaitUntilAnyInstanceInServiceWithContext(ctx aws.Context, input *D
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeInstanceHealthRequest(input)
+			var inCpy DescribeInstanceHealthInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeInstanceHealthRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -85,7 +89,11 @@ func (c *ELB) WaitUntilInstanceDeregisteredWithContext(ctx aws.Context, input *D
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeInstanceHealthRequest(input)
+			var inCpy DescribeInstanceHealthInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeInstanceHealthRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil
@@ -126,7 +134,11 @@ func (c *ELB) WaitUntilInstanceInServiceWithContext(ctx aws.Context, input *Desc
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			req, _ := c.DescribeInstanceHealthRequest(input)
+			var inCpy DescribeInstanceHealthInput
+			if input != nil {
+				inCpy = *input
+			}
+			req, _ := c.DescribeInstanceHealthRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

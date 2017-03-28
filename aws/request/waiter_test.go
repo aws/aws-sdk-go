@@ -15,6 +15,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/awstesting"
+	"github.com/aws/aws-sdk-go/awstesting/unit"
+	"github.com/aws/aws-sdk-go/service/s3"
 )
 
 type mockClient struct {
@@ -555,5 +557,59 @@ func TestWaiter_AttemptsExpires(t *testing.T) {
 	}
 	if e, a := 2, reqCount; e != a {
 		t.Errorf("expect %d requests, got %d", e, a)
+	}
+}
+
+func TestWaiterNilInput(t *testing.T) {
+	// Code generation doesn't have a great way to verify the code is correct
+	// other than being run via unit tests in the SDK. This should be fixed
+	// So code generation can be validated independently.
+
+	client := s3.New(unit.Session)
+	client.Handlers.Validate.Clear()
+	client.Handlers.Send.Clear() // mock sending
+	client.Handlers.Send.PushBack(func(r *request.Request) {
+		r.HTTPResponse = &http.Response{
+			StatusCode: http.StatusOK,
+		}
+	})
+	client.Handlers.Unmarshal.Clear()
+	client.Handlers.UnmarshalMeta.Clear()
+	client.Handlers.ValidateResponse.Clear()
+	client.Config.SleepDelay = func(dur time.Duration) {}
+
+	// Ensure waiters do not panic on nil input. It doesn't make sense to
+	// call a waiter without an input, Validation will
+	err := client.WaitUntilBucketExists(nil)
+	if err != nil {
+		t.Fatalf("expect no error, but got %v", err)
+	}
+}
+
+func TestWaiterWithContextNilInput(t *testing.T) {
+	// Code generation doesn't have a great way to verify the code is correct
+	// other than being run via unit tests in the SDK. This should be fixed
+	// So code generation can be validated independently.
+
+	client := s3.New(unit.Session)
+	client.Handlers.Validate.Clear()
+	client.Handlers.Send.Clear() // mock sending
+	client.Handlers.Send.PushBack(func(r *request.Request) {
+		r.HTTPResponse = &http.Response{
+			StatusCode: http.StatusOK,
+		}
+	})
+	client.Handlers.Unmarshal.Clear()
+	client.Handlers.UnmarshalMeta.Clear()
+	client.Handlers.ValidateResponse.Clear()
+
+	// Ensure waiters do not panic on nil input
+	ctx := &awstesting.FakeContext{DoneCh: make(chan struct{})}
+	err := client.WaitUntilBucketExistsWithContext(ctx, nil,
+		request.WithWaiterDelay(request.ConstantWaiterDelay(0)),
+		request.WithWaiterMaxAttempts(1),
+	)
+	if err != nil {
+		t.Fatalf("expect no error, but got %v", err)
 	}
 }

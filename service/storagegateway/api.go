@@ -2971,7 +2971,10 @@ func (c *StorageGateway) DescribeTapeArchivesPages(input *DescribeTapeArchivesIn
 func (c *StorageGateway) DescribeTapeArchivesPagesWithContext(ctx aws.Context, input *DescribeTapeArchivesInput, fn func(*DescribeTapeArchivesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeTapeArchivesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeTapeArchivesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -3113,7 +3116,10 @@ func (c *StorageGateway) DescribeTapeRecoveryPointsPages(input *DescribeTapeReco
 func (c *StorageGateway) DescribeTapeRecoveryPointsPagesWithContext(ctx aws.Context, input *DescribeTapeRecoveryPointsInput, fn func(*DescribeTapeRecoveryPointsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeTapeRecoveryPointsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeTapeRecoveryPointsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -3252,7 +3258,10 @@ func (c *StorageGateway) DescribeTapesPages(input *DescribeTapesInput, fn func(*
 func (c *StorageGateway) DescribeTapesPagesWithContext(ctx aws.Context, input *DescribeTapesInput, fn func(*DescribeTapesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeTapesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeTapesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -3481,7 +3490,10 @@ func (c *StorageGateway) DescribeVTLDevicesPages(input *DescribeVTLDevicesInput,
 func (c *StorageGateway) DescribeVTLDevicesPagesWithContext(ctx aws.Context, input *DescribeVTLDevicesInput, fn func(*DescribeVTLDevicesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy DescribeVTLDevicesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.DescribeVTLDevicesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -3899,7 +3911,10 @@ func (c *StorageGateway) ListGatewaysPages(input *ListGatewaysInput, fn func(*Li
 func (c *StorageGateway) ListGatewaysPagesWithContext(ctx aws.Context, input *ListGatewaysInput, fn func(*ListGatewaysOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListGatewaysInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListGatewaysRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -4496,7 +4511,10 @@ func (c *StorageGateway) ListVolumesPages(input *ListVolumesInput, fn func(*List
 func (c *StorageGateway) ListVolumesPagesWithContext(ctx aws.Context, input *ListVolumesInput, fn func(*ListVolumesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListVolumesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListVolumesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

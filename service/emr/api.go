@@ -1099,7 +1099,10 @@ func (c *EMR) ListBootstrapActionsPages(input *ListBootstrapActionsInput, fn fun
 func (c *EMR) ListBootstrapActionsPagesWithContext(ctx aws.Context, input *ListBootstrapActionsInput, fn func(*ListBootstrapActionsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListBootstrapActionsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListBootstrapActionsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -1238,7 +1241,10 @@ func (c *EMR) ListClustersPages(input *ListClustersInput, fn func(*ListClustersO
 func (c *EMR) ListClustersPagesWithContext(ctx aws.Context, input *ListClustersInput, fn func(*ListClustersOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListClustersInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListClustersRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -1376,7 +1382,10 @@ func (c *EMR) ListInstanceFleetsPages(input *ListInstanceFleetsInput, fn func(*L
 func (c *EMR) ListInstanceFleetsPagesWithContext(ctx aws.Context, input *ListInstanceFleetsInput, fn func(*ListInstanceFleetsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListInstanceFleetsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListInstanceFleetsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -1511,7 +1520,10 @@ func (c *EMR) ListInstanceGroupsPages(input *ListInstanceGroupsInput, fn func(*L
 func (c *EMR) ListInstanceGroupsPagesWithContext(ctx aws.Context, input *ListInstanceGroupsInput, fn func(*ListInstanceGroupsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListInstanceGroupsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListInstanceGroupsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -1650,7 +1662,10 @@ func (c *EMR) ListInstancesPages(input *ListInstancesInput, fn func(*ListInstanc
 func (c *EMR) ListInstancesPagesWithContext(ctx aws.Context, input *ListInstancesInput, fn func(*ListInstancesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListInstancesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListInstancesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -1872,7 +1887,10 @@ func (c *EMR) ListStepsPages(input *ListStepsInput, fn func(*ListStepsOutput, bo
 func (c *EMR) ListStepsPagesWithContext(ctx aws.Context, input *ListStepsInput, fn func(*ListStepsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListStepsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListStepsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)

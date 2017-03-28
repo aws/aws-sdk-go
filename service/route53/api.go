@@ -3240,7 +3240,10 @@ func (c *Route53) ListHealthChecksPages(input *ListHealthChecksInput, fn func(*L
 func (c *Route53) ListHealthChecksPagesWithContext(ctx aws.Context, input *ListHealthChecksInput, fn func(*ListHealthChecksOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListHealthChecksInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListHealthChecksRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -3403,7 +3406,10 @@ func (c *Route53) ListHostedZonesPages(input *ListHostedZonesInput, fn func(*Lis
 func (c *Route53) ListHostedZonesPagesWithContext(ctx aws.Context, input *ListHostedZonesInput, fn func(*ListHostedZonesOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListHostedZonesInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListHostedZonesRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
@@ -3709,7 +3715,10 @@ func (c *Route53) ListResourceRecordSetsPages(input *ListResourceRecordSetsInput
 func (c *Route53) ListResourceRecordSetsPagesWithContext(ctx aws.Context, input *ListResourceRecordSetsInput, fn func(*ListResourceRecordSetsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
-			inCpy := *input
+			var inCpy ListResourceRecordSetsInput
+			if input != nil {
+				inCpy = *input
+			}
 			req, _ := c.ListResourceRecordSetsRequest(&inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
