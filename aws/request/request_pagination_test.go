@@ -381,6 +381,79 @@ func TestPaginationNilToken(t *testing.T) {
 	assert.Equal(t, []string{"first.example.com.", "second.example.com.", "third.example.com."}, results)
 }
 
+func TestPaginationNilInput(t *testing.T) {
+	// Code generation doesn't have a great way to verify the code is correct
+	// other than being run via unit tests in the SDK. This should be fixed
+	// So code generation can be validated independently.
+
+	client := s3.New(unit.Session)
+	client.Handlers.Validate.Clear()
+	client.Handlers.Send.Clear() // mock sending
+	client.Handlers.Unmarshal.Clear()
+	client.Handlers.UnmarshalMeta.Clear()
+	client.Handlers.ValidateResponse.Clear()
+	client.Handlers.Unmarshal.PushBack(func(r *request.Request) {
+		r.Data = &s3.ListObjectsOutput{}
+	})
+
+	gotToEnd := false
+	numPages := 0
+	err := client.ListObjectsPages(nil, func(p *s3.ListObjectsOutput, last bool) bool {
+		numPages++
+		if last {
+			gotToEnd = true
+		}
+		return true
+	})
+
+	if err != nil {
+		t.Fatalf("expect no error, but got %v", err)
+	}
+	if e, a := 1, numPages; e != a {
+		t.Errorf("expect %d number pages but got %d", e, a)
+	}
+	if !gotToEnd {
+		t.Errorf("expect to of gotten to end, did not")
+	}
+}
+
+func TestPaginationWithContextNilInput(t *testing.T) {
+	// Code generation doesn't have a great way to verify the code is correct
+	// other than being run via unit tests in the SDK. This should be fixed
+	// So code generation can be validated independently.
+
+	client := s3.New(unit.Session)
+	client.Handlers.Validate.Clear()
+	client.Handlers.Send.Clear() // mock sending
+	client.Handlers.Unmarshal.Clear()
+	client.Handlers.UnmarshalMeta.Clear()
+	client.Handlers.ValidateResponse.Clear()
+	client.Handlers.Unmarshal.PushBack(func(r *request.Request) {
+		r.Data = &s3.ListObjectsOutput{}
+	})
+
+	gotToEnd := false
+	numPages := 0
+	ctx := &awstesting.FakeContext{DoneCh: make(chan struct{})}
+	err := client.ListObjectsPagesWithContext(ctx, nil, func(p *s3.ListObjectsOutput, last bool) bool {
+		numPages++
+		if last {
+			gotToEnd = true
+		}
+		return true
+	})
+
+	if err != nil {
+		t.Fatalf("expect no error, but got %v", err)
+	}
+	if e, a := 1, numPages; e != a {
+		t.Errorf("expect %d number pages but got %d", e, a)
+	}
+	if !gotToEnd {
+		t.Errorf("expect to of gotten to end, did not")
+	}
+}
+
 type testPageInput struct {
 	NextToken string
 }
