@@ -145,8 +145,8 @@ func (c *Batch) CreateComputeEnvironmentRequest(input *CreateComputeEnvironmentI
 
 // CreateComputeEnvironment API operation for AWS Batch.
 //
-// Creates an AWS Batch compute environment. You can create MANAGED or UNMANAGEDcompute
-// environments.
+// Creates an AWS Batch compute environment. You can create MANAGED or UNMANAGED
+// compute environments.
 //
 // In a managed compute environment, AWS Batch manages the compute resources
 // within the environment, based on the compute resources that you specify.
@@ -1422,6 +1422,116 @@ func (c *Batch) UpdateJobQueueWithContext(ctx aws.Context, input *UpdateJobQueue
 	return out, req.Send()
 }
 
+// An object representing the details of a container that is part of a job attempt.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/AttemptContainerDetail
+type AttemptContainerDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Amazon ECS container instance that
+	// hosts the job attempt.
+	ContainerInstanceArn *string `locationName:"containerInstanceArn" type:"string"`
+
+	// The exit code for the job attempt. A non-zero exit code is considered a failure.
+	ExitCode *int64 `locationName:"exitCode" type:"integer"`
+
+	// A short (255 max characters) human-readable string to provide additional
+	// details about a running or stopped container.
+	Reason *string `locationName:"reason" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the Amazon ECS task that is associated
+	// with the job attempt.
+	TaskArn *string `locationName:"taskArn" type:"string"`
+}
+
+// String returns the string representation
+func (s AttemptContainerDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AttemptContainerDetail) GoString() string {
+	return s.String()
+}
+
+// SetContainerInstanceArn sets the ContainerInstanceArn field's value.
+func (s *AttemptContainerDetail) SetContainerInstanceArn(v string) *AttemptContainerDetail {
+	s.ContainerInstanceArn = &v
+	return s
+}
+
+// SetExitCode sets the ExitCode field's value.
+func (s *AttemptContainerDetail) SetExitCode(v int64) *AttemptContainerDetail {
+	s.ExitCode = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *AttemptContainerDetail) SetReason(v string) *AttemptContainerDetail {
+	s.Reason = &v
+	return s
+}
+
+// SetTaskArn sets the TaskArn field's value.
+func (s *AttemptContainerDetail) SetTaskArn(v string) *AttemptContainerDetail {
+	s.TaskArn = &v
+	return s
+}
+
+// An object representing a job attempt.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/AttemptDetail
+type AttemptDetail struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the container in this job attempt.
+	Container *AttemptContainerDetail `locationName:"container" type:"structure"`
+
+	// The Unix timestamp for when the attempt was started (when the task transitioned
+	// from the PENDING state to the RUNNING state).
+	StartedAt *int64 `locationName:"startedAt" type:"long"`
+
+	// A short, human-readable string to provide additional details about the current
+	// status of the job attempt.
+	StatusReason *string `locationName:"statusReason" type:"string"`
+
+	// The Unix timestamp for when the attempt was stopped (when the task transitioned
+	// from the RUNNING state to the STOPPED state).
+	StoppedAt *int64 `locationName:"stoppedAt" type:"long"`
+}
+
+// String returns the string representation
+func (s AttemptDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AttemptDetail) GoString() string {
+	return s.String()
+}
+
+// SetContainer sets the Container field's value.
+func (s *AttemptDetail) SetContainer(v *AttemptContainerDetail) *AttemptDetail {
+	s.Container = v
+	return s
+}
+
+// SetStartedAt sets the StartedAt field's value.
+func (s *AttemptDetail) SetStartedAt(v int64) *AttemptDetail {
+	s.StartedAt = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *AttemptDetail) SetStatusReason(v string) *AttemptDetail {
+	s.StatusReason = &v
+	return s
+}
+
+// SetStoppedAt sets the StoppedAt field's value.
+func (s *AttemptDetail) SetStoppedAt(v int64) *AttemptDetail {
+	s.StoppedAt = &v
+	return s
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CancelJobRequest
 type CancelJobInput struct {
 	_ struct{} `type:"structure"`
@@ -1919,6 +2029,10 @@ type ContainerDetail struct {
 	// details about a running or stopped container.
 	Reason *string `locationName:"reason" type:"string"`
 
+	// The Amazon Resource Name (ARN) of the Amazon ECS task that is associated
+	// with the container job.
+	TaskArn *string `locationName:"taskArn" type:"string"`
+
 	// A list of ulimit values to set in the container.
 	Ulimits []*Ulimit `locationName:"ulimits" type:"list"`
 
@@ -2005,6 +2119,12 @@ func (s *ContainerDetail) SetReadonlyRootFilesystem(v bool) *ContainerDetail {
 // SetReason sets the Reason field's value.
 func (s *ContainerDetail) SetReason(v string) *ContainerDetail {
 	s.Reason = &v
+	return s
+}
+
+// SetTaskArn sets the TaskArn field's value.
+func (s *ContainerDetail) SetTaskArn(v string) *ContainerDetail {
+	s.TaskArn = &v
 	return s
 }
 
@@ -3146,6 +3266,10 @@ type JobDefinition struct {
 	// from the job definition.
 	Parameters map[string]*string `locationName:"parameters" type:"map"`
 
+	// The retry strategy to use for failed jobs that are submitted with this job
+	// definition.
+	RetryStrategy *RetryStrategy `locationName:"retryStrategy" type:"structure"`
+
 	// The revision of the job definition.
 	//
 	// Revision is a required field
@@ -3191,6 +3315,12 @@ func (s *JobDefinition) SetJobDefinitionName(v string) *JobDefinition {
 // SetParameters sets the Parameters field's value.
 func (s *JobDefinition) SetParameters(v map[string]*string) *JobDefinition {
 	s.Parameters = v
+	return s
+}
+
+// SetRetryStrategy sets the RetryStrategy field's value.
+func (s *JobDefinition) SetRetryStrategy(v *RetryStrategy) *JobDefinition {
+	s.RetryStrategy = v
 	return s
 }
 
@@ -3242,6 +3372,9 @@ func (s *JobDependency) SetJobId(v string) *JobDependency {
 type JobDetail struct {
 	_ struct{} `type:"structure"`
 
+	// A list of job attempts associated with this job.
+	Attempts []*AttemptDetail `locationName:"attempts" type:"list"`
+
 	// An object representing the details of the container that is associated with
 	// the job.
 	Container *ContainerDetail `locationName:"container" type:"structure"`
@@ -3278,6 +3411,9 @@ type JobDetail struct {
 	// definition.
 	Parameters map[string]*string `locationName:"parameters" type:"map"`
 
+	// The retry strategy to use for this job if an attempt fails.
+	RetryStrategy *RetryStrategy `locationName:"retryStrategy" type:"structure"`
+
 	// The Unix timestamp for when the job was started (when the task transitioned
 	// from the PENDING state to the RUNNING state).
 	//
@@ -3306,6 +3442,12 @@ func (s JobDetail) String() string {
 // GoString returns the string representation
 func (s JobDetail) GoString() string {
 	return s.String()
+}
+
+// SetAttempts sets the Attempts field's value.
+func (s *JobDetail) SetAttempts(v []*AttemptDetail) *JobDetail {
+	s.Attempts = v
+	return s
 }
 
 // SetContainer sets the Container field's value.
@@ -3353,6 +3495,12 @@ func (s *JobDetail) SetJobQueue(v string) *JobDetail {
 // SetParameters sets the Parameters field's value.
 func (s *JobDetail) SetParameters(v map[string]*string) *JobDetail {
 	s.Parameters = v
+	return s
+}
+
+// SetRetryStrategy sets the RetryStrategy field's value.
+func (s *JobDetail) SetRetryStrategy(v *RetryStrategy) *JobDetail {
+	s.RetryStrategy = v
 	return s
 }
 
@@ -3663,7 +3811,8 @@ func (s *ListJobsOutput) SetNextToken(v string) *ListJobsOutput {
 	return s
 }
 
-// Details on a volume mount point that is used in a job's container properties.
+// Details on a Docker volume mount point that is used in a job's container
+// properties.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/MountPoint
 type MountPoint struct {
 	_ struct{} `type:"structure"`
@@ -3725,6 +3874,11 @@ type RegisterJobDefinitionInput struct {
 	// request override any corresponding parameter defaults from the job definition.
 	Parameters map[string]*string `locationName:"parameters" type:"map"`
 
+	// The retry strategy to use for failed jobs that are submitted with this job
+	// definition. Any retry strategy that is specified during a SubmitJob operation
+	// overrides the retry strategy defined here.
+	RetryStrategy *RetryStrategy `locationName:"retryStrategy" type:"structure"`
+
 	// The type of job definition.
 	//
 	// Type is a required field
@@ -3777,6 +3931,12 @@ func (s *RegisterJobDefinitionInput) SetJobDefinitionName(v string) *RegisterJob
 // SetParameters sets the Parameters field's value.
 func (s *RegisterJobDefinitionInput) SetParameters(v map[string]*string) *RegisterJobDefinitionInput {
 	s.Parameters = v
+	return s
+}
+
+// SetRetryStrategy sets the RetryStrategy field's value.
+func (s *RegisterJobDefinitionInput) SetRetryStrategy(v *RetryStrategy) *RegisterJobDefinitionInput {
+	s.RetryStrategy = v
 	return s
 }
 
@@ -3834,6 +3994,33 @@ func (s *RegisterJobDefinitionOutput) SetRevision(v int64) *RegisterJobDefinitio
 	return s
 }
 
+// The retry strategy associated with a job.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/RetryStrategy
+type RetryStrategy struct {
+	_ struct{} `type:"structure"`
+
+	// The number of times to move a job to the RUNNABLE status. You may specify
+	// between 1 and 10 attempts. If attempts is greater than one, the job is retried
+	// if it fails until it has moved to RUNNABLE that many times.
+	Attempts *int64 `locationName:"attempts" type:"integer"`
+}
+
+// String returns the string representation
+func (s RetryStrategy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RetryStrategy) GoString() string {
+	return s.String()
+}
+
+// SetAttempts sets the Attempts field's value.
+func (s *RetryStrategy) SetAttempts(v int64) *RetryStrategy {
+	s.Attempts = &v
+	return s
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/SubmitJobRequest
 type SubmitJobInput struct {
 	_ struct{} `type:"structure"`
@@ -3847,8 +4034,8 @@ type SubmitJobInput struct {
 	// an environment override.
 	ContainerOverrides *ContainerOverrides `locationName:"containerOverrides" type:"structure"`
 
-	// A list of job names or IDs on which this job depends. A job can depend upon
-	// a maximum of 100 jobs.
+	// A list of job IDs on which this job depends. A job can depend upon a maximum
+	// of 100 jobs.
 	DependsOn []*JobDependency `locationName:"dependsOn" type:"list"`
 
 	// The job definition used by this job. This value can be either a name:revision
@@ -3857,7 +4044,9 @@ type SubmitJobInput struct {
 	// JobDefinition is a required field
 	JobDefinition *string `locationName:"jobDefinition" type:"string" required:"true"`
 
-	// The name of the job.
+	// The name of the job. A name must be 1 to 128 characters in length.
+	//
+	// Pattern: ^[a-zA-Z0-9_]+$
 	//
 	// JobName is a required field
 	JobName *string `locationName:"jobName" type:"string" required:"true"`
@@ -3873,6 +4062,11 @@ type SubmitJobInput struct {
 	// as a key and value pair mapping. Parameters in a SubmitJob request override
 	// any corresponding parameter defaults from the job definition.
 	Parameters map[string]*string `locationName:"parameters" type:"map"`
+
+	// The retry strategy to use for failed jobs from this SubmitJob operation.
+	// When a retry strategy is specified here, it overrides the retry strategy
+	// defined in the job definition.
+	RetryStrategy *RetryStrategy `locationName:"retryStrategy" type:"structure"`
 }
 
 // String returns the string representation
@@ -3937,6 +4131,12 @@ func (s *SubmitJobInput) SetJobQueue(v string) *SubmitJobInput {
 // SetParameters sets the Parameters field's value.
 func (s *SubmitJobInput) SetParameters(v map[string]*string) *SubmitJobInput {
 	s.Parameters = v
+	return s
+}
+
+// SetRetryStrategy sets the RetryStrategy field's value.
+func (s *SubmitJobInput) SetRetryStrategy(v *RetryStrategy) *SubmitJobInput {
+	s.RetryStrategy = v
 	return s
 }
 

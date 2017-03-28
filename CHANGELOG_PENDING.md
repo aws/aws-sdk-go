@@ -1,7 +1,9 @@
 ### SDK Features
 
 ### SDK Enhancements
-* `aws/request`: Add retry support for RequestTimeoutException (#1158)
+
+### SDK Bugs 
+: Add retry support for RequestTimeoutException (#1158)
   * Adds support for retrying RequestTimeoutException error code that is returned by some services.
 
 ### SDK Bugs 
