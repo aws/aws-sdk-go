@@ -114,6 +114,40 @@ func New(cfg aws.Config, clientInfo metadata.ClientInfo, handlers Handlers,
 // using a WithContext API operation method.
 type Option func(*Request)
 
+// WithGetResponseHeader builds a request Option which will retrieve a single
+// header value from the HTTP Response. If there are multiple values for the
+// header key use WithGetResponseHeaders instead to access the http.Header
+// map directly. The passed in val pointer must be non-nil.
+//
+// This Option can be used multiple times with a single API operation.
+//
+//    var id2, versionID string
+//    svc.PutObjectWithContext(ctx, params,
+//        request.WithGetResponseHeader("x-amz-id-2", &id2),
+//        request.WithGetResponseHeader("x-amz-version-id", &versionID),
+//    )
+func WithGetResponseHeader(key string, val *string) Option {
+	return func(r *Request) {
+		r.Handlers.Complete.PushBack(func(req *Request) {
+			*val = req.HTTPResponse.Header.Get(key)
+		})
+	}
+}
+
+// WithGetResponseHeaders builds a request Option which will retrieve the
+// headers from the HTTP response and assign them to the passed in headers
+// variable. The passed in headers pointer must be non-nil.
+//
+//    var headers http.Header
+//    svc.PutObjectWithContext(ctx, params, request.WithGetResponseHeaders(&headers))
+func WithGetResponseHeaders(headers *http.Header) Option {
+	return func(r *Request) {
+		r.Handlers.Complete.PushBack(func(req *Request) {
+			*headers = req.HTTPResponse.Header
+		})
+	}
+}
+
 // WithLogLevel is a request option that will set the request to use a specific
 // log level when the request is made.
 //

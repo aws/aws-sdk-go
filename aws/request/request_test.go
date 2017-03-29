@@ -438,3 +438,64 @@ func TestRequest_NoBody(t *testing.T) {
 		}
 	}
 }
+
+func TestWithLogLevel(t *testing.T) {
+	r := &request.Request{}
+
+	opt := request.WithLogLevel(aws.LogDebugWithHTTPBody)
+	r.ApplyOptions(opt)
+
+	if !r.Config.LogLevel.Matches(aws.LogDebugWithHTTPBody) {
+		t.Errorf("expect log level to be set, but was not, %v",
+			r.Config.LogLevel.Value())
+	}
+}
+
+func TestWithGetResponseHeader(t *testing.T) {
+	r := &request.Request{}
+
+	var val, val2 string
+	r.ApplyOptions(
+		request.WithGetResponseHeader("x-a-header", &val),
+		request.WithGetResponseHeader("x-second-header", &val2),
+	)
+
+	r.HTTPResponse = &http.Response{
+		Header: func() http.Header {
+			h := http.Header{}
+			h.Set("x-a-header", "first")
+			h.Set("x-second-header", "second")
+			return h
+		}(),
+	}
+	r.Handlers.Complete.Run(r)
+
+	if e, a := "first", val; e != a {
+		t.Errorf("expect %q header value got %q", e, a)
+	}
+	if e, a := "second", val2; e != a {
+		t.Errorf("expect %q header value got %q", e, a)
+	}
+}
+
+func TestWithGetResponseHeaders(t *testing.T) {
+	r := &request.Request{}
+
+	var headers http.Header
+	opt := request.WithGetResponseHeaders(&headers)
+
+	r.ApplyOptions(opt)
+
+	r.HTTPResponse = &http.Response{
+		Header: func() http.Header {
+			h := http.Header{}
+			h.Set("x-a-header", "headerValue")
+			return h
+		}(),
+	}
+	r.Handlers.Complete.Run(r)
+
+	if e, a := "headerValue", headers.Get("x-a-header"); e != a {
+		t.Errorf("expect %q header value got %q", e, a)
+	}
+}
