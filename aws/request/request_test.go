@@ -96,7 +96,7 @@ func TestRequestRecoverRetry5xx(t *testing.T) {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 	if e, a := "valid", out.Data; e != a {
-		t.Errorf("expect %q output got %q")
+		t.Errorf("expect %q output got %q", e, a)
 	}
 }
 
@@ -128,7 +128,7 @@ func TestRequestRecoverRetry4xxRetryable(t *testing.T) {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 	if e, a := "valid", out.Data; e != a {
-		t.Errorf("expect %q output got %q")
+		t.Errorf("expect %q output got %q", e, a)
 	}
 }
 
@@ -266,7 +266,7 @@ func TestRequestRecoverExpiredCreds(t *testing.T) {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 	if e, a := "valid", out.Data; e != a {
-		t.Errorf("expect %q output got %q")
+		t.Errorf("expect %q output got %q", e, a)
 	}
 }
 
@@ -401,7 +401,7 @@ func TestRequestRecoverTimeoutWithNilBody(t *testing.T) {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 	if e, a := "valid", out.Data; e != a {
-		t.Errorf("expect %q output got %q")
+		t.Errorf("expect %q output got %q", e, a)
 	}
 }
 
@@ -444,7 +444,7 @@ func TestRequestRecoverTimeoutWithNilResponse(t *testing.T) {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 	if e, a := "valid", out.Data; e != a {
-		t.Errorf("expect %q output got %q")
+		t.Errorf("expect %q output got %q", e, a)
 	}
 }
 
