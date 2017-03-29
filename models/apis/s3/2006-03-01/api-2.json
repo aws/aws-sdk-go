@@ -757,6 +757,26 @@
     "AbortMultipartUploadOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "RequestCharged":{
           "shape":"RequestCharged",
           "location":"header",
@@ -1061,6 +1081,11 @@
         "Location":{"shape":"Location"},
         "Bucket":{"shape":"BucketName"},
         "Key":{"shape":"ObjectKey"},
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
         "Expiration":{
           "shape":"Expiration",
           "location":"header",
@@ -1076,6 +1101,16 @@
           "shape":"ObjectVersionId",
           "location":"header",
           "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
         },
         "SSEKMSKeyId":{
           "shape":"SSEKMSKeyId",
@@ -1164,6 +1199,11 @@
       "type":"structure",
       "members":{
         "CopyObjectResult":{"shape":"CopyObjectResult"},
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
         "Expiration":{
           "shape":"Expiration",
           "location":"header",
@@ -1178,6 +1218,16 @@
           "shape":"ObjectVersionId",
           "location":"header",
           "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
         },
         "ServerSideEncryption":{
           "shape":"ServerSideEncryption",
@@ -1421,6 +1471,26 @@
     "CreateBucketOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "Location":{
           "shape":"Location",
           "location":"header",
@@ -1492,6 +1562,11 @@
           "shape":"BucketName",
           "locationName":"Bucket"
         },
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
         "Key":{"shape":"ObjectKey"},
         "UploadId":{"shape":"MultipartUploadId"},
         "ServerSideEncryption":{
@@ -1513,6 +1588,21 @@
           "shape":"SSEKMSKeyId",
           "location":"header",
           "locationName":"x-amz-server-side-encryption-aws-kms-key-id"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
         },
         "RequestCharged":{
           "shape":"RequestCharged",
@@ -1822,6 +1912,16 @@
           "location":"header",
           "locationName":"x-amz-version-id"
         },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "RequestCharged":{
           "shape":"RequestCharged",
           "location":"header",
@@ -1866,10 +1966,25 @@
     "DeleteObjectTaggingOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
         "VersionId":{
           "shape":"ObjectVersionId",
           "location":"header",
           "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
         }
       }
     },
@@ -1901,6 +2016,26 @@
       "type":"structure",
       "members":{
         "Deleted":{"shape":"DeletedObjects"},
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "RequestCharged":{
           "shape":"RequestCharged",
           "location":"header",
@@ -2028,6 +2163,7 @@
       "member":{"shape":"ExposeHeader"},
       "flattened":true
     },
+    "ExtendedRequestId":{"type":"string"},
     "FetchOwner":{"type":"boolean"},
     "FilterRule":{
       "type":"structure",
@@ -2052,6 +2188,26 @@
     "GetBucketAccelerateConfigurationOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "Status":{"shape":"BucketAccelerateStatus"}
       }
     },
@@ -2070,6 +2226,26 @@
       "type":"structure",
       "members":{
         "Owner":{"shape":"Owner"},
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "Grants":{
           "shape":"Grants",
           "locationName":"AccessControlList"
@@ -2090,6 +2266,26 @@
     "GetBucketAnalyticsConfigurationOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "AnalyticsConfiguration":{"shape":"AnalyticsConfiguration"}
       },
       "payload":"AnalyticsConfiguration"
@@ -2116,6 +2312,26 @@
     "GetBucketCorsOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "CORSRules":{
           "shape":"CORSRules",
           "locationName":"CORSRule"
@@ -2136,6 +2352,26 @@
     "GetBucketInventoryConfigurationOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "InventoryConfiguration":{"shape":"InventoryConfiguration"}
       },
       "payload":"InventoryConfiguration"
@@ -2162,6 +2398,26 @@
     "GetBucketLifecycleConfigurationOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "Rules":{
           "shape":"LifecycleRules",
           "locationName":"Rule"
@@ -2182,6 +2438,26 @@
     "GetBucketLifecycleOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "Rules":{
           "shape":"Rules",
           "locationName":"Rule"
@@ -2202,6 +2478,26 @@
     "GetBucketLocationOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "LocationConstraint":{"shape":"BucketLocationConstraint"}
       }
     },
@@ -2219,6 +2515,26 @@
     "GetBucketLoggingOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "LoggingEnabled":{"shape":"LoggingEnabled"}
       }
     },
@@ -2236,6 +2552,26 @@
     "GetBucketMetricsConfigurationOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "MetricsConfiguration":{"shape":"MetricsConfiguration"}
       },
       "payload":"MetricsConfiguration"
@@ -2273,6 +2609,26 @@
     "GetBucketPolicyOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "Policy":{"shape":"Policy"}
       },
       "payload":"Policy"
@@ -2291,6 +2647,26 @@
     "GetBucketReplicationOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "ReplicationConfiguration":{"shape":"ReplicationConfiguration"}
       },
       "payload":"ReplicationConfiguration"
@@ -2309,6 +2685,26 @@
     "GetBucketRequestPaymentOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "Payer":{"shape":"Payer"}
       }
     },
@@ -2327,6 +2723,26 @@
       "type":"structure",
       "required":["TagSet"],
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "TagSet":{"shape":"TagSet"}
       }
     },
@@ -2344,6 +2760,26 @@
     "GetBucketVersioningOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "Status":{"shape":"BucketVersioningStatus"},
         "MFADelete":{
           "shape":"MFADeleteStatus",
@@ -2365,6 +2801,26 @@
     "GetBucketWebsiteOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "RedirectAllRequestsTo":{"shape":"RedirectAllRequestsTo"},
         "IndexDocument":{"shape":"IndexDocument"},
         "ErrorDocument":{"shape":"ErrorDocument"},
@@ -2385,10 +2841,30 @@
     "GetObjectAclOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
         "Owner":{"shape":"Owner"},
         "Grants":{
           "shape":"Grants",
           "locationName":"AccessControlList"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
         },
         "RequestCharged":{
           "shape":"RequestCharged",
@@ -2477,6 +2953,16 @@
           "shape":"ObjectVersionId",
           "location":"header",
           "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
         },
         "CacheControl":{
           "shape":"CacheControl",
@@ -2679,10 +3165,25 @@
       "type":"structure",
       "required":["TagSet"],
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
         "VersionId":{
           "shape":"ObjectVersionId",
           "location":"header",
           "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
         },
         "TagSet":{"shape":"TagSet"}
       }
@@ -2717,6 +3218,26 @@
         "Body":{
           "shape":"Body",
           "streaming":true
+        },
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
         },
         "RequestCharged":{
           "shape":"RequestCharged",
@@ -2819,6 +3340,11 @@
           "location":"header",
           "locationName":"accept-ranges"
         },
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
         "Expiration":{
           "shape":"Expiration",
           "location":"header",
@@ -2853,6 +3379,16 @@
           "shape":"ObjectVersionId",
           "location":"header",
           "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
         },
         "CacheControl":{
           "shape":"CacheControl",
@@ -3229,6 +3765,26 @@
     "ListBucketAnalyticsConfigurationsOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "IsTruncated":{"shape":"IsTruncated"},
         "ContinuationToken":{"shape":"Token"},
         "NextContinuationToken":{"shape":"NextToken"},
@@ -3257,6 +3813,26 @@
     "ListBucketInventoryConfigurationsOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "ContinuationToken":{"shape":"Token"},
         "InventoryConfigurationList":{
           "shape":"InventoryConfigurationList",
@@ -3285,6 +3861,26 @@
     "ListBucketMetricsConfigurationsOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "IsTruncated":{"shape":"IsTruncated"},
         "ContinuationToken":{"shape":"Token"},
         "NextContinuationToken":{"shape":"NextToken"},
@@ -3313,6 +3909,26 @@
     "ListBucketsOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "Buckets":{"shape":"Buckets"},
         "Owner":{"shape":"Owner"}
       }
@@ -3321,6 +3937,11 @@
       "type":"structure",
       "members":{
         "Bucket":{"shape":"BucketName"},
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
         "KeyMarker":{"shape":"KeyMarker"},
         "UploadIdMarker":{"shape":"UploadIdMarker"},
         "NextKeyMarker":{"shape":"NextKeyMarker"},
@@ -3334,6 +3955,21 @@
           "locationName":"Upload"
         },
         "CommonPrefixes":{"shape":"CommonPrefixList"},
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "EncodingType":{"shape":"EncodingType"}
       }
     },
@@ -3381,6 +4017,11 @@
     "ListObjectVersionsOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
         "IsTruncated":{"shape":"IsTruncated"},
         "KeyMarker":{"shape":"KeyMarker"},
         "VersionIdMarker":{"shape":"VersionIdMarker"},
@@ -3399,6 +4040,21 @@
         "Delimiter":{"shape":"Delimiter"},
         "MaxKeys":{"shape":"MaxKeys"},
         "CommonPrefixes":{"shape":"CommonPrefixList"},
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "EncodingType":{"shape":"EncodingType"}
       }
     },
@@ -3446,6 +4102,11 @@
     "ListObjectsOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
         "IsTruncated":{"shape":"IsTruncated"},
         "Marker":{"shape":"Marker"},
         "NextMarker":{"shape":"NextMarker"},
@@ -3455,6 +4116,21 @@
         "Delimiter":{"shape":"Delimiter"},
         "MaxKeys":{"shape":"MaxKeys"},
         "CommonPrefixes":{"shape":"CommonPrefixList"},
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "EncodingType":{"shape":"EncodingType"}
       }
     },
@@ -3502,6 +4178,11 @@
     "ListObjectsV2Output":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
         "IsTruncated":{"shape":"IsTruncated"},
         "Contents":{"shape":"ObjectList"},
         "Name":{"shape":"BucketName"},
@@ -3513,6 +4194,21 @@
         "KeyCount":{"shape":"KeyCount"},
         "ContinuationToken":{"shape":"Token"},
         "NextContinuationToken":{"shape":"NextToken"},
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "StartAfter":{"shape":"StartAfter"}
       }
     },
@@ -3581,6 +4277,11 @@
           "locationName":"x-amz-abort-rule-id"
         },
         "Bucket":{"shape":"BucketName"},
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
         "Key":{"shape":"ObjectKey"},
         "UploadId":{"shape":"MultipartUploadId"},
         "PartNumberMarker":{"shape":"PartNumberMarker"},
@@ -3594,6 +4295,21 @@
         "Initiator":{"shape":"Initiator"},
         "Owner":{"shape":"Owner"},
         "StorageClass":{"shape":"StorageClass"},
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "RequestCharged":{
           "shape":"RequestCharged",
           "location":"header",
@@ -4389,6 +5105,26 @@
     "PutObjectAclOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "RequestCharged":{
           "shape":"RequestCharged",
           "location":"header",
@@ -4469,6 +5205,11 @@
     "PutObjectOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
         "Expiration":{
           "shape":"Expiration",
           "location":"header",
@@ -4488,6 +5229,16 @@
           "shape":"ObjectVersionId",
           "location":"header",
           "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
         },
         "SSECustomerAlgorithm":{
           "shape":"SSECustomerAlgorithm",
@@ -4653,6 +5404,21 @@
     "PutObjectTaggingOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "VersionId":{
           "shape":"ObjectVersionId",
           "location":"header",
@@ -4811,6 +5577,7 @@
       "type":"string",
       "enum":["requester"]
     },
+    "RequestId":{"type":"string"},
     "RequestPayer":{
       "type":"string",
       "enum":["requester"]
@@ -4832,6 +5599,26 @@
     "RestoreObjectOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
+        },
         "RequestCharged":{
           "shape":"RequestCharged",
           "location":"header",
@@ -5116,6 +5903,11 @@
           "locationName":"x-amz-copy-source-version-id"
         },
         "CopyPartResult":{"shape":"CopyPartResult"},
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
         "ServerSideEncryption":{
           "shape":"ServerSideEncryption",
           "location":"header",
@@ -5135,6 +5927,21 @@
           "shape":"SSEKMSKeyId",
           "location":"header",
           "locationName":"x-amz-server-side-encryption-aws-kms-key-id"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
         },
         "RequestCharged":{
           "shape":"RequestCharged",
@@ -5244,6 +6051,11 @@
     "UploadPartOutput":{
       "type":"structure",
       "members":{
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-delete-marker"
+        },
         "ServerSideEncryption":{
           "shape":"ServerSideEncryption",
           "location":"header",
@@ -5268,6 +6080,21 @@
           "shape":"SSEKMSKeyId",
           "location":"header",
           "locationName":"x-amz-server-side-encryption-aws-kms-key-id"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-version-id"
+        },
+        "ExtendedRequestId":{
+          "shape":"ExtendedRequestId",
+          "location":"header",
+          "locationName":"x-amz-id-2"
+        },
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amz-request-id"
         },
         "RequestCharged":{
           "shape":"RequestCharged",
