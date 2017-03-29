@@ -124,13 +124,23 @@ func (l *HandlerList) PushFrontNamed(n NamedHandler) {
 
 // Remove removes a NamedHandler n
 func (l *HandlerList) Remove(n NamedHandler) {
-	newlist := []NamedHandler{}
-	for _, m := range l.list {
-		if m.Name != n.Name {
-			newlist = append(newlist, m)
+	for i := 0; i < len(l.list); i++ {
+		m := l.list[i]
+		if m.Name == n.Name {
+			// Shift array preventing creating new arrays
+			copy(l.list[i:], l.list[i+1:])
+			l.list[len(l.list)-1] = NamedHandler{}
+			l.list = l.list[:len(l.list)-1]
+
+			// decrement list so next check to length is correct
+			i--
 		}
 	}
-	l.list = newlist
+}
+
+// RemoveByName removes a NamedHandler by name.
+func (l *HandlerList) RemoveByName(name string) {
+	l.Remove(NamedHandler{Name: name})
 }
 
 // Run executes all handlers in the list with a given request object.

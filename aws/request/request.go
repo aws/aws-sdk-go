@@ -16,10 +16,20 @@ import (
 	"github.com/aws/aws-sdk-go/aws/client/metadata"
 )
 
-// CanceledErrorCode is the error code that will be returned by an
-// API request that was canceled. Requests given a aws.Context may
-// return this error when canceled.
-const CanceledErrorCode = "RequestCanceled"
+const (
+	// ErrCodeSerialization is the serialization error code that is received
+	// during protocol unmarshaling.
+	ErrCodeSerialization = "SerializationError"
+
+	// ErrCodeResponseTimeout is the connection timeout error that is recieved
+	// during body reads.
+	ErrCodeResponseTimeout = "ResponseTimeout"
+
+	// CanceledErrorCode is the error code that will be returned by an
+	// API request that was canceled. Requests given a aws.Context may
+	// return this error when canceled.
+	CanceledErrorCode = "RequestCanceled"
+)
 
 // A Request is the service request to be made.
 type Request struct {
