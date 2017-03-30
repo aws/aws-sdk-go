@@ -25,6 +25,14 @@ import (
 //   # Upload myfile.txt to myBucket/myKey. Must complete within 10 minutes or will fail
 //   go run withContext.go -b mybucket -k myKey -d 10m < myfile.txt
 func main() {
+	var bucket, key string
+	var timeout time.Duration
+
+	flag.StringVar(&bucket, "b", "", "Bucket name.")
+	flag.StringVar(&key, "k", "", "Object key name.")
+	flag.DurationVar(&timeout, "d", 0, "Upload timeout.")
+	flag.Parse()
+
 	sess := session.Must(session.NewSession())
 	svc := s3.New(sess)
 
