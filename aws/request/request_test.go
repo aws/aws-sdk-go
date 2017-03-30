@@ -13,8 +13,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stretchr/testify/assert"
-
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/credentials"
@@ -91,9 +89,15 @@ func TestRequestRecoverRetry5xx(t *testing.T) {
 	out := &testData{}
 	r := s.NewRequest(&request.Operation{Name: "Operation"}, nil, out)
 	err := r.Send()
-	assert.Nil(t, err)
-	assert.Equal(t, 2, int(r.RetryCount))
-	assert.Equal(t, "valid", out.Data)
+	if err != nil {
+		t.Fatalf("expect no error, but got %v", err)
+	}
+	if e, a := 2, int(r.RetryCount); e != a {
+		t.Errorf("expect %d retry count, got %d", e, a)
+	}
+	if e, a := "valid", out.Data; e != a {
+		t.Errorf("expect %q output got %q", e, a)
+	}
 }
 
 // test that retries occur for 4xx status codes with a response type that can be retried - see `shouldRetry`
@@ -117,9 +121,15 @@ func TestRequestRecoverRetry4xxRetryable(t *testing.T) {
 	out := &testData{}
 	r := s.NewRequest(&request.Operation{Name: "Operation"}, nil, out)
 	err := r.Send()
-	assert.Nil(t, err)
-	assert.Equal(t, 2, int(r.RetryCount))
-	assert.Equal(t, "valid", out.Data)
+	if err != nil {
+		t.Fatalf("expect no error, but got %v", err)
+	}
+	if e, a := 2, int(r.RetryCount); e != a {
+		t.Errorf("expect %d retry count, got %d", e, a)
+	}
+	if e, a := "valid", out.Data; e != a {
+		t.Errorf("expect %q output got %q", e, a)
+	}
 }
 
 // test that retries don't occur for 4xx status codes with a response type that can't be retried
@@ -135,15 +145,22 @@ func TestRequest4xxUnretryable(t *testing.T) {
 	out := &testData{}
 	r := s.NewRequest(&request.Operation{Name: "Operation"}, nil, out)
 	err := r.Send()
-	assert.NotNil(t, err)
-	if e, ok := err.(awserr.RequestFailure); ok {
-		assert.Equal(t, 401, e.StatusCode())
-	} else {
-		assert.Fail(t, "Expected error to be a service failure")
+	if err == nil {
+		t.Fatalf("expect error, but did not get one")
 	}
-	assert.Equal(t, "SignatureDoesNotMatch", err.(awserr.Error).Code())
-	assert.Equal(t, "Signature does not match.", err.(awserr.Error).Message())
-	assert.Equal(t, 0, int(r.RetryCount))
+	aerr := err.(awserr.RequestFailure)
+	if e, a := 401, aerr.StatusCode(); e != a {
+		t.Errorf("expect %d status code, got %d", e, a)
+	}
+	if e, a := "SignatureDoesNotMatch", aerr.Code(); e != a {
+		t.Errorf("expect %q error code, got %q", e, a)
+	}
+	if e, a := "Signature does not match.", aerr.Message(); e != a {
+		t.Errorf("expect %q error message, got %q", e, a)
+	}
+	if e, a := 0, int(r.RetryCount); e != a {
+		t.Errorf("expect %d retry count, got %d", e, a)
+	}
 }
 
 func TestRequestExhaustRetries(t *testing.T) {
@@ -171,22 +188,31 @@ func TestRequestExhaustRetries(t *testing.T) {
 	})
 	r := s.NewRequest(&request.Operation{Name: "Operation"}, nil, nil)
 	err := r.Send()
-	assert.NotNil(t, err)
-	if e, ok := err.(awserr.RequestFailure); ok {
-		assert.Equal(t, 500, e.StatusCode())
-	} else {
-		assert.Fail(t, "Expected error to be a service failure")
+	if err == nil {
+		t.Fatalf("expect error, but did not get one")
 	}
-	assert.Equal(t, "UnknownError", err.(awserr.Error).Code())
-	assert.Equal(t, "An error occurred.", err.(awserr.Error).Message())
-	assert.Equal(t, 3, int(r.RetryCount))
+	aerr := err.(awserr.RequestFailure)
+	if e, a := 500, aerr.StatusCode(); e != a {
+		t.Errorf("expect %d status code, got %d", e, a)
+	}
+	if e, a := "UnknownError", aerr.Code(); e != a {
+		t.Errorf("expect %q error code, got %q", e, a)
+	}
+	if e, a := "An error occurred.", aerr.Message(); e != a {
+		t.Errorf("expect %q error message, got %q", e, a)
+	}
+	if e, a := 3, int(r.RetryCount); e != a {
+		t.Errorf("expect %d retry count, got %d", e, a)
+	}
 
 	expectDelays := []struct{ min, max time.Duration }{{30, 59}, {60, 118}, {120, 236}}
 	for i, v := range delays {
 		min := expectDelays[i].min * time.Millisecond
 		max := expectDelays[i].max * time.Millisecond
-		assert.True(t, min <= v && v <= max,
-			"Expect delay to be within range, i:%d, v:%s, min:%s, max:%s", i, v, min, max)
+		if !(min <= v && v <= max) {
+			t.Errorf("Expect delay to be within range, i:%d, v:%s, min:%s, max:%s",
+				i, v, min, max)
+		}
 	}
 }
 
@@ -222,14 +248,26 @@ func TestRequestRecoverExpiredCreds(t *testing.T) {
 	out := &testData{}
 	r := s.NewRequest(&request.Operation{Name: "Operation"}, nil, out)
 	err := r.Send()
-	assert.Nil(t, err)
+	if err != nil {
+		t.Fatalf("expect no error, got %v", err)
+	}
 
-	assert.False(t, credExpiredBeforeRetry, "Expect valid creds before retry check")
-	assert.True(t, credExpiredAfterRetry, "Expect expired creds after retry check")
-	assert.False(t, s.Config.Credentials.IsExpired(), "Expect valid creds after cred expired recovery")
+	if credExpiredBeforeRetry {
+		t.Errorf("Expect valid creds before retry check")
+	}
+	if !credExpiredAfterRetry {
+		t.Errorf("Expect expired creds after retry check")
+	}
+	if s.Config.Credentials.IsExpired() {
+		t.Errorf("Expect valid creds after cred expired recovery")
+	}
 
-	assert.Equal(t, 1, int(r.RetryCount))
-	assert.Equal(t, "valid", out.Data)
+	if e, a := 1, int(r.RetryCount); e != a {
+		t.Errorf("expect %d retry count, got %d", e, a)
+	}
+	if e, a := "valid", out.Data; e != a {
+		t.Errorf("expect %q output got %q", e, a)
+	}
 }
 
 func TestMakeAddtoUserAgentHandler(t *testing.T) {
@@ -238,7 +276,9 @@ func TestMakeAddtoUserAgentHandler(t *testing.T) {
 	r.HTTPRequest.Header.Set("User-Agent", "foo/bar")
 	fn(r)
 
-	assert.Equal(t, "foo/bar name/version (extra1; extra2)", r.HTTPRequest.Header.Get("User-Agent"))
+	if e, a := "foo/bar name/version (extra1; extra2)", r.HTTPRequest.Header.Get("User-Agent"); e != a {
+		t.Errorf("expect %q user agent, got %q", e, a)
+	}
 }
 
 func TestMakeAddtoUserAgentFreeFormHandler(t *testing.T) {
@@ -247,7 +287,9 @@ func TestMakeAddtoUserAgentFreeFormHandler(t *testing.T) {
 	r.HTTPRequest.Header.Set("User-Agent", "foo/bar")
 	fn(r)
 
-	assert.Equal(t, "foo/bar name/version (extra1; extra2)", r.HTTPRequest.Header.Get("User-Agent"))
+	if e, a := "foo/bar name/version (extra1; extra2)", r.HTTPRequest.Header.Get("User-Agent"); e != a {
+		t.Errorf("expect %q user agent, got %q", e, a)
+	}
 }
 
 func TestRequestUserAgent(t *testing.T) {
@@ -256,11 +298,15 @@ func TestRequestUserAgent(t *testing.T) {
 
 	req := s.NewRequest(&request.Operation{Name: "Operation"}, nil, &testData{})
 	req.HTTPRequest.Header.Set("User-Agent", "foo/bar")
-	assert.NoError(t, req.Build())
+	if err := req.Build(); err != nil {
+		t.Fatalf("expect no error, got %v", err)
+	}
 
 	expectUA := fmt.Sprintf("foo/bar %s/%s (%s; %s; %s)",
 		aws.SDKName, aws.SDKVersion, runtime.Version(), runtime.GOOS, runtime.GOARCH)
-	assert.Equal(t, expectUA, req.HTTPRequest.Header.Get("User-Agent"))
+	if e, a := expectUA, req.HTTPRequest.Header.Get("User-Agent"); e != a {
+		t.Errorf("expect %q user agent, got %q", e, a)
+	}
 }
 
 func TestRequestThrottleRetries(t *testing.T) {
@@ -288,22 +334,31 @@ func TestRequestThrottleRetries(t *testing.T) {
 	})
 	r := s.NewRequest(&request.Operation{Name: "Operation"}, nil, nil)
 	err := r.Send()
-	assert.NotNil(t, err)
-	if e, ok := err.(awserr.RequestFailure); ok {
-		assert.Equal(t, 500, e.StatusCode())
-	} else {
-		assert.Fail(t, "Expected error to be a service failure")
+	if err == nil {
+		t.Fatalf("expect error, but did not get one")
 	}
-	assert.Equal(t, "Throttling", err.(awserr.Error).Code())
-	assert.Equal(t, "An error occurred.", err.(awserr.Error).Message())
-	assert.Equal(t, 3, int(r.RetryCount))
+	aerr := err.(awserr.RequestFailure)
+	if e, a := 500, aerr.StatusCode(); e != a {
+		t.Errorf("expect %d status code, got %d", e, a)
+	}
+	if e, a := "Throttling", aerr.Code(); e != a {
+		t.Errorf("expect %q error code, got %q", e, a)
+	}
+	if e, a := "An error occurred.", aerr.Message(); e != a {
+		t.Errorf("expect %q error message, got %q", e, a)
+	}
+	if e, a := 3, int(r.RetryCount); e != a {
+		t.Errorf("expect %d retry count, got %d", e, a)
+	}
 
 	expectDelays := []struct{ min, max time.Duration }{{500, 999}, {1000, 1998}, {2000, 3996}}
 	for i, v := range delays {
 		min := expectDelays[i].min * time.Millisecond
 		max := expectDelays[i].max * time.Millisecond
-		assert.True(t, min <= v && v <= max,
-			"Expect delay to be within range, i:%d, v:%s, min:%s, max:%s", i, v, min, max)
+		if !(min <= v && v <= max) {
+			t.Errorf("Expect delay to be within range, i:%d, v:%s, min:%s, max:%s",
+				i, v, min, max)
+		}
 	}
 }
 
@@ -339,9 +394,15 @@ func TestRequestRecoverTimeoutWithNilBody(t *testing.T) {
 	out := &testData{}
 	r := s.NewRequest(&request.Operation{Name: "Operation"}, nil, out)
 	err := r.Send()
-	assert.Nil(t, err)
-	assert.Equal(t, 1, int(r.RetryCount))
-	assert.Equal(t, "valid", out.Data)
+	if err != nil {
+		t.Fatalf("expect no error, but got %v", err)
+	}
+	if e, a := 1, int(r.RetryCount); e != a {
+		t.Errorf("expect %d retry count, got %d", e, a)
+	}
+	if e, a := "valid", out.Data; e != a {
+		t.Errorf("expect %q output got %q", e, a)
+	}
 }
 
 func TestRequestRecoverTimeoutWithNilResponse(t *testing.T) {
@@ -376,9 +437,15 @@ func TestRequestRecoverTimeoutWithNilResponse(t *testing.T) {
 	out := &testData{}
 	r := s.NewRequest(&request.Operation{Name: "Operation"}, nil, out)
 	err := r.Send()
-	assert.Nil(t, err)
-	assert.Equal(t, 1, int(r.RetryCount))
-	assert.Equal(t, "valid", out.Data)
+	if err != nil {
+		t.Fatalf("expect no error, but got %v", err)
+	}
+	if e, a := 1, int(r.RetryCount); e != a {
+		t.Errorf("expect %d retry count, got %d", e, a)
+	}
+	if e, a := "valid", out.Data; e != a {
+		t.Errorf("expect %q output got %q", e, a)
+	}
 }
 
 func TestRequest_NoBody(t *testing.T) {
@@ -436,5 +503,66 @@ func TestRequest_NoBody(t *testing.T) {
 		if err := r.Send(); err != nil {
 			t.Fatalf("%d, expect no error sending request, got %v", i, err)
 		}
+	}
+}
+
+func TestWithLogLevel(t *testing.T) {
+	r := &request.Request{}
+
+	opt := request.WithLogLevel(aws.LogDebugWithHTTPBody)
+	r.ApplyOptions(opt)
+
+	if !r.Config.LogLevel.Matches(aws.LogDebugWithHTTPBody) {
+		t.Errorf("expect log level to be set, but was not, %v",
+			r.Config.LogLevel.Value())
+	}
+}
+
+func TestWithGetResponseHeader(t *testing.T) {
+	r := &request.Request{}
+
+	var val, val2 string
+	r.ApplyOptions(
+		request.WithGetResponseHeader("x-a-header", &val),
+		request.WithGetResponseHeader("x-second-header", &val2),
+	)
+
+	r.HTTPResponse = &http.Response{
+		Header: func() http.Header {
+			h := http.Header{}
+			h.Set("x-a-header", "first")
+			h.Set("x-second-header", "second")
+			return h
+		}(),
+	}
+	r.Handlers.Complete.Run(r)
+
+	if e, a := "first", val; e != a {
+		t.Errorf("expect %q header value got %q", e, a)
+	}
+	if e, a := "second", val2; e != a {
+		t.Errorf("expect %q header value got %q", e, a)
+	}
+}
+
+func TestWithGetResponseHeaders(t *testing.T) {
+	r := &request.Request{}
+
+	var headers http.Header
+	opt := request.WithGetResponseHeaders(&headers)
+
+	r.ApplyOptions(opt)
+
+	r.HTTPResponse = &http.Response{
+		Header: func() http.Header {
+			h := http.Header{}
+			h.Set("x-a-header", "headerValue")
+			return h
+		}(),
+	}
+	r.Handlers.Complete.Run(r)
+
+	if e, a := "headerValue", headers.Get("x-a-header"); e != a {
+		t.Errorf("expect %q header value got %q", e, a)
 	}
 }
