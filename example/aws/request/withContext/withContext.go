@@ -11,6 +11,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
 )
@@ -37,7 +38,7 @@ func main() {
 	sess := session.Must(session.NewSession())
 	svc := s3.New(sess)
 
-	// Create a context with a timeout that will abort the upload if it takes 
+	// Create a context with a timeout that will abort the upload if it takes
 	// more than the passed in timeout.
 	ctx := context.Background()
 	var cancelFn func()
@@ -48,7 +49,7 @@ func main() {
 	// See context package for more information, https://golang.org/pkg/context/
 	defer cancelFn()
 
-	// Uploads the object to S3. The Context will interrupt the request if the 
+	// Uploads the object to S3. The Context will interrupt the request if the
 	// timeout expires.
 	_, err := svc.PutObjectWithContext(ctx, &s3.PutObjectInput{
 		Bucket: aws.String(bucket),
@@ -59,8 +60,12 @@ func main() {
 		if aerr, ok := err.(awserr.Error); ok && aerr.Code() == request.CanceledErrorCode {
 			// If the SDK can determine the request or retry delay was canceled
 			// by a context the CanceledErrorCode error code will be returned.
-			fmt.Println("request's context canceled,", err)
+			fmt.Fprintf(os.Stderr, "upload canceled due to timeout, %v\n", err)
+		} else {
+			fmt.Fprintf(os.Stderr, "failed to upload object, %v\n", err)
 		}
-		return err
+		os.Exit(1)
 	}
+
+	fmt.Printf("successfully uploaded file to %s/%s\n", bucket, key)
 }
