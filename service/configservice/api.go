@@ -1870,9 +1870,9 @@ func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *re
 // the ARN for the SourceIdentifier key. This key is part of the Source object,
 // which is part of the ConfigRule object.
 //
-// If you are adding a new AWS managed Config rule, specify the rule's identifier
+// If you are adding an AWS managed Config rule, specify the rule's identifier
 // for the SourceIdentifier key. To reference AWS managed Config rule identifiers,
-// see Using AWS Managed Config Rules (http://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html).
+// see About AWS Managed Config Rules (http://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html).
 //
 // For any new rule that you add, specify the ConfigRuleName in the ConfigRule
 // object. Do not specify the ConfigRuleArn or the ConfigRuleId. These values
@@ -2927,9 +2927,11 @@ type ConfigRule struct {
 	//    * You are using an AWS managed rule that is triggered at a periodic frequency.
 	//
 	//    * Your custom rule is triggered when AWS Config delivers the configuration
-	//    snapshot.
+	//    snapshot. For more information, see ConfigSnapshotDeliveryProperties.
 	//
-	// For more information, see ConfigSnapshotDeliveryProperties.
+	// By default, rules with a periodic trigger are evaluated every 24 hours. To
+	// change the frequency, specify a valid value for the MaximumExecutionFrequency
+	// parameter.
 	MaximumExecutionFrequency *string `type:"string" enum:"MaximumExecutionFrequency"`
 
 	// Defines which resources can trigger an evaluation for the rule. The scope
@@ -3938,45 +3940,8 @@ func (s *DeliverConfigSnapshotOutput) SetConfigSnapshotId(v string) *DeliverConf
 type DeliveryChannel struct {
 	_ struct{} `type:"structure"`
 
-	// Provides options for how often AWS Config delivers configuration snapshots
-	// to the Amazon S3 bucket in your delivery channel.
-	//
-	// If you want to create a rule that triggers evaluations for your resources
-	// when AWS Config delivers the configuration snapshot, see the following:
-	//
-	// The frequency for a rule that triggers evaluations for your resources when
-	// AWS Config delivers the configuration snapshot is set by one of two values,
-	// depending on which is less frequent:
-	//
-	//    * The value for the deliveryFrequency parameter within the delivery channel
-	//    configuration, which sets how often AWS Config delivers configuration
-	//    snapshots. This value also sets how often AWS Config invokes evaluations
-	//    for Config rules.
-	//
-	//    * The value for the MaximumExecutionFrequency parameter, which sets the
-	//    maximum frequency with which AWS Config invokes evaluations for the rule.
-	//    For more information, see ConfigRule.
-	//
-	// If the deliveryFrequency value is less frequent than the MaximumExecutionFrequency
-	// value for a rule, AWS Config invokes the rule only as often as the deliveryFrequency
-	// value.
-	//
-	// For example, you want your rule to run evaluations when AWS Config delivers
-	// the configuration snapshot.
-	//
-	// You specify the MaximumExecutionFrequency value for Six_Hours.
-	//
-	// You then specify the delivery channel deliveryFrequency value for TwentyFour_Hours.
-	//
-	// Because the value for deliveryFrequency is less frequent than MaximumExecutionFrequency,
-	// AWS Config invokes evaluations for the rule every 24 hours.
-	//
-	// You should set the MaximumExecutionFrequency value to be at least as frequent
-	// as the deliveryFrequency value. You can view the deliveryFrequency value
-	// by using the DescribeDeliveryChannnels action.
-	//
-	// To update the deliveryFrequency with which AWS Config delivers your configuration
-	// snapshots, use the PutDeliveryChannel action.
+	// The options for how often AWS Config delivers configuration snapshots to
+	// the Amazon S3 bucket.
 	ConfigSnapshotDeliveryProperties *ConfigSnapshotDeliveryProperties `locationName:"configSnapshotDeliveryProperties" type:"structure"`
 
 	// The name of the delivery channel. By default, AWS Config assigns the name
@@ -5540,20 +5505,7 @@ func (s *ListDiscoveredResourcesOutput) SetResourceIdentifiers(v []*ResourceIden
 type PutConfigRuleInput struct {
 	_ struct{} `type:"structure"`
 
-	// An AWS Config rule represents an AWS Lambda function that you create for
-	// a custom rule or a predefined function for an AWS managed rule. The function
-	// evaluates configuration items to assess whether your AWS resources comply
-	// with your desired configurations. This function can run when AWS Config detects
-	// a configuration change to an AWS resource and at a periodic frequency that
-	// you choose (for example, every 24 hours).
-	//
-	// You can use the AWS CLI and AWS SDKs if you want to create a rule that triggers
-	// evaluations for your resources when AWS Config delivers the configuration
-	// snapshot. For more information, see ConfigSnapshotDeliveryProperties.
-	//
-	// For more information about developing and using AWS Config rules, see Evaluating
-	// AWS Resource Configurations with AWS Config (http://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
-	// in the AWS Config Developer Guide.
+	// The rule that you want to add to your account.
 	//
 	// ConfigRule is a required field
 	ConfigRule *ConfigRule `type:"structure" required:"true"`
@@ -6206,9 +6158,13 @@ type SourceDetail struct {
 	// to evaluate your AWS resources.
 	EventSource *string `type:"string" enum:"EventSource"`
 
-	// The frequency that you want AWS Config to run evaluations for a rule that
-	// is triggered periodically. If you specify a value for MaximumExecutionFrequency,
+	// The frequency that you want AWS Config to run evaluations for a custom rule
+	// with a periodic trigger. If you specify a value for MaximumExecutionFrequency,
 	// then MessageType must use the ScheduledNotification value.
+	//
+	// By default, rules with a periodic trigger are evaluated every 24 hours. To
+	// change the frequency, specify a valid value for the MaximumExecutionFrequency
+	// parameter.
 	MaximumExecutionFrequency *string `type:"string" enum:"MaximumExecutionFrequency"`
 
 	// The type of notification that triggers AWS Config to run an evaluation for
