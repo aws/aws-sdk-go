@@ -262,6 +262,10 @@ type StorageGatewayAPI interface {
 	ListVolumesPages(*storagegateway.ListVolumesInput, func(*storagegateway.ListVolumesOutput, bool) bool) error
 	ListVolumesPagesWithContext(aws.Context, *storagegateway.ListVolumesInput, func(*storagegateway.ListVolumesOutput, bool) bool, ...request.Option) error
 
+	RefreshCache(*storagegateway.RefreshCacheInput) (*storagegateway.RefreshCacheOutput, error)
+	RefreshCacheWithContext(aws.Context, *storagegateway.RefreshCacheInput, ...request.Option) (*storagegateway.RefreshCacheOutput, error)
+	RefreshCacheRequest(*storagegateway.RefreshCacheInput) (*request.Request, *storagegateway.RefreshCacheOutput)
+
 	RemoveTagsFromResource(*storagegateway.RemoveTagsFromResourceInput) (*storagegateway.RemoveTagsFromResourceOutput, error)
 	RemoveTagsFromResourceWithContext(aws.Context, *storagegateway.RemoveTagsFromResourceInput, ...request.Option) (*storagegateway.RemoveTagsFromResourceOutput, error)
 	RemoveTagsFromResourceRequest(*storagegateway.RemoveTagsFromResourceInput) (*request.Request, *storagegateway.RemoveTagsFromResourceOutput)

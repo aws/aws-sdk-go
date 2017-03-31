@@ -1,3 +1,17 @@
+Release v1.8.5 (2017-03-30)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service waiters and paginators
+  * Adding paginators for ListExports and ListImports
+* `service/cloudfront`: Adds new service
+  * Amazon CloudFront now supports user configurable HTTP Read and Keep-Alive Idle Timeouts for your Custom Origin Servers
+* `service/configservice`: Updates service documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/resourcegroupstaggingapi`: Adds new service
+* `service/storagegateway`: Updates service API and documentation
+  * File gateway mode in AWS Storage gateway provides access to objects in S3 as files on a Network File System (NFS) mount point. Once a file share is created, any changes made externally to the S3 bucket will not be reflected by the gateway. Using the cache refresh feature in this update, the customer can trigger an on-demand scan of the keys in their S3 bucket and refresh the file namespace cached on the gateway. It takes as an input the fileShare ARN and refreshes the cache for only that file share. Additionally there is new functionality on file gateway that allows you configure what squash options they would like on their file share, this allows a customer to configure their gateway to not squash root permissions. This can be done by setting options in NfsOptions for CreateNfsFileShare and UpdateNfsFileShare APIs.
+
 Release v1.8.4 (2017-03-28)
 ===
 
