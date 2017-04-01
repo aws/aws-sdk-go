@@ -3077,7 +3077,7 @@ const opInputService18TestCaseOperation1 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation1Request(input *InputService18TestShapeInputService18TestCaseOperation2Input) (req *request.Request, output *InputService18TestShapeInputService18TestCaseOperation1Output) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation1Request(input *InputService18TestShapeInputService18TestCaseOperation4Input) (req *request.Request, output *InputService18TestShapeInputService18TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:       opInputService18TestCaseOperation1,
 		HTTPMethod: "POST",
@@ -3085,7 +3085,7 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation1Request(inp
 	}
 
 	if input == nil {
-		input = &InputService18TestShapeInputService18TestCaseOperation2Input{}
+		input = &InputService18TestShapeInputService18TestCaseOperation4Input{}
 	}
 
 	output = &InputService18TestShapeInputService18TestCaseOperation1Output{}
@@ -3103,7 +3103,7 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation1Request(inp
 //
 // See the AWS API reference guide for 's
 // API operation InputService18TestCaseOperation1 for usage and error information.
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation1(input *InputService18TestShapeInputService18TestCaseOperation2Input) (*InputService18TestShapeInputService18TestCaseOperation1Output, error) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation1(input *InputService18TestShapeInputService18TestCaseOperation4Input) (*InputService18TestShapeInputService18TestCaseOperation1Output, error) {
 	req, out := c.InputService18TestCaseOperation1Request(input)
 	return out, req.Send()
 }
@@ -3117,7 +3117,7 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation1(input *Inp
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation1WithContext(ctx aws.Context, input *InputService18TestShapeInputService18TestCaseOperation2Input, opts ...request.Option) (*InputService18TestShapeInputService18TestCaseOperation1Output, error) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation1WithContext(ctx aws.Context, input *InputService18TestShapeInputService18TestCaseOperation4Input, opts ...request.Option) (*InputService18TestShapeInputService18TestCaseOperation1Output, error) {
 	req, out := c.InputService18TestCaseOperation1Request(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
@@ -3149,7 +3149,7 @@ const opInputService18TestCaseOperation2 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation2Request(input *InputService18TestShapeInputService18TestCaseOperation2Input) (req *request.Request, output *InputService18TestShapeInputService18TestCaseOperation2Output) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation2Request(input *InputService18TestShapeInputService18TestCaseOperation4Input) (req *request.Request, output *InputService18TestShapeInputService18TestCaseOperation2Output) {
 	op := &request.Operation{
 		Name:       opInputService18TestCaseOperation2,
 		HTTPMethod: "POST",
@@ -3157,7 +3157,7 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation2Request(inp
 	}
 
 	if input == nil {
-		input = &InputService18TestShapeInputService18TestCaseOperation2Input{}
+		input = &InputService18TestShapeInputService18TestCaseOperation4Input{}
 	}
 
 	output = &InputService18TestShapeInputService18TestCaseOperation2Output{}
@@ -3175,7 +3175,7 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation2Request(inp
 //
 // See the AWS API reference guide for 's
 // API operation InputService18TestCaseOperation2 for usage and error information.
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation2(input *InputService18TestShapeInputService18TestCaseOperation2Input) (*InputService18TestShapeInputService18TestCaseOperation2Output, error) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation2(input *InputService18TestShapeInputService18TestCaseOperation4Input) (*InputService18TestShapeInputService18TestCaseOperation2Output, error) {
 	req, out := c.InputService18TestCaseOperation2Request(input)
 	return out, req.Send()
 }
@@ -3189,7 +3189,7 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation2(input *Inp
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation2WithContext(ctx aws.Context, input *InputService18TestShapeInputService18TestCaseOperation2Input, opts ...request.Option) (*InputService18TestShapeInputService18TestCaseOperation2Output, error) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation2WithContext(ctx aws.Context, input *InputService18TestShapeInputService18TestCaseOperation4Input, opts ...request.Option) (*InputService18TestShapeInputService18TestCaseOperation2Output, error) {
 	req, out := c.InputService18TestCaseOperation2Request(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
@@ -3221,7 +3221,7 @@ const opInputService18TestCaseOperation3 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation3Request(input *InputService18TestShapeInputService18TestCaseOperation2Input) (req *request.Request, output *InputService18TestShapeInputService18TestCaseOperation3Output) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation3Request(input *InputService18TestShapeInputService18TestCaseOperation4Input) (req *request.Request, output *InputService18TestShapeInputService18TestCaseOperation3Output) {
 	op := &request.Operation{
 		Name:       opInputService18TestCaseOperation3,
 		HTTPMethod: "POST",
@@ -3229,7 +3229,7 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation3Request(inp
 	}
 
 	if input == nil {
-		input = &InputService18TestShapeInputService18TestCaseOperation2Input{}
+		input = &InputService18TestShapeInputService18TestCaseOperation4Input{}
 	}
 
 	output = &InputService18TestShapeInputService18TestCaseOperation3Output{}
@@ -3247,7 +3247,7 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation3Request(inp
 //
 // See the AWS API reference guide for 's
 // API operation InputService18TestCaseOperation3 for usage and error information.
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation3(input *InputService18TestShapeInputService18TestCaseOperation2Input) (*InputService18TestShapeInputService18TestCaseOperation3Output, error) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation3(input *InputService18TestShapeInputService18TestCaseOperation4Input) (*InputService18TestShapeInputService18TestCaseOperation3Output, error) {
 	req, out := c.InputService18TestCaseOperation3Request(input)
 	return out, req.Send()
 }
@@ -3261,7 +3261,7 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation3(input *Inp
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation3WithContext(ctx aws.Context, input *InputService18TestShapeInputService18TestCaseOperation2Input, opts ...request.Option) (*InputService18TestShapeInputService18TestCaseOperation3Output, error) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation3WithContext(ctx aws.Context, input *InputService18TestShapeInputService18TestCaseOperation4Input, opts ...request.Option) (*InputService18TestShapeInputService18TestCaseOperation3Output, error) {
 	req, out := c.InputService18TestCaseOperation3Request(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
@@ -3293,7 +3293,7 @@ const opInputService18TestCaseOperation4 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation4Request(input *InputService18TestShapeInputService18TestCaseOperation2Input) (req *request.Request, output *InputService18TestShapeInputService18TestCaseOperation4Output) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation4Request(input *InputService18TestShapeInputService18TestCaseOperation4Input) (req *request.Request, output *InputService18TestShapeInputService18TestCaseOperation4Output) {
 	op := &request.Operation{
 		Name:       opInputService18TestCaseOperation4,
 		HTTPMethod: "POST",
@@ -3301,7 +3301,7 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation4Request(inp
 	}
 
 	if input == nil {
-		input = &InputService18TestShapeInputService18TestCaseOperation2Input{}
+		input = &InputService18TestShapeInputService18TestCaseOperation4Input{}
 	}
 
 	output = &InputService18TestShapeInputService18TestCaseOperation4Output{}
@@ -3319,7 +3319,7 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation4Request(inp
 //
 // See the AWS API reference guide for 's
 // API operation InputService18TestCaseOperation4 for usage and error information.
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation4(input *InputService18TestShapeInputService18TestCaseOperation2Input) (*InputService18TestShapeInputService18TestCaseOperation4Output, error) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation4(input *InputService18TestShapeInputService18TestCaseOperation4Input) (*InputService18TestShapeInputService18TestCaseOperation4Output, error) {
 	req, out := c.InputService18TestCaseOperation4Request(input)
 	return out, req.Send()
 }
@@ -3333,7 +3333,7 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation4(input *Inp
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation4WithContext(ctx aws.Context, input *InputService18TestShapeInputService18TestCaseOperation2Input, opts ...request.Option) (*InputService18TestShapeInputService18TestCaseOperation4Output, error) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation4WithContext(ctx aws.Context, input *InputService18TestShapeInputService18TestCaseOperation4Input, opts ...request.Option) (*InputService18TestShapeInputService18TestCaseOperation4Output, error) {
 	req, out := c.InputService18TestCaseOperation4Request(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
@@ -3356,24 +3356,24 @@ type InputService18TestShapeInputService18TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 }
 
-type InputService18TestShapeInputService18TestCaseOperation2Input struct {
-	_ struct{} `type:"structure" payload:"Foo"`
-
-	Foo *InputService18TestShapeFooShape `locationName:"foo" type:"structure"`
-}
-
-// SetFoo sets the Foo field's value.
-func (s *InputService18TestShapeInputService18TestCaseOperation2Input) SetFoo(v *InputService18TestShapeFooShape) *InputService18TestShapeInputService18TestCaseOperation2Input {
-	s.Foo = v
-	return s
-}
-
 type InputService18TestShapeInputService18TestCaseOperation2Output struct {
 	_ struct{} `type:"structure"`
 }
 
 type InputService18TestShapeInputService18TestCaseOperation3Output struct {
 	_ struct{} `type:"structure"`
+}
+
+type InputService18TestShapeInputService18TestCaseOperation4Input struct {
+	_ struct{} `type:"structure" payload:"Foo"`
+
+	Foo *InputService18TestShapeFooShape `locationName:"foo" type:"structure"`
+}
+
+// SetFoo sets the Foo field's value.
+func (s *InputService18TestShapeInputService18TestCaseOperation4Input) SetFoo(v *InputService18TestShapeFooShape) *InputService18TestShapeInputService18TestCaseOperation4Input {
+	s.Foo = v
+	return s
 }
 
 type InputService18TestShapeInputService18TestCaseOperation4Output struct {
@@ -4005,7 +4005,7 @@ const opInputService22TestCaseOperation1 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-func (c *InputService22ProtocolTest) InputService22TestCaseOperation1Request(input *InputService22TestShapeInputService22TestCaseOperation2Input) (req *request.Request, output *InputService22TestShapeInputService22TestCaseOperation1Output) {
+func (c *InputService22ProtocolTest) InputService22TestCaseOperation1Request(input *InputService22TestShapeInputService22TestCaseOperation6Input) (req *request.Request, output *InputService22TestShapeInputService22TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:       opInputService22TestCaseOperation1,
 		HTTPMethod: "POST",
@@ -4013,7 +4013,7 @@ func (c *InputService22ProtocolTest) InputService22TestCaseOperation1Request(inp
 	}
 
 	if input == nil {
-		input = &InputService22TestShapeInputService22TestCaseOperation2Input{}
+		input = &InputService22TestShapeInputService22TestCaseOperation6Input{}
 	}
 
 	output = &InputService22TestShapeInputService22TestCaseOperation1Output{}
@@ -4031,7 +4031,7 @@ func (c *InputService22ProtocolTest) InputService22TestCaseOperation1Request(inp
 //
 // See the AWS API reference guide for 's
 // API operation InputService22TestCaseOperation1 for usage and error information.
-func (c *InputService22ProtocolTest) InputService22TestCaseOperation1(input *InputService22TestShapeInputService22TestCaseOperation2Input) (*InputService22TestShapeInputService22TestCaseOperation1Output, error) {
+func (c *InputService22ProtocolTest) InputService22TestCaseOperation1(input *InputService22TestShapeInputService22TestCaseOperation6Input) (*InputService22TestShapeInputService22TestCaseOperation1Output, error) {
 	req, out := c.InputService22TestCaseOperation1Request(input)
 	return out, req.Send()
 }
@@ -4045,7 +4045,7 @@ func (c *InputService22ProtocolTest) InputService22TestCaseOperation1(input *Inp
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *InputService22ProtocolTest) InputService22TestCaseOperation1WithContext(ctx aws.Context, input *InputService22TestShapeInputService22TestCaseOperation2Input, opts ...request.Option) (*InputService22TestShapeInputService22TestCaseOperation1Output, error) {
+func (c *InputService22ProtocolTest) InputService22TestCaseOperation1WithContext(ctx aws.Context, input *InputService22TestShapeInputService22TestCaseOperation6Input, opts ...request.Option) (*InputService22TestShapeInputService22TestCaseOperation1Output, error) {
 	req, out := c.InputService22TestCaseOperation1Request(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
@@ -4077,7 +4077,7 @@ const opInputService22TestCaseOperation2 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-func (c *InputService22ProtocolTest) InputService22TestCaseOperation2Request(input *InputService22TestShapeInputService22TestCaseOperation2Input) (req *request.Request, output *InputService22TestShapeInputService22TestCaseOperation2Output) {
+func (c *InputService22ProtocolTest) InputService22TestCaseOperation2Request(input *InputService22TestShapeInputService22TestCaseOperation6Input) (req *request.Request, output *InputService22TestShapeInputService22TestCaseOperation2Output) {
 	op := &request.Operation{
 		Name:       opInputService22TestCaseOperation2,
 		HTTPMethod: "POST",
@@ -4085,7 +4085,7 @@ func (c *InputService22ProtocolTest) InputService22TestCaseOperation2Request(inp
 	}
 
 	if input == nil {
-		input = &InputService22TestShapeInputService22TestCaseOperation2Input{}
+		input = &InputService22TestShapeInputService22TestCaseOperation6Input{}
 	}
 
 	output = &InputService22TestShapeInputService22TestCaseOperation2Output{}
@@ -4103,7 +4103,7 @@ func (c *InputService22ProtocolTest) InputService22TestCaseOperation2Request(inp
 //
 // See the AWS API reference guide for 's
 // API operation InputService22TestCaseOperation2 for usage and error information.
-func (c *InputService22ProtocolTest) InputService22TestCaseOperation2(input *InputService22TestShapeInputService22TestCaseOperation2Input) (*InputService22TestShapeInputService22TestCaseOperation2Output, error) {
+func (c *InputService22ProtocolTest) InputService22TestCaseOperation2(input *InputService22TestShapeInputService22TestCaseOperation6Input) (*InputService22TestShapeInputService22TestCaseOperation2Output, error) {
 	req, out := c.InputService22TestCaseOperation2Request(input)
 	return out, req.Send()
 }
@@ -4117,7 +4117,7 @@ func (c *InputService22ProtocolTest) InputService22TestCaseOperation2(input *Inp
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *InputService22ProtocolTest) InputService22TestCaseOperation2WithContext(ctx aws.Context, input *InputService22TestShapeInputService22TestCaseOperation2Input, opts ...request.Option) (*InputService22TestShapeInputService22TestCaseOperation2Output, error) {
+func (c *InputService22ProtocolTest) InputService22TestCaseOperation2WithContext(ctx aws.Context, input *InputService22TestShapeInputService22TestCaseOperation6Input, opts ...request.Option) (*InputService22TestShapeInputService22TestCaseOperation2Output, error) {
 	req, out := c.InputService22TestCaseOperation2Request(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
@@ -4149,7 +4149,7 @@ const opInputService22TestCaseOperation3 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-func (c *InputService22ProtocolTest) InputService22TestCaseOperation3Request(input *InputService22TestShapeInputService22TestCaseOperation2Input) (req *request.Request, output *InputService22TestShapeInputService22TestCaseOperation3Output) {
+func (c *InputService22ProtocolTest) InputService22TestCaseOperation3Request(input *InputService22TestShapeInputService22TestCaseOperation6Input) (req *request.Request, output *InputService22TestShapeInputService22TestCaseOperation3Output) {
 	op := &request.Operation{
 		Name:       opInputService22TestCaseOperation3,
 		HTTPMethod: "POST",
@@ -4157,7 +4157,7 @@ func (c *InputService22ProtocolTest) InputService22TestCaseOperation3Request(inp
 	}
 
 	if input == nil {
-		input = &InputService22TestShapeInputService22TestCaseOperation2Input{}
+		input = &InputService22TestShapeInputService22TestCaseOperation6Input{}
 	}
 
 	output = &InputService22TestShapeInputService22TestCaseOperation3Output{}
@@ -4175,7 +4175,7 @@ func (c *InputService22ProtocolTest) InputService22TestCaseOperation3Request(inp
 //
 // See the AWS API reference guide for 's
 // API operation InputService22TestCaseOperation3 for usage and error information.
-func (c *InputService22ProtocolTest) InputService22TestCaseOperation3(input *InputService22TestShapeInputService22TestCaseOperation2Input) (*InputService22TestShapeInputService22TestCaseOperation3Output, error) {
+func (c *InputService22ProtocolTest) InputService22TestCaseOperation3(input *InputService22TestShapeInputService22TestCaseOperation6Input) (*InputService22TestShapeInputService22TestCaseOperation3Output, error) {
 	req, out := c.InputService22TestCaseOperation3Request(input)
 	return out, req.Send()
 }
@@ -4189,7 +4189,7 @@ func (c *InputService22ProtocolTest) InputService22TestCaseOperation3(input *Inp
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *InputService22ProtocolTest) InputService22TestCaseOperation3WithContext(ctx aws.Context, input *InputService22TestShapeInputService22TestCaseOperation2Input, opts ...request.Option) (*InputService22TestShapeInputService22TestCaseOperation3Output, error) {
+func (c *InputService22ProtocolTest) InputService22TestCaseOperation3WithContext(ctx aws.Context, input *InputService22TestShapeInputService22TestCaseOperation6Input, opts ...request.Option) (*InputService22TestShapeInputService22TestCaseOperation3Output, error) {
 	req, out := c.InputService22TestCaseOperation3Request(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
@@ -4221,7 +4221,7 @@ const opInputService22TestCaseOperation4 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-func (c *InputService22ProtocolTest) InputService22TestCaseOperation4Request(input *InputService22TestShapeInputService22TestCaseOperation2Input) (req *request.Request, output *InputService22TestShapeInputService22TestCaseOperation4Output) {
+func (c *InputService22ProtocolTest) InputService22TestCaseOperation4Request(input *InputService22TestShapeInputService22TestCaseOperation6Input) (req *request.Request, output *InputService22TestShapeInputService22TestCaseOperation4Output) {
 	op := &request.Operation{
 		Name:       opInputService22TestCaseOperation4,
 		HTTPMethod: "POST",
@@ -4229,7 +4229,7 @@ func (c *InputService22ProtocolTest) InputService22TestCaseOperation4Request(inp
 	}
 
 	if input == nil {
-		input = &InputService22TestShapeInputService22TestCaseOperation2Input{}
+		input = &InputService22TestShapeInputService22TestCaseOperation6Input{}
 	}
 
 	output = &InputService22TestShapeInputService22TestCaseOperation4Output{}
@@ -4247,7 +4247,7 @@ func (c *InputService22ProtocolTest) InputService22TestCaseOperation4Request(inp
 //
 // See the AWS API reference guide for 's
 // API operation InputService22TestCaseOperation4 for usage and error information.
-func (c *InputService22ProtocolTest) InputService22TestCaseOperation4(input *InputService22TestShapeInputService22TestCaseOperation2Input) (*InputService22TestShapeInputService22TestCaseOperation4Output, error) {
+func (c *InputService22ProtocolTest) InputService22TestCaseOperation4(input *InputService22TestShapeInputService22TestCaseOperation6Input) (*InputService22TestShapeInputService22TestCaseOperation4Output, error) {
 	req, out := c.InputService22TestCaseOperation4Request(input)
 	return out, req.Send()
 }
@@ -4261,7 +4261,7 @@ func (c *InputService22ProtocolTest) InputService22TestCaseOperation4(input *Inp
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *InputService22ProtocolTest) InputService22TestCaseOperation4WithContext(ctx aws.Context, input *InputService22TestShapeInputService22TestCaseOperation2Input, opts ...request.Option) (*InputService22TestShapeInputService22TestCaseOperation4Output, error) {
+func (c *InputService22ProtocolTest) InputService22TestCaseOperation4WithContext(ctx aws.Context, input *InputService22TestShapeInputService22TestCaseOperation6Input, opts ...request.Option) (*InputService22TestShapeInputService22TestCaseOperation4Output, error) {
 	req, out := c.InputService22TestCaseOperation4Request(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
@@ -4293,7 +4293,7 @@ const opInputService22TestCaseOperation5 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-func (c *InputService22ProtocolTest) InputService22TestCaseOperation5Request(input *InputService22TestShapeInputService22TestCaseOperation2Input) (req *request.Request, output *InputService22TestShapeInputService22TestCaseOperation5Output) {
+func (c *InputService22ProtocolTest) InputService22TestCaseOperation5Request(input *InputService22TestShapeInputService22TestCaseOperation6Input) (req *request.Request, output *InputService22TestShapeInputService22TestCaseOperation5Output) {
 	op := &request.Operation{
 		Name:       opInputService22TestCaseOperation5,
 		HTTPMethod: "POST",
@@ -4301,7 +4301,7 @@ func (c *InputService22ProtocolTest) InputService22TestCaseOperation5Request(inp
 	}
 
 	if input == nil {
-		input = &InputService22TestShapeInputService22TestCaseOperation2Input{}
+		input = &InputService22TestShapeInputService22TestCaseOperation6Input{}
 	}
 
 	output = &InputService22TestShapeInputService22TestCaseOperation5Output{}
@@ -4319,7 +4319,7 @@ func (c *InputService22ProtocolTest) InputService22TestCaseOperation5Request(inp
 //
 // See the AWS API reference guide for 's
 // API operation InputService22TestCaseOperation5 for usage and error information.
-func (c *InputService22ProtocolTest) InputService22TestCaseOperation5(input *InputService22TestShapeInputService22TestCaseOperation2Input) (*InputService22TestShapeInputService22TestCaseOperation5Output, error) {
+func (c *InputService22ProtocolTest) InputService22TestCaseOperation5(input *InputService22TestShapeInputService22TestCaseOperation6Input) (*InputService22TestShapeInputService22TestCaseOperation5Output, error) {
 	req, out := c.InputService22TestCaseOperation5Request(input)
 	return out, req.Send()
 }
@@ -4333,7 +4333,7 @@ func (c *InputService22ProtocolTest) InputService22TestCaseOperation5(input *Inp
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *InputService22ProtocolTest) InputService22TestCaseOperation5WithContext(ctx aws.Context, input *InputService22TestShapeInputService22TestCaseOperation2Input, opts ...request.Option) (*InputService22TestShapeInputService22TestCaseOperation5Output, error) {
+func (c *InputService22ProtocolTest) InputService22TestCaseOperation5WithContext(ctx aws.Context, input *InputService22TestShapeInputService22TestCaseOperation6Input, opts ...request.Option) (*InputService22TestShapeInputService22TestCaseOperation5Output, error) {
 	req, out := c.InputService22TestCaseOperation5Request(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
@@ -4365,7 +4365,7 @@ const opInputService22TestCaseOperation6 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-func (c *InputService22ProtocolTest) InputService22TestCaseOperation6Request(input *InputService22TestShapeInputService22TestCaseOperation2Input) (req *request.Request, output *InputService22TestShapeInputService22TestCaseOperation6Output) {
+func (c *InputService22ProtocolTest) InputService22TestCaseOperation6Request(input *InputService22TestShapeInputService22TestCaseOperation6Input) (req *request.Request, output *InputService22TestShapeInputService22TestCaseOperation6Output) {
 	op := &request.Operation{
 		Name:       opInputService22TestCaseOperation6,
 		HTTPMethod: "POST",
@@ -4373,7 +4373,7 @@ func (c *InputService22ProtocolTest) InputService22TestCaseOperation6Request(inp
 	}
 
 	if input == nil {
-		input = &InputService22TestShapeInputService22TestCaseOperation2Input{}
+		input = &InputService22TestShapeInputService22TestCaseOperation6Input{}
 	}
 
 	output = &InputService22TestShapeInputService22TestCaseOperation6Output{}
@@ -4391,7 +4391,7 @@ func (c *InputService22ProtocolTest) InputService22TestCaseOperation6Request(inp
 //
 // See the AWS API reference guide for 's
 // API operation InputService22TestCaseOperation6 for usage and error information.
-func (c *InputService22ProtocolTest) InputService22TestCaseOperation6(input *InputService22TestShapeInputService22TestCaseOperation2Input) (*InputService22TestShapeInputService22TestCaseOperation6Output, error) {
+func (c *InputService22ProtocolTest) InputService22TestCaseOperation6(input *InputService22TestShapeInputService22TestCaseOperation6Input) (*InputService22TestShapeInputService22TestCaseOperation6Output, error) {
 	req, out := c.InputService22TestCaseOperation6Request(input)
 	return out, req.Send()
 }
@@ -4405,7 +4405,7 @@ func (c *InputService22ProtocolTest) InputService22TestCaseOperation6(input *Inp
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *InputService22ProtocolTest) InputService22TestCaseOperation6WithContext(ctx aws.Context, input *InputService22TestShapeInputService22TestCaseOperation2Input, opts ...request.Option) (*InputService22TestShapeInputService22TestCaseOperation6Output, error) {
+func (c *InputService22ProtocolTest) InputService22TestCaseOperation6WithContext(ctx aws.Context, input *InputService22TestShapeInputService22TestCaseOperation6Input, opts ...request.Option) (*InputService22TestShapeInputService22TestCaseOperation6Output, error) {
 	req, out := c.InputService22TestCaseOperation6Request(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
@@ -4414,18 +4414,6 @@ func (c *InputService22ProtocolTest) InputService22TestCaseOperation6WithContext
 
 type InputService22TestShapeInputService22TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
-}
-
-type InputService22TestShapeInputService22TestCaseOperation2Input struct {
-	_ struct{} `locationName:"OperationRequest" type:"structure" xmlURI:"https://foo/"`
-
-	RecursiveStruct *InputService22TestShapeRecursiveStructType `type:"structure"`
-}
-
-// SetRecursiveStruct sets the RecursiveStruct field's value.
-func (s *InputService22TestShapeInputService22TestCaseOperation2Input) SetRecursiveStruct(v *InputService22TestShapeRecursiveStructType) *InputService22TestShapeInputService22TestCaseOperation2Input {
-	s.RecursiveStruct = v
-	return s
 }
 
 type InputService22TestShapeInputService22TestCaseOperation2Output struct {
@@ -4442,6 +4430,18 @@ type InputService22TestShapeInputService22TestCaseOperation4Output struct {
 
 type InputService22TestShapeInputService22TestCaseOperation5Output struct {
 	_ struct{} `type:"structure"`
+}
+
+type InputService22TestShapeInputService22TestCaseOperation6Input struct {
+	_ struct{} `locationName:"OperationRequest" type:"structure" xmlURI:"https://foo/"`
+
+	RecursiveStruct *InputService22TestShapeRecursiveStructType `type:"structure"`
+}
+
+// SetRecursiveStruct sets the RecursiveStruct field's value.
+func (s *InputService22TestShapeInputService22TestCaseOperation6Input) SetRecursiveStruct(v *InputService22TestShapeRecursiveStructType) *InputService22TestShapeInputService22TestCaseOperation6Input {
+	s.RecursiveStruct = v
+	return s
 }
 
 type InputService22TestShapeInputService22TestCaseOperation6Output struct {
@@ -4707,7 +4707,7 @@ const opInputService24TestCaseOperation1 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-func (c *InputService24ProtocolTest) InputService24TestCaseOperation1Request(input *InputService24TestShapeInputService24TestCaseOperation1Input) (req *request.Request, output *InputService24TestShapeInputService24TestCaseOperation1Output) {
+func (c *InputService24ProtocolTest) InputService24TestCaseOperation1Request(input *InputService24TestShapeInputService24TestCaseOperation2Input) (req *request.Request, output *InputService24TestShapeInputService24TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:       opInputService24TestCaseOperation1,
 		HTTPMethod: "POST",
@@ -4715,7 +4715,7 @@ func (c *InputService24ProtocolTest) InputService24TestCaseOperation1Request(inp
 	}
 
 	if input == nil {
-		input = &InputService24TestShapeInputService24TestCaseOperation1Input{}
+		input = &InputService24TestShapeInputService24TestCaseOperation2Input{}
 	}
 
 	output = &InputService24TestShapeInputService24TestCaseOperation1Output{}
@@ -4733,7 +4733,7 @@ func (c *InputService24ProtocolTest) InputService24TestCaseOperation1Request(inp
 //
 // See the AWS API reference guide for 's
 // API operation InputService24TestCaseOperation1 for usage and error information.
-func (c *InputService24ProtocolTest) InputService24TestCaseOperation1(input *InputService24TestShapeInputService24TestCaseOperation1Input) (*InputService24TestShapeInputService24TestCaseOperation1Output, error) {
+func (c *InputService24ProtocolTest) InputService24TestCaseOperation1(input *InputService24TestShapeInputService24TestCaseOperation2Input) (*InputService24TestShapeInputService24TestCaseOperation1Output, error) {
 	req, out := c.InputService24TestCaseOperation1Request(input)
 	return out, req.Send()
 }
@@ -4747,7 +4747,7 @@ func (c *InputService24ProtocolTest) InputService24TestCaseOperation1(input *Inp
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *InputService24ProtocolTest) InputService24TestCaseOperation1WithContext(ctx aws.Context, input *InputService24TestShapeInputService24TestCaseOperation1Input, opts ...request.Option) (*InputService24TestShapeInputService24TestCaseOperation1Output, error) {
+func (c *InputService24ProtocolTest) InputService24TestCaseOperation1WithContext(ctx aws.Context, input *InputService24TestShapeInputService24TestCaseOperation2Input, opts ...request.Option) (*InputService24TestShapeInputService24TestCaseOperation1Output, error) {
 	req, out := c.InputService24TestCaseOperation1Request(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
@@ -4779,7 +4779,7 @@ const opInputService24TestCaseOperation2 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-func (c *InputService24ProtocolTest) InputService24TestCaseOperation2Request(input *InputService24TestShapeInputService24TestCaseOperation1Input) (req *request.Request, output *InputService24TestShapeInputService24TestCaseOperation2Output) {
+func (c *InputService24ProtocolTest) InputService24TestCaseOperation2Request(input *InputService24TestShapeInputService24TestCaseOperation2Input) (req *request.Request, output *InputService24TestShapeInputService24TestCaseOperation2Output) {
 	op := &request.Operation{
 		Name:       opInputService24TestCaseOperation2,
 		HTTPMethod: "POST",
@@ -4787,7 +4787,7 @@ func (c *InputService24ProtocolTest) InputService24TestCaseOperation2Request(inp
 	}
 
 	if input == nil {
-		input = &InputService24TestShapeInputService24TestCaseOperation1Input{}
+		input = &InputService24TestShapeInputService24TestCaseOperation2Input{}
 	}
 
 	output = &InputService24TestShapeInputService24TestCaseOperation2Output{}
@@ -4805,7 +4805,7 @@ func (c *InputService24ProtocolTest) InputService24TestCaseOperation2Request(inp
 //
 // See the AWS API reference guide for 's
 // API operation InputService24TestCaseOperation2 for usage and error information.
-func (c *InputService24ProtocolTest) InputService24TestCaseOperation2(input *InputService24TestShapeInputService24TestCaseOperation1Input) (*InputService24TestShapeInputService24TestCaseOperation2Output, error) {
+func (c *InputService24ProtocolTest) InputService24TestCaseOperation2(input *InputService24TestShapeInputService24TestCaseOperation2Input) (*InputService24TestShapeInputService24TestCaseOperation2Output, error) {
 	req, out := c.InputService24TestCaseOperation2Request(input)
 	return out, req.Send()
 }
@@ -4819,27 +4819,27 @@ func (c *InputService24ProtocolTest) InputService24TestCaseOperation2(input *Inp
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *InputService24ProtocolTest) InputService24TestCaseOperation2WithContext(ctx aws.Context, input *InputService24TestShapeInputService24TestCaseOperation1Input, opts ...request.Option) (*InputService24TestShapeInputService24TestCaseOperation2Output, error) {
+func (c *InputService24ProtocolTest) InputService24TestCaseOperation2WithContext(ctx aws.Context, input *InputService24TestShapeInputService24TestCaseOperation2Input, opts ...request.Option) (*InputService24TestShapeInputService24TestCaseOperation2Output, error) {
 	req, out := c.InputService24TestCaseOperation2Request(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
 }
 
-type InputService24TestShapeInputService24TestCaseOperation1Input struct {
+type InputService24TestShapeInputService24TestCaseOperation1Output struct {
+	_ struct{} `type:"structure"`
+}
+
+type InputService24TestShapeInputService24TestCaseOperation2Input struct {
 	_ struct{} `type:"structure"`
 
 	Token *string `type:"string" idempotencyToken:"true"`
 }
 
 // SetToken sets the Token field's value.
-func (s *InputService24TestShapeInputService24TestCaseOperation1Input) SetToken(v string) *InputService24TestShapeInputService24TestCaseOperation1Input {
+func (s *InputService24TestShapeInputService24TestCaseOperation2Input) SetToken(v string) *InputService24TestShapeInputService24TestCaseOperation2Input {
 	s.Token = &v
 	return s
-}
-
-type InputService24TestShapeInputService24TestCaseOperation1Output struct {
-	_ struct{} `type:"structure"`
 }
 
 type InputService24TestShapeInputService24TestCaseOperation2Output struct {
@@ -5400,7 +5400,7 @@ func TestInputService17ProtocolTestBlobPayloadCase2(t *testing.T) {
 
 func TestInputService18ProtocolTestStructurePayloadCase1(t *testing.T) {
 	svc := NewInputService18ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
-	input := &InputService18TestShapeInputService18TestCaseOperation2Input{
+	input := &InputService18TestShapeInputService18TestCaseOperation4Input{
 		Foo: &InputService18TestShapeFooShape{
 			Baz: aws.String("bar"),
 		},
@@ -5415,7 +5415,7 @@ func TestInputService18ProtocolTestStructurePayloadCase1(t *testing.T) {
 	// assert body
 	assert.NotNil(t, r.Body)
 	body := util.SortXML(r.Body)
-	awstesting.AssertXML(t, `<foo><baz>bar</baz></foo>`, util.Trim(string(body)), InputService18TestShapeInputService18TestCaseOperation2Input{})
+	awstesting.AssertXML(t, `<foo><baz>bar</baz></foo>`, util.Trim(string(body)), InputService18TestShapeInputService18TestCaseOperation4Input{})
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
@@ -5426,7 +5426,7 @@ func TestInputService18ProtocolTestStructurePayloadCase1(t *testing.T) {
 
 func TestInputService18ProtocolTestStructurePayloadCase2(t *testing.T) {
 	svc := NewInputService18ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
-	input := &InputService18TestShapeInputService18TestCaseOperation2Input{}
+	input := &InputService18TestShapeInputService18TestCaseOperation4Input{}
 	req, _ := svc.InputService18TestCaseOperation2Request(input)
 	r := req.HTTPRequest
 
@@ -5443,7 +5443,7 @@ func TestInputService18ProtocolTestStructurePayloadCase2(t *testing.T) {
 
 func TestInputService18ProtocolTestStructurePayloadCase3(t *testing.T) {
 	svc := NewInputService18ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
-	input := &InputService18TestShapeInputService18TestCaseOperation2Input{
+	input := &InputService18TestShapeInputService18TestCaseOperation4Input{
 		Foo: &InputService18TestShapeFooShape{},
 	}
 	req, _ := svc.InputService18TestCaseOperation3Request(input)
@@ -5456,7 +5456,7 @@ func TestInputService18ProtocolTestStructurePayloadCase3(t *testing.T) {
 	// assert body
 	assert.NotNil(t, r.Body)
 	body := util.SortXML(r.Body)
-	awstesting.AssertXML(t, `<foo></foo>`, util.Trim(string(body)), InputService18TestShapeInputService18TestCaseOperation2Input{})
+	awstesting.AssertXML(t, `<foo></foo>`, util.Trim(string(body)), InputService18TestShapeInputService18TestCaseOperation4Input{})
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
@@ -5467,7 +5467,7 @@ func TestInputService18ProtocolTestStructurePayloadCase3(t *testing.T) {
 
 func TestInputService18ProtocolTestStructurePayloadCase4(t *testing.T) {
 	svc := NewInputService18ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
-	input := &InputService18TestShapeInputService18TestCaseOperation2Input{}
+	input := &InputService18TestShapeInputService18TestCaseOperation4Input{}
 	req, _ := svc.InputService18TestCaseOperation4Request(input)
 	r := req.HTTPRequest
 
@@ -5569,7 +5569,7 @@ func TestInputService21ProtocolTestOmitsNullQueryParamsButSerializesEmptyStrings
 
 func TestInputService22ProtocolTestRecursiveShapesCase1(t *testing.T) {
 	svc := NewInputService22ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
-	input := &InputService22TestShapeInputService22TestCaseOperation2Input{
+	input := &InputService22TestShapeInputService22TestCaseOperation6Input{
 		RecursiveStruct: &InputService22TestShapeRecursiveStructType{
 			NoRecurse: aws.String("foo"),
 		},
@@ -5584,7 +5584,7 @@ func TestInputService22ProtocolTestRecursiveShapesCase1(t *testing.T) {
 	// assert body
 	assert.NotNil(t, r.Body)
 	body := util.SortXML(r.Body)
-	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><RecursiveStruct xmlns="https://foo/"><NoRecurse xmlns="https://foo/">foo</NoRecurse></RecursiveStruct></OperationRequest>`, util.Trim(string(body)), InputService22TestShapeInputService22TestCaseOperation2Input{})
+	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><RecursiveStruct xmlns="https://foo/"><NoRecurse xmlns="https://foo/">foo</NoRecurse></RecursiveStruct></OperationRequest>`, util.Trim(string(body)), InputService22TestShapeInputService22TestCaseOperation6Input{})
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
@@ -5595,7 +5595,7 @@ func TestInputService22ProtocolTestRecursiveShapesCase1(t *testing.T) {
 
 func TestInputService22ProtocolTestRecursiveShapesCase2(t *testing.T) {
 	svc := NewInputService22ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
-	input := &InputService22TestShapeInputService22TestCaseOperation2Input{
+	input := &InputService22TestShapeInputService22TestCaseOperation6Input{
 		RecursiveStruct: &InputService22TestShapeRecursiveStructType{
 			RecursiveStruct: &InputService22TestShapeRecursiveStructType{
 				NoRecurse: aws.String("foo"),
@@ -5612,7 +5612,7 @@ func TestInputService22ProtocolTestRecursiveShapesCase2(t *testing.T) {
 	// assert body
 	assert.NotNil(t, r.Body)
 	body := util.SortXML(r.Body)
-	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><RecursiveStruct xmlns="https://foo/"><RecursiveStruct xmlns="https://foo/"><NoRecurse xmlns="https://foo/">foo</NoRecurse></RecursiveStruct></RecursiveStruct></OperationRequest>`, util.Trim(string(body)), InputService22TestShapeInputService22TestCaseOperation2Input{})
+	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><RecursiveStruct xmlns="https://foo/"><RecursiveStruct xmlns="https://foo/"><NoRecurse xmlns="https://foo/">foo</NoRecurse></RecursiveStruct></RecursiveStruct></OperationRequest>`, util.Trim(string(body)), InputService22TestShapeInputService22TestCaseOperation6Input{})
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
@@ -5623,7 +5623,7 @@ func TestInputService22ProtocolTestRecursiveShapesCase2(t *testing.T) {
 
 func TestInputService22ProtocolTestRecursiveShapesCase3(t *testing.T) {
 	svc := NewInputService22ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
-	input := &InputService22TestShapeInputService22TestCaseOperation2Input{
+	input := &InputService22TestShapeInputService22TestCaseOperation6Input{
 		RecursiveStruct: &InputService22TestShapeRecursiveStructType{
 			RecursiveStruct: &InputService22TestShapeRecursiveStructType{
 				RecursiveStruct: &InputService22TestShapeRecursiveStructType{
@@ -5644,7 +5644,7 @@ func TestInputService22ProtocolTestRecursiveShapesCase3(t *testing.T) {
 	// assert body
 	assert.NotNil(t, r.Body)
 	body := util.SortXML(r.Body)
-	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><RecursiveStruct xmlns="https://foo/"><RecursiveStruct xmlns="https://foo/"><RecursiveStruct xmlns="https://foo/"><RecursiveStruct xmlns="https://foo/"><NoRecurse xmlns="https://foo/">foo</NoRecurse></RecursiveStruct></RecursiveStruct></RecursiveStruct></RecursiveStruct></OperationRequest>`, util.Trim(string(body)), InputService22TestShapeInputService22TestCaseOperation2Input{})
+	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><RecursiveStruct xmlns="https://foo/"><RecursiveStruct xmlns="https://foo/"><RecursiveStruct xmlns="https://foo/"><RecursiveStruct xmlns="https://foo/"><NoRecurse xmlns="https://foo/">foo</NoRecurse></RecursiveStruct></RecursiveStruct></RecursiveStruct></RecursiveStruct></OperationRequest>`, util.Trim(string(body)), InputService22TestShapeInputService22TestCaseOperation6Input{})
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
@@ -5655,7 +5655,7 @@ func TestInputService22ProtocolTestRecursiveShapesCase3(t *testing.T) {
 
 func TestInputService22ProtocolTestRecursiveShapesCase4(t *testing.T) {
 	svc := NewInputService22ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
-	input := &InputService22TestShapeInputService22TestCaseOperation2Input{
+	input := &InputService22TestShapeInputService22TestCaseOperation6Input{
 		RecursiveStruct: &InputService22TestShapeRecursiveStructType{
 			RecursiveList: []*InputService22TestShapeRecursiveStructType{
 				{
@@ -5677,7 +5677,7 @@ func TestInputService22ProtocolTestRecursiveShapesCase4(t *testing.T) {
 	// assert body
 	assert.NotNil(t, r.Body)
 	body := util.SortXML(r.Body)
-	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><RecursiveStruct xmlns="https://foo/"><RecursiveList xmlns="https://foo/"><member xmlns="https://foo/"><NoRecurse xmlns="https://foo/">foo</NoRecurse></member><member xmlns="https://foo/"><NoRecurse xmlns="https://foo/">bar</NoRecurse></member></RecursiveList></RecursiveStruct></OperationRequest>`, util.Trim(string(body)), InputService22TestShapeInputService22TestCaseOperation2Input{})
+	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><RecursiveStruct xmlns="https://foo/"><RecursiveList xmlns="https://foo/"><member xmlns="https://foo/"><NoRecurse xmlns="https://foo/">foo</NoRecurse></member><member xmlns="https://foo/"><NoRecurse xmlns="https://foo/">bar</NoRecurse></member></RecursiveList></RecursiveStruct></OperationRequest>`, util.Trim(string(body)), InputService22TestShapeInputService22TestCaseOperation6Input{})
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
@@ -5688,7 +5688,7 @@ func TestInputService22ProtocolTestRecursiveShapesCase4(t *testing.T) {
 
 func TestInputService22ProtocolTestRecursiveShapesCase5(t *testing.T) {
 	svc := NewInputService22ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
-	input := &InputService22TestShapeInputService22TestCaseOperation2Input{
+	input := &InputService22TestShapeInputService22TestCaseOperation6Input{
 		RecursiveStruct: &InputService22TestShapeRecursiveStructType{
 			RecursiveList: []*InputService22TestShapeRecursiveStructType{
 				{
@@ -5712,7 +5712,7 @@ func TestInputService22ProtocolTestRecursiveShapesCase5(t *testing.T) {
 	// assert body
 	assert.NotNil(t, r.Body)
 	body := util.SortXML(r.Body)
-	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><RecursiveStruct xmlns="https://foo/"><RecursiveList xmlns="https://foo/"><member xmlns="https://foo/"><NoRecurse xmlns="https://foo/">foo</NoRecurse></member><member xmlns="https://foo/"><RecursiveStruct xmlns="https://foo/"><NoRecurse xmlns="https://foo/">bar</NoRecurse></RecursiveStruct></member></RecursiveList></RecursiveStruct></OperationRequest>`, util.Trim(string(body)), InputService22TestShapeInputService22TestCaseOperation2Input{})
+	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><RecursiveStruct xmlns="https://foo/"><RecursiveList xmlns="https://foo/"><member xmlns="https://foo/"><NoRecurse xmlns="https://foo/">foo</NoRecurse></member><member xmlns="https://foo/"><RecursiveStruct xmlns="https://foo/"><NoRecurse xmlns="https://foo/">bar</NoRecurse></RecursiveStruct></member></RecursiveList></RecursiveStruct></OperationRequest>`, util.Trim(string(body)), InputService22TestShapeInputService22TestCaseOperation6Input{})
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
@@ -5723,7 +5723,7 @@ func TestInputService22ProtocolTestRecursiveShapesCase5(t *testing.T) {
 
 func TestInputService22ProtocolTestRecursiveShapesCase6(t *testing.T) {
 	svc := NewInputService22ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
-	input := &InputService22TestShapeInputService22TestCaseOperation2Input{
+	input := &InputService22TestShapeInputService22TestCaseOperation6Input{
 		RecursiveStruct: &InputService22TestShapeRecursiveStructType{
 			RecursiveMap: map[string]*InputService22TestShapeRecursiveStructType{
 				"bar": {
@@ -5745,7 +5745,7 @@ func TestInputService22ProtocolTestRecursiveShapesCase6(t *testing.T) {
 	// assert body
 	assert.NotNil(t, r.Body)
 	body := util.SortXML(r.Body)
-	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><RecursiveStruct xmlns="https://foo/"><RecursiveMap xmlns="https://foo/"><entry xmlns="https://foo/"><key xmlns="https://foo/">foo</key><value xmlns="https://foo/"><NoRecurse xmlns="https://foo/">foo</NoRecurse></value></entry><entry xmlns="https://foo/"><key xmlns="https://foo/">bar</key><value xmlns="https://foo/"><NoRecurse xmlns="https://foo/">bar</NoRecurse></value></entry></RecursiveMap></RecursiveStruct></OperationRequest>`, util.Trim(string(body)), InputService22TestShapeInputService22TestCaseOperation2Input{})
+	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><RecursiveStruct xmlns="https://foo/"><RecursiveMap xmlns="https://foo/"><entry xmlns="https://foo/"><key xmlns="https://foo/">foo</key><value xmlns="https://foo/"><NoRecurse xmlns="https://foo/">foo</NoRecurse></value></entry><entry xmlns="https://foo/"><key xmlns="https://foo/">bar</key><value xmlns="https://foo/"><NoRecurse xmlns="https://foo/">bar</NoRecurse></value></entry></RecursiveMap></RecursiveStruct></OperationRequest>`, util.Trim(string(body)), InputService22TestShapeInputService22TestCaseOperation6Input{})
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
@@ -5776,7 +5776,7 @@ func TestInputService23ProtocolTestTimestampInHeaderCase1(t *testing.T) {
 
 func TestInputService24ProtocolTestIdempotencyTokenAutoFillCase1(t *testing.T) {
 	svc := NewInputService24ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
-	input := &InputService24TestShapeInputService24TestCaseOperation1Input{
+	input := &InputService24TestShapeInputService24TestCaseOperation2Input{
 		Token: aws.String("abc123"),
 	}
 	req, _ := svc.InputService24TestCaseOperation1Request(input)
@@ -5789,7 +5789,7 @@ func TestInputService24ProtocolTestIdempotencyTokenAutoFillCase1(t *testing.T) {
 	// assert body
 	assert.NotNil(t, r.Body)
 	body := util.SortXML(r.Body)
-	awstesting.AssertXML(t, `<InputShape><Token>abc123</Token></InputShape>`, util.Trim(string(body)), InputService24TestShapeInputService24TestCaseOperation1Input{})
+	awstesting.AssertXML(t, `<InputShape><Token>abc123</Token></InputShape>`, util.Trim(string(body)), InputService24TestShapeInputService24TestCaseOperation2Input{})
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
@@ -5800,7 +5800,7 @@ func TestInputService24ProtocolTestIdempotencyTokenAutoFillCase1(t *testing.T) {
 
 func TestInputService24ProtocolTestIdempotencyTokenAutoFillCase2(t *testing.T) {
 	svc := NewInputService24ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
-	input := &InputService24TestShapeInputService24TestCaseOperation1Input{}
+	input := &InputService24TestShapeInputService24TestCaseOperation2Input{}
 	req, _ := svc.InputService24TestCaseOperation2Request(input)
 	r := req.HTTPRequest
 
@@ -5811,7 +5811,7 @@ func TestInputService24ProtocolTestIdempotencyTokenAutoFillCase2(t *testing.T) {
 	// assert body
 	assert.NotNil(t, r.Body)
 	body := util.SortXML(r.Body)
-	awstesting.AssertXML(t, `<InputShape><Token>00000000-0000-4000-8000-000000000000</Token></InputShape>`, util.Trim(string(body)), InputService24TestShapeInputService24TestCaseOperation1Input{})
+	awstesting.AssertXML(t, `<InputShape><Token>00000000-0000-4000-8000-000000000000</Token></InputShape>`, util.Trim(string(body)), InputService24TestShapeInputService24TestCaseOperation2Input{})
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())

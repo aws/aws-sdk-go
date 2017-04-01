@@ -177,6 +177,10 @@ func ExampleCloudDirectory_BatchRead() {
 					ObjectReference: &clouddirectory.ObjectReference{ // Required
 						Selector: aws.String("SelectorObjectReference"),
 					},
+					FacetFilter: &clouddirectory.SchemaFacet{
+						FacetName: aws.String("FacetName"),
+						SchemaArn: aws.String("Arn"),
+					},
 					MaxResults: aws.Int64(1),
 					NextToken:  aws.String("NextToken"),
 				},
@@ -1030,8 +1034,12 @@ func ExampleCloudDirectory_ListObjectAttributes() {
 			Selector: aws.String("SelectorObjectReference"),
 		},
 		ConsistencyLevel: aws.String("ConsistencyLevel"),
-		MaxResults:       aws.Int64(1),
-		NextToken:        aws.String("NextToken"),
+		FacetFilter: &clouddirectory.SchemaFacet{
+			FacetName: aws.String("FacetName"),
+			SchemaArn: aws.String("Arn"),
+		},
+		MaxResults: aws.Int64(1),
+		NextToken:  aws.String("NextToken"),
 	}
 	resp, err := svc.ListObjectAttributes(params)
 
