@@ -131,6 +131,7 @@ const (
 	StsServiceID                          = "sts"                          // Sts.
 	SupportServiceID                      = "support"                      // Support.
 	SwfServiceID                          = "swf"                          // Swf.
+	TaggingServiceID                      = "tagging"                      // Tagging.
 	WafServiceID                          = "waf"                          // Waf.
 	WafRegionalServiceID                  = "waf-regional"                 // WafRegional.
 	WorkdocsServiceID                     = "workdocs"                     // Workdocs.
@@ -1573,6 +1574,25 @@ var awsPartition = partition{
 				"us-west-2":      endpoint{},
 			},
 		},
+		"tagging": service{
+
+			Endpoints: endpoints{
+				"ap-northeast-1": endpoint{},
+				"ap-northeast-2": endpoint{},
+				"ap-south-1":     endpoint{},
+				"ap-southeast-1": endpoint{},
+				"ap-southeast-2": endpoint{},
+				"ca-central-1":   endpoint{},
+				"eu-central-1":   endpoint{},
+				"eu-west-1":      endpoint{},
+				"eu-west-2":      endpoint{},
+				"sa-east-1":      endpoint{},
+				"us-east-1":      endpoint{},
+				"us-east-2":      endpoint{},
+				"us-west-1":      endpoint{},
+				"us-west-2":      endpoint{},
+			},
+		},
 		"waf": service{
 			PartitionEndpoint: "aws-global",
 			IsRegionalized:    boxedFalse,
@@ -1866,6 +1886,12 @@ var awscnPartition = partition{
 			},
 		},
 		"swf": service{
+
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"tagging": service{
 
 			Endpoints: endpoints{
 				"cn-north-1": endpoint{},

@@ -1,3 +1,11 @@
+Release v1.8.6 (2017-04-01)
+===
+
+### Service Client Updates
+* `service/clouddirectory`: Updates service API and documentation
+  * ListObjectAttributes now supports filtering by facet.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.8.5 (2017-03-30)
 ===
 
