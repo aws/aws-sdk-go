@@ -25,6 +25,8 @@ func (r *testReader) Close() error {
 	return nil
 }
 
+// GetRecords will hang unexpectedly during reads.
+// See https://github.com/aws/aws-sdk-go/issues/1141
 func TestKinesisGetRecordsCustomization(t *testing.T) {
 	readDuration = time.Millisecond
 	retryCount := 0
@@ -41,12 +43,13 @@ func TestKinesisGetRecordsCustomization(t *testing.T) {
 			Header: http.Header{
 				"X-Amz-Request-Id": []string{"abc123"},
 			},
-			Body:          &testReader{duration: time.Second},
+			Body:          &testReader{duration: 10 * time.Second},
 			ContentLength: -1,
 		}
 		r.HTTPResponse.Status = http.StatusText(r.HTTPResponse.StatusCode)
 		retryCount++
 	})
+	req.ApplyOptions(request.WithResponseReadTimeout(time.Second))
 	err := req.Send()
 	if err == nil {
 		t.Errorf("Expected error, but received nil")
@@ -78,6 +81,7 @@ func TestKinesisGetRecordsNoTimeout(t *testing.T) {
 		}
 		r.HTTPResponse.Status = http.StatusText(r.HTTPResponse.StatusCode)
 	})
+	req.ApplyOptions(request.WithResponseReadTimeout(time.Second))
 	err := req.Send()
 	if err != nil {
 		t.Errorf("Expected no error, but received %v", err)

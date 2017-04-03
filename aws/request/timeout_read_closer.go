@@ -85,8 +85,8 @@ func WithResponseReadTimeout(duration time.Duration) Option {
 			}}
 
 		// remove the handler so we are not stomping over any new durations.
-		r.Handlers.Unmarshal.RemoveByName(HandlerResponseTimeout)
-		r.Handlers.Unmarshal.PushFrontNamed(timeoutHandler)
+		r.Handlers.Send.RemoveByName(HandlerResponseTimeout)
+		r.Handlers.Send.PushBackNamed(timeoutHandler)
 
 		r.Handlers.Unmarshal.PushBack(adaptToResponseTimeoutError)
 		r.Handlers.UnmarshalError.PushBack(adaptToResponseTimeoutError)

@@ -6,7 +6,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 )
 
-var readDuration = 15 * time.Second
+var readDuration = 5 * time.Second
 
 func init() {
 	ops := []string{

@@ -1,8 +1,8 @@
 package request
 
 import (
-	"fmt"
-	"strings"
+	"net"
+	"syscall"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -78,22 +78,24 @@ func isSerializationErrorRetryable(err error) bool {
 	}
 
 	if aerr, ok := err.(awserr.Error); ok {
-		fmt.Println(aerr)
 		return isCodeRetryable(aerr.Code())
 	}
 
-	return strings.Contains(err.Error(), "Connection reset")
+	if opErr, ok := err.(*net.OpError); ok {
+		return opErr.Err.Error() == syscall.ECONNRESET.Error()
+	}
+
+	return false
 }
 
 // IsErrorRetryable returns whether the error is retryable, based on its Code.
 // Returns false if the request has no Error set.
 func (r *Request) IsErrorRetryable() bool {
 	if r.Error != nil {
-		if err, ok := r.Error.(awserr.Error); ok {
-			if err.Code() == ErrCodeSerialization {
-				return isSerializationErrorRetryable(err.OrigErr())
-			}
+		if err, ok := r.Error.(awserr.Error); ok && err.Code() != ErrCodeSerialization {
 			return isCodeRetryable(err.Code())
+		} else if ok {
+			return isSerializationErrorRetryable(err.OrigErr())
 		}
 	}
 	return false
