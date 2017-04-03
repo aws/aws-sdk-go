@@ -3,6 +3,7 @@ package request_test
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -435,6 +436,43 @@ func TestRequest_NoBody(t *testing.T) {
 
 		if err := r.Send(); err != nil {
 			t.Fatalf("%d, expect no error sending request, got %v", i, err)
+		}
+	}
+}
+
+func TestIsSerializationErrorRetryable(t *testing.T) {
+	testCases := []struct {
+		err      error
+		expected bool
+	}{
+		{
+			err:      awserr.New(request.ErrCodeSerialization, "foo error", nil),
+			expected: false,
+		},
+		{
+			err:      awserr.New("ErrFoo", "foo error", nil),
+			expected: false,
+		},
+		{
+			err:      nil,
+			expected: false,
+		},
+		{
+			err:      awserr.New(request.ErrCodeSerialization, "foo error", errors.New("Connection reset")),
+			expected: true,
+		},
+		{
+			err:      awserr.New(request.ErrCodeSerialization, "foo error", errors.New("Foo Connection reset Bar")),
+			expected: true,
+		},
+	}
+
+	for i, c := range testCases {
+		r := &request.Request{
+			Error: c.err,
+		}
+		if r.IsErrorRetryable() != c.expected {
+			t.Errorf("Case %d: Expected %v, but received %v", i+1, c.expected, !c.expected)
 		}
 	}
 }

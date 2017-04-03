@@ -1,6 +1,8 @@
 package request
 
 import (
+	"fmt"
+	"strings"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -70,11 +72,27 @@ func isCodeExpiredCreds(code string) bool {
 	return ok
 }
 
+func isSerializationErrorRetryable(err error) bool {
+	if err == nil {
+		return false
+	}
+
+	if aerr, ok := err.(awserr.Error); ok {
+		fmt.Println(aerr)
+		return isCodeRetryable(aerr.Code())
+	}
+
+	return strings.Contains(err.Error(), "Connection reset")
+}
+
 // IsErrorRetryable returns whether the error is retryable, based on its Code.
 // Returns false if the request has no Error set.
 func (r *Request) IsErrorRetryable() bool {
 	if r.Error != nil {
 		if err, ok := r.Error.(awserr.Error); ok {
+			if err.Code() == ErrCodeSerialization {
+				return isSerializationErrorRetryable(err.OrigErr())
+			}
 			return isCodeRetryable(err.Code())
 		}
 	}

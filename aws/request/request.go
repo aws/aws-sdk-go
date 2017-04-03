@@ -325,7 +325,7 @@ func (r *Request) ResetBody() {
 	// Related golang/go#18257
 	l, err := computeBodyLength(r.Body)
 	if err != nil {
-		r.Error = awserr.New("SerializationError", "failed to compute request body size", err)
+		r.Error = awserr.New(ErrCodeSerialization, "failed to compute request body size", err)
 		return
 	}
 
