@@ -10,10 +10,10 @@ The `Item` time will be used by the example to unmarshal the DynamoDB table's it
 type Item struct {
 	Key  int
 	Desc string
-	Data map[string]interface{} `dynamodbav:"Data,omitempty"`
+	Data map[string]interface{}
 }
 ```
-Use Go tags to define what the name is of the attribute in your DynamoDB table. See https://godoc.org/github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute#Marshal for more information.
+Use Go tags to define what the name is of the attribute in your DynamoDB table. See [AWS SDK for Go API Reference: Marshal](http://docs.aws.amazon.com/sdk-for-go/api/service/dynamodb/dynamodbattribute/#Marshal) for more information.
 
 In DynamoDB the structure of the item to be returned will be:
 ```json
@@ -45,9 +45,3 @@ In DynamoDB the structure of the item to be returned will be:
 	- "Value 1": abc
 	- "Value 2": 1234567890
 ```
-
-## Credentials
-The easiest way to set the credentials and start using this example is to install the AWS cli application: http://docs.aws.amazon.com/cli/latest/userguide/installing.html
-
-and run ``aws configure`` which will ask for your Key ID, Access Key, region name and output format.
-This proceedure is documented here: http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
