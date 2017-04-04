@@ -680,6 +680,14 @@ func (c *CloudWatch) GetMetricStatisticsRequest(input *GetMetricStatisticsInput)
 // fall within each one-hour period. Therefore, the number of values aggregated
 // by CloudWatch is larger than the number of data points returned.
 //
+// CloudWatch needs raw data points to calculate percentile statistics. If you
+// publish data using a statistic set instead, you cannot retrieve percentile
+// statistics for this data unless one of the following conditions is true:
+//
+//    * The SampleCount of the statistic set is 1
+//
+//    * The Min and the Max of the statistic set are equal
+//
 // For a list of metrics and dimensions supported by AWS services, see the Amazon
 // CloudWatch Metrics and Dimensions Reference (http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CW_Support_For_AWS.html)
 // in the Amazon CloudWatch User Guide.
@@ -1049,8 +1057,7 @@ func (c *CloudWatch) PutMetricDataRequest(input *PutMetricDataInput) (req *reque
 // a metric, it can take up to fifteen minutes for the metric to appear in calls
 // to ListMetrics.
 //
-// Each PutMetricData request is limited to 8 KB in size for HTTP GET requests
-// and is limited to 40 KB in size for HTTP POST requests.
+// Each PutMetricData request is limited to 40 KB in size for HTTP POST requests.
 //
 // Although the Value parameter accepts numbers of type Double, Amazon CloudWatch
 // rejects values that are either too small or too large. Values must be in
@@ -1058,9 +1065,22 @@ func (c *CloudWatch) PutMetricDataRequest(input *PutMetricDataInput) (req *reque
 // (Base 2). In addition, special values (e.g., NaN, +Infinity, -Infinity) are
 // not supported.
 //
+// You can use up to 10 dimensions per metric to further clarify what data the
+// metric collects. For more information on specifying dimensions, see Publishing
+// Metrics (http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/publishingMetrics.html)
+// in the Amazon CloudWatch User Guide.
+//
 // Data points with time stamps from 24 hours ago or longer can take at least
 // 48 hours to become available for GetMetricStatistics from the time they are
 // submitted.
+//
+// CloudWatch needs raw data points to calculate percentile statistics. If you
+// publish data using a statistic set instead, you cannot retrieve percentile
+// statistics for this data unless one of the following conditions is true:
+//
+//    * The SampleCount of the statistic set is 1
+//
+//    * The Min and the Max of the statistic set are equal
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2014,11 +2034,14 @@ func (s EnableAlarmActionsOutput) GoString() string {
 type GetMetricStatisticsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The dimensions. CloudWatch treats each unique combination of dimensions as
-	// a separate metric. You can't retrieve statistics using combinations of dimensions
-	// that were not specially published. You must specify the same dimensions that
-	// were used when the metrics were created. For an example, see Dimension Combinations
-	// (http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#dimension-combinations)
+	// The dimensions. If the metric contains multiple dimensions, you must include
+	// a value for each dimension. CloudWatch treats each unique combination of
+	// dimensions as a separate metric. You can't retrieve statistics using combinations
+	// of dimensions that were not specially published. You must specify the same
+	// dimensions that were used when the metrics were created. For an example,
+	// see Dimension Combinations (http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#dimension-combinations)
+	// in the Amazon CloudWatch User Guide. For more information on specifying dimensions,
+	// see Publishing Metrics (http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/publishingMetrics.html)
 	// in the Amazon CloudWatch User Guide.
 	Dimensions []*Dimension `type:"list"`
 
@@ -2425,6 +2448,8 @@ type MetricAlarm struct {
 	// The dimensions for the metric associated with the alarm.
 	Dimensions []*Dimension `type:"list"`
 
+	EvaluateLowSampleCountPercentile *string `min:"1" type:"string"`
+
 	// The number of periods over which data is compared to the specified threshold.
 	EvaluationPeriods *int64 `min:"1" type:"integer"`
 
@@ -2468,6 +2493,8 @@ type MetricAlarm struct {
 
 	// The value to compare with the specified statistic.
 	Threshold *float64 `type:"double"`
+
+	TreatMissingData *string `min:"1" type:"string"`
 
 	// The unit of the metric associated with the alarm.
 	Unit *string `type:"string" enum:"StandardUnit"`
@@ -2528,6 +2555,12 @@ func (s *MetricAlarm) SetComparisonOperator(v string) *MetricAlarm {
 // SetDimensions sets the Dimensions field's value.
 func (s *MetricAlarm) SetDimensions(v []*Dimension) *MetricAlarm {
 	s.Dimensions = v
+	return s
+}
+
+// SetEvaluateLowSampleCountPercentile sets the EvaluateLowSampleCountPercentile field's value.
+func (s *MetricAlarm) SetEvaluateLowSampleCountPercentile(v string) *MetricAlarm {
+	s.EvaluateLowSampleCountPercentile = &v
 	return s
 }
 
@@ -2606,6 +2639,12 @@ func (s *MetricAlarm) SetStatistic(v string) *MetricAlarm {
 // SetThreshold sets the Threshold field's value.
 func (s *MetricAlarm) SetThreshold(v float64) *MetricAlarm {
 	s.Threshold = &v
+	return s
+}
+
+// SetTreatMissingData sets the TreatMissingData field's value.
+func (s *MetricAlarm) SetTreatMissingData(v string) *MetricAlarm {
+	s.TreatMissingData = &v
 	return s
 }
 
@@ -2762,6 +2801,16 @@ type PutMetricAlarmInput struct {
 	// The dimensions for the metric associated with the alarm.
 	Dimensions []*Dimension `type:"list"`
 
+	// Used only for alarms based on percentiles. If you specify ignore, the alarm
+	// state will not change during periods with too few data points to be statistically
+	// significant. If you specify evaluate or omit this parameter, the alarm will
+	// always be evaluated and possibly change state no matter how many data points
+	// are available. For more information, see Percentile-Based CloudWatch Alarms
+	// and Low Data Samples (http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#percentiles-with-low-samples).
+	//
+	// Valid Values: evaluate | ignore
+	EvaluateLowSampleCountPercentile *string `min:"1" type:"string"`
+
 	// The number of periods over which data is compared to the specified threshold.
 	//
 	// EvaluationPeriods is a required field
@@ -2818,6 +2867,13 @@ type PutMetricAlarmInput struct {
 	// Threshold is a required field
 	Threshold *float64 `type:"double" required:"true"`
 
+	// Sets how this alarm is to handle missing data points. If TreatMissingData
+	// is omitted, the default behavior of missing is used. For more information,
+	// see Configuring How CloudWatch Alarms Treats Missing Data (http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data).
+	//
+	// Valid Values: breaching | notBreaching | ignore | missing
+	TreatMissingData *string `min:"1" type:"string"`
+
 	// The unit of measure for the statistic. For example, the units for the Amazon
 	// EC2 NetworkIn metric are Bytes because NetworkIn tracks the number of bytes
 	// that an instance receives on all network interfaces. You can also specify
@@ -2853,6 +2909,9 @@ func (s *PutMetricAlarmInput) Validate() error {
 	if s.ComparisonOperator == nil {
 		invalidParams.Add(request.NewErrParamRequired("ComparisonOperator"))
 	}
+	if s.EvaluateLowSampleCountPercentile != nil && len(*s.EvaluateLowSampleCountPercentile) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EvaluateLowSampleCountPercentile", 1))
+	}
 	if s.EvaluationPeriods == nil {
 		invalidParams.Add(request.NewErrParamRequired("EvaluationPeriods"))
 	}
@@ -2879,6 +2938,9 @@ func (s *PutMetricAlarmInput) Validate() error {
 	}
 	if s.Threshold == nil {
 		invalidParams.Add(request.NewErrParamRequired("Threshold"))
+	}
+	if s.TreatMissingData != nil && len(*s.TreatMissingData) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TreatMissingData", 1))
 	}
 	if s.Dimensions != nil {
 		for i, v := range s.Dimensions {
@@ -2933,6 +2995,12 @@ func (s *PutMetricAlarmInput) SetDimensions(v []*Dimension) *PutMetricAlarmInput
 	return s
 }
 
+// SetEvaluateLowSampleCountPercentile sets the EvaluateLowSampleCountPercentile field's value.
+func (s *PutMetricAlarmInput) SetEvaluateLowSampleCountPercentile(v string) *PutMetricAlarmInput {
+	s.EvaluateLowSampleCountPercentile = &v
+	return s
+}
+
 // SetEvaluationPeriods sets the EvaluationPeriods field's value.
 func (s *PutMetricAlarmInput) SetEvaluationPeriods(v int64) *PutMetricAlarmInput {
 	s.EvaluationPeriods = &v
@@ -2984,6 +3052,12 @@ func (s *PutMetricAlarmInput) SetStatistic(v string) *PutMetricAlarmInput {
 // SetThreshold sets the Threshold field's value.
 func (s *PutMetricAlarmInput) SetThreshold(v float64) *PutMetricAlarmInput {
 	s.Threshold = &v
+	return s
+}
+
+// SetTreatMissingData sets the TreatMissingData field's value.
+func (s *PutMetricAlarmInput) SetTreatMissingData(v string) *PutMetricAlarmInput {
+	s.TreatMissingData = &v
 	return s
 }
 
