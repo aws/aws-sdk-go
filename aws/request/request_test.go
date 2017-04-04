@@ -6,18 +6,27 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"net"
 	"net/http"
 	"net/http/httptest"
+	"reflect"
 	"runtime"
 	"strconv"
+	"syscall"
 	"testing"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/client"
+	"github.com/aws/aws-sdk-go/aws/client/metadata"
+	"github.com/aws/aws-sdk-go/aws/corehandlers"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/aws/signer/v4"
 	"github.com/aws/aws-sdk-go/awstesting"
+	"github.com/aws/aws-sdk-go/awstesting/unit"
+	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/private/protocol/rest"
 )
 
@@ -506,6 +515,39 @@ func TestRequest_NoBody(t *testing.T) {
 	}
 }
 
+func TestIsSerializationErrorRetryable(t *testing.T) {
+	testCases := []struct {
+		err      error
+		expected bool
+	}{
+		{
+			err:      awserr.New(request.ErrCodeSerialization, "foo error", nil),
+			expected: false,
+		},
+		{
+			err:      awserr.New("ErrFoo", "foo error", nil),
+			expected: false,
+		},
+		{
+			err:      nil,
+			expected: false,
+		},
+		{
+			err:      awserr.New(request.ErrCodeSerialization, "foo error", &net.OpError{Err: syscall.ECONNRESET}),
+			expected: true,
+		},
+	}
+
+	for i, c := range testCases {
+		r := &request.Request{
+			Error: c.err,
+		}
+		if r.IsErrorRetryable() != c.expected {
+			t.Errorf("Case %d: Expected %v, but received %v", i+1, c.expected, !c.expected)
+		}
+	}
+}
+
 func TestWithLogLevel(t *testing.T) {
 	r := &request.Request{}
 
@@ -564,5 +606,80 @@ func TestWithGetResponseHeaders(t *testing.T) {
 
 	if e, a := "headerValue", headers.Get("x-a-header"); e != a {
 		t.Errorf("expect %q header value got %q", e, a)
+	}
+}
+
+type connResetCloser struct {
+}
+
+func (rc *connResetCloser) Read(b []byte) (int, error) {
+	return 0, &net.OpError{Err: syscall.ECONNRESET}
+}
+
+func (rc *connResetCloser) Close() error {
+	return nil
+}
+
+func TestSerializationErrConnectionReset(t *testing.T) {
+	count := 0
+	handlers := request.Handlers{}
+	handlers.Send.PushBack(func(r *request.Request) {
+		count++
+		r.HTTPResponse = &http.Response{}
+		r.HTTPResponse.Body = &connResetCloser{}
+	})
+
+	handlers.Sign.PushBackNamed(v4.SignRequestHandler)
+	handlers.Build.PushBackNamed(jsonrpc.BuildHandler)
+	handlers.Unmarshal.PushBackNamed(jsonrpc.UnmarshalHandler)
+	handlers.UnmarshalMeta.PushBackNamed(jsonrpc.UnmarshalMetaHandler)
+	handlers.UnmarshalError.PushBackNamed(jsonrpc.UnmarshalErrorHandler)
+	handlers.AfterRetry.PushBackNamed(corehandlers.AfterRetryHandler)
+
+	op := &request.Operation{
+		Name:       "op",
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	meta := metadata.ClientInfo{
+		ServiceName:   "fooService",
+		SigningName:   "foo",
+		SigningRegion: "foo",
+		Endpoint:      "localhost",
+		APIVersion:    "2001-01-01",
+		JSONVersion:   "1.1",
+		TargetPrefix:  "Foo",
+	}
+	cfg := unit.Session.Config.Copy()
+	cfg.MaxRetries = aws.Int(5)
+
+	req := request.New(
+		*cfg,
+		meta,
+		handlers,
+		client.DefaultRetryer{NumMaxRetries: 5},
+		op,
+		&struct {
+		}{},
+		&struct {
+		}{},
+	)
+
+	req.ApplyOptions(request.WithResponseReadTimeout(time.Second))
+	err := req.Send()
+	if err == nil {
+		t.Error("Expected rror 'SerializationError', but received nil")
+	}
+	if aerr, ok := err.(awserr.Error); ok && aerr.Code() != "SerializationError" {
+		t.Errorf("Expected 'SerializationError', but received %q", aerr.Code())
+	} else if !ok {
+		t.Errorf("Expected 'awserr.Error', but received %v", reflect.TypeOf(err))
+	} else if aerr.OrigErr().Error() != (&net.OpError{Err: syscall.ECONNRESET}).Error() {
+		t.Errorf("Expected 'awserr.Error', but received %v", reflect.TypeOf(err))
+	}
+
+	if count != 6 {
+		t.Errorf("Expected '6', but received %d", count)
 	}
 }
