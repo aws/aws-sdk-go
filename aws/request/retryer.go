@@ -1,7 +1,8 @@
 package request
 
 import (
-	"strings"
+	"net"
+	"os"
 	"syscall"
 	"time"
 
@@ -81,7 +82,13 @@ func isSerializationErrorRetryable(err error) bool {
 		return isCodeRetryable(aerr.Code())
 	}
 
-	return strings.Contains(err.Error(), syscall.ECONNRESET.Error())
+	if opErr, ok := err.(*net.OpError); ok {
+		if sysErr, ok := opErr.Err.(*os.SyscallError); ok {
+			return sysErr.Err == syscall.ECONNRESET
+		}
+	}
+
+	return false
 }
 
 // IsErrorRetryable returns whether the error is retryable, based on its Code.

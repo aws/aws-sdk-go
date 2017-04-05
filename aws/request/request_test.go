@@ -614,7 +614,7 @@ type connResetCloser struct {
 }
 
 func (rc *connResetCloser) Read(b []byte) (int, error) {
-	return 0, &os.SyscallError{Syscall: "read", Err: syscall.ECONNRESET}
+	return 0, &net.OpError{Err: &os.SyscallError{Syscall: "read", Err: syscall.ECONNRESET}}
 }
 
 func (rc *connResetCloser) Close() error {
@@ -666,7 +666,8 @@ func TestSerializationErrConnectionReset(t *testing.T) {
 		&struct {
 		}{},
 	)
-	osErr := &os.SyscallError{Syscall: "read", Err: syscall.ECONNRESET}
+
+	osErr := &net.OpError{Err: &os.SyscallError{Syscall: "read", Err: syscall.ECONNRESET}}
 	req.ApplyOptions(request.WithResponseReadTimeout(time.Second))
 	err := req.Send()
 	if err == nil {
@@ -677,7 +678,7 @@ func TestSerializationErrConnectionReset(t *testing.T) {
 	} else if !ok {
 		t.Errorf("Expected 'awserr.Error', but received %v", reflect.TypeOf(err))
 	} else if aerr.OrigErr().Error() != osErr.Error() {
-		t.Errorf("Expected %q, but received %q", aerr.OrigErr().Error(), osErr.Error())
+		t.Errorf("Expected %q, but received %q", osErr.Error(), aerr.OrigErr().Error())
 	}
 
 	if count != 6 {

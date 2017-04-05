@@ -804,14 +804,14 @@ const opInputService4TestCaseOperation1 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-func (c *InputService4ProtocolTest) InputService4TestCaseOperation1Request(input *InputService4TestShapeInputService4TestCaseOperation2Input) (req *request.Request, output *InputService4TestShapeInputService4TestCaseOperation1Output) {
+func (c *InputService4ProtocolTest) InputService4TestCaseOperation1Request(input *InputService4TestShapeInputService4TestCaseOperation1Input) (req *request.Request, output *InputService4TestShapeInputService4TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opInputService4TestCaseOperation1,
 		HTTPPath: "/",
 	}
 
 	if input == nil {
-		input = &InputService4TestShapeInputService4TestCaseOperation2Input{}
+		input = &InputService4TestShapeInputService4TestCaseOperation1Input{}
 	}
 
 	output = &InputService4TestShapeInputService4TestCaseOperation1Output{}
@@ -829,7 +829,7 @@ func (c *InputService4ProtocolTest) InputService4TestCaseOperation1Request(input
 //
 // See the AWS API reference guide for 's
 // API operation InputService4TestCaseOperation1 for usage and error information.
-func (c *InputService4ProtocolTest) InputService4TestCaseOperation1(input *InputService4TestShapeInputService4TestCaseOperation2Input) (*InputService4TestShapeInputService4TestCaseOperation1Output, error) {
+func (c *InputService4ProtocolTest) InputService4TestCaseOperation1(input *InputService4TestShapeInputService4TestCaseOperation1Input) (*InputService4TestShapeInputService4TestCaseOperation1Output, error) {
 	req, out := c.InputService4TestCaseOperation1Request(input)
 	return out, req.Send()
 }
@@ -843,7 +843,7 @@ func (c *InputService4ProtocolTest) InputService4TestCaseOperation1(input *Input
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *InputService4ProtocolTest) InputService4TestCaseOperation1WithContext(ctx aws.Context, input *InputService4TestShapeInputService4TestCaseOperation2Input, opts ...request.Option) (*InputService4TestShapeInputService4TestCaseOperation1Output, error) {
+func (c *InputService4ProtocolTest) InputService4TestCaseOperation1WithContext(ctx aws.Context, input *InputService4TestShapeInputService4TestCaseOperation1Input, opts ...request.Option) (*InputService4TestShapeInputService4TestCaseOperation1Output, error) {
 	req, out := c.InputService4TestCaseOperation1Request(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
@@ -875,14 +875,14 @@ const opInputService4TestCaseOperation2 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-func (c *InputService4ProtocolTest) InputService4TestCaseOperation2Request(input *InputService4TestShapeInputService4TestCaseOperation2Input) (req *request.Request, output *InputService4TestShapeInputService4TestCaseOperation2Output) {
+func (c *InputService4ProtocolTest) InputService4TestCaseOperation2Request(input *InputService4TestShapeInputService4TestCaseOperation1Input) (req *request.Request, output *InputService4TestShapeInputService4TestCaseOperation2Output) {
 	op := &request.Operation{
 		Name:     opInputService4TestCaseOperation2,
 		HTTPPath: "/",
 	}
 
 	if input == nil {
-		input = &InputService4TestShapeInputService4TestCaseOperation2Input{}
+		input = &InputService4TestShapeInputService4TestCaseOperation1Input{}
 	}
 
 	output = &InputService4TestShapeInputService4TestCaseOperation2Output{}
@@ -900,7 +900,7 @@ func (c *InputService4ProtocolTest) InputService4TestCaseOperation2Request(input
 //
 // See the AWS API reference guide for 's
 // API operation InputService4TestCaseOperation2 for usage and error information.
-func (c *InputService4ProtocolTest) InputService4TestCaseOperation2(input *InputService4TestShapeInputService4TestCaseOperation2Input) (*InputService4TestShapeInputService4TestCaseOperation2Output, error) {
+func (c *InputService4ProtocolTest) InputService4TestCaseOperation2(input *InputService4TestShapeInputService4TestCaseOperation1Input) (*InputService4TestShapeInputService4TestCaseOperation2Output, error) {
 	req, out := c.InputService4TestCaseOperation2Request(input)
 	return out, req.Send()
 }
@@ -914,18 +914,14 @@ func (c *InputService4ProtocolTest) InputService4TestCaseOperation2(input *Input
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *InputService4ProtocolTest) InputService4TestCaseOperation2WithContext(ctx aws.Context, input *InputService4TestShapeInputService4TestCaseOperation2Input, opts ...request.Option) (*InputService4TestShapeInputService4TestCaseOperation2Output, error) {
+func (c *InputService4ProtocolTest) InputService4TestCaseOperation2WithContext(ctx aws.Context, input *InputService4TestShapeInputService4TestCaseOperation1Input, opts ...request.Option) (*InputService4TestShapeInputService4TestCaseOperation2Output, error) {
 	req, out := c.InputService4TestCaseOperation2Request(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
 }
 
-type InputService4TestShapeInputService4TestCaseOperation1Output struct {
-	_ struct{} `type:"structure"`
-}
-
-type InputService4TestShapeInputService4TestCaseOperation2Input struct {
+type InputService4TestShapeInputService4TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 
 	ListArg []*string `type:"list" flattened:"true"`
@@ -936,21 +932,25 @@ type InputService4TestShapeInputService4TestCaseOperation2Input struct {
 }
 
 // SetListArg sets the ListArg field's value.
-func (s *InputService4TestShapeInputService4TestCaseOperation2Input) SetListArg(v []*string) *InputService4TestShapeInputService4TestCaseOperation2Input {
+func (s *InputService4TestShapeInputService4TestCaseOperation1Input) SetListArg(v []*string) *InputService4TestShapeInputService4TestCaseOperation1Input {
 	s.ListArg = v
 	return s
 }
 
 // SetNamedListArg sets the NamedListArg field's value.
-func (s *InputService4TestShapeInputService4TestCaseOperation2Input) SetNamedListArg(v []*string) *InputService4TestShapeInputService4TestCaseOperation2Input {
+func (s *InputService4TestShapeInputService4TestCaseOperation1Input) SetNamedListArg(v []*string) *InputService4TestShapeInputService4TestCaseOperation1Input {
 	s.NamedListArg = v
 	return s
 }
 
 // SetScalarArg sets the ScalarArg field's value.
-func (s *InputService4TestShapeInputService4TestCaseOperation2Input) SetScalarArg(v string) *InputService4TestShapeInputService4TestCaseOperation2Input {
+func (s *InputService4TestShapeInputService4TestCaseOperation1Input) SetScalarArg(v string) *InputService4TestShapeInputService4TestCaseOperation1Input {
 	s.ScalarArg = &v
 	return s
+}
+
+type InputService4TestShapeInputService4TestCaseOperation1Output struct {
+	_ struct{} `type:"structure"`
 }
 
 type InputService4TestShapeInputService4TestCaseOperation2Output struct {
@@ -2889,7 +2889,7 @@ func TestInputService3ProtocolTestListTypesCase2(t *testing.T) {
 
 func TestInputService4ProtocolTestFlattenedListCase1(t *testing.T) {
 	svc := NewInputService4ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
-	input := &InputService4TestShapeInputService4TestCaseOperation2Input{
+	input := &InputService4TestShapeInputService4TestCaseOperation1Input{
 		ListArg: []*string{
 			aws.String("a"),
 			aws.String("b"),
@@ -2918,7 +2918,7 @@ func TestInputService4ProtocolTestFlattenedListCase1(t *testing.T) {
 
 func TestInputService4ProtocolTestFlattenedListCase2(t *testing.T) {
 	svc := NewInputService4ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
-	input := &InputService4TestShapeInputService4TestCaseOperation2Input{
+	input := &InputService4TestShapeInputService4TestCaseOperation1Input{
 		NamedListArg: []*string{
 			aws.String("a"),
 		},

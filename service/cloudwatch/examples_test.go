@@ -272,7 +272,8 @@ func ExampleCloudWatch_PutMetricAlarm() {
 			},
 			// More values...
 		},
-		ExtendedStatistic: aws.String("ExtendedStatistic"),
+		EvaluateLowSampleCountPercentile: aws.String("EvaluateLowSampleCountPercentile"),
+		ExtendedStatistic:                aws.String("ExtendedStatistic"),
 		InsufficientDataActions: []*string{
 			aws.String("ResourceName"), // Required
 			// More values...
@@ -281,8 +282,9 @@ func ExampleCloudWatch_PutMetricAlarm() {
 			aws.String("ResourceName"), // Required
 			// More values...
 		},
-		Statistic: aws.String("Statistic"),
-		Unit:      aws.String("StandardUnit"),
+		Statistic:        aws.String("Statistic"),
+		TreatMissingData: aws.String("TreatMissingData"),
+		Unit:             aws.String("StandardUnit"),
 	}
 	resp, err := svc.PutMetricAlarm(params)
 
