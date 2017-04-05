@@ -248,6 +248,10 @@ type ElastiCacheAPI interface {
 	RevokeCacheSecurityGroupIngressWithContext(aws.Context, *elasticache.RevokeCacheSecurityGroupIngressInput, ...request.Option) (*elasticache.RevokeCacheSecurityGroupIngressOutput, error)
 	RevokeCacheSecurityGroupIngressRequest(*elasticache.RevokeCacheSecurityGroupIngressInput) (*request.Request, *elasticache.RevokeCacheSecurityGroupIngressOutput)
 
+	TestFailover(*elasticache.TestFailoverInput) (*elasticache.TestFailoverOutput, error)
+	TestFailoverWithContext(aws.Context, *elasticache.TestFailoverInput, ...request.Option) (*elasticache.TestFailoverOutput, error)
+	TestFailoverRequest(*elasticache.TestFailoverInput) (*request.Request, *elasticache.TestFailoverOutput)
+
 	WaitUntilCacheClusterAvailable(*elasticache.DescribeCacheClustersInput) error
 	WaitUntilCacheClusterAvailableWithContext(aws.Context, *elasticache.DescribeCacheClustersInput, ...request.WaiterOption) error
 
