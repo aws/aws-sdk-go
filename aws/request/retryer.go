@@ -2,6 +2,7 @@ package request
 
 import (
 	"net"
+	"os"
 	"syscall"
 	"time"
 
@@ -82,7 +83,9 @@ func isSerializationErrorRetryable(err error) bool {
 	}
 
 	if opErr, ok := err.(*net.OpError); ok {
-		return opErr.Err.Error() == syscall.ECONNRESET.Error()
+		if sysErr, ok := opErr.Err.(*os.SyscallError); ok {
+			return sysErr.Err == syscall.ECONNRESET
+		}
 	}
 
 	return false

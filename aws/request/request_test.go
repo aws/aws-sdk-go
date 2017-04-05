@@ -9,6 +9,7 @@ import (
 	"net"
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"reflect"
 	"runtime"
 	"strconv"
@@ -533,7 +534,7 @@ func TestIsSerializationErrorRetryable(t *testing.T) {
 			expected: false,
 		},
 		{
-			err:      awserr.New(request.ErrCodeSerialization, "foo error", &net.OpError{Err: syscall.ECONNRESET}),
+			err:      awserr.New(request.ErrCodeSerialization, "foo error", &net.OpError{Err: &os.SyscallError{Err: syscall.ECONNRESET}}),
 			expected: true,
 		},
 	}
@@ -613,7 +614,7 @@ type connResetCloser struct {
 }
 
 func (rc *connResetCloser) Read(b []byte) (int, error) {
-	return 0, &net.OpError{Err: syscall.ECONNRESET}
+	return 0, &net.OpError{Err: &os.SyscallError{Syscall: "read", Err: syscall.ECONNRESET}}
 }
 
 func (rc *connResetCloser) Close() error {
@@ -666,6 +667,7 @@ func TestSerializationErrConnectionReset(t *testing.T) {
 		}{},
 	)
 
+	osErr := &net.OpError{Err: &os.SyscallError{Syscall: "read", Err: syscall.ECONNRESET}}
 	req.ApplyOptions(request.WithResponseReadTimeout(time.Second))
 	err := req.Send()
 	if err == nil {
@@ -675,8 +677,8 @@ func TestSerializationErrConnectionReset(t *testing.T) {
 		t.Errorf("Expected 'SerializationError', but received %q", aerr.Code())
 	} else if !ok {
 		t.Errorf("Expected 'awserr.Error', but received %v", reflect.TypeOf(err))
-	} else if aerr.OrigErr().Error() != (&net.OpError{Err: syscall.ECONNRESET}).Error() {
-		t.Errorf("Expected 'awserr.Error', but received %v", reflect.TypeOf(err))
+	} else if aerr.OrigErr().Error() != osErr.Error() {
+		t.Errorf("Expected %q, but received %q", osErr.Error(), aerr.OrigErr().Error())
 	}
 
 	if count != 6 {
