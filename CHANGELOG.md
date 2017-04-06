@@ -1,3 +1,9 @@
+Release v1.8.10 (2017-04-06)
+===
+
+### Service Client Updates
+* `service/elbv2`: Updates service documentation
+
 Release v1.8.9 (2017-04-05)
 ===
 
