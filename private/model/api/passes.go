@@ -121,7 +121,7 @@ func (r *referenceResolver) resolveShape(shape *Shape) {
 // exportable variant. The shapes are also updated to include notations
 // if they are Input or Outputs.
 func (a *API) renameToplevelShapes() {
-	for _, v := range a.Operations {
+	for _, v := range a.OperationList() {
 		if v.HasInput() {
 			name := v.ExportedName + "Input"
 			switch {
