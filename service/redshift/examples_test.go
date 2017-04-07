@@ -1295,6 +1295,35 @@ func ExampleRedshift_EnableSnapshotCopy() {
 	fmt.Println(resp)
 }
 
+func ExampleRedshift_GetClusterCredentials() {
+	sess := session.Must(session.NewSession())
+
+	svc := redshift.New(sess)
+
+	params := &redshift.GetClusterCredentialsInput{
+		ClusterIdentifier: aws.String("String"), // Required
+		DbUser:            aws.String("String"), // Required
+		AutoCreate:        aws.Bool(true),
+		DbGroups: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+		DbName:          aws.String("String"),
+		DurationSeconds: aws.Int64(1),
+	}
+	resp, err := svc.GetClusterCredentials(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleRedshift_ModifyCluster() {
 	sess := session.Must(session.NewSession())
 
