@@ -297,6 +297,10 @@ type RedshiftAPI interface {
 	EnableSnapshotCopyWithContext(aws.Context, *redshift.EnableSnapshotCopyInput, ...request.Option) (*redshift.EnableSnapshotCopyOutput, error)
 	EnableSnapshotCopyRequest(*redshift.EnableSnapshotCopyInput) (*request.Request, *redshift.EnableSnapshotCopyOutput)
 
+	GetClusterCredentials(*redshift.GetClusterCredentialsInput) (*redshift.GetClusterCredentialsOutput, error)
+	GetClusterCredentialsWithContext(aws.Context, *redshift.GetClusterCredentialsInput, ...request.Option) (*redshift.GetClusterCredentialsOutput, error)
+	GetClusterCredentialsRequest(*redshift.GetClusterCredentialsInput) (*request.Request, *redshift.GetClusterCredentialsOutput)
+
 	ModifyCluster(*redshift.ModifyClusterInput) (*redshift.ModifyClusterOutput, error)
 	ModifyClusterWithContext(aws.Context, *redshift.ModifyClusterInput, ...request.Option) (*redshift.ModifyClusterOutput, error)
 	ModifyClusterRequest(*redshift.ModifyClusterInput) (*request.Request, *redshift.ModifyClusterOutput)
