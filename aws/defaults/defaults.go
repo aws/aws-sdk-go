@@ -10,6 +10,7 @@ package defaults
 import (
 	"fmt"
 	"net/http"
+	"net/url"
 	"os"
 	"time"
 
@@ -96,23 +97,46 @@ func CredChain(cfg *aws.Config, handlers request.Handlers) *credentials.Credenti
 	})
 }
 
+const (
+	httpProviderEnvVar     = "AWS_CONTAINER_CREDENTIALS_FULL_URI"
+	ecsCredsProviderEnvVar = "AWS_CONTAINER_CREDENTIALS_RELATIVE_URI"
+)
+
 // RemoteCredProvider returns a credenitials provider for the default remote
 // endpoints such as EC2 or ECS Roles.
 func RemoteCredProvider(cfg aws.Config, handlers request.Handlers) credentials.Provider {
-	ecsCredURI := os.Getenv("AWS_CONTAINER_CREDENTIALS_RELATIVE_URI")
+	if u := os.Getenv(httpProviderEnvVar); len(u) > 0 {
+		parsed, err := url.Parse(u)
+		// Need to log error because this API did not expose an error
+		if err != nil {
+			log(cfg.Logger,
+				"Ignoring,", httpProviderEnvVar, "failed to parse url", err)
+		} else if host := parsed.Hostname(); !(host == "localhost" || host == "127.0.0.1") {
+			log(cfg.Logger,
+				"Ignoring,", httpProviderEnvVar, "specified URL with invalid hostname",
+				host, ", only localhost and 127.0.0.1 are valid.")
+		} else {
+			return httpCredProvider(cfg, handlers, u)
+		}
+	}
 
-	if len(ecsCredURI) > 0 {
-		return ecsCredProvider(cfg, handlers, ecsCredURI)
+	if uri := os.Getenv(ecsCredsProviderEnvVar); len(uri) > 0 {
+		u := fmt.Sprintf("http://169.254.170.2%s", uri)
+		return httpCredProvider(cfg, handlers, u)
 	}
 
 	return ec2RoleProvider(cfg, handlers)
 }
 
-func ecsCredProvider(cfg aws.Config, handlers request.Handlers, uri string) credentials.Provider {
-	const host = `169.254.170.2`
+func log(logger aws.Logger, msg ...interface{}) {
+	if logger == nil {
+		return
+	}
+	logger.Log(msg...)
+}
 
-	return endpointcreds.NewProviderClient(cfg, handlers,
-		fmt.Sprintf("http://%s%s", host, uri),
+func httpCredProvider(cfg aws.Config, handlers request.Handlers, u string) credentials.Provider {
+	return endpointcreds.NewProviderClient(cfg, handlers, u,
 		func(p *endpointcreds.Provider) {
 			p.ExpiryWindow = 5 * time.Minute
 		},
