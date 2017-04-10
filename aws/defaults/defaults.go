@@ -111,7 +111,7 @@ func RemoteCredProvider(cfg aws.Config, handlers request.Handlers) credentials.P
 		if err != nil {
 			log(cfg.Logger,
 				"Ignoring,", httpProviderEnvVar, "failed to parse url", err)
-		} else if host := parsed.Hostname(); !(host == "localhost" || host == "127.0.0.1") {
+		} else if host := aws.URLHostname(parsed); !(host == "localhost" || host == "127.0.0.1") {
 			log(cfg.Logger,
 				"Ignoring,", httpProviderEnvVar, "specified URL with invalid hostname",
 				host, ", only localhost and 127.0.0.1 are valid.")
