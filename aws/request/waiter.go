@@ -178,11 +178,10 @@ func (w Waiter) WaitWithContext(ctx aws.Context) error {
 
 		// See if any of the acceptors match the request's response, or error
 		for _, a := range w.Acceptors {
-			var matched bool
-			matched, err = a.match(w.Name, w.Logger, req, err)
-			if err != nil {
+			matched, matchErr = a.match(w.Name, w.Logger, req, err)
+			if matchErr != nil {
 				// Error occurred during current waiter call
-				return err
+				return matchErr
 			} else if matched {
 				// Match was found can stop here and return
 				return nil
