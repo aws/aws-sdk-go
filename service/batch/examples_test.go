@@ -66,6 +66,7 @@ func ExampleBatch_CreateComputeEnvironment() {
 			BidPercentage:    aws.Int64(1),
 			DesiredvCpus:     aws.Int64(1),
 			Ec2KeyPair:       aws.String("String"),
+			ImageId:          aws.String("String"),
 			SpotIamFleetRole: aws.String("String"),
 			Tags: map[string]*string{
 				"Key": aws.String("String"), // Required

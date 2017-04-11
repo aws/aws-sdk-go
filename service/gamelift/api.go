@@ -444,17 +444,27 @@ func (c *GameLift) CreateGameSessionRequest(input *CreateGameSessionInput) (req 
 // to host the game session. A fleet must have an ACTIVE status before a game
 // session can be created in it.
 //
-// To create a game session, specify either fleet ID or alias ID, and indicate
+// To create a game session, specify either fleet ID or alias ID and indicate
 // a maximum number of players to allow in the game session. You can also provide
 // a name and game-specific properties for this game session. If successful,
-// a GameSession object is returned containing session properties, including
-// an IP address. By default, newly created game sessions allow new players
-// to join. Use UpdateGameSession to change the game session's player session
-// creation policy.
+// a GameSession object is returned containing game session properties, including
+// a game session ID with the custom string you provided.
 //
-// When creating a game session on a fleet with a resource limit creation policy,
-// the request should include a creator ID. If none is provided, Amazon GameLift
-// does not evaluate the fleet's resource limit creation policy.
+// Idempotency tokens. You can add a token that uniquely identifies game session
+// requests. This is useful for ensuring that game session requests are idempotent.
+// Multiple requests with the same idempotency token are processed only once;
+// subsequent requests return the original result. All response values are the
+// same with the exception of game session status, which may change.
+//
+// Resource creation limits. If you are creating a game session on a fleet with
+// a resource creation limit policy in force, then you must specify a creator
+// ID. Without this ID, Amazon GameLift has no way to evaluate the policy for
+// this new game session request.
+//
+// By default, newly created game sessions allow new players to join. Use UpdateGameSession
+// to change the game session's player session creation policy.
+//
+// Available in Amazon GameLift Local.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -576,21 +586,36 @@ func (c *GameLift) CreateGameSessionQueueRequest(input *CreateGameSessionQueueIn
 
 // CreateGameSessionQueue API operation for Amazon GameLift.
 //
-// Establishes a new queue for processing requests for new game sessions. A
-// queue identifies where new game sessions can be hosted--by specifying a list
-// of fleet destinations--and how long a request can remain in the queue waiting
-// to be placed before timing out. Requests for new game sessions are added
-// to a queue by calling StartGameSessionPlacement and referencing the queue
-// name.
+// Establishes a new queue for processing requests to place new game sessions.
+// A queue identifies where new game sessions can be hosted -- by specifying
+// a list of destinations (fleets or aliases) -- and how long requests can wait
+// in the queue before timing out. You can set up a queue to try to place game
+// sessions on fleets in multiple regions. To add placement requests to a queue,
+// call StartGameSessionPlacement and reference the queue name.
 //
-// When processing a request for a game session, Amazon GameLift tries each
-// destination in order until it finds one with available resources to host
-// the new game session. A queue's default order is determined by how destinations
-// are listed. This default order can be overridden in a game session placement
-// request.
+// Destination order. When processing a request for a game session, Amazon GameLift
+// tries each destination in order until it finds one with available resources
+// to host the new game session. A queue's default order is determined by how
+// destinations are listed. The default order is overridden when a game session
+// placement request provides player latency information. Player latency information
+// enables Amazon GameLift to prioritize destinations where players report the
+// lowest average latency, as a result placing the new game session where the
+// majority of players will have the best possible gameplay experience.
 //
-// To create a new queue, provide a name, timeout value, and a list of destinations.
-// If successful, a new queue object is returned.
+// Player latency policies. For placement requests containing player latency
+// information, use player latency policies to protect individual players from
+// very high latencies. With a latency cap, even when a destination can deliver
+// a low latency for most players, the game is not placed where any individual
+// player is reporting latency higher than a policy's maximum. A queue can have
+// multiple latency policies, which are enforced consecutively starting with
+// the policy with the lowest latency cap. Use multiple policies to gradually
+// relax latency controls; for example, you might set a policy with a low latency
+// cap for the first 60 seconds, a second policy with a higher cap for the next
+// 60 seconds, etc.
+//
+// To create a new queue, provide a name, timeout value, a list of destinations
+// and, if desired, a set of latency policies. If successful, a new queue object
+// is returned.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -687,6 +712,8 @@ func (c *GameLift) CreatePlayerSessionRequest(input *CreatePlayerSessionInput) (
 // To create a player session, specify a game session ID, player ID, and optionally
 // a string of player data. If successful, the player is added to the game session
 // and a new PlayerSession object is returned. Player sessions cannot be updated.
+//
+// Available in Amazon GameLift Local.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -804,6 +831,8 @@ func (c *GameLift) CreatePlayerSessionsRequest(input *CreatePlayerSessionsInput)
 // and optionally a set of player data strings. If successful, the players are
 // added to the game session and a set of new PlayerSession objects is returned.
 // Player sessions cannot be updated.
+//
+// Available in Amazon GameLift Local.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2199,9 +2228,9 @@ func (c *GameLift) DescribeGameSessionDetailsRequest(input *DescribeGameSessionD
 //
 // Retrieves properties, including the protection policy in force, for one or
 // more game sessions. This action can be used in several ways: (1) provide
-// a GameSessionId to request details for a specific game session; (2) provide
-// either a FleetId or an AliasId to request properties for all game sessions
-// running on a fleet.
+// a GameSessionId or GameSessionArn to request details for a specific game
+// session; (2) provide either a FleetId or an AliasId to request properties
+// for all game sessions running on a fleet.
 //
 // To get game session record(s), specify just one of the following: game session
 // ID, fleet ID, or alias ID. You can filter this request by game session status.
@@ -2510,6 +2539,8 @@ func (c *GameLift) DescribeGameSessionsRequest(input *DescribeGameSessionsInput)
 // If successful, a GameSession object is returned for each game session matching
 // the request.
 //
+// Available in Amazon GameLift Local.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2709,17 +2740,18 @@ func (c *GameLift) DescribePlayerSessionsRequest(input *DescribePlayerSessionsIn
 // DescribePlayerSessions API operation for Amazon GameLift.
 //
 // Retrieves properties for one or more player sessions. This action can be
-// used in several ways: (1) provide a PlayerSessionId parameter to request
-// properties for a specific player session; (2) provide a GameSessionId parameter
-// to request properties for all player sessions in the specified game session;
-// (3) provide a PlayerId parameter to request properties for all player sessions
-// of a specified player.
+// used in several ways: (1) provide a PlayerSessionId to request properties
+// for a specific player session; (2) provide a GameSessionId to request properties
+// for all player sessions in the specified game session; (3) provide a PlayerId
+// to request properties for all player sessions of a specified player.
 //
 // To get game session record(s), specify only one of the following: a player
 // session ID, a game session ID, or a player ID. You can filter this request
 // by player session status. Use the pagination parameters to retrieve results
 // as a set of sequential pages. If successful, a PlayerSession object is returned
 // for each session matching the request.
+//
+// Available in Amazon GameLift Local.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3814,9 +3846,8 @@ func (c *GameLift) SearchGameSessionsRequest(input *SearchGameSessionsInput) (re
 //
 // You can search or sort by the following game session attributes:
 //
-//    * gameSessionId -- ID value assigned to a game session. This unique value
-//    is returned in a GameSession object when a new game session is created.
-//
+//    * gameSessionId -- Unique identifier for the game session. You can use
+//    either a GameSessionId or GameSessionArn value.
 //
 //    * gameSessionName -- Name assigned to a game session. This value is set
 //    when requesting a new game session with CreateGameSession or updating
@@ -3850,6 +3881,8 @@ func (c *GameLift) SearchGameSessionsRequest(input *SearchGameSessionsInput) (re
 // quickly as players join sessions and others drop out. Results should be considered
 // a snapshot in time. Be sure to refresh search results often, and handle sessions
 // that fill up before a player can join.
+//
+// Available in Amazon GameLift Local.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3950,13 +3983,12 @@ func (c *GameLift) StartGameSessionPlacementRequest(input *StartGameSessionPlace
 // StartGameSessionPlacement API operation for Amazon GameLift.
 //
 // Places a request for a new game session in a queue (see CreateGameSessionQueue).
-// When processing a placement request, Amazon GameLift attempts to create a
-// new game session on one of the fleets associated with the queue. If no resources
-// are available, Amazon GameLift tries again with another and so on until resources
-// are found or the placement request times out. A game session placement request
-// can also request player sessions. When a new game session is successfully
-// created, Amazon GameLift creates a player session for each player included
-// in the request.
+// When processing a placement request, Amazon GameLift searches for available
+// resources on the queue's destinations, scanning each until it finds resources
+// or the placement request times out. A game session placement request can
+// also request player sessions. When a new game session is successfully created,
+// Amazon GameLift creates a player session for each player included in the
+// request.
 //
 // When placing a game session, by default Amazon GameLift tries each fleet
 // in the order they are listed in the queue configuration. Ideally, a queue's
@@ -5685,9 +5717,9 @@ type CreateGameSessionInput struct {
 	// not both.
 	AliasId *string `type:"string"`
 
-	// $player-id; or entity creating the game session. This ID is used to enforce
-	// a resource protection policy (if one exists) that limits the number of concurrent
-	// active game sessions one player can have.
+	// Unique identifier for a player or entity creating the game session. This
+	// ID is used to enforce a resource protection policy (if one exists) that limits
+	// the number of concurrent active game sessions one player can have.
 	CreatorId *string `min:"1" type:"string"`
 
 	// Unique identifier for a fleet to create a game session in. Each request must
@@ -5698,11 +5730,20 @@ type CreateGameSessionInput struct {
 	// are passed to the server process hosting the game session.
 	GameProperties []*GameProperty `type:"list"`
 
-	// Custom string to include in the game session ID, with a maximum length of
-	// 48 characters. A game session ID has the following format: "arn:aws:gamelift:<region>::gamesession/<fleet
-	// ID>/<game session ID>". If provided, the custom string is used for the game
-	// session ID string. This value cannot be updated once a game session is created.
+	// This parameter is no longer preferred. Please use IdempotencyToken instead.
+	// Custom string that uniquely identifies a request for a new game session.
+	// Maximum token length is 48 characters. If provided, this string is included
+	// in the new game session's ID. (A game session ID has the following format:
+	// arn:aws:gamelift:<region>::gamesession/<fleet ID>/<custom ID string or idempotency
+	// token>.)
 	GameSessionId *string `min:"1" type:"string"`
+
+	// Custom string that uniquely identifies a request for a new game session.
+	// Maximum token length is 48 characters. If provided, this string is included
+	// in the new game session's ID. (A game session ID has the following format:
+	// arn:aws:gamelift:<region>::gamesession/<fleet ID>/<custom ID string or idempotency
+	// token>.)
+	IdempotencyToken *string `min:"1" type:"string"`
 
 	// Maximum number of players that can be connected simultaneously to the game
 	// session.
@@ -5733,6 +5774,9 @@ func (s *CreateGameSessionInput) Validate() error {
 	}
 	if s.GameSessionId != nil && len(*s.GameSessionId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("GameSessionId", 1))
+	}
+	if s.IdempotencyToken != nil && len(*s.IdempotencyToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdempotencyToken", 1))
 	}
 	if s.MaximumPlayerSessionCount == nil {
 		invalidParams.Add(request.NewErrParamRequired("MaximumPlayerSessionCount"))
@@ -5787,6 +5831,12 @@ func (s *CreateGameSessionInput) SetGameSessionId(v string) *CreateGameSessionIn
 	return s
 }
 
+// SetIdempotencyToken sets the IdempotencyToken field's value.
+func (s *CreateGameSessionInput) SetIdempotencyToken(v string) *CreateGameSessionInput {
+	s.IdempotencyToken = &v
+	return s
+}
+
 // SetMaximumPlayerSessionCount sets the MaximumPlayerSessionCount field's value.
 func (s *CreateGameSessionInput) SetMaximumPlayerSessionCount(v int64) *CreateGameSessionInput {
 	s.MaximumPlayerSessionCount = &v
@@ -5824,6 +5874,7 @@ func (s *CreateGameSessionOutput) SetGameSession(v *GameSession) *CreateGameSess
 	return s
 }
 
+// Represents the input for a request action.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/CreateGameSessionQueueInput
 type CreateGameSessionQueueInput struct {
 	_ struct{} `type:"structure"`
@@ -5838,6 +5889,18 @@ type CreateGameSessionQueueInput struct {
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
+
+	// Collection of latency policies to apply when processing game sessions placement
+	// requests with player latency information. Multiple policies are evaluated
+	// in order of the maximum latency value, starting with the lowest latency values.
+	// With just one policy, it is enforced at the start of the game session placement
+	// for the duration period. With multiple policies, each policy is enforced
+	// consecutively for its duration period. For example, a queue might enforce
+	// a 60-second policy followed by a 120-second policy, and then no policy for
+	// the remainder of the placement. A player latency policy must set a value
+	// for MaximumIndividualPlayerLatencyMilliseconds; if none is set, this API
+	// requests will fail.
+	PlayerLatencyPolicies []*PlayerLatencyPolicy `type:"list"`
 
 	// Maximum time, in seconds, that a new game session placement request remains
 	// in the queue. When a request exceeds this time, the game session placement
@@ -5893,12 +5956,19 @@ func (s *CreateGameSessionQueueInput) SetName(v string) *CreateGameSessionQueueI
 	return s
 }
 
+// SetPlayerLatencyPolicies sets the PlayerLatencyPolicies field's value.
+func (s *CreateGameSessionQueueInput) SetPlayerLatencyPolicies(v []*PlayerLatencyPolicy) *CreateGameSessionQueueInput {
+	s.PlayerLatencyPolicies = v
+	return s
+}
+
 // SetTimeoutInSeconds sets the TimeoutInSeconds field's value.
 func (s *CreateGameSessionQueueInput) SetTimeoutInSeconds(v int64) *CreateGameSessionQueueInput {
 	s.TimeoutInSeconds = &v
 	return s
 }
 
+// Represents the returned data in response to a request action.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/CreateGameSessionQueueOutput
 type CreateGameSessionQueueOutput struct {
 	_ struct{} `type:"structure"`
@@ -6283,6 +6353,7 @@ func (s DeleteFleetOutput) GoString() string {
 	return s.String()
 }
 
+// Represents the input for a request action.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DeleteGameSessionQueueInput
 type DeleteGameSessionQueueInput struct {
 	_ struct{} `type:"structure"`
@@ -7243,6 +7314,7 @@ func (s *DescribeGameSessionDetailsOutput) SetNextToken(v string) *DescribeGameS
 	return s
 }
 
+// Represents the input for a request action.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeGameSessionPlacementInput
 type DescribeGameSessionPlacementInput struct {
 	_ struct{} `type:"structure"`
@@ -7285,6 +7357,7 @@ func (s *DescribeGameSessionPlacementInput) SetPlacementId(v string) *DescribeGa
 	return s
 }
 
+// Represents the returned data in response to a request action.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeGameSessionPlacementOutput
 type DescribeGameSessionPlacementOutput struct {
 	_ struct{} `type:"structure"`
@@ -7309,6 +7382,7 @@ func (s *DescribeGameSessionPlacementOutput) SetGameSessionPlacement(v *GameSess
 	return s
 }
 
+// Represents the input for a request action.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeGameSessionQueuesInput
 type DescribeGameSessionQueuesInput struct {
 	_ struct{} `type:"structure"`
@@ -7371,6 +7445,7 @@ func (s *DescribeGameSessionQueuesInput) SetNextToken(v string) *DescribeGameSes
 	return s
 }
 
+// Represents the returned data in response to a request action.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeGameSessionQueuesOutput
 type DescribeGameSessionQueuesOutput struct {
 	_ struct{} `type:"structure"`
@@ -7418,7 +7493,8 @@ type DescribeGameSessionsInput struct {
 	// Unique identifier for a fleet to retrieve all game sessions for.
 	FleetId *string `type:"string"`
 
-	// Unique identifier for the game session to retrieve.
+	// Unique identifier for the game session to retrieve. You can use either a
+	// GameSessionId or GameSessionArn value.
 	GameSessionId *string `min:"1" type:"string"`
 
 	// Maximum number of results to return. Use this parameter with NextToken to
@@ -8630,11 +8706,11 @@ type GameSession struct {
 	GameProperties []*GameProperty `type:"list"`
 
 	// Unique identifier for the game session. A game session ID has the following
-	// format: "arn:aws:gamelift:<region>::gamesession/<fleet ID>/<game session
-	// ID>".
+	// format: arn:aws:gamelift:<region>::gamesession/<fleet ID>/<custom ID string
+	// or idempotency token>.
 	GameSessionId *string `min:"1" type:"string"`
 
-	// IP address of the game session. To connect to a Amazon GameLift server process,
+	// IP address of the game session. To connect to a Amazon GameLift game server,
 	// an app needs both the IP address and port number.
 	IpAddress *string `type:"string"`
 
@@ -8649,8 +8725,8 @@ type GameSession struct {
 	// Indicates whether or not the game session is accepting new players.
 	PlayerSessionCreationPolicy *string `type:"string" enum:"PlayerSessionCreationPolicy"`
 
-	// Port number for the game session. To connect to a Amazon GameLift server
-	// process, an app needs both the IP address and port number.
+	// Port number for the game session. To connect to a Amazon GameLift game server,
+	// an app needs both the IP address and port number.
 	Port *int64 `min:"1" type:"integer"`
 
 	// Current status of the game session. A game session must have an ACTIVE status
@@ -8805,7 +8881,7 @@ func (s *GameSessionDetail) SetProtectionPolicy(v string) *GameSessionDetail {
 type GameSessionPlacement struct {
 	_ struct{} `type:"structure"`
 
-	// Time stamp indicating when this request was completed, cancelled, or timed
+	// Time stamp indicating when this request was completed, canceled, or timed
 	// out.
 	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
@@ -8814,9 +8890,14 @@ type GameSessionPlacement struct {
 	GameProperties []*GameProperty `type:"list"`
 
 	// Identifier for the game session created by this placement request. This value
-	// exists only if the game session placement status is Completed. This identifier
-	// is unique across all regions.
+	// is set once the new game session is placed (placement status is Fulfilled).
+	// This identifier is unique across all regions. You can use this value as a
+	// GameSessionId value as needed.
 	GameSessionArn *string `min:"1" type:"string"`
+
+	// Unique identifier for the game session. This value is set once the new game
+	// session is placed (placement status is Fulfilled).
+	GameSessionId *string `min:"1" type:"string"`
 
 	// Descriptive label that is associated with a game session. Session names do
 	// not need to be unique.
@@ -8827,20 +8908,38 @@ type GameSessionPlacement struct {
 	GameSessionQueueName *string `min:"1" type:"string"`
 
 	// Name of the region where the game session created by this placement request
-	// is running. This value exists only if the game session placement status is
-	// Completed.
+	// is running. This value is set once the new game session is placed (placement
+	// status is Fulfilled).
 	GameSessionRegion *string `min:"1" type:"string"`
+
+	// IP address of the game session. To connect to a Amazon GameLift game server,
+	// an app needs both the IP address and port number. This value is set once
+	// the new game session is placed (placement status is Fulfilled).
+	IpAddress *string `type:"string"`
 
 	// Maximum number of players that can be connected simultaneously to the game
 	// session.
 	MaximumPlayerSessionCount *int64 `type:"integer"`
 
+	// Collection of information on player sessions created in response to the game
+	// session placement request. These player sessions are created only once a
+	// new game session is successfully placed (placement status is Fulfilled).
+	// This information includes the player ID (as provided in the placement request)
+	// and the corresponding player session ID. Retrieve full player sessions by
+	// calling DescribePlayerSessions with the player session ID.
+	PlacedPlayerSessions []*PlacedPlayerSession `type:"list"`
+
 	// Unique identifier for a game session placement.
 	PlacementId *string `min:"1" type:"string"`
 
 	// Set of values, expressed in milliseconds, indicating the amount of latency
-	// that players experience when connected to AWS regions.
+	// that players are experiencing when connected to AWS regions.
 	PlayerLatencies []*PlayerLatency `type:"list"`
+
+	// Port number for the game session. To connect to a Amazon GameLift game server,
+	// an app needs both the IP address and port number. This value is set once
+	// the new game session is placed (placement status is Fulfilled).
+	Port *int64 `min:"1" type:"integer"`
 
 	// Time stamp indicating when this request was placed in the queue. Format is
 	// a number expressed in Unix time as milliseconds (for example "1469498468.057").
@@ -8855,7 +8954,7 @@ type GameSessionPlacement struct {
 	//    been successfully created. Values for GameSessionArn and GameSessionRegion
 	//    are available.
 	//
-	//    * CANCELLED – The placement request was cancelled with a call to StopGameSessionPlacement.
+	//    * CANCELLED – The placement request was canceled with a call to StopGameSessionPlacement.
 	//
 	//    * TIMED_OUT – A new game session was not successfully created before the
 	//    time limit expired. You can resubmit the placement request as needed.
@@ -8890,6 +8989,12 @@ func (s *GameSessionPlacement) SetGameSessionArn(v string) *GameSessionPlacement
 	return s
 }
 
+// SetGameSessionId sets the GameSessionId field's value.
+func (s *GameSessionPlacement) SetGameSessionId(v string) *GameSessionPlacement {
+	s.GameSessionId = &v
+	return s
+}
+
 // SetGameSessionName sets the GameSessionName field's value.
 func (s *GameSessionPlacement) SetGameSessionName(v string) *GameSessionPlacement {
 	s.GameSessionName = &v
@@ -8908,9 +9013,21 @@ func (s *GameSessionPlacement) SetGameSessionRegion(v string) *GameSessionPlacem
 	return s
 }
 
+// SetIpAddress sets the IpAddress field's value.
+func (s *GameSessionPlacement) SetIpAddress(v string) *GameSessionPlacement {
+	s.IpAddress = &v
+	return s
+}
+
 // SetMaximumPlayerSessionCount sets the MaximumPlayerSessionCount field's value.
 func (s *GameSessionPlacement) SetMaximumPlayerSessionCount(v int64) *GameSessionPlacement {
 	s.MaximumPlayerSessionCount = &v
+	return s
+}
+
+// SetPlacedPlayerSessions sets the PlacedPlayerSessions field's value.
+func (s *GameSessionPlacement) SetPlacedPlayerSessions(v []*PlacedPlayerSession) *GameSessionPlacement {
+	s.PlacedPlayerSessions = v
 	return s
 }
 
@@ -8926,6 +9043,12 @@ func (s *GameSessionPlacement) SetPlayerLatencies(v []*PlayerLatency) *GameSessi
 	return s
 }
 
+// SetPort sets the Port field's value.
+func (s *GameSessionPlacement) SetPort(v int64) *GameSessionPlacement {
+	s.Port = &v
+	return s
+}
+
 // SetStartTime sets the StartTime field's value.
 func (s *GameSessionPlacement) SetStartTime(v time.Time) *GameSessionPlacement {
 	s.StartTime = &v
@@ -8938,12 +9061,24 @@ func (s *GameSessionPlacement) SetStatus(v string) *GameSessionPlacement {
 	return s
 }
 
-// Configuration of a queue used to process game session placement requests.
-// The queue configuration identifies the fleets that new game session can be
-// placed on, given available resources, and the length of time a request can
-// remain in the queue waiting for placement.
+// Configuration of a queue that is used to process game session placement requests.
+// The queue configuration identifies several game features:
 //
-// Queue-related operations include:
+//    * The destinations where a new game session can potentially be hosted.
+//    Amazon GameLift tries these destinations in an order based on either the
+//    queue's default order or player latency information, if provided in a
+//    placement request. With latency information, Amazon GameLift can place
+//    game sessions where the majority of players are reporting the lowest possible
+//    latency.
+//
+//    * The length of time that placement requests can wait in the queue before
+//    timing out.
+//
+//    * A set of optional latency policies that protect individual players from
+//    high latencies, preventing game sessions from being placed where any individual
+//    player is reporting latency higher than a policy's maximum.
+//
+// Queue-related operations include the following:
 //
 //    * CreateGameSessionQueue
 //
@@ -8961,9 +9096,24 @@ type GameSessionQueue struct {
 	// ARN. Destinations are listed in default preference order.
 	Destinations []*GameSessionQueueDestination `type:"list"`
 
+	// Amazon Resource Name (ARN (http://docs.aws.amazon.com/docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html))
+	// that is assigned to a game session queue and uniquely identifies it. Format
+	// is arn:aws:gamelift:<region>::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912.
+	GameSessionQueueArn *string `min:"1" type:"string"`
+
 	// Descriptive label that is associated with queue. Queue names must be unique
 	// within each region.
 	Name *string `min:"1" type:"string"`
+
+	// Collection of latency policies to apply when processing game sessions placement
+	// requests with player latency information. Multiple policies are evaluated
+	// in order of the maximum latency value, starting with the lowest latency values.
+	// With just one policy, it is enforced at the start of the game session placement
+	// for the duration period. With multiple policies, each policy is enforced
+	// consecutively for its duration period. For example, a queue might enforce
+	// a 60-second policy followed by a 120-second policy, and then no policy for
+	// the remainder of the placement.
+	PlayerLatencyPolicies []*PlayerLatencyPolicy `type:"list"`
 
 	// Maximum time, in seconds, that a new game session placement request remains
 	// in the queue. When a request exceeds this time, the game session placement
@@ -8987,9 +9137,21 @@ func (s *GameSessionQueue) SetDestinations(v []*GameSessionQueueDestination) *Ga
 	return s
 }
 
+// SetGameSessionQueueArn sets the GameSessionQueueArn field's value.
+func (s *GameSessionQueue) SetGameSessionQueueArn(v string) *GameSessionQueue {
+	s.GameSessionQueueArn = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *GameSessionQueue) SetName(v string) *GameSessionQueue {
 	s.Name = &v
+	return s
+}
+
+// SetPlayerLatencyPolicies sets the PlayerLatencyPolicies field's value.
+func (s *GameSessionQueue) SetPlayerLatencyPolicies(v []*PlayerLatencyPolicy) *GameSessionQueue {
+	s.PlayerLatencyPolicies = v
 	return s
 }
 
@@ -9001,7 +9163,7 @@ func (s *GameSessionQueue) SetTimeoutInSeconds(v int64) *GameSessionQueue {
 
 // Fleet designated in a game session queue. Requests for new game sessions
 // in the queue are fulfilled by starting a new game session on any destination
-// listed for a queue.
+// configured for a queue.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/GameSessionQueueDestination
 type GameSessionQueueDestination struct {
 	_ struct{} `type:"structure"`
@@ -9109,6 +9271,7 @@ func (s *GetGameSessionLogUrlOutput) SetPreSignedUrl(v string) *GetGameSessionLo
 	return s
 }
 
+// Represents the input for a request action.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/GetInstanceAccessInput
 type GetInstanceAccessInput struct {
 	_ struct{} `type:"structure"`
@@ -9166,6 +9329,7 @@ func (s *GetInstanceAccessInput) SetInstanceId(v string) *GetInstanceAccessInput
 	return s
 }
 
+// Represents the returned data in response to a request action.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/GetInstanceAccessOutput
 type GetInstanceAccessOutput struct {
 	_ struct{} `type:"structure"`
@@ -9814,6 +9978,43 @@ func (s *ListFleetsOutput) SetNextToken(v string) *ListFleetsOutput {
 	return s
 }
 
+// Information about a player session that was created as part of a StartGameSessionPlacement
+// request. This object contains only the player ID and player session ID. To
+// retrieve full details on a player session, call DescribePlayerSessions with
+// the player session ID.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/PlacedPlayerSession
+type PlacedPlayerSession struct {
+	_ struct{} `type:"structure"`
+
+	// Unique identifier for a player that is associated with this player session.
+	PlayerId *string `min:"1" type:"string"`
+
+	// Unique identifier for a player session.
+	PlayerSessionId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s PlacedPlayerSession) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PlacedPlayerSession) GoString() string {
+	return s.String()
+}
+
+// SetPlayerId sets the PlayerId field's value.
+func (s *PlacedPlayerSession) SetPlayerId(v string) *PlacedPlayerSession {
+	s.PlayerId = &v
+	return s
+}
+
+// SetPlayerSessionId sets the PlayerSessionId field's value.
+func (s *PlacedPlayerSession) SetPlayerSessionId(v string) *PlacedPlayerSession {
+	s.PlayerSessionId = &v
+	return s
+}
+
 // Regional latency information for a player, used when requesting a new game
 // session with StartGameSessionPlacement. This value indicates the amount of
 // time lag that exists when the player is connected to a fleet in the specified
@@ -9879,6 +10080,55 @@ func (s *PlayerLatency) SetRegionIdentifier(v string) *PlayerLatency {
 	return s
 }
 
+// Queue setting that determines the highest latency allowed for individual
+// players when placing a game session. When a latency policy is in force, a
+// game session cannot be placed at any destination in a region where a player
+// is reporting latency higher than the cap. Latency policies are only enforced
+// when the placement request contains player latency information.
+//
+// Latency policy-related operations include:
+//
+//    * CreateGameSessionQueue
+//
+//    * UpdateGameSessionQueue
+//
+//    * StartGameSessionPlacement
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/PlayerLatencyPolicy
+type PlayerLatencyPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum latency value that is allowed for any player, in milliseconds.
+	// All policies must have a value set for this property.
+	MaximumIndividualPlayerLatencyMilliseconds *int64 `type:"integer"`
+
+	// The length of time, in seconds, that the policy is enforced while placing
+	// a new game session. A null value for this property means that the policy
+	// is enforced until the queue times out.
+	PolicyDurationSeconds *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s PlayerLatencyPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PlayerLatencyPolicy) GoString() string {
+	return s.String()
+}
+
+// SetMaximumIndividualPlayerLatencyMilliseconds sets the MaximumIndividualPlayerLatencyMilliseconds field's value.
+func (s *PlayerLatencyPolicy) SetMaximumIndividualPlayerLatencyMilliseconds(v int64) *PlayerLatencyPolicy {
+	s.MaximumIndividualPlayerLatencyMilliseconds = &v
+	return s
+}
+
+// SetPolicyDurationSeconds sets the PolicyDurationSeconds field's value.
+func (s *PlayerLatencyPolicy) SetPolicyDurationSeconds(v int64) *PlayerLatencyPolicy {
+	s.PolicyDurationSeconds = &v
+	return s
+}
+
 // Properties describing a player session. A player session represents either
 // a player reservation for a game session or actual player activity in a game
 // session. A player session object (including player data) is automatically
@@ -9907,7 +10157,8 @@ type PlayerSession struct {
 	// to.
 	GameSessionId *string `min:"1" type:"string"`
 
-	// Game session IP address. All player sessions reference the game session location.
+	// IP address of the game session. To connect to a Amazon GameLift game server,
+	// an app needs both the IP address and port number.
 	IpAddress *string `type:"string"`
 
 	// Developer-defined information related to a player. Amazon GameLift does not
@@ -11003,6 +11254,7 @@ func (s *ServerProcess) SetParameters(v string) *ServerProcess {
 	return s
 }
 
+// Represents the input for a request action.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/StartGameSessionPlacementInput
 type StartGameSessionPlacementInput struct {
 	_ struct{} `type:"structure"`
@@ -11031,16 +11283,15 @@ type StartGameSessionPlacementInput struct {
 
 	// Unique identifier to assign to the new game session placement. This value
 	// is developer-defined. The value must be unique across all regions and cannot
-	// be reused unless you are resubmitting a cancelled or timed-out placement
-	// request.
+	// be reused unless you are resubmitting a canceled or timed-out placement request.
 	//
 	// PlacementId is a required field
 	PlacementId *string `min:"1" type:"string" required:"true"`
 
 	// Set of values, expressed in milliseconds, indicating the amount of latency
-	// that players experience when connected to AWS regions. This information is
-	// relevant when requesting player sessions. Latency information provided for
-	// player IDs not included in DesiredPlayerSessions are ignored.
+	// that players are experiencing when connected to AWS regions. This information
+	// is used to try to place the new game session where it can offer the best
+	// possible gameplay experience for the players.
 	PlayerLatencies []*PlayerLatency `type:"list"`
 }
 
@@ -11154,6 +11405,7 @@ func (s *StartGameSessionPlacementInput) SetPlayerLatencies(v []*PlayerLatency) 
 	return s
 }
 
+// Represents the returned data in response to a request action.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/StartGameSessionPlacementOutput
 type StartGameSessionPlacementOutput struct {
 	_ struct{} `type:"structure"`
@@ -11180,6 +11432,7 @@ func (s *StartGameSessionPlacementOutput) SetGameSessionPlacement(v *GameSession
 	return s
 }
 
+// Represents the input for a request action.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/StopGameSessionPlacementInput
 type StopGameSessionPlacementInput struct {
 	_ struct{} `type:"structure"`
@@ -11222,11 +11475,12 @@ func (s *StopGameSessionPlacementInput) SetPlacementId(v string) *StopGameSessio
 	return s
 }
 
+// Represents the returned data in response to a request action.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/StopGameSessionPlacementOutput
 type StopGameSessionPlacementOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Object that describes the cancelled game session placement, with cancelled
+	// Object that describes the canceled game session placement, with Cancelled
 	// status and an end time stamp.
 	GameSessionPlacement *GameSessionPlacement `type:"structure"`
 }
@@ -11866,13 +12120,15 @@ func (s *UpdateGameSessionOutput) SetGameSession(v *GameSession) *UpdateGameSess
 	return s
 }
 
+// Represents the input for a request action.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/UpdateGameSessionQueueInput
 type UpdateGameSessionQueueInput struct {
 	_ struct{} `type:"structure"`
 
 	// List of fleets that can be used to fulfill game session placement requests
 	// in the queue. Fleets are identified by either a fleet ARN or a fleet alias
-	// ARN. Destinations are listed in default preference order.
+	// ARN. Destinations are listed in default preference order. When updating this
+	// list, provide a complete list of destinations.
 	Destinations []*GameSessionQueueDestination `type:"list"`
 
 	// Descriptive label that is associated with queue. Queue names must be unique
@@ -11880,6 +12136,17 @@ type UpdateGameSessionQueueInput struct {
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
+
+	// Collection of latency policies to apply when processing game sessions placement
+	// requests with player latency information. Multiple policies are evaluated
+	// in order of the maximum latency value, starting with the lowest latency values.
+	// With just one policy, it is enforced at the start of the game session placement
+	// for the duration period. With multiple policies, each policy is enforced
+	// consecutively for its duration period. For example, a queue might enforce
+	// a 60-second policy followed by a 120-second policy, and then no policy for
+	// the remainder of the placement. When updating policies, provide a complete
+	// collection of policies.
+	PlayerLatencyPolicies []*PlayerLatencyPolicy `type:"list"`
 
 	// Maximum time, in seconds, that a new game session placement request remains
 	// in the queue. When a request exceeds this time, the game session placement
@@ -11935,12 +12202,19 @@ func (s *UpdateGameSessionQueueInput) SetName(v string) *UpdateGameSessionQueueI
 	return s
 }
 
+// SetPlayerLatencyPolicies sets the PlayerLatencyPolicies field's value.
+func (s *UpdateGameSessionQueueInput) SetPlayerLatencyPolicies(v []*PlayerLatencyPolicy) *UpdateGameSessionQueueInput {
+	s.PlayerLatencyPolicies = v
+	return s
+}
+
 // SetTimeoutInSeconds sets the TimeoutInSeconds field's value.
 func (s *UpdateGameSessionQueueInput) SetTimeoutInSeconds(v int64) *UpdateGameSessionQueueInput {
 	s.TimeoutInSeconds = &v
 	return s
 }
 
+// Represents the returned data in response to a request action.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/UpdateGameSessionQueueOutput
 type UpdateGameSessionQueueOutput struct {
 	_ struct{} `type:"structure"`

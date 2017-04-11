@@ -461,6 +461,7 @@
         "ComputeEnvironmentDetail$statusReason": "<p>A short, human-readable string to provide additional details about the current status of the compute environment.</p>",
         "ComputeEnvironmentDetail$serviceRole": "<p>The service role associated with the compute environment that allows AWS Batch to make calls to AWS API operations on your behalf.</p>",
         "ComputeEnvironmentOrder$computeEnvironment": "<p>The Amazon Resource Name (ARN) of the compute environment.</p>",
+        "ComputeResource$imageId": "<p>The Amazon Machine Image (AMI) ID used for instances launched in the compute environment.</p>",
         "ComputeResource$ec2KeyPair": "<p>The EC2 key pair that is used for instances launched in the compute environment.</p>",
         "ComputeResource$instanceRole": "<p>The Amazon ECS instance role applied to Amazon EC2 instances in a compute environment.</p>",
         "ComputeResource$spotIamFleetRole": "<p>The Amazon Resource Name (ARN) of the Amazon EC2 Spot Fleet IAM role applied to a <code>SPOT</code> compute environment.</p>",
