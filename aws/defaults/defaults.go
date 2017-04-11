@@ -103,7 +103,7 @@ const (
 	ecsCredsProviderEnvVar = "AWS_CONTAINER_CREDENTIALS_RELATIVE_URI"
 )
 
-// RemoteCredProvider returns a credenitials provider for the default remote
+// RemoteCredProvider returns a credentials provider for the default remote
 // endpoints such as EC2 or ECS Roles.
 func RemoteCredProvider(cfg aws.Config, handlers request.Handlers) credentials.Provider {
 	if u := os.Getenv(httpProviderEnvVar); len(u) > 0 {
@@ -125,7 +125,7 @@ func localHTTPCredProvider(cfg aws.Config, handlers request.Handlers, u string) 
 	if err != nil {
 		errMsg = fmt.Sprintf("invalid URL, %v", err)
 	} else if host := aws.URLHostname(parsed); !(host == "localhost" || host == "127.0.0.1") {
-		errMsg = fmt.Sprintf("invalid host addresss, %q, only localhost and 127.0.0.1 are valid.", host)
+		errMsg = fmt.Sprintf("invalid host address, %q, only localhost and 127.0.0.1 are valid.", host)
 	}
 
 	if len(errMsg) > 0 {
