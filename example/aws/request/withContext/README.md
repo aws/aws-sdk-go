@@ -10,4 +10,4 @@ Will default to shared config file, but can load from environment if provided.
 ## Usage:
 
     # Upload myfile.txt to myBucket/myKey. Must complete within 10 minutes or will fail
-    go run withContext.go -b mybucket -k myKey -d 10m < myfile.txt
+    go run -tags example withContext.go -b mybucket -k myKey -d 10m < myfile.txt
