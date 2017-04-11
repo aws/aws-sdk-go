@@ -239,6 +239,30 @@ func ExampleAPIGateway_CreateModel() {
 	fmt.Println(resp)
 }
 
+func ExampleAPIGateway_CreateRequestValidator() {
+	sess := session.Must(session.NewSession())
+
+	svc := apigateway.New(sess)
+
+	params := &apigateway.CreateRequestValidatorInput{
+		RestApiId:                 aws.String("String"), // Required
+		Name:                      aws.String("String"),
+		ValidateRequestBody:       aws.Bool(true),
+		ValidateRequestParameters: aws.Bool(true),
+	}
+	resp, err := svc.CreateRequestValidator(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleAPIGateway_CreateResource() {
 	sess := session.Must(session.NewSession())
 
@@ -659,6 +683,28 @@ func ExampleAPIGateway_DeleteModel() {
 		RestApiId: aws.String("String"), // Required
 	}
 	resp, err := svc.DeleteModel(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleAPIGateway_DeleteRequestValidator() {
+	sess := session.Must(session.NewSession())
+
+	svc := apigateway.New(sess)
+
+	params := &apigateway.DeleteRequestValidatorInput{
+		RequestValidatorId: aws.String("String"), // Required
+		RestApiId:          aws.String("String"), // Required
+	}
+	resp, err := svc.DeleteRequestValidator(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -1414,6 +1460,51 @@ func ExampleAPIGateway_GetModels() {
 	fmt.Println(resp)
 }
 
+func ExampleAPIGateway_GetRequestValidator() {
+	sess := session.Must(session.NewSession())
+
+	svc := apigateway.New(sess)
+
+	params := &apigateway.GetRequestValidatorInput{
+		RequestValidatorId: aws.String("String"), // Required
+		RestApiId:          aws.String("String"), // Required
+	}
+	resp, err := svc.GetRequestValidator(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleAPIGateway_GetRequestValidators() {
+	sess := session.Must(session.NewSession())
+
+	svc := apigateway.New(sess)
+
+	params := &apigateway.GetRequestValidatorsInput{
+		RestApiId: aws.String("String"), // Required
+		Limit:     aws.Int64(1),
+		Position:  aws.String("String"),
+	}
+	resp, err := svc.GetRequestValidators(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleAPIGateway_GetResource() {
 	sess := session.Must(session.NewSession())
 
@@ -1902,6 +1993,7 @@ func ExampleAPIGateway_PutMethod() {
 			"Key": aws.Bool(true), // Required
 			// More values...
 		},
+		RequestValidatorId: aws.String("String"),
 	}
 	resp, err := svc.PutMethod(params)
 
@@ -2469,6 +2561,37 @@ func ExampleAPIGateway_UpdateModel() {
 		},
 	}
 	resp, err := svc.UpdateModel(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleAPIGateway_UpdateRequestValidator() {
+	sess := session.Must(session.NewSession())
+
+	svc := apigateway.New(sess)
+
+	params := &apigateway.UpdateRequestValidatorInput{
+		RequestValidatorId: aws.String("String"), // Required
+		RestApiId:          aws.String("String"), // Required
+		PatchOperations: []*apigateway.PatchOperation{
+			{ // Required
+				From:  aws.String("String"),
+				Op:    aws.String("Op"),
+				Path:  aws.String("String"),
+				Value: aws.String("String"),
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.UpdateRequestValidator(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

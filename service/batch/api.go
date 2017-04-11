@@ -1784,6 +1784,10 @@ type ComputeResource struct {
 	// The EC2 key pair that is used for instances launched in the compute environment.
 	Ec2KeyPair *string `locationName:"ec2KeyPair" type:"string"`
 
+	// The Amazon Machine Image (AMI) ID used for instances launched in the compute
+	// environment.
+	ImageId *string `locationName:"imageId" type:"string"`
+
 	// The Amazon ECS instance role applied to Amazon EC2 instances in a compute
 	// environment.
 	//
@@ -1886,6 +1890,12 @@ func (s *ComputeResource) SetDesiredvCpus(v int64) *ComputeResource {
 // SetEc2KeyPair sets the Ec2KeyPair field's value.
 func (s *ComputeResource) SetEc2KeyPair(v string) *ComputeResource {
 	s.Ec2KeyPair = &v
+	return s
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *ComputeResource) SetImageId(v string) *ComputeResource {
+	s.ImageId = &v
 	return s
 }
 
