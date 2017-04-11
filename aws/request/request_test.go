@@ -6,14 +6,11 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
-	"net"
 	"net/http"
 	"net/http/httptest"
-	"os"
 	"reflect"
 	"runtime"
 	"strconv"
-	"syscall"
 	"testing"
 	"time"
 
@@ -534,7 +531,7 @@ func TestIsSerializationErrorRetryable(t *testing.T) {
 			expected: false,
 		},
 		{
-			err:      awserr.New(request.ErrCodeSerialization, "foo error", &net.OpError{Err: &os.SyscallError{Err: syscall.ECONNRESET}}),
+			err:      awserr.New(request.ErrCodeSerialization, "foo error", stubConnectionResetError),
 			expected: true,
 		},
 	}
@@ -614,7 +611,7 @@ type connResetCloser struct {
 }
 
 func (rc *connResetCloser) Read(b []byte) (int, error) {
-	return 0, &net.OpError{Err: &os.SyscallError{Syscall: "read", Err: syscall.ECONNRESET}}
+	return 0, stubConnectionResetError
 }
 
 func (rc *connResetCloser) Close() error {
@@ -667,7 +664,7 @@ func TestSerializationErrConnectionReset(t *testing.T) {
 		}{},
 	)
 
-	osErr := &net.OpError{Err: &os.SyscallError{Syscall: "read", Err: syscall.ECONNRESET}}
+	osErr := stubConnectionResetError
 	req.ApplyOptions(request.WithResponseReadTimeout(time.Second))
 	err := req.Send()
 	if err == nil {
