@@ -118,13 +118,6 @@ func RemoteCredProvider(cfg aws.Config, handlers request.Handlers) credentials.P
 	return ec2RoleProvider(cfg, handlers)
 }
 
-func log(logger aws.Logger, msg ...interface{}) {
-	if logger == nil {
-		return
-	}
-	logger.Log(msg...)
-}
-
 func localHTTPCredProvider(cfg aws.Config, handlers request.Handlers, u string) credentials.Provider {
 	var errMsg string
 
