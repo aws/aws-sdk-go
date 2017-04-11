@@ -355,6 +355,7 @@
         "maxvCpus":{"shape":"Integer"},
         "desiredvCpus":{"shape":"Integer"},
         "instanceTypes":{"shape":"StringList"},
+        "imageId":{"shape":"String"},
         "subnets":{"shape":"StringList"},
         "securityGroupIds":{"shape":"StringList"},
         "ec2KeyPair":{"shape":"String"},

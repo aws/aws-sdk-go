@@ -92,6 +92,10 @@ type APIGatewayAPI interface {
 	CreateModelWithContext(aws.Context, *apigateway.CreateModelInput, ...request.Option) (*apigateway.Model, error)
 	CreateModelRequest(*apigateway.CreateModelInput) (*request.Request, *apigateway.Model)
 
+	CreateRequestValidator(*apigateway.CreateRequestValidatorInput) (*apigateway.UpdateRequestValidatorOutput, error)
+	CreateRequestValidatorWithContext(aws.Context, *apigateway.CreateRequestValidatorInput, ...request.Option) (*apigateway.UpdateRequestValidatorOutput, error)
+	CreateRequestValidatorRequest(*apigateway.CreateRequestValidatorInput) (*request.Request, *apigateway.UpdateRequestValidatorOutput)
+
 	CreateResource(*apigateway.CreateResourceInput) (*apigateway.Resource, error)
 	CreateResourceWithContext(aws.Context, *apigateway.CreateResourceInput, ...request.Option) (*apigateway.Resource, error)
 	CreateResourceRequest(*apigateway.CreateResourceInput) (*request.Request, *apigateway.Resource)
@@ -163,6 +167,10 @@ type APIGatewayAPI interface {
 	DeleteModel(*apigateway.DeleteModelInput) (*apigateway.DeleteModelOutput, error)
 	DeleteModelWithContext(aws.Context, *apigateway.DeleteModelInput, ...request.Option) (*apigateway.DeleteModelOutput, error)
 	DeleteModelRequest(*apigateway.DeleteModelInput) (*request.Request, *apigateway.DeleteModelOutput)
+
+	DeleteRequestValidator(*apigateway.DeleteRequestValidatorInput) (*apigateway.DeleteRequestValidatorOutput, error)
+	DeleteRequestValidatorWithContext(aws.Context, *apigateway.DeleteRequestValidatorInput, ...request.Option) (*apigateway.DeleteRequestValidatorOutput, error)
+	DeleteRequestValidatorRequest(*apigateway.DeleteRequestValidatorInput) (*request.Request, *apigateway.DeleteRequestValidatorOutput)
 
 	DeleteResource(*apigateway.DeleteResourceInput) (*apigateway.DeleteResourceOutput, error)
 	DeleteResourceWithContext(aws.Context, *apigateway.DeleteResourceInput, ...request.Option) (*apigateway.DeleteResourceOutput, error)
@@ -313,6 +321,14 @@ type APIGatewayAPI interface {
 
 	GetModelsPages(*apigateway.GetModelsInput, func(*apigateway.GetModelsOutput, bool) bool) error
 	GetModelsPagesWithContext(aws.Context, *apigateway.GetModelsInput, func(*apigateway.GetModelsOutput, bool) bool, ...request.Option) error
+
+	GetRequestValidator(*apigateway.GetRequestValidatorInput) (*apigateway.UpdateRequestValidatorOutput, error)
+	GetRequestValidatorWithContext(aws.Context, *apigateway.GetRequestValidatorInput, ...request.Option) (*apigateway.UpdateRequestValidatorOutput, error)
+	GetRequestValidatorRequest(*apigateway.GetRequestValidatorInput) (*request.Request, *apigateway.UpdateRequestValidatorOutput)
+
+	GetRequestValidators(*apigateway.GetRequestValidatorsInput) (*apigateway.GetRequestValidatorsOutput, error)
+	GetRequestValidatorsWithContext(aws.Context, *apigateway.GetRequestValidatorsInput, ...request.Option) (*apigateway.GetRequestValidatorsOutput, error)
+	GetRequestValidatorsRequest(*apigateway.GetRequestValidatorsInput) (*request.Request, *apigateway.GetRequestValidatorsOutput)
 
 	GetResource(*apigateway.GetResourceInput) (*apigateway.Resource, error)
 	GetResourceWithContext(aws.Context, *apigateway.GetResourceInput, ...request.Option) (*apigateway.Resource, error)
@@ -480,6 +496,10 @@ type APIGatewayAPI interface {
 	UpdateModel(*apigateway.UpdateModelInput) (*apigateway.Model, error)
 	UpdateModelWithContext(aws.Context, *apigateway.UpdateModelInput, ...request.Option) (*apigateway.Model, error)
 	UpdateModelRequest(*apigateway.UpdateModelInput) (*request.Request, *apigateway.Model)
+
+	UpdateRequestValidator(*apigateway.UpdateRequestValidatorInput) (*apigateway.UpdateRequestValidatorOutput, error)
+	UpdateRequestValidatorWithContext(aws.Context, *apigateway.UpdateRequestValidatorInput, ...request.Option) (*apigateway.UpdateRequestValidatorOutput, error)
+	UpdateRequestValidatorRequest(*apigateway.UpdateRequestValidatorInput) (*request.Request, *apigateway.UpdateRequestValidatorOutput)
 
 	UpdateResource(*apigateway.UpdateResourceInput) (*apigateway.Resource, error)
 	UpdateResourceWithContext(aws.Context, *apigateway.UpdateResourceInput, ...request.Option) (*apigateway.Resource, error)
