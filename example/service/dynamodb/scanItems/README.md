@@ -29,7 +29,7 @@ In DynamoDB the structure of the item to be returned will be:
 
 ## Usage
 
-`scanItems.go -table "<table_name>" -region "<optional_region>"`
+`go run -tags example scanItems.go -table "<table_name>" -region "<optional_region>"`
 
 ## Output
 
