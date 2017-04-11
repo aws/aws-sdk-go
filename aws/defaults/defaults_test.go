@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/credentials/ec2rolecreds"
 	"github.com/aws/aws-sdk-go/aws/credentials/endpointcreds"
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -31,15 +32,21 @@ func TestHTTPCredProvider(t *testing.T) {
 			t.Fatalf("%d, expect provider not to be nil, but was", i)
 		}
 
-		httpProvider, ok := provider.(*endpointcreds.Provider)
 		if c.Fail {
-			if ok {
-				t.Fatalf("%d, expect http provider not to be set, but was, %#v", i, httpProvider)
+			creds, err := provider.Retrieve()
+			if err == nil {
+				t.Fatalf("%d, expect error but got none", i)
+			} else {
+				aerr := err.(awserr.Error)
+				if e, a := "CredentialsEndpointError", aerr.Code(); e != a {
+					t.Errorf("%d, expect %s error code, got %s", i, e, a)
+				}
+			}
+			if e, a := endpointcreds.ProviderName, creds.ProviderName; e != a {
+				t.Errorf("%d, expect %s provider name got %s", i, e, a)
 			}
 		} else {
-			if httpProvider == nil {
-				t.Fatalf("%d, expect provider not to be nil, but was", i)
-			}
+			httpProvider := provider.(*endpointcreds.Provider)
 			if e, a := u, httpProvider.Client.Endpoint; e != a {
 				t.Errorf("%d, expect %q endpoint, got %q", i, e, a)
 			}

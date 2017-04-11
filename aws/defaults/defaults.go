@@ -15,6 +15,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/corehandlers"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/credentials/ec2rolecreds"
@@ -106,18 +107,7 @@ const (
 // endpoints such as EC2 or ECS Roles.
 func RemoteCredProvider(cfg aws.Config, handlers request.Handlers) credentials.Provider {
 	if u := os.Getenv(httpProviderEnvVar); len(u) > 0 {
-		parsed, err := url.Parse(u)
-		// Need to log error because this API did not expose an error
-		if err != nil {
-			log(cfg.Logger,
-				"Ignoring,", httpProviderEnvVar, "failed to parse url", err)
-		} else if host := aws.URLHostname(parsed); !(host == "localhost" || host == "127.0.0.1") {
-			log(cfg.Logger,
-				"Ignoring,", httpProviderEnvVar, "specified URL with invalid hostname",
-				host, ", only localhost and 127.0.0.1 are valid.")
-		} else {
-			return httpCredProvider(cfg, handlers, u)
-		}
+		return localHTTPCredProvider(cfg, handlers, u)
 	}
 
 	if uri := os.Getenv(ecsCredsProviderEnvVar); len(uri) > 0 {
@@ -133,6 +123,29 @@ func log(logger aws.Logger, msg ...interface{}) {
 		return
 	}
 	logger.Log(msg...)
+}
+
+func localHTTPCredProvider(cfg aws.Config, handlers request.Handlers, u string) credentials.Provider {
+	var errMsg string
+
+	parsed, err := url.Parse(u)
+	if err != nil {
+		errMsg = fmt.Sprintf("invalid URL, %v", err)
+	} else if host := aws.URLHostname(parsed); !(host == "localhost" || host == "127.0.0.1") {
+		errMsg = fmt.Sprintf("invalid host addresss, %q, only localhost and 127.0.0.1 are valid.", host)
+	}
+
+	if len(errMsg) > 0 {
+		if cfg.Logger != nil {
+			cfg.Logger.Log("Ignoring, HTTP credential provider", errMsg, err)
+		}
+		return credentials.ErrorProvider{
+			Err:          awserr.New("CredentialsEndpointError", errMsg, err),
+			ProviderName: endpointcreds.ProviderName,
+		}
+	}
+
+	return httpCredProvider(cfg, handlers, u)
 }
 
 func httpCredProvider(cfg aws.Config, handlers request.Handlers, u string) credentials.Provider {
