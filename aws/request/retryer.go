@@ -1,9 +1,6 @@
 package request
 
 import (
-	"net"
-	"os"
-	"syscall"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -82,13 +79,7 @@ func isSerializationErrorRetryable(err error) bool {
 		return isCodeRetryable(aerr.Code())
 	}
 
-	if opErr, ok := err.(*net.OpError); ok {
-		if sysErr, ok := opErr.Err.(*os.SyscallError); ok {
-			return sysErr.Err == syscall.ECONNRESET
-		}
-	}
-
-	return false
+	return isErrConnectionReset(err)
 }
 
 // IsErrorRetryable returns whether the error is retryable, based on its Code.
