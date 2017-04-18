@@ -206,6 +206,39 @@ func TestSendHandlerError(t *testing.T) {
 	assert.NotNil(t, r.HTTPResponse)
 }
 
+func TestSendWithoutFollowRedirects(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case "/original":
+			w.Header().Set("Location", "/redirected")
+			w.WriteHeader(301)
+		case "/redirected":
+			t.Fatalf("expect not to redirect, but was")
+		}
+	}))
+
+	svc := awstesting.NewClient(&aws.Config{
+		DisableSSL: aws.Bool(true),
+		Endpoint:   aws.String(server.URL),
+	})
+	svc.Handlers.Clear()
+	svc.Handlers.Send.PushBackNamed(corehandlers.SendHandler)
+
+	r := svc.NewRequest(&request.Operation{
+		Name:     "Operation",
+		HTTPPath: "/original",
+	}, nil, nil)
+	r.DisableFollowRedirects = true
+
+	err := r.Send()
+	if err != nil {
+		t.Errorf("expect no error, got %v", err)
+	}
+	if e, a := 301, r.HTTPResponse.StatusCode; e != a {
+		t.Errorf("expect %d status code, got %d", e, a)
+	}
+}
+
 func TestValidateReqSigHandler(t *testing.T) {
 	cases := []struct {
 		Req    *request.Request
