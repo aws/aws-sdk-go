@@ -1,3 +1,14 @@
+Release v1.8.13 (2017-04-18)
+===
+
+### Service Client Updates
+* `service/lambda`: Updates service API and documentation
+  * You can use tags to group and filter your Lambda functions, making it easier to analyze them for billing allocation purposes. For more information, see Tagging Lambda Functions.  You can now write or upgrade your Lambda functions using Python version 3.6. For more information, see Programming Model for Authoring Lambda Functions in Python. Note: Features will be rolled out in the US regions on 4/19.
+
+### SDK Enhancements
+* `aws/request`: add support for appengine's custom standard library (#1190)
+  * Remove syscall error checking on appengine platforms.
+
 Release v1.8.12 (2017-04-11)
 ===
 

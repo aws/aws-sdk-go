@@ -138,6 +138,10 @@ type LambdaAPI interface {
 	ListFunctionsPages(*lambda.ListFunctionsInput, func(*lambda.ListFunctionsOutput, bool) bool) error
 	ListFunctionsPagesWithContext(aws.Context, *lambda.ListFunctionsInput, func(*lambda.ListFunctionsOutput, bool) bool, ...request.Option) error
 
+	ListTags(*lambda.ListTagsInput) (*lambda.ListTagsOutput, error)
+	ListTagsWithContext(aws.Context, *lambda.ListTagsInput, ...request.Option) (*lambda.ListTagsOutput, error)
+	ListTagsRequest(*lambda.ListTagsInput) (*request.Request, *lambda.ListTagsOutput)
+
 	ListVersionsByFunction(*lambda.ListVersionsByFunctionInput) (*lambda.ListVersionsByFunctionOutput, error)
 	ListVersionsByFunctionWithContext(aws.Context, *lambda.ListVersionsByFunctionInput, ...request.Option) (*lambda.ListVersionsByFunctionOutput, error)
 	ListVersionsByFunctionRequest(*lambda.ListVersionsByFunctionInput) (*request.Request, *lambda.ListVersionsByFunctionOutput)
@@ -149,6 +153,14 @@ type LambdaAPI interface {
 	RemovePermission(*lambda.RemovePermissionInput) (*lambda.RemovePermissionOutput, error)
 	RemovePermissionWithContext(aws.Context, *lambda.RemovePermissionInput, ...request.Option) (*lambda.RemovePermissionOutput, error)
 	RemovePermissionRequest(*lambda.RemovePermissionInput) (*request.Request, *lambda.RemovePermissionOutput)
+
+	TagResource(*lambda.TagResourceInput) (*lambda.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *lambda.TagResourceInput, ...request.Option) (*lambda.TagResourceOutput, error)
+	TagResourceRequest(*lambda.TagResourceInput) (*request.Request, *lambda.TagResourceOutput)
+
+	UntagResource(*lambda.UntagResourceInput) (*lambda.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *lambda.UntagResourceInput, ...request.Option) (*lambda.UntagResourceOutput, error)
+	UntagResourceRequest(*lambda.UntagResourceInput) (*request.Request, *lambda.UntagResourceOutput)
 
 	UpdateAlias(*lambda.UpdateAliasInput) (*lambda.AliasConfiguration, error)
 	UpdateAliasWithContext(aws.Context, *lambda.UpdateAliasInput, ...request.Option) (*lambda.AliasConfiguration, error)
