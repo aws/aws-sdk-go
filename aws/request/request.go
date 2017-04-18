@@ -21,6 +21,9 @@ const (
 	// during protocol unmarshaling.
 	ErrCodeSerialization = "SerializationError"
 
+	// ErrCodeRead ...
+	ErrCodeRead = "ReadError"
+
 	// ErrCodeResponseTimeout is the connection timeout error that is recieved
 	// during body reads.
 	ErrCodeResponseTimeout = "ResponseTimeout"
