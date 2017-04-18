@@ -53,6 +53,12 @@ type Config struct {
 	// to use based on region.
 	EndpointResolver endpoints.Resolver
 
+	// EnforceShouldRetryCheck is used in the AfterRetryHandler to always call
+	// ShouldRetry. If this is set and ShouldRetry is called, then the request's
+	// Retryable field can be either nil or set. Proper handling of the Retryable
+	// field is important when setting this field.
+	EnforceShouldRetryCheck *bool
+
 	// The region to send requests to. This parameter is required and must
 	// be configured globally or on a per-client basis unless otherwise
 	// noted. A full list of regions is found in the "Regions and Endpoints"
@@ -442,6 +448,10 @@ func mergeInConfig(dst *Config, other *Config) {
 
 	if other.DisableRestProtocolURICleaning != nil {
 		dst.DisableRestProtocolURICleaning = other.DisableRestProtocolURICleaning
+	}
+
+	if other.EnforceShouldRetryCheck != nil {
+		dst.EnforceShouldRetryCheck = other.EnforceShouldRetryCheck
 	}
 }
 

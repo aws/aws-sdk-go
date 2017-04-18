@@ -682,3 +682,69 @@ func TestSerializationErrConnectionReset(t *testing.T) {
 		t.Errorf("Expected '6', but received %d", count)
 	}
 }
+
+type testRetryer struct {
+	shouldRetry bool
+}
+
+func (d *testRetryer) MaxRetries() int {
+	return 3
+}
+
+// RetryRules returns the delay duration before retrying this request again
+func (d *testRetryer) RetryRules(r *request.Request) time.Duration {
+	return time.Duration(time.Millisecond)
+}
+
+func (d *testRetryer) ShouldRetry(r *request.Request) bool {
+	d.shouldRetry = true
+	if r.Retryable != nil {
+		return *r.Retryable
+	}
+
+	if r.HTTPResponse.StatusCode >= 500 {
+		return true
+	}
+	return r.IsErrorRetryable()
+}
+
+func TestEnforceShouldRetryCheck(t *testing.T) {
+	tp := &http.Transport{
+		Proxy: http.ProxyFromEnvironment,
+		ResponseHeaderTimeout: 1 * time.Millisecond,
+	}
+
+	client := &http.Client{Transport: tp}
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		time.Sleep(5 * time.Millisecond)
+	}))
+
+	retryer := &testRetryer{}
+	s := awstesting.NewClient(&aws.Config{
+		Region:                  aws.String("mock-region"),
+		MaxRetries:              aws.Int(0),
+		Endpoint:                aws.String(server.URL),
+		DisableSSL:              aws.Bool(true),
+		Retryer:                 retryer,
+		HTTPClient:              client,
+		EnforceShouldRetryCheck: aws.Bool(true),
+	})
+
+	s.Handlers.Validate.Clear()
+	s.Handlers.Unmarshal.PushBack(unmarshal)
+	s.Handlers.UnmarshalError.PushBack(unmarshalError)
+
+	out := &testData{}
+	r := s.NewRequest(&request.Operation{Name: "Operation"}, nil, out)
+	err := r.Send()
+	if err == nil {
+		t.Fatalf("expect error, but got nil")
+	}
+	if e, a := 3, int(r.RetryCount); e != a {
+		t.Errorf("expect %d retry count, got %d", e, a)
+	}
+	if !retryer.shouldRetry {
+		t.Errorf("expect 'true' for ShouldRetry, but got %v", retryer.shouldRetry)
+	}
+}
