@@ -54,9 +54,10 @@ type Config struct {
 	EndpointResolver endpoints.Resolver
 
 	// EnforceShouldRetryCheck is used in the AfterRetryHandler to always call
-	// ShouldRetry. If this is set and ShouldRetry is called, then the request's
-	// Retryable field can be either nil or set. Proper handling of the Retryable
-	// field is important when setting this field.
+	// ShouldRetry regardless of whether or not if request.Retryable is set.
+	// This will utilize ShouldRetry method of custom retryers. If EnforceShouldRetryCheck
+	// is not set, then ShouldRetry will only be called if request.Retryable is nil.
+	// Proper handling of the request.Retryable field is important when setting this field.
 	EnforceShouldRetryCheck *bool
 
 	// The region to send requests to. This parameter is required and must
