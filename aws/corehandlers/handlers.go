@@ -160,7 +160,7 @@ var ValidateResponseHandler = request.NamedHandler{Name: "core.ValidateResponseH
 var AfterRetryHandler = request.NamedHandler{Name: "core.AfterRetryHandler", Fn: func(r *request.Request) {
 	// If one of the other handlers already set the retry state
 	// we don't want to override it based on the service's state
-	if r.Retryable == nil {
+	if r.Retryable == nil || aws.BoolValue(r.Config.EnforceShouldRetryCheck) {
 		r.Retryable = aws.Bool(r.ShouldRetry(r))
 	}
 
