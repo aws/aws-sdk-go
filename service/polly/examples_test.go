@@ -136,7 +136,11 @@ func ExamplePolly_SynthesizeSpeech() {
 			// More values...
 		},
 		SampleRate: aws.String("SampleRate"),
-		TextType:   aws.String("TextType"),
+		SpeechMarkTypes: []*string{
+			aws.String("SpeechMarkType"), // Required
+			// More values...
+		},
+		TextType: aws.String("TextType"),
 	}
 	resp, err := svc.SynthesizeSpeech(params)
 

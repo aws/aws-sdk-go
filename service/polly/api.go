@@ -566,6 +566,13 @@ func (c *Polly) SynthesizeSpeechRequest(input *SynthesizeSpeechInput) (req *requ
 //   * ErrCodeServiceFailureException "ServiceFailureException"
 //   An unknown condition has caused a service failure.
 //
+//   * ErrCodeMarksNotSupportedForFormatException "MarksNotSupportedForFormatException"
+//   Speech marks are not supported for the OutputFormat selected. Speech marks
+//   are only available for content in json format.
+//
+//   * ErrCodeSsmlMarksNotSupportedForTextTypeException "SsmlMarksNotSupportedForTextTypeException"
+//   SSML speech marks are not supported for plain text-type input.
+//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/polly-2016-06-10/SynthesizeSpeech
 func (c *Polly) SynthesizeSpeech(input *SynthesizeSpeechInput) (*SynthesizeSpeechOutput, error) {
 	req, out := c.SynthesizeSpeechRequest(input)
@@ -1068,7 +1075,8 @@ type SynthesizeSpeechInput struct {
 	// see PutLexicon (http://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html).
 	LexiconNames []*string `type:"list"`
 
-	// The audio format in which the resulting stream will be encoded.
+	// The format in which the returned output will be encoded. For audio stream,
+	// this will be mp3, ogg_vorbis, or pcm. For speech marks, this will be json.
 	//
 	// OutputFormat is a required field
 	OutputFormat *string `type:"string" required:"true" enum:"OutputFormat"`
@@ -1080,6 +1088,9 @@ type SynthesizeSpeechInput struct {
 	//
 	// Valid values for pcm are "8000" and "16000" The default value is "16000".
 	SampleRate *string `type:"string"`
+
+	// The type of speech marks returned for the input text.
+	SpeechMarkTypes []*string `type:"list"`
 
 	// Input text to synthesize. If you specify ssml as the TextType, follow the
 	// SSML format for the input text.
@@ -1146,6 +1157,12 @@ func (s *SynthesizeSpeechInput) SetSampleRate(v string) *SynthesizeSpeechInput {
 	return s
 }
 
+// SetSpeechMarkTypes sets the SpeechMarkTypes field's value.
+func (s *SynthesizeSpeechInput) SetSpeechMarkTypes(v []*string) *SynthesizeSpeechInput {
+	s.SpeechMarkTypes = v
+	return s
+}
+
 // SetText sets the Text field's value.
 func (s *SynthesizeSpeechInput) SetText(v string) *SynthesizeSpeechInput {
 	s.Text = &v
@@ -1183,6 +1200,9 @@ type SynthesizeSpeechOutput struct {
 	//    *  If you request pcm as the OutputFormat, the ContentType returned is
 	//    audio/pcm in a signed 16-bit, 1 channel (mono), little-endian format.
 	//
+	//
+	//    * If you request json as the OutputFormat, the ContentType returned is
+	//    audio/json.
 	ContentType *string `location:"header" locationName:"Content-Type" type:"string"`
 
 	// Number of characters synthesized.
@@ -1363,6 +1383,9 @@ const (
 )
 
 const (
+	// OutputFormatJson is a OutputFormat enum value
+	OutputFormatJson = "json"
+
 	// OutputFormatMp3 is a OutputFormat enum value
 	OutputFormatMp3 = "mp3"
 
@@ -1371,6 +1394,20 @@ const (
 
 	// OutputFormatPcm is a OutputFormat enum value
 	OutputFormatPcm = "pcm"
+)
+
+const (
+	// SpeechMarkTypeSentence is a SpeechMarkType enum value
+	SpeechMarkTypeSentence = "sentence"
+
+	// SpeechMarkTypeSsml is a SpeechMarkType enum value
+	SpeechMarkTypeSsml = "ssml"
+
+	// SpeechMarkTypeViseme is a SpeechMarkType enum value
+	SpeechMarkTypeViseme = "viseme"
+
+	// SpeechMarkTypeWord is a SpeechMarkType enum value
+	SpeechMarkTypeWord = "word"
 )
 
 const (

@@ -1097,6 +1097,10 @@ func ExampleAPIGateway_GetDeployment() {
 	params := &apigateway.GetDeploymentInput{
 		DeploymentId: aws.String("String"), // Required
 		RestApiId:    aws.String("String"), // Required
+		Embed: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
 	}
 	resp, err := svc.GetDeployment(params)
 
@@ -1513,6 +1517,10 @@ func ExampleAPIGateway_GetResource() {
 	params := &apigateway.GetResourceInput{
 		ResourceId: aws.String("String"), // Required
 		RestApiId:  aws.String("String"), // Required
+		Embed: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
 	}
 	resp, err := svc.GetResource(params)
 
@@ -1534,8 +1542,12 @@ func ExampleAPIGateway_GetResources() {
 
 	params := &apigateway.GetResourcesInput{
 		RestApiId: aws.String("String"), // Required
-		Limit:     aws.Int64(1),
-		Position:  aws.String("String"),
+		Embed: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+		Limit:    aws.Int64(1),
+		Position: aws.String("String"),
 	}
 	resp, err := svc.GetResources(params)
 

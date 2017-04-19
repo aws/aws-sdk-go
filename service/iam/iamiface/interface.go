@@ -128,6 +128,10 @@ type IAMAPI interface {
 	CreateSAMLProviderWithContext(aws.Context, *iam.CreateSAMLProviderInput, ...request.Option) (*iam.CreateSAMLProviderOutput, error)
 	CreateSAMLProviderRequest(*iam.CreateSAMLProviderInput) (*request.Request, *iam.CreateSAMLProviderOutput)
 
+	CreateServiceLinkedRole(*iam.CreateServiceLinkedRoleInput) (*iam.CreateServiceLinkedRoleOutput, error)
+	CreateServiceLinkedRoleWithContext(aws.Context, *iam.CreateServiceLinkedRoleInput, ...request.Option) (*iam.CreateServiceLinkedRoleOutput, error)
+	CreateServiceLinkedRoleRequest(*iam.CreateServiceLinkedRoleInput) (*request.Request, *iam.CreateServiceLinkedRoleOutput)
+
 	CreateServiceSpecificCredential(*iam.CreateServiceSpecificCredentialInput) (*iam.CreateServiceSpecificCredentialOutput, error)
 	CreateServiceSpecificCredentialWithContext(aws.Context, *iam.CreateServiceSpecificCredentialInput, ...request.Option) (*iam.CreateServiceSpecificCredentialOutput, error)
 	CreateServiceSpecificCredentialRequest(*iam.CreateServiceSpecificCredentialInput) (*request.Request, *iam.CreateServiceSpecificCredentialOutput)
@@ -573,6 +577,10 @@ type IAMAPI interface {
 	UpdateOpenIDConnectProviderThumbprint(*iam.UpdateOpenIDConnectProviderThumbprintInput) (*iam.UpdateOpenIDConnectProviderThumbprintOutput, error)
 	UpdateOpenIDConnectProviderThumbprintWithContext(aws.Context, *iam.UpdateOpenIDConnectProviderThumbprintInput, ...request.Option) (*iam.UpdateOpenIDConnectProviderThumbprintOutput, error)
 	UpdateOpenIDConnectProviderThumbprintRequest(*iam.UpdateOpenIDConnectProviderThumbprintInput) (*request.Request, *iam.UpdateOpenIDConnectProviderThumbprintOutput)
+
+	UpdateRoleDescription(*iam.UpdateRoleDescriptionInput) (*iam.UpdateRoleDescriptionOutput, error)
+	UpdateRoleDescriptionWithContext(aws.Context, *iam.UpdateRoleDescriptionInput, ...request.Option) (*iam.UpdateRoleDescriptionOutput, error)
+	UpdateRoleDescriptionRequest(*iam.UpdateRoleDescriptionInput) (*request.Request, *iam.UpdateRoleDescriptionOutput)
 
 	UpdateSAMLProvider(*iam.UpdateSAMLProviderInput) (*iam.UpdateSAMLProviderOutput, error)
 	UpdateSAMLProviderWithContext(aws.Context, *iam.UpdateSAMLProviderInput, ...request.Option) (*iam.UpdateSAMLProviderOutput, error)
