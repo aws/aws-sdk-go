@@ -104,6 +104,25 @@ func s3Customizations(a *API) {
 			}
 		}
 	}
+	s3CustRemoveHeadObjectModeledErrors(a)
+}
+
+// S3 HeadObject API call incorrect models NoSuchKey as valid
+// error code that can be returned. This operation does not
+// return error codes, all error codes are derived from HTTP
+// status codes.
+//
+// aws/aws-sdk-go#1208
+func s3CustRemoveHeadObjectModeledErrors(a *API) {
+	op, ok := a.Operations["HeadObject"]
+	if !ok {
+		return
+	}
+	op.Documentation += `
+//
+// See http://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#RESTErrorResponses
+// for more information on returned errors.`
+	op.ErrorRefs = []ShapeRef{}
 }
 
 // cloudfrontCustomizations customized the API generation to replace values
