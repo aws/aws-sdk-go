@@ -11,9 +11,11 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3"
 )
 
-func testSetupGetBucketRegionServer(region string, statusCode int) *httptest.Server {
+func testSetupGetBucketRegionServer(region string, statusCode int, incHeader bool) *httptest.Server {
 	return httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set(bucketRegionHeader, region)
+		if incHeader {
+			w.Header().Set(bucketRegionHeader, region)
+		}
 		w.WriteHeader(statusCode)
 	}))
 }
@@ -29,7 +31,7 @@ var testGetBucketRegionCases = []struct {
 
 func TestGetBucketRegion_Exists(t *testing.T) {
 	for i, c := range testGetBucketRegionCases {
-		server := testSetupGetBucketRegionServer(c.RespRegion, c.StatusCode)
+		server := testSetupGetBucketRegionServer(c.RespRegion, c.StatusCode, true)
 
 		sess := unit.Session.Copy()
 		sess.Config.Endpoint = aws.String(server.URL)
@@ -47,7 +49,7 @@ func TestGetBucketRegion_Exists(t *testing.T) {
 }
 
 func TestGetBucketRegion_NotExists(t *testing.T) {
-	server := testSetupGetBucketRegionServer("ignore-region", 404)
+	server := testSetupGetBucketRegionServer("ignore-region", 404, false)
 
 	sess := unit.Session.Copy()
 	sess.Config.Endpoint = aws.String(server.URL)
@@ -69,7 +71,7 @@ func TestGetBucketRegion_NotExists(t *testing.T) {
 
 func TestGetBucketRegionWithClient(t *testing.T) {
 	for i, c := range testGetBucketRegionCases {
-		server := testSetupGetBucketRegionServer(c.RespRegion, c.StatusCode)
+		server := testSetupGetBucketRegionServer(c.RespRegion, c.StatusCode, true)
 
 		svc := s3.New(unit.Session, &aws.Config{
 			Region:     aws.String("region"),
