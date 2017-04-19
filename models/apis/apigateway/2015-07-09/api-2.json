@@ -2781,6 +2781,11 @@
           "shape":"String",
           "location":"uri",
           "locationName":"deployment_id"
+        },
+        "embed":{
+          "shape":"ListOfString",
+          "location":"querystring",
+          "locationName":"embed"
         }
       }
     },
@@ -3192,6 +3197,11 @@
           "shape":"String",
           "location":"uri",
           "locationName":"resource_id"
+        },
+        "embed":{
+          "shape":"ListOfString",
+          "location":"querystring",
+          "locationName":"embed"
         }
       }
     },
@@ -3213,6 +3223,11 @@
           "shape":"NullableInteger",
           "location":"querystring",
           "locationName":"limit"
+        },
+        "embed":{
+          "shape":"ListOfString",
+          "location":"querystring",
+          "locationName":"embed"
         }
       }
     },

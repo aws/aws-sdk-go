@@ -181,6 +181,35 @@ func ExampleRekognition_DetectLabels() {
 	fmt.Println(resp)
 }
 
+func ExampleRekognition_DetectModerationLabels() {
+	sess := session.Must(session.NewSession())
+
+	svc := rekognition.New(sess)
+
+	params := &rekognition.DetectModerationLabelsInput{
+		Image: &rekognition.Image{ // Required
+			Bytes: []byte("PAYLOAD"),
+			S3Object: &rekognition.S3Object{
+				Bucket:  aws.String("S3Bucket"),
+				Name:    aws.String("S3ObjectName"),
+				Version: aws.String("S3ObjectVersion"),
+			},
+		},
+		MinConfidence: aws.Float64(1.0),
+	}
+	resp, err := svc.DetectModerationLabels(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleRekognition_IndexFaces() {
 	sess := session.Must(session.NewSession())
 

@@ -628,6 +628,7 @@
         "DeadLetterConfig":{"shape":"DeadLetterConfig"},
         "Environment":{"shape":"Environment"},
         "KMSKeyArn":{"shape":"KMSKeyArn"},
+        "TracingConfig":{"shape":"TracingConfig"},
         "Tags":{"shape":"Tags"}
       }
     },
@@ -832,7 +833,8 @@
         "VpcConfig":{"shape":"VpcConfigResponse"},
         "DeadLetterConfig":{"shape":"DeadLetterConfig"},
         "Environment":{"shape":"EnvironmentResponse"},
-        "KMSKeyArn":{"shape":"KMSKeyArn"}
+        "KMSKeyArn":{"shape":"KMSKeyArn"},
+        "TracingConfig":{"shape":"TracingConfigResponse"}
       }
     },
     "FunctionList":{
@@ -1499,6 +1501,25 @@
       "error":{"httpStatusCode":429},
       "exception":true
     },
+    "TracingConfig":{
+      "type":"structure",
+      "members":{
+        "Mode":{"shape":"TracingMode"}
+      }
+    },
+    "TracingConfigResponse":{
+      "type":"structure",
+      "members":{
+        "Mode":{"shape":"TracingMode"}
+      }
+    },
+    "TracingMode":{
+      "type":"string",
+      "enum":[
+        "Active",
+        "PassThrough"
+      ]
+    },
     "UnsupportedMediaTypeException":{
       "type":"structure",
       "members":{
@@ -1596,7 +1617,8 @@
         "Environment":{"shape":"Environment"},
         "Runtime":{"shape":"Runtime"},
         "DeadLetterConfig":{"shape":"DeadLetterConfig"},
-        "KMSKeyArn":{"shape":"KMSKeyArn"}
+        "KMSKeyArn":{"shape":"KMSKeyArn"},
+        "TracingConfig":{"shape":"TracingConfig"}
       }
     },
     "Version":{

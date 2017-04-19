@@ -196,6 +196,10 @@ type EC2API interface {
 	CreateFlowLogsWithContext(aws.Context, *ec2.CreateFlowLogsInput, ...request.Option) (*ec2.CreateFlowLogsOutput, error)
 	CreateFlowLogsRequest(*ec2.CreateFlowLogsInput) (*request.Request, *ec2.CreateFlowLogsOutput)
 
+	CreateFpgaImage(*ec2.CreateFpgaImageInput) (*ec2.CreateFpgaImageOutput, error)
+	CreateFpgaImageWithContext(aws.Context, *ec2.CreateFpgaImageInput, ...request.Option) (*ec2.CreateFpgaImageOutput, error)
+	CreateFpgaImageRequest(*ec2.CreateFpgaImageInput) (*request.Request, *ec2.CreateFpgaImageOutput)
+
 	CreateImage(*ec2.CreateImageInput) (*ec2.CreateImageOutput, error)
 	CreateImageWithContext(aws.Context, *ec2.CreateImageInput, ...request.Option) (*ec2.CreateImageOutput, error)
 	CreateImageRequest(*ec2.CreateImageInput) (*request.Request, *ec2.CreateImageOutput)

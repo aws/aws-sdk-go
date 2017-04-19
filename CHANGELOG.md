@@ -1,3 +1,23 @@
+Release v1.8.14 (2017-04-19)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API and documentation
+  * Add support for "embed" property.
+* `service/codestar`: Adds new service
+  * AWS CodeStar is a cloud-based service for creating, managing, and working with software development projects on AWS. An AWS CodeStar project creates and integrates AWS services for your project development toolchain. AWS CodeStar also manages the permissions required for project users.
+* `service/ec2`: Updates service API and documentation
+  * Adds support for creating an Amazon FPGA Image (AFI) from a specified design checkpoint (DCP).
+* `service/iam`: Updates service API and documentation
+  * This changes introduces a new IAM role type, Service Linked Role, which works like a normal role but must be managed via services' control.
+* `service/lambda`: Updates service API and documentation
+  * Lambda integration with CloudDebugger service to enable customers to enable tracing for the Lambda functions and send trace information to the CloudDebugger service.
+* `service/lexmodelbuildingservice`: Adds new service
+* `service/polly`: Updates service API, documentation, and paginators
+  * API Update for Amazon Polly: Add support for speech marks
+* `service/rekognition`: Updates service API and documentation
+  * Given an image, the API detects explicit or suggestive adult content in the image and returns a list of corresponding labels with confidence scores, as well as a taxonomy (parent-child relation) for each label.
+
 Release v1.8.13 (2017-04-18)
 ===
 

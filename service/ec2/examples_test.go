@@ -941,6 +941,38 @@ func ExampleEC2_CreateFlowLogs() {
 	fmt.Println(resp)
 }
 
+func ExampleEC2_CreateFpgaImage() {
+	sess := session.Must(session.NewSession())
+
+	svc := ec2.New(sess)
+
+	params := &ec2.CreateFpgaImageInput{
+		InputStorageLocation: &ec2.StorageLocation{ // Required
+			Bucket: aws.String("String"),
+			Key:    aws.String("String"),
+		},
+		ClientToken: aws.String("String"),
+		Description: aws.String("String"),
+		DryRun:      aws.Bool(true),
+		LogsStorageLocation: &ec2.StorageLocation{
+			Bucket: aws.String("String"),
+			Key:    aws.String("String"),
+		},
+		Name: aws.String("String"),
+	}
+	resp, err := svc.CreateFpgaImage(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleEC2_CreateImage() {
 	sess := session.Must(session.NewSession())
 

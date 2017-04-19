@@ -127,6 +127,9 @@ func ExampleLambda_CreateFunction() {
 			// More values...
 		},
 		Timeout: aws.Int64(1),
+		TracingConfig: &lambda.TracingConfig{
+			Mode: aws.String("TracingMode"),
+		},
 		VpcConfig: &lambda.VpcConfig{
 			SecurityGroupIds: []*string{
 				aws.String("SecurityGroupId"), // Required
@@ -699,6 +702,9 @@ func ExampleLambda_UpdateFunctionConfiguration() {
 		Role:       aws.String("RoleArn"),
 		Runtime:    aws.String("Runtime"),
 		Timeout:    aws.Int64(1),
+		TracingConfig: &lambda.TracingConfig{
+			Mode: aws.String("TracingMode"),
+		},
 		VpcConfig: &lambda.VpcConfig{
 			SecurityGroupIds: []*string{
 				aws.String("SecurityGroupId"), // Required

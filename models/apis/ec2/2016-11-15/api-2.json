@@ -310,6 +310,15 @@
       "input":{"shape":"CreateFlowLogsRequest"},
       "output":{"shape":"CreateFlowLogsResult"}
     },
+    "CreateFpgaImage":{
+      "name":"CreateFpgaImage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateFpgaImageRequest"},
+      "output":{"shape":"CreateFpgaImageResult"}
+    },
     "CreateImage":{
       "name":"CreateImage",
       "http":{
@@ -3541,6 +3550,31 @@
         "Unsuccessful":{
           "shape":"UnsuccessfulItemSet",
           "locationName":"unsuccessful"
+        }
+      }
+    },
+    "CreateFpgaImageRequest":{
+      "type":"structure",
+      "required":["InputStorageLocation"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "InputStorageLocation":{"shape":"StorageLocation"},
+        "LogsStorageLocation":{"shape":"StorageLocation"},
+        "Description":{"shape":"String"},
+        "Name":{"shape":"String"},
+        "ClientToken":{"shape":"String"}
+      }
+    },
+    "CreateFpgaImageResult":{
+      "type":"structure",
+      "members":{
+        "FpgaImageId":{
+          "shape":"String",
+          "locationName":"fpgaImageId"
+        },
+        "FpgaImageGlobalId":{
+          "shape":"String",
+          "locationName":"fpgaImageGlobalId"
         }
       }
     },
@@ -14018,6 +14052,13 @@
       "type":"structure",
       "members":{
         "S3":{"shape":"S3Storage"}
+      }
+    },
+    "StorageLocation":{
+      "type":"structure",
+      "members":{
+        "Bucket":{"shape":"String"},
+        "Key":{"shape":"String"}
       }
     },
     "String":{"type":"string"},

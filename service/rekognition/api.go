@@ -706,6 +706,112 @@ func (c *Rekognition) DetectLabelsWithContext(ctx aws.Context, input *DetectLabe
 	return out, req.Send()
 }
 
+const opDetectModerationLabels = "DetectModerationLabels"
+
+// DetectModerationLabelsRequest generates a "aws/request.Request" representing the
+// client's request for the DetectModerationLabels operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See DetectModerationLabels for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DetectModerationLabels method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DetectModerationLabelsRequest method.
+//    req, resp := client.DetectModerationLabelsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Rekognition) DetectModerationLabelsRequest(input *DetectModerationLabelsInput) (req *request.Request, output *DetectModerationLabelsOutput) {
+	op := &request.Operation{
+		Name:       opDetectModerationLabels,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DetectModerationLabelsInput{}
+	}
+
+	output = &DetectModerationLabelsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DetectModerationLabels API operation for Amazon Rekognition.
+//
+// Detects explicit or suggestive adult content in a specified .jpeg or .png
+// image. Use DetectModerationLabels to moderate images depending on your requirements.
+// For example, you might want to filter images that contain nudity, but not
+// images containing suggestive content.
+//
+// To filter images, use the labels returned by DetectModerationLabels to determine
+// which types of content are appropriate. For information about moderation
+// labels, see howitworks-moderateimage.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation DetectModerationLabels for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidS3ObjectException "InvalidS3ObjectException"
+//   Amazon Rekognition is unable to access the S3 object specified in the request.
+//
+//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   Input parameter violated a constraint. Validate your parameter before calling
+//   the API operation again.
+//
+//   * ErrCodeImageTooLargeException "ImageTooLargeException"
+//   The input image size exceeds the allowed limit. For more information, see
+//   limits.
+//
+//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   You are not authorized to perform the action.
+//
+//   * ErrCodeInternalServerError "InternalServerError"
+//   Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   * ErrCodeThrottlingException "ThrottlingException"
+//   Amazon Rekognition is temporarily unable to process the request. Try your
+//   call again.
+//
+//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   The number of requests exceeded your throughput limit. If you want to increase
+//   this limit, contact Amazon Rekognition.
+//
+func (c *Rekognition) DetectModerationLabels(input *DetectModerationLabelsInput) (*DetectModerationLabelsOutput, error) {
+	req, out := c.DetectModerationLabelsRequest(input)
+	return out, req.Send()
+}
+
+// DetectModerationLabelsWithContext is the same as DetectModerationLabels with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DetectModerationLabels for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) DetectModerationLabelsWithContext(ctx aws.Context, input *DetectModerationLabelsInput, opts ...request.Option) (*DetectModerationLabelsOutput, error) {
+	req, out := c.DetectModerationLabelsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opIndexFaces = "IndexFaces"
 
 // IndexFacesRequest generates a "aws/request.Request" representing the
@@ -2127,7 +2233,7 @@ type DetectLabelsInput struct {
 	// Specifies the minimum confidence level for the labels to return. Amazon Rekognition
 	// doesn't return any labels with confidence lower than this specified value.
 	//
-	// If minConfidence is not specified, the operation returns labels with a confidence
+	// If MinConfidence is not specified, the operation returns labels with a confidence
 	// values greater than or equal to 50 percent.
 	MinConfidence *float64 `type:"float"`
 }
@@ -2215,6 +2321,103 @@ func (s *DetectLabelsOutput) SetLabels(v []*Label) *DetectLabelsOutput {
 // SetOrientationCorrection sets the OrientationCorrection field's value.
 func (s *DetectLabelsOutput) SetOrientationCorrection(v string) *DetectLabelsOutput {
 	s.OrientationCorrection = &v
+	return s
+}
+
+type DetectModerationLabelsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Provides the source image either as bytes or an S3 object.
+	//
+	// The region for the S3 bucket containing the S3 object must match the region
+	// you use for Amazon Rekognition operations.
+	//
+	// You may need to Base64-encode the image bytes depending on the language you
+	// are using and whether or not you are using the AWS SDK. For more information,
+	// see example4.
+	//
+	// If you use the Amazon CLI to call Amazon Rekognition operations, passing
+	// image bytes using the Bytes property is not supported. You must first upload
+	// the image to an Amazon S3 bucket and then call the operation using the S3Object
+	// property.
+	//
+	// For Amazon Rekognition to process an S3 object, the user must have permission
+	// to access the S3 object. For more information, see manage-access-resource-policies.
+	//
+	// Image is a required field
+	Image *Image `type:"structure" required:"true"`
+
+	// Specifies the minimum confidence level for the labels to return. Amazon Rekognition
+	// doesn't return any labels with a confidence level lower than this specified
+	// value.
+	//
+	// If you don't specify MinConfidence, the operation returns labels with confidence
+	// values greater than or equal to 50 percent.
+	MinConfidence *float64 `type:"float"`
+}
+
+// String returns the string representation
+func (s DetectModerationLabelsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DetectModerationLabelsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DetectModerationLabelsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DetectModerationLabelsInput"}
+	if s.Image == nil {
+		invalidParams.Add(request.NewErrParamRequired("Image"))
+	}
+	if s.Image != nil {
+		if err := s.Image.Validate(); err != nil {
+			invalidParams.AddNested("Image", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImage sets the Image field's value.
+func (s *DetectModerationLabelsInput) SetImage(v *Image) *DetectModerationLabelsInput {
+	s.Image = v
+	return s
+}
+
+// SetMinConfidence sets the MinConfidence field's value.
+func (s *DetectModerationLabelsInput) SetMinConfidence(v float64) *DetectModerationLabelsInput {
+	s.MinConfidence = &v
+	return s
+}
+
+type DetectModerationLabelsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of labels for explicit or suggestive adult content found in the image.
+	// The list includes the top-level label and each child label detected in the
+	// image. This is useful for filtering specific categories of content.
+	ModerationLabels []*ModerationLabel `type:"list"`
+}
+
+// String returns the string representation
+func (s DetectModerationLabelsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DetectModerationLabelsOutput) GoString() string {
+	return s.String()
+}
+
+// SetModerationLabels sets the ModerationLabels field's value.
+func (s *DetectModerationLabelsOutput) SetModerationLabels(v []*ModerationLabel) *DetectModerationLabelsOutput {
+	s.ModerationLabels = v
 	return s
 }
 
@@ -2770,18 +2973,18 @@ func (s *ImageQuality) SetSharpness(v float64) *ImageQuality {
 type IndexFacesInput struct {
 	_ struct{} `type:"structure"`
 
-	// ID of an existing collection to which you want to add the faces that are
-	// detected in the input images.
+	// The ID of an existing collection to which you want to add the faces that
+	// are detected in the input images.
 	//
 	// CollectionId is a required field
 	CollectionId *string `min:"1" type:"string" required:"true"`
 
-	// A list of facial attributes you want to be returned. This can be the default
-	// list of attributes or all attributes. If you don't specify a value for Attributes
-	// or if you specify ["DEFAULT"], the API returns the following subset of facial
-	// attributes: BoundingBox, Confidence, Pose, Quality and Landmarks. If you
-	// provide ["ALL"], all facial attributes are returned but the operation will
-	// take longer to complete.
+	// A list of facial attributes that you want to be returned. This can be the
+	// default list of attributes or all attributes. If you don't specify a value
+	// for Attributes or if you specify ["DEFAULT"], the API returns the following
+	// subset of facial attributes: BoundingBox, Confidence, Pose, Quality and Landmarks.
+	// If you provide ["ALL"], all facial attributes are returned but the operation
+	// will take longer to complete.
 	//
 	// If you provide both, ["ALL", "DEFAULT"], the service uses a logical AND operator
 	// to determine which attributes to return (in this case, all attributes).
@@ -3148,6 +3351,56 @@ func (s *ListFacesOutput) SetFaces(v []*Face) *ListFacesOutput {
 // SetNextToken sets the NextToken field's value.
 func (s *ListFacesOutput) SetNextToken(v string) *ListFacesOutput {
 	s.NextToken = &v
+	return s
+}
+
+// Provides information about a single type of moderated content found in an
+// image. Each type of moderated content has a label within a hierarchical taxonomy.
+// For more information, see howitworks-moderateimage.
+type ModerationLabel struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the confidence that Amazon Rekognition has that the label has been
+	// correctly identified.
+	//
+	// If you don't specify the MinConfidence parameter in the call to DetectModerationLabels,
+	// the operation returns labels with a confidence value greater than or equal
+	// to 50 percent.
+	Confidence *float64 `type:"float"`
+
+	// The label name for the type of content detected in the image.
+	Name *string `type:"string"`
+
+	// The name for the parent label. Labels at the top-level of the hierarchy have
+	// the parent label "".
+	ParentName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ModerationLabel) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModerationLabel) GoString() string {
+	return s.String()
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *ModerationLabel) SetConfidence(v float64) *ModerationLabel {
+	s.Confidence = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ModerationLabel) SetName(v string) *ModerationLabel {
+	s.Name = &v
+	return s
+}
+
+// SetParentName sets the ParentName field's value.
+func (s *ModerationLabel) SetParentName(v string) *ModerationLabel {
+	s.ParentName = &v
 	return s
 }
 

@@ -85,7 +85,7 @@
     "Arn": {
       "base": null,
       "refs": {
-        "AddPermissionRequest$SourceArn": "<p>This is optional; however, when granting a source permission to invoke your function, you should specify this field with the Amazon Resource Name (ARN) as its value. This ensures that only events generated from the specified source can invoke the function.</p> <important> <p>If you add a permission for the source without providing the source ARN, any AWS account that creates a mapping to your function ARN can send events to invoke your Lambda function from that source.</p> </important>",
+        "AddPermissionRequest$SourceArn": "<p>This is optional; however, when granting permission to invoke your function, you should specify this field with the Amazon Resource Name (ARN) as its value. This ensures that only events generated from the specified source can invoke the function.</p> <important> <p>If you add a permission without providing the source ARN, any AWS account that creates a mapping to your function ARN can send events to invoke your Lambda function.</p> </important>",
         "CreateEventSourceMappingRequest$EventSourceArn": "<p>The Amazon Resource Name (ARN) of the Amazon Kinesis or the Amazon DynamoDB stream that is the event source. Any record added to this stream could cause AWS Lambda to invoke your Lambda function, it depends on the <code>BatchSize</code>. AWS Lambda POSTs the Amazon Kinesis event, containing records, to your Lambda function as JSON.</p>",
         "EventSourceMappingConfiguration$EventSourceArn": "<p>The Amazon Resource Name (ARN) of the Amazon Kinesis stream that is the source of events.</p>",
         "ListEventSourceMappingsRequest$EventSourceArn": "<p>The Amazon Resource Name (ARN) of the Amazon Kinesis stream. (This parameter is optional.)</p>"
@@ -149,11 +149,11 @@
       }
     },
     "DeadLetterConfig": {
-      "base": "<p>The parent object that contains the target Amazon Resource Name (ARN) of an Amazon SQS queue or Amazon SNS topic.</p>",
+      "base": "<p>The parent object that contains the target ARN (Amazon Resource Name) of an Amazon SQS queue or Amazon SNS topic.</p>",
       "refs": {
-        "CreateFunctionRequest$DeadLetterConfig": "<p>The parent object that contains the target Amazon Resource Name (ARN) of an Amazon SQS queue or Amazon SNS topic. </p>",
-        "FunctionConfiguration$DeadLetterConfig": "<p>The parent object that contains the target Amazon Resource Name (ARN) of an Amazon SQS queue or Amazon SNS topic.</p>",
-        "UpdateFunctionConfigurationRequest$DeadLetterConfig": "<p>The parent object that contains the target Amazon Resource Name (ARN) of an Amazon SQS queue or Amazon SNS topic.</p>"
+        "CreateFunctionRequest$DeadLetterConfig": "<p>The parent object that contains the target ARN (Amazon Resource Name) of an Amazon SQS queue or Amazon SNS topic. </p>",
+        "FunctionConfiguration$DeadLetterConfig": "<p>The parent object that contains the target ARN (Amazon Resource Name) of an Amazon SQS queue or Amazon SNS topic.</p>",
+        "UpdateFunctionConfigurationRequest$DeadLetterConfig": "<p>The parent object that contains the target ARN (Amazon Resource Name) of an Amazon SQS queue or Amazon SNS topic.</p>"
       }
     },
     "DeleteAliasRequest": {
@@ -843,6 +843,26 @@
     "TooManyRequestsException": {
       "base": "<p/>",
       "refs": {
+      }
+    },
+    "TracingConfig": {
+      "base": "<p>The parent object that contains your function's tracing settings.</p>",
+      "refs": {
+        "CreateFunctionRequest$TracingConfig": "<p>The parent object that contains your function's tracing settings.</p>",
+        "UpdateFunctionConfigurationRequest$TracingConfig": "<p>The parent object that contains your function's tracing settings.</p>"
+      }
+    },
+    "TracingConfigResponse": {
+      "base": "<p>Parent object of the tracing information associated with your Lambda function.</p>",
+      "refs": {
+        "FunctionConfiguration$TracingConfig": "<p>The parent object that contains your function's tracing settings.</p>"
+      }
+    },
+    "TracingMode": {
+      "base": null,
+      "refs": {
+        "TracingConfig$Mode": "<p>Can be either PassThrough or Active. If PassThrough, Lambda will only trace the request from an upstream service if it contains a tracing header with \"sampled=1\". If Active, Lambda will respect any tracing header it receives from an upstream service. If no tracing header is received, Lambda will call X-Ray for a tracing decision.</p>",
+        "TracingConfigResponse$Mode": "<p>The tracing mode associated with your Lambda function.</p>"
       }
     },
     "UnsupportedMediaTypeException": {

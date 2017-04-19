@@ -84,6 +84,10 @@ type RekognitionAPI interface {
 	DetectLabelsWithContext(aws.Context, *rekognition.DetectLabelsInput, ...request.Option) (*rekognition.DetectLabelsOutput, error)
 	DetectLabelsRequest(*rekognition.DetectLabelsInput) (*request.Request, *rekognition.DetectLabelsOutput)
 
+	DetectModerationLabels(*rekognition.DetectModerationLabelsInput) (*rekognition.DetectModerationLabelsOutput, error)
+	DetectModerationLabelsWithContext(aws.Context, *rekognition.DetectModerationLabelsInput, ...request.Option) (*rekognition.DetectModerationLabelsOutput, error)
+	DetectModerationLabelsRequest(*rekognition.DetectModerationLabelsInput) (*request.Request, *rekognition.DetectModerationLabelsOutput)
+
 	IndexFaces(*rekognition.IndexFacesInput) (*rekognition.IndexFacesOutput, error)
 	IndexFacesWithContext(aws.Context, *rekognition.IndexFacesInput, ...request.Option) (*rekognition.IndexFacesOutput, error)
 	IndexFacesRequest(*rekognition.IndexFacesInput) (*request.Request, *rekognition.IndexFacesOutput)
