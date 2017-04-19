@@ -275,7 +275,7 @@ func TestRegionsForService(t *testing.T) {
 	actual := RegionsForService(ps, ps[0].ID(), serviceID)
 
 	if len(actual) == 0 {
-		t.Fatalf("expect service %s to have regions")
+		t.Fatalf("expect service %s to have regions", serviceID)
 	}
 	if e, a := len(expect), len(actual); e != a {
 		t.Fatalf("expect %d regions, got %d", e, a)
