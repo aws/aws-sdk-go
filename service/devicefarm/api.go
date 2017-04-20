@@ -2978,6 +2978,103 @@ func (c *DeviceFarm) ListNetworkProfilesWithContext(ctx aws.Context, input *List
 	return out, req.Send()
 }
 
+const opListOfferingPromotions = "ListOfferingPromotions"
+
+// ListOfferingPromotionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListOfferingPromotions operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See ListOfferingPromotions for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListOfferingPromotions method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListOfferingPromotionsRequest method.
+//    req, resp := client.ListOfferingPromotionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListOfferingPromotions
+func (c *DeviceFarm) ListOfferingPromotionsRequest(input *ListOfferingPromotionsInput) (req *request.Request, output *ListOfferingPromotionsOutput) {
+	op := &request.Operation{
+		Name:       opListOfferingPromotions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListOfferingPromotionsInput{}
+	}
+
+	output = &ListOfferingPromotionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListOfferingPromotions API operation for AWS Device Farm.
+//
+// Returns a list of offering promotions. Each offering promotion record contains
+// the ID and description of the promotion. The API returns a NotEligible error
+// if the caller is not permitted to invoke the operation. Contact aws-devicefarm-support@amazon.com
+// (mailto:aws-devicefarm-support@amazon.com) if you believe that you should
+// be able to invoke this operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation ListOfferingPromotions for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeArgumentException "ArgumentException"
+//   An invalid argument was specified.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The specified entity was not found.
+//
+//   * ErrCodeNotEligibleException "NotEligibleException"
+//   Exception gets thrown when a user is not eligible to perform the specified
+//   transaction.
+//
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   A limit was exceeded.
+//
+//   * ErrCodeServiceAccountException "ServiceAccountException"
+//   There was a problem with the service account.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListOfferingPromotions
+func (c *DeviceFarm) ListOfferingPromotions(input *ListOfferingPromotionsInput) (*ListOfferingPromotionsOutput, error) {
+	req, out := c.ListOfferingPromotionsRequest(input)
+	return out, req.Send()
+}
+
+// ListOfferingPromotionsWithContext is the same as ListOfferingPromotions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListOfferingPromotions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DeviceFarm) ListOfferingPromotionsWithContext(ctx aws.Context, input *ListOfferingPromotionsInput, opts ...request.Option) (*ListOfferingPromotionsOutput, error) {
+	req, out := c.ListOfferingPromotionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListOfferingTransactions = "ListOfferingTransactions"
 
 // ListOfferingTransactionsRequest generates a "aws/request.Request" representing the
@@ -5144,6 +5241,14 @@ type AccountSettings struct {
 	// The maximum number of minutes a test run will execute before it times out.
 	MaxJobTimeoutMinutes *int64 `locationName:"maxJobTimeoutMinutes" type:"integer"`
 
+	// The maximum number of device slots that the AWS account can purchase. Each
+	// maximum is expressed as an offering-id:number pair, where the offering-id
+	// represents one of the IDs returned by the ListOfferings command.
+	MaxSlots map[string]*int64 `locationName:"maxSlots" type:"map"`
+
+	// Information about an AWS account's usage of free trial device minutes.
+	TrialMinutes *TrialMinutes `locationName:"trialMinutes" type:"structure"`
+
 	// Returns the unmetered devices you have purchased or want to purchase.
 	UnmeteredDevices map[string]*int64 `locationName:"unmeteredDevices" type:"map"`
 
@@ -5177,6 +5282,18 @@ func (s *AccountSettings) SetDefaultJobTimeoutMinutes(v int64) *AccountSettings 
 // SetMaxJobTimeoutMinutes sets the MaxJobTimeoutMinutes field's value.
 func (s *AccountSettings) SetMaxJobTimeoutMinutes(v int64) *AccountSettings {
 	s.MaxJobTimeoutMinutes = &v
+	return s
+}
+
+// SetMaxSlots sets the MaxSlots field's value.
+func (s *AccountSettings) SetMaxSlots(v map[string]*int64) *AccountSettings {
+	s.MaxSlots = v
+	return s
+}
+
+// SetTrialMinutes sets the TrialMinutes field's value.
+func (s *AccountSettings) SetTrialMinutes(v *TrialMinutes) *AccountSettings {
+	s.TrialMinutes = v
 	return s
 }
 
@@ -6767,6 +6884,14 @@ func (s *DevicePoolCompatibilityResult) SetIncompatibilityMessages(v []*Incompat
 type ExecutionConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// True if account cleanup is enabled at the beginning of the test; otherwise,
+	// false.
+	AccountsCleanup *bool `locationName:"accountsCleanup" type:"boolean"`
+
+	// True if app package cleanup is enabled at the beginning of the test; otherwise,
+	// false.
+	AppPackagesCleanup *bool `locationName:"appPackagesCleanup" type:"boolean"`
+
 	// The number of minutes a test run will execute before it times out.
 	JobTimeoutMinutes *int64 `locationName:"jobTimeoutMinutes" type:"integer"`
 }
@@ -6779,6 +6904,18 @@ func (s ExecutionConfiguration) String() string {
 // GoString returns the string representation
 func (s ExecutionConfiguration) GoString() string {
 	return s.String()
+}
+
+// SetAccountsCleanup sets the AccountsCleanup field's value.
+func (s *ExecutionConfiguration) SetAccountsCleanup(v bool) *ExecutionConfiguration {
+	s.AccountsCleanup = &v
+	return s
+}
+
+// SetAppPackagesCleanup sets the AppPackagesCleanup field's value.
+func (s *ExecutionConfiguration) SetAppPackagesCleanup(v bool) *ExecutionConfiguration {
+	s.AppPackagesCleanup = &v
+	return s
 }
 
 // SetJobTimeoutMinutes sets the JobTimeoutMinutes field's value.
@@ -6910,6 +7047,9 @@ type GetDevicePoolCompatibilityInput struct {
 	// DevicePoolArn is a required field
 	DevicePoolArn *string `locationName:"devicePoolArn" min:"32" type:"string" required:"true"`
 
+	// Information about the uploaded test to be run against the device pool.
+	Test *ScheduleRunTest `locationName:"test" type:"structure"`
+
 	// The test type for the specified device pool.
 	//
 	// Allowed values include the following:
@@ -6968,6 +7108,11 @@ func (s *GetDevicePoolCompatibilityInput) Validate() error {
 	if s.DevicePoolArn != nil && len(*s.DevicePoolArn) < 32 {
 		invalidParams.Add(request.NewErrParamMinLen("DevicePoolArn", 32))
 	}
+	if s.Test != nil {
+		if err := s.Test.Validate(); err != nil {
+			invalidParams.AddNested("Test", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -6984,6 +7129,12 @@ func (s *GetDevicePoolCompatibilityInput) SetAppArn(v string) *GetDevicePoolComp
 // SetDevicePoolArn sets the DevicePoolArn field's value.
 func (s *GetDevicePoolCompatibilityInput) SetDevicePoolArn(v string) *GetDevicePoolCompatibilityInput {
 	s.DevicePoolArn = &v
+	return s
+}
+
+// SetTest sets the Test field's value.
+func (s *GetDevicePoolCompatibilityInput) SetTest(v *ScheduleRunTest) *GetDevicePoolCompatibilityInput {
+	s.Test = v
 	return s
 }
 
@@ -7744,6 +7895,10 @@ type IncompatibilityMessage struct {
 	//    * MANUFACTURER: The manufacturer.
 	//
 	//    * PLATFORM: The platform (for example, Android or iOS).
+	//
+	//    * REMOTE_ACCESS_ENABLED: Whether the device is enabled for remote access.
+	//
+	//    * APPIUM_VERSION: The Appium version for the test.
 	Type *string `locationName:"type" type:"string" enum:"DeviceAttribute"`
 }
 
@@ -8548,6 +8703,78 @@ func (s *ListNetworkProfilesOutput) SetNetworkProfiles(v []*NetworkProfile) *Lis
 // SetNextToken sets the NextToken field's value.
 func (s *ListNetworkProfilesOutput) SetNextToken(v string) *ListNetworkProfilesOutput {
 	s.NextToken = &v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListOfferingPromotionsRequest
+type ListOfferingPromotionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// An identifier that was returned from the previous call to this operation,
+	// which can be used to return the next set of items in the list.
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
+}
+
+// String returns the string representation
+func (s ListOfferingPromotionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListOfferingPromotionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListOfferingPromotionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListOfferingPromotionsInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 4))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOfferingPromotionsInput) SetNextToken(v string) *ListOfferingPromotionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListOfferingPromotionsResult
+type ListOfferingPromotionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An identifier to be used in the next call to this operation, to return the
+	// next set of items in the list.
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
+
+	// Information about the offering promotions.
+	OfferingPromotions []*OfferingPromotion `locationName:"offeringPromotions" type:"list"`
+}
+
+// String returns the string representation
+func (s ListOfferingPromotionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListOfferingPromotionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOfferingPromotionsOutput) SetNextToken(v string) *ListOfferingPromotionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOfferingPromotions sets the OfferingPromotions field's value.
+func (s *ListOfferingPromotionsOutput) SetOfferingPromotions(v []*OfferingPromotion) *ListOfferingPromotionsOutput {
+	s.OfferingPromotions = v
 	return s
 }
 
@@ -9734,6 +9961,40 @@ func (s *Offering) SetType(v string) *Offering {
 	return s
 }
 
+// Represents information about an offering promotion.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/OfferingPromotion
+type OfferingPromotion struct {
+	_ struct{} `type:"structure"`
+
+	// A string describing the offering promotion.
+	Description *string `locationName:"description" type:"string"`
+
+	// The ID of the offering promotion.
+	Id *string `locationName:"id" min:"4" type:"string"`
+}
+
+// String returns the string representation
+func (s OfferingPromotion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OfferingPromotion) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *OfferingPromotion) SetDescription(v string) *OfferingPromotion {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *OfferingPromotion) SetId(v string) *OfferingPromotion {
+	s.Id = &v
+	return s
+}
+
 // The status of the offering.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/OfferingStatus
 type OfferingStatus struct {
@@ -9797,6 +10058,9 @@ type OfferingTransaction struct {
 	// The date on which an offering transaction was created.
 	CreatedOn *time.Time `locationName:"createdOn" type:"timestamp" timestampFormat:"unix"`
 
+	// The ID that corresponds to a device offering promotion.
+	OfferingPromotionId *string `locationName:"offeringPromotionId" min:"4" type:"string"`
+
 	// The status of an offering transaction.
 	OfferingStatus *OfferingStatus `locationName:"offeringStatus" type:"structure"`
 
@@ -9823,6 +10087,12 @@ func (s *OfferingTransaction) SetCost(v *MonetaryAmount) *OfferingTransaction {
 // SetCreatedOn sets the CreatedOn field's value.
 func (s *OfferingTransaction) SetCreatedOn(v time.Time) *OfferingTransaction {
 	s.CreatedOn = &v
+	return s
+}
+
+// SetOfferingPromotionId sets the OfferingPromotionId field's value.
+func (s *OfferingTransaction) SetOfferingPromotionId(v string) *OfferingTransaction {
+	s.OfferingPromotionId = &v
 	return s
 }
 
@@ -10029,6 +10299,9 @@ type PurchaseOfferingInput struct {
 	// The ID of the offering.
 	OfferingId *string `locationName:"offeringId" min:"32" type:"string"`
 
+	// The ID of the offering promotion to be applied to the purchase.
+	OfferingPromotionId *string `locationName:"offeringPromotionId" min:"4" type:"string"`
+
 	// The number of device slots you wish to purchase in an offering request.
 	Quantity *int64 `locationName:"quantity" type:"integer"`
 }
@@ -10049,6 +10322,9 @@ func (s *PurchaseOfferingInput) Validate() error {
 	if s.OfferingId != nil && len(*s.OfferingId) < 32 {
 		invalidParams.Add(request.NewErrParamMinLen("OfferingId", 32))
 	}
+	if s.OfferingPromotionId != nil && len(*s.OfferingPromotionId) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("OfferingPromotionId", 4))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -10059,6 +10335,12 @@ func (s *PurchaseOfferingInput) Validate() error {
 // SetOfferingId sets the OfferingId field's value.
 func (s *PurchaseOfferingInput) SetOfferingId(v string) *PurchaseOfferingInput {
 	s.OfferingId = &v
+	return s
+}
+
+// SetOfferingPromotionId sets the OfferingPromotionId field's value.
+func (s *PurchaseOfferingInput) SetOfferingPromotionId(v string) *PurchaseOfferingInput {
+	s.OfferingPromotionId = &v
 	return s
 }
 
@@ -10462,6 +10744,10 @@ type Rule struct {
 	//    * MANUFACTURER: The manufacturer.
 	//
 	//    * PLATFORM: The platform (for example, Android or iOS).
+	//
+	//    * REMOTE_ACCESS_ENABLED: Whether the device is enabled for remote access.
+	//
+	//    * APPIUM_VERSION: The Appium version for the test.
 	Attribute *string `locationName:"attribute" type:"string" enum:"DeviceAttribute"`
 
 	// The rule's operator.
@@ -10475,6 +10761,8 @@ type Rule struct {
 	//    * LESS_THAN: The less-than operator.
 	//
 	//    * NOT_IN: The not-in operator.
+	//
+	//    * CONTAINS: The contains operator.
 	Operator *string `locationName:"operator" type:"string" enum:"RuleOperator"`
 
 	// The rule's value.
@@ -11090,7 +11378,79 @@ type ScheduleRunTest struct {
 	// The test's filter.
 	Filter *string `locationName:"filter" type:"string"`
 
-	// The test's parameters, such as test framework parameters and fixture settings.
+	// The test's parameters, such as the following test framework parameters and
+	// fixture settings:
+	//
+	// For Calabash tests:
+	//
+	//    * profile: A cucumber profile, for example, "my_profile_name".
+	//
+	//    * tags: You can limit execution to features or scenarios that have (or
+	//    don't have) certain tags, for example, "@smoke" or "@smoke,~@wip".
+	//
+	// For Appium tests (all types):
+	//
+	//    * appium_version: The Appium version. Currently supported values are "1.4.16",
+	//    "1.6.3", "latest", and "default".
+	//
+	// “latest” will run the latest Appium version supported by Device Farm (1.6.3).
+	//
+	// For “default”, Device Farm will choose a compatible version of Appium for
+	//    the device. The current behavior is to run 1.4.16 on Android devices and
+	//    iOS 9 and earlier, 1.6.3 for iOS 10 and later.
+	//
+	// This behavior is subject to change.
+	//
+	// For Fuzz tests (Android only):
+	//
+	//    * event_count: The number of events, between 1 and 10000, that the UI
+	//    fuzz test should perform.
+	//
+	//    * throttle: The time, in ms, between 0 and 1000, that the UI fuzz test
+	//    should wait between events.
+	//
+	//    * seed: A seed to use for randomizing the UI fuzz test. Using the same
+	//    seed value between tests ensures identical event sequences.
+	//
+	// For Explorer tests:
+	//
+	//    * username: A username to use if the Explorer encounters a login form.
+	//    If not supplied, no username will be inserted.
+	//
+	//    * password: A password to use if the Explorer encounters a login form.
+	//    If not supplied, no password will be inserted.
+	//
+	// For Instrumentation:
+	//
+	//    * filter: A test filter string. Examples:
+	//
+	// Running a single test case: "com.android.abc.Test1"
+	//
+	// Running a single test: "com.android.abc.Test1#smoke"
+	//
+	// Running multiple tests: "com.android.abc.Test1,com.android.abc.Test2"
+	//
+	// For XCTest and XCTestUI:
+	//
+	//    * filter: A test filter string. Examples:
+	//
+	// Running a single test class: "LoginTests"
+	//
+	// Running a multiple test classes: "LoginTests,SmokeTests"
+	//
+	// Running a single test: "LoginTests/testValid"
+	//
+	// Running multiple tests: "LoginTests/testValid,LoginTests/testInvalid"
+	//
+	// For UIAutomator:
+	//
+	//    * filter: A test filter string. Examples:
+	//
+	// Running a single test case: "com.android.abc.Test1"
+	//
+	// Running a single test: "com.android.abc.Test1#smoke"
+	//
+	// Running multiple tests: "com.android.abc.Test1,com.android.abc.Test2"
 	Parameters map[string]*string `locationName:"parameters" type:"map"`
 
 	// The ARN of the uploaded test that will be run.
@@ -11686,6 +12046,40 @@ func (s *Test) SetStopped(v time.Time) *Test {
 // SetType sets the Type field's value.
 func (s *Test) SetType(v string) *Test {
 	s.Type = &v
+	return s
+}
+
+// Represents information about free trial device minutes for an AWS account.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/TrialMinutes
+type TrialMinutes struct {
+	_ struct{} `type:"structure"`
+
+	// The number of free trial minutes remaining in the account.
+	Remaining *float64 `locationName:"remaining" type:"double"`
+
+	// The total number of free trial minutes that the account started with.
+	Total *float64 `locationName:"total" type:"double"`
+}
+
+// String returns the string representation
+func (s TrialMinutes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TrialMinutes) GoString() string {
+	return s.String()
+}
+
+// SetRemaining sets the Remaining field's value.
+func (s *TrialMinutes) SetRemaining(v float64) *TrialMinutes {
+	s.Remaining = &v
+	return s
+}
+
+// SetTotal sets the Total field's value.
+func (s *TrialMinutes) SetTotal(v float64) *TrialMinutes {
+	s.Total = &v
 	return s
 }
 
@@ -12342,6 +12736,9 @@ const (
 
 	// DeviceAttributeRemoteAccessEnabled is a DeviceAttribute enum value
 	DeviceAttributeRemoteAccessEnabled = "REMOTE_ACCESS_ENABLED"
+
+	// DeviceAttributeAppiumVersion is a DeviceAttribute enum value
+	DeviceAttributeAppiumVersion = "APPIUM_VERSION"
 )
 
 const (
@@ -12464,6 +12861,9 @@ const (
 
 	// RuleOperatorNotIn is a RuleOperator enum value
 	RuleOperatorNotIn = "NOT_IN"
+
+	// RuleOperatorContains is a RuleOperator enum value
+	RuleOperatorContains = "CONTAINS"
 )
 
 const (

@@ -195,6 +195,10 @@ type DeviceFarmAPI interface {
 	ListNetworkProfilesWithContext(aws.Context, *devicefarm.ListNetworkProfilesInput, ...request.Option) (*devicefarm.ListNetworkProfilesOutput, error)
 	ListNetworkProfilesRequest(*devicefarm.ListNetworkProfilesInput) (*request.Request, *devicefarm.ListNetworkProfilesOutput)
 
+	ListOfferingPromotions(*devicefarm.ListOfferingPromotionsInput) (*devicefarm.ListOfferingPromotionsOutput, error)
+	ListOfferingPromotionsWithContext(aws.Context, *devicefarm.ListOfferingPromotionsInput, ...request.Option) (*devicefarm.ListOfferingPromotionsOutput, error)
+	ListOfferingPromotionsRequest(*devicefarm.ListOfferingPromotionsInput) (*request.Request, *devicefarm.ListOfferingPromotionsOutput)
+
 	ListOfferingTransactions(*devicefarm.ListOfferingTransactionsInput) (*devicefarm.ListOfferingTransactionsOutput, error)
 	ListOfferingTransactionsWithContext(aws.Context, *devicefarm.ListOfferingTransactionsInput, ...request.Option) (*devicefarm.ListOfferingTransactionsOutput, error)
 	ListOfferingTransactionsRequest(*devicefarm.ListOfferingTransactionsInput) (*request.Request, *devicefarm.ListOfferingTransactionsOutput)

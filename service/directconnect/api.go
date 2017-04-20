@@ -439,18 +439,14 @@ func (c *DirectConnect) AssociateConnectionWithLagRequest(input *AssociateConnec
 // original LAG to fall below its setting for minimum number of operational
 // connections, the request fails.
 //
-// Virtual interfaces that are directly associated with the connection are not
-// automatically migrated. You can delete them or associate them with the target
-// LAG using AssociateVirtualInterface. If the connection was originally associated
-// with a different LAG, the virtual interfaces remain associated with the original
-// LAG.
+// Any virtual interfaces that are directly associated with the connection are
+// automatically re-associated with the LAG. If the connection was originally
+// associated with a different LAG, the virtual interfaces remain associated
+// with the original LAG.
 //
-// For interconnects, hosted connections are not automatically migrated. You
-// can delete them, or the owner of the physical connection can associate them
-// with the target LAG using AssociateHostedConnection. After all hosted connections
-// have been migrated, the interconnect can be migrated into the LAG. If the
-// interconnect is already associated with a LAG, the hosted connections remain
-// associated with the original LAG.
+// For interconnects, any hosted connections are automatically re-associated
+// with the LAG. If the interconnect was originally associated with a different
+// LAG, the hosted connections remain associated with the original LAG.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about

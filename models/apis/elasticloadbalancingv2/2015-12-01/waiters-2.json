@@ -41,6 +41,24 @@
           "expected": "LoadBalancerNotFound"
         }
       ]
+    },
+    "LoadBalancersDeleted": {
+      "delay": 15,
+      "operation": "DescribeLoadBalancers",
+      "maxAttempts": 40,
+      "acceptors": [
+        {
+          "state": "retry",
+          "matcher": "pathAll",
+          "argument": "LoadBalancers[].State.Code",
+          "expected": "active"
+        },
+        {
+          "matcher": "error",
+          "expected": "LoadBalancerNotFound",
+          "state": "success"
+        }
+      ]
     }
   }
 }
