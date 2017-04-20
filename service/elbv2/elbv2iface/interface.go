@@ -194,6 +194,9 @@ type ELBV2API interface {
 
 	WaitUntilLoadBalancerExists(*elbv2.DescribeLoadBalancersInput) error
 	WaitUntilLoadBalancerExistsWithContext(aws.Context, *elbv2.DescribeLoadBalancersInput, ...request.WaiterOption) error
+
+	WaitUntilLoadBalancersDeleted(*elbv2.DescribeLoadBalancersInput) error
+	WaitUntilLoadBalancersDeletedWithContext(aws.Context, *elbv2.DescribeLoadBalancersInput, ...request.WaiterOption) error
 }
 
 var _ ELBV2API = (*elbv2.ELBV2)(nil)

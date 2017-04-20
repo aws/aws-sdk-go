@@ -1,3 +1,27 @@
+Release v1.8.15 (2017-04-20)
+===
+
+### Service Client Updates
+* `service/devicefarm`: Updates service API and documentation
+  * API Update for AWS Device Farm: Support for Deals and Promotions
+* `service/directconnect`: Updates service documentation
+  * Documentation updates for AWS Direct Connect.
+* `service/elbv2`: Updates service waiters
+* `service/kms`: Updates service documentation and examples
+  * Doc-only update for Key Management Service (KMS): Update docs for GrantConstraints and GenerateRandom
+* `service/route53`: Updates service documentation
+  * Release notes: SDK documentation now includes examples for ChangeResourceRecordSets for all types of resource record set, such as weighted, alias, and failover.
+* `service/route53domains`: Updates service API, documentation, and paginators
+  * Adding examples and other documentation updates.
+
+### SDK Enhancements
+* `service/s3`: Add utilities to make getting a bucket's region easier (#1207)
+  * Adds two features which make it easier to get a bucket's region, `s3.NormalizeBucketLocation` and `s3manager.GetBucketRegion`.
+
+### SDK Bugs
+* `service/s3`: Fix HeadObject's incorrect documented error codes (#1213)
+  * The HeadObject's model incorrectly states that the operation can return the NoSuchKey error code.
+  * Fixes #1208
 Release v1.8.14 (2017-04-19)
 ===
 

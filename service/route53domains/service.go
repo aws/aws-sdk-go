@@ -11,7 +11,8 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
-// Route53Domains is a client for Amazon Route 53 Domains.
+// Amazon Route 53 API actions let you register domain names and perform related
+// operations.
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53domains-2014-05-15
