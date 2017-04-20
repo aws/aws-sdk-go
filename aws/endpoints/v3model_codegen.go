@@ -214,7 +214,7 @@ import (
 		return defaultPartitions
 	}
 
-	// DefaultPartitions returns a list of the partitions the SDK  is bundled
+	// DefaultPartitions returns a list of the partitions the SDK is bundled
 	// with. The available partitions are: {{ ListPartitionNames . }}.
 	//
 	//    partitions := endpoints.DefaultPartitions
