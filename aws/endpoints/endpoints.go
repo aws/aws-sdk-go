@@ -125,28 +125,31 @@ type EnumPartitions interface {
 }
 
 // RegionsForService returns a map of regions for the partition and service.
-// If either the partition or service does not exist an empty list will be
-// returned.
+// If either the partition or service does not exist false will be returned
+// as the second parameter.
 //
 // This example shows how  to get the regions for DynamoDB in the AWS partition.
 //    rs := RegionsForService(endpoints.DefaultPartitions(), endpoints.AwsPartitionID, endpoints.DynamoDBServiceID)
 //
 // This is equivalent to using the partition directly.
 //    rs := endpoints.AwsPartition().Services()[endpoints.DynamoDBServiceID].Regions()
-func RegionsForService(ps []Partition, partitionID, serviceID string) map[string]Region {
+func RegionsForService(ps []Partition, partitionID, serviceID string) (map[string]Region, bool) {
 	for _, p := range ps {
 		if p.ID() != partitionID {
 			continue
+		}
+		if _, ok := p.p.Services[serviceID]; !ok {
+			break
 		}
 
 		s := Service{
 			id: serviceID,
 			p:  p.p,
 		}
-		return s.Regions()
+		return s.Regions(), true
 	}
 
-	return map[string]Region{}
+	return map[string]Region{}, false
 }
 
 // PartitionForRegion returns the first partition which includes the region

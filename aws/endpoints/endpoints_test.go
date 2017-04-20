@@ -272,7 +272,10 @@ func TestRegionsForService(t *testing.T) {
 		}
 	}
 
-	actual := RegionsForService(ps, ps[0].ID(), serviceID)
+	actual, ok := RegionsForService(ps, ps[0].ID(), serviceID)
+	if !ok {
+		t.Fatalf("expect regions to be found, was not")
+	}
 
 	if len(actual) == 0 {
 		t.Fatalf("expect service %s to have regions", serviceID)
@@ -288,6 +291,18 @@ func TestRegionsForService(t *testing.T) {
 		if _, ok := expect[id]; !ok {
 			t.Errorf("expect %s region to be found", id)
 		}
+	}
+}
+
+func TestRegionsForService_NotFound(t *testing.T) {
+	ps := testPartitions.Partitions()
+
+	actual, ok := RegionsForService(ps, ps[0].ID(), "service-not-exists")
+	if ok {
+		t.Fatalf("expect no regions to be found, but were")
+	}
+	if len(actual) != 0 {
+		t.Errorf("expect no regions, got %v", actual)
 	}
 }
 
