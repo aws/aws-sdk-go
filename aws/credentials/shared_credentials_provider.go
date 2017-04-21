@@ -141,6 +141,9 @@ func (p *SharedCredentialsProvider) filename() (string, error) {
 // return "default".
 func (p *SharedCredentialsProvider) profile() string {
 	if p.Profile == "" {
+		p.Profile = os.Getenv("AWS_DEFAULT_PROFILE")
+	}
+	if p.Profile == "" {
 		p.Profile = os.Getenv("AWS_PROFILE")
 	}
 	if p.Profile == "" {

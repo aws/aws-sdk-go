@@ -73,6 +73,33 @@ func TestSharedCredentialsProviderWithAWS_PROFILE(t *testing.T) {
 	assert.Empty(t, creds.SessionToken, "Expect no token")
 }
 
+func TestSharedCredentialsProviderWithAWS_DEFAULT_PROFILE(t *testing.T) {
+	os.Clearenv()
+	os.Setenv("AWS_DEFAULT_PROFILE", "no_token")
+
+	p := SharedCredentialsProvider{Filename: "example.ini", Profile: ""}
+	creds, err := p.Retrieve()
+	assert.Nil(t, err, "Expect no error")
+
+	assert.Equal(t, "accessKey", creds.AccessKeyID, "Expect access key ID to match")
+	assert.Equal(t, "secret", creds.SecretAccessKey, "Expect secret access key to match")
+	assert.Empty(t, creds.SessionToken, "Expect no token")
+}
+
+func TestSharedCredentialsProviderAWS_DEFAULT_PROFILEoverridesAWS_PROFILE(t *testing.T) {
+	os.Clearenv()
+	os.Setenv("AWS_PROFILE", "default")
+	os.Setenv("AWS_DEFAULT_PROFILE", "no_token")
+
+	p := SharedCredentialsProvider{Filename: "example.ini", Profile: ""}
+	creds, err := p.Retrieve()
+	assert.Nil(t, err, "Expect no error")
+
+	assert.Equal(t, "accessKey", creds.AccessKeyID, "Expect access key ID to match")
+	assert.Equal(t, "secret", creds.SecretAccessKey, "Expect secret access key to match")
+	assert.Empty(t, creds.SessionToken, "Expect no token")
+}
+
 func TestSharedCredentialsProviderWithoutTokenFromProfile(t *testing.T) {
 	os.Clearenv()
 
