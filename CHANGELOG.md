@@ -22,6 +22,7 @@ Release v1.8.15 (2017-04-20)
 * `service/s3`: Fix HeadObject's incorrect documented error codes (#1213)
   * The HeadObject's model incorrectly states that the operation can return the NoSuchKey error code.
   * Fixes #1208
+
 Release v1.8.14 (2017-04-19)
 ===
 
