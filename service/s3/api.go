@@ -14854,7 +14854,8 @@ type Object struct {
 	LastModified *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	Owner *Owner `type:"structure"`
-
+	
+	// size in bytes
 	Size *int64 `type:"integer"`
 
 	// The class of storage used to store the object.
