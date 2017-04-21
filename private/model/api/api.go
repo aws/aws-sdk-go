@@ -320,6 +320,83 @@ func (a *API) APIName() string {
 	return a.name
 }
 
+var tplServiceDoc = template.Must(template.New("service docs").Funcs(template.FuncMap{
+	"GetCrosslinkURL": GetCrosslinkURL,
+}).
+	Parse(`
+// Package {{ .PackageName }} provides the client and types for making API
+// requests to {{ .Metadata.ServiceFullName }}.
+{{ if .Documentation -}}
+//
+{{ .Documentation }}
+{{ end -}}
+{{ $crosslinkURL := GetCrosslinkURL $.BaseCrosslinkURL $.APIName $.Metadata.UID -}}
+{{ if $crosslinkURL -}}
+//
+// See {{ $crosslinkURL }} for more information on this service.
+{{ end -}}
+//
+// See https://docs.aws.amazon.com/sdk-for-go/api/service/{{ .PackageName }}/
+// for information on using this package.
+//
+// Using the Client
+//
+// To use the {{ .StructName }} client for {{ .Metadata.ServiceFullName }} you will
+// first need to create a new instance of it. Once the service's client is created
+// you can begin to make API requests to the service using it. The client is safe
+// to use across multiple goroutines concurrently.
+//
+// All clients require a Session. The Session provides the client with shared
+// configuration such as region, endpoint, and credentials. A Session should be
+// shared where possible to take advantage of configuration and credential caching.
+// See the github.com/aws/aws-sdk-go/aws/session package for more information.
+//
+//   sess := session.Must(session.NewSession())
+//
+// Create a new instance of the service's client with a Session. Optional
+// aws.Config values can also be provided as variadic arguments to the
+// New function. This option allows you to provide service specific configuration.
+//
+//   svc := {{ .PackageName }}.New(sess)
+//
+{{ $opts := .OperationNames -}}
+{{ $optName := index $opts 0 -}}
+{{ $opt := index .Operations $optName -}}
+{{ $optInputName := $opt.InputRef.GoTypeWithPkgName -}}
+// Once the client is created you can make an API request to the service.
+// Each API method takes a input parameter, and returns the service response
+// and an error.
+//
+// The API method will document which error codes the service can be returned
+// by the operation if the service models the API operation's errors. These errors
+// will also be available as const strings prefixed with "ErrCode".
+//
+//   result, err := svc.{{ $opt.ExportedName }}(params)
+//   if err != nil {
+//       // Cast err to awserr.Error to handle specific error codes.
+//       aerr, ok := err.(awserr.Error)
+//       if ok && aerr.Code() == <error code to check for> {
+//           // Specific error code handling
+//       }
+//       return err
+//   }
+//
+//   fmt.Println("{{ $optName }} result:")
+//   fmt.Println(result)
+//
+// Using the Client with Context
+//
+// The service's client also provides methods to make API requests with a Context
+// value. This allows you to control the timeout, and cancellation of pending
+// requests. These methods also take request Option as variadic parameter to apply
+// additional configuration to the API request. See the github.com/aws/aws-sdk-go/aws/request
+// package for more information.
+//
+//   ctx := context.Background()
+//
+//   result, err := svc.{{ $opt.ExportedName }}WithContext(ctx, params)
+`))
+
 // A tplService defines the template for the service generated code.
 var tplService = template.Must(template.New("service").Funcs(template.FuncMap{
 	"ServiceNameValue": func(a *API) string {
@@ -328,7 +405,6 @@ var tplService = template.Must(template.New("service").Funcs(template.FuncMap{
 		}
 		return "ServiceName"
 	},
-	"GetCrosslinkURL": GetCrosslinkURL,
 	"EndpointsIDConstValue": func(a *API) string {
 		if a.NoConstServiceNames {
 			return fmt.Sprintf("%q", a.Metadata.EndpointPrefix)
@@ -346,12 +422,12 @@ var tplService = template.Must(template.New("service").Funcs(template.FuncMap{
 		return "EndpointsID"
 	},
 }).Parse(`
-{{ .Documentation }}// The service client's operations are safe to be used concurrently.
-// It is not safe to mutate any of the client's properties though.
-{{ $crosslinkURL := GetCrosslinkURL $.BaseCrosslinkURL $.APIName $.Metadata.UID -}}
-{{ if ne $crosslinkURL "" -}} 
-// Please also see {{ $crosslinkURL }}
-{{ end -}}
+// {{ .StructName }} provides the API operation methods for making requests to
+// {{ .Metadata.ServiceFullName }}. See this package's package overview docs
+// for details on the service.
+//
+// {{ .StructName }} methods are safe to use concurrently. It is not safe to
+// modify mutate any of the struct's properties though.
 type {{ .StructName }} struct {
 	*client.Client
 }
@@ -456,6 +532,20 @@ func (c *{{ .StructName }}) newRequest(op *request.Operation, params, data inter
 	return req
 }
 `))
+
+// ServicePackageDoc generates the contents of the doc file for the service.
+//
+// Will also read in the custom doc templates for the service if found.
+func (a *API) ServicePackageDoc() string {
+	a.imports = map[string]bool{}
+
+	var buf bytes.Buffer
+	if err := tplServiceDoc.Execute(&buf, a); err != nil {
+		panic(err)
+	}
+
+	return buf.String()
+}
 
 // ServiceGoCode renders service go code. Returning it as a string.
 func (a *API) ServiceGoCode() string {
