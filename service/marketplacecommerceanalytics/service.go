@@ -11,10 +11,12 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
-// Provides AWS Marketplace business intelligence data on-demand.
-// The service client's operations are safe to be used concurrently.
-// It is not safe to mutate any of the client's properties though.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/marketplacecommerceanalytics-2015-07-01
+// MarketplaceCommerceAnalytics provides the API operation methods for making requests to
+// AWS Marketplace Commerce Analytics. See this package's package overview docs
+// for details on the service.
+//
+// MarketplaceCommerceAnalytics methods are safe to use concurrently. It is not safe to
+// modify mutate any of the struct's properties though.
 type MarketplaceCommerceAnalytics struct {
 	*client.Client
 }

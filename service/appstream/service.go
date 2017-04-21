@@ -11,10 +11,12 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
-// API documentation for Amazon AppStream 2.0.
-// The service client's operations are safe to be used concurrently.
-// It is not safe to mutate any of the client's properties though.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01
+// AppStream provides the API operation methods for making requests to
+// Amazon AppStream. See this package's package overview docs
+// for details on the service.
+//
+// AppStream methods are safe to use concurrently. It is not safe to
+// modify mutate any of the struct's properties though.
 type AppStream struct {
 	*client.Client
 }

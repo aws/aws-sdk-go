@@ -11,12 +11,12 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
-// Amazon Lex is an AWS service for building conversational voice and text interfaces.
-// Use these actions to create, update, and delete conversational bots for new
-// and existing client applications.
-// The service client's operations are safe to be used concurrently.
-// It is not safe to mutate any of the client's properties though.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lex-models-2017-04-19
+// LexModelBuildingService provides the API operation methods for making requests to
+// Amazon Lex Model Building Service. See this package's package overview docs
+// for details on the service.
+//
+// LexModelBuildingService methods are safe to use concurrently. It is not safe to
+// modify mutate any of the struct's properties though.
 type LexModelBuildingService struct {
 	*client.Client
 }

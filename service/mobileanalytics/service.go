@@ -11,10 +11,12 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
-// Amazon Mobile Analytics is a service for collecting, visualizing, and understanding
-// app usage data at scale.
-// The service client's operations are safe to be used concurrently.
-// It is not safe to mutate any of the client's properties though.
+// MobileAnalytics provides the API operation methods for making requests to
+// Amazon Mobile Analytics. See this package's package overview docs
+// for details on the service.
+//
+// MobileAnalytics methods are safe to use concurrently. It is not safe to
+// modify mutate any of the struct's properties though.
 type MobileAnalytics struct {
 	*client.Client
 }
