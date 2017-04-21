@@ -72,6 +72,9 @@ func (c *AppStream) AssociateFleetRequest(input *AssociateFleetInput) (req *requ
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource was not found.
 //
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   An API error occurred, please try again.
+//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/AssociateFleet
 func (c *AppStream) AssociateFleet(input *AssociateFleetInput) (*AssociateFleetOutput, error) {
 	req, out := c.AssociateFleetRequest(input)
@@ -164,6 +167,9 @@ func (c *AppStream) CreateFleetRequest(input *CreateFleetInput) (req *request.Re
 //   * ErrCodeInvalidRoleException "InvalidRoleException"
 //   The specified role is invalid.
 //
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   An API error occurred, please try again.
+//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateFleet
 func (c *AppStream) CreateFleet(input *CreateFleetInput) (*CreateFleetOutput, error) {
 	req, out := c.CreateFleetRequest(input)
@@ -246,6 +252,9 @@ func (c *AppStream) CreateStackRequest(input *CreateStackInput) (req *request.Re
 //
 //   * ErrCodeResourceAlreadyExistsException "ResourceAlreadyExistsException"
 //   The specified resource already exists.
+//
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   An API error occurred, please try again.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateStack
 func (c *AppStream) CreateStack(input *CreateStackInput) (*CreateStackOutput, error) {
@@ -334,6 +343,9 @@ func (c *AppStream) CreateStreamingURLRequest(input *CreateStreamingURLInput) (r
 //   * ErrCodeOperationNotPermittedException "OperationNotPermittedException"
 //   The attempted operation is not permitted.
 //
+//   * ErrCodeInvalidParameterCombinationException "InvalidParameterCombinationException"
+//   Indicates an incorrect combination of parameters, or a missing parameter.
+//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateStreamingURL
 func (c *AppStream) CreateStreamingURL(input *CreateStreamingURLInput) (*CreateStreamingURLOutput, error) {
 	req, out := c.CreateStreamingURLRequest(input)
@@ -416,6 +428,9 @@ func (c *AppStream) DeleteFleetRequest(input *DeleteFleetInput) (req *request.Re
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource was not found.
+//
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   An API error occurred, please try again.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteFleet
 func (c *AppStream) DeleteFleet(input *DeleteFleetInput) (*DeleteFleetOutput, error) {
@@ -500,6 +515,9 @@ func (c *AppStream) DeleteStackRequest(input *DeleteStackInput) (req *request.Re
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource was not found.
+//
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   An API error occurred, please try again.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteStack
 func (c *AppStream) DeleteStack(input *DeleteStackInput) (*DeleteStackOutput, error) {
@@ -733,7 +751,8 @@ func (c *AppStream) DescribeSessionsRequest(input *DescribeSessionsInput) (req *
 // Describes the streaming sessions for a stack and a fleet. If a user ID is
 // provided, this operation returns streaming sessions for only that user. Pass
 // this value for the nextToken parameter in a subsequent call to this operation
-// to retrieve the next set of items.
+// to retrieve the next set of items. If an authentication type is not provided,
+// the operation defaults to users authenticated using a streaming url.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -741,6 +760,11 @@ func (c *AppStream) DescribeSessionsRequest(input *DescribeSessionsInput) (req *
 //
 // See the AWS API reference guide for Amazon AppStream's
 // API operation DescribeSessions for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidParameterCombinationException "InvalidParameterCombinationException"
+//   Indicates an incorrect combination of parameters, or a missing parameter.
+//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeSessions
 func (c *AppStream) DescribeSessions(input *DescribeSessionsInput) (*DescribeSessionsOutput, error) {
 	req, out := c.DescribeSessionsRequest(input)
@@ -905,6 +929,9 @@ func (c *AppStream) DisassociateFleetRequest(input *DisassociateFleetInput) (req
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource was not found.
+//
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   An API error occurred, please try again.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DisassociateFleet
 func (c *AppStream) DisassociateFleet(input *DisassociateFleetInput) (*DisassociateFleetOutput, error) {
@@ -1211,8 +1238,14 @@ func (c *AppStream) StartFleetRequest(input *StartFleetInput) (req *request.Requ
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource was not found.
 //
+//   * ErrCodeOperationNotPermittedException "OperationNotPermittedException"
+//   The attempted operation is not permitted.
+//
 //   * ErrCodeLimitExceededException "LimitExceededException"
 //   The requested limit exceeds the permitted limit for an account.
+//
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   An API error occurred, please try again.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/StartFleet
 func (c *AppStream) StartFleet(input *StartFleetInput) (*StartFleetOutput, error) {
@@ -1294,6 +1327,9 @@ func (c *AppStream) StopFleetRequest(input *StopFleetInput) (req *request.Reques
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource was not found.
 //
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   An API error occurred, please try again.
+//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/StopFleet
 func (c *AppStream) StopFleet(input *StopFleetInput) (*StopFleetOutput, error) {
 	req, out := c.StopFleetRequest(input)
@@ -1362,8 +1398,9 @@ func (c *AppStream) UpdateFleetRequest(input *UpdateFleetInput) (req *request.Re
 // UpdateFleet API operation for Amazon AppStream.
 //
 // Updates an existing fleet. All the attributes except the fleet name can be
-// updated in the STOPPED state. Only ComputeCapacity and ImageName can be updated
-// in any other state.
+// updated in the STOPPED state. When a fleet is in the RUNNING state, only
+// DisplayName and ComputeCapacity can be updated. A fleet cannot be updated
+// in a status of STARTING or STOPPING.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1384,6 +1421,15 @@ func (c *AppStream) UpdateFleetRequest(input *UpdateFleetInput) (req *request.Re
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource was not found.
+//
+//   * ErrCodeResourceNotAvailableException "ResourceNotAvailableException"
+//   The specified resource exists and is not in use, but isn't available.
+//
+//   * ErrCodeInvalidParameterCombinationException "InvalidParameterCombinationException"
+//   Indicates an incorrect combination of parameters, or a missing parameter.
+//
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   An API error occurred, please try again.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateFleet
 func (c *AppStream) UpdateFleet(input *UpdateFleetInput) (*UpdateFleetOutput, error) {
@@ -1758,6 +1804,9 @@ type CreateFleetInput struct {
 	// The display name of the fleet.
 	DisplayName *string `type:"string"`
 
+	// Enable/Disable default Internet access from fleet.
+	EnableDefaultInternetAccess *bool `type:"boolean"`
+
 	// Unique name of the image used by the fleet.
 	//
 	// ImageName is a required field
@@ -1850,6 +1899,12 @@ func (s *CreateFleetInput) SetDisconnectTimeoutInSeconds(v int64) *CreateFleetIn
 // SetDisplayName sets the DisplayName field's value.
 func (s *CreateFleetInput) SetDisplayName(v string) *CreateFleetInput {
 	s.DisplayName = &v
+	return s
+}
+
+// SetEnableDefaultInternetAccess sets the EnableDefaultInternetAccess field's value.
+func (s *CreateFleetInput) SetEnableDefaultInternetAccess(v bool) *CreateFleetInput {
+	s.EnableDefaultInternetAccess = &v
 	return s
 }
 
@@ -2382,6 +2437,12 @@ func (s *DescribeImagesOutput) SetImages(v []*Image) *DescribeImagesOutput {
 type DescribeSessionsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The authentication method of the user. It can be API for a user authenticated
+	// using a streaming url or SAML for a SAML federated user. If an authentication
+	// type is not provided, the operation defaults to users authenticated using
+	// a streaming url.
+	AuthenticationType *string `type:"string" enum:"AuthenticationType"`
+
 	// The name of the fleet for which to list sessions.
 	//
 	// FleetName is a required field
@@ -2441,6 +2502,12 @@ func (s *DescribeSessionsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *DescribeSessionsInput) SetAuthenticationType(v string) *DescribeSessionsInput {
+	s.AuthenticationType = &v
+	return s
 }
 
 // SetFleetName sets the FleetName field's value.
@@ -2749,6 +2816,9 @@ type Fleet struct {
 	// The name displayed to end users on the AppStream 2.0 portal.
 	DisplayName *string `min:"1" type:"string"`
 
+	// Default Internet access from the fleet. True (Enabled), False (Disabled).
+	EnableDefaultInternetAccess *bool `type:"boolean"`
+
 	// The list of fleet errors is appended to this list.
 	FleetErrors []*FleetError `type:"list"`
 
@@ -2823,6 +2893,12 @@ func (s *Fleet) SetDisconnectTimeoutInSeconds(v int64) *Fleet {
 // SetDisplayName sets the DisplayName field's value.
 func (s *Fleet) SetDisplayName(v string) *Fleet {
 	s.DisplayName = &v
+	return s
+}
+
+// SetEnableDefaultInternetAccess sets the EnableDefaultInternetAccess field's value.
+func (s *Fleet) SetEnableDefaultInternetAccess(v bool) *Fleet {
+	s.EnableDefaultInternetAccess = &v
 	return s
 }
 
@@ -2926,6 +3002,9 @@ type Image struct {
 	// The display name for the image.
 	DisplayName *string `min:"1" type:"string"`
 
+	// Indicates whether an image builder can be launched from this image.
+	ImageBuilderSupported *bool `type:"boolean"`
+
 	// The unique identifier for the image.
 	//
 	// Name is a required field
@@ -2988,6 +3067,12 @@ func (s *Image) SetDescription(v string) *Image {
 // SetDisplayName sets the DisplayName field's value.
 func (s *Image) SetDisplayName(v string) *Image {
 	s.DisplayName = &v
+	return s
+}
+
+// SetImageBuilderSupported sets the ImageBuilderSupported field's value.
+func (s *Image) SetImageBuilderSupported(v bool) *Image {
+	s.ImageBuilderSupported = &v
 	return s
 }
 
@@ -3240,6 +3325,11 @@ func (s *ListAssociatedStacksOutput) SetNextToken(v string) *ListAssociatedStack
 type Session struct {
 	_ struct{} `type:"structure"`
 
+	// The authentication method of the user for whom the session was created. It
+	// can be API for a user authenticated using a streaming url or SAML for a SAML
+	// federated user.
+	AuthenticationType *string `type:"string" enum:"AuthenticationType"`
+
 	// The name of the fleet for which the streaming session was created.
 	//
 	// FleetName is a required field
@@ -3274,6 +3364,12 @@ func (s Session) String() string {
 // GoString returns the string representation
 func (s Session) GoString() string {
 	return s.String()
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *Session) SetAuthenticationType(v string) *Session {
+	s.AuthenticationType = &v
+	return s
 }
 
 // SetFleetName sets the FleetName field's value.
@@ -3504,6 +3600,9 @@ type UpdateFleetInput struct {
 	// The name displayed to end users on the AppStream 2.0 portal.
 	DisplayName *string `type:"string"`
 
+	// Enable/Disable default Internet access from fleet.
+	EnableDefaultInternetAccess *bool `type:"boolean"`
+
 	// The image name from which a fleet is created.
 	ImageName *string `min:"1" type:"string"`
 
@@ -3592,6 +3691,12 @@ func (s *UpdateFleetInput) SetDisconnectTimeoutInSeconds(v int64) *UpdateFleetIn
 // SetDisplayName sets the DisplayName field's value.
 func (s *UpdateFleetInput) SetDisplayName(v string) *UpdateFleetInput {
 	s.DisplayName = &v
+	return s
+}
+
+// SetEnableDefaultInternetAccess sets the EnableDefaultInternetAccess field's value.
+func (s *UpdateFleetInput) SetEnableDefaultInternetAccess(v bool) *UpdateFleetInput {
+	s.EnableDefaultInternetAccess = &v
 	return s
 }
 
@@ -3733,7 +3838,7 @@ func (s *UpdateStackOutput) SetStack(v *Stack) *UpdateStackOutput {
 	return s
 }
 
-// The VPC in which the fleet is launched.
+// VPC configuration information.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/VpcConfig
 type VpcConfig struct {
 	_ struct{} `type:"structure"`
@@ -3776,6 +3881,14 @@ func (s *VpcConfig) SetSubnetIds(v []*string) *VpcConfig {
 	s.SubnetIds = v
 	return s
 }
+
+const (
+	// AuthenticationTypeApi is a AuthenticationType enum value
+	AuthenticationTypeApi = "API"
+
+	// AuthenticationTypeSaml is a AuthenticationType enum value
+	AuthenticationTypeSaml = "SAML"
+)
 
 const (
 	// FleetErrorCodeIamServiceRoleMissingEniDescribeAction is a FleetErrorCode enum value

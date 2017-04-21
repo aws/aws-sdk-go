@@ -144,6 +144,9 @@ type KinesisAPI interface {
 
 	WaitUntilStreamExists(*kinesis.DescribeStreamInput) error
 	WaitUntilStreamExistsWithContext(aws.Context, *kinesis.DescribeStreamInput, ...request.WaiterOption) error
+
+	WaitUntilStreamNotExists(*kinesis.DescribeStreamInput) error
+	WaitUntilStreamNotExistsWithContext(aws.Context, *kinesis.DescribeStreamInput, ...request.WaiterOption) error
 }
 
 var _ KinesisAPI = (*kinesis.Kinesis)(nil)
