@@ -4,6 +4,18 @@ package appstream
 
 const (
 
+	// ErrCodeConcurrentModificationException for service response error code
+	// "ConcurrentModificationException".
+	//
+	// An API error occurred, please try again.
+	ErrCodeConcurrentModificationException = "ConcurrentModificationException"
+
+	// ErrCodeInvalidParameterCombinationException for service response error code
+	// "InvalidParameterCombinationException".
+	//
+	// Indicates an incorrect combination of parameters, or a missing parameter.
+	ErrCodeInvalidParameterCombinationException = "InvalidParameterCombinationException"
+
 	// ErrCodeInvalidRoleException for service response error code
 	// "InvalidRoleException".
 	//

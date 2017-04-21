@@ -1,3 +1,21 @@
+Release v1.8.16 (2017-04-21)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API, documentation, and paginators
+  * The new feature named "Default Internet Access" will enable Internet access from AppStream 2.0 instances - image builders and fleet instances. Admins will check a flag either through AWS management console for AppStream 2.0 or through API while creating an image builder or while creating/updating a fleet.
+* `service/kinesis`: Updates service API, documentation, waiters, and paginators
+  * Adds a new waiter, StreamNotExists, to Kinesis.
+
+### SDK Enhancements
+* `aws/endpoints`: Add utilities improving endpoints lookup (#1218)
+  * Adds several utilities to the endpoints packages to make looking up partitions, regions, and services easier.
+  * Fixes #994
+
+### SDK Bugs
+* `private/protocol/xml/xmlutil`: Fix unmarshaling dropping errors (#1219)
+  * The XML unmarshaler would drop any serialization or body read error that occurred on the floor effectively hiding any errors that would occur.
+  * Fixes #1205
 Release v1.8.15 (2017-04-20)
 ===
 
