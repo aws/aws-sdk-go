@@ -1,10 +1,10 @@
-// Package dynamodbattribute provides marshaling and unmarshaling utilities to
-// convert between Go types and dynamodb.AttributeValues.
+// AttributeValue Marshaling and Unmarshaling Helpers
 //
-// These utilities allow you to marshal slices, maps, structs, and scalar values
-// to and from dynamodb.AttributeValue. These are useful when marshaling
-// Go value tyes to dynamodb.AttributeValue for DynamoDB requests, or
-// unmarshaling the dynamodb.AttributeValue back into a Go value type.
+// The package dynamodbattribute nested under this package provides marshaling
+// utilities for marshaling to AttributeValue types and unmarshaling to Go
+// value types. These utilities allow you to marshal slices, maps, structs,
+// and scalar values to and from dynamodb.AttributeValue. See the
+// dynamodbattribute package for more information.
 //
 // AttributeValue Marshaling
 //
@@ -34,7 +34,7 @@
 //         panic(fmt.Sprintf("failed to DynamoDB marshal Record, %v", err))
 //     }
 //
-//     _, err := r.svc.PutItem(&dynamodb.PutItemInput{
+//     _, err = svc.PutItem(&dynamodb.PutItemInput{
 //         TableName: aws.String(myTableName),
 //         Item:      av,
 //     })
@@ -77,19 +77,4 @@
 //
 //         return true // keep paging
 //     })
-//
-// The ConvertTo, ConvertToList, ConvertToMap, ConvertFrom, ConvertFromMap
-// and ConvertFromList methods have been deprecated. The Marshal and Unmarshal
-// functions should be used instead. The ConvertTo|From marshallers do not
-// support BinarySet, NumberSet, nor StringSets, and will incorrect marshal
-// binary data fields in structs as base64 strings.
-//
-// The Marshal and Unmarshal functions correct this behavior, and removes
-// the reliance on encoding.json. `json` struct tags are still supported. In
-// addition support for a new struct tag `dynamodbav` was added. Support for
-// the json.Marshaler and json.Unmarshaler interfaces have been removed and
-// replaced with have been replaced with dynamodbattribute.Marshaler and
-// dynamodbattribute.Unmarshaler interfaces.
-//
-// `time.Time` is marshaled as RFC3339 format.
-package dynamodbattribute
+package dynamodb
