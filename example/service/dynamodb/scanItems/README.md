@@ -13,7 +13,7 @@ type Item struct {
 	Data map[string]interface{}
 }
 ```
-Use Go tags to define what the name is of the attribute in your DynamoDB table. See [AWS SDK for Go API Reference: Marshal](http://docs.aws.amazon.com/sdk-for-go/api/service/dynamodb/dynamodbattribute/#Marshal) for more information.
+Use Go tags to define what the name is of the attribute in your DynamoDB table. See [AWS SDK for Go API Reference: Marshal](https://docs.aws.amazon.com/sdk-for-go/api/service/dynamodb/dynamodbattribute/#Marshal) for more information.
 
 In DynamoDB the structure of the item to be returned will be:
 ```json
