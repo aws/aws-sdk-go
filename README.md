@@ -69,6 +69,12 @@ AWS_ACCESS_KEY_ID=AKID1234567890
 AWS_SECRET_ACCESS_KEY=MY-SECRET-KEY
 ```
 
+or set the credentials and start using the AWS CLI application.
+See [the install guide](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) on how to install the AWS CLI application.
+Run ``aws configure`` which will ask for your Key ID, Access Key, region name and output format.
+See [Configuring the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html) for more information.
+
+
 ### AWS shared config file (`~/.aws/config`)
 The AWS SDK for Go added support the shared config file in release [v1.3.0](https://github.com/aws/aws-sdk-go/releases/tag/v1.3.0). You can opt into enabling support for the shared config by setting the environment variable `AWS_SDK_LOAD_CONFIG` to a truthy value. See the [Session](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/sessions.html) docs for more information about this feature.
 
