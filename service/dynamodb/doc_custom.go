@@ -1,16 +1,20 @@
 // AttributeValue Marshaling and Unmarshaling Helpers
 //
-// The package dynamodbattribute nested under this package provides marshaling
-// utilities for marshaling to AttributeValue types and unmarshaling to Go
-// value types. These utilities allow you to marshal slices, maps, structs,
-// and scalar values to and from dynamodb.AttributeValue. See the
-// dynamodbattribute package for more information.
+// Utility helpers to marshal and unmarshal AttributeValue to and
+// from Go types can be found in the dynamodbattribute sub package. This package
+// provides has specialized functions for the common ways of working with
+// AttributeValues. Such as map[string]*AttributeValue, []*AttributeValue, and
+// directly with *AttributeValue. This is helpful for marshaling Go types for API
+// operations such as PutItem, and unmarshaling Query and Scan APIs' responses.
+//
+// See the dynamodbattribute package documentation for more information.
+// https://docs.aws.amazon.com/sdk-for-go/api/service/dynamodb/dynamodbattribute/
 //
 // AttributeValue Marshaling
 //
-// To marshal a Go type to a dynamodbAttributeValue you can use the Marshal
+// To marshal a Go type to an AttributeValue you can use the Marshal
 // functions in the dynamodbattribute package. There are specialized versions
-// of these functions for collections of Attributevalue, such as maps and lists.
+// of these functions for collections of AttributeValue, such as maps and lists.
 //
 // The following example uses MarshalMap to convert the Record Go type to a
 // dynamodb.AttributeValue type and use the value to make a PutItem API request.
@@ -46,7 +50,7 @@
 //
 // To unmarshal a dynamodb.AttributeValue to a Go type you can use the Unmarshal
 // functions in the dynamodbattribute package. There are specialized versions
-// of these functions for collections of Attributevalue, such as maps and lists.
+// of these functions for collections of AttributeValue, such as maps and lists.
 //
 // The following example will unmarshal the DynamoDB's Scan API operation. The
 // Items returned by the operation will be unmarshaled into the slice of Records

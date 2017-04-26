@@ -11,8 +11,10 @@
 // The SDK also includes helpful utilities on top of the AWS APIs that add additional
 // capabilities and functionality. For example, the Amazon S3 Download and Upload
 // Manager will automatically split up large objects into multiple parts and
-// transfer them in parallel. See the s3manager package docs for more information
-// at, http://docs.aws.amazon.com/sdk-for-go/api/service/s3/s3manager/
+// transfer them in parallel.
+//
+// See the s3manager package documentation for more information.
+// https://docs.aws.amazon.com/sdk-for-go/api/service/s3/s3manager/
 //
 // Getting More Information
 //
@@ -25,15 +27,62 @@
 // The API Reference Docs include a detailed breakdown of the SDK's components
 // such as utilities and AWS clients. Use this as a reference of the Go types
 // included with the SDK, such as AWS clients, API operations, and API parameters.
-// http://docs.aws.amazon.com/sdk-for-go/api/
+// https://docs.aws.amazon.com/sdk-for-go/api/
 //
-// Using the SDK
+// Overview of SDK's Packages
 //
-// The SDK is made up of two main components. The aws package containing the SDK's
-// core functionality and majority of the internal logic for working with AWS
-// services and the packages nested under the "service" folder. Each AWS service
-// supported by the SDK will be listed in a unique package under the service
-// folder.
+// The SDK is composed of two main components, SDK core, and service clients.
+// The SDK core packages are all nested within the aws package at the root of the SDK.
+// Each client for a supported AWS service is available within its own package
+// under the service folder at the root of the SDK.
+//
+//   * aws - SDK core, provides common shared types such as Config, Logger,
+//     and utilities to make working with API parameters easier.
+//
+//       * awserr - Provides the error interface that the SDK will use for all
+//         errors that occur in the SDK's processing. This includes service API
+//         response errors as well. The Error type is made up of a code and message.
+//         Cast the SDK's returned error type to awserr.Error and call the Code
+//         method to compare returned error to specific error codes. See the package's
+//         documentation for additional values that can be extracted such as RequestId.
+//
+//       * credentials - Provides the types and built in credentials providers
+//         the SDK will use to retrieve AWS credentials to make API requests with.
+//         Nested under this folder are also additional credentials providers such as
+//         stscreds for assuming IAM roles, and ec2rolecreds for EC2 Instance roles.
+//
+//       * endpoints - Provides the AWS Regions and Endpoints metadata for the SDK.
+//         Use this to lookup AWS service endpoint information such as which services
+//         are in a region, and what regions a service is in. Constants are also provided
+//         for all region identifiers, e.g UsWest2RegionID for "us-west-2".
+//
+//       * session - Provides initial default configuration, and load
+//         configuration from external sources such as environment and shared
+//         credentials file.
+//
+//       * request - Provides the API request sending, and retry logic for the SDK.
+//         This package also includes utilities for defining your own request
+//         retryer, and configuring how the SDK processes the request.
+//
+//   * service - Clients for AWS services. All services supported by the SDK are
+//     available under this folder.
+//
+// How to Use the SDK's AWS Service Clients
+//
+// The SDK includes the Go types logics you'll need to make requests to AWS
+// service APIs. Within the service folder at the root of the SDK you'll find
+// a package for every AWS service the SDK supports. Each service follows a common
+// pattern of creation and usage.
+//
+// When creating a client for an AWS service you'll first need to have a Session
+// value constructed. The Session provides shared configuration that can be shared
+// between your service clients. When service clients are created you can pass
+// in additional configuration via the aws.Config type to override configuration
+// provided by in the Session to create service client instances with custom
+// configuration.
+//
+// Once the service's client is created you can use it to make API requests the
+// AWS service. These clients are safe to use concurrently.
 //
 // Configuring the SDK
 //
@@ -44,8 +93,14 @@
 // requests with the correct credentials. You can specify these values as part
 // of a session or as environment variables.
 //
-// See the SDK's configuration guide at https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html
-// for more information.
+// See the SDK's configuration guide for more information.
+// https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html
+//
+// And, session package documentation for more information.
+// https://docs.aws.amazon.com/sdk-for-go/api/aws/session/
+//
+// See the Config type in the aws package for more information.
+// https://docs.aws.amazon.com/sdk-for-go/api/aws/#Config
 //
 // Configuring Credentials
 //
@@ -53,21 +108,48 @@
 // authenticate with AWS services. The SDK supports multiple methods of supporting
 // these credentials. By default the SDK will source credentials automatically
 // from its default credential chain. See the session package for more information
-// on this chain, and how to configure it. The common items in the credential chain are:
+// on this chain, and how to configure it. The common items in the credential chain are
 //
-//   * Environment Credentials: Set of environment variables that are useful
+//   * Environment Credentials -  Set of environment variables that are useful
 //     when sub processes are created for specific roles.
 //
-//   * Shared Credentials file (~/.aws/credentials): This file stores your
+//   * Shared Credentials file (~/.aws/credentials) -  This file stores your
 //     credentials based on a profile name and is useful for local development.
 //
-//   * EC2 Instance Role Credentials: Use EC2 Instance Role to assign credentials
+//   * EC2 Instance Role Credentials -  Use EC2 Instance Role to assign credentials
 //     to application running on an EC2 instance. This removes the need to manage
 //     credential files in production.
 //
+// Credentials can be configured in code as well by setting the Config's Credentials
+// value to a custom provider or using one of the providers included with the
+// SDK to bypass the default credential chain and use a custom one. This is
+// helpful when you want to instruct the SDK to only use a specific set of
+// credentials or providers.
+//
+// This example creates a credential provider for assuming an IAM role, "myRoleARN"
+// and configures the S3 service client to use that role for API requests.
+//
+//   // Initial credentials loaded from SDK's default credential chain. Such as
+//   // the environment, shared credentials (~/.aws/credentials), or EC2 Instance
+//   // Role. These credentials will be used to to make the STS Assume Role API.
+//   sess := session.Must(session.NewSession())
+//
+//   // Create the credentials from AssumeRoleProvider to assume the role
+//   // referenced by the "myRoleARN" ARN.
+//   creds := stscreds.NewCredentials(sess, "myRoleArn")
+//
+//   // Create service client value configured for credentials
+//   // from assumed role.
+//   svc := s3.New(sess, &aws.Config{Credentials: creds})/
+//
+// See the credentials package documentation for more information on credential
+// providers included with the SDK, and how to customize the SDK's usage of
+// credentials.
+// https://docs.aws.amazon.com/sdk-for-go/api/aws/credentials
+//
 // The SDK has support for the shared configuration file (~/.aws/config). This
 // support can be enabled by setting the environment variable, "AWS_SDK_LOAD_CONFIG=1",
-// or enabling the feature in code when creating a Session via the "session.Option.SharedConfigState"
+// or enabling the feature in code when creating a Session via the "session#Option.SharedConfigState"
 // parameter.
 //
 //   sess := session.Must(session.NewSessionWithOptions(session.Options{
@@ -99,8 +181,11 @@
 // the same region.
 //
 //   sess := session.Must(session.NewSession(&aws.Config{
-//       Region: aws.String(endpoints.UsWest2RegionId),
+//       Region: aws.String(endpoints.UsWest2RegionID),
 //   }))
+//
+// See the endpoints package for the AWS Regions and Endpoints metadata.
+// https://docs.aws.amazon.com/sdk-for-go/api/aws/endpoints/
 //
 // In addition to setting the region in the Session you can also set the region
 // on a per service client bases. This overrides the region of a Session. This
@@ -111,27 +196,9 @@
 //       Region: aws.String(ednpoints.UsWest2RegionID),
 //   })
 //
-// Creating AWS Clients
-//
-// To use an AWS client with the SDK  you will first need to create a new
-// instance of it. Once the service's client is created you can begin to make
-// API requests to the service using it. The client is safe to use across
-// multiple goroutines concurrently.
-//
-// All clients require a Session. The Session provides the client with shared
-// configuration such as region, endpoint, and credentials. A Session should be
-// shared where possible to take advantage of configuration and credential caching.
-// See the session package for more information.
-//
-//   sess := session.Must(session.NewSession())
-//
-// Create a new instance of the service's client with a Session. Optional
-// aws.Config values can also be provided as variadic arguments to the
-// New function. This option allows you to provide service specific configuration.
-// The New function will return a client with methods for each service API
-// operation call.
-//
-//   svc := s3.New(sess)
+// See the Config type in the aws package for more information and additional
+// options such as setting the Endpoint, and other service client configuration options.
+// https://docs.aws.amazon.com/sdk-for-go/api/aws/#Config
 //
 // Making API Requests
 //
@@ -139,26 +206,26 @@
 // Each API method takes a input parameter, and returns the service response
 // and an error. The SDK provides methods for making the API call in multiple ways.
 //
-//   * <APIName>: Base API operation that will make the API request to the service.
+//   * <APIName> - Base API operation that will make the API request to the service.
 //
-//   * <APIName>Request: API methods suffixed with Request will construct the
+//   * <APIName>Request - API methods suffixed with Request will construct the
 //     API request, but not send it.
 //
-//   * <APIName>Pages: Same as the base API operation, but uses a callback to
+//   * <APIName>Pages - Same as the base API operation, but uses a callback to
 //     automatically handle pagination of the API's response.
 //
-//   * <APIName>WithContext: Same as base API operation, but adds support for
+//   * <APIName>WithContext - Same as base API operation, but adds support for
 //     the Context pattern. This is helpful for controlling the canceling of
 //     in flight requests. See the Go standard library context package for
 //     more information.
 //
-//   * <APINAme>PagesWithContext: same as <APIName>Pages, but adds support for
+//   * <APINAme>PagesWithContext - same as <APIName>Pages, but adds support for
 //   the Context pattern.
 //
-//   * WaitUntil<name>: Method to make API request to query an AWS service for
+//   * WaitUntil<name> - Method to make API request to query an AWS service for
 //     a resource's state. Will return successfully when that state is accomplished.
 //
-//   * WaitUntil<name>WithContext: Same as WaitUntil<name>, but adds support
+//   * WaitUntil<name>WithContext - Same as WaitUntil<name>, but adds support
 //     for the Context pattern,
 //
 // The API method will document which error codes the service can be returned
