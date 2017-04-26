@@ -2,6 +2,7 @@ package rdsutils
 
 import (
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/credentials"
@@ -15,6 +16,8 @@ import (
 // region is the region of database that the auth token would be generated for. The dbUser is the user
 // that the request would be authenticated with. The creds are the credentials the auth token is signed
 // with.
+//
+// The url that is returned will not contain the scheme.
 func BuildAuthToken(endpoint, region, dbUser string, creds *credentials.Credentials) (string, error) {
 	req, err := http.NewRequest("GET", endpoint, nil)
 	if err != nil {
@@ -33,5 +36,12 @@ func BuildAuthToken(endpoint, region, dbUser string, creds *credentials.Credenti
 		return "", err
 	}
 
-	return req.URL.String(), nil
+	url := req.URL.String()
+	if strings.HasPrefix(url, "http://") {
+		url = url[len("http://"):]
+	} else if strings.HasPrefix(url, "https://") {
+		url = url[len("https://"):]
+	}
+
+	return url, nil
 }

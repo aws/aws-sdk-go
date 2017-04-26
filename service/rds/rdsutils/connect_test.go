@@ -17,5 +17,5 @@ func TestBuildAuthToken(t *testing.T) {
 
 	url, err := rdsutils.BuildAuthToken(endpoint, region, user, creds)
 	assert.NoError(t, err)
-	assert.Regexp(t, `^https://prod-instance\.us-east-1\.rds\.amazonaws\.com:3306\?Action=connect.*?DBUser=mysqlUser.*`, url)
+	assert.Regexp(t, `^prod-instance\.us-east-1\.rds\.amazonaws\.com:3306\?Action=connect.*?DBUser=mysqlUser.*`, url)
 }
