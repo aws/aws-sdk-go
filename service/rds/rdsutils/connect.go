@@ -28,7 +28,7 @@ func BuildAuthToken(endpoint, region, dbUser string, creds *credentials.Credenti
 	signer := v4.Signer{
 		Credentials: creds,
 	}
-	_, err = signer.Presign(req, nil, "rds", region, 15*time.Minute, time.Now())
+	_, err = signer.Presign(req, nil, "rds-db", region, 15*time.Minute, time.Now())
 	if err != nil {
 		return "", err
 	}
