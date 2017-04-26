@@ -97,7 +97,7 @@
 // See the SDK's configuration guide for more information.
 // https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html
 //
-// And, session package documentation for more information on how to use Session
+// See the session package documentation for more information on how to use Session
 // with the SDK.
 // https://docs.aws.amazon.com/sdk-for-go/api/aws/session/
 //
