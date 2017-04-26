@@ -103,6 +103,7 @@ const (
 	MarketplacecommerceanalyticsServiceID = "marketplacecommerceanalytics" // Marketplacecommerceanalytics.
 	MeteringMarketplaceServiceID          = "metering.marketplace"         // MeteringMarketplace.
 	MobileanalyticsServiceID              = "mobileanalytics"              // Mobileanalytics.
+	ModelsLexServiceID                    = "models.lex"                   // ModelsLex.
 	MonitoringServiceID                   = "monitoring"                   // Monitoring.
 	MturkRequesterServiceID               = "mturk-requester"              // MturkRequester.
 	OpsworksServiceID                     = "opsworks"                     // Opsworks.
@@ -350,6 +351,7 @@ var awsPartition = partition{
 				"ap-southeast-1": endpoint{},
 				"ap-southeast-2": endpoint{},
 				"eu-west-1":      endpoint{},
+				"eu-west-2":      endpoint{},
 				"us-east-1":      endpoint{},
 				"us-east-2":      endpoint{},
 				"us-west-2":      endpoint{},
@@ -847,8 +849,10 @@ var awsPartition = partition{
 				"ap-south-1":     endpoint{},
 				"ap-southeast-1": endpoint{},
 				"ap-southeast-2": endpoint{},
+				"ca-central-1":   endpoint{},
 				"eu-central-1":   endpoint{},
 				"eu-west-1":      endpoint{},
+				"eu-west-2":      endpoint{},
 				"sa-east-1":      endpoint{},
 				"us-east-1":      endpoint{},
 				"us-east-2":      endpoint{},
@@ -1107,6 +1111,16 @@ var awsPartition = partition{
 		},
 		"mobileanalytics": service{
 
+			Endpoints: endpoints{
+				"us-east-1": endpoint{},
+			},
+		},
+		"models.lex": service{
+			Defaults: endpoint{
+				CredentialScope: credentialScope{
+					Service: "lex",
+				},
+			},
 			Endpoints: endpoints{
 				"us-east-1": endpoint{},
 			},
