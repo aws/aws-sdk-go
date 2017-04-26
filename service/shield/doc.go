@@ -11,8 +11,8 @@
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02 for more information on this service.
 //
-// See https://docs.aws.amazon.com/sdk-for-go/api/service/shield/
-// for information on using this package.
+// See shield package documentation for more information.
+// https://docs.aws.amazon.com/sdk-for-go/api/service/shield/
 //
 // Using the Client
 //
@@ -24,7 +24,9 @@
 // All clients require a Session. The Session provides the client with shared
 // configuration such as region, endpoint, and credentials. A Session should be
 // shared where possible to take advantage of configuration and credential caching.
-// See the github.com/aws/aws-sdk-go/aws/session package for more information.
+//
+// See the session package documentation for more information.
+// https://docs.aws.amazon.com/sdk-for-go/api/aws/session/
 //
 //   sess := session.Must(session.NewSession())
 //
@@ -60,8 +62,10 @@
 // The service's client also provides methods to make API requests with a Context
 // value. This allows you to control the timeout, and cancellation of pending
 // requests. These methods also take request Option as variadic parameter to apply
-// additional configuration to the API request. See the github.com/aws/aws-sdk-go/aws/request
-// package for more information.
+// additional configuration to the API request.
+//
+// See the request package documentation for more information.
+// https://docs.aws.amazon.com/sdk-for-go/api/aws/request/
 //
 //   ctx := context.Background()
 //
