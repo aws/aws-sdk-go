@@ -27,9 +27,9 @@ import (
 // For more information about AWS CloudFormation, see the AWS CloudFormation
 // Product Page (http://aws.amazon.com/cloudformation/).
 //
-// Amazon CloudFormation makes use of other AWS products. For additional technical
-// information about a specific AWS product, see its technical documentation
-// (http://docs.aws.amazon.com/).
+// Amazon CloudFormation makes use of other AWS products. If you need additional
+// technical information about a specific AWS product, you can find the product's
+// technical documentation at docs.aws.amazon.com (http://docs.aws.amazon.com/).
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15

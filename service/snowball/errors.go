@@ -35,6 +35,13 @@ const (
 	// that action to be performed.
 	ErrCodeInvalidJobStateException = "InvalidJobStateException"
 
+	// ErrCodeInvalidNextTokenException for service response error code
+	// "InvalidNextTokenException".
+	//
+	// The NextToken string was altered unexpectedly, and the operation has stopped.
+	// Run the operation without changing the NextToken string, and try again.
+	ErrCodeInvalidNextTokenException = "InvalidNextTokenException"
+
 	// ErrCodeInvalidResourceException for service response error code
 	// "InvalidResourceException".
 	//

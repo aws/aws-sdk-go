@@ -240,11 +240,10 @@ func (c *Snowball) CreateAddressRequest(input *CreateAddressInput) (req *request
 
 // CreateAddress API operation for Amazon Import/Export Snowball.
 //
-// Creates an address for a Snowball to be shipped to.
-//
-// Addresses are validated at the time of creation. The address you provide
-// must be located within the serviceable area of your region. If the address
-// is invalid or unsupported, then an exception is thrown.
+// Creates an address for a Snowball to be shipped to. In most regions, addresses
+// are validated at the time of creation. The address you provide must be located
+// within the serviceable area of your region. If the address is invalid or
+// unsupported, then an exception is thrown.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -426,7 +425,7 @@ func (c *Snowball) CreateJobRequest(input *CreateJobInput) (req *request.Request
 // data center. Your AWS account must have the right trust policies and permissions
 // in place to create a job for Snowball. If you're creating a job for a node
 // in a cluster, you only need to provide the clusterId value; the other job
-// attributes are inherited from the cluster. .
+// attributes are inherited from the cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -625,6 +624,10 @@ func (c *Snowball) DescribeAddressesRequest(input *DescribeAddressesInput) (req 
 //   * ErrCodeInvalidResourceException "InvalidResourceException"
 //   The specified resource can't be found. Check the information you provided
 //   in your last request, and try again.
+//
+//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   The NextToken string was altered unexpectedly, and the operation has stopped.
+//   Run the operation without changing the NextToken string, and try again.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/DescribeAddresses
 func (c *Snowball) DescribeAddresses(input *DescribeAddressesInput) (*DescribeAddressesOutput, error) {
@@ -826,7 +829,7 @@ func (c *Snowball) DescribeJobRequest(input *DescribeJobInput) (req *request.Req
 // DescribeJob API operation for Amazon Import/Export Snowball.
 //
 // Returns information about a specific job including shipping information,
-// job status, and other important metadata. .
+// job status, and other important metadata.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1201,6 +1204,10 @@ func (c *Snowball) ListClusterJobsRequest(input *ListClusterJobsInput) (req *req
 //   The specified resource can't be found. Check the information you provided
 //   in your last request, and try again.
 //
+//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   The NextToken string was altered unexpectedly, and the operation has stopped.
+//   Run the operation without changing the NextToken string, and try again.
+//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/ListClusterJobs
 func (c *Snowball) ListClusterJobs(input *ListClusterJobsInput) (*ListClusterJobsOutput, error) {
 	req, out := c.ListClusterJobsRequest(input)
@@ -1278,6 +1285,12 @@ func (c *Snowball) ListClustersRequest(input *ListClustersInput) (req *request.R
 //
 // See the AWS API reference guide for Amazon Import/Export Snowball's
 // API operation ListClusters for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   The NextToken string was altered unexpectedly, and the operation has stopped.
+//   Run the operation without changing the NextToken string, and try again.
+//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/ListClusters
 func (c *Snowball) ListClusters(input *ListClustersInput) (*ListClustersOutput, error) {
 	req, out := c.ListClustersRequest(input)
@@ -1363,6 +1376,12 @@ func (c *Snowball) ListJobsRequest(input *ListJobsInput) (req *request.Request, 
 //
 // See the AWS API reference guide for Amazon Import/Export Snowball's
 // API operation ListJobs for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   The NextToken string was altered unexpectedly, and the operation has stopped.
+//   Run the operation without changing the NextToken string, and try again.
+//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/ListJobs
 func (c *Snowball) ListJobs(input *ListJobsInput) (*ListJobsOutput, error) {
 	req, out := c.ListJobsRequest(input)
@@ -1655,7 +1674,11 @@ type Address struct {
 	// The country in an address that a Snowball is to be delivered to.
 	Country *string `min:"1" type:"string"`
 
-	// The landmark identifying the address that the appliance will be shipped to.
+	// If the address you are creating is a primary address, then set this option
+	// to true. This field is not supported in most regions.
+	IsRestricted *bool `type:"boolean"`
+
+	// This field is no longer used and the value is ignored.
 	Landmark *string `min:"1" type:"string"`
 
 	// The name of a person to receive a Snowball at an address.
@@ -1668,7 +1691,7 @@ type Address struct {
 	// The postal code in an address that a Snowball is to be delivered to.
 	PostalCode *string `min:"1" type:"string"`
 
-	// The prefecture or district that the appliance will be shipped to.
+	// This field is no longer used and the value is ignored.
 	PrefectureOrDistrict *string `min:"1" type:"string"`
 
 	// The state or province in an address that a Snowball is to be delivered to.
@@ -1764,6 +1787,12 @@ func (s *Address) SetCompany(v string) *Address {
 // SetCountry sets the Country field's value.
 func (s *Address) SetCountry(v string) *Address {
 	s.Country = &v
+	return s
+}
+
+// SetIsRestricted sets the IsRestricted field's value.
+func (s *Address) SetIsRestricted(v bool) *Address {
+	s.IsRestricted = &v
 	return s
 }
 
@@ -2011,6 +2040,10 @@ type ClusterMetadata struct {
 	// The optional description of the cluster.
 	Description *string `min:"1" type:"string"`
 
+	// The ID of the address that you want a cluster shipped to, after it will be
+	// shipped to its primary address. This field is not supported in most regions.
+	ForwardingAddressId *string `min:"40" type:"string"`
+
 	// The type of job for this cluster. Currently, the only job type supported
 	// for clusters is LOCAL_USE.
 	JobType *string `type:"string" enum:"JobType"`
@@ -2093,6 +2126,12 @@ func (s *ClusterMetadata) SetCreationDate(v time.Time) *ClusterMetadata {
 // SetDescription sets the Description field's value.
 func (s *ClusterMetadata) SetDescription(v string) *ClusterMetadata {
 	s.Description = &v
+	return s
+}
+
+// SetForwardingAddressId sets the ForwardingAddressId field's value.
+func (s *ClusterMetadata) SetForwardingAddressId(v string) *ClusterMetadata {
+	s.ForwardingAddressId = &v
 	return s
 }
 
@@ -2221,6 +2260,10 @@ type CreateClusterInput struct {
 	// Data Cluster-01.
 	Description *string `min:"1" type:"string"`
 
+	// The forwarding address ID for a cluster. This field is not supported in most
+	// regions.
+	ForwardingAddressId *string `min:"40" type:"string"`
+
 	// The type of job for this cluster. Currently, the only job type supported
 	// for clusters is LOCAL_USE.
 	//
@@ -2296,6 +2339,9 @@ func (s *CreateClusterInput) Validate() error {
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
+	if s.ForwardingAddressId != nil && len(*s.ForwardingAddressId) < 40 {
+		invalidParams.Add(request.NewErrParamMinLen("ForwardingAddressId", 40))
+	}
 	if s.JobType == nil {
 		invalidParams.Add(request.NewErrParamRequired("JobType"))
 	}
@@ -2329,6 +2375,12 @@ func (s *CreateClusterInput) SetAddressId(v string) *CreateClusterInput {
 // SetDescription sets the Description field's value.
 func (s *CreateClusterInput) SetDescription(v string) *CreateClusterInput {
 	s.Description = &v
+	return s
+}
+
+// SetForwardingAddressId sets the ForwardingAddressId field's value.
+func (s *CreateClusterInput) SetForwardingAddressId(v string) *CreateClusterInput {
+	s.ForwardingAddressId = &v
 	return s
 }
 
@@ -2414,6 +2466,10 @@ type CreateJobInput struct {
 	// Photos 2016-08-11.
 	Description *string `min:"1" type:"string"`
 
+	// The forwarding address ID for a job. This field is not supported in most
+	// regions.
+	ForwardingAddressId *string `min:"40" type:"string"`
+
 	// Defines the type of job that you're creating.
 	JobType *string `type:"string" enum:"JobType"`
 
@@ -2492,6 +2548,9 @@ func (s *CreateJobInput) Validate() error {
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
+	if s.ForwardingAddressId != nil && len(*s.ForwardingAddressId) < 40 {
+		invalidParams.Add(request.NewErrParamMinLen("ForwardingAddressId", 40))
+	}
 	if s.Resources != nil {
 		if err := s.Resources.Validate(); err != nil {
 			invalidParams.AddNested("Resources", err.(request.ErrInvalidParams))
@@ -2519,6 +2578,12 @@ func (s *CreateJobInput) SetClusterId(v string) *CreateJobInput {
 // SetDescription sets the Description field's value.
 func (s *CreateJobInput) SetDescription(v string) *CreateJobInput {
 	s.Description = &v
+	return s
+}
+
+// SetForwardingAddressId sets the ForwardingAddressId field's value.
+func (s *CreateJobInput) SetForwardingAddressId(v string) *CreateJobInput {
+	s.ForwardingAddressId = &v
 	return s
 }
 
@@ -3329,6 +3394,10 @@ type JobMetadata struct {
 	// The description of the job, provided at job creation.
 	Description *string `min:"1" type:"string"`
 
+	// The ID of the address that you want a job shipped to, after it will be shipped
+	// to its primary address. This field is not supported in most regions.
+	ForwardingAddressId *string `min:"40" type:"string"`
+
 	// The automatically generated ID for a job, for example JID123e4567-e89b-12d3-a456-426655440000.
 	JobId *string `min:"1" type:"string"`
 
@@ -3345,8 +3414,8 @@ type JobMetadata struct {
 	JobType *string `type:"string" enum:"JobType"`
 
 	// The Amazon Resource Name (ARN) for the AWS Key Management Service (AWS KMS)
-	// key associated with this job. This ARN was created using the CreateKey API
-	// action in AWS KMS.
+	// key associated with this job. This ARN was created using the CreateKey (http://docs.aws.amazon.com/kms/latest/APIReference/API_CreateKey.html)
+	// API action in AWS KMS.
 	KmsKeyARN *string `type:"string"`
 
 	// The Amazon Simple Notification Service (Amazon SNS) notification settings
@@ -3360,6 +3429,7 @@ type JobMetadata struct {
 	Resources *JobResource `type:"structure"`
 
 	// The role ARN associated with this job. This ARN was created using the CreateRole
+	// (http://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html)
 	// API action in AWS Identity and Access Management (IAM).
 	RoleARN *string `type:"string"`
 
@@ -3413,6 +3483,12 @@ func (s *JobMetadata) SetDataTransferProgress(v *DataTransfer) *JobMetadata {
 // SetDescription sets the Description field's value.
 func (s *JobMetadata) SetDescription(v string) *JobMetadata {
 	s.Description = &v
+	return s
+}
+
+// SetForwardingAddressId sets the ForwardingAddressId field's value.
+func (s *JobMetadata) SetForwardingAddressId(v string) *JobMetadata {
+	s.ForwardingAddressId = &v
 	return s
 }
 
@@ -4016,8 +4092,7 @@ func (s *S3Resource) SetKeyRange(v *KeyRange) *S3Resource {
 type Shipment struct {
 	_ struct{} `type:"structure"`
 
-	// Status information for a shipment. Valid statuses include NEW, IN_TRANSIT,
-	// and DELIVERED.
+	// Status information for a shipment.
 	Status *string `min:"1" type:"string"`
 
 	// The tracking number for this job. Using this tracking number with your region's
@@ -4127,6 +4202,10 @@ type UpdateClusterInput struct {
 	// The updated description of this cluster.
 	Description *string `min:"1" type:"string"`
 
+	// The updated ID for the forwarding address for a cluster. This field is not
+	// supported in most regions.
+	ForwardingAddressId *string `min:"40" type:"string"`
+
 	// The new or updated Notification object.
 	Notification *Notification `type:"structure"`
 
@@ -4168,6 +4247,9 @@ func (s *UpdateClusterInput) Validate() error {
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
+	if s.ForwardingAddressId != nil && len(*s.ForwardingAddressId) < 40 {
+		invalidParams.Add(request.NewErrParamMinLen("ForwardingAddressId", 40))
+	}
 	if s.Resources != nil {
 		if err := s.Resources.Validate(); err != nil {
 			invalidParams.AddNested("Resources", err.(request.ErrInvalidParams))
@@ -4195,6 +4277,12 @@ func (s *UpdateClusterInput) SetClusterId(v string) *UpdateClusterInput {
 // SetDescription sets the Description field's value.
 func (s *UpdateClusterInput) SetDescription(v string) *UpdateClusterInput {
 	s.Description = &v
+	return s
+}
+
+// SetForwardingAddressId sets the ForwardingAddressId field's value.
+func (s *UpdateClusterInput) SetForwardingAddressId(v string) *UpdateClusterInput {
+	s.ForwardingAddressId = &v
 	return s
 }
 
@@ -4247,6 +4335,10 @@ type UpdateJobInput struct {
 	// The updated description of this job's JobMetadata object.
 	Description *string `min:"1" type:"string"`
 
+	// The updated ID for the forwarding address for a job. This field is not supported
+	// in most regions.
+	ForwardingAddressId *string `min:"40" type:"string"`
+
 	// The job ID of the job that you want to update, for example JID123e4567-e89b-12d3-a456-426655440000.
 	//
 	// JobId is a required field
@@ -4260,8 +4352,8 @@ type UpdateJobInput struct {
 	Resources *JobResource `type:"structure"`
 
 	// The new role Amazon Resource Name (ARN) that you want to associate with this
-	// job. To create a role ARN, use the CreateRole (http://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html)
-	// AWS Identity and Access Management (IAM) API action.
+	// job. To create a role ARN, use the CreateRole (http://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html)AWS
+	// Identity and Access Management (IAM) API action.
 	RoleARN *string `type:"string"`
 
 	// The updated shipping option value of this job's ShippingDetails object.
@@ -4291,6 +4383,9 @@ func (s *UpdateJobInput) Validate() error {
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
+	if s.ForwardingAddressId != nil && len(*s.ForwardingAddressId) < 40 {
+		invalidParams.Add(request.NewErrParamMinLen("ForwardingAddressId", 40))
+	}
 	if s.JobId == nil {
 		invalidParams.Add(request.NewErrParamRequired("JobId"))
 	}
@@ -4318,6 +4413,12 @@ func (s *UpdateJobInput) SetAddressId(v string) *UpdateJobInput {
 // SetDescription sets the Description field's value.
 func (s *UpdateJobInput) SetDescription(v string) *UpdateJobInput {
 	s.Description = &v
+	return s
+}
+
+// SetForwardingAddressId sets the ForwardingAddressId field's value.
+func (s *UpdateJobInput) SetForwardingAddressId(v string) *UpdateJobInput {
+	s.ForwardingAddressId = &v
 	return s
 }
 

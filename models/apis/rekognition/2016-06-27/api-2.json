@@ -134,7 +134,8 @@
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerError"},
         {"shape":"ThrottlingException"},
-        {"shape":"ProvisionedThroughputExceededException"}
+        {"shape":"ProvisionedThroughputExceededException"},
+        {"shape":"InvalidImageFormatException"}
       ]
     },
     "IndexFaces":{
