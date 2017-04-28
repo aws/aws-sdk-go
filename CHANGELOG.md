@@ -1,3 +1,10 @@
+Release v1.8.19 (2017-04-28)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service waiters and paginators
+  * Adding back the removed waiters and paginators.
+
 Release v1.8.18 (2017-04-28)
 ===
 
