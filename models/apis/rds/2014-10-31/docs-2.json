@@ -2400,6 +2400,7 @@
         "DBClusterSnapshot$SnapshotType": "<p>Provides the type of the DB cluster snapshot.</p>",
         "DBClusterSnapshot$KmsKeyId": "<p>If <code>StorageEncrypted</code> is true, the KMS key identifier for the encrypted DB cluster snapshot.</p>",
         "DBClusterSnapshot$DBClusterSnapshotArn": "<p>The Amazon Resource Name (ARN) for the DB cluster snapshot.</p>",
+        "DBClusterSnapshot$SourceDBClusterSnapshotArn": "<p>If the DB cluster snapshot was copied from a source DB cluster snapshot, the Amazon Resource Name (ARN) for the source DB cluster snapshot; otherwise, a null value.</p>",
         "DBClusterSnapshotAttribute$AttributeName": "<p>The name of the manual DB cluster snapshot attribute.</p> <p>The attribute named <code>restore</code> refers to the list of AWS accounts that have permission to copy or restore the manual DB cluster snapshot. For more information, see the <a>ModifyDBClusterSnapshotAttribute</a> API action.</p>",
         "DBClusterSnapshotAttributesResult$DBClusterSnapshotIdentifier": "<p>The identifier of the manual DB cluster snapshot that the attributes apply to.</p>",
         "DBClusterSnapshotMessage$Marker": "<p> An optional pagination token provided by a previous <a>DescribeDBClusterSnapshots</a> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",

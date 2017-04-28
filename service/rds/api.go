@@ -14248,6 +14248,11 @@ type DBClusterSnapshot struct {
 	// Provides the type of the DB cluster snapshot.
 	SnapshotType *string `type:"string"`
 
+	// If the DB cluster snapshot was copied from a source DB cluster snapshot,
+	// the Amazon Resource Name (ARN) for the source DB cluster snapshot; otherwise,
+	// a null value.
+	SourceDBClusterSnapshotArn *string `type:"string"`
+
 	// Specifies the status of this DB cluster snapshot.
 	Status *string `type:"string"`
 
@@ -14361,6 +14366,12 @@ func (s *DBClusterSnapshot) SetSnapshotCreateTime(v time.Time) *DBClusterSnapsho
 // SetSnapshotType sets the SnapshotType field's value.
 func (s *DBClusterSnapshot) SetSnapshotType(v string) *DBClusterSnapshot {
 	s.SnapshotType = &v
+	return s
+}
+
+// SetSourceDBClusterSnapshotArn sets the SourceDBClusterSnapshotArn field's value.
+func (s *DBClusterSnapshot) SetSourceDBClusterSnapshotArn(v string) *DBClusterSnapshot {
+	s.SourceDBClusterSnapshotArn = &v
 	return s
 }
 

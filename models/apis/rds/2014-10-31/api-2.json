@@ -2334,6 +2334,7 @@
         "StorageEncrypted":{"shape":"Boolean"},
         "KmsKeyId":{"shape":"String"},
         "DBClusterSnapshotArn":{"shape":"String"},
+        "SourceDBClusterSnapshotArn":{"shape":"String"},
         "IAMDatabaseAuthenticationEnabled":{"shape":"Boolean"}
       },
       "wrapper":true

@@ -791,6 +791,9 @@ func (c *Rekognition) DetectModerationLabelsRequest(input *DetectModerationLabel
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
+//   * ErrCodeInvalidImageFormatException "InvalidImageFormatException"
+//   The provided image format is not supported.
+//
 func (c *Rekognition) DetectModerationLabels(input *DetectModerationLabelsInput) (*DetectModerationLabelsOutput, error) {
 	req, out := c.DetectModerationLabelsRequest(input)
 	return out, req.Send()
