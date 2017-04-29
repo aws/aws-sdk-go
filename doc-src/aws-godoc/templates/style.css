@@ -17,13 +17,6 @@ div.deprecated {
 	margin-left: 5px;
 }
 
-a > img {
-	max-height:70%; 
-	float:left;
-	padding-left:22px;
-	padding-top:8px;
-}
-
 .packages {
 	margin:0;
 	padding:0;
@@ -770,13 +763,6 @@ a.error {
 	div#topbar {
 		height: 30px;
 		padding: 10px;
-	}
-
-	a > img {
-		max-height:100%; 
-		float:left;
-		padding-left:10px;
-		padding-top:2px;
 	}
 
 	div#mobile-nav {
