@@ -255,13 +255,17 @@ func (d *downloader) downloadPart(ch chan dlchunk) {
 	defer d.wg.Done()
 	for {
 		chunk, ok := <-ch
-		if !ok || d.getErr() != nil {
+		if !ok {
 			break
+		}
+		if d.getErr() != nil {
+			// Drain the channel if there is an error, to prevent deadlocking
+			// of download producer.
+			continue
 		}
 
 		if err := d.downloadChunk(chunk); err != nil {
 			d.setErr(err)
-			break
 		}
 	}
 }
@@ -354,7 +358,7 @@ func (d *downloader) setTotalBytes(resp *s3.GetObjectOutput) {
 	}
 
 	if resp.ContentRange == nil {
-		// ContentRange is nil when the full file contents is provied, and
+		// ContentRange is nil when the full file contents is provided, and
 		// is not chunked. Use ContentLength instead.
 		if resp.ContentLength != nil {
 			d.totalBytes = *resp.ContentLength
