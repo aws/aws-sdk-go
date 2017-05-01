@@ -9,15 +9,34 @@ import (
 	"github.com/aws/aws-sdk-go/aws/signer/v4"
 )
 
-// BuildAuthToken is used for generate a autherized presigned URL to connect to
-// the database.
+// BuildAuthToken will return a authentication token for the database's connect
+// based on the RDS database endpoint, AWS region, IAM user or role, and AWS credentials.
 //
-// The endpoint consists of the scheme, hostname, and port. IE {scheme}://{hostname}[:port]. The
-// region is the region of database that the auth token would be generated for. The dbUser is the user
-// that the request would be authenticated with. The creds are the credentials the auth token is signed
-// with.
+// Endpoint consists of the scheme, hostname, and port. IE scheme://{hostname}[:port]
+// of the RDS database. Region is the AWS region the RDS database is in and where
+// the authentication token will be generated for. DbUser is the IAM user or role
+// the request will be authenticated for. The creds is the AWS credentials
+// the authentication token is signed with.
 //
-// The url that is returned will not contain the scheme.
+// An error is returned if the authentication token is unable to be signed with
+// the credentials, or the endpoint is not a valid URL.
+//
+// The following example shows how to use BuildAuthToken to create an authentication
+// token for connecting to a MySQL database in RDS.
+//
+//   authToken, err := BuildAuthToken(dbEndpoint, awsRegion, dbUser, awsCreds)
+//
+//   // Create the MySQL DNS string for the DB connection
+//   // user:password@protocol(endpoint)/dbname?<params>
+//   dnsStr = fmt.Sprintf("%s:%s@tcp(%s)/%s?tls=true",
+//      dbUser, authToken, dbEndpoint, dbName,
+//   )
+//
+//   // Use db to perform SQL operations on database
+//   db, err := sql.Open("mysql", dnsStr)
+//
+// See http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html
+// for more information on using IAM database authentication with RDS.
 func BuildAuthToken(endpoint, region, dbUser string, creds *credentials.Credentials) (string, error) {
 	req, err := http.NewRequest("GET", endpoint, nil)
 	if err != nil {
