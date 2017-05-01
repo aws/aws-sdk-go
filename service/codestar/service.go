@@ -11,57 +11,12 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
-// This is the API reference for AWS CodeStar. This reference provides descriptions
-// of the operations and data types for the AWS CodeStar API along with usage
-// examples.
+// CodeStar provides the API operation methods for making requests to
+// AWS CodeStar. See this package's package overview docs
+// for details on the service.
 //
-// You can use the AWS CodeStar API to work with:
-//
-// Projects and their resources, by calling the following:
-//
-//    * CreateProject, which creates an empty project in AWS CodeStar with no
-//    resources.
-//
-//    * DeleteProject, which deletes a project in AWS CodeStar.
-//
-//    * DescribeProject, which lists the attributes of a project.
-//
-//    * ListProjects, which lists all AWS CodeStar projects associated with
-//    your AWS account.
-//
-//    * ListResources, which lists the resources associated with an AWS CodeStar
-//    project.
-//
-//    * UpdateProject, which updates the attributes of an AWS CodeStar project.
-//
-// Teams and team members, by calling the following:
-//
-//    * AssociateTeamMember, which adds an IAM user to the team for an AWS CodeStar
-//    project.
-//
-//    * DisassociateTeamMember, which removes an IAM user from the team for
-//    an AWS CodeStar project.
-//
-//    * ListTeamMembers, which lists all the IAM users in the team for an AWS
-//    CodeStar project, including their roles and attributes.
-//
-// Users, by calling the following:
-//
-//    * CreateUserProfile, which creates a user profile that contains data associated
-//    with the user across all AWS CodeStar projects.
-//
-//    * DeleteUserProfile, which deletes all user profile information across
-//    all AWS CodeStar projects.
-//
-//    * DescribeUserProfile, which describes the profile of a user.
-//
-//    * ListUserProfiles, which lists all AWS CodeStar user profiles.
-//
-//    * UpdateUserProfile, which updates the profile for an AWS CodeStar user.
-//
-// The service client's operations are safe to be used concurrently.
-// It is not safe to mutate any of the client's properties though.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/codestar-2017-04-19
+// CodeStar methods are safe to use concurrently. It is not safe to
+// modify mutate any of the struct's properties though.
 type CodeStar struct {
 	*client.Client
 }

@@ -11,9 +11,12 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
-// Pinpoint is a client for Amazon Pinpoint.
-// The service client's operations are safe to be used concurrently.
-// It is not safe to mutate any of the client's properties though.
+// Pinpoint provides the API operation methods for making requests to
+// Amazon Pinpoint. See this package's package overview docs
+// for details on the service.
+//
+// Pinpoint methods are safe to use concurrently. It is not safe to
+// modify mutate any of the struct's properties though.
 type Pinpoint struct {
 	*client.Client
 }

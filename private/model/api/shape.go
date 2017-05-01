@@ -521,12 +521,21 @@ type {{ .ShapeName }} struct {
 
 	{{ range $_, $name := $context.MemberNames -}}
 		{{ $elem := index $context.MemberRefs $name -}}
+		{{ $isBlob := $context.WillRefBeBase64Encoded $name -}}
 		{{ $isRequired := $context.IsRequired $name -}}
 		{{ $doc := $elem.Docstring -}}
 
-		{{ $doc }}
-		{{ if $isRequired -}}
+		{{ if $doc -}}
+			{{ $doc }}
+		{{ end -}}
+		{{ if $isBlob -}}
 			{{ if $doc -}}
+				//
+			{{ end -}}
+			// {{ $name }} is automatically base64 encoded/decoded by the SDK.
+		{{ end -}}
+		{{ if $isRequired -}}
+			{{ if or $doc $isBlob -}}
 				//
 			{{ end -}}
 			// {{ $name }} is a required field
@@ -633,4 +642,18 @@ func (s *Shape) removeRef(ref *ShapeRef) {
 			break
 		}
 	}
+}
+
+func (s *Shape) WillRefBeBase64Encoded(refName string) bool {
+	payloadRefName := s.Payload
+	if payloadRefName == refName {
+		return false
+	}
+
+	ref, ok := s.MemberRefs[refName]
+	if !ok {
+		panic(fmt.Sprintf("shape %s does not contain %q refName", s.ShapeName, refName))
+	}
+
+	return ref.Shape.Type == "blob"
 }
