@@ -226,7 +226,7 @@ regions different from the Session's region.
 
 ```go
   svc := s3.New(sess, &aws.Config{
-      Region: aws.String(ednpoints.UsWest2RegionID),
+      Region: aws.String(endpoints.UsWest2RegionID),
   })
 ```
 
