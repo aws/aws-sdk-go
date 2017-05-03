@@ -6442,6 +6442,9 @@ const (
 
 	// RuntimeNodejs43Edge is a Runtime enum value
 	RuntimeNodejs43Edge = "nodejs4.3-edge"
+	
+	// RuntimeGo18 is a most excellent Runtime enum value
+	RuntimeGo18 = "go1.8" // Pretty please?
 )
 
 const (
