@@ -134,16 +134,24 @@ func ExampleS3_CreateBucket() {
 	svc := s3.New(sess)
 
 	params := &s3.CreateBucketInput{
-		Bucket: aws.String("BucketName"), // Required
-		ACL:    aws.String("BucketCannedACL"),
+		Bucket:            aws.String("BucketName"), // Required
+		ACL:               aws.String("BucketCannedACL"),
+		ComplianceEnabled: aws.Bool(true),
 		CreateBucketConfiguration: &s3.CreateBucketConfiguration{
 			LocationConstraint: aws.String("BucketLocationConstraint"),
 		},
+		FileSystemAccess: aws.Bool(true),
 		GrantFullControl: aws.String("GrantFullControl"),
 		GrantRead:        aws.String("GrantRead"),
 		GrantReadACP:     aws.String("GrantReadACP"),
 		GrantWrite:       aws.String("GrantWrite"),
 		GrantWriteACP:    aws.String("GrantWriteACP"),
+		IsStaleAllowed:   aws.Bool(true),
+		MetadataSearch:   aws.String("EmcEcsExtMetadataSearch"),
+		NameSpace:        aws.String("EmcEcsExtNameSpace"),
+		RetentionPeriod:  aws.Int64(1),
+		SSEEnabled:       aws.Bool(true),
+		VPool:            aws.String("EmcEcsExtVPool"),
 	}
 	resp, err := svc.CreateBucket(params)
 
@@ -177,11 +185,14 @@ func ExampleS3_CreateMultipartUpload() {
 		GrantRead:          aws.String("GrantRead"),
 		GrantReadACP:       aws.String("GrantReadACP"),
 		GrantWriteACP:      aws.String("GrantWriteACP"),
+		IfNoneMatch:        aws.String("IfNoneMatch"),
 		Metadata: map[string]*string{
 			"Key": aws.String("MetadataValue"), // Required
 			// More values...
 		},
 		RequestPayer:            aws.String("RequestPayer"),
+		RetentionPeriod:         aws.Int64(1),
+		RetentionPolicy:         aws.String("RetentionPolicy"),
 		SSECustomerAlgorithm:    aws.String("SSECustomerAlgorithm"),
 		SSECustomerKey:          aws.String("SSECustomerKey"),
 		SSECustomerKeyMD5:       aws.String("SSECustomerKeyMD5"),
@@ -298,6 +309,27 @@ func ExampleS3_DeleteBucketLifecycle() {
 		Bucket: aws.String("BucketName"), // Required
 	}
 	resp, err := svc.DeleteBucketLifecycle(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleS3_DeleteBucketMetadataSearch() {
+	sess := session.Must(session.NewSession())
+
+	svc := s3.New(sess)
+
+	params := &s3.DeleteBucketMetadataSearchInput{
+		Bucket: aws.String("BucketName"), // Required
+	}
+	resp, err := svc.DeleteBucketMetadataSearch(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -987,6 +1019,25 @@ func ExampleS3_GetObjectTorrent() {
 	fmt.Println(resp)
 }
 
+func ExampleS3_GetSystemMetdataSearchKeys() {
+	sess := session.Must(session.NewSession())
+
+	svc := s3.New(sess)
+
+	var params *s3.GetSystemMetdataSearchKeysInput
+	resp, err := svc.GetSystemMetdataSearchKeys(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleS3_HeadBucket() {
 	sess := session.Must(session.NewSession())
 
@@ -1085,6 +1136,27 @@ func ExampleS3_ListBucketInventoryConfigurations() {
 	fmt.Println(resp)
 }
 
+func ExampleS3_ListBucketMetadataSearch() {
+	sess := session.Must(session.NewSession())
+
+	svc := s3.New(sess)
+
+	params := &s3.ListBucketMetadataSearchInput{
+		Bucket: aws.String("BucketName"), // Required
+	}
+	resp, err := svc.ListBucketMetadataSearch(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleS3_ListBucketMetricsConfigurations() {
 	sess := session.Must(session.NewSession())
 
@@ -1095,6 +1167,33 @@ func ExampleS3_ListBucketMetricsConfigurations() {
 		ContinuationToken: aws.String("Token"),
 	}
 	resp, err := svc.ListBucketMetricsConfigurations(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleS3_ListBucketQuery() {
+	sess := session.Must(session.NewSession())
+
+	svc := s3.New(sess)
+
+	params := &s3.ListBucketQueryInput{
+		Bucket:              aws.String("BucketName"),     // Required
+		Query:               aws.String("EmcEcsExtQuery"), // Required
+		Attributes:          aws.String("EmcEcsExtAttributes"),
+		IncludeOlderVersion: aws.Bool(true),
+		Marker:              aws.String("Marker"),
+		MaxKeys:             aws.Int64(1),
+		Sorted:              aws.String("EmcEcsExtSorted"),
+	}
+	resp, err := svc.ListBucketQuery(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -1465,6 +1564,28 @@ func ExampleS3_PutBucketInventoryConfiguration() {
 		},
 	}
 	resp, err := svc.PutBucketInventoryConfiguration(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleS3_PutBucketIsStaleAllowed() {
+	sess := session.Must(session.NewSession())
+
+	svc := s3.New(sess)
+
+	params := &s3.PutBucketIsStaleAllowedInput{
+		Bucket:         aws.String("BucketName"), // Required
+		IsStaleAllowed: aws.Bool(true),
+	}
+	resp, err := svc.PutBucketIsStaleAllowed(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -2032,11 +2153,15 @@ func ExampleS3_PutObject() {
 		GrantRead:          aws.String("GrantRead"),
 		GrantReadACP:       aws.String("GrantReadACP"),
 		GrantWriteACP:      aws.String("GrantWriteACP"),
+		IfNoneMatch:        aws.String("IfNoneMatch"),
 		Metadata: map[string]*string{
 			"Key": aws.String("MetadataValue"), // Required
 			// More values...
 		},
+		Range:                   aws.String("Range"),
 		RequestPayer:            aws.String("RequestPayer"),
+		RetentionPeriod:         aws.Int64(1),
+		RetentionPolicy:         aws.String("RetentionPolicy"),
 		SSECustomerAlgorithm:    aws.String("SSECustomerAlgorithm"),
 		SSECustomerKey:          aws.String("SSECustomerKey"),
 		SSECustomerKeyMD5:       aws.String("SSECustomerKeyMD5"),

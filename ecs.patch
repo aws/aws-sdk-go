@@ -1,0 +1,2327 @@
+--- models/apis/s3/2006-03-01/api-2.json
++++ models/apis/s3/2006-03-01/api-2.json
+@@ -119,6 +119,14 @@
+       "input":{"shape":"DeleteBucketLifecycleRequest"},
+       "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketDELETElifecycle.html"
+     },
++    "DeleteBucketMetadataSearch":{
++      "name":"DeleteBucketMetadataSearch",
++      "http":{
++        "method":"DELETE",
++        "requestUri":"/{Bucket}?searchmetadata"
++      },
++      "input":{"shape":"DeleteBucketMetadataSearchRequest"}
++    },
+     "DeleteBucketMetricsConfiguration":{
+       "name":"DeleteBucketMetricsConfiguration",
+       "http":{
+@@ -412,6 +420,14 @@
+       "output":{"shape":"GetObjectTorrentOutput"},
+       "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTObjectGETtorrent.html"
+     },
++    "GetSystemMetdataSearchKeys":{
++      "name":"GetSystemMetdataSearchKeys",
++      "http":{
++        "method":"GET",
++        "requestUri":"/?searchmetadata"
++      },
++      "output":{"shape":"GetSystemMetdataSearchKeysOutput"}
++    },
+     "HeadBucket":{
+       "name":"HeadBucket",
+       "http":{
+@@ -419,6 +435,7 @@
+         "requestUri":"/{Bucket}"
+       },
+       "input":{"shape":"HeadBucketRequest"},
++      "output":{"shape":"HeadBucketOutput"},
+       "errors":[
+         {"shape":"NoSuchBucket"}
+       ],
+@@ -455,6 +472,15 @@
+       "input":{"shape":"ListBucketInventoryConfigurationsRequest"},
+       "output":{"shape":"ListBucketInventoryConfigurationsOutput"}
+     },
++    "ListBucketMetadataSearch":{
++      "name":"ListBucketMetadataSearch",
++      "http":{
++        "method":"GET",
++        "requestUri":"/{Bucket}?searchmetadata"
++      },
++      "input":{"shape":"ListBucketMetadataSearchRequest"},
++      "output":{"shape":"ListBucketMetadataSearchOutput"}
++    },
+     "ListBucketMetricsConfigurations":{
+       "name":"ListBucketMetricsConfigurations",
+       "http":{
+@@ -464,6 +490,15 @@
+       "input":{"shape":"ListBucketMetricsConfigurationsRequest"},
+       "output":{"shape":"ListBucketMetricsConfigurationsOutput"}
+     },
++    "ListBucketQuery":{
++      "name":"ListBucketQuery",
++      "http":{
++        "method":"GET",
++        "requestUri":"/{Bucket}?query"
++      },
++      "input":{"shape":"ListBucketQueryRequest"},
++      "output":{"shape":"ListBucketQueryOutput"}
++    },
+     "ListBuckets":{
+       "name":"ListBuckets",
+       "http":{
+@@ -573,6 +608,14 @@
+       },
+       "input":{"shape":"PutBucketInventoryConfigurationRequest"}
+     },
++    "PutBucketIsStaleAllowed":{
++      "name":"PutBucketIsStaleAllowed",
++      "http":{
++        "method":"PUT",
++        "requestUri":"/{Bucket}?isstaleallowed"
++      },
++      "input":{"shape":"PutBucketIsStaleAllowedRequest"}
++    },
+     "PutBucketLifecycle":{
+       "name":"PutBucketLifecycle",
+       "http":{
+@@ -1442,11 +1485,21 @@
+           "location":"uri",
+           "locationName":"Bucket"
+         },
++        "ComplianceEnabled":{
++          "shape":"EmcEcsExtComplianceEnabled",
++          "location":"header",
++          "locationName":"x-emc-compliance-enabled"
++        },
+         "CreateBucketConfiguration":{
+           "shape":"CreateBucketConfiguration",
+           "locationName":"CreateBucketConfiguration",
+           "xmlNamespace":{"uri":"http://s3.amazonaws.com/doc/2006-03-01/"}
+         },
++        "FileSystemAccess":{
++          "shape":"EmcEcsExtFileSystemAccess",
++          "location":"header",
++          "locationName":"x-emc-file-system-access-enabled"
++        },
+         "GrantFullControl":{
+           "shape":"GrantFullControl",
+           "location":"header",
+@@ -1471,6 +1524,36 @@
+           "shape":"GrantWriteACP",
+           "location":"header",
+           "locationName":"x-amz-grant-write-acp"
++        },
++        "IsStaleAllowed":{
++          "shape":"EmcEcsExtIsStaleAllowed",
++          "location":"header",
++          "locationName":"x-emc-is-stale-allowed"
++        },
++        "MetadataSearch":{
++          "shape":"EmcEcsExtMetadataSearch",
++          "location":"header",
++          "locationName":"x-emc-metadata-search"
++        },
++        "NameSpace":{
++          "shape":"EmcEcsExtNameSpace",
++          "location":"header",
++          "locationName":"x-emc-namespace"
++        },
++        "RetentionPeriod":{
++          "shape":"RetentionPeriod",
++          "location":"header",
++          "locationName":"x-emc-retention-period"
++        },
++        "SSEEnabled":{
++          "shape":"EmcEcsExtSSEEnabled",
++          "location":"header",
++          "locationName":"x-emc-server-side-encryption-enabled"
++        },
++        "VPool":{
++          "shape":"EmcEcsExtVPool",
++          "location":"header",
++          "locationName":"x-emc-vpool"
+         }
+       },
+       "payload":"CreateBucketConfiguration"
+@@ -1588,6 +1671,11 @@
+           "location":"header",
+           "locationName":"x-amz-grant-write-acp"
+         },
++        "IfNoneMatch":{
++          "shape":"IfNoneMatch",
++          "location":"header",
++          "locationName":"If-None-Match"
++        },
+         "Key":{
+           "shape":"ObjectKey",
+           "location":"uri",
+@@ -1598,6 +1686,16 @@
+           "location":"headers",
+           "locationName":"x-amz-meta-"
+         },
++        "RetentionPeriod":{
++          "shape":"RetentionPeriod",
++          "location":"header",
++          "locationName":"x-emc-retention-period"
++        },
++        "RetentionPolicy":{
++          "shape":"RetentionPolicy",
++          "location":"header",
++          "locationName":"x-emc-retention-policy"
++        },
+         "ServerSideEncryption":{
+           "shape":"ServerSideEncryption",
+           "location":"header",
+@@ -1718,6 +1816,17 @@
+         }
+       }
+     },
++    "DeleteBucketMetadataSearchRequest":{
++      "type":"structure",
++      "required":["Bucket"],
++      "members":{
++        "Bucket":{
++          "shape":"BucketName",
++          "location":"uri",
++          "locationName":"Bucket"
++        }
++      }
++    },
+     "DeleteBucketMetricsConfigurationRequest":{
+       "type":"structure",
+       "required":[
+@@ -1966,6 +2075,130 @@
+       }
+     },
+     "DisplayName":{"type":"string"},
++    "EmcEcsExtAttributes":{"type":"string"},
++    "EmcEcsExtComplianceEnabled":{"type":"boolean"},
++    "EmcEcsExtContentMD5":{"type":"string"},
++    "EmcEcsExtEntryKey":{"type":"string"},
++    "EmcEcsExtEntryValue":{"type":"string"},
++    "EmcEcsExtEntry":{
++      "type":"structure",
++      "members":{
++        "Key":{
++          "shape":"EmcEcsExtEntryKey",
++          "locationName":"key"
++        },
++        "Value":{
++          "shape":"EmcEcsExtEntryValue",
++          "locationName":"value"
++        }
++	  }
++	},
++    "EmcEcsExtDataType":{"type":"string"},
++    "EmcEcsExtFileSystemAccess":{"type":"boolean"},
++    "EmcEcsExtIncludeOlderVersion":{"type":"boolean"},
++    "EmcEcsExtIndexableKey":{
++      "type":"structure",
++      "members":{
++        "Name":{"shape":"EmcEcsExtName"},
++        "Datatype":{"shape":"EmcEcsExtDataType"}
++      }
++    },
++    "EmcEcsExtIndexableKeys":{
++      "type":"list",
++      "member":{
++        "shape":"EmcEcsExtIndexableKey",
++        "locationName":"Key"
++      }
++    },
++    "EmcEcsExtIndexKey":{"type":"string"},
++    "EmcEcsExtIsStaleAllowed":{"type":"boolean"},
++    "EmcEcsExtMetadataSearch":{"type":"string"},
++    "EmcEcsExtMetadataSearchEnabled":{"type":"boolean"},
++    "EmcEcsExtMdMap":{
++      "type":"map",
++      "Key":{"shape":"EmcEcsExtEntrykey"},
++      "Value":{"shape":"EmcEcsExtEntryValue"}
++    },
++    "EmcEcsExtMdType":{"type":"string"},
++    "EmcEcsExtName":{"type":"string"},
++    "EmcEcsExtNameSpace":{"type":"string"},
++    "EmcEcsExtOptionalAttribute":{
++      "type":"structure",
++      "members":{
++        "Name":{"shape":"EmcEcsExtName"},
++        "Datatype":{"shape":"EmcEcsExtDataType"}
++      }
++    },
++    "EmcEcsExtOptionalAttributes":{
++      "type":"list",
++      "member":{
++        "shape":"EmcEcsExtOptionalAttribute",
++        "locationName":"Attribute"
++      }
++    },
++    "EmcEcsExtPreviousObjectSize":{"type":"integer"},
++    "EmcEcsExtQuery":{"type":"string"},
++    "EmcEcsExtQueryMds":{
++      "type":"structure",
++      "members":{
++        "MdType":{
++          "shape":"EmcEcsExtMdType",
++          "locationName":"type"
++        },
++        "MdMap":{
++          "shape":"EmcEcsExtMdMap",
++          "locationName":"mdMap"
++        }
++	  }
++    },
++    "EmcEcsExtQueryMdsList":{
++      "type":"list",
++      "member":{"shape":"EmcEcsExtQueryMds"},
++      "flattened":true
++    },
++    "EmcEcsExtObjectId":{"type":"string"},
++    "EmcEcsExtObjectMatch":{
++      "type":"structure",
++      "members":{
++        "IndexKey":{
++          "shape":"EmcEcsExtIndexKey",
++          "locationName":"indexKey"
++        },
++        "ObjectId":{
++          "shape":"EmcEcsExtObjectId",
++          "locationName":"objectId"
++        },
++        "ObjectName":{
++          "shape":"EmcEcsExtObjectName",
++          "locationName":"objectName"
++        },
++        "ObjectOwnerZone":{
++          "shape":"EmcEcsExtObjectOwnerZone",
++          "locationName":"objectOwnerZone"
++        },
++        "QueryMds":{
++          "shape":"EmcEcsExtQueryMdsList",
++          "locationName":"queryMds"
++        },
++        "VersionId":{
++          "shape":"EmcEcsExtVersionId",
++          "locationName":"versionId"
++        }
++      }
++    },
++    "EmcEcsExtObjectMatches":{
++      "type":"list",
++      "member":{
++        "shape":"EmcEcsExtObjectMatch",
++        "locationName":"object"
++      }
++    },
++    "EmcEcsExtObjectName":{"type":"string"},
++    "EmcEcsExtObjectOwnerZone":{"type":"string"},
++    "EmcEcsExtSSEEnabled":{"type":"boolean"},
++    "EmcEcsExtSorted":{"type":"string"},
++    "EmcEcsExtVersionId":{"type":"string"},
++    "EmcEcsExtVPool":{"type":"string"},
+     "ETag":{"type":"string"},
+     "EmailAddress":{"type":"string"},
+     "EncodingType":{
+@@ -2463,6 +2696,11 @@
+           "location":"header",
+           "locationName":"Content-Length"
+         },
++        "ContentMD5EMC":{
++          "shape":"EmcEcsExtContentMD5",
++          "location":"header",
++          "locationName":"x-emc-content-md5"
++        },
+         "ETag":{
+           "shape":"ETag",
+           "location":"header",
+@@ -2473,6 +2711,11 @@
+           "location":"header",
+           "locationName":"x-amz-missing-meta"
+         },
++        "PreviousObjectSize":{
++          "shape":"EmcEcsExtPreviousObjectSize",
++          "location":"header",
++          "locationName":"x-emc-previous-object-size"
++        },
+         "VersionId":{
+           "shape":"ObjectVersionId",
+           "location":"header",
+@@ -2558,6 +2801,16 @@
+           "location":"header",
+           "locationName":"x-amz-replication-status"
+         },
++        "RetentionPeriod":{
++          "shape":"RetentionPeriod",
++          "location":"header",
++          "locationName":"x-emc-retention-period"
++        },
++        "RetentionPolicy":{
++          "shape":"RetentionPolicy",
++          "location":"header",
++          "locationName":"x-emc-retention-policy"
++        },
+         "PartsCount":{
+           "shape":"PartsCount",
+           "location":"header",
+@@ -2726,6 +2979,13 @@
+       },
+       "payload":"Body"
+     },
++    "GetSystemMetdataSearchKeysOutput":{
++      "type":"structure",
++      "members":{
++        "IndexableKeys":{"shape":"EmcEcsExtIndexableKeys"},
++        "OptionalAttributes":{"shape":"EmcEcsExtOptionalAttributes"}
++      }
++    },
+     "GetObjectTorrentRequest":{
+       "type":"structure",
+       "required":[
+@@ -2806,6 +3066,16 @@
+         }
+       }
+     },
++    "HeadBucketOutput":{
++      "type":"structure",
++      "members":{
++        "RetentionPeriod":{
++          "shape":"RetentionPeriod",
++          "location":"header",
++          "locationName":"x-emc-retention-period"
++        }
++      }
++    },
+     "HeadObjectOutput":{
+       "type":"structure",
+       "members":{
+@@ -2929,6 +3199,16 @@
+           "location":"header",
+           "locationName":"x-amz-replication-status"
+         },
++        "RetentionPeriod":{
++          "shape":"RetentionPeriod",
++          "location":"header",
++          "locationName":"x-emc-retention-period"
++        },
++        "RetentionPolicy":{
++          "shape":"RetentionPolicy",
++          "location":"header",
++          "locationName":"x-emc-retention-policy"
++        },
+         "PartsCount":{
+           "shape":"PartsCount",
+           "location":"header",
+@@ -3282,6 +3562,25 @@
+         }
+       }
+     },
++    "ListBucketMetadataSearchOutput":{
++      "type":"structure",
++      "members":{
++        "MetadataSearchEnabled":{"shape":"EmcEcsExtMetadataSearchEnabled"},
++        "IndexableKeys":{"shape":"EmcEcsExtIndexableKeys"},
++        "OptionalAttributes":{"shape":"EmcEcsExtOptionalAttributes"}
++      }
++    },
++    "ListBucketMetadataSearchRequest":{
++      "type":"structure",
++      "required":["Bucket"],
++      "members":{
++        "Bucket":{
++          "shape":"BucketName",
++          "location":"uri",
++          "locationName":"Bucket"
++        }
++      }
++    },
+     "ListBucketMetricsConfigurationsOutput":{
+       "type":"structure",
+       "members":{
+@@ -3310,6 +3609,59 @@
+         }
+       }
+     },
++    "ListBucketQueryOutput":{
++      "type":"structure",
++      "members":{
++        "MaxKeys":{"shape":"MaxKeys"},
++        "Name":{"shape":"BucketName"},
++        "NextMarker":{"shape":"NextMarker"},
++        "ObjectMatches":{"shape":"EmcEcsExtObjectMatches"}
++      }
++    },
++    "ListBucketQueryRequest":{
++      "type":"structure",
++      "required":[
++          "Bucket",
++          "Query"
++      ],
++      "members":{
++        "Bucket":{
++          "shape":"BucketName",
++          "location":"uri",
++          "locationName":"Bucket"
++        },
++        "Attributes":{
++          "shape":"EmcEcsExtAttributes",
++          "location":"querystring",
++          "locationName":"attributes"
++        },
++        "IncludeOlderVersion":{
++          "shape":"EmcEcsExtIncludeOlderVersion",
++          "location":"querystring",
++          "locationName":"include-older-version"
++        },
++        "Marker":{
++          "shape":"Marker",
++          "location":"querystring",
++          "locationName":"marker"
++        },
++        "MaxKeys":{
++          "shape":"MaxKeys",
++          "location":"querystring",
++          "locationName":"max-keys"
++        },
++        "Query":{
++          "shape":"EmcEcsExtQuery",
++          "location":"querystring",
++          "locationName":"query"
++        },
++        "Sorted":{
++          "shape":"EmcEcsExtSorted",
++          "location":"querystring",
++          "locationName":"sorted"
++        }
++      }
++    },
+     "ListBucketsOutput":{
+       "type":"structure",
+       "members":{
+@@ -3455,7 +3807,12 @@
+         "Delimiter":{"shape":"Delimiter"},
+         "MaxKeys":{"shape":"MaxKeys"},
+         "CommonPrefixes":{"shape":"CommonPrefixList"},
+-        "EncodingType":{"shape":"EncodingType"}
++        "EncodingType":{"shape":"EncodingType"},
++        "RetentionPeriod":{
++          "shape":"RetentionPeriod",
++          "location":"header",
++          "locationName":"x-emc-retention-period"
++        }
+       }
+     },
+     "ListObjectsRequest":{
+@@ -4100,6 +4457,22 @@
+       },
+       "payload":"InventoryConfiguration"
+     },
++    "PutBucketIsStaleAllowedRequest":{
++      "type":"structure",
++      "required":["Bucket"],
++      "members":{
++        "Bucket":{
++          "shape":"BucketName",
++          "location":"uri",
++          "locationName":"Bucket"
++        },
++        "IsStaleAllowed":{
++          "shape":"EmcEcsExtIsStaleAllowed",
++          "location":"header",
++          "locationName":"x-emc-is-stale-allowed"
++        }
++      }
++    },
+     "PutBucketLifecycleConfigurationRequest":{
+       "type":"structure",
+       "required":["Bucket"],
+@@ -4469,6 +4842,11 @@
+     "PutObjectOutput":{
+       "type":"structure",
+       "members":{
++        "ContentMD5EMC":{
++          "shape":"EmcEcsExtContentMD5",
++          "location":"header",
++          "locationName":"x-emc-content-md5"
++        },
+         "Expiration":{
+           "shape":"Expiration",
+           "location":"header",
+@@ -4479,6 +4857,11 @@
+           "location":"header",
+           "locationName":"ETag"
+         },
++        "PreviousObjectSize":{
++          "shape":"EmcEcsExtPreviousObjectSize",
++          "location":"header",
++          "locationName":"x-emc-previous-object-size"
++        },
+         "ServerSideEncryption":{
+           "shape":"ServerSideEncryption",
+           "location":"header",
+@@ -4592,6 +4975,11 @@
+           "location":"header",
+           "locationName":"x-amz-grant-write-acp"
+         },
++        "IfNoneMatch":{
++          "shape":"IfNoneMatch",
++          "location":"header",
++          "locationName":"If-None-Match"
++        },
+         "Key":{
+           "shape":"ObjectKey",
+           "location":"uri",
+@@ -4602,6 +4990,21 @@
+           "location":"headers",
+           "locationName":"x-amz-meta-"
+         },
++        "Range":{
++          "shape":"Range",
++          "location":"header",
++          "locationName":"Range"
++        },
++        "RetentionPeriod":{
++          "shape":"RetentionPeriod",
++          "location":"header",
++          "locationName":"x-emc-retention-period"
++        },
++        "RetentionPolicy":{
++          "shape":"RetentionPolicy",
++          "location":"header",
++          "locationName":"x-emc-retention-policy"
++        },
+         "ServerSideEncryption":{
+           "shape":"ServerSideEncryption",
+           "location":"header",
+@@ -4882,6 +5285,8 @@
+         "GlacierJobParameters":{"shape":"GlacierJobParameters"}
+       }
+     },
++    "RetentionPeriod":{"type":"integer"},
++    "RetentionPolicy":{"type":"string"},
+     "Role":{"type":"string"},
+     "RoutingRule":{
+       "type":"structure",
+--- service/s3/api.go
++++ service/s3/api.go
+@@ -807,6 +807,81 @@ func (c *S3) DeleteBucketLifecycleWithContext(ctx aws.Context, input *DeleteBuck
+ 	return out, req.Send()
+ }
+ 
++const opDeleteBucketMetadataSearch = "DeleteBucketMetadataSearch"
++
++// DeleteBucketMetadataSearchRequest generates a "aws/request.Request" representing the
++// client's request for the DeleteBucketMetadataSearch operation. The "output" return
++// value can be used to capture response data after the request's "Send" method
++// is called.
++//
++// See DeleteBucketMetadataSearch for usage and error information.
++//
++// Creating a request object using this method should be used when you want to inject
++// custom logic into the request's lifecycle using a custom handler, or if you want to
++// access properties on the request object before or after sending the request. If
++// you just want the service response, call the DeleteBucketMetadataSearch method directly
++// instead.
++//
++// Note: You must call the "Send" method on the returned request object in order
++// to execute the request.
++//
++//    // Example sending a request using the DeleteBucketMetadataSearchRequest method.
++//    req, resp := client.DeleteBucketMetadataSearchRequest(params)
++//
++//    err := req.Send()
++//    if err == nil { // resp is now filled
++//        fmt.Println(resp)
++//    }
++//
++// Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/DeleteBucketMetadataSearch
++func (c *S3) DeleteBucketMetadataSearchRequest(input *DeleteBucketMetadataSearchInput) (req *request.Request, output *DeleteBucketMetadataSearchOutput) {
++	op := &request.Operation{
++		Name:       opDeleteBucketMetadataSearch,
++		HTTPMethod: "DELETE",
++		HTTPPath:   "/{Bucket}?searchmetadata",
++	}
++
++	if input == nil {
++		input = &DeleteBucketMetadataSearchInput{}
++	}
++
++	output = &DeleteBucketMetadataSearchOutput{}
++	req = c.newRequest(op, input, output)
++	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
++	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
++	return
++}
++
++// DeleteBucketMetadataSearch API operation for Amazon Simple Storage Service.
++//
++// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
++// with awserr.Error's Code and Message methods to get detailed information about
++// the error.
++//
++// See the AWS API reference guide for Amazon Simple Storage Service's
++// API operation DeleteBucketMetadataSearch for usage and error information.
++// Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/DeleteBucketMetadataSearch
++func (c *S3) DeleteBucketMetadataSearch(input *DeleteBucketMetadataSearchInput) (*DeleteBucketMetadataSearchOutput, error) {
++	req, out := c.DeleteBucketMetadataSearchRequest(input)
++	return out, req.Send()
++}
++
++// DeleteBucketMetadataSearchWithContext is the same as DeleteBucketMetadataSearch with the addition of
++// the ability to pass a context and additional request options.
++//
++// See DeleteBucketMetadataSearch for details on how to use this API operation.
++//
++// The context must be non-nil and will be used for request cancellation. If
++// the context is nil a panic will occur. In the future the SDK may create
++// sub-contexts for http.Requests. See https://golang.org/pkg/context/
++// for more information on using Contexts.
++func (c *S3) DeleteBucketMetadataSearchWithContext(ctx aws.Context, input *DeleteBucketMetadataSearchInput, opts ...request.Option) (*DeleteBucketMetadataSearchOutput, error) {
++	req, out := c.DeleteBucketMetadataSearchRequest(input)
++	req.SetContext(ctx)
++	req.ApplyOptions(opts...)
++	return out, req.Send()
++}
++
+ const opDeleteBucketMetricsConfiguration = "DeleteBucketMetricsConfiguration"
+ 
+ // DeleteBucketMetricsConfigurationRequest generates a "aws/request.Request" representing the
+@@ -3091,6 +3166,79 @@ func (c *S3) GetObjectTorrentWithContext(ctx aws.Context, input *GetObjectTorren
+ 	return out, req.Send()
+ }
+ 
++const opGetSystemMetdataSearchKeys = "GetSystemMetdataSearchKeys"
++
++// GetSystemMetdataSearchKeysRequest generates a "aws/request.Request" representing the
++// client's request for the GetSystemMetdataSearchKeys operation. The "output" return
++// value can be used to capture response data after the request's "Send" method
++// is called.
++//
++// See GetSystemMetdataSearchKeys for usage and error information.
++//
++// Creating a request object using this method should be used when you want to inject
++// custom logic into the request's lifecycle using a custom handler, or if you want to
++// access properties on the request object before or after sending the request. If
++// you just want the service response, call the GetSystemMetdataSearchKeys method directly
++// instead.
++//
++// Note: You must call the "Send" method on the returned request object in order
++// to execute the request.
++//
++//    // Example sending a request using the GetSystemMetdataSearchKeysRequest method.
++//    req, resp := client.GetSystemMetdataSearchKeysRequest(params)
++//
++//    err := req.Send()
++//    if err == nil { // resp is now filled
++//        fmt.Println(resp)
++//    }
++//
++// Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/GetSystemMetdataSearchKeys
++func (c *S3) GetSystemMetdataSearchKeysRequest(input *GetSystemMetdataSearchKeysInput) (req *request.Request, output *GetSystemMetdataSearchKeysOutput) {
++	op := &request.Operation{
++		Name:       opGetSystemMetdataSearchKeys,
++		HTTPMethod: "GET",
++		HTTPPath:   "/?searchmetadata",
++	}
++
++	if input == nil {
++		input = &GetSystemMetdataSearchKeysInput{}
++	}
++
++	output = &GetSystemMetdataSearchKeysOutput{}
++	req = c.newRequest(op, input, output)
++	return
++}
++
++// GetSystemMetdataSearchKeys API operation for Amazon Simple Storage Service.
++//
++// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
++// with awserr.Error's Code and Message methods to get detailed information about
++// the error.
++//
++// See the AWS API reference guide for Amazon Simple Storage Service's
++// API operation GetSystemMetdataSearchKeys for usage and error information.
++// Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/GetSystemMetdataSearchKeys
++func (c *S3) GetSystemMetdataSearchKeys(input *GetSystemMetdataSearchKeysInput) (*GetSystemMetdataSearchKeysOutput, error) {
++	req, out := c.GetSystemMetdataSearchKeysRequest(input)
++	return out, req.Send()
++}
++
++// GetSystemMetdataSearchKeysWithContext is the same as GetSystemMetdataSearchKeys with the addition of
++// the ability to pass a context and additional request options.
++//
++// See GetSystemMetdataSearchKeys for details on how to use this API operation.
++//
++// The context must be non-nil and will be used for request cancellation. If
++// the context is nil a panic will occur. In the future the SDK may create
++// sub-contexts for http.Requests. See https://golang.org/pkg/context/
++// for more information on using Contexts.
++func (c *S3) GetSystemMetdataSearchKeysWithContext(ctx aws.Context, input *GetSystemMetdataSearchKeysInput, opts ...request.Option) (*GetSystemMetdataSearchKeysOutput, error) {
++	req, out := c.GetSystemMetdataSearchKeysRequest(input)
++	req.SetContext(ctx)
++	req.ApplyOptions(opts...)
++	return out, req.Send()
++}
++
+ const opHeadBucket = "HeadBucket"
+ 
+ // HeadBucketRequest generates a "aws/request.Request" representing the
+@@ -3131,8 +3279,6 @@ func (c *S3) HeadBucketRequest(input *HeadBucketInput) (req *request.Request, ou
+ 
+ 	output = &HeadBucketOutput{}
+ 	req = c.newRequest(op, input, output)
+-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
+-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+ 	return
+ }
+ 
+@@ -3404,6 +3550,79 @@ func (c *S3) ListBucketInventoryConfigurationsWithContext(ctx aws.Context, input
+ 	return out, req.Send()
+ }
+ 
++const opListBucketMetadataSearch = "ListBucketMetadataSearch"
++
++// ListBucketMetadataSearchRequest generates a "aws/request.Request" representing the
++// client's request for the ListBucketMetadataSearch operation. The "output" return
++// value can be used to capture response data after the request's "Send" method
++// is called.
++//
++// See ListBucketMetadataSearch for usage and error information.
++//
++// Creating a request object using this method should be used when you want to inject
++// custom logic into the request's lifecycle using a custom handler, or if you want to
++// access properties on the request object before or after sending the request. If
++// you just want the service response, call the ListBucketMetadataSearch method directly
++// instead.
++//
++// Note: You must call the "Send" method on the returned request object in order
++// to execute the request.
++//
++//    // Example sending a request using the ListBucketMetadataSearchRequest method.
++//    req, resp := client.ListBucketMetadataSearchRequest(params)
++//
++//    err := req.Send()
++//    if err == nil { // resp is now filled
++//        fmt.Println(resp)
++//    }
++//
++// Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/ListBucketMetadataSearch
++func (c *S3) ListBucketMetadataSearchRequest(input *ListBucketMetadataSearchInput) (req *request.Request, output *ListBucketMetadataSearchOutput) {
++	op := &request.Operation{
++		Name:       opListBucketMetadataSearch,
++		HTTPMethod: "GET",
++		HTTPPath:   "/{Bucket}?searchmetadata",
++	}
++
++	if input == nil {
++		input = &ListBucketMetadataSearchInput{}
++	}
++
++	output = &ListBucketMetadataSearchOutput{}
++	req = c.newRequest(op, input, output)
++	return
++}
++
++// ListBucketMetadataSearch API operation for Amazon Simple Storage Service.
++//
++// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
++// with awserr.Error's Code and Message methods to get detailed information about
++// the error.
++//
++// See the AWS API reference guide for Amazon Simple Storage Service's
++// API operation ListBucketMetadataSearch for usage and error information.
++// Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/ListBucketMetadataSearch
++func (c *S3) ListBucketMetadataSearch(input *ListBucketMetadataSearchInput) (*ListBucketMetadataSearchOutput, error) {
++	req, out := c.ListBucketMetadataSearchRequest(input)
++	return out, req.Send()
++}
++
++// ListBucketMetadataSearchWithContext is the same as ListBucketMetadataSearch with the addition of
++// the ability to pass a context and additional request options.
++//
++// See ListBucketMetadataSearch for details on how to use this API operation.
++//
++// The context must be non-nil and will be used for request cancellation. If
++// the context is nil a panic will occur. In the future the SDK may create
++// sub-contexts for http.Requests. See https://golang.org/pkg/context/
++// for more information on using Contexts.
++func (c *S3) ListBucketMetadataSearchWithContext(ctx aws.Context, input *ListBucketMetadataSearchInput, opts ...request.Option) (*ListBucketMetadataSearchOutput, error) {
++	req, out := c.ListBucketMetadataSearchRequest(input)
++	req.SetContext(ctx)
++	req.ApplyOptions(opts...)
++	return out, req.Send()
++}
++
+ const opListBucketMetricsConfigurations = "ListBucketMetricsConfigurations"
+ 
+ // ListBucketMetricsConfigurationsRequest generates a "aws/request.Request" representing the
+@@ -3479,6 +3698,79 @@ func (c *S3) ListBucketMetricsConfigurationsWithContext(ctx aws.Context, input *
+ 	return out, req.Send()
+ }
+ 
++const opListBucketQuery = "ListBucketQuery"
++
++// ListBucketQueryRequest generates a "aws/request.Request" representing the
++// client's request for the ListBucketQuery operation. The "output" return
++// value can be used to capture response data after the request's "Send" method
++// is called.
++//
++// See ListBucketQuery for usage and error information.
++//
++// Creating a request object using this method should be used when you want to inject
++// custom logic into the request's lifecycle using a custom handler, or if you want to
++// access properties on the request object before or after sending the request. If
++// you just want the service response, call the ListBucketQuery method directly
++// instead.
++//
++// Note: You must call the "Send" method on the returned request object in order
++// to execute the request.
++//
++//    // Example sending a request using the ListBucketQueryRequest method.
++//    req, resp := client.ListBucketQueryRequest(params)
++//
++//    err := req.Send()
++//    if err == nil { // resp is now filled
++//        fmt.Println(resp)
++//    }
++//
++// Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/ListBucketQuery
++func (c *S3) ListBucketQueryRequest(input *ListBucketQueryInput) (req *request.Request, output *ListBucketQueryOutput) {
++	op := &request.Operation{
++		Name:       opListBucketQuery,
++		HTTPMethod: "GET",
++		HTTPPath:   "/{Bucket}?query",
++	}
++
++	if input == nil {
++		input = &ListBucketQueryInput{}
++	}
++
++	output = &ListBucketQueryOutput{}
++	req = c.newRequest(op, input, output)
++	return
++}
++
++// ListBucketQuery API operation for Amazon Simple Storage Service.
++//
++// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
++// with awserr.Error's Code and Message methods to get detailed information about
++// the error.
++//
++// See the AWS API reference guide for Amazon Simple Storage Service's
++// API operation ListBucketQuery for usage and error information.
++// Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/ListBucketQuery
++func (c *S3) ListBucketQuery(input *ListBucketQueryInput) (*ListBucketQueryOutput, error) {
++	req, out := c.ListBucketQueryRequest(input)
++	return out, req.Send()
++}
++
++// ListBucketQueryWithContext is the same as ListBucketQuery with the addition of
++// the ability to pass a context and additional request options.
++//
++// See ListBucketQuery for details on how to use this API operation.
++//
++// The context must be non-nil and will be used for request cancellation. If
++// the context is nil a panic will occur. In the future the SDK may create
++// sub-contexts for http.Requests. See https://golang.org/pkg/context/
++// for more information on using Contexts.
++func (c *S3) ListBucketQueryWithContext(ctx aws.Context, input *ListBucketQueryInput, opts ...request.Option) (*ListBucketQueryOutput, error) {
++	req, out := c.ListBucketQueryRequest(input)
++	req.SetContext(ctx)
++	req.ApplyOptions(opts...)
++	return out, req.Send()
++}
++
+ const opListBuckets = "ListBuckets"
+ 
+ // ListBucketsRequest generates a "aws/request.Request" representing the
+@@ -4611,6 +4903,81 @@ func (c *S3) PutBucketInventoryConfigurationWithContext(ctx aws.Context, input *
+ 	return out, req.Send()
+ }
+ 
++const opPutBucketIsStaleAllowed = "PutBucketIsStaleAllowed"
++
++// PutBucketIsStaleAllowedRequest generates a "aws/request.Request" representing the
++// client's request for the PutBucketIsStaleAllowed operation. The "output" return
++// value can be used to capture response data after the request's "Send" method
++// is called.
++//
++// See PutBucketIsStaleAllowed for usage and error information.
++//
++// Creating a request object using this method should be used when you want to inject
++// custom logic into the request's lifecycle using a custom handler, or if you want to
++// access properties on the request object before or after sending the request. If
++// you just want the service response, call the PutBucketIsStaleAllowed method directly
++// instead.
++//
++// Note: You must call the "Send" method on the returned request object in order
++// to execute the request.
++//
++//    // Example sending a request using the PutBucketIsStaleAllowedRequest method.
++//    req, resp := client.PutBucketIsStaleAllowedRequest(params)
++//
++//    err := req.Send()
++//    if err == nil { // resp is now filled
++//        fmt.Println(resp)
++//    }
++//
++// Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/PutBucketIsStaleAllowed
++func (c *S3) PutBucketIsStaleAllowedRequest(input *PutBucketIsStaleAllowedInput) (req *request.Request, output *PutBucketIsStaleAllowedOutput) {
++	op := &request.Operation{
++		Name:       opPutBucketIsStaleAllowed,
++		HTTPMethod: "PUT",
++		HTTPPath:   "/{Bucket}?isstaleallowed",
++	}
++
++	if input == nil {
++		input = &PutBucketIsStaleAllowedInput{}
++	}
++
++	output = &PutBucketIsStaleAllowedOutput{}
++	req = c.newRequest(op, input, output)
++	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
++	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
++	return
++}
++
++// PutBucketIsStaleAllowed API operation for Amazon Simple Storage Service.
++//
++// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
++// with awserr.Error's Code and Message methods to get detailed information about
++// the error.
++//
++// See the AWS API reference guide for Amazon Simple Storage Service's
++// API operation PutBucketIsStaleAllowed for usage and error information.
++// Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/PutBucketIsStaleAllowed
++func (c *S3) PutBucketIsStaleAllowed(input *PutBucketIsStaleAllowedInput) (*PutBucketIsStaleAllowedOutput, error) {
++	req, out := c.PutBucketIsStaleAllowedRequest(input)
++	return out, req.Send()
++}
++
++// PutBucketIsStaleAllowedWithContext is the same as PutBucketIsStaleAllowed with the addition of
++// the ability to pass a context and additional request options.
++//
++// See PutBucketIsStaleAllowed for details on how to use this API operation.
++//
++// The context must be non-nil and will be used for request cancellation. If
++// the context is nil a panic will occur. In the future the SDK may create
++// sub-contexts for http.Requests. See https://golang.org/pkg/context/
++// for more information on using Contexts.
++func (c *S3) PutBucketIsStaleAllowedWithContext(ctx aws.Context, input *PutBucketIsStaleAllowedInput, opts ...request.Option) (*PutBucketIsStaleAllowedOutput, error) {
++	req, out := c.PutBucketIsStaleAllowedRequest(input)
++	req.SetContext(ctx)
++	req.ApplyOptions(opts...)
++	return out, req.Send()
++}
++
+ const opPutBucketLifecycle = "PutBucketLifecycle"
+ 
+ // PutBucketLifecycleRequest generates a "aws/request.Request" representing the
+@@ -7705,8 +8072,12 @@ type CreateBucketInput struct {
+ 	// Bucket is a required field
+ 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+ 
++	ComplianceEnabled *bool `location:"header" locationName:"x-emc-compliance-enabled" type:"boolean"`
++
+ 	CreateBucketConfiguration *CreateBucketConfiguration `locationName:"CreateBucketConfiguration" type:"structure"`
+ 
++	FileSystemAccess *bool `location:"header" locationName:"x-emc-file-system-access-enabled" type:"boolean"`
++
+ 	// Allows grantee the read, write, read ACP, and write ACP permissions on the
+ 	// bucket.
+ 	GrantFullControl *string `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
+@@ -7722,6 +8093,18 @@ type CreateBucketInput struct {
+ 
+ 	// Allows grantee to write the ACL for the applicable bucket.
+ 	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
++
++	IsStaleAllowed *bool `location:"header" locationName:"x-emc-is-stale-allowed" type:"boolean"`
++
++	MetadataSearch *string `location:"header" locationName:"x-emc-metadata-search" type:"string"`
++
++	NameSpace *string `location:"header" locationName:"x-emc-namespace" type:"string"`
++
++	RetentionPeriod *int64 `location:"header" locationName:"x-emc-retention-period" type:"integer"`
++
++	SSEEnabled *bool `location:"header" locationName:"x-emc-server-side-encryption-enabled" type:"boolean"`
++
++	VPool *string `location:"header" locationName:"x-emc-vpool" type:"string"`
+ }
+ 
+ // String returns the string representation
+@@ -7759,12 +8142,24 @@ func (s *CreateBucketInput) SetBucket(v string) *CreateBucketInput {
+ 	return s
+ }
+ 
++// SetComplianceEnabled sets the ComplianceEnabled field's value.
++func (s *CreateBucketInput) SetComplianceEnabled(v bool) *CreateBucketInput {
++	s.ComplianceEnabled = &v
++	return s
++}
++
+ // SetCreateBucketConfiguration sets the CreateBucketConfiguration field's value.
+ func (s *CreateBucketInput) SetCreateBucketConfiguration(v *CreateBucketConfiguration) *CreateBucketInput {
+ 	s.CreateBucketConfiguration = v
+ 	return s
+ }
+ 
++// SetFileSystemAccess sets the FileSystemAccess field's value.
++func (s *CreateBucketInput) SetFileSystemAccess(v bool) *CreateBucketInput {
++	s.FileSystemAccess = &v
++	return s
++}
++
+ // SetGrantFullControl sets the GrantFullControl field's value.
+ func (s *CreateBucketInput) SetGrantFullControl(v string) *CreateBucketInput {
+ 	s.GrantFullControl = &v
+@@ -7795,6 +8190,42 @@ func (s *CreateBucketInput) SetGrantWriteACP(v string) *CreateBucketInput {
+ 	return s
+ }
+ 
++// SetIsStaleAllowed sets the IsStaleAllowed field's value.
++func (s *CreateBucketInput) SetIsStaleAllowed(v bool) *CreateBucketInput {
++	s.IsStaleAllowed = &v
++	return s
++}
++
++// SetMetadataSearch sets the MetadataSearch field's value.
++func (s *CreateBucketInput) SetMetadataSearch(v string) *CreateBucketInput {
++	s.MetadataSearch = &v
++	return s
++}
++
++// SetNameSpace sets the NameSpace field's value.
++func (s *CreateBucketInput) SetNameSpace(v string) *CreateBucketInput {
++	s.NameSpace = &v
++	return s
++}
++
++// SetRetentionPeriod sets the RetentionPeriod field's value.
++func (s *CreateBucketInput) SetRetentionPeriod(v int64) *CreateBucketInput {
++	s.RetentionPeriod = &v
++	return s
++}
++
++// SetSSEEnabled sets the SSEEnabled field's value.
++func (s *CreateBucketInput) SetSSEEnabled(v bool) *CreateBucketInput {
++	s.SSEEnabled = &v
++	return s
++}
++
++// SetVPool sets the VPool field's value.
++func (s *CreateBucketInput) SetVPool(v string) *CreateBucketInput {
++	s.VPool = &v
++	return s
++}
++
+ // Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/CreateBucketOutput
+ type CreateBucketOutput struct {
+ 	_ struct{} `type:"structure"`
+@@ -7860,6 +8291,8 @@ type CreateMultipartUploadInput struct {
+ 	// Allows grantee to write the ACL for the applicable object.
+ 	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
+ 
++	IfNoneMatch *string `location:"header" locationName:"If-None-Match" type:"string"`
++
+ 	// Key is a required field
+ 	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
+ 
+@@ -7872,6 +8305,10 @@ type CreateMultipartUploadInput struct {
+ 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
+ 	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
+ 
++	RetentionPeriod *int64 `location:"header" locationName:"x-emc-retention-period" type:"integer"`
++
++	RetentionPolicy *string `location:"header" locationName:"x-emc-retention-policy" type:"string"`
++
+ 	// Specifies the algorithm to use to when encrypting the object (e.g., AES256).
+ 	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+ 
+@@ -8007,6 +8444,12 @@ func (s *CreateMultipartUploadInput) SetGrantWriteACP(v string) *CreateMultipart
+ 	return s
+ }
+ 
++// SetIfNoneMatch sets the IfNoneMatch field's value.
++func (s *CreateMultipartUploadInput) SetIfNoneMatch(v string) *CreateMultipartUploadInput {
++	s.IfNoneMatch = &v
++	return s
++}
++
+ // SetKey sets the Key field's value.
+ func (s *CreateMultipartUploadInput) SetKey(v string) *CreateMultipartUploadInput {
+ 	s.Key = &v
+@@ -8025,6 +8468,18 @@ func (s *CreateMultipartUploadInput) SetRequestPayer(v string) *CreateMultipartU
+ 	return s
+ }
+ 
++// SetRetentionPeriod sets the RetentionPeriod field's value.
++func (s *CreateMultipartUploadInput) SetRetentionPeriod(v int64) *CreateMultipartUploadInput {
++	s.RetentionPeriod = &v
++	return s
++}
++
++// SetRetentionPolicy sets the RetentionPolicy field's value.
++func (s *CreateMultipartUploadInput) SetRetentionPolicy(v string) *CreateMultipartUploadInput {
++	s.RetentionPolicy = &v
++	return s
++}
++
+ // SetSSECustomerAlgorithm sets the SSECustomerAlgorithm field's value.
+ func (s *CreateMultipartUploadInput) SetSSECustomerAlgorithm(v string) *CreateMultipartUploadInput {
+ 	s.SSECustomerAlgorithm = &v
+@@ -8514,6 +8969,58 @@ func (s DeleteBucketLifecycleOutput) GoString() string {
+ 	return s.String()
+ }
+ 
++// Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/DeleteBucketMetadataSearchRequest
++type DeleteBucketMetadataSearchInput struct {
++	_ struct{} `type:"structure"`
++
++	// Bucket is a required field
++	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
++}
++
++// String returns the string representation
++func (s DeleteBucketMetadataSearchInput) String() string {
++	return awsutil.Prettify(s)
++}
++
++// GoString returns the string representation
++func (s DeleteBucketMetadataSearchInput) GoString() string {
++	return s.String()
++}
++
++// Validate inspects the fields of the type to determine if they are valid.
++func (s *DeleteBucketMetadataSearchInput) Validate() error {
++	invalidParams := request.ErrInvalidParams{Context: "DeleteBucketMetadataSearchInput"}
++	if s.Bucket == nil {
++		invalidParams.Add(request.NewErrParamRequired("Bucket"))
++	}
++
++	if invalidParams.Len() > 0 {
++		return invalidParams
++	}
++	return nil
++}
++
++// SetBucket sets the Bucket field's value.
++func (s *DeleteBucketMetadataSearchInput) SetBucket(v string) *DeleteBucketMetadataSearchInput {
++	s.Bucket = &v
++	return s
++}
++
++// Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/DeleteBucketMetadataSearchOutput
++type DeleteBucketMetadataSearchOutput struct {
++	_ struct{} `type:"structure"`
++}
++
++// String returns the string representation
++func (s DeleteBucketMetadataSearchOutput) String() string {
++	return awsutil.Prettify(s)
++}
++
++// GoString returns the string representation
++func (s DeleteBucketMetadataSearchOutput) GoString() string {
++	return s.String()
++}
++
+ // Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/DeleteBucketMetricsConfigurationRequest
+ type DeleteBucketMetricsConfigurationInput struct {
+ 	_ struct{} `type:"structure"`
+@@ -9291,6 +9798,162 @@ func (s *Destination) SetStorageClass(v string) *Destination {
+ 	return s
+ }
+ 
++// Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/EmcEcsExtIndexableKey
++type EmcEcsExtIndexableKey struct {
++	_ struct{} `type:"structure"`
++
++	Datatype *string `type:"string"`
++
++	Name *string `type:"string"`
++}
++
++// String returns the string representation
++func (s EmcEcsExtIndexableKey) String() string {
++	return awsutil.Prettify(s)
++}
++
++// GoString returns the string representation
++func (s EmcEcsExtIndexableKey) GoString() string {
++	return s.String()
++}
++
++// SetDatatype sets the Datatype field's value.
++func (s *EmcEcsExtIndexableKey) SetDatatype(v string) *EmcEcsExtIndexableKey {
++	s.Datatype = &v
++	return s
++}
++
++// SetName sets the Name field's value.
++func (s *EmcEcsExtIndexableKey) SetName(v string) *EmcEcsExtIndexableKey {
++	s.Name = &v
++	return s
++}
++
++// Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/EmcEcsExtObjectMatch
++type EmcEcsExtObjectMatch struct {
++	_ struct{} `type:"structure"`
++
++	IndexKey *string `locationName:"indexKey" type:"string"`
++
++	ObjectId *string `locationName:"objectId" type:"string"`
++
++	ObjectName *string `locationName:"objectName" type:"string"`
++
++	ObjectOwnerZone *string `locationName:"objectOwnerZone" type:"string"`
++
++	QueryMds []*EmcEcsExtQueryMds `locationName:"queryMds" type:"list" flattened:"true"`
++
++	VersionId *string `locationName:"versionId" type:"string"`
++}
++
++// String returns the string representation
++func (s EmcEcsExtObjectMatch) String() string {
++	return awsutil.Prettify(s)
++}
++
++// GoString returns the string representation
++func (s EmcEcsExtObjectMatch) GoString() string {
++	return s.String()
++}
++
++// SetIndexKey sets the IndexKey field's value.
++func (s *EmcEcsExtObjectMatch) SetIndexKey(v string) *EmcEcsExtObjectMatch {
++	s.IndexKey = &v
++	return s
++}
++
++// SetObjectId sets the ObjectId field's value.
++func (s *EmcEcsExtObjectMatch) SetObjectId(v string) *EmcEcsExtObjectMatch {
++	s.ObjectId = &v
++	return s
++}
++
++// SetObjectName sets the ObjectName field's value.
++func (s *EmcEcsExtObjectMatch) SetObjectName(v string) *EmcEcsExtObjectMatch {
++	s.ObjectName = &v
++	return s
++}
++
++// SetObjectOwnerZone sets the ObjectOwnerZone field's value.
++func (s *EmcEcsExtObjectMatch) SetObjectOwnerZone(v string) *EmcEcsExtObjectMatch {
++	s.ObjectOwnerZone = &v
++	return s
++}
++
++// SetQueryMds sets the QueryMds field's value.
++func (s *EmcEcsExtObjectMatch) SetQueryMds(v []*EmcEcsExtQueryMds) *EmcEcsExtObjectMatch {
++	s.QueryMds = v
++	return s
++}
++
++// SetVersionId sets the VersionId field's value.
++func (s *EmcEcsExtObjectMatch) SetVersionId(v string) *EmcEcsExtObjectMatch {
++	s.VersionId = &v
++	return s
++}
++
++// Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/EmcEcsExtOptionalAttribute
++type EmcEcsExtOptionalAttribute struct {
++	_ struct{} `type:"structure"`
++
++	Datatype *string `type:"string"`
++
++	Name *string `type:"string"`
++}
++
++// String returns the string representation
++func (s EmcEcsExtOptionalAttribute) String() string {
++	return awsutil.Prettify(s)
++}
++
++// GoString returns the string representation
++func (s EmcEcsExtOptionalAttribute) GoString() string {
++	return s.String()
++}
++
++// SetDatatype sets the Datatype field's value.
++func (s *EmcEcsExtOptionalAttribute) SetDatatype(v string) *EmcEcsExtOptionalAttribute {
++	s.Datatype = &v
++	return s
++}
++
++// SetName sets the Name field's value.
++func (s *EmcEcsExtOptionalAttribute) SetName(v string) *EmcEcsExtOptionalAttribute {
++	s.Name = &v
++	return s
++}
++
++// Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/EmcEcsExtQueryMds
++type EmcEcsExtQueryMds struct {
++	_ struct{} `type:"structure"`
++
++	MdMap map[string]*string `locationName:"mdMap" type:"map"`
++
++	MdType *string `locationName:"type" type:"string"`
++}
++
++// String returns the string representation
++func (s EmcEcsExtQueryMds) String() string {
++	return awsutil.Prettify(s)
++}
++
++// GoString returns the string representation
++func (s EmcEcsExtQueryMds) GoString() string {
++	return s.String()
++}
++
++// SetMdMap sets the MdMap field's value.
++func (s *EmcEcsExtQueryMds) SetMdMap(v map[string]*string) *EmcEcsExtQueryMds {
++	s.MdMap = v
++	return s
++}
++
++// SetMdType sets the MdType field's value.
++func (s *EmcEcsExtQueryMds) SetMdType(v string) *EmcEcsExtQueryMds {
++	s.MdType = &v
++	return s
++}
++
+ // Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/Error
+ type Error struct {
+ 	_ struct{} `type:"structure"`
+@@ -10881,6 +11544,8 @@ type GetObjectOutput struct {
+ 	// Size of the body in bytes.
+ 	ContentLength *int64 `location:"header" locationName:"Content-Length" type:"long"`
+ 
++	ContentMD5EMC *string `location:"header" locationName:"x-emc-content-md5" type:"string"`
++
+ 	// The portion of the object returned in the response.
+ 	ContentRange *string `location:"header" locationName:"Content-Range" type:"string"`
+ 
+@@ -10919,6 +11584,8 @@ type GetObjectOutput struct {
+ 	// The count of parts this object has.
+ 	PartsCount *int64 `location:"header" locationName:"x-amz-mp-parts-count" type:"integer"`
+ 
++	PreviousObjectSize *int64 `location:"header" locationName:"x-emc-previous-object-size" type:"integer"`
++
+ 	ReplicationStatus *string `location:"header" locationName:"x-amz-replication-status" type:"string" enum:"ReplicationStatus"`
+ 
+ 	// If present, indicates that the requester was successfully charged for the
+@@ -10929,6 +11596,10 @@ type GetObjectOutput struct {
+ 	// of the restored object copy.
+ 	Restore *string `location:"header" locationName:"x-amz-restore" type:"string"`
+ 
++	RetentionPeriod *int64 `location:"header" locationName:"x-emc-retention-period" type:"integer"`
++
++	RetentionPolicy *string `location:"header" locationName:"x-emc-retention-policy" type:"string"`
++
+ 	// If server-side encryption with a customer-provided encryption key was requested,
+ 	// the response will include this header confirming the encryption algorithm
+ 	// used.
+@@ -11013,6 +11684,12 @@ func (s *GetObjectOutput) SetContentLength(v int64) *GetObjectOutput {
+ 	return s
+ }
+ 
++// SetContentMD5EMC sets the ContentMD5EMC field's value.
++func (s *GetObjectOutput) SetContentMD5EMC(v string) *GetObjectOutput {
++	s.ContentMD5EMC = &v
++	return s
++}
++
+ // SetContentRange sets the ContentRange field's value.
+ func (s *GetObjectOutput) SetContentRange(v string) *GetObjectOutput {
+ 	s.ContentRange = &v
+@@ -11073,6 +11750,12 @@ func (s *GetObjectOutput) SetPartsCount(v int64) *GetObjectOutput {
+ 	return s
+ }
+ 
++// SetPreviousObjectSize sets the PreviousObjectSize field's value.
++func (s *GetObjectOutput) SetPreviousObjectSize(v int64) *GetObjectOutput {
++	s.PreviousObjectSize = &v
++	return s
++}
++
+ // SetReplicationStatus sets the ReplicationStatus field's value.
+ func (s *GetObjectOutput) SetReplicationStatus(v string) *GetObjectOutput {
+ 	s.ReplicationStatus = &v
+@@ -11091,6 +11774,18 @@ func (s *GetObjectOutput) SetRestore(v string) *GetObjectOutput {
+ 	return s
+ }
+ 
++// SetRetentionPeriod sets the RetentionPeriod field's value.
++func (s *GetObjectOutput) SetRetentionPeriod(v int64) *GetObjectOutput {
++	s.RetentionPeriod = &v
++	return s
++}
++
++// SetRetentionPolicy sets the RetentionPolicy field's value.
++func (s *GetObjectOutput) SetRetentionPolicy(v string) *GetObjectOutput {
++	s.RetentionPolicy = &v
++	return s
++}
++
+ // SetSSECustomerAlgorithm sets the SSECustomerAlgorithm field's value.
+ func (s *GetObjectOutput) SetSSECustomerAlgorithm(v string) *GetObjectOutput {
+ 	s.SSECustomerAlgorithm = &v
+@@ -11299,32 +11994,78 @@ func (s *GetObjectTorrentInput) SetRequestPayer(v string) *GetObjectTorrentInput
+ type GetObjectTorrentOutput struct {
+ 	_ struct{} `type:"structure" payload:"Body"`
+ 
+-	Body io.ReadCloser `type:"blob"`
++	Body io.ReadCloser `type:"blob"`
++
++	// If present, indicates that the requester was successfully charged for the
++	// request.
++	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
++}
++
++// String returns the string representation
++func (s GetObjectTorrentOutput) String() string {
++	return awsutil.Prettify(s)
++}
++
++// GoString returns the string representation
++func (s GetObjectTorrentOutput) GoString() string {
++	return s.String()
++}
++
++// SetBody sets the Body field's value.
++func (s *GetObjectTorrentOutput) SetBody(v io.ReadCloser) *GetObjectTorrentOutput {
++	s.Body = v
++	return s
++}
++
++// SetRequestCharged sets the RequestCharged field's value.
++func (s *GetObjectTorrentOutput) SetRequestCharged(v string) *GetObjectTorrentOutput {
++	s.RequestCharged = &v
++	return s
++}
++
++// Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/GetSystemMetdataSearchKeysInput
++type GetSystemMetdataSearchKeysInput struct {
++	_ struct{} `type:"structure"`
++}
++
++// String returns the string representation
++func (s GetSystemMetdataSearchKeysInput) String() string {
++	return awsutil.Prettify(s)
++}
++
++// GoString returns the string representation
++func (s GetSystemMetdataSearchKeysInput) GoString() string {
++	return s.String()
++}
++
++// Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/GetSystemMetdataSearchKeysOutput
++type GetSystemMetdataSearchKeysOutput struct {
++	_ struct{} `type:"structure"`
+ 
+-	// If present, indicates that the requester was successfully charged for the
+-	// request.
+-	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
++	IndexableKeys []*EmcEcsExtIndexableKey `locationNameList:"Key" type:"list"`
++
++	OptionalAttributes []*EmcEcsExtOptionalAttribute `locationNameList:"Attribute" type:"list"`
+ }
+ 
+ // String returns the string representation
+-func (s GetObjectTorrentOutput) String() string {
++func (s GetSystemMetdataSearchKeysOutput) String() string {
+ 	return awsutil.Prettify(s)
+ }
+ 
+ // GoString returns the string representation
+-func (s GetObjectTorrentOutput) GoString() string {
++func (s GetSystemMetdataSearchKeysOutput) GoString() string {
+ 	return s.String()
+ }
+ 
+-// SetBody sets the Body field's value.
+-func (s *GetObjectTorrentOutput) SetBody(v io.ReadCloser) *GetObjectTorrentOutput {
+-	s.Body = v
++// SetIndexableKeys sets the IndexableKeys field's value.
++func (s *GetSystemMetdataSearchKeysOutput) SetIndexableKeys(v []*EmcEcsExtIndexableKey) *GetSystemMetdataSearchKeysOutput {
++	s.IndexableKeys = v
+ 	return s
+ }
+ 
+-// SetRequestCharged sets the RequestCharged field's value.
+-func (s *GetObjectTorrentOutput) SetRequestCharged(v string) *GetObjectTorrentOutput {
+-	s.RequestCharged = &v
++// SetOptionalAttributes sets the OptionalAttributes field's value.
++func (s *GetSystemMetdataSearchKeysOutput) SetOptionalAttributes(v []*EmcEcsExtOptionalAttribute) *GetSystemMetdataSearchKeysOutput {
++	s.OptionalAttributes = v
+ 	return s
+ }
+ 
+@@ -11529,6 +12270,8 @@ func (s *HeadBucketInput) SetBucket(v string) *HeadBucketInput {
+ // Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/HeadBucketOutput
+ type HeadBucketOutput struct {
+ 	_ struct{} `type:"structure"`
++
++	RetentionPeriod *int64 `location:"header" locationName:"x-emc-retention-period" type:"integer"`
+ }
+ 
+ // String returns the string representation
+@@ -11541,6 +12284,12 @@ func (s HeadBucketOutput) GoString() string {
+ 	return s.String()
+ }
+ 
++// SetRetentionPeriod sets the RetentionPeriod field's value.
++func (s *HeadBucketOutput) SetRetentionPeriod(v int64) *HeadBucketOutput {
++	s.RetentionPeriod = &v
++	return s
++}
++
+ // Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/HeadObjectRequest
+ type HeadObjectInput struct {
+ 	_ struct{} `type:"structure"`
+@@ -11777,6 +12526,10 @@ type HeadObjectOutput struct {
+ 	// of the restored object copy.
+ 	Restore *string `location:"header" locationName:"x-amz-restore" type:"string"`
+ 
++	RetentionPeriod *int64 `location:"header" locationName:"x-emc-retention-period" type:"integer"`
++
++	RetentionPolicy *string `location:"header" locationName:"x-emc-retention-policy" type:"string"`
++
+ 	// If server-side encryption with a customer-provided encryption key was requested,
+ 	// the response will include this header confirming the encryption algorithm
+ 	// used.
+@@ -11924,6 +12677,18 @@ func (s *HeadObjectOutput) SetRestore(v string) *HeadObjectOutput {
+ 	return s
+ }
+ 
++// SetRetentionPeriod sets the RetentionPeriod field's value.
++func (s *HeadObjectOutput) SetRetentionPeriod(v int64) *HeadObjectOutput {
++	s.RetentionPeriod = &v
++	return s
++}
++
++// SetRetentionPolicy sets the RetentionPolicy field's value.
++func (s *HeadObjectOutput) SetRetentionPolicy(v string) *HeadObjectOutput {
++	s.RetentionPolicy = &v
++	return s
++}
++
+ // SetSSECustomerAlgorithm sets the SSECustomerAlgorithm field's value.
+ func (s *HeadObjectOutput) SetSSECustomerAlgorithm(v string) *HeadObjectOutput {
+ 	s.SSECustomerAlgorithm = &v
+@@ -13012,6 +13777,82 @@ func (s *ListBucketInventoryConfigurationsOutput) SetNextContinuationToken(v str
+ 	return s
+ }
+ 
++// Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/ListBucketMetadataSearchRequest
++type ListBucketMetadataSearchInput struct {
++	_ struct{} `type:"structure"`
++
++	// Bucket is a required field
++	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
++}
++
++// String returns the string representation
++func (s ListBucketMetadataSearchInput) String() string {
++	return awsutil.Prettify(s)
++}
++
++// GoString returns the string representation
++func (s ListBucketMetadataSearchInput) GoString() string {
++	return s.String()
++}
++
++// Validate inspects the fields of the type to determine if they are valid.
++func (s *ListBucketMetadataSearchInput) Validate() error {
++	invalidParams := request.ErrInvalidParams{Context: "ListBucketMetadataSearchInput"}
++	if s.Bucket == nil {
++		invalidParams.Add(request.NewErrParamRequired("Bucket"))
++	}
++
++	if invalidParams.Len() > 0 {
++		return invalidParams
++	}
++	return nil
++}
++
++// SetBucket sets the Bucket field's value.
++func (s *ListBucketMetadataSearchInput) SetBucket(v string) *ListBucketMetadataSearchInput {
++	s.Bucket = &v
++	return s
++}
++
++// Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/ListBucketMetadataSearchOutput
++type ListBucketMetadataSearchOutput struct {
++	_ struct{} `type:"structure"`
++
++	IndexableKeys []*EmcEcsExtIndexableKey `locationNameList:"Key" type:"list"`
++
++	MetadataSearchEnabled *bool `type:"boolean"`
++
++	OptionalAttributes []*EmcEcsExtOptionalAttribute `locationNameList:"Attribute" type:"list"`
++}
++
++// String returns the string representation
++func (s ListBucketMetadataSearchOutput) String() string {
++	return awsutil.Prettify(s)
++}
++
++// GoString returns the string representation
++func (s ListBucketMetadataSearchOutput) GoString() string {
++	return s.String()
++}
++
++// SetIndexableKeys sets the IndexableKeys field's value.
++func (s *ListBucketMetadataSearchOutput) SetIndexableKeys(v []*EmcEcsExtIndexableKey) *ListBucketMetadataSearchOutput {
++	s.IndexableKeys = v
++	return s
++}
++
++// SetMetadataSearchEnabled sets the MetadataSearchEnabled field's value.
++func (s *ListBucketMetadataSearchOutput) SetMetadataSearchEnabled(v bool) *ListBucketMetadataSearchOutput {
++	s.MetadataSearchEnabled = &v
++	return s
++}
++
++// SetOptionalAttributes sets the OptionalAttributes field's value.
++func (s *ListBucketMetadataSearchOutput) SetOptionalAttributes(v []*EmcEcsExtOptionalAttribute) *ListBucketMetadataSearchOutput {
++	s.OptionalAttributes = v
++	return s
++}
++
+ // Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/ListBucketMetricsConfigurationsRequest
+ type ListBucketMetricsConfigurationsInput struct {
+ 	_ struct{} `type:"structure"`
+@@ -13120,6 +13961,142 @@ func (s *ListBucketMetricsConfigurationsOutput) SetNextContinuationToken(v strin
+ 	return s
+ }
+ 
++// Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/ListBucketQueryRequest
++type ListBucketQueryInput struct {
++	_ struct{} `type:"structure"`
++
++	Attributes *string `location:"querystring" locationName:"attributes" type:"string"`
++
++	// Bucket is a required field
++	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
++
++	IncludeOlderVersion *bool `location:"querystring" locationName:"include-older-version" type:"boolean"`
++
++	Marker *string `location:"querystring" locationName:"marker" type:"string"`
++
++	MaxKeys *int64 `location:"querystring" locationName:"max-keys" type:"integer"`
++
++	// Query is a required field
++	Query *string `location:"querystring" locationName:"query" type:"string" required:"true"`
++
++	Sorted *string `location:"querystring" locationName:"sorted" type:"string"`
++}
++
++// String returns the string representation
++func (s ListBucketQueryInput) String() string {
++	return awsutil.Prettify(s)
++}
++
++// GoString returns the string representation
++func (s ListBucketQueryInput) GoString() string {
++	return s.String()
++}
++
++// Validate inspects the fields of the type to determine if they are valid.
++func (s *ListBucketQueryInput) Validate() error {
++	invalidParams := request.ErrInvalidParams{Context: "ListBucketQueryInput"}
++	if s.Bucket == nil {
++		invalidParams.Add(request.NewErrParamRequired("Bucket"))
++	}
++	if s.Query == nil {
++		invalidParams.Add(request.NewErrParamRequired("Query"))
++	}
++
++	if invalidParams.Len() > 0 {
++		return invalidParams
++	}
++	return nil
++}
++
++// SetAttributes sets the Attributes field's value.
++func (s *ListBucketQueryInput) SetAttributes(v string) *ListBucketQueryInput {
++	s.Attributes = &v
++	return s
++}
++
++// SetBucket sets the Bucket field's value.
++func (s *ListBucketQueryInput) SetBucket(v string) *ListBucketQueryInput {
++	s.Bucket = &v
++	return s
++}
++
++// SetIncludeOlderVersion sets the IncludeOlderVersion field's value.
++func (s *ListBucketQueryInput) SetIncludeOlderVersion(v bool) *ListBucketQueryInput {
++	s.IncludeOlderVersion = &v
++	return s
++}
++
++// SetMarker sets the Marker field's value.
++func (s *ListBucketQueryInput) SetMarker(v string) *ListBucketQueryInput {
++	s.Marker = &v
++	return s
++}
++
++// SetMaxKeys sets the MaxKeys field's value.
++func (s *ListBucketQueryInput) SetMaxKeys(v int64) *ListBucketQueryInput {
++	s.MaxKeys = &v
++	return s
++}
++
++// SetQuery sets the Query field's value.
++func (s *ListBucketQueryInput) SetQuery(v string) *ListBucketQueryInput {
++	s.Query = &v
++	return s
++}
++
++// SetSorted sets the Sorted field's value.
++func (s *ListBucketQueryInput) SetSorted(v string) *ListBucketQueryInput {
++	s.Sorted = &v
++	return s
++}
++
++// Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/ListBucketQueryOutput
++type ListBucketQueryOutput struct {
++	_ struct{} `type:"structure"`
++
++	MaxKeys *int64 `type:"integer"`
++
++	Name *string `type:"string"`
++
++	NextMarker *string `type:"string"`
++
++	ObjectMatches []*EmcEcsExtObjectMatch `locationNameList:"object" type:"list"`
++}
++
++// String returns the string representation
++func (s ListBucketQueryOutput) String() string {
++	return awsutil.Prettify(s)
++}
++
++// GoString returns the string representation
++func (s ListBucketQueryOutput) GoString() string {
++	return s.String()
++}
++
++// SetMaxKeys sets the MaxKeys field's value.
++func (s *ListBucketQueryOutput) SetMaxKeys(v int64) *ListBucketQueryOutput {
++	s.MaxKeys = &v
++	return s
++}
++
++// SetName sets the Name field's value.
++func (s *ListBucketQueryOutput) SetName(v string) *ListBucketQueryOutput {
++	s.Name = &v
++	return s
++}
++
++// SetNextMarker sets the NextMarker field's value.
++func (s *ListBucketQueryOutput) SetNextMarker(v string) *ListBucketQueryOutput {
++	s.NextMarker = &v
++	return s
++}
++
++// SetObjectMatches sets the ObjectMatches field's value.
++func (s *ListBucketQueryOutput) SetObjectMatches(v []*EmcEcsExtObjectMatch) *ListBucketQueryOutput {
++	s.ObjectMatches = v
++	return s
++}
++
+ // Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/ListBucketsInput
+ type ListBucketsInput struct {
+ 	_ struct{} `type:"structure"`
+@@ -13752,6 +14729,8 @@ type ListObjectsOutput struct {
+ 	NextMarker *string `type:"string"`
+ 
+ 	Prefix *string `type:"string"`
++
++	RetentionPeriod *int64 `location:"header" locationName:"x-emc-retention-period" type:"integer"`
+ }
+ 
+ // String returns the string representation
+@@ -13824,6 +14803,12 @@ func (s *ListObjectsOutput) SetPrefix(v string) *ListObjectsOutput {
+ 	return s
+ }
+ 
++// SetRetentionPeriod sets the RetentionPeriod field's value.
++func (s *ListObjectsOutput) SetRetentionPeriod(v int64) *ListObjectsOutput {
++	s.RetentionPeriod = &v
++	return s
++}
++
+ // Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/ListObjectsV2Request
+ type ListObjectsV2Input struct {
+ 	_ struct{} `type:"structure"`
+@@ -15558,6 +16543,66 @@ func (s PutBucketInventoryConfigurationOutput) GoString() string {
+ 	return s.String()
+ }
+ 
++// Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/PutBucketIsStaleAllowedRequest
++type PutBucketIsStaleAllowedInput struct {
++	_ struct{} `type:"structure"`
++
++	// Bucket is a required field
++	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
++
++	IsStaleAllowed *bool `location:"header" locationName:"x-emc-is-stale-allowed" type:"boolean"`
++}
++
++// String returns the string representation
++func (s PutBucketIsStaleAllowedInput) String() string {
++	return awsutil.Prettify(s)
++}
++
++// GoString returns the string representation
++func (s PutBucketIsStaleAllowedInput) GoString() string {
++	return s.String()
++}
++
++// Validate inspects the fields of the type to determine if they are valid.
++func (s *PutBucketIsStaleAllowedInput) Validate() error {
++	invalidParams := request.ErrInvalidParams{Context: "PutBucketIsStaleAllowedInput"}
++	if s.Bucket == nil {
++		invalidParams.Add(request.NewErrParamRequired("Bucket"))
++	}
++
++	if invalidParams.Len() > 0 {
++		return invalidParams
++	}
++	return nil
++}
++
++// SetBucket sets the Bucket field's value.
++func (s *PutBucketIsStaleAllowedInput) SetBucket(v string) *PutBucketIsStaleAllowedInput {
++	s.Bucket = &v
++	return s
++}
++
++// SetIsStaleAllowed sets the IsStaleAllowed field's value.
++func (s *PutBucketIsStaleAllowedInput) SetIsStaleAllowed(v bool) *PutBucketIsStaleAllowedInput {
++	s.IsStaleAllowed = &v
++	return s
++}
++
++// Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/PutBucketIsStaleAllowedOutput
++type PutBucketIsStaleAllowedOutput struct {
++	_ struct{} `type:"structure"`
++}
++
++// String returns the string representation
++func (s PutBucketIsStaleAllowedOutput) String() string {
++	return awsutil.Prettify(s)
++}
++
++// GoString returns the string representation
++func (s PutBucketIsStaleAllowedOutput) GoString() string {
++	return s.String()
++}
++
+ // Please also see https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/PutBucketLifecycleConfigurationRequest
+ type PutBucketLifecycleConfigurationInput struct {
+ 	_ struct{} `type:"structure" payload:"LifecycleConfiguration"`
+@@ -16616,6 +17661,8 @@ type PutObjectInput struct {
+ 	// Allows grantee to write the ACL for the applicable object.
+ 	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
+ 
++	IfNoneMatch *string `location:"header" locationName:"If-None-Match" type:"string"`
++
+ 	// Object key for which the PUT operation was initiated.
+ 	//
+ 	// Key is a required field
+@@ -16624,12 +17671,18 @@ type PutObjectInput struct {
+ 	// A map of metadata to store with the object in S3.
+ 	Metadata map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
+ 
++	Range *string `location:"header" locationName:"Range" type:"string"`
++
+ 	// Confirms that the requester knows that she or he will be charged for the
+ 	// request. Bucket owners need not specify this parameter in their requests.
+ 	// Documentation on downloading objects from requester pays buckets can be found
+ 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
+ 	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
+ 
++	RetentionPeriod *int64 `location:"header" locationName:"x-emc-retention-period" type:"integer"`
++
++	RetentionPolicy *string `location:"header" locationName:"x-emc-retention-policy" type:"string"`
++
+ 	// Specifies the algorithm to use to when encrypting the object (e.g., AES256).
+ 	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+ 
+@@ -16780,6 +17833,12 @@ func (s *PutObjectInput) SetGrantWriteACP(v string) *PutObjectInput {
+ 	return s
+ }
+ 
++// SetIfNoneMatch sets the IfNoneMatch field's value.
++func (s *PutObjectInput) SetIfNoneMatch(v string) *PutObjectInput {
++	s.IfNoneMatch = &v
++	return s
++}
++
+ // SetKey sets the Key field's value.
+ func (s *PutObjectInput) SetKey(v string) *PutObjectInput {
+ 	s.Key = &v
+@@ -16792,12 +17851,30 @@ func (s *PutObjectInput) SetMetadata(v map[string]*string) *PutObjectInput {
+ 	return s
+ }
+ 
++// SetRange sets the Range field's value.
++func (s *PutObjectInput) SetRange(v string) *PutObjectInput {
++	s.Range = &v
++	return s
++}
++
+ // SetRequestPayer sets the RequestPayer field's value.
+ func (s *PutObjectInput) SetRequestPayer(v string) *PutObjectInput {
+ 	s.RequestPayer = &v
+ 	return s
+ }
+ 
++// SetRetentionPeriod sets the RetentionPeriod field's value.
++func (s *PutObjectInput) SetRetentionPeriod(v int64) *PutObjectInput {
++	s.RetentionPeriod = &v
++	return s
++}
++
++// SetRetentionPolicy sets the RetentionPolicy field's value.
++func (s *PutObjectInput) SetRetentionPolicy(v string) *PutObjectInput {
++	s.RetentionPolicy = &v
++	return s
++}
++
+ // SetSSECustomerAlgorithm sets the SSECustomerAlgorithm field's value.
+ func (s *PutObjectInput) SetSSECustomerAlgorithm(v string) *PutObjectInput {
+ 	s.SSECustomerAlgorithm = &v
+@@ -16850,6 +17927,8 @@ func (s *PutObjectInput) SetWebsiteRedirectLocation(v string) *PutObjectInput {
+ type PutObjectOutput struct {
+ 	_ struct{} `type:"structure"`
+ 
++	ContentMD5EMC *string `location:"header" locationName:"x-emc-content-md5" type:"string"`
++
+ 	// Entity tag for the uploaded object.
+ 	ETag *string `location:"header" locationName:"ETag" type:"string"`
+ 
+@@ -16857,6 +17936,8 @@ type PutObjectOutput struct {
+ 	// date (expiry-date) and rule ID (rule-id). The value of rule-id is URL encoded.
+ 	Expiration *string `location:"header" locationName:"x-amz-expiration" type:"string"`
+ 
++	PreviousObjectSize *int64 `location:"header" locationName:"x-emc-previous-object-size" type:"integer"`
++
+ 	// If present, indicates that the requester was successfully charged for the
+ 	// request.
+ 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
+@@ -16893,6 +17974,12 @@ func (s PutObjectOutput) GoString() string {
+ 	return s.String()
+ }
+ 
++// SetContentMD5EMC sets the ContentMD5EMC field's value.
++func (s *PutObjectOutput) SetContentMD5EMC(v string) *PutObjectOutput {
++	s.ContentMD5EMC = &v
++	return s
++}
++
+ // SetETag sets the ETag field's value.
+ func (s *PutObjectOutput) SetETag(v string) *PutObjectOutput {
+ 	s.ETag = &v
+@@ -16905,6 +17992,12 @@ func (s *PutObjectOutput) SetExpiration(v string) *PutObjectOutput {
+ 	return s
+ }
+ 
++// SetPreviousObjectSize sets the PreviousObjectSize field's value.
++func (s *PutObjectOutput) SetPreviousObjectSize(v int64) *PutObjectOutput {
++	s.PreviousObjectSize = &v
++	return s
++}
++
+ // SetRequestCharged sets the RequestCharged field's value.
+ func (s *PutObjectOutput) SetRequestCharged(v string) *PutObjectOutput {
+ 	s.RequestCharged = &v
+--- service/s3/examples_test.go
++++ service/s3/examples_test.go
+@@ -134,16 +134,24 @@ func ExampleS3_CreateBucket() {
+ 	svc := s3.New(sess)
+ 
+ 	params := &s3.CreateBucketInput{
+-		Bucket: aws.String("BucketName"), // Required
+-		ACL:    aws.String("BucketCannedACL"),
++		Bucket:            aws.String("BucketName"), // Required
++		ACL:               aws.String("BucketCannedACL"),
++		ComplianceEnabled: aws.Bool(true),
+ 		CreateBucketConfiguration: &s3.CreateBucketConfiguration{
+ 			LocationConstraint: aws.String("BucketLocationConstraint"),
+ 		},
++		FileSystemAccess: aws.Bool(true),
+ 		GrantFullControl: aws.String("GrantFullControl"),
+ 		GrantRead:        aws.String("GrantRead"),
+ 		GrantReadACP:     aws.String("GrantReadACP"),
+ 		GrantWrite:       aws.String("GrantWrite"),
+ 		GrantWriteACP:    aws.String("GrantWriteACP"),
++		IsStaleAllowed:   aws.Bool(true),
++		MetadataSearch:   aws.String("EmcEcsExtMetadataSearch"),
++		NameSpace:        aws.String("EmcEcsExtNameSpace"),
++		RetentionPeriod:  aws.Int64(1),
++		SSEEnabled:       aws.Bool(true),
++		VPool:            aws.String("EmcEcsExtVPool"),
+ 	}
+ 	resp, err := svc.CreateBucket(params)
+ 
+@@ -177,11 +185,14 @@ func ExampleS3_CreateMultipartUpload() {
+ 		GrantRead:          aws.String("GrantRead"),
+ 		GrantReadACP:       aws.String("GrantReadACP"),
+ 		GrantWriteACP:      aws.String("GrantWriteACP"),
++		IfNoneMatch:        aws.String("IfNoneMatch"),
+ 		Metadata: map[string]*string{
+ 			"Key": aws.String("MetadataValue"), // Required
+ 			// More values...
+ 		},
+ 		RequestPayer:            aws.String("RequestPayer"),
++		RetentionPeriod:         aws.Int64(1),
++		RetentionPolicy:         aws.String("RetentionPolicy"),
+ 		SSECustomerAlgorithm:    aws.String("SSECustomerAlgorithm"),
+ 		SSECustomerKey:          aws.String("SSECustomerKey"),
+ 		SSECustomerKeyMD5:       aws.String("SSECustomerKeyMD5"),
+@@ -310,6 +321,27 @@ func ExampleS3_DeleteBucketLifecycle() {
+ 	fmt.Println(resp)
+ }
+ 
++func ExampleS3_DeleteBucketMetadataSearch() {
++	sess := session.Must(session.NewSession())
++
++	svc := s3.New(sess)
++
++	params := &s3.DeleteBucketMetadataSearchInput{
++		Bucket: aws.String("BucketName"), // Required
++	}
++	resp, err := svc.DeleteBucketMetadataSearch(params)
++
++	if err != nil {
++		// Print the error, cast err to awserr.Error to get the Code and
++		// Message from an error.
++		fmt.Println(err.Error())
++		return
++	}
++
++	// Pretty-print the response data.
++	fmt.Println(resp)
++}
++
+ func ExampleS3_DeleteBucketMetricsConfiguration() {
+ 	sess := session.Must(session.NewSession())
+ 
+@@ -987,6 +1019,25 @@ func ExampleS3_GetObjectTorrent() {
+ 	fmt.Println(resp)
+ }
+ 
++func ExampleS3_GetSystemMetdataSearchKeys() {
++	sess := session.Must(session.NewSession())
++
++	svc := s3.New(sess)
++
++	var params *s3.GetSystemMetdataSearchKeysInput
++	resp, err := svc.GetSystemMetdataSearchKeys(params)
++
++	if err != nil {
++		// Print the error, cast err to awserr.Error to get the Code and
++		// Message from an error.
++		fmt.Println(err.Error())
++		return
++	}
++
++	// Pretty-print the response data.
++	fmt.Println(resp)
++}
++
+ func ExampleS3_HeadBucket() {
+ 	sess := session.Must(session.NewSession())
+ 
+@@ -1085,6 +1136,27 @@ func ExampleS3_ListBucketInventoryConfigurations() {
+ 	fmt.Println(resp)
+ }
+ 
++func ExampleS3_ListBucketMetadataSearch() {
++	sess := session.Must(session.NewSession())
++
++	svc := s3.New(sess)
++
++	params := &s3.ListBucketMetadataSearchInput{
++		Bucket: aws.String("BucketName"), // Required
++	}
++	resp, err := svc.ListBucketMetadataSearch(params)
++
++	if err != nil {
++		// Print the error, cast err to awserr.Error to get the Code and
++		// Message from an error.
++		fmt.Println(err.Error())
++		return
++	}
++
++	// Pretty-print the response data.
++	fmt.Println(resp)
++}
++
+ func ExampleS3_ListBucketMetricsConfigurations() {
+ 	sess := session.Must(session.NewSession())
+ 
+@@ -1107,6 +1179,33 @@ func ExampleS3_ListBucketMetricsConfigurations() {
+ 	fmt.Println(resp)
+ }
+ 
++func ExampleS3_ListBucketQuery() {
++	sess := session.Must(session.NewSession())
++
++	svc := s3.New(sess)
++
++	params := &s3.ListBucketQueryInput{
++		Bucket:              aws.String("BucketName"),     // Required
++		Query:               aws.String("EmcEcsExtQuery"), // Required
++		Attributes:          aws.String("EmcEcsExtAttributes"),
++		IncludeOlderVersion: aws.Bool(true),
++		Marker:              aws.String("Marker"),
++		MaxKeys:             aws.Int64(1),
++		Sorted:              aws.String("EmcEcsExtSorted"),
++	}
++	resp, err := svc.ListBucketQuery(params)
++
++	if err != nil {
++		// Print the error, cast err to awserr.Error to get the Code and
++		// Message from an error.
++		fmt.Println(err.Error())
++		return
++	}
++
++	// Pretty-print the response data.
++	fmt.Println(resp)
++}
++
+ func ExampleS3_ListBuckets() {
+ 	sess := session.Must(session.NewSession())
+ 
+@@ -1477,6 +1576,28 @@ func ExampleS3_PutBucketInventoryConfiguration() {
+ 	fmt.Println(resp)
+ }
+ 
++func ExampleS3_PutBucketIsStaleAllowed() {
++	sess := session.Must(session.NewSession())
++
++	svc := s3.New(sess)
++
++	params := &s3.PutBucketIsStaleAllowedInput{
++		Bucket:         aws.String("BucketName"), // Required
++		IsStaleAllowed: aws.Bool(true),
++	}
++	resp, err := svc.PutBucketIsStaleAllowed(params)
++
++	if err != nil {
++		// Print the error, cast err to awserr.Error to get the Code and
++		// Message from an error.
++		fmt.Println(err.Error())
++		return
++	}
++
++	// Pretty-print the response data.
++	fmt.Println(resp)
++}
++
+ func ExampleS3_PutBucketLifecycle() {
+ 	sess := session.Must(session.NewSession())
+ 
+@@ -2032,11 +2153,15 @@ func ExampleS3_PutObject() {
+ 		GrantRead:          aws.String("GrantRead"),
+ 		GrantReadACP:       aws.String("GrantReadACP"),
+ 		GrantWriteACP:      aws.String("GrantWriteACP"),
++		IfNoneMatch:        aws.String("IfNoneMatch"),
+ 		Metadata: map[string]*string{
+ 			"Key": aws.String("MetadataValue"), // Required
+ 			// More values...
+ 		},
++		Range:                   aws.String("Range"),
+ 		RequestPayer:            aws.String("RequestPayer"),
++		RetentionPeriod:         aws.Int64(1),
++		RetentionPolicy:         aws.String("RetentionPolicy"),
+ 		SSECustomerAlgorithm:    aws.String("SSECustomerAlgorithm"),
+ 		SSECustomerKey:          aws.String("SSECustomerKey"),
+ 		SSECustomerKeyMD5:       aws.String("SSECustomerKeyMD5"),
+--- service/s3/s3iface/interface.go
++++ service/s3/s3iface/interface.go
+@@ -100,6 +100,10 @@ type S3API interface {
+ 	DeleteBucketLifecycleWithContext(aws.Context, *s3.DeleteBucketLifecycleInput, ...request.Option) (*s3.DeleteBucketLifecycleOutput, error)
+ 	DeleteBucketLifecycleRequest(*s3.DeleteBucketLifecycleInput) (*request.Request, *s3.DeleteBucketLifecycleOutput)
+ 
++	DeleteBucketMetadataSearch(*s3.DeleteBucketMetadataSearchInput) (*s3.DeleteBucketMetadataSearchOutput, error)
++	DeleteBucketMetadataSearchWithContext(aws.Context, *s3.DeleteBucketMetadataSearchInput, ...request.Option) (*s3.DeleteBucketMetadataSearchOutput, error)
++	DeleteBucketMetadataSearchRequest(*s3.DeleteBucketMetadataSearchInput) (*request.Request, *s3.DeleteBucketMetadataSearchOutput)
++
+ 	DeleteBucketMetricsConfiguration(*s3.DeleteBucketMetricsConfigurationInput) (*s3.DeleteBucketMetricsConfigurationOutput, error)
+ 	DeleteBucketMetricsConfigurationWithContext(aws.Context, *s3.DeleteBucketMetricsConfigurationInput, ...request.Option) (*s3.DeleteBucketMetricsConfigurationOutput, error)
+ 	DeleteBucketMetricsConfigurationRequest(*s3.DeleteBucketMetricsConfigurationInput) (*request.Request, *s3.DeleteBucketMetricsConfigurationOutput)
+@@ -220,6 +224,10 @@ type S3API interface {
+ 	GetObjectTorrentWithContext(aws.Context, *s3.GetObjectTorrentInput, ...request.Option) (*s3.GetObjectTorrentOutput, error)
+ 	GetObjectTorrentRequest(*s3.GetObjectTorrentInput) (*request.Request, *s3.GetObjectTorrentOutput)
+ 
++	GetSystemMetdataSearchKeys(*s3.GetSystemMetdataSearchKeysInput) (*s3.GetSystemMetdataSearchKeysOutput, error)
++	GetSystemMetdataSearchKeysWithContext(aws.Context, *s3.GetSystemMetdataSearchKeysInput, ...request.Option) (*s3.GetSystemMetdataSearchKeysOutput, error)
++	GetSystemMetdataSearchKeysRequest(*s3.GetSystemMetdataSearchKeysInput) (*request.Request, *s3.GetSystemMetdataSearchKeysOutput)
++
+ 	HeadBucket(*s3.HeadBucketInput) (*s3.HeadBucketOutput, error)
+ 	HeadBucketWithContext(aws.Context, *s3.HeadBucketInput, ...request.Option) (*s3.HeadBucketOutput, error)
+ 	HeadBucketRequest(*s3.HeadBucketInput) (*request.Request, *s3.HeadBucketOutput)
+@@ -236,10 +244,18 @@ type S3API interface {
+ 	ListBucketInventoryConfigurationsWithContext(aws.Context, *s3.ListBucketInventoryConfigurationsInput, ...request.Option) (*s3.ListBucketInventoryConfigurationsOutput, error)
+ 	ListBucketInventoryConfigurationsRequest(*s3.ListBucketInventoryConfigurationsInput) (*request.Request, *s3.ListBucketInventoryConfigurationsOutput)
+ 
++	ListBucketMetadataSearch(*s3.ListBucketMetadataSearchInput) (*s3.ListBucketMetadataSearchOutput, error)
++	ListBucketMetadataSearchWithContext(aws.Context, *s3.ListBucketMetadataSearchInput, ...request.Option) (*s3.ListBucketMetadataSearchOutput, error)
++	ListBucketMetadataSearchRequest(*s3.ListBucketMetadataSearchInput) (*request.Request, *s3.ListBucketMetadataSearchOutput)
++
+ 	ListBucketMetricsConfigurations(*s3.ListBucketMetricsConfigurationsInput) (*s3.ListBucketMetricsConfigurationsOutput, error)
+ 	ListBucketMetricsConfigurationsWithContext(aws.Context, *s3.ListBucketMetricsConfigurationsInput, ...request.Option) (*s3.ListBucketMetricsConfigurationsOutput, error)
+ 	ListBucketMetricsConfigurationsRequest(*s3.ListBucketMetricsConfigurationsInput) (*request.Request, *s3.ListBucketMetricsConfigurationsOutput)
+ 
++	ListBucketQuery(*s3.ListBucketQueryInput) (*s3.ListBucketQueryOutput, error)
++	ListBucketQueryWithContext(aws.Context, *s3.ListBucketQueryInput, ...request.Option) (*s3.ListBucketQueryOutput, error)
++	ListBucketQueryRequest(*s3.ListBucketQueryInput) (*request.Request, *s3.ListBucketQueryOutput)
++
+ 	ListBuckets(*s3.ListBucketsInput) (*s3.ListBucketsOutput, error)
+ 	ListBucketsWithContext(aws.Context, *s3.ListBucketsInput, ...request.Option) (*s3.ListBucketsOutput, error)
+ 	ListBucketsRequest(*s3.ListBucketsInput) (*request.Request, *s3.ListBucketsOutput)
+@@ -299,6 +315,10 @@ type S3API interface {
+ 	PutBucketInventoryConfigurationWithContext(aws.Context, *s3.PutBucketInventoryConfigurationInput, ...request.Option) (*s3.PutBucketInventoryConfigurationOutput, error)
+ 	PutBucketInventoryConfigurationRequest(*s3.PutBucketInventoryConfigurationInput) (*request.Request, *s3.PutBucketInventoryConfigurationOutput)
+ 
++	PutBucketIsStaleAllowed(*s3.PutBucketIsStaleAllowedInput) (*s3.PutBucketIsStaleAllowedOutput, error)
++	PutBucketIsStaleAllowedWithContext(aws.Context, *s3.PutBucketIsStaleAllowedInput, ...request.Option) (*s3.PutBucketIsStaleAllowedOutput, error)
++	PutBucketIsStaleAllowedRequest(*s3.PutBucketIsStaleAllowedInput) (*request.Request, *s3.PutBucketIsStaleAllowedOutput)
++
+ 	PutBucketLifecycle(*s3.PutBucketLifecycleInput) (*s3.PutBucketLifecycleOutput, error)
+ 	PutBucketLifecycleWithContext(aws.Context, *s3.PutBucketLifecycleInput, ...request.Option) (*s3.PutBucketLifecycleOutput, error)
+ 	PutBucketLifecycleRequest(*s3.PutBucketLifecycleInput) (*request.Request, *s3.PutBucketLifecycleOutput)
+--- service/s3/s3manager/upload.go
++++ service/s3/s3manager/upload.go
+@@ -135,17 +135,25 @@ type UploadInput struct {
+ 	// Allows grantee to write the ACL for the applicable object.
+ 	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
+ 
++	IfNoneMatch *string `location:"header" locationName:"If-None-Match" type:"string"`
++
+ 	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+ 
+ 	// A map of metadata to store with the object in S3.
+ 	Metadata map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
+ 
++	Range *string `location:"header" locationName:"Range" type:"string"`
++
+ 	// Confirms that the requester knows that she or he will be charged for the
+ 	// request. Bucket owners need not specify this parameter in their requests.
+ 	// Documentation on downloading objects from requester pays buckets can be found
+ 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
+ 	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+ 
++	RetentionPeriod *int64 `location:"header" locationName:"x-emc-retention-period" type:"integer"`
++
++	RetentionPolicy *string `location:"header" locationName:"x-emc-retention-policy" type:"string"`
++
+ 	// Specifies the algorithm to use to when encrypting the object (e.g., AES256,
+ 	// aws:kms).
+ 	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`

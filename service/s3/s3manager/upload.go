@@ -135,16 +135,24 @@ type UploadInput struct {
 	// Allows grantee to write the ACL for the applicable object.
 	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
 
+	IfNoneMatch *string `location:"header" locationName:"If-None-Match" type:"string"`
+
 	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
 
 	// A map of metadata to store with the object in S3.
 	Metadata map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
+
+	Range *string `location:"header" locationName:"Range" type:"string"`
 
 	// Confirms that the requester knows that she or he will be charged for the
 	// request. Bucket owners need not specify this parameter in their requests.
 	// Documentation on downloading objects from requester pays buckets can be found
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
 	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+
+	RetentionPeriod *int64 `location:"header" locationName:"x-emc-retention-period" type:"integer"`
+
+	RetentionPolicy *string `location:"header" locationName:"x-emc-retention-policy" type:"string"`
 
 	// Specifies the algorithm to use to when encrypting the object (e.g., AES256,
 	// aws:kms).

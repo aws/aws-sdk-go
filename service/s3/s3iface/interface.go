@@ -100,6 +100,10 @@ type S3API interface {
 	DeleteBucketLifecycleWithContext(aws.Context, *s3.DeleteBucketLifecycleInput, ...request.Option) (*s3.DeleteBucketLifecycleOutput, error)
 	DeleteBucketLifecycleRequest(*s3.DeleteBucketLifecycleInput) (*request.Request, *s3.DeleteBucketLifecycleOutput)
 
+	DeleteBucketMetadataSearch(*s3.DeleteBucketMetadataSearchInput) (*s3.DeleteBucketMetadataSearchOutput, error)
+	DeleteBucketMetadataSearchWithContext(aws.Context, *s3.DeleteBucketMetadataSearchInput, ...request.Option) (*s3.DeleteBucketMetadataSearchOutput, error)
+	DeleteBucketMetadataSearchRequest(*s3.DeleteBucketMetadataSearchInput) (*request.Request, *s3.DeleteBucketMetadataSearchOutput)
+
 	DeleteBucketMetricsConfiguration(*s3.DeleteBucketMetricsConfigurationInput) (*s3.DeleteBucketMetricsConfigurationOutput, error)
 	DeleteBucketMetricsConfigurationWithContext(aws.Context, *s3.DeleteBucketMetricsConfigurationInput, ...request.Option) (*s3.DeleteBucketMetricsConfigurationOutput, error)
 	DeleteBucketMetricsConfigurationRequest(*s3.DeleteBucketMetricsConfigurationInput) (*request.Request, *s3.DeleteBucketMetricsConfigurationOutput)
@@ -220,6 +224,10 @@ type S3API interface {
 	GetObjectTorrentWithContext(aws.Context, *s3.GetObjectTorrentInput, ...request.Option) (*s3.GetObjectTorrentOutput, error)
 	GetObjectTorrentRequest(*s3.GetObjectTorrentInput) (*request.Request, *s3.GetObjectTorrentOutput)
 
+	GetSystemMetdataSearchKeys(*s3.GetSystemMetdataSearchKeysInput) (*s3.GetSystemMetdataSearchKeysOutput, error)
+	GetSystemMetdataSearchKeysWithContext(aws.Context, *s3.GetSystemMetdataSearchKeysInput, ...request.Option) (*s3.GetSystemMetdataSearchKeysOutput, error)
+	GetSystemMetdataSearchKeysRequest(*s3.GetSystemMetdataSearchKeysInput) (*request.Request, *s3.GetSystemMetdataSearchKeysOutput)
+
 	HeadBucket(*s3.HeadBucketInput) (*s3.HeadBucketOutput, error)
 	HeadBucketWithContext(aws.Context, *s3.HeadBucketInput, ...request.Option) (*s3.HeadBucketOutput, error)
 	HeadBucketRequest(*s3.HeadBucketInput) (*request.Request, *s3.HeadBucketOutput)
@@ -236,9 +244,17 @@ type S3API interface {
 	ListBucketInventoryConfigurationsWithContext(aws.Context, *s3.ListBucketInventoryConfigurationsInput, ...request.Option) (*s3.ListBucketInventoryConfigurationsOutput, error)
 	ListBucketInventoryConfigurationsRequest(*s3.ListBucketInventoryConfigurationsInput) (*request.Request, *s3.ListBucketInventoryConfigurationsOutput)
 
+	ListBucketMetadataSearch(*s3.ListBucketMetadataSearchInput) (*s3.ListBucketMetadataSearchOutput, error)
+	ListBucketMetadataSearchWithContext(aws.Context, *s3.ListBucketMetadataSearchInput, ...request.Option) (*s3.ListBucketMetadataSearchOutput, error)
+	ListBucketMetadataSearchRequest(*s3.ListBucketMetadataSearchInput) (*request.Request, *s3.ListBucketMetadataSearchOutput)
+
 	ListBucketMetricsConfigurations(*s3.ListBucketMetricsConfigurationsInput) (*s3.ListBucketMetricsConfigurationsOutput, error)
 	ListBucketMetricsConfigurationsWithContext(aws.Context, *s3.ListBucketMetricsConfigurationsInput, ...request.Option) (*s3.ListBucketMetricsConfigurationsOutput, error)
 	ListBucketMetricsConfigurationsRequest(*s3.ListBucketMetricsConfigurationsInput) (*request.Request, *s3.ListBucketMetricsConfigurationsOutput)
+
+	ListBucketQuery(*s3.ListBucketQueryInput) (*s3.ListBucketQueryOutput, error)
+	ListBucketQueryWithContext(aws.Context, *s3.ListBucketQueryInput, ...request.Option) (*s3.ListBucketQueryOutput, error)
+	ListBucketQueryRequest(*s3.ListBucketQueryInput) (*request.Request, *s3.ListBucketQueryOutput)
 
 	ListBuckets(*s3.ListBucketsInput) (*s3.ListBucketsOutput, error)
 	ListBucketsWithContext(aws.Context, *s3.ListBucketsInput, ...request.Option) (*s3.ListBucketsOutput, error)
@@ -298,6 +314,10 @@ type S3API interface {
 	PutBucketInventoryConfiguration(*s3.PutBucketInventoryConfigurationInput) (*s3.PutBucketInventoryConfigurationOutput, error)
 	PutBucketInventoryConfigurationWithContext(aws.Context, *s3.PutBucketInventoryConfigurationInput, ...request.Option) (*s3.PutBucketInventoryConfigurationOutput, error)
 	PutBucketInventoryConfigurationRequest(*s3.PutBucketInventoryConfigurationInput) (*request.Request, *s3.PutBucketInventoryConfigurationOutput)
+
+	PutBucketIsStaleAllowed(*s3.PutBucketIsStaleAllowedInput) (*s3.PutBucketIsStaleAllowedOutput, error)
+	PutBucketIsStaleAllowedWithContext(aws.Context, *s3.PutBucketIsStaleAllowedInput, ...request.Option) (*s3.PutBucketIsStaleAllowedOutput, error)
+	PutBucketIsStaleAllowedRequest(*s3.PutBucketIsStaleAllowedInput) (*request.Request, *s3.PutBucketIsStaleAllowedOutput)
 
 	PutBucketLifecycle(*s3.PutBucketLifecycleInput) (*s3.PutBucketLifecycleOutput, error)
 	PutBucketLifecycleWithContext(aws.Context, *s3.PutBucketLifecycleInput, ...request.Option) (*s3.PutBucketLifecycleOutput, error)

@@ -2,7 +2,16 @@
 
 # AWS SDK for Go
 
-aws-sdk-go is the official AWS SDK for the Go programming language.
+aws-sdk-go is an extented SDK for Dell/EMC ECS based on official AWS SDK for the Go programming language.
+following files are modified to support ECS specific features (Refer ECS data access guidance for feature details)
+
+    models/apis/s3/2006-03-01/api-2.json
+    service/s3/api.go
+    service/s3/examples_test.go
+    service/s3/s3iface/interface.go
+    service/s3/s3manager/upload.go
+
+and patch file `ecs.patch` is also provided as a reference for who want to create their own ECS SDK for Go by forking/patching AWS SDK for Go.
 
 Checkout our [release notes](https://github.com/EMCECS/aws-sdk-go/releases) for information about the latest bug fixes, updates, and features added to the SDK.
 
