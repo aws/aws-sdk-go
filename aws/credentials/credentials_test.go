@@ -1,6 +1,7 @@
 package credentials
 
 import (
+	"os"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
@@ -70,4 +71,32 @@ func TestCredentialsGetWithProviderName(t *testing.T) {
 	creds, err := c.Get()
 	assert.Nil(t, err, "Expected no error")
 	assert.Equal(t, creds.ProviderName, "stubProvider", "Expected provider name to match")
+}
+
+func TestRetrieve(t *testing.T) {
+	assert := assert.New(t)
+	e := EnvProvider{}
+
+	// No envs set
+	_, err := e.Retrieve()
+	assert.Equal(ErrAccessKeyIDNotFound, err)
+
+	// Setting the access key only
+	defer func(v string) { os.Setenv("AWS_ACCESS_KEY", v) }(os.Getenv("AWS_ACCESS_KEY"))
+	os.Setenv("AWS_ACCESS_KEY", "1")
+
+	_, err = e.Retrieve()
+	assert.Equal(ErrSecretAccessKeyNotFound, err)
+
+	// Setting all of them
+	defer func(v string) { os.Setenv("AWS_SECRET_KEY", v) }(os.Getenv("AWS_SECURITY_TOKEN"))
+	os.Setenv("AWS_SECRET_KEY", "2")
+	defer func(v string) { os.Setenv("AWS_SECURITY_TOKEN", v) }(os.Getenv("AWS_SECURITY_TOKEN"))
+	os.Setenv("AWS_SECURITY_TOKEN", "3")
+	v, err := e.Retrieve()
+	assert.NoError(err)
+
+	assert.Equal("1", v.AccessKeyID)
+	assert.Equal("2", v.SecretAccessKey)
+	assert.Equal("3", v.SessionToken)
 }

@@ -49,26 +49,30 @@ func (e *EnvProvider) Retrieve() (Value, error) {
 	if id == "" {
 		id = os.Getenv("AWS_ACCESS_KEY")
 	}
+	if id == "" {
+		return Value{ProviderName: EnvProviderName}, ErrAccessKeyIDNotFound
+	}
 
 	secret := os.Getenv("AWS_SECRET_ACCESS_KEY")
 	if secret == "" {
 		secret = os.Getenv("AWS_SECRET_KEY")
 	}
-
-	if id == "" {
-		return Value{ProviderName: EnvProviderName}, ErrAccessKeyIDNotFound
-	}
-
 	if secret == "" {
 		return Value{ProviderName: EnvProviderName}, ErrSecretAccessKeyNotFound
+	}
+
+	sessionToken := os.Getenv("AWS_SESSION_TOKEN")
+	if sessionToken == "" {
+		// AWS_SECURITY_TOKEN is deprecated. Keeping it here for backwards compatibility
+		sessionToken = os.Getenv("AWS_SECURITY_TOKEN")
 	}
 
 	e.retrieved = true
 	return Value{
 		AccessKeyID:     id,
 		SecretAccessKey: secret,
-		SessionToken:    os.Getenv("AWS_SESSION_TOKEN"),
 		ProviderName:    EnvProviderName,
+		SessionToken:    sessionToken,
 	}, nil
 }
 
