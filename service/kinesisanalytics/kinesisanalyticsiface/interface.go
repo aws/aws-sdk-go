@@ -9,9 +9,9 @@
 package kinesisanalyticsiface
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/service/kinesisanalytics"
+	"github.com/EMCECS/aws-sdk-go/aws"
+	"github.com/EMCECS/aws-sdk-go/aws/request"
+	"github.com/EMCECS/aws-sdk-go/service/kinesisanalytics"
 )
 
 // KinesisAnalyticsAPI provides an interface to enable mocking the

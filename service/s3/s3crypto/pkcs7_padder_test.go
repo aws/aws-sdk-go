@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/aws/aws-sdk-go/service/s3/s3crypto"
+	"github.com/EMCECS/aws-sdk-go/service/s3/s3crypto"
 )
 
 func padTest(size int, t *testing.T) {

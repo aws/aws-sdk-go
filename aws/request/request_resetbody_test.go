@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/EMCECS/aws-sdk-go/aws"
 )
 
 func TestResetBody_WithBodyContents(t *testing.T) {

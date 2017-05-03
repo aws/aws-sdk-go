@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/aws/aws-sdk-go/aws/credentials"
+	"github.com/EMCECS/aws-sdk-go/aws/credentials"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -13,14 +13,14 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/awstesting"
-	"github.com/aws/aws-sdk-go/awstesting/unit"
-	"github.com/aws/aws-sdk-go/service/s3"
-	"github.com/aws/aws-sdk-go/service/s3/s3manager"
+	"github.com/EMCECS/aws-sdk-go/aws"
+	"github.com/EMCECS/aws-sdk-go/aws/awserr"
+	"github.com/EMCECS/aws-sdk-go/aws/awsutil"
+	"github.com/EMCECS/aws-sdk-go/aws/request"
+	"github.com/EMCECS/aws-sdk-go/awstesting"
+	"github.com/EMCECS/aws-sdk-go/awstesting/unit"
+	"github.com/EMCECS/aws-sdk-go/service/s3"
+	"github.com/EMCECS/aws-sdk-go/service/s3/s3manager"
 	"github.com/stretchr/testify/assert"
 )
 

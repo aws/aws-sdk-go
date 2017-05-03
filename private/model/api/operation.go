@@ -46,7 +46,7 @@ func (o *Operation) HasOutput() bool {
 
 func (o *Operation) GetSigner() string {
 	if o.AuthType == "v4-unsigned-body" {
-		o.API.imports["github.com/aws/aws-sdk-go/aws/signer/v4"] = true
+		o.API.imports["github.com/EMCECS/aws-sdk-go/aws/signer/v4"] = true
 	}
 
 	buf := bytes.NewBuffer(nil)
@@ -309,7 +309,7 @@ func (o *Operation) Example() string {
 func (o *Operation) ExampleInput() string {
 	if len(o.InputRef.Shape.MemberRefs) == 0 {
 		if strings.Contains(o.InputRef.GoTypeElem(), ".") {
-			o.imports["github.com/aws/aws-sdk-go/service/"+strings.Split(o.InputRef.GoTypeElem(), ".")[0]] = true
+			o.imports["github.com/EMCECS/aws-sdk-go/service/"+strings.Split(o.InputRef.GoTypeElem(), ".")[0]] = true
 			return fmt.Sprintf("var params *%s", o.InputRef.GoTypeElem())
 		}
 		return fmt.Sprintf("var params *%s.%s",

@@ -4,8 +4,8 @@
 package waf
 
 import (
-	"github.com/aws/aws-sdk-go/awstesting/integration/smoke"
-	"github.com/aws/aws-sdk-go/service/waf"
+	"github.com/EMCECS/aws-sdk-go/awstesting/integration/smoke"
+	"github.com/EMCECS/aws-sdk-go/service/waf"
 	"github.com/gucumber/gucumber"
 )
 

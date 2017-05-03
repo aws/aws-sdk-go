@@ -4,8 +4,8 @@
 package ssm
 
 import (
-	"github.com/aws/aws-sdk-go/awstesting/integration/smoke"
-	"github.com/aws/aws-sdk-go/service/ssm"
+	"github.com/EMCECS/aws-sdk-go/awstesting/integration/smoke"
+	"github.com/EMCECS/aws-sdk-go/service/ssm"
 	"github.com/gucumber/gucumber"
 )
 

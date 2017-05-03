@@ -1,5 +1,5 @@
 {
-	"ImportPath": "github.com/aws/aws-sdk-go/awsmigrate/awsmigrate-renamer",
+	"ImportPath": "github.com/EMCECS/aws-sdk-go/awsmigrate/awsmigrate-renamer",
 	"GoVersion": "go1.6",
 	"GodepVersion": "v60",
 	"Deps": [

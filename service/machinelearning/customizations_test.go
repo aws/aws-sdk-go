@@ -8,10 +8,10 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/awstesting/unit"
-	"github.com/aws/aws-sdk-go/service/machinelearning"
+	"github.com/EMCECS/aws-sdk-go/aws"
+	"github.com/EMCECS/aws-sdk-go/aws/request"
+	"github.com/EMCECS/aws-sdk-go/awstesting/unit"
+	"github.com/EMCECS/aws-sdk-go/service/machinelearning"
 )
 
 func TestPredictEndpoint(t *testing.T) {

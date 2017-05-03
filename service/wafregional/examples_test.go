@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/service/waf"
-	"github.com/aws/aws-sdk-go/service/wafregional"
+	"github.com/EMCECS/aws-sdk-go/aws"
+	"github.com/EMCECS/aws-sdk-go/aws/session"
+	"github.com/EMCECS/aws-sdk-go/service/waf"
+	"github.com/EMCECS/aws-sdk-go/service/wafregional"
 )
 
 var _ time.Duration

@@ -7,11 +7,11 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/private/protocol"
-	"github.com/aws/aws-sdk-go/private/protocol/ec2query"
+	"github.com/EMCECS/aws-sdk-go/aws"
+	"github.com/EMCECS/aws-sdk-go/aws/awsutil"
+	"github.com/EMCECS/aws-sdk-go/aws/request"
+	"github.com/EMCECS/aws-sdk-go/private/protocol"
+	"github.com/EMCECS/aws-sdk-go/private/protocol/ec2query"
 )
 
 const opAcceptReservedInstancesExchangeQuote = "AcceptReservedInstancesExchangeQuote"
@@ -2920,7 +2920,7 @@ func (c *EC2) CreateFpgaImageRequest(input *CreateFpgaImageInput) (req *request.
 //
 // An AFI contains the FPGA bitstream that is ready to download to an FPGA.
 // You can securely deploy an AFI on one or more FPGA-accelerated instances.
-// For more information, see the AWS FPGA Hardware Development Kit (https://github.com/aws/aws-fpga/).
+// For more information, see the AWS FPGA Hardware Development Kit (https://github.com/EMCECS/aws-fpga/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about

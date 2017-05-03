@@ -1,12 +1,12 @@
 package s3manager
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/client"
-	"github.com/aws/aws-sdk-go/aws/credentials"
-	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/service/s3"
-	"github.com/aws/aws-sdk-go/service/s3/s3iface"
+	"github.com/EMCECS/aws-sdk-go/aws"
+	"github.com/EMCECS/aws-sdk-go/aws/client"
+	"github.com/EMCECS/aws-sdk-go/aws/credentials"
+	"github.com/EMCECS/aws-sdk-go/aws/request"
+	"github.com/EMCECS/aws-sdk-go/service/s3"
+	"github.com/EMCECS/aws-sdk-go/service/s3/s3iface"
 )
 
 // GetBucketRegion will attempt to get the region for a bucket using the

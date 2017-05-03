@@ -10,7 +10,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/aws/aws-sdk-go/awsmigrate/awsmigrate-renamer/rename"
+	"github.com/EMCECS/aws-sdk-go/awsmigrate/awsmigrate-renamer/rename"
 )
 
 var safeTag = "4e554f77f00d527b452c68a46f2e68595284121b"

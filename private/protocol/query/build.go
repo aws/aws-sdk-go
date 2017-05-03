@@ -6,9 +6,9 @@ package query
 import (
 	"net/url"
 
-	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/private/protocol/query/queryutil"
+	"github.com/EMCECS/aws-sdk-go/aws/awserr"
+	"github.com/EMCECS/aws-sdk-go/aws/request"
+	"github.com/EMCECS/aws-sdk-go/private/protocol/query/queryutil"
 )
 
 // BuildHandler is a named request handler for building query protocol requests

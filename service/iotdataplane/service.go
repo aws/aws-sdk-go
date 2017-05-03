@@ -3,12 +3,12 @@
 package iotdataplane
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/client"
-	"github.com/aws/aws-sdk-go/aws/client/metadata"
-	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/aws/signer/v4"
-	"github.com/aws/aws-sdk-go/private/protocol/restjson"
+	"github.com/EMCECS/aws-sdk-go/aws"
+	"github.com/EMCECS/aws-sdk-go/aws/client"
+	"github.com/EMCECS/aws-sdk-go/aws/client/metadata"
+	"github.com/EMCECS/aws-sdk-go/aws/request"
+	"github.com/EMCECS/aws-sdk-go/aws/signer/v4"
+	"github.com/EMCECS/aws-sdk-go/private/protocol/restjson"
 )
 
 // AWS IoT-Data enables secure, bi-directional communication between Internet-connected

@@ -160,7 +160,7 @@ func mergeServicesCustomizations(a *API) {
 
 	for n := range a.Shapes {
 		if _, ok := serviceAPI.Shapes[n]; ok {
-			a.Shapes[n].resolvePkg = "github.com/aws/aws-sdk-go/service/" + info.dstName
+			a.Shapes[n].resolvePkg = "github.com/EMCECS/aws-sdk-go/service/" + info.dstName
 		}
 	}
 }

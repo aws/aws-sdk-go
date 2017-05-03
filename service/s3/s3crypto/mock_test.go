@@ -5,7 +5,7 @@ import (
 	"io"
 	"io/ioutil"
 
-	"github.com/aws/aws-sdk-go/service/s3/s3crypto"
+	"github.com/EMCECS/aws-sdk-go/service/s3/s3crypto"
 )
 
 type mockGenerator struct {

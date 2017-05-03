@@ -7,7 +7,7 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/aws/aws-sdk-go/private/util"
+	"github.com/EMCECS/aws-sdk-go/private/util"
 )
 
 // A paramFiller provides string formatting for a shape and its types.

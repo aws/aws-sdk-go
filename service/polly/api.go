@@ -7,9 +7,9 @@ import (
 	"io"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/EMCECS/aws-sdk-go/aws"
+	"github.com/EMCECS/aws-sdk-go/aws/awsutil"
+	"github.com/EMCECS/aws-sdk-go/aws/request"
 )
 
 const opDeleteLexicon = "DeleteLexicon"

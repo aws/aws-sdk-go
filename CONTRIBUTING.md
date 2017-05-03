@@ -119,9 +119,9 @@ You can see all release changes in the `CHANGELOG.md` file at the root of the
 repository. The release notes added to this file will contain service client
 updates, and major SDK changes.
 
-[issues]: https://github.com/aws/aws-sdk-go/issues
-[pr]: https://github.com/aws/aws-sdk-go/pulls
+[issues]: https://github.com/EMCECS/aws-sdk-go/issues
+[pr]: https://github.com/EMCECS/aws-sdk-go/pulls
 [license]: http://aws.amazon.com/apache2.0/
 [cla]: http://en.wikipedia.org/wiki/Contributor_License_Agreement
-[releasenotes]: https://github.com/aws/aws-sdk-go/releases
+[releasenotes]: https://github.com/EMCECS/aws-sdk-go/releases
 

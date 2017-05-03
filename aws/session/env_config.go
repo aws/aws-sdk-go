@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"strconv"
 
-	"github.com/aws/aws-sdk-go/aws/credentials"
+	"github.com/EMCECS/aws-sdk-go/aws/credentials"
 )
 
 // envConfig is a collection of environment values the SDK will read

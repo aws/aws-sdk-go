@@ -2,9 +2,9 @@
 package unit
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/credentials"
-	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/EMCECS/aws-sdk-go/aws"
+	"github.com/EMCECS/aws-sdk-go/aws/credentials"
+	"github.com/EMCECS/aws-sdk-go/aws/session"
 )
 
 // Session is a shared session for unit tests to use.

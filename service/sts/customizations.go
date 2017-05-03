@@ -1,6 +1,6 @@
 package sts
 
-import "github.com/aws/aws-sdk-go/aws/request"
+import "github.com/EMCECS/aws-sdk-go/aws/request"
 
 func init() {
 	initRequest = func(r *request.Request) {

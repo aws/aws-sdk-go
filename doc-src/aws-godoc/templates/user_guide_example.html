@@ -11,11 +11,11 @@
 			<p>
 				If you are using Go 1.5 with the GO15VENDOREXPERIMENT=1 vendoring flag you can use the following to get the SDK as the SDK's runtime dependencies are vendored in the vendor folder.
 			</p>
-			<pre class="bash"> $ go get -u github.com/aws/aws-sdk-go </pre>
+			<pre class="bash"> $ go get -u github.com/EMCECS/aws-sdk-go </pre>
 			<p>
 				Otherwise you'll need to tell Go to get the SDK and all of its dependencies.
 			</p>
-			<pre> $ go get -u github.com/aws/aws-sdk-go/...  </pre>
+			<pre> $ go get -u github.com/EMCECS/aws-sdk-go/...  </pre>
 			<h3> Configuring Credentials </h3>
 			<p>
 				Before using the SDK, ensure that you've configured credentials. The best way to configure credentials on a development machine is to use the ~/.aws/credentials file, which might look like:
@@ -50,9 +50,9 @@
 				import (
 						"fmt"
 
-						"github.com/aws/aws-sdk-go/aws"
-						"github.com/aws/aws-sdk-go/aws/session"
-						"github.com/aws/aws-sdk-go/service/ec2"
+						"github.com/EMCECS/aws-sdk-go/aws"
+						"github.com/EMCECS/aws-sdk-go/aws/session"
+						"github.com/EMCECS/aws-sdk-go/service/ec2"
 				)
 
 				func main() {

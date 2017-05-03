@@ -4,8 +4,8 @@
 package lambda
 
 import (
-	"github.com/aws/aws-sdk-go/awstesting/integration/smoke"
-	"github.com/aws/aws-sdk-go/service/lambda"
+	"github.com/EMCECS/aws-sdk-go/awstesting/integration/smoke"
+	"github.com/EMCECS/aws-sdk-go/service/lambda"
 	"github.com/gucumber/gucumber"
 )
 

@@ -2,8 +2,8 @@
 	"PkgHandler": {
 		"Pattern":          "/sdk-for-go/api/",
 		"StripPrefix":     "/sdk-for-go/api",
-		"Include":         ["/src/github.com/aws/aws-sdk-go/aws", "/src/github.com/aws/aws-sdk-go/service"],
-		"Exclude":         ["/src/cmd", "/src/github.com/aws/aws-sdk-go/awstesting", "/src/github.com/aws/aws-sdk-go/awsmigrate"],
+		"Include":         ["/src/github.com/EMCECS/aws-sdk-go/aws", "/src/github.com/EMCECS/aws-sdk-go/service"],
+		"Exclude":         ["/src/cmd", "/src/github.com/EMCECS/aws-sdk-go/awstesting", "/src/github.com/EMCECS/aws-sdk-go/awsmigrate"],
 		"IgnoredSuffixes": ["iface"]
 	},
 	"Github": {

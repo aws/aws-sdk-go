@@ -4,8 +4,8 @@
 package elasticache
 
 import (
-	"github.com/aws/aws-sdk-go/awstesting/integration/smoke"
-	"github.com/aws/aws-sdk-go/service/elasticache"
+	"github.com/EMCECS/aws-sdk-go/awstesting/integration/smoke"
+	"github.com/EMCECS/aws-sdk-go/service/elasticache"
 	"github.com/gucumber/gucumber"
 )
 

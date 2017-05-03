@@ -1,29 +1,29 @@
-[![API Reference](http://img.shields.io/badge/api-reference-blue.svg)](http://docs.aws.amazon.com/sdk-for-go/api) [![Join the chat at https://gitter.im/aws/aws-sdk-go](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/aws/aws-sdk-go?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://img.shields.io/travis/aws/aws-sdk-go.svg)](https://travis-ci.org/aws/aws-sdk-go) [![Apache V2 License](http://img.shields.io/badge/license-Apache%20V2-blue.svg)](https://github.com/aws/aws-sdk-go/blob/master/LICENSE.txt)
+[![API Reference](http://img.shields.io/badge/api-reference-blue.svg)](http://docs.aws.amazon.com/sdk-for-go/api) [![Join the chat at https://gitter.im/aws/aws-sdk-go](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/aws/aws-sdk-go?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://img.shields.io/travis/aws/aws-sdk-go.svg)](https://travis-ci.org/aws/aws-sdk-go) [![Apache V2 License](http://img.shields.io/badge/license-Apache%20V2-blue.svg)](https://github.com/EMCECS/aws-sdk-go/blob/master/LICENSE.txt)
 
 # AWS SDK for Go
 
 aws-sdk-go is the official AWS SDK for the Go programming language.
 
-Checkout our [release notes](https://github.com/aws/aws-sdk-go/releases) for information about the latest bug fixes, updates, and features added to the SDK.
+Checkout our [release notes](https://github.com/EMCECS/aws-sdk-go/releases) for information about the latest bug fixes, updates, and features added to the SDK.
 
 ## Installing
 
 If you are using Go 1.5 with the `GO15VENDOREXPERIMENT=1` vendoring flag, or 1.6 and higher you can use the following command to retrieve the SDK. The SDK's non-testing dependencies will be included and are vendored in the `vendor` folder.
 
-    go get -u github.com/aws/aws-sdk-go
+    go get -u github.com/EMCECS/aws-sdk-go
 
 Otherwise if your Go environment does not have vendoring support enabled, or you do not want to include the vendored SDK's dependencies you can use the following command to retrieve the SDK and its non-testing dependencies using `go get`.
 
-    go get -u github.com/aws/aws-sdk-go/aws/...
-    go get -u github.com/aws/aws-sdk-go/service/...
+    go get -u github.com/EMCECS/aws-sdk-go/aws/...
+    go get -u github.com/EMCECS/aws-sdk-go/service/...
 
 If you're looking to retrieve just the SDK without any dependencies use the following command.
 
-    go get -d github.com/aws/aws-sdk-go/
+    go get -d github.com/EMCECS/aws-sdk-go/
 
 These two processes will still include the `vendor` folder and it should be deleted if its not going to be used by your environment.
 
-    rm -rf $GOPATH/src/github.com/aws/aws-sdk-go/vendor
+    rm -rf $GOPATH/src/github.com/EMCECS/aws-sdk-go/vendor
 
 ## Getting Help
 
@@ -32,13 +32,13 @@ Please use these community resources for getting help. We use the GitHub issues 
 * Ask a question on [StackOverflow](http://stackoverflow.com/) and tag it with the [`aws-sdk-go`](http://stackoverflow.com/questions/tagged/aws-sdk-go) tag.
 * Come join the AWS SDK for Go community chat on [gitter](https://gitter.im/aws/aws-sdk-go).
 * Open a support ticket with [AWS Support](http://docs.aws.amazon.com/awssupport/latest/user/getting-started.html).
-* If you think you may of found a bug, please open an [issue](https://github.com/aws/aws-sdk-go/issues/new).
+* If you think you may of found a bug, please open an [issue](https://github.com/EMCECS/aws-sdk-go/issues/new).
 
 ## Opening Issues
 
-If you encounter a bug with the AWS SDK for Go we would like to hear about it. Search the [existing issues](https://github.com/aws/aws-sdk-go/issues) and see if others are also experiencing the issue before opening a new issue. Please include the version of AWS SDK for Go, Go language, and OS you’re using. Please also include repro case when appropriate.
+If you encounter a bug with the AWS SDK for Go we would like to hear about it. Search the [existing issues](https://github.com/EMCECS/aws-sdk-go/issues) and see if others are also experiencing the issue before opening a new issue. Please include the version of AWS SDK for Go, Go language, and OS you’re using. Please also include repro case when appropriate.
 
-The GitHub issues are intended for bug reports and feature requests. For help and questions with using AWS SDK for GO please make use of the resources listed in the [Getting Help](https://github.com/aws/aws-sdk-go#getting-help) section. Keeping the list of open issues lean will help us respond in a timely manner.
+The GitHub issues are intended for bug reports and feature requests. For help and questions with using AWS SDK for GO please make use of the resources listed in the [Getting Help](https://github.com/EMCECS/aws-sdk-go#getting-help) section. Keeping the list of open issues lean will help us respond in a timely manner.
 
 ## Reference Documentation
 
@@ -48,7 +48,7 @@ The GitHub issues are intended for bug reports and feature requests. For help an
 
 [`Service Developer Guide`](https://aws.amazon.com/documentation/) - Use this documentation to learn how to interface with an AWS service. These are great guides both, if you're getting started with a service, or looking for more information on a service. You should not need this document for coding, though in some cases, services may supply helpful samples that you might want to look out for.
 
-[`SDK Examples`](https://github.com/aws/aws-sdk-go/tree/master/example) - Included in the SDK's repo are a several hand crafted examples using the SDK features and AWS services.
+[`SDK Examples`](https://github.com/EMCECS/aws-sdk-go/tree/master/example) - Included in the SDK's repo are a several hand crafted examples using the SDK features and AWS services.
 
 ## Configuring Credentials
 
@@ -73,7 +73,7 @@ AWS_SECRET_ACCESS_KEY=MY-SECRET-KEY
 ```
 
 ### AWS shared config file (`~/.aws/config`)
-The AWS SDK for Go added support the shared config file in release [v1.3.0](https://github.com/aws/aws-sdk-go/releases/tag/v1.3.0). You can opt into enabling support for the shared config by setting the environment variable `AWS_SDK_LOAD_CONFIG` to a truthy value. See the [Session](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/sessions.html) docs for more information about this feature.
+The AWS SDK for Go added support the shared config file in release [v1.3.0](https://github.com/EMCECS/aws-sdk-go/releases/tag/v1.3.0). You can opt into enabling support for the shared config by setting the environment variable `AWS_SDK_LOAD_CONFIG` to a truthy value. See the [Session](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/sessions.html) docs for more information about this feature.
 
 ## Using the Go SDK
 
@@ -93,11 +93,11 @@ import (
 	"os"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/service/s3"
+	"github.com/EMCECS/aws-sdk-go/aws"
+	"github.com/EMCECS/aws-sdk-go/aws/awserr"
+	"github.com/EMCECS/aws-sdk-go/aws/request"
+	"github.com/EMCECS/aws-sdk-go/aws/session"
+	"github.com/EMCECS/aws-sdk-go/service/s3"
 )
 
 // Uploads a file to S3 given a bucket and object key. Also takes a duration

@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/EMCECS/aws-sdk-go/private/protocol"
 	"github.com/stretchr/testify/assert"
 )
 
