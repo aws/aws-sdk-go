@@ -1,3 +1,14 @@
+Release v1.8.20 (2017-05-04)
+===
+
+### Service Client Updates
+* `service/ecs`: Updates service API, documentation, and paginators
+  * Exposes container instance registration time in ECS:DescribeContainerInstances.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/marketplaceentitlementservice`: Adds new service
+* `service/lambda`: Updates service API and documentation
+  * Support for UpdateFunctionCode DryRun option
+
 Release v1.8.19 (2017-04-28)
 ===
 
