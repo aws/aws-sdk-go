@@ -67,6 +67,14 @@ var converterScalarInputs = []converterTestInput{
 		expected: &dynamodb.AttributeValue{N: aws.String("12")},
 	},
 	{
+		input:    []*int64{aws.Int64(12), aws.Int64(24)},
+		expected: &dynamodb.AttributeValue{NS: []*string{aws.String("12"), aws.String("24")}},
+	},
+	{
+		input:    []*string{aws.String("some string"), aws.String("some string 2")},
+		expected: &dynamodb.AttributeValue{SS: []*string{aws.String("some string"), aws.String("some string 2")}},
+	},
+	{
 		input: mySimpleStruct{},
 		expected: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
