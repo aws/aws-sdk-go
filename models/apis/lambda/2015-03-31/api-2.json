@@ -755,7 +755,6 @@
     },
     "EnvironmentVariableValue":{
       "type":"string",
-      "pattern":"[^,]*",
       "sensitive":true
     },
     "EnvironmentVariables":{
@@ -1596,7 +1595,8 @@
         "S3Bucket":{"shape":"S3Bucket"},
         "S3Key":{"shape":"S3Key"},
         "S3ObjectVersion":{"shape":"S3ObjectVersion"},
-        "Publish":{"shape":"Boolean"}
+        "Publish":{"shape":"Boolean"},
+        "DryRun":{"shape":"Boolean"}
       }
     },
     "UpdateFunctionConfigurationRequest":{

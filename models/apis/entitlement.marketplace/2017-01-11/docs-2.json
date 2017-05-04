@@ -1,0 +1,131 @@
+{
+  "version": "2.0",
+  "service": null,
+  "operations": {
+    "GetEntitlements": null
+  },
+  "shapes": {
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "EntitlementValue$BooleanValue": null
+      }
+    },
+    "Double": {
+      "base": null,
+      "refs": {
+        "EntitlementValue$DoubleValue": null
+      }
+    },
+    "Entitlement": {
+      "base": null,
+      "refs": {
+        "EntitlementList$member": null
+      }
+    },
+    "EntitlementList": {
+      "base": null,
+      "refs": {
+        "GetEntitlementsResult$Entitlements": null
+      }
+    },
+    "EntitlementValue": {
+      "base": null,
+      "refs": {
+        "Entitlement$Value": null
+      }
+    },
+    "ErrorMessage": {
+      "base": null,
+      "refs": {
+        "InternalServiceErrorException$message": null,
+        "InvalidParameterException$message": null,
+        "ThrottlingException$message": null
+      }
+    },
+    "FilterValue": {
+      "base": null,
+      "refs": {
+        "FilterValueList$member": null
+      }
+    },
+    "FilterValueList": {
+      "base": null,
+      "refs": {
+        "GetEntitlementFilters$value": null
+      }
+    },
+    "GetEntitlementFilterName": {
+      "base": null,
+      "refs": {
+        "GetEntitlementFilters$key": null
+      }
+    },
+    "GetEntitlementFilters": {
+      "base": null,
+      "refs": {
+        "GetEntitlementsRequest$Filter": null
+      }
+    },
+    "GetEntitlementsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEntitlementsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Integer": {
+      "base": null,
+      "refs": {
+        "EntitlementValue$IntegerValue": null,
+        "GetEntitlementsRequest$MaxResults": null
+      }
+    },
+    "InternalServiceErrorException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "InvalidParameterException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "NonEmptyString": {
+      "base": null,
+      "refs": {
+        "Entitlement$Dimension": null,
+        "Entitlement$CustomerIdentifier": null,
+        "GetEntitlementsRequest$NextToken": null,
+        "GetEntitlementsResult$NextToken": null
+      }
+    },
+    "ProductCode": {
+      "base": null,
+      "refs": {
+        "Entitlement$ProductCode": null,
+        "GetEntitlementsRequest$ProductCode": null
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "EntitlementValue$StringValue": null
+      }
+    },
+    "ThrottlingException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Timestamp": {
+      "base": null,
+      "refs": {
+        "Entitlement$ExpirationDate": null
+      }
+    }
+  }
+}
