@@ -660,6 +660,7 @@ func ExampleLambda_UpdateFunctionCode() {
 
 	params := &lambda.UpdateFunctionCodeInput{
 		FunctionName:    aws.String("FunctionName"), // Required
+		DryRun:          aws.Bool(true),
 		Publish:         aws.Bool(true),
 		S3Bucket:        aws.String("S3Bucket"),
 		S3Key:           aws.String("S3Key"),
