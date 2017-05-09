@@ -1,3 +1,12 @@
+Release v1.8.21 (2017-05-09)
+===
+
+### Service Client Updates
+* `service/codestar`: Updates service documentation
+  * Updated documentation for AWS CodeStar.
+* `service/workspaces`: Updates service API, documentation, and paginators
+  * Doc-only Update for WorkSpaces
+
 Release v1.8.20 (2017-05-04)
 ===
 
