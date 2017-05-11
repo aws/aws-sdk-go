@@ -106,6 +106,18 @@ var SendHandler = request.NamedHandler{
 			sender = sendWithoutFollowRedirects
 		}
 
+		if request.NoBody == r.HTTPRequest.Body {
+			// Strip off the request body if the NoBody reader was used as a
+			// place holder for a request body. This prevents the SDK from
+			// making requests with a request body when it would be invalid
+			// to do so.
+			var origBody io.ReadCloser
+			origBody, r.HTTPRequest.Body = r.HTTPRequest.Body, nil
+			defer func() {
+				r.HTTPRequest.Body = origBody
+			}()
+		}
+
 		var err error
 		r.HTTPResponse, err = sender(r)
 		if err != nil {
