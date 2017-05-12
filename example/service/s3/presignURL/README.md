@@ -32,7 +32,7 @@ moving onto the client.
 
 
 ```sh
-go run -tags example server.go -b mybucket
+go run -tags example server/server.go -b mybucket
 > Starting Server On: 127.0.0.1:8080
 ```
 
@@ -48,7 +48,7 @@ well to write the object to. If no flag is provided the object will be written
 to `stdout`
 
 ```sh
-go run -tags example client.go -get "my-object/key" -f outputfilename
+go run -tags example client/client.go -get "my-object/key" -f outputfilename
 ```
 
 Use the `--help` flag to see a list of additional configuration flags, and their
@@ -94,7 +94,7 @@ or stdin if no filename is provided to S3 using a presigned URL provided by the
 service
 
 ```sh
-go run -tags example client.go -put "my-object/key" -f filename
+go run -tags example client/client.go -put "my-object/key" -f filename
 ```
 
 Like the download case this will make a HTTP request to the server for the 
