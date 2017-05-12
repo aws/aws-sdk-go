@@ -111,10 +111,14 @@ var SendHandler = request.NamedHandler{
 			// place holder for a request body. This prevents the SDK from
 			// making requests with a request body when it would be invalid
 			// to do so.
-			var origBody io.ReadCloser
-			origBody, r.HTTPRequest.Body = r.HTTPRequest.Body, nil
+			//
+			// Use a shallow copy of the http.Request to ensure the race condition
+			// of transport on Body will not trigger
+			reqOrig, reqCopy := r.HTTPRequest, *r.HTTPRequest
+			reqCopy.Body = nil
+			r.HTTPRequest = &reqCopy
 			defer func() {
-				r.HTTPRequest.Body = origBody
+				r.HTTPRequest = reqOrig
 			}()
 		}
 
