@@ -2,8 +2,8 @@
 
 package request
 
-import "net/http"
+import "io"
 
-// Is a http.NoBody reader instructing Go HTTP client to not include
+// Is a nil instructing Go HTTP client to not include
 // and body in the HTTP request.
-var noBodyReader = http.NoBody
+var noBodyReader io.ReadCloser

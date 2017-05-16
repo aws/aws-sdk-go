@@ -18,7 +18,7 @@ func TestResetBody_WithEmptyBody(t *testing.T) {
 
 	r.ResetBody()
 
-	if a, e := r.HTTPRequest.Body, http.NoBody; a != e {
+	if a := r.HTTPRequest.Body; a != nil {
 		t.Errorf("expected request body to be set to reader, got %#v",
 			r.HTTPRequest.Body)
 	}
