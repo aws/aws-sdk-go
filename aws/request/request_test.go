@@ -760,3 +760,21 @@ func (reader *errReader) Read(b []byte) (int, error) {
 func (reader *errReader) Close() error {
 	return nil
 }
+
+func TestIsNoBodyReader(t *testing.T) {
+	cases := []struct {
+		reader io.ReadCloser
+		expect bool
+	}{
+		{ioutil.NopCloser(bytes.NewReader([]byte("abc"))), false},
+		{ioutil.NopCloser(bytes.NewReader(nil)), false},
+		{nil, false},
+		{request.NoBody, true},
+	}
+
+	for i, c := range cases {
+		if e, a := c.expect, request.NoBody == c.reader; e != a {
+			t.Errorf("%d, expect %t match, but was %t", i, e, a)
+		}
+	}
+}
