@@ -1,3 +1,16 @@
+Release v1.8.25 (2017-05-17)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service documentation, paginators, and examples
+  * Various Auto Scaling documentation updates
+* `service/cloudwatchevents`: Updates service documentation
+  * Various CloudWatch Events documentation updates.
+* `service/cloudwatchlogs`: Updates service documentation and paginators
+  * Various CloudWatch Logs documentation updates.
+* `service/polly`: Updates service API
+  * Amazon Polly adds new German voice "Vicki"
+
 Release v1.8.24 (2017-05-16)
 ===
 
