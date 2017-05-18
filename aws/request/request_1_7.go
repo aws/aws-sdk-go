@@ -30,5 +30,5 @@ func (r *Request) ResetBody() {
 		return
 	}
 
-	r.HTTPRequest.Body = Body
+	r.HTTPRequest.Body = body
 }
