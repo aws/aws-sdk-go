@@ -1,3 +1,16 @@
+Release v1.8.26 (2017-05-18)
+===
+
+### Service Client Updates
+* `service/athena`: Adds new service
+  * This release adds support for Amazon Athena. Amazon Athena is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL. Athena is serverless, so there is no infrastructure to manage, and you pay only for the queries that you run.
+* `service/lightsail`: Updates service API, documentation, and paginators
+  * This release adds new APIs that make it easier to set network port configurations on Lightsail instances. Developers can now make a single request to both open and close public ports on an instance using the PutInstancePublicPorts operation.
+
+### SDK Bugs
+* `aws/request`: Fix logging from reporting wrong retry request errors #1281
+  * Fixes the SDK's retry request logging to report the the actual error that occurred, not a stubbed Unknown error message.
+  * Fixes the SDK's response logger to not output the response log multiple times per retry.
 Release v1.8.25 (2017-05-17)
 ===
 
