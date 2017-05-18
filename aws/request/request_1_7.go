@@ -19,3 +19,16 @@ func (noBody) WriteTo(io.Writer) (int64, error) { return 0, nil }
 // NoBody is an empty reader that will trigger the Go HTTP client to not include
 // and body in the HTTP request.
 var NoBody = noBody{}
+
+// ResetBody rewinds the request body back to its starting position, and
+// set's the HTTP Request body reference. When the body is read prior
+// to being sent in the HTTP request it will need to be rewound.
+func (r *Request) ResetBody() {
+	body, err := r.getNextRequestBody()
+	if err != nil {
+		r.Error = err
+		return
+	}
+
+	r.HTTPRequest.Body = Body
+}
