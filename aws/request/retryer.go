@@ -40,6 +40,7 @@ var throttleCodes = map[string]struct{}{
 	"RequestThrottled":                       {},
 	"TooManyRequestsException":               {}, // Lambda functions
 	"PriorRequestNotComplete":                {}, // Route53
+	"SnapshotCreationPerVolumeRateExceeded":  {}, // EBS volume snapshots
 }
 
 // credsExpiredCodes is a collection of error codes which signify the credentials
