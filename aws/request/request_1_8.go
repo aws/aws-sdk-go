@@ -14,6 +14,11 @@ var NoBody = http.NoBody
 // set's the HTTP Request body reference. When the body is read prior
 // to being sent in the HTTP request it will need to be rewound.
 //
+// ResetBody will automatically be called by the SDK's build handler, but if
+// the request is being used directly ResetBody must be called before the request
+// is Sent.  SetStringBody, SetBufferBody, and SetReaderBody will automatically
+// call ResetBody.
+//
 // Will also set the Go 1.8's http.Request.GetBody member to allow retrying
 // PUT/POST redirects.
 func (r *Request) ResetBody() {
