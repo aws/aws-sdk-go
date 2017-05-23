@@ -1,3 +1,10 @@
+Release v1.8.28 (2017-05-23)
+===
+
+### Service Client Updates
+* `service/databasemigrationservice`: Updates service API, documentation, paginators, and examples
+  * This release adds support for using Amazon S3 and Amazon DynamoDB as targets for database migration, and using MongoDB as a source for database migration. For more information, see the AWS Database Migration Service documentation.
+
 Release v1.8.27 (2017-05-22)
 ===
 
