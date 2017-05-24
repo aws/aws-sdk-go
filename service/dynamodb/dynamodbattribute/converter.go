@@ -439,5 +439,9 @@ func convertFrom(a *dynamodb.AttributeValue) interface{} {
 		return a.B
 	}
 
+	if a.SS != nil {
+		return a.SS
+	}
+
 	panic(fmt.Sprintf("%#v is not a supported dynamodb.AttributeValue", a))
 }
