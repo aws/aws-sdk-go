@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"runtime"
 
 	"github.com/go-ini/ini"
 
@@ -122,10 +123,13 @@ func (p *SharedCredentialsProvider) filename() (string, error) {
 			return p.Filename, nil
 		}
 
-		homeDir := os.Getenv("HOME") // *nix
-		if homeDir == "" {           // Windows
+		homeDir := ""
+		if runtime.GOOS == "windows" { // Windows
 			homeDir = os.Getenv("USERPROFILE")
+		} else { // *nix
+			homeDir = os.Getenv("HOME")
 		}
+
 		if homeDir == "" {
 			return "", ErrSharedCredentialsHomeNotFound
 		}
