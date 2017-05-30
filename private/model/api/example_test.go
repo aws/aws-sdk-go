@@ -1,4 +1,4 @@
-// +build codegen
+// +build 1.6,codegen
 
 package api
 
@@ -13,6 +13,7 @@ func buildAPI() *API {
 	stringShape := &Shape{
 		API:       a,
 		ShapeName: "string",
+		Type:      "string",
 	}
 	stringShapeRef := &ShapeRef{
 		API:       a,
@@ -23,6 +24,7 @@ func buildAPI() *API {
 	intShape := &Shape{
 		API:       a,
 		ShapeName: "int",
+		Type:      "int",
 	}
 	intShapeRef := &ShapeRef{
 		API:       a,
@@ -114,24 +116,40 @@ func TestExampleGeneration(t *testing.T) {
 	def.API = a
 
 	def.setup()
-	expected := `import (
-"fmt"
-"github.com/aws/aws-sdk-go/aws"
-"github.com/aws/aws-sdk-go/aws/request"
-"github.com/aws/aws-sdk-go/service/fooservice"
+	expected := `
+import (
+	"fmt"
+	"bytes"
+	"time"
+
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/fooservice"
 )
+
+var _ time.Duration
+var _ bytes.Buffer
+var _ aws.Config
+
+func parseTime(layout, value string) *time.Time {
+	t, err := time.Parse(layout, value)
+	if err != nil {
+		panic(err)
+	}
+	return &t
+}
+
 // I pity the foo
 //
 // Foo bar baz qux
-func ExampleFooService_Foo() {
+func ExampleFooService_Foo_shared00() {
 	svc := fooservice.New(session.New())
-
-	input := FooInput{
-		BarShape: "Hello world",
+	input := &fooservice.FooInput{
+		BarShape: aws.String("Hello world"),
 	}
 
 	result, err := svc.Foo(input)
-
 	if err != nil {
 		if aerr, ok := err.(awserr.Error); ok {
 			switch aerr.Code() {
@@ -150,7 +168,9 @@ func ExampleFooService_Foo() {
 }
 `
 	if expected != a.ExamplesGoCode() {
-		t.Errorf("Expected:\n%s\n\nReceived:\n%s\n", expected, a.ExamplesGoCode())
+		t.Log([]byte(expected))
+		t.Log([]byte(a.ExamplesGoCode()))
+		t.Errorf("Expected:\n%s\nReceived:\n%s\n", expected, a.ExamplesGoCode())
 	}
 }
 
@@ -164,13 +184,13 @@ func TestBuildShape(t *testing.T) {
 			defs: map[string]interface{}{
 				"barShape": "Hello World",
 			},
-			expected: "BarShape: \"Hello World\",\n",
+			expected: "BarShape: aws.String(\"Hello World\"),\n",
 		},
 		{
 			defs: map[string]interface{}{
 				"BarShape": "Hello World",
 			},
-			expected: "BarShape: \"Hello World\",\n",
+			expected: "BarShape: aws.String(\"Hello World\"),\n",
 		},
 	}
 

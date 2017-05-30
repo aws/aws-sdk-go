@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"reflect"
 	"sort"
 	"strings"
 	"text/template"
@@ -141,6 +142,8 @@ func generateTypes(ex Example) string {
 
 // buildShape will recursively build the referenced shape based on the json object
 // provided.
+// isMap will dictate how the field name is specified. If isMap is true, we will expect
+// the member name to be quotes like "Foo".
 func buildShape(ref *ShapeRef, shapes map[string]interface{}, isMap bool) string {
 	order := make([]string, len(shapes))
 	for k := range shapes {
@@ -150,6 +153,9 @@ func buildShape(ref *ShapeRef, shapes map[string]interface{}, isMap bool) string
 
 	ret := ""
 	for _, name := range order {
+		if name == "" {
+			continue
+		}
 		shape := shapes[name]
 
 		// If the shape isn't a map, we want to export the value, since every field
@@ -161,12 +167,13 @@ func buildShape(ref *ShapeRef, shapes map[string]interface{}, isMap bool) string
 		memName := name
 		if isMap {
 			memName = fmt.Sprintf("%q", memName)
-		} else if ref != nil {
 		}
 
 		switch v := shape.(type) {
 		case map[string]interface{}:
 			ret += buildComplex(name, memName, ref, v)
+		case []interface{}:
+			ret += buildList(ref, name, memName, v)
 		default:
 			ret += buildScalar(name, memName, ref, v)
 		}
@@ -174,34 +181,168 @@ func buildShape(ref *ShapeRef, shapes map[string]interface{}, isMap bool) string
 	return ret
 }
 
+func buildList(ref *ShapeRef, name, memName string, v []interface{}) string {
+	ret := ""
+
+	if len(v) == 0 || ref == nil {
+		return ""
+	}
+
+	t := ""
+	dataType := ""
+	format := ""
+	isComplex := false
+	passRef := ref
+
+	if ref.Shape.MemberRefs[name] != nil {
+		t = getType(ref.Shape.MemberRefs[name].Shape.MemberRef.Shape)
+		dataType = ref.Shape.MemberRefs[name].Shape.MemberRef.Shape.Type
+		passRef = ref.Shape.MemberRefs[name]
+		if dataType == "map" {
+			t = fmt.Sprintf("map[string]%s.%s", ref.API.PackageName(), ref.Shape.MemberRefs[name].Shape.MemberRef.Shape.ValueRef.Shape.ShapeName)
+			passRef = &ref.Shape.MemberRefs[name].Shape.MemberRef.Shape.ValueRef
+		}
+	} else if ref.Shape.MemberRef.Shape != nil && ref.Shape.MemberRef.Shape.MemberRefs[name] != nil {
+		t = getType(ref.Shape.MemberRef.Shape.MemberRefs[name].Shape.MemberRef.Shape)
+		dataType = ref.Shape.MemberRef.Shape.MemberRefs[name].Shape.MemberRef.Shape.Type
+		passRef = &ref.Shape.MemberRef.Shape.MemberRefs[name].Shape.MemberRef
+	} else {
+		t = getType(ref.Shape.MemberRef.Shape)
+		dataType = ref.Shape.MemberRef.Shape.Type
+		passRef = &ref.Shape.MemberRef
+	}
+
+	switch v[0].(type) {
+	case string:
+		format = "%s"
+	case bool:
+		format = "%t"
+	case float64:
+		if dataType == "integer" || dataType == "int64" {
+			format = "%d"
+		} else {
+			format = "%f"
+		}
+	default:
+		if ref.Shape.MemberRefs[name] != nil {
+		} else {
+			passRef = ref.Shape.MemberRef.Shape.MemberRefs[name]
+
+			// if passRef is nil that means we are either in a map or within a nested array
+			if passRef == nil {
+				passRef = &ref.Shape.MemberRef
+			}
+		}
+		isComplex = true
+	}
+	ret += fmt.Sprintf("%s: []*%s {\n", memName, t)
+	for _, elem := range v {
+		if isComplex {
+			ret += fmt.Sprintf("{\n%s\n},\n", buildShape(passRef, elem.(map[string]interface{}), false))
+		} else {
+			if dataType == "integer" || dataType == "int64" || dataType == "long" {
+				elem = int(elem.(float64))
+			}
+			ret += fmt.Sprintf("%s,\n", getValue(t, fmt.Sprintf(format, elem)))
+		}
+	}
+	ret += "},\n"
+	return ret
+}
+
 func buildScalar(name, memName string, ref *ShapeRef, shape interface{}) string {
+	if ref == nil || ref.Shape == nil {
+		return ""
+	} else if ref.Shape.MemberRefs[name] == nil {
+		if ref.Shape.MemberRef.Shape != nil && ref.Shape.MemberRef.Shape.MemberRefs[name] != nil {
+			return correctType(memName, ref.Shape.MemberRef.Shape.MemberRefs[name].Shape.Type, shape)
+		}
+		if ref.Shape.Type != "structure" && ref.Shape.Type != "map" {
+			return correctType(memName, ref.Shape.Type, shape)
+		}
+		return ""
+	}
+
 	switch v := shape.(type) {
 	case bool:
-		return fmt.Sprintf("%s: aws.Bool(%t),\n", memName, v)
+		return convertToCorrectType(memName, ref.Shape.MemberRefs[name].Shape.Type, fmt.Sprintf("%t", v))
 	case int:
 		if ref.Shape.MemberRefs[name].Shape.Type == "timestamp" {
 			return parseTimeString(ref, memName, fmt.Sprintf("%d", v))
 		} else {
-			return fmt.Sprintf("%s: aws.Int64(%d),\n", memName, v)
+			return convertToCorrectType(memName, ref.Shape.MemberRefs[name].Shape.Type, fmt.Sprintf("%d", v))
 		}
+	case float64:
+		return convertToCorrectType(memName, ref.Shape.MemberRefs[name].Shape.Type, fmt.Sprintf("%f", v))
 	case string:
-		if ref != nil && ref.Shape.MemberRefs[name] != nil && ref.Shape.MemberRefs[name].Shape.Type == "timestamp" {
+		t := ref.Shape.MemberRefs[name].Shape.Type
+		switch t {
+		case "timestamp":
 			return parseTimeString(ref, memName, fmt.Sprintf("%s", v))
-		} else if ref != nil && ref.Shape.MemberRefs[name] != nil && ref.Shape.MemberRefs[name].Shape.Type == "blob" {
+		case "blob":
 			if (ref.Shape.MemberRefs[name].Streaming || ref.Shape.MemberRefs[name].Shape.Streaming) && ref.Shape.Payload == name {
 				return fmt.Sprintf("%s: aws.ReadSeekCloser(bytes.NewBuffer([]byte(%q))),\n", memName, v)
 			} else {
 				return fmt.Sprintf("%s: []byte(%q),\n", memName, v)
 			}
-		} else {
-			return fmt.Sprintf("%s: aws.String(%q),\n", memName, v)
+		default:
+			return convertToCorrectType(memName, t, v)
 		}
+	default:
+		panic(fmt.Errorf("Unsupported scalar type: %v", reflect.TypeOf(v)))
 	}
 	return ""
 }
 
+func correctType(memName string, t string, value interface{}) string {
+	if value == nil {
+		return ""
+	}
+
+	v := ""
+	switch value.(type) {
+	case string:
+		v = value.(string)
+	case int:
+		v = fmt.Sprintf("%d", value.(int))
+	case float64:
+		if t == "integer" || t == "long" || t == "int64" {
+			v = fmt.Sprintf("%d", int(value.(float64)))
+		} else {
+			v = fmt.Sprintf("%f", value.(float64))
+		}
+	case bool:
+		v = fmt.Sprintf("%t", value.(bool))
+	}
+
+	return convertToCorrectType(memName, t, v)
+}
+
+func convertToCorrectType(memName, t, v string) string {
+	return fmt.Sprintf("%s: %s,\n", memName, getValue(t, v))
+}
+
+func getValue(t, v string) string {
+	switch t {
+	case "string":
+		return fmt.Sprintf("aws.String(%q)", v)
+	case "integer", "long", "int64":
+		return fmt.Sprintf("aws.Int64(%s)", v)
+	case "float", "float64":
+		return fmt.Sprintf("aws.Float64(%s)", v)
+	case "boolean":
+		return fmt.Sprintf("aws.Bool(%s)", v)
+	default:
+		panic("Unsupported type: " + t)
+	}
+}
+
 func buildComplex(name, memName string, ref *ShapeRef, v map[string]interface{}) string {
 	shapeName, t := "", ""
+	if ref == nil {
+		return buildShape(nil, v, true)
+	}
+
 	member := ref.Shape.MemberRefs[name]
 
 	if member != nil && member.Shape != nil {
@@ -214,10 +355,17 @@ func buildComplex(name, memName string, ref *ShapeRef, v map[string]interface{})
 
 	switch t {
 	case "structure":
+		passRef := ref.Shape.MemberRefs[name]
+		// passRef will be nil if the entry is a map. In that case
+		// we want to pass the reference, because the previous call
+		// passed the value reference.
+		if passRef == nil {
+			passRef = ref
+		}
 		return fmt.Sprintf(`%s: &%s.%s{
 				%s
 			},
-			`, memName, ref.API.PackageName(), shapeName, buildShape(ref.Shape.MemberRefs[name], v, false))
+			`, memName, ref.API.PackageName(), shapeName, buildShape(passRef, v, false))
 	case "map":
 		shapeType := getNestedType(ref.Shape.MemberRefs[name].Shape.ValueRef.Shape)
 		return fmt.Sprintf(`%s: map[string]%s{
@@ -232,6 +380,8 @@ func buildComplex(name, memName string, ref *ShapeRef, v map[string]interface{})
 // AttachExamples will create a new ExamplesDefinition from the examples file
 // and reference the API object.
 func (a *API) AttachExamples(filename string) {
+	a.Setup()
+	a.customizationPasses()
 	p := ExamplesDefinition{API: a}
 
 	f, err := os.Open(filename)
@@ -274,8 +424,8 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/{{ .PackageName }}"
 )
 
@@ -323,7 +473,7 @@ func getNestedType(shape *Shape) string {
 	switch shape.Type {
 	case "string":
 		return "*string"
-	case "int":
+	case "integer", "int64":
 		return "*int64"
 	case "bool":
 		return "*bool"
@@ -332,7 +482,24 @@ func getNestedType(shape *Shape) string {
 	case "structure":
 		return fmt.Sprintf("*%s.%s", shape.API.PackageName(), shape.ShapeName)
 	default:
-		panic("Unsupported shape " + shape.ValueRef.Shape.Type)
+		panic("Unsupported shape " + shape.Type)
+	}
+}
+
+func getType(shape *Shape) string {
+	switch shape.Type {
+	case "string":
+		return "string"
+	case "integer", "int64":
+		return "int64"
+	case "bool":
+		return "bool"
+	case "structure":
+		return fmt.Sprintf("%s.%s", shape.API.PackageName(), shape.ShapeName)
+	case "map":
+		return fmt.Sprintf("map[string]%s.%s", shape.API.PackageName(), shape.ShapeName)
+	default:
+		panic("Unsupported shape " + shape.Type)
 	}
 }
 
