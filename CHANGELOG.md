@@ -1,3 +1,12 @@
+Release v1.8.31 (2017-05-30)
+===
+
+### Service Client Updates
+* `service/clouddirectory`: Updates service API, documentation, and paginators
+  * Cloud Directory has launched support for Typed Links, enabling customers to create object-to-object relationships that are not hierarchical in nature. Typed Links enable customers to quickly query for data along these relationships. Customers can also enforce referential integrity using Typed Links, ensuring data in use is not inadvertently deleted.
+* `service/s3`: Updates service paginators and examples
+  * New example snippets for Amazon S3.
+
 Release v1.8.30 (2017-05-25)
 ===
 
