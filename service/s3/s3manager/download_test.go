@@ -435,6 +435,28 @@ func TestDownloadWithContextCanceled(t *testing.T) {
 	}
 }
 
+func TestDownload_WithRange(t *testing.T) {
+	s, names, ranges := dlLoggingSvc([]byte{0, 1, 2, 3, 4, 5, 6, 7, 8, 9})
+
+	d := s3manager.NewDownloaderWithClient(s, func(d *s3manager.Downloader) {
+		d.Concurrency = 10 // should be ignored
+		d.PartSize = 1     // should be ignored
+	})
+
+	w := &aws.WriteAtBuffer{}
+	n, err := d.Download(w, &s3.GetObjectInput{
+		Bucket: aws.String("bucket"),
+		Key:    aws.String("key"),
+		Range:  aws.String("bytes=2-6"),
+	})
+
+	assert.Nil(t, err)
+	assert.Equal(t, int64(5), n)
+	assert.Equal(t, []string{"GetObject"}, *names)
+	assert.Equal(t, []string{"bytes=2-6"}, *ranges)
+	assert.Equal(t, []byte{2, 3, 4, 5, 6}, w.Bytes())
+}
+
 func TestDownload_WithFailure(t *testing.T) {
 	svc := s3.New(unit.Session)
 	svc.Handlers.Send.Clear()
