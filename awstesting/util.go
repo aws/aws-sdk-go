@@ -112,6 +112,10 @@ func PopEnv(env []string) {
 
 	for _, e := range env {
 		p := strings.SplitN(e, "=", 2)
-		os.Setenv(p[0], p[1])
+		k, v := p[0], ""
+		if len(p) > 1 {
+			v = p[1]
+		}
+		os.Setenv(k, v)
 	}
 }
