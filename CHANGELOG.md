@@ -1,3 +1,10 @@
+Release v1.8.32 (2017-05-31)
+===
+
+### Service Client Updates
+* `service/rds`: Updates service API and documentation
+  * Amazon RDS customers can now easily and quickly stop and start their DB instances.
+
 Release v1.8.31 (2017-05-30)
 ===
 
