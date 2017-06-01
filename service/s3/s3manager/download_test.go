@@ -268,7 +268,7 @@ func TestDownloadSetPartSize(t *testing.T) {
 		t.Fatalf("expect no error, got %v", err)
 	}
 	if e, a := int64(3), n; e != a {
-		t.Errorf("expect %d bytes read, got %d", n)
+		t.Errorf("expect %d bytes read, got %d", e, a)
 	}
 	expectCalls := []string{"GetObject", "GetObject", "GetObject"}
 	if e, a := expectCalls, *names; !reflect.DeepEqual(e, a) {
@@ -314,7 +314,7 @@ func TestDownloadError(t *testing.T) {
 		t.Errorf("expect %s error code, got %s", e, a)
 	}
 	if e, a := int64(1), n; e != a {
-		t.Errorf("expect %d bytes read, got %d", n)
+		t.Errorf("expect %d bytes read, got %d", e, a)
 	}
 	expectCalls := []string{"GetObject", "GetObject"}
 	if e, a := expectCalls, *names; !reflect.DeepEqual(e, a) {
@@ -342,7 +342,7 @@ func TestDownloadNonChunk(t *testing.T) {
 		t.Fatalf("expect no error, got %v", err)
 	}
 	if e, a := int64(len(buf2MB)), n; e != a {
-		t.Errorf("expect %d bytes read, got %d", n)
+		t.Errorf("expect %d bytes read, got %d", e, a)
 	}
 	expectCalls := []string{"GetObject"}
 	if e, a := expectCalls, *names; !reflect.DeepEqual(e, a) {
@@ -374,7 +374,7 @@ func TestDownloadNoContentRangeLength(t *testing.T) {
 		t.Fatalf("expect no error, got %v", err)
 	}
 	if e, a := int64(len(buf2MB)), n; e != a {
-		t.Errorf("expect %d bytes read, got %d", n)
+		t.Errorf("expect %d bytes read, got %d", e, a)
 	}
 	expectCalls := []string{"GetObject", "GetObject"}
 	if e, a := expectCalls, *names; !reflect.DeepEqual(e, a) {
@@ -406,7 +406,7 @@ func TestDownloadContentRangeTotalAny(t *testing.T) {
 		t.Fatalf("expect no error, got %v", err)
 	}
 	if e, a := int64(len(buf2MB)), n; e != a {
-		t.Errorf("expect %d bytes read, got %d", n)
+		t.Errorf("expect %d bytes read, got %d", e, a)
 	}
 	expectCalls := []string{"GetObject", "GetObject"}
 	if e, a := expectCalls, *names; !reflect.DeepEqual(e, a) {
@@ -442,7 +442,7 @@ func TestDownloadPartBodyRetry_SuccessRetry(t *testing.T) {
 		t.Fatalf("expect no error, got %v", err)
 	}
 	if e, a := int64(3), n; e != a {
-		t.Errorf("expect %d bytes read, got %d", n)
+		t.Errorf("expect %d bytes read, got %d", e, a)
 	}
 	expectCalls := []string{"GetObject", "GetObject"}
 	if e, a := expectCalls, *names; !reflect.DeepEqual(e, a) {
@@ -472,7 +472,7 @@ func TestDownloadPartBodyRetry_SuccessNoRetry(t *testing.T) {
 		t.Fatalf("expect no error, got %v", err)
 	}
 	if e, a := int64(3), n; e != a {
-		t.Errorf("expect %d bytes read, got %d", n)
+		t.Errorf("expect %d bytes read, got %d", e, a)
 	}
 	expectCalls := []string{"GetObject"}
 	if e, a := expectCalls, *names; !reflect.DeepEqual(e, a) {
@@ -505,7 +505,7 @@ func TestDownloadPartBodyRetry_FailRetry(t *testing.T) {
 		t.Errorf("expect %q error message to be in %q", e, a)
 	}
 	if e, a := int64(2), n; e != a {
-		t.Errorf("expect %d bytes read, got %d", n)
+		t.Errorf("expect %d bytes read, got %d", e, a)
 	}
 	expectCalls := []string{"GetObject"}
 	if e, a := expectCalls, *names; !reflect.DeepEqual(e, a) {
@@ -562,7 +562,7 @@ func TestDownload_WithRange(t *testing.T) {
 		t.Fatalf("expect no error, got %v", err)
 	}
 	if e, a := int64(5), n; e != a {
-		t.Errorf("expect %d bytes read, got %d", n)
+		t.Errorf("expect %d bytes read, got %d", e, a)
 	}
 	expectCalls := []string{"GetObject"}
 	if e, a := expectCalls, *names; !reflect.DeepEqual(e, a) {
