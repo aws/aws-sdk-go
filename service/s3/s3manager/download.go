@@ -464,7 +464,7 @@ type dlchunk struct {
 // position to its end (or EOF).
 //
 // If a range is specified on the dlchunk the size will be ignored when writing.
-// as the total size may not of bee known ahead of time.
+// as the total size may not of be known ahead of time.
 func (c *dlchunk) Write(p []byte) (n int, err error) {
 	if c.cur >= c.size && len(c.withRange) == 0 {
 		return 0, io.EOF
