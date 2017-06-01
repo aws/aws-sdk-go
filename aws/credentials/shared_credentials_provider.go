@@ -130,7 +130,7 @@ func (p *SharedCredentialsProvider) filename() (string, error) {
 		return "", ErrSharedCredentialsHomeNotFound
 	}
 
-	p.Filename = shareddefaults.SharedConfigFilename()
+	p.Filename = shareddefaults.SharedCredentialsFilename()
 
 	return p.Filename, nil
 }
