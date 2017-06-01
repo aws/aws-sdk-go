@@ -7,10 +7,9 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"os"
+	"strings"
 	"testing"
 	"time"
-
-	"github.com/stretchr/testify/assert"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
@@ -32,7 +31,9 @@ func TestValidateEndpointHandler(t *testing.T) {
 	req := svc.NewRequest(&request.Operation{Name: "Operation"}, nil, nil)
 	err := req.Build()
 
-	assert.NoError(t, err)
+	if err != nil {
+		t.Errorf("expect no error, got %v", err)
+	}
 }
 
 func TestValidateEndpointHandlerErrorRegion(t *testing.T) {
@@ -45,8 +46,30 @@ func TestValidateEndpointHandlerErrorRegion(t *testing.T) {
 	req := svc.NewRequest(&request.Operation{Name: "Operation"}, nil, nil)
 	err := req.Build()
 
-	assert.Error(t, err)
-	assert.Equal(t, aws.ErrMissingRegion, err)
+	if err == nil {
+		t.Fatalf("expect error, but got none")
+	}
+	if e, a := aws.ErrMissingRegion, err; e != a {
+		t.Errorf("expect %v error, got %v", e, a)
+	}
+}
+
+func TestValidateEndpointHandlerCustomEndpointAnonCreds(t *testing.T) {
+	os.Clearenv()
+
+	svc := awstesting.NewClient()
+	svc.ClientInfo.Endpoint = "http://localhost:6060"
+	svc.Config.Credentials = credentials.AnonymousCredentials
+
+	svc.Handlers.Clear()
+	svc.Handlers.Validate.PushBackNamed(corehandlers.ValidateEndpointHandler)
+
+	req := svc.NewRequest(&request.Operation{Name: "Operation"}, nil, nil)
+	err := req.Build()
+
+	if err != nil {
+		t.Errorf("expect no error, got %v", err)
+	}
 }
 
 type mockCredsProvider struct {
@@ -82,18 +105,30 @@ func TestAfterRetryRefreshCreds(t *testing.T) {
 	})
 	svc.Handlers.AfterRetry.PushBackNamed(corehandlers.AfterRetryHandler)
 
-	assert.True(t, svc.Config.Credentials.IsExpired(), "Expect to start out expired")
-	assert.False(t, credProvider.retrieveCalled)
+	if !svc.Config.Credentials.IsExpired() {
+		t.Errorf("expect credentials to be expired, but were not")
+	}
+	if credProvider.retrieveCalled {
+		t.Errorf("expect retrieve creds not to be called, but was")
+	}
 
 	req := svc.NewRequest(&request.Operation{Name: "Operation"}, nil, nil)
 	req.Send()
 
-	assert.True(t, svc.Config.Credentials.IsExpired())
-	assert.False(t, credProvider.retrieveCalled)
+	if !svc.Config.Credentials.IsExpired() {
+		t.Errorf("expect credentials to be expired, but were not")
+	}
+	if credProvider.retrieveCalled {
+		t.Errorf("expect retrieve creds not to be called, but was")
+	}
 
 	_, err := svc.Config.Credentials.Get()
-	assert.NoError(t, err)
-	assert.True(t, credProvider.retrieveCalled)
+	if err != nil {
+		t.Errorf("expect no err, got %v", err)
+	}
+	if !credProvider.retrieveCalled {
+		t.Errorf("expect retrieve creds to be called, but was not")
+	}
 }
 
 func TestAfterRetryWithContextCanceled(t *testing.T) {
@@ -202,8 +237,12 @@ func TestSendHandlerError(t *testing.T) {
 
 	r.Send()
 
-	assert.Error(t, r.Error)
-	assert.NotNil(t, r.HTTPResponse)
+	if r.Error == nil {
+		t.Errorf("expect error, got none")
+	}
+	if r.HTTPResponse == nil {
+		t.Errorf("expect http response not to be nil, but was")
+	}
 }
 
 func TestSendWithoutFollowRedirects(t *testing.T) {
@@ -273,31 +312,47 @@ func TestValidateReqSigHandler(t *testing.T) {
 
 		corehandlers.ValidateReqSigHandler.Fn(c.Req)
 
-		assert.NoError(t, c.Req.Error, "%d, expect no error", i)
-		assert.Equal(t, c.Resign, resigned, "%d, expected resigning to match", i)
+		if err := c.Req.Error; err != nil {
+			t.Fatalf("%d, expect no error, got %v", i, err)
+		}
+		if e, a := c.Resign, resigned; e != a {
+			t.Errorf("%d, expect %s resign, got %s", i, e, a)
+		}
 	}
 }
 
 func setupContentLengthTestServer(t *testing.T, hasContentLength bool, contentLength int64) *httptest.Server {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		_, ok := r.Header["Content-Length"]
-		assert.Equal(t, hasContentLength, ok, "expect content length to be set, %t", hasContentLength)
+		if e, a := hasContentLength, ok; e != a {
+			t.Errorf("expect %t has content length, got %t", e, a)
+		}
 		if hasContentLength {
-			assert.Equal(t, contentLength, r.ContentLength)
+			if e, a := contentLength, r.ContentLength; e != a {
+				t.Errorf("expect %d content length, got %d", e, a)
+			}
 		}
 
 		b, err := ioutil.ReadAll(r.Body)
-		assert.NoError(t, err)
+		if err != nil {
+			t.Fatalf("expect no error, got %v", err)
+		}
 		r.Body.Close()
 
 		authHeader := r.Header.Get("Authorization")
 		if hasContentLength {
-			assert.Contains(t, authHeader, "content-length")
+			if e, a := "content-length", authHeader; !strings.Contains(a, e) {
+				t.Errorf("expect %s to be in %s", e, a)
+			}
 		} else {
-			assert.NotContains(t, authHeader, "content-length")
+			if e, a := "content-length", authHeader; strings.Contains(a, e) {
+				t.Errorf("expect %s not to be in %s", e, a)
+			}
 		}
 
-		assert.Equal(t, contentLength, int64(len(b)))
+		if e, a := contentLength, int64(len(b)); e != a {
+			t.Errorf("expect %d content length, got %d", e, a)
+		}
 	}))
 
 	return server
@@ -316,7 +371,9 @@ func TestBuildContentLength_ZeroBody(t *testing.T) {
 		Key:    aws.String("keyname"),
 	})
 
-	assert.NoError(t, err)
+	if err != nil {
+		t.Errorf("expect no error, got %v", err)
+	}
 }
 
 func TestBuildContentLength_NegativeBody(t *testing.T) {
@@ -334,7 +391,9 @@ func TestBuildContentLength_NegativeBody(t *testing.T) {
 
 	req.HTTPRequest.Header.Set("Content-Length", "-1")
 
-	assert.NoError(t, req.Send())
+	if err := req.Send(); err != nil {
+		t.Errorf("expect no error, got %v", err)
+	}
 }
 
 func TestBuildContentLength_WithBody(t *testing.T) {
@@ -351,5 +410,7 @@ func TestBuildContentLength_WithBody(t *testing.T) {
 		Body:   bytes.NewReader(make([]byte, 1024)),
 	})
 
-	assert.NoError(t, err)
+	if err != nil {
+		t.Errorf("expect no error, got %v", err)
+	}
 }
