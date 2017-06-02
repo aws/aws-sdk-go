@@ -1,3 +1,12 @@
+Release v1.8.34 (2017-06-02)
+===
+
+### Service Client Updates
+* `service/kinesisanalytics`: Updates service API, documentation, and paginators
+  * Kinesis Analytics publishes error messages CloudWatch logs in case of application misconfigurations
+* `service/workdocs`: Updates service API and documentation
+  * This release includes new APIs to manage tags and custom metadata on resources and also new APIs to add and retrieve comments at the document level.
+
 Release v1.8.33 (2017-06-01)
 ===
 

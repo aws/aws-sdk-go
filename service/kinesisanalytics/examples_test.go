@@ -15,6 +15,32 @@ import (
 var _ time.Duration
 var _ bytes.Buffer
 
+func ExampleKinesisAnalytics_AddApplicationCloudWatchLoggingOption() {
+	sess := session.Must(session.NewSession())
+
+	svc := kinesisanalytics.New(sess)
+
+	params := &kinesisanalytics.AddApplicationCloudWatchLoggingOptionInput{
+		ApplicationName: aws.String("ApplicationName"), // Required
+		CloudWatchLoggingOption: &kinesisanalytics.CloudWatchLoggingOption{ // Required
+			LogStreamARN: aws.String("LogStreamARN"), // Required
+			RoleARN:      aws.String("RoleARN"),      // Required
+		},
+		CurrentApplicationVersionId: aws.Int64(1), // Required
+	}
+	resp, err := svc.AddApplicationCloudWatchLoggingOption(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleKinesisAnalytics_AddApplicationInput() {
 	sess := session.Must(session.NewSession())
 
@@ -172,6 +198,13 @@ func ExampleKinesisAnalytics_CreateApplication() {
 		ApplicationName:        aws.String("ApplicationName"), // Required
 		ApplicationCode:        aws.String("ApplicationCode"),
 		ApplicationDescription: aws.String("ApplicationDescription"),
+		CloudWatchLoggingOptions: []*kinesisanalytics.CloudWatchLoggingOption{
+			{ // Required
+				LogStreamARN: aws.String("LogStreamARN"), // Required
+				RoleARN:      aws.String("RoleARN"),      // Required
+			},
+			// More values...
+		},
 		Inputs: []*kinesisanalytics.Input{
 			{ // Required
 				InputSchema: &kinesisanalytics.SourceSchema{ // Required
@@ -253,6 +286,29 @@ func ExampleKinesisAnalytics_DeleteApplication() {
 		CreateTimestamp: aws.Time(time.Now()),          // Required
 	}
 	resp, err := svc.DeleteApplication(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleKinesisAnalytics_DeleteApplicationCloudWatchLoggingOption() {
+	sess := session.Must(session.NewSession())
+
+	svc := kinesisanalytics.New(sess)
+
+	params := &kinesisanalytics.DeleteApplicationCloudWatchLoggingOptionInput{
+		ApplicationName:             aws.String("ApplicationName"), // Required
+		CloudWatchLoggingOptionId:   aws.String("Id"),              // Required
+		CurrentApplicationVersionId: aws.Int64(1),                  // Required
+	}
+	resp, err := svc.DeleteApplicationCloudWatchLoggingOption(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -439,6 +495,14 @@ func ExampleKinesisAnalytics_UpdateApplication() {
 		ApplicationName: aws.String("ApplicationName"), // Required
 		ApplicationUpdate: &kinesisanalytics.ApplicationUpdate{ // Required
 			ApplicationCodeUpdate: aws.String("ApplicationCode"),
+			CloudWatchLoggingOptionUpdates: []*kinesisanalytics.CloudWatchLoggingOptionUpdate{
+				{ // Required
+					CloudWatchLoggingOptionId: aws.String("Id"), // Required
+					LogStreamARNUpdate:        aws.String("LogStreamARN"),
+					RoleARNUpdate:             aws.String("RoleARN"),
+				},
+				// More values...
+			},
 			InputUpdates: []*kinesisanalytics.InputUpdate{
 				{ // Required
 					InputId: aws.String("Id"), // Required
