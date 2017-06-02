@@ -21,8 +21,9 @@ func ExampleWorkDocs_AbortDocumentVersionUpload() {
 	svc := workdocs.New(sess)
 
 	params := &workdocs.AbortDocumentVersionUploadInput{
-		DocumentId: aws.String("ResourceIdType"),        // Required
-		VersionId:  aws.String("DocumentVersionIdType"), // Required
+		DocumentId:          aws.String("ResourceIdType"),        // Required
+		VersionId:           aws.String("DocumentVersionIdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
 	}
 	resp, err := svc.AbortDocumentVersionUpload(params)
 
@@ -43,7 +44,8 @@ func ExampleWorkDocs_ActivateUser() {
 	svc := workdocs.New(sess)
 
 	params := &workdocs.ActivateUserInput{
-		UserId: aws.String("IdType"), // Required
+		UserId:              aws.String("IdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
 	}
 	resp, err := svc.ActivateUser(params)
 
@@ -72,9 +74,65 @@ func ExampleWorkDocs_AddResourcePermissions() {
 			},
 			// More values...
 		},
-		ResourceId: aws.String("ResourceIdType"), // Required
+		ResourceId:          aws.String("ResourceIdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
 	}
 	resp, err := svc.AddResourcePermissions(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleWorkDocs_CreateComment() {
+	sess := session.Must(session.NewSession())
+
+	svc := workdocs.New(sess)
+
+	params := &workdocs.CreateCommentInput{
+		DocumentId:          aws.String("ResourceIdType"),        // Required
+		Text:                aws.String("CommentTextType"),       // Required
+		VersionId:           aws.String("DocumentVersionIdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
+		NotifyCollaborators: aws.Bool(true),
+		ParentId:            aws.String("CommentIdType"),
+		ThreadId:            aws.String("CommentIdType"),
+		Visibility:          aws.String("CommentVisibilityType"),
+	}
+	resp, err := svc.CreateComment(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleWorkDocs_CreateCustomMetadata() {
+	sess := session.Must(session.NewSession())
+
+	svc := workdocs.New(sess)
+
+	params := &workdocs.CreateCustomMetadataInput{
+		CustomMetadata: map[string]*string{ // Required
+			"Key": aws.String("CustomMetadataValueType"), // Required
+			// More values...
+		},
+		ResourceId:          aws.String("ResourceIdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
+		VersionId:           aws.String("DocumentVersionIdType"),
+	}
+	resp, err := svc.CreateCustomMetadata(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -93,10 +151,37 @@ func ExampleWorkDocs_CreateFolder() {
 	svc := workdocs.New(sess)
 
 	params := &workdocs.CreateFolderInput{
-		ParentFolderId: aws.String("ResourceIdType"), // Required
-		Name:           aws.String("ResourceNameType"),
+		ParentFolderId:      aws.String("ResourceIdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
+		Name:                aws.String("ResourceNameType"),
 	}
 	resp, err := svc.CreateFolder(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleWorkDocs_CreateLabels() {
+	sess := session.Must(session.NewSession())
+
+	svc := workdocs.New(sess)
+
+	params := &workdocs.CreateLabelsInput{
+		Labels: []*string{ // Required
+			aws.String("Label"), // Required
+			// More values...
+		},
+		ResourceId:          aws.String("ResourceIdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
+	}
+	resp, err := svc.CreateLabels(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -139,11 +224,13 @@ func ExampleWorkDocs_CreateUser() {
 	svc := workdocs.New(sess)
 
 	params := &workdocs.CreateUserInput{
-		GivenName:      aws.String("UserAttributeValueType"), // Required
-		Password:       aws.String("PasswordType"),           // Required
-		Surname:        aws.String("UserAttributeValueType"), // Required
-		Username:       aws.String("UsernameType"),           // Required
-		OrganizationId: aws.String("IdType"),
+		GivenName:           aws.String("UserAttributeValueType"), // Required
+		Password:            aws.String("PasswordType"),           // Required
+		Surname:             aws.String("UserAttributeValueType"), // Required
+		Username:            aws.String("UsernameType"),           // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
+		EmailAddress:        aws.String("EmailAddressType"),
+		OrganizationId:      aws.String("IdType"),
 		StorageRule: &workdocs.StorageRuleType{
 			StorageAllocatedInBytes: aws.Int64(1),
 			StorageType:             aws.String("StorageType"),
@@ -169,9 +256,62 @@ func ExampleWorkDocs_DeactivateUser() {
 	svc := workdocs.New(sess)
 
 	params := &workdocs.DeactivateUserInput{
-		UserId: aws.String("IdType"), // Required
+		UserId:              aws.String("IdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
 	}
 	resp, err := svc.DeactivateUser(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleWorkDocs_DeleteComment() {
+	sess := session.Must(session.NewSession())
+
+	svc := workdocs.New(sess)
+
+	params := &workdocs.DeleteCommentInput{
+		CommentId:           aws.String("CommentIdType"),         // Required
+		DocumentId:          aws.String("ResourceIdType"),        // Required
+		VersionId:           aws.String("DocumentVersionIdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
+	}
+	resp, err := svc.DeleteComment(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleWorkDocs_DeleteCustomMetadata() {
+	sess := session.Must(session.NewSession())
+
+	svc := workdocs.New(sess)
+
+	params := &workdocs.DeleteCustomMetadataInput{
+		ResourceId:          aws.String("ResourceIdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
+		DeleteAll:           aws.Bool(true),
+		Keys: []*string{
+			aws.String("CustomMetadataKeyType"), // Required
+			// More values...
+		},
+		VersionId: aws.String("DocumentVersionIdType"),
+	}
+	resp, err := svc.DeleteCustomMetadata(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -190,7 +330,8 @@ func ExampleWorkDocs_DeleteDocument() {
 	svc := workdocs.New(sess)
 
 	params := &workdocs.DeleteDocumentInput{
-		DocumentId: aws.String("ResourceIdType"), // Required
+		DocumentId:          aws.String("ResourceIdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
 	}
 	resp, err := svc.DeleteDocument(params)
 
@@ -211,7 +352,8 @@ func ExampleWorkDocs_DeleteFolder() {
 	svc := workdocs.New(sess)
 
 	params := &workdocs.DeleteFolderInput{
-		FolderId: aws.String("ResourceIdType"), // Required
+		FolderId:            aws.String("ResourceIdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
 	}
 	resp, err := svc.DeleteFolder(params)
 
@@ -232,9 +374,37 @@ func ExampleWorkDocs_DeleteFolderContents() {
 	svc := workdocs.New(sess)
 
 	params := &workdocs.DeleteFolderContentsInput{
-		FolderId: aws.String("ResourceIdType"), // Required
+		FolderId:            aws.String("ResourceIdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
 	}
 	resp, err := svc.DeleteFolderContents(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleWorkDocs_DeleteLabels() {
+	sess := session.Must(session.NewSession())
+
+	svc := workdocs.New(sess)
+
+	params := &workdocs.DeleteLabelsInput{
+		ResourceId:          aws.String("ResourceIdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
+		DeleteAll:           aws.Bool(true),
+		Labels: []*string{
+			aws.String("Label"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.DeleteLabels(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -275,9 +445,35 @@ func ExampleWorkDocs_DeleteUser() {
 	svc := workdocs.New(sess)
 
 	params := &workdocs.DeleteUserInput{
-		UserId: aws.String("IdType"), // Required
+		UserId:              aws.String("IdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
 	}
 	resp, err := svc.DeleteUser(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleWorkDocs_DescribeComments() {
+	sess := session.Must(session.NewSession())
+
+	svc := workdocs.New(sess)
+
+	params := &workdocs.DescribeCommentsInput{
+		DocumentId:          aws.String("ResourceIdType"),        // Required
+		VersionId:           aws.String("DocumentVersionIdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
+		Limit:               aws.Int64(1),
+		Marker:              aws.String("MarkerType"),
+	}
+	resp, err := svc.DescribeComments(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -296,11 +492,12 @@ func ExampleWorkDocs_DescribeDocumentVersions() {
 	svc := workdocs.New(sess)
 
 	params := &workdocs.DescribeDocumentVersionsInput{
-		DocumentId: aws.String("ResourceIdType"), // Required
-		Fields:     aws.String("FieldNamesType"),
-		Include:    aws.String("FieldNamesType"),
-		Limit:      aws.Int64(1),
-		Marker:     aws.String("PageMarkerType"),
+		DocumentId:          aws.String("ResourceIdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
+		Fields:              aws.String("FieldNamesType"),
+		Include:             aws.String("FieldNamesType"),
+		Limit:               aws.Int64(1),
+		Marker:              aws.String("PageMarkerType"),
 	}
 	resp, err := svc.DescribeDocumentVersions(params)
 
@@ -321,13 +518,14 @@ func ExampleWorkDocs_DescribeFolderContents() {
 	svc := workdocs.New(sess)
 
 	params := &workdocs.DescribeFolderContentsInput{
-		FolderId: aws.String("ResourceIdType"), // Required
-		Include:  aws.String("FieldNamesType"),
-		Limit:    aws.Int64(1),
-		Marker:   aws.String("PageMarkerType"),
-		Order:    aws.String("OrderType"),
-		Sort:     aws.String("ResourceSortType"),
-		Type:     aws.String("FolderContentType"),
+		FolderId:            aws.String("ResourceIdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
+		Include:             aws.String("FieldNamesType"),
+		Limit:               aws.Int64(1),
+		Marker:              aws.String("PageMarkerType"),
+		Order:               aws.String("OrderType"),
+		Sort:                aws.String("ResourceSortType"),
+		Type:                aws.String("FolderContentType"),
 	}
 	resp, err := svc.DescribeFolderContents(params)
 
@@ -371,9 +569,10 @@ func ExampleWorkDocs_DescribeResourcePermissions() {
 	svc := workdocs.New(sess)
 
 	params := &workdocs.DescribeResourcePermissionsInput{
-		ResourceId: aws.String("ResourceIdType"), // Required
-		Limit:      aws.Int64(1),
-		Marker:     aws.String("PageMarkerType"),
+		ResourceId:          aws.String("ResourceIdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
+		Limit:               aws.Int64(1),
+		Marker:              aws.String("PageMarkerType"),
 	}
 	resp, err := svc.DescribeResourcePermissions(params)
 
@@ -394,15 +593,16 @@ func ExampleWorkDocs_DescribeUsers() {
 	svc := workdocs.New(sess)
 
 	params := &workdocs.DescribeUsersInput{
-		Fields:         aws.String("FieldNamesType"),
-		Include:        aws.String("UserFilterType"),
-		Limit:          aws.Int64(1),
-		Marker:         aws.String("PageMarkerType"),
-		Order:          aws.String("OrderType"),
-		OrganizationId: aws.String("IdType"),
-		Query:          aws.String("SearchQueryType"),
-		Sort:           aws.String("UserSortType"),
-		UserIds:        aws.String("UserIdsType"),
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
+		Fields:              aws.String("FieldNamesType"),
+		Include:             aws.String("UserFilterType"),
+		Limit:               aws.Int64(1),
+		Marker:              aws.String("PageMarkerType"),
+		Order:               aws.String("OrderType"),
+		OrganizationId:      aws.String("IdType"),
+		Query:               aws.String("SearchQueryType"),
+		Sort:                aws.String("UserSortType"),
+		UserIds:             aws.String("UserIdsType"),
 	}
 	resp, err := svc.DescribeUsers(params)
 
@@ -423,7 +623,9 @@ func ExampleWorkDocs_GetDocument() {
 	svc := workdocs.New(sess)
 
 	params := &workdocs.GetDocumentInput{
-		DocumentId: aws.String("ResourceIdType"), // Required
+		DocumentId:            aws.String("ResourceIdType"), // Required
+		AuthenticationToken:   aws.String("AuthenticationHeaderType"),
+		IncludeCustomMetadata: aws.Bool(true),
 	}
 	resp, err := svc.GetDocument(params)
 
@@ -444,10 +646,11 @@ func ExampleWorkDocs_GetDocumentPath() {
 	svc := workdocs.New(sess)
 
 	params := &workdocs.GetDocumentPathInput{
-		DocumentId: aws.String("IdType"), // Required
-		Fields:     aws.String("FieldNamesType"),
-		Limit:      aws.Int64(1),
-		Marker:     aws.String("PageMarkerType"),
+		DocumentId:          aws.String("IdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
+		Fields:              aws.String("FieldNamesType"),
+		Limit:               aws.Int64(1),
+		Marker:              aws.String("PageMarkerType"),
 	}
 	resp, err := svc.GetDocumentPath(params)
 
@@ -468,9 +671,11 @@ func ExampleWorkDocs_GetDocumentVersion() {
 	svc := workdocs.New(sess)
 
 	params := &workdocs.GetDocumentVersionInput{
-		DocumentId: aws.String("ResourceIdType"),        // Required
-		VersionId:  aws.String("DocumentVersionIdType"), // Required
-		Fields:     aws.String("FieldNamesType"),
+		DocumentId:            aws.String("ResourceIdType"),        // Required
+		VersionId:             aws.String("DocumentVersionIdType"), // Required
+		AuthenticationToken:   aws.String("AuthenticationHeaderType"),
+		Fields:                aws.String("FieldNamesType"),
+		IncludeCustomMetadata: aws.Bool(true),
 	}
 	resp, err := svc.GetDocumentVersion(params)
 
@@ -491,7 +696,9 @@ func ExampleWorkDocs_GetFolder() {
 	svc := workdocs.New(sess)
 
 	params := &workdocs.GetFolderInput{
-		FolderId: aws.String("ResourceIdType"), // Required
+		FolderId:              aws.String("ResourceIdType"), // Required
+		AuthenticationToken:   aws.String("AuthenticationHeaderType"),
+		IncludeCustomMetadata: aws.Bool(true),
 	}
 	resp, err := svc.GetFolder(params)
 
@@ -512,10 +719,11 @@ func ExampleWorkDocs_GetFolderPath() {
 	svc := workdocs.New(sess)
 
 	params := &workdocs.GetFolderPathInput{
-		FolderId: aws.String("IdType"), // Required
-		Fields:   aws.String("FieldNamesType"),
-		Limit:    aws.Int64(1),
-		Marker:   aws.String("PageMarkerType"),
+		FolderId:            aws.String("IdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
+		Fields:              aws.String("FieldNamesType"),
+		Limit:               aws.Int64(1),
+		Marker:              aws.String("PageMarkerType"),
 	}
 	resp, err := svc.GetFolderPath(params)
 
@@ -537,6 +745,7 @@ func ExampleWorkDocs_InitiateDocumentVersionUpload() {
 
 	params := &workdocs.InitiateDocumentVersionUploadInput{
 		ParentFolderId:           aws.String("ResourceIdType"), // Required
+		AuthenticationToken:      aws.String("AuthenticationHeaderType"),
 		ContentCreatedTimestamp:  aws.Time(time.Now()),
 		ContentModifiedTimestamp: aws.Time(time.Now()),
 		ContentType:              aws.String("DocumentContentType"),
@@ -563,7 +772,8 @@ func ExampleWorkDocs_RemoveAllResourcePermissions() {
 	svc := workdocs.New(sess)
 
 	params := &workdocs.RemoveAllResourcePermissionsInput{
-		ResourceId: aws.String("ResourceIdType"), // Required
+		ResourceId:          aws.String("ResourceIdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
 	}
 	resp, err := svc.RemoveAllResourcePermissions(params)
 
@@ -584,9 +794,10 @@ func ExampleWorkDocs_RemoveResourcePermission() {
 	svc := workdocs.New(sess)
 
 	params := &workdocs.RemoveResourcePermissionInput{
-		PrincipalId:   aws.String("IdType"),         // Required
-		ResourceId:    aws.String("ResourceIdType"), // Required
-		PrincipalType: aws.String("PrincipalType"),
+		PrincipalId:         aws.String("IdType"),         // Required
+		ResourceId:          aws.String("ResourceIdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
+		PrincipalType:       aws.String("PrincipalType"),
 	}
 	resp, err := svc.RemoveResourcePermission(params)
 
@@ -607,10 +818,11 @@ func ExampleWorkDocs_UpdateDocument() {
 	svc := workdocs.New(sess)
 
 	params := &workdocs.UpdateDocumentInput{
-		DocumentId:     aws.String("ResourceIdType"), // Required
-		Name:           aws.String("ResourceNameType"),
-		ParentFolderId: aws.String("ResourceIdType"),
-		ResourceState:  aws.String("ResourceStateType"),
+		DocumentId:          aws.String("ResourceIdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
+		Name:                aws.String("ResourceNameType"),
+		ParentFolderId:      aws.String("ResourceIdType"),
+		ResourceState:       aws.String("ResourceStateType"),
 	}
 	resp, err := svc.UpdateDocument(params)
 
@@ -631,9 +843,10 @@ func ExampleWorkDocs_UpdateDocumentVersion() {
 	svc := workdocs.New(sess)
 
 	params := &workdocs.UpdateDocumentVersionInput{
-		DocumentId:    aws.String("ResourceIdType"),        // Required
-		VersionId:     aws.String("DocumentVersionIdType"), // Required
-		VersionStatus: aws.String("DocumentVersionStatus"),
+		DocumentId:          aws.String("ResourceIdType"),        // Required
+		VersionId:           aws.String("DocumentVersionIdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
+		VersionStatus:       aws.String("DocumentVersionStatus"),
 	}
 	resp, err := svc.UpdateDocumentVersion(params)
 
@@ -654,10 +867,11 @@ func ExampleWorkDocs_UpdateFolder() {
 	svc := workdocs.New(sess)
 
 	params := &workdocs.UpdateFolderInput{
-		FolderId:       aws.String("ResourceIdType"), // Required
-		Name:           aws.String("ResourceNameType"),
-		ParentFolderId: aws.String("ResourceIdType"),
-		ResourceState:  aws.String("ResourceStateType"),
+		FolderId:            aws.String("ResourceIdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
+		Name:                aws.String("ResourceNameType"),
+		ParentFolderId:      aws.String("ResourceIdType"),
+		ResourceState:       aws.String("ResourceStateType"),
 	}
 	resp, err := svc.UpdateFolder(params)
 
@@ -678,9 +892,10 @@ func ExampleWorkDocs_UpdateUser() {
 	svc := workdocs.New(sess)
 
 	params := &workdocs.UpdateUserInput{
-		UserId:    aws.String("IdType"), // Required
-		GivenName: aws.String("UserAttributeValueType"),
-		Locale:    aws.String("LocaleType"),
+		UserId:              aws.String("IdType"), // Required
+		AuthenticationToken: aws.String("AuthenticationHeaderType"),
+		GivenName:           aws.String("UserAttributeValueType"),
+		Locale:              aws.String("LocaleType"),
 		StorageRule: &workdocs.StorageRuleType{
 			StorageAllocatedInBytes: aws.Int64(1),
 			StorageType:             aws.String("StorageType"),
