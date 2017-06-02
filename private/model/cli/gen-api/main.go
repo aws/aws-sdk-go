@@ -62,8 +62,8 @@ func newGenerateInfo(modelFile, svcPath, svcImportPath string) *generateInfo {
 		fmt.Println("waiters-2.json error:", err)
 	}
 
-	examplesFile := strings.Replace(modelFile, "api-2.json", "examples-1.json", -1)
-	if _, err := os.Stat(waitersFile); err == nil {
+	examplesFile := strings.Replace(modelFile, "api-3.json", "examples-1.json", -1)
+	if _, err := os.Stat(examplesFile); err == nil {
 		g.API.AttachExamples(examplesFile)
 	} else if !os.IsNotExist(err) {
 		fmt.Println("examples-1.json error:", err)
@@ -196,7 +196,7 @@ func writeServiceFiles(g *generateInfo, filename string) {
 	Must(writeInterfaceFile(g))
 	Must(writeWaitersFile(g))
 	Must(writeAPIErrorsFile(g))
-	Must(writeExamplesFile(g))
+	//Must(writeExamplesFile(g))
 }
 
 // Must will panic if the error passed in is not nil.

@@ -38,6 +38,7 @@ func buildAPI() *API {
 		MemberRefs: map[string]*ShapeRef{
 			"BarShape": stringShapeRef,
 		},
+		Type: "structure",
 	}
 	output := &Shape{
 		API:       a,
@@ -45,6 +46,7 @@ func buildAPI() *API {
 		MemberRefs: map[string]*ShapeRef{
 			"BazShape": intShapeRef,
 		},
+		Type: "structure",
 	}
 
 	inputRef := ShapeRef{
@@ -196,7 +198,7 @@ func TestBuildShape(t *testing.T) {
 
 	for _, c := range cases {
 		ref := a.Operations["Foo"].InputRef
-		shapeStr := buildShape(&ref, c.defs, false)
+		shapeStr := defaultExamplesBuilder{}.BuildShape(&ref, c.defs, false)
 		if c.expected != shapeStr {
 			t.Errorf("Expected:\n%s\nReceived:\n%s", c.expected, shapeStr)
 		}
