@@ -9133,7 +9133,7 @@ type Group struct {
 	HealthCheckType *string `min:"1" type:"string" required:"true"`
 
 	// The EC2 instances associated with the group.
-	Instances []*InstanceDetails `type:"list"`
+	Instances []*Instance `type:"list"`
 
 	// The name of the associated launch configuration.
 	LaunchConfigurationName *string `min:"1" type:"string"`
@@ -9247,7 +9247,7 @@ func (s *Group) SetHealthCheckType(v string) *Group {
 }
 
 // SetInstances sets the Instances field's value.
-func (s *Group) SetInstances(v []*InstanceDetails) *Group {
+func (s *Group) SetInstances(v []*Instance) *Group {
 	s.Instances = v
 	return s
 }

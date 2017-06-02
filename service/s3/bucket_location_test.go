@@ -119,8 +119,8 @@ func TestNoPopulateLocationConstraintIfProvided(t *testing.T) {
 		t.Fatalf("expect no error, got %v", err)
 	}
 	v, _ := awsutil.ValuesAtPath(req.Params, "CreateBucketConfiguration.LocationConstraint")
-	if l := len(v); l != 0 {
-		t.Errorf("expect no values, got %d", l)
+	if v := len(v); v != 0 {
+		t.Errorf("expect no values, got %d", v)
 	}
 }
 
@@ -133,7 +133,7 @@ func TestNoPopulateLocationConstraintIfClassic(t *testing.T) {
 		t.Fatalf("expect no error, got %v", err)
 	}
 	v, _ := awsutil.ValuesAtPath(req.Params, "CreateBucketConfiguration.LocationConstraint")
-	if l := len(v); l != 0 {
-		t.Errorf("expect no values, got %d", l)
+	if v := len(v); v != 0 {
+		t.Errorf("expect no values, got %d", v)
 	}
 }
