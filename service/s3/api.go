@@ -13745,7 +13745,7 @@ type ListObjectsOutput struct {
 	// is true), you can use the key name in this field as marker in the subsequent
 	// request to get next set of objects. Amazon S3 lists objects in alphabetical
 	// order Note: This element is returned only if you have delimiter request parameter
-	// specified. If response does not include the NextMaker and it is truncated,
+	// specified. If response does not include the NextMarker and it is truncated,
 	// you can use the value of the last Key in the response as the marker in the
 	// subsequent request to get the next set of object keys.
 	NextMarker *string `type:"string"`
