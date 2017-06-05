@@ -55,6 +55,10 @@ func ExampleAppStream_CreateFleet() {
 		EnableDefaultInternetAccess: aws.Bool(true),
 		MaxUserDurationInSeconds:    aws.Int64(1),
 		VpcConfig: &appstream.VpcConfig{
+			SecurityGroupIds: []*string{
+				aws.String("String"), // Required
+				// More values...
+			},
 			SubnetIds: []*string{
 				aws.String("String"), // Required
 				// More values...
@@ -408,6 +412,10 @@ func ExampleAppStream_UpdateFleet() {
 
 	params := &appstream.UpdateFleetInput{
 		Name: aws.String("String"), // Required
+		AttributesToDelete: []*string{
+			aws.String("FleetAttribute"), // Required
+			// More values...
+		},
 		ComputeCapacity: &appstream.ComputeCapacity{
 			DesiredInstances: aws.Int64(1), // Required
 		},
@@ -420,6 +428,10 @@ func ExampleAppStream_UpdateFleet() {
 		InstanceType:                aws.String("String"),
 		MaxUserDurationInSeconds:    aws.Int64(1),
 		VpcConfig: &appstream.VpcConfig{
+			SecurityGroupIds: []*string{
+				aws.String("String"), // Required
+				// More values...
+			},
 			SubnetIds: []*string{
 				aws.String("String"), // Required
 				// More values...
