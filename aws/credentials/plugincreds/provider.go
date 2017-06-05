@@ -10,7 +10,7 @@
 //
 // See ProviderSymbolName for the symbol named that will be used to lookup the
 // credentials plugin provider. If you want to use a custom symbol name you
-// should use LookupPluginProviderByName to lookup the symbol by a custom name.
+// should use GetPluginProviderFnsByName to lookup the symbol by a custom name.
 //
 // This symbol is a function that returns two additional functions. One to
 // retrieve the credentials, and another to determine if the credentials have
@@ -171,7 +171,7 @@ func (p Provider) IsExpired() bool {
 // returned by the plugin's credential provider getter.
 //
 // Uses ProviderSymbolName as the symbol name when lookup up the symbol. If you
-// want to use a different symbol name, use LookupPluginProviderByName.
+// want to use a different symbol name, use GetPluginProviderFnsByName.
 func GetPluginProviderFns(p *plugin.Plugin) (func() (key, secret, token string, err error), func() bool, error) {
 	return GetPluginProviderFnsByName(p, ProviderSymbolName)
 }
