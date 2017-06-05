@@ -6125,9 +6125,19 @@ func (s *AbortMultipartUploadInput) SetUploadId(v string) *AbortMultipartUploadI
 type AbortMultipartUploadOutput struct {
 	_ struct{} `type:"structure"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	// If present, indicates that the requester was successfully charged for the
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -6140,9 +6150,33 @@ func (s AbortMultipartUploadOutput) GoString() string {
 	return s.String()
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *AbortMultipartUploadOutput) SetDeleteMarker(v bool) *AbortMultipartUploadOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *AbortMultipartUploadOutput) SetExtendedRequestId(v string) *AbortMultipartUploadOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetRequestCharged sets the RequestCharged field's value.
 func (s *AbortMultipartUploadOutput) SetRequestCharged(v string) *AbortMultipartUploadOutput {
 	s.RequestCharged = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *AbortMultipartUploadOutput) SetRequestId(v string) *AbortMultipartUploadOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *AbortMultipartUploadOutput) SetVersionId(v string) *AbortMultipartUploadOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -6950,12 +6984,17 @@ type CompleteMultipartUploadOutput struct {
 
 	Bucket *string `type:"string"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
 	// Entity tag of the object.
 	ETag *string `type:"string"`
 
 	// If the object expiration is configured, this will contain the expiration
 	// date (expiry-date) and rule ID (rule-id). The value of rule-id is URL encoded.
 	Expiration *string `location:"header" locationName:"x-amz-expiration" type:"string"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
 
 	Key *string `min:"1" type:"string"`
 
@@ -6964,6 +7003,9 @@ type CompleteMultipartUploadOutput struct {
 	// If present, indicates that the requester was successfully charged for the
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
 
 	// If present, specifies the ID of the AWS Key Management Service (KMS) master
 	// encryption key that was used for the object.
@@ -6993,6 +7035,12 @@ func (s *CompleteMultipartUploadOutput) SetBucket(v string) *CompleteMultipartUp
 	return s
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *CompleteMultipartUploadOutput) SetDeleteMarker(v bool) *CompleteMultipartUploadOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
 // SetETag sets the ETag field's value.
 func (s *CompleteMultipartUploadOutput) SetETag(v string) *CompleteMultipartUploadOutput {
 	s.ETag = &v
@@ -7002,6 +7050,12 @@ func (s *CompleteMultipartUploadOutput) SetETag(v string) *CompleteMultipartUplo
 // SetExpiration sets the Expiration field's value.
 func (s *CompleteMultipartUploadOutput) SetExpiration(v string) *CompleteMultipartUploadOutput {
 	s.Expiration = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *CompleteMultipartUploadOutput) SetExtendedRequestId(v string) *CompleteMultipartUploadOutput {
+	s.ExtendedRequestId = &v
 	return s
 }
 
@@ -7020,6 +7074,12 @@ func (s *CompleteMultipartUploadOutput) SetLocation(v string) *CompleteMultipart
 // SetRequestCharged sets the RequestCharged field's value.
 func (s *CompleteMultipartUploadOutput) SetRequestCharged(v string) *CompleteMultipartUploadOutput {
 	s.RequestCharged = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *CompleteMultipartUploadOutput) SetRequestId(v string) *CompleteMultipartUploadOutput {
+	s.RequestId = &v
 	return s
 }
 
@@ -7512,12 +7572,20 @@ type CopyObjectOutput struct {
 
 	CopySourceVersionId *string `location:"header" locationName:"x-amz-copy-source-version-id" type:"string"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
 	// If the object expiration is configured, the response includes this header.
 	Expiration *string `location:"header" locationName:"x-amz-expiration" type:"string"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
 
 	// If present, indicates that the requester was successfully charged for the
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
 
 	// If server-side encryption with a customer-provided encryption key was requested,
 	// the response will include this header confirming the encryption algorithm
@@ -7563,15 +7631,33 @@ func (s *CopyObjectOutput) SetCopySourceVersionId(v string) *CopyObjectOutput {
 	return s
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *CopyObjectOutput) SetDeleteMarker(v bool) *CopyObjectOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
 // SetExpiration sets the Expiration field's value.
 func (s *CopyObjectOutput) SetExpiration(v string) *CopyObjectOutput {
 	s.Expiration = &v
 	return s
 }
 
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *CopyObjectOutput) SetExtendedRequestId(v string) *CopyObjectOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetRequestCharged sets the RequestCharged field's value.
 func (s *CopyObjectOutput) SetRequestCharged(v string) *CopyObjectOutput {
 	s.RequestCharged = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *CopyObjectOutput) SetRequestId(v string) *CopyObjectOutput {
+	s.RequestId = &v
 	return s
 }
 
@@ -7798,7 +7884,17 @@ func (s *CreateBucketInput) SetGrantWriteACP(v string) *CreateBucketInput {
 type CreateBucketOutput struct {
 	_ struct{} `type:"structure"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	Location *string `location:"header" locationName:"Location" type:"string"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -7811,9 +7907,33 @@ func (s CreateBucketOutput) GoString() string {
 	return s.String()
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *CreateBucketOutput) SetDeleteMarker(v bool) *CreateBucketOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *CreateBucketOutput) SetExtendedRequestId(v string) *CreateBucketOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetLocation sets the Location field's value.
 func (s *CreateBucketOutput) SetLocation(v string) *CreateBucketOutput {
 	s.Location = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *CreateBucketOutput) SetRequestId(v string) *CreateBucketOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *CreateBucketOutput) SetVersionId(v string) *CreateBucketOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -8080,12 +8200,20 @@ type CreateMultipartUploadOutput struct {
 	// Name of the bucket to which the multipart upload was initiated.
 	Bucket *string `locationName:"Bucket" type:"string"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	// Object key for which the multipart upload was initiated.
 	Key *string `min:"1" type:"string"`
 
 	// If present, indicates that the requester was successfully charged for the
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
 
 	// If server-side encryption with a customer-provided encryption key was requested,
 	// the response will include this header confirming the encryption algorithm
@@ -8107,6 +8235,8 @@ type CreateMultipartUploadOutput struct {
 
 	// ID for the initiated multipart upload.
 	UploadId *string `type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -8137,6 +8267,18 @@ func (s *CreateMultipartUploadOutput) SetBucket(v string) *CreateMultipartUpload
 	return s
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *CreateMultipartUploadOutput) SetDeleteMarker(v bool) *CreateMultipartUploadOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *CreateMultipartUploadOutput) SetExtendedRequestId(v string) *CreateMultipartUploadOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetKey sets the Key field's value.
 func (s *CreateMultipartUploadOutput) SetKey(v string) *CreateMultipartUploadOutput {
 	s.Key = &v
@@ -8146,6 +8288,12 @@ func (s *CreateMultipartUploadOutput) SetKey(v string) *CreateMultipartUploadOut
 // SetRequestCharged sets the RequestCharged field's value.
 func (s *CreateMultipartUploadOutput) SetRequestCharged(v string) *CreateMultipartUploadOutput {
 	s.RequestCharged = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *CreateMultipartUploadOutput) SetRequestId(v string) *CreateMultipartUploadOutput {
+	s.RequestId = &v
 	return s
 }
 
@@ -8176,6 +8324,12 @@ func (s *CreateMultipartUploadOutput) SetServerSideEncryption(v string) *CreateM
 // SetUploadId sets the UploadId field's value.
 func (s *CreateMultipartUploadOutput) SetUploadId(v string) *CreateMultipartUploadOutput {
 	s.UploadId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *CreateMultipartUploadOutput) SetVersionId(v string) *CreateMultipartUploadOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -8955,9 +9109,15 @@ type DeleteObjectOutput struct {
 	// or was not (false) a delete marker.
 	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
 
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	// If present, indicates that the requester was successfully charged for the
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
 
 	// Returns the version ID of the delete marker created as a result of the DELETE
 	// operation.
@@ -8980,9 +9140,21 @@ func (s *DeleteObjectOutput) SetDeleteMarker(v bool) *DeleteObjectOutput {
 	return s
 }
 
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *DeleteObjectOutput) SetExtendedRequestId(v string) *DeleteObjectOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetRequestCharged sets the RequestCharged field's value.
 func (s *DeleteObjectOutput) SetRequestCharged(v string) *DeleteObjectOutput {
 	s.RequestCharged = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DeleteObjectOutput) SetRequestId(v string) *DeleteObjectOutput {
+	s.RequestId = &v
 	return s
 }
 
@@ -9057,6 +9229,14 @@ func (s *DeleteObjectTaggingInput) SetVersionId(v string) *DeleteObjectTaggingIn
 type DeleteObjectTaggingOutput struct {
 	_ struct{} `type:"structure"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
 	// The versionId of the object the tag-set was removed from.
 	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
@@ -9069,6 +9249,24 @@ func (s DeleteObjectTaggingOutput) String() string {
 // GoString returns the string representation
 func (s DeleteObjectTaggingOutput) GoString() string {
 	return s.String()
+}
+
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *DeleteObjectTaggingOutput) SetDeleteMarker(v bool) *DeleteObjectTaggingOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *DeleteObjectTaggingOutput) SetExtendedRequestId(v string) *DeleteObjectTaggingOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DeleteObjectTaggingOutput) SetRequestId(v string) *DeleteObjectTaggingOutput {
+	s.RequestId = &v
+	return s
 }
 
 // SetVersionId sets the VersionId field's value.
@@ -9157,13 +9355,23 @@ func (s *DeleteObjectsInput) SetRequestPayer(v string) *DeleteObjectsInput {
 type DeleteObjectsOutput struct {
 	_ struct{} `type:"structure"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
 	Deleted []*DeletedObject `type:"list" flattened:"true"`
 
 	Errors []*Error `locationName:"Error" type:"list" flattened:"true"`
 
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	// If present, indicates that the requester was successfully charged for the
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -9174,6 +9382,12 @@ func (s DeleteObjectsOutput) String() string {
 // GoString returns the string representation
 func (s DeleteObjectsOutput) GoString() string {
 	return s.String()
+}
+
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *DeleteObjectsOutput) SetDeleteMarker(v bool) *DeleteObjectsOutput {
+	s.DeleteMarker = &v
+	return s
 }
 
 // SetDeleted sets the Deleted field's value.
@@ -9188,9 +9402,27 @@ func (s *DeleteObjectsOutput) SetErrors(v []*Error) *DeleteObjectsOutput {
 	return s
 }
 
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *DeleteObjectsOutput) SetExtendedRequestId(v string) *DeleteObjectsOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetRequestCharged sets the RequestCharged field's value.
 func (s *DeleteObjectsOutput) SetRequestCharged(v string) *DeleteObjectsOutput {
 	s.RequestCharged = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DeleteObjectsOutput) SetRequestId(v string) *DeleteObjectsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *DeleteObjectsOutput) SetVersionId(v string) *DeleteObjectsOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -9458,8 +9690,18 @@ func (s *GetBucketAccelerateConfigurationInput) SetBucket(v string) *GetBucketAc
 type GetBucketAccelerateConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
 	// The accelerate configuration of the bucket.
 	Status *string `type:"string" enum:"BucketAccelerateStatus"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -9472,9 +9714,33 @@ func (s GetBucketAccelerateConfigurationOutput) GoString() string {
 	return s.String()
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *GetBucketAccelerateConfigurationOutput) SetDeleteMarker(v bool) *GetBucketAccelerateConfigurationOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *GetBucketAccelerateConfigurationOutput) SetExtendedRequestId(v string) *GetBucketAccelerateConfigurationOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *GetBucketAccelerateConfigurationOutput) SetRequestId(v string) *GetBucketAccelerateConfigurationOutput {
+	s.RequestId = &v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *GetBucketAccelerateConfigurationOutput) SetStatus(v string) *GetBucketAccelerateConfigurationOutput {
 	s.Status = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *GetBucketAccelerateConfigurationOutput) SetVersionId(v string) *GetBucketAccelerateConfigurationOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -9519,10 +9785,20 @@ func (s *GetBucketAclInput) SetBucket(v string) *GetBucketAclInput {
 type GetBucketAclOutput struct {
 	_ struct{} `type:"structure"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	// A list of grants.
 	Grants []*Grant `locationName:"AccessControlList" locationNameList:"Grant" type:"list"`
 
 	Owner *Owner `type:"structure"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -9535,6 +9811,18 @@ func (s GetBucketAclOutput) GoString() string {
 	return s.String()
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *GetBucketAclOutput) SetDeleteMarker(v bool) *GetBucketAclOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *GetBucketAclOutput) SetExtendedRequestId(v string) *GetBucketAclOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetGrants sets the Grants field's value.
 func (s *GetBucketAclOutput) SetGrants(v []*Grant) *GetBucketAclOutput {
 	s.Grants = v
@@ -9544,6 +9832,18 @@ func (s *GetBucketAclOutput) SetGrants(v []*Grant) *GetBucketAclOutput {
 // SetOwner sets the Owner field's value.
 func (s *GetBucketAclOutput) SetOwner(v *Owner) *GetBucketAclOutput {
 	s.Owner = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *GetBucketAclOutput) SetRequestId(v string) *GetBucketAclOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *GetBucketAclOutput) SetVersionId(v string) *GetBucketAclOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -9606,6 +9906,16 @@ type GetBucketAnalyticsConfigurationOutput struct {
 
 	// The configuration and any analyses for the analytics filter.
 	AnalyticsConfiguration *AnalyticsConfiguration `type:"structure"`
+
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -9621,6 +9931,30 @@ func (s GetBucketAnalyticsConfigurationOutput) GoString() string {
 // SetAnalyticsConfiguration sets the AnalyticsConfiguration field's value.
 func (s *GetBucketAnalyticsConfigurationOutput) SetAnalyticsConfiguration(v *AnalyticsConfiguration) *GetBucketAnalyticsConfigurationOutput {
 	s.AnalyticsConfiguration = v
+	return s
+}
+
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *GetBucketAnalyticsConfigurationOutput) SetDeleteMarker(v bool) *GetBucketAnalyticsConfigurationOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *GetBucketAnalyticsConfigurationOutput) SetExtendedRequestId(v string) *GetBucketAnalyticsConfigurationOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *GetBucketAnalyticsConfigurationOutput) SetRequestId(v string) *GetBucketAnalyticsConfigurationOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *GetBucketAnalyticsConfigurationOutput) SetVersionId(v string) *GetBucketAnalyticsConfigurationOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -9666,6 +10000,16 @@ type GetBucketCorsOutput struct {
 	_ struct{} `type:"structure"`
 
 	CORSRules []*CORSRule `locationName:"CORSRule" type:"list" flattened:"true"`
+
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -9681,6 +10025,30 @@ func (s GetBucketCorsOutput) GoString() string {
 // SetCORSRules sets the CORSRules field's value.
 func (s *GetBucketCorsOutput) SetCORSRules(v []*CORSRule) *GetBucketCorsOutput {
 	s.CORSRules = v
+	return s
+}
+
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *GetBucketCorsOutput) SetDeleteMarker(v bool) *GetBucketCorsOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *GetBucketCorsOutput) SetExtendedRequestId(v string) *GetBucketCorsOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *GetBucketCorsOutput) SetRequestId(v string) *GetBucketCorsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *GetBucketCorsOutput) SetVersionId(v string) *GetBucketCorsOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -9741,8 +10109,18 @@ func (s *GetBucketInventoryConfigurationInput) SetId(v string) *GetBucketInvento
 type GetBucketInventoryConfigurationOutput struct {
 	_ struct{} `type:"structure" payload:"InventoryConfiguration"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	// Specifies the inventory configuration.
 	InventoryConfiguration *InventoryConfiguration `type:"structure"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -9755,9 +10133,33 @@ func (s GetBucketInventoryConfigurationOutput) GoString() string {
 	return s.String()
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *GetBucketInventoryConfigurationOutput) SetDeleteMarker(v bool) *GetBucketInventoryConfigurationOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *GetBucketInventoryConfigurationOutput) SetExtendedRequestId(v string) *GetBucketInventoryConfigurationOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetInventoryConfiguration sets the InventoryConfiguration field's value.
 func (s *GetBucketInventoryConfigurationOutput) SetInventoryConfiguration(v *InventoryConfiguration) *GetBucketInventoryConfigurationOutput {
 	s.InventoryConfiguration = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *GetBucketInventoryConfigurationOutput) SetRequestId(v string) *GetBucketInventoryConfigurationOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *GetBucketInventoryConfigurationOutput) SetVersionId(v string) *GetBucketInventoryConfigurationOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -9802,7 +10204,17 @@ func (s *GetBucketLifecycleConfigurationInput) SetBucket(v string) *GetBucketLif
 type GetBucketLifecycleConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
 	Rules []*LifecycleRule `locationName:"Rule" type:"list" flattened:"true"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -9815,9 +10227,33 @@ func (s GetBucketLifecycleConfigurationOutput) GoString() string {
 	return s.String()
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *GetBucketLifecycleConfigurationOutput) SetDeleteMarker(v bool) *GetBucketLifecycleConfigurationOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *GetBucketLifecycleConfigurationOutput) SetExtendedRequestId(v string) *GetBucketLifecycleConfigurationOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *GetBucketLifecycleConfigurationOutput) SetRequestId(v string) *GetBucketLifecycleConfigurationOutput {
+	s.RequestId = &v
+	return s
+}
+
 // SetRules sets the Rules field's value.
 func (s *GetBucketLifecycleConfigurationOutput) SetRules(v []*LifecycleRule) *GetBucketLifecycleConfigurationOutput {
 	s.Rules = v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *GetBucketLifecycleConfigurationOutput) SetVersionId(v string) *GetBucketLifecycleConfigurationOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -9862,7 +10298,17 @@ func (s *GetBucketLifecycleInput) SetBucket(v string) *GetBucketLifecycleInput {
 type GetBucketLifecycleOutput struct {
 	_ struct{} `type:"structure"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
 	Rules []*Rule `locationName:"Rule" type:"list" flattened:"true"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -9875,9 +10321,33 @@ func (s GetBucketLifecycleOutput) GoString() string {
 	return s.String()
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *GetBucketLifecycleOutput) SetDeleteMarker(v bool) *GetBucketLifecycleOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *GetBucketLifecycleOutput) SetExtendedRequestId(v string) *GetBucketLifecycleOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *GetBucketLifecycleOutput) SetRequestId(v string) *GetBucketLifecycleOutput {
+	s.RequestId = &v
+	return s
+}
+
 // SetRules sets the Rules field's value.
 func (s *GetBucketLifecycleOutput) SetRules(v []*Rule) *GetBucketLifecycleOutput {
 	s.Rules = v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *GetBucketLifecycleOutput) SetVersionId(v string) *GetBucketLifecycleOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -9922,7 +10392,17 @@ func (s *GetBucketLocationInput) SetBucket(v string) *GetBucketLocationInput {
 type GetBucketLocationOutput struct {
 	_ struct{} `type:"structure"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	LocationConstraint *string `type:"string" enum:"BucketLocationConstraint"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -9935,9 +10415,33 @@ func (s GetBucketLocationOutput) GoString() string {
 	return s.String()
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *GetBucketLocationOutput) SetDeleteMarker(v bool) *GetBucketLocationOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *GetBucketLocationOutput) SetExtendedRequestId(v string) *GetBucketLocationOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetLocationConstraint sets the LocationConstraint field's value.
 func (s *GetBucketLocationOutput) SetLocationConstraint(v string) *GetBucketLocationOutput {
 	s.LocationConstraint = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *GetBucketLocationOutput) SetRequestId(v string) *GetBucketLocationOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *GetBucketLocationOutput) SetVersionId(v string) *GetBucketLocationOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -9982,7 +10486,17 @@ func (s *GetBucketLoggingInput) SetBucket(v string) *GetBucketLoggingInput {
 type GetBucketLoggingOutput struct {
 	_ struct{} `type:"structure"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	LoggingEnabled *LoggingEnabled `type:"structure"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -9995,9 +10509,33 @@ func (s GetBucketLoggingOutput) GoString() string {
 	return s.String()
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *GetBucketLoggingOutput) SetDeleteMarker(v bool) *GetBucketLoggingOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *GetBucketLoggingOutput) SetExtendedRequestId(v string) *GetBucketLoggingOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetLoggingEnabled sets the LoggingEnabled field's value.
 func (s *GetBucketLoggingOutput) SetLoggingEnabled(v *LoggingEnabled) *GetBucketLoggingOutput {
 	s.LoggingEnabled = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *GetBucketLoggingOutput) SetRequestId(v string) *GetBucketLoggingOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *GetBucketLoggingOutput) SetVersionId(v string) *GetBucketLoggingOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -10058,8 +10596,18 @@ func (s *GetBucketMetricsConfigurationInput) SetId(v string) *GetBucketMetricsCo
 type GetBucketMetricsConfigurationOutput struct {
 	_ struct{} `type:"structure" payload:"MetricsConfiguration"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	// Specifies the metrics configuration.
 	MetricsConfiguration *MetricsConfiguration `type:"structure"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -10072,9 +10620,33 @@ func (s GetBucketMetricsConfigurationOutput) GoString() string {
 	return s.String()
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *GetBucketMetricsConfigurationOutput) SetDeleteMarker(v bool) *GetBucketMetricsConfigurationOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *GetBucketMetricsConfigurationOutput) SetExtendedRequestId(v string) *GetBucketMetricsConfigurationOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetMetricsConfiguration sets the MetricsConfiguration field's value.
 func (s *GetBucketMetricsConfigurationOutput) SetMetricsConfiguration(v *MetricsConfiguration) *GetBucketMetricsConfigurationOutput {
 	s.MetricsConfiguration = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *GetBucketMetricsConfigurationOutput) SetRequestId(v string) *GetBucketMetricsConfigurationOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *GetBucketMetricsConfigurationOutput) SetVersionId(v string) *GetBucketMetricsConfigurationOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -10158,8 +10730,18 @@ func (s *GetBucketPolicyInput) SetBucket(v string) *GetBucketPolicyInput {
 type GetBucketPolicyOutput struct {
 	_ struct{} `type:"structure" payload:"Policy"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	// The bucket policy as a JSON document.
 	Policy *string `type:"string"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -10172,9 +10754,33 @@ func (s GetBucketPolicyOutput) GoString() string {
 	return s.String()
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *GetBucketPolicyOutput) SetDeleteMarker(v bool) *GetBucketPolicyOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *GetBucketPolicyOutput) SetExtendedRequestId(v string) *GetBucketPolicyOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetPolicy sets the Policy field's value.
 func (s *GetBucketPolicyOutput) SetPolicy(v string) *GetBucketPolicyOutput {
 	s.Policy = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *GetBucketPolicyOutput) SetRequestId(v string) *GetBucketPolicyOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *GetBucketPolicyOutput) SetVersionId(v string) *GetBucketPolicyOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -10219,9 +10825,19 @@ func (s *GetBucketReplicationInput) SetBucket(v string) *GetBucketReplicationInp
 type GetBucketReplicationOutput struct {
 	_ struct{} `type:"structure" payload:"ReplicationConfiguration"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	// Container for replication rules. You can add as many as 1,000 rules. Total
 	// replication configuration size can be up to 2 MB.
 	ReplicationConfiguration *ReplicationConfiguration `type:"structure"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -10234,9 +10850,33 @@ func (s GetBucketReplicationOutput) GoString() string {
 	return s.String()
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *GetBucketReplicationOutput) SetDeleteMarker(v bool) *GetBucketReplicationOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *GetBucketReplicationOutput) SetExtendedRequestId(v string) *GetBucketReplicationOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetReplicationConfiguration sets the ReplicationConfiguration field's value.
 func (s *GetBucketReplicationOutput) SetReplicationConfiguration(v *ReplicationConfiguration) *GetBucketReplicationOutput {
 	s.ReplicationConfiguration = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *GetBucketReplicationOutput) SetRequestId(v string) *GetBucketReplicationOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *GetBucketReplicationOutput) SetVersionId(v string) *GetBucketReplicationOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -10281,8 +10921,18 @@ func (s *GetBucketRequestPaymentInput) SetBucket(v string) *GetBucketRequestPaym
 type GetBucketRequestPaymentOutput struct {
 	_ struct{} `type:"structure"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	// Specifies who pays for the download and request fees.
 	Payer *string `type:"string" enum:"Payer"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -10295,9 +10945,33 @@ func (s GetBucketRequestPaymentOutput) GoString() string {
 	return s.String()
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *GetBucketRequestPaymentOutput) SetDeleteMarker(v bool) *GetBucketRequestPaymentOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *GetBucketRequestPaymentOutput) SetExtendedRequestId(v string) *GetBucketRequestPaymentOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetPayer sets the Payer field's value.
 func (s *GetBucketRequestPaymentOutput) SetPayer(v string) *GetBucketRequestPaymentOutput {
 	s.Payer = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *GetBucketRequestPaymentOutput) SetRequestId(v string) *GetBucketRequestPaymentOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *GetBucketRequestPaymentOutput) SetVersionId(v string) *GetBucketRequestPaymentOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -10342,8 +11016,18 @@ func (s *GetBucketTaggingInput) SetBucket(v string) *GetBucketTaggingInput {
 type GetBucketTaggingOutput struct {
 	_ struct{} `type:"structure"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
 	// TagSet is a required field
 	TagSet []*Tag `locationNameList:"Tag" type:"list" required:"true"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -10356,9 +11040,33 @@ func (s GetBucketTaggingOutput) GoString() string {
 	return s.String()
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *GetBucketTaggingOutput) SetDeleteMarker(v bool) *GetBucketTaggingOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *GetBucketTaggingOutput) SetExtendedRequestId(v string) *GetBucketTaggingOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *GetBucketTaggingOutput) SetRequestId(v string) *GetBucketTaggingOutput {
+	s.RequestId = &v
+	return s
+}
+
 // SetTagSet sets the TagSet field's value.
 func (s *GetBucketTaggingOutput) SetTagSet(v []*Tag) *GetBucketTaggingOutput {
 	s.TagSet = v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *GetBucketTaggingOutput) SetVersionId(v string) *GetBucketTaggingOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -10403,13 +11111,23 @@ func (s *GetBucketVersioningInput) SetBucket(v string) *GetBucketVersioningInput
 type GetBucketVersioningOutput struct {
 	_ struct{} `type:"structure"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	// Specifies whether MFA delete is enabled in the bucket versioning configuration.
 	// This element is only returned if the bucket has been configured with MFA
 	// delete. If the bucket has never been so configured, this element is not returned.
 	MFADelete *string `locationName:"MfaDelete" type:"string" enum:"MFADeleteStatus"`
 
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
 	// The versioning state of the bucket.
 	Status *string `type:"string" enum:"BucketVersioningStatus"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -10422,15 +11140,39 @@ func (s GetBucketVersioningOutput) GoString() string {
 	return s.String()
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *GetBucketVersioningOutput) SetDeleteMarker(v bool) *GetBucketVersioningOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *GetBucketVersioningOutput) SetExtendedRequestId(v string) *GetBucketVersioningOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetMFADelete sets the MFADelete field's value.
 func (s *GetBucketVersioningOutput) SetMFADelete(v string) *GetBucketVersioningOutput {
 	s.MFADelete = &v
 	return s
 }
 
+// SetRequestId sets the RequestId field's value.
+func (s *GetBucketVersioningOutput) SetRequestId(v string) *GetBucketVersioningOutput {
+	s.RequestId = &v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *GetBucketVersioningOutput) SetStatus(v string) *GetBucketVersioningOutput {
 	s.Status = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *GetBucketVersioningOutput) SetVersionId(v string) *GetBucketVersioningOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -10475,13 +11217,23 @@ func (s *GetBucketWebsiteInput) SetBucket(v string) *GetBucketWebsiteInput {
 type GetBucketWebsiteOutput struct {
 	_ struct{} `type:"structure"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
 	ErrorDocument *ErrorDocument `type:"structure"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
 
 	IndexDocument *IndexDocument `type:"structure"`
 
 	RedirectAllRequestsTo *RedirectAllRequestsTo `type:"structure"`
 
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
 	RoutingRules []*RoutingRule `locationNameList:"RoutingRule" type:"list"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -10494,9 +11246,21 @@ func (s GetBucketWebsiteOutput) GoString() string {
 	return s.String()
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *GetBucketWebsiteOutput) SetDeleteMarker(v bool) *GetBucketWebsiteOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
 // SetErrorDocument sets the ErrorDocument field's value.
 func (s *GetBucketWebsiteOutput) SetErrorDocument(v *ErrorDocument) *GetBucketWebsiteOutput {
 	s.ErrorDocument = v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *GetBucketWebsiteOutput) SetExtendedRequestId(v string) *GetBucketWebsiteOutput {
+	s.ExtendedRequestId = &v
 	return s
 }
 
@@ -10512,9 +11276,21 @@ func (s *GetBucketWebsiteOutput) SetRedirectAllRequestsTo(v *RedirectAllRequests
 	return s
 }
 
+// SetRequestId sets the RequestId field's value.
+func (s *GetBucketWebsiteOutput) SetRequestId(v string) *GetBucketWebsiteOutput {
+	s.RequestId = &v
+	return s
+}
+
 // SetRoutingRules sets the RoutingRules field's value.
 func (s *GetBucketWebsiteOutput) SetRoutingRules(v []*RoutingRule) *GetBucketWebsiteOutput {
 	s.RoutingRules = v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *GetBucketWebsiteOutput) SetVersionId(v string) *GetBucketWebsiteOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -10595,6 +11371,11 @@ func (s *GetObjectAclInput) SetVersionId(v string) *GetObjectAclInput {
 type GetObjectAclOutput struct {
 	_ struct{} `type:"structure"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	// A list of grants.
 	Grants []*Grant `locationName:"AccessControlList" locationNameList:"Grant" type:"list"`
 
@@ -10603,6 +11384,11 @@ type GetObjectAclOutput struct {
 	// If present, indicates that the requester was successfully charged for the
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -10613,6 +11399,18 @@ func (s GetObjectAclOutput) String() string {
 // GoString returns the string representation
 func (s GetObjectAclOutput) GoString() string {
 	return s.String()
+}
+
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *GetObjectAclOutput) SetDeleteMarker(v bool) *GetObjectAclOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *GetObjectAclOutput) SetExtendedRequestId(v string) *GetObjectAclOutput {
+	s.ExtendedRequestId = &v
+	return s
 }
 
 // SetGrants sets the Grants field's value.
@@ -10630,6 +11428,18 @@ func (s *GetObjectAclOutput) SetOwner(v *Owner) *GetObjectAclOutput {
 // SetRequestCharged sets the RequestCharged field's value.
 func (s *GetObjectAclOutput) SetRequestCharged(v string) *GetObjectAclOutput {
 	s.RequestCharged = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *GetObjectAclOutput) SetRequestId(v string) *GetObjectAclOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *GetObjectAclOutput) SetVersionId(v string) *GetObjectAclOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -10903,6 +11713,9 @@ type GetObjectOutput struct {
 	// The date and time at which the object is no longer cacheable.
 	Expires *string `location:"header" locationName:"Expires" type:"string"`
 
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	// Last modified date of the object
 	LastModified *time.Time `location:"header" locationName:"Last-Modified" type:"timestamp" timestampFormat:"rfc822"`
 
@@ -10923,6 +11736,9 @@ type GetObjectOutput struct {
 	// If present, indicates that the requester was successfully charged for the
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
 
 	// Provides information about object restoration operation and expiration time
 	// of the restored object copy.
@@ -11048,6 +11864,12 @@ func (s *GetObjectOutput) SetExpires(v string) *GetObjectOutput {
 	return s
 }
 
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *GetObjectOutput) SetExtendedRequestId(v string) *GetObjectOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetLastModified sets the LastModified field's value.
 func (s *GetObjectOutput) SetLastModified(v time.Time) *GetObjectOutput {
 	s.LastModified = &v
@@ -11081,6 +11903,12 @@ func (s *GetObjectOutput) SetReplicationStatus(v string) *GetObjectOutput {
 // SetRequestCharged sets the RequestCharged field's value.
 func (s *GetObjectOutput) SetRequestCharged(v string) *GetObjectOutput {
 	s.RequestCharged = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *GetObjectOutput) SetRequestId(v string) *GetObjectOutput {
+	s.RequestId = &v
 	return s
 }
 
@@ -11202,6 +12030,14 @@ func (s *GetObjectTaggingInput) SetVersionId(v string) *GetObjectTaggingInput {
 type GetObjectTaggingOutput struct {
 	_ struct{} `type:"structure"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
 	// TagSet is a required field
 	TagSet []*Tag `locationNameList:"Tag" type:"list" required:"true"`
 
@@ -11216,6 +12052,24 @@ func (s GetObjectTaggingOutput) String() string {
 // GoString returns the string representation
 func (s GetObjectTaggingOutput) GoString() string {
 	return s.String()
+}
+
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *GetObjectTaggingOutput) SetDeleteMarker(v bool) *GetObjectTaggingOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *GetObjectTaggingOutput) SetExtendedRequestId(v string) *GetObjectTaggingOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *GetObjectTaggingOutput) SetRequestId(v string) *GetObjectTaggingOutput {
+	s.RequestId = &v
+	return s
 }
 
 // SetTagSet sets the TagSet field's value.
@@ -11300,9 +12154,19 @@ type GetObjectTorrentOutput struct {
 
 	Body io.ReadCloser `type:"blob"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	// If present, indicates that the requester was successfully charged for the
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -11321,9 +12185,33 @@ func (s *GetObjectTorrentOutput) SetBody(v io.ReadCloser) *GetObjectTorrentOutpu
 	return s
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *GetObjectTorrentOutput) SetDeleteMarker(v bool) *GetObjectTorrentOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *GetObjectTorrentOutput) SetExtendedRequestId(v string) *GetObjectTorrentOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetRequestCharged sets the RequestCharged field's value.
 func (s *GetObjectTorrentOutput) SetRequestCharged(v string) *GetObjectTorrentOutput {
 	s.RequestCharged = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *GetObjectTorrentOutput) SetRequestId(v string) *GetObjectTorrentOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *GetObjectTorrentOutput) SetVersionId(v string) *GetObjectTorrentOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -11751,6 +12639,9 @@ type HeadObjectOutput struct {
 	// The date and time at which the object is no longer cacheable.
 	Expires *string `location:"header" locationName:"Expires" type:"string"`
 
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	// Last modified date of the object
 	LastModified *time.Time `location:"header" locationName:"Last-Modified" type:"timestamp" timestampFormat:"rfc822"`
 
@@ -11771,6 +12662,9 @@ type HeadObjectOutput struct {
 	// If present, indicates that the requester was successfully charged for the
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
 
 	// Provides information about object restoration operation and expiration time
 	// of the restored object copy.
@@ -11881,6 +12775,12 @@ func (s *HeadObjectOutput) SetExpires(v string) *HeadObjectOutput {
 	return s
 }
 
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *HeadObjectOutput) SetExtendedRequestId(v string) *HeadObjectOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetLastModified sets the LastModified field's value.
 func (s *HeadObjectOutput) SetLastModified(v time.Time) *HeadObjectOutput {
 	s.LastModified = &v
@@ -11914,6 +12814,12 @@ func (s *HeadObjectOutput) SetReplicationStatus(v string) *HeadObjectOutput {
 // SetRequestCharged sets the RequestCharged field's value.
 func (s *HeadObjectOutput) SetRequestCharged(v string) *HeadObjectOutput {
 	s.RequestCharged = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *HeadObjectOutput) SetRequestId(v string) *HeadObjectOutput {
+	s.RequestId = &v
 	return s
 }
 
@@ -12860,6 +13766,11 @@ type ListBucketAnalyticsConfigurationsOutput struct {
 	// The ContinuationToken that represents where this request began.
 	ContinuationToken *string `type:"string"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	// Indicates whether the returned list of analytics configurations is complete.
 	// A value of true indicates that the list is not complete and the NextContinuationToken
 	// will be provided for a subsequent request.
@@ -12869,6 +13780,11 @@ type ListBucketAnalyticsConfigurationsOutput struct {
 	// there are more analytics configurations to list. The next request must include
 	// this NextContinuationToken. The token is obfuscated and is not a usable value.
 	NextContinuationToken *string `type:"string"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -12893,6 +13809,18 @@ func (s *ListBucketAnalyticsConfigurationsOutput) SetContinuationToken(v string)
 	return s
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *ListBucketAnalyticsConfigurationsOutput) SetDeleteMarker(v bool) *ListBucketAnalyticsConfigurationsOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *ListBucketAnalyticsConfigurationsOutput) SetExtendedRequestId(v string) *ListBucketAnalyticsConfigurationsOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetIsTruncated sets the IsTruncated field's value.
 func (s *ListBucketAnalyticsConfigurationsOutput) SetIsTruncated(v bool) *ListBucketAnalyticsConfigurationsOutput {
 	s.IsTruncated = &v
@@ -12902,6 +13830,18 @@ func (s *ListBucketAnalyticsConfigurationsOutput) SetIsTruncated(v bool) *ListBu
 // SetNextContinuationToken sets the NextContinuationToken field's value.
 func (s *ListBucketAnalyticsConfigurationsOutput) SetNextContinuationToken(v string) *ListBucketAnalyticsConfigurationsOutput {
 	s.NextContinuationToken = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *ListBucketAnalyticsConfigurationsOutput) SetRequestId(v string) *ListBucketAnalyticsConfigurationsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *ListBucketAnalyticsConfigurationsOutput) SetVersionId(v string) *ListBucketAnalyticsConfigurationsOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -12964,6 +13904,11 @@ type ListBucketInventoryConfigurationsOutput struct {
 	// inventory configuration list response.
 	ContinuationToken *string `type:"string"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	// The list of inventory configurations for a bucket.
 	InventoryConfigurationList []*InventoryConfiguration `locationName:"InventoryConfiguration" type:"list" flattened:"true"`
 
@@ -12975,6 +13920,11 @@ type ListBucketInventoryConfigurationsOutput struct {
 	// NextContinuationToken from this response to continue the listing in a subsequent
 	// request. The continuation token is an opaque value that Amazon S3 understands.
 	NextContinuationToken *string `type:"string"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -12993,6 +13943,18 @@ func (s *ListBucketInventoryConfigurationsOutput) SetContinuationToken(v string)
 	return s
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *ListBucketInventoryConfigurationsOutput) SetDeleteMarker(v bool) *ListBucketInventoryConfigurationsOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *ListBucketInventoryConfigurationsOutput) SetExtendedRequestId(v string) *ListBucketInventoryConfigurationsOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetInventoryConfigurationList sets the InventoryConfigurationList field's value.
 func (s *ListBucketInventoryConfigurationsOutput) SetInventoryConfigurationList(v []*InventoryConfiguration) *ListBucketInventoryConfigurationsOutput {
 	s.InventoryConfigurationList = v
@@ -13008,6 +13970,18 @@ func (s *ListBucketInventoryConfigurationsOutput) SetIsTruncated(v bool) *ListBu
 // SetNextContinuationToken sets the NextContinuationToken field's value.
 func (s *ListBucketInventoryConfigurationsOutput) SetNextContinuationToken(v string) *ListBucketInventoryConfigurationsOutput {
 	s.NextContinuationToken = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *ListBucketInventoryConfigurationsOutput) SetRequestId(v string) *ListBucketInventoryConfigurationsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *ListBucketInventoryConfigurationsOutput) SetVersionId(v string) *ListBucketInventoryConfigurationsOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -13070,6 +14044,11 @@ type ListBucketMetricsConfigurationsOutput struct {
 	// list response. This value is present if it was sent in the request.
 	ContinuationToken *string `type:"string"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	// Indicates whether the returned list of metrics configurations is complete.
 	// A value of true indicates that the list is not complete and the NextContinuationToken
 	// will be provided for a subsequent request.
@@ -13083,6 +14062,11 @@ type ListBucketMetricsConfigurationsOutput struct {
 	// response to continue the listing. The continuation token is an opaque value
 	// that Amazon S3 understands.
 	NextContinuationToken *string `type:"string"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -13101,6 +14085,18 @@ func (s *ListBucketMetricsConfigurationsOutput) SetContinuationToken(v string) *
 	return s
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *ListBucketMetricsConfigurationsOutput) SetDeleteMarker(v bool) *ListBucketMetricsConfigurationsOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *ListBucketMetricsConfigurationsOutput) SetExtendedRequestId(v string) *ListBucketMetricsConfigurationsOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetIsTruncated sets the IsTruncated field's value.
 func (s *ListBucketMetricsConfigurationsOutput) SetIsTruncated(v bool) *ListBucketMetricsConfigurationsOutput {
 	s.IsTruncated = &v
@@ -13116,6 +14112,18 @@ func (s *ListBucketMetricsConfigurationsOutput) SetMetricsConfigurationList(v []
 // SetNextContinuationToken sets the NextContinuationToken field's value.
 func (s *ListBucketMetricsConfigurationsOutput) SetNextContinuationToken(v string) *ListBucketMetricsConfigurationsOutput {
 	s.NextContinuationToken = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *ListBucketMetricsConfigurationsOutput) SetRequestId(v string) *ListBucketMetricsConfigurationsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *ListBucketMetricsConfigurationsOutput) SetVersionId(v string) *ListBucketMetricsConfigurationsOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -13140,7 +14148,17 @@ type ListBucketsOutput struct {
 
 	Buckets []*Bucket `locationNameList:"Bucket" type:"list"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	Owner *Owner `type:"structure"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -13159,9 +14177,33 @@ func (s *ListBucketsOutput) SetBuckets(v []*Bucket) *ListBucketsOutput {
 	return s
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *ListBucketsOutput) SetDeleteMarker(v bool) *ListBucketsOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *ListBucketsOutput) SetExtendedRequestId(v string) *ListBucketsOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetOwner sets the Owner field's value.
 func (s *ListBucketsOutput) SetOwner(v *Owner) *ListBucketsOutput {
 	s.Owner = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *ListBucketsOutput) SetRequestId(v string) *ListBucketsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *ListBucketsOutput) SetVersionId(v string) *ListBucketsOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -13276,10 +14318,15 @@ type ListMultipartUploadsOutput struct {
 
 	CommonPrefixes []*CommonPrefix `type:"list" flattened:"true"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
 	Delimiter *string `type:"string"`
 
 	// Encoding type used by Amazon S3 to encode object keys in the response.
 	EncodingType *string `type:"string" enum:"EncodingType"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
 
 	// Indicates whether the returned list of multipart uploads is truncated. A
 	// value of true indicates that the list was truncated. The list can be truncated
@@ -13306,10 +14353,15 @@ type ListMultipartUploadsOutput struct {
 	// prefix. The result contains only keys starting with the specified prefix.
 	Prefix *string `type:"string"`
 
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
 	// Upload ID after which listing began.
 	UploadIdMarker *string `type:"string"`
 
 	Uploads []*MultipartUpload `locationName:"Upload" type:"list" flattened:"true"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -13334,6 +14386,12 @@ func (s *ListMultipartUploadsOutput) SetCommonPrefixes(v []*CommonPrefix) *ListM
 	return s
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *ListMultipartUploadsOutput) SetDeleteMarker(v bool) *ListMultipartUploadsOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
 // SetDelimiter sets the Delimiter field's value.
 func (s *ListMultipartUploadsOutput) SetDelimiter(v string) *ListMultipartUploadsOutput {
 	s.Delimiter = &v
@@ -13343,6 +14401,12 @@ func (s *ListMultipartUploadsOutput) SetDelimiter(v string) *ListMultipartUpload
 // SetEncodingType sets the EncodingType field's value.
 func (s *ListMultipartUploadsOutput) SetEncodingType(v string) *ListMultipartUploadsOutput {
 	s.EncodingType = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *ListMultipartUploadsOutput) SetExtendedRequestId(v string) *ListMultipartUploadsOutput {
+	s.ExtendedRequestId = &v
 	return s
 }
 
@@ -13382,6 +14446,12 @@ func (s *ListMultipartUploadsOutput) SetPrefix(v string) *ListMultipartUploadsOu
 	return s
 }
 
+// SetRequestId sets the RequestId field's value.
+func (s *ListMultipartUploadsOutput) SetRequestId(v string) *ListMultipartUploadsOutput {
+	s.RequestId = &v
+	return s
+}
+
 // SetUploadIdMarker sets the UploadIdMarker field's value.
 func (s *ListMultipartUploadsOutput) SetUploadIdMarker(v string) *ListMultipartUploadsOutput {
 	s.UploadIdMarker = &v
@@ -13391,6 +14461,12 @@ func (s *ListMultipartUploadsOutput) SetUploadIdMarker(v string) *ListMultipartU
 // SetUploads sets the Uploads field's value.
 func (s *ListMultipartUploadsOutput) SetUploads(v []*MultipartUpload) *ListMultipartUploadsOutput {
 	s.Uploads = v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *ListMultipartUploadsOutput) SetVersionId(v string) *ListMultipartUploadsOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -13497,12 +14573,17 @@ type ListObjectVersionsOutput struct {
 
 	CommonPrefixes []*CommonPrefix `type:"list" flattened:"true"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
 	DeleteMarkers []*DeleteMarkerEntry `locationName:"DeleteMarker" type:"list" flattened:"true"`
 
 	Delimiter *string `type:"string"`
 
 	// Encoding type used by Amazon S3 to encode object keys in the response.
 	EncodingType *string `type:"string" enum:"EncodingType"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
 
 	// A flag that indicates whether or not Amazon S3 returned all of the results
 	// that satisfied the search criteria. If your results were truncated, you can
@@ -13526,6 +14607,11 @@ type ListObjectVersionsOutput struct {
 
 	Prefix *string `type:"string"`
 
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
+
 	VersionIdMarker *string `type:"string"`
 
 	Versions []*ObjectVersion `locationName:"Version" type:"list" flattened:"true"`
@@ -13547,6 +14633,12 @@ func (s *ListObjectVersionsOutput) SetCommonPrefixes(v []*CommonPrefix) *ListObj
 	return s
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *ListObjectVersionsOutput) SetDeleteMarker(v bool) *ListObjectVersionsOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
 // SetDeleteMarkers sets the DeleteMarkers field's value.
 func (s *ListObjectVersionsOutput) SetDeleteMarkers(v []*DeleteMarkerEntry) *ListObjectVersionsOutput {
 	s.DeleteMarkers = v
@@ -13562,6 +14654,12 @@ func (s *ListObjectVersionsOutput) SetDelimiter(v string) *ListObjectVersionsOut
 // SetEncodingType sets the EncodingType field's value.
 func (s *ListObjectVersionsOutput) SetEncodingType(v string) *ListObjectVersionsOutput {
 	s.EncodingType = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *ListObjectVersionsOutput) SetExtendedRequestId(v string) *ListObjectVersionsOutput {
+	s.ExtendedRequestId = &v
 	return s
 }
 
@@ -13604,6 +14702,18 @@ func (s *ListObjectVersionsOutput) SetNextVersionIdMarker(v string) *ListObjectV
 // SetPrefix sets the Prefix field's value.
 func (s *ListObjectVersionsOutput) SetPrefix(v string) *ListObjectVersionsOutput {
 	s.Prefix = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *ListObjectVersionsOutput) SetRequestId(v string) *ListObjectVersionsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *ListObjectVersionsOutput) SetVersionId(v string) *ListObjectVersionsOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -13726,10 +14836,15 @@ type ListObjectsOutput struct {
 
 	Contents []*Object `type:"list" flattened:"true"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
 	Delimiter *string `type:"string"`
 
 	// Encoding type used by Amazon S3 to encode object keys in the response.
 	EncodingType *string `type:"string" enum:"EncodingType"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
 
 	// A flag that indicates whether or not Amazon S3 returned all of the results
 	// that satisfied the search criteria.
@@ -13751,6 +14866,11 @@ type ListObjectsOutput struct {
 	NextMarker *string `type:"string"`
 
 	Prefix *string `type:"string"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -13775,6 +14895,12 @@ func (s *ListObjectsOutput) SetContents(v []*Object) *ListObjectsOutput {
 	return s
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *ListObjectsOutput) SetDeleteMarker(v bool) *ListObjectsOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
 // SetDelimiter sets the Delimiter field's value.
 func (s *ListObjectsOutput) SetDelimiter(v string) *ListObjectsOutput {
 	s.Delimiter = &v
@@ -13784,6 +14910,12 @@ func (s *ListObjectsOutput) SetDelimiter(v string) *ListObjectsOutput {
 // SetEncodingType sets the EncodingType field's value.
 func (s *ListObjectsOutput) SetEncodingType(v string) *ListObjectsOutput {
 	s.EncodingType = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *ListObjectsOutput) SetExtendedRequestId(v string) *ListObjectsOutput {
+	s.ExtendedRequestId = &v
 	return s
 }
 
@@ -13820,6 +14952,18 @@ func (s *ListObjectsOutput) SetNextMarker(v string) *ListObjectsOutput {
 // SetPrefix sets the Prefix field's value.
 func (s *ListObjectsOutput) SetPrefix(v string) *ListObjectsOutput {
 	s.Prefix = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *ListObjectsOutput) SetRequestId(v string) *ListObjectsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *ListObjectsOutput) SetVersionId(v string) *ListObjectsOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -13958,11 +15102,16 @@ type ListObjectsV2Output struct {
 	// key
 	ContinuationToken *string `type:"string"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
 	// A delimiter is a character you use to group keys.
 	Delimiter *string `type:"string"`
 
 	// Encoding type used by Amazon S3 to encode object keys in the response.
 	EncodingType *string `type:"string" enum:"EncodingType"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
 
 	// A flag that indicates whether or not Amazon S3 returned all of the results
 	// that satisfied the search criteria.
@@ -13989,9 +15138,14 @@ type ListObjectsV2Output struct {
 	// Limits the response to keys that begin with the specified prefix.
 	Prefix *string `type:"string"`
 
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
 	// StartAfter is where you want Amazon S3 to start listing from. Amazon S3 starts
 	// listing after this specified key. StartAfter can be any key in the bucket
 	StartAfter *string `type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -14022,6 +15176,12 @@ func (s *ListObjectsV2Output) SetContinuationToken(v string) *ListObjectsV2Outpu
 	return s
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *ListObjectsV2Output) SetDeleteMarker(v bool) *ListObjectsV2Output {
+	s.DeleteMarker = &v
+	return s
+}
+
 // SetDelimiter sets the Delimiter field's value.
 func (s *ListObjectsV2Output) SetDelimiter(v string) *ListObjectsV2Output {
 	s.Delimiter = &v
@@ -14031,6 +15191,12 @@ func (s *ListObjectsV2Output) SetDelimiter(v string) *ListObjectsV2Output {
 // SetEncodingType sets the EncodingType field's value.
 func (s *ListObjectsV2Output) SetEncodingType(v string) *ListObjectsV2Output {
 	s.EncodingType = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *ListObjectsV2Output) SetExtendedRequestId(v string) *ListObjectsV2Output {
+	s.ExtendedRequestId = &v
 	return s
 }
 
@@ -14070,9 +15236,21 @@ func (s *ListObjectsV2Output) SetPrefix(v string) *ListObjectsV2Output {
 	return s
 }
 
+// SetRequestId sets the RequestId field's value.
+func (s *ListObjectsV2Output) SetRequestId(v string) *ListObjectsV2Output {
+	s.RequestId = &v
+	return s
+}
+
 // SetStartAfter sets the StartAfter field's value.
 func (s *ListObjectsV2Output) SetStartAfter(v string) *ListObjectsV2Output {
 	s.StartAfter = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *ListObjectsV2Output) SetVersionId(v string) *ListObjectsV2Output {
+	s.VersionId = &v
 	return s
 }
 
@@ -14187,6 +15365,11 @@ type ListPartsOutput struct {
 	// Name of the bucket to which the multipart upload was initiated.
 	Bucket *string `type:"string"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	// Identifies who initiated the multipart upload.
 	Initiator *Initiator `type:"structure"`
 
@@ -14215,11 +15398,16 @@ type ListPartsOutput struct {
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
 
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
 	// The class of storage used to store the object.
 	StorageClass *string `type:"string" enum:"StorageClass"`
 
 	// Upload ID identifying the multipart upload whose parts are being listed.
 	UploadId *string `type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -14247,6 +15435,18 @@ func (s *ListPartsOutput) SetAbortRuleId(v string) *ListPartsOutput {
 // SetBucket sets the Bucket field's value.
 func (s *ListPartsOutput) SetBucket(v string) *ListPartsOutput {
 	s.Bucket = &v
+	return s
+}
+
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *ListPartsOutput) SetDeleteMarker(v bool) *ListPartsOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *ListPartsOutput) SetExtendedRequestId(v string) *ListPartsOutput {
+	s.ExtendedRequestId = &v
 	return s
 }
 
@@ -14304,6 +15504,12 @@ func (s *ListPartsOutput) SetRequestCharged(v string) *ListPartsOutput {
 	return s
 }
 
+// SetRequestId sets the RequestId field's value.
+func (s *ListPartsOutput) SetRequestId(v string) *ListPartsOutput {
+	s.RequestId = &v
+	return s
+}
+
 // SetStorageClass sets the StorageClass field's value.
 func (s *ListPartsOutput) SetStorageClass(v string) *ListPartsOutput {
 	s.StorageClass = &v
@@ -14313,6 +15519,12 @@ func (s *ListPartsOutput) SetStorageClass(v string) *ListPartsOutput {
 // SetUploadId sets the UploadId field's value.
 func (s *ListPartsOutput) SetUploadId(v string) *ListPartsOutput {
 	s.UploadId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *ListPartsOutput) SetVersionId(v string) *ListPartsOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -16543,9 +17755,19 @@ func (s *PutObjectAclInput) SetVersionId(v string) *PutObjectAclInput {
 type PutObjectAclOutput struct {
 	_ struct{} `type:"structure"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	// If present, indicates that the requester was successfully charged for the
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -16558,9 +17780,33 @@ func (s PutObjectAclOutput) GoString() string {
 	return s.String()
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *PutObjectAclOutput) SetDeleteMarker(v bool) *PutObjectAclOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *PutObjectAclOutput) SetExtendedRequestId(v string) *PutObjectAclOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetRequestCharged sets the RequestCharged field's value.
 func (s *PutObjectAclOutput) SetRequestCharged(v string) *PutObjectAclOutput {
 	s.RequestCharged = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *PutObjectAclOutput) SetRequestId(v string) *PutObjectAclOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *PutObjectAclOutput) SetVersionId(v string) *PutObjectAclOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -16849,6 +18095,8 @@ func (s *PutObjectInput) SetWebsiteRedirectLocation(v string) *PutObjectInput {
 type PutObjectOutput struct {
 	_ struct{} `type:"structure"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
 	// Entity tag for the uploaded object.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
@@ -16856,9 +18104,15 @@ type PutObjectOutput struct {
 	// date (expiry-date) and rule ID (rule-id). The value of rule-id is URL encoded.
 	Expiration *string `location:"header" locationName:"x-amz-expiration" type:"string"`
 
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	// If present, indicates that the requester was successfully charged for the
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
 
 	// If server-side encryption with a customer-provided encryption key was requested,
 	// the response will include this header confirming the encryption algorithm
@@ -16892,6 +18146,12 @@ func (s PutObjectOutput) GoString() string {
 	return s.String()
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *PutObjectOutput) SetDeleteMarker(v bool) *PutObjectOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
 // SetETag sets the ETag field's value.
 func (s *PutObjectOutput) SetETag(v string) *PutObjectOutput {
 	s.ETag = &v
@@ -16904,9 +18164,21 @@ func (s *PutObjectOutput) SetExpiration(v string) *PutObjectOutput {
 	return s
 }
 
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *PutObjectOutput) SetExtendedRequestId(v string) *PutObjectOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetRequestCharged sets the RequestCharged field's value.
 func (s *PutObjectOutput) SetRequestCharged(v string) *PutObjectOutput {
 	s.RequestCharged = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *PutObjectOutput) SetRequestId(v string) *PutObjectOutput {
+	s.RequestId = &v
 	return s
 }
 
@@ -17021,6 +18293,14 @@ func (s *PutObjectTaggingInput) SetVersionId(v string) *PutObjectTaggingInput {
 type PutObjectTaggingOutput struct {
 	_ struct{} `type:"structure"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
 	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
@@ -17032,6 +18312,24 @@ func (s PutObjectTaggingOutput) String() string {
 // GoString returns the string representation
 func (s PutObjectTaggingOutput) GoString() string {
 	return s.String()
+}
+
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *PutObjectTaggingOutput) SetDeleteMarker(v bool) *PutObjectTaggingOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *PutObjectTaggingOutput) SetExtendedRequestId(v string) *PutObjectTaggingOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *PutObjectTaggingOutput) SetRequestId(v string) *PutObjectTaggingOutput {
+	s.RequestId = &v
+	return s
 }
 
 // SetVersionId sets the VersionId field's value.
@@ -17558,9 +18856,19 @@ func (s *RestoreObjectInput) SetVersionId(v string) *RestoreObjectInput {
 type RestoreObjectOutput struct {
 	_ struct{} `type:"structure"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	// If present, indicates that the requester was successfully charged for the
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -17573,9 +18881,33 @@ func (s RestoreObjectOutput) GoString() string {
 	return s.String()
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *RestoreObjectOutput) SetDeleteMarker(v bool) *RestoreObjectOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *RestoreObjectOutput) SetExtendedRequestId(v string) *RestoreObjectOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetRequestCharged sets the RequestCharged field's value.
 func (s *RestoreObjectOutput) SetRequestCharged(v string) *RestoreObjectOutput {
 	s.RequestCharged = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *RestoreObjectOutput) SetRequestId(v string) *RestoreObjectOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *RestoreObjectOutput) SetVersionId(v string) *RestoreObjectOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -18451,9 +19783,17 @@ type UploadPartCopyOutput struct {
 	// on the source bucket.
 	CopySourceVersionId *string `location:"header" locationName:"x-amz-copy-source-version-id" type:"string"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
+
 	// If present, indicates that the requester was successfully charged for the
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
 
 	// If server-side encryption with a customer-provided encryption key was requested,
 	// the response will include this header confirming the encryption algorithm
@@ -18472,6 +19812,8 @@ type UploadPartCopyOutput struct {
 	// The Server-side encryption algorithm used when storing this object in S3
 	// (e.g., AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -18496,9 +19838,27 @@ func (s *UploadPartCopyOutput) SetCopySourceVersionId(v string) *UploadPartCopyO
 	return s
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *UploadPartCopyOutput) SetDeleteMarker(v bool) *UploadPartCopyOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *UploadPartCopyOutput) SetExtendedRequestId(v string) *UploadPartCopyOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetRequestCharged sets the RequestCharged field's value.
 func (s *UploadPartCopyOutput) SetRequestCharged(v string) *UploadPartCopyOutput {
 	s.RequestCharged = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *UploadPartCopyOutput) SetRequestId(v string) *UploadPartCopyOutput {
+	s.RequestId = &v
 	return s
 }
 
@@ -18523,6 +19883,12 @@ func (s *UploadPartCopyOutput) SetSSEKMSKeyId(v string) *UploadPartCopyOutput {
 // SetServerSideEncryption sets the ServerSideEncryption field's value.
 func (s *UploadPartCopyOutput) SetServerSideEncryption(v string) *UploadPartCopyOutput {
 	s.ServerSideEncryption = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *UploadPartCopyOutput) SetVersionId(v string) *UploadPartCopyOutput {
+	s.VersionId = &v
 	return s
 }
 
@@ -18680,12 +20046,20 @@ func (s *UploadPartInput) SetUploadId(v string) *UploadPartInput {
 type UploadPartOutput struct {
 	_ struct{} `type:"structure"`
 
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
 	// Entity tag for the uploaded object.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// Extended debugging ID of the request.
+	ExtendedRequestId *string `location:"header" locationName:"x-amz-id-2" type:"string"`
 
 	// If present, indicates that the requester was successfully charged for the
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
+
+	// Unique ID of the request.
+	RequestId *string `location:"header" locationName:"x-amz-request-id" type:"string"`
 
 	// If server-side encryption with a customer-provided encryption key was requested,
 	// the response will include this header confirming the encryption algorithm
@@ -18704,6 +20078,8 @@ type UploadPartOutput struct {
 	// The Server-side encryption algorithm used when storing this object in S3
 	// (e.g., AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
+
+	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
 
 // String returns the string representation
@@ -18716,15 +20092,33 @@ func (s UploadPartOutput) GoString() string {
 	return s.String()
 }
 
+// SetDeleteMarker sets the DeleteMarker field's value.
+func (s *UploadPartOutput) SetDeleteMarker(v bool) *UploadPartOutput {
+	s.DeleteMarker = &v
+	return s
+}
+
 // SetETag sets the ETag field's value.
 func (s *UploadPartOutput) SetETag(v string) *UploadPartOutput {
 	s.ETag = &v
 	return s
 }
 
+// SetExtendedRequestId sets the ExtendedRequestId field's value.
+func (s *UploadPartOutput) SetExtendedRequestId(v string) *UploadPartOutput {
+	s.ExtendedRequestId = &v
+	return s
+}
+
 // SetRequestCharged sets the RequestCharged field's value.
 func (s *UploadPartOutput) SetRequestCharged(v string) *UploadPartOutput {
 	s.RequestCharged = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *UploadPartOutput) SetRequestId(v string) *UploadPartOutput {
+	s.RequestId = &v
 	return s
 }
 
@@ -18749,6 +20143,12 @@ func (s *UploadPartOutput) SetSSEKMSKeyId(v string) *UploadPartOutput {
 // SetServerSideEncryption sets the ServerSideEncryption field's value.
 func (s *UploadPartOutput) SetServerSideEncryption(v string) *UploadPartOutput {
 	s.ServerSideEncryption = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *UploadPartOutput) SetVersionId(v string) *UploadPartOutput {
+	s.VersionId = &v
 	return s
 }
 
