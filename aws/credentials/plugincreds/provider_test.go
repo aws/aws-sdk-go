@@ -23,7 +23,12 @@ func TestProvider_Passthrough(t *testing.T) {
 		t.Fatalf("expect no error, got %v", err)
 	}
 
-	expect := credentials.Value{"key", "secret", "token", ProviderName}
+	expect := credentials.Value{
+		AccessKeyID:     "key",
+		SecretAccessKey: "secret",
+		SessionToken:    "token",
+		ProviderName:    ProviderName,
+	}
 	if expect != actual {
 		t.Errorf("expect %+v credentials, got %+v", expect, actual)
 	}
@@ -55,7 +60,9 @@ func TestProvider_Error(t *testing.T) {
 		t.Errorf("expect %v cause error, got %v", e, a)
 	}
 
-	expect := credentials.Value{"", "", "", ProviderName}
+	expect := credentials.Value{
+		ProviderName: ProviderName,
+	}
 	if expect != actual {
 		t.Errorf("expect %+v credentials, got %+v", expect, actual)
 	}
