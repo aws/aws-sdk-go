@@ -4,7 +4,7 @@
 // plugin. This package allows you to use a Go plugin to retrieve AWS credentials
 // for the SDK to use for service API calls.
 //
-// As of Go 1.8 plugin is only supported on the Linux platform.
+// As of Go 1.8 plugins are only supported on the Linux platform.
 //
 // Plugin Symbol Name
 //
@@ -18,7 +18,7 @@
 //
 // Plugin Symbol Signature
 //
-// The Plugin credential loader requires the symbol looked up to match the
+// The plugin credential provider requires the symbol to match the
 // following signature.
 //
 //   func() (RetrieveFn func() (key, secret, token string, err error), IsExpiredFn func() bool)
@@ -118,6 +118,9 @@ const (
 
 	// ErrCodePluginIsExpiredNil IsExpired Function was nil
 	ErrCodePluginIsExpiredNil = "PluginIsExpiredNilError"
+
+	// ErrCodePluginProviderRetrieve plugin provider's retrieve returned error
+	ErrCodePluginProviderRetrieve = "PluginProviderRetrieveError"
 )
 
 // Provider is the credentials provider that will use the plugin provided
@@ -151,7 +154,7 @@ func (p Provider) Retrieve() (credentials.Value, error) {
 
 	k, s, t, err := p.RetrieveFn()
 	if err != nil {
-		return creds, awserr.New("Credentials PluginError",
+		return creds, awserr.New(ErrCodePluginProviderRetrieve,
 			"failed to retrieve credentials with plugin provider", err)
 	}
 
