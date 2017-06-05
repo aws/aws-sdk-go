@@ -141,6 +141,10 @@ func generateTypes(ex Example) string {
 	return ""
 }
 
+// correctType will cast the value to the correct type when printing the string.
+// This is due to the json decoder choosing numbers to be floats, but the shape may
+// actually be an int. To counter this, we pass the shape's type and properly do the
+// casting here.
 func correctType(memName string, t string, value interface{}) string {
 	if value == nil {
 		return ""
