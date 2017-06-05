@@ -1,3 +1,12 @@
+Release v1.8.35 (2017-06-05)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API and documentation
+  * AppStream 2.0 Custom Security Groups allows you to easily control what network resources your streaming instances and images have access to. You can assign up to 5 security groups per Fleet to control the inbound and outbound network access to your streaming instances to specific IP ranges, network protocols, or ports.
+* `service/iot`: Updates service API, documentation, paginators, and examples
+  * Added Salesforce action to IoT Rules Engine.
+
 Release v1.8.34 (2017-06-02)
 ===
 
