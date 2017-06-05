@@ -319,6 +319,10 @@ func ExampleIoT_CreateTopicRule() {
 						RoleArn:    aws.String("AwsArn"),     // Required
 						CannedAcl:  aws.String("CannedAccessControlList"),
 					},
+					Salesforce: &iot.SalesforceAction{
+						Token: aws.String("SalesforceToken"),
+						Url:   aws.String("SalesforceEndpoint"),
+					},
 					Sns: &iot.SnsAction{
 						RoleArn:       aws.String("AwsArn"), // Required
 						TargetArn:     aws.String("AwsArn"), // Required
@@ -1274,6 +1278,10 @@ func ExampleIoT_ReplaceTopicRule() {
 						Key:        aws.String("Key"),        // Required
 						RoleArn:    aws.String("AwsArn"),     // Required
 						CannedAcl:  aws.String("CannedAccessControlList"),
+					},
+					Salesforce: &iot.SalesforceAction{
+						Token: aws.String("SalesforceToken"),
+						Url:   aws.String("SalesforceEndpoint"),
 					},
 					Sns: &iot.SnsAction{
 						RoleArn:       aws.String("AwsArn"), // Required
