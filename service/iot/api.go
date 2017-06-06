@@ -11005,11 +11005,15 @@ type SalesforceAction struct {
 	// The token used to authenticate access to the Salesforce IoT Cloud Input Stream.
 	// The token is available from the Salesforce IoT Cloud platform after creation
 	// of the Input Stream.
-	Token *string `locationName:"token" min:"40" type:"string"`
+	//
+	// Token is a required field
+	Token *string `locationName:"token" min:"40" type:"string" required:"true"`
 
 	// The URL exposed by the Salesforce IoT Cloud Input Stream. The URL is available
 	// from the Salesforce IoT Cloud platform after creation of the Input Stream.
-	Url *string `locationName:"url" type:"string"`
+	//
+	// Url is a required field
+	Url *string `locationName:"url" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -11025,8 +11029,14 @@ func (s SalesforceAction) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *SalesforceAction) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "SalesforceAction"}
+	if s.Token == nil {
+		invalidParams.Add(request.NewErrParamRequired("Token"))
+	}
 	if s.Token != nil && len(*s.Token) < 40 {
 		invalidParams.Add(request.NewErrParamMinLen("Token", 40))
+	}
+	if s.Url == nil {
+		invalidParams.Add(request.NewErrParamRequired("Url"))
 	}
 
 	if invalidParams.Len() > 0 {

@@ -1,3 +1,15 @@
+Release v1.8.36 (2017-06-06)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service documentation
+  * Documentation update for AWS Certificate Manager.
+* `service/cloudfront`: Updates service documentation
+  * Doc update to fix incorrect prefix in S3OriginConfig
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/iot`: Updates service API
+  * Update client side validation for SalesForce action.
+
 Release v1.8.35 (2017-06-05)
 ===
 
