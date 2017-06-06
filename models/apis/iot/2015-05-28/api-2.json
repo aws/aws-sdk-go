@@ -2572,6 +2572,10 @@
     "SQL":{"type":"string"},
     "SalesforceAction":{
       "type":"structure",
+      "required":[
+        "token",
+        "url"
+      ],
       "members":{
         "token":{"shape":"SalesforceToken"},
         "url":{"shape":"SalesforceEndpoint"}
@@ -2579,7 +2583,8 @@
     },
     "SalesforceEndpoint":{
       "type":"string",
-      "pattern":"https://ingestion-[a-zA-Z0-9]+.[a-zA-Z0-9]+.((sfdc-matrix.net)|(sfdcnow.com))/streams/\\w+/\\w+/\\w+"
+      "max":2000,
+      "pattern":"https://ingestion-[a-zA-Z0-9]{1,12}\\.[a-zA-Z0-9]+\\.((sfdc-matrix\\.net)|(sfdcnow\\.com))/streams/\\w{1,20}/\\w{1,20}/event"
     },
     "SalesforceToken":{
       "type":"string",
