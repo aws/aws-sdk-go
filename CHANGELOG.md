@@ -1,3 +1,12 @@
+Release v1.8.37 (2017-06-07)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * Add support to APIs for privileged containers. This change would allow performing privileged operations like starting the Docker daemon inside builds possible in custom docker images.
+* `service/greengrass`: Adds new service
+  * AWS Greengrass is software that lets you run local compute, messaging, and device state synchronization for connected devices in a secure way. With AWS Greengrass, connected devices can run AWS Lambda functions, keep device data in sync, and communicate with other devices securely even when not connected to the Internet. Using AWS Lambda, Greengrass ensures your IoT devices can respond quickly to local events, operate with intermittent connections, and minimize the cost of transmitting IoT data to the cloud.
+
 Release v1.8.36 (2017-06-06)
 ===
 
