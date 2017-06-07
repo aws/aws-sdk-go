@@ -1,3 +1,4 @@
+// +build go18
 package plugincreds
 
 import (
