@@ -1564,6 +1564,11 @@
           "shape":"CertificateId",
           "location":"uri",
           "locationName":"certificateId"
+        },
+        "certificatePem":{
+          "shape":"CertificatePem",
+          "location":"header",
+          "locationName":"x-amzn-iot-certificate-pem"
         }
       }
     },

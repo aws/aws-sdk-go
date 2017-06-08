@@ -1,3 +1,14 @@
+Release v1.8.38 (2017-06-08)
+===
+
+### Service Client Updates
+* `service/iot`: Updates service API and documentation
+  * In addition to using certificate ID, AWS IoT customers can now obtain the description of a certificate with the certificate PEM.
+* `service/pinpoint`: Updates service API and documentation
+  * Starting today Amazon Pinpoint adds SMS Text and Email Messaging support in addition to Mobile Push Notifications, providing developers, product managers and marketers with multi-channel messaging capabilities to drive user engagement in their applications. Pinpoint also enables backend services and applications to message users directly and provides advanced user and app analytics to understand user behavior and messaging performance.
+* `service/rekognition`: Updates service API and documentation
+  * API Update for AmazonRekognition: Adding RecognizeCelebrities API
+
 Release v1.8.37 (2017-06-07)
 ===
 
