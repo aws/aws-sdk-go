@@ -1,3 +1,11 @@
+Release v1.8.39 (2017-06-09)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/opsworks`: Updates service API and documentation
+  * Tagging Support for AWS OpsWorks Stacks
+
 Release v1.8.38 (2017-06-08)
 ===
 
