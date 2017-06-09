@@ -189,6 +189,64 @@ func (d Downloader) DownloadWithContext(ctx aws.Context, w io.WriterAt, input *s
 	return impl.download()
 }
 
+// DownloadWithIterator will download a batched amount of objects in S3 and writes them
+// to the io.WriterAt specificed in the iterator.
+//
+// Example:
+//	svc := s3manager.NewDownloader(session)
+//
+//	fooFile, err := os.Open("/tmp/foo.file")
+//	if err != nil {
+//		return err
+//	}
+//
+//	barFile, err := os.Open("/tmp/bar.file")
+//	if err != nil {
+//		return err
+//	}
+//
+//	objects := []s3manager.BatchDownloadObject {
+//		{
+//			Input: &s3.GetObjectInput {
+//				Bucket: aws.String("bucket"),
+//				Key: aws.String("foo"),
+//			},
+//			Writer: fooFile,
+//		},
+//		{
+//			Input: &s3.GetObjectInput {
+//				Bucket: aws.String("bucket"),
+//				Key: aws.String("bar"),
+//			},
+//			Writer: barFile,
+//		},
+//	}
+//
+//	iter := &s3manager.DownloadObjectsIterator{Objects: objects}
+//	if err := svc.DownloadWithIterator(aws.BackgroundContext(), iter); err != nil {
+//		return err
+//	}
+func (d Downloader) DownloadWithIterator(ctx aws.Context, iter BatchDownloadIterator, opts ...func(*Downloader)) error {
+	var errs []Error
+	for iter.Next() {
+		object := iter.DownloadObject()
+		if _, err := d.DownloadWithContext(ctx, object.Writer, object.Object, opts...); err != nil {
+			s3Err := Error{
+				OrigErr: err,
+				Bucket:  object.Object.Bucket,
+				Key:     object.Object.Key,
+			}
+
+			errs = append(errs, s3Err)
+		}
+	}
+
+	if len(errs) > 0 {
+		return NewBatchError("BatchedDownloadIncomplete", "some objects have failed to download.", errs)
+	}
+	return nil
+}
+
 // downloader is the implementation structure used internally by Downloader.
 type downloader struct {
 	ctx aws.Context
