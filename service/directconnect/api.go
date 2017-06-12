@@ -39,9 +39,6 @@ const opAllocateConnectionOnInterconnect = "AllocateConnectionOnInterconnect"
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/AllocateConnectionOnInterconnect
 func (c *DirectConnect) AllocateConnectionOnInterconnectRequest(input *AllocateConnectionOnInterconnectInput) (req *request.Request, output *Connection) {
-	if c.Client.Config.Logger != nil {
-		c.Client.Config.Logger.Log("This operation, AllocateConnectionOnInterconnect, has been deprecated")
-	}
 	op := &request.Operation{
 		Name:       opAllocateConnectionOnInterconnect,
 		HTTPMethod: "POST",
@@ -438,14 +435,18 @@ func (c *DirectConnect) AssociateConnectionWithLagRequest(input *AssociateConnec
 // original LAG to fall below its setting for minimum number of operational
 // connections, the request fails.
 //
-// Any virtual interfaces that are directly associated with the connection are
-// automatically re-associated with the LAG. If the connection was originally
-// associated with a different LAG, the virtual interfaces remain associated
-// with the original LAG.
+// Virtual interfaces that are directly associated with the connection are not
+// automatically migrated. You can delete them or associate them with the target
+// LAG using AssociateVirtualInterface. If the connection was originally associated
+// with a different LAG, the virtual interfaces remain associated with the original
+// LAG.
 //
-// For interconnects, any hosted connections are automatically re-associated
-// with the LAG. If the interconnect was originally associated with a different
-// LAG, the hosted connections remain associated with the original LAG.
+// For interconnects, hosted connections are not automatically migrated. You
+// can delete them, or the owner of the physical connection can associate them
+// with the target LAG using AssociateHostedConnection. After all hosted connections
+// have been migrated, the interconnect can be migrated into the LAG. If the
+// interconnect is already associated with a LAG, the hosted connections remain
+// associated with the original LAG.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1995,9 +1996,6 @@ const opDescribeConnectionLoa = "DescribeConnectionLoa"
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/DescribeConnectionLoa
 func (c *DirectConnect) DescribeConnectionLoaRequest(input *DescribeConnectionLoaInput) (req *request.Request, output *DescribeConnectionLoaOutput) {
-	if c.Client.Config.Logger != nil {
-		c.Client.Config.Logger.Log("This operation, DescribeConnectionLoa, has been deprecated")
-	}
 	op := &request.Operation{
 		Name:       opDescribeConnectionLoa,
 		HTTPMethod: "POST",
@@ -2178,9 +2176,6 @@ const opDescribeConnectionsOnInterconnect = "DescribeConnectionsOnInterconnect"
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/DescribeConnectionsOnInterconnect
 func (c *DirectConnect) DescribeConnectionsOnInterconnectRequest(input *DescribeConnectionsOnInterconnectInput) (req *request.Request, output *Connections) {
-	if c.Client.Config.Logger != nil {
-		c.Client.Config.Logger.Log("This operation, DescribeConnectionsOnInterconnect, has been deprecated")
-	}
 	op := &request.Operation{
 		Name:       opDescribeConnectionsOnInterconnect,
 		HTTPMethod: "POST",
@@ -2358,9 +2353,6 @@ const opDescribeInterconnectLoa = "DescribeInterconnectLoa"
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/DescribeInterconnectLoa
 func (c *DirectConnect) DescribeInterconnectLoaRequest(input *DescribeInterconnectLoaInput) (req *request.Request, output *DescribeInterconnectLoaOutput) {
-	if c.Client.Config.Logger != nil {
-		c.Client.Config.Logger.Log("This operation, DescribeInterconnectLoa, has been deprecated")
-	}
 	op := &request.Operation{
 		Name:       opDescribeInterconnectLoa,
 		HTTPMethod: "POST",
