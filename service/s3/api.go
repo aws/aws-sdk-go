@@ -11370,7 +11370,7 @@ func (s *GlacierJobParameters) SetTier(v string) *GlacierJobParameters {
 type Grant struct {
 	_ struct{} `type:"structure"`
 
-	Grantee *Grantee `type:"structure" xmlURI:"http://www.w3.org/2001/XMLSchema-instance"`
+	Grantee *Grantee `type:"structure" xmlPrefix:"xsi" xmlURI:"http://www.w3.org/2001/XMLSchema-instance"`
 
 	// Specifies the permission given to the grantee.
 	Permission *string `type:"string" enum:"Permission"`
@@ -18005,7 +18005,7 @@ func (s *Tagging) SetTagSet(v []*Tag) *Tagging {
 type TargetGrant struct {
 	_ struct{} `type:"structure"`
 
-	Grantee *Grantee `type:"structure" xmlURI:"http://www.w3.org/2001/XMLSchema-instance"`
+	Grantee *Grantee `type:"structure" xmlPrefix:"xsi" xmlURI:"http://www.w3.org/2001/XMLSchema-instance"`
 
 	// Logging permissions assigned to the Grantee for the bucket.
 	Permission *string `type:"string" enum:"BucketLogsPermission"`

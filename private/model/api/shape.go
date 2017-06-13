@@ -400,11 +400,12 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 		if ref.Shape.Payload != "" {
 			tags = append(tags, ShapeTag{"payload", ref.Shape.Payload})
 		}
-		if ref.XMLNamespace.Prefix != "" {
-			tags = append(tags, ShapeTag{"xmlPrefix", ref.XMLNamespace.Prefix})
-		} else if ref.Shape.XMLNamespace.Prefix != "" {
-			tags = append(tags, ShapeTag{"xmlPrefix", ref.Shape.XMLNamespace.Prefix})
-		}
+	}
+
+	if ref.XMLNamespace.Prefix != "" {
+		tags = append(tags, ShapeTag{"xmlPrefix", ref.XMLNamespace.Prefix})
+	} else if ref.Shape.XMLNamespace.Prefix != "" {
+		tags = append(tags, ShapeTag{"xmlPrefix", ref.Shape.XMLNamespace.Prefix})
 	}
 
 	if ref.XMLNamespace.URI != "" {
