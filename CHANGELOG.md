@@ -1,3 +1,14 @@
+Release v1.8.40 (2017-06-13)
+===
+
+### Service Client Updates
+* `service/rds`: Updates service API and documentation
+  * API Update for RDS: this update enables copy-on-write, a new Aurora MySQL Compatible Edition feature that allows users to restore their database, and support copy of TDE enabled snapshot cross region.
+
+### SDK Bugs
+* `aws/request`: Fix NewErrParamMinLen to use correct ParamMinLenErrCode [#1336](https://github.com/aws/aws-sdk-go/issues/1336)
+  * Fixes the `NewErrParamMinLen` function returning the wrong error code. `ParamMinLenErrCode` should be returned not `ParamMinValueErrCode`.
+  * Fixes [#1335](https://github.com/aws/aws-sdk-go/issues/1335)
 Release v1.8.39 (2017-06-09)
 ===
 
