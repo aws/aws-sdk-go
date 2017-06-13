@@ -405,11 +405,12 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 		} else if ref.Shape.XMLNamespace.Prefix != "" {
 			tags = append(tags, ShapeTag{"xmlPrefix", ref.Shape.XMLNamespace.Prefix})
 		}
-		if ref.XMLNamespace.URI != "" {
-			tags = append(tags, ShapeTag{"xmlURI", ref.XMLNamespace.URI})
-		} else if ref.Shape.XMLNamespace.URI != "" {
-			tags = append(tags, ShapeTag{"xmlURI", ref.Shape.XMLNamespace.URI})
-		}
+	}
+
+	if ref.XMLNamespace.URI != "" {
+		tags = append(tags, ShapeTag{"xmlURI", ref.XMLNamespace.URI})
+	} else if ref.Shape.XMLNamespace.URI != "" {
+		tags = append(tags, ShapeTag{"xmlURI", ref.Shape.XMLNamespace.URI})
 	}
 
 	if ref.IdempotencyToken || ref.Shape.IdempotencyToken {
