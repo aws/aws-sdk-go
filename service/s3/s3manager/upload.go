@@ -1,3 +1,4 @@
+// TODO make each little part of a multi part upload, retry a few times vs. just 1 shot == failure
 package s3manager
 
 import (
