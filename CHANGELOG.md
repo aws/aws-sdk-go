@@ -1,3 +1,11 @@
+Release v1.8.42 (2017-06-14)
+===
+
+### Service Client Updates
+* `service/applicationautoscaling`: Updates service API and documentation
+* `service/clouddirectory`: Updates service documentation
+  * Documentation update for Cloud Directory
+
 Release v1.8.41 (2017-06-13)
 ===
 
