@@ -644,6 +644,19 @@ func (u *multiuploader) readChunk(ch chan chunk) {
 	}
 }
 
+func (u *multiuploader) tryNtimes(tries int, params *s3.UploadPartInput) (*s3.UploadPartOutput, error) {
+	resp, err := u.cfg.S3.UploadPartWithContext(u.ctx, params, u.cfg.RequestOptions...)
+	if err != nil {
+		if tries < 10 {
+			fmt.Println("trying again")
+			time.Sleep(time.Second * 5)
+			return u.tryNtimes(tries+1, params)
+		}
+		return resp, err
+	}
+	return resp, nil
+}
+
 // send performs an UploadPart request and keeps track of the completed
 // part information.
 func (u *multiuploader) send(c chunk) error {
@@ -656,7 +669,7 @@ func (u *multiuploader) send(c chunk) error {
 		SSECustomerKey:       u.in.SSECustomerKey,
 		PartNumber:           &c.num,
 	}
-	resp, err := u.cfg.S3.UploadPartWithContext(u.ctx, params, u.cfg.RequestOptions...)
+	resp, err := u.tryNtimes(1, params)
 	if err != nil {
 		return err
 	}
