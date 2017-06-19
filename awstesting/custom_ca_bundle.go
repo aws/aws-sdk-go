@@ -5,6 +5,7 @@ import (
 	"net"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -36,7 +37,14 @@ func CreateTLSServer(cert, key string, mux *http.ServeMux) (string, error) {
 			panic(err)
 		}
 	}()
-	time.Sleep(1 * time.Second)
+
+	for i := 0; i < 60; i++ {
+		if _, err := http.Get("https://" + addr); err != nil && !strings.Contains(err.Error(), "connection refused") {
+			break
+		}
+
+		time.Sleep(1 * time.Second)
+	}
 
 	return "https://" + addr, nil
 }
