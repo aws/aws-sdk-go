@@ -194,6 +194,8 @@ func ExampleOrganizations_CancelHandshake_shared00() {
 			switch aerr.Code() {
 			case organizations.ErrCodeAccessDeniedException:
 				fmt.Println(organizations.ErrCodeAccessDeniedException, aerr.Error())
+			case organizations.ErrCodeConcurrentModificationException:
+				fmt.Println(organizations.ErrCodeConcurrentModificationException, aerr.Error())
 			case organizations.ErrCodeHandshakeNotFoundException:
 				fmt.Println(organizations.ErrCodeHandshakeNotFoundException, aerr.Error())
 			case organizations.ErrCodeInvalidHandshakeTransitionException:
@@ -244,6 +246,8 @@ func ExampleOrganizations_CreateAccount_shared00() {
 				fmt.Println(organizations.ErrCodeAccessDeniedException, aerr.Error())
 			case organizations.ErrCodeAWSOrganizationsNotInUseException:
 				fmt.Println(organizations.ErrCodeAWSOrganizationsNotInUseException, aerr.Error())
+			case organizations.ErrCodeConcurrentModificationException:
+				fmt.Println(organizations.ErrCodeConcurrentModificationException, aerr.Error())
 			case organizations.ErrCodeConstraintViolationException:
 				fmt.Println(organizations.ErrCodeConstraintViolationException, aerr.Error())
 			case organizations.ErrCodeInvalidInputException:
@@ -375,6 +379,8 @@ func ExampleOrganizations_CreateOrganizationalUnit_shared00() {
 				fmt.Println(organizations.ErrCodeAccessDeniedException, aerr.Error())
 			case organizations.ErrCodeAWSOrganizationsNotInUseException:
 				fmt.Println(organizations.ErrCodeAWSOrganizationsNotInUseException, aerr.Error())
+			case organizations.ErrCodeConcurrentModificationException:
+				fmt.Println(organizations.ErrCodeConcurrentModificationException, aerr.Error())
 			case organizations.ErrCodeConstraintViolationException:
 				fmt.Println(organizations.ErrCodeConstraintViolationException, aerr.Error())
 			case organizations.ErrCodeDuplicateOrganizationalUnitException:
@@ -473,6 +479,8 @@ func ExampleOrganizations_DeclineHandshake_shared00() {
 			switch aerr.Code() {
 			case organizations.ErrCodeAccessDeniedException:
 				fmt.Println(organizations.ErrCodeAccessDeniedException, aerr.Error())
+			case organizations.ErrCodeConcurrentModificationException:
+				fmt.Println(organizations.ErrCodeConcurrentModificationException, aerr.Error())
 			case organizations.ErrCodeHandshakeNotFoundException:
 				fmt.Println(organizations.ErrCodeHandshakeNotFoundException, aerr.Error())
 			case organizations.ErrCodeInvalidHandshakeTransitionException:
@@ -688,6 +696,8 @@ func ExampleOrganizations_DescribeHandshake_shared00() {
 			switch aerr.Code() {
 			case organizations.ErrCodeAccessDeniedException:
 				fmt.Println(organizations.ErrCodeAccessDeniedException, aerr.Error())
+			case organizations.ErrCodeConcurrentModificationException:
+				fmt.Println(organizations.ErrCodeConcurrentModificationException, aerr.Error())
 			case organizations.ErrCodeHandshakeNotFoundException:
 				fmt.Println(organizations.ErrCodeHandshakeNotFoundException, aerr.Error())
 			case organizations.ErrCodeInvalidInputException:
@@ -725,6 +735,8 @@ func ExampleOrganizations_DescribeOrganization_shared00() {
 				fmt.Println(organizations.ErrCodeAccessDeniedException, aerr.Error())
 			case organizations.ErrCodeAWSOrganizationsNotInUseException:
 				fmt.Println(organizations.ErrCodeAWSOrganizationsNotInUseException, aerr.Error())
+			case organizations.ErrCodeConcurrentModificationException:
+				fmt.Println(organizations.ErrCodeConcurrentModificationException, aerr.Error())
 			case organizations.ErrCodeServiceException:
 				fmt.Println(organizations.ErrCodeServiceException, aerr.Error())
 			case organizations.ErrCodeTooManyRequestsException:
@@ -938,6 +950,8 @@ func ExampleOrganizations_EnableAllFeatures_shared00() {
 				fmt.Println(organizations.ErrCodeAccessDeniedException, aerr.Error())
 			case organizations.ErrCodeAWSOrganizationsNotInUseException:
 				fmt.Println(organizations.ErrCodeAWSOrganizationsNotInUseException, aerr.Error())
+			case organizations.ErrCodeConcurrentModificationException:
+				fmt.Println(organizations.ErrCodeConcurrentModificationException, aerr.Error())
 			case organizations.ErrCodeHandshakeConstraintViolationException:
 				fmt.Println(organizations.ErrCodeHandshakeConstraintViolationException, aerr.Error())
 			case organizations.ErrCodeInvalidInputException:
@@ -1032,6 +1046,8 @@ func ExampleOrganizations_InviteAccountToOrganization_shared00() {
 				fmt.Println(organizations.ErrCodeAccessDeniedException, aerr.Error())
 			case organizations.ErrCodeAWSOrganizationsNotInUseException:
 				fmt.Println(organizations.ErrCodeAWSOrganizationsNotInUseException, aerr.Error())
+			case organizations.ErrCodeConcurrentModificationException:
+				fmt.Println(organizations.ErrCodeConcurrentModificationException, aerr.Error())
 			case organizations.ErrCodeHandshakeConstraintViolationException:
 				fmt.Println(organizations.ErrCodeHandshakeConstraintViolationException, aerr.Error())
 			case organizations.ErrCodeDuplicateHandshakeException:
@@ -1310,6 +1326,8 @@ func ExampleOrganizations_ListHandshakesForAccount_shared00() {
 			switch aerr.Code() {
 			case organizations.ErrCodeAccessDeniedException:
 				fmt.Println(organizations.ErrCodeAccessDeniedException, aerr.Error())
+			case organizations.ErrCodeConcurrentModificationException:
+				fmt.Println(organizations.ErrCodeConcurrentModificationException, aerr.Error())
 			case organizations.ErrCodeInvalidInputException:
 				fmt.Println(organizations.ErrCodeInvalidInputException, aerr.Error())
 			case organizations.ErrCodeServiceException:
@@ -1346,6 +1364,8 @@ func ExampleOrganizations_ListHandshakesForOrganization_shared00() {
 				fmt.Println(organizations.ErrCodeAccessDeniedException, aerr.Error())
 			case organizations.ErrCodeAWSOrganizationsNotInUseException:
 				fmt.Println(organizations.ErrCodeAWSOrganizationsNotInUseException, aerr.Error())
+			case organizations.ErrCodeConcurrentModificationException:
+				fmt.Println(organizations.ErrCodeConcurrentModificationException, aerr.Error())
 			case organizations.ErrCodeInvalidInputException:
 				fmt.Println(organizations.ErrCodeInvalidInputException, aerr.Error())
 			case organizations.ErrCodeServiceException:
