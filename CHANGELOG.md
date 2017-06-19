@@ -1,4 +1,4 @@
-Release v1.9.44 (2017-06-19)
+Release v1.9.00 (2017-06-19)
 ===
 
 ### Service Client Updates
