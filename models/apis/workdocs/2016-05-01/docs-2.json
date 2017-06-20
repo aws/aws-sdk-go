@@ -20,12 +20,15 @@
     "DeleteLabels": "<p>Deletes the specified list of labels from a resource.</p>",
     "DeleteNotificationSubscription": "<p>Deletes the specified subscription from the specified organization.</p>",
     "DeleteUser": "<p>Deletes the specified user from a Simple AD or Microsoft AD directory.</p>",
+    "DescribeActivities": "<p>Describes the user activities in a specified time period.</p>",
     "DescribeComments": "<p>List all the comments for the specified document version.</p>",
     "DescribeDocumentVersions": "<p>Retrieves the document versions for the specified document.</p> <p>By default, only active versions are returned.</p>",
     "DescribeFolderContents": "<p>Describes the contents of the specified folder, including its documents and subfolders.</p> <p>By default, Amazon WorkDocs returns the first 100 active document and folder metadata items. If there are more results, the response includes a marker that you can use to request the next set of results. You can also request initialized documents.</p>",
     "DescribeNotificationSubscriptions": "<p>Lists the specified notification subscriptions.</p>",
     "DescribeResourcePermissions": "<p>Describes the permissions of a specified resource.</p>",
+    "DescribeRootFolders": "<p>Describes the current user's special folders; the <code>RootFolder</code> and the <code>RecyleBin</code>. <code>RootFolder</code> is the root of user's files and folders and <code>RecyleBin</code> is the root of recycled items. This is not a valid action for SigV4 (administrative API) clients.</p>",
     "DescribeUsers": "<p>Describes the specified users. You can describe all users or filter the results (for example, by status or organization).</p> <p>By default, Amazon WorkDocs returns the first 24 active or pending users. If there are more results, the response includes a marker that you can use to request the next set of results.</p>",
+    "GetCurrentUser": "<p>Retrieves details of the current user for whom the authentication token was generated. This is not a valid action for SigV4 (administrative API) clients.</p>",
     "GetDocument": "<p>Retrieves details of a document.</p>",
     "GetDocumentPath": "<p>Retrieves the path information (the hierarchy from the root folder) for the requested document.</p> <p>By default, Amazon WorkDocs returns a maximum of 100 levels upwards from the requested document and only includes the IDs of the parent folders in the path. You can limit the maximum number of levels. You can also request the names of the parent folders.</p>",
     "GetDocumentVersion": "<p>Retrieves version metadata for the specified document.</p>",
@@ -53,6 +56,18 @@
     "ActivateUserResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "Activity": {
+      "base": "<p>Describes the activity information.</p>",
+      "refs": {
+        "UserActivities$member": null
+      }
+    },
+    "ActivityType": {
+      "base": null,
+      "refs": {
+        "Activity$Type": "<p>The activity type.</p>"
       }
     },
     "AddResourcePermissionsRequest": {
@@ -84,11 +99,14 @@
         "DeleteFolderRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. This field should not be set when using administrative API actions, as in accessing the API using AWS credentials.</p>",
         "DeleteLabelsRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. This field should not be set when using administrative API actions, as in accessing the API using AWS credentials.</p>",
         "DeleteUserRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. This field should not be set when using administrative API actions, as in accessing the API using AWS credentials.</p>",
+        "DescribeActivitiesRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. This field should not be set when using administrative API actions, as in accessing the API using AWS credentials.</p>",
         "DescribeCommentsRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. This field should not be set when using administrative API actions, as in accessing the API using AWS credentials.</p>",
         "DescribeDocumentVersionsRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. This field should not be set when using administrative API actions, as in accessing the API using AWS credentials.</p>",
         "DescribeFolderContentsRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. This field should not be set when using administrative API actions, as in accessing the API using AWS credentials.</p>",
         "DescribeResourcePermissionsRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. This field should not be set when using administrative API actions, as in accessing the API using AWS credentials.</p>",
+        "DescribeRootFoldersRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. This field should not be set when using administrative API actions, as in accessing the API using AWS credentials.</p>",
         "DescribeUsersRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. This field should not be set when using administrative API actions, as in accessing the API using AWS credentials.</p>",
+        "GetCurrentUserRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token.</p>",
         "GetDocumentPathRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. This field should not be set when using administrative API actions, as in accessing the API using AWS credentials.</p>",
         "GetDocumentRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. This field should not be set when using administrative API actions, as in accessing the API using AWS credentials.</p>",
         "GetDocumentVersionRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. This field should not be set when using administrative API actions, as in accessing the API using AWS credentials.</p>",
@@ -127,6 +145,7 @@
         "Comment$CommentId": "<p>The ID of the comment.</p>",
         "Comment$ParentId": "<p>The ID of the parent comment.</p>",
         "Comment$ThreadId": "<p>The ID of the root comment in the thread.</p>",
+        "CommentMetadata$CommentId": "<p>The ID of the comment.</p>",
         "CreateCommentRequest$ParentId": "<p>The ID of the parent comment.</p>",
         "CreateCommentRequest$ThreadId": "<p>The ID of the root comment in the thread.</p>",
         "DeleteCommentRequest$CommentId": "<p>The ID of the comment.</p>"
@@ -138,10 +157,17 @@
         "DescribeCommentsResponse$Comments": "<p>The list of comments for the specified document version.</p>"
       }
     },
+    "CommentMetadata": {
+      "base": "<p>Describes the metadata of a comment.</p>",
+      "refs": {
+        "Activity$CommentMetadata": "<p>Metadata of the commenting activity. This is an optional field and is filled for commenting activities.</p>"
+      }
+    },
     "CommentStatusType": {
       "base": null,
       "refs": {
-        "Comment$Status": "<p>The status of the comment.</p>"
+        "Comment$Status": "<p>The status of the comment.</p>",
+        "CommentMetadata$CommentStatus": null
       }
     },
     "CommentTextType": {
@@ -316,6 +342,16 @@
       "refs": {
       }
     },
+    "DescribeActivitiesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeActivitiesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeCommentsRequest": {
       "base": null,
       "refs": {
@@ -362,6 +398,16 @@
       }
     },
     "DescribeResourcePermissionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeRootFoldersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeRootFoldersResponse": {
       "base": null,
       "refs": {
       }
@@ -443,6 +489,7 @@
         "DescribeCommentsRequest$VersionId": "<p>The ID of the document version.</p>",
         "DocumentVersionMetadata$Id": "<p>The ID of the version.</p>",
         "GetDocumentVersionRequest$VersionId": "<p>The version ID of the document.</p>",
+        "ResourceMetadata$VersionId": "<p>The version ID of the resource. This is an optional field and is filled for action on document version.</p>",
         "UpdateDocumentVersionRequest$VersionId": "<p>The version ID of the document.</p>"
       }
     },
@@ -475,7 +522,8 @@
       "base": null,
       "refs": {
         "CreateUserRequest$EmailAddress": "<p>The email address of the user.</p>",
-        "User$EmailAddress": "<p>The email address of the user.</p>"
+        "User$EmailAddress": "<p>The email address of the user.</p>",
+        "UserMetadata$EmailAddress": "<p>The email address of the user.</p>"
       }
     },
     "EntityAlreadyExistsException": {
@@ -552,7 +600,18 @@
     "FolderMetadataList": {
       "base": null,
       "refs": {
-        "DescribeFolderContentsResponse$Folders": "<p>The subfolders in the specified folder.</p>"
+        "DescribeFolderContentsResponse$Folders": "<p>The subfolders in the specified folder.</p>",
+        "DescribeRootFoldersResponse$Folders": "<p>The user's special folders.</p>"
+      }
+    },
+    "GetCurrentUserRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCurrentUserResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "GetDocumentPathRequest": {
@@ -605,6 +664,24 @@
       "refs": {
       }
     },
+    "GroupMetadata": {
+      "base": "<p>Describes the metadata of a user group.</p>",
+      "refs": {
+        "GroupMetadataList$member": null
+      }
+    },
+    "GroupMetadataList": {
+      "base": null,
+      "refs": {
+        "Participants$Groups": "<p>The list of user groups.</p>"
+      }
+    },
+    "GroupNameType": {
+      "base": null,
+      "refs": {
+        "GroupMetadata$Name": "<p>The name of the group.</p>"
+      }
+    },
     "HashType": {
       "base": null,
       "refs": {
@@ -628,13 +705,17 @@
       "base": null,
       "refs": {
         "ActivateUserRequest$UserId": "<p>The ID of the user.</p>",
+        "Activity$OrganizationId": "<p>The ID of the organization.</p>",
         "Comment$RecipientId": "<p>If the comment is a reply to another user's comment, this field contains the user ID of the user being replied to.</p>",
+        "CommentMetadata$RecipientId": "<p>The ID of the user being replied to.</p>",
         "CreateNotificationSubscriptionRequest$OrganizationId": "<p>The ID of the organization.</p>",
         "CreateUserRequest$OrganizationId": "<p>The ID of the organization.</p>",
         "DeactivateUserRequest$UserId": "<p>The ID of the user.</p>",
         "DeleteNotificationSubscriptionRequest$SubscriptionId": "<p>The ID of the subscription.</p>",
         "DeleteNotificationSubscriptionRequest$OrganizationId": "<p>The ID of the organization.</p>",
         "DeleteUserRequest$UserId": "<p>The ID of the user.</p>",
+        "DescribeActivitiesRequest$OrganizationId": "<p>The ID of the organization. This is a mandatory parameter when using administrative API (SigV4) requests.</p>",
+        "DescribeActivitiesRequest$UserId": "<p>The ID of the user who performed the action. The response includes activities pertaining to this user. This is an optional parameter and is only applicable for administrative API (SigV4) requests.</p>",
         "DescribeNotificationSubscriptionsRequest$OrganizationId": "<p>The ID of the organization.</p>",
         "DescribeUsersRequest$OrganizationId": "<p>The ID of the organization.</p>",
         "DocumentMetadata$CreatorId": "<p>The ID of the creator.</p>",
@@ -643,6 +724,7 @@
         "FolderMetadata$CreatorId": "<p>The ID of the creator.</p>",
         "GetDocumentPathRequest$DocumentId": "<p>The ID of the document.</p>",
         "GetFolderPathRequest$FolderId": "<p>The ID of the folder.</p>",
+        "GroupMetadata$Id": "<p>The ID of the user group.</p>",
         "Principal$Id": "<p>The ID of the resource.</p>",
         "RemoveResourcePermissionRequest$PrincipalId": "<p>The principal ID of the resource.</p>",
         "ResourcePathComponent$Id": "<p>The ID of the resource path.</p>",
@@ -651,7 +733,8 @@
         "Subscription$SubscriptionId": "<p>The ID of the subscription.</p>",
         "UpdateUserRequest$UserId": "<p>The ID of the user.</p>",
         "User$Id": "<p>The ID of the user.</p>",
-        "User$OrganizationId": "<p>The ID of the organization.</p>"
+        "User$OrganizationId": "<p>The ID of the organization.</p>",
+        "UserMetadata$Id": "<p>The ID of the user.</p>"
       }
     },
     "IllegalUserStateException": {
@@ -702,11 +785,13 @@
     "LimitType": {
       "base": null,
       "refs": {
+        "DescribeActivitiesRequest$Limit": "<p>The maximum number of items to return.</p>",
         "DescribeCommentsRequest$Limit": "<p>The maximum number of items to return.</p>",
         "DescribeDocumentVersionsRequest$Limit": "<p>The maximum number of versions to return with this call.</p>",
         "DescribeFolderContentsRequest$Limit": "<p>The maximum number of items to return with this call.</p>",
         "DescribeNotificationSubscriptionsRequest$Limit": "<p>The maximum number of items to return with this call.</p>",
         "DescribeResourcePermissionsRequest$Limit": "<p>The maximum number of items to return with this call.</p>",
+        "DescribeRootFoldersRequest$Limit": "<p>The maximum number of items to return.</p>",
         "DescribeUsersRequest$Limit": "<p>The maximum number of items to return.</p>",
         "GetDocumentPathRequest$Limit": "<p>The maximum number of levels in the hierarchy to return.</p>",
         "GetFolderPathRequest$Limit": "<p>The maximum number of levels in the hierarchy to return.</p>"
@@ -722,6 +807,8 @@
     "MarkerType": {
       "base": null,
       "refs": {
+        "DescribeActivitiesRequest$Marker": "<p>The marker for the next set of results. (You received this marker from a previous call.)</p>",
+        "DescribeActivitiesResponse$Marker": "<p>The marker for the next set of results.</p>",
         "DescribeCommentsRequest$Marker": "<p>The marker for the next set of results. This marker was received from a previous call.</p>",
         "DescribeCommentsResponse$Marker": "<p>The marker for the next set of results. This marker was received from a previous call.</p>"
       }
@@ -756,10 +843,18 @@
         "DescribeNotificationSubscriptionsResponse$Marker": "<p>The marker to use when requesting the next set of results. If there are no additional results, the string is empty.</p>",
         "DescribeResourcePermissionsRequest$Marker": "<p>The marker for the next set of results. (You received this marker from a previous call)</p>",
         "DescribeResourcePermissionsResponse$Marker": "<p>The marker to use when requesting the next set of results. If there are no additional results, the string is empty.</p>",
+        "DescribeRootFoldersRequest$Marker": "<p>The marker for the next set of results. (You received this marker from a previous call.)</p>",
+        "DescribeRootFoldersResponse$Marker": "<p>The marker for the next set of results.</p>",
         "DescribeUsersRequest$Marker": "<p>The marker for the next set of results. (You received this marker from a previous call.)</p>",
         "DescribeUsersResponse$Marker": "<p>The marker to use when requesting the next set of results. If there are no additional results, the string is empty.</p>",
         "GetDocumentPathRequest$Marker": "<p>This value is not supported.</p>",
         "GetFolderPathRequest$Marker": "<p>This value is not supported.</p>"
+      }
+    },
+    "Participants": {
+      "base": "<p>Describes the users and/or user groups.</p>",
+      "refs": {
+        "Activity$Participants": "<p>The list of users or groups impacted by this action. This is an optional field and is filled for the following sharing activities: DOCUMENT_SHARED, DOCUMENT_SHARED, DOCUMENT_UNSHARED, FOLDER_SHARED, FOLDER_UNSHARED.</p>"
       }
     },
     "PasswordType": {
@@ -822,7 +917,7 @@
       }
     },
     "ResourceAlreadyCheckedOutException": {
-      "base": null,
+      "base": "<p>The resource is already checked out.</p>",
       "refs": {
       }
     },
@@ -856,6 +951,8 @@
         "InitiateDocumentVersionUploadRequest$ParentFolderId": "<p>The ID of the parent folder.</p>",
         "RemoveAllResourcePermissionsRequest$ResourceId": "<p>The ID of the resource.</p>",
         "RemoveResourcePermissionRequest$ResourceId": "<p>The ID of the resource.</p>",
+        "ResourceMetadata$Id": "<p>The ID of the resource.</p>",
+        "ResourceMetadata$ParentId": "<p>The parent ID of the resource before a rename operation.</p>",
         "ShareResult$ShareId": "<p>The ID of the resource that was shared.</p>",
         "UpdateDocumentRequest$DocumentId": "<p>The ID of the document.</p>",
         "UpdateDocumentRequest$ParentFolderId": "<p>The ID of the parent folder.</p>",
@@ -866,6 +963,13 @@
         "User$RecycleBinFolderId": "<p>The ID of the recycle bin folder.</p>"
       }
     },
+    "ResourceMetadata": {
+      "base": "<p>Describes the metadata of a resource.</p>",
+      "refs": {
+        "Activity$ResourceMetadata": "<p>The metadata of the resource involved in the user action.</p>",
+        "Activity$OriginalParent": "<p>The original parent of the resource. This is an optional field and is filled for move activities.</p>"
+      }
+    },
     "ResourceNameType": {
       "base": null,
       "refs": {
@@ -873,6 +977,8 @@
         "DocumentVersionMetadata$Name": "<p>The name of the version.</p>",
         "FolderMetadata$Name": "<p>The name of the folder.</p>",
         "InitiateDocumentVersionUploadRequest$Name": "<p>The name of the document.</p>",
+        "ResourceMetadata$Name": "<p>The name of the resource.</p>",
+        "ResourceMetadata$OriginalName": "<p>The original name of the resource prior to a rename operation.</p>",
         "ResourcePathComponent$Name": "<p>The name of the resource path.</p>",
         "UpdateDocumentRequest$Name": "<p>The name of the document.</p>",
         "UpdateFolderRequest$Name": "<p>The name of the folder.</p>"
@@ -910,6 +1016,12 @@
         "FolderMetadata$ResourceState": "<p>The resource state of the folder.</p>",
         "UpdateDocumentRequest$ResourceState": "<p>The resource state of the document. Note that only ACTIVE and RECYCLED are supported.</p>",
         "UpdateFolderRequest$ResourceState": "<p>The resource state of the folder. Note that only ACTIVE and RECYCLED are accepted values from the API.</p>"
+      }
+    },
+    "ResourceType": {
+      "base": null,
+      "refs": {
+        "ResourceMetadata$Type": "<p>The type of resource.</p>"
       }
     },
     "RolePermissionType": {
@@ -978,8 +1090,8 @@
       "refs": {
         "DescribeUsersResponse$TotalNumberOfUsers": "<p>The total number of users included in the results.</p>",
         "DocumentVersionMetadata$Size": "<p>The size of the document, in bytes.</p>",
-        "FolderMetadata$Size": null,
-        "FolderMetadata$LatestVersionSize": null,
+        "FolderMetadata$Size": "<p>The size of the folder metadata.</p>",
+        "FolderMetadata$LatestVersionSize": "<p>The size of the latest version of the folder metadata.</p>",
         "InitiateDocumentVersionUploadRequest$DocumentSizeInBytes": "<p>The size of the document, in bytes.</p>",
         "UserStorageMetadata$StorageUtilizedInBytes": "<p>The amount of storage utilized, in bytes.</p>"
       }
@@ -1052,7 +1164,11 @@
     "TimestampType": {
       "base": null,
       "refs": {
+        "Activity$TimeStamp": "<p>The timestamp when the action was performed.</p>",
         "Comment$CreatedTimestamp": "<p>The time that the comment was created.</p>",
+        "CommentMetadata$CreatedTimestamp": null,
+        "DescribeActivitiesRequest$StartTime": "<p>The timestamp that determines the starting time of the activities; the response includes the activities performed after the specified timestamp.</p>",
+        "DescribeActivitiesRequest$EndTime": "<p>The timestamp that determines the end time of the activities; the response includes the activities performed before the specified timestamp.</p>",
         "DocumentMetadata$CreatedTimestamp": "<p>The time when the document was created.</p>",
         "DocumentMetadata$ModifiedTimestamp": "<p>The time when the document was updated.</p>",
         "DocumentVersionMetadata$CreatedTimestamp": "<p>The time stamp when the document was first uploaded.</p>",
@@ -1131,9 +1247,17 @@
       "refs": {
         "ActivateUserResponse$User": "<p>The user information.</p>",
         "Comment$Contributor": "<p>The details of the user who made the comment.</p>",
+        "CommentMetadata$Contributor": "<p>The user who made the comment.</p>",
         "CreateUserResponse$User": "<p>The user information.</p>",
+        "GetCurrentUserResponse$User": "<p>Metadata of the user.</p>",
         "OrganizationUserList$member": null,
         "UpdateUserResponse$User": "<p>The user information.</p>"
+      }
+    },
+    "UserActivities": {
+      "base": null,
+      "refs": {
+        "DescribeActivitiesResponse$UserActivities": "<p>The list of activities for the specified user and time period.</p>"
       }
     },
     "UserAttributeValueType": {
@@ -1144,7 +1268,9 @@
         "UpdateUserRequest$GivenName": "<p>The given name of the user.</p>",
         "UpdateUserRequest$Surname": "<p>The surname of the user.</p>",
         "User$GivenName": "<p>The given name of the user.</p>",
-        "User$Surname": "<p>The surname of the user.</p>"
+        "User$Surname": "<p>The surname of the user.</p>",
+        "UserMetadata$GivenName": "<p>The given name of the user before a rename operation.</p>",
+        "UserMetadata$Surname": "<p>The surname of the user.</p>"
       }
     },
     "UserFilterType": {
@@ -1157,6 +1283,20 @@
       "base": null,
       "refs": {
         "DescribeUsersRequest$UserIds": "<p>The IDs of the users.</p>"
+      }
+    },
+    "UserMetadata": {
+      "base": "<p>Describes the metadata of the user.</p>",
+      "refs": {
+        "Activity$Initiator": "<p>The user who performed the action.</p>",
+        "ResourceMetadata$Owner": "<p>The owner of the resource.</p>",
+        "UserMetadataList$member": null
+      }
+    },
+    "UserMetadataList": {
+      "base": null,
+      "refs": {
+        "Participants$Users": "<p>The list of users.</p>"
       }
     },
     "UserSortType": {
@@ -1188,7 +1328,8 @@
       "base": null,
       "refs": {
         "CreateUserRequest$Username": "<p>The login name of the user.</p>",
-        "User$Username": "<p>The login name of the user.</p>"
+        "User$Username": "<p>The login name of the user.</p>",
+        "UserMetadata$Username": "<p>The username of the user.</p>"
       }
     }
   }
