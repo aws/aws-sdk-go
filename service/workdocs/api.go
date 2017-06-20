@@ -1767,6 +1767,100 @@ func (c *WorkDocs) DeleteUserWithContext(ctx aws.Context, input *DeleteUserInput
 	return out, req.Send()
 }
 
+const opDescribeActivities = "DescribeActivities"
+
+// DescribeActivitiesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeActivities operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See DescribeActivities for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeActivities method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeActivitiesRequest method.
+//    req, resp := client.DescribeActivitiesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeActivities
+func (c *WorkDocs) DescribeActivitiesRequest(input *DescribeActivitiesInput) (req *request.Request, output *DescribeActivitiesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeActivities,
+		HTTPMethod: "GET",
+		HTTPPath:   "/api/v1/activities",
+	}
+
+	if input == nil {
+		input = &DescribeActivitiesInput{}
+	}
+
+	output = &DescribeActivitiesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeActivities API operation for Amazon WorkDocs.
+//
+// Describes the user activities in a specified time period.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkDocs's
+// API operation DescribeActivities for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeUnauthorizedOperationException "UnauthorizedOperationException"
+//   The operation is not permitted.
+//
+//   * ErrCodeUnauthorizedResourceAccessException "UnauthorizedResourceAccessException"
+//   The caller does not have access to perform the action on the resource.
+//
+//   * ErrCodeInvalidArgumentException "InvalidArgumentException"
+//   The pagination marker and/or limit fields are not valid.
+//
+//   * ErrCodeFailedDependencyException "FailedDependencyException"
+//   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//   under the control of the organization is failing, such as a connected active
+//   directory.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   One or more of the dependencies is unavailable.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeActivities
+func (c *WorkDocs) DescribeActivities(input *DescribeActivitiesInput) (*DescribeActivitiesOutput, error) {
+	req, out := c.DescribeActivitiesRequest(input)
+	return out, req.Send()
+}
+
+// DescribeActivitiesWithContext is the same as DescribeActivities with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeActivities for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkDocs) DescribeActivitiesWithContext(ctx aws.Context, input *DescribeActivitiesInput, opts ...request.Option) (*DescribeActivitiesOutput, error) {
+	req, out := c.DescribeActivitiesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeComments = "DescribeComments"
 
 // DescribeCommentsRequest generates a "aws/request.Request" representing the
@@ -2358,6 +2452,103 @@ func (c *WorkDocs) DescribeResourcePermissionsWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opDescribeRootFolders = "DescribeRootFolders"
+
+// DescribeRootFoldersRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeRootFolders operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See DescribeRootFolders for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeRootFolders method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeRootFoldersRequest method.
+//    req, resp := client.DescribeRootFoldersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeRootFolders
+func (c *WorkDocs) DescribeRootFoldersRequest(input *DescribeRootFoldersInput) (req *request.Request, output *DescribeRootFoldersOutput) {
+	op := &request.Operation{
+		Name:       opDescribeRootFolders,
+		HTTPMethod: "GET",
+		HTTPPath:   "/api/v1/me/root",
+	}
+
+	if input == nil {
+		input = &DescribeRootFoldersInput{}
+	}
+
+	output = &DescribeRootFoldersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeRootFolders API operation for Amazon WorkDocs.
+//
+// Describes the current user's special folders; the RootFolder and the RecyleBin.
+// RootFolder is the root of user's files and folders and RecyleBin is the root
+// of recycled items. This is not a valid action for SigV4 (administrative API)
+// clients.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkDocs's
+// API operation DescribeRootFolders for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeUnauthorizedOperationException "UnauthorizedOperationException"
+//   The operation is not permitted.
+//
+//   * ErrCodeUnauthorizedResourceAccessException "UnauthorizedResourceAccessException"
+//   The caller does not have access to perform the action on the resource.
+//
+//   * ErrCodeInvalidArgumentException "InvalidArgumentException"
+//   The pagination marker and/or limit fields are not valid.
+//
+//   * ErrCodeFailedDependencyException "FailedDependencyException"
+//   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//   under the control of the organization is failing, such as a connected active
+//   directory.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   One or more of the dependencies is unavailable.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeRootFolders
+func (c *WorkDocs) DescribeRootFolders(input *DescribeRootFoldersInput) (*DescribeRootFoldersOutput, error) {
+	req, out := c.DescribeRootFoldersRequest(input)
+	return out, req.Send()
+}
+
+// DescribeRootFoldersWithContext is the same as DescribeRootFolders with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeRootFolders for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkDocs) DescribeRootFoldersWithContext(ctx aws.Context, input *DescribeRootFoldersInput, opts ...request.Option) (*DescribeRootFoldersOutput, error) {
+	req, out := c.DescribeRootFoldersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeUsers = "DescribeUsers"
 
 // DescribeUsersRequest generates a "aws/request.Request" representing the
@@ -2511,6 +2702,101 @@ func (c *WorkDocs) DescribeUsersPagesWithContext(ctx aws.Context, input *Describ
 		cont = fn(p.Page().(*DescribeUsersOutput), !p.HasNextPage())
 	}
 	return p.Err()
+}
+
+const opGetCurrentUser = "GetCurrentUser"
+
+// GetCurrentUserRequest generates a "aws/request.Request" representing the
+// client's request for the GetCurrentUser operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See GetCurrentUser for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetCurrentUser method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetCurrentUserRequest method.
+//    req, resp := client.GetCurrentUserRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetCurrentUser
+func (c *WorkDocs) GetCurrentUserRequest(input *GetCurrentUserInput) (req *request.Request, output *GetCurrentUserOutput) {
+	op := &request.Operation{
+		Name:       opGetCurrentUser,
+		HTTPMethod: "GET",
+		HTTPPath:   "/api/v1/me",
+	}
+
+	if input == nil {
+		input = &GetCurrentUserInput{}
+	}
+
+	output = &GetCurrentUserOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCurrentUser API operation for Amazon WorkDocs.
+//
+// Retrieves details of the current user for whom the authentication token was
+// generated. This is not a valid action for SigV4 (administrative API) clients.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkDocs's
+// API operation GetCurrentUser for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeEntityNotExistsException "EntityNotExistsException"
+//   The resource does not exist.
+//
+//   * ErrCodeUnauthorizedOperationException "UnauthorizedOperationException"
+//   The operation is not permitted.
+//
+//   * ErrCodeUnauthorizedResourceAccessException "UnauthorizedResourceAccessException"
+//   The caller does not have access to perform the action on the resource.
+//
+//   * ErrCodeFailedDependencyException "FailedDependencyException"
+//   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//   under the control of the organization is failing, such as a connected active
+//   directory.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   One or more of the dependencies is unavailable.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetCurrentUser
+func (c *WorkDocs) GetCurrentUser(input *GetCurrentUserInput) (*GetCurrentUserOutput, error) {
+	req, out := c.GetCurrentUserRequest(input)
+	return out, req.Send()
+}
+
+// GetCurrentUserWithContext is the same as GetCurrentUser with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCurrentUser for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkDocs) GetCurrentUserWithContext(ctx aws.Context, input *GetCurrentUserInput, opts ...request.Option) (*GetCurrentUserOutput, error) {
+	req, out := c.GetCurrentUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetDocument = "GetDocument"
@@ -3103,6 +3389,7 @@ func (c *WorkDocs) InitiateDocumentVersionUploadRequest(input *InitiateDocumentV
 //   version upload calls for a document that has been checked out from Web client.
 //
 //   * ErrCodeResourceAlreadyCheckedOutException "ResourceAlreadyCheckedOutException"
+//   The resource is already checked out.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/InitiateDocumentVersionUpload
 func (c *WorkDocs) InitiateDocumentVersionUpload(input *InitiateDocumentVersionUploadInput) (*InitiateDocumentVersionUploadOutput, error) {
@@ -3906,6 +4193,98 @@ func (s *ActivateUserOutput) SetUser(v *User) *ActivateUserOutput {
 	return s
 }
 
+// Describes the activity information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/Activity
+type Activity struct {
+	_ struct{} `type:"structure"`
+
+	// Metadata of the commenting activity. This is an optional field and is filled
+	// for commenting activities.
+	CommentMetadata *CommentMetadata `type:"structure"`
+
+	// The user who performed the action.
+	Initiator *UserMetadata `type:"structure"`
+
+	// The ID of the organization.
+	OrganizationId *string `min:"1" type:"string"`
+
+	// The original parent of the resource. This is an optional field and is filled
+	// for move activities.
+	OriginalParent *ResourceMetadata `type:"structure"`
+
+	// The list of users or groups impacted by this action. This is an optional
+	// field and is filled for the following sharing activities: DOCUMENT_SHARED,
+	// DOCUMENT_SHARED, DOCUMENT_UNSHARED, FOLDER_SHARED, FOLDER_UNSHARED.
+	Participants *Participants `type:"structure"`
+
+	// The metadata of the resource involved in the user action.
+	ResourceMetadata *ResourceMetadata `type:"structure"`
+
+	// The timestamp when the action was performed.
+	TimeStamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The activity type.
+	Type *string `type:"string" enum:"ActivityType"`
+}
+
+// String returns the string representation
+func (s Activity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Activity) GoString() string {
+	return s.String()
+}
+
+// SetCommentMetadata sets the CommentMetadata field's value.
+func (s *Activity) SetCommentMetadata(v *CommentMetadata) *Activity {
+	s.CommentMetadata = v
+	return s
+}
+
+// SetInitiator sets the Initiator field's value.
+func (s *Activity) SetInitiator(v *UserMetadata) *Activity {
+	s.Initiator = v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *Activity) SetOrganizationId(v string) *Activity {
+	s.OrganizationId = &v
+	return s
+}
+
+// SetOriginalParent sets the OriginalParent field's value.
+func (s *Activity) SetOriginalParent(v *ResourceMetadata) *Activity {
+	s.OriginalParent = v
+	return s
+}
+
+// SetParticipants sets the Participants field's value.
+func (s *Activity) SetParticipants(v *Participants) *Activity {
+	s.Participants = v
+	return s
+}
+
+// SetResourceMetadata sets the ResourceMetadata field's value.
+func (s *Activity) SetResourceMetadata(v *ResourceMetadata) *Activity {
+	s.ResourceMetadata = v
+	return s
+}
+
+// SetTimeStamp sets the TimeStamp field's value.
+func (s *Activity) SetTimeStamp(v time.Time) *Activity {
+	s.TimeStamp = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Activity) SetType(v string) *Activity {
+	s.Type = &v
+	return s
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/AddResourcePermissionsRequest
 type AddResourcePermissionsInput struct {
 	_ struct{} `type:"structure"`
@@ -4108,6 +4487,65 @@ func (s *Comment) SetThreadId(v string) *Comment {
 // SetVisibility sets the Visibility field's value.
 func (s *Comment) SetVisibility(v string) *Comment {
 	s.Visibility = &v
+	return s
+}
+
+// Describes the metadata of a comment.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CommentMetadata
+type CommentMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the comment.
+	CommentId *string `min:"1" type:"string"`
+
+	CommentStatus *string `type:"string" enum:"CommentStatusType"`
+
+	// The user who made the comment.
+	Contributor *User `type:"structure"`
+
+	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The ID of the user being replied to.
+	RecipientId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CommentMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CommentMetadata) GoString() string {
+	return s.String()
+}
+
+// SetCommentId sets the CommentId field's value.
+func (s *CommentMetadata) SetCommentId(v string) *CommentMetadata {
+	s.CommentId = &v
+	return s
+}
+
+// SetCommentStatus sets the CommentStatus field's value.
+func (s *CommentMetadata) SetCommentStatus(v string) *CommentMetadata {
+	s.CommentStatus = &v
+	return s
+}
+
+// SetContributor sets the Contributor field's value.
+func (s *CommentMetadata) SetContributor(v *User) *CommentMetadata {
+	s.Contributor = v
+	return s
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *CommentMetadata) SetCreatedTimestamp(v time.Time) *CommentMetadata {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetRecipientId sets the RecipientId field's value.
+func (s *CommentMetadata) SetRecipientId(v string) *CommentMetadata {
+	s.RecipientId = &v
 	return s
 }
 
@@ -5550,6 +5988,149 @@ func (s DeleteUserOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeActivitiesRequest
+type DescribeActivitiesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon WorkDocs authentication token. This field should not be set when using
+	// administrative API actions, as in accessing the API using AWS credentials.
+	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
+
+	// The timestamp that determines the end time of the activities; the response
+	// includes the activities performed before the specified timestamp.
+	EndTime *time.Time `location:"querystring" locationName:"endTime" type:"timestamp" timestampFormat:"unix"`
+
+	// The maximum number of items to return.
+	Limit *int64 `location:"querystring" locationName:"limit" min:"1" type:"integer"`
+
+	// The marker for the next set of results. (You received this marker from a
+	// previous call.)
+	Marker *string `location:"querystring" locationName:"marker" min:"1" type:"string"`
+
+	// The ID of the organization. This is a mandatory parameter when using administrative
+	// API (SigV4) requests.
+	OrganizationId *string `location:"querystring" locationName:"organizationId" min:"1" type:"string"`
+
+	// The timestamp that determines the starting time of the activities; the response
+	// includes the activities performed after the specified timestamp.
+	StartTime *time.Time `location:"querystring" locationName:"startTime" type:"timestamp" timestampFormat:"unix"`
+
+	// The ID of the user who performed the action. The response includes activities
+	// pertaining to this user. This is an optional parameter and is only applicable
+	// for administrative API (SigV4) requests.
+	UserId *string `location:"querystring" locationName:"userId" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeActivitiesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeActivitiesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeActivitiesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeActivitiesInput"}
+	if s.AuthenticationToken != nil && len(*s.AuthenticationToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AuthenticationToken", 1))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.Marker != nil && len(*s.Marker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Marker", 1))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 1))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthenticationToken sets the AuthenticationToken field's value.
+func (s *DescribeActivitiesInput) SetAuthenticationToken(v string) *DescribeActivitiesInput {
+	s.AuthenticationToken = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *DescribeActivitiesInput) SetEndTime(v time.Time) *DescribeActivitiesInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *DescribeActivitiesInput) SetLimit(v int64) *DescribeActivitiesInput {
+	s.Limit = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeActivitiesInput) SetMarker(v string) *DescribeActivitiesInput {
+	s.Marker = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *DescribeActivitiesInput) SetOrganizationId(v string) *DescribeActivitiesInput {
+	s.OrganizationId = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *DescribeActivitiesInput) SetStartTime(v time.Time) *DescribeActivitiesInput {
+	s.StartTime = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *DescribeActivitiesInput) SetUserId(v string) *DescribeActivitiesInput {
+	s.UserId = &v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeActivitiesResponse
+type DescribeActivitiesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The marker for the next set of results.
+	Marker *string `min:"1" type:"string"`
+
+	// The list of activities for the specified user and time period.
+	UserActivities []*Activity `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeActivitiesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeActivitiesOutput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeActivitiesOutput) SetMarker(v string) *DescribeActivitiesOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetUserActivities sets the UserActivities field's value.
+func (s *DescribeActivitiesOutput) SetUserActivities(v []*Activity) *DescribeActivitiesOutput {
+	s.UserActivities = v
+	return s
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeCommentsRequest
 type DescribeCommentsInput struct {
 	_ struct{} `type:"structure"`
@@ -6198,6 +6779,107 @@ func (s *DescribeResourcePermissionsOutput) SetPrincipals(v []*Principal) *Descr
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeRootFoldersRequest
+type DescribeRootFoldersInput struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon WorkDocs authentication token. This field should not be set when using
+	// administrative API actions, as in accessing the API using AWS credentials.
+	//
+	// AuthenticationToken is a required field
+	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" required:"true"`
+
+	// The maximum number of items to return.
+	Limit *int64 `location:"querystring" locationName:"limit" min:"1" type:"integer"`
+
+	// The marker for the next set of results. (You received this marker from a
+	// previous call.)
+	Marker *string `location:"querystring" locationName:"marker" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeRootFoldersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeRootFoldersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeRootFoldersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeRootFoldersInput"}
+	if s.AuthenticationToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("AuthenticationToken"))
+	}
+	if s.AuthenticationToken != nil && len(*s.AuthenticationToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AuthenticationToken", 1))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.Marker != nil && len(*s.Marker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Marker", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthenticationToken sets the AuthenticationToken field's value.
+func (s *DescribeRootFoldersInput) SetAuthenticationToken(v string) *DescribeRootFoldersInput {
+	s.AuthenticationToken = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *DescribeRootFoldersInput) SetLimit(v int64) *DescribeRootFoldersInput {
+	s.Limit = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeRootFoldersInput) SetMarker(v string) *DescribeRootFoldersInput {
+	s.Marker = &v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeRootFoldersResponse
+type DescribeRootFoldersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The user's special folders.
+	Folders []*FolderMetadata `type:"list"`
+
+	// The marker for the next set of results.
+	Marker *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeRootFoldersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeRootFoldersOutput) GoString() string {
+	return s.String()
+}
+
+// SetFolders sets the Folders field's value.
+func (s *DescribeRootFoldersOutput) SetFolders(v []*FolderMetadata) *DescribeRootFoldersOutput {
+	s.Folders = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeRootFoldersOutput) SetMarker(v string) *DescribeRootFoldersOutput {
+	s.Marker = &v
+	return s
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeUsersRequest
 type DescribeUsersInput struct {
 	_ struct{} `type:"structure"`
@@ -6618,6 +7300,7 @@ type FolderMetadata struct {
 	// List of labels on the folder.
 	Labels []*string `type:"list"`
 
+	// The size of the latest version of the folder metadata.
 	LatestVersionSize *int64 `type:"long"`
 
 	// The time when the folder was updated.
@@ -6635,6 +7318,7 @@ type FolderMetadata struct {
 	// The unique identifier created from the subfolders and documents of the folder.
 	Signature *string `type:"string"`
 
+	// The size of the folder metadata.
 	Size *int64 `type:"long"`
 }
 
@@ -6711,6 +7395,72 @@ func (s *FolderMetadata) SetSignature(v string) *FolderMetadata {
 // SetSize sets the Size field's value.
 func (s *FolderMetadata) SetSize(v int64) *FolderMetadata {
 	s.Size = &v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetCurrentUserRequest
+type GetCurrentUserInput struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon WorkDocs authentication token.
+	//
+	// AuthenticationToken is a required field
+	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetCurrentUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetCurrentUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCurrentUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCurrentUserInput"}
+	if s.AuthenticationToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("AuthenticationToken"))
+	}
+	if s.AuthenticationToken != nil && len(*s.AuthenticationToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AuthenticationToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthenticationToken sets the AuthenticationToken field's value.
+func (s *GetCurrentUserInput) SetAuthenticationToken(v string) *GetCurrentUserInput {
+	s.AuthenticationToken = &v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetCurrentUserResponse
+type GetCurrentUserOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Metadata of the user.
+	User *User `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetCurrentUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetCurrentUserOutput) GoString() string {
+	return s.String()
+}
+
+// SetUser sets the User field's value.
+func (s *GetCurrentUserOutput) SetUser(v *User) *GetCurrentUserOutput {
+	s.User = v
 	return s
 }
 
@@ -7267,6 +8017,40 @@ func (s *GetFolderPathOutput) SetPath(v *ResourcePath) *GetFolderPathOutput {
 	return s
 }
 
+// Describes the metadata of a user group.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GroupMetadata
+type GroupMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the user group.
+	Id *string `min:"1" type:"string"`
+
+	// The name of the group.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GroupMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GroupMetadata) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *GroupMetadata) SetId(v string) *GroupMetadata {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GroupMetadata) SetName(v string) *GroupMetadata {
+	s.Name = &v
+	return s
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/InitiateDocumentVersionUploadRequest
 type InitiateDocumentVersionUploadInput struct {
 	_ struct{} `type:"structure"`
@@ -7415,6 +8199,40 @@ func (s *InitiateDocumentVersionUploadOutput) SetMetadata(v *DocumentMetadata) *
 // SetUploadMetadata sets the UploadMetadata field's value.
 func (s *InitiateDocumentVersionUploadOutput) SetUploadMetadata(v *UploadMetadata) *InitiateDocumentVersionUploadOutput {
 	s.UploadMetadata = v
+	return s
+}
+
+// Describes the users and/or user groups.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/Participants
+type Participants struct {
+	_ struct{} `type:"structure"`
+
+	// The list of user groups.
+	Groups []*GroupMetadata `type:"list"`
+
+	// The list of users.
+	Users []*UserMetadata `type:"list"`
+}
+
+// String returns the string representation
+func (s Participants) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Participants) GoString() string {
+	return s.String()
+}
+
+// SetGroups sets the Groups field's value.
+func (s *Participants) SetGroups(v []*GroupMetadata) *Participants {
+	s.Groups = v
+	return s
+}
+
+// SetUsers sets the Users field's value.
+func (s *Participants) SetUsers(v []*UserMetadata) *Participants {
+	s.Users = v
 	return s
 }
 
@@ -7659,6 +8477,86 @@ func (s RemoveResourcePermissionOutput) String() string {
 // GoString returns the string representation
 func (s RemoveResourcePermissionOutput) GoString() string {
 	return s.String()
+}
+
+// Describes the metadata of a resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/ResourceMetadata
+type ResourceMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the resource.
+	Id *string `min:"1" type:"string"`
+
+	// The name of the resource.
+	Name *string `min:"1" type:"string"`
+
+	// The original name of the resource prior to a rename operation.
+	OriginalName *string `min:"1" type:"string"`
+
+	// The owner of the resource.
+	Owner *UserMetadata `type:"structure"`
+
+	// The parent ID of the resource before a rename operation.
+	ParentId *string `min:"1" type:"string"`
+
+	// The type of resource.
+	Type *string `type:"string" enum:"ResourceType"`
+
+	// The version ID of the resource. This is an optional field and is filled for
+	// action on document version.
+	VersionId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceMetadata) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *ResourceMetadata) SetId(v string) *ResourceMetadata {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ResourceMetadata) SetName(v string) *ResourceMetadata {
+	s.Name = &v
+	return s
+}
+
+// SetOriginalName sets the OriginalName field's value.
+func (s *ResourceMetadata) SetOriginalName(v string) *ResourceMetadata {
+	s.OriginalName = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *ResourceMetadata) SetOwner(v *UserMetadata) *ResourceMetadata {
+	s.Owner = v
+	return s
+}
+
+// SetParentId sets the ParentId field's value.
+func (s *ResourceMetadata) SetParentId(v string) *ResourceMetadata {
+	s.ParentId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ResourceMetadata) SetType(v string) *ResourceMetadata {
+	s.Type = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *ResourceMetadata) SetVersionId(v string) *ResourceMetadata {
+	s.VersionId = &v
+	return s
 }
 
 // Describes the path information of a resource.
@@ -8560,6 +9458,67 @@ func (s *User) SetUsername(v string) *User {
 	return s
 }
 
+// Describes the metadata of the user.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UserMetadata
+type UserMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The email address of the user.
+	EmailAddress *string `min:"1" type:"string"`
+
+	// The given name of the user before a rename operation.
+	GivenName *string `min:"1" type:"string"`
+
+	// The ID of the user.
+	Id *string `min:"1" type:"string"`
+
+	// The surname of the user.
+	Surname *string `min:"1" type:"string"`
+
+	// The username of the user.
+	Username *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s UserMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UserMetadata) GoString() string {
+	return s.String()
+}
+
+// SetEmailAddress sets the EmailAddress field's value.
+func (s *UserMetadata) SetEmailAddress(v string) *UserMetadata {
+	s.EmailAddress = &v
+	return s
+}
+
+// SetGivenName sets the GivenName field's value.
+func (s *UserMetadata) SetGivenName(v string) *UserMetadata {
+	s.GivenName = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UserMetadata) SetId(v string) *UserMetadata {
+	s.Id = &v
+	return s
+}
+
+// SetSurname sets the Surname field's value.
+func (s *UserMetadata) SetSurname(v string) *UserMetadata {
+	s.Surname = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *UserMetadata) SetUsername(v string) *UserMetadata {
+	s.Username = &v
+	return s
+}
+
 // Describes the storage for a user.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UserStorageMetadata
 type UserStorageMetadata struct {
@@ -8593,6 +9552,101 @@ func (s *UserStorageMetadata) SetStorageUtilizedInBytes(v int64) *UserStorageMet
 	s.StorageUtilizedInBytes = &v
 	return s
 }
+
+const (
+	// ActivityTypeDocumentCheckedIn is a ActivityType enum value
+	ActivityTypeDocumentCheckedIn = "DOCUMENT_CHECKED_IN"
+
+	// ActivityTypeDocumentCheckedOut is a ActivityType enum value
+	ActivityTypeDocumentCheckedOut = "DOCUMENT_CHECKED_OUT"
+
+	// ActivityTypeDocumentRenamed is a ActivityType enum value
+	ActivityTypeDocumentRenamed = "DOCUMENT_RENAMED"
+
+	// ActivityTypeDocumentVersionUploaded is a ActivityType enum value
+	ActivityTypeDocumentVersionUploaded = "DOCUMENT_VERSION_UPLOADED"
+
+	// ActivityTypeDocumentVersionDeleted is a ActivityType enum value
+	ActivityTypeDocumentVersionDeleted = "DOCUMENT_VERSION_DELETED"
+
+	// ActivityTypeDocumentRecycled is a ActivityType enum value
+	ActivityTypeDocumentRecycled = "DOCUMENT_RECYCLED"
+
+	// ActivityTypeDocumentRestored is a ActivityType enum value
+	ActivityTypeDocumentRestored = "DOCUMENT_RESTORED"
+
+	// ActivityTypeDocumentReverted is a ActivityType enum value
+	ActivityTypeDocumentReverted = "DOCUMENT_REVERTED"
+
+	// ActivityTypeDocumentShared is a ActivityType enum value
+	ActivityTypeDocumentShared = "DOCUMENT_SHARED"
+
+	// ActivityTypeDocumentUnshared is a ActivityType enum value
+	ActivityTypeDocumentUnshared = "DOCUMENT_UNSHARED"
+
+	// ActivityTypeDocumentSharePermissionChanged is a ActivityType enum value
+	ActivityTypeDocumentSharePermissionChanged = "DOCUMENT_SHARE_PERMISSION_CHANGED"
+
+	// ActivityTypeDocumentShareableLinkCreated is a ActivityType enum value
+	ActivityTypeDocumentShareableLinkCreated = "DOCUMENT_SHAREABLE_LINK_CREATED"
+
+	// ActivityTypeDocumentShareableLinkRemoved is a ActivityType enum value
+	ActivityTypeDocumentShareableLinkRemoved = "DOCUMENT_SHAREABLE_LINK_REMOVED"
+
+	// ActivityTypeDocumentShareableLinkPermissionChanged is a ActivityType enum value
+	ActivityTypeDocumentShareableLinkPermissionChanged = "DOCUMENT_SHAREABLE_LINK_PERMISSION_CHANGED"
+
+	// ActivityTypeDocumentMoved is a ActivityType enum value
+	ActivityTypeDocumentMoved = "DOCUMENT_MOVED"
+
+	// ActivityTypeDocumentCommentAdded is a ActivityType enum value
+	ActivityTypeDocumentCommentAdded = "DOCUMENT_COMMENT_ADDED"
+
+	// ActivityTypeDocumentCommentDeleted is a ActivityType enum value
+	ActivityTypeDocumentCommentDeleted = "DOCUMENT_COMMENT_DELETED"
+
+	// ActivityTypeDocumentAnnotationAdded is a ActivityType enum value
+	ActivityTypeDocumentAnnotationAdded = "DOCUMENT_ANNOTATION_ADDED"
+
+	// ActivityTypeDocumentAnnotationDeleted is a ActivityType enum value
+	ActivityTypeDocumentAnnotationDeleted = "DOCUMENT_ANNOTATION_DELETED"
+
+	// ActivityTypeFolderCreated is a ActivityType enum value
+	ActivityTypeFolderCreated = "FOLDER_CREATED"
+
+	// ActivityTypeFolderDeleted is a ActivityType enum value
+	ActivityTypeFolderDeleted = "FOLDER_DELETED"
+
+	// ActivityTypeFolderRenamed is a ActivityType enum value
+	ActivityTypeFolderRenamed = "FOLDER_RENAMED"
+
+	// ActivityTypeFolderRecycled is a ActivityType enum value
+	ActivityTypeFolderRecycled = "FOLDER_RECYCLED"
+
+	// ActivityTypeFolderRestored is a ActivityType enum value
+	ActivityTypeFolderRestored = "FOLDER_RESTORED"
+
+	// ActivityTypeFolderShared is a ActivityType enum value
+	ActivityTypeFolderShared = "FOLDER_SHARED"
+
+	// ActivityTypeFolderUnshared is a ActivityType enum value
+	ActivityTypeFolderUnshared = "FOLDER_UNSHARED"
+
+	// ActivityTypeFolderSharePermissionChanged is a ActivityType enum value
+	ActivityTypeFolderSharePermissionChanged = "FOLDER_SHARE_PERMISSION_CHANGED"
+
+	// ActivityTypeFolderShareableLinkCreated is a ActivityType enum value
+	ActivityTypeFolderShareableLinkCreated = "FOLDER_SHAREABLE_LINK_CREATED"
+
+	// ActivityTypeFolderShareableLinkRemoved is a ActivityType enum value
+	ActivityTypeFolderShareableLinkRemoved = "FOLDER_SHAREABLE_LINK_REMOVED"
+
+	// ActivityTypeFolderShareableLinkPermissionChanged is a ActivityType enum value
+	ActivityTypeFolderShareableLinkPermissionChanged = "FOLDER_SHAREABLE_LINK_PERMISSION_CHANGED"
+
+	// ActivityTypeFolderMoved is a ActivityType enum value
+	ActivityTypeFolderMoved = "FOLDER_MOVED"
+)
 
 const (
 	// CommentStatusTypeDraft is a CommentStatusType enum value
@@ -8736,6 +9790,14 @@ const (
 
 	// ResourceStateTypeRecycled is a ResourceStateType enum value
 	ResourceStateTypeRecycled = "RECYCLED"
+)
+
+const (
+	// ResourceTypeFolder is a ResourceType enum value
+	ResourceTypeFolder = "FOLDER"
+
+	// ResourceTypeDocument is a ResourceType enum value
+	ResourceTypeDocument = "DOCUMENT"
 )
 
 const (

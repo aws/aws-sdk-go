@@ -89,6 +89,8 @@ const (
 
 	// ErrCodeResourceAlreadyCheckedOutException for service response error code
 	// "ResourceAlreadyCheckedOutException".
+	//
+	// The resource is already checked out.
 	ErrCodeResourceAlreadyCheckedOutException = "ResourceAlreadyCheckedOutException"
 
 	// ErrCodeServiceUnavailableException for service response error code
