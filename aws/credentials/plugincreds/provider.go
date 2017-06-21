@@ -8,9 +8,10 @@
 //
 // Plugin Symbol Name
 //
-// See ProviderSymbolName for the symbol named that will be used to lookup the
-// credentials plugin provider. If you want to use a custom symbol name you
-// should use GetPluginProviderFnsByName to lookup the symbol by a custom name.
+// The "GetAWSSDKCredentialProvider" is the symbol name that will be used to
+// lookup the credentials provider getter from the plugin. If you want to use a
+// custom symbol name you should use GetPluginProviderFnsByName to lookup the
+// symbol by a custom name.
 //
 // This symbol is a function that returns two additional functions. One to
 // retrieve the credentials, and another to determine if the credentials have
