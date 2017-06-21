@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<fullname>Amazon EC2 Systems Manager</fullname> <p>Amazon EC2 Systems Manager is a collection of capabilities that helps you automate management tasks such as collecting system inventory, applying operating system (OS) patches, automating the creation of Amazon Machine Images (AMIs), and configuring operating systems (OSs) and applications at scale. Systems Manager lets you remotely and securely manage the configuration of your managed instances. A <i>managed instance</i> is any Amazon EC2 instance or on-premises machine in your hybrid environment that has been configured for Systems Manager.</p> <p>This reference is intended to be used with the <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/\">Amazon EC2 Systems Manager User Guide</a>.</p> <p>To get started, verify prerequisites and configure managed instances. For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-prereqs.html\">Systems Manager Prerequisites</a>.</p>",
+  "service": "<fullname>Amazon EC2 Systems Manager</fullname> <p>Amazon EC2 Systems Manager is a collection of capabilities that helps you automate management tasks such as collecting system inventory, applying operating system (OS) patches, automating the creation of Amazon Machine Images (AMIs), and configuring operating systems (OSs) and applications at scale. Systems Manager lets you remotely and securely manage the configuration of your managed instances. A <i>managed instance</i> is any Amazon EC2 instance or on-premises machine in your hybrid environment that has been configured for Systems Manager.</p> <p>This reference is intended to be used with the <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/\">Amazon EC2 Systems Manager User Guide</a>.</p> <p>To get started, verify prerequisites and configure managed instances. For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-setting-up.html\">Systems Manager Prerequisites</a>.</p>",
   "operations": {
     "AddTagsToResource": "<p>Adds or overwrites one or more tags for the specified resource. Tags are metadata that you assign to your managed instances, Maintenance Windows, or Parameter Store parameters. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment. Each tag consists of a key and an optional value, both of which you define. For example, you could define a set of tags for your account's managed instances that helps you track each instance's owner and stack level. For example: Key=Owner and Value=DbAdmin, SysAdmin, or Dev. Or Key=Stack and Value=Production, Pre-Production, or Test.</p> <p>Each resource can have a maximum of 10 tags. </p> <p>We recommend that you devise a set of tag keys that meets your needs for each resource type. Using a consistent set of tag keys makes it easier for you to manage your resources. You can search and filter the resources based on the tags you add. Tags don't have any semantic meaning to Amazon EC2 and are interpreted strictly as a string of characters. </p> <p>For more information about tags, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">Tagging Your Amazon EC2 Resources</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "CancelCommand": "<p>Attempts to cancel the command specified by the Command ID. There is no guarantee that the command will be terminated and the underlying process stopped.</p>",
@@ -15,6 +15,7 @@
     "DeleteDocument": "<p>Deletes the Systems Manager document and all instance associations to the document.</p> <p>Before you delete the document, we recommend that you use <a>DeleteAssociation</a> to disassociate all instances that are associated with the document.</p>",
     "DeleteMaintenanceWindow": "<p>Deletes a Maintenance Window.</p>",
     "DeleteParameter": "<p>Delete a parameter from the system.</p>",
+    "DeleteParameters": "<p>Delete a list of parameters.</p>",
     "DeletePatchBaseline": "<p>Deletes a patch baseline.</p>",
     "DeregisterManagedInstance": "<p>Removes the server or virtual machine from the list of registered servers. You can reregister the instance again at any time. If you don't plan to use Run Command on the server, we suggest uninstalling the SSM Agent first.</p>",
     "DeregisterPatchBaselineForPatchGroup": "<p>Removes a patch group from a patch baseline.</p>",
@@ -53,8 +54,10 @@
     "GetMaintenanceWindow": "<p>Retrieves a Maintenance Window.</p>",
     "GetMaintenanceWindowExecution": "<p>Retrieves details about a specific task executed as part of a Maintenance Window execution.</p>",
     "GetMaintenanceWindowExecutionTask": "<p>Retrieves the details about a specific task executed as part of a Maintenance Window execution.</p>",
+    "GetParameter": "<p>Get information about a parameter by using the parameter name. </p>",
     "GetParameterHistory": "<p>Query a list of all parameters used by the AWS account.</p>",
     "GetParameters": "<p>Get details of a parameter.</p>",
+    "GetParametersByPath": "<p>Retrieve parameters in a specific hierarchy. For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-working-path.html\">Using Parameter Hierarchies</a>. </p>",
     "GetPatchBaseline": "<p>Retrieves information about a patch baseline.</p>",
     "GetPatchBaselineForPatchGroup": "<p>Retrieves the patch baseline that should be used for the specified patch group.</p>",
     "ListAssociations": "<p>Lists the associations for the specified Systems Manager document or instance.</p>",
@@ -66,13 +69,13 @@
     "ListTagsForResource": "<p>Returns a list of the tags assigned to the specified resource.</p>",
     "ModifyDocumentPermission": "<p>Shares a Systems Manager document publicly or privately. If you share a document privately, you must specify the AWS user account IDs for those people who can use the document. If you share a document publicly, you must specify <i>All</i> as the account ID.</p>",
     "PutInventory": "<p>Bulk update custom inventory items on one more instance. The request adds an inventory item, if it doesn't already exist, or updates an inventory item, if it does exist.</p>",
-    "PutParameter": "<p>Add one or more paramaters to the system.</p>",
+    "PutParameter": "<p>Add one or more parameters to the system.</p>",
     "RegisterDefaultPatchBaseline": "<p>Defines the default patch baseline.</p>",
     "RegisterPatchBaselineForPatchGroup": "<p>Registers a patch baseline for a patch group.</p>",
     "RegisterTargetWithMaintenanceWindow": "<p>Registers a target with a Maintenance Window.</p>",
     "RegisterTaskWithMaintenanceWindow": "<p>Adds a new task to a Maintenance Window.</p>",
     "RemoveTagsFromResource": "<p>Removes all tags from the specified resource.</p>",
-    "SendCommand": "<p>Executes commands on one or more remote instances.</p>",
+    "SendCommand": "<p>Executes commands on one or more managed instances.</p>",
     "StartAutomationExecution": "<p>Initiates execution of an Automation document.</p>",
     "StopAutomationExecution": "<p>Stop an Automation that is currently executing.</p>",
     "UpdateAssociation": "<p>Updates an association. You can only update the document version, schedule, parameters, and Amazon S3 output of an association.</p>",
@@ -146,6 +149,14 @@
       "base": null,
       "refs": {
         "InstanceAssociationStatusInfo$ErrorCode": "<p>An error code returned by the request to create the association.</p>"
+      }
+    },
+    "AllowedPattern": {
+      "base": null,
+      "refs": {
+        "ParameterHistory$AllowedPattern": "<p>Parameter names can include the following letters and symbols.</p> <p>a-zA-Z0-9_.-</p>",
+        "ParameterMetadata$AllowedPattern": "<p>A parameter name can include only the following letters and symbols.</p> <p>a-zA-Z0-9_.-</p>",
+        "PutParameterRequest$AllowedPattern": "<p>A regular expression used to validate the parameter value. For example, for String types with values restricted to numbers, you can specify the following: AllowedPattern=^\\d+$ </p>"
       }
     },
     "AlreadyExistsException": {
@@ -457,6 +468,9 @@
         "Activation$Expired": "<p>Whether or not the activation is expired.</p>",
         "DocumentVersionInfo$IsDefaultVersion": "<p>An identifier for the default version of the document.</p>",
         "GetParameterHistoryRequest$WithDecryption": "<p>Return decrypted values for secure string parameters. This flag is ignored for String and StringList parameter types.</p>",
+        "GetParameterRequest$WithDecryption": "<p>Return decrypted values for secure string parameters. This flag is ignored for String and StringList parameter types.</p>",
+        "GetParametersByPathRequest$Recursive": "<p>Retrieve all parameters within a hierarchy.</p>",
+        "GetParametersByPathRequest$WithDecryption": "<p>Retrieve all parameters in a hierarchy with their value decrypted.</p>",
         "GetParametersRequest$WithDecryption": "<p>Return decrypted secure string value. Return decrypted values for secure string parameters. This flag is ignored for String and StringList parameter types.</p>",
         "InstanceInformation$IsLatestVersion": "<p>Indicates whether latest version of the SSM Agent is running on your instance. </p>",
         "ListCommandInvocationsRequest$Details": "<p>(Optional) If set this returns the response of the command executions and any command output. By default this is set to False. </p>",
@@ -498,7 +512,7 @@
     "CommandFilterKey": {
       "base": null,
       "refs": {
-        "CommandFilter$key": "<p>The name of the filter. For example, requested date and time.</p>"
+        "CommandFilter$key": "<p>The name of the filter.</p>"
       }
     },
     "CommandFilterList": {
@@ -511,7 +525,7 @@
     "CommandFilterValue": {
       "base": null,
       "refs": {
-        "CommandFilter$value": "<p>The filter value. For example: June 30, 2015.</p>"
+        "CommandFilter$value": "<p>The filter value. </p>"
       }
     },
     "CommandId": {
@@ -809,6 +823,16 @@
       }
     },
     "DeleteParameterResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteParametersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteParametersResult": {
       "base": null,
       "refs": {
       }
@@ -1556,6 +1580,32 @@
       "refs": {
       }
     },
+    "GetParameterRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetParameterResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetParametersByPathMaxResults": {
+      "base": null,
+      "refs": {
+        "GetParametersByPathRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>"
+      }
+    },
+    "GetParametersByPathRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetParametersByPathResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetParametersRequest": {
       "base": null,
       "refs": {
@@ -1583,6 +1633,16 @@
     },
     "GetPatchBaselineResult": {
       "base": null,
+      "refs": {
+      }
+    },
+    "HierarchyLevelLimitExceededException": {
+      "base": "<p>A hierarchy can have a maximum of five levels. For example:</p> <p>/Finance/Prod/IAD/OS/WinServ2016/license15</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-working-path.html\">Develop a Parameter Hierarchy</a>. </p>",
+      "refs": {
+      }
+    },
+    "HierarchyTypeMismatchException": {
+      "base": "<p>Parameter Store does not support changing a parameter type in a hierarchy. For example, you can't change a parameter from a String type to a SecureString type. You must create a new, unique parameter.</p>",
       "refs": {
       }
     },
@@ -1706,7 +1766,7 @@
         "CancelCommandRequest$InstanceIds": "<p>(Optional) A list of instance IDs on which you want to cancel the command. If not provided, the command is canceled on every instance on which it was requested.</p>",
         "Command$InstanceIds": "<p>The instance IDs against which this command was requested.</p>",
         "DescribeInstancePatchStatesRequest$InstanceIds": "<p>The ID of the instance whose patch state information should be retrieved.</p>",
-        "SendCommandRequest$InstanceIds": "<p>The instance IDs where the command should execute. You can specify a maximum of 50 IDs. If you prefer not to list individual instance IDs, you can instead send commands to a fleet of instances using the Targets parameter, which accepts EC2 tags.</p>"
+        "SendCommandRequest$InstanceIds": "<p>The instance IDs where the command should execute. You can specify a maximum of 50 IDs. If you prefer not to list individual instance IDs, you can instead send commands to a fleet of instances using the Targets parameter, which accepts EC2 tags. For more information about how to use Targets, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html\">Sending Commands to a Fleet</a>.</p>"
       }
     },
     "InstanceInformation": {
@@ -1857,6 +1917,11 @@
       "refs": {
       }
     },
+    "InvalidAllowedPatternException": {
+      "base": "<p>The request does not meet the regular expression requirement.</p>",
+      "refs": {
+      }
+    },
     "InvalidAutomationExecutionParametersException": {
       "base": "<p>The supplied parameters for invoking the specified Automation document are incorrect. For example, they may not match the set of parameters permitted for the specified Automation document.</p>",
       "refs": {
@@ -1899,6 +1964,11 @@
     },
     "InvalidFilterKey": {
       "base": "<p>The specified key is not valid.</p>",
+      "refs": {
+      }
+    },
+    "InvalidFilterOption": {
+      "base": "<p>The specified filter option is not valid. Valid options are Equals and BeginsWith. For Path filter, valid options are Recursive and OneLevel.</p>",
       "refs": {
       }
     },
@@ -2663,7 +2733,7 @@
         "GetMaintenanceWindowExecutionTaskResult$MaxConcurrency": "<p>The defined maximum number of task executions that could be run in parallel.</p>",
         "MaintenanceWindowTask$MaxConcurrency": "<p>The maximum number of targets this task can be run for in parallel.</p>",
         "RegisterTaskWithMaintenanceWindowRequest$MaxConcurrency": "<p>The maximum number of targets this task can be run for in parallel.</p>",
-        "SendCommandRequest$MaxConcurrency": "<p>(Optional) The maximum number of instances that are allowed to execute the command at the same time. You can specify a number such as 10 or a percentage such as 10%. The default value is 50. For more information about how to use MaxConcurrency, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/run-command.html\">Executing a Command Using Systems Manager Run Command</a>.</p>"
+        "SendCommandRequest$MaxConcurrency": "<p>(Optional) The maximum number of instances that are allowed to execute the command at the same time. You can specify a number such as 10 or a percentage such as 10%. The default value is 50. For more information about how to use MaxConcurrency, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-velocity.html\">Using Concurrency Controls</a>.</p>"
       }
     },
     "MaxDocumentSizeExceeded": {
@@ -2678,7 +2748,7 @@
         "GetMaintenanceWindowExecutionTaskResult$MaxErrors": "<p>The defined maximum number of task execution errors allowed before scheduling of the task execution would have been stopped.</p>",
         "MaintenanceWindowTask$MaxErrors": "<p>The maximum number of errors allowed before this task stops being scheduled.</p>",
         "RegisterTaskWithMaintenanceWindowRequest$MaxErrors": "<p>The maximum number of errors allowed before this task stops being scheduled.</p>",
-        "SendCommandRequest$MaxErrors": "<p>The maximum number of errors allowed without the command failing. When the command fails one more time beyond the value of MaxErrors, the systems stops sending the command to additional targets. You can specify a number like 10 or a percentage like 10%. The default value is 50. For more information about how to use MaxErrors, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/run-command.html\">Executing a Command Using Systems Manager Run Command</a>.</p>"
+        "SendCommandRequest$MaxErrors": "<p>The maximum number of errors allowed without the command failing. When the command fails one more time beyond the value of MaxErrors, the systems stops sending the command to additional targets. You can specify a number like 10 or a percentage like 10%. The default value is 50. For more information about how to use MaxErrors, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-maxerrors.html\">Using Error Controls</a>.</p>"
       }
     },
     "MaxResults": {
@@ -2716,7 +2786,7 @@
       "base": null,
       "refs": {
         "DescribeActivationsRequest$NextToken": "<p>A token to start the list. Use this token to get the next set of results. </p>",
-        "DescribeActivationsResult$NextToken": "<p> The token for the next set of items to return. Use this token to get the next set of results. </p>",
+        "DescribeActivationsResult$NextToken": "<p>The token for the next set of items to return. Use this token to get the next set of results. </p>",
         "DescribeAutomationExecutionsRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
         "DescribeAutomationExecutionsResult$NextToken": "<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>",
         "DescribeAvailablePatchesRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
@@ -2759,6 +2829,8 @@
         "GetInventorySchemaResult$NextToken": "<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>",
         "GetParameterHistoryRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
         "GetParameterHistoryResult$NextToken": "<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>",
+        "GetParametersByPathRequest$NextToken": "<p>A token to start the list. Use this token to get the next set of results. </p>",
+        "GetParametersByPathResult$NextToken": "<p>The token for the next set of items to return. Use this token to get the next set of results.</p>",
         "ListAssociationsRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
         "ListAssociationsResult$NextToken": "<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>",
         "ListCommandInvocationsRequest$NextToken": "<p>(Optional) The token for the next set of items to return. (You received this token from a previous call.)</p>",
@@ -2825,6 +2897,8 @@
       "refs": {
         "DeleteParameterRequest$Name": "<p>The name of the parameter to delete.</p>",
         "GetParameterHistoryRequest$Name": "<p>The name of a parameter you want to query.</p>",
+        "GetParameterRequest$Name": "<p>The name of the parameter you want to query.</p>",
+        "GetParametersByPathRequest$Path": "<p>The hierarchy for the parameter. Hierarchies start with a forward slash (/) and end with the parameter name. A hierarchy can have a maximum of five levels. Examples: /Environment/Test/DBString003</p> <p>/Finance/Prod/IAD/OS/WinServ2016/license15</p>",
         "Parameter$Name": "<p>The name of the parameter.</p>",
         "ParameterHistory$Name": "<p>The name of the parameter.</p>",
         "ParameterMetadata$Name": "<p>The parameter name.</p>",
@@ -2843,6 +2917,7 @@
     "Parameter": {
       "base": "<p>An Amazon EC2 Systems Manager parameter in Parameter Store.</p>",
       "refs": {
+        "GetParameterResult$Parameter": "<p>Information about a parameter.</p>",
         "ParameterList$member": null
       }
     },
@@ -2876,7 +2951,7 @@
       "refs": {
         "ParameterHistory$KeyId": "<p>The ID of the query key used for this parameter.</p>",
         "ParameterMetadata$KeyId": "<p>The ID of the query key used for this parameter.</p>",
-        "PutParameterRequest$KeyId": "<p>The parameter key ID that you want to add to the system.</p>"
+        "PutParameterRequest$KeyId": "<p>The KMS Key ID that you want to use to encrypt a parameter when you choose the SecureString data type. If you don't specify a key ID, the system uses the default key associated with your AWS account.</p>"
       }
     },
     "ParameterLimitExceeded": {
@@ -2887,6 +2962,7 @@
     "ParameterList": {
       "base": null,
       "refs": {
+        "GetParametersByPathResult$Parameters": "<p>A list of parameters found in the specified hierarchy.</p>",
         "GetParametersResult$Parameters": "<p>A list of details for a parameter.</p>"
       }
     },
@@ -2911,6 +2987,9 @@
     "ParameterNameList": {
       "base": null,
       "refs": {
+        "DeleteParametersRequest$Names": "<p>The names of the parameters to delete.</p>",
+        "DeleteParametersResult$DeletedParameters": "<p>The names of the deleted parameters.</p>",
+        "DeleteParametersResult$InvalidParameters": "<p>The names of parameters that weren't deleted because the parameters are not valid.</p>",
         "GetParametersRequest$Names": "<p>Names of the parameters for which you want to query information.</p>",
         "GetParametersResult$InvalidParameters": "<p>A list of parameters that are not formatted correctly or do not run when executed.</p>"
       }
@@ -2918,6 +2997,48 @@
     "ParameterNotFound": {
       "base": "<p>The parameter could not be found. Verify the name and try again.</p>",
       "refs": {
+      }
+    },
+    "ParameterPatternMismatchException": {
+      "base": "<p>The parameter name is not valid.</p>",
+      "refs": {
+      }
+    },
+    "ParameterStringFilter": {
+      "base": "<p>One or more filters. Use a filter to return a more specific list of results.</p>",
+      "refs": {
+        "ParameterStringFilterList$member": null
+      }
+    },
+    "ParameterStringFilterKey": {
+      "base": null,
+      "refs": {
+        "ParameterStringFilter$Key": "<p>The name of the filter.</p>"
+      }
+    },
+    "ParameterStringFilterList": {
+      "base": null,
+      "refs": {
+        "DescribeParametersRequest$ParameterFilters": "<p>Filters to limit the request results.</p>",
+        "GetParametersByPathRequest$ParameterFilters": "<p>Filters to limit the request results.</p>"
+      }
+    },
+    "ParameterStringFilterValue": {
+      "base": null,
+      "refs": {
+        "ParameterStringFilterValueList$member": null
+      }
+    },
+    "ParameterStringFilterValueList": {
+      "base": null,
+      "refs": {
+        "ParameterStringFilter$Values": "<p>The value you want to search for.</p>"
+      }
+    },
+    "ParameterStringQueryOption": {
+      "base": null,
+      "refs": {
+        "ParameterStringFilter$Option": "<p>Valid options are Equals and BeginsWith. For Path filter, valid options are Recursive and OneLevel.</p>"
       }
     },
     "ParameterType": {
@@ -3520,11 +3641,11 @@
     "S3Region": {
       "base": null,
       "refs": {
-        "Command$OutputS3Region": "<p>The region where the Amazon Simple Storage Service (Amazon S3) output bucket is located. The default value is the region where Run Command is being called.</p>",
-        "CommandPlugin$OutputS3Region": "<p>The name of the region where the output is stored in Amazon S3.</p>",
+        "Command$OutputS3Region": "<p>(Deprecated) You can no longer specify this parameter. The system ignores it. Instead, Systems Manager automatically determines the Amazon S3 bucket region.</p>",
+        "CommandPlugin$OutputS3Region": "<p>(Deprecated) You can no longer specify this parameter. The system ignores it. Instead, Systems Manager automatically determines the Amazon S3 bucket region.</p>",
         "LoggingInfo$S3Region": "<p>The region where the Amazon S3 bucket is located.</p>",
-        "S3OutputLocation$OutputS3Region": "<p>The Amazon S3 region where the association information is stored.</p>",
-        "SendCommandRequest$OutputS3Region": "<p>(Optional) The region where the Amazon Simple Storage Service (Amazon S3) output bucket is located. The default value is the region where Run Command is being called.</p>"
+        "S3OutputLocation$OutputS3Region": "<p>(Deprecated) You can no longer specify this parameter. The system ignores it. Instead, Systems Manager automatically determines the Amazon S3 bucket region.</p>",
+        "SendCommandRequest$OutputS3Region": "<p>(Deprecated) You can no longer specify this parameter. The system ignores it. Instead, Systems Manager automatically determines the Amazon S3 bucket region.</p>"
       }
     },
     "ScheduleExpression": {
@@ -3676,6 +3797,8 @@
         "DuplicateDocumentContent$Message": null,
         "FailureDetails$FailureStage": "<p>The stage of the Automation execution when the failure occurred. The stages include the following: InputValidation, PreVerification, Invocation, PostVerification.</p>",
         "FailureDetails$FailureType": "<p>The type of Automation failure. Failure types include the following: Action, Permission, Throttling, Verification, Internal.</p>",
+        "HierarchyLevelLimitExceededException$message": "<p>A hierarchy can have a maximum of five levels. For example:</p> <p>/Finance/Prod/IAD/OS/WinServ2016/license15</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-working-path.html\">Develop a Parameter Hierarchy</a>. </p>",
+        "HierarchyTypeMismatchException$message": "<p>Parameter Store does not support changing a parameter type in a hierarchy. For example, you can't change a parameter from a String type to a SecureString type. You must create a new, unique parameter.</p>",
         "IdempotentParameterMismatch$Message": null,
         "InstanceInformation$PlatformName": "<p>The name of the operating system platform running on your instance. </p>",
         "InstanceInformation$PlatformVersion": "<p>The version of the OS platform running on your instance. </p>",
@@ -3683,6 +3806,7 @@
         "InternalServerError$Message": null,
         "InvalidActivation$Message": null,
         "InvalidActivationId$Message": null,
+        "InvalidAllowedPatternException$message": "<p>The request does not meet the regular expression requirement.</p>",
         "InvalidAutomationExecutionParametersException$Message": null,
         "InvalidDocument$Message": "<p>The document does not exist or the document is not available to the user. This exception can be issued by CreateAssociation, CreateAssociationBatch, DeleteAssociation, DeleteDocument, DescribeAssociation, DescribeDocument, GetDocument, SendCommand, or UpdateAssociationStatus. </p>",
         "InvalidDocumentContent$Message": "<p>A description of the validation error.</p>",
@@ -3690,6 +3814,7 @@
         "InvalidDocumentSchemaVersion$Message": null,
         "InvalidDocumentVersion$Message": null,
         "InvalidFilter$Message": null,
+        "InvalidFilterOption$message": "<p>The specified filter option is not valid. Valid options are Equals and BeginsWith. For Path filter, valid options are Recursive and OneLevel.</p>",
         "InvalidFilterValue$Message": null,
         "InvalidInstanceId$Message": null,
         "InvalidInstanceInformationFilterValue$message": null,
@@ -3715,6 +3840,7 @@
         "ParameterLimitExceeded$message": null,
         "ParameterMetadata$LastModifiedUser": "<p>Amazon Resource Name (ARN) of the AWS user who last changed the parameter.</p>",
         "ParameterNotFound$message": null,
+        "ParameterPatternMismatchException$message": "<p>The parameter name is not valid.</p>",
         "ResourceInUseException$Message": null,
         "ResourceLimitExceededException$Message": null,
         "StepExecution$StepName": "<p>The name of this execution step.</p>",
@@ -3732,9 +3858,9 @@
     "StringDateTime": {
       "base": null,
       "refs": {
-        "GetCommandInvocationResult$ExecutionStartDateTime": "<p>The date and time the plugin started executing. Date and time are written in ISO 8601 format. For example, August 28, 2016 is represented as 2016-08-28. If the plugin has not started to execute, the string is empty.</p>",
+        "GetCommandInvocationResult$ExecutionStartDateTime": "<p>The date and time the plugin started executing. Date and time are written in ISO 8601 format. For example, June 7, 2017 is represented as 2017-06-7. The following sample AWS CLI command uses the <code>InvokedBefore</code> filter.</p> <p> <code>aws ssm list-commands --filters key=InvokedBefore,value=2017-06-07T00:00:00Z</code> </p> <p>If the plugin has not started to execute, the string is empty.</p>",
         "GetCommandInvocationResult$ExecutionElapsedTime": "<p>Duration since ExecutionStartDateTime.</p>",
-        "GetCommandInvocationResult$ExecutionEndDateTime": "<p>The date and time the plugin was finished executing. Date and time are written in ISO 8601 format. For example, August 28, 2016 is represented as 2016-08-28. If the plugin has not started to execute, the string is empty.</p>"
+        "GetCommandInvocationResult$ExecutionEndDateTime": "<p>The date and time the plugin was finished executing. Date and time are written in ISO 8601 format. For example, June 7, 2017 is represented as 2017-06-7. The following sample AWS CLI command uses the <code>InvokedAfter</code> filter.</p> <p> <code>aws ssm list-commands --filters key=InvokedAfter,value=2017-06-07T00:00:00Z</code> </p> <p>If the plugin has not started to execute, the string is empty.</p>"
       }
     },
     "StringList": {
@@ -3770,7 +3896,7 @@
       }
     },
     "Target": {
-      "base": "<p>An array of search criteria that targets instances using a Key,Value combination that you specify. Targets is required if you don't provide one or more instance IDs in the call.</p>",
+      "base": "<p>An array of search criteria that targets instances using a Key,Value combination that you specify. <code>Targets</code> is required if you don't provide one or more instance IDs in the call.</p> <p/>",
       "refs": {
         "Targets$member": null
       }
@@ -3784,7 +3910,7 @@
     "TargetKey": {
       "base": null,
       "refs": {
-        "Target$Key": "<p>User-defined criteria for sending commands that target instances that meet the criteria. Key can be tag:&lt;Amazon EC2 tag&gt; or InstanceIds. For more information about how to send commands that target instances using Key,Value parameters, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/run-command.html\">Executing a Command Using Systems Manager Run Command</a>.</p>"
+        "Target$Key": "<p>User-defined criteria for sending commands that target instances that meet the criteria. Key can be tag:&lt;Amazon EC2 tag&gt; or InstanceIds. For more information about how to send commands that target instances using Key,Value parameters, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html\">Executing a Command Using Systems Manager Run Command</a>.</p>"
       }
     },
     "TargetValue": {
@@ -3796,7 +3922,7 @@
     "TargetValues": {
       "base": null,
       "refs": {
-        "Target$Values": "<p>User-defined criteria that maps to Key. For example, if you specified tag:ServerRole, you could specify value:WebServer to execute a command on instances that include Amazon EC2 tags of ServerRole,WebServer. For more information about how to send commands that target instances using Key,Value parameters, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/run-command.html\">Executing a Command Using Systems Manager Run Command</a>.</p>"
+        "Target$Values": "<p>User-defined criteria that maps to Key. For example, if you specified tag:ServerRole, you could specify value:WebServer to execute a command on instances that include Amazon EC2 tags of ServerRole,WebServer. For more information about how to send commands that target instances using Key,Value parameters, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html\">Executing a Command Using Systems Manager Run Command</a>.</p>"
       }
     },
     "Targets": {
@@ -3811,7 +3937,7 @@
         "MaintenanceWindowTask$Targets": "<p>The targets (either instances or tags). Instances are specified using Key=instanceids,Values=&lt;instanceid1&gt;,&lt;instanceid2&gt;. Tags are specified using Key=&lt;tag name&gt;,Values=&lt;tag value&gt;.</p>",
         "RegisterTargetWithMaintenanceWindowRequest$Targets": "<p>The targets (either instances or tags). Instances are specified using Key=instanceids,Values=&lt;instanceid1&gt;,&lt;instanceid2&gt;. Tags are specified using Key=&lt;tag name&gt;,Values=&lt;tag value&gt;.</p>",
         "RegisterTaskWithMaintenanceWindowRequest$Targets": "<p>The targets (either instances or tags). Instances are specified using Key=instanceids,Values=&lt;instanceid1&gt;,&lt;instanceid2&gt;. Tags are specified using Key=&lt;tag name&gt;,Values=&lt;tag value&gt;.</p>",
-        "SendCommandRequest$Targets": "<p>(Optional) An array of search criteria that targets instances using a Key,Value combination that you specify. Targets is required if you don't provide one or more instance IDs in the call. For more information about how to use Targets, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/run-command.html\">Executing a Command Using Systems Manager Run Command</a>.</p>",
+        "SendCommandRequest$Targets": "<p>(Optional) An array of search criteria that targets instances using a Key,Value combination that you specify. Targets is required if you don't provide one or more instance IDs in the call. For more information about how to use Targets, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html\">Sending Commands to a Fleet</a>.</p>",
         "UpdateAssociationRequest$Targets": "<p>The targets of the association.</p>"
       }
     },
