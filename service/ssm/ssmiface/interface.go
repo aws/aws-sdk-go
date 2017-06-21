@@ -112,6 +112,10 @@ type SSMAPI interface {
 	DeleteParameterWithContext(aws.Context, *ssm.DeleteParameterInput, ...request.Option) (*ssm.DeleteParameterOutput, error)
 	DeleteParameterRequest(*ssm.DeleteParameterInput) (*request.Request, *ssm.DeleteParameterOutput)
 
+	DeleteParameters(*ssm.DeleteParametersInput) (*ssm.DeleteParametersOutput, error)
+	DeleteParametersWithContext(aws.Context, *ssm.DeleteParametersInput, ...request.Option) (*ssm.DeleteParametersOutput, error)
+	DeleteParametersRequest(*ssm.DeleteParametersInput) (*request.Request, *ssm.DeleteParametersOutput)
+
 	DeletePatchBaseline(*ssm.DeletePatchBaselineInput) (*ssm.DeletePatchBaselineOutput, error)
 	DeletePatchBaselineWithContext(aws.Context, *ssm.DeletePatchBaselineInput, ...request.Option) (*ssm.DeletePatchBaselineOutput, error)
 	DeletePatchBaselineRequest(*ssm.DeletePatchBaselineInput) (*request.Request, *ssm.DeletePatchBaselineOutput)
@@ -218,6 +222,9 @@ type SSMAPI interface {
 	DescribeParametersWithContext(aws.Context, *ssm.DescribeParametersInput, ...request.Option) (*ssm.DescribeParametersOutput, error)
 	DescribeParametersRequest(*ssm.DescribeParametersInput) (*request.Request, *ssm.DescribeParametersOutput)
 
+	DescribeParametersPages(*ssm.DescribeParametersInput, func(*ssm.DescribeParametersOutput, bool) bool) error
+	DescribeParametersPagesWithContext(aws.Context, *ssm.DescribeParametersInput, func(*ssm.DescribeParametersOutput, bool) bool, ...request.Option) error
+
 	DescribePatchBaselines(*ssm.DescribePatchBaselinesInput) (*ssm.DescribePatchBaselinesOutput, error)
 	DescribePatchBaselinesWithContext(aws.Context, *ssm.DescribePatchBaselinesInput, ...request.Option) (*ssm.DescribePatchBaselinesOutput, error)
 	DescribePatchBaselinesRequest(*ssm.DescribePatchBaselinesInput) (*request.Request, *ssm.DescribePatchBaselinesOutput)
@@ -270,13 +277,27 @@ type SSMAPI interface {
 	GetMaintenanceWindowExecutionTaskWithContext(aws.Context, *ssm.GetMaintenanceWindowExecutionTaskInput, ...request.Option) (*ssm.GetMaintenanceWindowExecutionTaskOutput, error)
 	GetMaintenanceWindowExecutionTaskRequest(*ssm.GetMaintenanceWindowExecutionTaskInput) (*request.Request, *ssm.GetMaintenanceWindowExecutionTaskOutput)
 
+	GetParameter(*ssm.GetParameterInput) (*ssm.GetParameterOutput, error)
+	GetParameterWithContext(aws.Context, *ssm.GetParameterInput, ...request.Option) (*ssm.GetParameterOutput, error)
+	GetParameterRequest(*ssm.GetParameterInput) (*request.Request, *ssm.GetParameterOutput)
+
 	GetParameterHistory(*ssm.GetParameterHistoryInput) (*ssm.GetParameterHistoryOutput, error)
 	GetParameterHistoryWithContext(aws.Context, *ssm.GetParameterHistoryInput, ...request.Option) (*ssm.GetParameterHistoryOutput, error)
 	GetParameterHistoryRequest(*ssm.GetParameterHistoryInput) (*request.Request, *ssm.GetParameterHistoryOutput)
 
+	GetParameterHistoryPages(*ssm.GetParameterHistoryInput, func(*ssm.GetParameterHistoryOutput, bool) bool) error
+	GetParameterHistoryPagesWithContext(aws.Context, *ssm.GetParameterHistoryInput, func(*ssm.GetParameterHistoryOutput, bool) bool, ...request.Option) error
+
 	GetParameters(*ssm.GetParametersInput) (*ssm.GetParametersOutput, error)
 	GetParametersWithContext(aws.Context, *ssm.GetParametersInput, ...request.Option) (*ssm.GetParametersOutput, error)
 	GetParametersRequest(*ssm.GetParametersInput) (*request.Request, *ssm.GetParametersOutput)
+
+	GetParametersByPath(*ssm.GetParametersByPathInput) (*ssm.GetParametersByPathOutput, error)
+	GetParametersByPathWithContext(aws.Context, *ssm.GetParametersByPathInput, ...request.Option) (*ssm.GetParametersByPathOutput, error)
+	GetParametersByPathRequest(*ssm.GetParametersByPathInput) (*request.Request, *ssm.GetParametersByPathOutput)
+
+	GetParametersByPathPages(*ssm.GetParametersByPathInput, func(*ssm.GetParametersByPathOutput, bool) bool) error
+	GetParametersByPathPagesWithContext(aws.Context, *ssm.GetParametersByPathInput, func(*ssm.GetParametersByPathOutput, bool) bool, ...request.Option) error
 
 	GetPatchBaseline(*ssm.GetPatchBaselineInput) (*ssm.GetPatchBaselineOutput, error)
 	GetPatchBaselineWithContext(aws.Context, *ssm.GetPatchBaselineInput, ...request.Option) (*ssm.GetPatchBaselineOutput, error)
