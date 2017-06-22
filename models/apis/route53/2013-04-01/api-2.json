@@ -231,6 +231,7 @@
       "output":{"shape":"DeleteHealthCheckResponse"},
       "errors":[
         {"shape":"NoSuchHealthCheck"},
+        {"shape":"HealthCheckInUse"},
         {"shape":"InvalidInput"}
       ]
     },
@@ -1796,6 +1797,14 @@
     "HealthCheckId":{
       "type":"string",
       "max":64
+    },
+    "HealthCheckInUse":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
     },
     "HealthCheckNonce":{
       "type":"string",

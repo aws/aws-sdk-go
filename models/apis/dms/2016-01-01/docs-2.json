@@ -644,7 +644,9 @@
         "TableStatistics$Deletes": "<p>The number of delete actions performed on a table.</p>",
         "TableStatistics$Updates": "<p>The number of update actions performed on a table.</p>",
         "TableStatistics$Ddls": "<p>The Data Definition Language (DDL) used to build and modify the structure of your tables.</p>",
-        "TableStatistics$FullLoadRows": "<p>The number of rows added during the Full Load operation.</p>"
+        "TableStatistics$FullLoadRows": "<p>The number of rows added during the Full Load operation.</p>",
+        "TableStatistics$FullLoadCondtnlChkFailedRows": "<p>The number of rows that failed conditional checks during the Full Load operation (valid only for DynamoDB as a target migrations).</p>",
+        "TableStatistics$FullLoadErrorRows": "<p>The number of rows that failed to load during the Full Load operation (valid only for DynamoDB as a target migrations).</p>"
       }
     },
     "MigrationTypeValue": {
@@ -1249,6 +1251,7 @@
         "CreateReplicationInstanceMessage$Tags": "<p>Tags to be associated with the replication instance.</p>",
         "CreateReplicationSubnetGroupMessage$Tags": "<p>The tag to be assigned to the subnet group.</p>",
         "CreateReplicationTaskMessage$Tags": "<p>Tags to be added to the replication instance.</p>",
+        "ImportCertificateMessage$Tags": "<p>The tags associated with the certificate.</p>",
         "ListTagsForResourceResponse$TagList": "<p>A list of tags for the resource.</p>"
       }
     },
