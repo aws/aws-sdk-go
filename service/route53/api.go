@@ -1275,6 +1275,9 @@ func (c *Route53) DeleteHealthCheckRequest(input *DeleteHealthCheckInput) (req *
 //   No health check exists with the ID that you specified in the DeleteHealthCheck
 //   request.
 //
+//   * ErrCodeHealthCheckInUse "HealthCheckInUse"
+//   This error code is not in use.
+//
 //   * ErrCodeInvalidInput "InvalidInput"
 //   The input is not valid.
 //

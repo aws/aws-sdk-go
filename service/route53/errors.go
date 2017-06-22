@@ -89,6 +89,12 @@ const (
 	//    and later deleted, regardless of the other settings in the request.
 	ErrCodeHealthCheckAlreadyExists = "HealthCheckAlreadyExists"
 
+	// ErrCodeHealthCheckInUse for service response error code
+	// "HealthCheckInUse".
+	//
+	// This error code is not in use.
+	ErrCodeHealthCheckInUse = "HealthCheckInUse"
+
 	// ErrCodeHealthCheckVersionMismatch for service response error code
 	// "HealthCheckVersionMismatch".
 	//

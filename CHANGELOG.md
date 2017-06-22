@@ -1,3 +1,18 @@
+Release v1.10.2 (2017-06-22)
+===
+
+### Service Client Updates
+* `service/codepipeline`: Updates service API, documentation, and paginators
+  * A new API, ListPipelineExecutions, enables you to retrieve summary information about the most recent executions in a pipeline, including pipeline execution ID, status, start time, and last updated time. You can request information for a maximum of 100 executions. Pipeline execution data is available for the most recent 12 months of activity.
+* `service/dms`: Updates service API and documentation
+  * Added tagging for DMS certificates.
+* `service/elasticloadbalancing`: Updates service waiters
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/lightsail`: Updates service API and documentation
+  * This release adds a new nextPageToken property to the result of the GetOperationsForResource API. Developers can now get the next set of items in a list by making subsequent calls to GetOperationsForResource API with the token from the previous call. This release also deprecates the nextPageCount property, which previously returned null (use the nextPageToken property instead). This release also deprecates the customImageName property on the CreateInstancesRequest class, which was previously ignored by the API.
+* `service/route53`: Updates service API and documentation
+  * This release reintroduces the HealthCheckInUse exception.
+
 Release v1.10.1 (2017-06-21)
 ===
 

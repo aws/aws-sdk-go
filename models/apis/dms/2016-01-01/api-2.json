@@ -103,6 +103,7 @@
       "input":{"shape":"CreateReplicationTaskMessage"},
       "output":{"shape":"CreateReplicationTaskResponse"},
       "errors":[
+        {"shape":"AccessDeniedFault"},
         {"shape":"InvalidResourceStateFault"},
         {"shape":"ResourceAlreadyExistsFault"},
         {"shape":"ResourceNotFoundFault"},
@@ -1222,7 +1223,8 @@
       "members":{
         "CertificateIdentifier":{"shape":"String"},
         "CertificatePem":{"shape":"String"},
-        "CertificateWallet":{"shape":"CertificateWallet"}
+        "CertificateWallet":{"shape":"CertificateWallet"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "ImportCertificateResponse":{
@@ -1803,6 +1805,8 @@
         "Updates":{"shape":"Long"},
         "Ddls":{"shape":"Long"},
         "FullLoadRows":{"shape":"Long"},
+        "FullLoadCondtnlChkFailedRows":{"shape":"Long"},
+        "FullLoadErrorRows":{"shape":"Long"},
         "LastUpdateTime":{"shape":"TStamp"},
         "TableState":{"shape":"String"}
       }

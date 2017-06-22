@@ -1090,7 +1090,10 @@
       "members":{
         "instanceNames":{"shape":"StringList"},
         "availabilityZone":{"shape":"string"},
-        "customImageName":{"shape":"ResourceName"},
+        "customImageName":{
+          "shape":"ResourceName",
+          "deprecated":true
+        },
         "blueprintId":{"shape":"NonEmptyString"},
         "bundleId":{"shape":"NonEmptyString"},
         "userData":{"shape":"string"},
@@ -1512,7 +1515,11 @@
       "type":"structure",
       "members":{
         "operations":{"shape":"OperationList"},
-        "nextPageCount":{"shape":"string"}
+        "nextPageCount":{
+          "shape":"string",
+          "deprecated":true
+        },
+        "nextPageToken":{"shape":"string"}
       }
     },
     "GetOperationsRequest":{
@@ -2034,6 +2041,7 @@
       "type":"string",
       "enum":[
         "us-east-1",
+        "us-east-2",
         "us-west-1",
         "us-west-2",
         "eu-west-1",
