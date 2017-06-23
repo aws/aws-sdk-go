@@ -168,7 +168,7 @@ func (builder defaultExamplesBuilder) BuildScalar(name, memName string, ref *Sha
 			return parseTimeString(ref, memName, fmt.Sprintf("%s", v))
 		case "blob":
 			if (ref.Shape.MemberRefs[name].Streaming || ref.Shape.MemberRefs[name].Shape.Streaming) && ref.Shape.Payload == name {
-				return fmt.Sprintf("%s: aws.ReadSeekCloser(bytes.NewBuffer([]byte(%q))),\n", memName, v)
+				return fmt.Sprintf("%s: aws.ReadSeekCloser(strings.NewReader(%q)),\n", memName, v)
 			}
 
 			return fmt.Sprintf("%s: []byte(%q),\n", memName, v)
@@ -243,7 +243,7 @@ func (builder defaultExamplesBuilder) GoType(ref *ShapeRef, elem bool) string {
 func (builder defaultExamplesBuilder) Imports(a *API) string {
 	buf := bytes.NewBuffer(nil)
 	buf.WriteString(`"fmt"
-	"bytes"
+	"strings"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
