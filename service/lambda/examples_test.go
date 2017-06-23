@@ -488,6 +488,8 @@ func ExampleLambda_Invoke_shared00() {
 				fmt.Println(lambda.ErrCodeKMSAccessDeniedException, aerr.Error())
 			case lambda.ErrCodeKMSNotFoundException:
 				fmt.Println(lambda.ErrCodeKMSNotFoundException, aerr.Error())
+			case lambda.ErrCodeInvalidRuntimeException:
+				fmt.Println(lambda.ErrCodeInvalidRuntimeException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -522,6 +524,8 @@ func ExampleLambda_InvokeAsync_shared00() {
 				fmt.Println(lambda.ErrCodeResourceNotFoundException, aerr.Error())
 			case lambda.ErrCodeInvalidRequestContentException:
 				fmt.Println(lambda.ErrCodeInvalidRequestContentException, aerr.Error())
+			case lambda.ErrCodeInvalidRuntimeException:
+				fmt.Println(lambda.ErrCodeInvalidRuntimeException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -867,6 +871,8 @@ func ExampleLambda_UpdateFunctionConfiguration_shared00() {
 				fmt.Println(lambda.ErrCodeInvalidParameterValueException, aerr.Error())
 			case lambda.ErrCodeTooManyRequestsException:
 				fmt.Println(lambda.ErrCodeTooManyRequestsException, aerr.Error())
+			case lambda.ErrCodeResourceConflictException:
+				fmt.Println(lambda.ErrCodeResourceConflictException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

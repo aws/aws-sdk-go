@@ -1,3 +1,10 @@
+Release v1.10.3 (2017-06-23)
+===
+
+### Service Client Updates
+* `service/lambda`: Updates service API and documentation
+  * The Lambda Invoke API will now throw new exception InvalidRuntimeException (status code 502) for invokes with deprecated runtimes.
+
 Release v1.10.2 (2017-06-22)
 ===
 
