@@ -3,8 +3,8 @@
 package glacier_test
 
 import (
-	"bytes"
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -14,7 +14,7 @@ import (
 )
 
 var _ time.Duration
-var _ bytes.Buffer
+var _ strings.Reader
 var _ aws.Config
 
 func parseTime(layout, value string) *time.Time {
@@ -1198,7 +1198,7 @@ func ExampleGlacier_UploadArchive_shared00() {
 	input := &glacier.UploadArchiveInput{
 		AccountId:          aws.String("-"),
 		ArchiveDescription: aws.String(""),
-		Body:               aws.ReadSeekCloser(bytes.NewBuffer([]byte("example-data-to-upload"))),
+		Body:               aws.ReadSeekCloser(strings.NewReader("example-data-to-upload")),
 		Checksum:           aws.String(""),
 		VaultName:          aws.String("my-vault"),
 	}
@@ -1238,7 +1238,7 @@ func ExampleGlacier_UploadMultipartPart_shared00() {
 	svc := glacier.New(session.New())
 	input := &glacier.UploadMultipartPartInput{
 		AccountId: aws.String("-"),
-		Body:      aws.ReadSeekCloser(bytes.NewBuffer([]byte("part1"))),
+		Body:      aws.ReadSeekCloser(strings.NewReader("part1")),
 		Checksum:  aws.String("c06f7cd4baacb087002a99a5f48bf953"),
 		Range:     aws.String("bytes 0-1048575/*"),
 		UploadId:  aws.String("19gaRezEXAMPLES6Ry5YYdqthHOC_kGRCT03L9yetr220UmPtBYKk-OssZtLqyFu7sY1_lR7vgFuJV6NtcV5zpsJ"),

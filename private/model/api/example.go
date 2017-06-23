@@ -248,7 +248,7 @@ import (
 )
 
 var _ time.Duration
-var _ bytes.Buffer
+var _ strings.Reader
 var _ aws.Config
 
 func parseTime(layout, value string) *time.Time {

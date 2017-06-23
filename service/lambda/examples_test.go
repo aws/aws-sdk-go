@@ -3,8 +3,8 @@
 package lambda_test
 
 import (
-	"bytes"
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -14,7 +14,7 @@ import (
 )
 
 var _ time.Duration
-var _ bytes.Buffer
+var _ strings.Reader
 var _ aws.Config
 
 func parseTime(layout, value string) *time.Time {
@@ -511,7 +511,7 @@ func ExampleLambda_InvokeAsync_shared00() {
 	svc := lambda.New(session.New())
 	input := &lambda.InvokeAsyncInput{
 		FunctionName: aws.String("myFunction"),
-		InvokeArgs:   aws.ReadSeekCloser(bytes.NewBuffer([]byte("fileb://file-path/input.json"))),
+		InvokeArgs:   aws.ReadSeekCloser(strings.NewReader("fileb://file-path/input.json")),
 	}
 
 	result, err := svc.InvokeAsync(input)

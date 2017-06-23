@@ -14,7 +14,7 @@ type wafregionalExamplesBuilder struct {
 func (builder wafregionalExamplesBuilder) Imports(a *API) string {
 	buf := bytes.NewBuffer(nil)
 	buf.WriteString(`"fmt"
-	"bytes"
+	"strings"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
