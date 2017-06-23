@@ -246,7 +246,8 @@
         {"shape":"KMSDisabledException"},
         {"shape":"KMSInvalidStateException"},
         {"shape":"KMSAccessDeniedException"},
-        {"shape":"KMSNotFoundException"}
+        {"shape":"KMSNotFoundException"},
+        {"shape":"InvalidRuntimeException"}
       ]
     },
     "InvokeAsync":{
@@ -261,7 +262,8 @@
       "errors":[
         {"shape":"ServiceException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InvalidRequestContentException"}
+        {"shape":"InvalidRequestContentException"},
+        {"shape":"InvalidRuntimeException"}
       ],
       "deprecated":true
     },
@@ -467,7 +469,8 @@
         {"shape":"ServiceException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"TooManyRequestsException"}
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceConflictException"}
       ]
     }
   },
@@ -973,6 +976,15 @@
         "message":{"shape":"String"}
       },
       "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "InvalidRuntimeException":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"String"},
+        "Message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":502},
       "exception":true
     },
     "InvalidSecurityGroupIDException":{
