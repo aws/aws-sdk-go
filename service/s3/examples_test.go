@@ -3,8 +3,8 @@
 package s3_test
 
 import (
-	"bytes"
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -14,7 +14,7 @@ import (
 )
 
 var _ time.Duration
-var _ bytes.Buffer
+var _ strings.Reader
 var _ aws.Config
 
 func parseTime(layout, value string) *time.Time {
@@ -1798,7 +1798,7 @@ func ExampleS3_PutBucketWebsite_shared00() {
 func ExampleS3_PutObject_shared00() {
 	svc := s3.New(session.New())
 	input := &s3.PutObjectInput{
-		Body:                 aws.ReadSeekCloser(bytes.NewBuffer([]byte("filetoupload"))),
+		Body:                 aws.ReadSeekCloser(strings.NewReader("filetoupload")),
 		Bucket:               aws.String("examplebucket"),
 		Key:                  aws.String("exampleobject"),
 		ServerSideEncryption: aws.String("AES256"),
@@ -1832,7 +1832,7 @@ func ExampleS3_PutObject_shared01() {
 	svc := s3.New(session.New())
 	input := &s3.PutObjectInput{
 		ACL:    aws.String("authenticated-read"),
-		Body:   aws.ReadSeekCloser(bytes.NewBuffer([]byte("filetoupload"))),
+		Body:   aws.ReadSeekCloser(strings.NewReader("filetoupload")),
 		Bucket: aws.String("examplebucket"),
 		Key:    aws.String("exampleobject"),
 	}
@@ -1863,7 +1863,7 @@ func ExampleS3_PutObject_shared01() {
 func ExampleS3_PutObject_shared02() {
 	svc := s3.New(session.New())
 	input := &s3.PutObjectInput{
-		Body:   aws.ReadSeekCloser(bytes.NewBuffer([]byte("HappyFace.jpg"))),
+		Body:   aws.ReadSeekCloser(strings.NewReader("HappyFace.jpg")),
 		Bucket: aws.String("examplebucket"),
 		Key:    aws.String("HappyFace.jpg"),
 	}
@@ -1893,7 +1893,7 @@ func ExampleS3_PutObject_shared02() {
 func ExampleS3_PutObject_shared03() {
 	svc := s3.New(session.New())
 	input := &s3.PutObjectInput{
-		Body:   aws.ReadSeekCloser(bytes.NewBuffer([]byte("filetoupload"))),
+		Body:   aws.ReadSeekCloser(strings.NewReader("filetoupload")),
 		Bucket: aws.String("examplebucket"),
 		Key:    aws.String("objectkey"),
 	}
@@ -1923,7 +1923,7 @@ func ExampleS3_PutObject_shared03() {
 func ExampleS3_PutObject_shared04() {
 	svc := s3.New(session.New())
 	input := &s3.PutObjectInput{
-		Body:    aws.ReadSeekCloser(bytes.NewBuffer([]byte("c:\\HappyFace.jpg"))),
+		Body:    aws.ReadSeekCloser(strings.NewReader("c:\\HappyFace.jpg")),
 		Bucket:  aws.String("examplebucket"),
 		Key:     aws.String("HappyFace.jpg"),
 		Tagging: aws.String("key1=value1&key2=value2"),
@@ -1954,7 +1954,7 @@ func ExampleS3_PutObject_shared04() {
 func ExampleS3_PutObject_shared05() {
 	svc := s3.New(session.New())
 	input := &s3.PutObjectInput{
-		Body:   aws.ReadSeekCloser(bytes.NewBuffer([]byte("filetoupload"))),
+		Body:   aws.ReadSeekCloser(strings.NewReader("filetoupload")),
 		Bucket: aws.String("examplebucket"),
 		Key:    aws.String("exampleobject"),
 		Metadata: map[string]*string{
@@ -1988,7 +1988,7 @@ func ExampleS3_PutObject_shared05() {
 func ExampleS3_PutObject_shared06() {
 	svc := s3.New(session.New())
 	input := &s3.PutObjectInput{
-		Body:                 aws.ReadSeekCloser(bytes.NewBuffer([]byte("HappyFace.jpg"))),
+		Body:                 aws.ReadSeekCloser(strings.NewReader("HappyFace.jpg")),
 		Bucket:               aws.String("examplebucket"),
 		Key:                  aws.String("HappyFace.jpg"),
 		ServerSideEncryption: aws.String("AES256"),
@@ -2132,7 +2132,7 @@ func ExampleS3_RestoreObject_shared00() {
 func ExampleS3_UploadPart_shared00() {
 	svc := s3.New(session.New())
 	input := &s3.UploadPartInput{
-		Body:       aws.ReadSeekCloser(bytes.NewBuffer([]byte("fileToUpload"))),
+		Body:       aws.ReadSeekCloser(strings.NewReader("fileToUpload")),
 		Bucket:     aws.String("examplebucket"),
 		Key:        aws.String("examplelargeobject"),
 		PartNumber: aws.Int64(1),
