@@ -2,7 +2,15 @@
 
 package main
 
-// Example plugin
+import (
+	"encoding/json"
+	"os"
+
+	"github.com/pkg/errors"
+)
+
+// Example plugin that will retrieve credentials from a JSON file that the
+// "PLUGIN_CREDS_FILE" environment variable points to
 //
 // Build with:
 //   go build -tags example -o plugin.so -buildmode=plugin plugin.go
@@ -12,7 +20,7 @@ var myCredProvider provider
 
 func init() {
 	// Initialize a mock credential provider with stubs
-	myCredProvider = provider{"a", "b", "c"}
+	myCredProvider = provider{Filename: os.Getenv("PLUGIN_CREDS_FILE")}
 }
 
 // GetAWSSDKCredentialProvider is the symbol SDK will lookup and use to
@@ -24,13 +32,30 @@ func GetAWSSDKCredentialProvider() (func() (key, secret, token string, err error
 // mock implementation of a type that returns retrieves credentials and
 // returns if they have expired.
 type provider struct {
-	key, secret, token string
+	Filename string
+
+	loaded bool
 }
 
-func (p provider) Retrieve() (key, secret, token string, err error) {
-	return p.key, p.secret, p.token, nil
+func (p *provider) Retrieve() (key, secret, token string, err error) {
+	f, err := os.Open(p.Filename)
+	if err != nil {
+		return "", "", "", errors.Wrapf(err, "failed to open credentials file, %q", p.Filename)
+	}
+	decoder := json.NewDecoder(f)
+
+	creds := struct {
+		Key, Secret, Token string
+	}{}
+
+	if err := decoder.Decode(&creds); err != nil {
+		return "", "", "", errors.Wrap(err, "failed to decode credentials file")
+	}
+
+	p.loaded = true
+	return creds.Key, creds.Secret, creds.Token, nil
 }
 
 func (p *provider) IsExpired() bool {
-	return false
+	return !p.loaded
 }

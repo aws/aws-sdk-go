@@ -17,7 +17,23 @@ and the type signature that needs to be implemented.
 
 Compile the plugin with:
 
-   go build -tags example -o plugin.so -buildmode=plugin plugin.go
+   go build -tags example -o myPlugin.so -buildmode=plugin plugin/plugin.go
+
+JSON Credentials File
+---
+
+This example plugin will read the credentials from a JSON file pointed to by 
+the `PLUGIN_CREDS_FILE` environment variable. The contents of the file are
+the credentials, Key, Secret, and Token. The `Token` filed does not need to be
+set if your credentials do not have one.
+
+```json
+{
+	"Key":    "MyAWSCredAccessKeyID",
+	"Secret": "MyAWSCredSecretKey",
+	"Token":  "MyAWSCredToken"
+}
+```
 
 Example Application
 ---
@@ -27,6 +43,7 @@ use a plugin to retrieve credentials with.
 
 Compile and run application:
 
-  go build -tags example -o usePlugin usePlugin.go
+  go build -tags example -o myApp main.go
 
-  ./usePlugin ./plugin/plugin
+  PLUGIN_CREDS_FILE=pathToCreds.json ./myApp myPlugin.so myBucket myObjectKey
+
