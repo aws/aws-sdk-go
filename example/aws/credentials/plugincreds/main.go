@@ -24,13 +24,13 @@ import (
 // environment variable is not defined.
 //
 // Build:
-//   go build -tags example -o usePlugin main.go
+//   go build -tags example -o myApp main.go
 //
 // Usage:
-//   ./usePlugin <compiled plugin> <bucket> <object key>
+//   ./myApp <compiled plugin> <bucket> <object key>
 func main() {
 	if len(os.Args) < 4 {
-		exitErrorf("Usage: usePlugin <compiled plugin>, <bucket> <object key>")
+		exitErrorf("Usage: myApp <compiled plugin>, <bucket> <object key>")
 	}
 
 	pluginFilename := os.Args[1]
