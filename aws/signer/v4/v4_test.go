@@ -29,6 +29,7 @@ func TestStripExcessHeaders(t *testing.T) {
 		"1  2  ",
 		" 1  2  ",
 		"12   3",
+		"12   3   1",
 	}
 
 	expected := []string{
@@ -41,6 +42,7 @@ func TestStripExcessHeaders(t *testing.T) {
 		"1 2",
 		"1 2",
 		"12 3",
+		"12 3 1",
 	}
 
 	newVals := stripExcessSpaces(vals)
