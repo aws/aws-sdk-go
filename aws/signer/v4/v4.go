@@ -728,24 +728,23 @@ func stripExcessSpaces(headerVals []string) []string {
 		trimmed := strings.TrimSpace(str)
 
 		idx := strings.Index(trimmed, doubleSpaces)
-		var buf []byte
-		for idx > -1 {
-			// Multiple adjacent spaces found
-			if buf == nil {
-				// first time create the buffer
-				buf = []byte(trimmed)
-			}
+		if idx < 0 {
+			vals[i] = trimmed
+			continue
+		}
 
+		buf := []byte(trimmed)
+		for idx > -1 {
 			stripToIdx := -1
 			for j := idx + 1; j < len(buf); j++ {
 				if buf[j] != ' ' {
 					buf = append(buf[:idx+1], buf[j:]...)
-					stripToIdx = j
+					stripToIdx = j - idx - 1
 					break
 				}
 			}
 
-			if stripToIdx >= 0 && stripToIdx < len(buf) {
+			if stripToIdx >= 0 {
 				// Find next double space
 				idx = bytes.Index(buf[stripToIdx:], doubleSpaceBytes)
 				if idx >= 0 {
@@ -756,11 +755,7 @@ func stripExcessSpaces(headerVals []string) []string {
 			}
 		}
 
-		if buf != nil {
-			vals[i] = string(buf)
-		} else {
-			vals[i] = trimmed
-		}
+		vals[i] = string(buf)
 	}
 	return vals
 }
