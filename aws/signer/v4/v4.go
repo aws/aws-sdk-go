@@ -745,7 +745,8 @@ func stripExcessSpaces(headerVals []string) []string {
 				}
 			}
 
-			if stripToIdx >= 0 {
+			if stripToIdx >= 0 && stripToIdx < len(buf) {
+				// Find next double space
 				idx = bytes.Index(buf[stripToIdx:], doubleSpaceBytes)
 				if idx >= 0 {
 					idx += stripToIdx
