@@ -1,3 +1,14 @@
+Release v1.10.4 (2017-06-27)
+===
+
+### Service Client Updates
+* `service/servicecatalog`: Updates service API, documentation, and paginators
+  * Proper tagging of resources is critical to post-launch operations such as billing, cost allocation, and resource management. By using Service Catalog's TagOption Library, administrators can define a library of re-usable TagOptions that conform to company standards, and associate these with Service Catalog portfolios and products. Learn how to move your current tags to the new library, create new TagOptions, and view and associate your library items with portfolios and products. Understand how to ensure that the right tags are created on products launched through Service Catalog and how to provide users with defined selectable tags.
+
+### SDK Bugs
+* `aws/signer/v4`: checking length on `stripExcessSpaces` [#1372](https://github.com/aws/aws-sdk-go/issues/1372)
+  * Fixes a bug where `stripExcessSpaces` did not check length against the slice.
+  * Fixes: [#1371](https://github.com/aws/aws-sdk-go/issues/1371)
 Release v1.10.3 (2017-06-23)
 ===
 
