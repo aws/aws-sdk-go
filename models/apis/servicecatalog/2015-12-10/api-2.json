@@ -53,6 +53,23 @@
         {"shape":"LimitExceededException"}
       ]
     },
+    "AssociateTagOptionWithResource":{
+      "name":"AssociateTagOptionWithResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociateTagOptionWithResourceInput"},
+      "output":{"shape":"AssociateTagOptionWithResourceOutput"},
+      "errors":[
+        {"shape":"TagOptionNotMigratedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParametersException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"DuplicateResourceException"},
+        {"shape":"InvalidStateException"}
+      ]
+    },
     "CreateConstraint":{
       "name":"CreateConstraint",
       "http":{
@@ -78,7 +95,8 @@
       "output":{"shape":"CreatePortfolioOutput"},
       "errors":[
         {"shape":"InvalidParametersException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"TagOptionNotMigratedException"}
       ]
     },
     "CreatePortfolioShare":{
@@ -105,7 +123,8 @@
       "output":{"shape":"CreateProductOutput"},
       "errors":[
         {"shape":"InvalidParametersException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"TagOptionNotMigratedException"}
       ]
     },
     "CreateProvisioningArtifact":{
@@ -119,6 +138,20 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParametersException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
+    "CreateTagOption":{
+      "name":"CreateTagOption",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateTagOptionInput"},
+      "output":{"shape":"CreateTagOptionOutput"},
+      "errors":[
+        {"shape":"TagOptionNotMigratedException"},
+        {"shape":"DuplicateResourceException"},
         {"shape":"LimitExceededException"}
       ]
     },
@@ -146,7 +179,8 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParametersException"},
-        {"shape":"ResourceInUseException"}
+        {"shape":"ResourceInUseException"},
+        {"shape":"TagOptionNotMigratedException"}
       ]
     },
     "DeletePortfolioShare":{
@@ -172,7 +206,8 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceInUseException"},
-        {"shape":"InvalidParametersException"}
+        {"shape":"InvalidParametersException"},
+        {"shape":"TagOptionNotMigratedException"}
       ]
     },
     "DeleteProvisioningArtifact":{
@@ -300,6 +335,19 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DescribeTagOption":{
+      "name":"DescribeTagOption",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeTagOptionInput"},
+      "output":{"shape":"DescribeTagOptionOutput"},
+      "errors":[
+        {"shape":"TagOptionNotMigratedException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "DisassociatePrincipalFromPortfolio":{
       "name":"DisassociatePrincipalFromPortfolio",
       "http":{
@@ -323,7 +371,21 @@
       "output":{"shape":"DisassociateProductFromPortfolioOutput"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"},
         {"shape":"InvalidParametersException"}
+      ]
+    },
+    "DisassociateTagOptionFromResource":{
+      "name":"DisassociateTagOptionFromResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisassociateTagOptionFromResourceInput"},
+      "output":{"shape":"DisassociateTagOptionFromResourceOutput"},
+      "errors":[
+        {"shape":"TagOptionNotMigratedException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "ListAcceptedPortfolioShares":{
@@ -439,6 +501,33 @@
         {"shape":"InvalidParametersException"}
       ]
     },
+    "ListResourcesForTagOption":{
+      "name":"ListResourcesForTagOption",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListResourcesForTagOptionInput"},
+      "output":{"shape":"ListResourcesForTagOptionOutput"},
+      "errors":[
+        {"shape":"TagOptionNotMigratedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParametersException"}
+      ]
+    },
+    "ListTagOptions":{
+      "name":"ListTagOptions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagOptionsInput"},
+      "output":{"shape":"ListTagOptionsOutput"},
+      "errors":[
+        {"shape":"TagOptionNotMigratedException"},
+        {"shape":"InvalidParametersException"}
+      ]
+    },
     "ProvisionProduct":{
       "name":"ProvisionProduct",
       "http":{
@@ -538,7 +627,8 @@
       "errors":[
         {"shape":"InvalidParametersException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"TagOptionNotMigratedException"}
       ]
     },
     "UpdateProduct":{
@@ -551,7 +641,8 @@
       "output":{"shape":"UpdateProductOutput"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InvalidParametersException"}
+        {"shape":"InvalidParametersException"},
+        {"shape":"TagOptionNotMigratedException"}
       ]
     },
     "UpdateProvisionedProduct":{
@@ -577,6 +668,21 @@
       "output":{"shape":"UpdateProvisioningArtifactOutput"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParametersException"}
+      ]
+    },
+    "UpdateTagOption":{
+      "name":"UpdateTagOption",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateTagOptionInput"},
+      "output":{"shape":"UpdateTagOptionOutput"},
+      "errors":[
+        {"shape":"TagOptionNotMigratedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"DuplicateResourceException"},
         {"shape":"InvalidParametersException"}
       ]
     }
@@ -664,6 +770,22 @@
       }
     },
     "AssociateProductWithPortfolioOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "AssociateTagOptionWithResourceInput":{
+      "type":"structure",
+      "required":[
+        "ResourceId",
+        "TagOptionId"
+      ],
+      "members":{
+        "ResourceId":{"shape":"ResourceId"},
+        "TagOptionId":{"shape":"TagOptionId"}
+      }
+    },
+    "AssociateTagOptionWithResourceOutput":{
       "type":"structure",
       "members":{
       }
@@ -836,6 +958,23 @@
         "Status":{"shape":"Status"}
       }
     },
+    "CreateTagOptionInput":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"TagOptionKey"},
+        "Value":{"shape":"TagOptionValue"}
+      }
+    },
+    "CreateTagOptionOutput":{
+      "type":"structure",
+      "members":{
+        "TagOptionDetail":{"shape":"TagOptionDetail"}
+      }
+    },
     "CreatedTime":{"type":"timestamp"},
     "CreationTime":{"type":"timestamp"},
     "DefaultValue":{"type":"string"},
@@ -940,7 +1079,8 @@
       "type":"structure",
       "members":{
         "PortfolioDetail":{"shape":"PortfolioDetail"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "TagOptions":{"shape":"TagOptionDetails"}
       }
     },
     "DescribeProductAsAdminInput":{
@@ -956,7 +1096,8 @@
       "members":{
         "ProductViewDetail":{"shape":"ProductViewDetail"},
         "ProvisioningArtifactSummaries":{"shape":"ProvisioningArtifactSummaries"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "TagOptions":{"shape":"TagOptionDetails"}
       }
     },
     "DescribeProductInput":{
@@ -1042,7 +1183,8 @@
       "members":{
         "ProvisioningArtifactParameters":{"shape":"ProvisioningArtifactParameters"},
         "ConstraintSummaries":{"shape":"ConstraintSummaries"},
-        "UsageInstructions":{"shape":"UsageInstructions"}
+        "UsageInstructions":{"shape":"UsageInstructions"},
+        "TagOptions":{"shape":"TagOptionSummaries"}
       }
     },
     "DescribeRecordInput":{
@@ -1061,6 +1203,19 @@
         "RecordDetail":{"shape":"RecordDetail"},
         "RecordOutputs":{"shape":"RecordOutputs"},
         "NextPageToken":{"shape":"PageToken"}
+      }
+    },
+    "DescribeTagOptionInput":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{"shape":"TagOptionId"}
+      }
+    },
+    "DescribeTagOptionOutput":{
+      "type":"structure",
+      "members":{
+        "TagOptionDetail":{"shape":"TagOptionDetail"}
       }
     },
     "Description":{"type":"string"},
@@ -1098,6 +1253,22 @@
       "members":{
       }
     },
+    "DisassociateTagOptionFromResourceInput":{
+      "type":"structure",
+      "required":[
+        "ResourceId",
+        "TagOptionId"
+      ],
+      "members":{
+        "ResourceId":{"shape":"ResourceId"},
+        "TagOptionId":{"shape":"TagOptionId"}
+      }
+    },
+    "DisassociateTagOptionFromResourceOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DuplicateResourceException":{
       "type":"structure",
       "members":{
@@ -1122,6 +1293,12 @@
     "InstructionType":{"type":"string"},
     "InstructionValue":{"type":"string"},
     "InvalidParametersException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "InvalidStateException":{
       "type":"structure",
       "members":{
       },
@@ -1298,6 +1475,46 @@
       "members":{
         "Key":{"shape":"SearchFilterKey"},
         "Value":{"shape":"SearchFilterValue"}
+      }
+    },
+    "ListResourcesForTagOptionInput":{
+      "type":"structure",
+      "required":["TagOptionId"],
+      "members":{
+        "TagOptionId":{"shape":"TagOptionId"},
+        "ResourceType":{"shape":"ResourceType"},
+        "PageSize":{"shape":"PageSize"},
+        "PageToken":{"shape":"PageToken"}
+      }
+    },
+    "ListResourcesForTagOptionOutput":{
+      "type":"structure",
+      "members":{
+        "ResourceDetails":{"shape":"ResourceDetails"},
+        "PageToken":{"shape":"PageToken"}
+      }
+    },
+    "ListTagOptionsFilters":{
+      "type":"structure",
+      "members":{
+        "Key":{"shape":"TagOptionKey"},
+        "Value":{"shape":"TagOptionValue"},
+        "Active":{"shape":"TagOptionActive"}
+      }
+    },
+    "ListTagOptionsInput":{
+      "type":"structure",
+      "members":{
+        "Filters":{"shape":"ListTagOptionsFilters"},
+        "PageSize":{"shape":"PageSize"},
+        "PageToken":{"shape":"PageToken"}
+      }
+    },
+    "ListTagOptionsOutput":{
+      "type":"structure",
+      "members":{
+        "TagOptionDetails":{"shape":"TagOptionDetails"},
+        "PageToken":{"shape":"PageToken"}
       }
     },
     "NoEcho":{"type":"boolean"},
@@ -1747,6 +1964,26 @@
       "max":150,
       "min":1
     },
+    "ResourceDetail":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"ResourceDetailId"},
+        "ARN":{"shape":"ResourceDetailARN"},
+        "Name":{"shape":"ResourceDetailName"},
+        "Description":{"shape":"ResourceDetailDescription"},
+        "CreatedTime":{"shape":"ResourceDetailCreatedTime"}
+      }
+    },
+    "ResourceDetailARN":{"type":"string"},
+    "ResourceDetailCreatedTime":{"type":"timestamp"},
+    "ResourceDetailDescription":{"type":"string"},
+    "ResourceDetailId":{"type":"string"},
+    "ResourceDetailName":{"type":"string"},
+    "ResourceDetails":{
+      "type":"list",
+      "member":{"shape":"ResourceDetail"}
+    },
+    "ResourceId":{"type":"string"},
     "ResourceInUseException":{
       "type":"structure",
       "members":{
@@ -1759,6 +1996,7 @@
       },
       "exception":true
     },
+    "ResourceType":{"type":"string"},
     "ScanProvisionedProductsInput":{
       "type":"structure",
       "members":{
@@ -1854,6 +2092,58 @@
     "TagKeys":{
       "type":"list",
       "member":{"shape":"TagKey"}
+    },
+    "TagOptionActive":{"type":"boolean"},
+    "TagOptionDetail":{
+      "type":"structure",
+      "members":{
+        "Key":{"shape":"TagOptionKey"},
+        "Value":{"shape":"TagOptionValue"},
+        "Active":{"shape":"TagOptionActive"},
+        "Id":{"shape":"TagOptionId"}
+      }
+    },
+    "TagOptionDetails":{
+      "type":"list",
+      "member":{"shape":"TagOptionDetail"}
+    },
+    "TagOptionId":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "TagOptionKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
+    "TagOptionNotMigratedException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "TagOptionSummaries":{
+      "type":"list",
+      "member":{"shape":"TagOptionSummary"}
+    },
+    "TagOptionSummary":{
+      "type":"structure",
+      "members":{
+        "Key":{"shape":"TagOptionKey"},
+        "Values":{"shape":"TagOptionValues"}
+      }
+    },
+    "TagOptionValue":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
+    "TagOptionValues":{
+      "type":"list",
+      "member":{"shape":"TagOptionValue"}
     },
     "TagValue":{
       "type":"string",
@@ -2003,6 +2293,21 @@
     "UpdateProvisioningParameters":{
       "type":"list",
       "member":{"shape":"UpdateProvisioningParameter"}
+    },
+    "UpdateTagOptionInput":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{"shape":"TagOptionId"},
+        "Value":{"shape":"TagOptionValue"},
+        "Active":{"shape":"TagOptionActive"}
+      }
+    },
+    "UpdateTagOptionOutput":{
+      "type":"structure",
+      "members":{
+        "TagOptionDetail":{"shape":"TagOptionDetail"}
+      }
     },
     "UpdatedTime":{"type":"timestamp"},
     "UsageInstruction":{
