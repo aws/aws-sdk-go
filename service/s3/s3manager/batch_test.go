@@ -447,7 +447,9 @@ func TestBatchUpload(t *testing.T) {
 
 type mockClient struct {
 	s3iface.S3API
-	index     int
+	Put       func() (*s3.PutObjectOutput, error)
+	Get       func() (*s3.GetObjectOutput, error)
+	List      func() (*s3.ListObjectsOutput, error)
 	responses []response
 }
 
@@ -457,37 +459,25 @@ type response struct {
 }
 
 func (client *mockClient) PutObject(input *s3.PutObjectInput) (*s3.PutObjectOutput, error) {
-	resp := client.responses[client.index]
-	client.index++
-	return resp.out.(*s3.PutObjectOutput), resp.err
+	return client.Put()
 }
 
 func (client *mockClient) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *s3.PutObjectOutput) {
-	resp := client.responses[client.index]
 	req, _ := client.S3API.PutObjectRequest(input)
 	req.Handlers.Clear()
-	req.Data = resp.out
-	req.Error = resp.err
-
-	client.index++
-	return req, resp.out.(*s3.PutObjectOutput)
+	req.Data, req.Error = client.Put()
+	return req, req.Data.(*s3.PutObjectOutput)
 }
 
 func (client *mockClient) ListObjects(input *s3.ListObjectsInput) (*s3.ListObjectsOutput, error) {
-	resp := client.responses[client.index]
-	client.index++
-	return resp.out.(*s3.ListObjectsOutput), resp.err
+	return client.List()
 }
 
 func (client *mockClient) ListObjectsRequest(input *s3.ListObjectsInput) (*request.Request, *s3.ListObjectsOutput) {
-	resp := client.responses[client.index]
 	req, _ := client.S3API.ListObjectsRequest(input)
 	req.Handlers.Clear()
-	req.Data = resp.out
-	req.Error = resp.err
-
-	client.index++
-	return req, resp.out.(*s3.ListObjectsOutput)
+	req.Data, req.Error = client.List()
+	return req, req.Data.(*s3.ListObjectsOutput)
 }
 
 func TestBatchError(t *testing.T) {
@@ -500,26 +490,38 @@ func TestBatchError(t *testing.T) {
 		Region:           aws.String("foo"),
 		Credentials:      credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
 	})
+
+	index := 0
+	responses := []response{
+		{
+			&s3.PutObjectOutput{},
+			errors.New("Foo"),
+		},
+		{
+			&s3.PutObjectOutput{},
+			nil,
+		},
+		{
+			&s3.PutObjectOutput{},
+			nil,
+		},
+		{
+			&s3.PutObjectOutput{},
+			errors.New("Bar"),
+		},
+	}
+
 	svc := &mockClient{
-		s3.New(sess),
-		0,
-		[]response{
-			{
-				&s3.PutObjectOutput{},
-				errors.New("Foo"),
-			},
-			{
-				&s3.PutObjectOutput{},
-				nil,
-			},
-			{
-				&s3.PutObjectOutput{},
-				nil,
-			},
-			{
-				&s3.PutObjectOutput{},
-				errors.New("Bar"),
-			},
+		S3API: s3.New(sess),
+		Put: func() (*s3.PutObjectOutput, error) {
+			resp := responses[index]
+			index++
+			return resp.out.(*s3.PutObjectOutput), resp.err
+		},
+		List: func() (*s3.ListObjectsOutput, error) {
+			resp := responses[index]
+			index++
+			return resp.out.(*s3.ListObjectsOutput), resp.err
 		},
 	}
 	uploader := NewUploaderWithClient(svc)
@@ -590,8 +592,175 @@ func TestBatchError(t *testing.T) {
 		t.Error("Expected error, but received nil")
 	}
 
-	if svc.index != len(objects) {
-		t.Errorf("Expected %d, but received %d", len(objects), svc.index)
+	if index != len(objects) {
+		t.Errorf("Expected %d, but received %d", len(objects), index)
 	}
 
+}
+
+type testAfterDeleteIter struct {
+	afterDelete   bool
+	afterDownload bool
+	afterUpload   bool
+	next          bool
+}
+
+func (iter *testAfterDeleteIter) Next() bool {
+	next := !iter.next
+	iter.next = !iter.next
+	return next
+}
+
+func (iter *testAfterDeleteIter) Err() error {
+	return nil
+}
+
+func (iter *testAfterDeleteIter) DeleteObject() BatchDeleteObject {
+	return BatchDeleteObject{
+		Object: &s3.DeleteObjectInput{
+			Bucket: aws.String("foo"),
+			Key:    aws.String("foo"),
+		},
+		After: func() error {
+			iter.afterDelete = true
+			return nil
+		},
+	}
+}
+
+type testAfterDownloadIter struct {
+	afterDownload bool
+	afterUpload   bool
+	next          bool
+}
+
+func (iter *testAfterDownloadIter) Next() bool {
+	next := !iter.next
+	iter.next = !iter.next
+	return next
+}
+
+func (iter *testAfterDownloadIter) Err() error {
+	return nil
+}
+
+func (iter *testAfterDownloadIter) DownloadObject() BatchDownloadObject {
+	return BatchDownloadObject{
+		Object: &s3.GetObjectInput{
+			Bucket: aws.String("foo"),
+			Key:    aws.String("foo"),
+		},
+		Writer: aws.NewWriteAtBuffer([]byte{}),
+		After: func() error {
+			iter.afterDownload = true
+			return nil
+		},
+	}
+}
+
+type testAfterUploadIter struct {
+	afterUpload bool
+	next        bool
+}
+
+func (iter *testAfterUploadIter) Next() bool {
+	next := !iter.next
+	iter.next = !iter.next
+	return next
+}
+
+func (iter *testAfterUploadIter) Err() error {
+	return nil
+}
+
+func (iter *testAfterUploadIter) UploadObject() BatchUploadObject {
+	return BatchUploadObject{
+		Object: &UploadInput{
+			Bucket: aws.String("foo"),
+			Key:    aws.String("foo"),
+			Body:   strings.NewReader("bar"),
+		},
+		After: func() error {
+			iter.afterUpload = true
+			return nil
+		},
+	}
+}
+
+func TestAfter(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	}))
+
+	sess := session.New(&aws.Config{
+		Endpoint:         &server.URL,
+		S3ForcePathStyle: aws.Bool(true),
+		Region:           aws.String("foo"),
+		Credentials:      credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
+	})
+
+	index := 0
+	responses := []response{
+		{
+			&s3.PutObjectOutput{},
+			nil,
+		},
+		{
+			&s3.GetObjectOutput{},
+			nil,
+		},
+		{
+			&s3.DeleteObjectOutput{},
+			nil,
+		},
+	}
+
+	svc := &mockClient{
+		S3API: s3.New(sess),
+		Put: func() (*s3.PutObjectOutput, error) {
+			resp := responses[index]
+			index++
+			return resp.out.(*s3.PutObjectOutput), resp.err
+		},
+		Get: func() (*s3.GetObjectOutput, error) {
+			resp := responses[index]
+			index++
+			return resp.out.(*s3.GetObjectOutput), resp.err
+		},
+		List: func() (*s3.ListObjectsOutput, error) {
+			resp := responses[index]
+			index++
+			return resp.out.(*s3.ListObjectsOutput), resp.err
+		},
+	}
+	uploader := NewUploaderWithClient(svc)
+	downloader := NewDownloaderWithClient(svc)
+	deleter := NewBatchDeleteWithClient(svc)
+
+	deleteIter := &testAfterDeleteIter{}
+	downloadIter := &testAfterDownloadIter{}
+	uploadIter := &testAfterUploadIter{}
+
+	if err := uploader.UploadWithIterator(aws.BackgroundContext(), uploadIter); err != nil {
+		t.Error(err)
+	}
+
+	if err := downloader.DownloadWithIterator(aws.BackgroundContext(), downloadIter); err != nil {
+		t.Error(err)
+	}
+
+	if err := deleter.Delete(aws.BackgroundContext(), deleteIter); err != nil {
+		t.Error(err)
+	}
+
+	if !deleteIter.afterDelete {
+		t.Error("Expected 'afterDelete' to be true, but received false")
+	}
+
+	if !downloadIter.afterDownload {
+		t.Error("Expected 'afterDownload' to be true, but received false")
+	}
+
+	if !uploadIter.afterUpload {
+		t.Error("Expected 'afterUpload' to be true, but received false")
+	}
 }

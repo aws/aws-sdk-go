@@ -231,13 +231,15 @@ func (d Downloader) DownloadWithIterator(ctx aws.Context, iter BatchDownloadIter
 	for iter.Next() {
 		object := iter.DownloadObject()
 		if _, err := d.DownloadWithContext(ctx, object.Writer, object.Object, opts...); err != nil {
-			s3Err := Error{
-				OrigErr: err,
-				Bucket:  object.Object.Bucket,
-				Key:     object.Object.Key,
-			}
+			errs = append(errs, newError(err, object.Object.Bucket, object.Object.Key))
+		}
 
-			errs = append(errs, s3Err)
+		if object.After == nil {
+			continue
+		}
+
+		if err := object.After(); err != nil {
+			errs = append(errs, newError(err, object.Object.Bucket, object.Object.Key))
 		}
 	}
 

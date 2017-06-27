@@ -2,6 +2,7 @@ package s3manager
 
 import (
 	"bytes"
+	"fmt"
 	"io"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -43,8 +44,16 @@ type Error struct {
 	Key     *string
 }
 
+func newError(err error, bucket, key *string) Error {
+	return Error{
+		err,
+		bucket,
+		key,
+	}
+}
+
 func (err *Error) Error() string {
-	return err.OrigErr.Error()
+	return fmt.Sprintf("failed to upload %q to %q:\n%s", err.Key, err.Bucket, err.OrigErr.Error())
 }
 
 // NewBatchError will return a BatchError that satisfies the awserr.Error interface.
@@ -239,6 +248,9 @@ func NewBatchDelete(c client.ConfigProvider, options ...func(*BatchDelete)) *Bat
 // BatchDeleteObject is a wrapper object for calling the batch delete operation.
 type BatchDeleteObject struct {
 	Object *s3.DeleteObjectInput
+	// After will run after each iteration during the batch process. This function will
+	// be executed whether or not the request was successful.
+	After func() error
 }
 
 // DeleteObjectsIterator is an interface that uses the scanner pattern to iterate
@@ -277,15 +289,17 @@ func (iter *DeleteObjectsIterator) DeleteObject() BatchDeleteObject {
 func (d *BatchDelete) Delete(ctx aws.Context, iter BatchDeleteIterator) error {
 	var errs []Error
 	for iter.Next() {
-		object := iter.DeleteObject().Object
-		if _, err := d.Client.DeleteObjectWithContext(ctx, object); err != nil {
-			s3Err := Error{
-				OrigErr: err,
-				Bucket:  object.Bucket,
-				Key:     object.Key,
-			}
+		object := iter.DeleteObject()
+		if _, err := d.Client.DeleteObjectWithContext(ctx, object.Object); err != nil {
+			errs = append(errs, newError(err, object.Object.Bucket, object.Object.Key))
+		}
 
-			errs = append(errs, s3Err)
+		if object.After == nil {
+			continue
+		}
+
+		if err := object.After(); err != nil {
+			errs = append(errs, newError(err, object.Object.Bucket, object.Object.Key))
 		}
 	}
 
@@ -307,6 +321,9 @@ type BatchDownloadIterator interface {
 type BatchDownloadObject struct {
 	Object *s3.GetObjectInput
 	Writer io.WriterAt
+	// After will run after each iteration during the batch process. This function will
+	// be executed whether or not the request was successful.
+	After func() error
 }
 
 // DownloadObjectsIterator implements the BatchDownloadIterator interface and allows for batched
@@ -382,4 +399,7 @@ func (batcher *UploadObjectsIterator) UploadObject() BatchUploadObject {
 // BatchUploadObject contains all necessary information to run a batch operation once.
 type BatchUploadObject struct {
 	Object *UploadInput
+	// After will run after each iteration during the batch process. This function will
+	// be executed whether or not the request was successful.
+	After func() error
 }
