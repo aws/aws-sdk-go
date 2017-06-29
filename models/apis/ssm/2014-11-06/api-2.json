@@ -143,6 +143,21 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "CreateResourceDataSync":{
+      "name":"CreateResourceDataSync",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateResourceDataSyncRequest"},
+      "output":{"shape":"CreateResourceDataSyncResult"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"ResourceDataSyncCountExceededException"},
+        {"shape":"ResourceDataSyncAlreadyExistsException"},
+        {"shape":"ResourceDataSyncInvalidConfigurationException"}
+      ]
+    },
     "DeleteActivation":{
       "name":"DeleteActivation",
       "http":{
@@ -236,6 +251,19 @@
       "errors":[
         {"shape":"ResourceInUseException"},
         {"shape":"InternalServerError"}
+      ]
+    },
+    "DeleteResourceDataSync":{
+      "name":"DeleteResourceDataSync",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteResourceDataSyncRequest"},
+      "output":{"shape":"DeleteResourceDataSyncResult"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"ResourceDataSyncNotFoundException"}
       ]
     },
     "DeregisterManagedInstance":{
@@ -908,6 +936,19 @@
         {"shape":"InvalidInstanceId"},
         {"shape":"InvalidTypeNameException"},
         {"shape":"InvalidFilter"},
+        {"shape":"InvalidNextToken"}
+      ]
+    },
+    "ListResourceDataSync":{
+      "name":"ListResourceDataSync",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListResourceDataSyncRequest"},
+      "output":{"shape":"ListResourceDataSyncResult"},
+      "errors":[
+        {"shape":"InternalServerError"},
         {"shape":"InvalidNextToken"}
       ]
     },
@@ -1942,6 +1983,22 @@
         "BaselineId":{"shape":"BaselineId"}
       }
     },
+    "CreateResourceDataSyncRequest":{
+      "type":"structure",
+      "required":[
+        "SyncName",
+        "S3Destination"
+      ],
+      "members":{
+        "SyncName":{"shape":"ResourceDataSyncName"},
+        "S3Destination":{"shape":"ResourceDataSyncS3Destination"}
+      }
+    },
+    "CreateResourceDataSyncResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "CreatedDate":{"type":"timestamp"},
     "CustomSchemaCountLimitExceededException":{
       "type":"structure",
@@ -2045,6 +2102,18 @@
       "type":"structure",
       "members":{
         "BaselineId":{"shape":"BaselineId"}
+      }
+    },
+    "DeleteResourceDataSyncRequest":{
+      "type":"structure",
+      "required":["SyncName"],
+      "members":{
+        "SyncName":{"shape":"ResourceDataSyncName"}
+      }
+    },
+    "DeleteResourceDataSyncResult":{
+      "type":"structure",
+      "members":{
       }
     },
     "DeregisterManagedInstanceRequest":{
@@ -3900,6 +3969,16 @@
       "type":"list",
       "member":{"shape":"TagKey"}
     },
+    "LastResourceDataSyncStatus":{
+      "type":"string",
+      "enum":[
+        "Successful",
+        "Failed",
+        "InProgress"
+      ]
+    },
+    "LastResourceDataSyncTime":{"type":"timestamp"},
+    "LastSuccessfulResourceDataSyncTime":{"type":"timestamp"},
     "ListAssociationsRequest":{
       "type":"structure",
       "members":{
@@ -4021,6 +4100,23 @@
         "SchemaVersion":{"shape":"InventoryItemSchemaVersion"},
         "CaptureTime":{"shape":"InventoryItemCaptureTime"},
         "Entries":{"shape":"InventoryItemEntryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListResourceDataSyncRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true
+        }
+      }
+    },
+    "ListResourceDataSyncResult":{
+      "type":"structure",
+      "members":{
+        "ResourceDataSyncItems":{"shape":"ResourceDataSyncItemList"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -5040,6 +5136,88 @@
       "type":"structure",
       "members":{
       }
+    },
+    "ResourceDataSyncAlreadyExistsException":{
+      "type":"structure",
+      "members":{
+        "SyncName":{"shape":"ResourceDataSyncName"}
+      },
+      "exception":true
+    },
+    "ResourceDataSyncCountExceededException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "ResourceDataSyncCreatedTime":{"type":"timestamp"},
+    "ResourceDataSyncInvalidConfigurationException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "ResourceDataSyncItem":{
+      "type":"structure",
+      "members":{
+        "SyncName":{"shape":"ResourceDataSyncName"},
+        "S3Destination":{"shape":"ResourceDataSyncS3Destination"},
+        "LastSyncTime":{"shape":"LastResourceDataSyncTime"},
+        "LastSuccessfulSyncTime":{"shape":"LastSuccessfulResourceDataSyncTime"},
+        "LastStatus":{"shape":"LastResourceDataSyncStatus"},
+        "SyncCreatedTime":{"shape":"ResourceDataSyncCreatedTime"}
+      }
+    },
+    "ResourceDataSyncItemList":{
+      "type":"list",
+      "member":{"shape":"ResourceDataSyncItem"}
+    },
+    "ResourceDataSyncName":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "ResourceDataSyncNotFoundException":{
+      "type":"structure",
+      "members":{
+        "SyncName":{"shape":"ResourceDataSyncName"}
+      },
+      "exception":true
+    },
+    "ResourceDataSyncS3BucketName":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
+    "ResourceDataSyncS3Destination":{
+      "type":"structure",
+      "required":[
+        "BucketName",
+        "SyncFormat",
+        "Region"
+      ],
+      "members":{
+        "BucketName":{"shape":"ResourceDataSyncS3BucketName"},
+        "Prefix":{"shape":"ResourceDataSyncS3Prefix"},
+        "SyncFormat":{"shape":"ResourceDataSyncS3Format"},
+        "Region":{"shape":"ResourceDataSyncS3Region"}
+      }
+    },
+    "ResourceDataSyncS3Format":{
+      "type":"string",
+      "enum":["JsonSerDe"]
+    },
+    "ResourceDataSyncS3Prefix":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "ResourceDataSyncS3Region":{
+      "type":"string",
+      "max":64,
+      "min":1
     },
     "ResourceId":{"type":"string"},
     "ResourceInUseException":{
