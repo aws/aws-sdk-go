@@ -1,3 +1,12 @@
+Release v1.10.6 (2017-06-30)
+===
+
+### Service Client Updates
+* `service/marketplacecommerceanalytics`: Updates service documentation
+  * Documentation updates for AWS Marketplace Commerce Analytics.
+* `service/s3`: Updates service API and documentation
+  * API Update for S3: Adding Object Tagging Header to MultipartUpload Initialization
+
 Release v1.10.5 (2017-06-29)
 ===
 
