@@ -1,3 +1,16 @@
+Release v1.10.7 (2017-07-05)
+===
+
+### Service Client Updates
+* `service/monitoring`: Updates service API and documentation
+  * We are excited to announce the availability of APIs and CloudFormation support for CloudWatch Dashboards. You can use the new dashboard APIs or CloudFormation templates to dynamically build and maintain dashboards to monitor your infrastructure and applications. There are four new dashboard APIs - PutDashboard, GetDashboard, DeleteDashboards, and ListDashboards APIs. PutDashboard is used to create a new dashboard or modify an existing one whereas GetDashboard is the API to get the details of a specific dashboard. ListDashboards and DeleteDashboards are used to get the names or delete multiple dashboards respectively. Getting started with dashboard APIs is similar to any other AWS APIs. The APIs can be accessed through AWS SDK or through CLI tools.
+* `service/route53`: Updates service API and documentation
+  * Bug fix for InvalidChangeBatch exception.
+
+### SDK Enhancements
+* `service/s3/s3manager`: adding cleanup function to batch objects [#1375](https://github.com/aws/aws-sdk-go/issues/1375)
+  * This enhancement will add an After field that will be called after each iteration of the batch operation.
+
 Release v1.10.6 (2017-06-30)
 ===
 
