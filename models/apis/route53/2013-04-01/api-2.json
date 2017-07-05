@@ -1972,7 +1972,8 @@
     "InvalidChangeBatch":{
       "type":"structure",
       "members":{
-        "messages":{"shape":"ErrorMessages"}
+        "messages":{"shape":"ErrorMessages"},
+        "message":{"shape":"ErrorMessage"}
       },
       "exception":true
     },
