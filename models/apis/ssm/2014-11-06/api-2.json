@@ -425,6 +425,7 @@
       "errors":[
         {"shape":"InvalidResourceId"},
         {"shape":"DoesNotExistException"},
+        {"shape":"UnsupportedOperatingSystem"},
         {"shape":"InternalServerError"}
       ]
     },
@@ -679,7 +680,8 @@
       "input":{"shape":"GetDeployablePatchSnapshotForInstanceRequest"},
       "output":{"shape":"GetDeployablePatchSnapshotForInstanceResult"},
       "errors":[
-        {"shape":"InternalServerError"}
+        {"shape":"InternalServerError"},
+        {"shape":"UnsupportedOperatingSystem"}
       ]
     },
     "GetDocument":{
@@ -1965,10 +1967,12 @@
       "type":"structure",
       "required":["Name"],
       "members":{
+        "OperatingSystem":{"shape":"OperatingSystem"},
         "Name":{"shape":"BaselineName"},
         "GlobalFilters":{"shape":"PatchFilterGroup"},
         "ApprovalRules":{"shape":"PatchRuleGroup"},
         "ApprovedPatches":{"shape":"PatchIdList"},
+        "ApprovedPatchesComplianceLevel":{"shape":"PatchComplianceLevel"},
         "RejectedPatches":{"shape":"PatchIdList"},
         "Description":{"shape":"BaselineDescription"},
         "ClientToken":{
@@ -2619,6 +2623,7 @@
           "shape":"PatchBaselineMaxResults",
           "box":true
         },
+        "Filters":{"shape":"PatchOrchestratorFilterList"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -2950,12 +2955,14 @@
     "GetDefaultPatchBaselineRequest":{
       "type":"structure",
       "members":{
+        "OperatingSystem":{"shape":"OperatingSystem"}
       }
     },
     "GetDefaultPatchBaselineResult":{
       "type":"structure",
       "members":{
-        "BaselineId":{"shape":"BaselineId"}
+        "BaselineId":{"shape":"BaselineId"},
+        "OperatingSystem":{"shape":"OperatingSystem"}
       }
     },
     "GetDeployablePatchSnapshotForInstanceRequest":{
@@ -2974,7 +2981,8 @@
       "members":{
         "InstanceId":{"shape":"InstanceId"},
         "SnapshotId":{"shape":"SnapshotId"},
-        "SnapshotDownloadUrl":{"shape":"SnapshotDownloadUrl"}
+        "SnapshotDownloadUrl":{"shape":"SnapshotDownloadUrl"},
+        "Product":{"shape":"Product"}
       }
     },
     "GetDocumentRequest":{
@@ -3199,14 +3207,16 @@
       "type":"structure",
       "required":["PatchGroup"],
       "members":{
-        "PatchGroup":{"shape":"PatchGroup"}
+        "PatchGroup":{"shape":"PatchGroup"},
+        "OperatingSystem":{"shape":"OperatingSystem"}
       }
     },
     "GetPatchBaselineForPatchGroupResult":{
       "type":"structure",
       "members":{
         "BaselineId":{"shape":"BaselineId"},
-        "PatchGroup":{"shape":"PatchGroup"}
+        "PatchGroup":{"shape":"PatchGroup"},
+        "OperatingSystem":{"shape":"OperatingSystem"}
       }
     },
     "GetPatchBaselineRequest":{
@@ -3221,9 +3231,11 @@
       "members":{
         "BaselineId":{"shape":"BaselineId"},
         "Name":{"shape":"BaselineName"},
+        "OperatingSystem":{"shape":"OperatingSystem"},
         "GlobalFilters":{"shape":"PatchFilterGroup"},
         "ApprovalRules":{"shape":"PatchRuleGroup"},
         "ApprovedPatches":{"shape":"PatchIdList"},
+        "ApprovedPatchesComplianceLevel":{"shape":"PatchComplianceLevel"},
         "RejectedPatches":{"shape":"PatchIdList"},
         "PatchGroups":{"shape":"PatchGroupList"},
         "CreatedDate":{"shape":"DateTime"},
@@ -3461,8 +3473,8 @@
         "MissingCount":{"shape":"PatchMissingCount"},
         "FailedCount":{"shape":"PatchFailedCount"},
         "NotApplicableCount":{"shape":"PatchNotApplicableCount"},
-        "OperationStartTime":{"shape":"PatchOperationStartTime"},
-        "OperationEndTime":{"shape":"PatchOperationEndTime"},
+        "OperationStartTime":{"shape":"DateTime"},
+        "OperationEndTime":{"shape":"DateTime"},
         "Operation":{"shape":"PatchOperationType"}
       }
     },
@@ -4510,6 +4522,15 @@
         "Invocation"
       ]
     },
+    "OperatingSystem":{
+      "type":"string",
+      "enum":[
+        "WINDOWS",
+        "AMAZON_LINUX",
+        "UBUNTU",
+        "REDHAT_ENTERPRISE_LINUX"
+      ]
+    },
     "OwnerInformation":{
       "type":"string",
       "max":128,
@@ -4727,6 +4748,7 @@
       "members":{
         "BaselineId":{"shape":"BaselineId"},
         "BaselineName":{"shape":"BaselineName"},
+        "OperatingSystem":{"shape":"OperatingSystem"},
         "BaselineDescription":{"shape":"BaselineDescription"},
         "DefaultBaseline":{"shape":"DefaultBaseline"}
       }
@@ -4757,7 +4779,7 @@
         "Classification":{"shape":"PatchClassification"},
         "Severity":{"shape":"PatchSeverity"},
         "State":{"shape":"PatchComplianceDataState"},
-        "InstalledTime":{"shape":"PatchInstalledTime"}
+        "InstalledTime":{"shape":"DateTime"}
       }
     },
     "PatchComplianceDataList":{
@@ -4772,6 +4794,17 @@
         "MISSING",
         "NOT_APPLICABLE",
         "FAILED"
+      ]
+    },
+    "PatchComplianceLevel":{
+      "type":"string",
+      "enum":[
+        "CRITICAL",
+        "HIGH",
+        "MEDIUM",
+        "LOW",
+        "INFORMATIONAL",
+        "UNSPECIFIED"
       ]
     },
     "PatchComplianceMaxResults":{
@@ -4815,7 +4848,10 @@
         "PRODUCT",
         "CLASSIFICATION",
         "MSRC_SEVERITY",
-        "PATCH_ID"
+        "PATCH_ID",
+        "SECTION",
+        "PRIORITY",
+        "SEVERITY"
       ]
     },
     "PatchFilterList":{
@@ -4858,7 +4894,8 @@
     },
     "PatchId":{
       "type":"string",
-      "pattern":"(^KB[0-9]{1,7}$)|(^MS[0-9]{2}\\-[0-9]{3}$)"
+      "max":100,
+      "min":1
     },
     "PatchIdList":{
       "type":"list",
@@ -4868,7 +4905,6 @@
     },
     "PatchInstalledCount":{"type":"integer"},
     "PatchInstalledOtherCount":{"type":"integer"},
-    "PatchInstalledTime":{"type":"timestamp"},
     "PatchKbNumber":{"type":"string"},
     "PatchLanguage":{"type":"string"},
     "PatchList":{
@@ -4879,8 +4915,6 @@
     "PatchMsrcNumber":{"type":"string"},
     "PatchMsrcSeverity":{"type":"string"},
     "PatchNotApplicableCount":{"type":"integer"},
-    "PatchOperationEndTime":{"type":"timestamp"},
-    "PatchOperationStartTime":{"type":"timestamp"},
     "PatchOperationType":{
       "type":"string",
       "enum":[
@@ -4925,6 +4959,7 @@
       ],
       "members":{
         "PatchFilterGroup":{"shape":"PatchFilterGroup"},
+        "ComplianceLevel":{"shape":"PatchComplianceLevel"},
         "ApproveAfterDays":{
           "shape":"ApproveAfterDays",
           "box":true
@@ -4949,6 +4984,7 @@
       "type":"structure",
       "members":{
         "DeploymentStatus":{"shape":"PatchDeploymentStatus"},
+        "ComplianceLevel":{"shape":"PatchComplianceLevel"},
         "ApprovalDate":{"shape":"DateTime"}
       }
     },
@@ -4976,6 +5012,7 @@
         "locationName":"PlatformType"
       }
     },
+    "Product":{"type":"string"},
     "PutInventoryRequest":{
       "type":"structure",
       "required":[
@@ -5514,6 +5551,13 @@
       },
       "exception":true
     },
+    "UnsupportedOperatingSystem":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
     "UnsupportedParameterType":{
       "type":"structure",
       "members":{
@@ -5663,6 +5707,7 @@
         "GlobalFilters":{"shape":"PatchFilterGroup"},
         "ApprovalRules":{"shape":"PatchRuleGroup"},
         "ApprovedPatches":{"shape":"PatchIdList"},
+        "ApprovedPatchesComplianceLevel":{"shape":"PatchComplianceLevel"},
         "RejectedPatches":{"shape":"PatchIdList"},
         "Description":{"shape":"BaselineDescription"}
       }
@@ -5672,9 +5717,11 @@
       "members":{
         "BaselineId":{"shape":"BaselineId"},
         "Name":{"shape":"BaselineName"},
+        "OperatingSystem":{"shape":"OperatingSystem"},
         "GlobalFilters":{"shape":"PatchFilterGroup"},
         "ApprovalRules":{"shape":"PatchRuleGroup"},
         "ApprovedPatches":{"shape":"PatchIdList"},
+        "ApprovedPatchesComplianceLevel":{"shape":"PatchComplianceLevel"},
         "RejectedPatches":{"shape":"PatchIdList"},
         "CreatedDate":{"shape":"DateTime"},
         "ModifiedDate":{"shape":"DateTime"},
