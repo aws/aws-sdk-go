@@ -10,7 +10,7 @@
     "CreateDocument": "<p>Creates a Systems Manager document.</p> <p>After you create a document, you can use CreateAssociation to associate it with one or more running instances.</p>",
     "CreateMaintenanceWindow": "<p>Creates a new Maintenance Window.</p>",
     "CreatePatchBaseline": "<p>Creates a patch baseline.</p>",
-    "CreateResourceDataSync": "<p>Creates a resource data sync configuration to a single bucket in Amazon S3. This is an asynchronous operation that returns immediately. After a successful initial sync is completed, the system continuously syncs data to the Amazon S3 bucket. To check the status of the sync, use the <a href=\"API_ListResourceDataSync.html\">ListResourceDataSync</a> operation.</p> <p>By default, data is not encrypted in Amazon S3. We strongly recommend that you enable encryption in Amazon S3 to ensure secure data storage. We also recommend that you secure access to the Amazon S3 bucket by creating a restrictive bucket policy. To view an example of a restrictive Amazon S3 bucket policy for Resource Data Sync, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-inventory-datasync-create.html\">Creating a Resource Data Sync</a>.</p>",
+    "CreateResourceDataSync": "<p>Creates a resource data sync configuration to a single bucket in Amazon S3. This is an asynchronous operation that returns immediately. After a successful initial sync is completed, the system continuously syncs data to the Amazon S3 bucket. To check the status of the sync, use the <a href=\"API_ListResourceDataSync.html\">ListResourceDataSync</a> operation.</p> <p>By default, data is not encrypted in Amazon S3. We strongly recommend that you enable encryption in Amazon S3 to ensure secure data storage. We also recommend that you secure access to the Amazon S3 bucket by creating a restrictive bucket policy. To view an example of a restrictive Amazon S3 bucket policy for Resource Data Sync, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-inventory-configuring.html#sysman-inventory-datasync\">Configuring Resource Data Sync for Inventory</a>.</p>",
     "DeleteActivation": "<p>Deletes an activation. You are not required to delete an activation. If you delete an activation, you can no longer use it to register additional managed instances. Deleting an activation does not de-register managed instances. You must manually de-register managed instances.</p>",
     "DeleteAssociation": "<p>Disassociates the specified Systems Manager document from the specified instance.</p> <p>When you disassociate a document from an instance, it does not change the configuration of the instance. To change the configuration state of an instance after you disassociate a document, you must create a new document with the desired configuration and associate it with the instance.</p>",
     "DeleteDocument": "<p>Deletes the Systems Manager document and all instance associations to the document.</p> <p>Before you delete the document, we recommend that you use <a>DeleteAssociation</a> to disassociate all instances that are associated with the document.</p>",
@@ -30,7 +30,7 @@
     "DescribeDocument": "<p>Describes the specified SSM document.</p>",
     "DescribeDocumentPermission": "<p>Describes the permissions for a Systems Manager document. If you created the document, you are the owner. If a document is shared, it can either be shared privately (by specifying a user's AWS account ID) or publicly (<i>All</i>). </p>",
     "DescribeEffectiveInstanceAssociations": "<p>All associations for the instance(s).</p>",
-    "DescribeEffectivePatchesForPatchBaseline": "<p>Retrieves the current effective patches (the patch and the approval state) for the specified patch baseline.</p>",
+    "DescribeEffectivePatchesForPatchBaseline": "<p>Retrieves the current effective patches (the patch and the approval state) for the specified patch baseline. Note that this API applies only to Windows patch baselines.</p>",
     "DescribeInstanceAssociationsStatus": "<p>The status of the associations for the instance(s).</p>",
     "DescribeInstanceInformation": "<p>Describes one or more of your instances. You can use this to get information about instances like the operating system platform, the SSM Agent version (Linux), status etc. If you specify one or more instance IDs, it returns information for those instances. If you do not specify instance IDs, it returns information for all your instances. If you specify an instance ID that is not valid or an instance that you do not own, you receive an error. </p>",
     "DescribeInstancePatchStates": "<p>Retrieves the high-level patch state of one or more instances.</p>",
@@ -48,8 +48,8 @@
     "DescribePatchGroups": "<p>Lists all patch groups that have been registered with patch baselines.</p>",
     "GetAutomationExecution": "<p>Get detailed information about a particular Automation execution.</p>",
     "GetCommandInvocation": "<p>Returns detailed information about command execution for an invocation or plugin. </p>",
-    "GetDefaultPatchBaseline": "<p>Retrieves the default patch baseline.</p>",
-    "GetDeployablePatchSnapshotForInstance": "<p>Retrieves the current snapshot for the patch baseline the instance uses. This API is primarily used by the AWS-ApplyPatchBaseline Systems Manager document. </p>",
+    "GetDefaultPatchBaseline": "<p>Retrieves the default patch baseline. Note that Systems Manager supports creating multiple default patch baselines. For example, you can create a default patch baseline for each operating system.</p>",
+    "GetDeployablePatchSnapshotForInstance": "<p>Retrieves the current snapshot for the patch baseline the instance uses. This API is primarily used by the AWS-RunPatchBaseline Systems Manager document. </p>",
     "GetDocument": "<p>Gets the contents of the specified SSM document.</p>",
     "GetInventory": "<p>Query inventory information.</p>",
     "GetInventorySchema": "<p>Return a list of inventory type names for the account, or return a list of attribute names for a specific Inventory item type. </p>",
@@ -761,6 +761,8 @@
         "InstanceInformation$RegistrationDate": "<p>The date the server or VM was registered with AWS as a managed instance.</p>",
         "InstanceInformation$LastAssociationExecutionDate": "<p>The date the association was last executed.</p>",
         "InstanceInformation$LastSuccessfulAssociationExecutionDate": "<p>The last date the association was successfully run.</p>",
+        "InstancePatchState$OperationStartTime": "<p>The time the most recent patching operation was started on the instance.</p>",
+        "InstancePatchState$OperationEndTime": "<p>The time the most recent patching operation completed on the instance.</p>",
         "MaintenanceWindowExecution$StartTime": "<p>The time the execution started.</p>",
         "MaintenanceWindowExecution$EndTime": "<p>The time the execution finished.</p>",
         "MaintenanceWindowExecutionTaskIdentity$StartTime": "<p>The time the task execution started.</p>",
@@ -770,6 +772,7 @@
         "ParameterHistory$LastModifiedDate": "<p>Date the parameter was last changed or updated.</p>",
         "ParameterMetadata$LastModifiedDate": "<p>Date the parameter was last changed or updated.</p>",
         "Patch$ReleaseDate": "<p>The date the patch was released.</p>",
+        "PatchComplianceData$InstalledTime": "<p>The date/time the patch was installed on the instance. Note that not all operating systems provide this level of information.</p>",
         "PatchStatus$ApprovalDate": "<p>The date the patch was approved (or will be approved if the status is PENDING_APPROVAL).</p>",
         "StepExecution$ExecutionStartTime": "<p>If a step has begun execution, this contains the time the step started. If the step is in Pending status, this field is not populated.</p>",
         "StepExecution$ExecutionEndTime": "<p>If a step has finished execution, this contains the time the execution ended. If the step has not yet concluded, this field is not populated.</p>",
@@ -780,7 +783,7 @@
     "DefaultBaseline": {
       "base": null,
       "refs": {
-        "PatchBaselineIdentity$DefaultBaseline": "<p>Whether this is the default baseline.</p>"
+        "PatchBaselineIdentity$DefaultBaseline": "<p>Whether this is the default baseline. Note that Systems Manager supports creating multiple default patch baselines. For example, you can create a default patch baseline for each operating system.</p>"
       }
     },
     "DefaultInstanceName": {
@@ -2937,6 +2940,19 @@
         "NotificationConfig$NotificationType": "<p>Command: Receive notification when the status of a command changes. Invocation: For commands sent to multiple instances, receive notification on a per-instance basis when the status of a command changes. </p>"
       }
     },
+    "OperatingSystem": {
+      "base": null,
+      "refs": {
+        "CreatePatchBaselineRequest$OperatingSystem": "<p>Defines the operating system the patch baseline applies to. Supported operating systems include WINDOWS, AMAZON_LINUX, UBUNTU and REDHAT_ENTERPRISE_LINUX. The Default value is WINDOWS.</p>",
+        "GetDefaultPatchBaselineRequest$OperatingSystem": "<p>Returns the default patch baseline for the specified operating system.</p>",
+        "GetDefaultPatchBaselineResult$OperatingSystem": "<p>The operating system for the returned patch baseline. </p>",
+        "GetPatchBaselineForPatchGroupRequest$OperatingSystem": "<p>Returns he operating system rule specified for patch groups using the patch baseline.</p>",
+        "GetPatchBaselineForPatchGroupResult$OperatingSystem": "<p>The operating system rule specified for patch groups using the patch baseline.</p>",
+        "GetPatchBaselineResult$OperatingSystem": "<p>Returns the operating system specified for the patch baseline.</p>",
+        "PatchBaselineIdentity$OperatingSystem": "<p>Defines the operating system the patch baseline applies to. Supported operating systems include WINDOWS, AMAZON_LINUX, UBUNTU and REDHAT_ENTERPRISE_LINUX. The Default value is WINDOWS. </p>",
+        "UpdatePatchBaselineResult$OperatingSystem": "<p>The operating system rule used by the updated patch baseline.</p>"
+      }
+    },
     "OwnerInformation": {
       "base": null,
       "refs": {
@@ -3211,6 +3227,17 @@
         "PatchComplianceData$State": "<p>The state of the patch on the instance (INSTALLED, INSTALLED_OTHER, MISSING, NOT_APPLICABLE or FAILED).</p>"
       }
     },
+    "PatchComplianceLevel": {
+      "base": null,
+      "refs": {
+        "CreatePatchBaselineRequest$ApprovedPatchesComplianceLevel": "<p>Defines the compliance level for approved patches. This means that if an approved patch is reported as missing, this is the severity of the compliance violation. Valid compliance severity levels include the following: CRITICAL, HIGH, MEDIUM, LOW, INFORMATIONAL, UNSPECIFIED. The default value is UNSPECIFIED.</p>",
+        "GetPatchBaselineResult$ApprovedPatchesComplianceLevel": "<p>Returns the specified compliance severity level for approved patches in the patch baseline.</p>",
+        "PatchRule$ComplianceLevel": "<p>A compliance severity level for all approved patches in a patch baseline. Valid compliance severity levels include the following: Unspecified, Critical, High, Medium, Low, and Informational.</p>",
+        "PatchStatus$ComplianceLevel": "<p>The compliance severity level for a patch.</p>",
+        "UpdatePatchBaselineRequest$ApprovedPatchesComplianceLevel": "<p>Assigns a new compliance severity level to an existing patch baseline.</p>",
+        "UpdatePatchBaselineResult$ApprovedPatchesComplianceLevel": "<p>The compliance severity level assigned to the patch baseline after the update completed.</p>"
+      }
+    },
     "PatchComplianceMaxResults": {
       "base": null,
       "refs": {
@@ -3349,17 +3376,11 @@
         "InstancePatchState$InstalledOtherCount": "<p>The number of patches not specified in the patch baseline that are installed on the instance.</p>"
       }
     },
-    "PatchInstalledTime": {
-      "base": null,
-      "refs": {
-        "PatchComplianceData$InstalledTime": "<p>The date/time the patch was installed on the instance.</p>"
-      }
-    },
     "PatchKbNumber": {
       "base": null,
       "refs": {
         "Patch$KbNumber": "<p>The Microsoft Knowledge Base ID of the patch.</p>",
-        "PatchComplianceData$KBId": "<p>The Microsoft Knowledge Base ID of the patch.</p>"
+        "PatchComplianceData$KBId": "<p>The operating system-specific ID of the patch.</p>"
       }
     },
     "PatchLanguage": {
@@ -3398,18 +3419,6 @@
         "InstancePatchState$NotApplicableCount": "<p>The number of patches from the patch baseline that aren't applicable for the instance and hence aren't installed on the instance.</p>"
       }
     },
-    "PatchOperationEndTime": {
-      "base": null,
-      "refs": {
-        "InstancePatchState$OperationEndTime": "<p>The time the most recent patching operation completed on the instance.</p>"
-      }
-    },
-    "PatchOperationStartTime": {
-      "base": null,
-      "refs": {
-        "InstancePatchState$OperationStartTime": "<p>The time the most recent patching operation was started on the instance.</p>"
-      }
-    },
     "PatchOperationType": {
       "base": null,
       "refs": {
@@ -3433,7 +3442,8 @@
       "refs": {
         "DescribeAvailablePatchesRequest$Filters": "<p>Filters used to scope down the returned patches.</p>",
         "DescribeInstancePatchesRequest$Filters": "<p>Each entry in the array is a structure containing:</p> <p>Key (string, between 1 and 128 characters)</p> <p>Values (array of strings, each string between 1 and 256 characters)</p>",
-        "DescribePatchBaselinesRequest$Filters": "<p>Each element in the array is a structure containing: </p> <p>Key: (string, \"NAME_PREFIX\" or \"OWNER\")</p> <p>Value: (array of strings, exactly 1 entry, between 1 and 255 characters)</p>"
+        "DescribePatchBaselinesRequest$Filters": "<p>Each element in the array is a structure containing: </p> <p>Key: (string, \"NAME_PREFIX\" or \"OWNER\")</p> <p>Value: (array of strings, exactly 1 entry, between 1 and 255 characters)</p>",
+        "DescribePatchGroupsRequest$Filters": "<p>One or more filters. Use a filter to return a more specific list of results.</p>"
       }
     },
     "PatchOrchestratorFilterValue": {
@@ -3524,6 +3534,12 @@
       "refs": {
         "DocumentDescription$PlatformTypes": "<p>The list of OS platforms compatible with this SSM document. </p>",
         "DocumentIdentifier$PlatformTypes": "<p>The operating system platform. </p>"
+      }
+    },
+    "Product": {
+      "base": null,
+      "refs": {
+        "GetDeployablePatchSnapshotForInstanceResult$Product": "<p>Returns the specific operating system (for example Windows Server 2012 or Amazon Linux 2015.09) on the instance for the specified patch snapshot.</p>"
       }
     },
     "PutInventoryRequest": {
@@ -3986,6 +4002,7 @@
         "TooManyUpdates$Message": null,
         "TotalSizeLimitExceededException$Message": null,
         "UnsupportedInventorySchemaVersionException$Message": null,
+        "UnsupportedOperatingSystem$Message": null,
         "UnsupportedParameterType$message": null,
         "UnsupportedPlatformType$Message": null
       }
@@ -4099,6 +4116,11 @@
     },
     "UnsupportedInventorySchemaVersionException": {
       "base": "<p>Inventory item type schema version has to match supported versions in the service. Check output of GetInventorySchema to see the available schema version for each type.</p>",
+      "refs": {
+      }
+    },
+    "UnsupportedOperatingSystem": {
+      "base": "<p>The operating systems you specified is not supported, or the operation is not supported for the operating system. Valid operating systems include: Windows, AmazonLinux, RedhatEnterpriseLinux, and Ubuntu.</p>",
       "refs": {
       }
     },
