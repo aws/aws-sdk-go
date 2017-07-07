@@ -155,11 +155,11 @@ func (iter *DeleteListIterator) Next() bool {
 		iter.objects = iter.objects[1:]
 	}
 
-	if len(iter.objects) == 0 {
-		return iter.Paginator.Next()
+	if len(iter.objects) == 0 && iter.Paginator.Next() {
+		iter.objects = iter.Paginator.Page().(*s3.ListObjectsOutput).Contents
 	}
 
-	return true
+	return len(iter.objects) > 0
 }
 
 // Err will return the last known error from Next.
@@ -169,11 +169,6 @@ func (iter *DeleteListIterator) Err() error {
 
 // DeleteObject will return the current object to be deleted.
 func (iter *DeleteListIterator) DeleteObject() BatchDeleteObject {
-	if len(iter.objects) == 0 {
-		p := iter.Paginator.Page().(*s3.ListObjectsOutput)
-		iter.objects = p.Contents
-	}
-
 	return BatchDeleteObject{
 		Object: &s3.DeleteObjectInput{
 			Bucket: iter.Bucket,
