@@ -17,36 +17,275 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 )
 
-func TestBatchDelete(t *testing.T) {
-	count := 0
-	expected := []struct {
-		bucket, key string
+func TestHasParity(t *testing.T) {
+	cases := []struct {
+		o1       *s3.DeleteObjectsInput
+		o2       BatchDeleteObject
+		expected bool
 	}{
 		{
-			key:    "1",
-			bucket: "bucket1",
+			&s3.DeleteObjectsInput{},
+			BatchDeleteObject{
+				Object: &s3.DeleteObjectInput{},
+			},
+			true,
 		},
 		{
-			key:    "2",
-			bucket: "bucket2",
+			&s3.DeleteObjectsInput{
+				Bucket: aws.String("foo"),
+			},
+			BatchDeleteObject{
+				Object: &s3.DeleteObjectInput{
+					Bucket: aws.String("bar"),
+				},
+			},
+			false,
 		},
 		{
-			key:    "3",
-			bucket: "bucket3",
+			&s3.DeleteObjectsInput{},
+			BatchDeleteObject{
+				Object: &s3.DeleteObjectInput{
+					Bucket: aws.String("foo"),
+				},
+			},
+			false,
 		},
 		{
-			key:    "4",
-			bucket: "bucket4",
+			&s3.DeleteObjectsInput{
+				Bucket: aws.String("foo"),
+			},
+			BatchDeleteObject{
+				Object: &s3.DeleteObjectInput{},
+			},
+			false,
+		},
+		{
+			&s3.DeleteObjectsInput{
+				MFA: aws.String("foo"),
+			},
+			BatchDeleteObject{
+				Object: &s3.DeleteObjectInput{
+					MFA: aws.String("bar"),
+				},
+			},
+			false,
+		},
+		{
+			&s3.DeleteObjectsInput{},
+			BatchDeleteObject{
+				Object: &s3.DeleteObjectInput{
+					MFA: aws.String("foo"),
+				},
+			},
+			false,
+		},
+		{
+			&s3.DeleteObjectsInput{
+				MFA: aws.String("foo"),
+			},
+			BatchDeleteObject{
+				Object: &s3.DeleteObjectInput{},
+			},
+			false,
+		},
+		{
+			&s3.DeleteObjectsInput{
+				RequestPayer: aws.String("foo"),
+			},
+			BatchDeleteObject{
+				Object: &s3.DeleteObjectInput{
+					RequestPayer: aws.String("bar"),
+				},
+			},
+			false,
+		},
+		{
+			&s3.DeleteObjectsInput{},
+			BatchDeleteObject{
+				Object: &s3.DeleteObjectInput{
+					RequestPayer: aws.String("foo"),
+				},
+			},
+			false,
+		},
+		{
+			&s3.DeleteObjectsInput{
+				RequestPayer: aws.String("foo"),
+			},
+			BatchDeleteObject{
+				Object: &s3.DeleteObjectInput{},
+			},
+			false,
 		},
 	}
 
-	received := []struct {
-		bucket, key string
-	}{}
+	for i, c := range cases {
+		if result := hasParity(c.o1, c.o2); result != c.expected {
+			t.Errorf("Case %d: expected %t, but received %t\n", i, c.expected, result)
+		}
+	}
+}
 
+func TestBatchDelete(t *testing.T) {
+	cases := []struct {
+		objects  []BatchDeleteObject
+		size     int
+		expected int
+	}{
+		{
+			[]BatchDeleteObject{
+				{
+					Object: &s3.DeleteObjectInput{
+						Key:    aws.String("1"),
+						Bucket: aws.String("bucket1"),
+					},
+				},
+				{
+					Object: &s3.DeleteObjectInput{
+						Key:    aws.String("2"),
+						Bucket: aws.String("bucket2"),
+					},
+				},
+				{
+					Object: &s3.DeleteObjectInput{
+						Key:    aws.String("3"),
+						Bucket: aws.String("bucket3"),
+					},
+				},
+				{
+					Object: &s3.DeleteObjectInput{
+						Key:    aws.String("4"),
+						Bucket: aws.String("bucket4"),
+					},
+				},
+			},
+			1,
+			4,
+		},
+		{
+			[]BatchDeleteObject{
+				{
+					Object: &s3.DeleteObjectInput{
+						Key:    aws.String("1"),
+						Bucket: aws.String("bucket1"),
+					},
+				},
+				{
+					Object: &s3.DeleteObjectInput{
+						Key:    aws.String("2"),
+						Bucket: aws.String("bucket1"),
+					},
+				},
+				{
+					Object: &s3.DeleteObjectInput{
+						Key:    aws.String("3"),
+						Bucket: aws.String("bucket3"),
+					},
+				},
+				{
+					Object: &s3.DeleteObjectInput{
+						Key:    aws.String("4"),
+						Bucket: aws.String("bucket3"),
+					},
+				},
+			},
+			1,
+			4,
+		},
+		{
+			[]BatchDeleteObject{
+				{
+					Object: &s3.DeleteObjectInput{
+						Key:    aws.String("1"),
+						Bucket: aws.String("bucket1"),
+					},
+				},
+				{
+					Object: &s3.DeleteObjectInput{
+						Key:    aws.String("2"),
+						Bucket: aws.String("bucket1"),
+					},
+				},
+				{
+					Object: &s3.DeleteObjectInput{
+						Key:    aws.String("3"),
+						Bucket: aws.String("bucket3"),
+					},
+				},
+				{
+					Object: &s3.DeleteObjectInput{
+						Key:    aws.String("4"),
+						Bucket: aws.String("bucket3"),
+					},
+				},
+			},
+			4,
+			2,
+		},
+		{
+			[]BatchDeleteObject{
+				{
+					Object: &s3.DeleteObjectInput{
+						Key:    aws.String("1"),
+						Bucket: aws.String("bucket1"),
+					},
+				},
+				{
+					Object: &s3.DeleteObjectInput{
+						Key:    aws.String("2"),
+						Bucket: aws.String("bucket1"),
+					},
+				},
+				{
+					Object: &s3.DeleteObjectInput{
+						Key:    aws.String("3"),
+						Bucket: aws.String("bucket3"),
+					},
+				},
+				{
+					Object: &s3.DeleteObjectInput{
+						Key:    aws.String("4"),
+						Bucket: aws.String("bucket3"),
+					},
+				},
+			},
+			10,
+			2,
+		},
+		{
+			[]BatchDeleteObject{
+				{
+					Object: &s3.DeleteObjectInput{
+						Key:    aws.String("1"),
+						Bucket: aws.String("bucket1"),
+					},
+				},
+				{
+					Object: &s3.DeleteObjectInput{
+						Key:    aws.String("2"),
+						Bucket: aws.String("bucket1"),
+					},
+				},
+				{
+					Object: &s3.DeleteObjectInput{
+						Key:    aws.String("3"),
+						Bucket: aws.String("bucket1"),
+					},
+				},
+				{
+					Object: &s3.DeleteObjectInput{
+						Key:    aws.String("4"),
+						Bucket: aws.String("bucket3"),
+					},
+				},
+			},
+			2,
+			3,
+		},
+	}
+
+	count := 0
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		urlParts := strings.Split(r.URL.String(), "/")
-		received = append(received, struct{ bucket, key string }{urlParts[1], urlParts[2]})
 		w.WriteHeader(http.StatusNoContent)
 		count++
 	}))
@@ -60,57 +299,21 @@ func TestBatchDelete(t *testing.T) {
 
 	svc := s3.New(sess)
 
-	batcher := BatchDelete{
-		Client: svc,
-	}
-
-	objects := []BatchDeleteObject{
-		{
-			Object: &s3.DeleteObjectInput{
-				Key:    aws.String("1"),
-				Bucket: aws.String("bucket1"),
-			},
-		},
-		{
-			Object: &s3.DeleteObjectInput{
-				Key:    aws.String("2"),
-				Bucket: aws.String("bucket2"),
-			},
-		},
-		{
-			Object: &s3.DeleteObjectInput{
-				Key:    aws.String("3"),
-				Bucket: aws.String("bucket3"),
-			},
-		},
-		{
-			Object: &s3.DeleteObjectInput{
-				Key:    aws.String("4"),
-				Bucket: aws.String("bucket4"),
-			},
-		},
-	}
-
-	if err := batcher.Delete(aws.BackgroundContext(), &DeleteObjectsIterator{Objects: objects}); err != nil {
-		panic(err)
-	}
-
-	if count != len(objects) {
-		t.Errorf("Expected %d, but received %d", len(objects), count)
-	}
-
-	if len(expected) != len(received) {
-		t.Errorf("Expected %d, but received %d", len(expected), len(received))
-	}
-
-	for i := 0; i < len(expected); i++ {
-		if expected[i].key != received[i].key {
-			t.Errorf("Expected %q, but received %q", expected[i].key, received[i].key)
+	for i, c := range cases {
+		batcher := BatchDelete{
+			Client:    svc,
+			BatchSize: c.size,
 		}
 
-		if expected[i].bucket != received[i].bucket {
-			t.Errorf("Expected %q, but received %q", expected[i].bucket, received[i].bucket)
+		if err := batcher.Delete(aws.BackgroundContext(), &DeleteObjectsIterator{Objects: c.objects}); err != nil {
+			panic(err)
 		}
+
+		if count != c.expected {
+			t.Errorf("Case %d: expected %d, but received %d", i, c.expected, count)
+		}
+
+		count = 0
 	}
 }
 
@@ -177,7 +380,8 @@ func TestBatchDeleteList(t *testing.T) {
 	}
 
 	batcher := BatchDelete{
-		Client: svc,
+		Client:    svc,
+		BatchSize: 1,
 	}
 
 	input := &s3.ListObjectsInput{
