@@ -12,7 +12,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 )
@@ -290,15 +290,7 @@ func TestBatchDelete(t *testing.T) {
 		count++
 	}))
 
-	sess := session.New(&aws.Config{
-		Endpoint:         &server.URL,
-		S3ForcePathStyle: aws.Bool(true),
-		Region:           aws.String("foo"),
-		Credentials:      credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
-	})
-
-	svc := s3.New(sess)
-
+	svc := &mockS3Client{S3: buildS3SvcClient(server.URL)}
 	for i, c := range cases {
 		batcher := BatchDelete{
 			Client:    svc,
@@ -337,13 +329,6 @@ func TestBatchDeleteList(t *testing.T) {
 		count++
 	}))
 
-	sess := session.New(&aws.Config{
-		Endpoint:         &server.URL,
-		S3ForcePathStyle: aws.Bool(true),
-		Region:           aws.String("foo"),
-		Credentials:      credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
-	})
-
 	objects := []*s3.ListObjectsOutput{
 		{
 			Contents: []*s3.Object{
@@ -373,12 +358,7 @@ func TestBatchDeleteList(t *testing.T) {
 		},
 	}
 
-	svc := &mockS3Client{
-		s3.New(sess),
-		0,
-		objects,
-	}
-
+	svc := &mockS3Client{S3: buildS3SvcClient(server.URL), objects: objects}
 	batcher := BatchDelete{
 		Client:    svc,
 		BatchSize: 1,
@@ -412,6 +392,34 @@ func TestBatchDeleteList(t *testing.T) {
 	if count != len(objects) {
 		t.Errorf("Expected %d, but received %d", len(objects), count)
 	}
+}
+
+func buildS3SvcClient(u string) *s3.S3 {
+	return s3.New(unit.Session, &aws.Config{
+		Endpoint:         aws.String(u),
+		S3ForcePathStyle: aws.Bool(true),
+		DisableSSL:       aws.Bool(true),
+		Credentials:      credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
+	})
+
+}
+
+func TestBatchDeleteList_EmptyListObjects(t *testing.T) {
+	count := 0
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusNoContent)
+		count++
+	}))
+
+	svc := &mockS3Client{S3: buildS3SvcClient(server.URL)}
+	batcher := BatchDelete{
+		Client: svc,
+	}
+
+	input := &s3.ListObjectsInput{
+		Bucket: aws.String("bucket"),
+	}
 
 	// Test DeleteListIterator in the case when the ListObjectsRequest responds
 	// with an empty listing.
@@ -419,7 +427,7 @@ func TestBatchDeleteList(t *testing.T) {
 	// We need a new iterator with a fresh Pagination since
 	// Pagination.HasNextPage() is always true the first time Pagination.Next()
 	// called on it
-	iter = &DeleteListIterator{
+	iter := &DeleteListIterator{
 		Bucket: input.Bucket,
 		Paginator: request.Pagination{
 			NewRequest: func() (*request.Request, error) {
@@ -430,9 +438,12 @@ func TestBatchDeleteList(t *testing.T) {
 			},
 		},
 	}
-	
+
 	if err := batcher.Delete(aws.BackgroundContext(), iter); err != nil {
 		t.Error(err)
+	}
+	if count != 1 {
+		t.Errorf("expect count to be 1, got %d", count)
 	}
 }
 
@@ -477,14 +488,7 @@ func TestBatchDownload(t *testing.T) {
 		count++
 	}))
 
-	sess := session.New(&aws.Config{
-		Endpoint:         &server.URL,
-		S3ForcePathStyle: aws.Bool(true),
-		Region:           aws.String("foo"),
-		Credentials:      credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
-	})
-
-	svc := NewDownloader(sess)
+	svc := NewDownloaderWithClient(buildS3SvcClient(server.URL))
 
 	objects := []BatchDownloadObject{
 		{
@@ -603,14 +607,7 @@ func TestBatchUpload(t *testing.T) {
 		count++
 	}))
 
-	sess := session.New(&aws.Config{
-		Endpoint:         &server.URL,
-		S3ForcePathStyle: aws.Bool(true),
-		Region:           aws.String("foo"),
-		Credentials:      credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
-	})
-
-	svc := NewUploader(sess)
+	svc := NewUploaderWithClient(buildS3SvcClient(server.URL))
 
 	objects := []BatchUploadObject{
 		{
@@ -710,13 +707,6 @@ func TestBatchError(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	}))
 
-	sess := session.New(&aws.Config{
-		Endpoint:         &server.URL,
-		S3ForcePathStyle: aws.Bool(true),
-		Region:           aws.String("foo"),
-		Credentials:      credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
-	})
-
 	index := 0
 	responses := []response{
 		{
@@ -738,7 +728,7 @@ func TestBatchError(t *testing.T) {
 	}
 
 	svc := &mockClient{
-		S3API: s3.New(sess),
+		S3API: buildS3SvcClient(server.URL),
 		Put: func() (*s3.PutObjectOutput, error) {
 			resp := responses[index]
 			index++
@@ -917,13 +907,6 @@ func TestAfter(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	}))
 
-	sess := session.New(&aws.Config{
-		Endpoint:         &server.URL,
-		S3ForcePathStyle: aws.Bool(true),
-		Region:           aws.String("foo"),
-		Credentials:      credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
-	})
-
 	index := 0
 	responses := []response{
 		{
@@ -941,7 +924,7 @@ func TestAfter(t *testing.T) {
 	}
 
 	svc := &mockClient{
-		S3API: s3.New(sess),
+		S3API: buildS3SvcClient(server.URL),
 		Put: func() (*s3.PutObjectOutput, error) {
 			resp := responses[index]
 			index++
