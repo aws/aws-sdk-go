@@ -208,6 +208,28 @@ func TestBatchDeleteList(t *testing.T) {
 	if count != len(objects) {
 		t.Errorf("Expected %d, but received %d", len(objects), count)
 	}
+
+	// Test DeleteListIterator in the case when the ListObjectsRequest responds
+	// with an empty listing.
+
+	// We need a new iterator with a fresh Pagination since
+	// Pagination.HasNextPage() is always true the first time Pagination.Next()
+	// called on it
+	iter = &DeleteListIterator{
+		Bucket: input.Bucket,
+		Paginator: request.Pagination{
+			NewRequest: func() (*request.Request, error) {
+				req, _ := svc.ListObjectsRequest(input)
+				// Simulate empty listing
+				req.Data = &s3.ListObjectsOutput{Contents: []*s3.Object{}}
+				return req, nil
+			},
+		},
+	}
+	
+	if err := batcher.Delete(aws.BackgroundContext(), iter); err != nil {
+		t.Error(err)
+	}
 }
 
 func TestBatchDownload(t *testing.T) {
