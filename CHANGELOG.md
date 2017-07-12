@@ -1,3 +1,12 @@
+Release v1.10.9 (2017-07-12)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * Auto Scaling now supports a new type of scaling policy called target tracking scaling policies that you can use to set up dynamic scaling for your application.
+* `service/swf`: Updates service API, documentation, paginators, and examples
+  * Added support for attaching control data to Lambda tasks. Control data lets you attach arbitrary strings to your decisions and history events.
+
 Release v1.10.8 (2017-07-06)
 ===
 
