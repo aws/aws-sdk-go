@@ -1,3 +1,14 @@
+Release v1.10.11 (2017-07-14)
+===
+
+### Service Client Updates
+* `service/discovery`: Updates service API and documentation
+  * Adding feature to the Export API for Discovery Service to allow filters for the export task to allow export based on per agent id.
+* `service/ec2`: Updates service API
+  * New EC2 GPU Graphics instance
+* `service/marketplacecommerceanalytics`: Updates service documentation
+  * Update to Documentation Model For New Report Cadence / Reformat of Docs
+
 Release v1.10.10 (2017-07-13)
 ===
 
