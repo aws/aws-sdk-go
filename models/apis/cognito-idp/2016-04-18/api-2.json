@@ -305,6 +305,9 @@
         {"shape":"TooManyRequestsException"},
         {"shape":"LimitExceededException"},
         {"shape":"UserNotFoundException"},
+        {"shape":"InvalidSmsRoleAccessPolicyException"},
+        {"shape":"InvalidEmailRoleAccessPolicyException"},
+        {"shape":"InvalidSmsRoleTrustRelationshipException"},
         {"shape":"InternalErrorException"}
       ]
     },
@@ -2212,6 +2215,7 @@
         "LambdaConfig":{"shape":"LambdaConfigType"},
         "AutoVerifiedAttributes":{"shape":"VerifiedAttributesListType"},
         "AliasAttributes":{"shape":"AliasAttributesListType"},
+        "UsernameAttributes":{"shape":"UsernameAttributesListType"},
         "SmsVerificationMessage":{"shape":"SmsVerificationMessageType"},
         "EmailVerificationMessage":{"shape":"EmailVerificationMessageType"},
         "EmailVerificationSubject":{"shape":"EmailVerificationSubjectType"},
@@ -3757,6 +3761,7 @@
         "SchemaAttributes":{"shape":"SchemaAttributesListType"},
         "AutoVerifiedAttributes":{"shape":"VerifiedAttributesListType"},
         "AliasAttributes":{"shape":"AliasAttributesListType"},
+        "UsernameAttributes":{"shape":"UsernameAttributesListType"},
         "SmsVerificationMessage":{"shape":"SmsVerificationMessageType"},
         "EmailVerificationMessage":{"shape":"EmailVerificationMessageType"},
         "EmailVerificationSubject":{"shape":"EmailVerificationSubjectType"},
@@ -3795,6 +3800,17 @@
         "UserStatus":{"shape":"UserStatusType"},
         "MFAOptions":{"shape":"MFAOptionListType"}
       }
+    },
+    "UsernameAttributeType":{
+      "type":"string",
+      "enum":[
+        "phone_number",
+        "email"
+      ]
+    },
+    "UsernameAttributesListType":{
+      "type":"list",
+      "member":{"shape":"UsernameAttributeType"}
     },
     "UsernameExistsException":{
       "type":"structure",
