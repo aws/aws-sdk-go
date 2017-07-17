@@ -1727,6 +1727,20 @@ func (c *CognitoIdentityProvider) AdminResetUserPasswordRequest(input *AdminRese
 //   * ErrCodeUserNotFoundException "UserNotFoundException"
 //   This exception is thrown when a user is not found.
 //
+//   * ErrCodeInvalidSmsRoleAccessPolicyException "InvalidSmsRoleAccessPolicyException"
+//   This exception is returned when the role provided for SMS configuration does
+//   not have permission to publish using Amazon SNS.
+//
+//   * ErrCodeInvalidEmailRoleAccessPolicyException "InvalidEmailRoleAccessPolicyException"
+//   This exception is thrown when Amazon Cognito is not allowed to use your email
+//   identity. HTTP status code: 400.
+//
+//   * ErrCodeInvalidSmsRoleTrustRelationshipException "InvalidSmsRoleTrustRelationshipException"
+//   This exception is thrown when the trust relationship is invalid for the role
+//   provided for SMS configuration. This can happen if you do not trust cognito-idp.amazonaws.com
+//   or the external ID provided in the role does not match what is provided in
+//   the SMS configuration for the user pool.
+//
 //   * ErrCodeInternalErrorException "InternalErrorException"
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
@@ -9232,7 +9246,7 @@ type AdminInitiateAuthInput struct {
 	//    * REFRESH_TOKEN_AUTH will take in a valid refresh token and return new
 	//    tokens.
 	//
-	//    * USER_SRP_AUTH will take in USERNAME and SRPA and return the SRP variables
+	//    * USER_SRP_AUTH will take in USERNAME and SRP_A and return the SRP variables
 	//    to be used for next challenge execution.
 	//
 	// Valid values include:
@@ -9255,7 +9269,7 @@ type AdminInitiateAuthInput struct {
 	// The authentication parameters. These are inputs corresponding to the AuthFlow
 	// that you are invoking. The required values depend on the value of AuthFlow:
 	//
-	//    * For USER_SRP_AUTH: USERNAME (required), SRPA (required), SECRET_HASH
+	//    * For USER_SRP_AUTH: USERNAME (required), SRP_A (required), SECRET_HASH
 	//    (required if the app client is configured with a client secret), DEVICE_KEY
 	//
 	//    * For REFRESH_TOKEN_AUTH/REFRESH_TOKEN: USERNAME (required), SECRET_HASH
@@ -11705,6 +11719,10 @@ type CreateUserPoolInput struct {
 	// The cost allocation tags for the user pool. For more information, see Adding
 	// Cost Allocation Tags to Your User Pool (http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-cost-allocation-tagging.html)
 	UserPoolTags map[string]*string `type:"map"`
+
+	// Specifies whether email addresses or phone numbers can be specified as usernames
+	// when a user signs up.
+	UsernameAttributes []*string `type:"list"`
 }
 
 // String returns the string representation
@@ -11876,6 +11894,12 @@ func (s *CreateUserPoolInput) SetSmsVerificationMessage(v string) *CreateUserPoo
 // SetUserPoolTags sets the UserPoolTags field's value.
 func (s *CreateUserPoolInput) SetUserPoolTags(v map[string]*string) *CreateUserPoolInput {
 	s.UserPoolTags = v
+	return s
+}
+
+// SetUsernameAttributes sets the UsernameAttributes field's value.
+func (s *CreateUserPoolInput) SetUsernameAttributes(v []*string) *CreateUserPoolInput {
+	s.UsernameAttributes = v
 	return s
 }
 
@@ -13955,7 +13979,7 @@ type InitiateAuthInput struct {
 	//    * REFRESH_TOKEN_AUTH will take in a valid refresh token and return new
 	//    tokens.
 	//
-	//    * USER_SRP_AUTH will take in USERNAME and SRPA and return the SRP variables
+	//    * USER_SRP_AUTH will take in USERNAME and SRP_A and return the SRP variables
 	//    to be used for next challenge execution.
 	//
 	// Valid values include:
@@ -13976,7 +14000,7 @@ type InitiateAuthInput struct {
 	// The authentication parameters. These are inputs corresponding to the AuthFlow
 	// that you are invoking. The required values depend on the value of AuthFlow:
 	//
-	//    * For USER_SRP_AUTH: USERNAME (required), SRPA (required), SECRET_HASH
+	//    * For USER_SRP_AUTH: USERNAME (required), SRP_A (required), SECRET_HASH
 	//    (required if the app client is configured with a client secret), DEVICE_KEY
 	//
 	//    * For REFRESH_TOKEN_AUTH/REFRESH_TOKEN: USERNAME (required), SECRET_HASH
@@ -17718,6 +17742,10 @@ type UserPoolType struct {
 	// The cost allocation tags for the user pool. For more information, see Adding
 	// Cost Allocation Tags to Your User Pool (http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-cost-allocation-tagging.html)
 	UserPoolTags map[string]*string `type:"map"`
+
+	// Specifies whether email addresses or phone numbers can be specified as usernames
+	// when a user signs up.
+	UsernameAttributes []*string `type:"list"`
 }
 
 // String returns the string representation
@@ -17865,6 +17893,12 @@ func (s *UserPoolType) SetStatus(v string) *UserPoolType {
 // SetUserPoolTags sets the UserPoolTags field's value.
 func (s *UserPoolType) SetUserPoolTags(v map[string]*string) *UserPoolType {
 	s.UserPoolTags = v
+	return s
+}
+
+// SetUsernameAttributes sets the UsernameAttributes field's value.
+func (s *UserPoolType) SetUsernameAttributes(v []*string) *UserPoolType {
+	s.UsernameAttributes = v
 	return s
 }
 
@@ -18241,6 +18275,14 @@ const (
 
 	// UserStatusTypeForceChangePassword is a UserStatusType enum value
 	UserStatusTypeForceChangePassword = "FORCE_CHANGE_PASSWORD"
+)
+
+const (
+	// UsernameAttributeTypePhoneNumber is a UsernameAttributeType enum value
+	UsernameAttributeTypePhoneNumber = "phone_number"
+
+	// UsernameAttributeTypeEmail is a UsernameAttributeType enum value
+	UsernameAttributeTypeEmail = "email"
 )
 
 const (
