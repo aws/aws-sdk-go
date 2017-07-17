@@ -482,10 +482,10 @@ func TestWaiter_WithContextCanceled(t *testing.T) {
 	}
 
 	w.SleepWithContext = func(c aws.Context, delay time.Duration) error {
-		ctx := c.(*awstesting.FakeContext)
+		context := c.(*awstesting.FakeContext)
 		select {
-		case <-ctx.DoneCh:
-			return ctx.Err()
+		case <-context.DoneCh:
+			return context.Err()
 		default:
 			return nil
 		}

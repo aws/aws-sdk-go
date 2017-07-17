@@ -196,8 +196,15 @@ func (w Waiter) WaitWithContext(ctx aws.Context) error {
 		if sleepFn := req.Config.SleepDelay; sleepFn != nil {
 			// Support SleepDelay for backwards compatibility and testing
 			sleepFn(delay)
-		} else if err := w.SleepWithContext(ctx, delay); err != nil {
-			return awserr.New(CanceledErrorCode, "waiter context canceled", err)
+		} else {
+			sleepCtxFn := w.SleepWithContext
+			if sleepCtxFn == nil {
+				sleepCtxFn = aws.SleepWithContext
+			}
+
+			if err := sleepCtxFn(ctx, delay); err != nil {
+				return awserr.New(CanceledErrorCode, "waiter context canceled", err)
+			}
 		}
 	}
 
