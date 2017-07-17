@@ -133,6 +133,7 @@ func (c *{{ .Operation.API.StructName }}) WaitUntil{{ .Name }}WithContext(` +
 		Name:    "WaitUntil{{ .Name }}",
 		MaxAttempts: {{ .MaxAttempts }},
 		Delay: request.ConstantWaiterDelay({{ .Delay }} * time.Second),
+		SleepWithContext: aws.SleepWithContext,
 		Acceptors: []request.WaiterAcceptor{
 			{{ range $_, $a := .Acceptors }}{
 				State:    request.{{ titleCase .State }}WaiterState,
