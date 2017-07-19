@@ -8,9 +8,11 @@ package restxml
 import (
 	"bytes"
 	"encoding/xml"
+	"io"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/query"
 	"github.com/aws/aws-sdk-go/private/protocol/rest"
 	"github.com/aws/aws-sdk-go/private/protocol/xml/xmlutil"
@@ -30,6 +32,22 @@ var UnmarshalErrorHandler = request.NamedHandler{Name: "awssdk.restxml.Unmarshal
 
 // Build builds a request payload for the REST XML protocol.
 func Build(r *request.Request) {
+	if m, ok := r.Params.(protocol.FieldMarshaler); ok {
+		e := NewEncoder(r.HTTPRequest)
+
+		m.MarshalFields(e)
+
+		var body io.ReadSeeker
+		r.HTTPRequest, body, r.Error = e.Encode()
+		if r.Error != nil {
+			return
+		}
+		if body != nil {
+			r.SetReaderBody(body)
+		}
+		return
+	}
+
 	rest.Build(r)
 
 	if t := rest.PayloadType(r.Params); t == "structure" || t == "" {

@@ -358,6 +358,7 @@ func generateTestSuite(filename string) string {
 		svcPrefix := inout + "Service" + strconv.Itoa(i+1)
 		suite.API.Metadata.ServiceAbbreviation = svcPrefix + "ProtocolTest"
 		suite.API.Operations = map[string]*api.Operation{}
+
 		for idx, c := range suite.Cases {
 			c.Given.ExportedName = svcPrefix + "TestCaseOperation" + strconv.Itoa(idx+1)
 			suite.API.Operations[c.Given.ExportedName] = c.Given
@@ -369,6 +370,9 @@ func generateTestSuite(filename string) string {
 		suite.API.NoConstServiceNames = true // don't generate service names
 		suite.API.Setup()
 		suite.API.Metadata.EndpointPrefix = suite.API.PackageName()
+
+		// TODO until generated marshalers are all supported
+		suite.API.EnableSelectGeneratedMarshalers()
 
 		// Sort in order for deterministic test generation
 		names := make([]string, 0, len(suite.API.Shapes))
