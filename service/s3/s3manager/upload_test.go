@@ -1001,3 +1001,58 @@ func TestUploadWithContextCanceled(t *testing.T) {
 		t.Errorf("expected error message to contain %q, but did not %q", e, a)
 	}
 }
+
+func TestUnescapeLocation(t *testing.T) {
+	uri := "https://bucket.s3-region.foo/a%2Fb%2Fc"
+	expected := "https://bucket.s3-region.foo/a/b/c"
+
+	svc := s3.New(unit.Session)
+	svc.Handlers.Unmarshal.Clear()
+	svc.Handlers.UnmarshalMeta.Clear()
+	svc.Handlers.UnmarshalError.Clear()
+	svc.Handlers.ValidateResponse.Clear()
+	svc.Handlers.Send.Clear()
+	partNum := 0
+	mutex := &sync.Mutex{}
+
+	svc.Handlers.Send.PushBack(func(r *request.Request) {
+		mutex.Lock()
+		defer mutex.Unlock()
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Body:       ioutil.NopCloser(bytes.NewReader([]byte{})),
+		}
+		switch data := r.Data.(type) {
+		case *s3.CreateMultipartUploadOutput:
+			data.UploadId = aws.String("UPLOAD-ID")
+		case *s3.UploadPartOutput:
+			partNum++
+			data.ETag = aws.String(fmt.Sprintf("ETAG%d", partNum))
+		case *s3.CompleteMultipartUploadOutput:
+			data.Location = aws.String(uri)
+			data.VersionId = aws.String("VERSION-ID")
+		case *s3.PutObjectOutput:
+			data.VersionId = aws.String("VERSION-ID")
+		}
+
+	})
+
+	mgr := s3manager.NewUploaderWithClient(svc, func(u *s3manager.Uploader) {
+		u.Concurrency = 5
+		u.UnescapeLocation = true
+	})
+
+	output, err := mgr.Upload(&s3manager.UploadInput{
+		Bucket: aws.String("Bucket"),
+		Key:    aws.String("Key"),
+		Body:   bytes.NewBuffer(make([]byte, 1024*1024*10)),
+	})
+
+	if err != nil {
+		t.Fatal("Expected no error, but received" + err.Error())
+	}
+
+	if expected != output.Location {
+		t.Errorf("Expected %q, but received %q", expected, output.Location)
+	}
+}

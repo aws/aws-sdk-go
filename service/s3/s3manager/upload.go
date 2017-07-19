@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"net/url"
 	"sort"
 	"sync"
 	"time"
@@ -243,6 +244,10 @@ type Uploader struct {
 	// List of request options that will be passed down to individual API
 	// operation requests made by the uploader.
 	RequestOptions []request.Option
+
+	// Multipart upload will return a query escaped URI. Setting this to true will
+	// return an unescaped URI.
+	UnescapeLocation bool
 }
 
 // NewUploader creates a new Uploader instance to upload objects to S3. Pass In
@@ -672,8 +677,18 @@ func (u *multiuploader) upload(firstBuf io.ReadSeeker) (*UploadOutput, error) {
 			uploadID: u.uploadID,
 		}
 	}
+
+	location := aws.StringValue(complete.Location)
+	if u.cfg.UnescapeLocation {
+		l, err := url.QueryUnescape(location)
+		if err != nil {
+			return nil, err
+		}
+		location = l
+	}
+
 	return &UploadOutput{
-		Location:  aws.StringValue(complete.Location),
+		Location:  location,
 		VersionID: complete.VersionId,
 		UploadID:  u.uploadID,
 	}, nil
