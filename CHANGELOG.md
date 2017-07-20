@@ -1,3 +1,10 @@
+Release v1.10.14 (2017-07-20)
+===
+
+### Service Client Updates
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Amazon EMR now includes the ability to use a custom Amazon Linux AMI and adjustable root volume size when launching a cluster.
+
 Release v1.10.13 (2017-07-19)
 ===
 
