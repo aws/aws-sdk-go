@@ -30,6 +30,8 @@ func TestStripExcessHeaders(t *testing.T) {
 		" 1  2  ",
 		"12   3",
 		"12   3   1",
+		"12           3     1",
+		"12     3       1abc123",
 	}
 
 	expected := []string{
@@ -43,11 +45,13 @@ func TestStripExcessHeaders(t *testing.T) {
 		"1 2",
 		"12 3",
 		"12 3 1",
+		"12 3 1",
+		"12 3 1abc123",
 	}
 
-	newVals := stripExcessSpaces(vals)
-	for i := 0; i < len(newVals); i++ {
-		assert.Equal(t, expected[i], newVals[i], "test: %d", i)
+	stripExcessSpaces(vals)
+	for i := 0; i < len(vals); i++ {
+		assert.Equal(t, expected[i], vals[i], "test: %d", i)
 	}
 }
 
@@ -507,15 +511,29 @@ func BenchmarkSignRequest(b *testing.B) {
 	}
 }
 
-func BenchmarkStripExcessSpaces(b *testing.B) {
-	vals := []string{
-		`AWS4-HMAC-SHA256 Credential=AKIDFAKEIDFAKEID/20160628/us-west-2/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature=1234567890abcdef1234567890abcdef1234567890abcdef`,
-		`123   321   123   321`,
-		`   123   321   123   321   `,
-	}
+var stripExcessSpaceCases = []string{
+	`AWS4-HMAC-SHA256 Credential=AKIDFAKEIDFAKEID/20160628/us-west-2/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature=1234567890abcdef1234567890abcdef1234567890abcdef`,
+	`123   321   123   321`,
+	`   123   321   123   321   `,
+	`   123    321    123          321   `,
+	"123",
+	"1 2 3",
+	"  1 2 3",
+	"1  2 3",
+	"1  23",
+	"1  2  3",
+	"1  2  ",
+	" 1  2  ",
+	"12   3",
+	"12   3   1",
+	"12           3     1",
+	"12     3       1abc123",
+}
 
-	b.ResetTimer()
+func BenchmarkStripExcessSpaces(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		stripExcessSpaces(vals)
+		// Make sure to start with a copy of the cases
+		cases := append([]string{}, stripExcessSpaceCases...)
+		stripExcessSpaces(cases)
 	}
 }
