@@ -9,6 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
 const opAssociateVPCWithHostedZone = "AssociateVPCWithHostedZone"
@@ -5480,6 +5481,22 @@ func (s *AlarmIdentifier) SetRegion(v string) *AlarmIdentifier {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *AlarmIdentifier) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Name != nil {
+		v := *s.Name
+
+		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Region != nil {
+		v := *s.Region
+
+		e.SetValue(protocol.BodyTarget, "Region", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // Alias resource record sets only: Information about the CloudFront distribution,
 // Elastic Beanstalk environment, ELB load balancer, Amazon S3 bucket, or Amazon
 // Route 53 resource record set that you're redirecting queries to. An Elastic
@@ -5713,6 +5730,27 @@ func (s *AliasTarget) SetHostedZoneId(v string) *AliasTarget {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *AliasTarget) MarshalFields(e protocol.FieldEncoder) error {
+	if s.DNSName != nil {
+		v := *s.DNSName
+
+		e.SetValue(protocol.BodyTarget, "DNSName", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.EvaluateTargetHealth != nil {
+		v := *s.EvaluateTargetHealth
+
+		e.SetValue(protocol.BodyTarget, "EvaluateTargetHealth", protocol.BoolValue(v), protocol.Metadata{})
+	}
+	if s.HostedZoneId != nil {
+		v := *s.HostedZoneId
+
+		e.SetValue(protocol.BodyTarget, "HostedZoneId", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains information about the request to associate a
 // VPC with a private hosted zone.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/AssociateVPCWithHostedZoneRequest
@@ -5787,6 +5825,27 @@ func (s *AssociateVPCWithHostedZoneInput) SetVPC(v *VPC) *AssociateVPCWithHosted
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *AssociateVPCWithHostedZoneInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Comment != nil {
+		v := *s.Comment
+
+		e.SetValue(protocol.BodyTarget, "Comment", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.HostedZoneId != nil {
+		v := *s.HostedZoneId
+
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.VPC != nil {
+		v := s.VPC
+
+		e.SetFields(protocol.BodyTarget, "VPC", v, protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains the response information for the AssociateVPCWithHostedZone
 // request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/AssociateVPCWithHostedZoneResponse
@@ -5813,6 +5872,17 @@ func (s AssociateVPCWithHostedZoneOutput) GoString() string {
 func (s *AssociateVPCWithHostedZoneOutput) SetChangeInfo(v *ChangeInfo) *AssociateVPCWithHostedZoneOutput {
 	s.ChangeInfo = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *AssociateVPCWithHostedZoneOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.ChangeInfo != nil {
+		v := s.ChangeInfo
+
+		e.SetFields(protocol.BodyTarget, "ChangeInfo", v, protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // The information for each resource record set that you want to change.
@@ -5924,6 +5994,30 @@ func (s *Change) SetResourceRecordSet(v *ResourceRecordSet) *Change {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *Change) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Action != nil {
+		v := *s.Action
+
+		e.SetValue(protocol.BodyTarget, "Action", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.ResourceRecordSet != nil {
+		v := s.ResourceRecordSet
+
+		e.SetFields(protocol.BodyTarget, "ResourceRecordSet", v, protocol.Metadata{})
+	}
+
+	return nil
+}
+
+func encodeChangeList(vs []*Change) func(protocol.ListEncoder) {
+	return func(le protocol.ListEncoder) {
+		for _, v := range vs {
+			le.ListAddFields(v)
+		}
+	}
+}
+
 // The information for a change request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ChangeBatch
 type ChangeBatch struct {
@@ -5984,6 +6078,22 @@ func (s *ChangeBatch) SetChanges(v []*Change) *ChangeBatch {
 func (s *ChangeBatch) SetComment(v string) *ChangeBatch {
 	s.Comment = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ChangeBatch) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.Changes) > 0 {
+		v := s.Changes
+
+		e.SetList(protocol.BodyTarget, "Changes", encodeChangeList(v), protocol.Metadata{ListLocationName: "Change"})
+	}
+	if s.Comment != nil {
+		v := *s.Comment
+
+		e.SetValue(protocol.BodyTarget, "Comment", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A complex type that describes change information about changes made to your
@@ -6053,6 +6163,32 @@ func (s *ChangeInfo) SetSubmittedAt(v time.Time) *ChangeInfo {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ChangeInfo) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Comment != nil {
+		v := *s.Comment
+
+		e.SetValue(protocol.BodyTarget, "Comment", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.BodyTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Status != nil {
+		v := *s.Status
+
+		e.SetValue(protocol.BodyTarget, "Status", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.SubmittedAt != nil {
+		v := *s.SubmittedAt
+
+		e.SetValue(protocol.BodyTarget, "SubmittedAt", protocol.TimeValue{V: v, Format: protocol.ISO8601TimeFormat}, protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains change information for the resource record set.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ChangeResourceRecordSetsRequest
 type ChangeResourceRecordSetsInput struct {
@@ -6113,6 +6249,22 @@ func (s *ChangeResourceRecordSetsInput) SetHostedZoneId(v string) *ChangeResourc
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ChangeResourceRecordSetsInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.ChangeBatch != nil {
+		v := s.ChangeBatch
+
+		e.SetFields(protocol.BodyTarget, "ChangeBatch", v, protocol.Metadata{})
+	}
+	if s.HostedZoneId != nil {
+		v := *s.HostedZoneId
+
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type containing the response for the request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ChangeResourceRecordSetsResponse
 type ChangeResourceRecordSetsOutput struct {
@@ -6142,6 +6294,17 @@ func (s ChangeResourceRecordSetsOutput) GoString() string {
 func (s *ChangeResourceRecordSetsOutput) SetChangeInfo(v *ChangeInfo) *ChangeResourceRecordSetsOutput {
 	s.ChangeInfo = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ChangeResourceRecordSetsOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.ChangeInfo != nil {
+		v := s.ChangeInfo
+
+		e.SetFields(protocol.BodyTarget, "ChangeInfo", v, protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A complex type that contains information about the tags that you want to
@@ -6232,6 +6395,32 @@ func (s *ChangeTagsForResourceInput) SetResourceType(v string) *ChangeTagsForRes
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ChangeTagsForResourceInput) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.AddTags) > 0 {
+		v := s.AddTags
+
+		e.SetList(protocol.BodyTarget, "AddTags", encodeTagList(v), protocol.Metadata{ListLocationName: "Tag"})
+	}
+	if len(s.RemoveTagKeys) > 0 {
+		v := s.RemoveTagKeys
+
+		e.SetList(protocol.BodyTarget, "RemoveTagKeys", protocol.EncodeStringList(v), protocol.Metadata{ListLocationName: "Key"})
+	}
+	if s.ResourceId != nil {
+		v := *s.ResourceId
+
+		e.SetValue(protocol.PathTarget, "ResourceId", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.ResourceType != nil {
+		v := *s.ResourceType
+
+		e.SetValue(protocol.PathTarget, "ResourceType", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // Empty response for the request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ChangeTagsForResourceResponse
 type ChangeTagsForResourceOutput struct {
@@ -6246,6 +6435,12 @@ func (s ChangeTagsForResourceOutput) String() string {
 // GoString returns the string representation
 func (s ChangeTagsForResourceOutput) GoString() string {
 	return s.String()
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ChangeTagsForResourceOutput) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // A complex type that contains information about the CloudWatch alarm that
@@ -6361,6 +6556,52 @@ func (s *CloudWatchAlarmConfiguration) SetThreshold(v float64) *CloudWatchAlarmC
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *CloudWatchAlarmConfiguration) MarshalFields(e protocol.FieldEncoder) error {
+	if s.ComparisonOperator != nil {
+		v := *s.ComparisonOperator
+
+		e.SetValue(protocol.BodyTarget, "ComparisonOperator", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if len(s.Dimensions) > 0 {
+		v := s.Dimensions
+
+		e.SetList(protocol.BodyTarget, "Dimensions", encodeDimensionList(v), protocol.Metadata{ListLocationName: "Dimension"})
+	}
+	if s.EvaluationPeriods != nil {
+		v := *s.EvaluationPeriods
+
+		e.SetValue(protocol.BodyTarget, "EvaluationPeriods", protocol.Int64Value(v), protocol.Metadata{})
+	}
+	if s.MetricName != nil {
+		v := *s.MetricName
+
+		e.SetValue(protocol.BodyTarget, "MetricName", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Namespace != nil {
+		v := *s.Namespace
+
+		e.SetValue(protocol.BodyTarget, "Namespace", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Period != nil {
+		v := *s.Period
+
+		e.SetValue(protocol.BodyTarget, "Period", protocol.Int64Value(v), protocol.Metadata{})
+	}
+	if s.Statistic != nil {
+		v := *s.Statistic
+
+		e.SetValue(protocol.BodyTarget, "Statistic", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Threshold != nil {
+		v := *s.Threshold
+
+		e.SetValue(protocol.BodyTarget, "Threshold", protocol.Float64Value(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains the health check request information.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateHealthCheckRequest
 type CreateHealthCheckInput struct {
@@ -6442,6 +6683,22 @@ func (s *CreateHealthCheckInput) SetHealthCheckConfig(v *HealthCheckConfig) *Cre
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *CreateHealthCheckInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.CallerReference != nil {
+		v := *s.CallerReference
+
+		e.SetValue(protocol.BodyTarget, "CallerReference", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.HealthCheckConfig != nil {
+		v := s.HealthCheckConfig
+
+		e.SetFields(protocol.BodyTarget, "HealthCheckConfig", v, protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type containing the response information for the new health check.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateHealthCheckResponse
 type CreateHealthCheckOutput struct {
@@ -6478,6 +6735,22 @@ func (s *CreateHealthCheckOutput) SetHealthCheck(v *HealthCheck) *CreateHealthCh
 func (s *CreateHealthCheckOutput) SetLocation(v string) *CreateHealthCheckOutput {
 	s.Location = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *CreateHealthCheckOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.HealthCheck != nil {
+		v := s.HealthCheck
+
+		e.SetFields(protocol.BodyTarget, "HealthCheck", v, protocol.Metadata{})
+	}
+	if s.Location != nil {
+		v := *s.Location
+
+		e.SetValue(protocol.HeaderTarget, "Location", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A complex type that contains information about the request to create a hosted
@@ -6598,6 +6871,37 @@ func (s *CreateHostedZoneInput) SetVPC(v *VPC) *CreateHostedZoneInput {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *CreateHostedZoneInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.CallerReference != nil {
+		v := *s.CallerReference
+
+		e.SetValue(protocol.BodyTarget, "CallerReference", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.DelegationSetId != nil {
+		v := *s.DelegationSetId
+
+		e.SetValue(protocol.BodyTarget, "DelegationSetId", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.HostedZoneConfig != nil {
+		v := s.HostedZoneConfig
+
+		e.SetFields(protocol.BodyTarget, "HostedZoneConfig", v, protocol.Metadata{})
+	}
+	if s.Name != nil {
+		v := *s.Name
+
+		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.VPC != nil {
+		v := s.VPC
+
+		e.SetFields(protocol.BodyTarget, "VPC", v, protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type containing the response information for the hosted zone.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateHostedZoneResponse
 type CreateHostedZoneOutput struct {
@@ -6668,6 +6972,37 @@ func (s *CreateHostedZoneOutput) SetVPC(v *VPC) *CreateHostedZoneOutput {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *CreateHostedZoneOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.ChangeInfo != nil {
+		v := s.ChangeInfo
+
+		e.SetFields(protocol.BodyTarget, "ChangeInfo", v, protocol.Metadata{})
+	}
+	if s.DelegationSet != nil {
+		v := s.DelegationSet
+
+		e.SetFields(protocol.BodyTarget, "DelegationSet", v, protocol.Metadata{})
+	}
+	if s.HostedZone != nil {
+		v := s.HostedZone
+
+		e.SetFields(protocol.BodyTarget, "HostedZone", v, protocol.Metadata{})
+	}
+	if s.Location != nil {
+		v := *s.Location
+
+		e.SetValue(protocol.HeaderTarget, "Location", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.VPC != nil {
+		v := s.VPC
+
+		e.SetFields(protocol.BodyTarget, "VPC", v, protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateQueryLoggingConfigRequest
 type CreateQueryLoggingConfigInput struct {
 	_ struct{} `locationName:"CreateQueryLoggingConfigRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
@@ -6730,6 +7065,22 @@ func (s *CreateQueryLoggingConfigInput) SetHostedZoneId(v string) *CreateQueryLo
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *CreateQueryLoggingConfigInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.CloudWatchLogsLogGroupArn != nil {
+		v := *s.CloudWatchLogsLogGroupArn
+
+		e.SetValue(protocol.BodyTarget, "CloudWatchLogsLogGroupArn", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.HostedZoneId != nil {
+		v := *s.HostedZoneId
+
+		e.SetValue(protocol.BodyTarget, "HostedZoneId", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateQueryLoggingConfigResponse
 type CreateQueryLoggingConfigOutput struct {
 	_ struct{} `type:"structure"`
@@ -6767,6 +7118,22 @@ func (s *CreateQueryLoggingConfigOutput) SetLocation(v string) *CreateQueryLoggi
 func (s *CreateQueryLoggingConfigOutput) SetQueryLoggingConfig(v *QueryLoggingConfig) *CreateQueryLoggingConfigOutput {
 	s.QueryLoggingConfig = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *CreateQueryLoggingConfigOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Location != nil {
+		v := *s.Location
+
+		e.SetValue(protocol.HeaderTarget, "Location", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.QueryLoggingConfig != nil {
+		v := s.QueryLoggingConfig
+
+		e.SetFields(protocol.BodyTarget, "QueryLoggingConfig", v, protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateReusableDelegationSetRequest
@@ -6825,6 +7192,22 @@ func (s *CreateReusableDelegationSetInput) SetHostedZoneId(v string) *CreateReus
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *CreateReusableDelegationSetInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.CallerReference != nil {
+		v := *s.CallerReference
+
+		e.SetValue(protocol.BodyTarget, "CallerReference", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.HostedZoneId != nil {
+		v := *s.HostedZoneId
+
+		e.SetValue(protocol.BodyTarget, "HostedZoneId", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateReusableDelegationSetResponse
 type CreateReusableDelegationSetOutput struct {
 	_ struct{} `type:"structure"`
@@ -6860,6 +7243,22 @@ func (s *CreateReusableDelegationSetOutput) SetDelegationSet(v *DelegationSet) *
 func (s *CreateReusableDelegationSetOutput) SetLocation(v string) *CreateReusableDelegationSetOutput {
 	s.Location = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *CreateReusableDelegationSetOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.DelegationSet != nil {
+		v := s.DelegationSet
+
+		e.SetFields(protocol.BodyTarget, "DelegationSet", v, protocol.Metadata{})
+	}
+	if s.Location != nil {
+		v := *s.Location
+
+		e.SetValue(protocol.HeaderTarget, "Location", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A complex type that contains information about the traffic policy that you
@@ -6925,6 +7324,27 @@ func (s *CreateTrafficPolicyInput) SetDocument(v string) *CreateTrafficPolicyInp
 func (s *CreateTrafficPolicyInput) SetName(v string) *CreateTrafficPolicyInput {
 	s.Name = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *CreateTrafficPolicyInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Comment != nil {
+		v := *s.Comment
+
+		e.SetValue(protocol.BodyTarget, "Comment", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Document != nil {
+		v := *s.Document
+
+		e.SetValue(protocol.BodyTarget, "Document", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Name != nil {
+		v := *s.Name
+
+		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A complex type that contains information about the resource record sets that
@@ -7036,6 +7456,37 @@ func (s *CreateTrafficPolicyInstanceInput) SetTrafficPolicyVersion(v int64) *Cre
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *CreateTrafficPolicyInstanceInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.HostedZoneId != nil {
+		v := *s.HostedZoneId
+
+		e.SetValue(protocol.BodyTarget, "HostedZoneId", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Name != nil {
+		v := *s.Name
+
+		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TTL != nil {
+		v := *s.TTL
+
+		e.SetValue(protocol.BodyTarget, "TTL", protocol.Int64Value(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyId != nil {
+		v := *s.TrafficPolicyId
+
+		e.SetValue(protocol.BodyTarget, "TrafficPolicyId", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyVersion != nil {
+		v := *s.TrafficPolicyVersion
+
+		e.SetValue(protocol.BodyTarget, "TrafficPolicyVersion", protocol.Int64Value(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains the response information for the CreateTrafficPolicyInstance
 // request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateTrafficPolicyInstanceResponse
@@ -7075,6 +7526,22 @@ func (s *CreateTrafficPolicyInstanceOutput) SetTrafficPolicyInstance(v *TrafficP
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *CreateTrafficPolicyInstanceOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Location != nil {
+		v := *s.Location
+
+		e.SetValue(protocol.HeaderTarget, "Location", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyInstance != nil {
+		v := s.TrafficPolicyInstance
+
+		e.SetFields(protocol.BodyTarget, "TrafficPolicyInstance", v, protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains the response information for the CreateTrafficPolicy
 // request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateTrafficPolicyResponse
@@ -7112,6 +7579,22 @@ func (s *CreateTrafficPolicyOutput) SetLocation(v string) *CreateTrafficPolicyOu
 func (s *CreateTrafficPolicyOutput) SetTrafficPolicy(v *TrafficPolicy) *CreateTrafficPolicyOutput {
 	s.TrafficPolicy = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *CreateTrafficPolicyOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Location != nil {
+		v := *s.Location
+
+		e.SetValue(protocol.HeaderTarget, "Location", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicy != nil {
+		v := s.TrafficPolicy
+
+		e.SetFields(protocol.BodyTarget, "TrafficPolicy", v, protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A complex type that contains information about the traffic policy that you
@@ -7184,6 +7667,27 @@ func (s *CreateTrafficPolicyVersionInput) SetId(v string) *CreateTrafficPolicyVe
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *CreateTrafficPolicyVersionInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Comment != nil {
+		v := *s.Comment
+
+		e.SetValue(protocol.BodyTarget, "Comment", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Document != nil {
+		v := *s.Document
+
+		e.SetValue(protocol.BodyTarget, "Document", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains the response information for the CreateTrafficPolicyVersion
 // request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateTrafficPolicyVersionResponse
@@ -7222,6 +7726,22 @@ func (s *CreateTrafficPolicyVersionOutput) SetLocation(v string) *CreateTrafficP
 func (s *CreateTrafficPolicyVersionOutput) SetTrafficPolicy(v *TrafficPolicy) *CreateTrafficPolicyVersionOutput {
 	s.TrafficPolicy = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *CreateTrafficPolicyVersionOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Location != nil {
+		v := *s.Location
+
+		e.SetValue(protocol.HeaderTarget, "Location", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicy != nil {
+		v := s.TrafficPolicy
+
+		e.SetFields(protocol.BodyTarget, "TrafficPolicy", v, protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A complex type that contains information about the request to authorize associating
@@ -7287,6 +7807,22 @@ func (s *CreateVPCAssociationAuthorizationInput) SetVPC(v *VPC) *CreateVPCAssoci
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *CreateVPCAssociationAuthorizationInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.HostedZoneId != nil {
+		v := *s.HostedZoneId
+
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.VPC != nil {
+		v := s.VPC
+
+		e.SetFields(protocol.BodyTarget, "VPC", v, protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains the response information from a CreateVPCAssociationAuthorization
 // request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateVPCAssociationAuthorizationResponse
@@ -7324,6 +7860,22 @@ func (s *CreateVPCAssociationAuthorizationOutput) SetHostedZoneId(v string) *Cre
 func (s *CreateVPCAssociationAuthorizationOutput) SetVPC(v *VPC) *CreateVPCAssociationAuthorizationOutput {
 	s.VPC = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *CreateVPCAssociationAuthorizationOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.HostedZoneId != nil {
+		v := *s.HostedZoneId
+
+		e.SetValue(protocol.BodyTarget, "HostedZoneId", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.VPC != nil {
+		v := s.VPC
+
+		e.SetFields(protocol.BodyTarget, "VPC", v, protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A complex type that lists the name servers in a delegation set, as well as
@@ -7374,6 +7926,35 @@ func (s *DelegationSet) SetNameServers(v []*string) *DelegationSet {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DelegationSet) MarshalFields(e protocol.FieldEncoder) error {
+	if s.CallerReference != nil {
+		v := *s.CallerReference
+
+		e.SetValue(protocol.BodyTarget, "CallerReference", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.BodyTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if len(s.NameServers) > 0 {
+		v := s.NameServers
+
+		e.SetList(protocol.BodyTarget, "NameServers", protocol.EncodeStringList(v), protocol.Metadata{ListLocationName: "NameServer"})
+	}
+
+	return nil
+}
+
+func encodeDelegationSetList(vs []*DelegationSet) func(protocol.ListEncoder) {
+	return func(le protocol.ListEncoder) {
+		for _, v := range vs {
+			le.ListAddFields(v)
+		}
+	}
+}
+
 // This action deletes a health check.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteHealthCheckRequest
 type DeleteHealthCheckInput struct {
@@ -7414,6 +7995,17 @@ func (s *DeleteHealthCheckInput) SetHealthCheckId(v string) *DeleteHealthCheckIn
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DeleteHealthCheckInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.HealthCheckId != nil {
+		v := *s.HealthCheckId
+
+		e.SetValue(protocol.PathTarget, "HealthCheckId", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // An empty element.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteHealthCheckResponse
 type DeleteHealthCheckOutput struct {
@@ -7428,6 +8020,12 @@ func (s DeleteHealthCheckOutput) String() string {
 // GoString returns the string representation
 func (s DeleteHealthCheckOutput) GoString() string {
 	return s.String()
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DeleteHealthCheckOutput) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // A request to delete a hosted zone.
@@ -7470,6 +8068,17 @@ func (s *DeleteHostedZoneInput) SetId(v string) *DeleteHostedZoneInput {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DeleteHostedZoneInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains the response to a DeleteHostedZone request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteHostedZoneResponse
 type DeleteHostedZoneOutput struct {
@@ -7496,6 +8105,17 @@ func (s DeleteHostedZoneOutput) GoString() string {
 func (s *DeleteHostedZoneOutput) SetChangeInfo(v *ChangeInfo) *DeleteHostedZoneOutput {
 	s.ChangeInfo = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DeleteHostedZoneOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.ChangeInfo != nil {
+		v := s.ChangeInfo
+
+		e.SetFields(protocol.BodyTarget, "ChangeInfo", v, protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteQueryLoggingConfigRequest
@@ -7540,6 +8160,17 @@ func (s *DeleteQueryLoggingConfigInput) SetId(v string) *DeleteQueryLoggingConfi
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DeleteQueryLoggingConfigInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteQueryLoggingConfigResponse
 type DeleteQueryLoggingConfigOutput struct {
 	_ struct{} `type:"structure"`
@@ -7553,6 +8184,12 @@ func (s DeleteQueryLoggingConfigOutput) String() string {
 // GoString returns the string representation
 func (s DeleteQueryLoggingConfigOutput) GoString() string {
 	return s.String()
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DeleteQueryLoggingConfigOutput) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // A request to delete a reusable delegation set.
@@ -7595,6 +8232,17 @@ func (s *DeleteReusableDelegationSetInput) SetId(v string) *DeleteReusableDelega
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DeleteReusableDelegationSetInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // An empty element.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteReusableDelegationSetResponse
 type DeleteReusableDelegationSetOutput struct {
@@ -7609,6 +8257,12 @@ func (s DeleteReusableDelegationSetOutput) String() string {
 // GoString returns the string representation
 func (s DeleteReusableDelegationSetOutput) GoString() string {
 	return s.String()
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DeleteReusableDelegationSetOutput) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // A request to delete a specified traffic policy version.
@@ -7671,6 +8325,22 @@ func (s *DeleteTrafficPolicyInput) SetVersion(v int64) *DeleteTrafficPolicyInput
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DeleteTrafficPolicyInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Version != nil {
+		v := *s.Version
+
+		e.SetValue(protocol.PathTarget, "Version", protocol.Int64Value(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A request to delete a specified traffic policy instance.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteTrafficPolicyInstanceRequest
 type DeleteTrafficPolicyInstanceInput struct {
@@ -7718,6 +8388,17 @@ func (s *DeleteTrafficPolicyInstanceInput) SetId(v string) *DeleteTrafficPolicyI
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DeleteTrafficPolicyInstanceInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // An empty element.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteTrafficPolicyInstanceResponse
 type DeleteTrafficPolicyInstanceOutput struct {
@@ -7734,6 +8415,12 @@ func (s DeleteTrafficPolicyInstanceOutput) GoString() string {
 	return s.String()
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DeleteTrafficPolicyInstanceOutput) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
+}
+
 // An empty element.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteTrafficPolicyResponse
 type DeleteTrafficPolicyOutput struct {
@@ -7748,6 +8435,12 @@ func (s DeleteTrafficPolicyOutput) String() string {
 // GoString returns the string representation
 func (s DeleteTrafficPolicyOutput) GoString() string {
 	return s.String()
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DeleteTrafficPolicyOutput) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // A complex type that contains information about the request to remove authorization
@@ -7815,6 +8508,22 @@ func (s *DeleteVPCAssociationAuthorizationInput) SetVPC(v *VPC) *DeleteVPCAssoci
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DeleteVPCAssociationAuthorizationInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.HostedZoneId != nil {
+		v := *s.HostedZoneId
+
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.VPC != nil {
+		v := s.VPC
+
+		e.SetFields(protocol.BodyTarget, "VPC", v, protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // Empty response for the request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteVPCAssociationAuthorizationResponse
 type DeleteVPCAssociationAuthorizationOutput struct {
@@ -7829,6 +8538,12 @@ func (s DeleteVPCAssociationAuthorizationOutput) String() string {
 // GoString returns the string representation
 func (s DeleteVPCAssociationAuthorizationOutput) GoString() string {
 	return s.String()
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DeleteVPCAssociationAuthorizationOutput) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // For the metric that the CloudWatch alarm is associated with, a complex type
@@ -7870,6 +8585,30 @@ func (s *Dimension) SetName(v string) *Dimension {
 func (s *Dimension) SetValue(v string) *Dimension {
 	s.Value = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *Dimension) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Name != nil {
+		v := *s.Name
+
+		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Value != nil {
+		v := *s.Value
+
+		e.SetValue(protocol.BodyTarget, "Value", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
+func encodeDimensionList(vs []*Dimension) func(protocol.ListEncoder) {
+	return func(le protocol.ListEncoder) {
+		for _, v := range vs {
+			le.ListAddFields(v)
+		}
+	}
 }
 
 // A complex type that contains information about the VPC that you want to disassociate
@@ -7942,6 +8681,27 @@ func (s *DisassociateVPCFromHostedZoneInput) SetVPC(v *VPC) *DisassociateVPCFrom
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DisassociateVPCFromHostedZoneInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Comment != nil {
+		v := *s.Comment
+
+		e.SetValue(protocol.BodyTarget, "Comment", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.HostedZoneId != nil {
+		v := *s.HostedZoneId
+
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.VPC != nil {
+		v := s.VPC
+
+		e.SetFields(protocol.BodyTarget, "VPC", v, protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains the response information for the disassociate
 // request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DisassociateVPCFromHostedZoneResponse
@@ -7969,6 +8729,17 @@ func (s DisassociateVPCFromHostedZoneOutput) GoString() string {
 func (s *DisassociateVPCFromHostedZoneOutput) SetChangeInfo(v *ChangeInfo) *DisassociateVPCFromHostedZoneOutput {
 	s.ChangeInfo = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DisassociateVPCFromHostedZoneOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.ChangeInfo != nil {
+		v := s.ChangeInfo
+
+		e.SetFields(protocol.BodyTarget, "ChangeInfo", v, protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A complex type that contains information about a geo location.
@@ -8037,6 +8808,27 @@ func (s *GeoLocation) SetCountryCode(v string) *GeoLocation {
 func (s *GeoLocation) SetSubdivisionCode(v string) *GeoLocation {
 	s.SubdivisionCode = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GeoLocation) MarshalFields(e protocol.FieldEncoder) error {
+	if s.ContinentCode != nil {
+		v := *s.ContinentCode
+
+		e.SetValue(protocol.BodyTarget, "ContinentCode", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.CountryCode != nil {
+		v := *s.CountryCode
+
+		e.SetValue(protocol.BodyTarget, "CountryCode", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.SubdivisionCode != nil {
+		v := *s.SubdivisionCode
+
+		e.SetValue(protocol.BodyTarget, "SubdivisionCode", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A complex type that contains the codes and full continent, country, and subdivision
@@ -8112,6 +8904,50 @@ func (s *GeoLocationDetails) SetSubdivisionName(v string) *GeoLocationDetails {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GeoLocationDetails) MarshalFields(e protocol.FieldEncoder) error {
+	if s.ContinentCode != nil {
+		v := *s.ContinentCode
+
+		e.SetValue(protocol.BodyTarget, "ContinentCode", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.ContinentName != nil {
+		v := *s.ContinentName
+
+		e.SetValue(protocol.BodyTarget, "ContinentName", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.CountryCode != nil {
+		v := *s.CountryCode
+
+		e.SetValue(protocol.BodyTarget, "CountryCode", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.CountryName != nil {
+		v := *s.CountryName
+
+		e.SetValue(protocol.BodyTarget, "CountryName", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.SubdivisionCode != nil {
+		v := *s.SubdivisionCode
+
+		e.SetValue(protocol.BodyTarget, "SubdivisionCode", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.SubdivisionName != nil {
+		v := *s.SubdivisionName
+
+		e.SetValue(protocol.BodyTarget, "SubdivisionName", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
+func encodeGeoLocationDetailsList(vs []*GeoLocationDetails) func(protocol.ListEncoder) {
+	return func(le protocol.ListEncoder) {
+		for _, v := range vs {
+			le.ListAddFields(v)
+		}
+	}
+}
+
 // The input for a GetChange request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetChangeRequest
 type GetChangeInput struct {
@@ -8154,6 +8990,17 @@ func (s *GetChangeInput) SetId(v string) *GetChangeInput {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetChangeInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains the ChangeInfo element.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetChangeResponse
 type GetChangeOutput struct {
@@ -8181,6 +9028,17 @@ func (s *GetChangeOutput) SetChangeInfo(v *ChangeInfo) *GetChangeOutput {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetChangeOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.ChangeInfo != nil {
+		v := s.ChangeInfo
+
+		e.SetFields(protocol.BodyTarget, "ChangeInfo", v, protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetCheckerIpRangesRequest
 type GetCheckerIpRangesInput struct {
 	_ struct{} `type:"structure"`
@@ -8194,6 +9052,12 @@ func (s GetCheckerIpRangesInput) String() string {
 // GoString returns the string representation
 func (s GetCheckerIpRangesInput) GoString() string {
 	return s.String()
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetCheckerIpRangesInput) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetCheckerIpRangesResponse
@@ -8218,6 +9082,17 @@ func (s GetCheckerIpRangesOutput) GoString() string {
 func (s *GetCheckerIpRangesOutput) SetCheckerIpRanges(v []*string) *GetCheckerIpRangesOutput {
 	s.CheckerIpRanges = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetCheckerIpRangesOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.CheckerIpRanges) > 0 {
+		v := s.CheckerIpRanges
+
+		e.SetList(protocol.BodyTarget, "CheckerIpRanges", protocol.EncodeStringList(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A request for information about whether a specified geographic location is
@@ -8301,6 +9176,27 @@ func (s *GetGeoLocationInput) SetSubdivisionCode(v string) *GetGeoLocationInput 
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetGeoLocationInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.ContinentCode != nil {
+		v := *s.ContinentCode
+
+		e.SetValue(protocol.QueryTarget, "continentcode", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.CountryCode != nil {
+		v := *s.CountryCode
+
+		e.SetValue(protocol.QueryTarget, "countrycode", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.SubdivisionCode != nil {
+		v := *s.SubdivisionCode
+
+		e.SetValue(protocol.QueryTarget, "subdivisioncode", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains the response information for the specified geolocation
 // code.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetGeoLocationResponse
@@ -8330,6 +9226,17 @@ func (s *GetGeoLocationOutput) SetGeoLocationDetails(v *GeoLocationDetails) *Get
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetGeoLocationOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.GeoLocationDetails != nil {
+		v := s.GeoLocationDetails
+
+		e.SetFields(protocol.BodyTarget, "GeoLocationDetails", v, protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A request for the number of health checks that are associated with the current
 // AWS account.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHealthCheckCountRequest
@@ -8345,6 +9252,12 @@ func (s GetHealthCheckCountInput) String() string {
 // GoString returns the string representation
 func (s GetHealthCheckCountInput) GoString() string {
 	return s.String()
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetHealthCheckCountInput) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // A complex type that contains the response to a GetHealthCheckCount request.
@@ -8372,6 +9285,17 @@ func (s GetHealthCheckCountOutput) GoString() string {
 func (s *GetHealthCheckCountOutput) SetHealthCheckCount(v int64) *GetHealthCheckCountOutput {
 	s.HealthCheckCount = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetHealthCheckCountOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.HealthCheckCount != nil {
+		v := *s.HealthCheckCount
+
+		e.SetValue(protocol.BodyTarget, "HealthCheckCount", protocol.Int64Value(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A request to get information about a specified health check.
@@ -8417,6 +9341,17 @@ func (s *GetHealthCheckInput) SetHealthCheckId(v string) *GetHealthCheckInput {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetHealthCheckInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.HealthCheckId != nil {
+		v := *s.HealthCheckId
+
+		e.SetValue(protocol.PathTarget, "HealthCheckId", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A request for the reason that a health check failed most recently.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHealthCheckLastFailureReasonRequest
 type GetHealthCheckLastFailureReasonInput struct {
@@ -8459,6 +9394,17 @@ func (s *GetHealthCheckLastFailureReasonInput) SetHealthCheckId(v string) *GetHe
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetHealthCheckLastFailureReasonInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.HealthCheckId != nil {
+		v := *s.HealthCheckId
+
+		e.SetValue(protocol.PathTarget, "HealthCheckId", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains the response to a GetHealthCheckLastFailureReason
 // request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHealthCheckLastFailureReasonResponse
@@ -8488,6 +9434,17 @@ func (s *GetHealthCheckLastFailureReasonOutput) SetHealthCheckObservations(v []*
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetHealthCheckLastFailureReasonOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.HealthCheckObservations) > 0 {
+		v := s.HealthCheckObservations
+
+		e.SetList(protocol.BodyTarget, "HealthCheckObservations", encodeHealthCheckObservationList(v), protocol.Metadata{ListLocationName: "HealthCheckObservation"})
+	}
+
+	return nil
+}
+
 // A complex type that contains the response to a GetHealthCheck request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHealthCheckResponse
 type GetHealthCheckOutput struct {
@@ -8514,6 +9471,17 @@ func (s GetHealthCheckOutput) GoString() string {
 func (s *GetHealthCheckOutput) SetHealthCheck(v *HealthCheck) *GetHealthCheckOutput {
 	s.HealthCheck = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetHealthCheckOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.HealthCheck != nil {
+		v := s.HealthCheck
+
+		e.SetFields(protocol.BodyTarget, "HealthCheck", v, protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A request to get the status for a health check.
@@ -8562,6 +9530,17 @@ func (s *GetHealthCheckStatusInput) SetHealthCheckId(v string) *GetHealthCheckSt
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetHealthCheckStatusInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.HealthCheckId != nil {
+		v := *s.HealthCheckId
+
+		e.SetValue(protocol.PathTarget, "HealthCheckId", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains the response to a GetHealthCheck request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHealthCheckStatusResponse
 type GetHealthCheckStatusOutput struct {
@@ -8590,6 +9569,17 @@ func (s *GetHealthCheckStatusOutput) SetHealthCheckObservations(v []*HealthCheck
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetHealthCheckStatusOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.HealthCheckObservations) > 0 {
+		v := s.HealthCheckObservations
+
+		e.SetList(protocol.BodyTarget, "HealthCheckObservations", encodeHealthCheckObservationList(v), protocol.Metadata{ListLocationName: "HealthCheckObservation"})
+	}
+
+	return nil
+}
+
 // A request to retrieve a count of all the hosted zones that are associated
 // with the current AWS account.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHostedZoneCountRequest
@@ -8605,6 +9595,12 @@ func (s GetHostedZoneCountInput) String() string {
 // GoString returns the string representation
 func (s GetHostedZoneCountInput) GoString() string {
 	return s.String()
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetHostedZoneCountInput) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // A complex type that contains the response to a GetHostedZoneCount request.
@@ -8633,6 +9629,17 @@ func (s GetHostedZoneCountOutput) GoString() string {
 func (s *GetHostedZoneCountOutput) SetHostedZoneCount(v int64) *GetHostedZoneCountOutput {
 	s.HostedZoneCount = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetHostedZoneCountOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.HostedZoneCount != nil {
+		v := *s.HostedZoneCount
+
+		e.SetValue(protocol.BodyTarget, "HostedZoneCount", protocol.Int64Value(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A request to get information about a specified hosted zone.
@@ -8673,6 +9680,17 @@ func (s *GetHostedZoneInput) Validate() error {
 func (s *GetHostedZoneInput) SetId(v string) *GetHostedZoneInput {
 	s.Id = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetHostedZoneInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A complex type that contain the response to a GetHostedZone request.
@@ -8723,6 +9741,27 @@ func (s *GetHostedZoneOutput) SetVPCs(v []*VPC) *GetHostedZoneOutput {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetHostedZoneOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.DelegationSet != nil {
+		v := s.DelegationSet
+
+		e.SetFields(protocol.BodyTarget, "DelegationSet", v, protocol.Metadata{})
+	}
+	if s.HostedZone != nil {
+		v := s.HostedZone
+
+		e.SetFields(protocol.BodyTarget, "HostedZone", v, protocol.Metadata{})
+	}
+	if len(s.VPCs) > 0 {
+		v := s.VPCs
+
+		e.SetList(protocol.BodyTarget, "VPCs", encodeVPCList(v), protocol.Metadata{ListLocationName: "VPC"})
+	}
+
+	return nil
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetQueryLoggingConfigRequest
 type GetQueryLoggingConfigInput struct {
 	_ struct{} `type:"structure"`
@@ -8766,6 +9805,17 @@ func (s *GetQueryLoggingConfigInput) SetId(v string) *GetQueryLoggingConfigInput
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetQueryLoggingConfigInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetQueryLoggingConfigResponse
 type GetQueryLoggingConfigOutput struct {
 	_ struct{} `type:"structure"`
@@ -8791,6 +9841,17 @@ func (s GetQueryLoggingConfigOutput) GoString() string {
 func (s *GetQueryLoggingConfigOutput) SetQueryLoggingConfig(v *QueryLoggingConfig) *GetQueryLoggingConfigOutput {
 	s.QueryLoggingConfig = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetQueryLoggingConfigOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.QueryLoggingConfig != nil {
+		v := s.QueryLoggingConfig
+
+		e.SetFields(protocol.BodyTarget, "QueryLoggingConfig", v, protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A request to get information about a specified reusable delegation set.
@@ -8834,6 +9895,17 @@ func (s *GetReusableDelegationSetInput) SetId(v string) *GetReusableDelegationSe
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetReusableDelegationSetInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains the response to the GetReusableDelegationSet
 // request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetReusableDelegationSetResponse
@@ -8860,6 +9932,17 @@ func (s GetReusableDelegationSetOutput) GoString() string {
 func (s *GetReusableDelegationSetOutput) SetDelegationSet(v *DelegationSet) *GetReusableDelegationSetOutput {
 	s.DelegationSet = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetReusableDelegationSetOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.DelegationSet != nil {
+		v := s.DelegationSet
+
+		e.SetFields(protocol.BodyTarget, "DelegationSet", v, protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // Gets information about a specific traffic policy version.
@@ -8923,6 +10006,22 @@ func (s *GetTrafficPolicyInput) SetVersion(v int64) *GetTrafficPolicyInput {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetTrafficPolicyInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Version != nil {
+		v := *s.Version
+
+		e.SetValue(protocol.PathTarget, "Version", protocol.Int64Value(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // Request to get the number of traffic policy instances that are associated
 // with the current AWS account.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetTrafficPolicyInstanceCountRequest
@@ -8938,6 +10037,12 @@ func (s GetTrafficPolicyInstanceCountInput) String() string {
 // GoString returns the string representation
 func (s GetTrafficPolicyInstanceCountInput) GoString() string {
 	return s.String()
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetTrafficPolicyInstanceCountInput) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // A complex type that contains information about the resource record sets that
@@ -8967,6 +10072,17 @@ func (s GetTrafficPolicyInstanceCountOutput) GoString() string {
 func (s *GetTrafficPolicyInstanceCountOutput) SetTrafficPolicyInstanceCount(v int64) *GetTrafficPolicyInstanceCountOutput {
 	s.TrafficPolicyInstanceCount = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetTrafficPolicyInstanceCountOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.TrafficPolicyInstanceCount != nil {
+		v := *s.TrafficPolicyInstanceCount
+
+		e.SetValue(protocol.BodyTarget, "TrafficPolicyInstanceCount", protocol.Int64Value(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // Gets information about a specified traffic policy instance.
@@ -9012,6 +10128,17 @@ func (s *GetTrafficPolicyInstanceInput) SetId(v string) *GetTrafficPolicyInstanc
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetTrafficPolicyInstanceInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains information about the resource record sets that
 // Amazon Route 53 created based on a specified traffic policy.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetTrafficPolicyInstanceResponse
@@ -9040,6 +10167,17 @@ func (s *GetTrafficPolicyInstanceOutput) SetTrafficPolicyInstance(v *TrafficPoli
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetTrafficPolicyInstanceOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.TrafficPolicyInstance != nil {
+		v := s.TrafficPolicyInstance
+
+		e.SetFields(protocol.BodyTarget, "TrafficPolicyInstance", v, protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains the response information for the request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetTrafficPolicyResponse
 type GetTrafficPolicyOutput struct {
@@ -9065,6 +10203,17 @@ func (s GetTrafficPolicyOutput) GoString() string {
 func (s *GetTrafficPolicyOutput) SetTrafficPolicy(v *TrafficPolicy) *GetTrafficPolicyOutput {
 	s.TrafficPolicy = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetTrafficPolicyOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.TrafficPolicy != nil {
+		v := s.TrafficPolicy
+
+		e.SetFields(protocol.BodyTarget, "TrafficPolicy", v, protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A complex type that contains information about one health check that is associated
@@ -9141,6 +10290,45 @@ func (s *HealthCheck) SetHealthCheckVersion(v int64) *HealthCheck {
 func (s *HealthCheck) SetId(v string) *HealthCheck {
 	s.Id = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *HealthCheck) MarshalFields(e protocol.FieldEncoder) error {
+	if s.CallerReference != nil {
+		v := *s.CallerReference
+
+		e.SetValue(protocol.BodyTarget, "CallerReference", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.CloudWatchAlarmConfiguration != nil {
+		v := s.CloudWatchAlarmConfiguration
+
+		e.SetFields(protocol.BodyTarget, "CloudWatchAlarmConfiguration", v, protocol.Metadata{})
+	}
+	if s.HealthCheckConfig != nil {
+		v := s.HealthCheckConfig
+
+		e.SetFields(protocol.BodyTarget, "HealthCheckConfig", v, protocol.Metadata{})
+	}
+	if s.HealthCheckVersion != nil {
+		v := *s.HealthCheckVersion
+
+		e.SetValue(protocol.BodyTarget, "HealthCheckVersion", protocol.Int64Value(v), protocol.Metadata{})
+	}
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.BodyTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
+func encodeHealthCheckList(vs []*HealthCheck) func(protocol.ListEncoder) {
+	return func(le protocol.ListEncoder) {
+		for _, v := range vs {
+			le.ListAddFields(v)
+		}
+	}
 }
 
 // A complex type that contains information about the health check.
@@ -9554,6 +10742,92 @@ func (s *HealthCheckConfig) SetType(v string) *HealthCheckConfig {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *HealthCheckConfig) MarshalFields(e protocol.FieldEncoder) error {
+	if s.AlarmIdentifier != nil {
+		v := s.AlarmIdentifier
+
+		e.SetFields(protocol.BodyTarget, "AlarmIdentifier", v, protocol.Metadata{})
+	}
+	if len(s.ChildHealthChecks) > 0 {
+		v := s.ChildHealthChecks
+
+		e.SetList(protocol.BodyTarget, "ChildHealthChecks", protocol.EncodeStringList(v), protocol.Metadata{ListLocationName: "ChildHealthCheck"})
+	}
+	if s.EnableSNI != nil {
+		v := *s.EnableSNI
+
+		e.SetValue(protocol.BodyTarget, "EnableSNI", protocol.BoolValue(v), protocol.Metadata{})
+	}
+	if s.FailureThreshold != nil {
+		v := *s.FailureThreshold
+
+		e.SetValue(protocol.BodyTarget, "FailureThreshold", protocol.Int64Value(v), protocol.Metadata{})
+	}
+	if s.FullyQualifiedDomainName != nil {
+		v := *s.FullyQualifiedDomainName
+
+		e.SetValue(protocol.BodyTarget, "FullyQualifiedDomainName", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.HealthThreshold != nil {
+		v := *s.HealthThreshold
+
+		e.SetValue(protocol.BodyTarget, "HealthThreshold", protocol.Int64Value(v), protocol.Metadata{})
+	}
+	if s.IPAddress != nil {
+		v := *s.IPAddress
+
+		e.SetValue(protocol.BodyTarget, "IPAddress", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.InsufficientDataHealthStatus != nil {
+		v := *s.InsufficientDataHealthStatus
+
+		e.SetValue(protocol.BodyTarget, "InsufficientDataHealthStatus", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Inverted != nil {
+		v := *s.Inverted
+
+		e.SetValue(protocol.BodyTarget, "Inverted", protocol.BoolValue(v), protocol.Metadata{})
+	}
+	if s.MeasureLatency != nil {
+		v := *s.MeasureLatency
+
+		e.SetValue(protocol.BodyTarget, "MeasureLatency", protocol.BoolValue(v), protocol.Metadata{})
+	}
+	if s.Port != nil {
+		v := *s.Port
+
+		e.SetValue(protocol.BodyTarget, "Port", protocol.Int64Value(v), protocol.Metadata{})
+	}
+	if len(s.Regions) > 0 {
+		v := s.Regions
+
+		e.SetList(protocol.BodyTarget, "Regions", protocol.EncodeStringList(v), protocol.Metadata{ListLocationName: "Region"})
+	}
+	if s.RequestInterval != nil {
+		v := *s.RequestInterval
+
+		e.SetValue(protocol.BodyTarget, "RequestInterval", protocol.Int64Value(v), protocol.Metadata{})
+	}
+	if s.ResourcePath != nil {
+		v := *s.ResourcePath
+
+		e.SetValue(protocol.BodyTarget, "ResourcePath", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.SearchString != nil {
+		v := *s.SearchString
+
+		e.SetValue(protocol.BodyTarget, "SearchString", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Type != nil {
+		v := *s.Type
+
+		e.SetValue(protocol.BodyTarget, "Type", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains the last failure reason as reported by one Amazon
 // Route 53 health checker.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/HealthCheckObservation
@@ -9599,6 +10873,35 @@ func (s *HealthCheckObservation) SetRegion(v string) *HealthCheckObservation {
 func (s *HealthCheckObservation) SetStatusReport(v *StatusReport) *HealthCheckObservation {
 	s.StatusReport = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *HealthCheckObservation) MarshalFields(e protocol.FieldEncoder) error {
+	if s.IPAddress != nil {
+		v := *s.IPAddress
+
+		e.SetValue(protocol.BodyTarget, "IPAddress", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Region != nil {
+		v := *s.Region
+
+		e.SetValue(protocol.BodyTarget, "Region", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.StatusReport != nil {
+		v := s.StatusReport
+
+		e.SetFields(protocol.BodyTarget, "StatusReport", v, protocol.Metadata{})
+	}
+
+	return nil
+}
+
+func encodeHealthCheckObservationList(vs []*HealthCheckObservation) func(protocol.ListEncoder) {
+	return func(le protocol.ListEncoder) {
+		for _, v := range vs {
+			le.ListAddFields(v)
+		}
+	}
 }
 
 // A complex type that contains general information about the hosted zone.
@@ -9676,6 +10979,45 @@ func (s *HostedZone) SetResourceRecordSetCount(v int64) *HostedZone {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *HostedZone) MarshalFields(e protocol.FieldEncoder) error {
+	if s.CallerReference != nil {
+		v := *s.CallerReference
+
+		e.SetValue(protocol.BodyTarget, "CallerReference", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Config != nil {
+		v := s.Config
+
+		e.SetFields(protocol.BodyTarget, "Config", v, protocol.Metadata{})
+	}
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.BodyTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Name != nil {
+		v := *s.Name
+
+		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.ResourceRecordSetCount != nil {
+		v := *s.ResourceRecordSetCount
+
+		e.SetValue(protocol.BodyTarget, "ResourceRecordSetCount", protocol.Int64Value(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
+func encodeHostedZoneList(vs []*HostedZone) func(protocol.ListEncoder) {
+	return func(le protocol.ListEncoder) {
+		for _, v := range vs {
+			le.ListAddFields(v)
+		}
+	}
+}
+
 // A complex type that contains an optional comment about your hosted zone.
 // If you don't want to specify a comment, omit both the HostedZoneConfig and
 // Comment elements.
@@ -9710,6 +11052,22 @@ func (s *HostedZoneConfig) SetComment(v string) *HostedZoneConfig {
 func (s *HostedZoneConfig) SetPrivateZone(v bool) *HostedZoneConfig {
 	s.PrivateZone = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *HostedZoneConfig) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Comment != nil {
+		v := *s.Comment
+
+		e.SetValue(protocol.BodyTarget, "Comment", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.PrivateZone != nil {
+		v := *s.PrivateZone
+
+		e.SetValue(protocol.BodyTarget, "PrivateZone", protocol.BoolValue(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A request to get a list of geographic locations that Amazon Route 53 supports
@@ -9808,6 +11166,32 @@ func (s *ListGeoLocationsInput) SetStartSubdivisionCode(v string) *ListGeoLocati
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListGeoLocationsInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.MaxItems != nil {
+		v := *s.MaxItems
+
+		e.SetValue(protocol.QueryTarget, "maxitems", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.StartContinentCode != nil {
+		v := *s.StartContinentCode
+
+		e.SetValue(protocol.QueryTarget, "startcontinentcode", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.StartCountryCode != nil {
+		v := *s.StartCountryCode
+
+		e.SetValue(protocol.QueryTarget, "startcountrycode", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.StartSubdivisionCode != nil {
+		v := *s.StartSubdivisionCode
+
+		e.SetValue(protocol.QueryTarget, "startsubdivisioncode", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type containing the response information for the request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListGeoLocationsResponse
 type ListGeoLocationsOutput struct {
@@ -9895,6 +11279,42 @@ func (s *ListGeoLocationsOutput) SetNextSubdivisionCode(v string) *ListGeoLocati
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListGeoLocationsOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.GeoLocationDetailsList) > 0 {
+		v := s.GeoLocationDetailsList
+
+		e.SetList(protocol.BodyTarget, "GeoLocationDetailsList", encodeGeoLocationDetailsList(v), protocol.Metadata{ListLocationName: "GeoLocationDetails"})
+	}
+	if s.IsTruncated != nil {
+		v := *s.IsTruncated
+
+		e.SetValue(protocol.BodyTarget, "IsTruncated", protocol.BoolValue(v), protocol.Metadata{})
+	}
+	if s.MaxItems != nil {
+		v := *s.MaxItems
+
+		e.SetValue(protocol.BodyTarget, "MaxItems", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.NextContinentCode != nil {
+		v := *s.NextContinentCode
+
+		e.SetValue(protocol.BodyTarget, "NextContinentCode", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.NextCountryCode != nil {
+		v := *s.NextCountryCode
+
+		e.SetValue(protocol.BodyTarget, "NextCountryCode", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.NextSubdivisionCode != nil {
+		v := *s.NextSubdivisionCode
+
+		e.SetValue(protocol.BodyTarget, "NextSubdivisionCode", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A request to retrieve a list of the health checks that are associated with
 // the current AWS account.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListHealthChecksRequest
@@ -9939,6 +11359,22 @@ func (s *ListHealthChecksInput) SetMarker(v string) *ListHealthChecksInput {
 func (s *ListHealthChecksInput) SetMaxItems(v string) *ListHealthChecksInput {
 	s.MaxItems = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListHealthChecksInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Marker != nil {
+		v := *s.Marker
+
+		e.SetValue(protocol.QueryTarget, "marker", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.MaxItems != nil {
+		v := *s.MaxItems
+
+		e.SetValue(protocol.QueryTarget, "maxitems", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A complex type that contains the response to a ListHealthChecks request.
@@ -10018,6 +11454,37 @@ func (s *ListHealthChecksOutput) SetNextMarker(v string) *ListHealthChecksOutput
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListHealthChecksOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.HealthChecks) > 0 {
+		v := s.HealthChecks
+
+		e.SetList(protocol.BodyTarget, "HealthChecks", encodeHealthCheckList(v), protocol.Metadata{ListLocationName: "HealthCheck"})
+	}
+	if s.IsTruncated != nil {
+		v := *s.IsTruncated
+
+		e.SetValue(protocol.BodyTarget, "IsTruncated", protocol.BoolValue(v), protocol.Metadata{})
+	}
+	if s.Marker != nil {
+		v := *s.Marker
+
+		e.SetValue(protocol.BodyTarget, "Marker", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.MaxItems != nil {
+		v := *s.MaxItems
+
+		e.SetValue(protocol.BodyTarget, "MaxItems", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.NextMarker != nil {
+		v := *s.NextMarker
+
+		e.SetValue(protocol.BodyTarget, "NextMarker", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // Retrieves a list of the public and private hosted zones that are associated
 // with the current AWS account in ASCII order by domain name.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListHostedZonesByNameRequest
@@ -10077,6 +11544,27 @@ func (s *ListHostedZonesByNameInput) SetHostedZoneId(v string) *ListHostedZonesB
 func (s *ListHostedZonesByNameInput) SetMaxItems(v string) *ListHostedZonesByNameInput {
 	s.MaxItems = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListHostedZonesByNameInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.DNSName != nil {
+		v := *s.DNSName
+
+		e.SetValue(protocol.QueryTarget, "dnsname", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.HostedZoneId != nil {
+		v := *s.HostedZoneId
+
+		e.SetValue(protocol.QueryTarget, "hostedzoneid", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.MaxItems != nil {
+		v := *s.MaxItems
+
+		e.SetValue(protocol.QueryTarget, "maxitems", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A complex type that contains the response information for the request.
@@ -10182,6 +11670,47 @@ func (s *ListHostedZonesByNameOutput) SetNextHostedZoneId(v string) *ListHostedZ
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListHostedZonesByNameOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.DNSName != nil {
+		v := *s.DNSName
+
+		e.SetValue(protocol.BodyTarget, "DNSName", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.HostedZoneId != nil {
+		v := *s.HostedZoneId
+
+		e.SetValue(protocol.BodyTarget, "HostedZoneId", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if len(s.HostedZones) > 0 {
+		v := s.HostedZones
+
+		e.SetList(protocol.BodyTarget, "HostedZones", encodeHostedZoneList(v), protocol.Metadata{ListLocationName: "HostedZone"})
+	}
+	if s.IsTruncated != nil {
+		v := *s.IsTruncated
+
+		e.SetValue(protocol.BodyTarget, "IsTruncated", protocol.BoolValue(v), protocol.Metadata{})
+	}
+	if s.MaxItems != nil {
+		v := *s.MaxItems
+
+		e.SetValue(protocol.BodyTarget, "MaxItems", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.NextDNSName != nil {
+		v := *s.NextDNSName
+
+		e.SetValue(protocol.BodyTarget, "NextDNSName", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.NextHostedZoneId != nil {
+		v := *s.NextHostedZoneId
+
+		e.SetValue(protocol.BodyTarget, "NextHostedZoneId", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A request to retrieve a list of the public and private hosted zones that
 // are associated with the current AWS account.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListHostedZonesRequest
@@ -10238,6 +11767,27 @@ func (s *ListHostedZonesInput) SetMarker(v string) *ListHostedZonesInput {
 func (s *ListHostedZonesInput) SetMaxItems(v string) *ListHostedZonesInput {
 	s.MaxItems = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListHostedZonesInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.DelegationSetId != nil {
+		v := *s.DelegationSetId
+
+		e.SetValue(protocol.QueryTarget, "delegationsetid", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Marker != nil {
+		v := *s.Marker
+
+		e.SetValue(protocol.QueryTarget, "marker", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.MaxItems != nil {
+		v := *s.MaxItems
+
+		e.SetValue(protocol.QueryTarget, "maxitems", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListHostedZonesResponse
@@ -10318,6 +11868,37 @@ func (s *ListHostedZonesOutput) SetNextMarker(v string) *ListHostedZonesOutput {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListHostedZonesOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.HostedZones) > 0 {
+		v := s.HostedZones
+
+		e.SetList(protocol.BodyTarget, "HostedZones", encodeHostedZoneList(v), protocol.Metadata{ListLocationName: "HostedZone"})
+	}
+	if s.IsTruncated != nil {
+		v := *s.IsTruncated
+
+		e.SetValue(protocol.BodyTarget, "IsTruncated", protocol.BoolValue(v), protocol.Metadata{})
+	}
+	if s.Marker != nil {
+		v := *s.Marker
+
+		e.SetValue(protocol.BodyTarget, "Marker", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.MaxItems != nil {
+		v := *s.MaxItems
+
+		e.SetValue(protocol.BodyTarget, "MaxItems", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.NextMarker != nil {
+		v := *s.NextMarker
+
+		e.SetValue(protocol.BodyTarget, "NextMarker", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListQueryLoggingConfigsRequest
 type ListQueryLoggingConfigsInput struct {
 	_ struct{} `type:"structure"`
@@ -10376,6 +11957,27 @@ func (s *ListQueryLoggingConfigsInput) SetNextToken(v string) *ListQueryLoggingC
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListQueryLoggingConfigsInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.HostedZoneId != nil {
+		v := *s.HostedZoneId
+
+		e.SetValue(protocol.QueryTarget, "hostedzoneid", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.MaxResults != nil {
+		v := *s.MaxResults
+
+		e.SetValue(protocol.QueryTarget, "maxresults", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.NextToken != nil {
+		v := *s.NextToken
+
+		e.SetValue(protocol.QueryTarget, "nexttoken", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListQueryLoggingConfigsResponse
 type ListQueryLoggingConfigsOutput struct {
 	_ struct{} `type:"structure"`
@@ -10417,6 +12019,22 @@ func (s *ListQueryLoggingConfigsOutput) SetNextToken(v string) *ListQueryLogging
 func (s *ListQueryLoggingConfigsOutput) SetQueryLoggingConfigs(v []*QueryLoggingConfig) *ListQueryLoggingConfigsOutput {
 	s.QueryLoggingConfigs = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListQueryLoggingConfigsOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.NextToken != nil {
+		v := *s.NextToken
+
+		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if len(s.QueryLoggingConfigs) > 0 {
+		v := s.QueryLoggingConfigs
+
+		e.SetList(protocol.BodyTarget, "QueryLoggingConfigs", encodeQueryLoggingConfigList(v), protocol.Metadata{ListLocationName: "QueryLoggingConfig"})
+	}
+
+	return nil
 }
 
 // A request for the resource record sets that are associated with a specified
@@ -10531,6 +12149,37 @@ func (s *ListResourceRecordSetsInput) SetStartRecordType(v string) *ListResource
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListResourceRecordSetsInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.HostedZoneId != nil {
+		v := *s.HostedZoneId
+
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.MaxItems != nil {
+		v := *s.MaxItems
+
+		e.SetValue(protocol.QueryTarget, "maxitems", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.StartRecordIdentifier != nil {
+		v := *s.StartRecordIdentifier
+
+		e.SetValue(protocol.QueryTarget, "identifier", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.StartRecordName != nil {
+		v := *s.StartRecordName
+
+		e.SetValue(protocol.QueryTarget, "name", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.StartRecordType != nil {
+		v := *s.StartRecordType
+
+		e.SetValue(protocol.QueryTarget, "type", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains list information for the resource record set.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListResourceRecordSetsResponse
 type ListResourceRecordSetsOutput struct {
@@ -10615,6 +12264,42 @@ func (s *ListResourceRecordSetsOutput) SetResourceRecordSets(v []*ResourceRecord
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListResourceRecordSetsOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.IsTruncated != nil {
+		v := *s.IsTruncated
+
+		e.SetValue(protocol.BodyTarget, "IsTruncated", protocol.BoolValue(v), protocol.Metadata{})
+	}
+	if s.MaxItems != nil {
+		v := *s.MaxItems
+
+		e.SetValue(protocol.BodyTarget, "MaxItems", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.NextRecordIdentifier != nil {
+		v := *s.NextRecordIdentifier
+
+		e.SetValue(protocol.BodyTarget, "NextRecordIdentifier", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.NextRecordName != nil {
+		v := *s.NextRecordName
+
+		e.SetValue(protocol.BodyTarget, "NextRecordName", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.NextRecordType != nil {
+		v := *s.NextRecordType
+
+		e.SetValue(protocol.BodyTarget, "NextRecordType", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if len(s.ResourceRecordSets) > 0 {
+		v := s.ResourceRecordSets
+
+		e.SetList(protocol.BodyTarget, "ResourceRecordSets", encodeResourceRecordSetList(v), protocol.Metadata{ListLocationName: "ResourceRecordSet"})
+	}
+
+	return nil
+}
+
 // A request to get a list of the reusable delegation sets that are associated
 // with the current AWS account.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListReusableDelegationSetsRequest
@@ -10659,6 +12344,22 @@ func (s *ListReusableDelegationSetsInput) SetMarker(v string) *ListReusableDeleg
 func (s *ListReusableDelegationSetsInput) SetMaxItems(v string) *ListReusableDelegationSetsInput {
 	s.MaxItems = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListReusableDelegationSetsInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Marker != nil {
+		v := *s.Marker
+
+		e.SetValue(protocol.QueryTarget, "marker", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.MaxItems != nil {
+		v := *s.MaxItems
+
+		e.SetValue(protocol.QueryTarget, "maxitems", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A complex type that contains information about the reusable delegation sets
@@ -10738,6 +12439,37 @@ func (s *ListReusableDelegationSetsOutput) SetNextMarker(v string) *ListReusable
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListReusableDelegationSetsOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.DelegationSets) > 0 {
+		v := s.DelegationSets
+
+		e.SetList(protocol.BodyTarget, "DelegationSets", encodeDelegationSetList(v), protocol.Metadata{ListLocationName: "DelegationSet"})
+	}
+	if s.IsTruncated != nil {
+		v := *s.IsTruncated
+
+		e.SetValue(protocol.BodyTarget, "IsTruncated", protocol.BoolValue(v), protocol.Metadata{})
+	}
+	if s.Marker != nil {
+		v := *s.Marker
+
+		e.SetValue(protocol.BodyTarget, "Marker", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.MaxItems != nil {
+		v := *s.MaxItems
+
+		e.SetValue(protocol.BodyTarget, "MaxItems", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.NextMarker != nil {
+		v := *s.NextMarker
+
+		e.SetValue(protocol.BodyTarget, "NextMarker", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type containing information about a request for a list of the tags
 // that are associated with an individual resource.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTagsForResourceRequest
@@ -10797,6 +12529,22 @@ func (s *ListTagsForResourceInput) SetResourceType(v string) *ListTagsForResourc
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListTagsForResourceInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.ResourceId != nil {
+		v := *s.ResourceId
+
+		e.SetValue(protocol.PathTarget, "ResourceId", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.ResourceType != nil {
+		v := *s.ResourceType
+
+		e.SetValue(protocol.PathTarget, "ResourceType", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains information about the health checks or hosted
 // zones for which you want to list tags.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTagsForResourceResponse
@@ -10823,6 +12571,17 @@ func (s ListTagsForResourceOutput) GoString() string {
 func (s *ListTagsForResourceOutput) SetResourceTagSet(v *ResourceTagSet) *ListTagsForResourceOutput {
 	s.ResourceTagSet = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListTagsForResourceOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.ResourceTagSet != nil {
+		v := s.ResourceTagSet
+
+		e.SetFields(protocol.BodyTarget, "ResourceTagSet", v, protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A complex type that contains information about the health checks or hosted
@@ -10888,6 +12647,22 @@ func (s *ListTagsForResourcesInput) SetResourceType(v string) *ListTagsForResour
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListTagsForResourcesInput) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.ResourceIds) > 0 {
+		v := s.ResourceIds
+
+		e.SetList(protocol.BodyTarget, "ResourceIds", protocol.EncodeStringList(v), protocol.Metadata{ListLocationName: "ResourceId"})
+	}
+	if s.ResourceType != nil {
+		v := *s.ResourceType
+
+		e.SetValue(protocol.PathTarget, "ResourceType", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type containing tags for the specified resources.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTagsForResourcesResponse
 type ListTagsForResourcesOutput struct {
@@ -10913,6 +12688,17 @@ func (s ListTagsForResourcesOutput) GoString() string {
 func (s *ListTagsForResourcesOutput) SetResourceTagSets(v []*ResourceTagSet) *ListTagsForResourcesOutput {
 	s.ResourceTagSets = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListTagsForResourcesOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.ResourceTagSets) > 0 {
+		v := s.ResourceTagSets
+
+		e.SetList(protocol.BodyTarget, "ResourceTagSets", encodeResourceTagSetList(v), protocol.Metadata{ListLocationName: "ResourceTagSet"})
+	}
+
+	return nil
 }
 
 // A complex type that contains the information about the request to list the
@@ -10972,6 +12758,22 @@ func (s *ListTrafficPoliciesInput) SetMaxItems(v string) *ListTrafficPoliciesInp
 func (s *ListTrafficPoliciesInput) SetTrafficPolicyIdMarker(v string) *ListTrafficPoliciesInput {
 	s.TrafficPolicyIdMarker = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListTrafficPoliciesInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.MaxItems != nil {
+		v := *s.MaxItems
+
+		e.SetValue(protocol.QueryTarget, "maxitems", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyIdMarker != nil {
+		v := *s.TrafficPolicyIdMarker
+
+		e.SetValue(protocol.QueryTarget, "trafficpolicyid", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A complex type that contains the response information for the request.
@@ -11038,6 +12840,32 @@ func (s *ListTrafficPoliciesOutput) SetTrafficPolicyIdMarker(v string) *ListTraf
 func (s *ListTrafficPoliciesOutput) SetTrafficPolicySummaries(v []*TrafficPolicySummary) *ListTrafficPoliciesOutput {
 	s.TrafficPolicySummaries = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListTrafficPoliciesOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.IsTruncated != nil {
+		v := *s.IsTruncated
+
+		e.SetValue(protocol.BodyTarget, "IsTruncated", protocol.BoolValue(v), protocol.Metadata{})
+	}
+	if s.MaxItems != nil {
+		v := *s.MaxItems
+
+		e.SetValue(protocol.BodyTarget, "MaxItems", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyIdMarker != nil {
+		v := *s.TrafficPolicyIdMarker
+
+		e.SetValue(protocol.BodyTarget, "TrafficPolicyIdMarker", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if len(s.TrafficPolicySummaries) > 0 {
+		v := s.TrafficPolicySummaries
+
+		e.SetList(protocol.BodyTarget, "TrafficPolicySummaries", encodeTrafficPolicySummaryList(v), protocol.Metadata{ListLocationName: "TrafficPolicySummary"})
+	}
+
+	return nil
 }
 
 // A request for the traffic policy instances that you created in a specified
@@ -11130,6 +12958,32 @@ func (s *ListTrafficPolicyInstancesByHostedZoneInput) SetTrafficPolicyInstanceTy
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListTrafficPolicyInstancesByHostedZoneInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.HostedZoneId != nil {
+		v := *s.HostedZoneId
+
+		e.SetValue(protocol.QueryTarget, "id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.MaxItems != nil {
+		v := *s.MaxItems
+
+		e.SetValue(protocol.QueryTarget, "maxitems", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyInstanceNameMarker != nil {
+		v := *s.TrafficPolicyInstanceNameMarker
+
+		e.SetValue(protocol.QueryTarget, "trafficpolicyinstancename", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyInstanceTypeMarker != nil {
+		v := *s.TrafficPolicyInstanceTypeMarker
+
+		e.SetValue(protocol.QueryTarget, "trafficpolicyinstancetype", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains the response information for the request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicyInstancesByHostedZoneResponse
 type ListTrafficPolicyInstancesByHostedZoneOutput struct {
@@ -11204,6 +13058,37 @@ func (s *ListTrafficPolicyInstancesByHostedZoneOutput) SetTrafficPolicyInstanceT
 func (s *ListTrafficPolicyInstancesByHostedZoneOutput) SetTrafficPolicyInstances(v []*TrafficPolicyInstance) *ListTrafficPolicyInstancesByHostedZoneOutput {
 	s.TrafficPolicyInstances = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListTrafficPolicyInstancesByHostedZoneOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.IsTruncated != nil {
+		v := *s.IsTruncated
+
+		e.SetValue(protocol.BodyTarget, "IsTruncated", protocol.BoolValue(v), protocol.Metadata{})
+	}
+	if s.MaxItems != nil {
+		v := *s.MaxItems
+
+		e.SetValue(protocol.BodyTarget, "MaxItems", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyInstanceNameMarker != nil {
+		v := *s.TrafficPolicyInstanceNameMarker
+
+		e.SetValue(protocol.BodyTarget, "TrafficPolicyInstanceNameMarker", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyInstanceTypeMarker != nil {
+		v := *s.TrafficPolicyInstanceTypeMarker
+
+		e.SetValue(protocol.BodyTarget, "TrafficPolicyInstanceTypeMarker", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if len(s.TrafficPolicyInstances) > 0 {
+		v := s.TrafficPolicyInstances
+
+		e.SetList(protocol.BodyTarget, "TrafficPolicyInstances", encodeTrafficPolicyInstanceList(v), protocol.Metadata{ListLocationName: "TrafficPolicyInstance"})
+	}
+
+	return nil
 }
 
 // A complex type that contains the information about the request to list your
@@ -11337,6 +13222,42 @@ func (s *ListTrafficPolicyInstancesByPolicyInput) SetTrafficPolicyVersion(v int6
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListTrafficPolicyInstancesByPolicyInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.HostedZoneIdMarker != nil {
+		v := *s.HostedZoneIdMarker
+
+		e.SetValue(protocol.QueryTarget, "hostedzoneid", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.MaxItems != nil {
+		v := *s.MaxItems
+
+		e.SetValue(protocol.QueryTarget, "maxitems", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyId != nil {
+		v := *s.TrafficPolicyId
+
+		e.SetValue(protocol.QueryTarget, "id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyInstanceNameMarker != nil {
+		v := *s.TrafficPolicyInstanceNameMarker
+
+		e.SetValue(protocol.QueryTarget, "trafficpolicyinstancename", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyInstanceTypeMarker != nil {
+		v := *s.TrafficPolicyInstanceTypeMarker
+
+		e.SetValue(protocol.QueryTarget, "trafficpolicyinstancetype", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyVersion != nil {
+		v := *s.TrafficPolicyVersion
+
+		e.SetValue(protocol.QueryTarget, "version", protocol.Int64Value(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains the response information for the request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicyInstancesByPolicyResponse
 type ListTrafficPolicyInstancesByPolicyOutput struct {
@@ -11425,6 +13346,42 @@ func (s *ListTrafficPolicyInstancesByPolicyOutput) SetTrafficPolicyInstances(v [
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListTrafficPolicyInstancesByPolicyOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.HostedZoneIdMarker != nil {
+		v := *s.HostedZoneIdMarker
+
+		e.SetValue(protocol.BodyTarget, "HostedZoneIdMarker", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.IsTruncated != nil {
+		v := *s.IsTruncated
+
+		e.SetValue(protocol.BodyTarget, "IsTruncated", protocol.BoolValue(v), protocol.Metadata{})
+	}
+	if s.MaxItems != nil {
+		v := *s.MaxItems
+
+		e.SetValue(protocol.BodyTarget, "MaxItems", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyInstanceNameMarker != nil {
+		v := *s.TrafficPolicyInstanceNameMarker
+
+		e.SetValue(protocol.BodyTarget, "TrafficPolicyInstanceNameMarker", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyInstanceTypeMarker != nil {
+		v := *s.TrafficPolicyInstanceTypeMarker
+
+		e.SetValue(protocol.BodyTarget, "TrafficPolicyInstanceTypeMarker", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if len(s.TrafficPolicyInstances) > 0 {
+		v := s.TrafficPolicyInstances
+
+		e.SetList(protocol.BodyTarget, "TrafficPolicyInstances", encodeTrafficPolicyInstanceList(v), protocol.Metadata{ListLocationName: "TrafficPolicyInstance"})
+	}
+
+	return nil
+}
+
 // A request to get information about the traffic policy instances that you
 // created by using the current AWS account.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicyInstancesRequest
@@ -11505,6 +13462,32 @@ func (s *ListTrafficPolicyInstancesInput) SetTrafficPolicyInstanceNameMarker(v s
 func (s *ListTrafficPolicyInstancesInput) SetTrafficPolicyInstanceTypeMarker(v string) *ListTrafficPolicyInstancesInput {
 	s.TrafficPolicyInstanceTypeMarker = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListTrafficPolicyInstancesInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.HostedZoneIdMarker != nil {
+		v := *s.HostedZoneIdMarker
+
+		e.SetValue(protocol.QueryTarget, "hostedzoneid", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.MaxItems != nil {
+		v := *s.MaxItems
+
+		e.SetValue(protocol.QueryTarget, "maxitems", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyInstanceNameMarker != nil {
+		v := *s.TrafficPolicyInstanceNameMarker
+
+		e.SetValue(protocol.QueryTarget, "trafficpolicyinstancename", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyInstanceTypeMarker != nil {
+		v := *s.TrafficPolicyInstanceTypeMarker
+
+		e.SetValue(protocol.QueryTarget, "trafficpolicyinstancetype", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A complex type that contains the response information for the request.
@@ -11596,6 +13579,42 @@ func (s *ListTrafficPolicyInstancesOutput) SetTrafficPolicyInstances(v []*Traffi
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListTrafficPolicyInstancesOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.HostedZoneIdMarker != nil {
+		v := *s.HostedZoneIdMarker
+
+		e.SetValue(protocol.BodyTarget, "HostedZoneIdMarker", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.IsTruncated != nil {
+		v := *s.IsTruncated
+
+		e.SetValue(protocol.BodyTarget, "IsTruncated", protocol.BoolValue(v), protocol.Metadata{})
+	}
+	if s.MaxItems != nil {
+		v := *s.MaxItems
+
+		e.SetValue(protocol.BodyTarget, "MaxItems", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyInstanceNameMarker != nil {
+		v := *s.TrafficPolicyInstanceNameMarker
+
+		e.SetValue(protocol.BodyTarget, "TrafficPolicyInstanceNameMarker", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyInstanceTypeMarker != nil {
+		v := *s.TrafficPolicyInstanceTypeMarker
+
+		e.SetValue(protocol.BodyTarget, "TrafficPolicyInstanceTypeMarker", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if len(s.TrafficPolicyInstances) > 0 {
+		v := s.TrafficPolicyInstances
+
+		e.SetList(protocol.BodyTarget, "TrafficPolicyInstances", encodeTrafficPolicyInstanceList(v), protocol.Metadata{ListLocationName: "TrafficPolicyInstance"})
+	}
+
+	return nil
+}
+
 // A complex type that contains the information about the request to list your
 // traffic policies.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicyVersionsRequest
@@ -11671,6 +13690,27 @@ func (s *ListTrafficPolicyVersionsInput) SetTrafficPolicyVersionMarker(v string)
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListTrafficPolicyVersionsInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.MaxItems != nil {
+		v := *s.MaxItems
+
+		e.SetValue(protocol.QueryTarget, "maxitems", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyVersionMarker != nil {
+		v := *s.TrafficPolicyVersionMarker
+
+		e.SetValue(protocol.QueryTarget, "trafficpolicyversion", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains the response information for the request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicyVersionsResponse
 type ListTrafficPolicyVersionsOutput struct {
@@ -11741,6 +13781,32 @@ func (s *ListTrafficPolicyVersionsOutput) SetTrafficPolicyVersionMarker(v string
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListTrafficPolicyVersionsOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.IsTruncated != nil {
+		v := *s.IsTruncated
+
+		e.SetValue(protocol.BodyTarget, "IsTruncated", protocol.BoolValue(v), protocol.Metadata{})
+	}
+	if s.MaxItems != nil {
+		v := *s.MaxItems
+
+		e.SetValue(protocol.BodyTarget, "MaxItems", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if len(s.TrafficPolicies) > 0 {
+		v := s.TrafficPolicies
+
+		e.SetList(protocol.BodyTarget, "TrafficPolicies", encodeTrafficPolicyList(v), protocol.Metadata{ListLocationName: "TrafficPolicy"})
+	}
+	if s.TrafficPolicyVersionMarker != nil {
+		v := *s.TrafficPolicyVersionMarker
+
+		e.SetValue(protocol.BodyTarget, "TrafficPolicyVersionMarker", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains information about that can be associated with
 // your hosted zone.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListVPCAssociationAuthorizationsRequest
@@ -11807,6 +13873,27 @@ func (s *ListVPCAssociationAuthorizationsInput) SetNextToken(v string) *ListVPCA
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListVPCAssociationAuthorizationsInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.HostedZoneId != nil {
+		v := *s.HostedZoneId
+
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.MaxResults != nil {
+		v := *s.MaxResults
+
+		e.SetValue(protocol.QueryTarget, "maxresults", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.NextToken != nil {
+		v := *s.NextToken
+
+		e.SetValue(protocol.QueryTarget, "nexttoken", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains the response information for the request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListVPCAssociationAuthorizationsResponse
 type ListVPCAssociationAuthorizationsOutput struct {
@@ -11857,6 +13944,27 @@ func (s *ListVPCAssociationAuthorizationsOutput) SetNextToken(v string) *ListVPC
 func (s *ListVPCAssociationAuthorizationsOutput) SetVPCs(v []*VPC) *ListVPCAssociationAuthorizationsOutput {
 	s.VPCs = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListVPCAssociationAuthorizationsOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.HostedZoneId != nil {
+		v := *s.HostedZoneId
+
+		e.SetValue(protocol.BodyTarget, "HostedZoneId", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.NextToken != nil {
+		v := *s.NextToken
+
+		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if len(s.VPCs) > 0 {
+		v := s.VPCs
+
+		e.SetList(protocol.BodyTarget, "VPCs", encodeVPCList(v), protocol.Metadata{ListLocationName: "VPC"})
+	}
+
+	return nil
 }
 
 // A complex type that contains information about a configuration for DNS query
@@ -11910,6 +14018,35 @@ func (s *QueryLoggingConfig) SetId(v string) *QueryLoggingConfig {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *QueryLoggingConfig) MarshalFields(e protocol.FieldEncoder) error {
+	if s.CloudWatchLogsLogGroupArn != nil {
+		v := *s.CloudWatchLogsLogGroupArn
+
+		e.SetValue(protocol.BodyTarget, "CloudWatchLogsLogGroupArn", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.HostedZoneId != nil {
+		v := *s.HostedZoneId
+
+		e.SetValue(protocol.BodyTarget, "HostedZoneId", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.BodyTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
+func encodeQueryLoggingConfigList(vs []*QueryLoggingConfig) func(protocol.ListEncoder) {
+	return func(le protocol.ListEncoder) {
+		for _, v := range vs {
+			le.ListAddFields(v)
+		}
+	}
+}
+
 // Information specific to the resource record.
 //
 // If you're creating an alias resource record set, omit ResourceRecord.
@@ -11959,6 +14096,25 @@ func (s *ResourceRecord) Validate() error {
 func (s *ResourceRecord) SetValue(v string) *ResourceRecord {
 	s.Value = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ResourceRecord) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Value != nil {
+		v := *s.Value
+
+		e.SetValue(protocol.BodyTarget, "Value", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
+func encodeResourceRecordList(vs []*ResourceRecord) func(protocol.ListEncoder) {
+	return func(le protocol.ListEncoder) {
+		for _, v := range vs {
+			le.ListAddFields(v)
+		}
+	}
 }
 
 // Information about the resource record set to create or delete.
@@ -12493,6 +14649,85 @@ func (s *ResourceRecordSet) SetWeight(v int64) *ResourceRecordSet {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ResourceRecordSet) MarshalFields(e protocol.FieldEncoder) error {
+	if s.AliasTarget != nil {
+		v := s.AliasTarget
+
+		e.SetFields(protocol.BodyTarget, "AliasTarget", v, protocol.Metadata{})
+	}
+	if s.Failover != nil {
+		v := *s.Failover
+
+		e.SetValue(protocol.BodyTarget, "Failover", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.GeoLocation != nil {
+		v := s.GeoLocation
+
+		e.SetFields(protocol.BodyTarget, "GeoLocation", v, protocol.Metadata{})
+	}
+	if s.HealthCheckId != nil {
+		v := *s.HealthCheckId
+
+		e.SetValue(protocol.BodyTarget, "HealthCheckId", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.MultiValueAnswer != nil {
+		v := *s.MultiValueAnswer
+
+		e.SetValue(protocol.BodyTarget, "MultiValueAnswer", protocol.BoolValue(v), protocol.Metadata{})
+	}
+	if s.Name != nil {
+		v := *s.Name
+
+		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Region != nil {
+		v := *s.Region
+
+		e.SetValue(protocol.BodyTarget, "Region", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if len(s.ResourceRecords) > 0 {
+		v := s.ResourceRecords
+
+		e.SetList(protocol.BodyTarget, "ResourceRecords", encodeResourceRecordList(v), protocol.Metadata{ListLocationName: "ResourceRecord"})
+	}
+	if s.SetIdentifier != nil {
+		v := *s.SetIdentifier
+
+		e.SetValue(protocol.BodyTarget, "SetIdentifier", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TTL != nil {
+		v := *s.TTL
+
+		e.SetValue(protocol.BodyTarget, "TTL", protocol.Int64Value(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyInstanceId != nil {
+		v := *s.TrafficPolicyInstanceId
+
+		e.SetValue(protocol.BodyTarget, "TrafficPolicyInstanceId", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Type != nil {
+		v := *s.Type
+
+		e.SetValue(protocol.BodyTarget, "Type", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Weight != nil {
+		v := *s.Weight
+
+		e.SetValue(protocol.BodyTarget, "Weight", protocol.Int64Value(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
+func encodeResourceRecordSetList(vs []*ResourceRecordSet) func(protocol.ListEncoder) {
+	return func(le protocol.ListEncoder) {
+		for _, v := range vs {
+			le.ListAddFields(v)
+		}
+	}
+}
+
 // A complex type containing a resource and its associated tags.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ResourceTagSet
 type ResourceTagSet struct {
@@ -12540,6 +14775,35 @@ func (s *ResourceTagSet) SetTags(v []*Tag) *ResourceTagSet {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ResourceTagSet) MarshalFields(e protocol.FieldEncoder) error {
+	if s.ResourceId != nil {
+		v := *s.ResourceId
+
+		e.SetValue(protocol.BodyTarget, "ResourceId", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.ResourceType != nil {
+		v := *s.ResourceType
+
+		e.SetValue(protocol.BodyTarget, "ResourceType", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if len(s.Tags) > 0 {
+		v := s.Tags
+
+		e.SetList(protocol.BodyTarget, "Tags", encodeTagList(v), protocol.Metadata{ListLocationName: "Tag"})
+	}
+
+	return nil
+}
+
+func encodeResourceTagSetList(vs []*ResourceTagSet) func(protocol.ListEncoder) {
+	return func(le protocol.ListEncoder) {
+		for _, v := range vs {
+			le.ListAddFields(v)
+		}
+	}
+}
+
 // A complex type that contains the status that one Amazon Route 53 health checker
 // reports and the time of the health check.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/StatusReport
@@ -12577,6 +14841,22 @@ func (s *StatusReport) SetCheckedTime(v time.Time) *StatusReport {
 func (s *StatusReport) SetStatus(v string) *StatusReport {
 	s.Status = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *StatusReport) MarshalFields(e protocol.FieldEncoder) error {
+	if s.CheckedTime != nil {
+		v := *s.CheckedTime
+
+		e.SetValue(protocol.BodyTarget, "CheckedTime", protocol.TimeValue{V: v, Format: protocol.ISO8601TimeFormat}, protocol.Metadata{})
+	}
+	if s.Status != nil {
+		v := *s.Status
+
+		e.SetValue(protocol.BodyTarget, "Status", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A complex type that contains information about a tag that you want to add
@@ -12629,6 +14909,30 @@ func (s *Tag) SetKey(v string) *Tag {
 func (s *Tag) SetValue(v string) *Tag {
 	s.Value = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *Tag) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Key != nil {
+		v := *s.Key
+
+		e.SetValue(protocol.BodyTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Value != nil {
+		v := *s.Value
+
+		e.SetValue(protocol.BodyTarget, "Value", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
+func encodeTagList(vs []*Tag) func(protocol.ListEncoder) {
+	return func(le protocol.ListEncoder) {
+		for _, v := range vs {
+			le.ListAddFields(v)
+		}
+	}
 }
 
 // Gets the value that Amazon Route 53 returns in response to a DNS request
@@ -12740,6 +15044,42 @@ func (s *TestDNSAnswerInput) SetResolverIP(v string) *TestDNSAnswerInput {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *TestDNSAnswerInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.EDNS0ClientSubnetIP != nil {
+		v := *s.EDNS0ClientSubnetIP
+
+		e.SetValue(protocol.QueryTarget, "edns0clientsubnetip", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.EDNS0ClientSubnetMask != nil {
+		v := *s.EDNS0ClientSubnetMask
+
+		e.SetValue(protocol.QueryTarget, "edns0clientsubnetmask", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.HostedZoneId != nil {
+		v := *s.HostedZoneId
+
+		e.SetValue(protocol.QueryTarget, "hostedzoneid", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.RecordName != nil {
+		v := *s.RecordName
+
+		e.SetValue(protocol.QueryTarget, "recordname", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.RecordType != nil {
+		v := *s.RecordType
+
+		e.SetValue(protocol.QueryTarget, "recordtype", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.ResolverIP != nil {
+		v := *s.ResolverIP
+
+		e.SetValue(protocol.QueryTarget, "resolverip", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains the response to a TestDNSAnswer request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/TestDNSAnswerResponse
 type TestDNSAnswerOutput struct {
@@ -12828,6 +15168,42 @@ func (s *TestDNSAnswerOutput) SetResponseCode(v string) *TestDNSAnswerOutput {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *TestDNSAnswerOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Nameserver != nil {
+		v := *s.Nameserver
+
+		e.SetValue(protocol.BodyTarget, "Nameserver", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Protocol != nil {
+		v := *s.Protocol
+
+		e.SetValue(protocol.BodyTarget, "Protocol", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if len(s.RecordData) > 0 {
+		v := s.RecordData
+
+		e.SetList(protocol.BodyTarget, "RecordData", protocol.EncodeStringList(v), protocol.Metadata{ListLocationName: "RecordDataEntry"})
+	}
+	if s.RecordName != nil {
+		v := *s.RecordName
+
+		e.SetValue(protocol.BodyTarget, "RecordName", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.RecordType != nil {
+		v := *s.RecordType
+
+		e.SetValue(protocol.BodyTarget, "RecordType", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.ResponseCode != nil {
+		v := *s.ResponseCode
+
+		e.SetValue(protocol.BodyTarget, "ResponseCode", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains settings for a traffic policy.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/TrafficPolicy
 type TrafficPolicy struct {
@@ -12911,6 +15287,50 @@ func (s *TrafficPolicy) SetType(v string) *TrafficPolicy {
 func (s *TrafficPolicy) SetVersion(v int64) *TrafficPolicy {
 	s.Version = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *TrafficPolicy) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Comment != nil {
+		v := *s.Comment
+
+		e.SetValue(protocol.BodyTarget, "Comment", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Document != nil {
+		v := *s.Document
+
+		e.SetValue(protocol.BodyTarget, "Document", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.BodyTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Name != nil {
+		v := *s.Name
+
+		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Type != nil {
+		v := *s.Type
+
+		e.SetValue(protocol.BodyTarget, "Type", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Version != nil {
+		v := *s.Version
+
+		e.SetValue(protocol.BodyTarget, "Version", protocol.Int64Value(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
+func encodeTrafficPolicyList(vs []*TrafficPolicy) func(protocol.ListEncoder) {
+	return func(le protocol.ListEncoder) {
+		for _, v := range vs {
+			le.ListAddFields(v)
+		}
+	}
 }
 
 // A complex type that contains settings for the new traffic policy instance.
@@ -13046,6 +15466,65 @@ func (s *TrafficPolicyInstance) SetTrafficPolicyVersion(v int64) *TrafficPolicyI
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *TrafficPolicyInstance) MarshalFields(e protocol.FieldEncoder) error {
+	if s.HostedZoneId != nil {
+		v := *s.HostedZoneId
+
+		e.SetValue(protocol.BodyTarget, "HostedZoneId", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.BodyTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Message != nil {
+		v := *s.Message
+
+		e.SetValue(protocol.BodyTarget, "Message", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Name != nil {
+		v := *s.Name
+
+		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.State != nil {
+		v := *s.State
+
+		e.SetValue(protocol.BodyTarget, "State", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TTL != nil {
+		v := *s.TTL
+
+		e.SetValue(protocol.BodyTarget, "TTL", protocol.Int64Value(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyId != nil {
+		v := *s.TrafficPolicyId
+
+		e.SetValue(protocol.BodyTarget, "TrafficPolicyId", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyType != nil {
+		v := *s.TrafficPolicyType
+
+		e.SetValue(protocol.BodyTarget, "TrafficPolicyType", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyVersion != nil {
+		v := *s.TrafficPolicyVersion
+
+		e.SetValue(protocol.BodyTarget, "TrafficPolicyVersion", protocol.Int64Value(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
+func encodeTrafficPolicyInstanceList(vs []*TrafficPolicyInstance) func(protocol.ListEncoder) {
+	return func(le protocol.ListEncoder) {
+		for _, v := range vs {
+			le.ListAddFields(v)
+		}
+	}
+}
+
 // A complex type that contains information about the latest version of one
 // traffic policy that is associated with the current AWS account.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/TrafficPolicySummary
@@ -13118,6 +15597,45 @@ func (s *TrafficPolicySummary) SetTrafficPolicyCount(v int64) *TrafficPolicySumm
 func (s *TrafficPolicySummary) SetType(v string) *TrafficPolicySummary {
 	s.Type = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *TrafficPolicySummary) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.BodyTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.LatestVersion != nil {
+		v := *s.LatestVersion
+
+		e.SetValue(protocol.BodyTarget, "LatestVersion", protocol.Int64Value(v), protocol.Metadata{})
+	}
+	if s.Name != nil {
+		v := *s.Name
+
+		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyCount != nil {
+		v := *s.TrafficPolicyCount
+
+		e.SetValue(protocol.BodyTarget, "TrafficPolicyCount", protocol.Int64Value(v), protocol.Metadata{})
+	}
+	if s.Type != nil {
+		v := *s.Type
+
+		e.SetValue(protocol.BodyTarget, "Type", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
+func encodeTrafficPolicySummaryList(vs []*TrafficPolicySummary) func(protocol.ListEncoder) {
+	return func(le protocol.ListEncoder) {
+		for _, v := range vs {
+			le.ListAddFields(v)
+		}
+	}
 }
 
 // A complex type that contains information about a request to update a health
@@ -13488,6 +16006,87 @@ func (s *UpdateHealthCheckInput) SetSearchString(v string) *UpdateHealthCheckInp
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *UpdateHealthCheckInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.AlarmIdentifier != nil {
+		v := s.AlarmIdentifier
+
+		e.SetFields(protocol.BodyTarget, "AlarmIdentifier", v, protocol.Metadata{})
+	}
+	if len(s.ChildHealthChecks) > 0 {
+		v := s.ChildHealthChecks
+
+		e.SetList(protocol.BodyTarget, "ChildHealthChecks", protocol.EncodeStringList(v), protocol.Metadata{ListLocationName: "ChildHealthCheck"})
+	}
+	if s.EnableSNI != nil {
+		v := *s.EnableSNI
+
+		e.SetValue(protocol.BodyTarget, "EnableSNI", protocol.BoolValue(v), protocol.Metadata{})
+	}
+	if s.FailureThreshold != nil {
+		v := *s.FailureThreshold
+
+		e.SetValue(protocol.BodyTarget, "FailureThreshold", protocol.Int64Value(v), protocol.Metadata{})
+	}
+	if s.FullyQualifiedDomainName != nil {
+		v := *s.FullyQualifiedDomainName
+
+		e.SetValue(protocol.BodyTarget, "FullyQualifiedDomainName", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.HealthCheckId != nil {
+		v := *s.HealthCheckId
+
+		e.SetValue(protocol.PathTarget, "HealthCheckId", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.HealthCheckVersion != nil {
+		v := *s.HealthCheckVersion
+
+		e.SetValue(protocol.BodyTarget, "HealthCheckVersion", protocol.Int64Value(v), protocol.Metadata{})
+	}
+	if s.HealthThreshold != nil {
+		v := *s.HealthThreshold
+
+		e.SetValue(protocol.BodyTarget, "HealthThreshold", protocol.Int64Value(v), protocol.Metadata{})
+	}
+	if s.IPAddress != nil {
+		v := *s.IPAddress
+
+		e.SetValue(protocol.BodyTarget, "IPAddress", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.InsufficientDataHealthStatus != nil {
+		v := *s.InsufficientDataHealthStatus
+
+		e.SetValue(protocol.BodyTarget, "InsufficientDataHealthStatus", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Inverted != nil {
+		v := *s.Inverted
+
+		e.SetValue(protocol.BodyTarget, "Inverted", protocol.BoolValue(v), protocol.Metadata{})
+	}
+	if s.Port != nil {
+		v := *s.Port
+
+		e.SetValue(protocol.BodyTarget, "Port", protocol.Int64Value(v), protocol.Metadata{})
+	}
+	if len(s.Regions) > 0 {
+		v := s.Regions
+
+		e.SetList(protocol.BodyTarget, "Regions", protocol.EncodeStringList(v), protocol.Metadata{ListLocationName: "Region"})
+	}
+	if s.ResourcePath != nil {
+		v := *s.ResourcePath
+
+		e.SetValue(protocol.BodyTarget, "ResourcePath", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.SearchString != nil {
+		v := *s.SearchString
+
+		e.SetValue(protocol.BodyTarget, "SearchString", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/UpdateHealthCheckResponse
 type UpdateHealthCheckOutput struct {
 	_ struct{} `type:"structure"`
@@ -13513,6 +16112,17 @@ func (s UpdateHealthCheckOutput) GoString() string {
 func (s *UpdateHealthCheckOutput) SetHealthCheck(v *HealthCheck) *UpdateHealthCheckOutput {
 	s.HealthCheck = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *UpdateHealthCheckOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.HealthCheck != nil {
+		v := s.HealthCheck
+
+		e.SetFields(protocol.BodyTarget, "HealthCheck", v, protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A request to update the comment for a hosted zone.
@@ -13565,6 +16175,22 @@ func (s *UpdateHostedZoneCommentInput) SetId(v string) *UpdateHostedZoneCommentI
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *UpdateHostedZoneCommentInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Comment != nil {
+		v := *s.Comment
+
+		e.SetValue(protocol.BodyTarget, "Comment", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains the response to the UpdateHostedZoneComment
 // request.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/UpdateHostedZoneCommentResponse
@@ -13591,6 +16217,17 @@ func (s UpdateHostedZoneCommentOutput) GoString() string {
 func (s *UpdateHostedZoneCommentOutput) SetHostedZone(v *HostedZone) *UpdateHostedZoneCommentOutput {
 	s.HostedZone = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *UpdateHostedZoneCommentOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.HostedZone != nil {
+		v := s.HostedZone
+
+		e.SetFields(protocol.BodyTarget, "HostedZone", v, protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A complex type that contains information about the traffic policy that you
@@ -13670,6 +16307,27 @@ func (s *UpdateTrafficPolicyCommentInput) SetVersion(v int64) *UpdateTrafficPoli
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *UpdateTrafficPolicyCommentInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Comment != nil {
+		v := *s.Comment
+
+		e.SetValue(protocol.BodyTarget, "Comment", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Version != nil {
+		v := *s.Version
+
+		e.SetValue(protocol.PathTarget, "Version", protocol.Int64Value(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains the response information for the traffic policy.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/UpdateTrafficPolicyCommentResponse
 type UpdateTrafficPolicyCommentOutput struct {
@@ -13695,6 +16353,17 @@ func (s UpdateTrafficPolicyCommentOutput) GoString() string {
 func (s *UpdateTrafficPolicyCommentOutput) SetTrafficPolicy(v *TrafficPolicy) *UpdateTrafficPolicyCommentOutput {
 	s.TrafficPolicy = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *UpdateTrafficPolicyCommentOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.TrafficPolicy != nil {
+		v := s.TrafficPolicy
+
+		e.SetFields(protocol.BodyTarget, "TrafficPolicy", v, protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // A complex type that contains information about the resource record sets that
@@ -13792,6 +16461,32 @@ func (s *UpdateTrafficPolicyInstanceInput) SetTrafficPolicyVersion(v int64) *Upd
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *UpdateTrafficPolicyInstanceInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TTL != nil {
+		v := *s.TTL
+
+		e.SetValue(protocol.BodyTarget, "TTL", protocol.Int64Value(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyId != nil {
+		v := *s.TrafficPolicyId
+
+		e.SetValue(protocol.BodyTarget, "TrafficPolicyId", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TrafficPolicyVersion != nil {
+		v := *s.TrafficPolicyVersion
+
+		e.SetValue(protocol.BodyTarget, "TrafficPolicyVersion", protocol.Int64Value(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // A complex type that contains information about the resource record sets that
 // Amazon Route 53 created based on a specified traffic policy.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/UpdateTrafficPolicyInstanceResponse
@@ -13818,6 +16513,17 @@ func (s UpdateTrafficPolicyInstanceOutput) GoString() string {
 func (s *UpdateTrafficPolicyInstanceOutput) SetTrafficPolicyInstance(v *TrafficPolicyInstance) *UpdateTrafficPolicyInstanceOutput {
 	s.TrafficPolicyInstance = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *UpdateTrafficPolicyInstanceOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.TrafficPolicyInstance != nil {
+		v := s.TrafficPolicyInstance
+
+		e.SetFields(protocol.BodyTarget, "TrafficPolicyInstance", v, protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // (Private hosted zones only) A complex type that contains information about
@@ -13866,6 +16572,30 @@ func (s *VPC) SetVPCId(v string) *VPC {
 func (s *VPC) SetVPCRegion(v string) *VPC {
 	s.VPCRegion = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *VPC) MarshalFields(e protocol.FieldEncoder) error {
+	if s.VPCId != nil {
+		v := *s.VPCId
+
+		e.SetValue(protocol.BodyTarget, "VPCId", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.VPCRegion != nil {
+		v := *s.VPCRegion
+
+		e.SetValue(protocol.BodyTarget, "VPCRegion", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
+func encodeVPCList(vs []*VPC) func(protocol.ListEncoder) {
+	return func(le protocol.ListEncoder) {
+		for _, v := range vs {
+			le.ListAddFields(v)
+		}
+	}
 }
 
 const (
