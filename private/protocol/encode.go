@@ -14,7 +14,7 @@ type FieldMarshaler interface {
 // passed into a encoder's methods with.
 type ValueMarshaler interface {
 	MarshalValue() (string, error)
-	//	MarshalValueBuf([]byte) ([]byte, error)
+	MarshalValueBuf([]byte) ([]byte, error)
 }
 
 // A StreamMarshaler interface is used to marshal a stream when encoding.

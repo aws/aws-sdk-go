@@ -20,12 +20,37 @@ func (v BoolValue) MarshalValue() (string, error) {
 	return strconv.FormatBool(bool(v)), nil
 }
 
+// MarshalValueBuf formats the value into a byte slice for encoding.
+// If there is enough room in the passed in slice v will be appended to it.
+//
+// Will reset the length of the passed in slice to 0.
+func (v BoolValue) MarshalValueBuf(b []byte) ([]byte, error) {
+	b = b[0:0]
+	return strconv.AppendBool(b, bool(v)), nil
+}
+
 // BytesValue provies encoding of string for AWS protocols.
 type BytesValue string
 
 // MarshalValue formats the value into a string for encoding.
 func (v BytesValue) MarshalValue() (string, error) {
 	return base64.StdEncoding.EncodeToString([]byte(v)), nil
+}
+
+// MarshalValueBuf formats the value into a byte slice for encoding.
+// If there is enough room in the passed in slice v will be appended to it.
+//
+// Will reset the length of the passed in slice to 0.
+func (v BytesValue) MarshalValueBuf(b []byte) ([]byte, error) {
+	b = b[0:0]
+	m := []byte(v)
+
+	n := base64.StdEncoding.EncodedLen(len(m))
+	if cap(b) < n {
+		b = make([]byte, n)
+	}
+	base64.StdEncoding.Encode(b, m)
+	return b, nil
 }
 
 // StringValue provies encoding of string for AWS protocols.
@@ -36,6 +61,15 @@ func (v StringValue) MarshalValue() (string, error) {
 	return string(v), nil
 }
 
+// MarshalValueBuf formats the value into a byte slice for encoding.
+// If there is enough room in the passed in slice v will be appended to it.
+//
+// Will reset the length of the passed in slice to 0.
+func (v StringValue) MarshalValueBuf(b []byte) ([]byte, error) {
+	b = b[0:0]
+	return append(b, v...), nil
+}
+
 // Int64Value provies encoding of int64 for AWS protocols.
 type Int64Value int64
 
@@ -44,12 +78,30 @@ func (v Int64Value) MarshalValue() (string, error) {
 	return strconv.FormatInt(int64(v), 10), nil
 }
 
+// MarshalValueBuf formats the value into a byte slice for encoding.
+// If there is enough room in the passed in slice v will be appended to it.
+//
+// Will reset the length of the passed in slice to 0.
+func (v Int64Value) MarshalValueBuf(b []byte) ([]byte, error) {
+	b = b[0:0]
+	return strconv.AppendInt(b, int64(v), 10), nil
+}
+
 // Float64Value provies encoding of float64 for AWS protocols.
 type Float64Value float64
 
 // MarshalValue formats the value into a string for encoding.
 func (v Float64Value) MarshalValue() (string, error) {
 	return strconv.FormatFloat(float64(v), 'f', -1, 64), nil
+}
+
+// MarshalValueBuf formats the value into a byte slice for encoding.
+// If there is enough room in the passed in slice v will be appended to it.
+//
+// Will reset the length of the passed in slice to 0.
+func (v Float64Value) MarshalValueBuf(b []byte) ([]byte, error) {
+	b = b[0:0]
+	return strconv.AppendFloat(b, float64(v), 'f', -1, 64), nil
 }
 
 // JSONValue provies encoding of aws.JSONValues for AWS protocols.
@@ -70,6 +122,25 @@ func (v JSONValue) MarshalValue() (string, error) {
 	}
 
 	return string(b), nil
+}
+
+// MarshalValueBuf formats the value into a byte slice for encoding.
+// If there is enough room in the passed in slice v will be appended to it.
+//
+// Will reset the length of the passed in slice to 0.
+func (v JSONValue) MarshalValueBuf(b []byte) ([]byte, error) {
+	b = b[0:0]
+
+	m, err := json.Marshal(v.V)
+	if err != nil {
+		return nil, err
+	}
+
+	if v.Base64 {
+		return BytesValue(m).MarshalValueBuf(b)
+	}
+
+	return append(b, m...), nil
 }
 
 // Time formats for protocol time fields.
@@ -93,6 +164,21 @@ func (v TimeValue) MarshalValue() (string, error) {
 		return strconv.FormatInt(t.UTC().Unix(), 10), nil
 	}
 	return t.UTC().Format(v.Format), nil
+}
+
+// MarshalValueBuf formats the value into a byte slice for encoding.
+// If there is enough room in the passed in slice v will be appended to it.
+//
+// Will reset the length of the passed in slice to 0.
+func (v TimeValue) MarshalValueBuf(b []byte) ([]byte, error) {
+	b = b[0:0]
+
+	m, err := v.MarshalValue()
+	if err != nil {
+		return nil, err
+	}
+
+	return append(b, m...), nil
 }
 
 // A ReadSeekerStream wrapps an io.ReadSeeker to be used as a StreamMarshaler.

@@ -14,7 +14,7 @@ import (
 type Encoder struct {
 	encoder    *xml.Encoder
 	encodedBuf *bytes.Buffer
-	fieldBuf   *bytes.Buffer
+	fieldBuf   fieldBuffer
 	err        error
 }
 
@@ -22,11 +22,10 @@ type Encoder struct {
 // fields into the XML body, and error is returned if target is anything other
 // than Body or Payload.
 func NewEncoder() *Encoder {
-	encodedBuf := &bytes.Buffer{}
+	encodedBuf := bytes.NewBuffer(nil)
 	return &Encoder{
 		encodedBuf: encodedBuf,
 		encoder:    xml.NewEncoder(encodedBuf),
-		fieldBuf:   bytes.NewBuffer(nil),
 	}
 }
 
@@ -58,7 +57,7 @@ func (e *Encoder) SetValue(t protocol.Target, k string, v protocol.ValueMarshale
 		return
 	}
 
-	e.err = addValueToken(e.encoder, e.fieldBuf, k, v, meta)
+	e.err = addValueToken(e.encoder, &e.fieldBuf, k, v, meta)
 }
 
 // SetStream is not supported for XML protocol marshaling.
@@ -168,7 +167,7 @@ func (e *ListEncoder) ListAddValue(v protocol.ValueMarshaler) {
 		return
 	}
 
-	e.Err = addValueToken(e.Base.encoder, e.Base.fieldBuf, e.ListName, v, protocol.Metadata{})
+	e.Err = addValueToken(e.Base.encoder, &e.Base.fieldBuf, e.ListName, v, protocol.Metadata{})
 }
 
 // ListAddList is not supported for XML encoder.
@@ -230,12 +229,12 @@ func (e *MapEncoder) MapSetValue(k string, v protocol.ValueMarshaler) {
 		valueName = "value"
 	}
 
-	e.Err = addValueToken(e.Base.encoder, e.Base.fieldBuf, keyName, protocol.StringValue(k), protocol.Metadata{})
+	e.Err = addValueToken(e.Base.encoder, &e.Base.fieldBuf, keyName, protocol.StringValue(k), protocol.Metadata{})
 	if e.Err != nil {
 		return
 	}
 
-	e.Err = addValueToken(e.Base.encoder, e.Base.fieldBuf, valueName, v, protocol.Metadata{})
+	e.Err = addValueToken(e.Base.encoder, &e.Base.fieldBuf, valueName, v, protocol.Metadata{})
 	if e.Err != nil {
 		return
 	}
@@ -278,7 +277,7 @@ func (e *MapEncoder) MapSetFields(k string, m protocol.FieldMarshaler) {
 		valueName = "value"
 	}
 
-	e.Err = addValueToken(e.Base.encoder, e.Base.fieldBuf, keyName, protocol.StringValue(k), protocol.Metadata{})
+	e.Err = addValueToken(e.Base.encoder, &e.Base.fieldBuf, keyName, protocol.StringValue(k), protocol.Metadata{})
 	if e.Err != nil {
 		return
 	}
@@ -299,14 +298,19 @@ func (e *MapEncoder) MapSetFields(k string, m protocol.FieldMarshaler) {
 	}
 }
 
-func addValueToken(e *xml.Encoder, fieldBuf *bytes.Buffer, k string, v protocol.ValueMarshaler, meta protocol.Metadata) error {
-	str, err := v.MarshalValue()
-	if err != nil {
-		return err
-	}
+type fieldBuffer struct {
+	buf []byte
+}
 
-	fieldBuf.Reset()
-	_, err = fieldBuf.WriteString(str)
+func (b *fieldBuffer) GetValue(m protocol.ValueMarshaler) ([]byte, error) {
+	v, err := m.MarshalValueBuf(b.buf)
+	b.buf = v
+	b.buf = b.buf[0:0]
+	return v, err
+}
+
+func addValueToken(e *xml.Encoder, fieldBuf *fieldBuffer, k string, v protocol.ValueMarshaler, meta protocol.Metadata) error {
+	b, err := fieldBuf.GetValue(v)
 	if err != nil {
 		return err
 	}
@@ -317,7 +321,7 @@ func addValueToken(e *xml.Encoder, fieldBuf *bytes.Buffer, k string, v protocol.
 	}
 
 	e.EncodeToken(tok)
-	e.EncodeToken(xml.CharData(fieldBuf.Bytes()))
+	e.EncodeToken(xml.CharData(b))
 	e.EncodeToken(xml.EndElement{Name: tok.Name})
 
 	return nil
