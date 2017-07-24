@@ -33,17 +33,17 @@ func (c *AppStream) WaitUntilFleetStartedWithContext(ctx aws.Context, input *Des
 		Acceptors: []request.WaiterAcceptor{
 			{
 				State:   request.SuccessWaiterState,
-				Matcher: request.PathAllWaiterMatch, Argument: "fleets[].state",
+				Matcher: request.PathAllWaiterMatch, Argument: "Fleets[].State",
 				Expected: "ACTIVE",
 			},
 			{
 				State:   request.FailureWaiterState,
-				Matcher: request.PathAnyWaiterMatch, Argument: "fleets[].state",
+				Matcher: request.PathAnyWaiterMatch, Argument: "Fleets[].State",
 				Expected: "PENDING_DEACTIVATE",
 			},
 			{
 				State:   request.FailureWaiterState,
-				Matcher: request.PathAnyWaiterMatch, Argument: "fleets[].state",
+				Matcher: request.PathAnyWaiterMatch, Argument: "Fleets[].State",
 				Expected: "INACTIVE",
 			},
 		},
@@ -89,17 +89,17 @@ func (c *AppStream) WaitUntilFleetStoppedWithContext(ctx aws.Context, input *Des
 		Acceptors: []request.WaiterAcceptor{
 			{
 				State:   request.SuccessWaiterState,
-				Matcher: request.PathAllWaiterMatch, Argument: "fleets[].state",
+				Matcher: request.PathAllWaiterMatch, Argument: "Fleets[].State",
 				Expected: "INACTIVE",
 			},
 			{
 				State:   request.FailureWaiterState,
-				Matcher: request.PathAnyWaiterMatch, Argument: "fleets[].state",
+				Matcher: request.PathAnyWaiterMatch, Argument: "Fleets[].State",
 				Expected: "PENDING_ACTIVATE",
 			},
 			{
 				State:   request.FailureWaiterState,
-				Matcher: request.PathAnyWaiterMatch, Argument: "fleets[].state",
+				Matcher: request.PathAnyWaiterMatch, Argument: "Fleets[].State",
 				Expected: "ACTIVE",
 			},
 		},

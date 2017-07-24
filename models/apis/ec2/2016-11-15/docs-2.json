@@ -1309,12 +1309,12 @@
       }
     },
     "CreateNetworkInterfacePermissionRequest": {
-      "base": null,
+      "base": "<p>Contains the parameters for CreateNetworkInterfacePermission.</p>",
       "refs": {
       }
     },
     "CreateNetworkInterfacePermissionResult": {
-      "base": null,
+      "base": "<p>Contains the output of CreateNetworkInterfacePermission.</p>",
       "refs": {
       }
     },
@@ -1660,12 +1660,12 @@
       }
     },
     "DeleteNetworkInterfacePermissionRequest": {
-      "base": null,
+      "base": "<p>Contains the parameters for DeleteNetworkInterfacePermission.</p>",
       "refs": {
       }
     },
     "DeleteNetworkInterfacePermissionResult": {
-      "base": null,
+      "base": "<p>Contains the output for DeleteNetworkInterfacePermission.</p>",
       "refs": {
       }
     },
@@ -2071,12 +2071,12 @@
       }
     },
     "DescribeNetworkInterfacePermissionsRequest": {
-      "base": null,
+      "base": "<p>Contains the parameters for DescribeNetworkInterfacePermissions.</p>",
       "refs": {
       }
     },
     "DescribeNetworkInterfacePermissionsResult": {
-      "base": null,
+      "base": "<p>Contains the output for DescribeNetworkInterfacePermissions.</p>",
       "refs": {
       }
     },
@@ -5063,6 +5063,7 @@
     "ResourceType": {
       "base": null,
       "refs": {
+        "SpotFleetTagSpecification$ResourceType": "<p>The type of resource. Currently, the only resource type that is supported is <code>instance</code>.</p>",
         "TagDescription$ResourceType": "<p>The resource type.</p>",
         "TagSpecification$ResourceType": "<p>The type of resource to tag. Currently, the resource types that support tagging on creation are <code>instance</code> and <code>volume</code>. </p>"
       }
@@ -5471,6 +5472,18 @@
       "base": null,
       "refs": {
         "DescribeSpotFleetRequestsResponse$SpotFleetRequestConfigs": "<p>Information about the configuration of your Spot fleet.</p>"
+      }
+    },
+    "SpotFleetTagSpecification": {
+      "base": "<p>The tags for a Spot fleet resource.</p>",
+      "refs": {
+        "SpotFleetTagSpecificationList$member": null
+      }
+    },
+    "SpotFleetTagSpecificationList": {
+      "base": null,
+      "refs": {
+        "SpotFleetLaunchSpecification$TagSpecifications": "<p>The tags to apply during creation.</p>"
       }
     },
     "SpotInstanceRequest": {
@@ -6739,6 +6752,7 @@
         "RouteTable$Tags": "<p>Any tags assigned to the route table.</p>",
         "SecurityGroup$Tags": "<p>Any tags assigned to the security group.</p>",
         "Snapshot$Tags": "<p>Any tags assigned to the snapshot.</p>",
+        "SpotFleetTagSpecification$Tags": "<p>The tags.</p>",
         "SpotInstanceRequest$Tags": "<p>Any tags assigned to the resource.</p>",
         "Subnet$Tags": "<p>Any tags assigned to the subnet.</p>",
         "TagSpecification$Tags": "<p>The tags to apply to the resource.</p>",
