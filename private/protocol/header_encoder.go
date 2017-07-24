@@ -1,6 +1,7 @@
 package protocol
 
 import (
+	"fmt"
 	"net/http"
 )
 
@@ -63,7 +64,9 @@ func (e *HeaderMapEncoder) MapSetMap(k string, fn func(me MapEncoder)) {
 }
 
 // MapSetFields Is not implemented, query map of FieldMarshaler is undefined.
-func (e *HeaderMapEncoder) MapSetFields(k string, m FieldMarshaler) {}
+func (e *HeaderMapEncoder) MapSetFields(k string, m FieldMarshaler) {
+	e.Err = fmt.Errorf("header map encoder MapSetFields not supported, %s", k)
+}
 
 // HeaderListEncoder will encode list values nested into a header key.
 type HeaderListEncoder struct {
@@ -88,10 +91,16 @@ func (e *HeaderListEncoder) ListAddValue(v ValueMarshaler) {
 }
 
 // ListAddList Is not implemented, header list of list is undefined.
-func (e *HeaderListEncoder) ListAddList(fn func(ListEncoder)) {}
+func (e *HeaderListEncoder) ListAddList(fn func(ListEncoder)) {
+	e.Err = fmt.Errorf("header list encoder ListAddList not supported, %s", e.Key)
+}
 
 // ListAddMap Is not implemented, header list of map is undefined.
-func (e *HeaderListEncoder) ListAddMap(fn func(MapEncoder)) {}
+func (e *HeaderListEncoder) ListAddMap(fn func(MapEncoder)) {
+	e.Err = fmt.Errorf("header list encoder ListAddMap not supported, %s", e.Key)
+}
 
 // ListAddFields Is not implemented, query list of FieldMarshaler is undefined.
-func (e *HeaderListEncoder) ListAddFields(m FieldMarshaler) {}
+func (e *HeaderListEncoder) ListAddFields(m FieldMarshaler) {
+	e.Err = fmt.Errorf("header list encoder ListAddFields not supported, %s", e.Key)
+}

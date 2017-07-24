@@ -38,8 +38,10 @@ func Build(r *request.Request) {
 		m.MarshalFields(e)
 
 		var body io.ReadSeeker
-		r.HTTPRequest, body, r.Error = e.Encode()
-		if r.Error != nil {
+		var err error
+		r.HTTPRequest, body, err = e.Encode()
+		if err != nil {
+			r.Error = awserr.New(request.ErrCodeSerialization, "failed to encode rest XML request", err)
 			return
 		}
 		if body != nil {
@@ -48,13 +50,14 @@ func Build(r *request.Request) {
 		return
 	}
 
+	// Fall back to old reflection based marshaler
 	rest.Build(r)
 
 	if t := rest.PayloadType(r.Params); t == "structure" || t == "" {
 		var buf bytes.Buffer
 		err := xmlutil.BuildXML(r.Params, xml.NewEncoder(&buf))
 		if err != nil {
-			r.Error = awserr.New("SerializationError", "failed to encode rest XML request", err)
+			r.Error = awserr.New(request.ErrCodeSerialization, "failed to encode rest XML request", err)
 			return
 		}
 		r.SetBufferBody(buf.Bytes())

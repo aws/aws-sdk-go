@@ -1,6 +1,9 @@
 package protocol
 
-import "net/url"
+import (
+	"fmt"
+	"net/url"
+)
 
 // QueryMapEncoder builds a query string.
 type QueryMapEncoder struct {
@@ -60,7 +63,9 @@ func (e *QueryMapEncoder) MapSetMap(k string, fn func(me MapEncoder)) {
 }
 
 // MapSetFields Is not implemented, query map of map is undefined.
-func (e *QueryMapEncoder) MapSetFields(k string, m FieldMarshaler) {}
+func (e *QueryMapEncoder) MapSetFields(k string, m FieldMarshaler) {
+	e.Err = fmt.Errorf("query map encoder MapSetFields not supported, %s", e.Prefix)
+}
 
 // QueryListEncoder will encode list values nested into a query key.
 type QueryListEncoder struct {
@@ -85,10 +90,16 @@ func (e *QueryListEncoder) ListAddValue(v ValueMarshaler) {
 }
 
 // ListAddList Is not implemented, query list of list is undefined.
-func (e *QueryListEncoder) ListAddList(fn func(le ListEncoder)) {}
+func (e *QueryListEncoder) ListAddList(fn func(le ListEncoder)) {
+	e.Err = fmt.Errorf("query list encoder ListAddList not supported, %s", e.Key)
+}
 
 // ListAddMap Is not implemented, query list of map is undefined.
-func (e *QueryListEncoder) ListAddMap(fn func(fe MapEncoder)) {}
+func (e *QueryListEncoder) ListAddMap(fn func(fe MapEncoder)) {
+	e.Err = fmt.Errorf("query list encoder ListAddMap not supported, %s", e.Key)
+}
 
 // ListAddFields Is not implemented, query list of FieldMarshaler is undefined.
-func (e *QueryListEncoder) ListAddFields(m FieldMarshaler) {}
+func (e *QueryListEncoder) ListAddFields(m FieldMarshaler) {
+	e.Err = fmt.Errorf("query list encoder ListAddFields not supported, %s", e.Key)
+}
