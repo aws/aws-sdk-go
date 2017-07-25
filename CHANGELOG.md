@@ -1,3 +1,15 @@
+Release v1.10.16 (2017-07-25)
+===
+
+### Service Client Updates
+* `service/clouddirectory`: Updates service API and documentation
+  * Cloud Directory adds support for additional batch operations.
+* `service/cloudformation`: Updates service API and documentation
+  * AWS CloudFormation StackSets enables you to manage stacks across multiple accounts and regions.
+
+### SDK Enhancements
+* `aws/signer/v4`: Optimize V4 signer's header duplicate space stripping. [#1417](https://github.com/aws/aws-sdk-go/pull/1417)
+
 Release v1.10.15 (2017-07-24)
 ===
 
