@@ -20,8 +20,10 @@ import (
 
 func TestStripExcessHeaders(t *testing.T) {
 	vals := []string{
+		"",
 		"123",
 		"1 2 3",
+		"1 2 3 ",
 		"  1 2 3",
 		"1  2 3",
 		"1  23",
@@ -35,7 +37,9 @@ func TestStripExcessHeaders(t *testing.T) {
 	}
 
 	expected := []string{
+		"",
 		"123",
+		"1 2 3",
 		"1 2 3",
 		"1 2 3",
 		"1 2 3",
