@@ -1,7 +1,6 @@
 package expression
 
 import (
-	"encoding/base32"
 	"fmt"
 	"strings"
 
@@ -36,7 +35,8 @@ type Expression struct {
 // Concrete types that satisfy this interface will be referred to as an Operand
 // In select cases, other builders may satisfy this interface
 type OperandBuilder interface {
-	BuildOperand() (Expression, error)
+	BuildOperand(AliasList) (Expression, error)
+	ListOperand() (AliasList, error)
 }
 
 // NewPath creates an Operand based off of the path entered
@@ -53,25 +53,69 @@ func NewValue(v interface{}) ValueBuilder {
 	}
 }
 
-// BuildOperand will create an instance of an Expression. BuildOperand will be
-// called whenever Build___() for any Expression Builders
-func (v ValueBuilder) BuildOperand() (Expression, error) {
-	attrval, err := dynamodbattribute.Marshal(v.value)
-	expr := ":" + encode(fmt.Sprint(*attrval))
-
-	return Expression{
-		Values: map[string]*dynamodb.AttributeValue{
-			expr: attrval,
-		},
-		Expression: expr,
-	}, err
+// ListOperand lists all the names that must be aliased and returns the values
+// in AliasMap. Since  we are not deduplicating Values, we don't need to make
+// a list of the values, we will have just a counter
+func (v ValueBuilder) ListOperand() (AliasList, error) {
+	return AliasList{}, nil
 }
 
 // BuildOperand will create an instance of an Expression. BuildOperand will be
 // called whenever Build___() for any Expression Builders
-func (p PathBuilder) BuildOperand() (Expression, error) {
-	nameMap := make(map[string]*string)
-	expr := ""
+func (v ValueBuilder) BuildOperand(al AliasList) (Expression, error) {
+	attrval, err := dynamodbattribute.Marshal(v.value)
+	if err != nil {
+		return Expression{}, err
+	}
+
+	if al.ValuesCounter == nil {
+		return Expression{}, fmt.Errorf("Value Counter is nil")
+	}
+
+	alias := fmt.Sprintf(":%v", *al.ValuesCounter)
+	*al.ValuesCounter++
+
+	return Expression{
+		Values: map[string]*dynamodb.AttributeValue{
+			alias: attrval,
+		},
+		Expression: alias,
+	}, nil
+}
+
+// ListOperand returns a list of names that must be aliased in the struct
+// AliasMap.
+func (p PathBuilder) ListOperand() (AliasList, error) {
+	if p.path == "" {
+		return AliasList{}, fmt.Errorf("ListOperand received an unexpected argument, Path is empty")
+	}
+	al := AliasList{
+		NamesList: make([]string, 0),
+	}
+
+	nameSplit := strings.Split(p.path, ".")
+	for _, word := range nameSplit {
+		if word == "" {
+			return AliasList{}, fmt.Errorf("ListOperand received an unexpected argument, Path is incomplete")
+		}
+		if string(word[len(word)-1]) == "]" {
+			for j, char := range word {
+				if string(char) == "[" {
+					word = word[:j]
+				}
+			}
+		}
+		al.NamesList = append(al.NamesList, word)
+	}
+	return al, nil
+}
+
+// BuildOperand will create an instance of an Expression. BuildOperand will be
+// called whenever Build___() for any Expression Builders
+func (p PathBuilder) BuildOperand(al AliasList) (Expression, error) {
+	ret := Expression{
+		Names: make(map[string]*string),
+	}
 
 	nameSplit := strings.Split(p.path, ".")
 	for i, word := range nameSplit {
@@ -85,23 +129,33 @@ func (p PathBuilder) BuildOperand() (Expression, error) {
 			}
 		}
 
-		token := "#" + encode(word)
-		nameMap[token] = aws.String(word)
-		expr += token + substr
+		index := -1
+		for ind, val := range al.NamesList {
+			if word == val {
+				index = ind
+				break
+			}
+		}
+
+		if index == -1 {
+			return Expression{}, fmt.Errorf("BuildOperand could not find an alias for path")
+		}
+
+		alias := fmt.Sprintf("#%v", index)
+		ret.Names[alias] = aws.String(word)
+		ret.Expression += alias + substr
 		if i != len(nameSplit)-1 {
-			expr += "."
+			ret.Expression += "."
 		}
 	}
-	return Expression{
-		Names:      nameMap,
-		Expression: expr,
-	}, nil
+	return ret, nil
 }
 
-// encodeName consistently encodes a name.
-// The consistency is important.
-// Taken from github.com/guregu/dynamo
-func encode(name string) string {
-	name = base32.StdEncoding.EncodeToString([]byte(name))
-	return strings.TrimRight(name, "=")
+// AliasList will keep track of all the names we need to alias in the nested
+// struct of conditions and operands. This will allow each alias to be unique
+// while deduplicating aliases.
+type AliasList struct {
+	NamesList []string
+	//ValuesList []dynamodb.AttributeValue
+	ValuesCounter *int
 }

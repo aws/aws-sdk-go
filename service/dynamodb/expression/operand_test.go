@@ -1,7 +1,6 @@
 package expression
 
 import (
-	"fmt"
 	"reflect"
 	"testing"
 
@@ -9,95 +8,189 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
+func TestListOperand(t *testing.T) {
+	cases := []struct {
+		input               OperandBuilder
+		expected            AliasList
+		incompletePathError bool
+		emptyPathError      bool
+	}{
+		{
+			input: NewPath("foo"),
+			expected: AliasList{
+				NamesList: []string{
+					"foo",
+				},
+				ValuesCounter: nil,
+			},
+		},
+		{
+			input: NewValue(5),
+			expected: AliasList{
+				NamesList:     nil,
+				ValuesCounter: nil,
+			},
+		},
+		{
+			input: NewPath("foo.bar[7].baz"),
+			expected: AliasList{
+				NamesList: []string{
+					"foo",
+					"bar",
+					"baz",
+				},
+				ValuesCounter: nil,
+			},
+		},
+		{
+			input:          NewPath(""),
+			expected:       AliasList{},
+			emptyPathError: true,
+		},
+		{
+			input:               NewPath("foo..bar"),
+			expected:            AliasList{},
+			incompletePathError: true,
+		},
+	}
+
+	for testNumber, c := range cases {
+		al, err := c.input.ListOperand()
+
+		if c.emptyPathError {
+			if err == nil {
+				t.Errorf("TestListOperand Test Number %#v: Expected empty path error but got no error", testNumber)
+			} else {
+				continue
+			}
+		}
+		if c.incompletePathError {
+			if err == nil {
+				t.Errorf("TestListOperand Test Number %#v: Expected incomplete path error but got no error", testNumber)
+			} else {
+				continue
+			}
+		}
+
+		if err != nil {
+			t.Errorf("TestListOperand Test Number %#v: Unexpected Error %#v", testNumber, err)
+		}
+
+		if reflect.DeepEqual(al, c.expected) != true {
+			t.Errorf("TestListOperand Test Number %#v: Expected %#v, got %#v", testNumber, c.expected, al)
+		}
+	}
+}
+
 func TestBuildOperand(t *testing.T) {
 	cases := []struct {
-		input    OperandBuilder
-		expected Expression
+		input        OperandBuilder
+		expected     Expression
+		counterError bool
+		alError      bool
 	}{
 		{
 			input: NewPath("foo"),
 			expected: Expression{
 				Names: map[string]*string{
-					"#" + encode("foo"): aws.String("foo"),
+					"#0": aws.String("foo"),
 				},
-				Expression: "#" + encode("foo"),
+				Expression: "#0",
 			},
 		},
 		{
 			input: NewValue(5),
 			expected: Expression{
 				Values: map[string]*dynamodb.AttributeValue{
-					":" + encode(fmt.Sprint(dynamodb.AttributeValue{
-						N: aws.String("5"),
-					})): &dynamodb.AttributeValue{
+					":0": &dynamodb.AttributeValue{
 						N: aws.String("5"),
 					},
 				},
-				Expression: ":" + encode(fmt.Sprint(dynamodb.AttributeValue{
-					N: aws.String("5"),
-				})),
+				Expression: ":0",
 			},
 		},
 		{
-			input: NewPath("foo.bar[2].baz"),
+			input: NewPath("foo.bar"),
 			expected: Expression{
 				Names: map[string]*string{
-					"#" + encode("foo"): aws.String("foo"),
-					"#" + encode("bar"): aws.String("bar"),
-					"#" + encode("baz"): aws.String("baz"),
+					"#0": aws.String("foo"),
+					"#1": aws.String("bar"),
 				},
-				Expression: "#" + encode("foo") + ".#" + encode("bar") + "[2]" + ".#" + encode("baz"),
+				Expression: "#0.#1",
 			},
 		},
 		{
-			input: NewValue(map[string]int{
-				"even": 2,
-				"odd":  1,
-			}),
+			input: NewPath("foo.bar[0].baz"),
 			expected: Expression{
-				Values: map[string]*dynamodb.AttributeValue{
-					":" + encode(fmt.Sprint(dynamodb.AttributeValue{
-						M: map[string]*dynamodb.AttributeValue{
-							"even": &dynamodb.AttributeValue{
-								N: aws.String("2"),
-							},
-							"odd": &dynamodb.AttributeValue{
-								N: aws.String("1"),
-							},
-						},
-					})): &dynamodb.AttributeValue{
-						M: map[string]*dynamodb.AttributeValue{
-							"even": &dynamodb.AttributeValue{
-								N: aws.String("2"),
-							},
-							"odd": &dynamodb.AttributeValue{
-								N: aws.String("1"),
-							},
-						},
-					},
+				Names: map[string]*string{
+					"#0": aws.String("foo"),
+					"#1": aws.String("bar"),
+					"#2": aws.String("baz"),
 				},
-				Expression: ":" + encode(fmt.Sprint(dynamodb.AttributeValue{
-					M: map[string]*dynamodb.AttributeValue{
-						"even": &dynamodb.AttributeValue{
-							N: aws.String("2"),
-						},
-						"odd": &dynamodb.AttributeValue{
-							N: aws.String("1"),
-						},
-					},
-				})),
+				Expression: "#0.#1[0].#2",
 			},
+		},
+		{
+			input:        NewValue(5),
+			expected:     Expression{},
+			counterError: true,
+		},
+		{
+			input:    NewPath("foo"),
+			expected: Expression{},
+			alError:  true,
+		},
+		{
+			input:    NewPath("foo").Size(),
+			expected: Expression{},
+			alError:  true,
 		},
 	}
 
-	for _, c := range cases {
-		operand, err := c.input.BuildOperand()
+	for testNumber, c := range cases {
+		al, err := c.input.ListOperand()
 		if err != nil {
 			t.Error(err)
 		}
 
-		if reflect.DeepEqual(operand, c.expected) != true {
-			t.Errorf("BuildOperand with input %#v returned %#v, expected %#v", c.input, operand, c.expected)
+		if !c.counterError {
+			al.ValuesCounter = aws.Int(0)
+		}
+		if c.alError {
+			al.NamesList = al.NamesList[1:]
+		}
+
+		operand, err := c.input.BuildOperand(al)
+		if c.counterError {
+			if err == nil {
+				t.Errorf("TestBuildOperand Test Number %#v: Expected counter error but got no error", testNumber)
+			} else {
+				continue
+			}
+		}
+
+		if c.alError {
+			if err == nil {
+				t.Errorf("TestBuildOperand Test Number %#v: Expected List error but got no error", testNumber)
+			} else {
+				continue
+			}
+		}
+
+		if err != nil {
+			t.Errorf("TestBuildOperand Test Number %#v: Unexpected Error %#v", testNumber, err)
+		}
+
+		if operand.Expression != c.expected.Expression {
+			t.Errorf("TestBuildOperand Test Number %#v: BuildOperand returned an unexpected Expression string %#v, expected %#v\n", testNumber, operand.Expression, c.expected.Expression)
+		}
+
+		if reflect.DeepEqual(c.expected.Names, operand.Names) != true {
+			t.Errorf("TestBuildOperand Test Number %#v: BuildOperand returned an unexpected Name Map %#v, expected %#v\n", testNumber, operand.Names, c.expected.Names)
+		}
+
+		if reflect.DeepEqual(c.expected.Values, operand.Values) != true {
+			t.Errorf("TestBuildOperand Test Number %#v: BuildOperand returned an unexpected Name Map %#v, expected %#v\n", testNumber, operand.Values, c.expected.Values)
 		}
 	}
 }
