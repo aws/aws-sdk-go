@@ -11,8 +11,8 @@ import (
 type ConditionMode int
 
 const (
+	// EqualCond will represent the Equal Clause Condition
 	EqualCond ConditionMode = iota + 1
-	NotEqualCond
 )
 
 // Condition will represent the ConditionExpressions
@@ -130,7 +130,7 @@ func (cond Condition) buildList() (AliasList, error) {
 			}
 			if unique == false {
 				unique = true
-				break
+				continue
 			}
 			al.NamesList = append(al.NamesList, newName)
 		}
