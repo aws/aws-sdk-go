@@ -184,6 +184,10 @@ type EC2API interface {
 	CreateCustomerGatewayWithContext(aws.Context, *ec2.CreateCustomerGatewayInput, ...request.Option) (*ec2.CreateCustomerGatewayOutput, error)
 	CreateCustomerGatewayRequest(*ec2.CreateCustomerGatewayInput) (*request.Request, *ec2.CreateCustomerGatewayOutput)
 
+	CreateDefaultVpc(*ec2.CreateDefaultVpcInput) (*ec2.CreateDefaultVpcOutput, error)
+	CreateDefaultVpcWithContext(aws.Context, *ec2.CreateDefaultVpcInput, ...request.Option) (*ec2.CreateDefaultVpcOutput, error)
+	CreateDefaultVpcRequest(*ec2.CreateDefaultVpcInput) (*request.Request, *ec2.CreateDefaultVpcOutput)
+
 	CreateDhcpOptions(*ec2.CreateDhcpOptionsInput) (*ec2.CreateDhcpOptionsOutput, error)
 	CreateDhcpOptionsWithContext(aws.Context, *ec2.CreateDhcpOptionsInput, ...request.Option) (*ec2.CreateDhcpOptionsOutput, error)
 	CreateDhcpOptionsRequest(*ec2.CreateDhcpOptionsInput) (*request.Request, *ec2.CreateDhcpOptionsOutput)
