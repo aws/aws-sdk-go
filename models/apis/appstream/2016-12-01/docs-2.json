@@ -3,25 +3,41 @@
   "service": "<fullname>Amazon AppStream 2.0</fullname> <p>API documentation for Amazon AppStream 2.0.</p>",
   "operations": {
     "AssociateFleet": "<p>Associate a fleet to a stack.</p>",
+    "CreateDirectoryConfig": "<p>Creates a directory configuration with the given parameters.</p>",
     "CreateFleet": "<p>Creates a new fleet.</p>",
     "CreateStack": "<p>Create a new stack.</p>",
     "CreateStreamingURL": "<p>Creates a URL to start an AppStream 2.0 streaming session for a user. By default, the URL is valid only for 1 minute from the time that it is generated.</p>",
+    "DeleteDirectoryConfig": "<p>Deletes the directory configuration with the given parameters.</p>",
     "DeleteFleet": "<p>Deletes a fleet.</p>",
     "DeleteStack": "<p>Deletes the stack. After this operation completes, the environment can no longer be activated, and any reservations made for the stack are released.</p>",
+    "DescribeDirectoryConfigs": "<p>Returns a list describing the specified directory configurations.</p>",
     "DescribeFleets": "<p>If fleet names are provided, this operation describes the specified fleets; otherwise, all the fleets in the account are described.</p>",
     "DescribeImages": "<p>Describes the images. If a list of names is not provided, all images in your account are returned. This operation does not return a paginated result.</p>",
-    "DescribeSessions": "<p>Describes the streaming sessions for a stack and a fleet. If a user ID is provided, this operation returns streaming sessions for only that user. Pass this value for the <code>nextToken</code> parameter in a subsequent call to this operation to retrieve the next set of items. If an authentication type is not provided, the operation defaults to users authenticated using a streaming URL.</p>",
-    "DescribeStacks": "<p>If stack names are not provided, this operation describes the specified stacks; otherwise, all stacks in the account are described. Pass the <code>nextToken</code> value in a subsequent call to this operation to retrieve the next set of items.</p>",
+    "DescribeSessions": "<p>Describes the streaming sessions for a stack and a fleet. If a user ID is provided, this operation returns streaming sessions for only that user. To retrieve the next set of items, pass this value for the <code>nextToken</code> parameter in a subsequent call to this operation. If an authentication type is not provided, the operation defaults to users authenticated using a streaming URL.</p>",
+    "DescribeStacks": "<p>If stack names are not provided, this operation describes the specified stacks; otherwise, all stacks in the account are described. To retrieve the next set of items, pass the <code>nextToken</code> value in a subsequent call to this operation.</p>",
     "DisassociateFleet": "<p>Disassociates a fleet from a stack.</p>",
     "ExpireSession": "<p>This operation immediately stops a streaming session.</p>",
     "ListAssociatedFleets": "<p>Lists all fleets associated with the stack.</p>",
     "ListAssociatedStacks": "<p>Lists all stacks to which the specified fleet is associated.</p>",
     "StartFleet": "<p>Starts a fleet.</p>",
     "StopFleet": "<p>Stops a fleet.</p>",
+    "UpdateDirectoryConfig": "<p>Updates the directory configuration with the given parameters.</p>",
     "UpdateFleet": "<p>Updates an existing fleet. All the attributes except the fleet name can be updated in the <b>STOPPED</b> state. When a fleet is in the <b>RUNNING</b> state, only <code>DisplayName</code> and <code>ComputeCapacity</code> can be updated. A fleet cannot be updated in a status of <b>STARTING</b> or <b>STOPPING</b>.</p>",
     "UpdateStack": "<p>Updates the specified fields in the stack with the specified name.</p>"
   },
   "shapes": {
+    "AccountName": {
+      "base": null,
+      "refs": {
+        "ServiceAccountCredentials$AccountName": "<p>The user name of an account in the directory that is used by AppStream 2.0 streaming instances to connect to the directory. This account must have the following privileges: create computer objects, join computers to the domain, change/reset the password on descendant computer objects for the organizational units specified.</p>"
+      }
+    },
+    "AccountPassword": {
+      "base": null,
+      "refs": {
+        "ServiceAccountCredentials$AccountPassword": "<p>The password for the user account for directory actions.</p>"
+      }
+    },
     "Application": {
       "base": "<p>An entry for a single application in the application catalog.</p>",
       "refs": {
@@ -63,7 +79,7 @@
     "Boolean": {
       "base": null,
       "refs": {
-        "Application$Enabled": "<p>An application can be disabled after image creation if there is a problem.</p>",
+        "Application$Enabled": "<p>If there is a problem, an application can be disabled after image creation.</p>",
         "Image$ImageBuilderSupported": "<p>Whether an image builder can be launched from this image.</p>",
         "UpdateFleetRequest$DeleteVpcConfig": "<p>Delete the VPC association for the specified fleet.</p>",
         "UpdateStackRequest$DeleteStorageConnectors": "<p>Remove all the storage connectors currently enabled for the stack.</p>"
@@ -72,9 +88,9 @@
     "BooleanObject": {
       "base": null,
       "refs": {
-        "CreateFleetRequest$EnableDefaultInternetAccess": "<p>Enables or disables default Internet access for the fleet.</p>",
-        "Fleet$EnableDefaultInternetAccess": "<p>Whether default Internet access is enabled for the fleet. </p>",
-        "UpdateFleetRequest$EnableDefaultInternetAccess": "<p>Enables or disables default Internet access for the fleet.</p>"
+        "CreateFleetRequest$EnableDefaultInternetAccess": "<p>Enables or disables default internet access for the fleet.</p>",
+        "Fleet$EnableDefaultInternetAccess": "<p>Whether default internet access is enabled for the fleet. </p>",
+        "UpdateFleetRequest$EnableDefaultInternetAccess": "<p>Enables or disables default internet access for the fleet.</p>"
       }
     },
     "ComputeCapacity": {
@@ -92,6 +108,16 @@
     },
     "ConcurrentModificationException": {
       "base": "<p>An API error occurred. Wait a few minutes and try again.</p>",
+      "refs": {
+      }
+    },
+    "CreateDirectoryConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDirectoryConfigResult": {
+      "base": null,
       "refs": {
       }
     },
@@ -125,6 +151,16 @@
       "refs": {
       }
     },
+    "DeleteDirectoryConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDirectoryConfigResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteFleetRequest": {
       "base": null,
       "refs": {
@@ -141,6 +177,16 @@
       }
     },
     "DeleteStackResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDirectoryConfigsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDirectoryConfigsResult": {
       "base": null,
       "refs": {
       }
@@ -194,6 +240,37 @@
         "UpdateStackRequest$Description": "<p>The description displayed to end users on the AppStream 2.0 portal.</p>"
       }
     },
+    "DirectoryConfig": {
+      "base": "<p>Full directory configuration details, which are used to join domains for the AppStream 2.0 streaming instances.</p>",
+      "refs": {
+        "CreateDirectoryConfigResult$DirectoryConfig": "<p>Directory configuration details.</p>",
+        "DirectoryConfigList$member": null,
+        "UpdateDirectoryConfigResult$DirectoryConfig": "<p>The updated directory configuration details.</p>"
+      }
+    },
+    "DirectoryConfigList": {
+      "base": null,
+      "refs": {
+        "DescribeDirectoryConfigsResult$DirectoryConfigs": "<p>The list of directory configurations.</p>"
+      }
+    },
+    "DirectoryName": {
+      "base": null,
+      "refs": {
+        "CreateDirectoryConfigRequest$DirectoryName": "<p>The fully qualified name of the directory, such as corp.example.com</p>",
+        "DeleteDirectoryConfigRequest$DirectoryName": "<p>The name of the directory configuration to be deleted.</p>",
+        "DirectoryConfig$DirectoryName": "<p>The fully qualified name of the directory, such as corp.example.com</p>",
+        "DirectoryNameList$member": null,
+        "DomainJoinInfo$DirectoryName": "<p>The fully qualified name of the directory, such as corp.example.com</p>",
+        "UpdateDirectoryConfigRequest$DirectoryName": "<p>The name of the existing directory configuration to be updated.</p>"
+      }
+    },
+    "DirectoryNameList": {
+      "base": null,
+      "refs": {
+        "DescribeDirectoryConfigsRequest$DirectoryNames": "<p>A specific list of directory names.</p>"
+      }
+    },
     "DisassociateFleetRequest": {
       "base": null,
       "refs": {
@@ -211,6 +288,14 @@
         "CreateStackRequest$DisplayName": "<p>The name displayed to end users on the AppStream 2.0 portal.</p>",
         "UpdateFleetRequest$DisplayName": "<p>The name displayed to end users on the AppStream 2.0 portal.</p>",
         "UpdateStackRequest$DisplayName": "<p>The name displayed to end users on the AppStream 2.0 portal.</p>"
+      }
+    },
+    "DomainJoinInfo": {
+      "base": "<p>The <i>DirectoryName</i> and <i>OrganizationalUnitDistinguishedName</i> values, which are used to join domains for the AppStream 2.0 streaming instances.</p>",
+      "refs": {
+        "CreateFleetRequest$DomainJoinInfo": "<p>The <i>DirectoryName</i> and <i>OrganizationalUnitDistinguishedName</i> values, which are used to join domains for the AppStream 2.0 streaming instances.</p>",
+        "Fleet$DomainJoinInfo": "<p>The <i>DirectoryName</i> and <i>OrganizationalUnitDistinguishedName</i> values, which are used to join domains for the AppStream 2.0 streaming instances.</p>",
+        "UpdateFleetRequest$DomainJoinInfo": "<p>The <i>DirectoryName</i> and <i>OrganizationalUnitDistinguishedName</i> values, which are used to join domains for the AppStream 2.0 streaming instances.</p>"
       }
     },
     "ErrorMessage": {
@@ -303,7 +388,7 @@
     "ImageState": {
       "base": null,
       "refs": {
-        "Image$State": "<p>The image starts in the <b>PENDING</b> state, and then moves to <b>AVAILABLE</b> if image creation succeeds and <b>FAILED</b> if image creation has failed.</p>"
+        "Image$State": "<p>The image starts in the <b>PENDING</b> state. If image creation succeeds, it moves to <b>AVAILABLE</b>. If image creation fails, it moves to <b>FAILED</b>.</p>"
       }
     },
     "ImageStateChangeReason": {
@@ -333,6 +418,7 @@
         "ComputeCapacityStatus$Available": "<p>The number of currently available instances that can be used to stream sessions.</p>",
         "CreateFleetRequest$MaxUserDurationInSeconds": "<p>The maximum time for which a streaming session can run. The input can be any numeric value in seconds between 600 and 57600.</p>",
         "CreateFleetRequest$DisconnectTimeoutInSeconds": "<p>The time after disconnection when a session is considered to have ended. If a user who got disconnected reconnects within this timeout interval, the user is connected back to their previous session. The input can be any numeric value in seconds between 60 and 57600. </p>",
+        "DescribeDirectoryConfigsRequest$MaxResults": "<p>The size of each page of results.</p>",
         "DescribeSessionsRequest$Limit": "<p>The size of each page of results. The default value is 20 and the maximum supported value is 50.</p>",
         "Fleet$MaxUserDurationInSeconds": "<p>The maximum time for which a streaming session can run. The value can be any numeric value in seconds between 600 and 57600.</p>",
         "Fleet$DisconnectTimeoutInSeconds": "<p>The time after disconnection when a session is considered to have ended. If a user who got disconnected reconnects within this timeout interval, the user is connected back to their previous session. The input can be any numeric value in seconds between 60 and 57600.</p>",
@@ -398,6 +484,21 @@
       "refs": {
       }
     },
+    "OrganizationalUnitDistinguishedName": {
+      "base": null,
+      "refs": {
+        "DomainJoinInfo$OrganizationalUnitDistinguishedName": "<p>The distinguished name of the organizational unit to place the computer account in.</p>",
+        "OrganizationalUnitDistinguishedNamesList$member": null
+      }
+    },
+    "OrganizationalUnitDistinguishedNamesList": {
+      "base": null,
+      "refs": {
+        "CreateDirectoryConfigRequest$OrganizationalUnitDistinguishedNames": "<p>The list of the distinguished names of organizational units to place computer accounts in.</p>",
+        "DirectoryConfig$OrganizationalUnitDistinguishedNames": "<p>The list of the distinguished names of organizational units in which to place computer accounts.</p>",
+        "UpdateDirectoryConfigRequest$OrganizationalUnitDistinguishedNames": "<p>The list of the distinguished names of organizational units to place computer accounts in.</p>"
+      }
+    },
     "PlatformType": {
       "base": null,
       "refs": {
@@ -434,6 +535,14 @@
       "base": "<p>A list of security groups.</p>",
       "refs": {
         "VpcConfig$SecurityGroupIds": "<p>Security groups associated with the fleet.</p>"
+      }
+    },
+    "ServiceAccountCredentials": {
+      "base": "<p>The <i>AccountName</i> and <i>AccountPassword</i> of the service account, to be used by the streaming instance to connect to the directory.</p>",
+      "refs": {
+        "CreateDirectoryConfigRequest$ServiceAccountCredentials": "<p>The <i>AccountName</i> and <i>AccountPassword</i> values for the service account, which are used by the streaming instance to connect to the directory.</p>",
+        "DirectoryConfig$ServiceAccountCredentials": "<p>The <i>AccountName</i> and <i>AccountPassword</i> of the service account, to be used by the streaming instance to connect to the directory.</p>",
+        "UpdateDirectoryConfigRequest$ServiceAccountCredentials": "<p>The <i>AccountName</i> and <i>AccountPassword</i> values for the service account, which are used by the streaming instance to connect to the directory</p>"
       }
     },
     "Session": {
@@ -526,6 +635,12 @@
         "StorageConnector$ConnectorType": "<p>The type of storage connector. The possible values include: HOMEFOLDERS.</p>"
       }
     },
+    "StreamingUrlUserId": {
+      "base": null,
+      "refs": {
+        "CreateStreamingURLRequest$UserId": "<p>A unique user ID for whom the URL is generated.</p>"
+      }
+    },
     "String": {
       "base": null,
       "refs": {
@@ -537,7 +652,7 @@
         "AssociateFleetRequest$FleetName": "<p>The name of the fleet to associate.</p>",
         "AssociateFleetRequest$StackName": "<p>The name of the stack to which the fleet is associated.</p>",
         "CreateFleetRequest$ImageName": "<p>Unique name of the image used by the fleet.</p>",
-        "CreateFleetRequest$InstanceType": "<p>The instance type of compute resources for the fleet. Fleet instances are launched from this instance type.</p>",
+        "CreateFleetRequest$InstanceType": "<p>The instance type of compute resources for the fleet. Fleet instances are launched from this instance type. Available instance types are:</p> <ul> <li> <p>stream.standard.medium</p> </li> <li> <p>stream.standard.large</p> </li> <li> <p>stream.compute.large</p> </li> <li> <p>stream.compute.xlarge</p> </li> <li> <p>stream.compute.2xlarge</p> </li> <li> <p>stream.compute.4xlarge</p> </li> <li> <p>stream.compute.8xlarge</p> </li> <li> <p>stream.memory.large</p> </li> <li> <p>stream.memory.xlarge</p> </li> <li> <p>stream.memory.2xlarge</p> </li> <li> <p>stream.memory.4xlarge</p> </li> <li> <p>stream.memory.8xlarge</p> </li> </ul>",
         "CreateStackRequest$Name": "<p>The unique identifier for this stack.</p>",
         "CreateStreamingURLRequest$StackName": "<p>The stack for which the URL is generated.</p>",
         "CreateStreamingURLRequest$FleetName": "<p>The fleet for which the URL is generated.</p>",
@@ -546,6 +661,8 @@
         "CreateStreamingURLResult$StreamingURL": "<p>The URL to start the AppStream 2.0 streaming session.</p>",
         "DeleteFleetRequest$Name": "<p>The name of the fleet to be deleted.</p>",
         "DeleteStackRequest$Name": "<p>The name of the stack to delete.</p>",
+        "DescribeDirectoryConfigsRequest$NextToken": "<p>The DescribeDirectoryConfigsResult.NextToken from a previous call to DescribeDirectoryConfigs. If this is the first call, pass null.</p>",
+        "DescribeDirectoryConfigsResult$NextToken": "<p>If not null, more results are available. To retrieve the next set of items, pass this value for the NextToken parameter in a subsequent call to DescribeDirectoryConfigs.</p>",
         "DescribeFleetsRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
         "DescribeFleetsResult$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
         "DescribeSessionsRequest$StackName": "<p>The name of the stack for which to list sessions.</p>",
@@ -589,7 +706,7 @@
         "SubnetIdList$member": null,
         "UpdateFleetRequest$ImageName": "<p>The image name from which a fleet is created.</p>",
         "UpdateFleetRequest$Name": "<p>The name of the fleet.</p>",
-        "UpdateFleetRequest$InstanceType": "<p>The instance type of compute resources for the fleet. Fleet instances are launched from this instance type.</p>",
+        "UpdateFleetRequest$InstanceType": "<p>The instance type of compute resources for the fleet. Fleet instances are launched from this instance type. Available instance types are:</p> <ul> <li> <p>stream.standard.medium</p> </li> <li> <p>stream.standard.large</p> </li> <li> <p>stream.compute.large</p> </li> <li> <p>stream.compute.xlarge</p> </li> <li> <p>stream.compute.2xlarge</p> </li> <li> <p>stream.compute.4xlarge</p> </li> <li> <p>stream.compute.8xlarge</p> </li> <li> <p>stream.memory.large</p> </li> <li> <p>stream.memory.xlarge</p> </li> <li> <p>stream.memory.2xlarge</p> </li> <li> <p>stream.memory.4xlarge</p> </li> <li> <p>stream.memory.8xlarge</p> </li> </ul>",
         "UpdateStackRequest$Name": "<p>The name of the stack to update.</p>"
       }
     },
@@ -612,11 +729,22 @@
     "Timestamp": {
       "base": null,
       "refs": {
-        "CreateStreamingURLResult$Expires": "<p>Elapsed seconds after the Unix epoch, at which time this URL expires.</p>",
+        "CreateStreamingURLResult$Expires": "<p>Elapsed seconds after the Unix epoch, when this URL expires.</p>",
+        "DirectoryConfig$CreatedTime": "<p>The time stamp when the directory configuration was created within AppStream 2.0.</p>",
         "Fleet$CreatedTime": "<p>The time at which the fleet was created.</p>",
-        "Image$CreatedTime": "<p>The timestamp when the image was created.</p>",
+        "Image$CreatedTime": "<p>The time stamp when the image was created.</p>",
         "Image$PublicBaseImageReleasedDate": "<p>The AWS release date of the public base image. For private images, this date is the release date of the base image from which the image was created.</p>",
-        "Stack$CreatedTime": "<p>The timestamp when the stack was created.</p>"
+        "Stack$CreatedTime": "<p>The time stamp when the stack was created.</p>"
+      }
+    },
+    "UpdateDirectoryConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateDirectoryConfigResult": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateFleetRequest": {
@@ -642,7 +770,6 @@
     "UserId": {
       "base": null,
       "refs": {
-        "CreateStreamingURLRequest$UserId": "<p>A unique user ID for whom the URL is generated.</p>",
         "DescribeSessionsRequest$UserId": "<p>The user for whom to list sessions. Use null to describe all the sessions for the stack and fleet.</p>",
         "Session$UserId": "<p>The identifier of the user for whom the session was created.</p>"
       }

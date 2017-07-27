@@ -10,6 +10,7 @@
     "CreateDocument": "<p>Creates a Systems Manager document.</p> <p>After you create a document, you can use CreateAssociation to associate it with one or more running instances.</p>",
     "CreateMaintenanceWindow": "<p>Creates a new Maintenance Window.</p>",
     "CreatePatchBaseline": "<p>Creates a patch baseline.</p>",
+    "CreateResourceDataSync": "<p>Creates a resource data sync configuration to a single bucket in Amazon S3. This is an asynchronous operation that returns immediately. After a successful initial sync is completed, the system continuously syncs data to the Amazon S3 bucket. To check the status of the sync, use the <a href=\"API_ListResourceDataSync.html\">ListResourceDataSync</a> operation.</p> <p>By default, data is not encrypted in Amazon S3. We strongly recommend that you enable encryption in Amazon S3 to ensure secure data storage. We also recommend that you secure access to the Amazon S3 bucket by creating a restrictive bucket policy. To view an example of a restrictive Amazon S3 bucket policy for Resource Data Sync, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-inventory-configuring.html#sysman-inventory-datasync\">Configuring Resource Data Sync for Inventory</a>.</p>",
     "DeleteActivation": "<p>Deletes an activation. You are not required to delete an activation. If you delete an activation, you can no longer use it to register additional managed instances. Deleting an activation does not de-register managed instances. You must manually de-register managed instances.</p>",
     "DeleteAssociation": "<p>Disassociates the specified Systems Manager document from the specified instance.</p> <p>When you disassociate a document from an instance, it does not change the configuration of the instance. To change the configuration state of an instance after you disassociate a document, you must create a new document with the desired configuration and associate it with the instance.</p>",
     "DeleteDocument": "<p>Deletes the Systems Manager document and all instance associations to the document.</p> <p>Before you delete the document, we recommend that you use <a>DeleteAssociation</a> to disassociate all instances that are associated with the document.</p>",
@@ -17,6 +18,7 @@
     "DeleteParameter": "<p>Delete a parameter from the system.</p>",
     "DeleteParameters": "<p>Delete a list of parameters.</p>",
     "DeletePatchBaseline": "<p>Deletes a patch baseline.</p>",
+    "DeleteResourceDataSync": "<p>Deletes a Resource Data Sync configuration. After the configuration is deleted, changes to inventory data on managed instances are no longer synced with the target Amazon S3 bucket. Deleting a sync configuration does not delete data in the target Amazon S3 bucket.</p>",
     "DeregisterManagedInstance": "<p>Removes the server or virtual machine from the list of registered servers. You can reregister the instance again at any time. If you don't plan to use Run Command on the server, we suggest uninstalling the SSM Agent first.</p>",
     "DeregisterPatchBaselineForPatchGroup": "<p>Removes a patch group from a patch baseline.</p>",
     "DeregisterTargetFromMaintenanceWindow": "<p>Removes a target from a Maintenance Window.</p>",
@@ -28,7 +30,7 @@
     "DescribeDocument": "<p>Describes the specified SSM document.</p>",
     "DescribeDocumentPermission": "<p>Describes the permissions for a Systems Manager document. If you created the document, you are the owner. If a document is shared, it can either be shared privately (by specifying a user's AWS account ID) or publicly (<i>All</i>). </p>",
     "DescribeEffectiveInstanceAssociations": "<p>All associations for the instance(s).</p>",
-    "DescribeEffectivePatchesForPatchBaseline": "<p>Retrieves the current effective patches (the patch and the approval state) for the specified patch baseline.</p>",
+    "DescribeEffectivePatchesForPatchBaseline": "<p>Retrieves the current effective patches (the patch and the approval state) for the specified patch baseline. Note that this API applies only to Windows patch baselines.</p>",
     "DescribeInstanceAssociationsStatus": "<p>The status of the associations for the instance(s).</p>",
     "DescribeInstanceInformation": "<p>Describes one or more of your instances. You can use this to get information about instances like the operating system platform, the SSM Agent version (Linux), status etc. If you specify one or more instance IDs, it returns information for those instances. If you do not specify instance IDs, it returns information for all your instances. If you specify an instance ID that is not valid or an instance that you do not own, you receive an error. </p>",
     "DescribeInstancePatchStates": "<p>Retrieves the high-level patch state of one or more instances.</p>",
@@ -46,8 +48,8 @@
     "DescribePatchGroups": "<p>Lists all patch groups that have been registered with patch baselines.</p>",
     "GetAutomationExecution": "<p>Get detailed information about a particular Automation execution.</p>",
     "GetCommandInvocation": "<p>Returns detailed information about command execution for an invocation or plugin. </p>",
-    "GetDefaultPatchBaseline": "<p>Retrieves the default patch baseline.</p>",
-    "GetDeployablePatchSnapshotForInstance": "<p>Retrieves the current snapshot for the patch baseline the instance uses. This API is primarily used by the AWS-ApplyPatchBaseline Systems Manager document. </p>",
+    "GetDefaultPatchBaseline": "<p>Retrieves the default patch baseline. Note that Systems Manager supports creating multiple default patch baselines. For example, you can create a default patch baseline for each operating system.</p>",
+    "GetDeployablePatchSnapshotForInstance": "<p>Retrieves the current snapshot for the patch baseline the instance uses. This API is primarily used by the AWS-RunPatchBaseline Systems Manager document. </p>",
     "GetDocument": "<p>Gets the contents of the specified SSM document.</p>",
     "GetInventory": "<p>Query inventory information.</p>",
     "GetInventorySchema": "<p>Return a list of inventory type names for the account, or return a list of attribute names for a specific Inventory item type. </p>",
@@ -57,7 +59,7 @@
     "GetParameter": "<p>Get information about a parameter by using the parameter name. </p>",
     "GetParameterHistory": "<p>Query a list of all parameters used by the AWS account.</p>",
     "GetParameters": "<p>Get details of a parameter.</p>",
-    "GetParametersByPath": "<p>Retrieve parameters in a specific hierarchy. For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-working-path.html\">Using Parameter Hierarchies</a>. </p>",
+    "GetParametersByPath": "<p>Retrieve parameters in a specific hierarchy. For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-working.html\">Working with Systems Manager Parameters</a>. </p>",
     "GetPatchBaseline": "<p>Retrieves information about a patch baseline.</p>",
     "GetPatchBaselineForPatchGroup": "<p>Retrieves the patch baseline that should be used for the specified patch group.</p>",
     "ListAssociations": "<p>Lists the associations for the specified Systems Manager document or instance.</p>",
@@ -66,6 +68,7 @@
     "ListDocumentVersions": "<p>List all versions for a document.</p>",
     "ListDocuments": "<p>Describes one or more of your SSM documents.</p>",
     "ListInventoryEntries": "<p>A list of inventory items returned by the request.</p>",
+    "ListResourceDataSync": "<p>Lists your resource data sync configurations. Includes information about the last time a sync attempted to start, the last sync status, and the last time a sync successfully completed.</p> <p>The number of sync configurations might be too large to return using a single call to <code>ListResourceDataSync</code>. You can limit the number of sync configurations returned by using the <code>MaxResults</code> parameter. To determine whether there are more sync configurations to list, check the value of <code>NextToken</code> in the output. If there are more sync configurations to list, you can request them by specifying the <code>NextToken</code> returned in the call to the parameter of a subsequent call. </p>",
     "ListTagsForResource": "<p>Returns a list of the tags assigned to the specified resource.</p>",
     "ModifyDocumentPermission": "<p>Shares a Systems Manager document publicly or privately. If you share a document privately, you must specify the AWS user account IDs for those people who can use the document. If you share a document publicly, you must specify <i>All</i> as the account ID.</p>",
     "PutInventory": "<p>Bulk update custom inventory items on one more instance. The request adds an inventory item, if it doesn't already exist, or updates an inventory item, if it does exist.</p>",
@@ -704,6 +707,16 @@
       "refs": {
       }
     },
+    "CreateResourceDataSyncRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateResourceDataSyncResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreatedDate": {
       "base": null,
       "refs": {
@@ -748,6 +761,8 @@
         "InstanceInformation$RegistrationDate": "<p>The date the server or VM was registered with AWS as a managed instance.</p>",
         "InstanceInformation$LastAssociationExecutionDate": "<p>The date the association was last executed.</p>",
         "InstanceInformation$LastSuccessfulAssociationExecutionDate": "<p>The last date the association was successfully run.</p>",
+        "InstancePatchState$OperationStartTime": "<p>The time the most recent patching operation was started on the instance.</p>",
+        "InstancePatchState$OperationEndTime": "<p>The time the most recent patching operation completed on the instance.</p>",
         "MaintenanceWindowExecution$StartTime": "<p>The time the execution started.</p>",
         "MaintenanceWindowExecution$EndTime": "<p>The time the execution finished.</p>",
         "MaintenanceWindowExecutionTaskIdentity$StartTime": "<p>The time the task execution started.</p>",
@@ -757,6 +772,7 @@
         "ParameterHistory$LastModifiedDate": "<p>Date the parameter was last changed or updated.</p>",
         "ParameterMetadata$LastModifiedDate": "<p>Date the parameter was last changed or updated.</p>",
         "Patch$ReleaseDate": "<p>The date the patch was released.</p>",
+        "PatchComplianceData$InstalledTime": "<p>The date/time the patch was installed on the instance. Note that not all operating systems provide this level of information.</p>",
         "PatchStatus$ApprovalDate": "<p>The date the patch was approved (or will be approved if the status is PENDING_APPROVAL).</p>",
         "StepExecution$ExecutionStartTime": "<p>If a step has begun execution, this contains the time the step started. If the step is in Pending status, this field is not populated.</p>",
         "StepExecution$ExecutionEndTime": "<p>If a step has finished execution, this contains the time the execution ended. If the step has not yet concluded, this field is not populated.</p>",
@@ -767,7 +783,7 @@
     "DefaultBaseline": {
       "base": null,
       "refs": {
-        "PatchBaselineIdentity$DefaultBaseline": "<p>Whether this is the default baseline.</p>"
+        "PatchBaselineIdentity$DefaultBaseline": "<p>Whether this is the default baseline. Note that Systems Manager supports creating multiple default patch baselines. For example, you can create a default patch baseline for each operating system.</p>"
       }
     },
     "DefaultInstanceName": {
@@ -843,6 +859,16 @@
       }
     },
     "DeletePatchBaselineResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteResourceDataSyncRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteResourceDataSyncResult": {
       "base": null,
       "refs": {
       }
@@ -1637,7 +1663,7 @@
       }
     },
     "HierarchyLevelLimitExceededException": {
-      "base": "<p>A hierarchy can have a maximum of five levels. For example:</p> <p>/Finance/Prod/IAD/OS/WinServ2016/license15</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-working-path.html\">Develop a Parameter Hierarchy</a>. </p>",
+      "base": "<p>A hierarchy can have a maximum of five levels. For example:</p> <p>/Finance/Prod/IAD/OS/WinServ2016/license15</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-working.html\">Working with Systems Manager Parameters</a>. </p>",
       "refs": {
       }
     },
@@ -2278,6 +2304,24 @@
         "RemoveTagsFromResourceRequest$TagKeys": "<p>Tag keys that you want to remove from the specified resource.</p>"
       }
     },
+    "LastResourceDataSyncStatus": {
+      "base": null,
+      "refs": {
+        "ResourceDataSyncItem$LastStatus": "<p>The status reported by the last sync.</p>"
+      }
+    },
+    "LastResourceDataSyncTime": {
+      "base": null,
+      "refs": {
+        "ResourceDataSyncItem$LastSyncTime": "<p>The last time the configuration attempted to sync (UTC).</p>"
+      }
+    },
+    "LastSuccessfulResourceDataSyncTime": {
+      "base": null,
+      "refs": {
+        "ResourceDataSyncItem$LastSuccessfulSyncTime": "<p>The last time the sync operations returned a status of <code>SUCCESSFUL</code> (UTC).</p>"
+      }
+    },
     "ListAssociationsRequest": {
       "base": null,
       "refs": {
@@ -2334,6 +2378,16 @@
       }
     },
     "ListInventoryEntriesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListResourceDataSyncRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListResourceDataSyncResult": {
       "base": null,
       "refs": {
       }
@@ -2763,7 +2817,8 @@
         "ListAssociationsRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>",
         "ListDocumentVersionsRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>",
         "ListDocumentsRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>",
-        "ListInventoryEntriesRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>"
+        "ListInventoryEntriesRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>",
+        "ListResourceDataSyncRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>"
       }
     },
     "MaxResultsEC2Compatible": {
@@ -2842,7 +2897,9 @@
         "ListDocumentsRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
         "ListDocumentsResult$NextToken": "<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>",
         "ListInventoryEntriesRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
-        "ListInventoryEntriesResult$NextToken": "<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>"
+        "ListInventoryEntriesResult$NextToken": "<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>",
+        "ListResourceDataSyncRequest$NextToken": "<p>A token to start the list. Use this token to get the next set of results. </p>",
+        "ListResourceDataSyncResult$NextToken": "<p>The token for the next set of items to return. Use this token to get the next set of results.</p>"
       }
     },
     "NormalStringMap": {
@@ -2881,6 +2938,19 @@
       "base": null,
       "refs": {
         "NotificationConfig$NotificationType": "<p>Command: Receive notification when the status of a command changes. Invocation: For commands sent to multiple instances, receive notification on a per-instance basis when the status of a command changes. </p>"
+      }
+    },
+    "OperatingSystem": {
+      "base": null,
+      "refs": {
+        "CreatePatchBaselineRequest$OperatingSystem": "<p>Defines the operating system the patch baseline applies to. Supported operating systems include WINDOWS, AMAZON_LINUX, UBUNTU and REDHAT_ENTERPRISE_LINUX. The Default value is WINDOWS.</p>",
+        "GetDefaultPatchBaselineRequest$OperatingSystem": "<p>Returns the default patch baseline for the specified operating system.</p>",
+        "GetDefaultPatchBaselineResult$OperatingSystem": "<p>The operating system for the returned patch baseline. </p>",
+        "GetPatchBaselineForPatchGroupRequest$OperatingSystem": "<p>Returns he operating system rule specified for patch groups using the patch baseline.</p>",
+        "GetPatchBaselineForPatchGroupResult$OperatingSystem": "<p>The operating system rule specified for patch groups using the patch baseline.</p>",
+        "GetPatchBaselineResult$OperatingSystem": "<p>Returns the operating system specified for the patch baseline.</p>",
+        "PatchBaselineIdentity$OperatingSystem": "<p>Defines the operating system the patch baseline applies to. Supported operating systems include WINDOWS, AMAZON_LINUX, UBUNTU and REDHAT_ENTERPRISE_LINUX. The Default value is WINDOWS. </p>",
+        "UpdatePatchBaselineResult$OperatingSystem": "<p>The operating system rule used by the updated patch baseline.</p>"
       }
     },
     "OwnerInformation": {
@@ -3157,6 +3227,17 @@
         "PatchComplianceData$State": "<p>The state of the patch on the instance (INSTALLED, INSTALLED_OTHER, MISSING, NOT_APPLICABLE or FAILED).</p>"
       }
     },
+    "PatchComplianceLevel": {
+      "base": null,
+      "refs": {
+        "CreatePatchBaselineRequest$ApprovedPatchesComplianceLevel": "<p>Defines the compliance level for approved patches. This means that if an approved patch is reported as missing, this is the severity of the compliance violation. Valid compliance severity levels include the following: CRITICAL, HIGH, MEDIUM, LOW, INFORMATIONAL, UNSPECIFIED. The default value is UNSPECIFIED.</p>",
+        "GetPatchBaselineResult$ApprovedPatchesComplianceLevel": "<p>Returns the specified compliance severity level for approved patches in the patch baseline.</p>",
+        "PatchRule$ComplianceLevel": "<p>A compliance severity level for all approved patches in a patch baseline. Valid compliance severity levels include the following: Unspecified, Critical, High, Medium, Low, and Informational.</p>",
+        "PatchStatus$ComplianceLevel": "<p>The compliance severity level for a patch.</p>",
+        "UpdatePatchBaselineRequest$ApprovedPatchesComplianceLevel": "<p>Assigns a new compliance severity level to an existing patch baseline.</p>",
+        "UpdatePatchBaselineResult$ApprovedPatchesComplianceLevel": "<p>The compliance severity level assigned to the patch baseline after the update completed.</p>"
+      }
+    },
     "PatchComplianceMaxResults": {
       "base": null,
       "refs": {
@@ -3295,17 +3376,11 @@
         "InstancePatchState$InstalledOtherCount": "<p>The number of patches not specified in the patch baseline that are installed on the instance.</p>"
       }
     },
-    "PatchInstalledTime": {
-      "base": null,
-      "refs": {
-        "PatchComplianceData$InstalledTime": "<p>The date/time the patch was installed on the instance.</p>"
-      }
-    },
     "PatchKbNumber": {
       "base": null,
       "refs": {
         "Patch$KbNumber": "<p>The Microsoft Knowledge Base ID of the patch.</p>",
-        "PatchComplianceData$KBId": "<p>The Microsoft Knowledge Base ID of the patch.</p>"
+        "PatchComplianceData$KBId": "<p>The operating system-specific ID of the patch.</p>"
       }
     },
     "PatchLanguage": {
@@ -3344,18 +3419,6 @@
         "InstancePatchState$NotApplicableCount": "<p>The number of patches from the patch baseline that aren't applicable for the instance and hence aren't installed on the instance.</p>"
       }
     },
-    "PatchOperationEndTime": {
-      "base": null,
-      "refs": {
-        "InstancePatchState$OperationEndTime": "<p>The time the most recent patching operation completed on the instance.</p>"
-      }
-    },
-    "PatchOperationStartTime": {
-      "base": null,
-      "refs": {
-        "InstancePatchState$OperationStartTime": "<p>The time the most recent patching operation was started on the instance.</p>"
-      }
-    },
     "PatchOperationType": {
       "base": null,
       "refs": {
@@ -3379,7 +3442,8 @@
       "refs": {
         "DescribeAvailablePatchesRequest$Filters": "<p>Filters used to scope down the returned patches.</p>",
         "DescribeInstancePatchesRequest$Filters": "<p>Each entry in the array is a structure containing:</p> <p>Key (string, between 1 and 128 characters)</p> <p>Values (array of strings, each string between 1 and 256 characters)</p>",
-        "DescribePatchBaselinesRequest$Filters": "<p>Each element in the array is a structure containing: </p> <p>Key: (string, \"NAME_PREFIX\" or \"OWNER\")</p> <p>Value: (array of strings, exactly 1 entry, between 1 and 255 characters)</p>"
+        "DescribePatchBaselinesRequest$Filters": "<p>Each element in the array is a structure containing: </p> <p>Key: (string, \"NAME_PREFIX\" or \"OWNER\")</p> <p>Value: (array of strings, exactly 1 entry, between 1 and 255 characters)</p>",
+        "DescribePatchGroupsRequest$Filters": "<p>One or more filters. Use a filter to return a more specific list of results.</p>"
       }
     },
     "PatchOrchestratorFilterValue": {
@@ -3472,6 +3536,12 @@
         "DocumentIdentifier$PlatformTypes": "<p>The operating system platform. </p>"
       }
     },
+    "Product": {
+      "base": null,
+      "refs": {
+        "GetDeployablePatchSnapshotForInstanceResult$Product": "<p>Returns the specific operating system (for example Windows Server 2012 or Amazon Linux 2015.09) on the instance for the specified patch snapshot.</p>"
+      }
+    },
     "PutInventoryRequest": {
       "base": null,
       "refs": {
@@ -3553,6 +3623,85 @@
     "RemoveTagsFromResourceResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "ResourceDataSyncAlreadyExistsException": {
+      "base": "<p>A sync configuration with the same name already exists.</p>",
+      "refs": {
+      }
+    },
+    "ResourceDataSyncCountExceededException": {
+      "base": "<p>You have exceeded the allowed maximum sync configurations.</p>",
+      "refs": {
+      }
+    },
+    "ResourceDataSyncCreatedTime": {
+      "base": null,
+      "refs": {
+        "ResourceDataSyncItem$SyncCreatedTime": "<p>The date and time the configuration was created (UTC).</p>"
+      }
+    },
+    "ResourceDataSyncInvalidConfigurationException": {
+      "base": "<p>The specified sync configuration is invalid.</p>",
+      "refs": {
+      }
+    },
+    "ResourceDataSyncItem": {
+      "base": "<p>Information about a Resource Data Sync configuration, including its current status and last successful sync.</p>",
+      "refs": {
+        "ResourceDataSyncItemList$member": null
+      }
+    },
+    "ResourceDataSyncItemList": {
+      "base": null,
+      "refs": {
+        "ListResourceDataSyncResult$ResourceDataSyncItems": "<p>A list of your current Resource Data Sync configurations and their statuses.</p>"
+      }
+    },
+    "ResourceDataSyncName": {
+      "base": null,
+      "refs": {
+        "CreateResourceDataSyncRequest$SyncName": "<p>A name for the configuration.</p>",
+        "DeleteResourceDataSyncRequest$SyncName": "<p>The name of the configuration to delete.</p>",
+        "ResourceDataSyncAlreadyExistsException$SyncName": null,
+        "ResourceDataSyncItem$SyncName": "<p>The name of the Resource Data Sync.</p>",
+        "ResourceDataSyncNotFoundException$SyncName": null
+      }
+    },
+    "ResourceDataSyncNotFoundException": {
+      "base": "<p>The specified sync name was not found.</p>",
+      "refs": {
+      }
+    },
+    "ResourceDataSyncS3BucketName": {
+      "base": null,
+      "refs": {
+        "ResourceDataSyncS3Destination$BucketName": "<p>The name of the Amazon S3 bucket where the aggregated data is stored.</p>"
+      }
+    },
+    "ResourceDataSyncS3Destination": {
+      "base": "<p>Information about the target Amazon S3 bucket for the Resource Data Sync.</p>",
+      "refs": {
+        "CreateResourceDataSyncRequest$S3Destination": "<p>Amazon S3 configuration details for the sync.</p>",
+        "ResourceDataSyncItem$S3Destination": "<p>Configuration information for the target Amazon S3 bucket.</p>"
+      }
+    },
+    "ResourceDataSyncS3Format": {
+      "base": null,
+      "refs": {
+        "ResourceDataSyncS3Destination$SyncFormat": "<p>A supported sync format. The following format is currently supported: JsonSerDe</p>"
+      }
+    },
+    "ResourceDataSyncS3Prefix": {
+      "base": null,
+      "refs": {
+        "ResourceDataSyncS3Destination$Prefix": "<p>An Amazon S3 prefix for the bucket.</p>"
+      }
+    },
+    "ResourceDataSyncS3Region": {
+      "base": null,
+      "refs": {
+        "ResourceDataSyncS3Destination$Region": "<p>The AWS Region with the Amazon S3 bucket targeted by the Resource Data Sync.</p>"
       }
     },
     "ResourceId": {
@@ -3797,7 +3946,7 @@
         "DuplicateDocumentContent$Message": null,
         "FailureDetails$FailureStage": "<p>The stage of the Automation execution when the failure occurred. The stages include the following: InputValidation, PreVerification, Invocation, PostVerification.</p>",
         "FailureDetails$FailureType": "<p>The type of Automation failure. Failure types include the following: Action, Permission, Throttling, Verification, Internal.</p>",
-        "HierarchyLevelLimitExceededException$message": "<p>A hierarchy can have a maximum of five levels. For example:</p> <p>/Finance/Prod/IAD/OS/WinServ2016/license15</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-working-path.html\">Develop a Parameter Hierarchy</a>. </p>",
+        "HierarchyLevelLimitExceededException$message": "<p>A hierarchy can have a maximum of five levels. For example:</p> <p>/Finance/Prod/IAD/OS/WinServ2016/license15</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-working.html\">Working with Systems Manager Parameters</a>. </p>",
         "HierarchyTypeMismatchException$message": "<p>Parameter Store does not support changing a parameter type in a hierarchy. For example, you can't change a parameter from a String type to a SecureString type. You must create a new, unique parameter.</p>",
         "IdempotentParameterMismatch$Message": null,
         "InstanceInformation$PlatformName": "<p>The name of the operating system platform running on your instance. </p>",
@@ -3841,6 +3990,8 @@
         "ParameterMetadata$LastModifiedUser": "<p>Amazon Resource Name (ARN) of the AWS user who last changed the parameter.</p>",
         "ParameterNotFound$message": null,
         "ParameterPatternMismatchException$message": "<p>The parameter name is not valid.</p>",
+        "ResourceDataSyncCountExceededException$Message": null,
+        "ResourceDataSyncInvalidConfigurationException$Message": null,
         "ResourceInUseException$Message": null,
         "ResourceLimitExceededException$Message": null,
         "StepExecution$StepName": "<p>The name of this execution step.</p>",
@@ -3851,6 +4002,7 @@
         "TooManyUpdates$Message": null,
         "TotalSizeLimitExceededException$Message": null,
         "UnsupportedInventorySchemaVersionException$Message": null,
+        "UnsupportedOperatingSystem$Message": null,
         "UnsupportedParameterType$message": null,
         "UnsupportedPlatformType$Message": null
       }
@@ -3964,6 +4116,11 @@
     },
     "UnsupportedInventorySchemaVersionException": {
       "base": "<p>Inventory item type schema version has to match supported versions in the service. Check output of GetInventorySchema to see the available schema version for each type.</p>",
+      "refs": {
+      }
+    },
+    "UnsupportedOperatingSystem": {
+      "base": "<p>The operating systems you specified is not supported, or the operation is not supported for the operating system. Valid operating systems include: Windows, AmazonLinux, RedhatEnterpriseLinux, and Ubuntu.</p>",
       "refs": {
       }
     },

@@ -396,12 +396,26 @@ func (u Uploader) UploadWithContext(ctx aws.Context, input *UploadInput, opts ..
 func (u Uploader) UploadWithIterator(ctx aws.Context, iter BatchUploadIterator, opts ...func(*Uploader)) error {
 	var errs []Error
 	for iter.Next() {
-		object := iter.UploadObject().Object
-		if _, err := u.UploadWithContext(ctx, object, opts...); err != nil {
+		object := iter.UploadObject()
+		if _, err := u.UploadWithContext(ctx, object.Object, opts...); err != nil {
 			s3Err := Error{
 				OrigErr: err,
-				Bucket:  object.Bucket,
-				Key:     object.Key,
+				Bucket:  object.Object.Bucket,
+				Key:     object.Object.Key,
+			}
+
+			errs = append(errs, s3Err)
+		}
+
+		if object.After == nil {
+			continue
+		}
+
+		if err := object.After(); err != nil {
+			s3Err := Error{
+				OrigErr: err,
+				Bucket:  object.Object.Bucket,
+				Key:     object.Object.Key,
 			}
 
 			errs = append(errs, s3Err)

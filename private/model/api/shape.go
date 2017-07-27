@@ -33,6 +33,8 @@ type ShapeRef struct {
 	Deprecated       bool `json:"deprecated"`
 
 	OrigShapeName string `json:"-"`
+
+	GenerateGetter bool
 }
 
 // ErrorInfo represents the error block of a shape's structure
@@ -579,6 +581,19 @@ func (s *{{ $builderShapeName }}) Set{{ $name }}(v {{ $context.GoStructValueType
 	{{ end -}}
 	return s
 }
+
+{{ if $elem.GenerateGetter -}}
+func (s *{{ $builderShapeName }}) get{{ $name }}() (v {{ $context.GoStructValueType $name $elem }}) {
+	{{ if $elem.UseIndirection -}}
+		if s.{{ $name }} == nil {
+			return v
+		}
+		return *s.{{ $name }}
+	{{ else -}}
+		return s.{{ $name }}
+	{{ end -}}
+}
+{{- end }}
 
 {{ end }}
 {{ end }}

@@ -596,6 +596,8 @@ func ExampleLambda_ListFunctions_shared00() {
 				fmt.Println(lambda.ErrCodeServiceException, aerr.Error())
 			case lambda.ErrCodeTooManyRequestsException:
 				fmt.Println(lambda.ErrCodeTooManyRequestsException, aerr.Error())
+			case lambda.ErrCodeInvalidParameterValueException:
+				fmt.Println(lambda.ErrCodeInvalidParameterValueException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

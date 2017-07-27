@@ -1320,7 +1320,8 @@
         "ResourceId":{"shape":"NonZeroAndMaxString"},
         "EventCode":{"shape":"EventCode"},
         "Message":{"shape":"NonEmptyString"},
-        "EventTime":{"shape":"Timestamp"}
+        "EventTime":{"shape":"Timestamp"},
+        "PreSignedLogUrl":{"shape":"NonZeroAndMaxString"}
       }
     },
     "EventCode":{
@@ -1351,7 +1352,10 @@
         "SERVER_PROCESS_TERMINATED_UNHEALTHY",
         "SERVER_PROCESS_FORCE_TERMINATED",
         "SERVER_PROCESS_PROCESS_EXIT_TIMEOUT",
-        "GAME_SESSION_ACTIVATION_TIMEOUT"
+        "GAME_SESSION_ACTIVATION_TIMEOUT",
+        "FLEET_CREATION_EXTRACTING_BUILD",
+        "FLEET_CREATION_RUNNING_INSTALLER",
+        "FLEET_CREATION_VALIDATING_RUNTIME_CONFIG"
       ]
     },
     "EventList":{

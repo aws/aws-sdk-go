@@ -390,6 +390,15 @@
       "input":{"shape":"CreateNetworkInterfaceRequest"},
       "output":{"shape":"CreateNetworkInterfaceResult"}
     },
+    "CreateNetworkInterfacePermission":{
+      "name":"CreateNetworkInterfacePermission",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateNetworkInterfacePermissionRequest"},
+      "output":{"shape":"CreateNetworkInterfacePermissionResult"}
+    },
     "CreatePlacementGroup":{
       "name":"CreatePlacementGroup",
       "http":{
@@ -613,6 +622,15 @@
         "requestUri":"/"
       },
       "input":{"shape":"DeleteNetworkInterfaceRequest"}
+    },
+    "DeleteNetworkInterfacePermission":{
+      "name":"DeleteNetworkInterfacePermission",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteNetworkInterfacePermissionRequest"},
+      "output":{"shape":"DeleteNetworkInterfacePermissionResult"}
     },
     "DeletePlacementGroup":{
       "name":"DeletePlacementGroup",
@@ -1022,6 +1040,15 @@
       },
       "input":{"shape":"DescribeNetworkInterfaceAttributeRequest"},
       "output":{"shape":"DescribeNetworkInterfaceAttributeResult"}
+    },
+    "DescribeNetworkInterfacePermissions":{
+      "name":"DescribeNetworkInterfacePermissions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeNetworkInterfacePermissionsRequest"},
+      "output":{"shape":"DescribeNetworkInterfacePermissionsResult"}
     },
     "DescribeNetworkInterfaces":{
       "name":"DescribeNetworkInterfaces",
@@ -3789,6 +3816,29 @@
         }
       }
     },
+    "CreateNetworkInterfacePermissionRequest":{
+      "type":"structure",
+      "required":[
+        "NetworkInterfaceId",
+        "Permission"
+      ],
+      "members":{
+        "NetworkInterfaceId":{"shape":"String"},
+        "AwsAccountId":{"shape":"String"},
+        "AwsService":{"shape":"String"},
+        "Permission":{"shape":"InterfacePermissionType"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "CreateNetworkInterfacePermissionResult":{
+      "type":"structure",
+      "members":{
+        "InterfacePermission":{
+          "shape":"NetworkInterfacePermission",
+          "locationName":"interfacePermission"
+        }
+      }
+    },
     "CreateNetworkInterfaceRequest":{
       "type":"structure",
       "required":["SubnetId"],
@@ -4482,6 +4532,24 @@
         "NetworkAclId":{
           "shape":"String",
           "locationName":"networkAclId"
+        }
+      }
+    },
+    "DeleteNetworkInterfacePermissionRequest":{
+      "type":"structure",
+      "required":["NetworkInterfacePermissionId"],
+      "members":{
+        "NetworkInterfacePermissionId":{"shape":"String"},
+        "Force":{"shape":"Boolean"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DeleteNetworkInterfacePermissionResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
         }
       }
     },
@@ -5565,6 +5633,34 @@
         "SourceDestCheck":{
           "shape":"AttributeBooleanValue",
           "locationName":"sourceDestCheck"
+        }
+      }
+    },
+    "DescribeNetworkInterfacePermissionsRequest":{
+      "type":"structure",
+      "members":{
+        "NetworkInterfacePermissionIds":{
+          "shape":"NetworkInterfacePermissionIdList",
+          "locationName":"NetworkInterfacePermissionId"
+        },
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"Integer"}
+      }
+    },
+    "DescribeNetworkInterfacePermissionsResult":{
+      "type":"structure",
+      "members":{
+        "NetworkInterfacePermissions":{
+          "shape":"NetworkInterfacePermissionList",
+          "locationName":"networkInterfacePermissions"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
@@ -9608,6 +9704,9 @@
         "cc2.8xlarge",
         "g2.2xlarge",
         "g2.8xlarge",
+        "g3.4xlarge",
+        "g3.8xlarge",
+        "g3.16xlarge",
         "cg1.4xlarge",
         "p2.xlarge",
         "p2.8xlarge",
@@ -9625,6 +9724,13 @@
       "member":{"shape":"InstanceType"}
     },
     "Integer":{"type":"integer"},
+    "InterfacePermissionType":{
+      "type":"string",
+      "enum":[
+        "INSTANCE-ATTACH",
+        "EIP-ASSOCIATE"
+      ]
+    },
     "InternetGateway":{
       "type":"structure",
       "members":{
@@ -10827,6 +10933,68 @@
         "shape":"NetworkInterface",
         "locationName":"item"
       }
+    },
+    "NetworkInterfacePermission":{
+      "type":"structure",
+      "members":{
+        "NetworkInterfacePermissionId":{
+          "shape":"String",
+          "locationName":"networkInterfacePermissionId"
+        },
+        "NetworkInterfaceId":{
+          "shape":"String",
+          "locationName":"networkInterfaceId"
+        },
+        "AwsAccountId":{
+          "shape":"String",
+          "locationName":"awsAccountId"
+        },
+        "AwsService":{
+          "shape":"String",
+          "locationName":"awsService"
+        },
+        "Permission":{
+          "shape":"InterfacePermissionType",
+          "locationName":"permission"
+        },
+        "PermissionState":{
+          "shape":"NetworkInterfacePermissionState",
+          "locationName":"permissionState"
+        }
+      }
+    },
+    "NetworkInterfacePermissionIdList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
+    "NetworkInterfacePermissionList":{
+      "type":"list",
+      "member":{
+        "shape":"NetworkInterfacePermission",
+        "locationName":"item"
+      }
+    },
+    "NetworkInterfacePermissionState":{
+      "type":"structure",
+      "members":{
+        "State":{
+          "shape":"NetworkInterfacePermissionStateCode",
+          "locationName":"state"
+        },
+        "StatusMessage":{
+          "shape":"String",
+          "locationName":"statusMessage"
+        }
+      }
+    },
+    "NetworkInterfacePermissionStateCode":{
+      "type":"string",
+      "enum":[
+        "pending",
+        "granted",
+        "revoking",
+        "revoked"
+      ]
     },
     "NetworkInterfacePrivateIpAddress":{
       "type":"structure",
@@ -13726,6 +13894,10 @@
         "WeightedCapacity":{
           "shape":"Double",
           "locationName":"weightedCapacity"
+        },
+        "TagSpecifications":{
+          "shape":"SpotFleetTagSpecificationList",
+          "locationName":"tagSpecificationSet"
         }
       }
     },
@@ -13836,6 +14008,26 @@
       "type":"list",
       "member":{
         "shape":"SpotFleetRequestConfig",
+        "locationName":"item"
+      }
+    },
+    "SpotFleetTagSpecification":{
+      "type":"structure",
+      "members":{
+        "ResourceType":{
+          "shape":"ResourceType",
+          "locationName":"resourceType"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tag"
+        }
+      }
+    },
+    "SpotFleetTagSpecificationList":{
+      "type":"list",
+      "member":{
+        "shape":"SpotFleetTagSpecification",
         "locationName":"item"
       }
     },

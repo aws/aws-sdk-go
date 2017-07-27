@@ -471,6 +471,7 @@
         "HostedZoneNotFound$message": "<p>Descriptive message for the error response.</p>",
         "IncompatibleVersion$message": null,
         "InvalidArgument$message": "<p>Descriptive message for the error response.</p>",
+        "InvalidChangeBatch$message": null,
         "InvalidDomainName$message": "<p>Descriptive message for the error response.</p>",
         "InvalidInput$message": "<p>Descriptive message for the error response.</p>",
         "InvalidPaginationToken$message": null,

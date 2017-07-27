@@ -78,6 +78,9 @@ func (c *AppStream) AssociateFleetRequest(input *AssociateFleetInput) (req *requ
 //   * ErrCodeIncompatibleImageException "IncompatibleImageException"
 //   The image does not support storage connectors.
 //
+//   * ErrCodeOperationNotPermittedException "OperationNotPermittedException"
+//   The attempted operation is not permitted.
+//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/AssociateFleet
 func (c *AppStream) AssociateFleet(input *AssociateFleetInput) (*AssociateFleetOutput, error) {
 	req, out := c.AssociateFleetRequest(input)
@@ -95,6 +98,89 @@ func (c *AppStream) AssociateFleet(input *AssociateFleetInput) (*AssociateFleetO
 // for more information on using Contexts.
 func (c *AppStream) AssociateFleetWithContext(ctx aws.Context, input *AssociateFleetInput, opts ...request.Option) (*AssociateFleetOutput, error) {
 	req, out := c.AssociateFleetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateDirectoryConfig = "CreateDirectoryConfig"
+
+// CreateDirectoryConfigRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDirectoryConfig operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See CreateDirectoryConfig for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateDirectoryConfig method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateDirectoryConfigRequest method.
+//    req, resp := client.CreateDirectoryConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateDirectoryConfig
+func (c *AppStream) CreateDirectoryConfigRequest(input *CreateDirectoryConfigInput) (req *request.Request, output *CreateDirectoryConfigOutput) {
+	op := &request.Operation{
+		Name:       opCreateDirectoryConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateDirectoryConfigInput{}
+	}
+
+	output = &CreateDirectoryConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateDirectoryConfig API operation for Amazon AppStream.
+//
+// Creates a directory configuration with the given parameters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation CreateDirectoryConfig for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeResourceAlreadyExistsException "ResourceAlreadyExistsException"
+//   The specified resource already exists.
+//
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   The requested limit exceeds the permitted limit for an account.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateDirectoryConfig
+func (c *AppStream) CreateDirectoryConfig(input *CreateDirectoryConfigInput) (*CreateDirectoryConfigOutput, error) {
+	req, out := c.CreateDirectoryConfigRequest(input)
+	return out, req.Send()
+}
+
+// CreateDirectoryConfigWithContext is the same as CreateDirectoryConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateDirectoryConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) CreateDirectoryConfigWithContext(ctx aws.Context, input *CreateDirectoryConfigInput, opts ...request.Option) (*CreateDirectoryConfigOutput, error) {
+	req, out := c.CreateDirectoryConfigRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -172,6 +258,12 @@ func (c *AppStream) CreateFleetRequest(input *CreateFleetInput) (req *request.Re
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
 //   An API error occurred. Wait a few minutes and try again.
+//
+//   * ErrCodeInvalidParameterCombinationException "InvalidParameterCombinationException"
+//   Indicates an incorrect combination of parameters, or a missing parameter.
+//
+//   * ErrCodeIncompatibleImageException "IncompatibleImageException"
+//   The image does not support storage connectors.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateFleet
 func (c *AppStream) CreateFleet(input *CreateFleetInput) (*CreateFleetOutput, error) {
@@ -380,6 +472,89 @@ func (c *AppStream) CreateStreamingURLWithContext(ctx aws.Context, input *Create
 	return out, req.Send()
 }
 
+const opDeleteDirectoryConfig = "DeleteDirectoryConfig"
+
+// DeleteDirectoryConfigRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDirectoryConfig operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See DeleteDirectoryConfig for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteDirectoryConfig method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteDirectoryConfigRequest method.
+//    req, resp := client.DeleteDirectoryConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteDirectoryConfig
+func (c *AppStream) DeleteDirectoryConfigRequest(input *DeleteDirectoryConfigInput) (req *request.Request, output *DeleteDirectoryConfigOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDirectoryConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteDirectoryConfigInput{}
+	}
+
+	output = &DeleteDirectoryConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteDirectoryConfig API operation for Amazon AppStream.
+//
+// Deletes the directory configuration with the given parameters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation DeleteDirectoryConfig for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeResourceInUseException "ResourceInUseException"
+//   The specified resource is in use.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource was not found.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteDirectoryConfig
+func (c *AppStream) DeleteDirectoryConfig(input *DeleteDirectoryConfigInput) (*DeleteDirectoryConfigOutput, error) {
+	req, out := c.DeleteDirectoryConfigRequest(input)
+	return out, req.Send()
+}
+
+// DeleteDirectoryConfigWithContext is the same as DeleteDirectoryConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDirectoryConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) DeleteDirectoryConfigWithContext(ctx aws.Context, input *DeleteDirectoryConfigInput, opts ...request.Option) (*DeleteDirectoryConfigOutput, error) {
+	req, out := c.DeleteDirectoryConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteFleet = "DeleteFleet"
 
 // DeleteFleetRequest generates a "aws/request.Request" representing the
@@ -548,6 +723,86 @@ func (c *AppStream) DeleteStack(input *DeleteStackInput) (*DeleteStackOutput, er
 // for more information on using Contexts.
 func (c *AppStream) DeleteStackWithContext(ctx aws.Context, input *DeleteStackInput, opts ...request.Option) (*DeleteStackOutput, error) {
 	req, out := c.DeleteStackRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeDirectoryConfigs = "DescribeDirectoryConfigs"
+
+// DescribeDirectoryConfigsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDirectoryConfigs operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See DescribeDirectoryConfigs for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDirectoryConfigs method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDirectoryConfigsRequest method.
+//    req, resp := client.DescribeDirectoryConfigsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeDirectoryConfigs
+func (c *AppStream) DescribeDirectoryConfigsRequest(input *DescribeDirectoryConfigsInput) (req *request.Request, output *DescribeDirectoryConfigsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDirectoryConfigs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeDirectoryConfigsInput{}
+	}
+
+	output = &DescribeDirectoryConfigsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDirectoryConfigs API operation for Amazon AppStream.
+//
+// Returns a list describing the specified directory configurations.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation DescribeDirectoryConfigs for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource was not found.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeDirectoryConfigs
+func (c *AppStream) DescribeDirectoryConfigs(input *DescribeDirectoryConfigsInput) (*DescribeDirectoryConfigsOutput, error) {
+	req, out := c.DescribeDirectoryConfigsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDirectoryConfigsWithContext is the same as DescribeDirectoryConfigs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDirectoryConfigs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) DescribeDirectoryConfigsWithContext(ctx aws.Context, input *DescribeDirectoryConfigsInput, opts ...request.Option) (*DescribeDirectoryConfigsOutput, error) {
+	req, out := c.DescribeDirectoryConfigsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -761,10 +1016,11 @@ func (c *AppStream) DescribeSessionsRequest(input *DescribeSessionsInput) (req *
 // DescribeSessions API operation for Amazon AppStream.
 //
 // Describes the streaming sessions for a stack and a fleet. If a user ID is
-// provided, this operation returns streaming sessions for only that user. Pass
-// this value for the nextToken parameter in a subsequent call to this operation
-// to retrieve the next set of items. If an authentication type is not provided,
-// the operation defaults to users authenticated using a streaming URL.
+// provided, this operation returns streaming sessions for only that user. To
+// retrieve the next set of items, pass this value for the nextToken parameter
+// in a subsequent call to this operation. If an authentication type is not
+// provided, the operation defaults to users authenticated using a streaming
+// URL.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -845,8 +1101,8 @@ func (c *AppStream) DescribeStacksRequest(input *DescribeStacksInput) (req *requ
 // DescribeStacks API operation for Amazon AppStream.
 //
 // If stack names are not provided, this operation describes the specified stacks;
-// otherwise, all stacks in the account are described. Pass the nextToken value
-// in a subsequent call to this operation to retrieve the next set of items.
+// otherwise, all stacks in the account are described. To retrieve the next
+// set of items, pass the nextToken value in a subsequent call to this operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1364,6 +1620,92 @@ func (c *AppStream) StopFleetWithContext(ctx aws.Context, input *StopFleetInput,
 	return out, req.Send()
 }
 
+const opUpdateDirectoryConfig = "UpdateDirectoryConfig"
+
+// UpdateDirectoryConfigRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateDirectoryConfig operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See UpdateDirectoryConfig for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateDirectoryConfig method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateDirectoryConfigRequest method.
+//    req, resp := client.UpdateDirectoryConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateDirectoryConfig
+func (c *AppStream) UpdateDirectoryConfigRequest(input *UpdateDirectoryConfigInput) (req *request.Request, output *UpdateDirectoryConfigOutput) {
+	op := &request.Operation{
+		Name:       opUpdateDirectoryConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateDirectoryConfigInput{}
+	}
+
+	output = &UpdateDirectoryConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateDirectoryConfig API operation for Amazon AppStream.
+//
+// Updates the directory configuration with the given parameters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation UpdateDirectoryConfig for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeResourceInUseException "ResourceInUseException"
+//   The specified resource is in use.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource was not found.
+//
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   An API error occurred. Wait a few minutes and try again.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateDirectoryConfig
+func (c *AppStream) UpdateDirectoryConfig(input *UpdateDirectoryConfigInput) (*UpdateDirectoryConfigOutput, error) {
+	req, out := c.UpdateDirectoryConfigRequest(input)
+	return out, req.Send()
+}
+
+// UpdateDirectoryConfigWithContext is the same as UpdateDirectoryConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateDirectoryConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) UpdateDirectoryConfigWithContext(ctx aws.Context, input *UpdateDirectoryConfigInput, opts ...request.Option) (*UpdateDirectoryConfigOutput, error) {
+	req, out := c.UpdateDirectoryConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateFleet = "UpdateFleet"
 
 // UpdateFleetRequest generates a "aws/request.Request" representing the
@@ -1445,6 +1787,9 @@ func (c *AppStream) UpdateFleetRequest(input *UpdateFleetInput) (req *request.Re
 //
 //   * ErrCodeIncompatibleImageException "IncompatibleImageException"
 //   The image does not support storage connectors.
+//
+//   * ErrCodeOperationNotPermittedException "OperationNotPermittedException"
+//   The attempted operation is not permitted.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateFleet
 func (c *AppStream) UpdateFleet(input *UpdateFleetInput) (*UpdateFleetOutput, error) {
@@ -1571,7 +1916,7 @@ type Application struct {
 	// The name of the application shown to the end users.
 	DisplayName *string `min:"1" type:"string"`
 
-	// An application can be disabled after image creation if there is a problem.
+	// If there is a problem, an application can be disabled after image creation.
 	Enabled *bool `type:"boolean"`
 
 	// The URL for the application icon. This URL may be time-limited.
@@ -1810,6 +2155,104 @@ func (s *ComputeCapacityStatus) SetRunning(v int64) *ComputeCapacityStatus {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateDirectoryConfigRequest
+type CreateDirectoryConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The fully qualified name of the directory, such as corp.example.com
+	//
+	// DirectoryName is a required field
+	DirectoryName *string `type:"string" required:"true"`
+
+	// The list of the distinguished names of organizational units to place computer
+	// accounts in.
+	//
+	// OrganizationalUnitDistinguishedNames is a required field
+	OrganizationalUnitDistinguishedNames []*string `type:"list" required:"true"`
+
+	// The AccountName and AccountPassword values for the service account, which
+	// are used by the streaming instance to connect to the directory.
+	//
+	// ServiceAccountCredentials is a required field
+	ServiceAccountCredentials *ServiceAccountCredentials `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateDirectoryConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateDirectoryConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDirectoryConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDirectoryConfigInput"}
+	if s.DirectoryName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryName"))
+	}
+	if s.OrganizationalUnitDistinguishedNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationalUnitDistinguishedNames"))
+	}
+	if s.ServiceAccountCredentials == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceAccountCredentials"))
+	}
+	if s.ServiceAccountCredentials != nil {
+		if err := s.ServiceAccountCredentials.Validate(); err != nil {
+			invalidParams.AddNested("ServiceAccountCredentials", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDirectoryName sets the DirectoryName field's value.
+func (s *CreateDirectoryConfigInput) SetDirectoryName(v string) *CreateDirectoryConfigInput {
+	s.DirectoryName = &v
+	return s
+}
+
+// SetOrganizationalUnitDistinguishedNames sets the OrganizationalUnitDistinguishedNames field's value.
+func (s *CreateDirectoryConfigInput) SetOrganizationalUnitDistinguishedNames(v []*string) *CreateDirectoryConfigInput {
+	s.OrganizationalUnitDistinguishedNames = v
+	return s
+}
+
+// SetServiceAccountCredentials sets the ServiceAccountCredentials field's value.
+func (s *CreateDirectoryConfigInput) SetServiceAccountCredentials(v *ServiceAccountCredentials) *CreateDirectoryConfigInput {
+	s.ServiceAccountCredentials = v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateDirectoryConfigResult
+type CreateDirectoryConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Directory configuration details.
+	DirectoryConfig *DirectoryConfig `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateDirectoryConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateDirectoryConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetDirectoryConfig sets the DirectoryConfig field's value.
+func (s *CreateDirectoryConfigOutput) SetDirectoryConfig(v *DirectoryConfig) *CreateDirectoryConfigOutput {
+	s.DirectoryConfig = v
+	return s
+}
+
 // Contains the parameters for the new fleet to create.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateFleetRequest
 type CreateFleetInput struct {
@@ -1832,7 +2275,11 @@ type CreateFleetInput struct {
 	// The display name of the fleet.
 	DisplayName *string `type:"string"`
 
-	// Enables or disables default Internet access for the fleet.
+	// The DirectoryName and OrganizationalUnitDistinguishedName values, which are
+	// used to join domains for the AppStream 2.0 streaming instances.
+	DomainJoinInfo *DomainJoinInfo `type:"structure"`
+
+	// Enables or disables default internet access for the fleet.
 	EnableDefaultInternetAccess *bool `type:"boolean"`
 
 	// Unique name of the image used by the fleet.
@@ -1841,7 +2288,31 @@ type CreateFleetInput struct {
 	ImageName *string `min:"1" type:"string" required:"true"`
 
 	// The instance type of compute resources for the fleet. Fleet instances are
-	// launched from this instance type.
+	// launched from this instance type. Available instance types are:
+	//
+	//    * stream.standard.medium
+	//
+	//    * stream.standard.large
+	//
+	//    * stream.compute.large
+	//
+	//    * stream.compute.xlarge
+	//
+	//    * stream.compute.2xlarge
+	//
+	//    * stream.compute.4xlarge
+	//
+	//    * stream.compute.8xlarge
+	//
+	//    * stream.memory.large
+	//
+	//    * stream.memory.xlarge
+	//
+	//    * stream.memory.2xlarge
+	//
+	//    * stream.memory.4xlarge
+	//
+	//    * stream.memory.8xlarge
 	//
 	// InstanceType is a required field
 	InstanceType *string `min:"1" type:"string" required:"true"`
@@ -1923,6 +2394,12 @@ func (s *CreateFleetInput) SetDisconnectTimeoutInSeconds(v int64) *CreateFleetIn
 // SetDisplayName sets the DisplayName field's value.
 func (s *CreateFleetInput) SetDisplayName(v string) *CreateFleetInput {
 	s.DisplayName = &v
+	return s
+}
+
+// SetDomainJoinInfo sets the DomainJoinInfo field's value.
+func (s *CreateFleetInput) SetDomainJoinInfo(v *DomainJoinInfo) *CreateFleetInput {
+	s.DomainJoinInfo = v
 	return s
 }
 
@@ -2203,7 +2680,7 @@ func (s *CreateStreamingURLInput) SetValidity(v int64) *CreateStreamingURLInput 
 type CreateStreamingURLOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Elapsed seconds after the Unix epoch, at which time this URL expires.
+	// Elapsed seconds after the Unix epoch, when this URL expires.
 	Expires *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The URL to start the AppStream 2.0 streaming session.
@@ -2230,6 +2707,60 @@ func (s *CreateStreamingURLOutput) SetExpires(v time.Time) *CreateStreamingURLOu
 func (s *CreateStreamingURLOutput) SetStreamingURL(v string) *CreateStreamingURLOutput {
 	s.StreamingURL = &v
 	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteDirectoryConfigRequest
+type DeleteDirectoryConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the directory configuration to be deleted.
+	//
+	// DirectoryName is a required field
+	DirectoryName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteDirectoryConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDirectoryConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDirectoryConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDirectoryConfigInput"}
+	if s.DirectoryName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDirectoryName sets the DirectoryName field's value.
+func (s *DeleteDirectoryConfigInput) SetDirectoryName(v string) *DeleteDirectoryConfigInput {
+	s.DirectoryName = &v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteDirectoryConfigResult
+type DeleteDirectoryConfigOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDirectoryConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDirectoryConfigOutput) GoString() string {
+	return s.String()
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteFleetRequest
@@ -2344,6 +2875,96 @@ func (s DeleteStackOutput) String() string {
 // GoString returns the string representation
 func (s DeleteStackOutput) GoString() string {
 	return s.String()
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeDirectoryConfigsRequest
+type DescribeDirectoryConfigsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A specific list of directory names.
+	DirectoryNames []*string `type:"list"`
+
+	// The size of each page of results.
+	MaxResults *int64 `type:"integer"`
+
+	// The DescribeDirectoryConfigsResult.NextToken from a previous call to DescribeDirectoryConfigs.
+	// If this is the first call, pass null.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeDirectoryConfigsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDirectoryConfigsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDirectoryConfigsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDirectoryConfigsInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDirectoryNames sets the DirectoryNames field's value.
+func (s *DescribeDirectoryConfigsInput) SetDirectoryNames(v []*string) *DescribeDirectoryConfigsInput {
+	s.DirectoryNames = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeDirectoryConfigsInput) SetMaxResults(v int64) *DescribeDirectoryConfigsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeDirectoryConfigsInput) SetNextToken(v string) *DescribeDirectoryConfigsInput {
+	s.NextToken = &v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeDirectoryConfigsResult
+type DescribeDirectoryConfigsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of directory configurations.
+	DirectoryConfigs []*DirectoryConfig `type:"list"`
+
+	// If not null, more results are available. To retrieve the next set of items,
+	// pass this value for the NextToken parameter in a subsequent call to DescribeDirectoryConfigs.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeDirectoryConfigsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDirectoryConfigsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDirectoryConfigs sets the DirectoryConfigs field's value.
+func (s *DescribeDirectoryConfigsOutput) SetDirectoryConfigs(v []*DirectoryConfig) *DescribeDirectoryConfigsOutput {
+	s.DirectoryConfigs = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeDirectoryConfigsOutput) SetNextToken(v string) *DescribeDirectoryConfigsOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeFleetsRequest
@@ -2699,6 +3320,64 @@ func (s *DescribeStacksOutput) SetStacks(v []*Stack) *DescribeStacksOutput {
 	return s
 }
 
+// Full directory configuration details, which are used to join domains for
+// the AppStream 2.0 streaming instances.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DirectoryConfig
+type DirectoryConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The time stamp when the directory configuration was created within AppStream
+	// 2.0.
+	CreatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The fully qualified name of the directory, such as corp.example.com
+	//
+	// DirectoryName is a required field
+	DirectoryName *string `type:"string" required:"true"`
+
+	// The list of the distinguished names of organizational units in which to place
+	// computer accounts.
+	OrganizationalUnitDistinguishedNames []*string `type:"list"`
+
+	// The AccountName and AccountPassword of the service account, to be used by
+	// the streaming instance to connect to the directory.
+	ServiceAccountCredentials *ServiceAccountCredentials `type:"structure"`
+}
+
+// String returns the string representation
+func (s DirectoryConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DirectoryConfig) GoString() string {
+	return s.String()
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *DirectoryConfig) SetCreatedTime(v time.Time) *DirectoryConfig {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDirectoryName sets the DirectoryName field's value.
+func (s *DirectoryConfig) SetDirectoryName(v string) *DirectoryConfig {
+	s.DirectoryName = &v
+	return s
+}
+
+// SetOrganizationalUnitDistinguishedNames sets the OrganizationalUnitDistinguishedNames field's value.
+func (s *DirectoryConfig) SetOrganizationalUnitDistinguishedNames(v []*string) *DirectoryConfig {
+	s.OrganizationalUnitDistinguishedNames = v
+	return s
+}
+
+// SetServiceAccountCredentials sets the ServiceAccountCredentials field's value.
+func (s *DirectoryConfig) SetServiceAccountCredentials(v *ServiceAccountCredentials) *DirectoryConfig {
+	s.ServiceAccountCredentials = v
+	return s
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DisassociateFleetRequest
 type DisassociateFleetInput struct {
 	_ struct{} `type:"structure"`
@@ -2771,6 +3450,42 @@ func (s DisassociateFleetOutput) String() string {
 // GoString returns the string representation
 func (s DisassociateFleetOutput) GoString() string {
 	return s.String()
+}
+
+// The DirectoryName and OrganizationalUnitDistinguishedName values, which are
+// used to join domains for the AppStream 2.0 streaming instances.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DomainJoinInfo
+type DomainJoinInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The fully qualified name of the directory, such as corp.example.com
+	DirectoryName *string `type:"string"`
+
+	// The distinguished name of the organizational unit to place the computer account
+	// in.
+	OrganizationalUnitDistinguishedName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DomainJoinInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DomainJoinInfo) GoString() string {
+	return s.String()
+}
+
+// SetDirectoryName sets the DirectoryName field's value.
+func (s *DomainJoinInfo) SetDirectoryName(v string) *DomainJoinInfo {
+	s.DirectoryName = &v
+	return s
+}
+
+// SetOrganizationalUnitDistinguishedName sets the OrganizationalUnitDistinguishedName field's value.
+func (s *DomainJoinInfo) SetOrganizationalUnitDistinguishedName(v string) *DomainJoinInfo {
+	s.OrganizationalUnitDistinguishedName = &v
+	return s
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ExpireSessionRequest
@@ -2860,7 +3575,11 @@ type Fleet struct {
 	// The name displayed to end users on the AppStream 2.0 portal.
 	DisplayName *string `min:"1" type:"string"`
 
-	// Whether default Internet access is enabled for the fleet.
+	// The DirectoryName and OrganizationalUnitDistinguishedName values, which are
+	// used to join domains for the AppStream 2.0 streaming instances.
+	DomainJoinInfo *DomainJoinInfo `type:"structure"`
+
+	// Whether default internet access is enabled for the fleet.
 	EnableDefaultInternetAccess *bool `type:"boolean"`
 
 	// The list of fleet errors is appended to this list.
@@ -2938,6 +3657,12 @@ func (s *Fleet) SetDisconnectTimeoutInSeconds(v int64) *Fleet {
 // SetDisplayName sets the DisplayName field's value.
 func (s *Fleet) SetDisplayName(v string) *Fleet {
 	s.DisplayName = &v
+	return s
+}
+
+// SetDomainJoinInfo sets the DomainJoinInfo field's value.
+func (s *Fleet) SetDomainJoinInfo(v *DomainJoinInfo) *Fleet {
+	s.DomainJoinInfo = v
 	return s
 }
 
@@ -3038,7 +3763,7 @@ type Image struct {
 	// The source image ARN from which this image was created.
 	BaseImageArn *string `type:"string"`
 
-	// The timestamp when the image was created.
+	// The time stamp when the image was created.
 	CreatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// A meaningful description for the image.
@@ -3062,8 +3787,8 @@ type Image struct {
 	// is the release date of the base image from which the image was created.
 	PublicBaseImageReleasedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	// The image starts in the PENDING state, and then moves to AVAILABLE if image
-	// creation succeeds and FAILED if image creation has failed.
+	// The image starts in the PENDING state. If image creation succeeds, it moves
+	// to AVAILABLE. If image creation fails, it moves to FAILED.
 	State *string `type:"string" enum:"ImageState"`
 
 	// The reason why the last state change occurred.
@@ -3375,6 +4100,71 @@ func (s *ListAssociatedStacksOutput) SetNextToken(v string) *ListAssociatedStack
 	return s
 }
 
+// The AccountName and AccountPassword of the service account, to be used by
+// the streaming instance to connect to the directory.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ServiceAccountCredentials
+type ServiceAccountCredentials struct {
+	_ struct{} `type:"structure"`
+
+	// The user name of an account in the directory that is used by AppStream 2.0
+	// streaming instances to connect to the directory. This account must have the
+	// following privileges: create computer objects, join computers to the domain,
+	// change/reset the password on descendant computer objects for the organizational
+	// units specified.
+	//
+	// AccountName is a required field
+	AccountName *string `min:"1" type:"string" required:"true"`
+
+	// The password for the user account for directory actions.
+	//
+	// AccountPassword is a required field
+	AccountPassword *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ServiceAccountCredentials) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceAccountCredentials) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ServiceAccountCredentials) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ServiceAccountCredentials"}
+	if s.AccountName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountName"))
+	}
+	if s.AccountName != nil && len(*s.AccountName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountName", 1))
+	}
+	if s.AccountPassword == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountPassword"))
+	}
+	if s.AccountPassword != nil && len(*s.AccountPassword) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountPassword", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountName sets the AccountName field's value.
+func (s *ServiceAccountCredentials) SetAccountName(v string) *ServiceAccountCredentials {
+	s.AccountName = &v
+	return s
+}
+
+// SetAccountPassword sets the AccountPassword field's value.
+func (s *ServiceAccountCredentials) SetAccountPassword(v string) *ServiceAccountCredentials {
+	s.AccountPassword = &v
+	return s
+}
+
 // Contains the parameters for a streaming session.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/Session
 type Session struct {
@@ -3465,7 +4255,7 @@ type Stack struct {
 	// The ARN of the stack.
 	Arn *string `type:"string"`
 
-	// The timestamp when the stack was created.
+	// The time stamp when the stack was created.
 	CreatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// A meaningful description for the stack.
@@ -3738,6 +4528,94 @@ func (s *StorageConnector) SetResourceIdentifier(v string) *StorageConnector {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateDirectoryConfigRequest
+type UpdateDirectoryConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the existing directory configuration to be updated.
+	//
+	// DirectoryName is a required field
+	DirectoryName *string `type:"string" required:"true"`
+
+	// The list of the distinguished names of organizational units to place computer
+	// accounts in.
+	OrganizationalUnitDistinguishedNames []*string `type:"list"`
+
+	// The AccountName and AccountPassword values for the service account, which
+	// are used by the streaming instance to connect to the directory
+	ServiceAccountCredentials *ServiceAccountCredentials `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateDirectoryConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateDirectoryConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateDirectoryConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateDirectoryConfigInput"}
+	if s.DirectoryName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryName"))
+	}
+	if s.ServiceAccountCredentials != nil {
+		if err := s.ServiceAccountCredentials.Validate(); err != nil {
+			invalidParams.AddNested("ServiceAccountCredentials", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDirectoryName sets the DirectoryName field's value.
+func (s *UpdateDirectoryConfigInput) SetDirectoryName(v string) *UpdateDirectoryConfigInput {
+	s.DirectoryName = &v
+	return s
+}
+
+// SetOrganizationalUnitDistinguishedNames sets the OrganizationalUnitDistinguishedNames field's value.
+func (s *UpdateDirectoryConfigInput) SetOrganizationalUnitDistinguishedNames(v []*string) *UpdateDirectoryConfigInput {
+	s.OrganizationalUnitDistinguishedNames = v
+	return s
+}
+
+// SetServiceAccountCredentials sets the ServiceAccountCredentials field's value.
+func (s *UpdateDirectoryConfigInput) SetServiceAccountCredentials(v *ServiceAccountCredentials) *UpdateDirectoryConfigInput {
+	s.ServiceAccountCredentials = v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateDirectoryConfigResult
+type UpdateDirectoryConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The updated directory configuration details.
+	DirectoryConfig *DirectoryConfig `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateDirectoryConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateDirectoryConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetDirectoryConfig sets the DirectoryConfig field's value.
+func (s *UpdateDirectoryConfigOutput) SetDirectoryConfig(v *DirectoryConfig) *UpdateDirectoryConfigOutput {
+	s.DirectoryConfig = v
+	return s
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateFleetRequest
 type UpdateFleetInput struct {
 	_ struct{} `type:"structure"`
@@ -3763,14 +4641,42 @@ type UpdateFleetInput struct {
 	// The name displayed to end users on the AppStream 2.0 portal.
 	DisplayName *string `type:"string"`
 
-	// Enables or disables default Internet access for the fleet.
+	// The DirectoryName and OrganizationalUnitDistinguishedName values, which are
+	// used to join domains for the AppStream 2.0 streaming instances.
+	DomainJoinInfo *DomainJoinInfo `type:"structure"`
+
+	// Enables or disables default internet access for the fleet.
 	EnableDefaultInternetAccess *bool `type:"boolean"`
 
 	// The image name from which a fleet is created.
 	ImageName *string `min:"1" type:"string"`
 
 	// The instance type of compute resources for the fleet. Fleet instances are
-	// launched from this instance type.
+	// launched from this instance type. Available instance types are:
+	//
+	//    * stream.standard.medium
+	//
+	//    * stream.standard.large
+	//
+	//    * stream.compute.large
+	//
+	//    * stream.compute.xlarge
+	//
+	//    * stream.compute.2xlarge
+	//
+	//    * stream.compute.4xlarge
+	//
+	//    * stream.compute.8xlarge
+	//
+	//    * stream.memory.large
+	//
+	//    * stream.memory.xlarge
+	//
+	//    * stream.memory.2xlarge
+	//
+	//    * stream.memory.4xlarge
+	//
+	//    * stream.memory.8xlarge
 	InstanceType *string `min:"1" type:"string"`
 
 	// The maximum time for which a streaming session can run. The input can be
@@ -3856,6 +4762,12 @@ func (s *UpdateFleetInput) SetDisconnectTimeoutInSeconds(v int64) *UpdateFleetIn
 // SetDisplayName sets the DisplayName field's value.
 func (s *UpdateFleetInput) SetDisplayName(v string) *UpdateFleetInput {
 	s.DisplayName = &v
+	return s
+}
+
+// SetDomainJoinInfo sets the DomainJoinInfo field's value.
+func (s *UpdateFleetInput) SetDomainJoinInfo(v *DomainJoinInfo) *UpdateFleetInput {
+	s.DomainJoinInfo = v
 	return s
 }
 
@@ -4084,6 +4996,9 @@ const (
 
 	// FleetAttributeVpcConfigurationSecurityGroupIds is a FleetAttribute enum value
 	FleetAttributeVpcConfigurationSecurityGroupIds = "VPC_CONFIGURATION_SECURITY_GROUP_IDS"
+
+	// FleetAttributeDomainJoinInfo is a FleetAttribute enum value
+	FleetAttributeDomainJoinInfo = "DOMAIN_JOIN_INFO"
 )
 
 const (
@@ -4119,6 +5034,48 @@ const (
 
 	// FleetErrorCodeInvalidSubnetConfiguration is a FleetErrorCode enum value
 	FleetErrorCodeInvalidSubnetConfiguration = "INVALID_SUBNET_CONFIGURATION"
+
+	// FleetErrorCodeSecurityGroupsNotFound is a FleetErrorCode enum value
+	FleetErrorCodeSecurityGroupsNotFound = "SECURITY_GROUPS_NOT_FOUND"
+
+	// FleetErrorCodeIamServiceRoleMissingDescribeSecurityGroupsAction is a FleetErrorCode enum value
+	FleetErrorCodeIamServiceRoleMissingDescribeSecurityGroupsAction = "IAM_SERVICE_ROLE_MISSING_DESCRIBE_SECURITY_GROUPS_ACTION"
+
+	// FleetErrorCodeDomainJoinErrorFileNotFound is a FleetErrorCode enum value
+	FleetErrorCodeDomainJoinErrorFileNotFound = "DOMAIN_JOIN_ERROR_FILE_NOT_FOUND"
+
+	// FleetErrorCodeDomainJoinErrorAccessDenied is a FleetErrorCode enum value
+	FleetErrorCodeDomainJoinErrorAccessDenied = "DOMAIN_JOIN_ERROR_ACCESS_DENIED"
+
+	// FleetErrorCodeDomainJoinErrorLogonFailure is a FleetErrorCode enum value
+	FleetErrorCodeDomainJoinErrorLogonFailure = "DOMAIN_JOIN_ERROR_LOGON_FAILURE"
+
+	// FleetErrorCodeDomainJoinErrorInvalidParameter is a FleetErrorCode enum value
+	FleetErrorCodeDomainJoinErrorInvalidParameter = "DOMAIN_JOIN_ERROR_INVALID_PARAMETER"
+
+	// FleetErrorCodeDomainJoinErrorMoreData is a FleetErrorCode enum value
+	FleetErrorCodeDomainJoinErrorMoreData = "DOMAIN_JOIN_ERROR_MORE_DATA"
+
+	// FleetErrorCodeDomainJoinErrorNoSuchDomain is a FleetErrorCode enum value
+	FleetErrorCodeDomainJoinErrorNoSuchDomain = "DOMAIN_JOIN_ERROR_NO_SUCH_DOMAIN"
+
+	// FleetErrorCodeDomainJoinErrorNotSupported is a FleetErrorCode enum value
+	FleetErrorCodeDomainJoinErrorNotSupported = "DOMAIN_JOIN_ERROR_NOT_SUPPORTED"
+
+	// FleetErrorCodeDomainJoinNerrInvalidWorkgroupName is a FleetErrorCode enum value
+	FleetErrorCodeDomainJoinNerrInvalidWorkgroupName = "DOMAIN_JOIN_NERR_INVALID_WORKGROUP_NAME"
+
+	// FleetErrorCodeDomainJoinNerrWorkstationNotStarted is a FleetErrorCode enum value
+	FleetErrorCodeDomainJoinNerrWorkstationNotStarted = "DOMAIN_JOIN_NERR_WORKSTATION_NOT_STARTED"
+
+	// FleetErrorCodeDomainJoinErrorDsMachineAccountQuotaExceeded is a FleetErrorCode enum value
+	FleetErrorCodeDomainJoinErrorDsMachineAccountQuotaExceeded = "DOMAIN_JOIN_ERROR_DS_MACHINE_ACCOUNT_QUOTA_EXCEEDED"
+
+	// FleetErrorCodeDomainJoinNerrPasswordExpired is a FleetErrorCode enum value
+	FleetErrorCodeDomainJoinNerrPasswordExpired = "DOMAIN_JOIN_NERR_PASSWORD_EXPIRED"
+
+	// FleetErrorCodeDomainJoinInternalServiceError is a FleetErrorCode enum value
+	FleetErrorCodeDomainJoinInternalServiceError = "DOMAIN_JOIN_INTERNAL_SERVICE_ERROR"
 )
 
 const (

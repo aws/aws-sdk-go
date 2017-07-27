@@ -1,3 +1,135 @@
+Release v1.10.16 (2017-07-26)
+===
+
+### Service Client Updates
+* `service/clouddirectory`: Updates service API and documentation
+  * Cloud Directory adds support for additional batch operations.
+* `service/cloudformation`: Updates service API and documentation
+  * AWS CloudFormation StackSets enables you to manage stacks across multiple accounts and regions.
+
+### SDK Enhancements
+* `aws/signer/v4`: Optimize V4 signer's header duplicate space stripping. [#1417](https://github.com/aws/aws-sdk-go/pull/1417)
+
+Release v1.10.15 (2017-07-24)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API, documentation, and waiters
+  * Amazon AppStream 2.0 image builders and fleets can now access applications and network resources that rely on Microsoft Active Directory (AD) for authentication and permissions. This new feature allows you to join your streaming instances to your AD, so you can use your existing AD user management tools.
+* `service/ec2`: Updates service API and documentation
+  * Spot Fleet tagging capability allows customers to automatically tag instances launched by Spot Fleet. You can use this feature to label or distinguish instances created by distinct Spot Fleets. Tagging your EC2 instances also enables you to see instance cost allocation by tag in your AWS bill.
+
+### SDK Bugs
+* `aws/signer/v4`: Fix out of bounds panic in stripExcessSpaces [#1412](https://github.com/aws/aws-sdk-go/pull/1412)
+  * Fixes the out of bands panic in stripExcessSpaces caused by an incorrect calculation of the stripToIdx value. Simplified to code also.
+  * Fixes [#1411](https://github.com/aws/aws-sdk-go/issues/1411)
+Release v1.10.14 (2017-07-20)
+===
+
+### Service Client Updates
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Amazon EMR now includes the ability to use a custom Amazon Linux AMI and adjustable root volume size when launching a cluster.
+
+Release v1.10.13 (2017-07-19)
+===
+
+### Service Client Updates
+* `service/budgets`: Updates service API and documentation
+  * Update budget Management API's to list/create/update RI_UTILIZATION type budget. Update budget Management API's to support DAILY timeUnit for RI_UTILIZATION type budget.
+
+### SDK Enhancements
+* `service/s3`:  Use interfaces assertions instead of ValuesAtPath for S3 field lookups. [#1401](https://github.com/aws/aws-sdk-go/pull/1401)
+  * Improves the performance across the board for all S3 API calls by removing the usage of `ValuesAtPath` being used for every S3 API call.
+
+### SDK Bugs
+* `aws/request`: waiter test bug
+  * waiters_test.go file would sometimes fail due to travis hiccups. This occurs because a test would sometimes fail the cancel check and succeed the timeout. However, the timeout check should never occur in that test. This fix introduces a new field that dictates how waiters will sleep.
+Release v1.10.12 (2017-07-17)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service API and documentation
+* `service/lambda`: Updates service API and documentation
+  * Lambda@Edge lets you run code closer to your end users without provisioning or managing servers. With Lambda@Edge, your code runs in AWS edge locations, allowing you to respond to your end users at the lowest latency. Your code is triggered by Amazon CloudFront events, such as requests to and from origin servers and viewers, and it is ready to execute at every AWS edge location whenever a request for content is received. You just upload your Node.js code to AWS Lambda and Lambda takes care of everything required to run and scale your code with high availability. You only pay for the compute time you consume - there is no charge when your code is not running.
+
+Release v1.10.11 (2017-07-14)
+===
+
+### Service Client Updates
+* `service/discovery`: Updates service API and documentation
+  * Adding feature to the Export API for Discovery Service to allow filters for the export task to allow export based on per agent id.
+* `service/ec2`: Updates service API
+  * New EC2 GPU Graphics instance
+* `service/marketplacecommerceanalytics`: Updates service documentation
+  * Update to Documentation Model For New Report Cadence / Reformat of Docs
+
+Release v1.10.10 (2017-07-13)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API and documentation
+  * Adds support for management of gateway responses.
+* `service/ec2`: Updates service API and documentation
+  * X-ENI (or Cross-Account ENI) is a new feature that allows the attachment or association of Elastic Network Interfaces (ENI) between VPCs in different AWS accounts located in the same availability zone. With this new capability, service providers and partners can deliver managed solutions in a variety of new architectural patterns where the provider and consumer of the service are in different AWS accounts.
+* `service/lex-models`: Updates service documentation
+
+Release v1.10.9 (2017-07-12)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * Auto Scaling now supports a new type of scaling policy called target tracking scaling policies that you can use to set up dynamic scaling for your application.
+* `service/swf`: Updates service API, documentation, paginators, and examples
+  * Added support for attaching control data to Lambda tasks. Control data lets you attach arbitrary strings to your decisions and history events.
+
+Release v1.10.8 (2017-07-06)
+===
+
+### Service Client Updates
+* `service/ds`: Updates service API, documentation, and paginators
+  * You can now improve the resilience and performance of your Microsoft AD directory by deploying additional domain controllers. Added UpdateNumberofDomainControllers API that allows you to update the number of domain controllers you want for your directory, and DescribeDomainControllers API that allows you to describe the detailed information of each domain controller of your directory. Also added the 'DesiredNumberOfDomainControllers' field to the DescribeDirectories API output for Microsoft AD.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/kinesis`: Updates service API and documentation
+  * You can now encrypt your data at rest within an Amazon Kinesis Stream using server-side encryption. Server-side encryption via AWS KMS makes it easy for customers to meet strict data management requirements by encrypting their data at rest within the Amazon Kinesis Streams, a fully managed real-time data processing service.
+* `service/kms`: Updates service API and documentation
+  * This release of AWS Key Management Service introduces the ability to determine whether a key is AWS managed or customer managed.
+* `service/ssm`: Updates service API and documentation
+  * Amazon EC2 Systems Manager now expands Patching support to Amazon Linux, Red Hat and Ubuntu in addition to the already supported Windows Server.
+
+Release v1.10.7 (2017-07-05)
+===
+
+### Service Client Updates
+* `service/monitoring`: Updates service API and documentation
+  * We are excited to announce the availability of APIs and CloudFormation support for CloudWatch Dashboards. You can use the new dashboard APIs or CloudFormation templates to dynamically build and maintain dashboards to monitor your infrastructure and applications. There are four new dashboard APIs - PutDashboard, GetDashboard, DeleteDashboards, and ListDashboards APIs. PutDashboard is used to create a new dashboard or modify an existing one whereas GetDashboard is the API to get the details of a specific dashboard. ListDashboards and DeleteDashboards are used to get the names or delete multiple dashboards respectively. Getting started with dashboard APIs is similar to any other AWS APIs. The APIs can be accessed through AWS SDK or through CLI tools.
+* `service/route53`: Updates service API and documentation
+  * Bug fix for InvalidChangeBatch exception.
+
+### SDK Enhancements
+* `service/s3/s3manager`: adding cleanup function to batch objects [#1375](https://github.com/aws/aws-sdk-go/issues/1375)
+  * This enhancement will add an After field that will be called after each iteration of the batch operation.
+
+Release v1.10.6 (2017-06-30)
+===
+
+### Service Client Updates
+* `service/marketplacecommerceanalytics`: Updates service documentation
+  * Documentation updates for AWS Marketplace Commerce Analytics.
+* `service/s3`: Updates service API and documentation
+  * API Update for S3: Adding Object Tagging Header to MultipartUpload Initialization
+
+Release v1.10.5 (2017-06-29)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/events`: Updates service API and documentation
+  * CloudWatch Events now allows different AWS accounts to share events with each other through a new resource called event bus. Event buses accept events from AWS services, other AWS accounts and PutEvents API calls. Currently all AWS accounts have one default event bus. To send events to another account, customers simply write rules to match the events of interest and attach an event bus in the receiving account as the target to the rule. The PutTargets API has been updated to allow adding cross account event buses as targets. In addition, we have released two new APIs - PutPermission and RemovePermission - that enables customers to add/remove permissions to their default event bus.
+* `service/gamelift`: Updates service API and documentation
+  * Allow developers to download GameLift fleet creation logs to assist with debugging.
+* `service/ssm`: Updates service API and documentation
+  * Adding Resource Data Sync support to SSM Inventory.  New APIs:  * CreateResourceDataSync - creates a new resource data sync configuration,  * ListResourceDataSync - lists existing resource data sync configurations,  * DeleteResourceDataSync - deletes an existing resource data sync configuration.
+
 Release v1.10.4 (2017-06-27)
 ===
 
