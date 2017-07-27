@@ -1,3 +1,12 @@
+Release v1.10.18 (2017-07-27)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * The CreateDefaultVPC API enables you to create a new default VPC . You no longer need to contact AWS support, if your default VPC has been deleted.
+* `service/kinesisanalytics`: Updates service API and documentation
+  * Added additional exception types and clarified documentation.
+
 Release v1.10.17 (2017-07-27)
 ===
 
