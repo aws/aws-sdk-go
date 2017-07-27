@@ -58,7 +58,7 @@ func (c *KinesisAnalytics) AddApplicationCloudWatchLoggingOptionRequest(input *A
 //
 // Adds a CloudWatch log stream to monitor application configuration errors.
 // For more information about using CloudWatch log streams with Amazon Kinesis
-// Analytics applications, see Monitoring Configuration Errors (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/cloudwatch-monitor-configuration.html).
+// Analytics applications, see Working with Amazon CloudWatch Logs (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/cloudwatch-logs.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -184,6 +184,10 @@ func (c *KinesisAnalytics) AddApplicationInputRequest(input *AddApplicationInput
 //   Exception thrown as a result of concurrent modification to an application.
 //   For example, two individuals attempting to edit the same application at the
 //   same time.
+//
+//   * ErrCodeCodeValidationException "CodeValidationException"
+//   User-provided application code (query) is invalid. This can be a simple syntax
+//   error.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/kinesisanalytics-2015-08-14/AddApplicationInput
 func (c *KinesisAnalytics) AddApplicationInput(input *AddApplicationInputInput) (*AddApplicationInputOutput, error) {
@@ -680,7 +684,7 @@ func (c *KinesisAnalytics) DeleteApplicationCloudWatchLoggingOptionRequest(input
 //
 // Deletes a CloudWatch log stream from an application. For more information
 // about using CloudWatch log streams with Amazon Kinesis Analytics applications,
-// see Monitoring Configuration Errors (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/cloudwatch-monitor-configuration.html).
+// see Working with Amazon CloudWatch Logs (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/cloudwatch-logs.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1089,6 +1093,9 @@ func (c *KinesisAnalytics) DiscoverInputSchemaRequest(input *DiscoverInputSchema
 //   see GetRecords (http://docs.aws.amazon.com/kinesis/latest/APIReference/API_GetRecords.html)
 //   in the Amazon Kinesis Streams API Reference.
 //
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   The service is unavailable, back off and retry the operation.
+//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/kinesisanalytics-2015-08-14/DiscoverInputSchema
 func (c *KinesisAnalytics) DiscoverInputSchema(input *DiscoverInputSchemaInput) (*DiscoverInputSchemaOutput, error) {
 	req, out := c.DiscoverInputSchemaRequest(input)
@@ -1495,19 +1502,19 @@ func (c *KinesisAnalytics) UpdateApplicationWithContext(ctx aws.Context, input *
 type AddApplicationCloudWatchLoggingOptionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Kinesis Analytics application name.
+	// The Kinesis Analytics application name.
 	//
 	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
-	// Provide the CloudWatch log stream ARN and the IAM role ARN. Note: To write
-	// application messages to CloudWatch, the IAM role used must have the PutLogEvents
-	// policy action enabled.
+	// Provides the CloudWatch log stream Amazon Resource Name (ARN) and the IAM
+	// role ARN. Note: To write application messages to CloudWatch, the IAM role
+	// that is used must have the PutLogEvents policy action enabled.
 	//
 	// CloudWatchLoggingOption is a required field
 	CloudWatchLoggingOption *CloudWatchLoggingOption `type:"structure" required:"true"`
 
-	// The version ID of the Amazon Kinesis Analytics application.
+	// The version ID of the Kinesis Analytics application.
 	//
 	// CurrentApplicationVersionId is a required field
 	CurrentApplicationVersionId *int64 `min:"1" type:"long" required:"true"`
@@ -1916,9 +1923,9 @@ type ApplicationDetail struct {
 	// ApplicationVersionId is a required field
 	ApplicationVersionId *int64 `min:"1" type:"long" required:"true"`
 
-	// Describes the CloudWatch log streams configured to receive application messages.
-	// For more information about using CloudWatch log streams with Amazon Kinesis
-	// Analytics applications, see Monitoring Configuration Errors (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/cloudwatch-monitor-configuration.html).
+	// Describes the CloudWatch log streams that are configured to receive application
+	// messages. For more information about using CloudWatch log streams with Amazon
+	// Kinesis Analytics applications, see Working with Amazon CloudWatch Logs (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/cloudwatch-logs.html).
 	CloudWatchLoggingOptionDescriptions []*CloudWatchLoggingOptionDescription `type:"list"`
 
 	// Timestamp when the application version was created.
@@ -2252,7 +2259,7 @@ func (s *CSVMappingParameters) SetRecordRowDelimiter(v string) *CSVMappingParame
 }
 
 // Provides a description of CloudWatch logging options, including the log stream
-// ARN and the role ARN.
+// Amazon Resource Name (ARN) and the role ARN.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/kinesisanalytics-2015-08-14/CloudWatchLoggingOption
 type CloudWatchLoggingOption struct {
 	_ struct{} `type:"structure"`
@@ -2263,8 +2270,8 @@ type CloudWatchLoggingOption struct {
 	LogStreamARN *string `min:"1" type:"string" required:"true"`
 
 	// IAM ARN of the role to use to send application messages. Note: To write application
-	// messages to CloudWatch, the IAM role used must have the PutLogEvents policy
-	// action enabled.
+	// messages to CloudWatch, the IAM role that is used must have the PutLogEvents
+	// policy action enabled.
 	//
 	// RoleARN is a required field
 	RoleARN *string `min:"1" type:"string" required:"true"`
@@ -2463,8 +2470,8 @@ type CreateApplicationInput struct {
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// Use this parameter to configure a CloudWatch log stream to monitor application
-	// configuration errors. For more information, see Monitoring Configuration
-	// Errors (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/cloudwatch-monitor-configuration.html).
+	// configuration errors. For more information, see Working with Amazon CloudWatch
+	// Logs (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/cloudwatch-logs.html).
 	CloudWatchLoggingOptions []*CloudWatchLoggingOption `type:"list"`
 
 	// Use this parameter to configure the application input.
@@ -2628,7 +2635,7 @@ func (s *CreateApplicationOutput) SetApplicationSummary(v *ApplicationSummary) *
 type DeleteApplicationCloudWatchLoggingOptionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Kinesis Analytics application name.
+	// The Kinesis Analytics application name.
 	//
 	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
@@ -2639,7 +2646,7 @@ type DeleteApplicationCloudWatchLoggingOptionInput struct {
 	// CloudWatchLoggingOptionId is a required field
 	CloudWatchLoggingOptionId *string `min:"1" type:"string" required:"true"`
 
-	// The version ID of the Amazon Kinesis Analytics application.
+	// The version ID of the Kinesis Analytics application.
 	//
 	// CurrentApplicationVersionId is a required field
 	CurrentApplicationVersionId *int64 `min:"1" type:"long" required:"true"`
@@ -3223,11 +3230,15 @@ type Input struct {
 	// If the streaming source is an Amazon Kinesis Firehose delivery stream, identifies
 	// the Firehose delivery stream's ARN and an IAM role that enables Amazon Kinesis
 	// Analytics to access the stream on your behalf.
+	//
+	// Note: Either KinesisStreamsInput or KinesisFirehoseInput is required.
 	KinesisFirehoseInput *KinesisFirehoseInput `type:"structure"`
 
 	// If the streaming source is an Amazon Kinesis stream, identifies the stream's
 	// Amazon Resource Name (ARN) and an IAM role that enables Amazon Kinesis Analytics
 	// to access the stream on your behalf.
+	//
+	// Note: Either KinesisStreamsInput or KinesisFirehoseInput is required.
 	KinesisStreamsInput *KinesisStreamsInput `type:"structure"`
 
 	// Name prefix to use when creating in-application stream. Suppose you specify
@@ -3790,11 +3801,6 @@ type JSONMappingParameters struct {
 	_ struct{} `type:"structure"`
 
 	// Path to the top-level parent that contains the records.
-	//
-	// For example, consider the following JSON record:
-	//
-	// In the RecordRowPath, "$" refers to the root and path "$.vehicle.Model" refers
-	// to the specific "Model" key in the JSON.
 	//
 	// RecordRowPath is a required field
 	RecordRowPath *string `type:"string" required:"true"`

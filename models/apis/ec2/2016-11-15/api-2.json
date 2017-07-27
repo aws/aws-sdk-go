@@ -283,6 +283,15 @@
       "input":{"shape":"CreateCustomerGatewayRequest"},
       "output":{"shape":"CreateCustomerGatewayResult"}
     },
+    "CreateDefaultVpc":{
+      "name":"CreateDefaultVpc",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateDefaultVpcRequest"},
+      "output":{"shape":"CreateDefaultVpcResult"}
+    },
     "CreateDhcpOptions":{
       "name":"CreateDhcpOptions",
       "http":{
@@ -3512,6 +3521,21 @@
         "CustomerGateway":{
           "shape":"CustomerGateway",
           "locationName":"customerGateway"
+        }
+      }
+    },
+    "CreateDefaultVpcRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "CreateDefaultVpcResult":{
+      "type":"structure",
+      "members":{
+        "Vpc":{
+          "shape":"Vpc",
+          "locationName":"vpc"
         }
       }
     },
