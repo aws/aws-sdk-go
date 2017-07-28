@@ -3,99 +3,87 @@ package expression
 import (
 	"fmt"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
-// ConditionMode will specify the types of the struct Condition
+// ConditionMode will specify the types of the struct ConditionBuilder
 type ConditionMode int
 
 const (
-	// EqualCond will represent the Equal Clause Condition
+	// EqualCond will represent the Equal Clause ConditionBuilder
 	EqualCond ConditionMode = iota + 1
 )
 
-// Condition will represent the ConditionExpressions
-type Condition struct {
-	OperandList   []OperandBuilder
-	ConditionList []Condition
+// ConditionBuilder will represent the ConditionExpressions
+type ConditionBuilder struct {
+	operandList   []OperandExpression
+	conditionList []ConditionBuilder
+	err           error
 	Mode          ConditionMode
 }
 
 // Equal
 
-// Equal will create a CompareBuilder. This will be the method PathBuilder.
-func (p PathBuilder) Equal(right OperandBuilder) Condition {
-	return Condition{
-		OperandList: []OperandBuilder{p, right},
+// Equal will create a ConditionBuilder. This will be the function call
+func Equal(left, right OperandBuilder) ConditionBuilder {
+	leftOpe, opeErr := left.BuildOperand()
+	if opeErr != nil {
+		return ConditionBuilder{
+			err: opeErr,
+		}
+	}
+
+	rightOpe, opeErr := right.BuildOperand()
+	if opeErr != nil {
+		return ConditionBuilder{
+			err: opeErr,
+		}
+	}
+
+	return ConditionBuilder{
+		operandList: []OperandExpression{leftOpe, rightOpe},
 		Mode:        EqualCond,
 	}
 }
 
-// Equal will create a CompareBuilder. This will be the method ValueBuilder.
-func (v ValueBuilder) Equal(right OperandBuilder) Condition {
-	return Condition{
-		OperandList: []OperandBuilder{v, right},
-		Mode:        EqualCond,
-	}
+// Equal will create a ConditionBuilder. This will be the method for PathBuilder
+func (p PathBuilder) Equal(right OperandBuilder) ConditionBuilder {
+	return Equal(p, right)
 }
 
-// Equal will create a CompareBuilder. This will be the method SizeBuilder.
-func (s SizeBuilder) Equal(right OperandBuilder) Condition {
-	return Condition{
-		OperandList: []OperandBuilder{s, right},
-		Mode:        EqualCond,
-	}
+// Equal will create a ConditionBuilder. This will be the method for
+// ValueBuilder
+func (v ValueBuilder) Equal(right OperandBuilder) ConditionBuilder {
+	return Equal(v, right)
 }
 
-// Size
-
-// SizeBuilder will implement OperandBuilder thus being an Operand. This
-// reflects the fact that the function Size() returns type that is used in place
-// of an Operand
-type SizeBuilder struct {
-	path PathBuilder
+// Equal will create a ConditionBuilder. This will be the method for SizeBuilder
+func (s SizeBuilder) Equal(right OperandBuilder) ConditionBuilder {
+	return Equal(s, right)
 }
 
-// Size will
-func (p PathBuilder) Size() SizeBuilder {
-	return SizeBuilder{
-		path: p,
-	}
-}
-
-// BuildOperand will allow SizeBuilder to implement the interface OperandBuilder
-func (s SizeBuilder) BuildOperand(al AliasList) (Expression, error) {
-	expr, err := s.path.BuildOperand(al)
-	if err != nil {
-		return Expression{}, err
-	}
-	expr.Expression = "size (" + expr.Expression + ")"
-	return expr, nil
-}
-
-// ListOperand will allow SizeBuilder to implement the interface OperandBuilder
-func (s SizeBuilder) ListOperand() (AliasList, error) {
-	return s.path.ListOperand()
-}
-
-func (cond Condition) buildCondition(al AliasList) (Expression, error) {
+// buildExpression will iterate over the tree of ConditionBuilders and
+// OperandExpressions and builds the Expression
+func (cond ConditionBuilder) buildExpression(al aliasList) (Expression, error) {
 	switch cond.Mode {
 	case EqualCond:
-		return equalBuildCondition(cond, al)
+		return equalBuildExpression(cond, al)
 	}
 	return Expression{}, fmt.Errorf("No matching Mode to %v", cond.Mode)
 }
 
-func (cond Condition) buildList() (AliasList, error) {
-	al := AliasList{
-		NamesList: make([]string, 0),
+// buildList will iterate over the tree of ConditionBuilders and
+// OperandExpressions and create an aliasList
+func (cond ConditionBuilder) buildList() (aliasList, error) {
+	al := aliasList{
+		NamesList:  make([]string, 0),
+		ValuesList: make([]dynamodb.AttributeValue, 0),
 	}
 
-	for _, opeList := range cond.OperandList {
-		tempAl, err := opeList.ListOperand()
+	for _, opeList := range cond.operandList {
+		tempAl, err := opeList.buildList()
 		if err != nil {
-			return AliasList{}, err
+			return aliasList{}, err
 		}
 
 		unique := true
@@ -114,10 +102,10 @@ func (cond Condition) buildList() (AliasList, error) {
 		}
 	}
 
-	for _, condList := range cond.ConditionList {
+	for _, condList := range cond.conditionList {
 		tempAl, err := condList.buildList()
 		if err != nil {
-			return AliasList{}, err
+			return aliasList{}, err
 		}
 
 		unique := true
@@ -145,15 +133,14 @@ func (cond Condition) buildList() (AliasList, error) {
 }
 
 // BuildCondition will create the Expression represented by CompareBuilder
-func (cond Condition) BuildCondition() (Expression, error) {
+func (cond ConditionBuilder) BuildCondition() (Expression, error) {
 
 	al, err := cond.buildList()
 	if err != nil {
 		return Expression{}, err
 	}
-	al.ValuesCounter = aws.Int(0)
 
-	ret, err := cond.buildCondition(al)
+	ret, err := cond.buildExpression(al)
 	if err != nil {
 		return Expression{}, err
 	}
@@ -161,21 +148,21 @@ func (cond Condition) BuildCondition() (Expression, error) {
 	return ret, nil
 }
 
-func equalBuildCondition(c Condition, al AliasList) (Expression, error) {
-	if len(c.ConditionList) != 0 {
-		return Expression{}, fmt.Errorf("Invalid Condition. Expected 0 Conditions")
+func equalBuildExpression(c ConditionBuilder, al aliasList) (Expression, error) {
+	if len(c.conditionList) != 0 {
+		return Expression{}, fmt.Errorf("Invalid ConditionBuilder. Expected 0 ConditionBuilders")
 	}
 
-	if len(c.OperandList) != 2 {
-		return Expression{}, fmt.Errorf("Invalid Condition. Expected 2 Operands")
+	if len(c.operandList) != 2 {
+		return Expression{}, fmt.Errorf("Invalid ConditionBuilder. Expected 2 Operands")
 	}
 
-	left, err := c.OperandList[0].BuildOperand(al)
+	left, err := c.operandList[0].buildExpression(al)
 	if err != nil {
 		return Expression{}, err
 	}
 
-	right, err := c.OperandList[1].BuildOperand(al)
+	right, err := c.operandList[1].buildExpression(al)
 	if err != nil {
 		return Expression{}, err
 	}
