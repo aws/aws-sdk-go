@@ -13,7 +13,7 @@ type testCompare interface {
 //Equal
 func TestCompare(t *testing.T) {
 	cases := []struct {
-		lhs      testCompare
+		lhs      OperandBuilder
 		rhs      OperandBuilder
 		expected ConditionBuilder
 	}{
@@ -31,7 +31,6 @@ func TestCompare(t *testing.T) {
 						path: "bar",
 					},
 				},
-				Mode: EqualCond,
 			},
 		},
 		// {
@@ -158,11 +157,26 @@ func TestCompare(t *testing.T) {
 		// },
 	}
 	for testNumber, c := range cases {
+
+		c.expected.Mode = EqualCond
 		expr, err := c.lhs.Equal(c.rhs).BuildCondition()
 		if err != nil {
 			t.Errorf("TestEquals Test Number %#v: Unexpected Error %#v", testNumber, err)
 		}
 		expected, err := c.expected.BuildCondition()
+		if err != nil {
+			t.Errorf("TestEquals Test Number %#v: Unexpected Error %#v", testNumber, err)
+		}
+
+		if reflect.DeepEqual(expr, expected) != true {
+			t.Errorf("TestEquals Test Number %#v: Expected %#v, got %#v", testNumber, expected, expr)
+		}
+
+		expr, err = Equal(c.lhs, c.rhs).BuildCondition()
+		if err != nil {
+			t.Errorf("TestEquals Test Number %#v: Unexpected Error %#v", testNumber, err)
+		}
+		expected, err = c.expected.BuildCondition()
 		if err != nil {
 			t.Errorf("TestEquals Test Number %#v: Unexpected Error %#v", testNumber, err)
 		}

@@ -157,31 +157,40 @@ func equalBuildExpression(c ConditionBuilder, al aliasList) (Expression, error) 
 		return Expression{}, fmt.Errorf("Invalid ConditionBuilder. Expected 2 Operands")
 	}
 
-	left, err := c.operandList[0].buildExpression(al)
-	if err != nil {
-		return Expression{}, err
+	operandList := make([]Expression, 0)
+	for _, ope := range c.operandList {
+		expr, err := ope.buildExpression(al)
+		if err != nil {
+			return Expression{}, err
+		}
+		operandList = append(operandList, expr)
 	}
 
-	right, err := c.operandList[1].buildExpression(al)
-	if err != nil {
-		return Expression{}, err
-	}
+	ret := mergeExpressionMaps(operandList)
 
-	if left.Names == nil && right.Names != nil {
-		left.Names = make(map[string]*string)
-	}
-	for alias, name := range right.Names {
-		left.Names[alias] = name
-	}
+	ret.Expression = "(" + operandList[0].Expression + ") = (" + operandList[1].Expression + ")"
 
-	if left.Values == nil && right.Values != nil {
-		left.Values = make(map[string]*dynamodb.AttributeValue)
-	}
-	for alias, value := range right.Values {
-		left.Values[alias] = value
-	}
+	return ret, nil
+}
 
-	left.Expression = left.Expression + " = " + right.Expression
+func mergeExpressionMaps(lists ...[]Expression) Expression {
+	ret := Expression{}
+	for _, list := range lists {
+		for _, expr := range list {
+			for alias, name := range expr.Names {
+				if ret.Names == nil {
+					ret.Names = make(map[string]*string)
+				}
+				ret.Names[alias] = name
+			}
 
-	return left, nil
+			for alias, value := range expr.Values {
+				if ret.Values == nil {
+					ret.Values = make(map[string]*dynamodb.AttributeValue)
+				}
+				ret.Values[alias] = value
+			}
+		}
+	}
+	return ret
 }
