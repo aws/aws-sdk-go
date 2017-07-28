@@ -10,6 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 )
 
+// OperandMode will specify the type of Operand the OperandExpression represents
 type OperandMode int
 
 const (

@@ -3,6 +3,9 @@ package expression
 import (
 	"reflect"
 	"testing"
+
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
 type testCompare interface {
@@ -13,7 +16,7 @@ type testCompare interface {
 //Equal
 func TestCompare(t *testing.T) {
 	cases := []struct {
-		lhs      OperandBuilder
+		lhs      testCompare
 		rhs      OperandBuilder
 		expected ConditionBuilder
 	}{
@@ -33,128 +36,198 @@ func TestCompare(t *testing.T) {
 				},
 			},
 		},
-		// {
-		// 	equal: NewPath("foo.yay.cool.rad"),
-		// 	rhs:   NewValue(5),
-		// 	expectedCondition: ConditionBuilder{
-		// 		OperandList: []OperandBuilder{
-		// 			NewPath("foo.yay.cool.rad"),
-		// 			NewValue(5),
-		// 		},
-		// 		Mode: EqualCond,
-		// 	},
-		// },
-		// {
-		// 	equal: NewPath("foo.yay.cool.rad"),
-		// 	rhs:   NewPath("baz").Size(),
-		// 	expectedCondition: ConditionBuilder{
-		// 		OperandList: []OperandBuilder{
-		// 			NewPath("foo.yay.cool.rad"),
-		// 			NewPath("baz").Size(),
-		// 		},
-		// 		Mode: EqualCond,
-		// 	},
-		// },
-		// {
-		// 	equal: NewValue(5),
-		// 	rhs:   NewPath("bar"),
-		// 	expectedCondition: ConditionBuilder{
-		// 		OperandList: []OperandBuilder{
-		// 			NewValue(5),
-		// 			NewPath("bar"),
-		// 		},
-		// 		Mode: EqualCond,
-		// 	},
-		// },
-		// {
-		// 	equal: NewValue(map[string]int{
-		// 		"five": 5,
-		// 	}),
-		// 	rhs: NewPath("bar"),
-		// 	expectedCondition: ConditionBuilder{
-		// 		OperandList: []OperandBuilder{
-		// 			NewValue(map[string]int{
-		// 				"five": 5,
-		// 			}),
-		// 			NewPath("bar"),
-		// 		},
-		// 		Mode: EqualCond,
-		// 	},
-		// },
-		// {
-		// 	equal: NewValue(map[string]int{
-		// 		"five": 5,
-		// 	}),
-		// 	rhs: NewValue(5),
-		// 	expectedCondition: ConditionBuilder{
-		// 		OperandList: []OperandBuilder{
-		// 			NewValue(map[string]int{
-		// 				"five": 5,
-		// 			}),
-		// 			NewValue(5),
-		// 		},
-		// 		Mode: EqualCond,
-		// 	},
-		// },
-		// {
-		// 	equal: NewValue(map[string]int{
-		// 		"five": 5,
-		// 	}),
-		// 	rhs: NewPath("baz").Size(),
-		// 	expectedCondition: ConditionBuilder{
-		// 		OperandList: []OperandBuilder{
-		// 			NewValue(map[string]int{
-		// 				"five": 5,
-		// 			}),
-		// 			NewPath("baz").Size(),
-		// 		},
-		// 		Mode: EqualCond,
-		// 	},
-		// },
-		// {
-		// 	equal: NewPath("foo[1]").Size(),
-		// 	rhs:   NewPath("bar"),
-		// 	expectedCondition: ConditionBuilder{
-		// 		OperandList: []OperandBuilder{
-		// 			NewPath("foo[1]").Size(),
-		// 			NewPath("bar"),
-		// 		},
-		// 		Mode: EqualCond,
-		// 	},
-		// },
-		// {
-		// 	equal: NewPath("foo[1]").Size(),
-		// 	rhs:   NewValue(5),
-		// 	expectedCondition: ConditionBuilder{
-		// 		OperandList: []OperandBuilder{
-		// 			NewPath("foo[1]").Size(),
-		// 			NewValue(5),
-		// 		},
-		// 		Mode: EqualCond,
-		// 	},
-		// },
-		// {
-		// 	equal: NewPath("foo[1]").Size(),
-		// 	rhs:   NewPath("baz").Size(),
-		// 	expectedCondition: ConditionBuilder{
-		// 		OperandList: []OperandBuilder{
-		// 			NewPath("foo[1]").Size(),
-		// 			NewPath("baz").Size(),
-		// 		},
-		// 		Mode: EqualCond,
-		// 	},
-		// },
-		// {
-		// 	equal: NewPath("foo.bar.baz").Size(),
-		// 	rhs:   NewPath("bar.qux.foo").Size(),
-		// 	expectedCondition: ConditionBuilder{
-		// 		OperandList: []OperandBuilder{
-		// 			NewPath("foo.bar.baz").Size(),
-		// 			NewPath("bar.qux.foo").Size(),
-		// 		},
-		// 		Mode: EqualCond,
-		// 	},
-		// },
+		{
+			lhs: NewPath("foo.yay.cool.rad"),
+			rhs: NewValue(5),
+			expected: ConditionBuilder{
+				operandList: []OperandExpression{
+					OperandExpression{
+						Mode: PathOpe,
+						path: "foo.yay.cool.rad",
+					},
+					OperandExpression{
+						Mode: ValueOpe,
+						value: dynamodb.AttributeValue{
+							N: aws.String("5"),
+						},
+					},
+				},
+			},
+		},
+		{
+			lhs: NewPath("foo.yay.cool.rad"),
+			rhs: NewPath("baz").Size(),
+			expected: ConditionBuilder{
+				operandList: []OperandExpression{
+					OperandExpression{
+						Mode: PathOpe,
+						path: "foo.yay.cool.rad",
+					},
+					OperandExpression{
+						Mode: SizeOpe,
+						path: "baz",
+					},
+				},
+			},
+		},
+		{
+			lhs: NewValue(5),
+			rhs: NewPath("bar"),
+			expected: ConditionBuilder{
+				operandList: []OperandExpression{
+					OperandExpression{
+						Mode: ValueOpe,
+						value: dynamodb.AttributeValue{
+							N: aws.String("5"),
+						},
+					},
+					OperandExpression{
+						Mode: PathOpe,
+						path: "bar",
+					},
+				},
+			},
+		},
+		{
+			lhs: NewValue(map[string]int{
+				"five": 5,
+			}),
+			rhs: NewPath("bar"),
+			expected: ConditionBuilder{
+				operandList: []OperandExpression{
+					OperandExpression{
+						Mode: ValueOpe,
+						value: dynamodb.AttributeValue{
+							M: map[string]*dynamodb.AttributeValue{
+								"five": &dynamodb.AttributeValue{
+									N: aws.String("5"),
+								},
+							},
+						},
+					},
+					OperandExpression{
+						Mode: PathOpe,
+						path: "bar",
+					},
+				},
+			},
+		},
+		{
+			lhs: NewValue(map[string]int{
+				"five": 5,
+			}),
+			rhs: NewValue(5),
+			expected: ConditionBuilder{
+				operandList: []OperandExpression{
+					OperandExpression{
+						Mode: ValueOpe,
+						value: dynamodb.AttributeValue{
+							M: map[string]*dynamodb.AttributeValue{
+								"five": &dynamodb.AttributeValue{
+									N: aws.String("5"),
+								},
+							},
+						},
+					},
+					OperandExpression{
+						Mode: ValueOpe,
+						value: dynamodb.AttributeValue{
+							N: aws.String("5"),
+						},
+					},
+				},
+			},
+		},
+		{
+			lhs: NewValue(map[string]int{
+				"five": 5,
+			}),
+			rhs: NewPath("baz").Size(),
+			expected: ConditionBuilder{
+				operandList: []OperandExpression{
+					OperandExpression{
+						Mode: ValueOpe,
+						value: dynamodb.AttributeValue{
+							M: map[string]*dynamodb.AttributeValue{
+								"five": &dynamodb.AttributeValue{
+									N: aws.String("5"),
+								},
+							},
+						},
+					},
+					OperandExpression{
+						Mode: SizeOpe,
+						path: "baz",
+					},
+				},
+			},
+		},
+		{
+			lhs: NewPath("foo[1]").Size(),
+			rhs: NewPath("bar"),
+			expected: ConditionBuilder{
+				operandList: []OperandExpression{
+					OperandExpression{
+						Mode: SizeOpe,
+						path: "foo[1]",
+					},
+					OperandExpression{
+						Mode: PathOpe,
+						path: "bar",
+					},
+				},
+			},
+		},
+		{
+			lhs: NewPath("foo[1]").Size(),
+			rhs: NewValue(5),
+			expected: ConditionBuilder{
+				operandList: []OperandExpression{
+					OperandExpression{
+						Mode: SizeOpe,
+						path: "foo[1]",
+					},
+					OperandExpression{
+						Mode: ValueOpe,
+						value: dynamodb.AttributeValue{
+							N: aws.String("5"),
+						},
+					},
+				},
+			},
+		},
+		{
+			lhs: NewPath("foo[1]").Size(),
+			rhs: NewPath("baz").Size(),
+			expected: ConditionBuilder{
+				operandList: []OperandExpression{
+					OperandExpression{
+						Mode: SizeOpe,
+						path: "foo[1]",
+					},
+					OperandExpression{
+						Mode: SizeOpe,
+						path: "baz",
+					},
+				},
+			},
+		},
+		{
+			lhs: NewPath("foo.bar.baz").Size(),
+			rhs: NewPath("bar.qux.foo").Size(),
+			expected: ConditionBuilder{
+				operandList: []OperandExpression{
+					OperandExpression{
+						Mode: SizeOpe,
+						path: "foo.bar.baz",
+					},
+					OperandExpression{
+						Mode: SizeOpe,
+						path: "bar.qux.foo",
+					},
+				},
+			},
+		},
 	}
 	for testNumber, c := range cases {
 
@@ -172,18 +245,6 @@ func TestCompare(t *testing.T) {
 			t.Errorf("TestEquals Test Number %#v: Expected %#v, got %#v", testNumber, expected, expr)
 		}
 
-		expr, err = Equal(c.lhs, c.rhs).BuildCondition()
-		if err != nil {
-			t.Errorf("TestEquals Test Number %#v: Unexpected Error %#v", testNumber, err)
-		}
-		expected, err = c.expected.BuildCondition()
-		if err != nil {
-			t.Errorf("TestEquals Test Number %#v: Unexpected Error %#v", testNumber, err)
-		}
-
-		if reflect.DeepEqual(expr, expected) != true {
-			t.Errorf("TestEquals Test Number %#v: Expected %#v, got %#v", testNumber, expected, expr)
-		}
 	}
 }
 
@@ -208,27 +269,27 @@ func TestBuildCondition(t *testing.T) {
 			expected:              Expression{},
 			buildListOperandError: true,
 		},
-		// {
-		// 	input: ConditionBuilder{
-		// 		Mode: 0,
-		// 	},
-		// 	noMatchError: true,
-		// },
-		// {
-		// 	input: ConditionBuilder{
-		// 		Mode: EqualCond,
-		// 	},
-		// 	operandNumberError: true,
-		// },
-		// {
-		// 	input: ConditionBuilder{
-		// 		Mode: EqualCond,
-		// 		ConditionList: []ConditionBuilder{
-		// 			ConditionBuilder{},
-		// 		},
-		// 	},
-		// 	conditionNumberError: true,
-		// },
+		{
+			input: ConditionBuilder{
+				Mode: 0,
+			},
+			noMatchError: true,
+		},
+		{
+			input: ConditionBuilder{
+				Mode: EqualCond,
+			},
+			operandNumberError: true,
+		},
+		{
+			input: ConditionBuilder{
+				Mode: EqualCond,
+				conditionList: []ConditionBuilder{
+					ConditionBuilder{},
+				},
+			},
+			conditionNumberError: true,
+		},
 	}
 
 	for testNumber, c := range cases {
