@@ -391,6 +391,10 @@ type SSMAPI interface {
 	RemoveTagsFromResourceWithContext(aws.Context, *ssm.RemoveTagsFromResourceInput, ...request.Option) (*ssm.RemoveTagsFromResourceOutput, error)
 	RemoveTagsFromResourceRequest(*ssm.RemoveTagsFromResourceInput) (*request.Request, *ssm.RemoveTagsFromResourceOutput)
 
+	SendAutomationSignal(*ssm.SendAutomationSignalInput) (*ssm.SendAutomationSignalOutput, error)
+	SendAutomationSignalWithContext(aws.Context, *ssm.SendAutomationSignalInput, ...request.Option) (*ssm.SendAutomationSignalOutput, error)
+	SendAutomationSignalRequest(*ssm.SendAutomationSignalInput) (*request.Request, *ssm.SendAutomationSignalOutput)
+
 	SendCommand(*ssm.SendCommandInput) (*ssm.SendCommandOutput, error)
 	SendCommandWithContext(aws.Context, *ssm.SendCommandInput, ...request.Option) (*ssm.SendCommandOutput, error)
 	SendCommandRequest(*ssm.SendCommandInput) (*request.Request, *ssm.SendCommandOutput)

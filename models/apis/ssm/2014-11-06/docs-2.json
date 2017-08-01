@@ -16,7 +16,7 @@
     "DeleteDocument": "<p>Deletes the Systems Manager document and all instance associations to the document.</p> <p>Before you delete the document, we recommend that you use <a>DeleteAssociation</a> to disassociate all instances that are associated with the document.</p>",
     "DeleteMaintenanceWindow": "<p>Deletes a Maintenance Window.</p>",
     "DeleteParameter": "<p>Delete a parameter from the system.</p>",
-    "DeleteParameters": "<p>Delete a list of parameters.</p>",
+    "DeleteParameters": "<p>Delete a list of parameters. This API is used to delete parameters by using the Amazon EC2 console.</p>",
     "DeletePatchBaseline": "<p>Deletes a patch baseline.</p>",
     "DeleteResourceDataSync": "<p>Deletes a Resource Data Sync configuration. After the configuration is deleted, changes to inventory data on managed instances are no longer synced with the target Amazon S3 bucket. Deleting a sync configuration does not delete data in the target Amazon S3 bucket.</p>",
     "DeregisterManagedInstance": "<p>Removes the server or virtual machine from the list of registered servers. You can reregister the instance again at any time. If you don't plan to use Run Command on the server, we suggest uninstalling the SSM Agent first.</p>",
@@ -42,7 +42,7 @@
     "DescribeMaintenanceWindowTargets": "<p>Lists the targets registered with the Maintenance Window.</p>",
     "DescribeMaintenanceWindowTasks": "<p>Lists the tasks in a Maintenance Window.</p>",
     "DescribeMaintenanceWindows": "<p>Retrieves the Maintenance Windows in an AWS account.</p>",
-    "DescribeParameters": "<p>Get information about a parameter.</p>",
+    "DescribeParameters": "<p>Get information about a parameter.</p> <p>Request results are returned on a best-effort basis. If you specify <code>MaxResults</code> in the request, the response includes information up to the limit specified. The number of items returned, however, can be between zero and the value of <code>MaxResults</code>. If the service reaches an internal limit while processing the results, it stops the operation and returns the matching values up to that point and a <code>NextToken</code>. You can specify the <code>NextToken</code> in a subsequent call to get the next set of results.</p>",
     "DescribePatchBaselines": "<p>Lists the patch baselines in your AWS account.</p>",
     "DescribePatchGroupState": "<p>Returns high-level aggregated patch compliance state for a patch group.</p>",
     "DescribePatchGroups": "<p>Lists all patch groups that have been registered with patch baselines.</p>",
@@ -59,7 +59,7 @@
     "GetParameter": "<p>Get information about a parameter by using the parameter name. </p>",
     "GetParameterHistory": "<p>Query a list of all parameters used by the AWS account.</p>",
     "GetParameters": "<p>Get details of a parameter.</p>",
-    "GetParametersByPath": "<p>Retrieve parameters in a specific hierarchy. For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-working.html\">Working with Systems Manager Parameters</a>. </p>",
+    "GetParametersByPath": "<p>Retrieve parameters in a specific hierarchy. For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-working.html\">Working with Systems Manager Parameters</a>. </p> <p>Request results are returned on a best-effort basis. If you specify <code>MaxResults</code> in the request, the response includes information up to the limit specified. The number of items returned, however, can be between zero and the value of <code>MaxResults</code>. If the service reaches an internal limit while processing the results, it stops the operation and returns the matching values up to that point and a <code>NextToken</code>. You can specify the <code>NextToken</code> in a subsequent call to get the next set of results.</p>",
     "GetPatchBaseline": "<p>Retrieves information about a patch baseline.</p>",
     "GetPatchBaselineForPatchGroup": "<p>Retrieves the patch baseline that should be used for the specified patch group.</p>",
     "ListAssociations": "<p>Lists the associations for the specified Systems Manager document or instance.</p>",
@@ -78,6 +78,7 @@
     "RegisterTargetWithMaintenanceWindow": "<p>Registers a target with a Maintenance Window.</p>",
     "RegisterTaskWithMaintenanceWindow": "<p>Adds a new task to a Maintenance Window.</p>",
     "RemoveTagsFromResource": "<p>Removes all tags from the specified resource.</p>",
+    "SendAutomationSignal": "<p>Sends a signal to an Automation execution to change the current behavior or status of the execution. </p>",
     "SendCommand": "<p>Executes commands on one or more managed instances.</p>",
     "StartAutomationExecution": "<p>Initiates execution of an Automation document.</p>",
     "StopAutomationExecution": "<p>Stop an Automation that is currently executing.</p>",
@@ -353,6 +354,7 @@
         "AutomationExecution$AutomationExecutionId": "<p>The execution ID.</p>",
         "AutomationExecutionMetadata$AutomationExecutionId": "<p>The execution ID.</p>",
         "GetAutomationExecutionRequest$AutomationExecutionId": "<p>The unique identifier for an existing automation execution to examine. The execution ID is returned by StartAutomationExecution when the execution of an Automation document is initiated.</p>",
+        "SendAutomationSignalRequest$AutomationExecutionId": "<p>The unique identifier for an existing Automation execution that you want to send the signal to.</p>",
         "StartAutomationExecutionResult$AutomationExecutionId": "<p>The unique ID of a newly scheduled automation execution.</p>",
         "StopAutomationExecutionRequest$AutomationExecutionId": "<p>The execution ID of the Automation to stop.</p>"
       }
@@ -400,6 +402,7 @@
         "AutomationExecution$Outputs": "<p>The list of execution outputs as defined in the automation document.</p>",
         "AutomationExecutionMetadata$Outputs": "<p>The list of execution outputs as defined in the Automation document.</p>",
         "FailureDetails$Details": "<p>Detailed information about the Automation step failure.</p>",
+        "SendAutomationSignalRequest$Payload": "<p>The data sent with the signal. The data schema depends on the type of signal used in the request. </p>",
         "StartAutomationExecutionRequest$Parameters": "<p>A key-value map of execution parameters, which match the declared parameters in the Automation document.</p>",
         "StepExecution$Outputs": "<p>Returned values from the execution of the step.</p>"
       }
@@ -1950,6 +1953,11 @@
     },
     "InvalidAutomationExecutionParametersException": {
       "base": "<p>The supplied parameters for invoking the specified Automation document are incorrect. For example, they may not match the set of parameters permitted for the specified Automation document.</p>",
+      "refs": {
+      }
+    },
+    "InvalidAutomationSignalException": {
+      "base": "<p>The signal is not valid for the current Automation execution.</p>",
       "refs": {
       }
     },
@@ -3807,6 +3815,16 @@
         "UpdateAssociationRequest$ScheduleExpression": "<p>The cron expression used to schedule the association that you want to update.</p>"
       }
     },
+    "SendAutomationSignalRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SendAutomationSignalResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "SendCommandRequest": {
       "base": null,
       "refs": {
@@ -3826,6 +3844,12 @@
         "MaintenanceWindowTask$ServiceRoleArn": "<p>The role that should be assumed when executing the task</p>",
         "RegisterTaskWithMaintenanceWindowRequest$ServiceRoleArn": "<p>The role that should be assumed when executing the task.</p>",
         "SendCommandRequest$ServiceRoleArn": "<p>The IAM role that Systems Manager uses to send notifications. </p>"
+      }
+    },
+    "SignalType": {
+      "base": null,
+      "refs": {
+        "SendAutomationSignalRequest$SignalType": "<p>The type of signal. Valid signal types include the following: Approve and Reject </p>"
       }
     },
     "SnapshotDownloadUrl": {
@@ -3957,6 +3981,7 @@
         "InvalidActivationId$Message": null,
         "InvalidAllowedPatternException$message": "<p>The request does not meet the regular expression requirement.</p>",
         "InvalidAutomationExecutionParametersException$Message": null,
+        "InvalidAutomationSignalException$Message": null,
         "InvalidDocument$Message": "<p>The document does not exist or the document is not available to the user. This exception can be issued by CreateAssociation, CreateAssociationBatch, DeleteAssociation, DeleteDocument, DescribeAssociation, DescribeDocument, GetDocument, SendCommand, or UpdateAssociationStatus. </p>",
         "InvalidDocumentContent$Message": "<p>A description of the validation error.</p>",
         "InvalidDocumentOperation$Message": null,
