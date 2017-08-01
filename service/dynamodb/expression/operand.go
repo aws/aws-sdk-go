@@ -82,7 +82,7 @@ func (p PathBuilder) BuildOperand() (ExprNode, error) {
 	}
 
 	ret := ExprNode{
-		names: make([]string, 0),
+		names: []string{},
 	}
 
 	nameSplit := strings.Split(p.path, ".")
@@ -98,7 +98,7 @@ func (p PathBuilder) BuildOperand() (ExprNode, error) {
 		}
 
 		ret.names = append(ret.names, word)
-		ret.fmtExpr += "%p" + substr
+		ret.fmtExpr += "$p" + substr
 		if i != len(nameSplit)-1 {
 			ret.fmtExpr += "."
 		}
@@ -116,7 +116,7 @@ func (v ValueBuilder) BuildOperand() (ExprNode, error) {
 
 	ret := ExprNode{
 		values:  []dynamodb.AttributeValue{*expr},
-		fmtExpr: "%v",
+		fmtExpr: "$v",
 	}
 	return ret, nil
 }
@@ -140,66 +140,71 @@ type aliasList struct {
 
 // buildExpression returns an Expression with aliasing for paths/values specified
 // by aliasList
-func (en ExprNode) buildExpression(al *aliasList) (Expression, error) {
+func (en ExprNode) buildExprNodes(al *aliasList) (Expression, error) {
 	if al == nil {
 		return Expression{}, fmt.Errorf("buildExpression Error: aliasList is nil")
 	}
 
-	index := [3]int{}
+	index := struct {
+		name, value, children int
+	}{}
+
+	//index := [3]int{}
 	expr := Expression{
 		Expression: en.fmtExpr,
 	}
 
 	for i := 0; i < len(expr.Expression); {
-		if string(expr.Expression[i]) == "%" {
-			switch string(expr.Expression[i+1]) {
-
-			case "p":
-				alias, err := aliasPath(en.names[index[0]], al)
-				if err != nil {
-					return Expression{}, err
-				}
-				expr.Expression = expr.Expression[:i] + alias + expr.Expression[i+2:]
-				if expr.Names == nil {
-					expr.Names = make(map[string]*string)
-				}
-				expr.Names[alias] = &en.names[index[0]]
-				index[0]++
-				i += len(alias)
-
-			case "v":
-				alias, err := aliasValue(en.values[index[1]], al)
-				if err != nil {
-					return Expression{}, err
-				}
-				expr.Expression = expr.Expression[:i] + alias + expr.Expression[i+2:]
-				if expr.Values == nil {
-					expr.Values = make(map[string]*dynamodb.AttributeValue)
-				}
-				expr.Values[alias] = &en.values[index[1]]
-				index[1]++
-				i += len(alias)
-
-			case "c":
-				childExpr, err := en.children[index[2]].buildExpression(al)
-				if err != nil {
-					return Expression{}, err
-				}
-				tempExpr := expr.Expression[:i] + childExpr.Expression + expr.Expression[i+2:]
-				expr = mergeExpressionMaps([]Expression{expr, childExpr})
-				expr.Expression = tempExpr
-				index[2]++
-				i += len(childExpr.Expression)
-			}
-		} else {
+		if expr.Expression[i] != '$' {
 			i++
+			continue
 		}
+
+		var alias string
+		switch expr.Expression[i+1] {
+		case 'p':
+			str, err := al.aliasPath(en.names[index.name])
+			if err != nil {
+				return Expression{}, err
+			}
+			alias = str
+			if expr.Names == nil {
+				expr.Names = make(map[string]*string)
+			}
+			expr.Names[alias] = &en.names[index.name]
+			index.name++
+
+		case 'v':
+			str, err := al.aliasValue(en.values[index.value])
+			if err != nil {
+				return Expression{}, err
+			}
+			alias = str
+			if expr.Values == nil {
+				expr.Values = make(map[string]*dynamodb.AttributeValue)
+			}
+			expr.Values[alias] = &en.values[index.value]
+			index.value++
+
+		case 'c':
+			childExpr, err := en.children[index.children].buildExprNodes(al)
+			if err != nil {
+				return Expression{}, err
+			}
+			alias = childExpr.Expression
+			tempExpr := expr.Expression
+			expr = mergeExpressionMaps([]Expression{expr, childExpr})
+			expr.Expression = tempExpr
+			index.children++
+		}
+		expr.Expression = expr.Expression[:i] + alias + expr.Expression[i+2:]
+		i += len(alias)
 	}
 
 	return expr, nil
 }
 
-func aliasValue(dav dynamodb.AttributeValue, al *aliasList) (string, error) {
+func (al *aliasList) aliasValue(dav dynamodb.AttributeValue) (string, error) {
 	// for ind, attrval := range al.valuesList {
 	// 	if reflect.DeepEqual(dav, attrval) {
 	// 		return fmt.Sprintf(":%d", ind), nil
@@ -213,7 +218,7 @@ func aliasValue(dav dynamodb.AttributeValue, al *aliasList) (string, error) {
 	return fmt.Sprintf(":%d", len(al.valuesList)-1), nil
 }
 
-func aliasPath(nm string, al *aliasList) (string, error) {
+func (al *aliasList) aliasPath(nm string) (string, error) {
 	for ind, name := range al.namesList {
 		if nm == name {
 			return fmt.Sprintf("#%d", ind), nil

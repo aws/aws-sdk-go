@@ -212,7 +212,7 @@ func TestCompare(t *testing.T) {
 		if err != nil {
 			t.Errorf("TestEquals Test Number %#v: Unexpected Error %#v", testNumber, err)
 		}
-		expr, err := exprNode.buildExpression(&aliasList{})
+		expr, err := exprNode.buildExprNodes(&aliasList{})
 		if err != nil {
 			t.Errorf("TestEquals Test Number %#v: Unexpected Error %#v", testNumber, err)
 		}

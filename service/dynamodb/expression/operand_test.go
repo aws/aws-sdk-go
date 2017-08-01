@@ -19,14 +19,14 @@ func TestBuildOperand(t *testing.T) {
 			input: NewPath("foo"),
 			expected: ExprNode{
 				names:   []string{"foo"},
-				fmtExpr: "%p",
+				fmtExpr: "$p",
 			},
 		},
 		{
 			input: NewPath("foo.foo"),
 			expected: ExprNode{
 				names:   []string{"foo", "foo"},
-				fmtExpr: "%p.%p",
+				fmtExpr: "$p.$p",
 			},
 		},
 		{
@@ -37,28 +37,28 @@ func TestBuildOperand(t *testing.T) {
 						N: aws.String("5"),
 					},
 				},
-				fmtExpr: "%v",
+				fmtExpr: "$v",
 			},
 		},
 		{
 			input: NewPath("foo.bar"),
 			expected: ExprNode{
 				names:   []string{"foo", "bar"},
-				fmtExpr: "%p.%p",
+				fmtExpr: "$p.$p",
 			},
 		},
 		{
 			input: NewPath("foo.bar[0].baz"),
 			expected: ExprNode{
 				names:   []string{"foo", "bar", "baz"},
-				fmtExpr: "%p.%p[0].%p",
+				fmtExpr: "$p.$p[0].$p",
 			},
 		},
 		{
 			input: NewPath("foo").Size(),
 			expected: ExprNode{
 				names:   []string{"foo"},
-				fmtExpr: "size (%p)",
+				fmtExpr: "size ($p)",
 			},
 		},
 		{
@@ -97,7 +97,7 @@ func TestBuildExpression(t *testing.T) {
 		{
 			input: ExprNode{
 				names:   []string{"foo"},
-				fmtExpr: "%p",
+				fmtExpr: "$p",
 			},
 			expected: Expression{
 				Names: map[string]*string{
@@ -113,7 +113,7 @@ func TestBuildExpression(t *testing.T) {
 						N: aws.String("5"),
 					},
 				},
-				fmtExpr: "%v",
+				fmtExpr: "$v",
 			},
 			expected: Expression{
 				Values: map[string]*dynamodb.AttributeValue{
@@ -127,7 +127,7 @@ func TestBuildExpression(t *testing.T) {
 		{
 			input: ExprNode{
 				names:   []string{"foo", "bar"},
-				fmtExpr: "%p.%p",
+				fmtExpr: "$p.$p",
 			},
 			expected: Expression{
 				Names: map[string]*string{
@@ -140,7 +140,7 @@ func TestBuildExpression(t *testing.T) {
 		{
 			input: ExprNode{
 				names:   []string{"foo", "bar", "baz"},
-				fmtExpr: "%p.%p[0].%p",
+				fmtExpr: "$p.$p[0].$p",
 			},
 			expected: Expression{
 				Names: map[string]*string{
@@ -154,7 +154,7 @@ func TestBuildExpression(t *testing.T) {
 		{
 			input: ExprNode{
 				names:   []string{"foo"},
-				fmtExpr: "size (%p)",
+				fmtExpr: "size ($p)",
 			},
 			expected: Expression{
 				Names: map[string]*string{
@@ -166,7 +166,7 @@ func TestBuildExpression(t *testing.T) {
 		{
 			input: ExprNode{
 				names:   []string{"foo"},
-				fmtExpr: "size (%p)",
+				fmtExpr: "size ($p)",
 			},
 			expected: Expression{
 				Names: map[string]*string{
@@ -178,7 +178,7 @@ func TestBuildExpression(t *testing.T) {
 		{
 			input: ExprNode{
 				names:   []string{"foo", "foo"},
-				fmtExpr: "%p.%p",
+				fmtExpr: "$p.$p",
 			},
 			expected: Expression{
 				Names: map[string]*string{
@@ -192,7 +192,7 @@ func TestBuildExpression(t *testing.T) {
 				children: []ExprNode{
 					ExprNode{
 						names:   []string{"foo"},
-						fmtExpr: "%p",
+						fmtExpr: "$p",
 					},
 					ExprNode{
 						values: []dynamodb.AttributeValue{
@@ -200,10 +200,10 @@ func TestBuildExpression(t *testing.T) {
 								N: aws.String("5"),
 							},
 						},
-						fmtExpr: "%v",
+						fmtExpr: "$v",
 					},
 				},
-				fmtExpr: "%c = %c",
+				fmtExpr: "$c = $c",
 			},
 			expected: Expression{
 				Names: map[string]*string{
@@ -224,7 +224,7 @@ func TestBuildExpression(t *testing.T) {
 	}
 
 	for testNumber, c := range cases {
-		expr, err := c.input.buildExpression(&aliasList{})
+		expr, err := c.input.buildExprNodes(&aliasList{})
 		if err != nil {
 			t.Errorf("TestBuildExpression Test Number %#v: Unexpected Error %#v", testNumber, err)
 		}

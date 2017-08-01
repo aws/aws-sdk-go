@@ -51,7 +51,7 @@ func (cond ConditionBuilder) BuildExpression() (Expression, error) {
 		return Expression{}, err
 	}
 
-	expr, err := en.buildExpression(&aliasList{})
+	expr, err := en.buildExprNodes(&aliasList{})
 	if err != nil {
 		return Expression{}, err
 	}
@@ -80,7 +80,7 @@ func compareBuildCondition(c ConditionBuilder) (ExprNode, error) {
 		return ExprNode{}, fmt.Errorf("Invalid ConditionBuilder. Expected 2 Operands")
 	}
 
-	operandExprNodes := make([]ExprNode, 0)
+	operandExprNodes := make([]ExprNode, 0, len(c.operandList))
 	for _, ope := range c.operandList {
 		exprNodes, err := ope.BuildOperand()
 		if err != nil {
@@ -95,7 +95,7 @@ func compareBuildCondition(c ConditionBuilder) (ExprNode, error) {
 
 	switch c.Mode {
 	case EqualCond:
-		ret.fmtExpr = "%c = %c"
+		ret.fmtExpr = "$c = $c"
 	}
 
 	return ret, nil
