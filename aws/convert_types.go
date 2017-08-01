@@ -311,8 +311,8 @@ func TimeValue(v *time.Time) time.Time {
 	return time.Time{}
 }
 
-// SecondsTimeValue converts an int64 pointer to a time.Time value with
-// a time resolution of seconds or time.Time{} if the pointer is nil.
+// SecondsTimeValue converts an int64 pointer to a time.Time value
+// representing seconds since Epoch or time.Time{} if the pointer is nil.
 func SecondsTimeValue(v *int64) time.Time {
 	if v != nil {
 		return time.Unix((*v / 1000), 0)
@@ -320,8 +320,8 @@ func SecondsTimeValue(v *int64) time.Time {
 	return time.Time{}
 }
 
-// MillisecondsTimeValue converts an int64 pointer to a time.Time value with
-// a time resolution of milliseconds or time.Time{} if the pointer is nil.
+// MillisecondsTimeValue converts an int64 pointer to a time.Time value
+// representing milliseconds sinch Epoch or time.Time{} if the pointer is nil.
 func MillisecondsTimeValue(v *int64) time.Time {
 	if v != nil {
 		return time.Unix(0, (*v * 1000000))
