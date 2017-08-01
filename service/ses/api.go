@@ -249,8 +249,8 @@ func (c *SES) CreateConfigurationSetEventDestinationRequest(input *CreateConfigu
 // Creates a configuration set event destination.
 //
 // When you create or update an event destination, you must provide one, and
-// only one, destination. The destination can be either Amazon CloudWatch or
-// Amazon Kinesis Firehose.
+// only one, destination. The destination can be Amazon CloudWatch, Amazon Kinesis
+// Firehose, or Amazon Simple Notification Service (Amazon SNS).
 //
 // An event destination is the AWS service to which Amazon SES publishes the
 // email sending events associated with a configuration set. For information
@@ -280,6 +280,10 @@ func (c *SES) CreateConfigurationSetEventDestinationRequest(input *CreateConfigu
 //   * ErrCodeInvalidFirehoseDestinationException "InvalidFirehoseDestination"
 //   Indicates that the Amazon Kinesis Firehose destination is invalid. See the
 //   error message for details.
+//
+//   * ErrCodeInvalidSNSDestinationException "InvalidSNSDestination"
+//   Indicates that the Amazon Simple Notification Service (Amazon SNS) destination
+//   is invalid. See the error message for details.
 //
 //   * ErrCodeLimitExceededException "LimitExceeded"
 //   Indicates that a resource could not be created because of service limits.
@@ -2001,6 +2005,22 @@ func (c *SES) GetIdentityVerificationAttributesRequest(input *GetIdentityVerific
 // verification status and (for domain identities) the verification token for
 // each identity.
 //
+// The verification status of an email address is "Pending" until the email
+// address owner clicks the link within the verification email that Amazon SES
+// sent to that address. If the email address owner clicks the link within 24
+// hours, the verification status of the email address changes to "Success".
+// If the link is not clicked within 24 hours, the verification status changes
+// to "Failed." In that case, if you still want to verify the email address,
+// you must restart the verification process from the beginning.
+//
+// For domain identities, the domain's verification status is "Pending" as Amazon
+// SES searches for the required TXT record in the DNS settings of the domain.
+// When Amazon SES detects the record, the domain's verification status changes
+// to "Success". If Amazon SES is unable to detect the record within 72 hours,
+// the domain's verification status changes to "Failed." In that case, if you
+// still want to verify the domain, you must restart the verification process
+// from the beginning.
+//
 // This action is throttled at one request per second and can only get verification
 // attributes for up to 100 identities at a time.
 //
@@ -3067,6 +3087,10 @@ func (c *SES) SendEmailRequest(input *SendEmailInput) (req *request.Request, out
 //    * The total size of the message cannot exceed 10 MB. This includes any
 //    attachments that are part of the message.
 //
+//    * You must provide at least one recipient email address. The recipient
+//    address can be a To: address, a CC: address, or a BCC: address. If any
+//    email address you provide is invalid, Amazon SES rejects the entire email.
+//
 //    * Amazon SES has a limit on the total number of recipients per message.
 //    The combined number of To:, CC: and BCC: email addresses cannot exceed
 //    50. If you need to send an email message to a larger audience, you can
@@ -3182,6 +3206,10 @@ func (c *SES) SendRawEmailRequest(input *SendRawEmailInput) (req *request.Reques
 //
 //    * The total size of the message cannot exceed 10 MB. This includes any
 //    attachments that are part of the message.
+//
+//    * You must provide at least one recipient email address. The recipient
+//    address can be a To: address, a CC: address, or a BCC: address. If any
+//    email address you provide is invalid, Amazon SES rejects the entire email.
 //
 //    * Amazon SES has a limit on the total number of recipients per message.
 //    The combined number of To:, CC: and BCC: email addresses cannot exceed
@@ -3919,13 +3947,13 @@ func (c *SES) UpdateConfigurationSetEventDestinationRequest(input *UpdateConfigu
 // Updates the event destination of a configuration set.
 //
 // When you create or update an event destination, you must provide one, and
-// only one, destination. The destination can be either Amazon CloudWatch or
-// Amazon Kinesis Firehose.
+// only one, destination. The destination can be Amazon CloudWatch, Amazon Kinesis
+// Firehose, or Amazon Simple Notification Service (Amazon SNS).
 //
 // Event destinations are associated with configuration sets, which enable you
-// to publish email sending events to Amazon CloudWatch or Amazon Kinesis Firehose.
-// For information about using configuration sets, see the Amazon SES Developer
-// Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+// to publish email sending events to Amazon CloudWatch, Amazon Kinesis Firehose,
+// or Amazon Simple Notification Service (Amazon SNS). For information about
+// using configuration sets, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
 //
 // This action is throttled at one request per second.
 //
@@ -3950,6 +3978,10 @@ func (c *SES) UpdateConfigurationSetEventDestinationRequest(input *UpdateConfigu
 //   * ErrCodeInvalidFirehoseDestinationException "InvalidFirehoseDestination"
 //   Indicates that the Amazon Kinesis Firehose destination is invalid. See the
 //   error message for details.
+//
+//   * ErrCodeInvalidSNSDestinationException "InvalidSNSDestination"
+//   Indicates that the Amazon Simple Notification Service (Amazon SNS) destination
+//   is invalid. See the error message for details.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/UpdateConfigurationSetEventDestination
 func (c *SES) UpdateConfigurationSetEventDestination(input *UpdateConfigurationSetEventDestinationInput) (*UpdateConfigurationSetEventDestinationOutput, error) {
@@ -6258,13 +6290,13 @@ func (s *Destination) SetToAddresses(v []*string) *Destination {
 // sending events are published.
 //
 // When you create or update an event destination, you must provide one, and
-// only one, destination. The destination can be either Amazon CloudWatch or
-// Amazon Kinesis Firehose.
+// only one, destination. The destination can be Amazon CloudWatch, Amazon Kinesis
+// Firehose or Amazon Simple Notification Service (Amazon SNS).
 //
 // Event destinations are associated with configuration sets, which enable you
-// to publish email sending events to Amazon CloudWatch or Amazon Kinesis Firehose.
-// For information about using configuration sets, see the Amazon SES Developer
-// Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+// to publish email sending events to Amazon CloudWatch, Amazon Kinesis Firehose,
+// or Amazon Simple Notification Service (Amazon SNS). For information about
+// using configuration sets, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/EventDestination
 type EventDestination struct {
 	_ struct{} `type:"structure"`
@@ -6297,6 +6329,10 @@ type EventDestination struct {
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
+
+	// An object that contains the topic ARN associated with an Amazon Simple Notification
+	// Service (Amazon SNS) event destination.
+	SNSDestination *SNSDestination `type:"structure"`
 }
 
 // String returns the string representation
@@ -6326,6 +6362,11 @@ func (s *EventDestination) Validate() error {
 	if s.KinesisFirehoseDestination != nil {
 		if err := s.KinesisFirehoseDestination.Validate(); err != nil {
 			invalidParams.AddNested("KinesisFirehoseDestination", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SNSDestination != nil {
+		if err := s.SNSDestination.Validate(); err != nil {
+			invalidParams.AddNested("SNSDestination", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -6362,6 +6403,12 @@ func (s *EventDestination) SetMatchingEventTypes(v []*string) *EventDestination 
 // SetName sets the Name field's value.
 func (s *EventDestination) SetName(v string) *EventDestination {
 	s.Name = &v
+	return s
+}
+
+// SetSNSDestination sets the SNSDestination field's value.
+func (s *EventDestination) SetSNSDestination(v *SNSDestination) *EventDestination {
+	s.SNSDestination = v
 	return s
 }
 
@@ -8013,9 +8060,12 @@ func (s PutIdentityPolicyOutput) GoString() string {
 type RawMessage struct {
 	_ struct{} `type:"structure"`
 
-	// The raw data of the message. The client must ensure that the message format
-	// complies with Internet email standards regarding email header fields, MIME
-	// types, MIME encoding, and base64 encoding.
+	// The raw data of the message. This data needs to base64-encoded if you are
+	// accessing Amazon SES directly through the HTTPS interface. If you are accessing
+	// Amazon SES using an AWS SDK, the SDK takes care of the base 64-encoding for
+	// you. In all cases, the client must ensure that the message format complies
+	// with Internet email standards regarding email header fields, MIME types,
+	// and MIME encoding.
 	//
 	// The To:, CC:, and BCC: headers in the raw message can contain a group list.
 	//
@@ -8883,6 +8933,54 @@ func (s *SNSAction) SetTopicArn(v string) *SNSAction {
 	return s
 }
 
+// Contains the topic ARN associated with an Amazon Simple Notification Service
+// (Amazon SNS) event destination.
+//
+// Event destinations, such as Amazon SNS, are associated with configuration
+// sets, which enable you to publish email sending events. For information about
+// using configuration sets, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SNSDestination
+type SNSDestination struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the Amazon SNS topic to which you want to publish email sending
+	// events. An example of an Amazon SNS topic ARN is arn:aws:sns:us-west-2:123456789012:MyTopic.
+	// For more information about Amazon SNS topics, see the Amazon SNS Developer
+	// Guide (http://docs.aws.amazon.com/http:/alpha-docs-aws.amazon.com/sns/latest/dg/CreateTopic.html).
+	//
+	// TopicARN is a required field
+	TopicARN *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s SNSDestination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SNSDestination) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SNSDestination) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SNSDestination"}
+	if s.TopicARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicARN"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTopicARN sets the TopicARN field's value.
+func (s *SNSDestination) SetTopicARN(v string) *SNSDestination {
+	s.TopicARN = &v
+	return s
+}
+
 // Represents a request to send a bounce message to the sender of an email you
 // received through Amazon SES.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SendBounceRequest
@@ -9335,6 +9433,10 @@ type SendRawEmailInput struct {
 	//    more information, go to the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mime-types.html).
 	//
 	//    * Must be base64-encoded.
+	//
+	//    * Per RFC 5321 (https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6),
+	//    the maximum length of each line of text, including the <CRLF>, must not
+	//    exceed 1,000 characters.
 	//
 	// RawMessage is a required field
 	RawMessage *RawMessage `type:"structure" required:"true"`
@@ -10396,8 +10498,15 @@ func (s *VerifyDomainIdentityInput) SetDomain(v string) *VerifyDomainIdentityInp
 type VerifyDomainIdentityOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A TXT record that must be placed in the DNS settings for the domain, in order
-	// to complete domain verification.
+	// A TXT record that you must place in the DNS settings of the domain to complete
+	// domain verification with Amazon SES.
+	//
+	// As Amazon SES searches for the TXT record, the domain's verification status
+	// is "Pending". When Amazon SES detects the record, the domain's verification
+	// status changes to "Success". If Amazon SES is unable to detect the record
+	// within 72 hours, the domain's verification status changes to "Failed." In
+	// that case, if you still want to verify the domain, you must restart the verification
+	// process from the beginning.
 	//
 	// VerificationToken is a required field
 	VerificationToken *string `type:"string" required:"true"`
@@ -10648,6 +10757,9 @@ const (
 
 	// DimensionValueSourceEmailHeader is a DimensionValueSource enum value
 	DimensionValueSourceEmailHeader = "emailHeader"
+
+	// DimensionValueSourceLinkTag is a DimensionValueSource enum value
+	DimensionValueSourceLinkTag = "linkTag"
 )
 
 const (
@@ -10682,6 +10794,12 @@ const (
 
 	// EventTypeDelivery is a EventType enum value
 	EventTypeDelivery = "delivery"
+
+	// EventTypeOpen is a EventType enum value
+	EventTypeOpen = "open"
+
+	// EventTypeClick is a EventType enum value
+	EventTypeClick = "click"
 )
 
 const (

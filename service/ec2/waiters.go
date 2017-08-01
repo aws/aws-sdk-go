@@ -1045,6 +1045,11 @@ func (c *EC2) WaitUntilSpotInstanceRequestFulfilledWithContext(ctx aws.Context, 
 				Matcher: request.PathAnyWaiterMatch, Argument: "SpotInstanceRequests[].Status.Code",
 				Expected: "system-error",
 			},
+			{
+				State:    request.RetryWaiterState,
+				Matcher:  request.ErrorWaiterMatch,
+				Expected: "InvalidSpotInstanceRequestID.NotFound",
+			},
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
