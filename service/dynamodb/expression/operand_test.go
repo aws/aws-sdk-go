@@ -10,12 +10,13 @@ import (
 
 func TestBuildOperand(t *testing.T) {
 	cases := []struct {
+		name           string
 		input          OperandBuilder
 		expected       ExprNode
 		emptyPathError bool
-		// alError        bool
 	}{
 		{
+			name:  "basic path",
 			input: NewPath("foo"),
 			expected: ExprNode{
 				names:   []string{"foo"},
@@ -23,6 +24,7 @@ func TestBuildOperand(t *testing.T) {
 			},
 		},
 		{
+			name:  "duplicate path name",
 			input: NewPath("foo.foo"),
 			expected: ExprNode{
 				names:   []string{"foo", "foo"},
@@ -30,6 +32,7 @@ func TestBuildOperand(t *testing.T) {
 			},
 		},
 		{
+			name:  "basic value",
 			input: NewValue(5),
 			expected: ExprNode{
 				values: []dynamodb.AttributeValue{
@@ -41,6 +44,7 @@ func TestBuildOperand(t *testing.T) {
 			},
 		},
 		{
+			name:  "nested path",
 			input: NewPath("foo.bar"),
 			expected: ExprNode{
 				names:   []string{"foo", "bar"},
@@ -48,6 +52,7 @@ func TestBuildOperand(t *testing.T) {
 			},
 		},
 		{
+			name:  "nested path with index",
 			input: NewPath("foo.bar[0].baz"),
 			expected: ExprNode{
 				names:   []string{"foo", "bar", "baz"},
@@ -55,6 +60,7 @@ func TestBuildOperand(t *testing.T) {
 			},
 		},
 		{
+			name:  "basic size",
 			input: NewPath("foo").Size(),
 			expected: ExprNode{
 				names:   []string{"foo"},
@@ -62,39 +68,57 @@ func TestBuildOperand(t *testing.T) {
 			},
 		},
 		{
+			name:           "empty path error",
 			input:          NewPath(""),
+			expected:       ExprNode{},
+			emptyPathError: true,
+		},
+		{
+			name:           "invalid path",
+			input:          NewPath("foo..bar"),
+			expected:       ExprNode{},
+			emptyPathError: true,
+		},
+		{
+			name:           "invalid index",
+			input:          NewPath("[foo]"),
 			expected:       ExprNode{},
 			emptyPathError: true,
 		},
 	}
 
-	for testNumber, c := range cases {
+	for _, c := range cases {
 		en, err := c.input.BuildOperand()
 
 		if c.emptyPathError {
 			if err == nil {
-				t.Errorf("TestBuildOperand Test Number %#v: Expected Error", testNumber)
+				t.Errorf("Test %#v: Expected Error", c.name)
 			} else {
 				continue
 			}
 		}
 
 		if err != nil {
-			t.Errorf("TestBuildOperand Test Number %#v: Unexpected Error %#v", testNumber, err)
+			t.Errorf("Test %#v: Unexpected Error %#v", c.name, err)
 		}
 
 		if reflect.DeepEqual(c.expected, en) == false {
-			t.Errorf("TestBuildOperand Test Number %#v: Got %#v, expected %#v\n", testNumber, en, c.expected)
+			t.Errorf("Test %#v: Got %#v, expected %#v\n", c.name, en, c.expected)
 		}
 	}
 }
 
 func TestBuildExpression(t *testing.T) {
 	cases := []struct {
-		input    ExprNode
-		expected Expression
+		name              string
+		input             ExprNode
+		expected          Expression
+		invalEscError     bool
+		outOfRangeError   bool
+		nilAliasListError bool
 	}{
 		{
+			name: "basic path",
 			input: ExprNode{
 				names:   []string{"foo"},
 				fmtExpr: "$p",
@@ -107,6 +131,7 @@ func TestBuildExpression(t *testing.T) {
 			},
 		},
 		{
+			name: "basic value",
 			input: ExprNode{
 				values: []dynamodb.AttributeValue{
 					dynamodb.AttributeValue{
@@ -125,6 +150,7 @@ func TestBuildExpression(t *testing.T) {
 			},
 		},
 		{
+			name: "nested path",
 			input: ExprNode{
 				names:   []string{"foo", "bar"},
 				fmtExpr: "$p.$p",
@@ -138,6 +164,7 @@ func TestBuildExpression(t *testing.T) {
 			},
 		},
 		{
+			name: "nested path with index",
 			input: ExprNode{
 				names:   []string{"foo", "bar", "baz"},
 				fmtExpr: "$p.$p[0].$p",
@@ -152,6 +179,7 @@ func TestBuildExpression(t *testing.T) {
 			},
 		},
 		{
+			name: "basic size",
 			input: ExprNode{
 				names:   []string{"foo"},
 				fmtExpr: "size ($p)",
@@ -164,18 +192,7 @@ func TestBuildExpression(t *testing.T) {
 			},
 		},
 		{
-			input: ExprNode{
-				names:   []string{"foo"},
-				fmtExpr: "size ($p)",
-			},
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Expression: "size (#0)",
-			},
-		},
-		{
+			name: "duplicate path name",
 			input: ExprNode{
 				names:   []string{"foo", "foo"},
 				fmtExpr: "$p.$p",
@@ -188,6 +205,7 @@ func TestBuildExpression(t *testing.T) {
 			},
 		},
 		{
+			name: "equal expression",
 			input: ExprNode{
 				children: []ExprNode{
 					ExprNode{
@@ -218,19 +236,79 @@ func TestBuildExpression(t *testing.T) {
 			},
 		},
 		{
+			name: "missing char after $",
+			input: ExprNode{
+				names:   []string{"foo", "foo"},
+				fmtExpr: "$p.$",
+			},
+			invalEscError: true,
+		},
+		{
+			name: "names out of range",
+			input: ExprNode{
+				names:   []string{"foo"},
+				fmtExpr: "$p.$p",
+			},
+			outOfRangeError: true,
+		},
+		{
+			name: "values out of range",
+			input: ExprNode{
+				fmtExpr: "$v",
+			},
+			outOfRangeError: true,
+		},
+		{
+			name: "children out of range",
+			input: ExprNode{
+				fmtExpr: "$c",
+			},
+			outOfRangeError: true,
+		},
+		{
+			name: "invalid escape char",
+			input: ExprNode{
+				fmtExpr: "$!",
+			},
+			outOfRangeError: true,
+		},
+		{
+			name:     "empty ExprNode",
 			input:    ExprNode{},
 			expected: Expression{},
 		},
+		{
+			name:              "nil aliasList",
+			input:             ExprNode{},
+			expected:          Expression{},
+			nilAliasListError: true,
+		},
 	}
 
-	for testNumber, c := range cases {
+	for _, c := range cases {
+		if c.nilAliasListError {
+			_, err := c.input.buildExprNodes(nil)
+			if err == nil {
+				t.Errorf("Test %#v: Expected Error", c.name)
+			} else {
+				continue
+			}
+		}
+
 		expr, err := c.input.buildExprNodes(&aliasList{})
+		if c.invalEscError || c.outOfRangeError {
+			if err == nil {
+				t.Errorf("Test %#v: Expected Error", c.name)
+			} else {
+				continue
+			}
+		}
 		if err != nil {
-			t.Errorf("TestBuildExpression Test Number %#v: Unexpected Error %#v", testNumber, err)
+			t.Errorf("Test %#v: Unexpected Error %#v", c.name, err)
 		}
 
 		if reflect.DeepEqual(expr, c.expected) != true {
-			t.Errorf("TestBuildExpression Test Number %#v: Expected %#v, got %#v", testNumber, c.expected, expr)
+			t.Errorf("Test %#v: Expected %#v, got %#v", c.name, c.expected, expr)
 		}
 	}
 }

@@ -6,8 +6,12 @@ import "fmt"
 type ConditionMode int
 
 const (
+	// UnsetCond will catch errors if users make an empty ConditionBuilder
+	UnsetCond ConditionMode = iota
 	// EqualCond will represent the Equal Clause ConditionBuilder
-	EqualCond ConditionMode = iota + 1
+	EqualCond
+	// AndCond will represent the And Clause ConditionBuilder
+	AndCond
 )
 
 // ConditionBuilder will represent the ConditionExpressions
@@ -93,6 +97,7 @@ func compareBuildCondition(c ConditionBuilder) (ExprNode, error) {
 		children: operandExprNodes,
 	}
 
+	// Create a string with special characters that can be substituted later: $c
 	switch c.Mode {
 	case EqualCond:
 		ret.fmtExpr = "$c = $c"
