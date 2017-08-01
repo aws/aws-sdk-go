@@ -43,6 +43,22 @@ func (s SizeBuilder) Equal(right OperandBuilder) ConditionBuilder {
 	return Equal(s, right)
 }
 
+// BuildExpression will take an ConditionBuilder as input and output an
+// Expression
+func (cond ConditionBuilder) BuildExpression() (Expression, error) {
+	en, err := cond.buildCondition()
+	if err != nil {
+		return Expression{}, err
+	}
+
+	expr, err := en.buildExpression(&aliasList{})
+	if err != nil {
+		return Expression{}, err
+	}
+
+	return expr, nil
+}
+
 // buildCondition will iterate over the tree of ConditionBuilders and
 // OperandBuilders and build a tree of ExprNodes
 func (cond ConditionBuilder) buildCondition() (ExprNode, error) {
@@ -79,7 +95,7 @@ func compareBuildCondition(c ConditionBuilder) (ExprNode, error) {
 
 	switch c.Mode {
 	case EqualCond:
-		ret.fmtExpr = "(%c) = (%c)"
+		ret.fmtExpr = "%c = %c"
 	}
 
 	return ret, nil

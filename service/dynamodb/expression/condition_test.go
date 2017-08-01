@@ -33,7 +33,7 @@ func TestCompare(t *testing.T) {
 					"#3": aws.String("rad"),
 					"#4": aws.String("bar"),
 				},
-				Expression: "(#0.#1.#2.#3) = (#4)",
+				Expression: "#0.#1.#2.#3 = #4",
 			},
 		},
 		{
@@ -52,7 +52,7 @@ func TestCompare(t *testing.T) {
 						N: aws.String("5"),
 					},
 				},
-				Expression: "(#0.#1.#2.#3) = (:0)",
+				Expression: "#0.#1.#2.#3 = :0",
 			},
 		},
 		{
@@ -67,7 +67,7 @@ func TestCompare(t *testing.T) {
 					"#3": aws.String("rad"),
 					"#4": aws.String("baz"),
 				},
-				Expression: "(#0.#1.#2.#3) = (size (#4))",
+				Expression: "#0.#1.#2.#3 = size (#4)",
 			},
 		},
 		{
@@ -83,7 +83,7 @@ func TestCompare(t *testing.T) {
 						N: aws.String("5"),
 					},
 				},
-				Expression: "(:0) = (#0)",
+				Expression: ":0 = #0",
 			},
 		},
 		{
@@ -105,7 +105,7 @@ func TestCompare(t *testing.T) {
 						},
 					},
 				},
-				Expression: "(:0) = (#0)",
+				Expression: ":0 = #0",
 			},
 		},
 		{
@@ -127,7 +127,7 @@ func TestCompare(t *testing.T) {
 						N: aws.String("5"),
 					},
 				},
-				Expression: "(:0) = (:1)",
+				Expression: ":0 = :1",
 			},
 		},
 		{
@@ -149,7 +149,7 @@ func TestCompare(t *testing.T) {
 				Names: map[string]*string{
 					"#0": aws.String("baz"),
 				},
-				Expression: "(:0) = (size (#0))",
+				Expression: ":0 = size (#0)",
 			},
 		},
 		{
@@ -161,7 +161,7 @@ func TestCompare(t *testing.T) {
 					"#0": aws.String("foo"),
 					"#1": aws.String("bar"),
 				},
-				Expression: "(size (#0[1])) = (#1)",
+				Expression: "size (#0[1]) = #1",
 			},
 		},
 		{
@@ -177,7 +177,7 @@ func TestCompare(t *testing.T) {
 						N: aws.String("5"),
 					},
 				},
-				Expression: "(size (#0[1])) = (:0)",
+				Expression: "size (#0[1]) = :0",
 			},
 		},
 		{
@@ -189,7 +189,7 @@ func TestCompare(t *testing.T) {
 					"#0": aws.String("foo"),
 					"#1": aws.String("baz"),
 				},
-				Expression: "(size (#0[1])) = (size (#1))",
+				Expression: "size (#0[1]) = size (#1)",
 			},
 		},
 		{
@@ -203,7 +203,7 @@ func TestCompare(t *testing.T) {
 					"#2": aws.String("baz"),
 					"#3": aws.String("qux"),
 				},
-				Expression: "(size (#0.#1.#2)) = (size (#1.#3.#0))",
+				Expression: "size (#0.#1.#2) = size (#1.#3.#0)",
 			},
 		},
 	}
