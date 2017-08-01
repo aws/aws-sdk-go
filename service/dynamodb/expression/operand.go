@@ -2,24 +2,10 @@ package expression
 
 import (
 	"fmt"
-	"reflect"
 	"strings"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
-)
-
-// OperandMode will specify the type of Operand the OperandExpression represents
-type OperandMode int
-
-const (
-	// PathOpe will define an OperandExpression as a Path
-	PathOpe OperandMode = iota + 1
-	// ValueOpe will define an OperandExpression as a Value
-	ValueOpe
-	// SizeOpe will define an OperandExpression as a Size
-	SizeOpe
 )
 
 // ValueBuilder will be the concrete struct that satisfies the OperandBuilder
@@ -51,19 +37,20 @@ type Expression struct {
 	Expression string
 }
 
-// OperandExpression will be the nodes to the inward facing tree which all the
+// ExprNode will be the nodes to the inward facing tree which all the
 // deduplication and aliasing will work on
-type OperandExpression struct {
-	Mode  OperandMode
-	path  string
-	value dynamodb.AttributeValue
+type ExprNode struct {
+	names    []string
+	values   []dynamodb.AttributeValue
+	children []ExprNode
+	fmtExpr  string
 }
 
 // OperandBuilder will be mainly satisfied by PathBuilder and ValueBuilder.
 // Concrete types that satisfy this interface will be referred to as an Operand
 // In select cases, other builders may satisfy this interface
 type OperandBuilder interface {
-	BuildOperand() (OperandExpression, error)
+	BuildOperand() (ExprNode, error)
 }
 
 // NewPath creates an Operand based off of the path entered
@@ -87,134 +74,18 @@ func (p PathBuilder) Size() SizeBuilder {
 	}
 }
 
-// BuildOperand will create the OperandExpression which will be recursively
+// BuildOperand will create the ExprNode which will be recursively
 // called in the BuildExpression operation
-func (p PathBuilder) BuildOperand() (OperandExpression, error) {
-	return OperandExpression{
-		Mode: PathOpe,
-		path: p.path,
-	}, nil
-}
-
-// BuildOperand will create the OperandExpression which will be recursively
-// called in the BuildExpression operation
-func (v ValueBuilder) BuildOperand() (OperandExpression, error) {
-	expr, err := dynamodbattribute.Marshal(v.value)
-
-	return OperandExpression{
-		Mode:  ValueOpe,
-		value: *expr,
-	}, err
-}
-
-// BuildOperand will create the OperandExpression which will be recursively
-// called in the BuildExpression operation
-func (s SizeBuilder) BuildOperand() (OperandExpression, error) {
-	return OperandExpression{
-		Mode: SizeOpe,
-		path: s.pb.path,
-	}, nil
-}
-
-// buildList lists all the names that must be aliased and returns the values
-// in aliasMap.
-func (oe OperandExpression) buildList() (aliasList, error) {
-	switch oe.Mode {
-	case PathOpe, SizeOpe:
-		return pathBuildList(oe)
-	case ValueOpe:
-		return valueBuildList(oe)
-	default:
-		return aliasList{}, fmt.Errorf("OperandExpression buildList Error: Undefined OperandMode %#v", oe.Mode)
-	}
-}
-
-// buildExpression returns an Expression with aliasing for paths/values specified
-// by aliasList
-func (oe OperandExpression) buildExpression(al aliasList) (Expression, error) {
-	switch oe.Mode {
-	case PathOpe:
-		return pathBuildExpression(oe, al)
-	case ValueOpe:
-		return valueBuildExpression(oe, al)
-	case SizeOpe:
-		return sizeBuildExpression(oe, al)
-	default:
-		return Expression{}, fmt.Errorf("OperandExpression buildExpression Error: Undefined OperandMode %#v", oe.Mode)
-	}
-}
-
-// Since we are not deduplicating values yet, the value will not be added to the
-// aliasList.ValuesList and the alias for values will be done by looking at the
-// length of aliasList.ValuesList during buildExpression
-func valueBuildList(oe OperandExpression) (aliasList, error) {
-	if reflect.DeepEqual(oe.value, (dynamodb.AttributeValue{})) {
-		return aliasList{}, fmt.Errorf("valueBuildList Error: OperandExpression value is empty")
-	}
-	// return aliasList{
-	// 	ValuesList: []dynamodb.AttributeValue{oe.value},
-	// }, nil
-	return aliasList{}, nil // deduplicating values will be implemented later
-}
-
-// in order to have unique aliases, we will use length of the
-// aliasList.ValuesList to alias and add the value to the aliasList.ValuesList
-func valueBuildExpression(oe OperandExpression, al aliasList) (Expression, error) {
-	if reflect.DeepEqual(oe.value, (dynamodb.AttributeValue{})) {
-		return Expression{}, fmt.Errorf("valueBuildExpression Error: OperandExpression value is empty")
+func (p PathBuilder) BuildOperand() (ExprNode, error) {
+	if p.path == "" {
+		return ExprNode{}, fmt.Errorf("BuildOperand Error: Path is empty")
 	}
 
-	alias := fmt.Sprintf(":%v", len(al.ValuesList))
-	al.ValuesList = append(al.ValuesList, oe.value)
-
-	return Expression{
-		Values: map[string]*dynamodb.AttributeValue{
-			alias: &oe.value,
-		},
-		Expression: alias,
-	}, nil
-}
-
-// for path, we want to make sure to parse "." and "[]" so that we only alias
-// item attributes, not path identifiers and list indexes
-func pathBuildList(oe OperandExpression) (aliasList, error) {
-	if oe.path == "" {
-		return aliasList{}, fmt.Errorf("pathBuildList Error: Path is empty")
-	}
-	al := aliasList{
-		NamesList: make([]string, 0),
+	ret := ExprNode{
+		names: make([]string, 0),
 	}
 
-	nameSplit := strings.Split(oe.path, ".")
-	for _, word := range nameSplit {
-		if word == "" {
-			return aliasList{}, fmt.Errorf("pathBuildList Error: Path is incomplete")
-		}
-		if string(word[len(word)-1]) == "]" {
-			for j, char := range word {
-				if string(char) == "[" {
-					word = word[:j]
-				}
-			}
-		}
-		al.NamesList = append(al.NamesList, word)
-	}
-	return al, nil
-}
-
-// we want to deduplicate names, so BuildExpression for path will search
-// aliasList.NamesList for words that need to be aliased. If the alias is not
-// found in the aliasList.NamesList, it will return an error.
-func pathBuildExpression(oe OperandExpression, al aliasList) (Expression, error) {
-	if oe.path == "" {
-		return Expression{}, fmt.Errorf("pathBuildExpression Error: Path is empty")
-	}
-
-	ret := Expression{
-		Names: make(map[string]*string),
-	}
-
-	nameSplit := strings.Split(oe.path, ".")
+	nameSplit := strings.Split(p.path, ".")
 	for i, word := range nameSplit {
 		var substr string
 		if string(word[len(word)-1]) == "]" {
@@ -226,43 +97,150 @@ func pathBuildExpression(oe OperandExpression, al aliasList) (Expression, error)
 			}
 		}
 
-		index := -1
-		for ind, val := range al.NamesList {
-			if word == val {
-				index = ind
-				break
-			}
-		}
-
-		if index == -1 {
-			return Expression{}, fmt.Errorf("pathBuildExpression could not find an alias for path")
-		}
-
-		alias := fmt.Sprintf("#%v", index)
-		ret.Names[alias] = aws.String(word)
-		ret.Expression += alias + substr
+		ret.names = append(ret.names, word)
+		ret.fmtExpr += "%p" + substr
 		if i != len(nameSplit)-1 {
-			ret.Expression += "."
+			ret.fmtExpr += "."
 		}
 	}
 	return ret, nil
 }
 
-// for size, the only difference from the pathBuildExpression should be the
-// Expression string. We will take advantage of the existing pathBuildExpression
-func sizeBuildExpression(oe OperandExpression, al aliasList) (Expression, error) {
-	expr, err := pathBuildExpression(oe, al)
+// BuildOperand will create the ExprNode which will be recursively
+// called in the BuildExpression operation
+func (v ValueBuilder) BuildOperand() (ExprNode, error) {
+	expr, err := dynamodbattribute.Marshal(v.value)
 	if err != nil {
-		return Expression{}, err
+		return ExprNode{}, err
 	}
-	expr.Expression = "size (" + expr.Expression + ")"
-	return expr, nil
+
+	ret := ExprNode{
+		values:  []dynamodb.AttributeValue{*expr},
+		fmtExpr: "%v",
+	}
+	return ret, nil
+}
+
+// BuildOperand will create the ExprNode which will be recursively
+// called in the BuildExpression operation
+func (s SizeBuilder) BuildOperand() (ExprNode, error) {
+	ret, err := s.pb.BuildOperand()
+	ret.fmtExpr = "size (" + ret.fmtExpr + ")"
+
+	return ret, err
 }
 
 // aliasList will keep track of all the names we need to alias in the nested
 // struct of conditions and operands. This will allow each alias to be unique
 // while deduplicating aliases.
 type aliasList struct {
-	NamesList  []string
-	ValuesList []dynamodb.AttributeValue
+	namesList  []string
+	valuesList []dynamodb.AttributeValue
+}
+
+// buildExpression returns an Expression with aliasing for paths/values specified
+// by aliasList
+func (en ExprNode) buildExpression(al *aliasList) (Expression, error) {
+	if al == nil {
+		return Expression{}, fmt.Errorf("buildExpression Error: aliasList is nil")
+	}
+
+	index := [3]int{}
+	expr := Expression{
+		Expression: en.fmtExpr,
+	}
+
+	for i := 0; i < len(expr.Expression); {
+		if string(expr.Expression[i]) == "%" {
+			switch string(expr.Expression[i+1]) {
+
+			case "p":
+				alias, err := aliasPath(en.names[index[0]], al)
+				if err != nil {
+					return Expression{}, err
+				}
+				expr.Expression = expr.Expression[:i] + alias + expr.Expression[i+2:]
+				if expr.Names == nil {
+					expr.Names = make(map[string]*string)
+				}
+				expr.Names[alias] = &en.names[index[0]]
+				index[0]++
+				i += len(alias)
+
+			case "v":
+				alias, err := aliasValue(en.values[index[1]], al)
+				if err != nil {
+					return Expression{}, err
+				}
+				expr.Expression = expr.Expression[:i] + alias + expr.Expression[i+2:]
+				if expr.Values == nil {
+					expr.Values = make(map[string]*dynamodb.AttributeValue)
+				}
+				expr.Values[alias] = &en.values[index[1]]
+				index[1]++
+				i += len(alias)
+
+			case "c":
+				childExpr, err := en.children[index[2]].buildExpression(al)
+				if err != nil {
+					return Expression{}, err
+				}
+				tempExpr := expr.Expression[:i] + childExpr.Expression + expr.Expression[i+2:]
+				expr = mergeExpressionMaps([]Expression{expr, childExpr})
+				expr.Expression = tempExpr
+				index[2]++
+				i += len(childExpr.Expression)
+			}
+		} else {
+			i++
+		}
+	}
+
+	return expr, nil
+}
+
+func aliasValue(dav dynamodb.AttributeValue, al *aliasList) (string, error) {
+	// for ind, attrval := range al.valuesList {
+	// 	if reflect.DeepEqual(dav, attrval) {
+	// 		return fmt.Sprintf(":%d", ind), nil
+	// 	}
+	// }
+
+	// If deduplicating, uncomment above and there should be an error message here
+	// since all the aliases should be taken care of beforehand in another tree
+	// traversal
+	al.valuesList = append(al.valuesList, dav)
+	return fmt.Sprintf(":%d", len(al.valuesList)-1), nil
+}
+
+func aliasPath(nm string, al *aliasList) (string, error) {
+	for ind, name := range al.namesList {
+		if nm == name {
+			return fmt.Sprintf("#%d", ind), nil
+		}
+	}
+	al.namesList = append(al.namesList, nm)
+	return fmt.Sprintf("#%d", len(al.namesList)-1), nil
+}
+
+func mergeExpressionMaps(lists ...[]Expression) Expression {
+	ret := Expression{}
+	for _, list := range lists {
+		for _, expr := range list {
+			for alias, name := range expr.Names {
+				if ret.Names == nil {
+					ret.Names = make(map[string]*string)
+				}
+				ret.Names[alias] = name
+			}
+
+			for alias, value := range expr.Values {
+				if ret.Values == nil {
+					ret.Values = make(map[string]*dynamodb.AttributeValue)
+				}
+				ret.Values[alias] = value
+			}
+		}
+	}
+	return ret
 }

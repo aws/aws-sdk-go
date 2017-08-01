@@ -18,231 +18,207 @@ func TestCompare(t *testing.T) {
 	cases := []struct {
 		lhs      testCompare
 		rhs      OperandBuilder
-		expected ConditionBuilder
+		mode     ConditionMode
+		expected Expression
 	}{
 		{
-			lhs: NewPath("foo.yay.cool.rad"),
-			rhs: NewPath("bar"),
-			expected: ConditionBuilder{
-				operandList: []OperandExpression{
-					OperandExpression{
-						Mode: PathOpe,
-						path: "foo.yay.cool.rad",
-					},
-					OperandExpression{
-						Mode: PathOpe,
-						path: "bar",
-					},
+			lhs:  NewPath("foo.yay.cool.rad"),
+			rhs:  NewPath("bar"),
+			mode: EqualCond,
+			expected: Expression{
+				Names: map[string]*string{
+					"#0": aws.String("foo"),
+					"#1": aws.String("yay"),
+					"#2": aws.String("cool"),
+					"#3": aws.String("rad"),
+					"#4": aws.String("bar"),
 				},
+				Expression: "(#0.#1.#2.#3) = (#4)",
 			},
 		},
 		{
-			lhs: NewPath("foo.yay.cool.rad"),
-			rhs: NewValue(5),
-			expected: ConditionBuilder{
-				operandList: []OperandExpression{
-					OperandExpression{
-						Mode: PathOpe,
-						path: "foo.yay.cool.rad",
-					},
-					OperandExpression{
-						Mode: ValueOpe,
-						value: dynamodb.AttributeValue{
-							N: aws.String("5"),
-						},
+			lhs:  NewPath("foo.yay.cool.rad"),
+			rhs:  NewValue(5),
+			mode: EqualCond,
+			expected: Expression{
+				Names: map[string]*string{
+					"#0": aws.String("foo"),
+					"#1": aws.String("yay"),
+					"#2": aws.String("cool"),
+					"#3": aws.String("rad"),
+				},
+				Values: map[string]*dynamodb.AttributeValue{
+					":0": &dynamodb.AttributeValue{
+						N: aws.String("5"),
 					},
 				},
+				Expression: "(#0.#1.#2.#3) = (:0)",
 			},
 		},
 		{
-			lhs: NewPath("foo.yay.cool.rad"),
-			rhs: NewPath("baz").Size(),
-			expected: ConditionBuilder{
-				operandList: []OperandExpression{
-					OperandExpression{
-						Mode: PathOpe,
-						path: "foo.yay.cool.rad",
-					},
-					OperandExpression{
-						Mode: SizeOpe,
-						path: "baz",
-					},
+			lhs:  NewPath("foo.yay.cool.rad"),
+			rhs:  NewPath("baz").Size(),
+			mode: EqualCond,
+			expected: Expression{
+				Names: map[string]*string{
+					"#0": aws.String("foo"),
+					"#1": aws.String("yay"),
+					"#2": aws.String("cool"),
+					"#3": aws.String("rad"),
+					"#4": aws.String("baz"),
 				},
+				Expression: "(#0.#1.#2.#3) = (size (#4))",
 			},
 		},
 		{
-			lhs: NewValue(5),
-			rhs: NewPath("bar"),
-			expected: ConditionBuilder{
-				operandList: []OperandExpression{
-					OperandExpression{
-						Mode: ValueOpe,
-						value: dynamodb.AttributeValue{
-							N: aws.String("5"),
-						},
-					},
-					OperandExpression{
-						Mode: PathOpe,
-						path: "bar",
+			lhs:  NewValue(5),
+			rhs:  NewPath("bar"),
+			mode: EqualCond,
+			expected: Expression{
+				Names: map[string]*string{
+					"#0": aws.String("bar"),
+				},
+				Values: map[string]*dynamodb.AttributeValue{
+					":0": &dynamodb.AttributeValue{
+						N: aws.String("5"),
 					},
 				},
-			},
-		},
-		{
-			lhs: NewValue(map[string]int{
-				"five": 5,
-			}),
-			rhs: NewPath("bar"),
-			expected: ConditionBuilder{
-				operandList: []OperandExpression{
-					OperandExpression{
-						Mode: ValueOpe,
-						value: dynamodb.AttributeValue{
-							M: map[string]*dynamodb.AttributeValue{
-								"five": &dynamodb.AttributeValue{
-									N: aws.String("5"),
-								},
-							},
-						},
-					},
-					OperandExpression{
-						Mode: PathOpe,
-						path: "bar",
-					},
-				},
+				Expression: "(:0) = (#0)",
 			},
 		},
 		{
 			lhs: NewValue(map[string]int{
 				"five": 5,
 			}),
-			rhs: NewValue(5),
-			expected: ConditionBuilder{
-				operandList: []OperandExpression{
-					OperandExpression{
-						Mode: ValueOpe,
-						value: dynamodb.AttributeValue{
-							M: map[string]*dynamodb.AttributeValue{
-								"five": &dynamodb.AttributeValue{
-									N: aws.String("5"),
-								},
+			rhs:  NewPath("bar"),
+			mode: EqualCond,
+			expected: Expression{
+				Names: map[string]*string{
+					"#0": aws.String("bar"),
+				},
+				Values: map[string]*dynamodb.AttributeValue{
+					":0": &dynamodb.AttributeValue{
+						M: map[string]*dynamodb.AttributeValue{
+							"five": &dynamodb.AttributeValue{
+								N: aws.String("5"),
 							},
 						},
 					},
-					OperandExpression{
-						Mode: ValueOpe,
-						value: dynamodb.AttributeValue{
-							N: aws.String("5"),
-						},
-					},
 				},
+				Expression: "(:0) = (#0)",
 			},
 		},
 		{
 			lhs: NewValue(map[string]int{
 				"five": 5,
 			}),
-			rhs: NewPath("baz").Size(),
-			expected: ConditionBuilder{
-				operandList: []OperandExpression{
-					OperandExpression{
-						Mode: ValueOpe,
-						value: dynamodb.AttributeValue{
-							M: map[string]*dynamodb.AttributeValue{
-								"five": &dynamodb.AttributeValue{
-									N: aws.String("5"),
-								},
+			rhs:  NewValue(5),
+			mode: EqualCond,
+			expected: Expression{
+				Values: map[string]*dynamodb.AttributeValue{
+					":0": &dynamodb.AttributeValue{
+						M: map[string]*dynamodb.AttributeValue{
+							"five": &dynamodb.AttributeValue{
+								N: aws.String("5"),
 							},
 						},
 					},
-					OperandExpression{
-						Mode: SizeOpe,
-						path: "baz",
+					":1": &dynamodb.AttributeValue{
+						N: aws.String("5"),
 					},
 				},
+				Expression: "(:0) = (:1)",
 			},
 		},
 		{
-			lhs: NewPath("foo[1]").Size(),
-			rhs: NewPath("bar"),
-			expected: ConditionBuilder{
-				operandList: []OperandExpression{
-					OperandExpression{
-						Mode: SizeOpe,
-						path: "foo[1]",
-					},
-					OperandExpression{
-						Mode: PathOpe,
-						path: "bar",
-					},
-				},
-			},
-		},
-		{
-			lhs: NewPath("foo[1]").Size(),
-			rhs: NewValue(5),
-			expected: ConditionBuilder{
-				operandList: []OperandExpression{
-					OperandExpression{
-						Mode: SizeOpe,
-						path: "foo[1]",
-					},
-					OperandExpression{
-						Mode: ValueOpe,
-						value: dynamodb.AttributeValue{
-							N: aws.String("5"),
+			lhs: NewValue(map[string]int{
+				"five": 5,
+			}),
+			rhs:  NewPath("baz").Size(),
+			mode: EqualCond,
+			expected: Expression{
+				Values: map[string]*dynamodb.AttributeValue{
+					":0": &dynamodb.AttributeValue{
+						M: map[string]*dynamodb.AttributeValue{
+							"five": &dynamodb.AttributeValue{
+								N: aws.String("5"),
+							},
 						},
 					},
 				},
+				Names: map[string]*string{
+					"#0": aws.String("baz"),
+				},
+				Expression: "(:0) = (size (#0))",
 			},
 		},
 		{
-			lhs: NewPath("foo[1]").Size(),
-			rhs: NewPath("baz").Size(),
-			expected: ConditionBuilder{
-				operandList: []OperandExpression{
-					OperandExpression{
-						Mode: SizeOpe,
-						path: "foo[1]",
-					},
-					OperandExpression{
-						Mode: SizeOpe,
-						path: "baz",
-					},
+			lhs:  NewPath("foo[1]").Size(),
+			rhs:  NewPath("bar"),
+			mode: EqualCond,
+			expected: Expression{
+				Names: map[string]*string{
+					"#0": aws.String("foo"),
+					"#1": aws.String("bar"),
 				},
+				Expression: "(size (#0[1])) = (#1)",
 			},
 		},
 		{
-			lhs: NewPath("foo.bar.baz").Size(),
-			rhs: NewPath("bar.qux.foo").Size(),
-			expected: ConditionBuilder{
-				operandList: []OperandExpression{
-					OperandExpression{
-						Mode: SizeOpe,
-						path: "foo.bar.baz",
-					},
-					OperandExpression{
-						Mode: SizeOpe,
-						path: "bar.qux.foo",
+			lhs:  NewPath("foo[1]").Size(),
+			rhs:  NewValue(5),
+			mode: EqualCond,
+			expected: Expression{
+				Names: map[string]*string{
+					"#0": aws.String("foo"),
+				},
+				Values: map[string]*dynamodb.AttributeValue{
+					":0": &dynamodb.AttributeValue{
+						N: aws.String("5"),
 					},
 				},
+				Expression: "(size (#0[1])) = (:0)",
+			},
+		},
+		{
+			lhs:  NewPath("foo[1]").Size(),
+			rhs:  NewPath("baz").Size(),
+			mode: EqualCond,
+			expected: Expression{
+				Names: map[string]*string{
+					"#0": aws.String("foo"),
+					"#1": aws.String("baz"),
+				},
+				Expression: "(size (#0[1])) = (size (#1))",
+			},
+		},
+		{
+			lhs:  NewPath("foo.bar.baz").Size(),
+			rhs:  NewPath("bar.qux.foo").Size(),
+			mode: EqualCond,
+			expected: Expression{
+				Names: map[string]*string{
+					"#0": aws.String("foo"),
+					"#1": aws.String("bar"),
+					"#2": aws.String("baz"),
+					"#3": aws.String("qux"),
+				},
+				Expression: "(size (#0.#1.#2)) = (size (#1.#3.#0))",
 			},
 		},
 	}
 	for testNumber, c := range cases {
-
-		c.expected.Mode = EqualCond
-		expr, err := c.lhs.Equal(c.rhs).BuildCondition()
+		exprNode, err := c.lhs.Equal(c.rhs).buildCondition()
 		if err != nil {
 			t.Errorf("TestEquals Test Number %#v: Unexpected Error %#v", testNumber, err)
 		}
-		expected, err := c.expected.BuildCondition()
+		expr, err := exprNode.buildExpression(&aliasList{})
 		if err != nil {
 			t.Errorf("TestEquals Test Number %#v: Unexpected Error %#v", testNumber, err)
 		}
 
-		if reflect.DeepEqual(expr, expected) != true {
-			t.Errorf("TestEquals Test Number %#v: Expected %#v, got %#v", testNumber, expected, expr)
+		if reflect.DeepEqual(expr, c.expected) != true {
+			t.Errorf("TestEquals Test Number %#v: Expected %#v, got %#v", testNumber, c.expected, expr)
 		}
 
 	}
@@ -251,28 +227,14 @@ func TestCompare(t *testing.T) {
 func TestBuildCondition(t *testing.T) {
 	cases := []struct {
 		input                 ConditionBuilder
-		expected              Expression
+		expected              ExprNode
 		buildListOperandError bool
 		noMatchError          bool
 		operandNumberError    bool
 		conditionNumberError  bool
 	}{
 		{
-			input: ConditionBuilder{
-				operandList: []OperandExpression{
-					OperandExpression{
-						Mode: PathOpe,
-						path: "",
-					},
-				},
-			},
-			expected:              Expression{},
-			buildListOperandError: true,
-		},
-		{
-			input: ConditionBuilder{
-				Mode: 0,
-			},
+			input:        ConditionBuilder{},
 			noMatchError: true,
 		},
 		{
@@ -293,7 +255,7 @@ func TestBuildCondition(t *testing.T) {
 	}
 
 	for testNumber, c := range cases {
-		expr, err := c.input.BuildCondition()
+		expr, err := c.input.buildCondition()
 
 		if c.buildListOperandError {
 			if err == nil {

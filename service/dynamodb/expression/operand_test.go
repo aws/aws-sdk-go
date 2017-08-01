@@ -8,103 +8,185 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
-func TestBuildList(t *testing.T) {
+func TestBuildOperand(t *testing.T) {
 	cases := []struct {
-		input               OperandBuilder
-		expected            aliasList
-		incompletePathError bool
-		emptyPathError      bool
+		input          OperandBuilder
+		expected       ExprNode
+		emptyPathError bool
+		// alError        bool
 	}{
 		{
 			input: NewPath("foo"),
-			expected: aliasList{
-				NamesList: []string{
-					"foo",
-				},
-				ValuesList: nil,
+			expected: ExprNode{
+				names:   []string{"foo"},
+				fmtExpr: "%p",
+			},
+		},
+		{
+			input: NewPath("foo.foo"),
+			expected: ExprNode{
+				names:   []string{"foo", "foo"},
+				fmtExpr: "%p.%p",
 			},
 		},
 		{
 			input: NewValue(5),
-			expected: aliasList{
-				NamesList:  nil,
-				ValuesList: nil,
+			expected: ExprNode{
+				values: []dynamodb.AttributeValue{
+					dynamodb.AttributeValue{
+						N: aws.String("5"),
+					},
+				},
+				fmtExpr: "%v",
 			},
 		},
 		{
-			input: NewPath("foo.bar[7].baz"),
-			expected: aliasList{
-				NamesList: []string{
-					"foo",
-					"bar",
-					"baz",
-				},
-				ValuesList: nil,
+			input: NewPath("foo.bar"),
+			expected: ExprNode{
+				names:   []string{"foo", "bar"},
+				fmtExpr: "%p.%p",
+			},
+		},
+		{
+			input: NewPath("foo.bar[0].baz"),
+			expected: ExprNode{
+				names:   []string{"foo", "bar", "baz"},
+				fmtExpr: "%p.%p[0].%p",
+			},
+		},
+		{
+			input: NewPath("foo").Size(),
+			expected: ExprNode{
+				names:   []string{"foo"},
+				fmtExpr: "size (%p)",
 			},
 		},
 		{
 			input:          NewPath(""),
-			expected:       aliasList{},
+			expected:       ExprNode{},
 			emptyPathError: true,
-		},
-		{
-			input:               NewPath("foo..bar"),
-			expected:            aliasList{},
-			incompletePathError: true,
-		},
-		{
-			input: NewPath("foo").Size(),
-			expected: aliasList{
-				NamesList: []string{
-					"foo",
-				},
-				ValuesList: nil,
-			},
 		},
 	}
 
 	for testNumber, c := range cases {
-		oe, err := c.input.BuildOperand()
-		if err != nil {
-			t.Errorf("TestBuildList Test Number %#v: Unexpected Error %#v", testNumber, err)
-		}
-
-		al, err := oe.buildList()
+		en, err := c.input.BuildOperand()
 
 		if c.emptyPathError {
 			if err == nil {
-				t.Errorf("TestBuildList Test Number %#v: Expected empty path error but got no error", testNumber)
-			} else {
-				continue
-			}
-		}
-		if c.incompletePathError {
-			if err == nil {
-				t.Errorf("TestBuildList Test Number %#v: Expected incomplete path error but got no error", testNumber)
+				t.Errorf("TestBuildOperand Test Number %#v: Expected Error", testNumber)
 			} else {
 				continue
 			}
 		}
 
 		if err != nil {
-			t.Errorf("TestBuildList Test Number %#v: Unexpected Error %#v", testNumber, err)
+			t.Errorf("TestBuildOperand Test Number %#v: Unexpected Error %#v", testNumber, err)
 		}
 
-		if reflect.DeepEqual(al, c.expected) != true {
-			t.Errorf("TestBuildList Test Number %#v: Expected %#v, got %#v", testNumber, c.expected, al)
+		if reflect.DeepEqual(c.expected, en) == false {
+			t.Errorf("TestBuildOperand Test Number %#v: Got %#v, expected %#v\n", testNumber, en, c.expected)
 		}
 	}
 }
 
+// func TestBuildList(t *testing.T) {
+// 	cases := []struct {
+// 		input               OperandBuilder
+// 		expected            aliasList
+// 		incompletePathError bool
+// 		emptyPathError      bool
+// 	}{
+// 		{
+// 			input: NewPath("foo"),
+// 			expected: aliasList{
+// 				NamesList: []string{
+// 					"foo",
+// 				},
+// 				ValuesList: nil,
+// 			},
+// 		},
+// 		{
+// 			input: NewValue(5),
+// 			expected: aliasList{
+// 				NamesList:  nil,
+// 				ValuesList: nil,
+// 			},
+// 		},
+// 		{
+// 			input: NewPath("foo.bar[7].baz"),
+// 			expected: aliasList{
+// 				NamesList: []string{
+// 					"foo",
+// 					"bar",
+// 					"baz",
+// 				},
+// 				ValuesList: nil,
+// 			},
+// 		},
+// 		{
+// 			input:          NewPath(""),
+// 			expected:       aliasList{},
+// 			emptyPathError: true,
+// 		},
+// 		{
+// 			input:               NewPath("foo..bar"),
+// 			expected:            aliasList{},
+// 			incompletePathError: true,
+// 		},
+// 		{
+// 			input: NewPath("foo").Size(),
+// 			expected: aliasList{
+// 				NamesList: []string{
+// 					"foo",
+// 				},
+// 				ValuesList: nil,
+// 			},
+// 		},
+// 	}
+//
+// 	for testNumber, c := range cases {
+// 		oe, err := c.input.BuildOperand()
+// 		if err != nil {
+// 			t.Errorf("TestBuildList Test Number %#v: Unexpected Error %#v", testNumber, err)
+// 		}
+//
+// 		al, err := oe.buildList()
+//
+// 		if c.emptyPathError {
+// 			if err == nil {
+// 				t.Errorf("TestBuildList Test Number %#v: Expected empty path error but got no error", testNumber)
+// 			} else {
+// 				continue
+// 			}
+// 		}
+// 		if c.incompletePathError {
+// 			if err == nil {
+// 				t.Errorf("TestBuildList Test Number %#v: Expected incomplete path error but got no error", testNumber)
+// 			} else {
+// 				continue
+// 			}
+// 		}
+//
+// 		if err != nil {
+// 			t.Errorf("TestBuildList Test Number %#v: Unexpected Error %#v", testNumber, err)
+// 		}
+//
+// 		if reflect.DeepEqual(al, c.expected) != true {
+// 			t.Errorf("TestBuildList Test Number %#v: Expected %#v, got %#v", testNumber, c.expected, al)
+// 		}
+// 	}
+// }
+
 func TestBuildExpression(t *testing.T) {
 	cases := []struct {
-		input          OperandBuilder
-		expected       Expression
-		emptyPathError bool
-		alError        bool
+		input    ExprNode
+		expected Expression
 	}{
 		{
-			input: NewPath("foo"),
+			input: ExprNode{
+				names:   []string{"foo"},
+				fmtExpr: "%p",
+			},
 			expected: Expression{
 				Names: map[string]*string{
 					"#0": aws.String("foo"),
@@ -113,7 +195,14 @@ func TestBuildExpression(t *testing.T) {
 			},
 		},
 		{
-			input: NewValue(5),
+			input: ExprNode{
+				values: []dynamodb.AttributeValue{
+					dynamodb.AttributeValue{
+						N: aws.String("5"),
+					},
+				},
+				fmtExpr: "%v",
+			},
 			expected: Expression{
 				Values: map[string]*dynamodb.AttributeValue{
 					":0": &dynamodb.AttributeValue{
@@ -124,7 +213,10 @@ func TestBuildExpression(t *testing.T) {
 			},
 		},
 		{
-			input: NewPath("foo.bar"),
+			input: ExprNode{
+				names:   []string{"foo", "bar"},
+				fmtExpr: "%p.%p",
+			},
 			expected: Expression{
 				Names: map[string]*string{
 					"#0": aws.String("foo"),
@@ -134,7 +226,10 @@ func TestBuildExpression(t *testing.T) {
 			},
 		},
 		{
-			input: NewPath("foo.bar[0].baz"),
+			input: ExprNode{
+				names:   []string{"foo", "bar", "baz"},
+				fmtExpr: "%p.%p[0].%p",
+			},
 			expected: Expression{
 				Names: map[string]*string{
 					"#0": aws.String("foo"),
@@ -145,7 +240,10 @@ func TestBuildExpression(t *testing.T) {
 			},
 		},
 		{
-			input: NewPath("foo").Size(),
+			input: ExprNode{
+				names:   []string{"foo"},
+				fmtExpr: "size (%p)",
+			},
 			expected: Expression{
 				Names: map[string]*string{
 					"#0": aws.String("foo"),
@@ -154,70 +252,73 @@ func TestBuildExpression(t *testing.T) {
 			},
 		},
 		{
-			input:          NewPath(""),
-			expected:       Expression{},
-			emptyPathError: true,
+			input: ExprNode{
+				names:   []string{"foo"},
+				fmtExpr: "size (%p)",
+			},
+			expected: Expression{
+				Names: map[string]*string{
+					"#0": aws.String("foo"),
+				},
+				Expression: "size (#0)",
+			},
 		},
 		{
-			input:    NewPath("foo"),
-			expected: Expression{},
-			alError:  true,
+			input: ExprNode{
+				names:   []string{"foo", "foo"},
+				fmtExpr: "%p.%p",
+			},
+			expected: Expression{
+				Names: map[string]*string{
+					"#0": aws.String("foo"),
+				},
+				Expression: "#0.#0",
+			},
 		},
 		{
-			input:    NewPath("foo").Size(),
+			input: ExprNode{
+				children: []ExprNode{
+					ExprNode{
+						names:   []string{"foo"},
+						fmtExpr: "%p",
+					},
+					ExprNode{
+						values: []dynamodb.AttributeValue{
+							dynamodb.AttributeValue{
+								N: aws.String("5"),
+							},
+						},
+						fmtExpr: "%v",
+					},
+				},
+				fmtExpr: "%c = %c",
+			},
+			expected: Expression{
+				Names: map[string]*string{
+					"#0": aws.String("foo"),
+				},
+				Values: map[string]*dynamodb.AttributeValue{
+					":0": &dynamodb.AttributeValue{
+						N: aws.String("5"),
+					},
+				},
+				Expression: "#0 = :0",
+			},
+		},
+		{
+			input:    ExprNode{},
 			expected: Expression{},
-			alError:  true,
 		},
 	}
 
 	for testNumber, c := range cases {
-		oe, err := c.input.BuildOperand()
-		if err != nil {
-			t.Error(err)
-		}
-
-		al, err := oe.buildList()
-
-		if c.emptyPathError {
-			if err == nil {
-				t.Errorf("TestBuildExpression Test Number %#v: Expected counter error but got no error", testNumber)
-			} else {
-				continue
-			}
-		}
-
-		if err != nil {
-			t.Error(err)
-		}
-
-		if c.alError {
-			al.NamesList = al.NamesList[1:]
-		}
-
-		operand, err := oe.buildExpression(al)
-
-		if c.alError {
-			if err == nil {
-				t.Errorf("TestBuildExpression Test Number %#v: Expected List error but got no error", testNumber)
-			} else {
-				continue
-			}
-		}
-
+		expr, err := c.input.buildExpression(&aliasList{})
 		if err != nil {
 			t.Errorf("TestBuildExpression Test Number %#v: Unexpected Error %#v", testNumber, err)
 		}
 
-		if operand.Expression != c.expected.Expression {
-			t.Errorf("TestBuildExpression Test Number %#v: BuildOperand returned an unexpected Expression string %#v, expected %#v\n", testNumber, operand.Expression, c.expected.Expression)
-		}
-
-		if reflect.DeepEqual(c.expected.Names, operand.Names) != true {
-			t.Errorf("TestBuildExpression Test Number %#v: BuildOperand returned an unexpected Name Map %#v, expected %#v\n", testNumber, operand.Names, c.expected.Names)
-		}
-
-		if reflect.DeepEqual(c.expected.Values, operand.Values) != true {
-			t.Errorf("TestBuildExpression Test Number %#v: BuildOperand returned an unexpected Name Map %#v, expected %#v\n", testNumber, operand.Values, c.expected.Values)
+		if reflect.DeepEqual(expr, c.expected) != true {
+			t.Errorf("TestBuildExpression Test Number %#v: Expected %#v, got %#v", testNumber, c.expected, expr)
 		}
 	}
 }
