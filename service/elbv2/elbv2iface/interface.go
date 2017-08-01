@@ -201,6 +201,12 @@ type ELBV2API interface {
 
 	WaitUntilLoadBalancersDeleted(*elbv2.DescribeLoadBalancersInput) error
 	WaitUntilLoadBalancersDeletedWithContext(aws.Context, *elbv2.DescribeLoadBalancersInput, ...request.WaiterOption) error
+
+	WaitUntilTargetDeregistered(*elbv2.DescribeTargetHealthInput) error
+	WaitUntilTargetDeregisteredWithContext(aws.Context, *elbv2.DescribeTargetHealthInput, ...request.WaiterOption) error
+
+	WaitUntilTargetInService(*elbv2.DescribeTargetHealthInput) error
+	WaitUntilTargetInServiceWithContext(aws.Context, *elbv2.DescribeTargetHealthInput, ...request.WaiterOption) error
 }
 
 var _ ELBV2API = (*elbv2.ELBV2)(nil)

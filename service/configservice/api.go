@@ -1538,6 +1538,126 @@ func (c *ConfigService) GetComplianceSummaryByResourceTypeWithContext(ctx aws.Co
 	return out, req.Send()
 }
 
+const opGetDiscoveredResourceCounts = "GetDiscoveredResourceCounts"
+
+// GetDiscoveredResourceCountsRequest generates a "aws/request.Request" representing the
+// client's request for the GetDiscoveredResourceCounts operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See GetDiscoveredResourceCounts for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetDiscoveredResourceCounts method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetDiscoveredResourceCountsRequest method.
+//    req, resp := client.GetDiscoveredResourceCountsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetDiscoveredResourceCounts
+func (c *ConfigService) GetDiscoveredResourceCountsRequest(input *GetDiscoveredResourceCountsInput) (req *request.Request, output *GetDiscoveredResourceCountsOutput) {
+	op := &request.Operation{
+		Name:       opGetDiscoveredResourceCounts,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetDiscoveredResourceCountsInput{}
+	}
+
+	output = &GetDiscoveredResourceCountsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDiscoveredResourceCounts API operation for AWS Config.
+//
+// Returns the resource types, the number of each resource type, and the total
+// number of resources that AWS Config is recording in this region for your
+// AWS account.
+//
+// Example
+//
+// AWS Config is recording three resource types in the US East (Ohio) Region
+// for your account: 25 EC2 instances, 20 IAM users, and 15 S3 buckets.
+//
+// You make a call to the GetDiscoveredResourceCounts action and specify that
+// you want all resource types.
+//
+// AWS Config returns the following:
+//
+// The resource types (EC2 instances, IAM users, and S3 buckets)
+//
+// The number of each resource type (25, 20, and 15)
+//
+// The total number of all resources (60)
+//
+// The response is paginated. By default, AWS Config lists 100 ResourceCount
+// objects on each page. You can customize this number with the limit parameter.
+// The response includes a nextToken string. To get the next page of results,
+// run the request again and specify the string for the nextToken parameter.
+//
+// If you make a call to the GetDiscoveredResourceCounts action, you may not
+// immediately receive resource counts in the following situations:
+//
+// You are a new AWS Config customer
+//
+// You just enabled resource recording
+//
+// It may take a few minutes for AWS Config to record and count your resources.
+// Wait a few minutes and then retry the GetDiscoveredResourceCounts action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation GetDiscoveredResourceCounts for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeValidationException "ValidationException"
+//   The requested action is not valid.
+//
+//   * ErrCodeInvalidLimitException "InvalidLimitException"
+//   The specified limit is outside the allowable range.
+//
+//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   The specified next token is invalid. Specify the NextToken string that was
+//   returned in the previous response to get the next page of results.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetDiscoveredResourceCounts
+func (c *ConfigService) GetDiscoveredResourceCounts(input *GetDiscoveredResourceCountsInput) (*GetDiscoveredResourceCountsOutput, error) {
+	req, out := c.GetDiscoveredResourceCountsRequest(input)
+	return out, req.Send()
+}
+
+// GetDiscoveredResourceCountsWithContext is the same as GetDiscoveredResourceCounts with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDiscoveredResourceCounts for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) GetDiscoveredResourceCountsWithContext(ctx aws.Context, input *GetDiscoveredResourceCountsInput, opts ...request.Option) (*GetDiscoveredResourceCountsOutput, error) {
+	req, out := c.GetDiscoveredResourceCountsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetResourceConfigHistory = "GetResourceConfigHistory"
 
 // GetResourceConfigHistoryRequest generates a "aws/request.Request" representing the
@@ -1593,11 +1713,10 @@ func (c *ConfigService) GetResourceConfigHistoryRequest(input *GetResourceConfig
 // contains details about each state of the resource during the specified time
 // interval.
 //
-// The response is paginated, and by default, AWS Config returns a limit of
-// 10 configuration items per page. You can customize this number with the limit
-// parameter. The response includes a nextToken string, and to get the next
-// page of results, run the request again and enter this string for the nextToken
-// parameter.
+// The response is paginated. By default, AWS Config returns a limit of 10 configuration
+// items per page. You can customize this number with the limit parameter. The
+// response includes a nextToken string. To get the next page of results, run
+// the request again and specify the string for the nextToken parameter.
 //
 // Each call to the API is limited to span a duration of seven days. It is likely
 // that the number of records returned is smaller than the specified limit.
@@ -1759,10 +1878,10 @@ func (c *ConfigService) ListDiscoveredResourcesRequest(input *ListDiscoveredReso
 // You can specify either resource IDs or a resource name but not both in the
 // same request.
 //
-// The response is paginated, and by default AWS Config lists 100 resource identifiers
+// The response is paginated. By default, AWS Config lists 100 resource identifiers
 // on each page. You can customize this number with the limit parameter. The
-// response includes a nextToken string, and to get the next page of results,
-// run the request again and enter this string for the nextToken parameter.
+// response includes a nextToken string. To get the next page of results, run
+// the request again and specify the string for the nextToken parameter.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5232,6 +5351,117 @@ func (s *GetComplianceSummaryByResourceTypeOutput) SetComplianceSummariesByResou
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetDiscoveredResourceCountsRequest
+type GetDiscoveredResourceCountsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of ResourceCount objects returned on each page. The default
+	// is 100. You cannot specify a limit greater than 100. If you specify 0, AWS
+	// Config uses the default.
+	Limit *int64 `locationName:"limit" type:"integer"`
+
+	// The nextToken string returned on a previous page that you use to get the
+	// next page of results in a paginated response.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The comma-separated list that specifies the resource types that you want
+	// the AWS Config to return. For example, ("AWS::EC2::Instance", "AWS::IAM::User").
+	//
+	// If a value for resourceTypes is not specified, AWS Config returns all resource
+	// types that AWS Config is recording in the region for your account.
+	//
+	// If the configuration recorder is turned off, AWS Config returns an empty
+	// list of ResourceCount objects. If the configuration recorder is not recording
+	// a specific resource type (for example, S3 buckets), that resource type is
+	// not returned in the list of ResourceCount objects.
+	ResourceTypes []*string `locationName:"resourceTypes" type:"list"`
+}
+
+// String returns the string representation
+func (s GetDiscoveredResourceCountsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetDiscoveredResourceCountsInput) GoString() string {
+	return s.String()
+}
+
+// SetLimit sets the Limit field's value.
+func (s *GetDiscoveredResourceCountsInput) SetLimit(v int64) *GetDiscoveredResourceCountsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetDiscoveredResourceCountsInput) SetNextToken(v string) *GetDiscoveredResourceCountsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceTypes sets the ResourceTypes field's value.
+func (s *GetDiscoveredResourceCountsInput) SetResourceTypes(v []*string) *GetDiscoveredResourceCountsInput {
+	s.ResourceTypes = v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetDiscoveredResourceCountsResponse
+type GetDiscoveredResourceCountsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The string that you use in a subsequent request to get the next page of results
+	// in a paginated response.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The list of ResourceCount objects. Each object is listed in descending order
+	// by the number of resources.
+	ResourceCounts []*ResourceCount `locationName:"resourceCounts" type:"list"`
+
+	// The total number of resources that AWS Config is recording in the region
+	// for your account. If you specify resource types in the request, AWS Config
+	// returns only the total number of resources for those resource types.
+	//
+	// Example
+	//
+	// AWS Config is recording three resource types in the US East (Ohio) Region
+	// for your account: 25 EC2 instances, 20 IAM users, and 15 S3 buckets, for
+	// a total of 60 resources.
+	//
+	// You make a call to the GetDiscoveredResourceCounts action and specify the
+	// resource type, "AWS::EC2::Instances" in the request.
+	//
+	// AWS Config returns 25 for totalDiscoveredResources.
+	TotalDiscoveredResources *int64 `locationName:"totalDiscoveredResources" type:"long"`
+}
+
+// String returns the string representation
+func (s GetDiscoveredResourceCountsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetDiscoveredResourceCountsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetDiscoveredResourceCountsOutput) SetNextToken(v string) *GetDiscoveredResourceCountsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceCounts sets the ResourceCounts field's value.
+func (s *GetDiscoveredResourceCountsOutput) SetResourceCounts(v []*ResourceCount) *GetDiscoveredResourceCountsOutput {
+	s.ResourceCounts = v
+	return s
+}
+
+// SetTotalDiscoveredResources sets the TotalDiscoveredResources field's value.
+func (s *GetDiscoveredResourceCountsOutput) SetTotalDiscoveredResources(v int64) *GetDiscoveredResourceCountsOutput {
+	s.TotalDiscoveredResources = &v
+	return s
+}
+
 // The input for the GetResourceConfigHistory action.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetResourceConfigHistoryRequest
 type GetResourceConfigHistoryInput struct {
@@ -5935,6 +6165,40 @@ func (s *Relationship) SetResourceType(v string) *Relationship {
 	return s
 }
 
+// An object that contains the resource type and the number of resources.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/ResourceCount
+type ResourceCount struct {
+	_ struct{} `type:"structure"`
+
+	// The number of resources.
+	Count *int64 `locationName:"count" type:"long"`
+
+	// The resource type, for example "AWS::EC2::Instance".
+	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
+}
+
+// String returns the string representation
+func (s ResourceCount) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceCount) GoString() string {
+	return s.String()
+}
+
+// SetCount sets the Count field's value.
+func (s *ResourceCount) SetCount(v int64) *ResourceCount {
+	s.Count = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ResourceCount) SetResourceType(v string) *ResourceCount {
+	s.ResourceType = &v
+	return s
+}
+
 // The details that identify a resource that is discovered by AWS Config, including
 // the resource type, ID, and (if available) the custom resource name.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/ResourceIdentifier
@@ -6091,7 +6355,7 @@ type Source struct {
 	// AWS Managed Config Rules (http://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html).
 	//
 	// For custom rules, the identifier is the Amazon Resource Name (ARN) of the
-	// rule's AWS Lambda function, such as arn:aws:lambda:us-east-1:123456789012:function:custom_rule_name.
+	// rule's AWS Lambda function, such as arn:aws:lambda:us-east-2:123456789012:function:custom_rule_name.
 	//
 	// SourceIdentifier is a required field
 	SourceIdentifier *string `min:"1" type:"string" required:"true"`
@@ -6608,4 +6872,7 @@ const (
 
 	// ResourceTypeAwsCloudWatchAlarm is a ResourceType enum value
 	ResourceTypeAwsCloudWatchAlarm = "AWS::CloudWatch::Alarm"
+
+	// ResourceTypeAwsCloudFormationStack is a ResourceType enum value
+	ResourceTypeAwsCloudFormationStack = "AWS::CloudFormation::Stack"
 )

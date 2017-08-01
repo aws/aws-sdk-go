@@ -1230,6 +1230,18 @@ func (c *CodeDeploy) CreateDeploymentGroupRequest(input *CreateDeploymentGroupIn
 //   invalid format. For information about deployment configuration format, see
 //   CreateDeploymentConfig.
 //
+//   * ErrCodeInvalidEC2TagCombinationException "InvalidEC2TagCombinationException"
+//   A call was submitted that specified both Ec2TagFilters and Ec2TagSet, but
+//   only one of these data types can be used in a single call.
+//
+//   * ErrCodeInvalidOnPremisesTagCombinationException "InvalidOnPremisesTagCombinationException"
+//   A call was submitted that specified both OnPremisesTagFilters and OnPremisesTagSet,
+//   but only one of these data types can be used in a single call.
+//
+//   * ErrCodeTagSetListLimitExceededException "TagSetListLimitExceededException"
+//   The number of tag groups included in the tag set list exceeded the maximum
+//   allowed limit of 3.
+//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/CreateDeploymentGroup
 func (c *CodeDeploy) CreateDeploymentGroup(input *CreateDeploymentGroupInput) (*CreateDeploymentGroupOutput, error) {
 	req, out := c.CreateDeploymentGroupRequest(input)
@@ -4050,6 +4062,18 @@ func (c *CodeDeploy) UpdateDeploymentGroupRequest(input *UpdateDeploymentGroupIn
 //   invalid format. For information about deployment configuration format, see
 //   CreateDeploymentConfig.
 //
+//   * ErrCodeInvalidEC2TagCombinationException "InvalidEC2TagCombinationException"
+//   A call was submitted that specified both Ec2TagFilters and Ec2TagSet, but
+//   only one of these data types can be used in a single call.
+//
+//   * ErrCodeInvalidOnPremisesTagCombinationException "InvalidOnPremisesTagCombinationException"
+//   A call was submitted that specified both OnPremisesTagFilters and OnPremisesTagSet,
+//   but only one of these data types can be used in a single call.
+//
+//   * ErrCodeTagSetListLimitExceededException "TagSetListLimitExceededException"
+//   The number of tag groups included in the tag set list exceeded the maximum
+//   allowed limit of 3.
+//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/UpdateDeploymentGroup
 func (c *CodeDeploy) UpdateDeploymentGroup(input *UpdateDeploymentGroupInput) (*UpdateDeploymentGroupOutput, error) {
 	req, out := c.UpdateDeploymentGroupRequest(input)
@@ -5125,15 +5149,27 @@ type CreateDeploymentGroupInput struct {
 	DeploymentStyle *DeploymentStyle `locationName:"deploymentStyle" type:"structure"`
 
 	// The Amazon EC2 tags on which to filter. The deployment group will include
-	// EC2 instances with any of the specified tags.
+	// EC2 instances with any of the specified tags. Cannot be used in the same
+	// call as ec2TagSet.
 	Ec2TagFilters []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
+
+	// Information about groups of tags applied to EC2 instances. The deployment
+	// group will include only EC2 instances identified by all the tag groups. Cannot
+	// be used in the same call as ec2TagFilters.
+	Ec2TagSet *EC2TagSet `locationName:"ec2TagSet" type:"structure"`
 
 	// Information about the load balancer used in a deployment.
 	LoadBalancerInfo *LoadBalancerInfo `locationName:"loadBalancerInfo" type:"structure"`
 
 	// The on-premises instance tags on which to filter. The deployment group will
-	// include on-premises instances with any of the specified tags.
+	// include on-premises instances with any of the specified tags. Cannot be used
+	// in the same call as OnPremisesTagSet.
 	OnPremisesInstanceTagFilters []*TagFilter `locationName:"onPremisesInstanceTagFilters" type:"list"`
+
+	// Information about groups of tags applied to on-premises instances. The deployment
+	// group will include only on-premises instances identified by all the tag groups.
+	// Cannot be used in the same call as onPremisesInstanceTagFilters.
+	OnPremisesTagSet *OnPremisesTagSet `locationName:"onPremisesTagSet" type:"structure"`
 
 	// A service role ARN that allows AWS CodeDeploy to act on the user's behalf
 	// when interacting with AWS services.
@@ -5239,6 +5275,12 @@ func (s *CreateDeploymentGroupInput) SetEc2TagFilters(v []*EC2TagFilter) *Create
 	return s
 }
 
+// SetEc2TagSet sets the Ec2TagSet field's value.
+func (s *CreateDeploymentGroupInput) SetEc2TagSet(v *EC2TagSet) *CreateDeploymentGroupInput {
+	s.Ec2TagSet = v
+	return s
+}
+
 // SetLoadBalancerInfo sets the LoadBalancerInfo field's value.
 func (s *CreateDeploymentGroupInput) SetLoadBalancerInfo(v *LoadBalancerInfo) *CreateDeploymentGroupInput {
 	s.LoadBalancerInfo = v
@@ -5248,6 +5290,12 @@ func (s *CreateDeploymentGroupInput) SetLoadBalancerInfo(v *LoadBalancerInfo) *C
 // SetOnPremisesInstanceTagFilters sets the OnPremisesInstanceTagFilters field's value.
 func (s *CreateDeploymentGroupInput) SetOnPremisesInstanceTagFilters(v []*TagFilter) *CreateDeploymentGroupInput {
 	s.OnPremisesInstanceTagFilters = v
+	return s
+}
+
+// SetOnPremisesTagSet sets the OnPremisesTagSet field's value.
+func (s *CreateDeploymentGroupInput) SetOnPremisesTagSet(v *OnPremisesTagSet) *CreateDeploymentGroupInput {
+	s.OnPremisesTagSet = v
 	return s
 }
 
@@ -5768,8 +5816,14 @@ type DeploymentGroupInfo struct {
 	// you want to run and whether to route deployment traffic behind a load balancer.
 	DeploymentStyle *DeploymentStyle `locationName:"deploymentStyle" type:"structure"`
 
-	// The Amazon EC2 tags on which to filter.
+	// The Amazon EC2 tags on which to filter. The deployment group includes EC2
+	// instances with any of the specified tags.
 	Ec2TagFilters []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
+
+	// Information about groups of tags applied to an EC2 instance. The deployment
+	// group includes only EC2 instances identified by all the tag groups. Cannot
+	// be used in the same call as ec2TagFilters.
+	Ec2TagSet *EC2TagSet `locationName:"ec2TagSet" type:"structure"`
 
 	// Information about the most recent attempted deployment to the deployment
 	// group.
@@ -5782,8 +5836,14 @@ type DeploymentGroupInfo struct {
 	// Information about the load balancer to use in a deployment.
 	LoadBalancerInfo *LoadBalancerInfo `locationName:"loadBalancerInfo" type:"structure"`
 
-	// The on-premises instance tags on which to filter.
+	// The on-premises instance tags on which to filter. The deployment group includes
+	// on-premises instances with any of the specified tags.
 	OnPremisesInstanceTagFilters []*TagFilter `locationName:"onPremisesInstanceTagFilters" type:"list"`
+
+	// Information about groups of tags applied to an on-premises instance. The
+	// deployment group includes only on-premises instances identified by all the
+	// tag groups. Cannot be used in the same call as onPremisesInstanceTagFilters.
+	OnPremisesTagSet *OnPremisesTagSet `locationName:"onPremisesTagSet" type:"structure"`
 
 	// A service role ARN.
 	ServiceRoleArn *string `locationName:"serviceRoleArn" type:"string"`
@@ -5866,6 +5926,12 @@ func (s *DeploymentGroupInfo) SetEc2TagFilters(v []*EC2TagFilter) *DeploymentGro
 	return s
 }
 
+// SetEc2TagSet sets the Ec2TagSet field's value.
+func (s *DeploymentGroupInfo) SetEc2TagSet(v *EC2TagSet) *DeploymentGroupInfo {
+	s.Ec2TagSet = v
+	return s
+}
+
 // SetLastAttemptedDeployment sets the LastAttemptedDeployment field's value.
 func (s *DeploymentGroupInfo) SetLastAttemptedDeployment(v *LastDeploymentInfo) *DeploymentGroupInfo {
 	s.LastAttemptedDeployment = v
@@ -5887,6 +5953,12 @@ func (s *DeploymentGroupInfo) SetLoadBalancerInfo(v *LoadBalancerInfo) *Deployme
 // SetOnPremisesInstanceTagFilters sets the OnPremisesInstanceTagFilters field's value.
 func (s *DeploymentGroupInfo) SetOnPremisesInstanceTagFilters(v []*TagFilter) *DeploymentGroupInfo {
 	s.OnPremisesInstanceTagFilters = v
+	return s
+}
+
+// SetOnPremisesTagSet sets the OnPremisesTagSet field's value.
+func (s *DeploymentGroupInfo) SetOnPremisesTagSet(v *OnPremisesTagSet) *DeploymentGroupInfo {
+	s.OnPremisesTagSet = v
 	return s
 }
 
@@ -6513,6 +6585,33 @@ func (s *EC2TagFilter) SetType(v string) *EC2TagFilter {
 // SetValue sets the Value field's value.
 func (s *EC2TagFilter) SetValue(v string) *EC2TagFilter {
 	s.Value = &v
+	return s
+}
+
+// Information about groups of EC2 instance tags.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/EC2TagSet
+type EC2TagSet struct {
+	_ struct{} `type:"structure"`
+
+	// A list containing other lists of EC2 instance tag groups. In order for an
+	// instance to be included in the deployment group, it must be identified by
+	// all the tag groups in the list.
+	Ec2TagSetList [][]*EC2TagFilter `locationName:"ec2TagSetList" type:"list"`
+}
+
+// String returns the string representation
+func (s EC2TagSet) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EC2TagSet) GoString() string {
+	return s.String()
+}
+
+// SetEc2TagSetList sets the Ec2TagSetList field's value.
+func (s *EC2TagSet) SetEc2TagSetList(v [][]*EC2TagFilter) *EC2TagSet {
+	s.Ec2TagSetList = v
 	return s
 }
 
@@ -8446,6 +8545,33 @@ func (s *MinimumHealthyHosts) SetValue(v int64) *MinimumHealthyHosts {
 	return s
 }
 
+// Information about groups of on-premises instance tags.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/OnPremisesTagSet
+type OnPremisesTagSet struct {
+	_ struct{} `type:"structure"`
+
+	// A list containing other lists of on-premises instance tag groups. In order
+	// for an instance to be included in the deployment group, it must be identified
+	// by all the tag groups in the list.
+	OnPremisesTagSetList [][]*TagFilter `locationName:"onPremisesTagSetList" type:"list"`
+}
+
+// String returns the string representation
+func (s OnPremisesTagSet) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OnPremisesTagSet) GoString() string {
+	return s.String()
+}
+
+// SetOnPremisesTagSetList sets the OnPremisesTagSetList field's value.
+func (s *OnPremisesTagSet) SetOnPremisesTagSetList(v [][]*TagFilter) *OnPremisesTagSet {
+	s.OnPremisesTagSetList = v
+	return s
+}
+
 // Represents the input of a RegisterApplicationRevision operation.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/RegisterApplicationRevisionInput
 type RegisterApplicationRevisionInput struct {
@@ -9098,8 +9224,14 @@ type TargetInstances struct {
 	// for a blue/green deployment.
 	AutoScalingGroups []*string `locationName:"autoScalingGroups" type:"list"`
 
+	// Information about the groups of EC2 instance tags that an instance must be
+	// identified by in order for it to be included in the replacement environment
+	// for a blue/green deployment. Cannot be used in the same call as tagFilters.
+	Ec2TagSet *EC2TagSet `locationName:"ec2TagSet" type:"structure"`
+
 	// The tag filter key, type, and value used to identify Amazon EC2 instances
-	// in a replacement environment for a blue/green deployment.
+	// in a replacement environment for a blue/green deployment. Cannot be used
+	// in the same call as ec2TagSet.
 	TagFilters []*EC2TagFilter `locationName:"tagFilters" type:"list"`
 }
 
@@ -9116,6 +9248,12 @@ func (s TargetInstances) GoString() string {
 // SetAutoScalingGroups sets the AutoScalingGroups field's value.
 func (s *TargetInstances) SetAutoScalingGroups(v []*string) *TargetInstances {
 	s.AutoScalingGroups = v
+	return s
+}
+
+// SetEc2TagSet sets the Ec2TagSet field's value.
+func (s *TargetInstances) SetEc2TagSet(v *EC2TagSet) *TargetInstances {
+	s.Ec2TagSet = v
 	return s
 }
 
@@ -9317,6 +9455,10 @@ type UpdateDeploymentGroupInput struct {
 	// do not enter any tag names.
 	Ec2TagFilters []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
 
+	// Information about groups of tags applied to on-premises instances. The deployment
+	// group will include only EC2 instances identified by all the tag groups.
+	Ec2TagSet *EC2TagSet `locationName:"ec2TagSet" type:"structure"`
+
 	// Information about the load balancer used in a deployment.
 	LoadBalancerInfo *LoadBalancerInfo `locationName:"loadBalancerInfo" type:"structure"`
 
@@ -9327,6 +9469,10 @@ type UpdateDeploymentGroupInput struct {
 	// want to change them. To keep the existing tags, enter their names. To remove
 	// tags, do not enter any tag names.
 	OnPremisesInstanceTagFilters []*TagFilter `locationName:"onPremisesInstanceTagFilters" type:"list"`
+
+	// Information about an on-premises instance tag set. The deployment group will
+	// include only on-premises instances identified by all the tag groups.
+	OnPremisesTagSet *OnPremisesTagSet `locationName:"onPremisesTagSet" type:"structure"`
 
 	// A replacement ARN for the service role, if you want to change it.
 	ServiceRoleArn *string `locationName:"serviceRoleArn" type:"string"`
@@ -9429,6 +9575,12 @@ func (s *UpdateDeploymentGroupInput) SetEc2TagFilters(v []*EC2TagFilter) *Update
 	return s
 }
 
+// SetEc2TagSet sets the Ec2TagSet field's value.
+func (s *UpdateDeploymentGroupInput) SetEc2TagSet(v *EC2TagSet) *UpdateDeploymentGroupInput {
+	s.Ec2TagSet = v
+	return s
+}
+
 // SetLoadBalancerInfo sets the LoadBalancerInfo field's value.
 func (s *UpdateDeploymentGroupInput) SetLoadBalancerInfo(v *LoadBalancerInfo) *UpdateDeploymentGroupInput {
 	s.LoadBalancerInfo = v
@@ -9444,6 +9596,12 @@ func (s *UpdateDeploymentGroupInput) SetNewDeploymentGroupName(v string) *Update
 // SetOnPremisesInstanceTagFilters sets the OnPremisesInstanceTagFilters field's value.
 func (s *UpdateDeploymentGroupInput) SetOnPremisesInstanceTagFilters(v []*TagFilter) *UpdateDeploymentGroupInput {
 	s.OnPremisesInstanceTagFilters = v
+	return s
+}
+
+// SetOnPremisesTagSet sets the OnPremisesTagSet field's value.
+func (s *UpdateDeploymentGroupInput) SetOnPremisesTagSet(v *OnPremisesTagSet) *UpdateDeploymentGroupInput {
+	s.OnPremisesTagSet = v
 	return s
 }
 

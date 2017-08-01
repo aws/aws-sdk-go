@@ -9,6 +9,33 @@
     "jsonVersion" : "1.1"
   },
   "operations" : {
+    "CreateApp" : {
+      "name" : "CreateApp",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/v1/apps",
+        "responseCode" : 201
+      },
+      "input" : {
+        "shape" : "CreateAppRequest"
+      },
+      "output" : {
+        "shape" : "CreateAppResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      }, {
+        "shape" : "ForbiddenException"
+      }, {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "MethodNotAllowedException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
     "CreateCampaign" : {
       "name" : "CreateCampaign",
       "http" : {
@@ -129,6 +156,33 @@
       },
       "output" : {
         "shape" : "DeleteApnsSandboxChannelResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      }, {
+        "shape" : "ForbiddenException"
+      }, {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "MethodNotAllowedException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
+    "DeleteApp" : {
+      "name" : "DeleteApp",
+      "http" : {
+        "method" : "DELETE",
+        "requestUri" : "/v1/apps/{application-id}",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "DeleteAppRequest"
+      },
+      "output" : {
+        "shape" : "DeleteAppResponse"
       },
       "errors" : [ {
         "shape" : "BadRequestException"
@@ -360,6 +414,33 @@
         "shape" : "TooManyRequestsException"
       } ]
     },
+    "GetApp" : {
+      "name" : "GetApp",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/v1/apps/{application-id}",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "GetAppRequest"
+      },
+      "output" : {
+        "shape" : "GetAppResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      }, {
+        "shape" : "ForbiddenException"
+      }, {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "MethodNotAllowedException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
     "GetApplicationSettings" : {
       "name" : "GetApplicationSettings",
       "http" : {
@@ -372,6 +453,33 @@
       },
       "output" : {
         "shape" : "GetApplicationSettingsResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      }, {
+        "shape" : "ForbiddenException"
+      }, {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "MethodNotAllowedException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
+    "GetApps" : {
+      "name" : "GetApps",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/v1/apps",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "GetAppsRequest"
+      },
+      "output" : {
+        "shape" : "GetAppsResponse"
       },
       "errors" : [ {
         "shape" : "BadRequestException"
@@ -1387,6 +1495,17 @@
         }
       }
     },
+    "ApplicationResponse" : {
+      "type" : "structure",
+      "members" : {
+        "Id" : {
+          "shape" : "__string"
+        },
+        "Name" : {
+          "shape" : "__string"
+        }
+      }
+    },
     "ApplicationSettingsResource" : {
       "type" : "structure",
       "members" : {
@@ -1401,6 +1520,17 @@
         },
         "QuietTime" : {
           "shape" : "QuietTime"
+        }
+      }
+    },
+    "ApplicationsResponse" : {
+      "type" : "structure",
+      "members" : {
+        "Item" : {
+          "shape" : "ListOfApplicationResponse"
+        },
+        "NextToken" : {
+          "shape" : "__string"
         }
       }
     },
@@ -1438,6 +1568,9 @@
       "type" : "structure",
       "members" : {
         "Body" : {
+          "shape" : "__string"
+        },
+        "FromAddress" : {
           "shape" : "__string"
         },
         "HtmlBody" : {
@@ -1561,6 +1694,34 @@
     "ChannelType" : {
       "type" : "string",
       "enum" : [ "GCM", "APNS", "APNS_SANDBOX", "ADM", "SMS", "EMAIL" ]
+    },
+    "CreateAppRequest" : {
+      "type" : "structure",
+      "members" : {
+        "CreateApplicationRequest" : {
+          "shape" : "CreateApplicationRequest"
+        }
+      },
+      "required" : [ "CreateApplicationRequest" ],
+      "payload" : "CreateApplicationRequest"
+    },
+    "CreateAppResponse" : {
+      "type" : "structure",
+      "members" : {
+        "ApplicationResponse" : {
+          "shape" : "ApplicationResponse"
+        }
+      },
+      "required" : [ "ApplicationResponse" ],
+      "payload" : "ApplicationResponse"
+    },
+    "CreateApplicationRequest" : {
+      "type" : "structure",
+      "members" : {
+        "Name" : {
+          "shape" : "__string"
+        }
+      }
     },
     "CreateCampaignRequest" : {
       "type" : "structure",
@@ -1715,6 +1876,27 @@
       },
       "required" : [ "APNSSandboxChannelResponse" ],
       "payload" : "APNSSandboxChannelResponse"
+    },
+    "DeleteAppRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ApplicationId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "application-id"
+        }
+      },
+      "required" : [ "ApplicationId" ]
+    },
+    "DeleteAppResponse" : {
+      "type" : "structure",
+      "members" : {
+        "ApplicationResponse" : {
+          "shape" : "ApplicationResponse"
+        }
+      },
+      "required" : [ "ApplicationResponse" ],
+      "payload" : "ApplicationResponse"
     },
     "DeleteCampaignRequest" : {
       "type" : "structure",
@@ -2329,6 +2511,27 @@
       "required" : [ "APNSSandboxChannelResponse" ],
       "payload" : "APNSSandboxChannelResponse"
     },
+    "GetAppRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ApplicationId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "application-id"
+        }
+      },
+      "required" : [ "ApplicationId" ]
+    },
+    "GetAppResponse" : {
+      "type" : "structure",
+      "members" : {
+        "ApplicationResponse" : {
+          "shape" : "ApplicationResponse"
+        }
+      },
+      "required" : [ "ApplicationResponse" ],
+      "payload" : "ApplicationResponse"
+    },
     "GetApplicationSettingsRequest" : {
       "type" : "structure",
       "members" : {
@@ -2349,6 +2552,31 @@
       },
       "required" : [ "ApplicationSettingsResource" ],
       "payload" : "ApplicationSettingsResource"
+    },
+    "GetAppsRequest" : {
+      "type" : "structure",
+      "members" : {
+        "PageSize" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "page-size"
+        },
+        "Token" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "token"
+        }
+      }
+    },
+    "GetAppsResponse" : {
+      "type" : "structure",
+      "members" : {
+        "ApplicationsResponse" : {
+          "shape" : "ApplicationsResponse"
+        }
+      },
+      "required" : [ "ApplicationsResponse" ],
+      "payload" : "ApplicationsResponse"
     },
     "GetCampaignActivitiesRequest" : {
       "type" : "structure",
@@ -2975,6 +3203,12 @@
         "shape" : "ActivityResponse"
       }
     },
+    "ListOfApplicationResponse" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "ApplicationResponse"
+      }
+    },
     "ListOfCampaignResponse" : {
       "type" : "list",
       "member" : {
@@ -3102,6 +3336,9 @@
           "shape" : "__string"
         },
         "MediaUrl" : {
+          "shape" : "__string"
+        },
+        "RawContent" : {
           "shape" : "__string"
         },
         "SilentPush" : {

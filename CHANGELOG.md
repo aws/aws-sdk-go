@@ -1,3 +1,18 @@
+Release v1.10.20 (2017-08-01)
+===
+
+### Service Client Updates
+* `service/codedeploy`: Updates service API and documentation
+  * AWS CodeDeploy now supports the use of multiple tag groups in a single deployment group (an intersection of tags) to identify the instances for a deployment. When you create or update a deployment group, use the new ec2TagSet and onPremisesTagSet structures to specify up to three groups of tags. Only instances that are identified by at least one tag in each of the tag groups are included in the deployment group.
+* `service/config`: Updates service API and documentation
+* `service/ec2`: Updates service waiters
+  * Ec2 SpotInstanceRequestFulfilled waiter update
+* `service/elasticloadbalancingv2`: Updates service waiters
+* `service/email`: Updates service API, documentation, paginators, and examples
+  * This update adds information about publishing email open and click events. This update also adds information about publishing email events to Amazon Simple Notification Service (Amazon SNS).
+* `service/pinpoint`: Updates service API and documentation
+  * This release of the Pinpoint SDK enables App management - create, delete, update operations, Raw Content delivery for APNs and GCM campaign messages and From Address override.
+
 Release v1.10.19 (2017-08-01)
 ===
 

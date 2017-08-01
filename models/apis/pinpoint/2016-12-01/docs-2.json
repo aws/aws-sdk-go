@@ -2,11 +2,13 @@
   "version" : "2.0",
   "service" : null,
   "operations" : {
+    "CreateApp" : "Used to create an app.",
     "CreateCampaign" : "Creates or updates a campaign.",
     "CreateImportJob" : "Creates or updates an import job.",
     "CreateSegment" : "Used to create or update a segment.",
     "DeleteApnsChannel" : "Deletes the APNs channel for an app.",
     "DeleteApnsSandboxChannel" : "Delete an APNS sandbox channel",
+    "DeleteApp" : "Deletes an app.",
     "DeleteCampaign" : "Deletes a campaign.",
     "DeleteEmailChannel" : "Delete an email channel",
     "DeleteEventStream" : "Deletes the event stream for an app.",
@@ -15,7 +17,9 @@
     "DeleteSmsChannel" : "Delete an SMS channel",
     "GetApnsChannel" : "Returns information about the APNs channel for an app.",
     "GetApnsSandboxChannel" : "Get an APNS sandbox channel",
+    "GetApp" : "Returns information about an app.",
     "GetApplicationSettings" : "Used to request the settings for an app.",
+    "GetApps" : "Returns information about your apps.",
     "GetCampaign" : "Returns information about a campaign.",
     "GetCampaignActivities" : "Returns information about the activity performed by a campaign.",
     "GetCampaignVersion" : "Returns information about a specific version of a campaign.",
@@ -94,8 +98,18 @@
         "MessageRequest$Addresses" : "A map of destination addresses, with the address as the key(Email address, phone number or push token) and the Address Configuration as the value."
       }
     },
+    "ApplicationResponse" : {
+      "base" : "Application Response.",
+      "refs" : {
+        "ApplicationsResponse$Item" : "List of applications returned in this page."
+      }
+    },
     "ApplicationSettingsResource" : {
       "base" : "Application settings.",
+      "refs" : { }
+    },
+    "ApplicationsResponse" : {
+      "base" : "Get Applications Result.",
       "refs" : { }
     },
     "AttributeDimension" : {
@@ -163,11 +177,15 @@
     "ChannelType" : {
       "base" : null,
       "refs" : {
-        "AddressConfiguration$ChannelType" : "Type of channel of this address",
-        "EndpointBatchItem$ChannelType" : "The channel type.\n\nValid values: APNS, GCM",
-        "EndpointRequest$ChannelType" : "The channel type.\n\nValid values: APNS, GCM",
-        "EndpointResponse$ChannelType" : "The channel type.\n\nValid values: APNS, GCM"
+        "AddressConfiguration$ChannelType" : "The channel type.\n\nValid values: GCM | APNS | SMS | EMAIL",
+        "EndpointBatchItem$ChannelType" : "The channel type.\n\nValid values: GCM | APNS | SMS | EMAIL",
+        "EndpointRequest$ChannelType" : "The channel type.\n\nValid values: GCM | APNS | SMS | EMAIL",
+        "EndpointResponse$ChannelType" : "The channel type.\n\nValid values: GCM | APNS | SMS | EMAIL"
       }
+    },
+    "CreateApplicationRequest" : {
+      "base" : "Application Request.",
+      "refs" : { }
     },
     "DefaultMessage" : {
       "base" : "Default Message across push notification, email, and sms.",
@@ -322,6 +340,10 @@
       }
     },
     "ListOfActivityResponse" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "ListOfApplicationResponse" : {
       "base" : null,
       "refs" : { }
     },
@@ -642,7 +664,7 @@
         "APNSChannelRequest$PrivateKey" : "The certificate private key.",
         "APNSChannelResponse$ApplicationId" : "The ID of the application to which the channel applies.",
         "APNSChannelResponse$CreationDate" : "When was this segment created",
-        "APNSChannelResponse$Id" : "Channel ID. Not used, only for backwards compatibility.",
+        "APNSChannelResponse$Id" : "Channel ID. Not used. Present only for backwards compatibility.",
         "APNSChannelResponse$LastModifiedBy" : "Who last updated this entry",
         "APNSChannelResponse$LastModifiedDate" : "Last date this was updated",
         "APNSChannelResponse$Platform" : "The platform type. Will be APNS.",
@@ -661,7 +683,7 @@
         "APNSSandboxChannelResponse$Id" : "Channel ID. Not used, only for backwards compatibility.",
         "APNSSandboxChannelResponse$LastModifiedBy" : "Who last updated this entry",
         "APNSSandboxChannelResponse$LastModifiedDate" : "Last date this was updated",
-        "APNSSandboxChannelResponse$Platform" : "The platform type. Will be APNS.",
+        "APNSSandboxChannelResponse$Platform" : "The platform type. Will be APNS_SANDBOX.",
         "ActivityResponse$ApplicationId" : "The ID of the application to which the campaign applies.",
         "ActivityResponse$CampaignId" : "The ID of the campaign to which the activity applies.",
         "ActivityResponse$End" : "The actual time the activity was marked CANCELLED or COMPLETED. Provided in ISO 8601 format.",
@@ -674,9 +696,13 @@
         "AddressConfiguration$BodyOverride" : "Body override. If specified will override default body.",
         "AddressConfiguration$RawContent" : "The Raw JSON formatted string to be used as the payload. This value overrides the message.",
         "AddressConfiguration$TitleOverride" : "Title override. If specified will override default title if applicable.",
+        "ApplicationResponse$Id" : "The unique application ID.",
+        "ApplicationResponse$Name" : "The display name of the application.",
         "ApplicationSettingsResource$ApplicationId" : "The unique ID for the application.",
         "ApplicationSettingsResource$LastModifiedDate" : "The date that the settings were last updated in ISO 8601 format.",
+        "ApplicationsResponse$NextToken" : "The string that you use in a subsequent request to get the next page of results in a paginated response.",
         "CampaignEmailMessage$Body" : "The email text body.",
+        "CampaignEmailMessage$FromAddress" : "The email address used to send the email from. Defaults to use FromAddress specified in the Email Channel.",
         "CampaignEmailMessage$HtmlBody" : "The email html body.",
         "CampaignEmailMessage$Title" : "The email title (Or subject).",
         "CampaignResponse$ApplicationId" : "The ID of the application to which the campaign applies.",
@@ -691,6 +717,7 @@
         "CampaignSmsMessage$Body" : "The SMS text body.",
         "CampaignSmsMessage$SenderId" : "Sender ID of sent message.",
         "CampaignsResponse$NextToken" : "The string that you use in a subsequent request to get the next page of results in a paginated response.",
+        "CreateApplicationRequest$Name" : "The display name of the application. Used in the Amazon Pinpoint console.",
         "DefaultMessage$Body" : "The message body of the notification, the email body or the text message.",
         "DefaultPushNotificationMessage$Body" : "The message body of the notification, the email body or the text message.",
         "DefaultPushNotificationMessage$Title" : "The message title that displays above the message on the user's device.",
@@ -698,7 +725,7 @@
         "EmailChannelRequest$FromAddress" : "The email address used to send emails from.",
         "EmailChannelRequest$Identity" : "The ARN of an identity verified with SES.",
         "EmailChannelRequest$RoleArn" : "The ARN of an IAM Role used to submit events to Mobile Analytics' event ingestion service",
-        "EmailChannelResponse$ApplicationId" : "Application id",
+        "EmailChannelResponse$ApplicationId" : "The unique ID of the application to which the email channel belongs.",
         "EmailChannelResponse$CreationDate" : "The date that the settings were last updated in ISO 8601 format.",
         "EmailChannelResponse$FromAddress" : "The email address used to send emails from.",
         "EmailChannelResponse$Id" : "Channel ID. Not used, only for backwards compatibility.",
@@ -711,7 +738,7 @@
         "EndpointBatchItem$EffectiveDate" : "The last time the endpoint was updated. Provided in ISO 8601 format.",
         "EndpointBatchItem$EndpointStatus" : "The endpoint status. Can be either ACTIVE or INACTIVE. Will be set to INACTIVE if a delivery fails. Will be set to ACTIVE if the address is updated.",
         "EndpointBatchItem$Id" : "The unique Id for the Endpoint in the batch.",
-        "EndpointBatchItem$OptOut" : "Indicates whether a user has opted out of receiving messages with one of the following values:\n\nALL – User receives all messages.\nNONE – User receives no messages.",
+        "EndpointBatchItem$OptOut" : "Indicates whether a user has opted out of receiving messages with one of the following values:\n\nALL - User has opted out of all messages.\n\nNONE - Users has not opted out and receives all messages.",
         "EndpointBatchItem$RequestId" : "The unique ID for the most recent request to update the endpoint.",
         "EndpointDemographic$AppVersion" : "The version of the application associated with the endpoint.",
         "EndpointDemographic$Locale" : "The endpoint locale in the following format: The ISO 639-1 alpha-2 code, followed by an underscore, followed by an ISO 3166-1 alpha-2 value.\n",
@@ -728,7 +755,7 @@
         "EndpointRequest$Address" : "The address or token of the endpoint as provided by your push provider (e.g. DeviceToken or RegistrationId).",
         "EndpointRequest$EffectiveDate" : "The last time the endpoint was updated. Provided in ISO 8601 format.",
         "EndpointRequest$EndpointStatus" : "The endpoint status. Can be either ACTIVE or INACTIVE. Will be set to INACTIVE if a delivery fails. Will be set to ACTIVE if the address is updated.",
-        "EndpointRequest$OptOut" : "Indicates whether a user has opted out of receiving messages with one of the following values:\n\nALL – User receives all messages.\nNONE – User receives no messages.",
+        "EndpointRequest$OptOut" : "Indicates whether a user has opted out of receiving messages with one of the following values:\n\nALL - User has opted out of all messages.\n\nNONE - Users has not opted out and receives all messages.",
         "EndpointRequest$RequestId" : "The unique ID for the most recent request to update the endpoint.",
         "EndpointResponse$Address" : "The address or token of the endpoint as provided by your push provider (e.g. DeviceToken or RegistrationId).",
         "EndpointResponse$ApplicationId" : "The ID of the application associated with the endpoint.",
@@ -737,7 +764,7 @@
         "EndpointResponse$EffectiveDate" : "The last time the endpoint was updated. Provided in ISO 8601 format.",
         "EndpointResponse$EndpointStatus" : "The endpoint status. Can be either ACTIVE or INACTIVE. Will be set to INACTIVE if a delivery fails. Will be set to ACTIVE if the address is updated.",
         "EndpointResponse$Id" : "The unique ID that you assigned to the endpoint. The ID should be a globally unique identifier (GUID) to ensure that it is unique compared to all other endpoints for the application.",
-        "EndpointResponse$OptOut" : "Indicates whether a user has opted out of receiving messages with one of the following values:\n\nALL – User receives all messages.\nNONE – User receives no messages.",
+        "EndpointResponse$OptOut" : "Indicates whether a user has opted out of receiving messages with one of the following values:\n\nALL - User has opted out of all messages.\n\nNONE - Users has not opted out and receives all messages.",
         "EndpointResponse$RequestId" : "The unique ID for the most recent request to update the endpoint.",
         "EndpointUser$UserId" : "The unique ID of the user.",
         "EventStream$ApplicationId" : "The ID of the application from which events should be published.",
@@ -750,7 +777,7 @@
         "GCMChannelResponse$ApplicationId" : "The ID of the application to which the channel applies.",
         "GCMChannelResponse$CreationDate" : "When was this segment created",
         "GCMChannelResponse$Credential" : "The GCM API key from Google.",
-        "GCMChannelResponse$Id" : "Channel ID. Not used, only for backwards compatibility.",
+        "GCMChannelResponse$Id" : "Channel ID. Not used. Present only for backwards compatibility.",
         "GCMChannelResponse$LastModifiedBy" : "Who last updated this entry",
         "GCMChannelResponse$LastModifiedDate" : "Last date this was updated",
         "GCMChannelResponse$Platform" : "The platform type. Will be GCM",
@@ -787,6 +814,7 @@
         "Message$ImageUrl" : "The URL that points to an image used in the push notification.",
         "Message$JsonBody" : "The JSON payload used for a silent push.",
         "Message$MediaUrl" : "The URL that points to the media resource, for example a .mp4 or .gif file.",
+        "Message$RawContent" : "The Raw JSON formatted string to be used as the payload. This value overrides the message.",
         "Message$Title" : "The message title that displays above the message on the user's device.",
         "Message$Url" : "The URL to open in the user's mobile browser. Used if the value for Action is URL.",
         "MessageBody$Message" : "The error message returned from the API.",
@@ -798,7 +826,7 @@
         "QuietTime$End" : "The default end time for quiet time in ISO 8601 format.",
         "QuietTime$Start" : "The default start time for quiet time in ISO 8601 format.",
         "SMSChannelRequest$SenderId" : "Sender identifier of your messages.",
-        "SMSChannelResponse$ApplicationId" : "Application id",
+        "SMSChannelResponse$ApplicationId" : "The unique ID of the application to which the SMS channel belongs.",
         "SMSChannelResponse$CreationDate" : "The date that the settings were last updated in ISO 8601 format.",
         "SMSChannelResponse$Id" : "Channel ID. Not used, only for backwards compatibility.",
         "SMSChannelResponse$LastModifiedBy" : "Who last updated this entry",

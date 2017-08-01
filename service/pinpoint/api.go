@@ -8,6 +8,92 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 )
 
+const opCreateApp = "CreateApp"
+
+// CreateAppRequest generates a "aws/request.Request" representing the
+// client's request for the CreateApp operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See CreateApp for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateApp method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateAppRequest method.
+//    req, resp := client.CreateAppRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Pinpoint) CreateAppRequest(input *CreateAppInput) (req *request.Request, output *CreateAppOutput) {
+	op := &request.Operation{
+		Name:       opCreateApp,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/apps",
+	}
+
+	if input == nil {
+		input = &CreateAppInput{}
+	}
+
+	output = &CreateAppOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateApp API operation for Amazon Pinpoint.
+//
+// Used to create an app.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint's
+// API operation CreateApp for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//
+//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//
+//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//
+func (c *Pinpoint) CreateApp(input *CreateAppInput) (*CreateAppOutput, error) {
+	req, out := c.CreateAppRequest(input)
+	return out, req.Send()
+}
+
+// CreateAppWithContext is the same as CreateApp with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateApp for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) CreateAppWithContext(ctx aws.Context, input *CreateAppInput, opts ...request.Option) (*CreateAppOutput, error) {
+	req, out := c.CreateAppRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateCampaign = "CreateCampaign"
 
 // CreateCampaignRequest generates a "aws/request.Request" representing the
@@ -433,6 +519,92 @@ func (c *Pinpoint) DeleteApnsSandboxChannel(input *DeleteApnsSandboxChannelInput
 // for more information on using Contexts.
 func (c *Pinpoint) DeleteApnsSandboxChannelWithContext(ctx aws.Context, input *DeleteApnsSandboxChannelInput, opts ...request.Option) (*DeleteApnsSandboxChannelOutput, error) {
 	req, out := c.DeleteApnsSandboxChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteApp = "DeleteApp"
+
+// DeleteAppRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteApp operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See DeleteApp for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteApp method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteAppRequest method.
+//    req, resp := client.DeleteAppRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Pinpoint) DeleteAppRequest(input *DeleteAppInput) (req *request.Request, output *DeleteAppOutput) {
+	op := &request.Operation{
+		Name:       opDeleteApp,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v1/apps/{application-id}",
+	}
+
+	if input == nil {
+		input = &DeleteAppInput{}
+	}
+
+	output = &DeleteAppOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteApp API operation for Amazon Pinpoint.
+//
+// Deletes an app.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint's
+// API operation DeleteApp for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//
+//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//
+//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//
+func (c *Pinpoint) DeleteApp(input *DeleteAppInput) (*DeleteAppOutput, error) {
+	req, out := c.DeleteAppRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAppWithContext is the same as DeleteApp with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteApp for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) DeleteAppWithContext(ctx aws.Context, input *DeleteAppInput, opts ...request.Option) (*DeleteAppOutput, error) {
+	req, out := c.DeleteAppRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1126,6 +1298,92 @@ func (c *Pinpoint) GetApnsSandboxChannelWithContext(ctx aws.Context, input *GetA
 	return out, req.Send()
 }
 
+const opGetApp = "GetApp"
+
+// GetAppRequest generates a "aws/request.Request" representing the
+// client's request for the GetApp operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See GetApp for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetApp method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetAppRequest method.
+//    req, resp := client.GetAppRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Pinpoint) GetAppRequest(input *GetAppInput) (req *request.Request, output *GetAppOutput) {
+	op := &request.Operation{
+		Name:       opGetApp,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/apps/{application-id}",
+	}
+
+	if input == nil {
+		input = &GetAppInput{}
+	}
+
+	output = &GetAppOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetApp API operation for Amazon Pinpoint.
+//
+// Returns information about an app.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint's
+// API operation GetApp for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//
+//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//
+//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//
+func (c *Pinpoint) GetApp(input *GetAppInput) (*GetAppOutput, error) {
+	req, out := c.GetAppRequest(input)
+	return out, req.Send()
+}
+
+// GetAppWithContext is the same as GetApp with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetApp for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetAppWithContext(ctx aws.Context, input *GetAppInput, opts ...request.Option) (*GetAppOutput, error) {
+	req, out := c.GetAppRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetApplicationSettings = "GetApplicationSettings"
 
 // GetApplicationSettingsRequest generates a "aws/request.Request" representing the
@@ -1207,6 +1465,92 @@ func (c *Pinpoint) GetApplicationSettings(input *GetApplicationSettingsInput) (*
 // for more information on using Contexts.
 func (c *Pinpoint) GetApplicationSettingsWithContext(ctx aws.Context, input *GetApplicationSettingsInput, opts ...request.Option) (*GetApplicationSettingsOutput, error) {
 	req, out := c.GetApplicationSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetApps = "GetApps"
+
+// GetAppsRequest generates a "aws/request.Request" representing the
+// client's request for the GetApps operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See GetApps for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetApps method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetAppsRequest method.
+//    req, resp := client.GetAppsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Pinpoint) GetAppsRequest(input *GetAppsInput) (req *request.Request, output *GetAppsOutput) {
+	op := &request.Operation{
+		Name:       opGetApps,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/apps",
+	}
+
+	if input == nil {
+		input = &GetAppsInput{}
+	}
+
+	output = &GetAppsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetApps API operation for Amazon Pinpoint.
+//
+// Returns information about your apps.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint's
+// API operation GetApps for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//
+//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//
+//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//
+func (c *Pinpoint) GetApps(input *GetAppsInput) (*GetAppsOutput, error) {
+	req, out := c.GetAppsRequest(input)
+	return out, req.Send()
+}
+
+// GetAppsWithContext is the same as GetApps with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetApps for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetAppsWithContext(ctx aws.Context, input *GetAppsInput, opts ...request.Option) (*GetAppsOutput, error) {
+	req, out := c.GetAppsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3761,7 +4105,7 @@ type APNSChannelResponse struct {
 	// If the channel is enabled for sending messages.
 	Enabled *bool `type:"boolean"`
 
-	// Channel ID. Not used, only for backwards compatibility.
+	// Channel ID. Not used. Present only for backwards compatibility.
 	Id *string `type:"string"`
 
 	// Is this channel archived
@@ -4059,7 +4403,7 @@ type APNSSandboxChannelResponse struct {
 	// Last date this was updated
 	LastModifiedDate *string `type:"string"`
 
-	// The platform type. Will be APNS.
+	// The platform type. Will be APNS_SANDBOX.
 	Platform *string `type:"string"`
 
 	// Version of channel
@@ -4296,7 +4640,7 @@ type AddressConfiguration struct {
 	// Body override. If specified will override default body.
 	BodyOverride *string `type:"string"`
 
-	// Type of channel of this address
+	// The channel type.Valid values: GCM | APNS | SMS | EMAIL
 	ChannelType *string `type:"string" enum:"ChannelType"`
 
 	Context map[string]*string `type:"map"`
@@ -4357,6 +4701,39 @@ func (s *AddressConfiguration) SetTitleOverride(v string) *AddressConfiguration 
 	return s
 }
 
+// Application Response.
+type ApplicationResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The unique application ID.
+	Id *string `type:"string"`
+
+	// The display name of the application.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ApplicationResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ApplicationResponse) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *ApplicationResponse) SetId(v string) *ApplicationResponse {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ApplicationResponse) SetName(v string) *ApplicationResponse {
+	s.Name = &v
+	return s
+}
+
 // Application settings.
 type ApplicationSettingsResource struct {
 	_ struct{} `type:"structure"`
@@ -4412,6 +4789,40 @@ func (s *ApplicationSettingsResource) SetQuietTime(v *QuietTime) *ApplicationSet
 	return s
 }
 
+// Get Applications Result.
+type ApplicationsResponse struct {
+	_ struct{} `type:"structure"`
+
+	// List of applications returned in this page.
+	Item []*ApplicationResponse `type:"list"`
+
+	// The string that you use in a subsequent request to get the next page of results
+	// in a paginated response.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ApplicationsResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ApplicationsResponse) GoString() string {
+	return s.String()
+}
+
+// SetItem sets the Item field's value.
+func (s *ApplicationsResponse) SetItem(v []*ApplicationResponse) *ApplicationsResponse {
+	s.Item = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ApplicationsResponse) SetNextToken(v string) *ApplicationsResponse {
+	s.NextToken = &v
+	return s
+}
+
 // Custom attibute dimension
 type AttributeDimension struct {
 	_ struct{} `type:"structure"`
@@ -4453,6 +4864,10 @@ type CampaignEmailMessage struct {
 	// The email text body.
 	Body *string `type:"string"`
 
+	// The email address used to send the email from. Defaults to use FromAddress
+	// specified in the Email Channel.
+	FromAddress *string `type:"string"`
+
 	// The email html body.
 	HtmlBody *string `type:"string"`
 
@@ -4473,6 +4888,12 @@ func (s CampaignEmailMessage) GoString() string {
 // SetBody sets the Body field's value.
 func (s *CampaignEmailMessage) SetBody(v string) *CampaignEmailMessage {
 	s.Body = &v
+	return s
+}
+
+// SetFromAddress sets the FromAddress field's value.
+func (s *CampaignEmailMessage) SetFromAddress(v string) *CampaignEmailMessage {
+	s.FromAddress = &v
 	return s
 }
 
@@ -4811,6 +5232,93 @@ func (s *CampaignsResponse) SetItem(v []*CampaignResponse) *CampaignsResponse {
 // SetNextToken sets the NextToken field's value.
 func (s *CampaignsResponse) SetNextToken(v string) *CampaignsResponse {
 	s.NextToken = &v
+	return s
+}
+
+type CreateAppInput struct {
+	_ struct{} `type:"structure" payload:"CreateApplicationRequest"`
+
+	// Application Request.
+	//
+	// CreateApplicationRequest is a required field
+	CreateApplicationRequest *CreateApplicationRequest `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateAppInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAppInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAppInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAppInput"}
+	if s.CreateApplicationRequest == nil {
+		invalidParams.Add(request.NewErrParamRequired("CreateApplicationRequest"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCreateApplicationRequest sets the CreateApplicationRequest field's value.
+func (s *CreateAppInput) SetCreateApplicationRequest(v *CreateApplicationRequest) *CreateAppInput {
+	s.CreateApplicationRequest = v
+	return s
+}
+
+type CreateAppOutput struct {
+	_ struct{} `type:"structure" payload:"ApplicationResponse"`
+
+	// Application Response.
+	//
+	// ApplicationResponse is a required field
+	ApplicationResponse *ApplicationResponse `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateAppOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAppOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplicationResponse sets the ApplicationResponse field's value.
+func (s *CreateAppOutput) SetApplicationResponse(v *ApplicationResponse) *CreateAppOutput {
+	s.ApplicationResponse = v
+	return s
+}
+
+// Application Request.
+type CreateApplicationRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The display name of the application. Used in the Amazon Pinpoint console.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateApplicationRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateApplicationRequest) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *CreateApplicationRequest) SetName(v string) *CreateApplicationRequest {
+	s.Name = &v
 	return s
 }
 
@@ -5270,6 +5778,67 @@ func (s DeleteApnsSandboxChannelOutput) GoString() string {
 // SetAPNSSandboxChannelResponse sets the APNSSandboxChannelResponse field's value.
 func (s *DeleteApnsSandboxChannelOutput) SetAPNSSandboxChannelResponse(v *APNSSandboxChannelResponse) *DeleteApnsSandboxChannelOutput {
 	s.APNSSandboxChannelResponse = v
+	return s
+}
+
+type DeleteAppInput struct {
+	_ struct{} `type:"structure"`
+
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteAppInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAppInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAppInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAppInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *DeleteAppInput) SetApplicationId(v string) *DeleteAppInput {
+	s.ApplicationId = &v
+	return s
+}
+
+type DeleteAppOutput struct {
+	_ struct{} `type:"structure" payload:"ApplicationResponse"`
+
+	// Application Response.
+	//
+	// ApplicationResponse is a required field
+	ApplicationResponse *ApplicationResponse `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteAppOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAppOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplicationResponse sets the ApplicationResponse field's value.
+func (s *DeleteAppOutput) SetApplicationResponse(v *ApplicationResponse) *DeleteAppOutput {
+	s.ApplicationResponse = v
 	return s
 }
 
@@ -5781,7 +6350,7 @@ func (s *EmailChannelRequest) SetRoleArn(v string) *EmailChannelRequest {
 type EmailChannelResponse struct {
 	_ struct{} `type:"structure"`
 
-	// Application id
+	// The unique ID of the application to which the email channel belongs.
 	ApplicationId *string `type:"string"`
 
 	// The date that the settings were last updated in ISO 8601 format.
@@ -5911,7 +6480,7 @@ type EndpointBatchItem struct {
 
 	Attributes map[string][]*string `type:"map"`
 
-	// The channel type.Valid values: APNS, GCM
+	// The channel type.Valid values: GCM | APNS | SMS | EMAIL
 	ChannelType *string `type:"string" enum:"ChannelType"`
 
 	// The endpoint demographic attributes.
@@ -5933,8 +6502,8 @@ type EndpointBatchItem struct {
 	Metrics map[string]*float64 `type:"map"`
 
 	// Indicates whether a user has opted out of receiving messages with one of
-	// the following values:ALL – User receives all messages.NONE – User receives
-	// no messages.
+	// the following values:ALL - User has opted out of all messages.NONE - Users
+	// has not opted out and receives all messages.
 	OptOut *string `type:"string"`
 
 	// The unique ID for the most recent request to update the endpoint.
@@ -6220,7 +6789,7 @@ type EndpointRequest struct {
 
 	Attributes map[string][]*string `type:"map"`
 
-	// The channel type.Valid values: APNS, GCM
+	// The channel type.Valid values: GCM | APNS | SMS | EMAIL
 	ChannelType *string `type:"string" enum:"ChannelType"`
 
 	// The endpoint demographic attributes.
@@ -6239,8 +6808,8 @@ type EndpointRequest struct {
 	Metrics map[string]*float64 `type:"map"`
 
 	// Indicates whether a user has opted out of receiving messages with one of
-	// the following values:ALL – User receives all messages.NONE – User receives
-	// no messages.
+	// the following values:ALL - User has opted out of all messages.NONE - Users
+	// has not opted out and receives all messages.
 	OptOut *string `type:"string"`
 
 	// The unique ID for the most recent request to update the endpoint.
@@ -6339,7 +6908,7 @@ type EndpointResponse struct {
 
 	Attributes map[string][]*string `type:"map"`
 
-	// The channel type.Valid values: APNS, GCM
+	// The channel type.Valid values: GCM | APNS | SMS | EMAIL
 	ChannelType *string `type:"string" enum:"ChannelType"`
 
 	// A number from 0 - 99 that represents the cohort the endpoint is assigned
@@ -6372,8 +6941,8 @@ type EndpointResponse struct {
 	Metrics map[string]*float64 `type:"map"`
 
 	// Indicates whether a user has opted out of receiving messages with one of
-	// the following values:ALL – User receives all messages.NONE – User receives
-	// no messages.
+	// the following values:ALL - User has opted out of all messages.NONE - Users
+	// has not opted out and receives all messages.
 	OptOut *string `type:"string"`
 
 	// The unique ID for the most recent request to update the endpoint.
@@ -6645,7 +7214,7 @@ type GCMChannelResponse struct {
 	// If the channel is enabled for sending messages.
 	Enabled *bool `type:"boolean"`
 
-	// Channel ID. Not used, only for backwards compatibility.
+	// Channel ID. Not used. Present only for backwards compatibility.
 	Id *string `type:"string"`
 
 	// Is this channel archived
@@ -7022,6 +7591,67 @@ func (s *GetApnsSandboxChannelOutput) SetAPNSSandboxChannelResponse(v *APNSSandb
 	return s
 }
 
+type GetAppInput struct {
+	_ struct{} `type:"structure"`
+
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetAppInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAppInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAppInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAppInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *GetAppInput) SetApplicationId(v string) *GetAppInput {
+	s.ApplicationId = &v
+	return s
+}
+
+type GetAppOutput struct {
+	_ struct{} `type:"structure" payload:"ApplicationResponse"`
+
+	// Application Response.
+	//
+	// ApplicationResponse is a required field
+	ApplicationResponse *ApplicationResponse `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s GetAppOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAppOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplicationResponse sets the ApplicationResponse field's value.
+func (s *GetAppOutput) SetApplicationResponse(v *ApplicationResponse) *GetAppOutput {
+	s.ApplicationResponse = v
+	return s
+}
+
 type GetApplicationSettingsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7080,6 +7710,61 @@ func (s GetApplicationSettingsOutput) GoString() string {
 // SetApplicationSettingsResource sets the ApplicationSettingsResource field's value.
 func (s *GetApplicationSettingsOutput) SetApplicationSettingsResource(v *ApplicationSettingsResource) *GetApplicationSettingsOutput {
 	s.ApplicationSettingsResource = v
+	return s
+}
+
+type GetAppsInput struct {
+	_ struct{} `type:"structure"`
+
+	PageSize *string `location:"querystring" locationName:"page-size" type:"string"`
+
+	Token *string `location:"querystring" locationName:"token" type:"string"`
+}
+
+// String returns the string representation
+func (s GetAppsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAppsInput) GoString() string {
+	return s.String()
+}
+
+// SetPageSize sets the PageSize field's value.
+func (s *GetAppsInput) SetPageSize(v string) *GetAppsInput {
+	s.PageSize = &v
+	return s
+}
+
+// SetToken sets the Token field's value.
+func (s *GetAppsInput) SetToken(v string) *GetAppsInput {
+	s.Token = &v
+	return s
+}
+
+type GetAppsOutput struct {
+	_ struct{} `type:"structure" payload:"ApplicationsResponse"`
+
+	// Get Applications Result.
+	//
+	// ApplicationsResponse is a required field
+	ApplicationsResponse *ApplicationsResponse `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s GetAppsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAppsOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplicationsResponse sets the ApplicationsResponse field's value.
+func (s *GetAppsOutput) SetApplicationsResponse(v *ApplicationsResponse) *GetAppsOutput {
+	s.ApplicationsResponse = v
 	return s
 }
 
@@ -8766,6 +9451,10 @@ type Message struct {
 	// The URL that points to the media resource, for example a .mp4 or .gif file.
 	MediaUrl *string `type:"string"`
 
+	// The Raw JSON formatted string to be used as the payload. This value overrides
+	// the message.
+	RawContent *string `type:"string"`
+
 	// Indicates if the message should display on the users device.Silent pushes
 	// can be used for Remote Configuration and Phone Home use cases.
 	SilentPush *bool `type:"boolean"`
@@ -8827,6 +9516,12 @@ func (s *Message) SetJsonBody(v string) *Message {
 // SetMediaUrl sets the MediaUrl field's value.
 func (s *Message) SetMediaUrl(v string) *Message {
 	s.MediaUrl = &v
+	return s
+}
+
+// SetRawContent sets the RawContent field's value.
+func (s *Message) SetRawContent(v string) *Message {
+	s.RawContent = &v
 	return s
 }
 
@@ -9263,7 +9958,7 @@ func (s *SMSChannelRequest) SetSenderId(v string) *SMSChannelRequest {
 type SMSChannelResponse struct {
 	_ struct{} `type:"structure"`
 
-	// Application id
+	// The unique ID of the application to which the SMS channel belongs.
 	ApplicationId *string `type:"string"`
 
 	// The date that the settings were last updated in ISO 8601 format.

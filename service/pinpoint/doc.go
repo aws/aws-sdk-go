@@ -46,7 +46,7 @@
 // by the operation if the service models the API operation's errors. These
 // errors will also be available as const strings prefixed with "ErrCode".
 //
-//   result, err := svc.CreateCampaign(params)
+//   result, err := svc.CreateApp(params)
 //   if err != nil {
 //       // Cast err to awserr.Error to handle specific error codes.
 //       aerr, ok := err.(awserr.Error)
@@ -56,7 +56,7 @@
 //       return err
 //   }
 //
-//   fmt.Println("CreateCampaign result:")
+//   fmt.Println("CreateApp result:")
 //   fmt.Println(result)
 //
 // Using the Client with Context
@@ -68,7 +68,7 @@
 //
 //   ctx := context.Background()
 //
-//   result, err := svc.CreateCampaignWithContext(ctx, params)
+//   result, err := svc.CreateAppWithContext(ctx, params)
 //
 // See the request package documentation for more information on using Context pattern
 // with the SDK.
