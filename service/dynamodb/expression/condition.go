@@ -47,6 +47,20 @@ func (s SizeBuilder) Equal(right OperandBuilder) ConditionBuilder {
 	return Equal(s, right)
 }
 
+// And will create a ConditionBuilder. This will be the function call
+func And(cond ...ConditionBuilder) ConditionBuilder {
+	return ConditionBuilder{
+		conditionList: cond,
+		Mode:          AndCond,
+	}
+}
+
+// And will create a ConditionBuilder. This will be the method signature
+func (cond ConditionBuilder) And(right ...ConditionBuilder) ConditionBuilder {
+	right = append(right, cond)
+	return And(right...)
+}
+
 // BuildExpression will take an ConditionBuilder as input and output an
 // Expression
 func (cond ConditionBuilder) BuildExpression() (Expression, error) {
@@ -69,6 +83,8 @@ func (cond ConditionBuilder) buildCondition() (ExprNode, error) {
 	switch cond.Mode {
 	case EqualCond:
 		return compareBuildCondition(cond)
+	case AndCond:
+		return boolBuildCondition(cond)
 	}
 	return ExprNode{}, fmt.Errorf("No matching Mode to %v", cond.Mode)
 }
@@ -101,6 +117,45 @@ func compareBuildCondition(c ConditionBuilder) (ExprNode, error) {
 	switch c.Mode {
 	case EqualCond:
 		ret.fmtExpr = "$c = $c"
+	}
+
+	return ret, nil
+}
+
+// boolBuildCondition is the function to make ExprNodes from And/Or
+// ConditionBuilders
+func boolBuildCondition(c ConditionBuilder) (ExprNode, error) {
+	if len(c.conditionList) < 1 {
+		return ExprNode{}, fmt.Errorf("Invalid ConditionBuilder. Expected at least 1 Condition")
+	}
+
+	if len(c.operandList) != 0 {
+		return ExprNode{}, fmt.Errorf("Invalid ConditionBuilder. Expected 0 Operands")
+	}
+
+	conditionExprNodes := make([]ExprNode, 0, len(c.conditionList))
+	for _, cond := range c.conditionList {
+		exprNodes, err := cond.buildCondition()
+		if err != nil {
+			return ExprNode{}, err
+		}
+		conditionExprNodes = append(conditionExprNodes, exprNodes)
+	}
+
+	ret := ExprNode{
+		children: conditionExprNodes,
+	}
+
+	// create a string with escaped characters to substitute them with proper
+	// aliases during runtime
+	for ind := range c.conditionList {
+		ret.fmtExpr += "($c)"
+		if ind != len(c.conditionList)-1 {
+			switch c.Mode {
+			case AndCond:
+				ret.fmtExpr += " AND "
+			}
+		}
 	}
 
 	return ret, nil

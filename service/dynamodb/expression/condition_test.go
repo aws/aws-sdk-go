@@ -16,12 +16,14 @@ type testCompare interface {
 //Equal
 func TestCompare(t *testing.T) {
 	cases := []struct {
+		name     string
 		lhs      testCompare
 		rhs      OperandBuilder
 		mode     ConditionMode
 		expected Expression
 	}{
 		{
+			name: "nested path with path",
 			lhs:  NewPath("foo.yay.cool.rad"),
 			rhs:  NewPath("bar"),
 			mode: EqualCond,
@@ -37,6 +39,7 @@ func TestCompare(t *testing.T) {
 			},
 		},
 		{
+			name: "nested path with value",
 			lhs:  NewPath("foo.yay.cool.rad"),
 			rhs:  NewValue(5),
 			mode: EqualCond,
@@ -56,6 +59,7 @@ func TestCompare(t *testing.T) {
 			},
 		},
 		{
+			name: "nested path with path size",
 			lhs:  NewPath("foo.yay.cool.rad"),
 			rhs:  NewPath("baz").Size(),
 			mode: EqualCond,
@@ -71,6 +75,7 @@ func TestCompare(t *testing.T) {
 			},
 		},
 		{
+			name: "value with path",
 			lhs:  NewValue(5),
 			rhs:  NewPath("bar"),
 			mode: EqualCond,
@@ -87,6 +92,7 @@ func TestCompare(t *testing.T) {
 			},
 		},
 		{
+			name: "nested value with path",
 			lhs: NewValue(map[string]int{
 				"five": 5,
 			}),
@@ -109,6 +115,7 @@ func TestCompare(t *testing.T) {
 			},
 		},
 		{
+			name: "nested value with value",
 			lhs: NewValue(map[string]int{
 				"five": 5,
 			}),
@@ -131,6 +138,7 @@ func TestCompare(t *testing.T) {
 			},
 		},
 		{
+			name: "nested value with path size",
 			lhs: NewValue(map[string]int{
 				"five": 5,
 			}),
@@ -153,6 +161,7 @@ func TestCompare(t *testing.T) {
 			},
 		},
 		{
+			name: "path size with path",
 			lhs:  NewPath("foo[1]").Size(),
 			rhs:  NewPath("bar"),
 			mode: EqualCond,
@@ -165,6 +174,7 @@ func TestCompare(t *testing.T) {
 			},
 		},
 		{
+			name: "path size with value",
 			lhs:  NewPath("foo[1]").Size(),
 			rhs:  NewValue(5),
 			mode: EqualCond,
@@ -181,6 +191,7 @@ func TestCompare(t *testing.T) {
 			},
 		},
 		{
+			name: "path size with path size",
 			lhs:  NewPath("foo[1]").Size(),
 			rhs:  NewPath("baz").Size(),
 			mode: EqualCond,
@@ -193,6 +204,7 @@ func TestCompare(t *testing.T) {
 			},
 		},
 		{
+			name: "path size comparison with duplicate names",
 			lhs:  NewPath("foo.bar.baz").Size(),
 			rhs:  NewPath("bar.qux.foo").Size(),
 			mode: EqualCond,
@@ -207,18 +219,18 @@ func TestCompare(t *testing.T) {
 			},
 		},
 	}
-	for testNumber, c := range cases {
+	for _, c := range cases {
 		exprNode, err := c.lhs.Equal(c.rhs).buildCondition()
 		if err != nil {
-			t.Errorf("TestEquals Test Number %#v: Unexpected Error %#v", testNumber, err)
+			t.Errorf("TestEquals %#v: Unexpected Error %#v", c.name, err)
 		}
 		expr, err := exprNode.buildExprNodes(&aliasList{})
 		if err != nil {
-			t.Errorf("TestEquals Test Number %#v: Unexpected Error %#v", testNumber, err)
+			t.Errorf("TestEquals %#v: Unexpected Error %#v", c.name, err)
 		}
 
 		if reflect.DeepEqual(expr, c.expected) != true {
-			t.Errorf("TestEquals Test Number %#v: Expected %#v, got %#v", testNumber, c.expected, expr)
+			t.Errorf("TestEquals %#v: Expected %#v, got %#v", c.name, c.expected, expr)
 		}
 
 	}
@@ -226,6 +238,7 @@ func TestCompare(t *testing.T) {
 
 func TestBuildCondition(t *testing.T) {
 	cases := []struct {
+		name                  string
 		input                 ConditionBuilder
 		expected              ExprNode
 		buildListOperandError bool
@@ -234,16 +247,19 @@ func TestBuildCondition(t *testing.T) {
 		conditionNumberError  bool
 	}{
 		{
+			name:         "no match error",
 			input:        ConditionBuilder{},
 			noMatchError: true,
 		},
 		{
+			name: "operand number error",
 			input: ConditionBuilder{
 				Mode: EqualCond,
 			},
 			operandNumberError: true,
 		},
 		{
+			name: "condition number error",
 			input: ConditionBuilder{
 				Mode: EqualCond,
 				conditionList: []ConditionBuilder{
@@ -254,12 +270,12 @@ func TestBuildCondition(t *testing.T) {
 		},
 	}
 
-	for testNumber, c := range cases {
+	for _, c := range cases {
 		expr, err := c.input.buildCondition()
 
 		if c.buildListOperandError {
 			if err == nil {
-				t.Errorf("TestBuildCondition Test Number %#v: Expected list operand error but got no error", testNumber)
+				t.Errorf("TestBuildCondition %#v: Expected list operand error but got no error", c.name)
 			} else {
 				continue
 			}
@@ -267,7 +283,7 @@ func TestBuildCondition(t *testing.T) {
 
 		if c.noMatchError {
 			if err == nil {
-				t.Errorf("TestBuildCondition Test Number %#v: Expected no matching mode error but got no error", testNumber)
+				t.Errorf("TestBuildCondition %#v: Expected no matching mode error but got no error", c.name)
 			} else {
 				continue
 			}
@@ -275,7 +291,7 @@ func TestBuildCondition(t *testing.T) {
 
 		if c.operandNumberError {
 			if err == nil {
-				t.Errorf("TestBuildCondition Test Number %#v: Expected operand number error but got no error", testNumber)
+				t.Errorf("TestBuildCondition %#v: Expected operand number error but got no error", c.name)
 			} else {
 				continue
 			}
@@ -283,18 +299,133 @@ func TestBuildCondition(t *testing.T) {
 
 		if c.conditionNumberError {
 			if err == nil {
-				t.Errorf("TestBuildCondition Test Number %#v: Expected condition number error but got no error", testNumber)
+				t.Errorf("TestBuildCondition %#v: Expected condition number error but got no error", c.name)
 			} else {
 				continue
 			}
 		}
 
 		if err != nil {
-			t.Errorf("TestBuildCondition Test Number %#v: Unexpected Error %#v", testNumber, err)
+			t.Errorf("TestBuildCondition %#v: Unexpected Error %#v", c.name, err)
 		}
 
 		if reflect.DeepEqual(expr, c.expected) != true {
-			t.Errorf("TestBuildCondition Test Number %#v: Expected %#v, got %#v", testNumber, c.expected, expr)
+			t.Errorf("TestBuildCondition %#v: Expected %#v, got %#v", c.name, c.expected, expr)
+		}
+	}
+}
+
+func TestBoolCondition(t *testing.T) {
+	cases := []struct {
+		name     string
+		input    ConditionBuilder
+		expected Expression
+		err      bool
+	}{
+		{
+			name:  "basic method and",
+			input: NewPath("foo").Equal(NewValue(5)).And(NewPath("bar").Equal(NewValue("baz"))),
+			expected: Expression{
+				Names: map[string]*string{
+					"#0": aws.String("bar"),
+					"#1": aws.String("foo"),
+				},
+				Values: map[string]*dynamodb.AttributeValue{
+					":1": &dynamodb.AttributeValue{
+						N: aws.String("5"),
+					},
+					":0": &dynamodb.AttributeValue{
+						S: aws.String("baz"),
+					},
+				},
+				Expression: "(#0 = :0) AND (#1 = :1)",
+			},
+		},
+		{
+			name:  "variadic function and",
+			input: And(NewPath("foo").Equal(NewValue(5)), NewPath("bar").Equal(NewValue("baz")), NewPath("qux").Equal(NewValue(true))),
+			expected: Expression{
+				Names: map[string]*string{
+					"#0": aws.String("foo"),
+					"#1": aws.String("bar"),
+					"#2": aws.String("qux"),
+				},
+				Values: map[string]*dynamodb.AttributeValue{
+					":0": &dynamodb.AttributeValue{
+						N: aws.String("5"),
+					},
+					":1": &dynamodb.AttributeValue{
+						S: aws.String("baz"),
+					},
+					":2": &dynamodb.AttributeValue{
+						BOOL: aws.Bool(true),
+					},
+				},
+				Expression: "(#0 = :0) AND (#1 = :1) AND (#2 = :2)",
+			},
+		},
+		{
+			name:  "duplicate paths and",
+			input: And(NewPath("foo").Equal(NewPath("foo")), NewPath("bar").Equal(NewPath("foo")), NewPath("qux").Equal(NewPath("foo"))),
+			expected: Expression{
+				Names: map[string]*string{
+					"#0": aws.String("foo"),
+					"#1": aws.String("bar"),
+					"#2": aws.String("qux"),
+				},
+				Expression: "(#0 = #0) AND (#1 = #0) AND (#2 = #0)",
+			},
+		},
+		{
+			name: "empty condition",
+			input: ConditionBuilder{
+				Mode: AndCond,
+			},
+			err: true,
+		},
+		{
+			name: "non-empty operand list",
+			input: ConditionBuilder{
+				conditionList: []ConditionBuilder{
+					NewValue("foo").Equal(NewPath("bar")),
+				},
+				operandList: []OperandBuilder{
+					NewPath("foo"),
+				},
+				Mode: AndCond,
+			},
+			err: true,
+		},
+		{
+			name: "non-empty operand list",
+			input: ConditionBuilder{
+				conditionList: []ConditionBuilder{
+					NewValue("foo").Equal(NewPath("bar")),
+				},
+				operandList: []OperandBuilder{
+					NewPath("foo"),
+				},
+				Mode: AndCond,
+			},
+			err: true,
+		},
+	}
+
+	for _, c := range cases {
+		expr, err := c.input.BuildExpression()
+		if c.err {
+			if err == nil {
+				t.Errorf("TestBuildCondition Test Number %#v: Unexpected Error", c.name)
+			} else {
+				continue
+			}
+		}
+		if err != nil {
+			t.Errorf("TestBuildCondition Test Number %#v: Unexpected Error %#v", c.name, err)
+		}
+
+		if reflect.DeepEqual(expr, c.expected) != true {
+			t.Errorf("TestBuildCondition Test Number %#v: Expected %#v, got %#v", c.name, c.expected, expr)
 		}
 	}
 }

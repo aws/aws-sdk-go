@@ -92,18 +92,18 @@ func TestBuildOperand(t *testing.T) {
 
 		if c.emptyPathError {
 			if err == nil {
-				t.Errorf("Test %#v: Expected Error", c.name)
+				t.Errorf("TestBuildOperand %#v: Expected Error", c.name)
 			} else {
 				continue
 			}
 		}
 
 		if err != nil {
-			t.Errorf("Test %#v: Unexpected Error %#v", c.name, err)
+			t.Errorf("TestBuildOperand %#v: Unexpected Error %#v", c.name, err)
 		}
 
 		if reflect.DeepEqual(c.expected, en) == false {
-			t.Errorf("Test %#v: Got %#v, expected %#v\n", c.name, en, c.expected)
+			t.Errorf("TestBuildOperand %#v: Got %#v, expected %#v\n", c.name, en, c.expected)
 		}
 	}
 }
@@ -289,7 +289,7 @@ func TestBuildExpression(t *testing.T) {
 		if c.nilAliasListError {
 			_, err := c.input.buildExprNodes(nil)
 			if err == nil {
-				t.Errorf("Test %#v: Expected Error", c.name)
+				t.Errorf("TestBuildExpression %#v: Expected Error", c.name)
 			} else {
 				continue
 			}
@@ -298,17 +298,17 @@ func TestBuildExpression(t *testing.T) {
 		expr, err := c.input.buildExprNodes(&aliasList{})
 		if c.invalEscError || c.outOfRangeError {
 			if err == nil {
-				t.Errorf("Test %#v: Expected Error", c.name)
+				t.Errorf("TestBuildExpression %#v: Expected Error", c.name)
 			} else {
 				continue
 			}
 		}
 		if err != nil {
-			t.Errorf("Test %#v: Unexpected Error %#v", c.name, err)
+			t.Errorf("TestBuildExpression %#v: Unexpected Error %#v", c.name, err)
 		}
 
 		if reflect.DeepEqual(expr, c.expected) != true {
-			t.Errorf("Test %#v: Expected %#v, got %#v", c.name, c.expected, expr)
+			t.Errorf("TestBuildExpression %#v: Expected %#v, got %#v", c.name, c.expected, expr)
 		}
 	}
 }
