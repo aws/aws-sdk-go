@@ -175,6 +175,12 @@ const (
 	// for the specified Automation document.
 	ErrCodeInvalidAutomationExecutionParametersException = "InvalidAutomationExecutionParametersException"
 
+	// ErrCodeInvalidAutomationSignalException for service response error code
+	// "InvalidAutomationSignalException".
+	//
+	// The signal is not valid for the current Automation execution.
+	ErrCodeInvalidAutomationSignalException = "InvalidAutomationSignalException"
+
 	// ErrCodeInvalidCommandId for service response error code
 	// "InvalidCommandId".
 	ErrCodeInvalidCommandId = "InvalidCommandId"
