@@ -396,16 +396,105 @@ func TestBoolCondition(t *testing.T) {
 			},
 			err: true,
 		},
+	}
+
+	for _, c := range cases {
+		expr, err := c.input.BuildExpression()
+		if c.err {
+			if err == nil {
+				t.Errorf("TestBuildCondition %#v: Unexpected Error", c.name)
+			} else {
+				continue
+			}
+		}
+		if err != nil {
+			t.Errorf("TestBuildCondition %#v: Unexpected Error %#v", c.name, err)
+		}
+
+		if reflect.DeepEqual(expr, c.expected) != true {
+			t.Errorf("TestBuildCondition %#v: Expected %#v, got %#v", c.name, c.expected, expr)
+		}
+	}
+}
+
+func TestBetweenCondition(t *testing.T) {
+	cases := []struct {
+		name     string
+		input    ConditionBuilder
+		expected Expression
+		err      bool
+	}{
 		{
-			name: "non-empty operand list",
+			name:  "basic method between for path",
+			input: NewPath("foo").Between(NewValue(5), NewValue(7)),
+			expected: Expression{
+				Names: map[string]*string{
+					"#0": aws.String("foo"),
+				},
+				Values: map[string]*dynamodb.AttributeValue{
+					":0": &dynamodb.AttributeValue{
+						N: aws.String("5"),
+					},
+					":1": &dynamodb.AttributeValue{
+						N: aws.String("7"),
+					},
+				},
+				Expression: "#0 BETWEEN :0 AND :1",
+			},
+		},
+		{
+			name:  "basic method between for value",
+			input: NewValue(6).Between(NewValue(5), NewValue(7)),
+			expected: Expression{
+				Values: map[string]*dynamodb.AttributeValue{
+					":0": &dynamodb.AttributeValue{
+						N: aws.String("6"),
+					},
+					":1": &dynamodb.AttributeValue{
+						N: aws.String("5"),
+					},
+					":2": &dynamodb.AttributeValue{
+						N: aws.String("7"),
+					},
+				},
+				Expression: ":0 BETWEEN :1 AND :2",
+			},
+		},
+		{
+			name:  "basic method between for size",
+			input: NewPath("foo").Size().Between(NewValue(5), NewValue(7)),
+			expected: Expression{
+				Names: map[string]*string{
+					"#0": aws.String("foo"),
+				},
+				Values: map[string]*dynamodb.AttributeValue{
+					":0": &dynamodb.AttributeValue{
+						N: aws.String("5"),
+					},
+					":1": &dynamodb.AttributeValue{
+						N: aws.String("7"),
+					},
+				},
+				Expression: "size (#0) BETWEEN :0 AND :1",
+			},
+		},
+		{
+			name: "non-empty condition list",
 			input: ConditionBuilder{
 				conditionList: []ConditionBuilder{
 					NewValue("foo").Equal(NewPath("bar")),
 				},
+				Mode: BetweenCond,
+			},
+			err: true,
+		},
+		{
+			name: "invalid operand list",
+			input: ConditionBuilder{
 				operandList: []OperandBuilder{
 					NewPath("foo"),
 				},
-				Mode: AndCond,
+				Mode: BetweenCond,
 			},
 			err: true,
 		},
@@ -415,17 +504,17 @@ func TestBoolCondition(t *testing.T) {
 		expr, err := c.input.BuildExpression()
 		if c.err {
 			if err == nil {
-				t.Errorf("TestBuildCondition Test Number %#v: Unexpected Error", c.name)
+				t.Errorf("TestBuildCondition %#v: Unexpected Error", c.name)
 			} else {
 				continue
 			}
 		}
 		if err != nil {
-			t.Errorf("TestBuildCondition Test Number %#v: Unexpected Error %#v", c.name, err)
+			t.Errorf("TestBuildCondition %#v: Unexpected Error %#v", c.name, err)
 		}
 
 		if reflect.DeepEqual(expr, c.expected) != true {
-			t.Errorf("TestBuildCondition Test Number %#v: Expected %#v, got %#v", c.name, c.expected, expr)
+			t.Errorf("TestBuildCondition %#v: Expected %#v, got %#v", c.name, c.expected, expr)
 		}
 	}
 }

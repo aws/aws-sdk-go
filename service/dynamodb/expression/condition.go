@@ -12,6 +12,8 @@ const (
 	EqualCond
 	// AndCond will represent the And Clause ConditionBuilder
 	AndCond
+	// BetweenCond will represent the Between ConditionBuilder
+	BetweenCond
 )
 
 // ConditionBuilder will represent the ConditionExpressions
@@ -61,6 +63,35 @@ func (cond ConditionBuilder) And(right ...ConditionBuilder) ConditionBuilder {
 	return And(right...)
 }
 
+// Between will create a ConditionBuilder. This will be the function signature.
+func Between(ope, lower, upper OperandBuilder) ConditionBuilder {
+	return ConditionBuilder{
+		operandList: []OperandBuilder{ope, lower, upper},
+		Mode:        BetweenCond,
+	}
+}
+
+// Between will create a ConditionBuilder. This will be the method signature for
+// PathBuilders. There will be a check for the amount of OperandBuilders later
+// (only should be three)
+func (p PathBuilder) Between(lower, upper OperandBuilder) ConditionBuilder {
+	return Between(p, lower, upper)
+}
+
+// Between will create a ConditionBuilder. This will be the method signature for
+// ValueBuilders. There will be a check for the amount of OperandBuilders later
+// (only should be three)
+func (v ValueBuilder) Between(lower, upper OperandBuilder) ConditionBuilder {
+	return Between(v, lower, upper)
+}
+
+// Between will create a ConditionBuilder. This will be the method signature for
+// SizeBuilders. There will be a check for the amount of OperandBuilders later
+// (only should be three)
+func (s SizeBuilder) Between(lower, upper OperandBuilder) ConditionBuilder {
+	return Between(s, lower, upper)
+}
+
 // BuildExpression will take an ConditionBuilder as input and output an
 // Expression
 func (cond ConditionBuilder) BuildExpression() (Expression, error) {
@@ -85,6 +116,8 @@ func (cond ConditionBuilder) buildCondition() (ExprNode, error) {
 		return compareBuildCondition(cond)
 	case AndCond:
 		return boolBuildCondition(cond)
+	case BetweenCond:
+		return betweenBuildCondition(cond)
 	}
 	return ExprNode{}, fmt.Errorf("No matching Mode to %v", cond.Mode)
 }
@@ -157,6 +190,36 @@ func boolBuildCondition(c ConditionBuilder) (ExprNode, error) {
 			}
 		}
 	}
+
+	return ret, nil
+}
+
+// betweenBuildCondition is the function to make ExprNodes from Between
+// ConditionBuilders
+func betweenBuildCondition(c ConditionBuilder) (ExprNode, error) {
+	if len(c.conditionList) != 0 {
+		return ExprNode{}, fmt.Errorf("Invalid ConditionBuilder. Expected 0 ConditionBuilders")
+	}
+
+	if len(c.operandList) != 3 {
+		return ExprNode{}, fmt.Errorf("Invalid ConditionBuilder. Expected 3 Operands")
+	}
+
+	operandExprNodes := make([]ExprNode, 0, len(c.operandList))
+	for _, ope := range c.operandList {
+		exprNodes, err := ope.BuildOperand()
+		if err != nil {
+			return ExprNode{}, err
+		}
+		operandExprNodes = append(operandExprNodes, exprNodes)
+	}
+
+	ret := ExprNode{
+		children: operandExprNodes,
+	}
+
+	// Create a string with special characters that can be substituted later: $c
+	ret.fmtExpr = "$c BETWEEN $c AND $c"
 
 	return ret, nil
 }
