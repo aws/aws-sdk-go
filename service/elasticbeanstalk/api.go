@@ -7364,7 +7364,7 @@ type EnvironmentDescription struct {
 	//
 	//    * Grey: Default health for a new environment. The environment is not fully
 	//    launched and health checks have not started or health checks are suspended
-	//    during an UpdateEnvironment or RestartEnvironement request.
+	//    during an UpdateEnvironment or RestartEnvironment request.
 	//
 	// Default: Grey
 	Health *string `type:"string" enum:"EnvironmentHealth"`
