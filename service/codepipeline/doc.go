@@ -33,7 +33,7 @@
 //    * ListPipelines, which gets a summary of all of the pipelines associated
 //    with your account.
 //
-//    * StartPipelineExecution, which runs the the most recent revision of an
+//    * StartPipelineExecution, which runs the most recent revision of an
 //    artifact through the pipeline.
 //
 //    * UpdatePipeline, which updates a pipeline with edits or changes to the
