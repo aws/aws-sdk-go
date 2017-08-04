@@ -291,22 +291,22 @@ func (a *API) APIGoCode() string {
 }
 
 var noCrossLinkServices = map[string]struct{}{
-	"apigateway":        struct{}{},
-	"budgets":           struct{}{},
-	"cloudsearch":       struct{}{},
-	"cloudsearchdomain": struct{}{},
-	"discovery":         struct{}{},
-	"elastictranscoder": struct{}{},
-	"es":                struct{}{},
-	"glacier":           struct{}{},
-	"importexport":      struct{}{},
-	"iot":               struct{}{},
-	"iot-data":          struct{}{},
-	"lambda":            struct{}{},
-	"machinelearning":   struct{}{},
-	"rekognition":       struct{}{},
-	"sdb":               struct{}{},
-	"swf":               struct{}{},
+	"apigateway":        {},
+	"budgets":           {},
+	"cloudsearch":       {},
+	"cloudsearchdomain": {},
+	"discovery":         {},
+	"elastictranscoder": {},
+	"es":                {},
+	"glacier":           {},
+	"importexport":      {},
+	"iot":               {},
+	"iot-data":          {},
+	"lambda":            {},
+	"machinelearning":   {},
+	"rekognition":       {},
+	"sdb":               {},
+	"swf":               {},
 }
 
 func GetCrosslinkURL(baseURL, name, uid string, params ...string) string {
@@ -607,7 +607,7 @@ func (a *API) ExampleGoCode() string {
 		"github.com/aws/aws-sdk-go/aws/session",
 		path.Join(a.SvcClientImportPath, a.PackageName()),
 	)
-	for k, _ := range imports {
+	for k := range imports {
 		code += fmt.Sprintf("%q\n", k)
 	}
 	code += ")\n\n"
