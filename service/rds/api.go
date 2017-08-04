@@ -17,19 +17,18 @@ const opAddRoleToDBCluster = "AddRoleToDBCluster"
 
 // AddRoleToDBClusterRequest generates a "aws/request.Request" representing the
 // client's request for the AddRoleToDBCluster operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See AddRoleToDBCluster for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the AddRoleToDBCluster method directly
-// instead.
+// See AddRoleToDBCluster for more information on using the AddRoleToDBCluster
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the AddRoleToDBClusterRequest method.
 //    req, resp := client.AddRoleToDBClusterRequest(params)
@@ -112,19 +111,18 @@ const opAddSourceIdentifierToSubscription = "AddSourceIdentifierToSubscription"
 
 // AddSourceIdentifierToSubscriptionRequest generates a "aws/request.Request" representing the
 // client's request for the AddSourceIdentifierToSubscription operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See AddSourceIdentifierToSubscription for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the AddSourceIdentifierToSubscription method directly
-// instead.
+// See AddSourceIdentifierToSubscription for more information on using the AddSourceIdentifierToSubscription
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the AddSourceIdentifierToSubscriptionRequest method.
 //    req, resp := client.AddSourceIdentifierToSubscriptionRequest(params)
@@ -195,19 +193,18 @@ const opAddTagsToResource = "AddTagsToResource"
 
 // AddTagsToResourceRequest generates a "aws/request.Request" representing the
 // client's request for the AddTagsToResource operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See AddTagsToResource for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the AddTagsToResource method directly
-// instead.
+// See AddTagsToResource for more information on using the AddTagsToResource
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the AddTagsToResourceRequest method.
 //    req, resp := client.AddTagsToResourceRequest(params)
@@ -288,19 +285,18 @@ const opApplyPendingMaintenanceAction = "ApplyPendingMaintenanceAction"
 
 // ApplyPendingMaintenanceActionRequest generates a "aws/request.Request" representing the
 // client's request for the ApplyPendingMaintenanceAction operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ApplyPendingMaintenanceAction for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ApplyPendingMaintenanceAction method directly
-// instead.
+// See ApplyPendingMaintenanceAction for more information on using the ApplyPendingMaintenanceAction
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ApplyPendingMaintenanceActionRequest method.
 //    req, resp := client.ApplyPendingMaintenanceActionRequest(params)
@@ -369,19 +365,18 @@ const opAuthorizeDBSecurityGroupIngress = "AuthorizeDBSecurityGroupIngress"
 
 // AuthorizeDBSecurityGroupIngressRequest generates a "aws/request.Request" representing the
 // client's request for the AuthorizeDBSecurityGroupIngress operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See AuthorizeDBSecurityGroupIngress for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the AuthorizeDBSecurityGroupIngress method directly
-// instead.
+// See AuthorizeDBSecurityGroupIngress for more information on using the AuthorizeDBSecurityGroupIngress
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the AuthorizeDBSecurityGroupIngressRequest method.
 //    req, resp := client.AuthorizeDBSecurityGroupIngressRequest(params)
@@ -471,19 +466,18 @@ const opCopyDBClusterParameterGroup = "CopyDBClusterParameterGroup"
 
 // CopyDBClusterParameterGroupRequest generates a "aws/request.Request" representing the
 // client's request for the CopyDBClusterParameterGroup operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CopyDBClusterParameterGroup for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CopyDBClusterParameterGroup method directly
-// instead.
+// See CopyDBClusterParameterGroup for more information on using the CopyDBClusterParameterGroup
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CopyDBClusterParameterGroupRequest method.
 //    req, resp := client.CopyDBClusterParameterGroupRequest(params)
@@ -558,19 +552,18 @@ const opCopyDBClusterSnapshot = "CopyDBClusterSnapshot"
 
 // CopyDBClusterSnapshotRequest generates a "aws/request.Request" representing the
 // client's request for the CopyDBClusterSnapshot operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CopyDBClusterSnapshot for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CopyDBClusterSnapshot method directly
-// instead.
+// See CopyDBClusterSnapshot for more information on using the CopyDBClusterSnapshot
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CopyDBClusterSnapshotRequest method.
 //    req, resp := client.CopyDBClusterSnapshotRequest(params)
@@ -714,19 +707,18 @@ const opCopyDBParameterGroup = "CopyDBParameterGroup"
 
 // CopyDBParameterGroupRequest generates a "aws/request.Request" representing the
 // client's request for the CopyDBParameterGroup operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CopyDBParameterGroup for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CopyDBParameterGroup method directly
-// instead.
+// See CopyDBParameterGroup for more information on using the CopyDBParameterGroup
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CopyDBParameterGroupRequest method.
 //    req, resp := client.CopyDBParameterGroupRequest(params)
@@ -801,19 +793,18 @@ const opCopyDBSnapshot = "CopyDBSnapshot"
 
 // CopyDBSnapshotRequest generates a "aws/request.Request" representing the
 // client's request for the CopyDBSnapshot operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CopyDBSnapshot for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CopyDBSnapshot method directly
-// instead.
+// See CopyDBSnapshot for more information on using the CopyDBSnapshot
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CopyDBSnapshotRequest method.
 //    req, resp := client.CopyDBSnapshotRequest(params)
@@ -903,19 +894,18 @@ const opCopyOptionGroup = "CopyOptionGroup"
 
 // CopyOptionGroupRequest generates a "aws/request.Request" representing the
 // client's request for the CopyOptionGroup operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CopyOptionGroup for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CopyOptionGroup method directly
-// instead.
+// See CopyOptionGroup for more information on using the CopyOptionGroup
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CopyOptionGroupRequest method.
 //    req, resp := client.CopyOptionGroupRequest(params)
@@ -989,19 +979,18 @@ const opCreateDBCluster = "CreateDBCluster"
 
 // CreateDBClusterRequest generates a "aws/request.Request" representing the
 // client's request for the CreateDBCluster operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreateDBCluster for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreateDBCluster method directly
-// instead.
+// See CreateDBCluster for more information on using the CreateDBCluster
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreateDBClusterRequest method.
 //    req, resp := client.CreateDBClusterRequest(params)
@@ -1127,19 +1116,18 @@ const opCreateDBClusterParameterGroup = "CreateDBClusterParameterGroup"
 
 // CreateDBClusterParameterGroupRequest generates a "aws/request.Request" representing the
 // client's request for the CreateDBClusterParameterGroup operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreateDBClusterParameterGroup for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreateDBClusterParameterGroup method directly
-// instead.
+// See CreateDBClusterParameterGroup for more information on using the CreateDBClusterParameterGroup
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreateDBClusterParameterGroupRequest method.
 //    req, resp := client.CreateDBClusterParameterGroupRequest(params)
@@ -1238,19 +1226,18 @@ const opCreateDBClusterSnapshot = "CreateDBClusterSnapshot"
 
 // CreateDBClusterSnapshotRequest generates a "aws/request.Request" representing the
 // client's request for the CreateDBClusterSnapshot operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreateDBClusterSnapshot for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreateDBClusterSnapshot method directly
-// instead.
+// See CreateDBClusterSnapshot for more information on using the CreateDBClusterSnapshot
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreateDBClusterSnapshotRequest method.
 //    req, resp := client.CreateDBClusterSnapshotRequest(params)
@@ -1332,19 +1319,18 @@ const opCreateDBInstance = "CreateDBInstance"
 
 // CreateDBInstanceRequest generates a "aws/request.Request" representing the
 // client's request for the CreateDBInstance operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreateDBInstance for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreateDBInstance method directly
-// instead.
+// See CreateDBInstance for more information on using the CreateDBInstance
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreateDBInstanceRequest method.
 //    req, resp := client.CreateDBInstanceRequest(params)
@@ -1472,19 +1458,18 @@ const opCreateDBInstanceReadReplica = "CreateDBInstanceReadReplica"
 
 // CreateDBInstanceReadReplicaRequest generates a "aws/request.Request" representing the
 // client's request for the CreateDBInstanceReadReplica operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreateDBInstanceReadReplica for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreateDBInstanceReadReplica method directly
-// instead.
+// See CreateDBInstanceReadReplica for more information on using the CreateDBInstanceReadReplica
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreateDBInstanceReadReplicaRequest method.
 //    req, resp := client.CreateDBInstanceReadReplicaRequest(params)
@@ -1676,19 +1661,18 @@ const opCreateDBParameterGroup = "CreateDBParameterGroup"
 
 // CreateDBParameterGroupRequest generates a "aws/request.Request" representing the
 // client's request for the CreateDBParameterGroup operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreateDBParameterGroup for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreateDBParameterGroup method directly
-// instead.
+// See CreateDBParameterGroup for more information on using the CreateDBParameterGroup
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreateDBParameterGroupRequest method.
 //    req, resp := client.CreateDBParameterGroupRequest(params)
@@ -1780,19 +1764,18 @@ const opCreateDBSecurityGroup = "CreateDBSecurityGroup"
 
 // CreateDBSecurityGroupRequest generates a "aws/request.Request" representing the
 // client's request for the CreateDBSecurityGroup operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreateDBSecurityGroup for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreateDBSecurityGroup method directly
-// instead.
+// See CreateDBSecurityGroup for more information on using the CreateDBSecurityGroup
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreateDBSecurityGroupRequest method.
 //    req, resp := client.CreateDBSecurityGroupRequest(params)
@@ -1869,19 +1852,18 @@ const opCreateDBSnapshot = "CreateDBSnapshot"
 
 // CreateDBSnapshotRequest generates a "aws/request.Request" representing the
 // client's request for the CreateDBSnapshot operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreateDBSnapshot for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreateDBSnapshot method directly
-// instead.
+// See CreateDBSnapshot for more information on using the CreateDBSnapshot
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreateDBSnapshotRequest method.
 //    req, resp := client.CreateDBSnapshotRequest(params)
@@ -1958,19 +1940,18 @@ const opCreateDBSubnetGroup = "CreateDBSubnetGroup"
 
 // CreateDBSubnetGroupRequest generates a "aws/request.Request" representing the
 // client's request for the CreateDBSubnetGroup operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreateDBSubnetGroup for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreateDBSubnetGroup method directly
-// instead.
+// See CreateDBSubnetGroup for more information on using the CreateDBSubnetGroup
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreateDBSubnetGroupRequest method.
 //    req, resp := client.CreateDBSubnetGroupRequest(params)
@@ -2054,19 +2035,18 @@ const opCreateEventSubscription = "CreateEventSubscription"
 
 // CreateEventSubscriptionRequest generates a "aws/request.Request" representing the
 // client's request for the CreateEventSubscription operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreateEventSubscription for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreateEventSubscription method directly
-// instead.
+// See CreateEventSubscription for more information on using the CreateEventSubscription
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreateEventSubscriptionRequest method.
 //    req, resp := client.CreateEventSubscriptionRequest(params)
@@ -2169,19 +2149,18 @@ const opCreateOptionGroup = "CreateOptionGroup"
 
 // CreateOptionGroupRequest generates a "aws/request.Request" representing the
 // client's request for the CreateOptionGroup operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreateOptionGroup for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreateOptionGroup method directly
-// instead.
+// See CreateOptionGroup for more information on using the CreateOptionGroup
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreateOptionGroupRequest method.
 //    req, resp := client.CreateOptionGroupRequest(params)
@@ -2252,19 +2231,18 @@ const opDeleteDBCluster = "DeleteDBCluster"
 
 // DeleteDBClusterRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteDBCluster operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DeleteDBCluster for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DeleteDBCluster method directly
-// instead.
+// See DeleteDBCluster for more information on using the DeleteDBCluster
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DeleteDBClusterRequest method.
 //    req, resp := client.DeleteDBClusterRequest(params)
@@ -2349,19 +2327,18 @@ const opDeleteDBClusterParameterGroup = "DeleteDBClusterParameterGroup"
 
 // DeleteDBClusterParameterGroupRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteDBClusterParameterGroup operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DeleteDBClusterParameterGroup for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DeleteDBClusterParameterGroup method directly
-// instead.
+// See DeleteDBClusterParameterGroup for more information on using the DeleteDBClusterParameterGroup
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DeleteDBClusterParameterGroupRequest method.
 //    req, resp := client.DeleteDBClusterParameterGroupRequest(params)
@@ -2440,19 +2417,18 @@ const opDeleteDBClusterSnapshot = "DeleteDBClusterSnapshot"
 
 // DeleteDBClusterSnapshotRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteDBClusterSnapshot operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DeleteDBClusterSnapshot for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DeleteDBClusterSnapshot method directly
-// instead.
+// See DeleteDBClusterSnapshot for more information on using the DeleteDBClusterSnapshot
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DeleteDBClusterSnapshotRequest method.
 //    req, resp := client.DeleteDBClusterSnapshotRequest(params)
@@ -2529,19 +2505,18 @@ const opDeleteDBInstance = "DeleteDBInstance"
 
 // DeleteDBInstanceRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteDBInstance operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DeleteDBInstance for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DeleteDBInstance method directly
-// instead.
+// See DeleteDBInstance for more information on using the DeleteDBInstance
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DeleteDBInstanceRequest method.
 //    req, resp := client.DeleteDBInstanceRequest(params)
@@ -2645,19 +2620,18 @@ const opDeleteDBParameterGroup = "DeleteDBParameterGroup"
 
 // DeleteDBParameterGroupRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteDBParameterGroup operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DeleteDBParameterGroup for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DeleteDBParameterGroup method directly
-// instead.
+// See DeleteDBParameterGroup for more information on using the DeleteDBParameterGroup
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DeleteDBParameterGroupRequest method.
 //    req, resp := client.DeleteDBParameterGroupRequest(params)
@@ -2733,19 +2707,18 @@ const opDeleteDBSecurityGroup = "DeleteDBSecurityGroup"
 
 // DeleteDBSecurityGroupRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteDBSecurityGroup operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DeleteDBSecurityGroup for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DeleteDBSecurityGroup method directly
-// instead.
+// See DeleteDBSecurityGroup for more information on using the DeleteDBSecurityGroup
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DeleteDBSecurityGroupRequest method.
 //    req, resp := client.DeleteDBSecurityGroupRequest(params)
@@ -2820,19 +2793,18 @@ const opDeleteDBSnapshot = "DeleteDBSnapshot"
 
 // DeleteDBSnapshotRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteDBSnapshot operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DeleteDBSnapshot for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DeleteDBSnapshot method directly
-// instead.
+// See DeleteDBSnapshot for more information on using the DeleteDBSnapshot
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DeleteDBSnapshotRequest method.
 //    req, resp := client.DeleteDBSnapshotRequest(params)
@@ -2906,19 +2878,18 @@ const opDeleteDBSubnetGroup = "DeleteDBSubnetGroup"
 
 // DeleteDBSubnetGroupRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteDBSubnetGroup operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DeleteDBSubnetGroup for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DeleteDBSubnetGroup method directly
-// instead.
+// See DeleteDBSubnetGroup for more information on using the DeleteDBSubnetGroup
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DeleteDBSubnetGroupRequest method.
 //    req, resp := client.DeleteDBSubnetGroupRequest(params)
@@ -2996,19 +2967,18 @@ const opDeleteEventSubscription = "DeleteEventSubscription"
 
 // DeleteEventSubscriptionRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteEventSubscription operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DeleteEventSubscription for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DeleteEventSubscription method directly
-// instead.
+// See DeleteEventSubscription for more information on using the DeleteEventSubscription
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DeleteEventSubscriptionRequest method.
 //    req, resp := client.DeleteEventSubscriptionRequest(params)
@@ -3080,19 +3050,18 @@ const opDeleteOptionGroup = "DeleteOptionGroup"
 
 // DeleteOptionGroupRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteOptionGroup operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DeleteOptionGroup for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DeleteOptionGroup method directly
-// instead.
+// See DeleteOptionGroup for more information on using the DeleteOptionGroup
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DeleteOptionGroupRequest method.
 //    req, resp := client.DeleteOptionGroupRequest(params)
@@ -3165,19 +3134,18 @@ const opDescribeAccountAttributes = "DescribeAccountAttributes"
 
 // DescribeAccountAttributesRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeAccountAttributes operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeAccountAttributes for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeAccountAttributes method directly
-// instead.
+// See DescribeAccountAttributes for more information on using the DescribeAccountAttributes
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeAccountAttributesRequest method.
 //    req, resp := client.DescribeAccountAttributesRequest(params)
@@ -3245,19 +3213,18 @@ const opDescribeCertificates = "DescribeCertificates"
 
 // DescribeCertificatesRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeCertificates operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeCertificates for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeCertificates method directly
-// instead.
+// See DescribeCertificates for more information on using the DescribeCertificates
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeCertificatesRequest method.
 //    req, resp := client.DescribeCertificatesRequest(params)
@@ -3325,19 +3292,18 @@ const opDescribeDBClusterParameterGroups = "DescribeDBClusterParameterGroups"
 
 // DescribeDBClusterParameterGroupsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeDBClusterParameterGroups operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeDBClusterParameterGroups for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeDBClusterParameterGroups method directly
-// instead.
+// See DescribeDBClusterParameterGroups for more information on using the DescribeDBClusterParameterGroups
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeDBClusterParameterGroupsRequest method.
 //    req, resp := client.DescribeDBClusterParameterGroupsRequest(params)
@@ -3410,19 +3376,18 @@ const opDescribeDBClusterParameters = "DescribeDBClusterParameters"
 
 // DescribeDBClusterParametersRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeDBClusterParameters operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeDBClusterParameters for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeDBClusterParameters method directly
-// instead.
+// See DescribeDBClusterParameters for more information on using the DescribeDBClusterParameters
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeDBClusterParametersRequest method.
 //    req, resp := client.DescribeDBClusterParametersRequest(params)
@@ -3494,19 +3459,18 @@ const opDescribeDBClusterSnapshotAttributes = "DescribeDBClusterSnapshotAttribut
 
 // DescribeDBClusterSnapshotAttributesRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeDBClusterSnapshotAttributes operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeDBClusterSnapshotAttributes for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeDBClusterSnapshotAttributes method directly
-// instead.
+// See DescribeDBClusterSnapshotAttributes for more information on using the DescribeDBClusterSnapshotAttributes
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeDBClusterSnapshotAttributesRequest method.
 //    req, resp := client.DescribeDBClusterSnapshotAttributesRequest(params)
@@ -3585,19 +3549,18 @@ const opDescribeDBClusterSnapshots = "DescribeDBClusterSnapshots"
 
 // DescribeDBClusterSnapshotsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeDBClusterSnapshots operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeDBClusterSnapshots for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeDBClusterSnapshots method directly
-// instead.
+// See DescribeDBClusterSnapshots for more information on using the DescribeDBClusterSnapshots
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeDBClusterSnapshotsRequest method.
 //    req, resp := client.DescribeDBClusterSnapshotsRequest(params)
@@ -3669,19 +3632,18 @@ const opDescribeDBClusters = "DescribeDBClusters"
 
 // DescribeDBClustersRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeDBClusters operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeDBClusters for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeDBClusters method directly
-// instead.
+// See DescribeDBClusters for more information on using the DescribeDBClusters
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeDBClustersRequest method.
 //    req, resp := client.DescribeDBClustersRequest(params)
@@ -3753,19 +3715,18 @@ const opDescribeDBEngineVersions = "DescribeDBEngineVersions"
 
 // DescribeDBEngineVersionsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeDBEngineVersions operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeDBEngineVersions for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeDBEngineVersions method directly
-// instead.
+// See DescribeDBEngineVersions for more information on using the DescribeDBEngineVersions
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeDBEngineVersionsRequest method.
 //    req, resp := client.DescribeDBEngineVersionsRequest(params)
@@ -3884,19 +3845,18 @@ const opDescribeDBInstances = "DescribeDBInstances"
 
 // DescribeDBInstancesRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeDBInstances operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeDBInstances for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeDBInstances method directly
-// instead.
+// See DescribeDBInstances for more information on using the DescribeDBInstances
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeDBInstancesRequest method.
 //    req, resp := client.DescribeDBInstancesRequest(params)
@@ -4020,19 +3980,18 @@ const opDescribeDBLogFiles = "DescribeDBLogFiles"
 
 // DescribeDBLogFilesRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeDBLogFiles operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeDBLogFiles for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeDBLogFiles method directly
-// instead.
+// See DescribeDBLogFiles for more information on using the DescribeDBLogFiles
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeDBLogFilesRequest method.
 //    req, resp := client.DescribeDBLogFilesRequest(params)
@@ -4156,19 +4115,18 @@ const opDescribeDBParameterGroups = "DescribeDBParameterGroups"
 
 // DescribeDBParameterGroupsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeDBParameterGroups operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeDBParameterGroups for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeDBParameterGroups method directly
-// instead.
+// See DescribeDBParameterGroups for more information on using the DescribeDBParameterGroups
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeDBParameterGroupsRequest method.
 //    req, resp := client.DescribeDBParameterGroupsRequest(params)
@@ -4294,19 +4252,18 @@ const opDescribeDBParameters = "DescribeDBParameters"
 
 // DescribeDBParametersRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeDBParameters operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeDBParameters for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeDBParameters method directly
-// instead.
+// See DescribeDBParameters for more information on using the DescribeDBParameters
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeDBParametersRequest method.
 //    req, resp := client.DescribeDBParametersRequest(params)
@@ -4430,19 +4387,18 @@ const opDescribeDBSecurityGroups = "DescribeDBSecurityGroups"
 
 // DescribeDBSecurityGroupsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeDBSecurityGroups operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeDBSecurityGroups for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeDBSecurityGroups method directly
-// instead.
+// See DescribeDBSecurityGroups for more information on using the DescribeDBSecurityGroups
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeDBSecurityGroupsRequest method.
 //    req, resp := client.DescribeDBSecurityGroupsRequest(params)
@@ -4568,19 +4524,18 @@ const opDescribeDBSnapshotAttributes = "DescribeDBSnapshotAttributes"
 
 // DescribeDBSnapshotAttributesRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeDBSnapshotAttributes operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeDBSnapshotAttributes for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeDBSnapshotAttributes method directly
-// instead.
+// See DescribeDBSnapshotAttributes for more information on using the DescribeDBSnapshotAttributes
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeDBSnapshotAttributesRequest method.
 //    req, resp := client.DescribeDBSnapshotAttributesRequest(params)
@@ -4659,19 +4614,18 @@ const opDescribeDBSnapshots = "DescribeDBSnapshots"
 
 // DescribeDBSnapshotsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeDBSnapshots operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeDBSnapshots for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeDBSnapshots method directly
-// instead.
+// See DescribeDBSnapshots for more information on using the DescribeDBSnapshots
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeDBSnapshotsRequest method.
 //    req, resp := client.DescribeDBSnapshotsRequest(params)
@@ -4795,19 +4749,18 @@ const opDescribeDBSubnetGroups = "DescribeDBSubnetGroups"
 
 // DescribeDBSubnetGroupsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeDBSubnetGroups operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeDBSubnetGroups for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeDBSubnetGroups method directly
-// instead.
+// See DescribeDBSubnetGroups for more information on using the DescribeDBSubnetGroups
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeDBSubnetGroupsRequest method.
 //    req, resp := client.DescribeDBSubnetGroupsRequest(params)
@@ -4934,19 +4887,18 @@ const opDescribeEngineDefaultClusterParameters = "DescribeEngineDefaultClusterPa
 
 // DescribeEngineDefaultClusterParametersRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeEngineDefaultClusterParameters operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeEngineDefaultClusterParameters for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeEngineDefaultClusterParameters method directly
-// instead.
+// See DescribeEngineDefaultClusterParameters for more information on using the DescribeEngineDefaultClusterParameters
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeEngineDefaultClusterParametersRequest method.
 //    req, resp := client.DescribeEngineDefaultClusterParametersRequest(params)
@@ -5013,19 +4965,18 @@ const opDescribeEngineDefaultParameters = "DescribeEngineDefaultParameters"
 
 // DescribeEngineDefaultParametersRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeEngineDefaultParameters operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeEngineDefaultParameters for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeEngineDefaultParameters method directly
-// instead.
+// See DescribeEngineDefaultParameters for more information on using the DescribeEngineDefaultParameters
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeEngineDefaultParametersRequest method.
 //    req, resp := client.DescribeEngineDefaultParametersRequest(params)
@@ -5145,19 +5096,18 @@ const opDescribeEventCategories = "DescribeEventCategories"
 
 // DescribeEventCategoriesRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeEventCategories operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeEventCategories for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeEventCategories method directly
-// instead.
+// See DescribeEventCategories for more information on using the DescribeEventCategories
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeEventCategoriesRequest method.
 //    req, resp := client.DescribeEventCategoriesRequest(params)
@@ -5223,19 +5173,18 @@ const opDescribeEventSubscriptions = "DescribeEventSubscriptions"
 
 // DescribeEventSubscriptionsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeEventSubscriptions operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeEventSubscriptions for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeEventSubscriptions method directly
-// instead.
+// See DescribeEventSubscriptions for more information on using the DescribeEventSubscriptions
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeEventSubscriptionsRequest method.
 //    req, resp := client.DescribeEventSubscriptionsRequest(params)
@@ -5363,19 +5312,18 @@ const opDescribeEvents = "DescribeEvents"
 
 // DescribeEventsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeEvents operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeEvents for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeEvents method directly
-// instead.
+// See DescribeEvents for more information on using the DescribeEvents
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeEventsRequest method.
 //    req, resp := client.DescribeEventsRequest(params)
@@ -5498,19 +5446,18 @@ const opDescribeOptionGroupOptions = "DescribeOptionGroupOptions"
 
 // DescribeOptionGroupOptionsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeOptionGroupOptions operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeOptionGroupOptions for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeOptionGroupOptions method directly
-// instead.
+// See DescribeOptionGroupOptions for more information on using the DescribeOptionGroupOptions
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeOptionGroupOptionsRequest method.
 //    req, resp := client.DescribeOptionGroupOptionsRequest(params)
@@ -5629,19 +5576,18 @@ const opDescribeOptionGroups = "DescribeOptionGroups"
 
 // DescribeOptionGroupsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeOptionGroups operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeOptionGroups for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeOptionGroups method directly
-// instead.
+// See DescribeOptionGroups for more information on using the DescribeOptionGroups
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeOptionGroupsRequest method.
 //    req, resp := client.DescribeOptionGroupsRequest(params)
@@ -5765,19 +5711,18 @@ const opDescribeOrderableDBInstanceOptions = "DescribeOrderableDBInstanceOptions
 
 // DescribeOrderableDBInstanceOptionsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeOrderableDBInstanceOptions operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeOrderableDBInstanceOptions for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeOrderableDBInstanceOptions method directly
-// instead.
+// See DescribeOrderableDBInstanceOptions for more information on using the DescribeOrderableDBInstanceOptions
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeOrderableDBInstanceOptionsRequest method.
 //    req, resp := client.DescribeOrderableDBInstanceOptionsRequest(params)
@@ -5896,19 +5841,18 @@ const opDescribePendingMaintenanceActions = "DescribePendingMaintenanceActions"
 
 // DescribePendingMaintenanceActionsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribePendingMaintenanceActions operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribePendingMaintenanceActions for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribePendingMaintenanceActions method directly
-// instead.
+// See DescribePendingMaintenanceActions for more information on using the DescribePendingMaintenanceActions
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribePendingMaintenanceActionsRequest method.
 //    req, resp := client.DescribePendingMaintenanceActionsRequest(params)
@@ -5977,19 +5921,18 @@ const opDescribeReservedDBInstances = "DescribeReservedDBInstances"
 
 // DescribeReservedDBInstancesRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeReservedDBInstances operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeReservedDBInstances for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeReservedDBInstances method directly
-// instead.
+// See DescribeReservedDBInstances for more information on using the DescribeReservedDBInstances
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeReservedDBInstancesRequest method.
 //    req, resp := client.DescribeReservedDBInstancesRequest(params)
@@ -6114,19 +6057,18 @@ const opDescribeReservedDBInstancesOfferings = "DescribeReservedDBInstancesOffer
 
 // DescribeReservedDBInstancesOfferingsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeReservedDBInstancesOfferings operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeReservedDBInstancesOfferings for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeReservedDBInstancesOfferings method directly
-// instead.
+// See DescribeReservedDBInstancesOfferings for more information on using the DescribeReservedDBInstancesOfferings
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeReservedDBInstancesOfferingsRequest method.
 //    req, resp := client.DescribeReservedDBInstancesOfferingsRequest(params)
@@ -6250,19 +6192,18 @@ const opDescribeSourceRegions = "DescribeSourceRegions"
 
 // DescribeSourceRegionsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeSourceRegions operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeSourceRegions for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeSourceRegions method directly
-// instead.
+// See DescribeSourceRegions for more information on using the DescribeSourceRegions
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeSourceRegionsRequest method.
 //    req, resp := client.DescribeSourceRegionsRequest(params)
@@ -6327,19 +6268,18 @@ const opDownloadDBLogFilePortion = "DownloadDBLogFilePortion"
 
 // DownloadDBLogFilePortionRequest generates a "aws/request.Request" representing the
 // client's request for the DownloadDBLogFilePortion operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DownloadDBLogFilePortion for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DownloadDBLogFilePortion method directly
-// instead.
+// See DownloadDBLogFilePortion for more information on using the DownloadDBLogFilePortion
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DownloadDBLogFilePortionRequest method.
 //    req, resp := client.DownloadDBLogFilePortionRequest(params)
@@ -6466,19 +6406,18 @@ const opFailoverDBCluster = "FailoverDBCluster"
 
 // FailoverDBClusterRequest generates a "aws/request.Request" representing the
 // client's request for the FailoverDBCluster operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See FailoverDBCluster for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the FailoverDBCluster method directly
-// instead.
+// See FailoverDBCluster for more information on using the FailoverDBCluster
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the FailoverDBClusterRequest method.
 //    req, resp := client.FailoverDBClusterRequest(params)
@@ -6565,19 +6504,18 @@ const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
 // client's request for the ListTagsForResource operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ListTagsForResource for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ListTagsForResource method directly
-// instead.
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ListTagsForResourceRequest method.
 //    req, resp := client.ListTagsForResourceRequest(params)
@@ -6654,19 +6592,18 @@ const opModifyDBCluster = "ModifyDBCluster"
 
 // ModifyDBClusterRequest generates a "aws/request.Request" representing the
 // client's request for the ModifyDBCluster operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ModifyDBCluster for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ModifyDBCluster method directly
-// instead.
+// See ModifyDBCluster for more information on using the ModifyDBCluster
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ModifyDBClusterRequest method.
 //    req, resp := client.ModifyDBClusterRequest(params)
@@ -6772,19 +6709,18 @@ const opModifyDBClusterParameterGroup = "ModifyDBClusterParameterGroup"
 
 // ModifyDBClusterParameterGroupRequest generates a "aws/request.Request" representing the
 // client's request for the ModifyDBClusterParameterGroup operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ModifyDBClusterParameterGroup for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ModifyDBClusterParameterGroup method directly
-// instead.
+// See ModifyDBClusterParameterGroup for more information on using the ModifyDBClusterParameterGroup
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ModifyDBClusterParameterGroupRequest method.
 //    req, resp := client.ModifyDBClusterParameterGroupRequest(params)
@@ -6877,19 +6813,18 @@ const opModifyDBClusterSnapshotAttribute = "ModifyDBClusterSnapshotAttribute"
 
 // ModifyDBClusterSnapshotAttributeRequest generates a "aws/request.Request" representing the
 // client's request for the ModifyDBClusterSnapshotAttribute operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ModifyDBClusterSnapshotAttribute for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ModifyDBClusterSnapshotAttribute method directly
-// instead.
+// See ModifyDBClusterSnapshotAttribute for more information on using the ModifyDBClusterSnapshotAttribute
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ModifyDBClusterSnapshotAttributeRequest method.
 //    req, resp := client.ModifyDBClusterSnapshotAttributeRequest(params)
@@ -6980,19 +6915,18 @@ const opModifyDBInstance = "ModifyDBInstance"
 
 // ModifyDBInstanceRequest generates a "aws/request.Request" representing the
 // client's request for the ModifyDBInstance operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ModifyDBInstance for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ModifyDBInstance method directly
-// instead.
+// See ModifyDBInstance for more information on using the ModifyDBInstance
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ModifyDBInstanceRequest method.
 //    req, resp := client.ModifyDBInstanceRequest(params)
@@ -7114,19 +7048,18 @@ const opModifyDBParameterGroup = "ModifyDBParameterGroup"
 
 // ModifyDBParameterGroupRequest generates a "aws/request.Request" representing the
 // client's request for the ModifyDBParameterGroup operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ModifyDBParameterGroup for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ModifyDBParameterGroup method directly
-// instead.
+// See ModifyDBParameterGroup for more information on using the ModifyDBParameterGroup
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ModifyDBParameterGroupRequest method.
 //    req, resp := client.ModifyDBParameterGroupRequest(params)
@@ -7216,19 +7149,18 @@ const opModifyDBSnapshot = "ModifyDBSnapshot"
 
 // ModifyDBSnapshotRequest generates a "aws/request.Request" representing the
 // client's request for the ModifyDBSnapshot operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ModifyDBSnapshot for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ModifyDBSnapshot method directly
-// instead.
+// See ModifyDBSnapshot for more information on using the ModifyDBSnapshot
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ModifyDBSnapshotRequest method.
 //    req, resp := client.ModifyDBSnapshotRequest(params)
@@ -7301,19 +7233,18 @@ const opModifyDBSnapshotAttribute = "ModifyDBSnapshotAttribute"
 
 // ModifyDBSnapshotAttributeRequest generates a "aws/request.Request" representing the
 // client's request for the ModifyDBSnapshotAttribute operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ModifyDBSnapshotAttribute for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ModifyDBSnapshotAttribute method directly
-// instead.
+// See ModifyDBSnapshotAttribute for more information on using the ModifyDBSnapshotAttribute
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ModifyDBSnapshotAttributeRequest method.
 //    req, resp := client.ModifyDBSnapshotAttributeRequest(params)
@@ -7404,19 +7335,18 @@ const opModifyDBSubnetGroup = "ModifyDBSubnetGroup"
 
 // ModifyDBSubnetGroupRequest generates a "aws/request.Request" representing the
 // client's request for the ModifyDBSubnetGroup operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ModifyDBSubnetGroup for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ModifyDBSubnetGroup method directly
-// instead.
+// See ModifyDBSubnetGroup for more information on using the ModifyDBSubnetGroup
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ModifyDBSubnetGroupRequest method.
 //    req, resp := client.ModifyDBSubnetGroupRequest(params)
@@ -7500,19 +7430,18 @@ const opModifyEventSubscription = "ModifyEventSubscription"
 
 // ModifyEventSubscriptionRequest generates a "aws/request.Request" representing the
 // client's request for the ModifyEventSubscription operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ModifyEventSubscription for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ModifyEventSubscription method directly
-// instead.
+// See ModifyEventSubscription for more information on using the ModifyEventSubscription
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ModifyEventSubscriptionRequest method.
 //    req, resp := client.ModifyEventSubscriptionRequest(params)
@@ -7603,19 +7532,18 @@ const opModifyOptionGroup = "ModifyOptionGroup"
 
 // ModifyOptionGroupRequest generates a "aws/request.Request" representing the
 // client's request for the ModifyOptionGroup operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ModifyOptionGroup for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ModifyOptionGroup method directly
-// instead.
+// See ModifyOptionGroup for more information on using the ModifyOptionGroup
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ModifyOptionGroupRequest method.
 //    req, resp := client.ModifyOptionGroupRequest(params)
@@ -7686,19 +7614,18 @@ const opPromoteReadReplica = "PromoteReadReplica"
 
 // PromoteReadReplicaRequest generates a "aws/request.Request" representing the
 // client's request for the PromoteReadReplica operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See PromoteReadReplica for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the PromoteReadReplica method directly
-// instead.
+// See PromoteReadReplica for more information on using the PromoteReadReplica
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the PromoteReadReplicaRequest method.
 //    req, resp := client.PromoteReadReplicaRequest(params)
@@ -7774,19 +7701,18 @@ const opPromoteReadReplicaDBCluster = "PromoteReadReplicaDBCluster"
 
 // PromoteReadReplicaDBClusterRequest generates a "aws/request.Request" representing the
 // client's request for the PromoteReadReplicaDBCluster operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See PromoteReadReplicaDBCluster for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the PromoteReadReplicaDBCluster method directly
-// instead.
+// See PromoteReadReplicaDBCluster for more information on using the PromoteReadReplicaDBCluster
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the PromoteReadReplicaDBClusterRequest method.
 //    req, resp := client.PromoteReadReplicaDBClusterRequest(params)
@@ -7857,19 +7783,18 @@ const opPurchaseReservedDBInstancesOffering = "PurchaseReservedDBInstancesOfferi
 
 // PurchaseReservedDBInstancesOfferingRequest generates a "aws/request.Request" representing the
 // client's request for the PurchaseReservedDBInstancesOffering operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See PurchaseReservedDBInstancesOffering for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the PurchaseReservedDBInstancesOffering method directly
-// instead.
+// See PurchaseReservedDBInstancesOffering for more information on using the PurchaseReservedDBInstancesOffering
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the PurchaseReservedDBInstancesOfferingRequest method.
 //    req, resp := client.PurchaseReservedDBInstancesOfferingRequest(params)
@@ -7943,19 +7868,18 @@ const opRebootDBInstance = "RebootDBInstance"
 
 // RebootDBInstanceRequest generates a "aws/request.Request" representing the
 // client's request for the RebootDBInstance operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See RebootDBInstance for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the RebootDBInstance method directly
-// instead.
+// See RebootDBInstance for more information on using the RebootDBInstance
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the RebootDBInstanceRequest method.
 //    req, resp := client.RebootDBInstanceRequest(params)
@@ -8042,19 +7966,18 @@ const opRemoveRoleFromDBCluster = "RemoveRoleFromDBCluster"
 
 // RemoveRoleFromDBClusterRequest generates a "aws/request.Request" representing the
 // client's request for the RemoveRoleFromDBCluster operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See RemoveRoleFromDBCluster for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the RemoveRoleFromDBCluster method directly
-// instead.
+// See RemoveRoleFromDBCluster for more information on using the RemoveRoleFromDBCluster
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the RemoveRoleFromDBClusterRequest method.
 //    req, resp := client.RemoveRoleFromDBClusterRequest(params)
@@ -8133,19 +8056,18 @@ const opRemoveSourceIdentifierFromSubscription = "RemoveSourceIdentifierFromSubs
 
 // RemoveSourceIdentifierFromSubscriptionRequest generates a "aws/request.Request" representing the
 // client's request for the RemoveSourceIdentifierFromSubscription operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See RemoveSourceIdentifierFromSubscription for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the RemoveSourceIdentifierFromSubscription method directly
-// instead.
+// See RemoveSourceIdentifierFromSubscription for more information on using the RemoveSourceIdentifierFromSubscription
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the RemoveSourceIdentifierFromSubscriptionRequest method.
 //    req, resp := client.RemoveSourceIdentifierFromSubscriptionRequest(params)
@@ -8216,19 +8138,18 @@ const opRemoveTagsFromResource = "RemoveTagsFromResource"
 
 // RemoveTagsFromResourceRequest generates a "aws/request.Request" representing the
 // client's request for the RemoveTagsFromResource operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See RemoveTagsFromResource for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the RemoveTagsFromResource method directly
-// instead.
+// See RemoveTagsFromResource for more information on using the RemoveTagsFromResource
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the RemoveTagsFromResourceRequest method.
 //    req, resp := client.RemoveTagsFromResourceRequest(params)
@@ -8307,19 +8228,18 @@ const opResetDBClusterParameterGroup = "ResetDBClusterParameterGroup"
 
 // ResetDBClusterParameterGroupRequest generates a "aws/request.Request" representing the
 // client's request for the ResetDBClusterParameterGroup operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ResetDBClusterParameterGroup for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ResetDBClusterParameterGroup method directly
-// instead.
+// See ResetDBClusterParameterGroup for more information on using the ResetDBClusterParameterGroup
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ResetDBClusterParameterGroupRequest method.
 //    req, resp := client.ResetDBClusterParameterGroupRequest(params)
@@ -8404,19 +8324,18 @@ const opResetDBParameterGroup = "ResetDBParameterGroup"
 
 // ResetDBParameterGroupRequest generates a "aws/request.Request" representing the
 // client's request for the ResetDBParameterGroup operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ResetDBParameterGroup for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ResetDBParameterGroup method directly
-// instead.
+// See ResetDBParameterGroup for more information on using the ResetDBParameterGroup
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ResetDBParameterGroupRequest method.
 //    req, resp := client.ResetDBParameterGroupRequest(params)
@@ -8495,19 +8414,18 @@ const opRestoreDBClusterFromS3 = "RestoreDBClusterFromS3"
 
 // RestoreDBClusterFromS3Request generates a "aws/request.Request" representing the
 // client's request for the RestoreDBClusterFromS3 operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See RestoreDBClusterFromS3 for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the RestoreDBClusterFromS3 method directly
-// instead.
+// See RestoreDBClusterFromS3 for more information on using the RestoreDBClusterFromS3
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the RestoreDBClusterFromS3Request method.
 //    req, resp := client.RestoreDBClusterFromS3Request(params)
@@ -8623,19 +8541,18 @@ const opRestoreDBClusterFromSnapshot = "RestoreDBClusterFromSnapshot"
 
 // RestoreDBClusterFromSnapshotRequest generates a "aws/request.Request" representing the
 // client's request for the RestoreDBClusterFromSnapshot operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See RestoreDBClusterFromSnapshot for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the RestoreDBClusterFromSnapshot method directly
-// instead.
+// See RestoreDBClusterFromSnapshot for more information on using the RestoreDBClusterFromSnapshot
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the RestoreDBClusterFromSnapshotRequest method.
 //    req, resp := client.RestoreDBClusterFromSnapshotRequest(params)
@@ -8764,19 +8681,18 @@ const opRestoreDBClusterToPointInTime = "RestoreDBClusterToPointInTime"
 
 // RestoreDBClusterToPointInTimeRequest generates a "aws/request.Request" representing the
 // client's request for the RestoreDBClusterToPointInTime operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See RestoreDBClusterToPointInTime for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the RestoreDBClusterToPointInTime method directly
-// instead.
+// See RestoreDBClusterToPointInTime for more information on using the RestoreDBClusterToPointInTime
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the RestoreDBClusterToPointInTimeRequest method.
 //    req, resp := client.RestoreDBClusterToPointInTimeRequest(params)
@@ -8902,19 +8818,18 @@ const opRestoreDBInstanceFromDBSnapshot = "RestoreDBInstanceFromDBSnapshot"
 
 // RestoreDBInstanceFromDBSnapshotRequest generates a "aws/request.Request" representing the
 // client's request for the RestoreDBInstanceFromDBSnapshot operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See RestoreDBInstanceFromDBSnapshot for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the RestoreDBInstanceFromDBSnapshot method directly
-// instead.
+// See RestoreDBInstanceFromDBSnapshot for more information on using the RestoreDBInstanceFromDBSnapshot
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the RestoreDBInstanceFromDBSnapshotRequest method.
 //    req, resp := client.RestoreDBInstanceFromDBSnapshotRequest(params)
@@ -9060,19 +8975,18 @@ const opRestoreDBInstanceToPointInTime = "RestoreDBInstanceToPointInTime"
 
 // RestoreDBInstanceToPointInTimeRequest generates a "aws/request.Request" representing the
 // client's request for the RestoreDBInstanceToPointInTime operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See RestoreDBInstanceToPointInTime for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the RestoreDBInstanceToPointInTime method directly
-// instead.
+// See RestoreDBInstanceToPointInTime for more information on using the RestoreDBInstanceToPointInTime
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the RestoreDBInstanceToPointInTimeRequest method.
 //    req, resp := client.RestoreDBInstanceToPointInTimeRequest(params)
@@ -9215,19 +9129,18 @@ const opRevokeDBSecurityGroupIngress = "RevokeDBSecurityGroupIngress"
 
 // RevokeDBSecurityGroupIngressRequest generates a "aws/request.Request" representing the
 // client's request for the RevokeDBSecurityGroupIngress operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See RevokeDBSecurityGroupIngress for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the RevokeDBSecurityGroupIngress method directly
-// instead.
+// See RevokeDBSecurityGroupIngress for more information on using the RevokeDBSecurityGroupIngress
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the RevokeDBSecurityGroupIngressRequest method.
 //    req, resp := client.RevokeDBSecurityGroupIngressRequest(params)
@@ -9308,19 +9221,18 @@ const opStartDBInstance = "StartDBInstance"
 
 // StartDBInstanceRequest generates a "aws/request.Request" representing the
 // client's request for the StartDBInstance operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See StartDBInstance for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the StartDBInstance method directly
-// instead.
+// See StartDBInstance for more information on using the StartDBInstance
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the StartDBInstanceRequest method.
 //    req, resp := client.StartDBInstanceRequest(params)
@@ -9428,19 +9340,18 @@ const opStopDBInstance = "StopDBInstance"
 
 // StopDBInstanceRequest generates a "aws/request.Request" representing the
 // client's request for the StopDBInstance operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See StopDBInstance for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the StopDBInstance method directly
-// instead.
+// See StopDBInstance for more information on using the StopDBInstance
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the StopDBInstanceRequest method.
 //    req, resp := client.StopDBInstanceRequest(params)

@@ -17,19 +17,18 @@ const opCreateAlias = "CreateAlias"
 
 // CreateAliasRequest generates a "aws/request.Request" representing the
 // client's request for the CreateAlias operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreateAlias for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreateAlias method directly
-// instead.
+// See CreateAlias for more information on using the CreateAlias
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreateAliasRequest method.
 //    req, resp := client.CreateAliasRequest(params)
@@ -147,19 +146,18 @@ const opCreateBuild = "CreateBuild"
 
 // CreateBuildRequest generates a "aws/request.Request" representing the
 // client's request for the CreateBuild operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreateBuild for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreateBuild method directly
-// instead.
+// See CreateBuild for more information on using the CreateBuild
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreateBuildRequest method.
 //    req, resp := client.CreateBuildRequest(params)
@@ -270,19 +268,18 @@ const opCreateFleet = "CreateFleet"
 
 // CreateFleetRequest generates a "aws/request.Request" representing the
 // client's request for the CreateFleet operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreateFleet for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreateFleet method directly
-// instead.
+// See CreateFleet for more information on using the CreateFleet
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreateFleetRequest method.
 //    req, resp := client.CreateFleetRequest(params)
@@ -462,19 +459,18 @@ const opCreateGameSession = "CreateGameSession"
 
 // CreateGameSessionRequest generates a "aws/request.Request" representing the
 // client's request for the CreateGameSession operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreateGameSession for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreateGameSession method directly
-// instead.
+// See CreateGameSession for more information on using the CreateGameSession
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreateGameSessionRequest method.
 //    req, resp := client.CreateGameSessionRequest(params)
@@ -631,19 +627,18 @@ const opCreateGameSessionQueue = "CreateGameSessionQueue"
 
 // CreateGameSessionQueueRequest generates a "aws/request.Request" representing the
 // client's request for the CreateGameSessionQueue operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreateGameSessionQueue for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreateGameSessionQueue method directly
-// instead.
+// See CreateGameSessionQueue for more information on using the CreateGameSessionQueue
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreateGameSessionQueueRequest method.
 //    req, resp := client.CreateGameSessionQueueRequest(params)
@@ -763,19 +758,18 @@ const opCreatePlayerSession = "CreatePlayerSession"
 
 // CreatePlayerSessionRequest generates a "aws/request.Request" representing the
 // client's request for the CreatePlayerSession operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreatePlayerSession for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreatePlayerSession method directly
-// instead.
+// See CreatePlayerSession for more information on using the CreatePlayerSession
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreatePlayerSessionRequest method.
 //    req, resp := client.CreatePlayerSessionRequest(params)
@@ -897,19 +891,18 @@ const opCreatePlayerSessions = "CreatePlayerSessions"
 
 // CreatePlayerSessionsRequest generates a "aws/request.Request" representing the
 // client's request for the CreatePlayerSessions operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreatePlayerSessions for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreatePlayerSessions method directly
-// instead.
+// See CreatePlayerSessions for more information on using the CreatePlayerSessions
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreatePlayerSessionsRequest method.
 //    req, resp := client.CreatePlayerSessionsRequest(params)
@@ -1032,19 +1025,18 @@ const opDeleteAlias = "DeleteAlias"
 
 // DeleteAliasRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteAlias operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DeleteAlias for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DeleteAlias method directly
-// instead.
+// See DeleteAlias for more information on using the DeleteAlias
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DeleteAliasRequest method.
 //    req, resp := client.DeleteAliasRequest(params)
@@ -1143,19 +1135,18 @@ const opDeleteBuild = "DeleteBuild"
 
 // DeleteBuildRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteBuild operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DeleteBuild for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DeleteBuild method directly
-// instead.
+// See DeleteBuild for more information on using the DeleteBuild
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DeleteBuildRequest method.
 //    req, resp := client.DeleteBuildRequest(params)
@@ -1255,19 +1246,18 @@ const opDeleteFleet = "DeleteFleet"
 
 // DeleteFleetRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteFleet operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DeleteFleet for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DeleteFleet method directly
-// instead.
+// See DeleteFleet for more information on using the DeleteFleet
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DeleteFleetRequest method.
 //    req, resp := client.DeleteFleetRequest(params)
@@ -1403,19 +1393,18 @@ const opDeleteGameSessionQueue = "DeleteGameSessionQueue"
 
 // DeleteGameSessionQueueRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteGameSessionQueue operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DeleteGameSessionQueue for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DeleteGameSessionQueue method directly
-// instead.
+// See DeleteGameSessionQueue for more information on using the DeleteGameSessionQueue
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DeleteGameSessionQueueRequest method.
 //    req, resp := client.DeleteGameSessionQueueRequest(params)
@@ -1508,19 +1497,18 @@ const opDeleteScalingPolicy = "DeleteScalingPolicy"
 
 // DeleteScalingPolicyRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteScalingPolicy operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DeleteScalingPolicy for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DeleteScalingPolicy method directly
-// instead.
+// See DeleteScalingPolicy for more information on using the DeleteScalingPolicy
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DeleteScalingPolicyRequest method.
 //    req, resp := client.DeleteScalingPolicyRequest(params)
@@ -1649,19 +1637,18 @@ const opDescribeAlias = "DescribeAlias"
 
 // DescribeAliasRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeAlias operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeAlias for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeAlias method directly
-// instead.
+// See DescribeAlias for more information on using the DescribeAlias
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeAliasRequest method.
 //    req, resp := client.DescribeAliasRequest(params)
@@ -1760,19 +1747,18 @@ const opDescribeBuild = "DescribeBuild"
 
 // DescribeBuildRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeBuild operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeBuild for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeBuild method directly
-// instead.
+// See DescribeBuild for more information on using the DescribeBuild
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeBuildRequest method.
 //    req, resp := client.DescribeBuildRequest(params)
@@ -1866,19 +1852,18 @@ const opDescribeEC2InstanceLimits = "DescribeEC2InstanceLimits"
 
 // DescribeEC2InstanceLimitsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeEC2InstanceLimits operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeEC2InstanceLimits for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeEC2InstanceLimits method directly
-// instead.
+// See DescribeEC2InstanceLimits for more information on using the DescribeEC2InstanceLimits
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeEC2InstanceLimitsRequest method.
 //    req, resp := client.DescribeEC2InstanceLimitsRequest(params)
@@ -2007,19 +1992,18 @@ const opDescribeFleetAttributes = "DescribeFleetAttributes"
 
 // DescribeFleetAttributesRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeFleetAttributes operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeFleetAttributes for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeFleetAttributes method directly
-// instead.
+// See DescribeFleetAttributes for more information on using the DescribeFleetAttributes
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeFleetAttributesRequest method.
 //    req, resp := client.DescribeFleetAttributesRequest(params)
@@ -2154,19 +2138,18 @@ const opDescribeFleetCapacity = "DescribeFleetCapacity"
 
 // DescribeFleetCapacityRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeFleetCapacity operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeFleetCapacity for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeFleetCapacity method directly
-// instead.
+// See DescribeFleetCapacity for more information on using the DescribeFleetCapacity
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeFleetCapacityRequest method.
 //    req, resp := client.DescribeFleetCapacityRequest(params)
@@ -2302,19 +2285,18 @@ const opDescribeFleetEvents = "DescribeFleetEvents"
 
 // DescribeFleetEventsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeFleetEvents operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeFleetEvents for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeFleetEvents method directly
-// instead.
+// See DescribeFleetEvents for more information on using the DescribeFleetEvents
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeFleetEventsRequest method.
 //    req, resp := client.DescribeFleetEventsRequest(params)
@@ -2442,19 +2424,18 @@ const opDescribeFleetPortSettings = "DescribeFleetPortSettings"
 
 // DescribeFleetPortSettingsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeFleetPortSettings operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeFleetPortSettings for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeFleetPortSettings method directly
-// instead.
+// See DescribeFleetPortSettings for more information on using the DescribeFleetPortSettings
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeFleetPortSettingsRequest method.
 //    req, resp := client.DescribeFleetPortSettingsRequest(params)
@@ -2584,19 +2565,18 @@ const opDescribeFleetUtilization = "DescribeFleetUtilization"
 
 // DescribeFleetUtilizationRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeFleetUtilization operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeFleetUtilization for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeFleetUtilization method directly
-// instead.
+// See DescribeFleetUtilization for more information on using the DescribeFleetUtilization
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeFleetUtilizationRequest method.
 //    req, resp := client.DescribeFleetUtilizationRequest(params)
@@ -2730,19 +2710,18 @@ const opDescribeGameSessionDetails = "DescribeGameSessionDetails"
 
 // DescribeGameSessionDetailsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeGameSessionDetails operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeGameSessionDetails for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeGameSessionDetails method directly
-// instead.
+// See DescribeGameSessionDetails for more information on using the DescribeGameSessionDetails
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeGameSessionDetailsRequest method.
 //    req, resp := client.DescribeGameSessionDetailsRequest(params)
@@ -2862,19 +2841,18 @@ const opDescribeGameSessionPlacement = "DescribeGameSessionPlacement"
 
 // DescribeGameSessionPlacementRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeGameSessionPlacement operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeGameSessionPlacement for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeGameSessionPlacement method directly
-// instead.
+// See DescribeGameSessionPlacement for more information on using the DescribeGameSessionPlacement
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeGameSessionPlacementRequest method.
 //    req, resp := client.DescribeGameSessionPlacementRequest(params)
@@ -2979,19 +2957,18 @@ const opDescribeGameSessionQueues = "DescribeGameSessionQueues"
 
 // DescribeGameSessionQueuesRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeGameSessionQueues operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeGameSessionQueues for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeGameSessionQueues method directly
-// instead.
+// See DescribeGameSessionQueues for more information on using the DescribeGameSessionQueues
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeGameSessionQueuesRequest method.
 //    req, resp := client.DescribeGameSessionQueuesRequest(params)
@@ -3086,19 +3063,18 @@ const opDescribeGameSessions = "DescribeGameSessions"
 
 // DescribeGameSessionsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeGameSessions operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeGameSessions for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeGameSessions method directly
-// instead.
+// See DescribeGameSessions for more information on using the DescribeGameSessions
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeGameSessionsRequest method.
 //    req, resp := client.DescribeGameSessionsRequest(params)
@@ -3219,19 +3195,18 @@ const opDescribeInstances = "DescribeInstances"
 
 // DescribeInstancesRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeInstances operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeInstances for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeInstances method directly
-// instead.
+// See DescribeInstances for more information on using the DescribeInstances
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeInstancesRequest method.
 //    req, resp := client.DescribeInstancesRequest(params)
@@ -3319,19 +3294,18 @@ const opDescribePlayerSessions = "DescribePlayerSessions"
 
 // DescribePlayerSessionsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribePlayerSessions operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribePlayerSessions for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribePlayerSessions method directly
-// instead.
+// See DescribePlayerSessions for more information on using the DescribePlayerSessions
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribePlayerSessionsRequest method.
 //    req, resp := client.DescribePlayerSessionsRequest(params)
@@ -3440,19 +3414,18 @@ const opDescribeRuntimeConfiguration = "DescribeRuntimeConfiguration"
 
 // DescribeRuntimeConfigurationRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeRuntimeConfiguration operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeRuntimeConfiguration for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeRuntimeConfiguration method directly
-// instead.
+// See DescribeRuntimeConfiguration for more information on using the DescribeRuntimeConfiguration
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeRuntimeConfigurationRequest method.
 //    req, resp := client.DescribeRuntimeConfigurationRequest(params)
@@ -3579,19 +3552,18 @@ const opDescribeScalingPolicies = "DescribeScalingPolicies"
 
 // DescribeScalingPoliciesRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeScalingPolicies operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeScalingPolicies for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeScalingPolicies method directly
-// instead.
+// See DescribeScalingPolicies for more information on using the DescribeScalingPolicies
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeScalingPoliciesRequest method.
 //    req, resp := client.DescribeScalingPoliciesRequest(params)
@@ -3721,19 +3693,18 @@ const opGetGameSessionLogUrl = "GetGameSessionLogUrl"
 
 // GetGameSessionLogUrlRequest generates a "aws/request.Request" representing the
 // client's request for the GetGameSessionLogUrl operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See GetGameSessionLogUrl for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the GetGameSessionLogUrl method directly
-// instead.
+// See GetGameSessionLogUrl for more information on using the GetGameSessionLogUrl
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the GetGameSessionLogUrlRequest method.
 //    req, resp := client.GetGameSessionLogUrlRequest(params)
@@ -3842,19 +3813,18 @@ const opGetInstanceAccess = "GetInstanceAccess"
 
 // GetInstanceAccessRequest generates a "aws/request.Request" representing the
 // client's request for the GetInstanceAccess operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See GetInstanceAccess for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the GetInstanceAccess method directly
-// instead.
+// See GetInstanceAccess for more information on using the GetInstanceAccess
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the GetInstanceAccessRequest method.
 //    req, resp := client.GetInstanceAccessRequest(params)
@@ -3950,19 +3920,18 @@ const opListAliases = "ListAliases"
 
 // ListAliasesRequest generates a "aws/request.Request" representing the
 // client's request for the ListAliases operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ListAliases for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ListAliases method directly
-// instead.
+// See ListAliases for more information on using the ListAliases
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ListAliasesRequest method.
 //    req, resp := client.ListAliasesRequest(params)
@@ -4057,19 +4026,18 @@ const opListBuilds = "ListBuilds"
 
 // ListBuildsRequest generates a "aws/request.Request" representing the
 // client's request for the ListBuilds operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ListBuilds for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ListBuilds method directly
-// instead.
+// See ListBuilds for more information on using the ListBuilds
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ListBuildsRequest method.
 //    req, resp := client.ListBuildsRequest(params)
@@ -4163,19 +4131,18 @@ const opListFleets = "ListFleets"
 
 // ListFleetsRequest generates a "aws/request.Request" representing the
 // client's request for the ListFleets operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ListFleets for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ListFleets method directly
-// instead.
+// See ListFleets for more information on using the ListFleets
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ListFleetsRequest method.
 //    req, resp := client.ListFleetsRequest(params)
@@ -4304,19 +4271,18 @@ const opPutScalingPolicy = "PutScalingPolicy"
 
 // PutScalingPolicyRequest generates a "aws/request.Request" representing the
 // client's request for the PutScalingPolicy operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See PutScalingPolicy for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the PutScalingPolicy method directly
-// instead.
+// See PutScalingPolicy for more information on using the PutScalingPolicy
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the PutScalingPolicyRequest method.
 //    req, resp := client.PutScalingPolicyRequest(params)
@@ -4462,19 +4428,18 @@ const opRequestUploadCredentials = "RequestUploadCredentials"
 
 // RequestUploadCredentialsRequest generates a "aws/request.Request" representing the
 // client's request for the RequestUploadCredentials operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See RequestUploadCredentials for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the RequestUploadCredentials method directly
-// instead.
+// See RequestUploadCredentials for more information on using the RequestUploadCredentials
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the RequestUploadCredentialsRequest method.
 //    req, resp := client.RequestUploadCredentialsRequest(params)
@@ -4557,19 +4522,18 @@ const opResolveAlias = "ResolveAlias"
 
 // ResolveAliasRequest generates a "aws/request.Request" representing the
 // client's request for the ResolveAlias operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ResolveAlias for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ResolveAlias method directly
-// instead.
+// See ResolveAlias for more information on using the ResolveAlias
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ResolveAliasRequest method.
 //    req, resp := client.ResolveAliasRequest(params)
@@ -4671,19 +4635,18 @@ const opSearchGameSessions = "SearchGameSessions"
 
 // SearchGameSessionsRequest generates a "aws/request.Request" representing the
 // client's request for the SearchGameSessions operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See SearchGameSessions for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the SearchGameSessions method directly
-// instead.
+// See SearchGameSessions for more information on using the SearchGameSessions
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the SearchGameSessionsRequest method.
 //    req, resp := client.SearchGameSessionsRequest(params)
@@ -4835,19 +4798,18 @@ const opStartGameSessionPlacement = "StartGameSessionPlacement"
 
 // StartGameSessionPlacementRequest generates a "aws/request.Request" representing the
 // client's request for the StartGameSessionPlacement operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See StartGameSessionPlacement for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the StartGameSessionPlacement method directly
-// instead.
+// See StartGameSessionPlacement for more information on using the StartGameSessionPlacement
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the StartGameSessionPlacementRequest method.
 //    req, resp := client.StartGameSessionPlacementRequest(params)
@@ -4990,19 +4952,18 @@ const opStopGameSessionPlacement = "StopGameSessionPlacement"
 
 // StopGameSessionPlacementRequest generates a "aws/request.Request" representing the
 // client's request for the StopGameSessionPlacement operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See StopGameSessionPlacement for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the StopGameSessionPlacement method directly
-// instead.
+// See StopGameSessionPlacement for more information on using the StopGameSessionPlacement
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the StopGameSessionPlacementRequest method.
 //    req, resp := client.StopGameSessionPlacementRequest(params)
@@ -5107,19 +5068,18 @@ const opUpdateAlias = "UpdateAlias"
 
 // UpdateAliasRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateAlias operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See UpdateAlias for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the UpdateAlias method directly
-// instead.
+// See UpdateAlias for more information on using the UpdateAlias
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the UpdateAliasRequest method.
 //    req, resp := client.UpdateAliasRequest(params)
@@ -5217,19 +5177,18 @@ const opUpdateBuild = "UpdateBuild"
 
 // UpdateBuildRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateBuild operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See UpdateBuild for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the UpdateBuild method directly
-// instead.
+// See UpdateBuild for more information on using the UpdateBuild
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the UpdateBuildRequest method.
 //    req, resp := client.UpdateBuildRequest(params)
@@ -5325,19 +5284,18 @@ const opUpdateFleetAttributes = "UpdateFleetAttributes"
 
 // UpdateFleetAttributesRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateFleetAttributes operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See UpdateFleetAttributes for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the UpdateFleetAttributes method directly
-// instead.
+// See UpdateFleetAttributes for more information on using the UpdateFleetAttributes
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the UpdateFleetAttributesRequest method.
 //    req, resp := client.UpdateFleetAttributesRequest(params)
@@ -5478,19 +5436,18 @@ const opUpdateFleetCapacity = "UpdateFleetCapacity"
 
 // UpdateFleetCapacityRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateFleetCapacity operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See UpdateFleetCapacity for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the UpdateFleetCapacity method directly
-// instead.
+// See UpdateFleetCapacity for more information on using the UpdateFleetCapacity
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the UpdateFleetCapacityRequest method.
 //    req, resp := client.UpdateFleetCapacityRequest(params)
@@ -5643,19 +5600,18 @@ const opUpdateFleetPortSettings = "UpdateFleetPortSettings"
 
 // UpdateFleetPortSettingsRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateFleetPortSettings operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See UpdateFleetPortSettings for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the UpdateFleetPortSettings method directly
-// instead.
+// See UpdateFleetPortSettings for more information on using the UpdateFleetPortSettings
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the UpdateFleetPortSettingsRequest method.
 //    req, resp := client.UpdateFleetPortSettingsRequest(params)
@@ -5799,19 +5755,18 @@ const opUpdateGameSession = "UpdateGameSession"
 
 // UpdateGameSessionRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateGameSession operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See UpdateGameSession for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the UpdateGameSession method directly
-// instead.
+// See UpdateGameSession for more information on using the UpdateGameSession
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the UpdateGameSessionRequest method.
 //    req, resp := client.UpdateGameSessionRequest(params)
@@ -5930,19 +5885,18 @@ const opUpdateGameSessionQueue = "UpdateGameSessionQueue"
 
 // UpdateGameSessionQueueRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateGameSessionQueue operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See UpdateGameSessionQueue for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the UpdateGameSessionQueue method directly
-// instead.
+// See UpdateGameSessionQueue for more information on using the UpdateGameSessionQueue
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the UpdateGameSessionQueueRequest method.
 //    req, resp := client.UpdateGameSessionQueueRequest(params)
@@ -6036,19 +5990,18 @@ const opUpdateRuntimeConfiguration = "UpdateRuntimeConfiguration"
 
 // UpdateRuntimeConfigurationRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateRuntimeConfiguration operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See UpdateRuntimeConfiguration for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the UpdateRuntimeConfiguration method directly
-// instead.
+// See UpdateRuntimeConfiguration for more information on using the UpdateRuntimeConfiguration
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the UpdateRuntimeConfigurationRequest method.
 //    req, resp := client.UpdateRuntimeConfigurationRequest(params)
