@@ -16,19 +16,18 @@ const opAddTagsToOnPremisesInstances = "AddTagsToOnPremisesInstances"
 
 // AddTagsToOnPremisesInstancesRequest generates a "aws/request.Request" representing the
 // client's request for the AddTagsToOnPremisesInstances operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See AddTagsToOnPremisesInstances for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the AddTagsToOnPremisesInstances method directly
-// instead.
+// See AddTagsToOnPremisesInstances for more information on using the AddTagsToOnPremisesInstances
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the AddTagsToOnPremisesInstancesRequest method.
 //    req, resp := client.AddTagsToOnPremisesInstancesRequest(params)
@@ -114,19 +113,18 @@ const opBatchGetApplicationRevisions = "BatchGetApplicationRevisions"
 
 // BatchGetApplicationRevisionsRequest generates a "aws/request.Request" representing the
 // client's request for the BatchGetApplicationRevisions operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See BatchGetApplicationRevisions for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the BatchGetApplicationRevisions method directly
-// instead.
+// See BatchGetApplicationRevisions for more information on using the BatchGetApplicationRevisions
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the BatchGetApplicationRevisionsRequest method.
 //    req, resp := client.BatchGetApplicationRevisionsRequest(params)
@@ -209,19 +207,18 @@ const opBatchGetApplications = "BatchGetApplications"
 
 // BatchGetApplicationsRequest generates a "aws/request.Request" representing the
 // client's request for the BatchGetApplications operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See BatchGetApplications for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the BatchGetApplications method directly
-// instead.
+// See BatchGetApplications for more information on using the BatchGetApplications
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the BatchGetApplicationsRequest method.
 //    req, resp := client.BatchGetApplicationsRequest(params)
@@ -298,19 +295,18 @@ const opBatchGetDeploymentGroups = "BatchGetDeploymentGroups"
 
 // BatchGetDeploymentGroupsRequest generates a "aws/request.Request" representing the
 // client's request for the BatchGetDeploymentGroups operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See BatchGetDeploymentGroups for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the BatchGetDeploymentGroups method directly
-// instead.
+// See BatchGetDeploymentGroups for more information on using the BatchGetDeploymentGroups
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the BatchGetDeploymentGroupsRequest method.
 //    req, resp := client.BatchGetDeploymentGroupsRequest(params)
@@ -393,19 +389,18 @@ const opBatchGetDeploymentInstances = "BatchGetDeploymentInstances"
 
 // BatchGetDeploymentInstancesRequest generates a "aws/request.Request" representing the
 // client's request for the BatchGetDeploymentInstances operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See BatchGetDeploymentInstances for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the BatchGetDeploymentInstances method directly
-// instead.
+// See BatchGetDeploymentInstances for more information on using the BatchGetDeploymentInstances
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the BatchGetDeploymentInstancesRequest method.
 //    req, resp := client.BatchGetDeploymentInstancesRequest(params)
@@ -489,19 +484,18 @@ const opBatchGetDeployments = "BatchGetDeployments"
 
 // BatchGetDeploymentsRequest generates a "aws/request.Request" representing the
 // client's request for the BatchGetDeployments operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See BatchGetDeployments for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the BatchGetDeployments method directly
-// instead.
+// See BatchGetDeployments for more information on using the BatchGetDeployments
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the BatchGetDeploymentsRequest method.
 //    req, resp := client.BatchGetDeploymentsRequest(params)
@@ -575,19 +569,18 @@ const opBatchGetOnPremisesInstances = "BatchGetOnPremisesInstances"
 
 // BatchGetOnPremisesInstancesRequest generates a "aws/request.Request" representing the
 // client's request for the BatchGetOnPremisesInstances operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See BatchGetOnPremisesInstances for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the BatchGetOnPremisesInstances method directly
-// instead.
+// See BatchGetOnPremisesInstances for more information on using the BatchGetOnPremisesInstances
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the BatchGetOnPremisesInstancesRequest method.
 //    req, resp := client.BatchGetOnPremisesInstancesRequest(params)
@@ -661,19 +654,18 @@ const opContinueDeployment = "ContinueDeployment"
 
 // ContinueDeploymentRequest generates a "aws/request.Request" representing the
 // client's request for the ContinueDeployment operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ContinueDeployment for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ContinueDeployment method directly
-// instead.
+// See ContinueDeployment for more information on using the ContinueDeployment
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ContinueDeploymentRequest method.
 //    req, resp := client.ContinueDeploymentRequest(params)
@@ -763,19 +755,18 @@ const opCreateApplication = "CreateApplication"
 
 // CreateApplicationRequest generates a "aws/request.Request" representing the
 // client's request for the CreateApplication operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreateApplication for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreateApplication method directly
-// instead.
+// See CreateApplication for more information on using the CreateApplication
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreateApplicationRequest method.
 //    req, resp := client.CreateApplicationRequest(params)
@@ -853,19 +844,18 @@ const opCreateDeployment = "CreateDeployment"
 
 // CreateDeploymentRequest generates a "aws/request.Request" representing the
 // client's request for the CreateDeployment operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreateDeployment for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreateDeployment method directly
-// instead.
+// See CreateDeployment for more information on using the CreateDeployment
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreateDeploymentRequest method.
 //    req, resp := client.CreateDeploymentRequest(params)
@@ -997,19 +987,18 @@ const opCreateDeploymentConfig = "CreateDeploymentConfig"
 
 // CreateDeploymentConfigRequest generates a "aws/request.Request" representing the
 // client's request for the CreateDeploymentConfig operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreateDeploymentConfig for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreateDeploymentConfig method directly
-// instead.
+// See CreateDeploymentConfig for more information on using the CreateDeploymentConfig
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreateDeploymentConfigRequest method.
 //    req, resp := client.CreateDeploymentConfigRequest(params)
@@ -1090,19 +1079,18 @@ const opCreateDeploymentGroup = "CreateDeploymentGroup"
 
 // CreateDeploymentGroupRequest generates a "aws/request.Request" representing the
 // client's request for the CreateDeploymentGroup operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreateDeploymentGroup for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreateDeploymentGroup method directly
-// instead.
+// See CreateDeploymentGroup for more information on using the CreateDeploymentGroup
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreateDeploymentGroupRequest method.
 //    req, resp := client.CreateDeploymentGroupRequest(params)
@@ -1268,19 +1256,18 @@ const opDeleteApplication = "DeleteApplication"
 
 // DeleteApplicationRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteApplication operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DeleteApplication for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DeleteApplication method directly
-// instead.
+// See DeleteApplication for more information on using the DeleteApplication
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DeleteApplicationRequest method.
 //    req, resp := client.DeleteApplicationRequest(params)
@@ -1353,19 +1340,18 @@ const opDeleteDeploymentConfig = "DeleteDeploymentConfig"
 
 // DeleteDeploymentConfigRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteDeploymentConfig operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DeleteDeploymentConfig for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DeleteDeploymentConfig method directly
-// instead.
+// See DeleteDeploymentConfig for more information on using the DeleteDeploymentConfig
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DeleteDeploymentConfigRequest method.
 //    req, resp := client.DeleteDeploymentConfigRequest(params)
@@ -1447,19 +1433,18 @@ const opDeleteDeploymentGroup = "DeleteDeploymentGroup"
 
 // DeleteDeploymentGroupRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteDeploymentGroup operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DeleteDeploymentGroup for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DeleteDeploymentGroup method directly
-// instead.
+// See DeleteDeploymentGroup for more information on using the DeleteDeploymentGroup
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DeleteDeploymentGroupRequest method.
 //    req, resp := client.DeleteDeploymentGroupRequest(params)
@@ -1541,19 +1526,18 @@ const opDeregisterOnPremisesInstance = "DeregisterOnPremisesInstance"
 
 // DeregisterOnPremisesInstanceRequest generates a "aws/request.Request" representing the
 // client's request for the DeregisterOnPremisesInstance operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DeregisterOnPremisesInstance for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DeregisterOnPremisesInstance method directly
-// instead.
+// See DeregisterOnPremisesInstance for more information on using the DeregisterOnPremisesInstance
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DeregisterOnPremisesInstanceRequest method.
 //    req, resp := client.DeregisterOnPremisesInstanceRequest(params)
@@ -1626,19 +1610,18 @@ const opGetApplication = "GetApplication"
 
 // GetApplicationRequest generates a "aws/request.Request" representing the
 // client's request for the GetApplication operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See GetApplication for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the GetApplication method directly
-// instead.
+// See GetApplication for more information on using the GetApplication
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the GetApplicationRequest method.
 //    req, resp := client.GetApplicationRequest(params)
@@ -1712,19 +1695,18 @@ const opGetApplicationRevision = "GetApplicationRevision"
 
 // GetApplicationRevisionRequest generates a "aws/request.Request" representing the
 // client's request for the GetApplicationRevision operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See GetApplicationRevision for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the GetApplicationRevision method directly
-// instead.
+// See GetApplicationRevision for more information on using the GetApplicationRevision
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the GetApplicationRevisionRequest method.
 //    req, resp := client.GetApplicationRevisionRequest(params)
@@ -1807,19 +1789,18 @@ const opGetDeployment = "GetDeployment"
 
 // GetDeploymentRequest generates a "aws/request.Request" representing the
 // client's request for the GetDeployment operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See GetDeployment for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the GetDeployment method directly
-// instead.
+// See GetDeployment for more information on using the GetDeployment
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the GetDeploymentRequest method.
 //    req, resp := client.GetDeploymentRequest(params)
@@ -1893,19 +1874,18 @@ const opGetDeploymentConfig = "GetDeploymentConfig"
 
 // GetDeploymentConfigRequest generates a "aws/request.Request" representing the
 // client's request for the GetDeploymentConfig operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See GetDeploymentConfig for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the GetDeploymentConfig method directly
-// instead.
+// See GetDeploymentConfig for more information on using the GetDeploymentConfig
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the GetDeploymentConfigRequest method.
 //    req, resp := client.GetDeploymentConfigRequest(params)
@@ -1980,19 +1960,18 @@ const opGetDeploymentGroup = "GetDeploymentGroup"
 
 // GetDeploymentGroupRequest generates a "aws/request.Request" representing the
 // client's request for the GetDeploymentGroup operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See GetDeploymentGroup for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the GetDeploymentGroup method directly
-// instead.
+// See GetDeploymentGroup for more information on using the GetDeploymentGroup
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the GetDeploymentGroupRequest method.
 //    req, resp := client.GetDeploymentGroupRequest(params)
@@ -2076,19 +2055,18 @@ const opGetDeploymentInstance = "GetDeploymentInstance"
 
 // GetDeploymentInstanceRequest generates a "aws/request.Request" representing the
 // client's request for the GetDeploymentInstance operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See GetDeploymentInstance for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the GetDeploymentInstance method directly
-// instead.
+// See GetDeploymentInstance for more information on using the GetDeploymentInstance
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the GetDeploymentInstanceRequest method.
 //    req, resp := client.GetDeploymentInstanceRequest(params)
@@ -2171,19 +2149,18 @@ const opGetOnPremisesInstance = "GetOnPremisesInstance"
 
 // GetOnPremisesInstanceRequest generates a "aws/request.Request" representing the
 // client's request for the GetOnPremisesInstance operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See GetOnPremisesInstance for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the GetOnPremisesInstance method directly
-// instead.
+// See GetOnPremisesInstance for more information on using the GetOnPremisesInstance
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the GetOnPremisesInstanceRequest method.
 //    req, resp := client.GetOnPremisesInstanceRequest(params)
@@ -2257,19 +2234,18 @@ const opListApplicationRevisions = "ListApplicationRevisions"
 
 // ListApplicationRevisionsRequest generates a "aws/request.Request" representing the
 // client's request for the ListApplicationRevisions operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ListApplicationRevisions for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ListApplicationRevisions method directly
-// instead.
+// See ListApplicationRevisions for more information on using the ListApplicationRevisions
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ListApplicationRevisionsRequest method.
 //    req, resp := client.ListApplicationRevisionsRequest(params)
@@ -2421,19 +2397,18 @@ const opListApplications = "ListApplications"
 
 // ListApplicationsRequest generates a "aws/request.Request" representing the
 // client's request for the ListApplications operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ListApplications for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ListApplications method directly
-// instead.
+// See ListApplications for more information on using the ListApplications
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ListApplicationsRequest method.
 //    req, resp := client.ListApplicationsRequest(params)
@@ -2557,19 +2532,18 @@ const opListDeploymentConfigs = "ListDeploymentConfigs"
 
 // ListDeploymentConfigsRequest generates a "aws/request.Request" representing the
 // client's request for the ListDeploymentConfigs operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ListDeploymentConfigs for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ListDeploymentConfigs method directly
-// instead.
+// See ListDeploymentConfigs for more information on using the ListDeploymentConfigs
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ListDeploymentConfigsRequest method.
 //    req, resp := client.ListDeploymentConfigsRequest(params)
@@ -2693,19 +2667,18 @@ const opListDeploymentGroups = "ListDeploymentGroups"
 
 // ListDeploymentGroupsRequest generates a "aws/request.Request" representing the
 // client's request for the ListDeploymentGroups operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ListDeploymentGroups for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ListDeploymentGroups method directly
-// instead.
+// See ListDeploymentGroups for more information on using the ListDeploymentGroups
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ListDeploymentGroupsRequest method.
 //    req, resp := client.ListDeploymentGroupsRequest(params)
@@ -2839,19 +2812,18 @@ const opListDeploymentInstances = "ListDeploymentInstances"
 
 // ListDeploymentInstancesRequest generates a "aws/request.Request" representing the
 // client's request for the ListDeploymentInstances operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ListDeploymentInstances for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ListDeploymentInstances method directly
-// instead.
+// See ListDeploymentInstances for more information on using the ListDeploymentInstances
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ListDeploymentInstancesRequest method.
 //    req, resp := client.ListDeploymentInstancesRequest(params)
@@ -3000,19 +2972,18 @@ const opListDeployments = "ListDeployments"
 
 // ListDeploymentsRequest generates a "aws/request.Request" representing the
 // client's request for the ListDeployments operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ListDeployments for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ListDeployments method directly
-// instead.
+// See ListDeployments for more information on using the ListDeployments
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ListDeploymentsRequest method.
 //    req, resp := client.ListDeploymentsRequest(params)
@@ -3162,19 +3133,18 @@ const opListGitHubAccountTokenNames = "ListGitHubAccountTokenNames"
 
 // ListGitHubAccountTokenNamesRequest generates a "aws/request.Request" representing the
 // client's request for the ListGitHubAccountTokenNames operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ListGitHubAccountTokenNames for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ListGitHubAccountTokenNames method directly
-// instead.
+// See ListGitHubAccountTokenNames for more information on using the ListGitHubAccountTokenNames
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ListGitHubAccountTokenNamesRequest method.
 //    req, resp := client.ListGitHubAccountTokenNamesRequest(params)
@@ -3245,19 +3215,18 @@ const opListOnPremisesInstances = "ListOnPremisesInstances"
 
 // ListOnPremisesInstancesRequest generates a "aws/request.Request" representing the
 // client's request for the ListOnPremisesInstances operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ListOnPremisesInstances for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ListOnPremisesInstances method directly
-// instead.
+// See ListOnPremisesInstances for more information on using the ListOnPremisesInstances
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ListOnPremisesInstancesRequest method.
 //    req, resp := client.ListOnPremisesInstancesRequest(params)
@@ -3335,19 +3304,18 @@ const opRegisterApplicationRevision = "RegisterApplicationRevision"
 
 // RegisterApplicationRevisionRequest generates a "aws/request.Request" representing the
 // client's request for the RegisterApplicationRevision operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See RegisterApplicationRevision for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the RegisterApplicationRevision method directly
-// instead.
+// See RegisterApplicationRevision for more information on using the RegisterApplicationRevision
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the RegisterApplicationRevisionRequest method.
 //    req, resp := client.RegisterApplicationRevisionRequest(params)
@@ -3432,19 +3400,18 @@ const opRegisterOnPremisesInstance = "RegisterOnPremisesInstance"
 
 // RegisterOnPremisesInstanceRequest generates a "aws/request.Request" representing the
 // client's request for the RegisterOnPremisesInstance operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See RegisterOnPremisesInstance for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the RegisterOnPremisesInstance method directly
-// instead.
+// See RegisterOnPremisesInstance for more information on using the RegisterOnPremisesInstance
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the RegisterOnPremisesInstanceRequest method.
 //    req, resp := client.RegisterOnPremisesInstanceRequest(params)
@@ -3547,19 +3514,18 @@ const opRemoveTagsFromOnPremisesInstances = "RemoveTagsFromOnPremisesInstances"
 
 // RemoveTagsFromOnPremisesInstancesRequest generates a "aws/request.Request" representing the
 // client's request for the RemoveTagsFromOnPremisesInstances operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See RemoveTagsFromOnPremisesInstances for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the RemoveTagsFromOnPremisesInstances method directly
-// instead.
+// See RemoveTagsFromOnPremisesInstances for more information on using the RemoveTagsFromOnPremisesInstances
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the RemoveTagsFromOnPremisesInstancesRequest method.
 //    req, resp := client.RemoveTagsFromOnPremisesInstancesRequest(params)
@@ -3645,19 +3611,18 @@ const opSkipWaitTimeForInstanceTermination = "SkipWaitTimeForInstanceTermination
 
 // SkipWaitTimeForInstanceTerminationRequest generates a "aws/request.Request" representing the
 // client's request for the SkipWaitTimeForInstanceTermination operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See SkipWaitTimeForInstanceTermination for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the SkipWaitTimeForInstanceTermination method directly
-// instead.
+// See SkipWaitTimeForInstanceTermination for more information on using the SkipWaitTimeForInstanceTermination
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the SkipWaitTimeForInstanceTerminationRequest method.
 //    req, resp := client.SkipWaitTimeForInstanceTerminationRequest(params)
@@ -3743,19 +3708,18 @@ const opStopDeployment = "StopDeployment"
 
 // StopDeploymentRequest generates a "aws/request.Request" representing the
 // client's request for the StopDeployment operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See StopDeployment for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the StopDeployment method directly
-// instead.
+// See StopDeployment for more information on using the StopDeployment
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the StopDeploymentRequest method.
 //    req, resp := client.StopDeploymentRequest(params)
@@ -3832,19 +3796,18 @@ const opUpdateApplication = "UpdateApplication"
 
 // UpdateApplicationRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateApplication operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See UpdateApplication for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the UpdateApplication method directly
-// instead.
+// See UpdateApplication for more information on using the UpdateApplication
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the UpdateApplicationRequest method.
 //    req, resp := client.UpdateApplicationRequest(params)
@@ -3924,19 +3887,18 @@ const opUpdateDeploymentGroup = "UpdateDeploymentGroup"
 
 // UpdateDeploymentGroupRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateDeploymentGroup operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See UpdateDeploymentGroup for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the UpdateDeploymentGroup method directly
-// instead.
+// See UpdateDeploymentGroup for more information on using the UpdateDeploymentGroup
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the UpdateDeploymentGroupRequest method.
 //    req, resp := client.UpdateDeploymentGroupRequest(params)

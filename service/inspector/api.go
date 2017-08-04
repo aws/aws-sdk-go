@@ -17,19 +17,18 @@ const opAddAttributesToFindings = "AddAttributesToFindings"
 
 // AddAttributesToFindingsRequest generates a "aws/request.Request" representing the
 // client's request for the AddAttributesToFindings operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See AddAttributesToFindings for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the AddAttributesToFindings method directly
-// instead.
+// See AddAttributesToFindings for more information on using the AddAttributesToFindings
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the AddAttributesToFindingsRequest method.
 //    req, resp := client.AddAttributesToFindingsRequest(params)
@@ -109,19 +108,18 @@ const opCreateAssessmentTarget = "CreateAssessmentTarget"
 
 // CreateAssessmentTargetRequest generates a "aws/request.Request" representing the
 // client's request for the CreateAssessmentTarget operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreateAssessmentTarget for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreateAssessmentTarget method directly
-// instead.
+// See CreateAssessmentTarget for more information on using the CreateAssessmentTarget
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreateAssessmentTargetRequest method.
 //    req, resp := client.CreateAssessmentTargetRequest(params)
@@ -207,19 +205,18 @@ const opCreateAssessmentTemplate = "CreateAssessmentTemplate"
 
 // CreateAssessmentTemplateRequest generates a "aws/request.Request" representing the
 // client's request for the CreateAssessmentTemplate operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreateAssessmentTemplate for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreateAssessmentTemplate method directly
-// instead.
+// See CreateAssessmentTemplate for more information on using the CreateAssessmentTemplate
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreateAssessmentTemplateRequest method.
 //    req, resp := client.CreateAssessmentTemplateRequest(params)
@@ -303,19 +300,18 @@ const opCreateResourceGroup = "CreateResourceGroup"
 
 // CreateResourceGroupRequest generates a "aws/request.Request" representing the
 // client's request for the CreateResourceGroup operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See CreateResourceGroup for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the CreateResourceGroup method directly
-// instead.
+// See CreateResourceGroup for more information on using the CreateResourceGroup
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the CreateResourceGroupRequest method.
 //    req, resp := client.CreateResourceGroupRequest(params)
@@ -397,19 +393,18 @@ const opDeleteAssessmentRun = "DeleteAssessmentRun"
 
 // DeleteAssessmentRunRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteAssessmentRun operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DeleteAssessmentRun for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DeleteAssessmentRun method directly
-// instead.
+// See DeleteAssessmentRun for more information on using the DeleteAssessmentRun
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DeleteAssessmentRunRequest method.
 //    req, resp := client.DeleteAssessmentRunRequest(params)
@@ -495,19 +490,18 @@ const opDeleteAssessmentTarget = "DeleteAssessmentTarget"
 
 // DeleteAssessmentTargetRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteAssessmentTarget operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DeleteAssessmentTarget for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DeleteAssessmentTarget method directly
-// instead.
+// See DeleteAssessmentTarget for more information on using the DeleteAssessmentTarget
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DeleteAssessmentTargetRequest method.
 //    req, resp := client.DeleteAssessmentTargetRequest(params)
@@ -593,19 +587,18 @@ const opDeleteAssessmentTemplate = "DeleteAssessmentTemplate"
 
 // DeleteAssessmentTemplateRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteAssessmentTemplate operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DeleteAssessmentTemplate for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DeleteAssessmentTemplate method directly
-// instead.
+// See DeleteAssessmentTemplate for more information on using the DeleteAssessmentTemplate
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DeleteAssessmentTemplateRequest method.
 //    req, resp := client.DeleteAssessmentTemplateRequest(params)
@@ -691,19 +684,18 @@ const opDescribeAssessmentRuns = "DescribeAssessmentRuns"
 
 // DescribeAssessmentRunsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeAssessmentRuns operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeAssessmentRuns for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeAssessmentRuns method directly
-// instead.
+// See DescribeAssessmentRuns for more information on using the DescribeAssessmentRuns
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeAssessmentRunsRequest method.
 //    req, resp := client.DescribeAssessmentRunsRequest(params)
@@ -776,19 +768,18 @@ const opDescribeAssessmentTargets = "DescribeAssessmentTargets"
 
 // DescribeAssessmentTargetsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeAssessmentTargets operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeAssessmentTargets for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeAssessmentTargets method directly
-// instead.
+// See DescribeAssessmentTargets for more information on using the DescribeAssessmentTargets
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeAssessmentTargetsRequest method.
 //    req, resp := client.DescribeAssessmentTargetsRequest(params)
@@ -861,19 +852,18 @@ const opDescribeAssessmentTemplates = "DescribeAssessmentTemplates"
 
 // DescribeAssessmentTemplatesRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeAssessmentTemplates operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeAssessmentTemplates for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeAssessmentTemplates method directly
-// instead.
+// See DescribeAssessmentTemplates for more information on using the DescribeAssessmentTemplates
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeAssessmentTemplatesRequest method.
 //    req, resp := client.DescribeAssessmentTemplatesRequest(params)
@@ -946,19 +936,18 @@ const opDescribeCrossAccountAccessRole = "DescribeCrossAccountAccessRole"
 
 // DescribeCrossAccountAccessRoleRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeCrossAccountAccessRole operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeCrossAccountAccessRole for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeCrossAccountAccessRole method directly
-// instead.
+// See DescribeCrossAccountAccessRole for more information on using the DescribeCrossAccountAccessRole
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeCrossAccountAccessRoleRequest method.
 //    req, resp := client.DescribeCrossAccountAccessRoleRequest(params)
@@ -1026,19 +1015,18 @@ const opDescribeFindings = "DescribeFindings"
 
 // DescribeFindingsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeFindings operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeFindings for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeFindings method directly
-// instead.
+// See DescribeFindings for more information on using the DescribeFindings
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeFindingsRequest method.
 //    req, resp := client.DescribeFindingsRequest(params)
@@ -1110,19 +1098,18 @@ const opDescribeResourceGroups = "DescribeResourceGroups"
 
 // DescribeResourceGroupsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeResourceGroups operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeResourceGroups for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeResourceGroups method directly
-// instead.
+// See DescribeResourceGroups for more information on using the DescribeResourceGroups
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeResourceGroupsRequest method.
 //    req, resp := client.DescribeResourceGroupsRequest(params)
@@ -1195,19 +1182,18 @@ const opDescribeRulesPackages = "DescribeRulesPackages"
 
 // DescribeRulesPackagesRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeRulesPackages operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See DescribeRulesPackages for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the DescribeRulesPackages method directly
-// instead.
+// See DescribeRulesPackages for more information on using the DescribeRulesPackages
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the DescribeRulesPackagesRequest method.
 //    req, resp := client.DescribeRulesPackagesRequest(params)
@@ -1280,19 +1266,18 @@ const opGetAssessmentReport = "GetAssessmentReport"
 
 // GetAssessmentReportRequest generates a "aws/request.Request" representing the
 // client's request for the GetAssessmentReport operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See GetAssessmentReport for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the GetAssessmentReport method directly
-// instead.
+// See GetAssessmentReport for more information on using the GetAssessmentReport
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the GetAssessmentReportRequest method.
 //    req, resp := client.GetAssessmentReportRequest(params)
@@ -1383,19 +1368,18 @@ const opGetTelemetryMetadata = "GetTelemetryMetadata"
 
 // GetTelemetryMetadataRequest generates a "aws/request.Request" representing the
 // client's request for the GetTelemetryMetadata operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See GetTelemetryMetadata for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the GetTelemetryMetadata method directly
-// instead.
+// See GetTelemetryMetadata for more information on using the GetTelemetryMetadata
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the GetTelemetryMetadataRequest method.
 //    req, resp := client.GetTelemetryMetadataRequest(params)
@@ -1475,19 +1459,18 @@ const opListAssessmentRunAgents = "ListAssessmentRunAgents"
 
 // ListAssessmentRunAgentsRequest generates a "aws/request.Request" representing the
 // client's request for the ListAssessmentRunAgents operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ListAssessmentRunAgents for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ListAssessmentRunAgents method directly
-// instead.
+// See ListAssessmentRunAgents for more information on using the ListAssessmentRunAgents
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ListAssessmentRunAgentsRequest method.
 //    req, resp := client.ListAssessmentRunAgentsRequest(params)
@@ -1623,19 +1606,18 @@ const opListAssessmentRuns = "ListAssessmentRuns"
 
 // ListAssessmentRunsRequest generates a "aws/request.Request" representing the
 // client's request for the ListAssessmentRuns operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ListAssessmentRuns for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ListAssessmentRuns method directly
-// instead.
+// See ListAssessmentRuns for more information on using the ListAssessmentRuns
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ListAssessmentRunsRequest method.
 //    req, resp := client.ListAssessmentRunsRequest(params)
@@ -1771,19 +1753,18 @@ const opListAssessmentTargets = "ListAssessmentTargets"
 
 // ListAssessmentTargetsRequest generates a "aws/request.Request" representing the
 // client's request for the ListAssessmentTargets operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ListAssessmentTargets for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ListAssessmentTargets method directly
-// instead.
+// See ListAssessmentTargets for more information on using the ListAssessmentTargets
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ListAssessmentTargetsRequest method.
 //    req, resp := client.ListAssessmentTargetsRequest(params)
@@ -1916,19 +1897,18 @@ const opListAssessmentTemplates = "ListAssessmentTemplates"
 
 // ListAssessmentTemplatesRequest generates a "aws/request.Request" representing the
 // client's request for the ListAssessmentTemplates operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ListAssessmentTemplates for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ListAssessmentTemplates method directly
-// instead.
+// See ListAssessmentTemplates for more information on using the ListAssessmentTemplates
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ListAssessmentTemplatesRequest method.
 //    req, resp := client.ListAssessmentTemplatesRequest(params)
@@ -2064,19 +2044,18 @@ const opListEventSubscriptions = "ListEventSubscriptions"
 
 // ListEventSubscriptionsRequest generates a "aws/request.Request" representing the
 // client's request for the ListEventSubscriptions operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ListEventSubscriptions for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ListEventSubscriptions method directly
-// instead.
+// See ListEventSubscriptions for more information on using the ListEventSubscriptions
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ListEventSubscriptionsRequest method.
 //    req, resp := client.ListEventSubscriptionsRequest(params)
@@ -2213,19 +2192,18 @@ const opListFindings = "ListFindings"
 
 // ListFindingsRequest generates a "aws/request.Request" representing the
 // client's request for the ListFindings operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ListFindings for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ListFindings method directly
-// instead.
+// See ListFindings for more information on using the ListFindings
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ListFindingsRequest method.
 //    req, resp := client.ListFindingsRequest(params)
@@ -2361,19 +2339,18 @@ const opListRulesPackages = "ListRulesPackages"
 
 // ListRulesPackagesRequest generates a "aws/request.Request" representing the
 // client's request for the ListRulesPackages operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ListRulesPackages for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ListRulesPackages method directly
-// instead.
+// See ListRulesPackages for more information on using the ListRulesPackages
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ListRulesPackagesRequest method.
 //    req, resp := client.ListRulesPackagesRequest(params)
@@ -2504,19 +2481,18 @@ const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
 // client's request for the ListTagsForResource operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See ListTagsForResource for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the ListTagsForResource method directly
-// instead.
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the ListTagsForResourceRequest method.
 //    req, resp := client.ListTagsForResourceRequest(params)
@@ -2595,19 +2571,18 @@ const opPreviewAgents = "PreviewAgents"
 
 // PreviewAgentsRequest generates a "aws/request.Request" representing the
 // client's request for the PreviewAgents operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See PreviewAgents for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the PreviewAgents method directly
-// instead.
+// See PreviewAgents for more information on using the PreviewAgents
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the PreviewAgentsRequest method.
 //    req, resp := client.PreviewAgentsRequest(params)
@@ -2747,19 +2722,18 @@ const opRegisterCrossAccountAccessRole = "RegisterCrossAccountAccessRole"
 
 // RegisterCrossAccountAccessRoleRequest generates a "aws/request.Request" representing the
 // client's request for the RegisterCrossAccountAccessRole operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See RegisterCrossAccountAccessRole for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the RegisterCrossAccountAccessRole method directly
-// instead.
+// See RegisterCrossAccountAccessRole for more information on using the RegisterCrossAccountAccessRole
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the RegisterCrossAccountAccessRoleRequest method.
 //    req, resp := client.RegisterCrossAccountAccessRoleRequest(params)
@@ -2841,19 +2815,18 @@ const opRemoveAttributesFromFindings = "RemoveAttributesFromFindings"
 
 // RemoveAttributesFromFindingsRequest generates a "aws/request.Request" representing the
 // client's request for the RemoveAttributesFromFindings operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See RemoveAttributesFromFindings for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the RemoveAttributesFromFindings method directly
-// instead.
+// See RemoveAttributesFromFindings for more information on using the RemoveAttributesFromFindings
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the RemoveAttributesFromFindingsRequest method.
 //    req, resp := client.RemoveAttributesFromFindingsRequest(params)
@@ -2934,19 +2907,18 @@ const opSetTagsForResource = "SetTagsForResource"
 
 // SetTagsForResourceRequest generates a "aws/request.Request" representing the
 // client's request for the SetTagsForResource operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See SetTagsForResource for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the SetTagsForResource method directly
-// instead.
+// See SetTagsForResource for more information on using the SetTagsForResource
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the SetTagsForResourceRequest method.
 //    req, resp := client.SetTagsForResourceRequest(params)
@@ -3028,19 +3000,18 @@ const opStartAssessmentRun = "StartAssessmentRun"
 
 // StartAssessmentRunRequest generates a "aws/request.Request" representing the
 // client's request for the StartAssessmentRun operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See StartAssessmentRun for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the StartAssessmentRun method directly
-// instead.
+// See StartAssessmentRun for more information on using the StartAssessmentRun
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the StartAssessmentRunRequest method.
 //    req, resp := client.StartAssessmentRunRequest(params)
@@ -3133,19 +3104,18 @@ const opStopAssessmentRun = "StopAssessmentRun"
 
 // StopAssessmentRunRequest generates a "aws/request.Request" representing the
 // client's request for the StopAssessmentRun operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See StopAssessmentRun for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the StopAssessmentRun method directly
-// instead.
+// See StopAssessmentRun for more information on using the StopAssessmentRun
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the StopAssessmentRunRequest method.
 //    req, resp := client.StopAssessmentRunRequest(params)
@@ -3226,19 +3196,18 @@ const opSubscribeToEvent = "SubscribeToEvent"
 
 // SubscribeToEventRequest generates a "aws/request.Request" representing the
 // client's request for the SubscribeToEvent operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See SubscribeToEvent for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the SubscribeToEvent method directly
-// instead.
+// See SubscribeToEvent for more information on using the SubscribeToEvent
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the SubscribeToEventRequest method.
 //    req, resp := client.SubscribeToEventRequest(params)
@@ -3324,19 +3293,18 @@ const opUnsubscribeFromEvent = "UnsubscribeFromEvent"
 
 // UnsubscribeFromEventRequest generates a "aws/request.Request" representing the
 // client's request for the UnsubscribeFromEvent operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See UnsubscribeFromEvent for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the UnsubscribeFromEvent method directly
-// instead.
+// See UnsubscribeFromEvent for more information on using the UnsubscribeFromEvent
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the UnsubscribeFromEventRequest method.
 //    req, resp := client.UnsubscribeFromEventRequest(params)
@@ -3418,19 +3386,18 @@ const opUpdateAssessmentTarget = "UpdateAssessmentTarget"
 
 // UpdateAssessmentTargetRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateAssessmentTarget operation. The "output" return
-// value can be used to capture response data after the request's "Send" method
-// is called.
+// value will be populated with the request's response once the request complets
+// successfuly.
 //
-// See UpdateAssessmentTarget for usage and error information.
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
 //
-// Creating a request object using this method should be used when you want to inject
-// custom logic into the request's lifecycle using a custom handler, or if you want to
-// access properties on the request object before or after sending the request. If
-// you just want the service response, call the UpdateAssessmentTarget method directly
-// instead.
+// See UpdateAssessmentTarget for more information on using the UpdateAssessmentTarget
+// API call, and error handling.
 //
-// Note: You must call the "Send" method on the returned request object in order
-// to execute the request.
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
 //
 //    // Example sending a request using the UpdateAssessmentTargetRequest method.
 //    req, resp := client.UpdateAssessmentTargetRequest(params)
