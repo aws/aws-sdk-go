@@ -1166,6 +1166,26 @@ func TestOutputService3ProtocolTestTimestampMembersCase1(t *testing.T) {
 
 }
 
+func TestOutputService3ProtocolTestTimestampMembersCase2(t *testing.T) {
+	svc := NewOutputService3ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
+
+	buf := bytes.NewReader([]byte("{\"TimeMember\": 1501917228.309}"))
+	req, out := svc.OutputService3TestCaseOperation1Request(nil)
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
+
+	// unmarshal response
+	jsonrpc.UnmarshalMeta(req)
+	jsonrpc.Unmarshal(req)
+	assert.NoError(t, req.Error)
+
+	// assert response
+	assert.NotNil(t, out) // ensure out variable is used
+	assert.Equal(t, time.Unix(1.501917228e+09, 309000000).UTC().String(), out.TimeMember.String())
+
+}
+
 func TestOutputService4ProtocolTestListsCase1(t *testing.T) {
 	svc := NewOutputService4ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 

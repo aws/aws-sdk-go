@@ -1,12 +1,16 @@
 package jsonutil
 
 import (
+	"bytes"
 	"encoding/base64"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
 	"reflect"
+	"strconv"
+	"strings"
 	"time"
 )
 
@@ -23,8 +27,13 @@ func UnmarshalJSON(v interface{}, stream io.Reader) error {
 		return nil
 	}
 
-	if err := json.Unmarshal(b, &out); err != nil {
+	d := json.NewDecoder(bytes.NewReader(b))
+	d.UseNumber()
+	if err := d.Decode(&out); err != nil {
 		return err
+	}
+	if d.More() {
+		return errors.New("invalid character after top-level value")
 	}
 
 	return unmarshalAny(reflect.ValueOf(v), out, "")
@@ -186,15 +195,22 @@ func unmarshalScalar(value reflect.Value, data interface{}, tag reflect.StructTa
 		default:
 			return errf()
 		}
-	case float64:
+	case json.Number:
+		df, err := d.Float64()
+		if err != nil {
+			return err
+		}
 		switch value.Interface().(type) {
 		case *int64:
-			di := int64(d)
+			di := int64(df)
 			value.Set(reflect.ValueOf(&di))
 		case *float64:
-			value.Set(reflect.ValueOf(&d))
+			value.Set(reflect.ValueOf(&df))
 		case *time.Time:
-			t := time.Unix(int64(d), 0).UTC()
+			t, err := timeFromUnixString(string(d))
+			if err != nil {
+				return err
+			}
 			value.Set(reflect.ValueOf(&t))
 		default:
 			return errf()
@@ -210,4 +226,34 @@ func unmarshalScalar(value reflect.Value, data interface{}, tag reflect.StructTa
 		return fmt.Errorf("unsupported JSON value (%v)", data)
 	}
 	return nil
+}
+
+func timeFromUnixString(d string) (time.Time, error) {
+	var secs, nsecs int64
+	if dot := strings.Index(d, "."); dot != -1 {
+		var err error
+		secs, err = strconv.ParseInt(d[:dot], 10, 64)
+		if err != nil {
+			return time.Time{}, err
+		}
+		if len(d) > dot+1 {
+			nsecsStr := d[dot+1:]
+			if len(nsecsStr) > 9 {
+				nsecsStr = nsecsStr[:9]
+			}
+			// Right-pad with 0s to make a number of nanoseconds.
+			nsecsStr = nsecsStr + strings.Repeat("0", 9-len(nsecsStr))
+			nsecs, err = strconv.ParseInt(nsecsStr, 10, 64)
+			if err != nil {
+				return time.Time{}, err
+			}
+		}
+	} else {
+		var err error
+		secs, err = strconv.ParseInt(string(d), 10, 64)
+		if err != nil {
+			return time.Time{}, err
+		}
+	}
+	return time.Unix(secs, nsecs).UTC(), nil
 }
