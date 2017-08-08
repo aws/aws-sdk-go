@@ -16,9 +16,9 @@ type condErrorMode int
 
 const (
 	noConditionError condErrorMode = iota
-	// noMatchingMode error will occur when the ConditionBuilder's Mode is not
+	// condMode error will occur when the ConditionBuilder's Mode is not
 	// supported
-	noMatchingMode
+	condMode
 	// invalidOperand error will occur when an invalid OperandBuilder is used as
 	// an argument
 	invalidOperand
@@ -28,8 +28,8 @@ func (cem condErrorMode) String() string {
 	switch cem {
 	case noConditionError:
 		return "no Error"
-	case noMatchingMode:
-		return "no matching"
+	case condMode:
+		return "unsupported mode"
 	case invalidOperand:
 		return "BuildOperand error"
 	default:
@@ -522,7 +522,7 @@ func TestBuildCondition(t *testing.T) {
 		{
 			name:  "no match error",
 			input: ConditionBuilder{},
-			err:   noMatchingMode,
+			err:   condMode,
 		},
 	}
 

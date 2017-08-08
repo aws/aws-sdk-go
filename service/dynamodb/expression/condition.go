@@ -46,44 +46,12 @@ const (
 	containsCond
 )
 
-// String will satisfy the Stringer interface in order for Error outputs to be
-// more readable.
 func (cm conditionMode) String() string {
 	switch cm {
 	case unsetCond:
 		return "unsetCond"
-	case equalCond:
-		return "equalCond"
-	case notEqualCond:
-		return "notEqualCond"
-	case lessCond:
-		return "lessCond"
-	case lessEqualCond:
-		return "lessEqualCond"
-	case greaterCond:
-		return "greaterCond"
-	case greaterEqualCond:
-		return "greaterEqualCond"
-	case andCond:
-		return "andCond"
-	case orCond:
-		return "orCond"
-	case notCond:
-		return "notCond"
-	case betweenCond:
-		return "betweenCond"
-	case inCond:
-		return "inCond"
-	case attrExistsCond:
-		return "attrExistsCond"
-	case attrNotExistsCond:
-		return "attrNotExistsCond"
-	case beginsWithCond:
-		return "beginsWithCond"
-	case containsCond:
-		return "containsCond"
 	default:
-		return "no matching ConditionMode"
+		return "no matching conditionMode"
 	}
 }
 
@@ -902,7 +870,7 @@ func (cond ConditionBuilder) buildCondition() (ExprNode, error) {
 	case containsCond:
 		return containsBuildCondition(ret)
 	}
-	return ExprNode{}, fmt.Errorf("buildCondition error: no matching conditionMode to %v", cond.mode)
+	return ExprNode{}, fmt.Errorf("buildCondition error: unsupported mode: %v", cond.mode)
 }
 
 // compareBuildCondition is the function to make ExprNodes from Compare
