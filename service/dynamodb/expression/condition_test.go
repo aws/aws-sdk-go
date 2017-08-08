@@ -1,30 +1,47 @@
+// +build go1.8
+
 package expression
 
 import (
 	"reflect"
+	"strings"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
-type testCompare interface {
-	Equal(right OperandBuilder) ConditionBuilder
+// condErrorMode will help with error cases and checking error types
+type condErrorMode int
+
+const (
+	noConditionError condErrorMode = iota
+	// noMatchingMode error will occur when the ConditionBuilder's Mode is not
+	// supported
+	noMatchingMode
+)
+
+func (cem condErrorMode) String() string {
+	switch cem {
+	case noConditionError:
+		return "no Error"
+	case noMatchingMode:
+		return "no matching"
+	default:
+		return ""
+	}
 }
 
 //Compare
-//Equal
 func TestCompare(t *testing.T) {
 	cases := []struct {
-		lhs      testCompare
-		rhs      OperandBuilder
-		mode     ConditionMode
+		name     string
+		input    ConditionBuilder
 		expected Expression
 	}{
 		{
-			lhs:  NewPath("foo.yay.cool.rad"),
-			rhs:  NewPath("bar"),
-			mode: EqualCond,
+			name:  "nested path with path",
+			input: Path("foo.yay.cool.rad").Equal(Path("bar")),
 			expected: Expression{
 				Names: map[string]*string{
 					"#0": aws.String("foo"),
@@ -37,9 +54,8 @@ func TestCompare(t *testing.T) {
 			},
 		},
 		{
-			lhs:  NewPath("foo.yay.cool.rad"),
-			rhs:  NewValue(5),
-			mode: EqualCond,
+			name:  "nested path with value",
+			input: Path("foo.yay.cool.rad").Equal(Value(5)),
 			expected: Expression{
 				Names: map[string]*string{
 					"#0": aws.String("foo"),
@@ -56,9 +72,8 @@ func TestCompare(t *testing.T) {
 			},
 		},
 		{
-			lhs:  NewPath("foo.yay.cool.rad"),
-			rhs:  NewPath("baz").Size(),
-			mode: EqualCond,
+			name:  "nested path with path size",
+			input: Path("foo.yay.cool.rad").Equal(Path("baz").Size()),
 			expected: Expression{
 				Names: map[string]*string{
 					"#0": aws.String("foo"),
@@ -71,9 +86,8 @@ func TestCompare(t *testing.T) {
 			},
 		},
 		{
-			lhs:  NewValue(5),
-			rhs:  NewPath("bar"),
-			mode: EqualCond,
+			name:  "value with path",
+			input: Value(5).Equal(Path("bar")),
 			expected: Expression{
 				Names: map[string]*string{
 					"#0": aws.String("bar"),
@@ -87,11 +101,10 @@ func TestCompare(t *testing.T) {
 			},
 		},
 		{
-			lhs: NewValue(map[string]int{
+			name: "nested value with path",
+			input: Value(map[string]int{
 				"five": 5,
-			}),
-			rhs:  NewPath("bar"),
-			mode: EqualCond,
+			}).Equal(Path("bar")),
 			expected: Expression{
 				Names: map[string]*string{
 					"#0": aws.String("bar"),
@@ -109,11 +122,10 @@ func TestCompare(t *testing.T) {
 			},
 		},
 		{
-			lhs: NewValue(map[string]int{
+			name: "nested value with value",
+			input: Value(map[string]int{
 				"five": 5,
-			}),
-			rhs:  NewValue(5),
-			mode: EqualCond,
+			}).Equal(Value(5)),
 			expected: Expression{
 				Values: map[string]*dynamodb.AttributeValue{
 					":0": &dynamodb.AttributeValue{
@@ -131,11 +143,10 @@ func TestCompare(t *testing.T) {
 			},
 		},
 		{
-			lhs: NewValue(map[string]int{
+			name: "nested value with path size",
+			input: Value(map[string]int{
 				"five": 5,
-			}),
-			rhs:  NewPath("baz").Size(),
-			mode: EqualCond,
+			}).Equal(Path("baz").Size()),
 			expected: Expression{
 				Values: map[string]*dynamodb.AttributeValue{
 					":0": &dynamodb.AttributeValue{
@@ -153,9 +164,8 @@ func TestCompare(t *testing.T) {
 			},
 		},
 		{
-			lhs:  NewPath("foo[1]").Size(),
-			rhs:  NewPath("bar"),
-			mode: EqualCond,
+			name:  "path size with path",
+			input: Path("foo[1]").Size().Equal(Path("bar")),
 			expected: Expression{
 				Names: map[string]*string{
 					"#0": aws.String("foo"),
@@ -165,9 +175,8 @@ func TestCompare(t *testing.T) {
 			},
 		},
 		{
-			lhs:  NewPath("foo[1]").Size(),
-			rhs:  NewValue(5),
-			mode: EqualCond,
+			name:  "path size with value",
+			input: Path("foo[1]").Size().Equal(Value(5)),
 			expected: Expression{
 				Names: map[string]*string{
 					"#0": aws.String("foo"),
@@ -181,9 +190,8 @@ func TestCompare(t *testing.T) {
 			},
 		},
 		{
-			lhs:  NewPath("foo[1]").Size(),
-			rhs:  NewPath("baz").Size(),
-			mode: EqualCond,
+			name:  "path size with path size",
+			input: Path("foo[1]").Size().Equal(Path("baz").Size()),
 			expected: Expression{
 				Names: map[string]*string{
 					"#0": aws.String("foo"),
@@ -193,9 +201,21 @@ func TestCompare(t *testing.T) {
 			},
 		},
 		{
-			lhs:  NewPath("foo.bar.baz").Size(),
-			rhs:  NewPath("bar.qux.foo").Size(),
-			mode: EqualCond,
+			name:  "path size comparison with duplicate names",
+			input: Path("foo.bar.baz").Size().Equal(Path("bar.qux.foo").Size()),
+			expected: Expression{
+				Names: map[string]*string{
+					"#0": aws.String("foo"),
+					"#1": aws.String("bar"),
+					"#2": aws.String("baz"),
+					"#3": aws.String("qux"),
+				},
+				Expression: "size (#0.#1.#2) = size (#1.#3.#0)",
+			},
+		},
+		{
+			name:  "path size comparison with duplicate names",
+			input: Path("foo.bar.baz").Size().Equal(Path("bar.qux.foo").Size()),
 			expected: Expression{
 				Names: map[string]*string{
 					"#0": aws.String("foo"),
@@ -207,95 +227,230 @@ func TestCompare(t *testing.T) {
 			},
 		},
 	}
-	for testNumber, c := range cases {
-		exprNode, err := c.lhs.Equal(c.rhs).buildCondition()
-		if err != nil {
-			t.Errorf("TestEquals Test Number %#v: Unexpected Error %#v", testNumber, err)
-		}
-		expr, err := exprNode.buildExprNodes(&aliasList{})
-		if err != nil {
-			t.Errorf("TestEquals Test Number %#v: Unexpected Error %#v", testNumber, err)
-		}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			expr, err := c.input.BuildExpression()
+			if err != nil {
+				t.Errorf("expect no error, got error %v", err)
+			}
 
-		if reflect.DeepEqual(expr, c.expected) != true {
-			t.Errorf("TestEquals Test Number %#v: Expected %#v, got %#v", testNumber, c.expected, expr)
-		}
-
+			if e, a := c.expected, expr; !reflect.DeepEqual(e, a) {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
 	}
 }
 
 func TestBuildCondition(t *testing.T) {
 	cases := []struct {
-		input                 ConditionBuilder
-		expected              ExprNode
-		buildListOperandError bool
-		noMatchError          bool
-		operandNumberError    bool
-		conditionNumberError  bool
+		name     string
+		input    ConditionBuilder
+		expected ExprNode
+		err      condErrorMode
 	}{
 		{
-			input:        ConditionBuilder{},
-			noMatchError: true,
-		},
-		{
-			input: ConditionBuilder{
-				Mode: EqualCond,
-			},
-			operandNumberError: true,
-		},
-		{
-			input: ConditionBuilder{
-				Mode: EqualCond,
-				conditionList: []ConditionBuilder{
-					ConditionBuilder{},
-				},
-			},
-			conditionNumberError: true,
+			name:  "no match error",
+			input: ConditionBuilder{},
+			err:   noMatchingMode,
 		},
 	}
 
-	for testNumber, c := range cases {
-		expr, err := c.input.buildCondition()
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			expr, err := c.input.buildCondition()
 
-		if c.buildListOperandError {
-			if err == nil {
-				t.Errorf("TestBuildCondition Test Number %#v: Expected list operand error but got no error", testNumber)
+			if c.err != noConditionError {
+				if err == nil {
+					t.Errorf("expect error %q, got no error", c.err)
+				} else {
+					if e, a := c.err.String(), err.Error(); !strings.Contains(a, e) {
+						t.Errorf("expect %q error message to be in %q", e, a)
+					}
+				}
 			} else {
-				continue
-			}
-		}
+				if err != nil {
+					t.Errorf("expect no error, got unexpected Error %q", err)
+				}
 
-		if c.noMatchError {
-			if err == nil {
-				t.Errorf("TestBuildCondition Test Number %#v: Expected no matching mode error but got no error", testNumber)
+				if e, a := c.expected, expr; !reflect.DeepEqual(a, e) {
+					t.Errorf("expect %v, got %v", e, a)
+				}
+			}
+		})
+	}
+}
+
+func TestBoolCondition(t *testing.T) {
+	cases := []struct {
+		name     string
+		input    ConditionBuilder
+		expected Expression
+		err      condErrorMode
+	}{
+		{
+			name:  "basic method and",
+			input: Path("foo").Equal(Value(5)).And(Path("bar").Equal(Value("baz"))),
+			expected: Expression{
+				Names: map[string]*string{
+					"#1": aws.String("bar"),
+					"#0": aws.String("foo"),
+				},
+				Values: map[string]*dynamodb.AttributeValue{
+					":0": &dynamodb.AttributeValue{
+						N: aws.String("5"),
+					},
+					":1": &dynamodb.AttributeValue{
+						S: aws.String("baz"),
+					},
+				},
+				Expression: "(#0 = :0) AND (#1 = :1)",
+			},
+		},
+		{
+			name:  "variadic function and",
+			input: And(Path("foo").Equal(Value(5)), Path("bar").Equal(Value("baz")), Path("qux").Equal(Value(true))),
+			expected: Expression{
+				Names: map[string]*string{
+					"#0": aws.String("foo"),
+					"#1": aws.String("bar"),
+					"#2": aws.String("qux"),
+				},
+				Values: map[string]*dynamodb.AttributeValue{
+					":0": &dynamodb.AttributeValue{
+						N: aws.String("5"),
+					},
+					":1": &dynamodb.AttributeValue{
+						S: aws.String("baz"),
+					},
+					":2": &dynamodb.AttributeValue{
+						BOOL: aws.Bool(true),
+					},
+				},
+				Expression: "(#0 = :0) AND (#1 = :1) AND (#2 = :2)",
+			},
+		},
+		{
+			name:  "duplicate paths and",
+			input: And(Path("foo").Equal(Path("foo")), Path("bar").Equal(Path("foo")), Path("qux").Equal(Path("foo"))),
+			expected: Expression{
+				Names: map[string]*string{
+					"#0": aws.String("foo"),
+					"#1": aws.String("bar"),
+					"#2": aws.String("qux"),
+				},
+				Expression: "(#0 = #0) AND (#1 = #0) AND (#2 = #0)",
+			},
+		},
+	}
+
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			expr, err := c.input.BuildExpression()
+			if c.err != noConditionError {
+				if err == nil {
+					t.Errorf("expect error %q, got no error", c.err)
+				} else {
+					if e, a := c.err.String(), err.Error(); !strings.Contains(a, e) {
+						t.Errorf("expect %q error message to be in %q", e, a)
+					}
+				}
 			} else {
-				continue
-			}
-		}
+				if err != nil {
+					t.Errorf("expect no error, got unexpected Error %q", err)
+				}
 
-		if c.operandNumberError {
-			if err == nil {
-				t.Errorf("TestBuildCondition Test Number %#v: Expected operand number error but got no error", testNumber)
+				if e, a := c.expected, expr; !reflect.DeepEqual(a, e) {
+					t.Errorf("expect %v, got %v", e, a)
+				}
+			}
+		})
+	}
+}
+
+func TestBetweenCondition(t *testing.T) {
+	cases := []struct {
+		name     string
+		input    ConditionBuilder
+		expected Expression
+		err      condErrorMode
+	}{
+		{
+			name:  "basic method between for path",
+			input: Path("foo").Between(Value(5), Value(7)),
+			expected: Expression{
+				Names: map[string]*string{
+					"#0": aws.String("foo"),
+				},
+				Values: map[string]*dynamodb.AttributeValue{
+					":0": &dynamodb.AttributeValue{
+						N: aws.String("5"),
+					},
+					":1": &dynamodb.AttributeValue{
+						N: aws.String("7"),
+					},
+				},
+				Expression: "#0 BETWEEN :0 AND :1",
+			},
+		},
+		{
+			name:  "basic method between for value",
+			input: Value(6).Between(Value(5), Value(7)),
+			expected: Expression{
+				Values: map[string]*dynamodb.AttributeValue{
+					":0": &dynamodb.AttributeValue{
+						N: aws.String("6"),
+					},
+					":1": &dynamodb.AttributeValue{
+						N: aws.String("5"),
+					},
+					":2": &dynamodb.AttributeValue{
+						N: aws.String("7"),
+					},
+				},
+				Expression: ":0 BETWEEN :1 AND :2",
+			},
+		},
+		{
+			name:  "basic method between for size",
+			input: Path("foo").Size().Between(Value(5), Value(7)),
+			expected: Expression{
+				Names: map[string]*string{
+					"#0": aws.String("foo"),
+				},
+				Values: map[string]*dynamodb.AttributeValue{
+					":0": &dynamodb.AttributeValue{
+						N: aws.String("5"),
+					},
+					":1": &dynamodb.AttributeValue{
+						N: aws.String("7"),
+					},
+				},
+				Expression: "size (#0) BETWEEN :0 AND :1",
+			},
+		},
+	}
+
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			expr, err := c.input.BuildExpression()
+			if c.err != noConditionError {
+				if err == nil {
+					t.Errorf("expect error %q, got no error", c.err)
+				} else {
+					if e, a := c.err.String(), err.Error(); !strings.Contains(a, e) {
+						t.Errorf("expect %q error message to be in %q", e, a)
+					}
+				}
 			} else {
-				continue
+				if err != nil {
+					t.Errorf("expect no error, got unexpected Error %q", err)
+				}
+
+				if e, a := c.expected, expr; !reflect.DeepEqual(a, e) {
+					t.Errorf("expect %v, got %v", e, a)
+				}
 			}
-		}
-
-		if c.conditionNumberError {
-			if err == nil {
-				t.Errorf("TestBuildCondition Test Number %#v: Expected condition number error but got no error", testNumber)
-			} else {
-				continue
-			}
-		}
-
-		if err != nil {
-			t.Errorf("TestBuildCondition Test Number %#v: Unexpected Error %#v", testNumber, err)
-		}
-
-		if reflect.DeepEqual(expr, c.expected) != true {
-			t.Errorf("TestBuildCondition Test Number %#v: Expected %#v, got %#v", testNumber, c.expected, expr)
-		}
+		})
 	}
 }
 
