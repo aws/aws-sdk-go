@@ -59,8 +59,8 @@ type ConditionBuilder struct {
 //
 //     condition := expression.Equal(expression.Path("foo"), expression.Value(5))
 //
-//     anotherCondition := expression.Not(condition)	// Used in another condition
-//     expression, err := condition.BuildExpression()	// Used to make an Expression
+//     anotherCondition := expression.Not(condition)  // Used in another condition
+//     expression, err := condition.BuildExpression() // Used to make an Expression
 func Equal(left, right OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{left, right},
@@ -115,8 +115,8 @@ func (s SizeBuilder) Equal(right OperandBuilder) ConditionBuilder {
 //     condition3 := expression.Path("baz").Between(expression.Value(2), expression.Value(10))
 //     andCondition := expression.And(condition1, condition2, condition3)
 //
-//     anotherCondition := expression.Not(andCondition)		// Used in another condition
-//     expression, err := andCondition.BuildExpression()	// Used to make an Expression
+//     anotherCondition := expression.Not(andCondition)   // Used in another condition
+//     expression, err := andCondition.BuildExpression()  // Used to make an Expression
 func And(left, right ConditionBuilder, other ...ConditionBuilder) ConditionBuilder {
 	other = append([]ConditionBuilder{left, right}, other...)
 	return ConditionBuilder{
@@ -148,8 +148,8 @@ func (cond ConditionBuilder) And(right ConditionBuilder, other ...ConditionBuild
 //
 //     condition := expression.Between(expression.Path("foo"), expression.Value(2), expression.Value(6))
 //
-//     anotherCondition := expression.Not(condition)	// Used in another condition
-//     expression, err := condition.BuildExpression()	// Used to make an Expression
+//     anotherCondition := expression.Not(condition)  // Used in another condition
+//     expression, err := condition.BuildExpression() // Used to make an Expression
 func Between(ope, lower, upper OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{ope, lower, upper},
