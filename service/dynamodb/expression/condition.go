@@ -5,83 +5,83 @@ import (
 	"strings"
 )
 
-// ConditionMode will specify the types of the struct ConditionBuilder,
+// conditionMode will specify the types of the struct conditionBuilder,
 // representing the different types of Conditions (i.e. And, Or, Between, ...)
-type ConditionMode int
+type conditionMode int
 
 const (
-	// UnsetCond will catch errors if users make an empty ConditionBuilder
-	UnsetCond ConditionMode = iota
-	// EqualCond will represent the Equals Condition
-	EqualCond
-	// NotEqualCond will represent the Not Equals Condition
-	NotEqualCond
-	// LessCond will represent the Less Than Condition
-	LessCond
-	// LessEqualCond will represent the Less Than Or Equal To Condition
-	LessEqualCond
-	// GreaterCond will represent the Greater Than Condition
-	GreaterCond
-	// GreaterEqualCond will represent the Greater Than Or Equal To Condition
-	GreaterEqualCond
-	// AndCond will represent the Logical And Condition
-	AndCond
-	// OrCond will represent the Logical Or Condition
-	OrCond
-	// NotCond will represent the Logical Not Condition
-	NotCond
-	// BetweenCond will represent the Between Condition
-	BetweenCond
-	// InCond will represent the In Condition
-	InCond
-	// AttrExistsCond will represent the Attribute Exists Condition
-	AttrExistsCond
-	// AttrNotExistsCond will represent the Attribute Not Exists Condition
-	AttrNotExistsCond
-	// AttrTypeCond will represent the Attribute Type Condition
-	AttrTypeCond
-	// BeginsWithCond will represent the Begins With Condition
-	BeginsWithCond
-	// ContainsCond will represent the Contains Condition
-	ContainsCond
+	// unsetCond will catch errors if users make an empty ConditionBuilder
+	unsetCond conditionMode = iota
+	// equalCond will represent the Equals Condition
+	equalCond
+	// notEqualCond will represent the Not Equals Condition
+	notEqualCond
+	// lessCond will represent the Less Than Condition
+	lessCond
+	// lessEqualCond will represent the Less Than Or Equal To Condition
+	lessEqualCond
+	// greaterCond will represent the Greater Than Condition
+	greaterCond
+	// greaterEqualCond will represent the Greater Than Or Equal To Condition
+	greaterEqualCond
+	// andCond will represent the Logical And Condition
+	andCond
+	// orCond will represent the Logical Or Condition
+	orCond
+	// notCond will represent the Logical Not Condition
+	notCond
+	// betweenCond will represent the Between Condition
+	betweenCond
+	// inCond will represent the In Condition
+	inCond
+	// attrExistsCond will represent the Attribute Exists Condition
+	attrExistsCond
+	// attrNotExistsCond will represent the Attribute Not Exists Condition
+	attrNotExistsCond
+	// attrTypeCond will represent the Attribute Type Condition
+	attrTypeCond
+	// beginsWithCond will represent the Begins With Condition
+	beginsWithCond
+	// containsCond will represent the Contains Condition
+	containsCond
 )
 
 // String will satisfy the Stringer interface in order for Error outputs to be
 // more readable.
-func (cm ConditionMode) String() string {
+func (cm conditionMode) String() string {
 	switch cm {
-	case UnsetCond:
-		return "UnsetCond"
-	case EqualCond:
-		return "EqualCond"
-	case NotEqualCond:
-		return "NotEqualCond"
-	case LessCond:
-		return "LessCond"
-	case LessEqualCond:
-		return "LessEqualCond"
-	case GreaterCond:
-		return "GreaterCond"
-	case GreaterEqualCond:
-		return "GreaterEqualCond"
-	case AndCond:
-		return "AndCond"
-	case OrCond:
-		return "OrCond"
-	case NotCond:
-		return "NotCond"
-	case BetweenCond:
-		return "BetweenCond"
-	case InCond:
-		return "InCond"
-	case AttrExistsCond:
-		return "AttrExistsCond"
-	case AttrNotExistsCond:
-		return "AttrNotExistsCond"
-	case BeginsWithCond:
-		return "BeginsWithCond"
-	case ContainsCond:
-		return "ContainsCond"
+	case unsetCond:
+		return "unsetCond"
+	case equalCond:
+		return "equalCond"
+	case notEqualCond:
+		return "notEqualCond"
+	case lessCond:
+		return "lessCond"
+	case lessEqualCond:
+		return "lessEqualCond"
+	case greaterCond:
+		return "greaterCond"
+	case greaterEqualCond:
+		return "greaterEqualCond"
+	case andCond:
+		return "andCond"
+	case orCond:
+		return "orCond"
+	case notCond:
+		return "notCond"
+	case betweenCond:
+		return "betweenCond"
+	case inCond:
+		return "inCond"
+	case attrExistsCond:
+		return "attrExistsCond"
+	case attrNotExistsCond:
+		return "attrNotExistsCond"
+	case beginsWithCond:
+		return "beginsWithCond"
+	case containsCond:
+		return "containsCond"
 	default:
 		return "no matching ConditionMode"
 	}
@@ -98,23 +98,23 @@ const (
 	// String will represent the DynamoDB String type
 	String DynamoDBAttributeType = "S"
 	// StringSet will represent the DynamoDB String Set type
-	StringSet DynamoDBAttributeType = "SS"
+	StringSet = "SS"
 	// Number will represent the DynamoDB Number type
-	Number DynamoDBAttributeType = "N"
+	Number = "N"
 	// NumberSet will represent the DynamoDB Number Set type
-	NumberSet DynamoDBAttributeType = "NS"
+	NumberSet = "NS"
 	// Binary will represent the DynamoDB Binary type
-	Binary DynamoDBAttributeType = "B"
+	Binary = "B"
 	// BinarySet will represent the DynamoDB Binary Set type
-	BinarySet DynamoDBAttributeType = "BS"
+	BinarySet = "BS"
 	// Boolean will represent the DynamoDB Boolean type
-	Boolean DynamoDBAttributeType = "BOOL"
+	Boolean = "BOOL"
 	// Null will represent the DynamoDB Null type
-	Null DynamoDBAttributeType = "NULL"
+	Null = "NULL"
 	// List will represent the DynamoDB List type
-	List DynamoDBAttributeType = "L"
+	List = "L"
 	// Map will represent the DynamoDB Map type
-	Map DynamoDBAttributeType = "M"
+	Map = "M"
 )
 
 // ConditionBuilder will represent the ConditionExpressions in DynamoDB. It is
@@ -128,7 +128,7 @@ const (
 type ConditionBuilder struct {
 	operandList   []OperandBuilder
 	conditionList []ConditionBuilder
-	Mode          ConditionMode
+	mode          conditionMode
 }
 
 // Equal will create a ConditionBuilder with two OperandBuilders as children,
@@ -145,7 +145,7 @@ type ConditionBuilder struct {
 func Equal(left, right OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{left, right},
-		Mode:        EqualCond,
+		mode:        equalCond,
 	}
 }
 
@@ -197,7 +197,7 @@ func (s SizeBuilder) Equal(right OperandBuilder) ConditionBuilder {
 func NotEqual(left, right OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{left, right},
-		Mode:        NotEqualCond,
+		mode:        notEqualCond,
 	}
 }
 
@@ -251,7 +251,7 @@ func (s SizeBuilder) NotEqual(right OperandBuilder) ConditionBuilder {
 func Less(left, right OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{left, right},
-		Mode:        LessCond,
+		mode:        lessCond,
 	}
 }
 
@@ -303,7 +303,7 @@ func (s SizeBuilder) Less(right OperandBuilder) ConditionBuilder {
 func LessEqual(left, right OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{left, right},
-		Mode:        LessEqualCond,
+		mode:        lessEqualCond,
 	}
 }
 
@@ -355,7 +355,7 @@ func (s SizeBuilder) LessEqual(right OperandBuilder) ConditionBuilder {
 func Greater(left, right OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{left, right},
-		Mode:        GreaterCond,
+		mode:        greaterCond,
 	}
 }
 
@@ -407,7 +407,7 @@ func (s SizeBuilder) Greater(right OperandBuilder) ConditionBuilder {
 func GreaterEqual(left, right OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{left, right},
-		Mode:        GreaterEqualCond,
+		mode:        greaterEqualCond,
 	}
 }
 
@@ -464,7 +464,7 @@ func And(left, right ConditionBuilder, other ...ConditionBuilder) ConditionBuild
 	other = append([]ConditionBuilder{left, right}, other...)
 	return ConditionBuilder{
 		conditionList: other,
-		Mode:          AndCond,
+		mode:          andCond,
 	}
 }
 
@@ -498,7 +498,7 @@ func Or(left, right ConditionBuilder, other ...ConditionBuilder) ConditionBuilde
 	other = append([]ConditionBuilder{left, right}, other...)
 	return ConditionBuilder{
 		conditionList: other,
-		Mode:          OrCond,
+		mode:          orCond,
 	}
 }
 
@@ -529,7 +529,7 @@ func (cond ConditionBuilder) Or(right ConditionBuilder, other ...ConditionBuilde
 func Not(cond ConditionBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		conditionList: []ConditionBuilder{cond},
-		Mode:          NotCond,
+		mode:          notCond,
 	}
 }
 
@@ -561,7 +561,7 @@ func (cond ConditionBuilder) Not() ConditionBuilder {
 func Between(ope, lower, upper OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{ope, lower, upper},
-		Mode:        BetweenCond,
+		mode:        betweenCond,
 	}
 }
 
@@ -618,7 +618,7 @@ func In(left, right OperandBuilder, other ...OperandBuilder) ConditionBuilder {
 	other = append([]OperandBuilder{left, right}, other...)
 	return ConditionBuilder{
 		operandList: other,
-		Mode:        InCond,
+		mode:        inCond,
 	}
 }
 
@@ -673,7 +673,7 @@ func (s SizeBuilder) In(right OperandBuilder, other ...OperandBuilder) Condition
 func AttributeExists(p PathBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{p},
-		Mode:        AttrExistsCond,
+		mode:        attrExistsCond,
 	}
 }
 
@@ -705,7 +705,7 @@ func (p PathBuilder) AttributeExists() ConditionBuilder {
 func AttributeNotExists(p PathBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{p},
-		Mode:        AttrNotExistsCond,
+		mode:        attrNotExistsCond,
 	}
 }
 
@@ -742,7 +742,7 @@ func AttributeType(p PathBuilder, at DynamoDBAttributeType) ConditionBuilder {
 	}
 	return ConditionBuilder{
 		operandList: []OperandBuilder{p, v},
-		Mode:        AttrTypeCond,
+		mode:        attrTypeCond,
 	}
 }
 
@@ -779,7 +779,7 @@ func BeginsWith(p PathBuilder, s string) ConditionBuilder {
 	}
 	return ConditionBuilder{
 		operandList: []OperandBuilder{p, v},
-		Mode:        BeginsWithCond,
+		mode:        beginsWithCond,
 	}
 }
 
@@ -818,7 +818,7 @@ func Contains(p PathBuilder, s string) ConditionBuilder {
 	}
 	return ConditionBuilder{
 		operandList: []OperandBuilder{p, v},
-		Mode:        ContainsCond,
+		mode:        containsCond,
 	}
 }
 
@@ -880,49 +880,49 @@ func (cond ConditionBuilder) buildCondition() (ExprNode, error) {
 		children: childNodes,
 	}
 
-	switch cond.Mode {
-	case EqualCond, NotEqualCond, LessCond, LessEqualCond, GreaterCond, GreaterEqualCond:
-		return compareBuildCondition(cond.Mode, ret)
-	case AndCond, OrCond:
+	switch cond.mode {
+	case equalCond, notEqualCond, lessCond, lessEqualCond, greaterCond, greaterEqualCond:
+		return compareBuildCondition(cond.mode, ret)
+	case andCond, orCond:
 		return compoundBuildCondition(cond, ret)
-	case NotCond:
+	case notCond:
 		return notBuildCondition(ret)
-	case BetweenCond:
+	case betweenCond:
 		return betweenBuildCondition(ret)
-	case InCond:
+	case inCond:
 		return inBuildCondition(cond, ret)
-	case AttrExistsCond:
+	case attrExistsCond:
 		return attrExistsBuildCondition(ret)
-	case AttrNotExistsCond:
+	case attrNotExistsCond:
 		return attrNotExistsBuildCondition(ret)
-	case AttrTypeCond:
+	case attrTypeCond:
 		return attrTypeBuildCondition(ret)
-	case BeginsWithCond:
+	case beginsWithCond:
 		return beginsWithBuildCondition(ret)
-	case ContainsCond:
+	case containsCond:
 		return containsBuildCondition(ret)
 	}
-	return ExprNode{}, fmt.Errorf("buildCondition error: no matching ConditionMode to %v", cond.Mode)
+	return ExprNode{}, fmt.Errorf("buildCondition error: no matching conditionMode to %v", cond.mode)
 }
 
 // compareBuildCondition is the function to make ExprNodes from Compare
 // ConditionBuilders. compareBuildCondition will only be called by the
 // buildCondition method. This function assumes that the argument
 // ConditionBuilder has the right format.
-func compareBuildCondition(cm ConditionMode, en ExprNode) (ExprNode, error) {
+func compareBuildCondition(cm conditionMode, en ExprNode) (ExprNode, error) {
 	// Create a string with special characters that can be substituted later: $c
 	switch cm {
-	case EqualCond:
+	case equalCond:
 		en.fmtExpr = "$c = $c"
-	case NotEqualCond:
+	case notEqualCond:
 		en.fmtExpr = "$c <> $c"
-	case LessCond:
+	case lessCond:
 		en.fmtExpr = "$c < $c"
-	case LessEqualCond:
+	case lessEqualCond:
 		en.fmtExpr = "$c <= $c"
-	case GreaterCond:
+	case greaterCond:
 		en.fmtExpr = "$c > $c"
-	case GreaterEqualCond:
+	case greaterEqualCond:
 		en.fmtExpr = "$c >= $c"
 	}
 
@@ -937,10 +937,10 @@ func compoundBuildCondition(c ConditionBuilder, en ExprNode) (ExprNode, error) {
 	// create a string with escaped characters to substitute them with proper
 	// aliases during runtime
 	var mode string
-	switch c.Mode {
-	case AndCond:
+	switch c.mode {
+	case andCond:
 		mode = " AND "
-	case OrCond:
+	case orCond:
 		mode = " OR "
 	}
 	en.fmtExpr = "($c)" + strings.Repeat(mode+"($c)", len(c.conditionList)-1)
