@@ -1299,4 +1299,93 @@ func TestContainsCondition(t *testing.T) {
 	}
 }
 
+func TestCompoundBuildCondition(t *testing.T) {
+	cases := []struct {
+		name      string
+		inputCond ConditionBuilder
+		expected  string
+	}{
+		{
+			name: "and",
+			inputCond: ConditionBuilder{
+				conditionList: []ConditionBuilder{
+					ConditionBuilder{},
+					ConditionBuilder{},
+					ConditionBuilder{},
+					ConditionBuilder{},
+				},
+				mode: andCond,
+			},
+			expected: "($c) AND ($c) AND ($c) AND ($c)",
+		},
+		{
+			name: "or",
+			inputCond: ConditionBuilder{
+				conditionList: []ConditionBuilder{
+					ConditionBuilder{},
+					ConditionBuilder{},
+					ConditionBuilder{},
+					ConditionBuilder{},
+					ConditionBuilder{},
+					ConditionBuilder{},
+					ConditionBuilder{},
+				},
+				mode: orCond,
+			},
+			expected: "($c) OR ($c) OR ($c) OR ($c) OR ($c) OR ($c) OR ($c)",
+		},
+	}
+
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			en, err := compoundBuildCondition(c.inputCond, ExprNode{})
+			if err != nil {
+				t.Errorf("expect no error, got unexpected Error %q", err)
+			}
+
+			if e, a := c.expected, en.fmtExpr; !reflect.DeepEqual(a, e) {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
+	}
+}
+
+func TestInBuildCondition(t *testing.T) {
+	cases := []struct {
+		name      string
+		inputCond ConditionBuilder
+		expected  string
+	}{
+		{
+			name: "in",
+			inputCond: ConditionBuilder{
+				operandList: []OperandBuilder{
+					PathBuilder{},
+					PathBuilder{},
+					PathBuilder{},
+					PathBuilder{},
+					PathBuilder{},
+					PathBuilder{},
+					PathBuilder{},
+				},
+				mode: andCond,
+			},
+			expected: "$c IN ($c, $c, $c, $c, $c, $c)",
+		},
+	}
+
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			en, err := inBuildCondition(c.inputCond, ExprNode{})
+			if err != nil {
+				t.Errorf("expect no error, got unexpected Error %q", err)
+			}
+
+			if e, a := c.expected, en.fmtExpr; !reflect.DeepEqual(a, e) {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
+	}
+}
+
 // If there is time implement mapEquals
