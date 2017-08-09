@@ -1,3 +1,10 @@
+Release v1.10.22 (2017-08-09)
+===
+
+### Service Client Updates
+* `service/rds`: Updates service documentation
+  * Documentation updates for RDS.
+
 Release v1.10.21 (2017-08-09)
 ===
 
