@@ -1,3 +1,12 @@
+Release v1.10.23 (2017-08-10)
+===
+
+### Service Client Updates
+* `service/clouddirectory`: Updates service API and documentation
+  * Enable BatchDetachPolicy
+* `service/codebuild`: Updates service API
+  * Supporting Bitbucket as source type in AWS CodeBuild.
+
 Release v1.10.22 (2017-08-09)
 ===
 

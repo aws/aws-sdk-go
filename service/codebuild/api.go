@@ -3365,6 +3365,9 @@ const (
 	// LanguageTypeAndroid is a LanguageType enum value
 	LanguageTypeAndroid = "ANDROID"
 
+	// LanguageTypeDotnet is a LanguageType enum value
+	LanguageTypeDotnet = "DOTNET"
+
 	// LanguageTypeBase is a LanguageType enum value
 	LanguageTypeBase = "BASE"
 )
@@ -3416,6 +3419,9 @@ const (
 
 	// SourceTypeS3 is a SourceType enum value
 	SourceTypeS3 = "S3"
+
+	// SourceTypeBitbucket is a SourceType enum value
+	SourceTypeBitbucket = "BITBUCKET"
 )
 
 const (
