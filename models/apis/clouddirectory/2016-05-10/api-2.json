@@ -1643,6 +1643,22 @@
         "detachedObjectIdentifier":{"shape":"ObjectIdentifier"}
       }
     },
+    "BatchDetachPolicy":{
+      "type":"structure",
+      "required":[
+        "PolicyReference",
+        "ObjectReference"
+      ],
+      "members":{
+        "PolicyReference":{"shape":"ObjectReference"},
+        "ObjectReference":{"shape":"ObjectReference"}
+      }
+    },
+    "BatchDetachPolicyResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "BatchDetachTypedLink":{
       "type":"structure",
       "required":["TypedLinkSpecifier"],
@@ -2010,6 +2026,7 @@
         "AddFacetToObject":{"shape":"BatchAddFacetToObject"},
         "RemoveFacetFromObject":{"shape":"BatchRemoveFacetFromObject"},
         "AttachPolicy":{"shape":"BatchAttachPolicy"},
+        "DetachPolicy":{"shape":"BatchDetachPolicy"},
         "CreateIndex":{"shape":"BatchCreateIndex"},
         "AttachToIndex":{"shape":"BatchAttachToIndex"},
         "DetachFromIndex":{"shape":"BatchDetachFromIndex"},
@@ -2032,6 +2049,7 @@
         "AddFacetToObject":{"shape":"BatchAddFacetToObjectResponse"},
         "RemoveFacetFromObject":{"shape":"BatchRemoveFacetFromObjectResponse"},
         "AttachPolicy":{"shape":"BatchAttachPolicyResponse"},
+        "DetachPolicy":{"shape":"BatchDetachPolicyResponse"},
         "CreateIndex":{"shape":"BatchCreateIndexResponse"},
         "AttachToIndex":{"shape":"BatchAttachToIndexResponse"},
         "DetachFromIndex":{"shape":"BatchDetachFromIndexResponse"},
