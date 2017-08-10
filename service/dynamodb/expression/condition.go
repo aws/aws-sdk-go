@@ -85,7 +85,7 @@ const (
 	Map = "M"
 )
 
-// ConditionBuilder will represent the ConditionExpressions in DynamoDB. It is
+// ConditionBuilder will represent Condition Expressions in DynamoDB. It is
 // composed of operands (OperandBuilder) and other conditions (ConditionBuilder)
 // There are many different types of conditions, specified by ConditionMode.
 // Users will be able to call the BuildExpression() method on a ConditionBuilder
