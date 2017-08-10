@@ -12,30 +12,17 @@ import (
 )
 
 // condErrorMode will help with error cases and checking error types
-type condErrorMode int
+type condErrorMode string
 
 const (
-	noConditionError condErrorMode = iota
+	noConditionError condErrorMode = ""
 	// condMode error will occur when the ConditionBuilder's Mode is not
 	// supported
-	condMode
+	condMode = "unsupported mode"
 	// invalidOperand error will occur when an invalid OperandBuilder is used as
 	// an argument
-	invalidOperand
+	invalidOperand = "BuildOperand error"
 )
-
-func (cem condErrorMode) String() string {
-	switch cem {
-	case noConditionError:
-		return "no Error"
-	case condMode:
-		return "unsupported mode"
-	case invalidOperand:
-		return "BuildOperand error"
-	default:
-		return ""
-	}
-}
 
 //Compare
 func TestCompare(t *testing.T) {
@@ -495,7 +482,7 @@ func TestCompare(t *testing.T) {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
 				} else {
-					if e, a := c.err.String(), err.Error(); !strings.Contains(a, e) {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
 						t.Errorf("expect %q error message to be in %q", e, a)
 					}
 				}
@@ -534,7 +521,7 @@ func TestBuildCondition(t *testing.T) {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
 				} else {
-					if e, a := c.err.String(), err.Error(); !strings.Contains(a, e) {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
 						t.Errorf("expect %q error message to be in %q", e, a)
 					}
 				}
@@ -673,7 +660,7 @@ func TestBoolCondition(t *testing.T) {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
 				} else {
-					if e, a := c.err.String(), err.Error(); !strings.Contains(a, e) {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
 						t.Errorf("expect %q error message to be in %q", e, a)
 					}
 				}
@@ -741,7 +728,7 @@ func TestNotCondition(t *testing.T) {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
 				} else {
-					if e, a := c.err.String(), err.Error(); !strings.Contains(a, e) {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
 						t.Errorf("expect %q error message to be in %q", e, a)
 					}
 				}
@@ -833,7 +820,7 @@ func TestBetweenCondition(t *testing.T) {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
 				} else {
-					if e, a := c.err.String(), err.Error(); !strings.Contains(a, e) {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
 						t.Errorf("expect %q error message to be in %q", e, a)
 					}
 				}
@@ -925,7 +912,7 @@ func TestInCondition(t *testing.T) {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
 				} else {
-					if e, a := c.err.String(), err.Error(); !strings.Contains(a, e) {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
 						t.Errorf("expect %q error message to be in %q", e, a)
 					}
 				}
@@ -988,7 +975,7 @@ func TestAttrExistsCondition(t *testing.T) {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
 				} else {
-					if e, a := c.err.String(), err.Error(); !strings.Contains(a, e) {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
 						t.Errorf("expect %q error message to be in %q", e, a)
 					}
 				}
@@ -1176,7 +1163,7 @@ func TestAttrTypeCondition(t *testing.T) {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
 				} else {
-					if e, a := c.err.String(), err.Error(); !strings.Contains(a, e) {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
 						t.Errorf("expect %q error message to be in %q", e, a)
 					}
 				}
@@ -1229,7 +1216,7 @@ func TestBeginsWithCondition(t *testing.T) {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
 				} else {
-					if e, a := c.err.String(), err.Error(); !strings.Contains(a, e) {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
 						t.Errorf("expect %q error message to be in %q", e, a)
 					}
 				}
@@ -1282,7 +1269,7 @@ func TestContainsCondition(t *testing.T) {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
 				} else {
-					if e, a := c.err.String(), err.Error(); !strings.Contains(a, e) {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
 						t.Errorf("expect %q error message to be in %q", e, a)
 					}
 				}
