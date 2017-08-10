@@ -2,7 +2,6 @@ package expression
 
 import (
 	"fmt"
-	"reflect"
 
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
@@ -133,10 +132,7 @@ func (en ExprNode) buildExprNodes(al *aliasList) (Expression, error) {
 			}
 			alias = childExpr.Expression
 			tempExpr := expr.Expression
-			expr, err = mergeExpressionMaps([]Expression{expr, childExpr})
-			if err != nil {
-				return Expression{}, err
-			}
+			expr = MergeMaps(expr, childExpr)
 			expr.Expression = tempExpr
 			index.children++
 
@@ -188,29 +184,44 @@ func (al *aliasList) aliasPath(nm string) (string, error) {
 	return fmt.Sprintf("#%d", len(al.namesList)-1), nil
 }
 
-// mergeExpressionMaps merges maps of multiple Expressions. This is used to
-// combine the maps created by the child nodes
-func mergeExpressionMaps(lists ...[]Expression) (Expression, error) {
+// MergeMaps merges maps of multiple Expressions. This is used to
+// combine the maps created by the child nodes. It is also used to combine maps
+// in order to inject the resulting maps into operation inputs. MergeMaps
+// assumes that the inputs are all valid.
+//
+// Example:
+//
+//     filterExpr, err := expression.Path("foo").Equal(expression.Value(5))
+//     projExpr, err := expression.Projection(expression.Path("bar"), expression.Path("baz"))
+//
+//     scanInput := dynamodb.ScanInput{
+//       FilterExpression:          aws.String(filterExpr.Expression),
+//       ProjectionExpression:      aws.String(projExpr.Expression),
+//       ExpressionAttributeNames:  MergeMaps(filterExpr, projExpr).Names,
+//       ExpressionAttributeValues: MergeMaps(filterExpr, projExpr).Values,
+//       Key: map[string]*dynamodb.AttributeValue{
+//         "PartitionKey": &dynamodb.AttributeValue{
+//           S: aws.String("SomeKey"),
+//         },
+//       },
+//       TableName: aws.String("SomeTable"),
+//     }
+func MergeMaps(list ...Expression) Expression {
 	ret := Expression{}
-	for _, list := range lists {
-		for _, expr := range list {
-			if reflect.DeepEqual(expr, (Expression{})) {
-				return Expression{}, fmt.Errorf("mergeExpressionMaps error: expression is unset")
+	for _, expr := range list {
+		for alias, name := range expr.Names {
+			if ret.Names == nil {
+				ret.Names = make(map[string]*string)
 			}
-			for alias, name := range expr.Names {
-				if ret.Names == nil {
-					ret.Names = make(map[string]*string)
-				}
-				ret.Names[alias] = name
-			}
+			ret.Names[alias] = name
+		}
 
-			for alias, value := range expr.Values {
-				if ret.Values == nil {
-					ret.Values = make(map[string]*dynamodb.AttributeValue)
-				}
-				ret.Values[alias] = value
+		for alias, value := range expr.Values {
+			if ret.Values == nil {
+				ret.Values = make(map[string]*dynamodb.AttributeValue)
 			}
+			ret.Values[alias] = value
 		}
 	}
-	return ret, nil
+	return ret
 }

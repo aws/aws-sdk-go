@@ -1,7 +1,6 @@
 package expression
 
 import (
-	"fmt"
 	"strings"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
