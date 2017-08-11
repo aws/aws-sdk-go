@@ -2246,6 +2246,7 @@
       "type":"structure",
       "members":{
         "Domain":{"shape":"DomainType"},
+        "Address":{"shape":"String"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"

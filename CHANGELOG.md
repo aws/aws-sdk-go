@@ -1,3 +1,13 @@
+Release v1.10.24 (2017-08-11)
+===
+
+### Service Client Updates
+* `service/codedeploy`: Updates service API and documentation
+  * Adds support for specifying Application Load Balancers in deployment groups, for both in-place and blue/green deployments.
+* `service/cognito-idp`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Provides customers an opportunity to recover an EIP that was released
+
 Release v1.10.23 (2017-08-10)
 ===
 

@@ -209,10 +209,18 @@ func (c *EC2) AllocateAddressRequest(input *AllocateAddressInput) (req *request.
 
 // AllocateAddress API operation for Amazon Elastic Compute Cloud.
 //
-// Acquires an Elastic IP address.
+// Allocates an Elastic IP address.
 //
 // An Elastic IP address is for use either in the EC2-Classic platform or in
-// a VPC. For more information, see Elastic IP Addresses (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
+// a VPC. By default, you can allocate 5 Elastic IP addresses for EC2-Classic
+// per region and 5 Elastic IP addresses for EC2-VPC per region.
+//
+// If you release an Elastic IP address for use in a VPC, you might be able
+// to recover it. To recover an Elastic IP address that you released, specify
+// it in the Address parameter. Note that you cannot recover an Elastic IP address
+// that you released after it is allocated to another AWS account.
+//
+// For more information, see Elastic IP Addresses (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -7229,9 +7237,14 @@ func (c *EC2) DeregisterImageRequest(input *DeregisterImageInput) (req *request.
 // DeregisterImage API operation for Amazon Elastic Compute Cloud.
 //
 // Deregisters the specified AMI. After you deregister an AMI, it can't be used
-// to launch new instances.
+// to launch new instances; however, it doesn't affect any instances that you've
+// already launched from the AMI. You'll continue to incur usage costs for those
+// instances until you terminate them.
 //
-// This command does not delete the AMI.
+// When you deregister an Amazon EBS-backed AMI, it doesn't affect the snapshot
+// that was created for the root volume of the instance during the AMI creation
+// process. When you deregister an instance store-backed AMI, it doesn't affect
+// the files that you uploaded to Amazon S3 when you created the AMI.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -17662,19 +17675,22 @@ func (c *EC2) ReleaseAddressRequest(input *ReleaseAddressInput) (req *request.Re
 //
 // Releases the specified Elastic IP address.
 //
-// After releasing an Elastic IP address, it is released to the IP address pool
-// and might be unavailable to you. Be sure to update your DNS records and any
-// servers or devices that communicate with the address. If you attempt to release
-// an Elastic IP address that you already released, you'll get an AuthFailure
-// error if the address is already allocated to another AWS account.
-//
 // [EC2-Classic, default VPC] Releasing an Elastic IP address automatically
 // disassociates it from any instance that it's associated with. To disassociate
 // an Elastic IP address without releasing it, use DisassociateAddress.
 //
 // [Nondefault VPC] You must use DisassociateAddress to disassociate the Elastic
-// IP address before you try to release it. Otherwise, Amazon EC2 returns an
-// error (InvalidIPAddress.InUse).
+// IP address before you can release it. Otherwise, Amazon EC2 returns an error
+// (InvalidIPAddress.InUse).
+//
+// After releasing an Elastic IP address, it is released to the IP address pool.
+// Be sure to update your DNS records and any servers or devices that communicate
+// with the address. If you attempt to release an Elastic IP address that you
+// already released, you'll get an AuthFailure error if the address is already
+// allocated to another AWS account.
+//
+// [EC2-VPC] After you release an Elastic IP address for use in a VPC, you might
+// be able to recover it. For more information, see AllocateAddress.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -18971,6 +18987,10 @@ func (c *EC2) RevokeSecurityGroupIngressRequest(input *RevokeSecurityGroupIngres
 // you specify in the revoke request (for example, ports) must match the existing
 // rule's values for the rule to be removed.
 //
+// [EC2-Classic security groups only] If the values you specify do not match
+// the existing rule's values, no error is returned. Use DescribeSecurityGroups
+// to verify that the rule has been removed.
+//
 // Each rule consists of the protocol and the CIDR range or source security
 // group. For the TCP and UDP protocols, you must also specify the destination
 // port or range of ports. For the ICMP protocol, you must also specify the
@@ -20100,6 +20120,9 @@ func (s *Address) SetPublicIp(v string) *Address {
 type AllocateAddressInput struct {
 	_ struct{} `type:"structure"`
 
+	// [EC2-VPC] The Elastic IP address to recover.
+	Address *string `type:"string"`
+
 	// Set to vpc to allocate the address for use with instances in a VPC.
 	//
 	// Default: The address is for use with instances in EC2-Classic.
@@ -20120,6 +20143,12 @@ func (s AllocateAddressInput) String() string {
 // GoString returns the string representation
 func (s AllocateAddressInput) GoString() string {
 	return s.String()
+}
+
+// SetAddress sets the Address field's value.
+func (s *AllocateAddressInput) SetAddress(v string) *AllocateAddressInput {
+	s.Address = &v
+	return s
 }
 
 // SetDomain sets the Domain field's value.
