@@ -94,13 +94,7 @@ func (proj ProjectionBuilder) BuildExpression() (Expression, error) {
 	if err != nil {
 		return Expression{}, err
 	}
-
-	expr, err := en.buildExprNodes(&aliasList{})
-	if err != nil {
-		return Expression{}, err
-	}
-
-	return expr, nil
+	return en.buildExprNodes(&aliasList{})
 }
 
 // buildProjection will build a tree structure of ExprNodes based on the tree

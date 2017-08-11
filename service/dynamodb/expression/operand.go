@@ -132,7 +132,9 @@ func (p PathBuilder) Size() SizeBuilder {
 
 // BuildOperand will create the ExprNode which is a generic representation of
 // Operands and Conditions. BuildOperand() is mainly for the BuildExpression()
-// method to call on, not for users to invoke.
+// method to call on, not for users to invoke. BuildOperand aliases all strings
+// to avoid stepping over DynamoDB's reserved words.
+// More information on reserved words at http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html
 func (p PathBuilder) BuildOperand() (ExprNode, error) {
 	if p.path == "" {
 		return ExprNode{}, fmt.Errorf("BuildOperand error: path is empty")
