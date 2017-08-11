@@ -12,46 +12,30 @@ import (
 )
 
 // opeErrorMode will help with error cases and checking error types
-type opeErrorMode int
+type opeErrorMode string
 
 const (
-	noOperandError opeErrorMode = iota
+	noOperandError opeErrorMode = ""
 	// emptyPath error will occur if an empty string is passed into PathBuilder or
 	// a nested path has an empty intermediary attribute name (i.e. foo.bar..baz)
-	emptyPath
+	emptyPath = "path is empty"
 	// invalidPathIndex error will occur if there is an invalid index between the
 	// square brackets or there is no attribute that a square bracket iterates
 	// over
-	invalidPathIndex
+	invalidPathIndex = "invalid path index"
 	// invalidEscChar error will occer if the escape char '$' is either followed
 	// by an unsupported character or if the escape char is the last character
-	invalidEscChar
+	invalidEscChar = "invalid escape"
 	// outOfRange error will occur if there are more escaped chars than there are
 	// actual values to be aliased.
-	outOfRange
+	outOfRange = "out of range"
 	// nilAliasList error will occur if the aliasList passed in has not been
 	// initialized
-	nilAliasList
+	nilAliasList = "aliasList is nil"
+	// unsetExpr error will occur if an unset Expression is passed into
+	// mergeExpressionMaps
+	unsetExpr = "expression is unset"
 )
-
-func (oem opeErrorMode) String() string {
-	switch oem {
-	case noOperandError:
-		return "no Error"
-	case emptyPath:
-		return "path is empty"
-	case invalidPathIndex:
-		return "invalid path index"
-	case invalidEscChar:
-		return "invalid escape"
-	case outOfRange:
-		return "out of range"
-	case nilAliasList:
-		return "aliasList is nil"
-	default:
-		return ""
-	}
-}
 
 func TestBuildOperand(t *testing.T) {
 	cases := []struct {
@@ -140,7 +124,7 @@ func TestBuildOperand(t *testing.T) {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
 				} else {
-					if e, a := c.err.String(), err.Error(); !strings.Contains(a, e) {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
 						t.Errorf("expect %q error message to be in %q", e, a)
 					}
 				}
@@ -346,7 +330,7 @@ func TestBuildExpression(t *testing.T) {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
 				} else {
-					if e, a := c.err.String(), err.Error(); !strings.Contains(a, e) {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
 						t.Errorf("expect %q error message to be in %q", e, a)
 					}
 				}
@@ -356,6 +340,207 @@ func TestBuildExpression(t *testing.T) {
 				}
 
 				if e, a := c.expected, expr; !reflect.DeepEqual(a, e) {
+					t.Errorf("expect %v, got %v", e, a)
+				}
+			}
+		})
+	}
+}
+
+func TestAliasValue(t *testing.T) {
+	cases := []struct {
+		name     string
+		input    *aliasList
+		expected string
+		err      opeErrorMode
+	}{
+		{
+			name:  "nil alias list",
+			input: nil,
+			err:   nilAliasList,
+		},
+		{
+			name:     "first item",
+			input:    &aliasList{},
+			expected: ":0",
+		},
+		{
+			name: "fifth item",
+			input: &aliasList{
+				valuesList: []dynamodb.AttributeValue{
+					{},
+					{},
+					{},
+					{},
+				},
+			},
+			expected: ":4",
+		},
+	}
+
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			str, err := c.input.aliasValue(dynamodb.AttributeValue{})
+
+			if c.err != noOperandError {
+				if err == nil {
+					t.Errorf("expect error %q, got no error", c.err)
+				} else {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
+						t.Errorf("expect %q error message to be in %q", e, a)
+					}
+				}
+			} else {
+				if err != nil {
+					t.Errorf("expect no error, got unexpected Error %q", err)
+				}
+
+				if e, a := c.expected, str; e != a {
+					t.Errorf("expect %v, got %v", e, a)
+				}
+			}
+		})
+	}
+}
+
+func TestAliasPath(t *testing.T) {
+	cases := []struct {
+		name      string
+		inputList *aliasList
+		inputName string
+		expected  string
+		err       opeErrorMode
+	}{
+		{
+			name:      "nil alias list",
+			inputList: nil,
+			err:       nilAliasList,
+		},
+		{
+			name:      "new unique item",
+			inputList: &aliasList{},
+			inputName: "foo",
+			expected:  "#0",
+		},
+		{
+			name: "duplicate item",
+			inputList: &aliasList{
+				namesList: []string{
+					"foo",
+					"bar",
+				},
+			},
+			inputName: "foo",
+			expected:  "#0",
+		},
+	}
+
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			str, err := c.inputList.aliasPath(c.inputName)
+
+			if c.err != noOperandError {
+				if err == nil {
+					t.Errorf("expect error %q, got no error", c.err)
+				} else {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
+						t.Errorf("expect %q error message to be in %q", e, a)
+					}
+				}
+			} else {
+				if err != nil {
+					t.Errorf("expect no error, got unexpected Error %q", err)
+				}
+
+				if e, a := c.expected, str; e != a {
+					t.Errorf("expect %v, got %v", e, a)
+				}
+			}
+		})
+	}
+}
+
+func TestMergeMaps(t *testing.T) {
+	cases := []struct {
+		name     string
+		input    []Expression
+		expected Expression
+		err      opeErrorMode
+	}{
+		{
+			name: "default use",
+			input: []Expression{
+				{
+					Names: map[string]*string{
+						"#0": aws.String("foo"),
+						"#1": aws.String("bar"),
+						"#2": aws.String("baz"),
+					},
+					Values: map[string]*dynamodb.AttributeValue{
+						":0": {
+							S: aws.String("FOO"),
+						},
+					},
+				},
+				{
+					Names: map[string]*string{
+						"#3": aws.String("qux"),
+						"#4": aws.String("quux"),
+						"#5": aws.String("yar"),
+					},
+					Values: map[string]*dynamodb.AttributeValue{
+						":1": {
+							N: aws.String("5"),
+						},
+					},
+				},
+			},
+			expected: Expression{
+				Names: map[string]*string{
+					"#0": aws.String("foo"),
+					"#1": aws.String("bar"),
+					"#2": aws.String("baz"),
+					"#3": aws.String("qux"),
+					"#4": aws.String("quux"),
+					"#5": aws.String("yar"),
+				},
+				Values: map[string]*dynamodb.AttributeValue{
+					":0": {
+						S: aws.String("FOO"),
+					},
+					":1": {
+						N: aws.String("5"),
+					},
+				},
+			},
+		},
+		{
+			name: "unset expression",
+			input: []Expression{
+				{},
+			},
+			err: unsetExpr,
+		},
+	}
+
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			expr, err := mergeExpressionMaps(c.input)
+
+			if c.err != noOperandError {
+				if err == nil {
+					t.Errorf("expect error %q, got no error", c.err)
+				} else {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
+						t.Errorf("expect %q error message to be in %q", e, a)
+					}
+				}
+			} else {
+				if err != nil {
+					t.Errorf("expect no error, got unexpected Error %q", err)
+				}
+
+				if e, a := c.expected, expr; !reflect.DeepEqual(e, a) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 			}
