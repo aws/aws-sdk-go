@@ -12,51 +12,30 @@ import (
 )
 
 // opeErrorMode will help with error cases and checking error types
-type opeErrorMode int
+type opeErrorMode string
 
 const (
-	noOperandError opeErrorMode = iota
+	noOperandError opeErrorMode = ""
 	// emptyPath error will occur if an empty string is passed into PathBuilder or
 	// a nested path has an empty intermediary attribute name (i.e. foo.bar..baz)
-	emptyPath
+	emptyPath = "path is empty"
 	// invalidPathIndex error will occur if there is an invalid index between the
 	// square brackets or there is no attribute that a square bracket iterates
 	// over
-	invalidPathIndex
+	invalidPathIndex = "invalid path index"
 	// invalidEscChar error will occer if the escape char '$' is either followed
 	// by an unsupported character or if the escape char is the last character
-	invalidEscChar
+	invalidEscChar = "invalid escape"
 	// outOfRange error will occur if there are more escaped chars than there are
 	// actual values to be aliased.
-	outOfRange
+	outOfRange = "out of range"
 	// nilAliasList error will occur if the aliasList passed in has not been
 	// initialized
-	nilAliasList
+	nilAliasList = "aliasList is nil"
 	// unsetExpr error will occur if an unset Expression is passed into
 	// mergeExpressionMaps
-	unsetExpr
+	unsetExpr = "expression is unset"
 )
-
-func (oem opeErrorMode) String() string {
-	switch oem {
-	case noOperandError:
-		return "no Error"
-	case emptyPath:
-		return "path is empty"
-	case invalidPathIndex:
-		return "invalid path index"
-	case invalidEscChar:
-		return "invalid escape"
-	case outOfRange:
-		return "out of range"
-	case nilAliasList:
-		return "aliasList is nil"
-	case unsetExpr:
-		return "expression is unset"
-	default:
-		return ""
-	}
-}
 
 func TestBuildOperand(t *testing.T) {
 	cases := []struct {
@@ -145,7 +124,7 @@ func TestBuildOperand(t *testing.T) {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
 				} else {
-					if e, a := c.err.String(), err.Error(); !strings.Contains(a, e) {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
 						t.Errorf("expect %q error message to be in %q", e, a)
 					}
 				}
@@ -351,7 +330,7 @@ func TestBuildExpression(t *testing.T) {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
 				} else {
-					if e, a := c.err.String(), err.Error(); !strings.Contains(a, e) {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
 						t.Errorf("expect %q error message to be in %q", e, a)
 					}
 				}
@@ -407,7 +386,7 @@ func TestAliasValue(t *testing.T) {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
 				} else {
-					if e, a := c.err.String(), err.Error(); !strings.Contains(a, e) {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
 						t.Errorf("expect %q error message to be in %q", e, a)
 					}
 				}
@@ -464,7 +443,7 @@ func TestAliasPath(t *testing.T) {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
 				} else {
-					if e, a := c.err.String(), err.Error(); !strings.Contains(a, e) {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
 						t.Errorf("expect %q error message to be in %q", e, a)
 					}
 				}
@@ -552,7 +531,7 @@ func TestMergeMaps(t *testing.T) {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
 				} else {
-					if e, a := c.err.String(), err.Error(); !strings.Contains(a, e) {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
 						t.Errorf("expect %q error message to be in %q", e, a)
 					}
 				}

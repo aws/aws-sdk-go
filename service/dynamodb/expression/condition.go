@@ -121,7 +121,7 @@ func Equal(left, right OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.Equal(expression.Path("foo"), expression.Value(5))
 //     condition := expression.Path("foo").Equal(expression.Value(5))
 func (p PathBuilder) Equal(right OperandBuilder) ConditionBuilder {
@@ -133,7 +133,7 @@ func (p PathBuilder) Equal(right OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.Equal(expression.Value(10), expression.Value(5))
 //     condition := expression.Value(10).Equal(expression.Value(5))
 func (v ValueBuilder) Equal(right OperandBuilder) ConditionBuilder {
@@ -144,7 +144,7 @@ func (v ValueBuilder) Equal(right OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     The following produce equivalent conditions:
+//     The following produces equivalent conditions:
 //     condition := expression.Equal(expression.Path("foo").Size(), expression.Value(5))
 //     condition := expression.Path("foo").Size().Equal(expression.Value(5))
 func (s SizeBuilder) Equal(right OperandBuilder) ConditionBuilder {
@@ -174,7 +174,7 @@ func NotEqual(left, right OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.NotEqual(expression.Path("foo"), expression.Value(5))
 //     condition := expression.Path("foo").NotEqual(expression.Value(5))
 func (p PathBuilder) NotEqual(right OperandBuilder) ConditionBuilder {
@@ -186,7 +186,7 @@ func (p PathBuilder) NotEqual(right OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.NotEqual(expression.Value(10), expression.Value(5))
 //     condition := expression.Value(10).NotEqual(expression.Value(5))
 func (v ValueBuilder) NotEqual(right OperandBuilder) ConditionBuilder {
@@ -198,7 +198,7 @@ func (v ValueBuilder) NotEqual(right OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.NotEqual(expression.Path("foo").Size(), expression.Value(5))
 //     condition := expression.Path("foo").Size().NotEqual(expression.Value(5))
 func (s SizeBuilder) NotEqual(right OperandBuilder) ConditionBuilder {
@@ -227,7 +227,7 @@ func Less(left, right OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.Less(expression.Path("foo"), expression.Value(5))
 //     condition := expression.Path("foo").Less(expression.Value(5))
 func (p PathBuilder) Less(right OperandBuilder) ConditionBuilder {
@@ -239,7 +239,7 @@ func (p PathBuilder) Less(right OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.Less(expression.Value(10), expression.Value(5))
 //     condition := expression.Value(10).Less(expression.Value(5))
 func (v ValueBuilder) Less(right OperandBuilder) ConditionBuilder {
@@ -250,7 +250,7 @@ func (v ValueBuilder) Less(right OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.Less(expression.Path("foo").Size(), expression.Value(5))
 //     condition := expression.Path("foo").Size().Less(expression.Value(5))
 func (s SizeBuilder) Less(right OperandBuilder) ConditionBuilder {
@@ -279,7 +279,7 @@ func LessEqual(left, right OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.LessEqual(expression.Path("foo"), expression.Value(5))
 //     condition := expression.Path("foo").LessEqual(expression.Value(5))
 func (p PathBuilder) LessEqual(right OperandBuilder) ConditionBuilder {
@@ -291,7 +291,7 @@ func (p PathBuilder) LessEqual(right OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.LessEqual(expression.Value(10), expression.Value(5))
 //     condition := expression.Value(10).LessEqual(expression.Value(5))
 func (v ValueBuilder) LessEqual(right OperandBuilder) ConditionBuilder {
@@ -302,7 +302,7 @@ func (v ValueBuilder) LessEqual(right OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.LessEqual(expression.Path("foo").Size(), expression.Value(5))
 //     condition := expression.Path("foo").Size().LessEqual(expression.Value(5))
 func (s SizeBuilder) LessEqual(right OperandBuilder) ConditionBuilder {
@@ -331,7 +331,7 @@ func Greater(left, right OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.Greater(expression.Path("foo"), expression.Value(5))
 //     condition := expression.Path("foo").Greater(expression.Value(5))
 func (p PathBuilder) Greater(right OperandBuilder) ConditionBuilder {
@@ -343,7 +343,7 @@ func (p PathBuilder) Greater(right OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.Greater(expression.Value(10), expression.Value(5))
 //     condition := expression.Value(10).Greater(expression.Value(5))
 func (v ValueBuilder) Greater(right OperandBuilder) ConditionBuilder {
@@ -354,7 +354,7 @@ func (v ValueBuilder) Greater(right OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.Greater(expression.Path("foo").Size(), expression.Value(5))
 //     condition := expression.Path("foo").Size().Greater(expression.Value(5))
 func (s SizeBuilder) Greater(right OperandBuilder) ConditionBuilder {
@@ -383,7 +383,7 @@ func GreaterEqual(left, right OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.GreaterEqual(expression.Path("foo"), expression.Value(5))
 //     condition := expression.Path("foo").GreaterEqual(expression.Value(5))
 func (p PathBuilder) GreaterEqual(right OperandBuilder) ConditionBuilder {
@@ -395,7 +395,7 @@ func (p PathBuilder) GreaterEqual(right OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.GreaterEqual(expression.Value(10), expression.Value(5))
 //     condition := expression.Value(10).GreaterEqual(expression.Value(5))
 func (v ValueBuilder) GreaterEqual(right OperandBuilder) ConditionBuilder {
@@ -406,7 +406,7 @@ func (v ValueBuilder) GreaterEqual(right OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.GreaterEqual(expression.Path("foo").Size(), expression.Value(5))
 //     condition := expression.Path("foo").Size().GreaterEqual(expression.Value(5))
 func (s SizeBuilder) GreaterEqual(right OperandBuilder) ConditionBuilder {
@@ -440,7 +440,7 @@ func And(left, right ConditionBuilder, other ...ConditionBuilder) ConditionBuild
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.And(condition1, condition2, condition3)
 //     condition := condition1.And(condition2, condition3)
 func (cond ConditionBuilder) And(right ConditionBuilder, other ...ConditionBuilder) ConditionBuilder {
@@ -474,7 +474,7 @@ func Or(left, right ConditionBuilder, other ...ConditionBuilder) ConditionBuilde
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.Or(condition1, condition2, condition3)
 //     condition := condition1.Or(condition2, condition3)
 func (cond ConditionBuilder) Or(right ConditionBuilder, other ...ConditionBuilder) ConditionBuilder {
@@ -505,7 +505,7 @@ func Not(cond ConditionBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.Not(condition)
 //     condition := condition.Not()
 func (cond ConditionBuilder) Not() ConditionBuilder {
@@ -538,7 +538,7 @@ func Between(ope, lower, upper OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.Between(operand1, operand2, operand3)
 //     condition := operand1.Between(operand2, operand3)
 func (p PathBuilder) Between(lower, upper OperandBuilder) ConditionBuilder {
@@ -550,7 +550,7 @@ func (p PathBuilder) Between(lower, upper OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.Between(operand1, operand2, operand3)
 //     condition := operand1.Between(operand2, operand3)
 func (v ValueBuilder) Between(lower, upper OperandBuilder) ConditionBuilder {
@@ -562,7 +562,7 @@ func (v ValueBuilder) Between(lower, upper OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.Between(operand1, operand2, operand3)
 //     condition := operand1.Between(operand2, operand3)
 func (s SizeBuilder) Between(lower, upper OperandBuilder) ConditionBuilder {
@@ -595,7 +595,7 @@ func In(left, right OperandBuilder, other ...OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.In(operand1, operand2, operand3)
 //     condition := operand1.In(operand2, operand3)
 func (p PathBuilder) In(right OperandBuilder, other ...OperandBuilder) ConditionBuilder {
@@ -607,7 +607,7 @@ func (p PathBuilder) In(right OperandBuilder, other ...OperandBuilder) Condition
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.In(operand1, operand2, operand3)
 //     condition := operand1.In(operand2, operand3)
 func (v ValueBuilder) In(right OperandBuilder, other ...OperandBuilder) ConditionBuilder {
@@ -619,7 +619,7 @@ func (v ValueBuilder) In(right OperandBuilder, other ...OperandBuilder) Conditio
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.In(operand1, operand2, operand3)
 //     condition := operand1.In(operand2, operand3)
 func (s SizeBuilder) In(right OperandBuilder, other ...OperandBuilder) ConditionBuilder {
@@ -651,7 +651,7 @@ func AttributeExists(p PathBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.AttributeExists(Path("foo"))
 //     condition := Path("foo").AttributeExists()
 func (p PathBuilder) AttributeExists() ConditionBuilder {
@@ -683,7 +683,7 @@ func AttributeNotExists(p PathBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.AttributeNotExists(expression.Path("foo"))
 //     condition := expression.Path("foo").AttributeNotExists()
 func (p PathBuilder) AttributeNotExists() ConditionBuilder {
@@ -720,7 +720,7 @@ func AttributeType(p PathBuilder, at DynamoDBAttributeType) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.AttributeType(expression.Path("foo"), expression.Number)
 //     condition := expression.Path("foo").AttributeType(expression.Number)
 func (p PathBuilder) AttributeType(at DynamoDBAttributeType) ConditionBuilder {
@@ -757,7 +757,7 @@ func BeginsWith(p PathBuilder, s string) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.BeginsWith(expression.Path("foo"), "bar")
 //     condition := expression.Path("foo").BeginsWith("bar")
 func (p PathBuilder) BeginsWith(s string) ConditionBuilder {
@@ -796,7 +796,7 @@ func Contains(p PathBuilder, s string) ConditionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent conditions:
+//     // The following produces equivalent conditions:
 //     condition := expression.Contains(expression.Path("foo"), "bar")
 //     condition := expression.Path("foo").Contains("bar")
 func (p PathBuilder) Contains(s string) ConditionBuilder {

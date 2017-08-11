@@ -34,7 +34,7 @@ func Projection(p PathBuilder, pl ...PathBuilder) ProjectionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent ProjectionBuilders:
+//     // The following produces equivalent ProjectionBuilders:
 //     projection := expression.Projection(expression.Path("foo"), expression.Path("bar"))
 //     projection := expression.Path("foo").Projection(expression.Path("bar"))
 func (p PathBuilder) Projection(pl ...PathBuilder) ProjectionBuilder {
@@ -62,7 +62,7 @@ func AddPaths(proj ProjectionBuilder, pl ...PathBuilder) ProjectionBuilder {
 //
 // Example:
 //
-//     // The following produce equivalent ProjectionBuilders:
+//     // The following produces equivalent ProjectionBuilders:
 //     newProjection := expression.AddPaths(oldProjection, expression.Path("foo"))
 //     newProjection := oldProjection.AddPaths(expression.Path("foo"))
 func (proj ProjectionBuilder) AddPaths(pl ...PathBuilder) ProjectionBuilder {
