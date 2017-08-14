@@ -1417,6 +1417,8 @@ type AttemptContainerDetail struct {
 	// The exit code for the job attempt. A non-zero exit code is considered a failure.
 	ExitCode *int64 `locationName:"exitCode" type:"integer"`
 
+	LogStreamName *string `locationName:"logStreamName" type:"string"`
+
 	// A short (255 max characters) human-readable string to provide additional
 	// details about a running or stopped container.
 	Reason *string `locationName:"reason" type:"string"`
@@ -1445,6 +1447,12 @@ func (s *AttemptContainerDetail) SetContainerInstanceArn(v string) *AttemptConta
 // SetExitCode sets the ExitCode field's value.
 func (s *AttemptContainerDetail) SetExitCode(v int64) *AttemptContainerDetail {
 	s.ExitCode = &v
+	return s
+}
+
+// SetLogStreamName sets the LogStreamName field's value.
+func (s *AttemptContainerDetail) SetLogStreamName(v string) *AttemptContainerDetail {
+	s.LogStreamName = &v
 	return s
 }
 
@@ -2004,6 +2012,8 @@ type ContainerDetail struct {
 	// The Amazon Resource Name (ARN) associated with the job upon execution.
 	JobRoleArn *string `locationName:"jobRoleArn" type:"string"`
 
+	LogStreamName *string `locationName:"logStreamName" type:"string"`
+
 	// The number of MiB of memory reserved for the job.
 	Memory *int64 `locationName:"memory" type:"integer"`
 
@@ -2082,6 +2092,12 @@ func (s *ContainerDetail) SetImage(v string) *ContainerDetail {
 // SetJobRoleArn sets the JobRoleArn field's value.
 func (s *ContainerDetail) SetJobRoleArn(v string) *ContainerDetail {
 	s.JobRoleArn = &v
+	return s
+}
+
+// SetLogStreamName sets the LogStreamName field's value.
+func (s *ContainerDetail) SetLogStreamName(v string) *ContainerDetail {
+	s.LogStreamName = &v
 	return s
 }
 
