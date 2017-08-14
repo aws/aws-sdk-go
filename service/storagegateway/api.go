@@ -1198,8 +1198,9 @@ func (c *StorageGateway) CreateTapeWithBarcodeRequest(input *CreateTapeWithBarco
 // CreateTapeWithBarcode API operation for AWS Storage Gateway.
 //
 // Creates a virtual tape by using your own barcode. You write data to the virtual
-// tape and then archive the tape. This operation is only supported in the tape
-// gateway architecture.
+// tape and then archive the tape. A barcode is unique and can not be reused
+// if it has already been used on a tape . This applies to barcodes used on
+// deleted tapes. This operation is only supported in the tape gateway. architecture.
 //
 // Cache storage must be allocated to the gateway before you can create a virtual
 // tape. Use the AddCache operation to add cache storage to a gateway.
@@ -4562,8 +4563,8 @@ func (c *StorageGateway) RefreshCacheRequest(input *RefreshCacheInput) (req *req
 // RefreshCache API operation for AWS Storage Gateway.
 //
 // Refreshes the cache for the specified file share. This operation finds objects
-// in the Amazon S3 bucket that were added or removed since the gateway last
-// listed the bucket's contents and cached the results.
+// in the Amazon S3 bucket that were added, removed or replaced since the gateway
+// last listed the bucket's contents and cached the results.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6570,7 +6571,7 @@ type CachediSCSIVolume struct {
 	// in the response if the cached volume is not restoring or bootstrapping.
 	VolumeProgress *float64 `type:"double"`
 
-	// The size of the volume in bytes.
+	// The size, in bytes, of the volume capacity.
 	VolumeSizeInBytes *int64 `type:"long"`
 
 	// One of the VolumeStatus values that indicates the state of the storage volume.
@@ -7498,7 +7499,7 @@ type CreateStorediSCSIVolumeInput struct {
 
 	// The name of the iSCSI target used by initiators to connect to the target
 	// and as a suffix for the target ARN. For example, specifying TargetName as
-	// myvolume results in the target ARN of arn:aws:storagegateway:us-east-1:111122223333:gateway/sgw-12A3456B/target/iqn.1997-05.com.amazon:myvolume.
+	// myvolume results in the target ARN of arn:aws:storagegateway:us-east-2:111122223333:gateway/sgw-12A3456B/target/iqn.1997-05.com.amazon:myvolume.
 	// The target name must be unique across all volumes of a gateway.
 	//
 	// TargetName is a required field
@@ -7642,6 +7643,9 @@ type CreateTapeWithBarcodeInput struct {
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// The barcode that you want to assign to the tape.
+	//
+	// Barcodes cannot be reused. This includes barcodes used for tapes that have
+	// been deleted.
 	//
 	// TapeBarcode is a required field
 	TapeBarcode *string `min:"7" type:"string" required:"true"`
@@ -8079,6 +8083,12 @@ type DeleteFileShareInput struct {
 	//
 	// FileShareARN is a required field
 	FileShareARN *string `min:"50" type:"string" required:"true"`
+
+	// If set to true, deletes a file share immediately and aborts all data uploads
+	// to AWS. Otherwise the file share is not deleted until all data is uploaded
+	// to AWS. This process aborts the data upload process and the file share enters
+	// the FORCE_DELETING status.
+	ForceDelete *bool `type:"boolean"`
 }
 
 // String returns the string representation
@@ -8110,6 +8120,12 @@ func (s *DeleteFileShareInput) Validate() error {
 // SetFileShareARN sets the FileShareARN field's value.
 func (s *DeleteFileShareInput) SetFileShareARN(v string) *DeleteFileShareInput {
 	s.FileShareARN = &v
+	return s
+}
+
+// SetForceDelete sets the ForceDelete field's value.
+func (s *DeleteFileShareInput) SetForceDelete(v bool) *DeleteFileShareInput {
+	s.ForceDelete = &v
 	return s
 }
 
@@ -12246,7 +12262,7 @@ type Tape struct {
 
 	// The size, in bytes, of data written to the virtual tape.
 	//
-	// This value is not available for tapes created prior to May,13 2015.
+	// This value is not available for tapes created prior to May 13, 2015.
 	TapeUsedInBytes *int64 `type:"long"`
 
 	// The virtual tape library (VTL) device that the virtual tape is associated
@@ -12345,7 +12361,7 @@ type TapeArchive struct {
 
 	// The size, in bytes, of data written to the virtual tape.
 	//
-	// This value is not available for tapes created prior to May,13 2015.
+	// This value is not available for tapes created prior to May 13, 2015.
 	TapeUsedInBytes *int64 `type:"long"`
 }
 
@@ -13090,7 +13106,7 @@ type UpdateNFSFileShareInput struct {
 	NFSFileShareDefaults *NFSFileShareDefaults `type:"structure"`
 
 	// Sets the write status of a file share: "true" if the write status is read-only,
-	// and otherwise "false".
+	// otherwise "false".
 	ReadOnly *bool `type:"boolean"`
 
 	// The user mapped to anonymous user. Valid options are the following:
@@ -13505,7 +13521,7 @@ type VolumeInfo struct {
 	// The Amazon Resource Name (ARN) for the storage volume. For example, the following
 	// is a valid ARN:
 	//
-	// arn:aws:storagegateway:us-east-1:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABB
+	// arn:aws:storagegateway:us-east-2:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABB
 	//
 	// Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens
 	// (-).

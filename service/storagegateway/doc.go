@@ -28,7 +28,7 @@
 //    their request parameters, response elements, possible errors, and examples
 //    of requests and responses.
 //
-//    * AWS Storage Gateway Regions and Endpoints (http://docs.aws.amazon.com/general/latest/general/latest/gr/rande.html#sg_region):
+//    * AWS Storage Gateway Regions and Endpoints: (http://docs.aws.amazon.com/general/latest/gr/rande.html#sg_region)
 //    Provides a list of each region and endpoints available for use with AWS
 //    Storage Gateway.
 //

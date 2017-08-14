@@ -55,6 +55,7 @@ const (
 	CloudformationServiceID               = "cloudformation"               // Cloudformation.
 	CloudfrontServiceID                   = "cloudfront"                   // Cloudfront.
 	CloudhsmServiceID                     = "cloudhsm"                     // Cloudhsm.
+	Cloudhsmv2ServiceID                   = "cloudhsmv2"                   // Cloudhsmv2.
 	CloudsearchServiceID                  = "cloudsearch"                  // Cloudsearch.
 	CloudtrailServiceID                   = "cloudtrail"                   // Cloudtrail.
 	CodebuildServiceID                    = "codebuild"                    // Codebuild.
@@ -427,6 +428,15 @@ var awsPartition = partition{
 				"us-east-2":      endpoint{},
 				"us-west-1":      endpoint{},
 				"us-west-2":      endpoint{},
+			},
+		},
+		"cloudhsmv2": service{
+
+			Endpoints: endpoints{
+				"eu-west-1": endpoint{},
+				"us-east-1": endpoint{},
+				"us-east-2": endpoint{},
+				"us-west-2": endpoint{},
 			},
 		},
 		"cloudsearch": service{
@@ -826,6 +836,7 @@ var awsPartition = partition{
 
 			Endpoints: endpoints{
 				"ap-southeast-2": endpoint{},
+				"eu-central-1":   endpoint{},
 				"eu-west-1":      endpoint{},
 				"us-east-1":      endpoint{},
 				"us-east-2":      endpoint{},
