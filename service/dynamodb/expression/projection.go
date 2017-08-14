@@ -1,6 +1,9 @@
 package expression
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+)
 
 // ProjectionBuilder will represent Projection Expressions in DynamoDB. It is
 // composed of a list of PathBuilders. Users will be able to call the
@@ -100,6 +103,10 @@ func (proj ProjectionBuilder) BuildExpression() (Expression, error) {
 // buildProjection will build a tree structure of ExprNodes based on the tree
 // structure of the input ProjectionBuilder's child PathBuilders.
 func (proj ProjectionBuilder) buildProjection() (ExprNode, error) {
+	if len(proj.paths) == 0 {
+		return ExprNode{}, fmt.Errorf("buildProjection error: path list is empty")
+	}
+
 	childNodes, err := proj.buildChildNodes()
 	if err != nil {
 		return ExprNode{}, err

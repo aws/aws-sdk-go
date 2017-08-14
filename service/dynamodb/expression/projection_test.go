@@ -18,6 +18,9 @@ const (
 	// invalidProjectionOperand error will occur when an invalid OperandBuilder is used as
 	// an argument
 	invalidProjectionOperand = "BuildOperand error"
+	// emptyPathList error will occur if the paths member of ProjectionBuilder is
+	// empty
+	emptyPathList = "path list is empty"
 )
 
 func TestProjection(t *testing.T) {
@@ -108,6 +111,11 @@ func TestBuildProjection(t *testing.T) {
 			name:     "build projection 5",
 			input:    Projection(Path("foo"), Path("bar"), Path("baz")).AddPaths(Path("qux"), Path("quux")),
 			expected: "$c, $c, $c, $c, $c",
+		},
+		{
+			name:  "empty ProjectionBuilder",
+			input: ProjectionBuilder{},
+			err:   emptyPathList,
 		},
 	}
 	for _, c := range cases {
