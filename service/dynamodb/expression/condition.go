@@ -1002,8 +1002,7 @@ func containsBuildCondition(en ExprNode) (ExprNode, error) {
 // buildChildNodes will create the list of the child ExprNodes. This avoids
 // duplication of code amongst the various buildConditions.
 func (cond ConditionBuilder) buildChildNodes() ([]ExprNode, error) {
-	var childNodes []ExprNode
-	childNodes = make([]ExprNode, 0, len(cond.conditionList)+len(cond.operandList))
+	childNodes := make([]ExprNode, 0, len(cond.conditionList)+len(cond.operandList))
 	for _, condition := range cond.conditionList {
 		en, err := condition.buildCondition()
 		if err != nil {
