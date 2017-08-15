@@ -8279,7 +8279,10 @@
     },
     "HostReservationSet":{
       "type":"list",
-      "member":{"shape":"HostReservation"}
+      "member":{
+        "shape":"HostReservation",
+        "locationName":"item"
+      }
     },
     "HostTenancy":{
       "type":"string",

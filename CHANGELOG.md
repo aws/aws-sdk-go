@@ -1,3 +1,11 @@
+Release v1.10.26 (2017-08-15)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * Fixed bug in EC2 clients preventing HostReservation from being set
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.10.25 (2017-08-14)
 ===
 
