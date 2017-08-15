@@ -5,8 +5,20 @@ import (
 	"reflect"
 	"strings"
 
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
+)
+
+var (
+	// ErrEmptyPath is an error that is returned if the path specified is or has
+	// an empty string. (i.e. "", "foo..bar")
+	ErrEmptyPath = awserr.New("EmptyPath", "BuildOperand error: path is an empty string", nil)
+
+	// ErrInvalidPathIndex is an error that is returned if the index used in the
+	// path either does not have a path associated with it or is an empty string.
+	// (i.e. "[2]", "foo[]")
+	ErrInvalidPathIndex = awserr.New("InvalidPathIndex", "BuildOperand error: invalid path index", nil)
 )
 
 // ValueBuilder represents a value operand and will implement the OperandBuilder
@@ -137,7 +149,7 @@ func (p PathBuilder) Size() SizeBuilder {
 // More information on reserved words at http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html
 func (p PathBuilder) BuildOperand() (ExprNode, error) {
 	if p.path == "" {
-		return ExprNode{}, fmt.Errorf("BuildOperand error: path is empty")
+		return ExprNode{}, ErrEmptyPath
 	}
 
 	ret := ExprNode{
@@ -150,7 +162,7 @@ func (p PathBuilder) BuildOperand() (ExprNode, error) {
 	for _, word := range nameSplit {
 		var substr string
 		if word == "" {
-			return ExprNode{}, fmt.Errorf("BuildOperand error: path is empty")
+			return ExprNode{}, ErrEmptyPath
 		}
 
 		if word[len(word)-1] == ']' {
@@ -164,7 +176,7 @@ func (p PathBuilder) BuildOperand() (ExprNode, error) {
 		}
 
 		if word == "" {
-			return ExprNode{}, fmt.Errorf("BuildOperand error: invalid path index")
+			return ExprNode{}, ErrInvalidPathIndex
 		}
 
 		// Create a string with special characters that can be substituted later: $p
