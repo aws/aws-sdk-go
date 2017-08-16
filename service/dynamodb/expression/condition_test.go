@@ -1,4 +1,4 @@
-// +build go1.8
+// +build go1.7
 
 package expression
 
@@ -16,9 +16,9 @@ type condErrorMode string
 
 const (
 	noConditionError condErrorMode = ""
-	// condMode error will occur when the ConditionBuilder's Mode is not
-	// supported
-	condMode = "unsupported mode"
+	// unsetCondition error will occur when BuildExpression is called on an empty
+	// ConditionBuilder
+	unsetCondition = "UnsetCondition"
 	// invalidOperand error will occur when an invalid OperandBuilder is used as
 	// an argument
 	invalidOperand = "BuildOperand error"
@@ -509,7 +509,7 @@ func TestBuildCondition(t *testing.T) {
 		{
 			name:  "no match error",
 			input: ConditionBuilder{},
-			err:   condMode,
+			err:   unsetCondition,
 		},
 	}
 

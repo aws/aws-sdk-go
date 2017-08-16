@@ -1,4 +1,4 @@
-// +build go1.8
+// +build go1.7
 
 package expression
 
@@ -18,7 +18,7 @@ const (
 	noOperandError opeErrorMode = ""
 	// emptyPath error will occur if an empty string is passed into PathBuilder or
 	// a nested path has an empty intermediary attribute name (i.e. foo.bar..baz)
-	emptyPath = "path is empty"
+	emptyPath = "path is an empty string"
 	// invalidPathIndex error will occur if there is an invalid index between the
 	// square brackets or there is no attribute that a square bracket iterates
 	// over
