@@ -91,14 +91,16 @@ const (
 	Map = "M"
 )
 
-// ConditionBuilder will represent Condition Expressions in DynamoDB. It is
-// composed of operands (OperandBuilder) and other conditions (ConditionBuilder)
-// There are many different types of conditions, specified by ConditionMode.
-// Users will be able to call the BuildExpression() method on a ConditionBuilder
-// to create an Expression which can then be used for operation inputs into
-// DynamoDB. Only the Mode of the ConditionBuilder will be exported for users to
-// check
+// ConditionBuilder will represent Condition Expressions and Filter Expressions
+// in DynamoDB. It is composed of operands (OperandBuilder) and other conditions
+// (ConditionBuilder). There are many different types of conditions, specified
+// by ConditionMode. Users will be able to call the BuildExpression() method on
+// a ConditionBuilder to create an Expression which can then be used for
+// operation inputs into DynamoDB. Since Filter Expressions support all the same
+// functions and formats as Condition Expressions, ConditionBuilders will
+// satisfy both Expressions.
 // More Information at: http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.html
+// More Information on Filter Expressions: http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html#Query.FilterExpression
 type ConditionBuilder struct {
 	operandList   []OperandBuilder
 	conditionList []ConditionBuilder
