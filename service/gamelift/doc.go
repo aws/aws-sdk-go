@@ -35,7 +35,7 @@
 //    * The AWS Management Console (https://console.aws.amazon.com/gamelift/home)
 //    for Amazon GameLift provides a web interface to manage your Amazon GameLift
 //    settings and resources. The console includes a dashboard for tracking
-//    key resources, includings builds and fleets, and displays usage and performance
+//    key resources, including builds and fleets, and displays usage and performance
 //    metrics for your games as customizable graphs.
 //
 //    * Amazon GameLift Local is a tool for testing your game's integration
@@ -67,21 +67,20 @@
 //
 // Managing Games and Players
 //
-// These actions allow you to start new game sessions, find existing game sessions,
-// track status and other game session information, and enable access for players
-// to join game sessions.
+// Use these actions to start new game sessions, find existing game sessions,
+// track game session status and other information, and enable player access
+// to game sessions.
 //
 //    * Discover existing game sessions
 //
-// SearchGameSessions – Get all available game sessions or search for game sessions
-//    that match a set of criteria.
+// SearchGameSessions – Retrieve all available game sessions or search for game
+//    sessions that match a set of criteria.
 //
-//    * Start a new game session
+//    * Start new game sessions
 //
-// Game session placement – Use a queue to process requests for new game sessions
-//    and place them on the best available fleet. Placement requests are asynchronous;
-//    game sessions are started whenever acceptable resources become available.
-//
+// Start new games with Queues to find the best available hosting resources
+//    across multiple regions, minimize player latency, and balance game session
+//    activity for efficiency and cost effectiveness.
 //
 // StartGameSessionPlacement – Request a new game session placement and add
 //    one or more players to it.
@@ -91,8 +90,20 @@
 //
 // StopGameSessionPlacement – Cancel a placement request.
 //
-// CreateGameSession – Request a new game session on a specific fleet. Available
+// CreateGameSession – Start a new game session on a specific fleet. Available
 //    in Amazon GameLift Local.
+//
+//    * Start new game sessions with FlexMatch matchmaking
+//
+// StartMatchmaking – Request matchmaking for one players or a group who want
+//    to play together.
+//
+// DescribeMatchmaking – Get details on a matchmaking request, including status.
+//
+// AcceptMatch – Register that a player accepts a proposed match, for matches
+//    that require player acceptance.
+//
+// StopMatchmaking – Cancel a matchmaking request.
 //
 //    * Manage game session data
 //
@@ -221,12 +232,35 @@
 // CreateGameSessionQueue – Create a queue for processing requests for new game
 //    sessions.
 //
-// DescribeGameSessionQueues – Get data on all game session queues defined in
-//    a Amazon GameLift region.
+// DescribeGameSessionQueues – Retrieve game session queues defined in a Amazon
+//    GameLift region.
 //
 // UpdateGameSessionQueue – Change the configuration of a game session queue.
 //
 // DeleteGameSessionQueue – Remove a game session queue from the region.
+//
+//    * Manage FlexMatch resources
+//
+// CreateMatchmakingConfiguration – Create a matchmaking configuration with
+//    instructions for building a player group and placing in a new game session.
+//
+//
+// DescribeMatchmakingConfigurations – Retrieve matchmaking configurations defined
+//    a Amazon GameLift region.
+//
+// UpdateMatchmakingConfiguration – Change settings for matchmaking configuration.
+//    queue.
+//
+// DeleteMatchmakingConfiguration – Remove a matchmaking configuration from
+//    the region.
+//
+// CreateMatchmakingRuleSet – Create a set of rules to use when searching for
+//    player matches.
+//
+// DescribeMatchmakingRuleSets – Retrieve matchmaking rule sets defined in a
+//    Amazon GameLift region.
+//
+// ValidateMatchmakingRuleSet – Verify syntax for a set of matchmaking rules.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01 for more information on this service.
 //
