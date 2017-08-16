@@ -1,9 +1,14 @@
 package expression
 
 import (
-	"fmt"
 	"strings"
+
+	"github.com/aws/aws-sdk-go/aws/awserr"
 )
+
+// ErrUnsetProjection is an error that is returned if BuildExpression is called
+// on an empty ProjectionBuilder.
+var ErrUnsetProjection = awserr.New("UnsetProjection", "buildProjection error: the argument ProjectionBuilder's path list is empty", nil)
 
 // ProjectionBuilder will represent Projection Expressions in DynamoDB. It is
 // composed of a list of PathBuilders. Users will be able to call the
@@ -104,7 +109,7 @@ func (proj ProjectionBuilder) BuildExpression() (Expression, error) {
 // structure of the input ProjectionBuilder's child PathBuilders.
 func (proj ProjectionBuilder) buildProjection() (ExprNode, error) {
 	if len(proj.paths) == 0 {
-		return ExprNode{}, fmt.Errorf("buildProjection error: path list is empty")
+		return ExprNode{}, ErrUnsetProjection
 	}
 
 	childNodes, err := proj.buildChildNodes()
