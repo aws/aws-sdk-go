@@ -36,7 +36,7 @@ func TestBuildAuthToken(t *testing.T) {
 			t.Errorf("expect no error, got %v", err)
 		}
 		if re, a := regexp.MustCompile(c.expectedRegex), url; !re.MatchString(a) {
-			t.Errorf("expect %s to match %s", e, a)
+			t.Errorf("expect %s to match %s", re, a)
 		}
 	}
 }
