@@ -24,7 +24,6 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restxml"
 	"github.com/aws/aws-sdk-go/private/protocol/xml/xmlutil"
 	"github.com/aws/aws-sdk-go/private/util"
-	"github.com/stretchr/testify/assert"
 )
 
 var _ bytes.Buffer // always import bytes
@@ -2363,21 +2362,47 @@ func TestOutputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	// unmarshal response
 	restxml.UnmarshalMeta(req)
 	restxml.Unmarshal(req)
-	assert.NoError(t, req.Error)
+	if req.Error != nil {
+		t.Errorf("expect not error, got %v", req.Error)
+	}
 
 	// assert response
-	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, "a", *out.Char)
-	assert.Equal(t, 1.3, *out.Double)
-	assert.Equal(t, false, *out.FalseBool)
-	assert.Equal(t, 1.2, *out.Float)
-	assert.Equal(t, "test", *out.ImaHeader)
-	assert.Equal(t, "abc", *out.ImaHeaderLocation)
-	assert.Equal(t, int64(200), *out.Long)
-	assert.Equal(t, int64(123), *out.Num)
-	assert.Equal(t, "myname", *out.Str)
-	assert.Equal(t, time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamp.String())
-	assert.Equal(t, true, *out.TrueBool)
+	if out == nil {
+		t.Errorf("expect not to be nil")
+	}
+	if e, a := "a", *out.Char; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := 1.3, *out.Double; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := false, *out.FalseBool; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := 1.2, *out.Float; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "test", *out.ImaHeader; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "abc", *out.ImaHeaderLocation; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := int64(200), *out.Long; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := int64(123), *out.Num; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "myname", *out.Str; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamp.String(); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := true, *out.TrueBool; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -2395,21 +2420,47 @@ func TestOutputService1ProtocolTestScalarMembersCase2(t *testing.T) {
 	// unmarshal response
 	restxml.UnmarshalMeta(req)
 	restxml.Unmarshal(req)
-	assert.NoError(t, req.Error)
+	if req.Error != nil {
+		t.Errorf("expect not error, got %v", req.Error)
+	}
 
 	// assert response
-	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, "a", *out.Char)
-	assert.Equal(t, 1.3, *out.Double)
-	assert.Equal(t, false, *out.FalseBool)
-	assert.Equal(t, 1.2, *out.Float)
-	assert.Equal(t, "test", *out.ImaHeader)
-	assert.Equal(t, "abc", *out.ImaHeaderLocation)
-	assert.Equal(t, int64(200), *out.Long)
-	assert.Equal(t, int64(123), *out.Num)
-	assert.Equal(t, "", *out.Str)
-	assert.Equal(t, time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamp.String())
-	assert.Equal(t, true, *out.TrueBool)
+	if out == nil {
+		t.Errorf("expect not to be nil")
+	}
+	if e, a := "a", *out.Char; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := 1.3, *out.Double; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := false, *out.FalseBool; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := 1.2, *out.Float; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "test", *out.ImaHeader; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "abc", *out.ImaHeaderLocation; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := int64(200), *out.Long; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := int64(123), *out.Num; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "", *out.Str; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamp.String(); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := true, *out.TrueBool; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -2425,11 +2476,17 @@ func TestOutputService2ProtocolTestBlobCase1(t *testing.T) {
 	// unmarshal response
 	restxml.UnmarshalMeta(req)
 	restxml.Unmarshal(req)
-	assert.NoError(t, req.Error)
+	if req.Error != nil {
+		t.Errorf("expect not error, got %v", req.Error)
+	}
 
 	// assert response
-	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, "value", string(out.Blob))
+	if out == nil {
+		t.Errorf("expect not to be nil")
+	}
+	if e, a := "value", string(out.Blob); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -2445,12 +2502,20 @@ func TestOutputService3ProtocolTestListsCase1(t *testing.T) {
 	// unmarshal response
 	restxml.UnmarshalMeta(req)
 	restxml.Unmarshal(req)
-	assert.NoError(t, req.Error)
+	if req.Error != nil {
+		t.Errorf("expect not error, got %v", req.Error)
+	}
 
 	// assert response
-	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, "abc", *out.ListMember[0])
-	assert.Equal(t, "123", *out.ListMember[1])
+	if out == nil {
+		t.Errorf("expect not to be nil")
+	}
+	if e, a := "abc", *out.ListMember[0]; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "123", *out.ListMember[1]; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -2466,12 +2531,20 @@ func TestOutputService4ProtocolTestListWithCustomMemberNameCase1(t *testing.T) {
 	// unmarshal response
 	restxml.UnmarshalMeta(req)
 	restxml.Unmarshal(req)
-	assert.NoError(t, req.Error)
+	if req.Error != nil {
+		t.Errorf("expect not error, got %v", req.Error)
+	}
 
 	// assert response
-	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, "abc", *out.ListMember[0])
-	assert.Equal(t, "123", *out.ListMember[1])
+	if out == nil {
+		t.Errorf("expect not to be nil")
+	}
+	if e, a := "abc", *out.ListMember[0]; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "123", *out.ListMember[1]; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -2487,12 +2560,20 @@ func TestOutputService5ProtocolTestFlattenedListCase1(t *testing.T) {
 	// unmarshal response
 	restxml.UnmarshalMeta(req)
 	restxml.Unmarshal(req)
-	assert.NoError(t, req.Error)
+	if req.Error != nil {
+		t.Errorf("expect not error, got %v", req.Error)
+	}
 
 	// assert response
-	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, "abc", *out.ListMember[0])
-	assert.Equal(t, "123", *out.ListMember[1])
+	if out == nil {
+		t.Errorf("expect not to be nil")
+	}
+	if e, a := "abc", *out.ListMember[0]; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "123", *out.ListMember[1]; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -2508,12 +2589,20 @@ func TestOutputService6ProtocolTestNormalMapCase1(t *testing.T) {
 	// unmarshal response
 	restxml.UnmarshalMeta(req)
 	restxml.Unmarshal(req)
-	assert.NoError(t, req.Error)
+	if req.Error != nil {
+		t.Errorf("expect not error, got %v", req.Error)
+	}
 
 	// assert response
-	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, "bam", *out.Map["baz"].Foo)
-	assert.Equal(t, "bar", *out.Map["qux"].Foo)
+	if out == nil {
+		t.Errorf("expect not to be nil")
+	}
+	if e, a := "bam", *out.Map["baz"].Foo; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "bar", *out.Map["qux"].Foo; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -2529,12 +2618,20 @@ func TestOutputService7ProtocolTestFlattenedMapCase1(t *testing.T) {
 	// unmarshal response
 	restxml.UnmarshalMeta(req)
 	restxml.Unmarshal(req)
-	assert.NoError(t, req.Error)
+	if req.Error != nil {
+		t.Errorf("expect not error, got %v", req.Error)
+	}
 
 	// assert response
-	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, "bam", *out.Map["baz"])
-	assert.Equal(t, "bar", *out.Map["qux"])
+	if out == nil {
+		t.Errorf("expect not to be nil")
+	}
+	if e, a := "bam", *out.Map["baz"]; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "bar", *out.Map["qux"]; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -2550,12 +2647,20 @@ func TestOutputService8ProtocolTestNamedMapCase1(t *testing.T) {
 	// unmarshal response
 	restxml.UnmarshalMeta(req)
 	restxml.Unmarshal(req)
-	assert.NoError(t, req.Error)
+	if req.Error != nil {
+		t.Errorf("expect not error, got %v", req.Error)
+	}
 
 	// assert response
-	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, "bam", *out.Map["baz"])
-	assert.Equal(t, "bar", *out.Map["qux"])
+	if out == nil {
+		t.Errorf("expect not to be nil")
+	}
+	if e, a := "bam", *out.Map["baz"]; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "bar", *out.Map["qux"]; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -2572,12 +2677,20 @@ func TestOutputService9ProtocolTestXMLPayloadCase1(t *testing.T) {
 	// unmarshal response
 	restxml.UnmarshalMeta(req)
 	restxml.Unmarshal(req)
-	assert.NoError(t, req.Error)
+	if req.Error != nil {
+		t.Errorf("expect not error, got %v", req.Error)
+	}
 
 	// assert response
-	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, "abc", *out.Data.Foo)
-	assert.Equal(t, "baz", *out.Header)
+	if out == nil {
+		t.Errorf("expect not to be nil")
+	}
+	if e, a := "abc", *out.Data.Foo; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "baz", *out.Header; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -2593,11 +2706,17 @@ func TestOutputService10ProtocolTestStreamingPayloadCase1(t *testing.T) {
 	// unmarshal response
 	restxml.UnmarshalMeta(req)
 	restxml.Unmarshal(req)
-	assert.NoError(t, req.Error)
+	if req.Error != nil {
+		t.Errorf("expect not error, got %v", req.Error)
+	}
 
 	// assert response
-	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, "abc", string(out.Stream))
+	if out == nil {
+		t.Errorf("expect not to be nil")
+	}
+	if e, a := "abc", string(out.Stream); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -2622,19 +2741,41 @@ func TestOutputService11ProtocolTestScalarMembersInHeadersCase1(t *testing.T) {
 	// unmarshal response
 	restxml.UnmarshalMeta(req)
 	restxml.Unmarshal(req)
-	assert.NoError(t, req.Error)
+	if req.Error != nil {
+		t.Errorf("expect not error, got %v", req.Error)
+	}
 
 	// assert response
-	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, "a", *out.Char)
-	assert.Equal(t, 1.5, *out.Double)
-	assert.Equal(t, false, *out.FalseBool)
-	assert.Equal(t, 1.5, *out.Float)
-	assert.Equal(t, int64(1), *out.Integer)
-	assert.Equal(t, int64(100), *out.Long)
-	assert.Equal(t, "string", *out.Str)
-	assert.Equal(t, time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamp.String())
-	assert.Equal(t, true, *out.TrueBool)
+	if out == nil {
+		t.Errorf("expect not to be nil")
+	}
+	if e, a := "a", *out.Char; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := 1.5, *out.Double; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := false, *out.FalseBool; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := 1.5, *out.Float; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := int64(1), *out.Integer; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := int64(100), *out.Long; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "string", *out.Str; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamp.String(); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := true, *out.TrueBool; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -2650,10 +2791,16 @@ func TestOutputService12ProtocolTestEmptyStringCase1(t *testing.T) {
 	// unmarshal response
 	restxml.UnmarshalMeta(req)
 	restxml.Unmarshal(req)
-	assert.NoError(t, req.Error)
+	if req.Error != nil {
+		t.Errorf("expect not error, got %v", req.Error)
+	}
 
 	// assert response
-	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, "", *out.Foo)
+	if out == nil {
+		t.Errorf("expect not to be nil")
+	}
+	if e, a := "", *out.Foo; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
