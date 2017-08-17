@@ -89,51 +89,29 @@ func (en ExprNode) buildExprNodes(al *aliasList) (Expression, error) {
 		}
 
 		var alias string
+		var err error
 		// if an escaped character is found, substitute it with the proper alias
 		// TODO consider AST instead of string in the future
 		switch expr.Expression[i+1] {
 		case 'p':
-			if index.name >= len(en.names) {
-				return Expression{}, fmt.Errorf("buildExprNodes error: ExprNode []names out of range")
-			}
-			str, err := al.aliasPath(en.names[index.name])
+			alias, err = substitutePath(index.name, en, &expr, al)
 			if err != nil {
 				return Expression{}, err
 			}
-			alias = str
-			if expr.Names == nil {
-				expr.Names = make(map[string]*string)
-			}
-			expr.Names[alias] = &en.names[index.name]
 			index.name++
 
 		case 'v':
-			if index.value >= len(en.values) {
-				return Expression{}, fmt.Errorf("buildExprNodes error: ExprNode []values out of range")
-			}
-			str, err := al.aliasValue(en.values[index.value])
+			alias, err = substituteValue(index.value, en, &expr, al)
 			if err != nil {
 				return Expression{}, err
 			}
-			alias = str
-			if expr.Values == nil {
-				expr.Values = make(map[string]*dynamodb.AttributeValue)
-			}
-			expr.Values[alias] = &en.values[index.value]
 			index.value++
 
 		case 'c':
-			if index.children >= len(en.children) {
-				return Expression{}, fmt.Errorf("buildExprNodes error: ExprNode []children out of range")
-			}
-			childExpr, err := en.children[index.children].buildExprNodes(al)
+			alias, err = substituteChild(index.children, en, &expr, al)
 			if err != nil {
 				return Expression{}, err
 			}
-			alias = childExpr.Expression
-			tempExpr := expr.Expression
-			expr = MergeMaps(expr, childExpr)
-			expr.Expression = tempExpr
 			index.children++
 
 		default:
@@ -144,6 +122,57 @@ func (en ExprNode) buildExprNodes(al *aliasList) (Expression, error) {
 	}
 
 	return expr, nil
+}
+
+// substitutePath will substitute the escaped character $p with the appropriate
+// alias.
+func substitutePath(index int, en ExprNode, expr *Expression, al *aliasList) (string, error) {
+	if index >= len(en.names) {
+		return "", fmt.Errorf("substitutePath error: ExprNode []names out of range")
+	}
+	str, err := al.aliasPath(en.names[index])
+	if err != nil {
+		return "", err
+	}
+	if expr.Names == nil {
+		expr.Names = map[string]*string{}
+	}
+	expr.Names[str] = &en.names[index]
+	return str, nil
+}
+
+// substituteValue will substitute the escaped character $v with the appropriate
+// alias.
+func substituteValue(index int, en ExprNode, expr *Expression, al *aliasList) (string, error) {
+	if index >= len(en.values) {
+		return "", fmt.Errorf("substituteValue error: ExprNode []values out of range")
+	}
+	str, err := al.aliasValue(en.values[index])
+	if err != nil {
+		return "", err
+	}
+	if expr.Values == nil {
+		expr.Values = map[string]*dynamodb.AttributeValue{}
+	}
+	expr.Values[str] = &en.values[index]
+	return str, nil
+}
+
+// substituteChild will substitute the escaped character $c with the appropriate
+// alias.
+func substituteChild(index int, en ExprNode, expr *Expression, al *aliasList) (string, error) {
+	if index >= len(en.children) {
+		return "", fmt.Errorf("substituteChild error: ExprNode []children out of range")
+	}
+	childExpr, err := en.children[index].buildExprNodes(al)
+	if err != nil {
+		return "", err
+	}
+	str := childExpr.Expression
+	tempExpr := expr.Expression
+	*expr = MergeMaps(*expr, childExpr)
+	expr.Expression = tempExpr
+	return str, nil
 }
 
 // aliasValue returns the corresponding alias to the dav value argument. Since
@@ -211,14 +240,14 @@ func MergeMaps(list ...Expression) Expression {
 	for _, expr := range list {
 		for alias, name := range expr.Names {
 			if ret.Names == nil {
-				ret.Names = make(map[string]*string)
+				ret.Names = map[string]*string{}
 			}
 			ret.Names[alias] = name
 		}
 
 		for alias, value := range expr.Values {
 			if ret.Values == nil {
-				ret.Values = make(map[string]*dynamodb.AttributeValue)
+				ret.Values = map[string]*dynamodb.AttributeValue{}
 			}
 			ret.Values[alias] = value
 		}
