@@ -37,7 +37,6 @@ This is an example using the AWS SDK for Go to list ec2 instances instance state
 
 # Usage
 
-The example uses the bucket name provided, and lists all object keys in a bucket.
 
 ```sh
 go run  filter_ec2_by_region running
