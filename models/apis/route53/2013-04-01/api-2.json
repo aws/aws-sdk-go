@@ -1803,6 +1803,7 @@
       "members":{
         "message":{"shape":"ErrorMessage"}
       },
+      "deprecated":true,
       "error":{"httpStatusCode":400},
       "exception":true
     },
@@ -2682,7 +2683,8 @@
         "PTR",
         "SRV",
         "SPF",
-        "AAAA"
+        "AAAA",
+        "CAA"
       ]
     },
     "RecordData":{

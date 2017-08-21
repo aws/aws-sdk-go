@@ -1,3 +1,12 @@
+Release v1.10.29 (2017-08-21)
+===
+
+### Service Client Updates
+* `service/kinesis`: Adds new service
+  * This change will allow customers to attach a Firehose delivery stream to an existing Kinesis stream directly. You no longer need a forwarder to move data from a Kinesis stream to a Firehose delivery stream. You can now run your streaming applications on your Kinesis stream and easily attach a Firehose delivery stream to it for data delivery to S3, Redshift, or Elasticsearch concurrently.
+* `service/route53`: Updates service API and documentation
+  * Amazon Route 53 now supports CAA resource record type. A CAA record controls which certificate authorities are allowed to issue certificates for the domain or subdomain.
+
 Release v1.10.28 (2017-08-18)
 ===
 
