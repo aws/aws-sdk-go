@@ -97,17 +97,24 @@ func (proj ProjectionBuilder) AddPaths(pl ...PathBuilder) ProjectionBuilder {
 //       },
 //       TableName: aws.String("SomeTable"),
 //     }
-func (proj ProjectionBuilder) BuildExpression() (Expression, error) {
-	en, err := proj.buildProjection()
-	if err != nil {
-		return Expression{}, err
-	}
-	return en.buildExprNodes(&aliasList{})
+// func (proj ProjectionBuilder) BuildExpression() (Expression, error) {
+// 	en, err := proj.buildProjection()
+// 	if err != nil {
+// 		return Expression{}, err
+// 	}
+// 	return en.buildExprNodes(&aliasList{})
+// }
+func (projectionBuilder ProjectionBuilder) BuildExpression() (Expression, error) {
+	return Expression{
+		expressionMap: map[string]ExpressionTreeBuilder{
+			"projection": projectionBuilder,
+		},
+	}, nil
 }
 
 // buildProjection will build a tree structure of ExprNodes based on the tree
 // structure of the input ProjectionBuilder's child PathBuilders.
-func (proj ProjectionBuilder) buildProjection() (ExprNode, error) {
+func (proj ProjectionBuilder) BuildExpressionTree() (ExprNode, error) {
 	if len(proj.paths) == 0 {
 		return ExprNode{}, ErrUnsetProjection
 	}

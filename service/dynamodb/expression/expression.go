@@ -2,7 +2,9 @@ package expression
 
 import (
 	"fmt"
+	"sort"
 
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
@@ -26,10 +28,106 @@ import (
 //       },
 //       TableName: aws.String("SomeTable"),
 //     }
+// type Expression struct {
+// 	Names      map[string]*string
+// 	Values     map[string]*dynamodb.AttributeValue
+// 	Expression string
+// }
 type Expression struct {
-	Names      map[string]*string
-	Values     map[string]*dynamodb.AttributeValue
-	Expression string
+	expressionMap map[string]ExpressionTreeBuilder
+}
+
+type ExpressionTreeBuilder interface {
+	BuildExpressionTree() (ExprNode, error)
+}
+
+func (expression Expression) ConditionExpression() *string {
+	aliasList := &AliasList{}
+	formattedExpressions := map[string]string{}
+	keys := []string{}
+
+	for key := range expression.expressionMap {
+		keys = append(keys, key)
+	}
+
+	sort.Strings(keys)
+
+	for _, key := range keys {
+		exprNode, err := expression.expressionMap[key].BuildExpressionTree()
+		if err != nil {
+			return nil
+		}
+		formattedExpression, err := exprNode.BuildExpression(aliasList)
+		if err != nil {
+			return nil
+		}
+		formattedExpressions[key] = formattedExpression
+	}
+
+	return aws.String(formattedExpressions["condition"])
+}
+
+func (expression Expression) Names() map[string]*string {
+	aliasList := &AliasList{}
+	keys := []string{}
+
+	for key := range expression.expressionMap {
+		keys = append(keys, key)
+	}
+
+	sort.Strings(keys)
+
+	for _, key := range keys {
+		exprNode, err := expression.expressionMap[key].BuildExpressionTree()
+		if err != nil {
+			return nil
+		}
+		_, err = exprNode.BuildExpression(aliasList)
+		if err != nil {
+			return nil
+		}
+	}
+
+	namesMap := map[string]*string{}
+	for ind, val := range aliasList.namesList {
+		namesMap[fmt.Sprintf("#%v", ind)] = aws.String(val)
+	}
+
+	return namesMap
+}
+
+func (expression Expression) Values() map[string]*dynamodb.AttributeValue {
+	aliasList := &AliasList{}
+	keys := []string{}
+
+	for key := range expression.expressionMap {
+		keys = append(keys, key)
+	}
+
+	sort.Strings(keys)
+
+	for _, key := range keys {
+		exprNode, err := expression.expressionMap[key].BuildExpressionTree()
+		if err != nil {
+			return nil
+		}
+		_, err = exprNode.BuildExpression(aliasList)
+		if err != nil {
+			return nil
+		}
+	}
+
+	valuesMap := map[string]*dynamodb.AttributeValue{}
+	for i := 0; i < len(aliasList.valuesList); i++ {
+		valuesMap[fmt.Sprintf(":%v", i)] = &aliasList.valuesList[i]
+	}
+	// for ind, val := range aliasList.valuesList {
+	// 	// fmt.Printf("%#v\n", val)
+	// 	fmt.Printf("at ind %#v, got %#v\n", ind, &val)
+	// 	valuesMap[fmt.Sprintf(":%v", ind)] = &val
+	// }
+
+	return valuesMap
 }
 
 // ExprNode will be the generic nodes that will represent both Operands and
@@ -52,20 +150,20 @@ type ExprNode struct {
 	fmtExpr  string
 }
 
-// aliasList will keep track of all the names we need to alias in the nested
+// AliasList will keep track of all the names we need to alias in the nested
 // struct of conditions and operands. This will allow each alias to be unique.
-// aliasList will be passed in as a pointer when buildExprNodes is called in
+// AliasList will be passed in as a pointer when buildExprNodes is called in
 // order to deduplicate all names within the tree strcuture of the ExprNodes.
-type aliasList struct {
+type AliasList struct {
 	namesList  []string
 	valuesList []dynamodb.AttributeValue
 }
 
 // buildExpression returns an Expression with aliasing for paths/values
-// specified by aliasList
-func (en ExprNode) buildExprNodes(al *aliasList) (Expression, error) {
+// specified by AliasList
+func (en ExprNode) BuildExpression(al *AliasList) (string, error) {
 	if al == nil {
-		return Expression{}, fmt.Errorf("buildExprNodes error: aliasList is nil")
+		return "", fmt.Errorf("buildExprNodes error: AliasList is nil")
 	}
 
 	// Since each ExprNode contains a slice of names, values, and children that
@@ -74,59 +172,57 @@ func (en ExprNode) buildExprNodes(al *aliasList) (Expression, error) {
 		name, value, children int
 	}{}
 
-	expr := Expression{
-		Expression: en.fmtExpr,
-	}
+	formattedExpression := en.fmtExpr
 
-	for i := 0; i < len(expr.Expression); {
-		if expr.Expression[i] != '$' {
+	for i := 0; i < len(formattedExpression); {
+		if formattedExpression[i] != '$' {
 			i++
 			continue
 		}
 
-		if i == len(expr.Expression)-1 {
-			return Expression{}, fmt.Errorf("buildExprNode error: invalid escape character")
+		if i == len(formattedExpression)-1 {
+			return "", fmt.Errorf("buildExprNode error: invalid escape character")
 		}
 
 		var alias string
 		var err error
 		// if an escaped character is found, substitute it with the proper alias
 		// TODO consider AST instead of string in the future
-		switch expr.Expression[i+1] {
+		switch formattedExpression[i+1] {
 		case 'p':
-			alias, err = substitutePath(index.name, en, &expr, al)
+			alias, err = substitutePath(index.name, en, al)
 			if err != nil {
-				return Expression{}, err
+				return "", err
 			}
 			index.name++
 
 		case 'v':
-			alias, err = substituteValue(index.value, en, &expr, al)
+			alias, err = substituteValue(index.value, en, al)
 			if err != nil {
-				return Expression{}, err
+				return "", err
 			}
 			index.value++
 
 		case 'c':
-			alias, err = substituteChild(index.children, en, &expr, al)
+			alias, err = substituteChild(index.children, en, al)
 			if err != nil {
-				return Expression{}, err
+				return "", err
 			}
 			index.children++
 
 		default:
-			return Expression{}, fmt.Errorf("buildExprNode error: invalid escape rune %#v", expr.Expression[i+1])
+			return "", fmt.Errorf("buildExprNode error: invalid escape rune %#v", formattedExpression[i+1])
 		}
-		expr.Expression = expr.Expression[:i] + alias + expr.Expression[i+2:]
+		formattedExpression = formattedExpression[:i] + alias + formattedExpression[i+2:]
 		i += len(alias)
 	}
 
-	return expr, nil
+	return formattedExpression, nil
 }
 
 // substitutePath will substitute the escaped character $p with the appropriate
 // alias.
-func substitutePath(index int, en ExprNode, expr *Expression, al *aliasList) (string, error) {
+func substitutePath(index int, en ExprNode, al *AliasList) (string, error) {
 	if index >= len(en.names) {
 		return "", fmt.Errorf("substitutePath error: ExprNode []names out of range")
 	}
@@ -134,16 +230,12 @@ func substitutePath(index int, en ExprNode, expr *Expression, al *aliasList) (st
 	if err != nil {
 		return "", err
 	}
-	if expr.Names == nil {
-		expr.Names = map[string]*string{}
-	}
-	expr.Names[str] = &en.names[index]
 	return str, nil
 }
 
 // substituteValue will substitute the escaped character $v with the appropriate
 // alias.
-func substituteValue(index int, en ExprNode, expr *Expression, al *aliasList) (string, error) {
+func substituteValue(index int, en ExprNode, al *AliasList) (string, error) {
 	if index >= len(en.values) {
 		return "", fmt.Errorf("substituteValue error: ExprNode []values out of range")
 	}
@@ -151,34 +243,30 @@ func substituteValue(index int, en ExprNode, expr *Expression, al *aliasList) (s
 	if err != nil {
 		return "", err
 	}
-	if expr.Values == nil {
-		expr.Values = map[string]*dynamodb.AttributeValue{}
-	}
-	expr.Values[str] = &en.values[index]
 	return str, nil
 }
 
 // substituteChild will substitute the escaped character $c with the appropriate
 // alias.
-func substituteChild(index int, en ExprNode, expr *Expression, al *aliasList) (string, error) {
+func substituteChild(index int, en ExprNode, al *AliasList) (string, error) {
 	if index >= len(en.children) {
 		return "", fmt.Errorf("substituteChild error: ExprNode []children out of range")
 	}
-	childExpr, err := en.children[index].buildExprNodes(al)
-	if err != nil {
-		return "", err
-	}
-	str := childExpr.Expression
-	tempExpr := expr.Expression
-	*expr = MergeMaps(*expr, childExpr)
-	expr.Expression = tempExpr
-	return str, nil
+	return en.children[index].BuildExpression(al)
+	// if err != nil {
+	// 	return "", err
+	// }
+	// str := childExpr.Expression
+	// tempExpr := expr.Expression
+	// *expr = MergeMaps(*expr, childExpr)
+	// expr.Expression = tempExpr
+	// return str, nil
 }
 
 // aliasValue returns the corresponding alias to the dav value argument. Since
 // values are not deduplicated as of now, all values are just appended to the
-// aliasList and given the index as the alias.
-func (al *aliasList) aliasValue(dav dynamodb.AttributeValue) (string, error) {
+// AliasList and given the index as the alias.
+func (al *AliasList) aliasValue(dav dynamodb.AttributeValue) (string, error) {
 	// for ind, attrval := range al.valuesList {
 	// 	if reflect.DeepEqual(dav, attrval) {
 	// 		return fmt.Sprintf(":%d", ind), nil
@@ -186,7 +274,7 @@ func (al *aliasList) aliasValue(dav dynamodb.AttributeValue) (string, error) {
 	// }
 
 	if al == nil {
-		return "", fmt.Errorf("aliasValue error: aliasList is nil")
+		return "", fmt.Errorf("aliasValue error: AliasList is nil")
 	}
 
 	// If deduplicating, uncomment above and there should be an error message here
@@ -197,11 +285,11 @@ func (al *aliasList) aliasValue(dav dynamodb.AttributeValue) (string, error) {
 }
 
 // aliasPath returns the corresponding alias to the argument string. The
-// argument is checked against all existing aliasList names in order to avoid
+// argument is checked against all existing AliasList names in order to avoid
 // duplicate strings getting two different aliases.
-func (al *aliasList) aliasPath(nm string) (string, error) {
+func (al *AliasList) aliasPath(nm string) (string, error) {
 	if al == nil {
-		return "", fmt.Errorf("aliasValue error: aliasList is nil")
+		return "", fmt.Errorf("aliasValue error: AliasList is nil")
 	}
 
 	for ind, name := range al.namesList {
@@ -235,22 +323,22 @@ func (al *aliasList) aliasPath(nm string) (string, error) {
 //       },
 //       TableName: aws.String("SomeTable"),
 //     }
-func MergeMaps(list ...Expression) Expression {
-	ret := Expression{}
-	for _, expr := range list {
-		for alias, name := range expr.Names {
-			if ret.Names == nil {
-				ret.Names = map[string]*string{}
-			}
-			ret.Names[alias] = name
-		}
-
-		for alias, value := range expr.Values {
-			if ret.Values == nil {
-				ret.Values = map[string]*dynamodb.AttributeValue{}
-			}
-			ret.Values[alias] = value
-		}
-	}
-	return ret
-}
+// func MergeMaps(list ...Expression) Expression {
+// 	ret := Expression{}
+// 	for _, expr := range list {
+// 		for alias, name := range expr.Names {
+// 			if ret.Names == nil {
+// 				ret.Names = map[string]*string{}
+// 			}
+// 			ret.Names[alias] = name
+// 		}
+//
+// 		for alias, value := range expr.Values {
+// 			if ret.Values == nil {
+// 				ret.Values = map[string]*dynamodb.AttributeValue{}
+// 			}
+// 			ret.Values[alias] = value
+// 		}
+// 	}
+// 	return ret
+// }

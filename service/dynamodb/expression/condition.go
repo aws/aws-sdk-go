@@ -831,17 +831,24 @@ func (p PathBuilder) Contains(s string) ConditionBuilder {
 //       },
 //       TableName: aws.String("SomeTable"),
 //     }
-func (cond ConditionBuilder) BuildExpression() (Expression, error) {
-	en, err := cond.buildCondition()
-	if err != nil {
-		return Expression{}, err
-	}
-	return en.buildExprNodes(&aliasList{})
+// func (cond ConditionBuilder) BuildExpression() (Expression, error) {
+// 	en, err := cond.BuildExpressionTree()
+// 	if err != nil {
+// 		return Expression{}, err
+// 	}
+// 	return en.BuildExpression(&AliasList{})
+// }
+func (conditionBuilder ConditionBuilder) BuildExpression() (Expression, error) {
+	return Expression{
+		expressionMap: map[string]ExpressionTreeBuilder{
+			"condition": conditionBuilder,
+		},
+	}, nil
 }
 
 // buildCondition will build a tree structure of ExprNodes based on the tree
 // structure of the input ConditionBuilder's child Conditions/Operands.
-func (cond ConditionBuilder) buildCondition() (ExprNode, error) {
+func (cond ConditionBuilder) BuildExpressionTree() (ExprNode, error) {
 	childNodes, err := cond.buildChildNodes()
 	if err != nil {
 		return ExprNode{}, err
@@ -1015,7 +1022,7 @@ func containsBuildCondition(en ExprNode) (ExprNode, error) {
 func (cond ConditionBuilder) buildChildNodes() ([]ExprNode, error) {
 	childNodes := make([]ExprNode, 0, len(cond.conditionList)+len(cond.operandList))
 	for _, condition := range cond.conditionList {
-		en, err := condition.buildCondition()
+		en, err := condition.BuildExpressionTree()
 		if err != nil {
 			return []ExprNode{}, err
 		}
