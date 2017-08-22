@@ -114,7 +114,7 @@ type ConditionBuilder struct {
 //
 // Example:
 //
-//     condition := expression.Equal(expression.Path("foo"), expression.Value(5))
+//     condition := expression.Equal(expression.Name("foo"), expression.Value(5))
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
 //     expression, err := condition.BuildExpression() // Used to make an Expression
@@ -125,15 +125,15 @@ func Equal(left, right OperandBuilder) ConditionBuilder {
 	}
 }
 
-// Equal will create a ConditionBuilder. This will be the method for PathBuilder
+// Equal will create a ConditionBuilder. This will be the method for NameBuilder
 //
 // Example:
 //
 //     // The following produces equivalent conditions:
-//     condition := expression.Equal(expression.Path("foo"), expression.Value(5))
-//     condition := expression.Path("foo").Equal(expression.Value(5))
-func (p PathBuilder) Equal(right OperandBuilder) ConditionBuilder {
-	return Equal(p, right)
+//     condition := expression.Equal(expression.Name("foo"), expression.Value(5))
+//     condition := expression.Name("foo").Equal(expression.Value(5))
+func (nameBuilder NameBuilder) Equal(right OperandBuilder) ConditionBuilder {
+	return Equal(nameBuilder, right)
 }
 
 // Equal will create a ConditionBuilder. This will be the method for
@@ -144,8 +144,8 @@ func (p PathBuilder) Equal(right OperandBuilder) ConditionBuilder {
 //     // The following produces equivalent conditions:
 //     condition := expression.Equal(expression.Value(10), expression.Value(5))
 //     condition := expression.Value(10).Equal(expression.Value(5))
-func (v ValueBuilder) Equal(right OperandBuilder) ConditionBuilder {
-	return Equal(v, right)
+func (valueBuilder ValueBuilder) Equal(right OperandBuilder) ConditionBuilder {
+	return Equal(valueBuilder, right)
 }
 
 // Equal will create a ConditionBuilder. This will be the method for SizeBuilder
@@ -153,10 +153,10 @@ func (v ValueBuilder) Equal(right OperandBuilder) ConditionBuilder {
 // Example:
 //
 //     The following produces equivalent conditions:
-//     condition := expression.Equal(expression.Path("foo").Size(), expression.Value(5))
-//     condition := expression.Path("foo").Size().Equal(expression.Value(5))
-func (s SizeBuilder) Equal(right OperandBuilder) ConditionBuilder {
-	return Equal(s, right)
+//     condition := expression.Equal(expression.Name("foo").Size(), expression.Value(5))
+//     condition := expression.Name("foo").Size().Equal(expression.Value(5))
+func (sizeBuilder SizeBuilder) Equal(right OperandBuilder) ConditionBuilder {
+	return Equal(sizeBuilder, right)
 }
 
 // NotEqual will create a ConditionBuilder with two OperandBuilders as children,
@@ -166,7 +166,7 @@ func (s SizeBuilder) Equal(right OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     condition := expression.NotEqual(expression.Path("foo"), expression.Value(5))
+//     condition := expression.NotEqual(expression.Name("foo"), expression.Value(5))
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
 //     expression, err := condition.BuildExpression() // Used to make an Expression
@@ -178,15 +178,15 @@ func NotEqual(left, right OperandBuilder) ConditionBuilder {
 }
 
 // NotEqual will create a ConditionBuilder. This will be the method for
-// PathBuilder
+// NameBuilder
 //
 // Example:
 //
 //     // The following produces equivalent conditions:
-//     condition := expression.NotEqual(expression.Path("foo"), expression.Value(5))
-//     condition := expression.Path("foo").NotEqual(expression.Value(5))
-func (p PathBuilder) NotEqual(right OperandBuilder) ConditionBuilder {
-	return NotEqual(p, right)
+//     condition := expression.NotEqual(expression.Name("foo"), expression.Value(5))
+//     condition := expression.Name("foo").NotEqual(expression.Value(5))
+func (nameBuilder NameBuilder) NotEqual(right OperandBuilder) ConditionBuilder {
+	return NotEqual(nameBuilder, right)
 }
 
 // NotEqual will create a ConditionBuilder. This will be the method for
@@ -197,8 +197,8 @@ func (p PathBuilder) NotEqual(right OperandBuilder) ConditionBuilder {
 //     // The following produces equivalent conditions:
 //     condition := expression.NotEqual(expression.Value(10), expression.Value(5))
 //     condition := expression.Value(10).NotEqual(expression.Value(5))
-func (v ValueBuilder) NotEqual(right OperandBuilder) ConditionBuilder {
-	return NotEqual(v, right)
+func (valueBuilder ValueBuilder) NotEqual(right OperandBuilder) ConditionBuilder {
+	return NotEqual(valueBuilder, right)
 }
 
 // NotEqual will create a ConditionBuilder. This will be the method for
@@ -207,10 +207,10 @@ func (v ValueBuilder) NotEqual(right OperandBuilder) ConditionBuilder {
 // Example:
 //
 //     // The following produces equivalent conditions:
-//     condition := expression.NotEqual(expression.Path("foo").Size(), expression.Value(5))
-//     condition := expression.Path("foo").Size().NotEqual(expression.Value(5))
-func (s SizeBuilder) NotEqual(right OperandBuilder) ConditionBuilder {
-	return NotEqual(s, right)
+//     condition := expression.NotEqual(expression.Name("foo").Size(), expression.Value(5))
+//     condition := expression.Name("foo").Size().NotEqual(expression.Value(5))
+func (sizeBuilder SizeBuilder) NotEqual(right OperandBuilder) ConditionBuilder {
+	return NotEqual(sizeBuilder, right)
 }
 
 // Less will create a ConditionBuilder with two OperandBuilders as children,
@@ -220,7 +220,7 @@ func (s SizeBuilder) NotEqual(right OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     condition := expression.Less(expression.Path("foo"), expression.Value(5))
+//     condition := expression.Less(expression.Name("foo"), expression.Value(5))
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
 //     expression, err := condition.BuildExpression() // Used to make an Expression
@@ -231,15 +231,15 @@ func Less(left, right OperandBuilder) ConditionBuilder {
 	}
 }
 
-// Less will create a ConditionBuilder. This will be the method for PathBuilder
+// Less will create a ConditionBuilder. This will be the method for NameBuilder
 //
 // Example:
 //
 //     // The following produces equivalent conditions:
-//     condition := expression.Less(expression.Path("foo"), expression.Value(5))
-//     condition := expression.Path("foo").Less(expression.Value(5))
-func (p PathBuilder) Less(right OperandBuilder) ConditionBuilder {
-	return Less(p, right)
+//     condition := expression.Less(expression.Name("foo"), expression.Value(5))
+//     condition := expression.Name("foo").Less(expression.Value(5))
+func (nameBuilder NameBuilder) Less(right OperandBuilder) ConditionBuilder {
+	return Less(nameBuilder, right)
 }
 
 // Less will create a ConditionBuilder. This will be the method for
@@ -250,8 +250,8 @@ func (p PathBuilder) Less(right OperandBuilder) ConditionBuilder {
 //     // The following produces equivalent conditions:
 //     condition := expression.Less(expression.Value(10), expression.Value(5))
 //     condition := expression.Value(10).Less(expression.Value(5))
-func (v ValueBuilder) Less(right OperandBuilder) ConditionBuilder {
-	return Less(v, right)
+func (valueBuilder ValueBuilder) Less(right OperandBuilder) ConditionBuilder {
+	return Less(valueBuilder, right)
 }
 
 // Less will create a ConditionBuilder. This will be the method for SizeBuilder
@@ -259,10 +259,10 @@ func (v ValueBuilder) Less(right OperandBuilder) ConditionBuilder {
 // Example:
 //
 //     // The following produces equivalent conditions:
-//     condition := expression.Less(expression.Path("foo").Size(), expression.Value(5))
-//     condition := expression.Path("foo").Size().Less(expression.Value(5))
-func (s SizeBuilder) Less(right OperandBuilder) ConditionBuilder {
-	return Less(s, right)
+//     condition := expression.Less(expression.Name("foo").Size(), expression.Value(5))
+//     condition := expression.Name("foo").Size().Less(expression.Value(5))
+func (sizeBuilder SizeBuilder) Less(right OperandBuilder) ConditionBuilder {
+	return Less(sizeBuilder, right)
 }
 
 // LessEqual will create a ConditionBuilder with two OperandBuilders as children,
@@ -272,7 +272,7 @@ func (s SizeBuilder) Less(right OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     condition := expression.LessEqual(expression.Path("foo"), expression.Value(5))
+//     condition := expression.LessEqual(expression.Name("foo"), expression.Value(5))
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
 //     expression, err := condition.BuildExpression() // Used to make an Expression
@@ -283,15 +283,15 @@ func LessEqual(left, right OperandBuilder) ConditionBuilder {
 	}
 }
 
-// LessEqual will create a ConditionBuilder. This will be the method for PathBuilder
+// LessEqual will create a ConditionBuilder. This will be the method for NameBuilder
 //
 // Example:
 //
 //     // The following produces equivalent conditions:
-//     condition := expression.LessEqual(expression.Path("foo"), expression.Value(5))
-//     condition := expression.Path("foo").LessEqual(expression.Value(5))
-func (p PathBuilder) LessEqual(right OperandBuilder) ConditionBuilder {
-	return LessEqual(p, right)
+//     condition := expression.LessEqual(expression.Name("foo"), expression.Value(5))
+//     condition := expression.Name("foo").LessEqual(expression.Value(5))
+func (nameBuilder NameBuilder) LessEqual(right OperandBuilder) ConditionBuilder {
+	return LessEqual(nameBuilder, right)
 }
 
 // LessEqual will create a ConditionBuilder. This will be the method for
@@ -302,8 +302,8 @@ func (p PathBuilder) LessEqual(right OperandBuilder) ConditionBuilder {
 //     // The following produces equivalent conditions:
 //     condition := expression.LessEqual(expression.Value(10), expression.Value(5))
 //     condition := expression.Value(10).LessEqual(expression.Value(5))
-func (v ValueBuilder) LessEqual(right OperandBuilder) ConditionBuilder {
-	return LessEqual(v, right)
+func (valueBuilder ValueBuilder) LessEqual(right OperandBuilder) ConditionBuilder {
+	return LessEqual(valueBuilder, right)
 }
 
 // LessEqual will create a ConditionBuilder. This will be the method for SizeBuilder
@@ -311,10 +311,10 @@ func (v ValueBuilder) LessEqual(right OperandBuilder) ConditionBuilder {
 // Example:
 //
 //     // The following produces equivalent conditions:
-//     condition := expression.LessEqual(expression.Path("foo").Size(), expression.Value(5))
-//     condition := expression.Path("foo").Size().LessEqual(expression.Value(5))
-func (s SizeBuilder) LessEqual(right OperandBuilder) ConditionBuilder {
-	return LessEqual(s, right)
+//     condition := expression.LessEqual(expression.Name("foo").Size(), expression.Value(5))
+//     condition := expression.Name("foo").Size().LessEqual(expression.Value(5))
+func (sizeBuilder SizeBuilder) LessEqual(right OperandBuilder) ConditionBuilder {
+	return LessEqual(sizeBuilder, right)
 }
 
 // Greater will create a ConditionBuilder with two OperandBuilders as children,
@@ -324,7 +324,7 @@ func (s SizeBuilder) LessEqual(right OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     condition := expression.Greater(expression.Path("foo"), expression.Value(5))
+//     condition := expression.Greater(expression.Name("foo"), expression.Value(5))
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
 //     expression, err := condition.BuildExpression() // Used to make an Expression
@@ -335,15 +335,15 @@ func Greater(left, right OperandBuilder) ConditionBuilder {
 	}
 }
 
-// Greater will create a ConditionBuilder. This will be the method for PathBuilder
+// Greater will create a ConditionBuilder. This will be the method for NameBuilder
 //
 // Example:
 //
 //     // The following produces equivalent conditions:
-//     condition := expression.Greater(expression.Path("foo"), expression.Value(5))
-//     condition := expression.Path("foo").Greater(expression.Value(5))
-func (p PathBuilder) Greater(right OperandBuilder) ConditionBuilder {
-	return Greater(p, right)
+//     condition := expression.Greater(expression.Name("foo"), expression.Value(5))
+//     condition := expression.Name("foo").Greater(expression.Value(5))
+func (nameBuilder NameBuilder) Greater(right OperandBuilder) ConditionBuilder {
+	return Greater(nameBuilder, right)
 }
 
 // Greater will create a ConditionBuilder. This will be the method for
@@ -354,8 +354,8 @@ func (p PathBuilder) Greater(right OperandBuilder) ConditionBuilder {
 //     // The following produces equivalent conditions:
 //     condition := expression.Greater(expression.Value(10), expression.Value(5))
 //     condition := expression.Value(10).Greater(expression.Value(5))
-func (v ValueBuilder) Greater(right OperandBuilder) ConditionBuilder {
-	return Greater(v, right)
+func (valueBuilder ValueBuilder) Greater(right OperandBuilder) ConditionBuilder {
+	return Greater(valueBuilder, right)
 }
 
 // Greater will create a ConditionBuilder. This will be the method for SizeBuilder
@@ -363,10 +363,10 @@ func (v ValueBuilder) Greater(right OperandBuilder) ConditionBuilder {
 // Example:
 //
 //     // The following produces equivalent conditions:
-//     condition := expression.Greater(expression.Path("foo").Size(), expression.Value(5))
-//     condition := expression.Path("foo").Size().Greater(expression.Value(5))
-func (s SizeBuilder) Greater(right OperandBuilder) ConditionBuilder {
-	return Greater(s, right)
+//     condition := expression.Greater(expression.Name("foo").Size(), expression.Value(5))
+//     condition := expression.Name("foo").Size().Greater(expression.Value(5))
+func (sizeBuilder SizeBuilder) Greater(right OperandBuilder) ConditionBuilder {
+	return Greater(sizeBuilder, right)
 }
 
 // GreaterEqual will create a ConditionBuilder with two OperandBuilders as children,
@@ -376,7 +376,7 @@ func (s SizeBuilder) Greater(right OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     condition := expression.GreaterEqual(expression.Path("foo"), expression.Value(5))
+//     condition := expression.GreaterEqual(expression.Name("foo"), expression.Value(5))
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
 //     expression, err := condition.BuildExpression() // Used to make an Expression
@@ -387,15 +387,15 @@ func GreaterEqual(left, right OperandBuilder) ConditionBuilder {
 	}
 }
 
-// GreaterEqual will create a ConditionBuilder. This will be the method for PathBuilder
+// GreaterEqual will create a ConditionBuilder. This will be the method for NameBuilder
 //
 // Example:
 //
 //     // The following produces equivalent conditions:
-//     condition := expression.GreaterEqual(expression.Path("foo"), expression.Value(5))
-//     condition := expression.Path("foo").GreaterEqual(expression.Value(5))
-func (p PathBuilder) GreaterEqual(right OperandBuilder) ConditionBuilder {
-	return GreaterEqual(p, right)
+//     condition := expression.GreaterEqual(expression.Name("foo"), expression.Value(5))
+//     condition := expression.Name("foo").GreaterEqual(expression.Value(5))
+func (nameBuilder NameBuilder) GreaterEqual(right OperandBuilder) ConditionBuilder {
+	return GreaterEqual(nameBuilder, right)
 }
 
 // GreaterEqual will create a ConditionBuilder. This will be the method for
@@ -406,8 +406,8 @@ func (p PathBuilder) GreaterEqual(right OperandBuilder) ConditionBuilder {
 //     // The following produces equivalent conditions:
 //     condition := expression.GreaterEqual(expression.Value(10), expression.Value(5))
 //     condition := expression.Value(10).GreaterEqual(expression.Value(5))
-func (v ValueBuilder) GreaterEqual(right OperandBuilder) ConditionBuilder {
-	return GreaterEqual(v, right)
+func (valueBuilder ValueBuilder) GreaterEqual(right OperandBuilder) ConditionBuilder {
+	return GreaterEqual(valueBuilder, right)
 }
 
 // GreaterEqual will create a ConditionBuilder. This will be the method for SizeBuilder
@@ -415,10 +415,10 @@ func (v ValueBuilder) GreaterEqual(right OperandBuilder) ConditionBuilder {
 // Example:
 //
 //     // The following produces equivalent conditions:
-//     condition := expression.GreaterEqual(expression.Path("foo").Size(), expression.Value(5))
-//     condition := expression.Path("foo").Size().GreaterEqual(expression.Value(5))
-func (s SizeBuilder) GreaterEqual(right OperandBuilder) ConditionBuilder {
-	return GreaterEqual(s, right)
+//     condition := expression.GreaterEqual(expression.Name("foo").Size(), expression.Value(5))
+//     condition := expression.Name("foo").Size().GreaterEqual(expression.Value(5))
+func (sizeBuilder SizeBuilder) GreaterEqual(right OperandBuilder) ConditionBuilder {
+	return GreaterEqual(sizeBuilder, right)
 }
 
 // And will create a ConditionBuilder with more than two other Conditions as
@@ -429,9 +429,9 @@ func (s SizeBuilder) GreaterEqual(right OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     condition1 := expression.Equal(expression.Path("foo"), expression.Value(5))
-//     condition2 := expression.Less(expression.Path("bar"), expression.Value(2010))
-//     condition3 := expression.Path("baz").Between(expression.Value(2), expression.Value(10))
+//     condition1 := expression.Equal(expression.Name("foo"), expression.Value(5))
+//     condition2 := expression.Less(expression.Name("bar"), expression.Value(2010))
+//     condition3 := expression.Name("baz").Between(expression.Value(2), expression.Value(10))
 //     andCondition := expression.And(condition1, condition2, condition3)
 //
 //     anotherCondition := expression.Not(andCondition)  // Used in another condition
@@ -451,8 +451,8 @@ func And(left, right ConditionBuilder, other ...ConditionBuilder) ConditionBuild
 //     // The following produces equivalent conditions:
 //     condition := expression.And(condition1, condition2, condition3)
 //     condition := condition1.And(condition2, condition3)
-func (cond ConditionBuilder) And(right ConditionBuilder, other ...ConditionBuilder) ConditionBuilder {
-	return And(cond, right, other...)
+func (conditionBuilder ConditionBuilder) And(right ConditionBuilder, other ...ConditionBuilder) ConditionBuilder {
+	return And(conditionBuilder, right, other...)
 }
 
 // Or will create a ConditionBuilder with more than two other Conditions as
@@ -463,9 +463,9 @@ func (cond ConditionBuilder) And(right ConditionBuilder, other ...ConditionBuild
 //
 // Example:
 //
-//     condition1 := expression.Equal(expression.Path("foo"), expression.Value(5))
-//     condition2 := expression.Less(expression.Path("bar"), expression.Value(2010))
-//     condition3 := expression.Path("baz").Between(expression.Value(2), expression.Value(10))
+//     condition1 := expression.Equal(expression.Name("foo"), expression.Value(5))
+//     condition2 := expression.Less(expression.Name("bar"), expression.Value(2010))
+//     condition3 := expression.Name("baz").Between(expression.Value(2), expression.Value(10))
 //     orCondition := expression.Or(condition1, condition2, condition3)
 //
 //     anotherCondition := expression.Not(orCondition)  // Used in another condition
@@ -485,8 +485,8 @@ func Or(left, right ConditionBuilder, other ...ConditionBuilder) ConditionBuilde
 //     // The following produces equivalent conditions:
 //     condition := expression.Or(condition1, condition2, condition3)
 //     condition := condition1.Or(condition2, condition3)
-func (cond ConditionBuilder) Or(right ConditionBuilder, other ...ConditionBuilder) ConditionBuilder {
-	return Or(cond, right, other...)
+func (conditionBuilder ConditionBuilder) Or(right ConditionBuilder, other ...ConditionBuilder) ConditionBuilder {
+	return Or(conditionBuilder, right, other...)
 }
 
 // Not will create a ConditionBuilder with one Conditions as a child,
@@ -497,14 +497,14 @@ func (cond ConditionBuilder) Or(right ConditionBuilder, other ...ConditionBuilde
 //
 // Example:
 //
-//     condition := expression.Equal(expression.Path("foo"), expression.Value(5))
+//     condition := expression.Equal(expression.Name("foo"), expression.Value(5))
 //     notCondition := expression.Or(condition)
 //
 //     anotherCondition := expression.Not(notCondition)  // Used in another condition
 //     expression, err := notCondition.BuildExpression() // Used to make an Expression
-func Not(cond ConditionBuilder) ConditionBuilder {
+func Not(conditionBuilder ConditionBuilder) ConditionBuilder {
 	return ConditionBuilder{
-		conditionList: []ConditionBuilder{cond},
+		conditionList: []ConditionBuilder{conditionBuilder},
 		mode:          notCond,
 	}
 }
@@ -516,8 +516,8 @@ func Not(cond ConditionBuilder) ConditionBuilder {
 //     // The following produces equivalent conditions:
 //     condition := expression.Not(condition)
 //     condition := condition.Not()
-func (cond ConditionBuilder) Not() ConditionBuilder {
-	return Not(cond)
+func (conditionBuilder ConditionBuilder) Not() ConditionBuilder {
+	return Not(conditionBuilder)
 }
 
 // Between will create a ConditionBuilder with three operands as children, the
@@ -530,7 +530,7 @@ func (cond ConditionBuilder) Not() ConditionBuilder {
 //
 // Example:
 //
-//     condition := expression.Between(expression.Path("foo"), expression.Value(2), expression.Value(6))
+//     condition := expression.Between(expression.Name("foo"), expression.Value(2), expression.Value(6))
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
 //     expression, err := condition.BuildExpression() // Used to make an Expression
@@ -542,15 +542,15 @@ func Between(ope, lower, upper OperandBuilder) ConditionBuilder {
 }
 
 // Between will create a ConditionBuilder. This will be the method signature for
-// PathBuilders.
+// NameBuilders.
 //
 // Example:
 //
 //     // The following produces equivalent conditions:
 //     condition := expression.Between(operand1, operand2, operand3)
 //     condition := operand1.Between(operand2, operand3)
-func (p PathBuilder) Between(lower, upper OperandBuilder) ConditionBuilder {
-	return Between(p, lower, upper)
+func (nameBuilder NameBuilder) Between(lower, upper OperandBuilder) ConditionBuilder {
+	return Between(nameBuilder, lower, upper)
 }
 
 // Between will create a ConditionBuilder. This will be the method signature for
@@ -561,8 +561,8 @@ func (p PathBuilder) Between(lower, upper OperandBuilder) ConditionBuilder {
 //     // The following produces equivalent conditions:
 //     condition := expression.Between(operand1, operand2, operand3)
 //     condition := operand1.Between(operand2, operand3)
-func (v ValueBuilder) Between(lower, upper OperandBuilder) ConditionBuilder {
-	return Between(v, lower, upper)
+func (valueBuilder ValueBuilder) Between(lower, upper OperandBuilder) ConditionBuilder {
+	return Between(valueBuilder, lower, upper)
 }
 
 // Between will create a ConditionBuilder. This will be the method signature for
@@ -573,8 +573,8 @@ func (v ValueBuilder) Between(lower, upper OperandBuilder) ConditionBuilder {
 //     // The following produces equivalent conditions:
 //     condition := expression.Between(operand1, operand2, operand3)
 //     condition := operand1.Between(operand2, operand3)
-func (s SizeBuilder) Between(lower, upper OperandBuilder) ConditionBuilder {
-	return Between(s, lower, upper)
+func (sizeBuilder SizeBuilder) Between(lower, upper OperandBuilder) ConditionBuilder {
+	return Between(sizeBuilder, lower, upper)
 }
 
 // In will create a ConditionBuilder with two or more operands as children, the
@@ -586,7 +586,7 @@ func (s SizeBuilder) Between(lower, upper OperandBuilder) ConditionBuilder {
 //
 // Example:
 //
-//     condition := expression.Between(expression.Path("foo"), expression.Value(2), expression.Value(6))
+//     condition := expression.Between(expression.Name("foo"), expression.Value(2), expression.Value(6))
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
 //     expression, err := condition.BuildExpression() // Used to make an Expression
@@ -599,15 +599,15 @@ func In(left, right OperandBuilder, other ...OperandBuilder) ConditionBuilder {
 }
 
 // In will create a ConditionBuilder. This will be the method signature for
-// PathBuilders.
+// NameBuilders.
 //
 // Example:
 //
 //     // The following produces equivalent conditions:
 //     condition := expression.In(operand1, operand2, operand3)
 //     condition := operand1.In(operand2, operand3)
-func (p PathBuilder) In(right OperandBuilder, other ...OperandBuilder) ConditionBuilder {
-	return In(p, right, other...)
+func (nameBuilder NameBuilder) In(right OperandBuilder, other ...OperandBuilder) ConditionBuilder {
+	return In(nameBuilder, right, other...)
 }
 
 // In will create a ConditionBuilder. This will be the method signature for
@@ -618,8 +618,8 @@ func (p PathBuilder) In(right OperandBuilder, other ...OperandBuilder) Condition
 //     // The following produces equivalent conditions:
 //     condition := expression.In(operand1, operand2, operand3)
 //     condition := operand1.In(operand2, operand3)
-func (v ValueBuilder) In(right OperandBuilder, other ...OperandBuilder) ConditionBuilder {
-	return In(v, right, other...)
+func (valueBuilder ValueBuilder) In(right OperandBuilder, other ...OperandBuilder) ConditionBuilder {
+	return In(valueBuilder, right, other...)
 }
 
 // In will create a ConditionBuilder. This will be the method signature for
@@ -630,153 +630,153 @@ func (v ValueBuilder) In(right OperandBuilder, other ...OperandBuilder) Conditio
 //     // The following produces equivalent conditions:
 //     condition := expression.In(operand1, operand2, operand3)
 //     condition := operand1.In(operand2, operand3)
-func (s SizeBuilder) In(right OperandBuilder, other ...OperandBuilder) ConditionBuilder {
-	return In(s, right, other...)
+func (sizeBuilder SizeBuilder) In(right OperandBuilder, other ...OperandBuilder) ConditionBuilder {
+	return In(sizeBuilder, right, other...)
 }
 
-// AttributeExists will create a ConditionBuilder with a path as a child. The
-// function will return true if the item attribute described by the path exists.
+// AttributeExists will create a ConditionBuilder with a name as a child. The
+// function will return true if the item attribute described by the name exists.
 // The resulting ConditionBuilder can be used to build other Conditions or to
 // create an Expression to be used in an operation input. This will be the
 // function call.
 //
 // Example:
 //
-//     condition := expression.AttributeExists(Path("foo"))
+//     condition := expression.AttributeExists(Name("foo"))
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
 //     expression, err := condition.BuildExpression() // Used to make an Expression
-func AttributeExists(p PathBuilder) ConditionBuilder {
+func AttributeExists(nameBuilder NameBuilder) ConditionBuilder {
 	return ConditionBuilder{
-		operandList: []OperandBuilder{p},
+		operandList: []OperandBuilder{nameBuilder},
 		mode:        attrExistsCond,
 	}
 }
 
 // AttributeExists will create a ConditionBuilder. AttributeExists will only
-// have a method for PathBuilders since that is the only valid operand that the
+// have a method for NameBuilders since that is the only valid operand that the
 // function can be called on.
 //
 // Example:
 //
 //     // The following produces equivalent conditions:
-//     condition := expression.AttributeExists(Path("foo"))
-//     condition := Path("foo").AttributeExists()
-func (p PathBuilder) AttributeExists() ConditionBuilder {
-	return AttributeExists(p)
+//     condition := expression.AttributeExists(Name("foo"))
+//     condition := Name("foo").AttributeExists()
+func (nameBuilder NameBuilder) AttributeExists() ConditionBuilder {
+	return AttributeExists(nameBuilder)
 }
 
-// AttributeNotExists will create a ConditionBuilder with a path as a child. The
-// function will return true if the item attribute described by the path does
+// AttributeNotExists will create a ConditionBuilder with a name as a child. The
+// function will return true if the item attribute described by the name does
 // not exist. The resulting ConditionBuilder can be used to build other
 // Conditions or to create an Expression to be used in an operation input. This
 // will be the function call.
 //
 // Example:
 //
-//     condition := expression.AttributeNotExists(expression.Path("foo"))
+//     condition := expression.AttributeNotExists(expression.Name("foo"))
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
 //     expression, err := condition.BuildExpression() // Used to make an Expression
-func AttributeNotExists(p PathBuilder) ConditionBuilder {
+func AttributeNotExists(nameBuilder NameBuilder) ConditionBuilder {
 	return ConditionBuilder{
-		operandList: []OperandBuilder{p},
+		operandList: []OperandBuilder{nameBuilder},
 		mode:        attrNotExistsCond,
 	}
 }
 
 // AttributeNotExists will create a ConditionBuilder. AttributeNotExists will
-// only have a method for PathBuilders since that is the only valid operand that
+// only have a method for NameBuilders since that is the only valid operand that
 // the function can be called on.
 //
 // Example:
 //
 //     // The following produces equivalent conditions:
-//     condition := expression.AttributeNotExists(expression.Path("foo"))
-//     condition := expression.Path("foo").AttributeNotExists()
-func (p PathBuilder) AttributeNotExists() ConditionBuilder {
-	return AttributeNotExists(p)
+//     condition := expression.AttributeNotExists(expression.Name("foo"))
+//     condition := expression.Name("foo").AttributeNotExists()
+func (nameBuilder NameBuilder) AttributeNotExists() ConditionBuilder {
+	return AttributeNotExists(nameBuilder)
 }
 
-// AttributeType will create a ConditionBuilder with a path and a value as a
-// child. The path will represent the item attribute being compared. The value
+// AttributeType will create a ConditionBuilder with a name and a value as a
+// child. The name will represent the item attribute being compared. The value
 // will be a string corresponding to the argument DynamoDBAttributeType. The
-// function will return true if the item attribute described by the path is the
+// function will return true if the item attribute described by the name is the
 // type specified by DynamoDBAttributeType. The resulting ConditionBuilder can
 // be used to build other Conditions or to create an Expression to be used in an
 // operation input. This will be the function call.
 //
 // Example:
 //
-//     condition := expression.AttributeType(Path("foo"), expression.StringSet)
+//     condition := expression.AttributeType(Name("foo"), expression.StringSet)
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
 //     expression, err := condition.BuildExpression() // Used to make an Expression
-func AttributeType(p PathBuilder, at DynamoDBAttributeType) ConditionBuilder {
+func AttributeType(nameBuilder NameBuilder, attributeType DynamoDBAttributeType) ConditionBuilder {
 	v := ValueBuilder{
-		value: string(at),
+		value: string(attributeType),
 	}
 	return ConditionBuilder{
-		operandList: []OperandBuilder{p, v},
+		operandList: []OperandBuilder{nameBuilder, v},
 		mode:        attrTypeCond,
 	}
 }
 
 // AttributeType will create a ConditionBuilder. AttributeType will only have a
-// method for PathBuilders since that is the only valid operand that the
+// method for NameBuilders since that is the only valid operand that the
 // function can be called on.
 //
 // Example:
 //
 //     // The following produces equivalent conditions:
-//     condition := expression.AttributeType(expression.Path("foo"), expression.Number)
-//     condition := expression.Path("foo").AttributeType(expression.Number)
-func (p PathBuilder) AttributeType(at DynamoDBAttributeType) ConditionBuilder {
-	return AttributeType(p, at)
+//     condition := expression.AttributeType(expression.Name("foo"), expression.Number)
+//     condition := expression.Name("foo").AttributeType(expression.Number)
+func (nameBuilder NameBuilder) AttributeType(attributeType DynamoDBAttributeType) ConditionBuilder {
+	return AttributeType(nameBuilder, attributeType)
 }
 
-// BeginsWith will create a ConditionBuilder with a path and a value as
-// children. The path will represent the path to the item attribute being
+// BeginsWith will create a ConditionBuilder with a name and a value as
+// children. The name will represent the name to the item attribute being
 // compared. The value will represent the substring in which the item attribute
 // will be compared with. The function will return true if the item attribute
-// specified by the path starts with the substring. The resulting
+// specified by the name starts with the substring. The resulting
 // ConditionBuilder can be used to build other Conditions or to create an
 // Expression to be used in an operation input. This will be the function call.
 //
 // Example:
 //
-//     condition := expression.BeginsWith(Path("foo"), "bar")
+//     condition := expression.BeginsWith(Name("foo"), "bar")
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
 //     expression, err := condition.BuildExpression() // Used to make an Expression
-func BeginsWith(p PathBuilder, s string) ConditionBuilder {
+func BeginsWith(nameBuilder NameBuilder, substr string) ConditionBuilder {
 	v := ValueBuilder{
-		value: s,
+		value: substr,
 	}
 	return ConditionBuilder{
-		operandList: []OperandBuilder{p, v},
+		operandList: []OperandBuilder{nameBuilder, v},
 		mode:        beginsWithCond,
 	}
 }
 
 // BeginsWith will create a ConditionBuilder. BeginsWith will only have a method
-// for PathBuilders since that is the only valid operand that the function can
+// for NameBuilders since that is the only valid operand that the function can
 // be called on.
 //
 // Example:
 //
 //     // The following produces equivalent conditions:
-//     condition := expression.BeginsWith(expression.Path("foo"), "bar")
-//     condition := expression.Path("foo").BeginsWith("bar")
-func (p PathBuilder) BeginsWith(s string) ConditionBuilder {
-	return BeginsWith(p, s)
+//     condition := expression.BeginsWith(expression.Name("foo"), "bar")
+//     condition := expression.Name("foo").BeginsWith("bar")
+func (nameBuilder NameBuilder) BeginsWith(substr string) ConditionBuilder {
+	return BeginsWith(nameBuilder, substr)
 }
 
-// Contains will create a ConditionBuilder with a path and a value as
-// children. The path will represent the path to the item attribute being
+// Contains will create a ConditionBuilder with a name and a value as
+// children. The name will represent the name to the item attribute being
 // compared. The item attribute MUST be a String or a Set. The value will
 // represent the string in which the item attribute will be compared with. The
-// function will return true if the item attribute specified by the path
+// function will return true if the item attribute specified by the name
 // contains the substring specified by the value or if the item attribute is a
 // set that contains the string specified by the value. The resulting
 // ConditionBuilder can be used to build other Conditions or to create an
@@ -784,31 +784,31 @@ func (p PathBuilder) BeginsWith(s string) ConditionBuilder {
 //
 // Example:
 //
-//     condition := expression.Contains(Path("foo"), "bar")
+//     condition := expression.Contains(Name("foo"), "bar")
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
 //     expression, err := condition.BuildExpression() // Used to make an Expression
-func Contains(p PathBuilder, s string) ConditionBuilder {
+func Contains(nameBuilder NameBuilder, substr string) ConditionBuilder {
 	v := ValueBuilder{
-		value: s,
+		value: substr,
 	}
 	return ConditionBuilder{
-		operandList: []OperandBuilder{p, v},
+		operandList: []OperandBuilder{nameBuilder, v},
 		mode:        containsCond,
 	}
 }
 
 // Contains will create a ConditionBuilder. Contains will only have a method
-// for PathBuilders since that is the only valid operand that the function can
+// for NameBuilders since that is the only valid operand that the function can
 // be called on.
 //
 // Example:
 //
 //     // The following produces equivalent conditions:
-//     condition := expression.Contains(expression.Path("foo"), "bar")
-//     condition := expression.Path("foo").Contains("bar")
-func (p PathBuilder) Contains(s string) ConditionBuilder {
-	return Contains(p, s)
+//     condition := expression.Contains(expression.Name("foo"), "bar")
+//     condition := expression.Name("foo").Contains("bar")
+func (nameBuilder NameBuilder) Contains(substr string) ConditionBuilder {
+	return Contains(nameBuilder, substr)
 }
 
 // BuildExpression will take an ConditionBuilder as input and output an
@@ -821,9 +821,9 @@ func (p PathBuilder) Contains(s string) ConditionBuilder {
 //     expr, err := someCondition.BuildExpression()
 //
 //     deleteInput := dynamodb.DeleteItemInput{
-//       ConditionExpression:       aws.String(expr.Expression),
-// 	     ExpressionAttributeNames:  expr.Names,
-//       ExpressionAttributeValues: expr.Values,
+//       ConditionExpression:       expr.ConditionExpression(),
+// 	     ExpressionAttributeNames:  expr.Names(),
+//       ExpressionAttributeValues: expr.Values(),
 //       Key: map[string]*dynamodb.AttributeValue{
 //         "PartitionKey": &dynamodb.AttributeValue{
 //           S: aws.String("SomeKey"),
@@ -831,25 +831,19 @@ func (p PathBuilder) Contains(s string) ConditionBuilder {
 //       },
 //       TableName: aws.String("SomeTable"),
 //     }
-// func (cond ConditionBuilder) BuildExpression() (Expression, error) {
-// 	en, err := cond.BuildExpressionTree()
-// 	if err != nil {
-// 		return Expression{}, err
-// 	}
-// 	return en.BuildExpression(&AliasList{})
-// }
 func (conditionBuilder ConditionBuilder) BuildExpression() (Expression, error) {
 	return Expression{
-		expressionMap: map[string]ExpressionTreeBuilder{
+		expressionMap: map[string]TreeBuilder{
 			"condition": conditionBuilder,
 		},
 	}, nil
 }
 
-// buildCondition will build a tree structure of ExprNodes based on the tree
-// structure of the input ConditionBuilder's child Conditions/Operands.
-func (cond ConditionBuilder) BuildExpressionTree() (ExprNode, error) {
-	childNodes, err := cond.buildChildNodes()
+// BuildTree will build a tree structure of ExprNodes based on the
+// tree structure of the input ConditionBuilder's child ConditionBuilders and
+// OperandBuilders.
+func (conditionBuilder ConditionBuilder) BuildTree() (ExprNode, error) {
+	childNodes, err := conditionBuilder.buildChildNodes()
 	if err != nil {
 		return ExprNode{}, err
 	}
@@ -857,17 +851,17 @@ func (cond ConditionBuilder) BuildExpressionTree() (ExprNode, error) {
 		children: childNodes,
 	}
 
-	switch cond.mode {
+	switch conditionBuilder.mode {
 	case equalCond, notEqualCond, lessCond, lessEqualCond, greaterCond, greaterEqualCond:
-		return compareBuildCondition(cond.mode, ret)
+		return compareBuildCondition(conditionBuilder.mode, ret)
 	case andCond, orCond:
-		return compoundBuildCondition(cond, ret)
+		return compoundBuildCondition(conditionBuilder, ret)
 	case notCond:
 		return notBuildCondition(ret)
 	case betweenCond:
 		return betweenBuildCondition(ret)
 	case inCond:
-		return inBuildCondition(cond, ret)
+		return inBuildCondition(conditionBuilder, ret)
 	case attrExistsCond:
 		return attrExistsBuildCondition(ret)
 	case attrNotExistsCond:
@@ -881,7 +875,7 @@ func (cond ConditionBuilder) BuildExpressionTree() (ExprNode, error) {
 	case unsetCond:
 		return ExprNode{}, ErrUnsetCondition
 	default:
-		return ExprNode{}, fmt.Errorf("buildCondition error: unsupported mode: %v", cond.mode)
+		return ExprNode{}, fmt.Errorf("buildCondition error: unsupported mode: %v", conditionBuilder.mode)
 	}
 }
 
@@ -1019,16 +1013,16 @@ func containsBuildCondition(en ExprNode) (ExprNode, error) {
 
 // buildChildNodes will create the list of the child ExprNodes. This avoids
 // duplication of code amongst the various buildConditions.
-func (cond ConditionBuilder) buildChildNodes() ([]ExprNode, error) {
-	childNodes := make([]ExprNode, 0, len(cond.conditionList)+len(cond.operandList))
-	for _, condition := range cond.conditionList {
-		en, err := condition.BuildExpressionTree()
+func (conditionBuilder ConditionBuilder) buildChildNodes() ([]ExprNode, error) {
+	childNodes := make([]ExprNode, 0, len(conditionBuilder.conditionList)+len(conditionBuilder.operandList))
+	for _, condition := range conditionBuilder.conditionList {
+		en, err := condition.BuildTree()
 		if err != nil {
 			return []ExprNode{}, err
 		}
 		childNodes = append(childNodes, en)
 	}
-	for _, ope := range cond.operandList {
+	for _, ope := range conditionBuilder.operandList {
 		en, err := ope.BuildOperand()
 		if err != nil {
 			return []ExprNode{}, err

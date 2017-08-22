@@ -9,14 +9,15 @@ import (
 )
 
 var (
-	// ErrEmptyPath is an error that is returned if the path specified is or has
+	// ErrEmptyName is an error that is returned if the name specified is or has
 	// an empty string. (i.e. "", "foo..bar")
-	ErrEmptyPath = awserr.New("EmptyPath", "BuildOperand error: path is an empty string", nil)
+	ErrEmptyName = awserr.New("EmptyName", "BuildOperand error: name is an empty string", nil)
 
-	// ErrInvalidPathIndex is an error that is returned if the index used in the
-	// path either does not have a path associated with it or is an empty string.
+	// ErrInvalidNameIndex is an error that is returned if the index used in the
+	// name either does not have an item attribute associated with it or is an
+	// empty string.
 	// (i.e. "[2]", "foo[]")
-	ErrInvalidPathIndex = awserr.New("InvalidPathIndex", "BuildOperand error: invalid path index", nil)
+	ErrInvalidNameIndex = awserr.New("InvalidNameIndex", "BuildOperand error: invalid name index", nil)
 )
 
 // ValueBuilder represents a value operand and will implement the OperandBuilder
@@ -28,21 +29,21 @@ type ValueBuilder struct {
 	value interface{}
 }
 
-// PathBuilder represents a path to either a top level item attribute or a
-// nested attribute. It will implement the OperandBuilder interface. It will
+// NameBuilder represents a name of a top level item attribute or a nested
+// attribute. It will implement the OperandBuilder interface. It will
 // have various methods corresponding to the operations supported by DynamoDB
 // operations. (i.e. AND, BETWEEN, EQUALS)
-type PathBuilder struct {
-	path string
+type NameBuilder struct {
+	name string
 }
 
-// SizeBuilder represents the output of the function size (path), which
-// evaluates to the size of the item attribute defined by path. Size builder
-// will implement OperandBuilder interface. It will have various methods
-// corresponding to the operations supported by DynamoDB operations.
+// SizeBuilder represents the output of the function size ("someName"), which
+// evaluates to the size of the item attribute defined by "someName".
+// SizeBuilder will implement OperandBuilder interface. It will have various
+// methods corresponding to the operations supported by DynamoDB operations.
 // (i.e. AND, BETWEEN, EQUALS)
 type SizeBuilder struct {
-	pb PathBuilder
+	nameBuilder NameBuilder
 }
 
 // OperandBuilder represents the idea of Operand which are building blocks to
@@ -56,16 +57,16 @@ type OperandBuilder interface {
 	BuildOperand() (ExprNode, error)
 }
 
-// Path creates a PathBuilder, which implements the OperandBuilder interface.
-// Path will mainly be called in a pattern in order to create
+// Name creates a NameBuilder, which implements the OperandBuilder interface.
+// Name will mainly be called in a pattern in order to create
 // ConditionBuilders.
 //
 // Example:
 //
-//     condition := Path("foo").Equal(Path("bar"))
-func Path(p string) PathBuilder {
-	return PathBuilder{
-		path: p,
+//     condition := Name("foo").Equal(Name("bar"))
+func Name(name string) NameBuilder {
+	return NameBuilder{
+		name: name,
 	}
 }
 
@@ -75,10 +76,10 @@ func Path(p string) PathBuilder {
 //
 // Example:
 //
-//     condition := Path("foo").Equal(Value(10))
-func Value(v interface{}) ValueBuilder {
+//     condition := Name("foo").Equal(Value(10))
+func Value(value interface{}) ValueBuilder {
 	return ValueBuilder{
-		value: v,
+		value: value,
 	}
 }
 
@@ -87,10 +88,10 @@ func Value(v interface{}) ValueBuilder {
 //
 // Example:
 //
-//     condition := Path("foo").Size().Equal(Value(10))
-func (p PathBuilder) Size() SizeBuilder {
+//     condition := Name("foo").Size().Equal(Value(10))
+func (nameBuilder NameBuilder) Size() SizeBuilder {
 	return SizeBuilder{
-		pb: p,
+		nameBuilder: nameBuilder,
 	}
 }
 
@@ -99,22 +100,22 @@ func (p PathBuilder) Size() SizeBuilder {
 // method to call on, not for users to invoke. BuildOperand aliases all strings
 // to avoid stepping over DynamoDB's reserved words.
 // More information on reserved words at http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html
-func (p PathBuilder) BuildOperand() (ExprNode, error) {
-	if p.path == "" {
-		return ExprNode{}, ErrEmptyPath
+func (nameBuilder NameBuilder) BuildOperand() (ExprNode, error) {
+	if nameBuilder.name == "" {
+		return ExprNode{}, ErrEmptyName
 	}
 
 	ret := ExprNode{
 		names: []string{},
 	}
 
-	nameSplit := strings.Split(p.path, ".")
+	nameSplit := strings.Split(nameBuilder.name, ".")
 	fmtNames := make([]string, 0, len(nameSplit))
 
 	for _, word := range nameSplit {
 		var substr string
 		if word == "" {
-			return ExprNode{}, ErrEmptyPath
+			return ExprNode{}, ErrEmptyName
 		}
 
 		if word[len(word)-1] == ']' {
@@ -128,7 +129,7 @@ func (p PathBuilder) BuildOperand() (ExprNode, error) {
 		}
 
 		if word == "" {
-			return ExprNode{}, ErrInvalidPathIndex
+			return ExprNode{}, ErrInvalidNameIndex
 		}
 
 		// Create a string with special characters that can be substituted later: $p
@@ -142,8 +143,8 @@ func (p PathBuilder) BuildOperand() (ExprNode, error) {
 // BuildOperand will create the ExprNode which is a generic representation of
 // Operands and Conditions. BuildOperand() is mainly for the BuildExpression()
 // method to call on, not for users to invoke.
-func (v ValueBuilder) BuildOperand() (ExprNode, error) {
-	expr, err := dynamodbattribute.Marshal(v.value)
+func (valueBuilder ValueBuilder) BuildOperand() (ExprNode, error) {
+	expr, err := dynamodbattribute.Marshal(valueBuilder.value)
 	if err != nil {
 		return ExprNode{}, err
 	}
@@ -159,8 +160,8 @@ func (v ValueBuilder) BuildOperand() (ExprNode, error) {
 // BuildOperand will create the ExprNode which is a generic representation of
 // Operands and Conditions. BuildOperand() is mainly for the BuildExpression()
 // method to call on, not for users to invoke.
-func (s SizeBuilder) BuildOperand() (ExprNode, error) {
-	ret, err := s.pb.BuildOperand()
+func (sizeBuilder SizeBuilder) BuildOperand() (ExprNode, error) {
+	ret, err := sizeBuilder.nameBuilder.BuildOperand()
 	ret.fmtExpr = "size (" + ret.fmtExpr + ")"
 
 	return ret, err

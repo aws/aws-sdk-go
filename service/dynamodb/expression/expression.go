@@ -8,19 +8,19 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
-// Expression contains the map of aliases to names/values, representing the
-// ExpressionAttributeNames and ExpressionAttributeValues, that is needed in
-// order for the Expression string to be used in an operation input.
-// (i.e. UpdateItemInput, DeleteItemInput, etc)
+// Expression contains a list of structs fulfilling the ExpressionTreeBuilder
+// interface, representing the different types of Expressions that make up the
+// total Expression as a whole. Expression will be used to fill the members of
+// various DynamoDB input structs.
 //
 // Example:
 //
 //     // let expr be an instance of Expression{}
 //
 //     deleteInput := dynamodb.DeleteItemInput{
-//       ConditionExpression:       aws.String(expr.Expression),
-//       ExpressionAttributeNames:  expr.Names,
-//       ExpressionAttributeValues: expr.Values,
+//       ConditionExpression:       expr.ConditionExpression(),
+//       ExpressionAttributeNames:  expr.Names(),
+//       ExpressionAttributeValues: expr.Values(),
 //       Key: map[string]*dynamodb.AttributeValue{
 //         "PartitionKey": &dynamodb.AttributeValue{
 //           S: aws.String("SomeKey"),
@@ -28,64 +28,93 @@ import (
 //       },
 //       TableName: aws.String("SomeTable"),
 //     }
-// type Expression struct {
-// 	Names      map[string]*string
-// 	Values     map[string]*dynamodb.AttributeValue
-// 	Expression string
-// }
 type Expression struct {
-	expressionMap map[string]ExpressionTreeBuilder
+	expressionMap map[string]TreeBuilder
 }
 
-type ExpressionTreeBuilder interface {
-	BuildExpressionTree() (ExprNode, error)
+// TreeBuilder interface will be fulfilled by builder structs that
+// represent different types of Expressions.
+type TreeBuilder interface {
+	// BuildTree will create the tree structure of ExprNodes. The tree structure
+	// of ExprNodes will be traversed in order to build the string representing
+	// different types of Expressions as well as the maps that represent
+	// ExpressionAttributeNames and ExpressionAttributeValues.
+	BuildTree() (ExprNode, error)
 }
 
+// returnExpression will return *string corresponding to the type of Expression
+// string specified by the expressionType.
+func (expression Expression) returnExpression(expressionType string) *string {
+	_, formattedExpressions, err := expression.buildChildExpressions()
+	if err != nil {
+		return nil
+	}
+
+	return aws.String(formattedExpressions[expressionType])
+}
+
+// ConditionExpression will return the *string corresponding to the Condition
+// Expression of the argument Expression. This method is used to satisfy the
+// members of DynamoDB input structs.
+//
+// Example:
+//
+//     // let expr be an instance of Expression{}
+//
+//     deleteInput := dynamodb.DeleteItemInput{
+//       ConditionExpression:       expr.ConditionExpression(),
+//       ExpressionAttributeNames:  expr.Names(),
+//       ExpressionAttributeValues: expr.Values(),
+//       Key: map[string]*dynamodb.AttributeValue{
+//         "PartitionKey": &dynamodb.AttributeValue{
+//           S: aws.String("SomeKey"),
+//         },
+//       },
+//       TableName: aws.String("SomeTable"),
+//     }
 func (expression Expression) ConditionExpression() *string {
-	aliasList := &AliasList{}
-	formattedExpressions := map[string]string{}
-	keys := []string{}
-
-	for key := range expression.expressionMap {
-		keys = append(keys, key)
-	}
-
-	sort.Strings(keys)
-
-	for _, key := range keys {
-		exprNode, err := expression.expressionMap[key].BuildExpressionTree()
-		if err != nil {
-			return nil
-		}
-		formattedExpression, err := exprNode.BuildExpression(aliasList)
-		if err != nil {
-			return nil
-		}
-		formattedExpressions[key] = formattedExpression
-	}
-
-	return aws.String(formattedExpressions["condition"])
+	return expression.returnExpression("condition")
 }
 
+// ProjectionExpression will return the *string corresponding to the Projection
+// Expression of the argument Expression. This method is used to satisfy the
+// members of DynamoDB input structs.
+//
+// Example:
+//
+//     // let expr be an instance of Expression{}
+//
+//     queryInput := dynamodb.QueryInput{
+//       KeyConditionExpression:    expr.KeyConditionExpression(),
+//       ProjectionExpression:      expr.ProjectionExpression(),
+//       ExpressionAttributeNames:  expr.Names(),
+//       ExpressionAttributeValues: expr.Values(),
+//       TableName: aws.String("SomeTable"),
+//     }
+func (expression Expression) ProjectionExpression() *string {
+	return expression.returnExpression("projection")
+
+}
+
+// Names will return the map[string]*string corresponding to the
+// ExpressionAttributeNames of the argument Expression. This method is used to
+// satisfy the members of DynamoDB input structs.
+//
+// Example:
+//
+//     // let expr be an instance of Expression{}
+//
+//     queryInput := dynamodb.QueryInput{
+//       KeyConditionExpression:    expr.KeyConditionExpression(),
+//       ProjectionExpression:      expr.ProjectionExpression(),
+//       ExpressionAttributeNames:  expr.Names(),
+//       ExpressionAttributeValues: expr.Values(),
+//       TableName: aws.String("SomeTable"),
+//     }
 func (expression Expression) Names() map[string]*string {
-	aliasList := &AliasList{}
-	keys := []string{}
-
-	for key := range expression.expressionMap {
-		keys = append(keys, key)
-	}
-
-	sort.Strings(keys)
-
-	for _, key := range keys {
-		exprNode, err := expression.expressionMap[key].BuildExpressionTree()
-		if err != nil {
-			return nil
-		}
-		_, err = exprNode.BuildExpression(aliasList)
-		if err != nil {
-			return nil
-		}
+	aliasList, _, err := expression.buildChildExpressions()
+	if err != nil {
+		return nil
 	}
 
 	namesMap := map[string]*string{}
@@ -96,36 +125,31 @@ func (expression Expression) Names() map[string]*string {
 	return namesMap
 }
 
+// Values will return the map[string]*dynamodb.AttributeValue corresponding to
+// the ExpressionAttributeValues of the argument Expression. This method is used
+// to satisfy the members of DynamoDB input structs.
+//
+// Example:
+//
+//     // let expr be an instance of Expression{}
+//
+//     queryInput := dynamodb.QueryInput{
+//       KeyConditionExpression:    expr.KeyConditionExpression(),
+//       ProjectionExpression:      expr.ProjectionExpression(),
+//       ExpressionAttributeNames:  expr.Names(),
+//       ExpressionAttributeValues: expr.Values(),
+//       TableName: aws.String("SomeTable"),
+//     }
 func (expression Expression) Values() map[string]*dynamodb.AttributeValue {
-	aliasList := &AliasList{}
-	keys := []string{}
-
-	for key := range expression.expressionMap {
-		keys = append(keys, key)
-	}
-
-	sort.Strings(keys)
-
-	for _, key := range keys {
-		exprNode, err := expression.expressionMap[key].BuildExpressionTree()
-		if err != nil {
-			return nil
-		}
-		_, err = exprNode.BuildExpression(aliasList)
-		if err != nil {
-			return nil
-		}
+	aliasList, _, err := expression.buildChildExpressions()
+	if err != nil {
+		return nil
 	}
 
 	valuesMap := map[string]*dynamodb.AttributeValue{}
 	for i := 0; i < len(aliasList.valuesList); i++ {
 		valuesMap[fmt.Sprintf(":%v", i)] = &aliasList.valuesList[i]
 	}
-	// for ind, val := range aliasList.valuesList {
-	// 	// fmt.Printf("%#v\n", val)
-	// 	fmt.Printf("at ind %#v, got %#v\n", ind, &val)
-	// 	valuesMap[fmt.Sprintf(":%v", ind)] = &val
-	// }
 
 	return valuesMap
 }
@@ -159,9 +183,10 @@ type AliasList struct {
 	valuesList []dynamodb.AttributeValue
 }
 
-// buildExpression returns an Expression with aliasing for paths/values
-// specified by AliasList
-func (en ExprNode) BuildExpression(al *AliasList) (string, error) {
+// BuildExpressionString returns a string with aliasing for names/values
+// specified by AliasList. The string corresponds to the Expression that the
+// ExprNode tree represents.
+func (en ExprNode) BuildExpressionString(al *AliasList) (string, error) {
 	if al == nil {
 		return "", fmt.Errorf("buildExprNodes error: AliasList is nil")
 	}
@@ -252,7 +277,7 @@ func substituteChild(index int, en ExprNode, al *AliasList) (string, error) {
 	if index >= len(en.children) {
 		return "", fmt.Errorf("substituteChild error: ExprNode []children out of range")
 	}
-	return en.children[index].BuildExpression(al)
+	return en.children[index].BuildExpressionString(al)
 	// if err != nil {
 	// 	return "", err
 	// }
@@ -301,44 +326,33 @@ func (al *AliasList) aliasPath(nm string) (string, error) {
 	return fmt.Sprintf("#%d", len(al.namesList)-1), nil
 }
 
-// MergeMaps merges maps of multiple Expressions. This is used to
-// combine the maps created by the child nodes. It is also used to combine maps
-// in order to inject the resulting maps into operation inputs. MergeMaps
-// assumes that the inputs are all valid.
-//
-// Example:
-//
-//     filterExpr, err := expression.Path("foo").Equal(expression.Value(5))
-//     projExpr, err := expression.Projection(expression.Path("bar"), expression.Path("baz"))
-//
-//     scanInput := dynamodb.ScanInput{
-//       FilterExpression:          aws.String(filterExpr.Expression),
-//       ProjectionExpression:      aws.String(projExpr.Expression),
-//       ExpressionAttributeNames:  MergeMaps(filterExpr, projExpr).Names,
-//       ExpressionAttributeValues: MergeMaps(filterExpr, projExpr).Values,
-//       Key: map[string]*dynamodb.AttributeValue{
-//         "PartitionKey": &dynamodb.AttributeValue{
-//           S: aws.String("SomeKey"),
-//         },
-//       },
-//       TableName: aws.String("SomeTable"),
-//     }
-// func MergeMaps(list ...Expression) Expression {
-// 	ret := Expression{}
-// 	for _, expr := range list {
-// 		for alias, name := range expr.Names {
-// 			if ret.Names == nil {
-// 				ret.Names = map[string]*string{}
-// 			}
-// 			ret.Names[alias] = name
-// 		}
-//
-// 		for alias, value := range expr.Values {
-// 			if ret.Values == nil {
-// 				ret.Values = map[string]*dynamodb.AttributeValue{}
-// 			}
-// 			ret.Values[alias] = value
-// 		}
-// 	}
-// 	return ret
-// }
+// buildChildExpressions will compile the list of ExpressionTreeBuilders that
+// are the children of the argument Expression. The returned AliasList will
+// represent all the alias tokens used in the expression strings. The returned
+// map[string]string will map the type of expression (i.e. "condition",
+// "update") to the appropriate expression string.
+func (expression Expression) buildChildExpressions() (*AliasList, map[string]string, error) {
+	aliasList := &AliasList{}
+	formattedExpressions := map[string]string{}
+	keys := []string{}
+
+	for key := range expression.expressionMap {
+		keys = append(keys, key)
+	}
+
+	sort.Strings(keys)
+
+	for _, key := range keys {
+		exprNode, err := expression.expressionMap[key].BuildTree()
+		if err != nil {
+			return nil, nil, err
+		}
+		formattedExpression, err := exprNode.BuildExpressionString(aliasList)
+		if err != nil {
+			return nil, nil, err
+		}
+		formattedExpressions[key] = formattedExpression
+	}
+
+	return aliasList, formattedExpressions, nil
+}

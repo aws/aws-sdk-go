@@ -16,13 +16,13 @@ type opeErrorMode string
 
 const (
 	noOperandError opeErrorMode = ""
-	// emptyPath error will occur if an empty string is passed into PathBuilder or
-	// a nested path has an empty intermediary attribute name (i.e. foo.bar..baz)
-	emptyPath = "path is an empty string"
-	// invalidPathIndex error will occur if there is an invalid index between the
+	// emptyName error will occur if an empty string is passed into NameBuilder or
+	// a nested name has an empty intermediary attribute name (i.e. foo.bar..baz)
+	emptyName = "name is an empty string"
+	// invalidNameIndex error will occur if there is an invalid index between the
 	// square brackets or there is no attribute that a square bracket iterates
 	// over
-	invalidPathIndex = "invalid path index"
+	invalidNameIndex = "invalid name index"
 	// unsetExpr error will occur if an unset Expression is passed into
 	// mergeExpressionMaps
 	unsetExpr = "expression is unset"
@@ -36,16 +36,16 @@ func TestBuildOperand(t *testing.T) {
 		err      opeErrorMode
 	}{
 		{
-			name:  "basic path",
-			input: Path("foo"),
+			name:  "basic name",
+			input: Name("foo"),
 			expected: ExprNode{
 				names:   []string{"foo"},
 				fmtExpr: "$p",
 			},
 		},
 		{
-			name:  "duplicate path name",
-			input: Path("foo.foo"),
+			name:  "duplicate name name",
+			input: Name("foo.foo"),
 			expected: ExprNode{
 				names:   []string{"foo", "foo"},
 				fmtExpr: "$p.$p",
@@ -64,16 +64,16 @@ func TestBuildOperand(t *testing.T) {
 			},
 		},
 		{
-			name:  "nested path",
-			input: Path("foo.bar"),
+			name:  "nested name",
+			input: Name("foo.bar"),
 			expected: ExprNode{
 				names:   []string{"foo", "bar"},
 				fmtExpr: "$p.$p",
 			},
 		},
 		{
-			name:  "nested path with index",
-			input: Path("foo.bar[0].baz"),
+			name:  "nested name with index",
+			input: Name("foo.bar[0].baz"),
 			expected: ExprNode{
 				names:   []string{"foo", "bar", "baz"},
 				fmtExpr: "$p.$p[0].$p",
@@ -81,29 +81,29 @@ func TestBuildOperand(t *testing.T) {
 		},
 		{
 			name:  "basic size",
-			input: Path("foo").Size(),
+			input: Name("foo").Size(),
 			expected: ExprNode{
 				names:   []string{"foo"},
 				fmtExpr: "size ($p)",
 			},
 		},
 		{
-			name:     "empty path error",
-			input:    Path(""),
+			name:     "empty name error",
+			input:    Name(""),
 			expected: ExprNode{},
-			err:      emptyPath,
+			err:      emptyName,
 		},
 		{
-			name:     "invalid path",
-			input:    Path("foo..bar"),
+			name:     "invalid name",
+			input:    Name("foo..bar"),
 			expected: ExprNode{},
-			err:      emptyPath,
+			err:      emptyName,
 		},
 		{
 			name:     "invalid index",
-			input:    Path("[foo]"),
+			input:    Name("[foo]"),
 			expected: ExprNode{},
-			err:      invalidPathIndex,
+			err:      invalidNameIndex,
 		},
 	}
 
