@@ -343,6 +343,7 @@
       "output":{"shape":"DescribeAssociationResult"},
       "errors":[
         {"shape":"AssociationDoesNotExist"},
+        {"shape":"InvalidAssociationVersion"},
         {"shape":"InternalServerError"},
         {"shape":"InvalidDocument"},
         {"shape":"InvalidInstanceId"}
@@ -879,6 +880,20 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "ListAssociationVersions":{
+      "name":"ListAssociationVersions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListAssociationVersionsRequest"},
+      "output":{"shape":"ListAssociationVersionsResult"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"InvalidNextToken"},
+        {"shape":"AssociationDoesNotExist"}
+      ]
+    },
     "ListAssociations":{
       "name":"ListAssociations",
       "http":{
@@ -1274,7 +1289,9 @@
         {"shape":"InvalidUpdate"},
         {"shape":"TooManyUpdates"},
         {"shape":"InvalidDocument"},
-        {"shape":"InvalidTarget"}
+        {"shape":"InvalidTarget"},
+        {"shape":"InvalidAssociationVersion"},
+        {"shape":"AssociationVersionLimitExceeded"}
       ]
     },
     "UpdateAssociationStatus":{
@@ -1490,11 +1507,13 @@
         "Name":{"shape":"DocumentName"},
         "InstanceId":{"shape":"InstanceId"},
         "AssociationId":{"shape":"AssociationId"},
+        "AssociationVersion":{"shape":"AssociationVersion"},
         "DocumentVersion":{"shape":"DocumentVersion"},
         "Targets":{"shape":"Targets"},
         "LastExecutionDate":{"shape":"DateTime"},
         "Overview":{"shape":"AssociationOverview"},
-        "ScheduleExpression":{"shape":"ScheduleExpression"}
+        "ScheduleExpression":{"shape":"ScheduleExpression"},
+        "AssociationName":{"shape":"AssociationName"}
       }
     },
     "AssociationAlreadyExists":{
@@ -1508,6 +1527,7 @@
       "members":{
         "Name":{"shape":"DocumentName"},
         "InstanceId":{"shape":"InstanceId"},
+        "AssociationVersion":{"shape":"AssociationVersion"},
         "Date":{"shape":"DateTime"},
         "LastUpdateAssociationDate":{"shape":"DateTime"},
         "Status":{"shape":"AssociationStatus"},
@@ -1519,7 +1539,8 @@
         "ScheduleExpression":{"shape":"ScheduleExpression"},
         "OutputLocation":{"shape":"InstanceAssociationOutputLocation"},
         "LastExecutionDate":{"shape":"DateTime"},
-        "LastSuccessfulExecutionDate":{"shape":"DateTime"}
+        "LastSuccessfulExecutionDate":{"shape":"DateTime"},
+        "AssociationName":{"shape":"AssociationName"}
       }
     },
     "AssociationDescriptionList":{
@@ -1555,7 +1576,8 @@
         "AssociationId",
         "AssociationStatusName",
         "LastExecutedBefore",
-        "LastExecutedAfter"
+        "LastExecutedAfter",
+        "AssociationName"
       ]
     },
     "AssociationFilterList":{
@@ -1586,6 +1608,10 @@
         "shape":"Association",
         "locationName":"Association"
       }
+    },
+    "AssociationName":{
+      "type":"string",
+      "pattern":"^[a-zA-Z0-9_\\-.]{3,128}$"
     },
     "AssociationOverview":{
       "type":"structure",
@@ -1621,6 +1647,37 @@
         "Success",
         "Failed"
       ]
+    },
+    "AssociationVersion":{
+      "type":"string",
+      "pattern":"([$]LATEST)|([1-9][0-9]*)"
+    },
+    "AssociationVersionInfo":{
+      "type":"structure",
+      "members":{
+        "AssociationId":{"shape":"AssociationId"},
+        "AssociationVersion":{"shape":"AssociationVersion"},
+        "CreatedDate":{"shape":"DateTime"},
+        "Name":{"shape":"DocumentName"},
+        "DocumentVersion":{"shape":"DocumentVersion"},
+        "Parameters":{"shape":"Parameters"},
+        "Targets":{"shape":"Targets"},
+        "ScheduleExpression":{"shape":"ScheduleExpression"},
+        "OutputLocation":{"shape":"InstanceAssociationOutputLocation"},
+        "AssociationName":{"shape":"AssociationName"}
+      }
+    },
+    "AssociationVersionLimitExceeded":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "AssociationVersionList":{
+      "type":"list",
+      "member":{"shape":"AssociationVersionInfo"},
+      "min":1
     },
     "AttributeName":{
       "type":"string",
@@ -2213,7 +2270,8 @@
         "DocumentVersion":{"shape":"DocumentVersion"},
         "Targets":{"shape":"Targets"},
         "ScheduleExpression":{"shape":"ScheduleExpression"},
-        "OutputLocation":{"shape":"InstanceAssociationOutputLocation"}
+        "OutputLocation":{"shape":"InstanceAssociationOutputLocation"},
+        "AssociationName":{"shape":"AssociationName"}
       }
     },
     "CreateAssociationBatchResult":{
@@ -2233,7 +2291,8 @@
         "Parameters":{"shape":"Parameters"},
         "Targets":{"shape":"Targets"},
         "ScheduleExpression":{"shape":"ScheduleExpression"},
-        "OutputLocation":{"shape":"InstanceAssociationOutputLocation"}
+        "OutputLocation":{"shape":"InstanceAssociationOutputLocation"},
+        "AssociationName":{"shape":"AssociationName"}
       }
     },
     "CreateAssociationResult":{
@@ -2557,7 +2616,8 @@
       "members":{
         "Name":{"shape":"DocumentName"},
         "InstanceId":{"shape":"InstanceId"},
-        "AssociationId":{"shape":"AssociationId"}
+        "AssociationId":{"shape":"AssociationId"},
+        "AssociationVersion":{"shape":"AssociationVersion"}
       }
     },
     "DescribeAssociationResult":{
@@ -3686,7 +3746,8 @@
       "members":{
         "AssociationId":{"shape":"AssociationId"},
         "InstanceId":{"shape":"InstanceId"},
-        "Content":{"shape":"DocumentContent"}
+        "Content":{"shape":"DocumentContent"},
+        "AssociationVersion":{"shape":"AssociationVersion"}
       }
     },
     "InstanceAssociationExecutionSummary":{
@@ -3721,13 +3782,15 @@
         "AssociationId":{"shape":"AssociationId"},
         "Name":{"shape":"DocumentName"},
         "DocumentVersion":{"shape":"DocumentVersion"},
+        "AssociationVersion":{"shape":"AssociationVersion"},
         "InstanceId":{"shape":"InstanceId"},
         "ExecutionDate":{"shape":"DateTime"},
         "Status":{"shape":"StatusName"},
         "DetailedStatus":{"shape":"StatusName"},
         "ExecutionSummary":{"shape":"InstanceAssociationExecutionSummary"},
         "ErrorCode":{"shape":"AgentErrorCode"},
-        "OutputUrl":{"shape":"InstanceAssociationOutputUrl"}
+        "OutputUrl":{"shape":"InstanceAssociationOutputUrl"},
+        "AssociationName":{"shape":"AssociationName"}
       }
     },
     "InstanceAssociationStatusInfos":{
@@ -3959,6 +4022,13 @@
       "type":"structure",
       "members":{
         "message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "InvalidAssociationVersion":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
       },
       "exception":true
     },
@@ -4415,6 +4485,25 @@
     },
     "LastResourceDataSyncTime":{"type":"timestamp"},
     "LastSuccessfulResourceDataSyncTime":{"type":"timestamp"},
+    "ListAssociationVersionsRequest":{
+      "type":"structure",
+      "required":["AssociationId"],
+      "members":{
+        "AssociationId":{"shape":"AssociationId"},
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true
+        },
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAssociationVersionsResult":{
+      "type":"structure",
+      "members":{
+        "AssociationVersions":{"shape":"AssociationVersionList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListAssociationsRequest":{
       "type":"structure",
       "members":{
@@ -6264,7 +6353,9 @@
         "ScheduleExpression":{"shape":"ScheduleExpression"},
         "OutputLocation":{"shape":"InstanceAssociationOutputLocation"},
         "Name":{"shape":"DocumentName"},
-        "Targets":{"shape":"Targets"}
+        "Targets":{"shape":"Targets"},
+        "AssociationName":{"shape":"AssociationName"},
+        "AssociationVersion":{"shape":"AssociationVersion"}
       }
     },
     "UpdateAssociationResult":{

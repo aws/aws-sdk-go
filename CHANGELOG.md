@@ -1,3 +1,10 @@
+Release v1.10.30 (2017-08-22)
+===
+
+### Service Client Updates
+* `service/ssm`: Updates service API and documentation
+  * Changes to associations in Systems Manager State Manager can now be recorded. Previously, when you edited associations, you could not go back and review older association settings. Now, associations are versioned, and can be named using human-readable strings, allowing you to see a trail of association changes. You can also perform rate-based scheduling, which allows you to schedule associations more granularly.
+
 Release v1.10.29 (2017-08-21)
 ===
 

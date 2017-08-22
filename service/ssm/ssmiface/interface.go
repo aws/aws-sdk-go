@@ -323,6 +323,10 @@ type SSMAPI interface {
 	GetPatchBaselineForPatchGroupWithContext(aws.Context, *ssm.GetPatchBaselineForPatchGroupInput, ...request.Option) (*ssm.GetPatchBaselineForPatchGroupOutput, error)
 	GetPatchBaselineForPatchGroupRequest(*ssm.GetPatchBaselineForPatchGroupInput) (*request.Request, *ssm.GetPatchBaselineForPatchGroupOutput)
 
+	ListAssociationVersions(*ssm.ListAssociationVersionsInput) (*ssm.ListAssociationVersionsOutput, error)
+	ListAssociationVersionsWithContext(aws.Context, *ssm.ListAssociationVersionsInput, ...request.Option) (*ssm.ListAssociationVersionsOutput, error)
+	ListAssociationVersionsRequest(*ssm.ListAssociationVersionsInput) (*request.Request, *ssm.ListAssociationVersionsOutput)
+
 	ListAssociations(*ssm.ListAssociationsInput) (*ssm.ListAssociationsOutput, error)
 	ListAssociationsWithContext(aws.Context, *ssm.ListAssociationsInput, ...request.Option) (*ssm.ListAssociationsOutput, error)
 	ListAssociationsRequest(*ssm.ListAssociationsInput) (*request.Request, *ssm.ListAssociationsOutput)
