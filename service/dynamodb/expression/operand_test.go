@@ -109,7 +109,7 @@ func TestBuildOperand(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			en, err := c.input.Build()
+			en, err := c.input.BuildNode()
 
 			if c.err != noOperandError {
 				if err == nil {

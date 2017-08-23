@@ -6,8 +6,6 @@ import (
 	"reflect"
 	"strings"
 	"testing"
-
-	"github.com/aws/aws-sdk-go/aws"
 )
 
 // projErrorMode will help with error cases and checking error types
@@ -23,45 +21,70 @@ const (
 	emptyNameList = "name list is empty"
 )
 
-func TestProjection(t *testing.T) {
+func TestProjectionBuilder(t *testing.T) {
 	cases := []struct {
-		name               string
-		input              ProjectionBuilder
-		expectedNames      map[string]*string
-		expectedExpression string
-		err                projErrorMode
+		name         string
+		input        ProjectionBuilder
+		expectedNode ExprNode
+		err          projErrorMode
 	}{
 		{
-			name:  "basic projection",
+			name:  "names list function call",
 			input: NamesList(Name("foo"), Name("bar")),
-
-			expectedNames: map[string]*string{
-				"#0": aws.String("foo"),
-				"#1": aws.String("bar"),
+			expectedNode: ExprNode{
+				children: []ExprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
+					},
+					{
+						names:   []string{"bar"},
+						fmtExpr: "$n",
+					},
+				},
+				fmtExpr: "$c, $c",
 			},
-			expectedExpression: "#0, #1",
 		},
 		{
-			name:  "basic projection",
+			name:  "names list method call",
 			input: Name("foo").NamesList(Name("bar")),
-
-			expectedNames: map[string]*string{
-				"#0": aws.String("foo"),
-				"#1": aws.String("bar"),
+			expectedNode: ExprNode{
+				children: []ExprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
+					},
+					{
+						names:   []string{"bar"},
+						fmtExpr: "$n",
+					},
+				},
+				fmtExpr: "$c, $c",
 			},
-			expectedExpression: "#0, #1",
 		},
 		{
 			name:  "add name",
 			input: Name("foo").NamesList(Name("bar")).AddNames(Name("baz"), Name("qux")),
-
-			expectedNames: map[string]*string{
-				"#0": aws.String("foo"),
-				"#1": aws.String("bar"),
-				"#2": aws.String("baz"),
-				"#3": aws.String("qux"),
+			expectedNode: ExprNode{
+				children: []ExprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
+					},
+					{
+						names:   []string{"bar"},
+						fmtExpr: "$n",
+					},
+					{
+						names:   []string{"baz"},
+						fmtExpr: "$n",
+					}, {
+						names:   []string{"qux"},
+						fmtExpr: "$n",
+					},
+				},
+				fmtExpr: "$c, $c, $c, $c",
 			},
-			expectedExpression: "#0, #1, #2, #3",
 		},
 		{
 			name:  "invalid operand",
@@ -71,7 +94,7 @@ func TestProjection(t *testing.T) {
 	}
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			actual, err := c.input.Build()
+			actual, err := c.input.BuildTree()
 			if c.err != noProjError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -84,11 +107,7 @@ func TestProjection(t *testing.T) {
 				if err != nil {
 					t.Errorf("expect no error, got unexpected Error %q", err)
 				}
-
-				if e, a := aws.String(c.expectedExpression), actual.Projection(); !reflect.DeepEqual(a, e) {
-					t.Errorf("expect %v, got %v", e, a)
-				}
-				if e, a := c.expectedNames, actual.Names(); !reflect.DeepEqual(a, e) {
+				if e, a := c.expectedNode, actual; !reflect.DeepEqual(a, e) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 			}
@@ -134,7 +153,6 @@ func TestBuildProjection(t *testing.T) {
 				if err != nil {
 					t.Errorf("expect no error, got unexpected Error %q", err)
 				}
-
 				if e, a := c.expected, actual.fmtExpr; !reflect.DeepEqual(a, e) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
@@ -176,7 +194,7 @@ func TestBuildChildNodes(t *testing.T) {
 	}
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			actual, err := c.input.buildChildNodes()
+			actual, err := c.input.BuildTree()
 			if c.err != noProjError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -189,8 +207,7 @@ func TestBuildChildNodes(t *testing.T) {
 				if err != nil {
 					t.Errorf("expect no error, got unexpected Error %q", err)
 				}
-
-				if e, a := c.expected, actual; !reflect.DeepEqual(a, e) {
+				if e, a := c.expected, actual.children; !reflect.DeepEqual(a, e) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 			}

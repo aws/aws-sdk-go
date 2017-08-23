@@ -6,14 +6,13 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
-// ErrUnsetProjection is an error that is returned if Build() is called on an
+// ErrUnsetProjection is an error that is returned if BuildTree() is called on an
 // empty ProjectionBuilder.
 var ErrUnsetProjection = awserr.New("UnsetProjection", "buildProjection error: the argument ProjectionBuilder's name list is empty", nil)
 
 // ProjectionBuilder will represent Projection Expressions in DynamoDB. It is
-// composed of a list of NameBuilders. Users will be able to call the Build()
-// method on a ProjectionBuilder to create an Builder which can then be used for
-// operation inputs into DynamoDB.
+// composed of a list of NameBuilders. ProjectionBuilders will be a building
+// block of FactoryBuilders.
 // More Information at: http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ProjectionExpressions.html
 type ProjectionBuilder struct {
 	names []NameBuilder
@@ -22,15 +21,15 @@ type ProjectionBuilder struct {
 // NamesList will create a ProjectionBuilder with at least one NameBuilder as a
 // child. The list of NameBuilders represent the item attribute that will be
 // returned after the DynamoDB operation. The resulting ProjectionBuilder can be
-// used to build other ProjectionBuilder or to create an Builder to be used in
-// an operation input. This will be the function call.
+// used to build other ProjectionBuilder or to create an FactoryBuilder to be
+// used in an operation input. This will be the function call.
 //
 // Example:
 //
 //     projection := expression.NamesList(expression.Name("foo"), expression.Name("bar"))
 //
 //     anotherProjection := expression.AddNames(projection, expression.Name("baz")) // Used in another projection
-//     builder, err := projection.Build()                                           // Used to make an Builder
+//     factoryBuilder := Projection(newProjection)                                  // Used to make an FactoryBuilder
 func NamesList(nameBuilder NameBuilder, namesList ...NameBuilder) ProjectionBuilder {
 	namesList = append([]NameBuilder{nameBuilder}, namesList...)
 	return ProjectionBuilder{
@@ -52,7 +51,7 @@ func (nameBuilder NameBuilder) NamesList(namesList ...NameBuilder) ProjectionBui
 // AddNames will create a new ProjectionBuilder with a list of NameBuilders that
 // is a combination of the list from the argument ProjectionBuilder and the
 // argument NameBuilder list. The resulting ProjectionBuilder can be used to
-// build other ProjectionBuilder or to create an Builder to be used in an
+// build other ProjectionBuilder or to create an FactoryBuilder to be used in an
 // operation input. This will be the function call.
 //
 // Example:
@@ -60,7 +59,7 @@ func (nameBuilder NameBuilder) NamesList(namesList ...NameBuilder) ProjectionBui
 //     newProjection := expression.AddNames(oldProjection, expression.Name("foo"))
 //
 //     anotherProjection := expression.AddNames(newProjection, expression.Name("baz")) // Used in another projection
-//     builder, err := newProjection.Build()                                           // Used to make an Builder
+//     factoryBuilder := Projection(newProjection)                                     // Used to make an FactoryBuilder
 func AddNames(projectionBuilder ProjectionBuilder, namesList ...NameBuilder) ProjectionBuilder {
 	projectionBuilder.names = append(projectionBuilder.names, namesList...)
 	return projectionBuilder
@@ -77,51 +76,12 @@ func (projectionBuilder ProjectionBuilder) AddNames(namesList ...NameBuilder) Pr
 	return AddNames(projectionBuilder, namesList...)
 }
 
-// Build will take an ProjectionBuilder as input and output an Builder which can
-// be used in DynamoDB operational inputs (i.e. GetItemInput, QueryInput, etc)
-// In the future, the Builder struct can be used in some injection method into
-// the input structs.
-//
-// Example:
-//
-//     expressionBuilder, err := someProjection.Build()
-//
-//     getItemInput := dynamodb.GetItemInput{
-//       ProjectionExpression:      expressionBuilder.Projection(),
-// 	     ExpressionAttributeNames:  expressionBuilder.Names(),
-//       ExpressionAttributeValues: expressionBuilder.Values(),
-//       Key: map[string]*dynamodb.AttributeValue{
-//         "PartitionKey": &dynamodb.AttributeValue{
-//           S: aws.String("SomeKey"),
-//         },
-//       },
-//       TableName: aws.String("SomeTable"),
-//     }
-func (projectionBuilder ProjectionBuilder) Build() (Builder, error) {
-	return Builder{
-		expressionMap: map[string]TreeBuilder{
-			"projection": projectionBuilder,
-		},
-	}, projectionBuilder.checkFormat()
-}
-
-// checkFormat will check for unset ProjectionBuilders and return an error if
-// one is found.
-func (projectionBuilder ProjectionBuilder) checkFormat() error {
-	if len(projectionBuilder.names) == 0 {
-		return ErrUnsetProjection
-	}
-	for _, operand := range projectionBuilder.names {
-		_, err := operand.Build()
-		if err != nil {
-			return err
-		}
-	}
-	return nil
-}
-
 // BuildTree will build a tree structure of ExprNodes based on the tree
-// structure of the input ProjectionBuilder's child NameBuilders.
+// structure of the input ProjectionBuilder's child NameBuilders. BuildTree()
+// satisfies the TreeBuilder interface so ProjectionBuilder can be a part of
+// FactoryBuilder and Factory struct. The BuildTree() method will only be called
+// recursively by the functions BuildFactory and buildChildTrees. This function
+// should not be called by the users.
 func (projectionBuilder ProjectionBuilder) BuildTree() (ExprNode, error) {
 	if len(projectionBuilder.names) == 0 {
 		return ExprNode{}, ErrUnsetProjection
@@ -144,7 +104,7 @@ func (projectionBuilder ProjectionBuilder) BuildTree() (ExprNode, error) {
 func (projectionBuilder ProjectionBuilder) buildChildNodes() ([]ExprNode, error) {
 	childNodes := make([]ExprNode, 0, len(projectionBuilder.names))
 	for _, name := range projectionBuilder.names {
-		en, err := name.Build()
+		en, err := name.BuildNode()
 		if err != nil {
 			return []ExprNode{}, err
 		}

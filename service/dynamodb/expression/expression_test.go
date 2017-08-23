@@ -24,9 +24,542 @@ const (
 	// nilAliasList error will occur if the aliasList passed in has not been
 	// initialized
 	nilAliasList = "AliasList is nil"
+	// invalidFactoryBuilderOperand error will occur if an invalid operand is used
+	// as input for BuildFactory()
+	invalidFactoryBuildOperand = "BuildOperand error"
+	// emptyFactoryBuilder error will occur if BuildFactory() is called on an
+	// empty FactoryBuilder
+	emptyFactoryBuilder = "EmptyFactoryBuilder"
 )
 
-func TestBuildExpression(t *testing.T) {
+func TestBuildFactory(t *testing.T) {
+	cases := []struct {
+		name     string
+		input    FactoryBuilder
+		expected Factory
+		err      exprErrorMode
+	}{
+		{
+			name:  "condition",
+			input: Condition(Name("foo").Equal(Value(5))),
+			expected: Factory{
+				expressionMap: map[expressionType]TreeBuilder{
+					condition: ConditionBuilder{
+						operandList: []OperandBuilder{
+							NameBuilder{
+								name: "foo",
+							},
+							ValueBuilder{
+								value: 5,
+							},
+						},
+						mode: equalCond,
+					},
+				},
+			},
+		},
+		{
+			name:  "projection",
+			input: Projection(NamesList(Name("foo"), Name("bar"), Name("baz"))),
+			expected: Factory{
+				expressionMap: map[expressionType]TreeBuilder{
+					projection: ProjectionBuilder{
+						names: []NameBuilder{
+							{
+								name: "foo",
+							},
+							{
+								name: "bar",
+							},
+							{
+								name: "baz",
+							},
+						},
+					},
+				},
+			},
+		},
+		// {
+		// 	name:  "keyCondition",
+		// 	input: KeyCondition(Name("foo").Equal(Value(5))),
+		// 	expected: Factory{
+		// 		expressionMap: map[expressionType]TreeBuilder{
+		// 			keyCondition: KeyConditionBuilder{
+		// 				operandList: []OperandBuilder{
+		// 					NameBuilder{
+		// 						name: "foo",
+		// 					},
+		// 					ValueBuilder{
+		// 						value: 5,
+		// 					},
+		// 				},
+		// 				mode: equalCond,
+		// 			},
+		// 		},
+		// 	},
+		// },
+		{
+			name:  "filter",
+			input: Filter(Name("foo").Equal(Value(5))),
+			expected: Factory{
+				expressionMap: map[expressionType]TreeBuilder{
+					filter: ConditionBuilder{
+						operandList: []OperandBuilder{
+							NameBuilder{
+								name: "foo",
+							},
+							ValueBuilder{
+								value: 5,
+							},
+						},
+						mode: equalCond,
+					},
+				},
+			},
+		},
+		// {
+		// 	name:  "update",
+		// 	input: Update(Name("foo").Equal(Value(5))),
+		// 	expected: Factory{
+		// 		expressionMap: map[expressionType]TreeBuilder{
+		// 			update: UpdateBuilder{
+		// 				operandList: []OperandBuilder{
+		// 					NameBuilder{
+		// 						name: "foo",
+		// 					},
+		// 					ValueBuilder{
+		// 						value: 5,
+		// 					},
+		// 				},
+		// 				mode: equalCond,
+		// 			},
+		// 		},
+		// 	},
+		// },
+		{
+			name:  "compound",
+			input: Condition(Name("foo").Equal(Value(5))).Filter(Name("bar").LessThan(Value(6))).Projection(NamesList(Name("foo"), Name("bar"), Name("baz"))),
+			expected: Factory{
+				expressionMap: map[expressionType]TreeBuilder{
+					condition: ConditionBuilder{
+						operandList: []OperandBuilder{
+							NameBuilder{
+								name: "foo",
+							},
+							ValueBuilder{
+								value: 5,
+							},
+						},
+						mode: equalCond,
+					},
+					filter: ConditionBuilder{
+						operandList: []OperandBuilder{
+							NameBuilder{
+								name: "bar",
+							},
+							ValueBuilder{
+								value: 6,
+							},
+						},
+						mode: lessThanCond,
+					},
+					projection: ProjectionBuilder{
+						names: []NameBuilder{
+							{
+								name: "foo",
+							},
+							{
+								name: "bar",
+							},
+							{
+								name: "baz",
+							},
+						},
+					},
+				},
+			},
+		},
+		{
+			name:  "invalid FactoryBuilder",
+			input: Condition(Name("").Equal(Value(5))),
+			err:   invalidFactoryBuildOperand,
+		},
+		{
+			name:  "empty FactoryBuilder",
+			input: FactoryBuilder{},
+			err:   emptyFactoryBuilder,
+		},
+	}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			actual, err := c.input.BuildFactory()
+			if c.err != noExpressionError {
+				if err == nil {
+					t.Errorf("expect error %q, got no error", c.err)
+				} else {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
+						t.Errorf("expect %q error message to be in %q", e, a)
+					}
+				}
+			} else {
+				if err != nil {
+					t.Errorf("expect no error, got unexpected Error %q", err)
+				}
+
+				if e, a := c.expected, actual; !reflect.DeepEqual(a, e) {
+					t.Errorf("expect %v, got %v", e, a)
+				}
+			}
+		})
+	}
+}
+
+func TestCondition(t *testing.T) {
+	cases := []struct {
+		name     string
+		input    Factory
+		expected *string
+	}{
+		{
+			name: "condition",
+			input: Factory{
+				expressionMap: map[expressionType]TreeBuilder{
+					condition: Name("foo").Equal(Value(5)),
+				},
+			},
+			expected: aws.String("#0 = :0"),
+		},
+		{
+			name:     "nil",
+			input:    Factory{},
+			expected: nil,
+		},
+	}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			actual := c.input.Condition()
+			if e, a := c.expected, actual; !reflect.DeepEqual(a, e) {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
+	}
+}
+
+func TestFilter(t *testing.T) {
+	cases := []struct {
+		name     string
+		input    Factory
+		expected *string
+	}{
+		{
+			name: "filter",
+			input: Factory{
+				expressionMap: map[expressionType]TreeBuilder{
+					filter: Name("foo").Equal(Value(5)),
+				},
+			},
+			expected: aws.String("#0 = :0"),
+		},
+		{
+			name:     "nil",
+			input:    Factory{},
+			expected: nil,
+		},
+	}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			actual := c.input.Filter()
+			if e, a := c.expected, actual; !reflect.DeepEqual(a, e) {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
+	}
+}
+
+func TestProjection(t *testing.T) {
+	cases := []struct {
+		name     string
+		input    Factory
+		expected *string
+	}{
+		{
+			name: "projection",
+			input: Factory{
+				expressionMap: map[expressionType]TreeBuilder{
+					projection: NamesList(Name("foo"), Name("bar"), Name("baz")),
+				},
+			},
+			expected: aws.String("#0, #1, #2"),
+		},
+		{
+			name:     "nil",
+			input:    Factory{},
+			expected: nil,
+		},
+	}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			actual := c.input.Projection()
+			if e, a := c.expected, actual; !reflect.DeepEqual(a, e) {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
+	}
+}
+
+func TestNames(t *testing.T) {
+	cases := []struct {
+		name     string
+		input    Factory
+		expected map[string]*string
+	}{
+		{
+			name: "projection",
+			input: Factory{
+				expressionMap: map[expressionType]TreeBuilder{
+					projection: NamesList(Name("foo"), Name("bar"), Name("baz")),
+				},
+			},
+			expected: map[string]*string{
+				"#0": aws.String("foo"),
+				"#1": aws.String("bar"),
+				"#2": aws.String("baz"),
+			},
+		},
+		{
+			name: "aggregate",
+			input: Factory{
+				expressionMap: map[expressionType]TreeBuilder{
+					condition: ConditionBuilder{
+						operandList: []OperandBuilder{
+							NameBuilder{
+								name: "foo",
+							},
+							ValueBuilder{
+								value: 5,
+							},
+						},
+						mode: equalCond,
+					},
+					filter: ConditionBuilder{
+						operandList: []OperandBuilder{
+							NameBuilder{
+								name: "bar",
+							},
+							ValueBuilder{
+								value: 6,
+							},
+						},
+						mode: lessThanCond,
+					},
+					projection: ProjectionBuilder{
+						names: []NameBuilder{
+							{
+								name: "foo",
+							},
+							{
+								name: "bar",
+							},
+							{
+								name: "baz",
+							},
+						},
+					},
+				},
+			},
+			expected: map[string]*string{
+				"#0": aws.String("foo"),
+				"#1": aws.String("bar"),
+				"#2": aws.String("baz"),
+			},
+		},
+		{
+			name:     "empty",
+			input:    Factory{},
+			expected: map[string]*string{},
+		},
+	}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			actual := c.input.Names()
+			if e, a := c.expected, actual; !reflect.DeepEqual(a, e) {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
+	}
+}
+
+func TestValues(t *testing.T) {
+	cases := []struct {
+		name     string
+		input    Factory
+		expected map[string]*dynamodb.AttributeValue
+	}{
+		{
+			name: "condition",
+			input: Factory{
+				expressionMap: map[expressionType]TreeBuilder{
+					condition: Name("foo").Equal(Value(5)),
+				},
+			},
+			expected: map[string]*dynamodb.AttributeValue{
+				":0": {
+					N: aws.String("5"),
+				},
+			},
+		},
+		{
+			name: "aggregate",
+			input: Factory{
+				expressionMap: map[expressionType]TreeBuilder{
+					condition: ConditionBuilder{
+						operandList: []OperandBuilder{
+							NameBuilder{
+								name: "foo",
+							},
+							ValueBuilder{
+								value: 5,
+							},
+						},
+						mode: equalCond,
+					},
+					filter: ConditionBuilder{
+						operandList: []OperandBuilder{
+							NameBuilder{
+								name: "bar",
+							},
+							ValueBuilder{
+								value: 6,
+							},
+						},
+						mode: lessThanCond,
+					},
+					projection: ProjectionBuilder{
+						names: []NameBuilder{
+							{
+								name: "foo",
+							},
+							{
+								name: "bar",
+							},
+							{
+								name: "baz",
+							},
+						},
+					},
+				},
+			},
+			expected: map[string]*dynamodb.AttributeValue{
+				":0": {
+					N: aws.String("5"),
+				},
+				":1": {
+					N: aws.String("6"),
+				},
+			},
+		},
+		{
+			name:     "empty",
+			input:    Factory{},
+			expected: map[string]*dynamodb.AttributeValue{},
+		},
+	}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			actual := c.input.Values()
+			if e, a := c.expected, actual; !reflect.DeepEqual(a, e) {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
+	}
+}
+
+func TestBuildChildTrees(t *testing.T) {
+	cases := []struct {
+		name              string
+		input             Factory
+		expectedAliasList *AliasList
+		expectedStringMap map[expressionType]string
+	}{
+		{
+			name: "aggregate",
+			input: Factory{
+				expressionMap: map[expressionType]TreeBuilder{
+					condition: ConditionBuilder{
+						operandList: []OperandBuilder{
+							NameBuilder{
+								name: "foo",
+							},
+							ValueBuilder{
+								value: 5,
+							},
+						},
+						mode: equalCond,
+					},
+					filter: ConditionBuilder{
+						operandList: []OperandBuilder{
+							NameBuilder{
+								name: "bar",
+							},
+							ValueBuilder{
+								value: 6,
+							},
+						},
+						mode: lessThanCond,
+					},
+					projection: ProjectionBuilder{
+						names: []NameBuilder{
+							{
+								name: "foo",
+							},
+							{
+								name: "bar",
+							},
+							{
+								name: "baz",
+							},
+						},
+					},
+				},
+			},
+			expectedAliasList: &AliasList{
+				namesList: []string{"foo", "bar", "baz"},
+				valuesList: []dynamodb.AttributeValue{
+					{
+						N: aws.String("5"),
+					},
+					{
+						N: aws.String("6"),
+					},
+				},
+			},
+			expectedStringMap: map[expressionType]string{
+				condition:  "#0 = :0",
+				filter:     "#1 < :1",
+				projection: "#0, #1, #2",
+			},
+		},
+		{
+			name:              "empty",
+			input:             Factory{},
+			expectedAliasList: &AliasList{},
+			expectedStringMap: map[expressionType]string{},
+		},
+	}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			actualAL, actualSM := c.input.buildChildTrees()
+			if e, a := c.expectedAliasList, actualAL; !reflect.DeepEqual(a, e) {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+			if e, a := c.expectedStringMap, actualSM; !reflect.DeepEqual(a, e) {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
+	}
+}
+
+func TestBuildExpressionString(t *testing.T) {
 	cases := []struct {
 		name               string
 		input              ExprNode

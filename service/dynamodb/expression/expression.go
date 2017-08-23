@@ -5,31 +5,311 @@ import (
 	"sort"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
-// Builder contains a list of structs fulfilling the
-// ExpressionTreeBuilder interface, representing the different types of
-// Expressions that make up the total Expression as a whole. Builder
-// will be used to fill the members of various DynamoDB input structs.
+// ErrEmptyFactoryBuilder is an error that is returned if BuildFactory() is
+// called on an empty FactoryBuilder.
+var ErrEmptyFactoryBuilder = awserr.New("EmptyFactoryBuilder", "BuildFactory error: the argument FactoryBuilder is empty", nil)
+
+// expressionType will specify the type of Expression. The const is used to
+// eliminate magic strings
+type expressionType string
+
+const (
+	projection   expressionType = "projection"
+	keyCondition                = "keyCondition"
+	condition                   = "condition"
+	filter                      = "filter"
+	update                      = "update"
+)
+
+// Implementing the Sort interface
+type typeList []expressionType
+
+func (list typeList) Len() int {
+	return len(list)
+}
+
+func (list typeList) Less(i, j int) bool {
+	return string(list[i]) < string(list[j])
+}
+
+func (list typeList) Swap(i, j int) {
+	list[i], list[j] = list[j], list[i]
+}
+
+// FactoryBuilder contains a list of structs fulfilling the TreeBuilder
+// interface, representing the different types of Expressions that make up the
+// total Expression as a whole. FactoryBuilder will have methods corresponding
+// to different types of expressions (Update(), Condition(), Filter(), etc) that
+// will allow users to add expressions to the input member Factory.
+// FactoryBuilder will have a method Build() which will build the Factory struct
+// which can be used to produce members of DynamoDB input structs.
 //
 // Example:
 //
-//     // let expr be an instance of Builder{}
+//     factoryBuilder := expression.KeyCondition(
+//       expression.Key("someKey").Equal(expression.Value("someValue"))
+//     ).Projection(
+//       expression.NamesList("aName", "anotherName", "oneOtherName")
+//     )
+//     factory := factoryBuilder.BuildFactory()
 //
-//     deleteInput := dynamodb.DeleteItemInput{
-//       ConditionExpression:       expr.Condition(),
-//       ExpressionAttributeNames:  expr.Names(),
-//       ExpressionAttributeValues: expr.Values(),
-//       Key: map[string]*dynamodb.AttributeValue{
-//         "PartitionKey": &dynamodb.AttributeValue{
-//           S: aws.String("SomeKey"),
-//         },
-//       },
+//     queryInput := dynamodb.QueryInput{
+//       KeyConditionExpression:    factory.KeyCondition(),
+//       ProjectionExpression:      factory.Projection(),
+//       ExpressionAttributeNames:  factory.Names(),
+//       ExpressionAttributeValues: factory.Values(),
 //       TableName: aws.String("SomeTable"),
 //     }
-type Builder struct {
-	expressionMap map[string]TreeBuilder
+type FactoryBuilder struct {
+	expressionMap map[expressionType]TreeBuilder
+}
+
+// BuildFactory builds a Factory struct with the same expressionMap as the
+// argument FactoryBuilder. The aim of this method is to check the child
+// TreeBuilders for their formats and return an error. This makes sure that any
+// Factory has the right format or is an empty struct
+func (factoryBuilder FactoryBuilder) BuildFactory() (Factory, error) {
+	if factoryBuilder.expressionMap == nil {
+		return Factory{}, ErrEmptyFactoryBuilder
+	}
+
+	factory := Factory{
+		expressionMap: map[expressionType]TreeBuilder{},
+	}
+	for expressionType, treeBuilder := range factoryBuilder.expressionMap {
+		_, err := treeBuilder.BuildTree()
+		if err != nil {
+			return Factory{}, err
+		}
+		factory.expressionMap[expressionType] = treeBuilder
+	}
+
+	return factory, nil
+}
+
+// Condition method will add the argument ConditionBuilder as a TreeBuilder to
+// the argument FactoryBuilder. If the argument FactoryBuilder already has a
+// ConditionBuilder, Condition() will overwrite the existing ConditionBuilder.
+// Users will able to add other TreeBuilders to the FactoryBuilder or call
+// BuildFactory() to build a Factory struct.
+//
+// Example:
+//
+//     // let factoryBuilder be an existing FactoryBuilder{} and
+//     // conditionBuilder be an existing ConditionBuilder{}
+//     factoryBuilder = factoryBuilder.Condition(conditionBuilder)
+//
+//     factory := factoryBuilder.BuildFactory()
+func (factoryBuilder FactoryBuilder) Condition(conditionBuilder ConditionBuilder) FactoryBuilder {
+	if factoryBuilder.expressionMap == nil {
+		factoryBuilder.expressionMap = map[expressionType]TreeBuilder{}
+	}
+	factoryBuilder.expressionMap[condition] = conditionBuilder
+	return factoryBuilder
+}
+
+// Condition function will create a FactoryBuilder with the argument
+// conditionBuilder as a child TreeBuilder. Users will able to add other
+// TreeBuilders to the FactoryBuilder or call BuildFactory() to build a Factory
+// struct.
+//
+// Example:
+//
+//     // let conditionBuilder and projectionBuilder be an existing
+//     // ConditionBuilder and ProjectionBuilder respectively.
+//     factoryBuilder := expression.Condition(conditionBuilder)
+//
+//     factoryBuilder = factoryBuilder.Projection(projectionBuilder) // Adding a ProjectionBuilder
+//     factory := factoryBuilder.BuildFactory()                      // Creating a Factory
+func Condition(conditionBuilder ConditionBuilder) FactoryBuilder {
+	ret := FactoryBuilder{}
+	return ret.Condition(conditionBuilder)
+}
+
+// Projection method will add the argument ProjectionBuilder as a TreeBuilder to
+// the argument FactoryBuilder. If the argument FactoryBuilder already has a
+// ProjectionBuilder, Projection() will overwrite the existing ProjectionBuilder.
+// Users will able to add other TreeBuilders to the FactoryBuilder or call
+// BuildFactory() to build a Factory struct.
+//
+// Example:
+//
+//     // let factoryBuilder be an existing FactoryBuilder{} and
+//     // projectionBuilder be an existing projectionBuilder{}
+//     factoryBuilder = factoryBuilder.Projection(projectionBuilder)
+//
+//     factory := factoryBuilder.BuildFactory()
+func (factoryBuilder FactoryBuilder) Projection(projectionBuilder ProjectionBuilder) FactoryBuilder {
+	if factoryBuilder.expressionMap == nil {
+		factoryBuilder.expressionMap = map[expressionType]TreeBuilder{}
+	}
+	factoryBuilder.expressionMap[projection] = projectionBuilder
+	return factoryBuilder
+}
+
+// Projection function will create a FactoryBuilder with the argument
+// projectionBuilder as a child TreeBuilder. Users will able to add other
+// TreeBuilders to the FactoryBuilder or call BuildFactory() to build a Factory
+// struct.
+//
+// Example:
+//
+//     // let projectionBuilder and conditionBuilder be an existing
+//     // ProjectionBuilder and ConditionBuilder respectively.
+//     factoryBuilder := expression.Projection(projectionBuilder)
+//
+//     factoryBuilder = factoryBuilder.Condition(conditionBuilder)   // Adding a ConditionBuilder
+//     factory := factoryBuilder.BuildFactory()                      // Creating a Factory
+func Projection(projectionBuilder ProjectionBuilder) FactoryBuilder {
+	ret := FactoryBuilder{}
+	return ret.Projection(projectionBuilder)
+}
+
+// // KeyCondition method will add the argument KeyConditionBuilder as a TreeBuilder to
+// // the argument FactoryBuilder. If the argument FactoryBuilder already has a
+// // KeyConditionBuilder, KeyCondition() will overwrite the existing KeyConditionBuilder.
+// // Users will able to add other TreeBuilders to the FactoryBuilder or call
+// // BuildFactory() to build a Factory struct.
+// //
+// // Example:
+// //
+// //     // let factoryBuilder be an existing FactoryBuilder{} and
+// //     // keyConditionBuilder be an existing keyConditionBuilder{}
+// //     factoryBuilder = factoryBuilder.KeyCondition(keyConditionBuilder)
+// //
+// //     factory := factoryBuilder.BuildFactory()
+// func (factoryBuilder FactoryBuilder) KeyCondition(keyConditionBuilder KeyConditionBuilder) FactoryBuilder {
+// 	if factoryBuilder.expressionMap == nil {
+// 		factoryBuilder.expressionMap = map[expressionType]TreeBuilder{}
+// 	}
+// 	factoryBuilder.expressionMap[keyCondition] = keyConditionBuilder
+// 	return factoryBuilder
+// }
+//
+// // KeyCondition function will create a FactoryBuilder with the argument
+// // keyConditionBuilder as a child TreeBuilder. Users will able to add other
+// // TreeBuilders to the FactoryBuilder or call BuildFactory() to build a Factory
+// // struct.
+// //
+// // Example:
+// //
+// //     // let keyConditionBuilder and conditionBuilder be an existing
+// //     // KeyConditionBuilder and ConditionBuilder respectively.
+// //     factoryBuilder := expression.KeyCondition(keyConditionBuilder)
+// //
+// //     factoryBuilder = factoryBuilder.Condition(conditionBuilder)   // Adding a ConditionBuilder
+// //     factory := factoryBuilder.BuildFactory()                      // Creating a Factory
+// func KeyCondition(keyConditionBuilder KeyConditionBuilder) FactoryBuilder {
+// 	ret := FactoryBuilder{}
+// 	return ret.KeyCondition(keyConditionBuilder)
+// }
+
+// Filter method will add the argument ConditionBuilder as a TreeBuilder to
+// the argument FactoryBuilder. If the argument FactoryBuilder already has a
+// ConditionBuilder, Filter() will overwrite the existing ConditionBuilder.
+// Users will able to add other TreeBuilders to the FactoryBuilder or call
+// BuildFactory() to build a Factory struct.
+//
+// Example:
+//
+//     // let factoryBuilder be an existing FactoryBuilder{} and
+//     // filterBuilder be an existing filterBuilder{}
+//     factoryBuilder = factoryBuilder.Filter(filterBuilder)
+//
+//     factory := factoryBuilder.BuildFactory()
+func (factoryBuilder FactoryBuilder) Filter(filterBuilder ConditionBuilder) FactoryBuilder {
+	if factoryBuilder.expressionMap == nil {
+		factoryBuilder.expressionMap = map[expressionType]TreeBuilder{}
+	}
+	factoryBuilder.expressionMap[filter] = filterBuilder
+	return factoryBuilder
+}
+
+// Filter function will create a FactoryBuilder with the argument
+// filterBuilder as a child TreeBuilder. Users will able to add other
+// TreeBuilders to the FactoryBuilder or call BuildFactory() to build a Factory
+// struct.
+//
+// Example:
+//
+//     // let filterBuilder and conditionBuilder be an existing
+//     // ConditionBuilder and ConditionBuilder respectively.
+//     factoryBuilder := expression.Filter(filterBuilder)
+//
+//     factoryBuilder = factoryBuilder.Condition(conditionBuilder)   // Adding a ConditionBuilder
+//     factory := factoryBuilder.BuildFactory()                      // Creating a Factory
+func Filter(filterBuilder ConditionBuilder) FactoryBuilder {
+	ret := FactoryBuilder{}
+	return ret.Filter(filterBuilder)
+}
+
+// // Update method will add the argument UpdateBuilder as a TreeBuilder to
+// // the argument FactoryBuilder. If the argument FactoryBuilder already has a
+// // UpdateBuilder, Update() will overwrite the existing UpdateBuilder.
+// // Users will able to add other TreeBuilders to the FactoryBuilder or call
+// // BuildFactory() to build a Factory struct.
+// //
+// // Example:
+// //
+// //     // let factoryBuilder be an existing FactoryBuilder{} and
+// //     // updateBuilder be an existing updateBuilder{}
+// //     factoryBuilder = factoryBuilder.Update(updateBuilder)
+// //
+// //     factory := factoryBuilder.BuildFactory()
+// func (factoryBuilder FactoryBuilder) Update(updateBuilder UpdateBuilder) FactoryBuilder {
+// 	if factoryBuilder.expressionMap == nil {
+// 		factoryBuilder.expressionMap = map[expressionType]TreeBuilder{}
+// 	}
+// 	factoryBuilder.expressionMap[update] = updateBuilder
+// 	return factoryBuilder
+// }
+//
+// // Update function will create a FactoryBuilder with the argument
+// // updateBuilder as a child TreeBuilder. Users will able to add other
+// // TreeBuilders to the FactoryBuilder or call BuildFactory() to build a Factory
+// // struct.
+// //
+// // Example:
+// //
+// //     // let updateBuilder and conditionBuilder be an existing
+// //     // UpdateBuilder and ConditionBuilder respectively.
+// //     factoryBuilder := expression.Update(updateBuilder)
+// //
+// //     factoryBuilder = factoryBuilder.Condition(conditionBuilder)   // Adding a ConditionBuilder
+// //     factory := factoryBuilder.BuildFactory()                      // Creating a Factory
+// func Update(updateBuilder UpdateBuilder) FactoryBuilder {
+// 	ret := FactoryBuilder{}
+// 	return ret.Update(updateBuilder)
+// }
+
+// Factory will be a struct that will be able to generate members to DynamoDB
+// inputs.
+// The idea of FactoryBuilder and Factory is separated to be able to check the
+// format of the child TreeBuilders and to return an error at the BuildFactory()
+// step.
+//
+// Example:
+//
+//     factoryBuilder := expression.KeyCondition(
+//       expression.Key("someKey").Equal(expression.Value("someValue"))
+//     ).Projection(
+//       expression.NamesList("aName", "anotherName", "oneOtherName")
+//     )
+//     factory := factoryBuilder.BuildFactory()
+//
+//     queryInput := dynamodb.QueryInput{
+//       KeyConditionExpression:    factory.KeyCondition(),
+//       ProjectionExpression:      factory.Projection(),
+//       ExpressionAttributeNames:  factory.Names(),
+//       ExpressionAttributeValues: factory.Values(),
+//       TableName: aws.String("SomeTable"),
+//     }
+type Factory struct {
+	expressionMap map[expressionType]TreeBuilder
 }
 
 // TreeBuilder interface will be fulfilled by builder structs that
@@ -42,29 +322,18 @@ type TreeBuilder interface {
 	BuildTree() (ExprNode, error)
 }
 
-// returnExpression will return *string corresponding to the type of Expression
-// string specified by the expressionType.
-func (expression Builder) returnExpression(expressionType string) *string {
-	_, formattedExpressions, err := expression.buildChildBuilders()
-	if err != nil {
-		return nil
-	}
-
-	return aws.String(formattedExpressions[expressionType])
-}
-
-// Condition will return the *string corresponding to the Condition
-// Expression of the argument Builder. This method is used to satisfy
-// the members of DynamoDB input structs.
+// Condition will return the *string corresponding to the Condition Expression
+// of the argument Factory. This method is used to satisfy the members of
+// DynamoDB input structs.
 //
 // Example:
 //
-//     // let expr be an instance of Builder{}
+//     // let factory be an instance of Factory{}
 //
 //     deleteInput := dynamodb.DeleteItemInput{
-//       ConditionExpression:       expr.Condition(),
-//       ExpressionAttributeNames:  expr.Names(),
-//       ExpressionAttributeValues: expr.Values(),
+//       ConditionExpression:       factory.Condition(),
+//       ExpressionAttributeNames:  factory.Names(),
+//       ExpressionAttributeValues: factory.Values(),
 //       Key: map[string]*dynamodb.AttributeValue{
 //         "PartitionKey": &dynamodb.AttributeValue{
 //           S: aws.String("SomeKey"),
@@ -72,49 +341,65 @@ func (expression Builder) returnExpression(expressionType string) *string {
 //       },
 //       TableName: aws.String("SomeTable"),
 //     }
-func (expression Builder) Condition() *string {
-	return expression.returnExpression("condition")
+func (factory Factory) Condition() *string {
+	return factory.returnExpression(condition)
 }
 
-// Projection will return the *string corresponding to the Projection
-// Expression of the argument Builder. This method is used to satisfy
-// the members of DynamoDB input structs.
+// Filter will return the *string corresponding to the Filter Expression of the
+// argument Factory. This method is used to satisfy the members of DynamoDB
+// input structs.
 //
 // Example:
 //
-//     // let expr be an instance of Builder{}
+//     // let factory be an instance of Factory{}
 //
 //     queryInput := dynamodb.QueryInput{
-//       KeyConditionExpression:    expr.KeyCondition(),
-//       ProjectionExpression:      expr.Projection(),
-//       ExpressionAttributeNames:  expr.Names(),
-//       ExpressionAttributeValues: expr.Values(),
+//       KeyConditionExpression:    factory.KeyCondition(),
+//       FilterExpression:          factory.Filter(),
+//       ExpressionAttributeNames:  factory.Names(),
+//       ExpressionAttributeValues: factory.Values(),
 //       TableName: aws.String("SomeTable"),
 //     }
-func (expression Builder) Projection() *string {
-	return expression.returnExpression("projection")
+func (factory Factory) Filter() *string {
+	return factory.returnExpression(filter)
+}
+
+// Projection will return the *string corresponding to the Projection Expression
+// of the argument Factory. This method is used to satisfy the members of
+// DynamoDB input structs.
+//
+// Example:
+//
+//     // let factory be an instance of Factory{}
+//
+//     queryInput := dynamodb.QueryInput{
+//       KeyConditionExpression:    factory.KeyCondition(),
+//       ProjectionExpression:      factory.Projection(),
+//       ExpressionAttributeNames:  factory.Names(),
+//       ExpressionAttributeValues: factory.Values(),
+//       TableName: aws.String("SomeTable"),
+//     }
+func (factory Factory) Projection() *string {
+	return factory.returnExpression(projection)
 }
 
 // Names will return the map[string]*string corresponding to the
-// ExpressionAttributeNames of the argument Builder. This method is
-// used to satisfy the members of DynamoDB input structs.
+// ExpressionAttributeNames of the argument Factory. This method is used to
+// satisfy the members of DynamoDB input structs.
 //
 // Example:
 //
-//     // let expr be an instance of Builder{}
+//     // let factory be an instance of Factory{}
 //
 //     queryInput := dynamodb.QueryInput{
-//       KeyConditionExpression:    expr.KeyCondition(),
-//       ProjectionExpression:      expr.Projection(),
-//       ExpressionAttributeNames:  expr.Names(),
-//       ExpressionAttributeValues: expr.Values(),
+//       KeyConditionExpression:    factory.KeyCondition(),
+//       ProjectionExpression:      factory.Projection(),
+//       ExpressionAttributeNames:  factory.Names(),
+//       ExpressionAttributeValues: factory.Values(),
 //       TableName: aws.String("SomeTable"),
 //     }
-func (expression Builder) Names() map[string]*string {
-	aliasList, _, err := expression.buildChildBuilders()
-	if err != nil {
-		return nil
-	}
+func (factory Factory) Names() map[string]*string {
+	aliasList, _ := factory.buildChildTrees()
 
 	namesMap := map[string]*string{}
 	for ind, val := range aliasList.namesList {
@@ -125,25 +410,22 @@ func (expression Builder) Names() map[string]*string {
 }
 
 // Values will return the map[string]*dynamodb.AttributeValue corresponding to
-// the ExpressionAttributeValues of the argument Builder. This method
-// is used to satisfy the members of DynamoDB input structs.
+// the ExpressionAttributeValues of the argument Factory. This method is used to
+// satisfy the members of DynamoDB input structs.
 //
 // Example:
 //
-//     // let expr be an instance of Builder{}
+//     // let factory be an instance of Factory{}
 //
 //     queryInput := dynamodb.QueryInput{
-//       KeyConditionExpression:    expr.KeyCondition(),
-//       ProjectionExpression:      expr.Projection(),
-//       ExpressionAttributeNames:  expr.Names(),
-//       ExpressionAttributeValues: expr.Values(),
+//       KeyConditionExpression:    factory.KeyCondition(),
+//       ProjectionExpression:      factory.Projection(),
+//       ExpressionAttributeNames:  factory.Names(),
+//       ExpressionAttributeValues: factory.Values(),
 //       TableName: aws.String("SomeTable"),
 //     }
-func (expression Builder) Values() map[string]*dynamodb.AttributeValue {
-	aliasList, _, err := expression.buildChildBuilders()
-	if err != nil {
-		return nil
-	}
+func (factory Factory) Values() map[string]*dynamodb.AttributeValue {
+	aliasList, _ := factory.buildChildTrees()
 
 	valuesMap := map[string]*dynamodb.AttributeValue{}
 	for i := 0; i < len(aliasList.valuesList); i++ {
@@ -151,6 +433,45 @@ func (expression Builder) Values() map[string]*dynamodb.AttributeValue {
 	}
 
 	return valuesMap
+}
+
+// returnExpression will return *string corresponding to the type of Expression
+// string specified by the expressionType. If there is no corresponding
+// expression available in Factory, the method will return nil
+func (factory Factory) returnExpression(expressionType expressionType) *string {
+	if factory.expressionMap == nil {
+		return nil
+	}
+	_, formattedExpressions := factory.buildChildTrees()
+
+	return aws.String(formattedExpressions[expressionType])
+}
+
+// buildChildTrees will compile the list of ExpressionTreeBuilders that
+// are the children of the argument Factory. The returned AliasList
+// will represent all the alias tokens used in the expression strings. The
+// returned map[string]string will map the type of expression (i.e. "condition",
+// "update") to the appropriate expression string. buildChildTrees() assumes
+// that the BuildTree() and BuildExpressionString() will not return an error
+// because the error check should have been done at the BuildFactory() step.
+func (factory Factory) buildChildTrees() (*AliasList, map[expressionType]string) {
+	aliasList := &AliasList{}
+	formattedExpressions := map[expressionType]string{}
+	keys := typeList{}
+
+	for expressionType := range factory.expressionMap {
+		keys = append(keys, expressionType)
+	}
+
+	sort.Sort(keys)
+
+	for _, key := range keys {
+		exprNode, _ := factory.expressionMap[key].BuildTree()
+		formattedExpression, _ := exprNode.BuildExpressionString(aliasList)
+		formattedExpressions[key] = formattedExpression
+	}
+
+	return aliasList, formattedExpressions
 }
 
 // ExprNode will be the generic nodes that will represent both Operands and
@@ -306,35 +627,4 @@ func (aliasList *AliasList) aliasPath(nm string) (string, error) {
 	}
 	aliasList.namesList = append(aliasList.namesList, nm)
 	return fmt.Sprintf("#%d", len(aliasList.namesList)-1), nil
-}
-
-// buildChildBuilders will compile the list of ExpressionTreeBuilders that
-// are the children of the argument Builder. The returned AliasList
-// will represent all the alias tokens used in the expression strings. The
-// returned map[string]string will map the type of expression (i.e. "condition",
-// "update") to the appropriate expression string.
-func (expression Builder) buildChildBuilders() (*AliasList, map[string]string, error) {
-	aliasList := &AliasList{}
-	formattedExpressions := map[string]string{}
-	keys := []string{}
-
-	for key := range expression.expressionMap {
-		keys = append(keys, key)
-	}
-
-	sort.Strings(keys)
-
-	for _, key := range keys {
-		exprNode, err := expression.expressionMap[key].BuildTree()
-		if err != nil {
-			return nil, nil, err
-		}
-		formattedExpression, err := exprNode.BuildExpressionString(aliasList)
-		if err != nil {
-			return nil, nil, err
-		}
-		formattedExpressions[key] = formattedExpression
-	}
-
-	return aliasList, formattedExpressions, nil
 }
