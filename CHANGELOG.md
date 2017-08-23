@@ -1,3 +1,11 @@
+Release v1.10.31 (2017-08-23)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service documentation
+  * Documentation updates for appstream
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.10.30 (2017-08-22)
 ===
 
