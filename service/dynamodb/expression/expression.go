@@ -8,17 +8,17 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
-// Expression contains a list of structs fulfilling the ExpressionTreeBuilder
-// interface, representing the different types of Expressions that make up the
-// total Expression as a whole. Expression will be used to fill the members of
-// various DynamoDB input structs.
+// Builder contains a list of structs fulfilling the
+// ExpressionTreeBuilder interface, representing the different types of
+// Expressions that make up the total Expression as a whole. Builder
+// will be used to fill the members of various DynamoDB input structs.
 //
 // Example:
 //
-//     // let expr be an instance of Expression{}
+//     // let expr be an instance of Builder{}
 //
 //     deleteInput := dynamodb.DeleteItemInput{
-//       ConditionExpression:       expr.ConditionExpression(),
+//       ConditionExpression:       expr.Condition(),
 //       ExpressionAttributeNames:  expr.Names(),
 //       ExpressionAttributeValues: expr.Values(),
 //       Key: map[string]*dynamodb.AttributeValue{
@@ -28,7 +28,7 @@ import (
 //       },
 //       TableName: aws.String("SomeTable"),
 //     }
-type Expression struct {
+type Builder struct {
 	expressionMap map[string]TreeBuilder
 }
 
@@ -44,8 +44,8 @@ type TreeBuilder interface {
 
 // returnExpression will return *string corresponding to the type of Expression
 // string specified by the expressionType.
-func (expression Expression) returnExpression(expressionType string) *string {
-	_, formattedExpressions, err := expression.buildChildExpressions()
+func (expression Builder) returnExpression(expressionType string) *string {
+	_, formattedExpressions, err := expression.buildChildBuilders()
 	if err != nil {
 		return nil
 	}
@@ -53,16 +53,16 @@ func (expression Expression) returnExpression(expressionType string) *string {
 	return aws.String(formattedExpressions[expressionType])
 }
 
-// ConditionExpression will return the *string corresponding to the Condition
-// Expression of the argument Expression. This method is used to satisfy the
-// members of DynamoDB input structs.
+// Condition will return the *string corresponding to the Condition
+// Expression of the argument Builder. This method is used to satisfy
+// the members of DynamoDB input structs.
 //
 // Example:
 //
-//     // let expr be an instance of Expression{}
+//     // let expr be an instance of Builder{}
 //
 //     deleteInput := dynamodb.DeleteItemInput{
-//       ConditionExpression:       expr.ConditionExpression(),
+//       ConditionExpression:       expr.Condition(),
 //       ExpressionAttributeNames:  expr.Names(),
 //       ExpressionAttributeValues: expr.Values(),
 //       Key: map[string]*dynamodb.AttributeValue{
@@ -72,47 +72,46 @@ func (expression Expression) returnExpression(expressionType string) *string {
 //       },
 //       TableName: aws.String("SomeTable"),
 //     }
-func (expression Expression) ConditionExpression() *string {
+func (expression Builder) Condition() *string {
 	return expression.returnExpression("condition")
 }
 
-// ProjectionExpression will return the *string corresponding to the Projection
-// Expression of the argument Expression. This method is used to satisfy the
-// members of DynamoDB input structs.
+// Projection will return the *string corresponding to the Projection
+// Expression of the argument Builder. This method is used to satisfy
+// the members of DynamoDB input structs.
 //
 // Example:
 //
-//     // let expr be an instance of Expression{}
+//     // let expr be an instance of Builder{}
 //
 //     queryInput := dynamodb.QueryInput{
-//       KeyConditionExpression:    expr.KeyConditionExpression(),
-//       ProjectionExpression:      expr.ProjectionExpression(),
+//       KeyConditionExpression:    expr.KeyCondition(),
+//       ProjectionExpression:      expr.Projection(),
 //       ExpressionAttributeNames:  expr.Names(),
 //       ExpressionAttributeValues: expr.Values(),
 //       TableName: aws.String("SomeTable"),
 //     }
-func (expression Expression) ProjectionExpression() *string {
+func (expression Builder) Projection() *string {
 	return expression.returnExpression("projection")
-
 }
 
 // Names will return the map[string]*string corresponding to the
-// ExpressionAttributeNames of the argument Expression. This method is used to
-// satisfy the members of DynamoDB input structs.
+// ExpressionAttributeNames of the argument Builder. This method is
+// used to satisfy the members of DynamoDB input structs.
 //
 // Example:
 //
-//     // let expr be an instance of Expression{}
+//     // let expr be an instance of Builder{}
 //
 //     queryInput := dynamodb.QueryInput{
-//       KeyConditionExpression:    expr.KeyConditionExpression(),
-//       ProjectionExpression:      expr.ProjectionExpression(),
+//       KeyConditionExpression:    expr.KeyCondition(),
+//       ProjectionExpression:      expr.Projection(),
 //       ExpressionAttributeNames:  expr.Names(),
 //       ExpressionAttributeValues: expr.Values(),
 //       TableName: aws.String("SomeTable"),
 //     }
-func (expression Expression) Names() map[string]*string {
-	aliasList, _, err := expression.buildChildExpressions()
+func (expression Builder) Names() map[string]*string {
+	aliasList, _, err := expression.buildChildBuilders()
 	if err != nil {
 		return nil
 	}
@@ -126,22 +125,22 @@ func (expression Expression) Names() map[string]*string {
 }
 
 // Values will return the map[string]*dynamodb.AttributeValue corresponding to
-// the ExpressionAttributeValues of the argument Expression. This method is used
-// to satisfy the members of DynamoDB input structs.
+// the ExpressionAttributeValues of the argument Builder. This method
+// is used to satisfy the members of DynamoDB input structs.
 //
 // Example:
 //
-//     // let expr be an instance of Expression{}
+//     // let expr be an instance of Builder{}
 //
 //     queryInput := dynamodb.QueryInput{
-//       KeyConditionExpression:    expr.KeyConditionExpression(),
-//       ProjectionExpression:      expr.ProjectionExpression(),
+//       KeyConditionExpression:    expr.KeyCondition(),
+//       ProjectionExpression:      expr.Projection(),
 //       ExpressionAttributeNames:  expr.Names(),
 //       ExpressionAttributeValues: expr.Values(),
 //       TableName: aws.String("SomeTable"),
 //     }
-func (expression Expression) Values() map[string]*dynamodb.AttributeValue {
-	aliasList, _, err := expression.buildChildExpressions()
+func (expression Builder) Values() map[string]*dynamodb.AttributeValue {
+	aliasList, _, err := expression.buildChildBuilders()
 	if err != nil {
 		return nil
 	}
@@ -161,7 +160,7 @@ func (expression Expression) Values() map[string]*dynamodb.AttributeValue {
 // fmtExpr is a string that has escaped characters to refer to
 // names/values/children which needs to be aliased at runtime in order to avoid
 // duplicate values. The rules are as follows:
-//     $p: Indicates that an alias of a name needs to be inserted. The corresponding
+//     $n: Indicates that an alias of a name needs to be inserted. The corresponding
 //         name to be aliased will be in the []names slice.
 //     $v: Indicates that an alias of a value needs to be inserted. The
 //         corresponding value to be aliased will be in the []values slice.
@@ -184,10 +183,10 @@ type AliasList struct {
 }
 
 // BuildExpressionString returns a string with aliasing for names/values
-// specified by AliasList. The string corresponds to the Expression that the
+// specified by AliasList. The string corresponds to the expression that the
 // ExprNode tree represents.
-func (en ExprNode) BuildExpressionString(al *AliasList) (string, error) {
-	if al == nil {
+func (exprNode ExprNode) BuildExpressionString(aliasList *AliasList) (string, error) {
+	if aliasList == nil {
 		return "", fmt.Errorf("buildExprNodes error: AliasList is nil")
 	}
 
@@ -197,7 +196,7 @@ func (en ExprNode) BuildExpressionString(al *AliasList) (string, error) {
 		name, value, children int
 	}{}
 
-	formattedExpression := en.fmtExpr
+	formattedExpression := exprNode.fmtExpr
 
 	for i := 0; i < len(formattedExpression); {
 		if formattedExpression[i] != '$' {
@@ -214,22 +213,22 @@ func (en ExprNode) BuildExpressionString(al *AliasList) (string, error) {
 		// if an escaped character is found, substitute it with the proper alias
 		// TODO consider AST instead of string in the future
 		switch formattedExpression[i+1] {
-		case 'p':
-			alias, err = substitutePath(index.name, en, al)
+		case 'n':
+			alias, err = substitutePath(index.name, exprNode, aliasList)
 			if err != nil {
 				return "", err
 			}
 			index.name++
 
 		case 'v':
-			alias, err = substituteValue(index.value, en, al)
+			alias, err = substituteValue(index.value, exprNode, aliasList)
 			if err != nil {
 				return "", err
 			}
 			index.value++
 
 		case 'c':
-			alias, err = substituteChild(index.children, en, al)
+			alias, err = substituteChild(index.children, exprNode, aliasList)
 			if err != nil {
 				return "", err
 			}
@@ -245,13 +244,13 @@ func (en ExprNode) BuildExpressionString(al *AliasList) (string, error) {
 	return formattedExpression, nil
 }
 
-// substitutePath will substitute the escaped character $p with the appropriate
+// substitutePath will substitute the escaped character $n with the appropriate
 // alias.
-func substitutePath(index int, en ExprNode, al *AliasList) (string, error) {
-	if index >= len(en.names) {
+func substitutePath(index int, exprNode ExprNode, aliasList *AliasList) (string, error) {
+	if index >= len(exprNode.names) {
 		return "", fmt.Errorf("substitutePath error: ExprNode []names out of range")
 	}
-	str, err := al.aliasPath(en.names[index])
+	str, err := aliasList.aliasPath(exprNode.names[index])
 	if err != nil {
 		return "", err
 	}
@@ -260,11 +259,11 @@ func substitutePath(index int, en ExprNode, al *AliasList) (string, error) {
 
 // substituteValue will substitute the escaped character $v with the appropriate
 // alias.
-func substituteValue(index int, en ExprNode, al *AliasList) (string, error) {
-	if index >= len(en.values) {
+func substituteValue(index int, exprNode ExprNode, aliasList *AliasList) (string, error) {
+	if index >= len(exprNode.values) {
 		return "", fmt.Errorf("substituteValue error: ExprNode []values out of range")
 	}
-	str, err := al.aliasValue(en.values[index])
+	str, err := aliasList.aliasValue(exprNode.values[index])
 	if err != nil {
 		return "", err
 	}
@@ -273,65 +272,48 @@ func substituteValue(index int, en ExprNode, al *AliasList) (string, error) {
 
 // substituteChild will substitute the escaped character $c with the appropriate
 // alias.
-func substituteChild(index int, en ExprNode, al *AliasList) (string, error) {
-	if index >= len(en.children) {
+func substituteChild(index int, exprNode ExprNode, aliasList *AliasList) (string, error) {
+	if index >= len(exprNode.children) {
 		return "", fmt.Errorf("substituteChild error: ExprNode []children out of range")
 	}
-	return en.children[index].BuildExpressionString(al)
-	// if err != nil {
-	// 	return "", err
-	// }
-	// str := childExpr.Expression
-	// tempExpr := expr.Expression
-	// *expr = MergeMaps(*expr, childExpr)
-	// expr.Expression = tempExpr
-	// return str, nil
+	return exprNode.children[index].BuildExpressionString(aliasList)
 }
 
 // aliasValue returns the corresponding alias to the dav value argument. Since
 // values are not deduplicated as of now, all values are just appended to the
 // AliasList and given the index as the alias.
-func (al *AliasList) aliasValue(dav dynamodb.AttributeValue) (string, error) {
-	// for ind, attrval := range al.valuesList {
-	// 	if reflect.DeepEqual(dav, attrval) {
-	// 		return fmt.Sprintf(":%d", ind), nil
-	// 	}
-	// }
-
-	if al == nil {
+func (aliasList *AliasList) aliasValue(dav dynamodb.AttributeValue) (string, error) {
+	if aliasList == nil {
 		return "", fmt.Errorf("aliasValue error: AliasList is nil")
 	}
 
-	// If deduplicating, uncomment above and there should be an error message here
-	// since all the aliases should be taken care of beforehand in another tree
-	// traversal
-	al.valuesList = append(al.valuesList, dav)
-	return fmt.Sprintf(":%d", len(al.valuesList)-1), nil
+	aliasList.valuesList = append(aliasList.valuesList, dav)
+	return fmt.Sprintf(":%d", len(aliasList.valuesList)-1), nil
 }
 
 // aliasPath returns the corresponding alias to the argument string. The
 // argument is checked against all existing AliasList names in order to avoid
 // duplicate strings getting two different aliases.
-func (al *AliasList) aliasPath(nm string) (string, error) {
-	if al == nil {
+func (aliasList *AliasList) aliasPath(nm string) (string, error) {
+	if aliasList == nil {
 		return "", fmt.Errorf("aliasValue error: AliasList is nil")
 	}
 
-	for ind, name := range al.namesList {
+	for ind, name := range aliasList.namesList {
 		if nm == name {
 			return fmt.Sprintf("#%d", ind), nil
 		}
 	}
-	al.namesList = append(al.namesList, nm)
-	return fmt.Sprintf("#%d", len(al.namesList)-1), nil
+	aliasList.namesList = append(aliasList.namesList, nm)
+	return fmt.Sprintf("#%d", len(aliasList.namesList)-1), nil
 }
 
-// buildChildExpressions will compile the list of ExpressionTreeBuilders that
-// are the children of the argument Expression. The returned AliasList will
-// represent all the alias tokens used in the expression strings. The returned
-// map[string]string will map the type of expression (i.e. "condition",
+// buildChildBuilders will compile the list of ExpressionTreeBuilders that
+// are the children of the argument Builder. The returned AliasList
+// will represent all the alias tokens used in the expression strings. The
+// returned map[string]string will map the type of expression (i.e. "condition",
 // "update") to the appropriate expression string.
-func (expression Expression) buildChildExpressions() (*AliasList, map[string]string, error) {
+func (expression Builder) buildChildBuilders() (*AliasList, map[string]string, error) {
 	aliasList := &AliasList{}
 	formattedExpressions := map[string]string{}
 	keys := []string{}

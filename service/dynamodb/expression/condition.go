@@ -7,8 +7,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
-// ErrUnsetCondition is an error that is returned if BuildExpression is called
-// on an empty ConditionBuilder.
+// ErrUnsetCondition is an error that is returned if Build() is called on an
+// empty ConditionBuilder.
 var ErrUnsetCondition = awserr.New("UnsetCondition", "buildCondition error: the argument ConditionBuilder's mode is unset", nil)
 
 // conditionMode will specify the types of the struct conditionBuilder,
@@ -52,8 +52,8 @@ const (
 	containsCond
 )
 
-func (cm conditionMode) String() string {
-	switch cm {
+func (conditionMode conditionMode) String() string {
+	switch conditionMode {
 	case unsetCond:
 		return "unsetCond"
 	default:
@@ -94,8 +94,8 @@ const (
 // ConditionBuilder will represent Condition Expressions and Filter Expressions
 // in DynamoDB. It is composed of operands (OperandBuilder) and other conditions
 // (ConditionBuilder). There are many different types of conditions, specified
-// by ConditionMode. Users will be able to call the BuildExpression() method on
-// a ConditionBuilder to create an Expression which can then be used for
+// by ConditionMode. Users will be able to call the Build() method on
+// a ConditionBuilder to create an Builder which can then be used for
 // operation inputs into DynamoDB. Since Filter Expressions support all the same
 // functions and formats as Condition Expressions, ConditionBuilders will
 // satisfy both Expressions.
@@ -110,14 +110,15 @@ type ConditionBuilder struct {
 // Equal will create a ConditionBuilder with two OperandBuilders as children,
 // representing the two operands that are being compared. The resulting
 // ConditionBuilder can be used to build other Conditions or to create an
-// Expression to be used in an operation input. This will be the function call.
+// Builder to be used in an operation input. This will be the function
+// call.
 //
 // Example:
 //
 //     condition := expression.Equal(expression.Name("foo"), expression.Value(5))
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
-//     expression, err := condition.BuildExpression() // Used to make an Expression
+//     builder, err := condition.Build() // Used to make an Builder
 func Equal(left, right OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{left, right},
@@ -162,14 +163,15 @@ func (sizeBuilder SizeBuilder) Equal(right OperandBuilder) ConditionBuilder {
 // NotEqual will create a ConditionBuilder with two OperandBuilders as children,
 // representing the two operands that are being compared. The resulting
 // ConditionBuilder can be used to build other Conditions or to create an
-// Expression to be used in an operation input. This will be the function call.
+// Builder to be used in an operation input. This will be the function
+// call.
 //
 // Example:
 //
 //     condition := expression.NotEqual(expression.Name("foo"), expression.Value(5))
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
-//     expression, err := condition.BuildExpression() // Used to make an Expression
+//     builder, err := condition.Build() // Used to make an Builder
 func NotEqual(left, right OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{left, right},
@@ -216,14 +218,15 @@ func (sizeBuilder SizeBuilder) NotEqual(right OperandBuilder) ConditionBuilder {
 // Less will create a ConditionBuilder with two OperandBuilders as children,
 // representing the two operands that are being compared. The resulting
 // ConditionBuilder can be used to build other Conditions or to create an
-// Expression to be used in an operation input. This will be the function call.
+// Builder to be used in an operation input. This will be the function
+// call.
 //
 // Example:
 //
 //     condition := expression.Less(expression.Name("foo"), expression.Value(5))
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
-//     expression, err := condition.BuildExpression() // Used to make an Expression
+//     builder, err := condition.Build() // Used to make an Builder
 func Less(left, right OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{left, right},
@@ -265,17 +268,18 @@ func (sizeBuilder SizeBuilder) Less(right OperandBuilder) ConditionBuilder {
 	return Less(sizeBuilder, right)
 }
 
-// LessEqual will create a ConditionBuilder with two OperandBuilders as children,
-// representing the two operands that are being compared. The resulting
-// ConditionBuilder can be used to build other Conditions or to create an
-// Expression to be used in an operation input. This will be the function call.
+// LessEqual will create a ConditionBuilder with two OperandBuilders as
+// children, representing the two operands that are being compared. The
+// resulting ConditionBuilder can be used to build other Conditions or to create
+// an Builder to be used in an operation input. This will be the
+// function call.
 //
 // Example:
 //
 //     condition := expression.LessEqual(expression.Name("foo"), expression.Value(5))
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
-//     expression, err := condition.BuildExpression() // Used to make an Expression
+//     builder, err := condition.Build() // Used to make an Builder
 func LessEqual(left, right OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{left, right},
@@ -283,7 +287,8 @@ func LessEqual(left, right OperandBuilder) ConditionBuilder {
 	}
 }
 
-// LessEqual will create a ConditionBuilder. This will be the method for NameBuilder
+// LessEqual will create a ConditionBuilder. This will be the method for
+// NameBuilder
 //
 // Example:
 //
@@ -306,7 +311,8 @@ func (valueBuilder ValueBuilder) LessEqual(right OperandBuilder) ConditionBuilde
 	return LessEqual(valueBuilder, right)
 }
 
-// LessEqual will create a ConditionBuilder. This will be the method for SizeBuilder
+// LessEqual will create a ConditionBuilder. This will be the method for
+// SizeBuilder
 //
 // Example:
 //
@@ -320,14 +326,15 @@ func (sizeBuilder SizeBuilder) LessEqual(right OperandBuilder) ConditionBuilder 
 // Greater will create a ConditionBuilder with two OperandBuilders as children,
 // representing the two operands that are being compared. The resulting
 // ConditionBuilder can be used to build other Conditions or to create an
-// Expression to be used in an operation input. This will be the function call.
+// Builder to be used in an operation input. This will be the function
+// call.
 //
 // Example:
 //
 //     condition := expression.Greater(expression.Name("foo"), expression.Value(5))
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
-//     expression, err := condition.BuildExpression() // Used to make an Expression
+//     builder, err := condition.Build() // Used to make an Builder
 func Greater(left, right OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{left, right},
@@ -335,7 +342,8 @@ func Greater(left, right OperandBuilder) ConditionBuilder {
 	}
 }
 
-// Greater will create a ConditionBuilder. This will be the method for NameBuilder
+// Greater will create a ConditionBuilder. This will be the method for
+// NameBuilder
 //
 // Example:
 //
@@ -358,7 +366,8 @@ func (valueBuilder ValueBuilder) Greater(right OperandBuilder) ConditionBuilder 
 	return Greater(valueBuilder, right)
 }
 
-// Greater will create a ConditionBuilder. This will be the method for SizeBuilder
+// Greater will create a ConditionBuilder. This will be the method for
+// SizeBuilder
 //
 // Example:
 //
@@ -369,17 +378,18 @@ func (sizeBuilder SizeBuilder) Greater(right OperandBuilder) ConditionBuilder {
 	return Greater(sizeBuilder, right)
 }
 
-// GreaterEqual will create a ConditionBuilder with two OperandBuilders as children,
-// representing the two operands that are being compared. The resulting
-// ConditionBuilder can be used to build other Conditions or to create an
-// Expression to be used in an operation input. This will be the function call.
+// GreaterEqual will create a ConditionBuilder with two OperandBuilders as
+// children, representing the two operands that are being compared. The
+// resulting ConditionBuilder can be used to build other Conditions or to create
+// an Builder to be used in an operation input. This will be the
+// function call.
 //
 // Example:
 //
 //     condition := expression.GreaterEqual(expression.Name("foo"), expression.Value(5))
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
-//     expression, err := condition.BuildExpression() // Used to make an Expression
+//     builder, err := condition.Build() // Used to make an Builder
 func GreaterEqual(left, right OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{left, right},
@@ -387,7 +397,8 @@ func GreaterEqual(left, right OperandBuilder) ConditionBuilder {
 	}
 }
 
-// GreaterEqual will create a ConditionBuilder. This will be the method for NameBuilder
+// GreaterEqual will create a ConditionBuilder. This will be the method for
+// NameBuilder
 //
 // Example:
 //
@@ -410,7 +421,8 @@ func (valueBuilder ValueBuilder) GreaterEqual(right OperandBuilder) ConditionBui
 	return GreaterEqual(valueBuilder, right)
 }
 
-// GreaterEqual will create a ConditionBuilder. This will be the method for SizeBuilder
+// GreaterEqual will create a ConditionBuilder. This will be the method for
+// SizeBuilder
 //
 // Example:
 //
@@ -424,8 +436,8 @@ func (sizeBuilder SizeBuilder) GreaterEqual(right OperandBuilder) ConditionBuild
 // And will create a ConditionBuilder with more than two other Conditions as
 // children, representing logical statements that will be logically ANDed
 // together. The resulting ConditionBuilder can be used to build other
-// Conditions or to create an Expression to be used in an operation input. This
-// will be the function call.
+// Conditions or to create an Builder to be used in an operation
+// input. This will be the function call.
 //
 // Example:
 //
@@ -435,7 +447,7 @@ func (sizeBuilder SizeBuilder) GreaterEqual(right OperandBuilder) ConditionBuild
 //     andCondition := expression.And(condition1, condition2, condition3)
 //
 //     anotherCondition := expression.Not(andCondition)  // Used in another condition
-//     expression, err := andCondition.BuildExpression() // Used to make an Expression
+//     builder, err := andCondition.Build() // Used to make an Builder
 func And(left, right ConditionBuilder, other ...ConditionBuilder) ConditionBuilder {
 	other = append([]ConditionBuilder{left, right}, other...)
 	return ConditionBuilder{
@@ -458,8 +470,8 @@ func (conditionBuilder ConditionBuilder) And(right ConditionBuilder, other ...Co
 // Or will create a ConditionBuilder with more than two other Conditions as
 // children, representing logical statements that will be logically ORed
 // together. The resulting ConditionBuilder can be used to build other
-// Conditions or to create an Expression to be used in an operation input. This
-// will be the function call.
+// Conditions or to create an Builder to be used in an operation
+// input. This will be the function call.
 //
 // Example:
 //
@@ -469,7 +481,7 @@ func (conditionBuilder ConditionBuilder) And(right ConditionBuilder, other ...Co
 //     orCondition := expression.Or(condition1, condition2, condition3)
 //
 //     anotherCondition := expression.Not(orCondition)  // Used in another condition
-//     expression, err := orCondition.BuildExpression() // Used to make an Expression
+//     builder, err := orCondition.Build() // Used to make an Builder
 func Or(left, right ConditionBuilder, other ...ConditionBuilder) ConditionBuilder {
 	other = append([]ConditionBuilder{left, right}, other...)
 	return ConditionBuilder{
@@ -492,8 +504,8 @@ func (conditionBuilder ConditionBuilder) Or(right ConditionBuilder, other ...Con
 // Not will create a ConditionBuilder with one Conditions as a child,
 // representing the logical statements that will be logically negated. The
 // resulting ConditionBuilder can be used to build other Conditions or to create
-// an Expression to be used in an operation input. This will be the function
-// call.
+// an Builder to be used in an operation input. This will be the
+// function call.
 //
 // Example:
 //
@@ -501,7 +513,7 @@ func (conditionBuilder ConditionBuilder) Or(right ConditionBuilder, other ...Con
 //     notCondition := expression.Or(condition)
 //
 //     anotherCondition := expression.Not(notCondition)  // Used in another condition
-//     expression, err := notCondition.BuildExpression() // Used to make an Expression
+//     builder, err := notCondition.Build() // Used to make an Builder
 func Not(conditionBuilder ConditionBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		conditionList: []ConditionBuilder{conditionBuilder},
@@ -525,15 +537,15 @@ func (conditionBuilder ConditionBuilder) Not() ConditionBuilder {
 // representing the lower bound value of the first operand, and the third
 // operand representing the upper bound value of the first operand. The
 // resulting ConditionBuilder can be used to build other Conditions or to create
-// an Expression to be used in an operation input. This will be the function
-// call.
+// an Builder to be used in an operation input. This will be the
+// function call.
 //
 // Example:
 //
 //     condition := expression.Between(expression.Name("foo"), expression.Value(2), expression.Value(6))
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
-//     expression, err := condition.BuildExpression() // Used to make an Expression
+//     builder, err := condition.Build() // Used to make an Builder
 func Between(ope, lower, upper OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{ope, lower, upper},
@@ -582,14 +594,15 @@ func (sizeBuilder SizeBuilder) Between(lower, upper OperandBuilder) ConditionBui
 // operands representing a set in which the first operand either belongs to or
 // not. The argument must have at least two operands. The resulting
 // ConditionBuilder can be used to build other Conditions or to create an
-// Expression to be used in an operation input. This will be the function call.
+// Builder to be used in an operation input. This will be the function
+// call.
 //
 // Example:
 //
 //     condition := expression.Between(expression.Name("foo"), expression.Value(2), expression.Value(6))
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
-//     expression, err := condition.BuildExpression() // Used to make an Expression
+//     builder, err := condition.Build() // Used to make an Builder
 func In(left, right OperandBuilder, other ...OperandBuilder) ConditionBuilder {
 	other = append([]OperandBuilder{left, right}, other...)
 	return ConditionBuilder{
@@ -637,15 +650,15 @@ func (sizeBuilder SizeBuilder) In(right OperandBuilder, other ...OperandBuilder)
 // AttributeExists will create a ConditionBuilder with a name as a child. The
 // function will return true if the item attribute described by the name exists.
 // The resulting ConditionBuilder can be used to build other Conditions or to
-// create an Expression to be used in an operation input. This will be the
-// function call.
+// create an Builder to be used in an operation input. This will be
+// the function call.
 //
 // Example:
 //
 //     condition := expression.AttributeExists(Name("foo"))
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
-//     expression, err := condition.BuildExpression() // Used to make an Expression
+//     builder, err := condition.Build() // Used to make an Builder
 func AttributeExists(nameBuilder NameBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{nameBuilder},
@@ -669,15 +682,15 @@ func (nameBuilder NameBuilder) AttributeExists() ConditionBuilder {
 // AttributeNotExists will create a ConditionBuilder with a name as a child. The
 // function will return true if the item attribute described by the name does
 // not exist. The resulting ConditionBuilder can be used to build other
-// Conditions or to create an Expression to be used in an operation input. This
-// will be the function call.
+// Conditions or to create an Builder to be used in an operation
+// input. This will be the function call.
 //
 // Example:
 //
 //     condition := expression.AttributeNotExists(expression.Name("foo"))
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
-//     expression, err := condition.BuildExpression() // Used to make an Expression
+//     builder, err := condition.Build() // Used to make an Builder
 func AttributeNotExists(nameBuilder NameBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{nameBuilder},
@@ -703,15 +716,15 @@ func (nameBuilder NameBuilder) AttributeNotExists() ConditionBuilder {
 // will be a string corresponding to the argument DynamoDBAttributeType. The
 // function will return true if the item attribute described by the name is the
 // type specified by DynamoDBAttributeType. The resulting ConditionBuilder can
-// be used to build other Conditions or to create an Expression to be used in an
-// operation input. This will be the function call.
+// be used to build other Conditions or to create an Builder to be
+// used in an operation input. This will be the function call.
 //
 // Example:
 //
 //     condition := expression.AttributeType(Name("foo"), expression.StringSet)
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
-//     expression, err := condition.BuildExpression() // Used to make an Expression
+//     builder, err := condition.Build() // Used to make an Builder
 func AttributeType(nameBuilder NameBuilder, attributeType DynamoDBAttributeType) ConditionBuilder {
 	v := ValueBuilder{
 		value: string(attributeType),
@@ -741,14 +754,15 @@ func (nameBuilder NameBuilder) AttributeType(attributeType DynamoDBAttributeType
 // will be compared with. The function will return true if the item attribute
 // specified by the name starts with the substring. The resulting
 // ConditionBuilder can be used to build other Conditions or to create an
-// Expression to be used in an operation input. This will be the function call.
+// Builder to be used in an operation input. This will be the function
+// call.
 //
 // Example:
 //
 //     condition := expression.BeginsWith(Name("foo"), "bar")
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
-//     expression, err := condition.BuildExpression() // Used to make an Expression
+//     builder, err := condition.Build() // Used to make an Builder
 func BeginsWith(nameBuilder NameBuilder, substr string) ConditionBuilder {
 	v := ValueBuilder{
 		value: substr,
@@ -780,14 +794,15 @@ func (nameBuilder NameBuilder) BeginsWith(substr string) ConditionBuilder {
 // contains the substring specified by the value or if the item attribute is a
 // set that contains the string specified by the value. The resulting
 // ConditionBuilder can be used to build other Conditions or to create an
-// Expression to be used in an operation input. This will be the function call.
+// Builder to be used in an operation input. This will be the function
+// call.
 //
 // Example:
 //
 //     condition := expression.Contains(Name("foo"), "bar")
 //
 //     anotherCondition := expression.Not(condition)  // Used in another condition
-//     expression, err := condition.BuildExpression() // Used to make an Expression
+//     builder, err := condition.Build() // Used to make an Builder
 func Contains(nameBuilder NameBuilder, substr string) ConditionBuilder {
 	v := ValueBuilder{
 		value: substr,
@@ -811,14 +826,14 @@ func (nameBuilder NameBuilder) Contains(substr string) ConditionBuilder {
 	return Contains(nameBuilder, substr)
 }
 
-// BuildExpression will take an ConditionBuilder as input and output an
-// Expression which can be used in DynamoDB operational inputs (i.e.
-// UpdateItemInput, DeleteItemInput, etc) In the future, the Expression struct
-// can be used in some injection method into the input structs.
+// Build will take an ConditionBuilder as input and output an
+// Builder which can be used in DynamoDB operational inputs (i.e.
+// UpdateItemInput, DeleteItemInput, etc) In the future, the Builder
+// struct can be used in some injection method into the input structs.
 //
 // Example:
 //
-//     expr, err := someCondition.BuildExpression()
+//     expr, err := someCondition.Build()
 //
 //     deleteInput := dynamodb.DeleteItemInput{
 //       ConditionExpression:       expr.ConditionExpression(),
@@ -831,12 +846,33 @@ func (nameBuilder NameBuilder) Contains(substr string) ConditionBuilder {
 //       },
 //       TableName: aws.String("SomeTable"),
 //     }
-func (conditionBuilder ConditionBuilder) BuildExpression() (Expression, error) {
-	return Expression{
+func (conditionBuilder ConditionBuilder) Build() (Builder, error) {
+	return Builder{
 		expressionMap: map[string]TreeBuilder{
 			"condition": conditionBuilder,
 		},
-	}, nil
+	}, conditionBuilder.checkFormat()
+}
+
+// checkFormat will check for unset ConditionBuilders and return an error if one
+// is found.
+func (conditionBuilder ConditionBuilder) checkFormat() error {
+	if conditionBuilder.mode == unsetCond {
+		return ErrUnsetCondition
+	}
+	for _, condition := range conditionBuilder.conditionList {
+		err := condition.checkFormat()
+		if err != nil {
+			return err
+		}
+	}
+	for _, operand := range conditionBuilder.operandList {
+		_, err := operand.Build()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
 
 // BuildTree will build a tree structure of ExprNodes based on the
@@ -883,132 +919,132 @@ func (conditionBuilder ConditionBuilder) BuildTree() (ExprNode, error) {
 // ConditionBuilders. compareBuildCondition will only be called by the
 // buildCondition method. This function assumes that the argument
 // ConditionBuilder has the right format.
-func compareBuildCondition(cm conditionMode, en ExprNode) (ExprNode, error) {
+func compareBuildCondition(conditionMode conditionMode, exprNode ExprNode) (ExprNode, error) {
 	// Create a string with special characters that can be substituted later: $c
-	switch cm {
+	switch conditionMode {
 	case equalCond:
-		en.fmtExpr = "$c = $c"
+		exprNode.fmtExpr = "$c = $c"
 	case notEqualCond:
-		en.fmtExpr = "$c <> $c"
+		exprNode.fmtExpr = "$c <> $c"
 	case lessCond:
-		en.fmtExpr = "$c < $c"
+		exprNode.fmtExpr = "$c < $c"
 	case lessEqualCond:
-		en.fmtExpr = "$c <= $c"
+		exprNode.fmtExpr = "$c <= $c"
 	case greaterCond:
-		en.fmtExpr = "$c > $c"
+		exprNode.fmtExpr = "$c > $c"
 	case greaterEqualCond:
-		en.fmtExpr = "$c >= $c"
+		exprNode.fmtExpr = "$c >= $c"
 	}
 
-	return en, nil
+	return exprNode, nil
 }
 
 // compoundBuildCondition is the function to make ExprNodes from And/Or
 // ConditionBuilders. compoundBuildCondition will only be called by the
 // buildCondition method. This function assumes that the argument
 // ConditionBuilder has the right format.
-func compoundBuildCondition(c ConditionBuilder, en ExprNode) (ExprNode, error) {
+func compoundBuildCondition(conditionBuilder ConditionBuilder, exprNode ExprNode) (ExprNode, error) {
 	// create a string with escaped characters to substitute them with proper
 	// aliases during runtime
 	var mode string
-	switch c.mode {
+	switch conditionBuilder.mode {
 	case andCond:
 		mode = " AND "
 	case orCond:
 		mode = " OR "
 	}
-	en.fmtExpr = "($c)" + strings.Repeat(mode+"($c)", len(c.conditionList)-1)
+	exprNode.fmtExpr = "($c)" + strings.Repeat(mode+"($c)", len(conditionBuilder.conditionList)-1)
 
-	return en, nil
+	return exprNode, nil
 }
 
 // notBuildCondition is the function to make ExprNodes from Not
 // ConditionBuilders. notBuildCondition will only be called by the
 // buildCondition method. This function assumes that the argument
 // ConditionBuilder has the right format.
-func notBuildCondition(en ExprNode) (ExprNode, error) {
+func notBuildCondition(exprNode ExprNode) (ExprNode, error) {
 	// create a string with escaped characters to substitute them with proper
 	// aliases during runtime
-	en.fmtExpr = "NOT ($c)"
+	exprNode.fmtExpr = "NOT ($c)"
 
-	return en, nil
+	return exprNode, nil
 }
 
 // betweenBuildCondition is the function to make ExprNodes from Between
 // ConditionBuilders. BuildCondition will only be called by the
 // buildCondition method. This function assumes that the argument
 // ConditionBuilder has the right format.
-func betweenBuildCondition(en ExprNode) (ExprNode, error) {
+func betweenBuildCondition(exprNode ExprNode) (ExprNode, error) {
 	// Create a string with special characters that can be substituted later: $c
-	en.fmtExpr = "$c BETWEEN $c AND $c"
+	exprNode.fmtExpr = "$c BETWEEN $c AND $c"
 
-	return en, nil
+	return exprNode, nil
 }
 
 // inBuildCondition is the function to make ExprNodes from In
 // ConditionBuilders. inBuildCondition will only be called by the
 // buildCondition method. This function assumes that the argument
 // ConditionBuilder has the right format.
-func inBuildCondition(c ConditionBuilder, en ExprNode) (ExprNode, error) {
+func inBuildCondition(conditionBuilder ConditionBuilder, exprNode ExprNode) (ExprNode, error) {
 	// Create a string with special characters that can be substituted later: $c
-	en.fmtExpr = "$c IN ($c" + strings.Repeat(", $c", len(c.operandList)-2) + ")"
+	exprNode.fmtExpr = "$c IN ($c" + strings.Repeat(", $c", len(conditionBuilder.operandList)-2) + ")"
 
-	return en, nil
+	return exprNode, nil
 }
 
 // attrExistsBuildCondition is the function to make ExprNodes from
 // AttrExistsCond ConditionBuilders. attrExistsBuildCondition will only be
 // called by the buildCondition method. This function assumes that the argument
 // ConditionBuilder has the right format.
-func attrExistsBuildCondition(en ExprNode) (ExprNode, error) {
+func attrExistsBuildCondition(exprNode ExprNode) (ExprNode, error) {
 	// Create a string with special characters that can be substituted later: $c
-	en.fmtExpr = "attribute_exists ($c)"
+	exprNode.fmtExpr = "attribute_exists ($c)"
 
-	return en, nil
+	return exprNode, nil
 }
 
 // attrNotExistsBuildCondition is the function to make ExprNodes from
 // AttrNotExistsCond ConditionBuilders. attrNotExistsBuildCondition will only be
 // called by the buildCondition method. This function assumes that the argument
 // ConditionBuilder has the right format.
-func attrNotExistsBuildCondition(en ExprNode) (ExprNode, error) {
+func attrNotExistsBuildCondition(exprNode ExprNode) (ExprNode, error) {
 	// Create a string with special characters that can be substituted later: $c
-	en.fmtExpr = "attribute_not_exists ($c)"
+	exprNode.fmtExpr = "attribute_not_exists ($c)"
 
-	return en, nil
+	return exprNode, nil
 }
 
 // attrTypeBuildCondition is the function to make ExprNodes from AttrTypeCond
 // ConditionBuilders. attrTypeBuildCondition will only be called by the
 // buildCondition method. This function assumes that the argument
 // ConditionBuilder has the right format.
-func attrTypeBuildCondition(en ExprNode) (ExprNode, error) {
+func attrTypeBuildCondition(exprNode ExprNode) (ExprNode, error) {
 	// Create a string with special characters that can be substituted later: $c
-	en.fmtExpr = "attribute_type ($c, $c)"
+	exprNode.fmtExpr = "attribute_type ($c, $c)"
 
-	return en, nil
+	return exprNode, nil
 }
 
 // beginsWithBuildCondition is the function to make ExprNodes from
 // BeginsWithCond ConditionBuilders. beginsWithBuildCondition will only be
 // called by the buildCondition method. This function assumes that the argument
 // ConditionBuilder has the right format.
-func beginsWithBuildCondition(en ExprNode) (ExprNode, error) {
+func beginsWithBuildCondition(exprNode ExprNode) (ExprNode, error) {
 	// Create a string with special characters that can be substituted later: $c
-	en.fmtExpr = "begins_with ($c, $c)"
+	exprNode.fmtExpr = "begins_with ($c, $c)"
 
-	return en, nil
+	return exprNode, nil
 }
 
 // containsBuildCondition is the function to make ExprNodes from
 // ContainsCond ConditionBuilders. containsBuildCondition will only be
 // called by the buildCondition method. This function assumes that the argument
 // ConditionBuilder has the right format.
-func containsBuildCondition(en ExprNode) (ExprNode, error) {
+func containsBuildCondition(exprNode ExprNode) (ExprNode, error) {
 	// Create a string with special characters that can be substituted later: $c
-	en.fmtExpr = "contains ($c, $c)"
+	exprNode.fmtExpr = "contains ($c, $c)"
 
-	return en, nil
+	return exprNode, nil
 }
 
 // buildChildNodes will create the list of the child ExprNodes. This avoids
@@ -1016,18 +1052,18 @@ func containsBuildCondition(en ExprNode) (ExprNode, error) {
 func (conditionBuilder ConditionBuilder) buildChildNodes() ([]ExprNode, error) {
 	childNodes := make([]ExprNode, 0, len(conditionBuilder.conditionList)+len(conditionBuilder.operandList))
 	for _, condition := range conditionBuilder.conditionList {
-		en, err := condition.BuildTree()
+		exprNode, err := condition.BuildTree()
 		if err != nil {
 			return []ExprNode{}, err
 		}
-		childNodes = append(childNodes, en)
+		childNodes = append(childNodes, exprNode)
 	}
 	for _, ope := range conditionBuilder.operandList {
-		en, err := ope.BuildOperand()
+		exprNode, err := ope.Build()
 		if err != nil {
 			return []ExprNode{}, err
 		}
-		childNodes = append(childNodes, en)
+		childNodes = append(childNodes, exprNode)
 	}
 
 	return childNodes, nil

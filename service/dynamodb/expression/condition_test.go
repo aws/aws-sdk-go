@@ -415,40 +415,40 @@ func TestCompare(t *testing.T) {
 			},
 			expectedExpression: "size (#0) >= :0",
 		},
-		// {
-		// 	name:  "invalid operand error Equal",
-		// 	input: Name("").Size().Equal(Value(5)),
-		// 	err:   invalidOperand,
-		// },
-		// {
-		// 	name:  "invalid operand error NotEqual",
-		// 	input: Name("").Size().NotEqual(Value(5)),
-		// 	err:   invalidOperand,
-		// },
-		// {
-		// 	name:  "invalid operand error Less",
-		// 	input: Name("").Size().Less(Value(5)),
-		// 	err:   invalidOperand,
-		// },
-		// {
-		// 	name:  "invalid operand error LessEqual",
-		// 	input: Name("").Size().LessEqual(Value(5)),
-		// 	err:   invalidOperand,
-		// },
-		// {
-		// 	name:  "invalid operand error Greater",
-		// 	input: Name("").Size().Greater(Value(5)),
-		// 	err:   invalidOperand,
-		// },
-		// {
-		// 	name:  "invalid operand error GreaterEqual",
-		// 	input: Name("").Size().GreaterEqual(Value(5)),
-		// 	err:   invalidOperand,
-		// },
+		{
+			name:  "invalid operand error Equal",
+			input: Name("").Size().Equal(Value(5)),
+			err:   invalidOperand,
+		},
+		{
+			name:  "invalid operand error NotEqual",
+			input: Name("").Size().NotEqual(Value(5)),
+			err:   invalidOperand,
+		},
+		{
+			name:  "invalid operand error Less",
+			input: Name("").Size().Less(Value(5)),
+			err:   invalidOperand,
+		},
+		{
+			name:  "invalid operand error LessEqual",
+			input: Name("").Size().LessEqual(Value(5)),
+			err:   invalidOperand,
+		},
+		{
+			name:  "invalid operand error Greater",
+			input: Name("").Size().Greater(Value(5)),
+			err:   invalidOperand,
+		},
+		{
+			name:  "invalid operand error GreaterEqual",
+			input: Name("").Size().GreaterEqual(Value(5)),
+			err:   invalidOperand,
+		},
 	}
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			expr, err := c.input.BuildExpression()
+			expr, err := c.input.Build()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -462,7 +462,7 @@ func TestCompare(t *testing.T) {
 					t.Errorf("expect no error, got unexpected Error %q", err)
 				}
 
-				if e, a := aws.String(c.expectedExpression), expr.ConditionExpression(); !reflect.DeepEqual(a, e) {
+				if e, a := aws.String(c.expectedExpression), expr.Condition(); !reflect.DeepEqual(a, e) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 				if e, a := c.expectedNames, expr.Names(); !reflect.DeepEqual(a, e) {
@@ -615,21 +615,21 @@ func TestBoolCondition(t *testing.T) {
 			},
 			expectedExpression: "(#0 = #0) AND (#1 = #0) AND (#2 = #0)",
 		},
-		// {
-		// 	name:  "invalid operand error And",
-		// 	input: Name("").Size().GreaterEqual(Value(5)).And(Name("[5]").Between(Value(3), Value(9))),
-		// 	err:   invalidOperand,
-		// },
-		// {
-		// 	name:  "invalid operand error Or",
-		// 	input: Name("").Size().GreaterEqual(Value(5)).Or(Name("[5]").Between(Value(3), Value(9))),
-		// 	err:   invalidOperand,
-		// },
+		{
+			name:  "invalid operand error And",
+			input: Name("").Size().GreaterEqual(Value(5)).And(Name("[5]").Between(Value(3), Value(9))),
+			err:   invalidOperand,
+		},
+		{
+			name:  "invalid operand error Or",
+			input: Name("").Size().GreaterEqual(Value(5)).Or(Name("[5]").Between(Value(3), Value(9))),
+			err:   invalidOperand,
+		},
 	}
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			expr, err := c.input.BuildExpression()
+			expr, err := c.input.Build()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -643,7 +643,7 @@ func TestBoolCondition(t *testing.T) {
 					t.Errorf("expect no error, got unexpected Error %q", err)
 				}
 
-				if e, a := aws.String(c.expectedExpression), expr.ConditionExpression(); !reflect.DeepEqual(a, e) {
+				if e, a := aws.String(c.expectedExpression), expr.Condition(); !reflect.DeepEqual(a, e) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 				if e, a := c.expectedNames, expr.Names(); !reflect.DeepEqual(a, e) {
@@ -694,16 +694,16 @@ func TestNotCondition(t *testing.T) {
 			},
 			expectedExpression: "NOT (#0 = :0)",
 		},
-		// {
-		// 	name:  "invalid operand error not",
-		// 	input: Name("").Size().GreaterEqual(Value(5)).Or(Name("[5]").Between(Value(3), Value(9))).Not(),
-		// 	err:   invalidOperand,
-		// },
+		{
+			name:  "invalid operand error not",
+			input: Name("").Size().GreaterEqual(Value(5)).Or(Name("[5]").Between(Value(3), Value(9))).Not(),
+			err:   invalidOperand,
+		},
 	}
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			expr, err := c.input.BuildExpression()
+			expr, err := c.input.Build()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -717,7 +717,7 @@ func TestNotCondition(t *testing.T) {
 					t.Errorf("expect no error, got unexpected Error %q", err)
 				}
 
-				if e, a := aws.String(c.expectedExpression), expr.ConditionExpression(); !reflect.DeepEqual(a, e) {
+				if e, a := aws.String(c.expectedExpression), expr.Condition(); !reflect.DeepEqual(a, e) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 				if e, a := c.expectedNames, expr.Names(); !reflect.DeepEqual(a, e) {
@@ -791,16 +791,16 @@ func TestBetweenCondition(t *testing.T) {
 			},
 			expectedExpression: "size (#0) BETWEEN :0 AND :1",
 		},
-		// {
-		// 	name:  "invalid operand error between",
-		// 	input: Name("[5]").Between(Value(3), Name("foo..bar")),
-		// 	err:   invalidOperand,
-		// },
+		{
+			name:  "invalid operand error between",
+			input: Name("[5]").Between(Value(3), Name("foo..bar")),
+			err:   invalidOperand,
+		},
 	}
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			expr, err := c.input.BuildExpression()
+			expr, err := c.input.Build()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -814,7 +814,7 @@ func TestBetweenCondition(t *testing.T) {
 					t.Errorf("expect no error, got unexpected Error %q", err)
 				}
 
-				if e, a := aws.String(c.expectedExpression), expr.ConditionExpression(); !reflect.DeepEqual(a, e) {
+				if e, a := aws.String(c.expectedExpression), expr.Condition(); !reflect.DeepEqual(a, e) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 				if e, a := c.expectedNames, expr.Names(); !reflect.DeepEqual(a, e) {
@@ -888,16 +888,16 @@ func TestInCondition(t *testing.T) {
 			},
 			expectedExpression: "size (#0) IN (:0, :1)",
 		},
-		// {
-		// 	name:  "invalid operand error in",
-		// 	input: Name("[5]").In(Value(3), Name("foo..bar")),
-		// 	err:   invalidOperand,
-		// },
+		{
+			name:  "invalid operand error in",
+			input: Name("[5]").In(Value(3), Name("foo..bar")),
+			err:   invalidOperand,
+		},
 	}
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			expr, err := c.input.BuildExpression()
+			expr, err := c.input.Build()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -911,7 +911,7 @@ func TestInCondition(t *testing.T) {
 					t.Errorf("expect no error, got unexpected Error %q", err)
 				}
 
-				if e, a := aws.String(c.expectedExpression), expr.ConditionExpression(); !reflect.DeepEqual(a, e) {
+				if e, a := aws.String(c.expectedExpression), expr.Condition(); !reflect.DeepEqual(a, e) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 				if e, a := c.expectedNames, expr.Names(); !reflect.DeepEqual(a, e) {
@@ -952,21 +952,21 @@ func TestAttrExistsCondition(t *testing.T) {
 			},
 			expectedExpression: "attribute_not_exists (#0)",
 		},
-		// {
-		// 	name:  "invalid operand error attr exists",
-		// 	input: AttributeExists(Name("")),
-		// 	err:   invalidOperand,
-		// },
-		// {
-		// 	name:  "invalid operand error attr not exists",
-		// 	input: AttributeNotExists(Name("foo..bar")),
-		// 	err:   invalidOperand,
-		// },
+		{
+			name:  "invalid operand error attr exists",
+			input: AttributeExists(Name("")),
+			err:   invalidOperand,
+		},
+		{
+			name:  "invalid operand error attr not exists",
+			input: AttributeNotExists(Name("foo..bar")),
+			err:   invalidOperand,
+		},
 	}
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			expr, err := c.input.BuildExpression()
+			expr, err := c.input.Build()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -980,7 +980,7 @@ func TestAttrExistsCondition(t *testing.T) {
 					t.Errorf("expect no error, got unexpected Error %q", err)
 				}
 
-				if e, a := aws.String(c.expectedExpression), expr.ConditionExpression(); !reflect.DeepEqual(a, e) {
+				if e, a := aws.String(c.expectedExpression), expr.Condition(); !reflect.DeepEqual(a, e) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 				if e, a := c.expectedNames, expr.Names(); !reflect.DeepEqual(a, e) {
@@ -1143,16 +1143,16 @@ func TestAttrTypeCondition(t *testing.T) {
 			},
 			expectedExpression: "attribute_type (#0, :0)",
 		},
-		// {
-		// 	name:  "attr type invalid operand",
-		// 	input: Name("").AttributeType(Map),
-		// 	err:   invalidOperand,
-		// },
+		{
+			name:  "attr type invalid operand",
+			input: Name("").AttributeType(Map),
+			err:   invalidOperand,
+		},
 	}
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			expr, err := c.input.BuildExpression()
+			expr, err := c.input.Build()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -1166,7 +1166,7 @@ func TestAttrTypeCondition(t *testing.T) {
 					t.Errorf("expect no error, got unexpected Error %q", err)
 				}
 
-				if e, a := aws.String(c.expectedExpression), expr.ConditionExpression(); !reflect.DeepEqual(a, e) {
+				if e, a := aws.String(c.expectedExpression), expr.Condition(); !reflect.DeepEqual(a, e) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 				if e, a := c.expectedNames, expr.Names(); !reflect.DeepEqual(a, e) {
@@ -1203,16 +1203,16 @@ func TestBeginsWithCondition(t *testing.T) {
 			},
 			expectedExpression: "begins_with (#0, :0)",
 		},
-		// {
-		// 	name:  "begins with invalid operand",
-		// 	input: Name("").BeginsWith("bar"),
-		// 	err:   invalidOperand,
-		// },
+		{
+			name:  "begins with invalid operand",
+			input: Name("").BeginsWith("bar"),
+			err:   invalidOperand,
+		},
 	}
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			expr, err := c.input.BuildExpression()
+			expr, err := c.input.Build()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -1226,7 +1226,7 @@ func TestBeginsWithCondition(t *testing.T) {
 					t.Errorf("expect no error, got unexpected Error %q", err)
 				}
 
-				if e, a := aws.String(c.expectedExpression), expr.ConditionExpression(); !reflect.DeepEqual(a, e) {
+				if e, a := aws.String(c.expectedExpression), expr.Condition(); !reflect.DeepEqual(a, e) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 				if e, a := c.expectedNames, expr.Names(); !reflect.DeepEqual(a, e) {
@@ -1263,16 +1263,16 @@ func TestContainsCondition(t *testing.T) {
 			},
 			expectedExpression: "contains (#0, :0)",
 		},
-		// {
-		// 	name:  "contains invalid operand",
-		// 	input: Name("").Contains("bar"),
-		// 	err:   invalidOperand,
-		// },
+		{
+			name:  "contains invalid operand",
+			input: Name("").Contains("bar"),
+			err:   invalidOperand,
+		},
 	}
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			expr, err := c.input.BuildExpression()
+			expr, err := c.input.Build()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -1286,7 +1286,7 @@ func TestContainsCondition(t *testing.T) {
 					t.Errorf("expect no error, got unexpected Error %q", err)
 				}
 
-				if e, a := aws.String(c.expectedExpression), expr.ConditionExpression(); !reflect.DeepEqual(a, e) {
+				if e, a := aws.String(c.expectedExpression), expr.Condition(); !reflect.DeepEqual(a, e) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 				if e, a := c.expectedNames, expr.Names(); !reflect.DeepEqual(a, e) {

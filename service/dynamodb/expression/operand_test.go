@@ -40,7 +40,7 @@ func TestBuildOperand(t *testing.T) {
 			input: Name("foo"),
 			expected: ExprNode{
 				names:   []string{"foo"},
-				fmtExpr: "$p",
+				fmtExpr: "$n",
 			},
 		},
 		{
@@ -48,7 +48,7 @@ func TestBuildOperand(t *testing.T) {
 			input: Name("foo.foo"),
 			expected: ExprNode{
 				names:   []string{"foo", "foo"},
-				fmtExpr: "$p.$p",
+				fmtExpr: "$n.$n",
 			},
 		},
 		{
@@ -68,7 +68,7 @@ func TestBuildOperand(t *testing.T) {
 			input: Name("foo.bar"),
 			expected: ExprNode{
 				names:   []string{"foo", "bar"},
-				fmtExpr: "$p.$p",
+				fmtExpr: "$n.$n",
 			},
 		},
 		{
@@ -76,7 +76,7 @@ func TestBuildOperand(t *testing.T) {
 			input: Name("foo.bar[0].baz"),
 			expected: ExprNode{
 				names:   []string{"foo", "bar", "baz"},
-				fmtExpr: "$p.$p[0].$p",
+				fmtExpr: "$n.$n[0].$n",
 			},
 		},
 		{
@@ -84,7 +84,7 @@ func TestBuildOperand(t *testing.T) {
 			input: Name("foo").Size(),
 			expected: ExprNode{
 				names:   []string{"foo"},
-				fmtExpr: "size ($p)",
+				fmtExpr: "size ($n)",
 			},
 		},
 		{
@@ -109,7 +109,7 @@ func TestBuildOperand(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			en, err := c.input.BuildOperand()
+			en, err := c.input.Build()
 
 			if c.err != noOperandError {
 				if err == nil {

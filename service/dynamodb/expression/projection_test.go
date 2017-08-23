@@ -63,15 +63,15 @@ func TestProjection(t *testing.T) {
 			},
 			expectedExpression: "#0, #1, #2, #3",
 		},
-		// {
-		// 	name:  "invalid operand",
-		// 	input: NamesList(Name("")),
-		// 	err:   invalidProjectionOperand,
-		// },
+		{
+			name:  "invalid operand",
+			input: NamesList(Name("")),
+			err:   invalidProjectionOperand,
+		},
 	}
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			actual, err := c.input.BuildExpression()
+			actual, err := c.input.Build()
 			if c.err != noProjError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -85,7 +85,7 @@ func TestProjection(t *testing.T) {
 					t.Errorf("expect no error, got unexpected Error %q", err)
 				}
 
-				if e, a := aws.String(c.expectedExpression), actual.ProjectionExpression(); !reflect.DeepEqual(a, e) {
+				if e, a := aws.String(c.expectedExpression), actual.Projection(); !reflect.DeepEqual(a, e) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 				if e, a := c.expectedNames, actual.Names(); !reflect.DeepEqual(a, e) {
@@ -156,15 +156,15 @@ func TestBuildChildNodes(t *testing.T) {
 			expected: []ExprNode{
 				{
 					names:   []string{"foo"},
-					fmtExpr: "$p",
+					fmtExpr: "$n",
 				},
 				{
 					names:   []string{"bar"},
-					fmtExpr: "$p",
+					fmtExpr: "$n",
 				},
 				{
 					names:   []string{"baz"},
-					fmtExpr: "$p",
+					fmtExpr: "$n",
 				},
 			},
 		},

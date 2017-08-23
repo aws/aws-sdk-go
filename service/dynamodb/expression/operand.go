@@ -24,7 +24,7 @@ var (
 // interface. It will have various methods corresponding to the operations
 // supported by DynamoDB operations. (i.e. AND, BETWEEN, EQUALS) The underlying
 // undefined type member variable will be converted into dynamodb.AttributeValue
-// by dynamodbattribute.Marshal(in) when Expressions are created.
+// by dynamodbattribute.Marshal(in) when Builder are created.
 type ValueBuilder struct {
 	value interface{}
 }
@@ -49,12 +49,12 @@ type SizeBuilder struct {
 // OperandBuilder represents the idea of Operand which are building blocks to
 // DynamoDB Expressions. OperandBuilders will be children of ConditionBuilders
 // to represent a tree like structure of Expression dependencies. The method
-// BuildOperand() will create an instance of ExprNode, which is an generic
-// representation of both Operands and Conditions. BuildOperand() will mainly
-// be called recursively by the BuildExpression() method call when Expressions
-// are built from ConditionBuilders
+// Build() will create an instance of ExprNode, which is an generic
+// representation of both Operands and Conditions. Build() will mainly be called
+// recursively by the BuildTree() method call when Builder is built from
+// ConditionBuilders
 type OperandBuilder interface {
-	BuildOperand() (ExprNode, error)
+	Build() (ExprNode, error)
 }
 
 // Name creates a NameBuilder, which implements the OperandBuilder interface.
@@ -95,12 +95,12 @@ func (nameBuilder NameBuilder) Size() SizeBuilder {
 	}
 }
 
-// BuildOperand will create the ExprNode which is a generic representation of
-// Operands and Conditions. BuildOperand() is mainly for the BuildExpression()
-// method to call on, not for users to invoke. BuildOperand aliases all strings
-// to avoid stepping over DynamoDB's reserved words.
+// Build will create the ExprNode which is a generic representation of Operands
+// and Conditions. Build() is mainly for the BuildTree() method to call on, not
+// for users to invoke. BuildOperand aliases all strings to avoid stepping over
+// DynamoDB's reserved words.
 // More information on reserved words at http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html
-func (nameBuilder NameBuilder) BuildOperand() (ExprNode, error) {
+func (nameBuilder NameBuilder) Build() (ExprNode, error) {
 	if nameBuilder.name == "" {
 		return ExprNode{}, ErrEmptyName
 	}
@@ -134,16 +134,16 @@ func (nameBuilder NameBuilder) BuildOperand() (ExprNode, error) {
 
 		// Create a string with special characters that can be substituted later: $p
 		ret.names = append(ret.names, word)
-		fmtNames = append(fmtNames, "$p"+substr)
+		fmtNames = append(fmtNames, "$n"+substr)
 	}
 	ret.fmtExpr = strings.Join(fmtNames, ".")
 	return ret, nil
 }
 
-// BuildOperand will create the ExprNode which is a generic representation of
-// Operands and Conditions. BuildOperand() is mainly for the BuildExpression()
-// method to call on, not for users to invoke.
-func (valueBuilder ValueBuilder) BuildOperand() (ExprNode, error) {
+// Build will create the ExprNode which is a generic representation of Operands
+// and Conditions. Build() is mainly for the BuildTree() method to call on, not
+// for users to invoke.
+func (valueBuilder ValueBuilder) Build() (ExprNode, error) {
 	expr, err := dynamodbattribute.Marshal(valueBuilder.value)
 	if err != nil {
 		return ExprNode{}, err
@@ -157,11 +157,11 @@ func (valueBuilder ValueBuilder) BuildOperand() (ExprNode, error) {
 	return ret, nil
 }
 
-// BuildOperand will create the ExprNode which is a generic representation of
-// Operands and Conditions. BuildOperand() is mainly for the BuildExpression()
-// method to call on, not for users to invoke.
-func (sizeBuilder SizeBuilder) BuildOperand() (ExprNode, error) {
-	ret, err := sizeBuilder.nameBuilder.BuildOperand()
+// Build will create the ExprNode which is a generic representation of Operands
+// and Conditions. Build() is mainly for the BuildTree() method to call on, not
+// for users to invoke.
+func (sizeBuilder SizeBuilder) Build() (ExprNode, error) {
+	ret, err := sizeBuilder.nameBuilder.Build()
 	ret.fmtExpr = "size (" + ret.fmtExpr + ")"
 
 	return ret, err

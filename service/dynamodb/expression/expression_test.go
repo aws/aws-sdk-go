@@ -36,10 +36,10 @@ func TestBuildExpression(t *testing.T) {
 		err                exprErrorMode
 	}{
 		{
-			name: "basic path",
+			name: "basic name",
 			input: ExprNode{
 				names:   []string{"foo"},
-				fmtExpr: "$p",
+				fmtExpr: "$n",
 			},
 
 			expectedValues: map[string]*dynamodb.AttributeValue{},
@@ -70,7 +70,7 @@ func TestBuildExpression(t *testing.T) {
 			name: "nested path",
 			input: ExprNode{
 				names:   []string{"foo", "bar"},
-				fmtExpr: "$p.$p",
+				fmtExpr: "$n.$n",
 			},
 
 			expectedValues: map[string]*dynamodb.AttributeValue{},
@@ -84,7 +84,7 @@ func TestBuildExpression(t *testing.T) {
 			name: "nested path with index",
 			input: ExprNode{
 				names:   []string{"foo", "bar", "baz"},
-				fmtExpr: "$p.$p[0].$p",
+				fmtExpr: "$n.$n[0].$n",
 			},
 			expectedValues: map[string]*dynamodb.AttributeValue{},
 			expectedNames: map[string]*string{
@@ -98,7 +98,7 @@ func TestBuildExpression(t *testing.T) {
 			name: "basic size",
 			input: ExprNode{
 				names:   []string{"foo"},
-				fmtExpr: "size ($p)",
+				fmtExpr: "size ($n)",
 			},
 			expectedValues: map[string]*dynamodb.AttributeValue{},
 			expectedNames: map[string]*string{
@@ -110,7 +110,7 @@ func TestBuildExpression(t *testing.T) {
 			name: "duplicate path name",
 			input: ExprNode{
 				names:   []string{"foo", "foo"},
-				fmtExpr: "$p.$p",
+				fmtExpr: "$n.$n",
 			},
 			expectedValues: map[string]*dynamodb.AttributeValue{},
 			expectedNames: map[string]*string{
@@ -124,7 +124,7 @@ func TestBuildExpression(t *testing.T) {
 				children: []ExprNode{
 					ExprNode{
 						names:   []string{"foo"},
-						fmtExpr: "$p",
+						fmtExpr: "$n",
 					},
 					ExprNode{
 						values: []dynamodb.AttributeValue{
@@ -148,54 +148,53 @@ func TestBuildExpression(t *testing.T) {
 			},
 			expectedExpression: "#0 = :0",
 		},
-		// {
-		// 	name: "missing char after $",
-		// 	input: ExprNode{
-		// 		names:   []string{"foo", "foo"},
-		// 		fmtExpr: "$p.$",
-		// 	},
-		// 	err: invalidEscChar,
-		// },
-		// {
-		// 	name: "names out of range",
-		// 	input: ExprNode{
-		// 		names:   []string{"foo"},
-		// 		fmtExpr: "$p.$p",
-		// 	},
-		// 	err: outOfRange,
-		// },
-		// {
-		// 	name: "values out of range",
-		// 	input: ExprNode{
-		// 		fmtExpr: "$v",
-		// 	},
-		// 	err: outOfRange,
-		// },
-		// {
-		// 	name: "children out of range",
-		// 	input: ExprNode{
-		// 		fmtExpr: "$c",
-		// 	},
-		// 	err: outOfRange,
-		// },
-		// {
-		// 	name: "invalid escape char",
-		// 	input: ExprNode{
-		// 		fmtExpr: "$!",
-		// 	},
-		// 	err: invalidEscChar,
-		// },
-		// {
-		// 	name:     "empty ExprNode",
-		// 	input:    ExprNode{},
-		// 	expected: Expression{},
-		// },
-		// {
-		// 	name:     "nil aliasList",
-		// 	input:    ExprNode{},
-		// 	expected: Expression{},
-		// 	err:      nilAliasList,
-		// },
+		{
+			name: "missing char after $",
+			input: ExprNode{
+				names:   []string{"foo", "foo"},
+				fmtExpr: "$n.$",
+			},
+			err: invalidEscChar,
+		},
+		{
+			name: "names out of range",
+			input: ExprNode{
+				names:   []string{"foo"},
+				fmtExpr: "$n.$n",
+			},
+			err: outOfRange,
+		},
+		{
+			name: "values out of range",
+			input: ExprNode{
+				fmtExpr: "$v",
+			},
+			err: outOfRange,
+		},
+		{
+			name: "children out of range",
+			input: ExprNode{
+				fmtExpr: "$c",
+			},
+			err: outOfRange,
+		},
+		{
+			name: "invalid escape char",
+			input: ExprNode{
+				fmtExpr: "$!",
+			},
+			err: invalidEscChar,
+		},
+		{
+			name:               "empty ExprNode",
+			input:              ExprNode{},
+			expectedExpression: "",
+		},
+		{
+			name:  "nil aliasList",
+			input: ExprNode{},
+			err:   nilAliasList,
+		},
 	}
 
 	for _, c := range cases {
