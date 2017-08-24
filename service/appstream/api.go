@@ -2292,6 +2292,14 @@ type CreateFleetInput struct {
 	//
 	//    * stream.memory.8xlarge
 	//
+	//    * stream.graphics-pro.4xlarge
+	//
+	//    * stream.graphics-pro.8xlarge
+	//
+	//    * stream.graphics-pro.16xlarge
+	//
+	//    * stream.graphics-desktop.2xlarge
+	//
 	// InstanceType is a required field
 	InstanceType *string `min:"1" type:"string" required:"true"`
 
@@ -4655,6 +4663,14 @@ type UpdateFleetInput struct {
 	//    * stream.memory.4xlarge
 	//
 	//    * stream.memory.8xlarge
+	//
+	//    * stream.graphics-pro.4xlarge
+	//
+	//    * stream.graphics-pro.8xlarge
+	//
+	//    * stream.graphics-pro.16xlarge
+	//
+	//    * stream.graphics-desktop.2xlarge
 	InstanceType *string `min:"1" type:"string"`
 
 	// The maximum time for which a streaming session can run. The input can be
