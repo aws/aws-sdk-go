@@ -6,13 +6,13 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
-// ErrUnsetProjection is an error that is returned if BuildTree() is called on an
+// ErrUnsetProjection is an error that is returned if buildTree() is called on an
 // empty ProjectionBuilder.
 var ErrUnsetProjection = awserr.New("UnsetProjection", "buildProjection error: the argument ProjectionBuilder's name list is empty", nil)
 
 // ProjectionBuilder will represent Projection Expressions in DynamoDB. It is
 // composed of a list of NameBuilders. ProjectionBuilders will be a building
-// block of FactoryBuilders.
+// block of Builders.
 // More Information at: http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ProjectionExpressions.html
 type ProjectionBuilder struct {
 	names []NameBuilder
@@ -21,15 +21,15 @@ type ProjectionBuilder struct {
 // NamesList will create a ProjectionBuilder with at least one NameBuilder as a
 // child. The list of NameBuilders represent the item attribute that will be
 // returned after the DynamoDB operation. The resulting ProjectionBuilder can be
-// used to build other ProjectionBuilder or to create an FactoryBuilder to be
-// used in an operation input. This will be the function call.
+// used to build other ProjectionBuilder or to create an Builder to be used in
+// an operation input. This will be the function call.
 //
 // Example:
 //
 //     projection := expression.NamesList(expression.Name("foo"), expression.Name("bar"))
 //
 //     anotherProjection := expression.AddNames(projection, expression.Name("baz")) // Used in another projection
-//     factoryBuilder := Projection(newProjection)                                  // Used to make an FactoryBuilder
+//     builder := WithProjection(newProjection)                                     // Used to make an Builder
 func NamesList(nameBuilder NameBuilder, namesList ...NameBuilder) ProjectionBuilder {
 	namesList = append([]NameBuilder{nameBuilder}, namesList...)
 	return ProjectionBuilder{
@@ -44,14 +44,14 @@ func NamesList(nameBuilder NameBuilder, namesList ...NameBuilder) ProjectionBuil
 //     // The following produces equivalent ProjectionBuilders:
 //     projection := expression.NamesList(expression.Name("foo"), expression.Name("bar"))
 //     projection := expression.Name("foo").NamesList(expression.Name("bar"))
-func (nameBuilder NameBuilder) NamesList(namesList ...NameBuilder) ProjectionBuilder {
-	return NamesList(nameBuilder, namesList...)
+func (nb NameBuilder) NamesList(namesList ...NameBuilder) ProjectionBuilder {
+	return NamesList(nb, namesList...)
 }
 
 // AddNames will create a new ProjectionBuilder with a list of NameBuilders that
 // is a combination of the list from the argument ProjectionBuilder and the
 // argument NameBuilder list. The resulting ProjectionBuilder can be used to
-// build other ProjectionBuilder or to create an FactoryBuilder to be used in an
+// build other ProjectionBuilder or to create an Builder to be used in an
 // operation input. This will be the function call.
 //
 // Example:
@@ -59,7 +59,7 @@ func (nameBuilder NameBuilder) NamesList(namesList ...NameBuilder) ProjectionBui
 //     newProjection := expression.AddNames(oldProjection, expression.Name("foo"))
 //
 //     anotherProjection := expression.AddNames(newProjection, expression.Name("baz")) // Used in another projection
-//     factoryBuilder := Projection(newProjection)                                     // Used to make an FactoryBuilder
+//     builder := WithProjection(newProjection)                                        // Used to make an Builder
 func AddNames(projectionBuilder ProjectionBuilder, namesList ...NameBuilder) ProjectionBuilder {
 	projectionBuilder.names = append(projectionBuilder.names, namesList...)
 	return projectionBuilder
@@ -72,43 +72,41 @@ func AddNames(projectionBuilder ProjectionBuilder, namesList ...NameBuilder) Pro
 //     // The following produces equivalent ProjectionBuilders:
 //     newProjection := expression.AddNames(oldProjection, expression.Name("foo"))
 //     newProjection := oldProjection.AddNames(expression.Name("foo"))
-func (projectionBuilder ProjectionBuilder) AddNames(namesList ...NameBuilder) ProjectionBuilder {
-	return AddNames(projectionBuilder, namesList...)
+func (pb ProjectionBuilder) AddNames(namesList ...NameBuilder) ProjectionBuilder {
+	return AddNames(pb, namesList...)
 }
 
-// BuildTree will build a tree structure of ExprNodes based on the tree
-// structure of the input ProjectionBuilder's child NameBuilders. BuildTree()
-// satisfies the TreeBuilder interface so ProjectionBuilder can be a part of
-// FactoryBuilder and Factory struct. The BuildTree() method will only be called
-// recursively by the functions BuildFactory and buildChildTrees. This function
-// should not be called by the users.
-func (projectionBuilder ProjectionBuilder) BuildTree() (ExprNode, error) {
-	if len(projectionBuilder.names) == 0 {
-		return ExprNode{}, ErrUnsetProjection
+// buildTree will build a tree structure of exprNodes based on the tree
+// structure of the input ProjectionBuilder's child NameBuilders. buildTree()
+// satisfies the treeBuilder interface so ProjectionBuilder can be a part of
+// Builder and Expression struct.
+func (pb ProjectionBuilder) buildTree() (exprNode, error) {
+	if len(pb.names) == 0 {
+		return exprNode{}, ErrUnsetProjection
 	}
 
-	childNodes, err := projectionBuilder.buildChildNodes()
+	childNodes, err := pb.buildChildNodes()
 	if err != nil {
-		return ExprNode{}, err
+		return exprNode{}, err
 	}
-	ret := ExprNode{
+	ret := exprNode{
 		children: childNodes,
 	}
 
-	ret.fmtExpr = "$c" + strings.Repeat(", $c", len(projectionBuilder.names)-1)
+	ret.fmtExpr = "$c" + strings.Repeat(", $c", len(pb.names)-1)
 
 	return ret, nil
 }
 
-// buildChildNodes will create the list of the child ExprNodes.
-func (projectionBuilder ProjectionBuilder) buildChildNodes() ([]ExprNode, error) {
-	childNodes := make([]ExprNode, 0, len(projectionBuilder.names))
-	for _, name := range projectionBuilder.names {
-		en, err := name.BuildNode()
+// buildChildNodes will create the list of the child exprNodes.
+func (pb ProjectionBuilder) buildChildNodes() ([]exprNode, error) {
+	childNodes := make([]exprNode, 0, len(pb.names))
+	for _, name := range pb.names {
+		operand, err := name.BuildOperand()
 		if err != nil {
-			return []ExprNode{}, err
+			return []exprNode{}, err
 		}
-		childNodes = append(childNodes, en)
+		childNodes = append(childNodes, operand.exprNode)
 	}
 
 	return childNodes, nil

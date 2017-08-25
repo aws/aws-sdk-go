@@ -46,20 +46,25 @@ type SizeBuilder struct {
 	nameBuilder NameBuilder
 }
 
+// Operand is a wrapper around the exprNode struct. BuildOperand returns Operand
+// instead of exprNode so that the underlying structure of exprNodes is not
+// accessible to external users.
+type Operand struct {
+	exprNode exprNode
+}
+
 // OperandBuilder represents the idea of Operand which are building blocks to
 // DynamoDB Expressions. OperandBuilders will be children of ConditionBuilders
 // to represent a tree like structure of Expression dependencies. The method
-// BuildNode() will create an instance of ExprNode, which is an generic
-// representation of both Operands and Conditions. BuildNode() will mainly be
-// called recursively by the BuildTree() method call when Builder is built from
-// ConditionBuilders
+// BuildOperand() will create an instance of Operand with a child exprNode,
+// which is an generic representation of both Operands and Conditions.
+// BuildOperand() will mainly be called recursively by the buildTree() method
+// call.
 type OperandBuilder interface {
-	BuildNode() (ExprNode, error)
+	BuildOperand() (Operand, error)
 }
 
 // Name creates a NameBuilder, which implements the OperandBuilder interface.
-// Name will mainly be called in a pattern in order to create
-// ConditionBuilders.
 //
 // Example:
 //
@@ -70,9 +75,7 @@ func Name(name string) NameBuilder {
 	}
 }
 
-// Value creates a ValueBuilder, which implements the OperandBuilder
-// interface. Value will mainly be called in a pattern in order to create
-// ConditionBuilders.
+// Value creates a ValueBuilder, which implements the OperandBuilder interface.
 //
 // Example:
 //
@@ -89,33 +92,34 @@ func Value(value interface{}) ValueBuilder {
 // Example:
 //
 //     condition := Name("foo").Size().Equal(Value(10))
-func (nameBuilder NameBuilder) Size() SizeBuilder {
+func (nb NameBuilder) Size() SizeBuilder {
 	return SizeBuilder{
-		nameBuilder: nameBuilder,
+		nameBuilder: nb,
 	}
 }
 
-// BuildNode will create the ExprNode which is a generic representation of
-// Operands and Conditions. BuildNode() is mainly for the BuildTree() method to
-// call on, not for users to invoke. BuildOperand aliases all strings to avoid
-// stepping over DynamoDB's reserved words.
+// BuildOperand will create an Operand struct with an exprNode as a member,
+// which is a generic representation of Operands and Conditions. BuildOperand()
+// is mainly for the buildTree() method to call on, not for users to invoke.
+// BuildOperand aliases all strings to avoid stepping over DynamoDB's reserved
+// words.
 // More information on reserved words at http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html
-func (nameBuilder NameBuilder) BuildNode() (ExprNode, error) {
-	if nameBuilder.name == "" {
-		return ExprNode{}, ErrEmptyName
+func (nb NameBuilder) BuildOperand() (Operand, error) {
+	if nb.name == "" {
+		return Operand{}, ErrEmptyName
 	}
 
-	ret := ExprNode{
+	node := exprNode{
 		names: []string{},
 	}
 
-	nameSplit := strings.Split(nameBuilder.name, ".")
+	nameSplit := strings.Split(nb.name, ".")
 	fmtNames := make([]string, 0, len(nameSplit))
 
 	for _, word := range nameSplit {
 		var substr string
 		if word == "" {
-			return ExprNode{}, ErrEmptyName
+			return Operand{}, ErrEmptyName
 		}
 
 		if word[len(word)-1] == ']' {
@@ -129,40 +133,44 @@ func (nameBuilder NameBuilder) BuildNode() (ExprNode, error) {
 		}
 
 		if word == "" {
-			return ExprNode{}, ErrInvalidNameIndex
+			return Operand{}, ErrInvalidNameIndex
 		}
 
 		// Create a string with special characters that can be substituted later: $p
-		ret.names = append(ret.names, word)
+		node.names = append(node.names, word)
 		fmtNames = append(fmtNames, "$n"+substr)
 	}
-	ret.fmtExpr = strings.Join(fmtNames, ".")
-	return ret, nil
+	node.fmtExpr = strings.Join(fmtNames, ".")
+	return Operand{
+		exprNode: node,
+	}, nil
 }
 
-// BuildNode will create the ExprNode which is a generic representation of
-// Operands and Conditions. BuildNode() is mainly for the BuildTree() method to
-// call on, not for users to invoke.
-func (valueBuilder ValueBuilder) BuildNode() (ExprNode, error) {
-	expr, err := dynamodbattribute.Marshal(valueBuilder.value)
+// BuildOperand will create an Operand struct with an exprNode as a member,
+// which is a generic representation of Operands and Conditions. BuildOperand()
+// is mainly for the BuildTree() method to call on, not for users to invoke.
+func (vb ValueBuilder) BuildOperand() (Operand, error) {
+	expr, err := dynamodbattribute.Marshal(vb.value)
 	if err != nil {
-		return ExprNode{}, err
+		return Operand{}, err
 	}
 
 	// Create a string with special characters that can be substituted later: $v
-	ret := ExprNode{
-		values:  []dynamodb.AttributeValue{*expr},
-		fmtExpr: "$v",
+	operand := Operand{
+		exprNode: exprNode{
+			values:  []dynamodb.AttributeValue{*expr},
+			fmtExpr: "$v",
+		},
 	}
-	return ret, nil
+	return operand, nil
 }
 
-// BuildNode will create the ExprNode which is a generic representation of
-// Operands and Conditions. BuildNode() is mainly for the BuildTree() method to
-// call on, not for users to invoke.
-func (sizeBuilder SizeBuilder) BuildNode() (ExprNode, error) {
-	ret, err := sizeBuilder.nameBuilder.BuildNode()
-	ret.fmtExpr = "size (" + ret.fmtExpr + ")"
+// BuildOperand will create an Operand struct with an exprNode as a member,
+// which is a generic representation of Operands and Conditions. BuildOperand()
+// is mainly for the BuildTree() method to call on, not for users to invoke.
+func (sb SizeBuilder) BuildOperand() (Operand, error) {
+	operand, err := sb.nameBuilder.BuildOperand()
+	operand.exprNode.fmtExpr = "size (" + operand.exprNode.fmtExpr + ")"
 
-	return ret, err
+	return operand, err
 }

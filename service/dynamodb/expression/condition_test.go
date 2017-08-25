@@ -29,14 +29,14 @@ func TestCompare(t *testing.T) {
 	cases := []struct {
 		name         string
 		input        ConditionBuilder
-		expectedNode ExprNode
+		expectedNode exprNode
 		err          condErrorMode
 	}{
 		{
 			name:  "name equal name",
 			input: Name("foo").Equal(Name("bar")),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -52,8 +52,8 @@ func TestCompare(t *testing.T) {
 		{
 			name:  "value equal value",
 			input: Value(5).Equal(Value("bar")),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						values: []dynamodb.AttributeValue{
 							{
@@ -77,8 +77,8 @@ func TestCompare(t *testing.T) {
 		{
 			name:  "name size equal name size",
 			input: Name("foo[1]").Size().Equal(Name("bar").Size()),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "size ($n[1])",
@@ -94,8 +94,8 @@ func TestCompare(t *testing.T) {
 		{
 			name:  "name not equal name",
 			input: Name("foo").NotEqual(Name("bar")),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -111,8 +111,8 @@ func TestCompare(t *testing.T) {
 		{
 			name:  "value not equal value",
 			input: Value(5).NotEqual(Value("bar")),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						values: []dynamodb.AttributeValue{
 							{
@@ -136,8 +136,8 @@ func TestCompare(t *testing.T) {
 		{
 			name:  "name size not equal name size",
 			input: Name("foo[1]").Size().NotEqual(Name("bar").Size()),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "size ($n[1])",
@@ -153,8 +153,8 @@ func TestCompare(t *testing.T) {
 		{
 			name:  "name less than name",
 			input: Name("foo").LessThan(Name("bar")),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -170,8 +170,8 @@ func TestCompare(t *testing.T) {
 		{
 			name:  "value less than value",
 			input: Value(5).LessThan(Value("bar")),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						values: []dynamodb.AttributeValue{
 							{
@@ -195,8 +195,8 @@ func TestCompare(t *testing.T) {
 		{
 			name:  "name size less than name size",
 			input: Name("foo[1]").Size().LessThan(Name("bar").Size()),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "size ($n[1])",
@@ -212,8 +212,8 @@ func TestCompare(t *testing.T) {
 		{
 			name:  "name less than equal name",
 			input: Name("foo").LessThanEqual(Name("bar")),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -229,8 +229,8 @@ func TestCompare(t *testing.T) {
 		{
 			name:  "value less than equal value",
 			input: Value(5).LessThanEqual(Value("bar")),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						values: []dynamodb.AttributeValue{
 							{
@@ -254,8 +254,8 @@ func TestCompare(t *testing.T) {
 		{
 			name:  "name size less than equal name size",
 			input: Name("foo[1]").Size().LessThanEqual(Name("bar").Size()),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "size ($n[1])",
@@ -271,8 +271,8 @@ func TestCompare(t *testing.T) {
 		{
 			name:  "name greater than name",
 			input: Name("foo").GreaterThan(Name("bar")),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -288,8 +288,8 @@ func TestCompare(t *testing.T) {
 		{
 			name:  "value greater than value",
 			input: Value(5).GreaterThan(Value("bar")),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						values: []dynamodb.AttributeValue{
 							{
@@ -313,8 +313,8 @@ func TestCompare(t *testing.T) {
 		{
 			name:  "name size greater than name size",
 			input: Name("foo[1]").Size().GreaterThan(Name("bar").Size()),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "size ($n[1])",
@@ -330,8 +330,8 @@ func TestCompare(t *testing.T) {
 		{
 			name:  "name greater than equal name",
 			input: Name("foo").GreaterThanEqual(Name("bar")),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -347,8 +347,8 @@ func TestCompare(t *testing.T) {
 		{
 			name:  "value greater than equal value",
 			input: Value(5).GreaterThanEqual(Value("bar")),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						values: []dynamodb.AttributeValue{
 							{
@@ -372,8 +372,8 @@ func TestCompare(t *testing.T) {
 		{
 			name:  "name size greater than equal name size",
 			input: Name("foo[1]").Size().GreaterThanEqual(Name("bar").Size()),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "size ($n[1])",
@@ -419,7 +419,7 @@ func TestCompare(t *testing.T) {
 	}
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			actual, err := c.input.BuildTree()
+			actual, err := c.input.buildTree()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -445,7 +445,7 @@ func TestBuildCondition(t *testing.T) {
 	cases := []struct {
 		name     string
 		input    ConditionBuilder
-		expected ExprNode
+		expected exprNode
 		err      condErrorMode
 	}{
 		{
@@ -457,7 +457,7 @@ func TestBuildCondition(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			actual, err := c.input.BuildTree()
+			actual, err := c.input.buildTree()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -482,16 +482,16 @@ func TestBoolCondition(t *testing.T) {
 	cases := []struct {
 		name         string
 		input        ConditionBuilder
-		expectedNode ExprNode
+		expectedNode exprNode
 		err          condErrorMode
 	}{
 		{
 			name:  "basic method and",
 			input: Name("foo").Equal(Value(5)).And(Name("bar").Equal(Value("baz"))),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
-						children: []ExprNode{
+						children: []exprNode{
 							{
 								names:   []string{"foo"},
 								fmtExpr: "$n",
@@ -508,7 +508,7 @@ func TestBoolCondition(t *testing.T) {
 						fmtExpr: "$c = $c",
 					},
 					{
-						children: []ExprNode{
+						children: []exprNode{
 							{
 								names:   []string{"bar"},
 								fmtExpr: "$n",
@@ -531,10 +531,10 @@ func TestBoolCondition(t *testing.T) {
 		{
 			name:  "basic method or",
 			input: Name("foo").Equal(Value(5)).Or(Name("bar").Equal(Value("baz"))),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
-						children: []ExprNode{
+						children: []exprNode{
 							{
 								names:   []string{"foo"},
 								fmtExpr: "$n",
@@ -551,7 +551,7 @@ func TestBoolCondition(t *testing.T) {
 						fmtExpr: "$c = $c",
 					},
 					{
-						children: []ExprNode{
+						children: []exprNode{
 							{
 								names:   []string{"bar"},
 								fmtExpr: "$n",
@@ -574,10 +574,10 @@ func TestBoolCondition(t *testing.T) {
 		{
 			name:  "variadic function and",
 			input: And(Name("foo").Equal(Value(5)), Name("bar").Equal(Value("baz")), Name("qux").Equal(Value(true))),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
-						children: []ExprNode{
+						children: []exprNode{
 							{
 								names:   []string{"foo"},
 								fmtExpr: "$n",
@@ -594,7 +594,7 @@ func TestBoolCondition(t *testing.T) {
 						fmtExpr: "$c = $c",
 					},
 					{
-						children: []ExprNode{
+						children: []exprNode{
 							{
 								names:   []string{"bar"},
 								fmtExpr: "$n",
@@ -611,7 +611,7 @@ func TestBoolCondition(t *testing.T) {
 						fmtExpr: "$c = $c",
 					},
 					{
-						children: []ExprNode{
+						children: []exprNode{
 							{
 								names:   []string{"qux"},
 								fmtExpr: "$n",
@@ -634,10 +634,10 @@ func TestBoolCondition(t *testing.T) {
 		{
 			name:  "variadic function or",
 			input: Or(Name("foo").Equal(Value(5)), Name("bar").Equal(Value("baz")), Name("qux").Equal(Value(true))),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
-						children: []ExprNode{
+						children: []exprNode{
 							{
 								names:   []string{"foo"},
 								fmtExpr: "$n",
@@ -654,7 +654,7 @@ func TestBoolCondition(t *testing.T) {
 						fmtExpr: "$c = $c",
 					},
 					{
-						children: []ExprNode{
+						children: []exprNode{
 							{
 								names:   []string{"bar"},
 								fmtExpr: "$n",
@@ -671,7 +671,7 @@ func TestBoolCondition(t *testing.T) {
 						fmtExpr: "$c = $c",
 					},
 					{
-						children: []ExprNode{
+						children: []exprNode{
 							{
 								names:   []string{"qux"},
 								fmtExpr: "$n",
@@ -705,7 +705,7 @@ func TestBoolCondition(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			actual, err := c.input.BuildTree()
+			actual, err := c.input.buildTree()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -730,16 +730,16 @@ func TestNotCondition(t *testing.T) {
 	cases := []struct {
 		name         string
 		input        ConditionBuilder
-		expectedNode ExprNode
+		expectedNode exprNode
 		err          condErrorMode
 	}{
 		{
 			name:  "basic method not",
 			input: Name("foo").Equal(Value(5)).Not(),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
-						children: []ExprNode{
+						children: []exprNode{
 							{
 								names:   []string{"foo"},
 								fmtExpr: "$n",
@@ -762,10 +762,10 @@ func TestNotCondition(t *testing.T) {
 		{
 			name:  "basic function not",
 			input: Not(Name("foo").Equal(Value(5))),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
-						children: []ExprNode{
+						children: []exprNode{
 							{
 								names:   []string{"foo"},
 								fmtExpr: "$n",
@@ -794,7 +794,7 @@ func TestNotCondition(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			actual, err := c.input.BuildTree()
+			actual, err := c.input.buildTree()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -819,14 +819,14 @@ func TestBetweenCondition(t *testing.T) {
 	cases := []struct {
 		name         string
 		input        ConditionBuilder
-		expectedNode ExprNode
+		expectedNode exprNode
 		err          condErrorMode
 	}{
 		{
 			name:  "basic method between for name",
 			input: Name("foo").Between(Value(5), Value(7)),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -854,8 +854,8 @@ func TestBetweenCondition(t *testing.T) {
 		{
 			name:  "basic method between for value",
 			input: Value(6).Between(Value(5), Value(7)),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						values: []dynamodb.AttributeValue{
 							{
@@ -887,8 +887,8 @@ func TestBetweenCondition(t *testing.T) {
 		{
 			name:  "basic method between for size",
 			input: Name("foo").Size().Between(Value(5), Value(7)),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "size ($n)",
@@ -922,7 +922,7 @@ func TestBetweenCondition(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			actual, err := c.input.BuildTree()
+			actual, err := c.input.buildTree()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -947,14 +947,14 @@ func TestInCondition(t *testing.T) {
 	cases := []struct {
 		name         string
 		input        ConditionBuilder
-		expectedNode ExprNode
+		expectedNode exprNode
 		err          condErrorMode
 	}{
 		{
 			name:  "basic method in for name",
 			input: Name("foo").In(Value(5), Value(7)),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -982,8 +982,8 @@ func TestInCondition(t *testing.T) {
 		{
 			name:  "basic method in for value",
 			input: Value(6).In(Value(5), Value(7)),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						values: []dynamodb.AttributeValue{
 							{
@@ -1015,8 +1015,8 @@ func TestInCondition(t *testing.T) {
 		{
 			name:  "basic method in for size",
 			input: Name("foo").Size().In(Value(5), Value(7)),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "size ($n)",
@@ -1050,7 +1050,7 @@ func TestInCondition(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			actual, err := c.input.BuildTree()
+			actual, err := c.input.buildTree()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -1075,14 +1075,14 @@ func TestAttrExistsCondition(t *testing.T) {
 	cases := []struct {
 		name         string
 		input        ConditionBuilder
-		expectedNode ExprNode
+		expectedNode exprNode
 		err          condErrorMode
 	}{
 		{
 			name:  "basic attr exists",
 			input: Name("foo").AttributeExists(),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -1094,8 +1094,8 @@ func TestAttrExistsCondition(t *testing.T) {
 		{
 			name:  "basic attr not exists",
 			input: Name("foo").AttributeNotExists(),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -1118,7 +1118,7 @@ func TestAttrExistsCondition(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			actual, err := c.input.BuildTree()
+			actual, err := c.input.buildTree()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -1143,14 +1143,14 @@ func TestAttrTypeCondition(t *testing.T) {
 	cases := []struct {
 		name         string
 		input        ConditionBuilder
-		expectedNode ExprNode
+		expectedNode exprNode
 		err          condErrorMode
 	}{
 		{
 			name:  "attr type String",
 			input: Name("foo").AttributeType(String),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -1170,8 +1170,8 @@ func TestAttrTypeCondition(t *testing.T) {
 		{
 			name:  "attr type String",
 			input: Name("foo").AttributeType(String),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -1191,8 +1191,8 @@ func TestAttrTypeCondition(t *testing.T) {
 		{
 			name:  "attr type StringSet",
 			input: Name("foo").AttributeType(StringSet),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -1212,8 +1212,8 @@ func TestAttrTypeCondition(t *testing.T) {
 		{
 			name:  "attr type Number",
 			input: Name("foo").AttributeType(Number),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -1233,8 +1233,8 @@ func TestAttrTypeCondition(t *testing.T) {
 		{
 			name:  "attr type NumberSet",
 			input: Name("foo").AttributeType(NumberSet),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -1254,8 +1254,8 @@ func TestAttrTypeCondition(t *testing.T) {
 		{
 			name:  "attr type Binary",
 			input: Name("foo").AttributeType(Binary),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -1275,8 +1275,8 @@ func TestAttrTypeCondition(t *testing.T) {
 		{
 			name:  "attr type BinarySet",
 			input: Name("foo").AttributeType(BinarySet),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -1296,8 +1296,8 @@ func TestAttrTypeCondition(t *testing.T) {
 		{
 			name:  "attr type Boolean",
 			input: Name("foo").AttributeType(Boolean),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -1317,8 +1317,8 @@ func TestAttrTypeCondition(t *testing.T) {
 		{
 			name:  "attr type Null",
 			input: Name("foo").AttributeType(Null),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -1338,8 +1338,8 @@ func TestAttrTypeCondition(t *testing.T) {
 		{
 			name:  "attr type List",
 			input: Name("foo").AttributeType(List),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -1359,8 +1359,8 @@ func TestAttrTypeCondition(t *testing.T) {
 		{
 			name:  "attr type Map",
 			input: Name("foo").AttributeType(Map),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -1386,7 +1386,7 @@ func TestAttrTypeCondition(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			actual, err := c.input.BuildTree()
+			actual, err := c.input.buildTree()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -1411,14 +1411,14 @@ func TestBeginsWithCondition(t *testing.T) {
 	cases := []struct {
 		name         string
 		input        ConditionBuilder
-		expectedNode ExprNode
+		expectedNode exprNode
 		err          condErrorMode
 	}{
 		{
 			name:  "basic begins with",
 			input: Name("foo").BeginsWith("bar"),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -1444,7 +1444,7 @@ func TestBeginsWithCondition(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			actual, err := c.input.BuildTree()
+			actual, err := c.input.buildTree()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -1469,14 +1469,14 @@ func TestContainsCondition(t *testing.T) {
 	cases := []struct {
 		name         string
 		input        ConditionBuilder
-		expectedNode ExprNode
+		expectedNode exprNode
 		err          condErrorMode
 	}{
 		{
 			name:  "basic contains",
 			input: Name("foo").Contains("bar"),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -1502,7 +1502,7 @@ func TestContainsCondition(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			actual, err := c.input.BuildTree()
+			actual, err := c.input.buildTree()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -1562,7 +1562,7 @@ func TestCompoundBuildCondition(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			en, err := compoundBuildCondition(c.inputCond, ExprNode{})
+			en, err := compoundBuildCondition(c.inputCond, exprNode{})
 			if err != nil {
 				t.Errorf("expect no error, got unexpected Error %q", err)
 			}
@@ -1600,7 +1600,7 @@ func TestInBuildCondition(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			en, err := inBuildCondition(c.inputCond, ExprNode{})
+			en, err := inBuildCondition(c.inputCond, exprNode{})
 			if err != nil {
 				t.Errorf("expect no error, got unexpected Error %q", err)
 			}

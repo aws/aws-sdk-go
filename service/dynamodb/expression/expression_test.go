@@ -21,29 +21,29 @@ const (
 	// outOfRange error will occur if there are more escaped chars than there are
 	// actual values to be aliased.
 	outOfRange = "out of range"
-	// nilAliasList error will occur if the aliasList passed in has not been
+	// nilaliasList error will occur if the aliasList passed in has not been
 	// initialized
-	nilAliasList = "AliasList is nil"
-	// invalidFactoryBuilderOperand error will occur if an invalid operand is used
-	// as input for BuildFactory()
-	invalidFactoryBuildOperand = "BuildOperand error"
-	// emptyFactoryBuilder error will occur if BuildFactory() is called on an
-	// empty FactoryBuilder
-	emptyFactoryBuilder = "EmptyFactoryBuilder"
+	nilaliasList = "aliasList is nil"
+	// invalidBuilderOperand error will occur if an invalid operand is used
+	// as input for Build()
+	invalidExpressionBuildOperand = "BuildOperand error"
+	// emptyBuilder error will occur if Build() is called on an
+	// empty Builder
+	emptyBuilder = "EmptyBuilder"
 )
 
-func TestBuildFactory(t *testing.T) {
+func TestBuild(t *testing.T) {
 	cases := []struct {
 		name     string
-		input    FactoryBuilder
-		expected Factory
+		input    Builder
+		expected Expression
 		err      exprErrorMode
 	}{
 		{
 			name:  "condition",
-			input: Condition(Name("foo").Equal(Value(5))),
-			expected: Factory{
-				expressionMap: map[expressionType]TreeBuilder{
+			input: WithCondition(Name("foo").Equal(Value(5))),
+			expected: Expression{
+				expressionMap: map[expressionType]treeBuilder{
 					condition: ConditionBuilder{
 						operandList: []OperandBuilder{
 							NameBuilder{
@@ -60,9 +60,9 @@ func TestBuildFactory(t *testing.T) {
 		},
 		{
 			name:  "projection",
-			input: Projection(NamesList(Name("foo"), Name("bar"), Name("baz"))),
-			expected: Factory{
-				expressionMap: map[expressionType]TreeBuilder{
+			input: WithProjection(NamesList(Name("foo"), Name("bar"), Name("baz"))),
+			expected: Expression{
+				expressionMap: map[expressionType]treeBuilder{
 					projection: ProjectionBuilder{
 						names: []NameBuilder{
 							{
@@ -81,9 +81,9 @@ func TestBuildFactory(t *testing.T) {
 		},
 		// {
 		// 	name:  "keyCondition",
-		// 	input: KeyCondition(Name("foo").Equal(Value(5))),
-		// 	expected: Factory{
-		// 		expressionMap: map[expressionType]TreeBuilder{
+		// 	input: WithKeyCondition(Name("foo").Equal(Value(5))),
+		// 	expected: Expression{
+		// 		expressionMap: map[expressionType]treeBuilder{
 		// 			keyCondition: KeyConditionBuilder{
 		// 				operandList: []OperandBuilder{
 		// 					NameBuilder{
@@ -100,9 +100,9 @@ func TestBuildFactory(t *testing.T) {
 		// },
 		{
 			name:  "filter",
-			input: Filter(Name("foo").Equal(Value(5))),
-			expected: Factory{
-				expressionMap: map[expressionType]TreeBuilder{
+			input: WithFilter(Name("foo").Equal(Value(5))),
+			expected: Expression{
+				expressionMap: map[expressionType]treeBuilder{
 					filter: ConditionBuilder{
 						operandList: []OperandBuilder{
 							NameBuilder{
@@ -119,9 +119,9 @@ func TestBuildFactory(t *testing.T) {
 		},
 		// {
 		// 	name:  "update",
-		// 	input: Update(Name("foo").Equal(Value(5))),
-		// 	expected: Factory{
-		// 		expressionMap: map[expressionType]TreeBuilder{
+		// 	input: WithUpdate(Name("foo").Equal(Value(5))),
+		// 	expected: Expression{
+		// 		expressionMap: map[expressionType]treeBuilder{
 		// 			update: UpdateBuilder{
 		// 				operandList: []OperandBuilder{
 		// 					NameBuilder{
@@ -138,9 +138,9 @@ func TestBuildFactory(t *testing.T) {
 		// },
 		{
 			name:  "compound",
-			input: Condition(Name("foo").Equal(Value(5))).Filter(Name("bar").LessThan(Value(6))).Projection(NamesList(Name("foo"), Name("bar"), Name("baz"))),
-			expected: Factory{
-				expressionMap: map[expressionType]TreeBuilder{
+			input: WithCondition(Name("foo").Equal(Value(5))).WithFilter(Name("bar").LessThan(Value(6))).WithProjection(NamesList(Name("foo"), Name("bar"), Name("baz"))),
+			expected: Expression{
+				expressionMap: map[expressionType]treeBuilder{
 					condition: ConditionBuilder{
 						operandList: []OperandBuilder{
 							NameBuilder{
@@ -180,19 +180,19 @@ func TestBuildFactory(t *testing.T) {
 			},
 		},
 		{
-			name:  "invalid FactoryBuilder",
-			input: Condition(Name("").Equal(Value(5))),
-			err:   invalidFactoryBuildOperand,
+			name:  "invalid Builder",
+			input: WithCondition(Name("").Equal(Value(5))),
+			err:   invalidExpressionBuildOperand,
 		},
 		{
-			name:  "empty FactoryBuilder",
-			input: FactoryBuilder{},
-			err:   emptyFactoryBuilder,
+			name:  "empty Builder",
+			input: Builder{},
+			err:   emptyBuilder,
 		},
 	}
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			actual, err := c.input.BuildFactory()
+			actual, err := c.input.Build()
 			if c.err != noExpressionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -217,13 +217,13 @@ func TestBuildFactory(t *testing.T) {
 func TestCondition(t *testing.T) {
 	cases := []struct {
 		name     string
-		input    Factory
+		input    Expression
 		expected *string
 	}{
 		{
 			name: "condition",
-			input: Factory{
-				expressionMap: map[expressionType]TreeBuilder{
+			input: Expression{
+				expressionMap: map[expressionType]treeBuilder{
 					condition: Name("foo").Equal(Value(5)),
 				},
 			},
@@ -231,7 +231,7 @@ func TestCondition(t *testing.T) {
 		},
 		{
 			name:     "nil",
-			input:    Factory{},
+			input:    Expression{},
 			expected: nil,
 		},
 	}
@@ -248,13 +248,13 @@ func TestCondition(t *testing.T) {
 func TestFilter(t *testing.T) {
 	cases := []struct {
 		name     string
-		input    Factory
+		input    Expression
 		expected *string
 	}{
 		{
 			name: "filter",
-			input: Factory{
-				expressionMap: map[expressionType]TreeBuilder{
+			input: Expression{
+				expressionMap: map[expressionType]treeBuilder{
 					filter: Name("foo").Equal(Value(5)),
 				},
 			},
@@ -262,7 +262,7 @@ func TestFilter(t *testing.T) {
 		},
 		{
 			name:     "nil",
-			input:    Factory{},
+			input:    Expression{},
 			expected: nil,
 		},
 	}
@@ -279,13 +279,13 @@ func TestFilter(t *testing.T) {
 func TestProjection(t *testing.T) {
 	cases := []struct {
 		name     string
-		input    Factory
+		input    Expression
 		expected *string
 	}{
 		{
 			name: "projection",
-			input: Factory{
-				expressionMap: map[expressionType]TreeBuilder{
+			input: Expression{
+				expressionMap: map[expressionType]treeBuilder{
 					projection: NamesList(Name("foo"), Name("bar"), Name("baz")),
 				},
 			},
@@ -293,7 +293,7 @@ func TestProjection(t *testing.T) {
 		},
 		{
 			name:     "nil",
-			input:    Factory{},
+			input:    Expression{},
 			expected: nil,
 		},
 	}
@@ -310,13 +310,13 @@ func TestProjection(t *testing.T) {
 func TestNames(t *testing.T) {
 	cases := []struct {
 		name     string
-		input    Factory
+		input    Expression
 		expected map[string]*string
 	}{
 		{
 			name: "projection",
-			input: Factory{
-				expressionMap: map[expressionType]TreeBuilder{
+			input: Expression{
+				expressionMap: map[expressionType]treeBuilder{
 					projection: NamesList(Name("foo"), Name("bar"), Name("baz")),
 				},
 			},
@@ -328,8 +328,8 @@ func TestNames(t *testing.T) {
 		},
 		{
 			name: "aggregate",
-			input: Factory{
-				expressionMap: map[expressionType]TreeBuilder{
+			input: Expression{
+				expressionMap: map[expressionType]treeBuilder{
 					condition: ConditionBuilder{
 						operandList: []OperandBuilder{
 							NameBuilder{
@@ -375,7 +375,7 @@ func TestNames(t *testing.T) {
 		},
 		{
 			name:     "empty",
-			input:    Factory{},
+			input:    Expression{},
 			expected: map[string]*string{},
 		},
 	}
@@ -392,13 +392,13 @@ func TestNames(t *testing.T) {
 func TestValues(t *testing.T) {
 	cases := []struct {
 		name     string
-		input    Factory
+		input    Expression
 		expected map[string]*dynamodb.AttributeValue
 	}{
 		{
 			name: "condition",
-			input: Factory{
-				expressionMap: map[expressionType]TreeBuilder{
+			input: Expression{
+				expressionMap: map[expressionType]treeBuilder{
 					condition: Name("foo").Equal(Value(5)),
 				},
 			},
@@ -410,8 +410,8 @@ func TestValues(t *testing.T) {
 		},
 		{
 			name: "aggregate",
-			input: Factory{
-				expressionMap: map[expressionType]TreeBuilder{
+			input: Expression{
+				expressionMap: map[expressionType]treeBuilder{
 					condition: ConditionBuilder{
 						operandList: []OperandBuilder{
 							NameBuilder{
@@ -460,7 +460,7 @@ func TestValues(t *testing.T) {
 		},
 		{
 			name:     "empty",
-			input:    Factory{},
+			input:    Expression{},
 			expected: map[string]*dynamodb.AttributeValue{},
 		},
 	}
@@ -477,14 +477,14 @@ func TestValues(t *testing.T) {
 func TestBuildChildTrees(t *testing.T) {
 	cases := []struct {
 		name              string
-		input             Factory
-		expectedAliasList *AliasList
+		input             Expression
+		expectedaliasList *aliasList
 		expectedStringMap map[expressionType]string
 	}{
 		{
 			name: "aggregate",
-			input: Factory{
-				expressionMap: map[expressionType]TreeBuilder{
+			input: Expression{
+				expressionMap: map[expressionType]treeBuilder{
 					condition: ConditionBuilder{
 						operandList: []OperandBuilder{
 							NameBuilder{
@@ -522,7 +522,7 @@ func TestBuildChildTrees(t *testing.T) {
 					},
 				},
 			},
-			expectedAliasList: &AliasList{
+			expectedaliasList: &aliasList{
 				namesList: []string{"foo", "bar", "baz"},
 				valuesList: []dynamodb.AttributeValue{
 					{
@@ -541,15 +541,15 @@ func TestBuildChildTrees(t *testing.T) {
 		},
 		{
 			name:              "empty",
-			input:             Factory{},
-			expectedAliasList: &AliasList{},
+			input:             Expression{},
+			expectedaliasList: &aliasList{},
 			expectedStringMap: map[expressionType]string{},
 		},
 	}
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
 			actualAL, actualSM := c.input.buildChildTrees()
-			if e, a := c.expectedAliasList, actualAL; !reflect.DeepEqual(a, e) {
+			if e, a := c.expectedaliasList, actualAL; !reflect.DeepEqual(a, e) {
 				t.Errorf("expect %v, got %v", e, a)
 			}
 			if e, a := c.expectedStringMap, actualSM; !reflect.DeepEqual(a, e) {
@@ -562,7 +562,7 @@ func TestBuildChildTrees(t *testing.T) {
 func TestBuildExpressionString(t *testing.T) {
 	cases := []struct {
 		name               string
-		input              ExprNode
+		input              exprNode
 		expectedNames      map[string]*string
 		expectedValues     map[string]*dynamodb.AttributeValue
 		expectedExpression string
@@ -570,7 +570,7 @@ func TestBuildExpressionString(t *testing.T) {
 	}{
 		{
 			name: "basic name",
-			input: ExprNode{
+			input: exprNode{
 				names:   []string{"foo"},
 				fmtExpr: "$n",
 			},
@@ -583,7 +583,7 @@ func TestBuildExpressionString(t *testing.T) {
 		},
 		{
 			name: "basic value",
-			input: ExprNode{
+			input: exprNode{
 				values: []dynamodb.AttributeValue{
 					dynamodb.AttributeValue{
 						N: aws.String("5"),
@@ -601,7 +601,7 @@ func TestBuildExpressionString(t *testing.T) {
 		},
 		{
 			name: "nested path",
-			input: ExprNode{
+			input: exprNode{
 				names:   []string{"foo", "bar"},
 				fmtExpr: "$n.$n",
 			},
@@ -615,7 +615,7 @@ func TestBuildExpressionString(t *testing.T) {
 		},
 		{
 			name: "nested path with index",
-			input: ExprNode{
+			input: exprNode{
 				names:   []string{"foo", "bar", "baz"},
 				fmtExpr: "$n.$n[0].$n",
 			},
@@ -629,7 +629,7 @@ func TestBuildExpressionString(t *testing.T) {
 		},
 		{
 			name: "basic size",
-			input: ExprNode{
+			input: exprNode{
 				names:   []string{"foo"},
 				fmtExpr: "size ($n)",
 			},
@@ -641,7 +641,7 @@ func TestBuildExpressionString(t *testing.T) {
 		},
 		{
 			name: "duplicate path name",
-			input: ExprNode{
+			input: exprNode{
 				names:   []string{"foo", "foo"},
 				fmtExpr: "$n.$n",
 			},
@@ -653,13 +653,13 @@ func TestBuildExpressionString(t *testing.T) {
 		},
 		{
 			name: "equal expression",
-			input: ExprNode{
-				children: []ExprNode{
-					ExprNode{
+			input: exprNode{
+				children: []exprNode{
+					exprNode{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
 					},
-					ExprNode{
+					exprNode{
 						values: []dynamodb.AttributeValue{
 							dynamodb.AttributeValue{
 								N: aws.String("5"),
@@ -683,7 +683,7 @@ func TestBuildExpressionString(t *testing.T) {
 		},
 		{
 			name: "missing char after $",
-			input: ExprNode{
+			input: exprNode{
 				names:   []string{"foo", "foo"},
 				fmtExpr: "$n.$",
 			},
@@ -691,7 +691,7 @@ func TestBuildExpressionString(t *testing.T) {
 		},
 		{
 			name: "names out of range",
-			input: ExprNode{
+			input: exprNode{
 				names:   []string{"foo"},
 				fmtExpr: "$n.$n",
 			},
@@ -699,34 +699,34 @@ func TestBuildExpressionString(t *testing.T) {
 		},
 		{
 			name: "values out of range",
-			input: ExprNode{
+			input: exprNode{
 				fmtExpr: "$v",
 			},
 			err: outOfRange,
 		},
 		{
 			name: "children out of range",
-			input: ExprNode{
+			input: exprNode{
 				fmtExpr: "$c",
 			},
 			err: outOfRange,
 		},
 		{
 			name: "invalid escape char",
-			input: ExprNode{
+			input: exprNode{
 				fmtExpr: "$!",
 			},
 			err: invalidEscChar,
 		},
 		{
-			name:               "empty ExprNode",
-			input:              ExprNode{},
+			name:               "empty exprNode",
+			input:              exprNode{},
 			expectedExpression: "",
 		},
 		{
 			name:  "nil aliasList",
-			input: ExprNode{},
-			err:   nilAliasList,
+			input: exprNode{},
+			err:   nilaliasList,
 		},
 	}
 
@@ -734,10 +734,10 @@ func TestBuildExpressionString(t *testing.T) {
 		t.Run(c.name, func(t *testing.T) {
 			var expr string
 			var err error
-			if c.err == nilAliasList {
-				expr, err = c.input.BuildExpressionString(nil)
+			if c.err == nilaliasList {
+				expr, err = c.input.buildExpressionString(nil)
 			} else {
-				expr, err = c.input.BuildExpressionString(&AliasList{})
+				expr, err = c.input.buildExpressionString(&aliasList{})
 			}
 
 			if c.err != noExpressionError {
@@ -764,23 +764,23 @@ func TestBuildExpressionString(t *testing.T) {
 func TestAliasValue(t *testing.T) {
 	cases := []struct {
 		name     string
-		input    *AliasList
+		input    *aliasList
 		expected string
 		err      exprErrorMode
 	}{
 		{
 			name:  "nil alias list",
 			input: nil,
-			err:   nilAliasList,
+			err:   nilaliasList,
 		},
 		{
 			name:     "first item",
-			input:    &AliasList{},
+			input:    &aliasList{},
 			expected: ":0",
 		},
 		{
 			name: "fifth item",
-			input: &AliasList{
+			input: &aliasList{
 				valuesList: []dynamodb.AttributeValue{
 					{},
 					{},
@@ -820,7 +820,7 @@ func TestAliasValue(t *testing.T) {
 func TestAliasPath(t *testing.T) {
 	cases := []struct {
 		name      string
-		inputList *AliasList
+		inputList *aliasList
 		inputName string
 		expected  string
 		err       exprErrorMode
@@ -828,17 +828,17 @@ func TestAliasPath(t *testing.T) {
 		{
 			name:      "nil alias list",
 			inputList: nil,
-			err:       nilAliasList,
+			err:       nilaliasList,
 		},
 		{
 			name:      "new unique item",
-			inputList: &AliasList{},
+			inputList: &aliasList{},
 			inputName: "foo",
 			expected:  "#0",
 		},
 		{
 			name: "duplicate item",
-			inputList: &AliasList{
+			inputList: &aliasList{
 				namesList: []string{
 					"foo",
 					"bar",

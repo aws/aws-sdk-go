@@ -32,13 +32,13 @@ func TestBuildOperand(t *testing.T) {
 	cases := []struct {
 		name     string
 		input    OperandBuilder
-		expected ExprNode
+		expected exprNode
 		err      opeErrorMode
 	}{
 		{
 			name:  "basic name",
 			input: Name("foo"),
-			expected: ExprNode{
+			expected: exprNode{
 				names:   []string{"foo"},
 				fmtExpr: "$n",
 			},
@@ -46,7 +46,7 @@ func TestBuildOperand(t *testing.T) {
 		{
 			name:  "duplicate name name",
 			input: Name("foo.foo"),
-			expected: ExprNode{
+			expected: exprNode{
 				names:   []string{"foo", "foo"},
 				fmtExpr: "$n.$n",
 			},
@@ -54,7 +54,7 @@ func TestBuildOperand(t *testing.T) {
 		{
 			name:  "basic value",
 			input: Value(5),
-			expected: ExprNode{
+			expected: exprNode{
 				values: []dynamodb.AttributeValue{
 					dynamodb.AttributeValue{
 						N: aws.String("5"),
@@ -66,7 +66,7 @@ func TestBuildOperand(t *testing.T) {
 		{
 			name:  "nested name",
 			input: Name("foo.bar"),
-			expected: ExprNode{
+			expected: exprNode{
 				names:   []string{"foo", "bar"},
 				fmtExpr: "$n.$n",
 			},
@@ -74,7 +74,7 @@ func TestBuildOperand(t *testing.T) {
 		{
 			name:  "nested name with index",
 			input: Name("foo.bar[0].baz"),
-			expected: ExprNode{
+			expected: exprNode{
 				names:   []string{"foo", "bar", "baz"},
 				fmtExpr: "$n.$n[0].$n",
 			},
@@ -82,7 +82,7 @@ func TestBuildOperand(t *testing.T) {
 		{
 			name:  "basic size",
 			input: Name("foo").Size(),
-			expected: ExprNode{
+			expected: exprNode{
 				names:   []string{"foo"},
 				fmtExpr: "size ($n)",
 			},
@@ -90,26 +90,26 @@ func TestBuildOperand(t *testing.T) {
 		{
 			name:     "empty name error",
 			input:    Name(""),
-			expected: ExprNode{},
+			expected: exprNode{},
 			err:      emptyName,
 		},
 		{
 			name:     "invalid name",
 			input:    Name("foo..bar"),
-			expected: ExprNode{},
+			expected: exprNode{},
 			err:      emptyName,
 		},
 		{
 			name:     "invalid index",
 			input:    Name("[foo]"),
-			expected: ExprNode{},
+			expected: exprNode{},
 			err:      invalidNameIndex,
 		},
 	}
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			en, err := c.input.BuildNode()
+			operand, err := c.input.BuildOperand()
 
 			if c.err != noOperandError {
 				if err == nil {
@@ -124,7 +124,7 @@ func TestBuildOperand(t *testing.T) {
 					t.Errorf("expect no error, got unexpected Error %q", err)
 				}
 
-				if e, a := c.expected, en; !reflect.DeepEqual(a, e) {
+				if e, a := c.expected, operand.exprNode; !reflect.DeepEqual(a, e) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 			}

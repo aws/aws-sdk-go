@@ -25,14 +25,14 @@ func TestProjectionBuilder(t *testing.T) {
 	cases := []struct {
 		name         string
 		input        ProjectionBuilder
-		expectedNode ExprNode
+		expectedNode exprNode
 		err          projErrorMode
 	}{
 		{
 			name:  "names list function call",
 			input: NamesList(Name("foo"), Name("bar")),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -48,8 +48,8 @@ func TestProjectionBuilder(t *testing.T) {
 		{
 			name:  "names list method call",
 			input: Name("foo").NamesList(Name("bar")),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -65,8 +65,8 @@ func TestProjectionBuilder(t *testing.T) {
 		{
 			name:  "add name",
 			input: Name("foo").NamesList(Name("bar")).AddNames(Name("baz"), Name("qux")),
-			expectedNode: ExprNode{
-				children: []ExprNode{
+			expectedNode: exprNode{
+				children: []exprNode{
 					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
@@ -94,7 +94,7 @@ func TestProjectionBuilder(t *testing.T) {
 	}
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			actual, err := c.input.BuildTree()
+			actual, err := c.input.buildTree()
 			if c.err != noProjError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -140,7 +140,7 @@ func TestBuildProjection(t *testing.T) {
 	}
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			actual, err := c.input.BuildTree()
+			actual, err := c.input.buildTree()
 			if c.err != noProjError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -165,13 +165,13 @@ func TestBuildChildNodes(t *testing.T) {
 	cases := []struct {
 		name     string
 		input    ProjectionBuilder
-		expected []ExprNode
+		expected []exprNode
 		err      projErrorMode
 	}{
 		{
 			name:  "build child nodes",
 			input: NamesList(Name("foo"), Name("bar"), Name("baz")),
-			expected: []ExprNode{
+			expected: []exprNode{
 				{
 					names:   []string{"foo"},
 					fmtExpr: "$n",
@@ -194,7 +194,7 @@ func TestBuildChildNodes(t *testing.T) {
 	}
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			actual, err := c.input.BuildTree()
+			actual, err := c.input.buildTree()
 			if c.err != noProjError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
