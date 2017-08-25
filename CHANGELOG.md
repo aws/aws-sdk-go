@@ -1,3 +1,17 @@
+Release v1.10.33 (2017-08-25)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API and documentation
+  * Rollback triggers enable you to have AWS CloudFormation monitor the state of your application during stack creation and updating, and to roll back that operation if the application breaches the threshold of any of the alarms you've specified.
+* `service/gamelift`: Updates service API
+  * Update spelling of MatchmakingTicket status values for internal consistency.
+* `service/rds`: Updates service API and documentation
+  * Option group options now contain additional properties that identify requirements for certain options. Check these properties to determine if your DB instance must be in a VPC or have auto minor upgrade turned on before you can use an option. Check to see if you can downgrade the version of an option after you have installed it.
+
+### SDK Enhancements
+* `example/service/ec2`: Add EC2 list instances example ([#1492](https://github.com/aws/aws-sdk-go/pull/1492))
+
 Release v1.10.32 (2017-08-25)
 ===
 

@@ -2157,8 +2157,8 @@
     "MatchmakingConfigurationStatus":{
       "type":"string",
       "enum":[
-        "CANCELED",
-        "COMPLETE",
+        "CANCELLED",
+        "COMPLETED",
         "FAILED",
         "PLACING",
         "QUEUED",

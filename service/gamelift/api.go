@@ -17516,11 +17516,11 @@ const (
 )
 
 const (
-	// MatchmakingConfigurationStatusCanceled is a MatchmakingConfigurationStatus enum value
-	MatchmakingConfigurationStatusCanceled = "CANCELED"
+	// MatchmakingConfigurationStatusCancelled is a MatchmakingConfigurationStatus enum value
+	MatchmakingConfigurationStatusCancelled = "CANCELLED"
 
-	// MatchmakingConfigurationStatusComplete is a MatchmakingConfigurationStatus enum value
-	MatchmakingConfigurationStatusComplete = "COMPLETE"
+	// MatchmakingConfigurationStatusCompleted is a MatchmakingConfigurationStatus enum value
+	MatchmakingConfigurationStatusCompleted = "COMPLETED"
 
 	// MatchmakingConfigurationStatusFailed is a MatchmakingConfigurationStatus enum value
 	MatchmakingConfigurationStatusFailed = "FAILED"
