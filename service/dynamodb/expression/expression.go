@@ -54,7 +54,7 @@ func (l typeList) Swap(i, j int) {
 //
 //     keyCond := expression.Key("someKey").Equal(expression.Value("someValue"))
 //     proj := expression.NamesList(expression.Name("aName"), expression.Name("anotherName"), expression.Name("oneOtherName"))
-//     builder := expression.WithKeyCondition(keyCond).WithProjection(proj)
+//     builder := expression.NewBuilder().WithKeyCondition(keyCond).WithProjection(proj)
 //     expression := builder.Build()
 //
 //     queryInput := dynamodb.QueryInput{
@@ -66,6 +66,18 @@ func (l typeList) Swap(i, j int) {
 //     }
 type Builder struct {
 	expressionMap map[expressionType]treeBuilder
+}
+
+// NewBuilder returns an empty Builder struct. The NewBuilder function can be
+// used to functionally build the Builder.
+//
+// Example:
+//
+//     keyCond := expression.Key("someKey").Equal(expression.Value("someValue"))
+//     proj := expression.NamesList(expression.Name("aName"), expression.Name("anotherName"), expression.Name("oneOtherName"))
+//     builder := expression.NewBuilder().WithKeyCondition(keyCond).WithProjection(proj)
+func NewBuilder() Builder {
+	return Builder{}
 }
 
 // Build builds a Expression struct with the same expressionMap as the argument
@@ -113,23 +125,6 @@ func (b Builder) WithCondition(conditionBuilder ConditionBuilder) Builder {
 	return b
 }
 
-// WithCondition function will create a Builder with the argument
-// conditionBuilder as a child treeBuilder. Users will able to add other
-// treeBuilders to the Builder or call Build() to build a Expression struct.
-//
-// Example:
-//
-//     // let conditionBuilder and projectionBuilder be an existing
-//     // ConditionBuilder and ProjectionBuilder respectively.
-//     builder := expression.WithCondition(conditionBuilder)
-//
-//     builder = builder.WithProjection(projectionBuilder) // Adding a ProjectionBuilder
-//     expression := builder.Build()                       // Creating a Expression
-func WithCondition(conditionBuilder ConditionBuilder) Builder {
-	ret := Builder{}
-	return ret.WithCondition(conditionBuilder)
-}
-
 // WithProjection method will add the argument ProjectionBuilder as a
 // treeBuilder to the argument Builder. If the argument Builder already has a
 // ProjectionBuilder, WithProjection() will overwrite the existing
@@ -149,24 +144,6 @@ func (b Builder) WithProjection(projectionBuilder ProjectionBuilder) Builder {
 	}
 	b.expressionMap[projection] = projectionBuilder
 	return b
-}
-
-// WithProjection function will create a Builder with the argument
-// projectionBuilder as a child treeBuilder. Users will able to add other
-// treeBuilders to the Builder or call Build() to build a Expression
-// struct.
-//
-// Example:
-//
-//     // let projectionBuilder and conditionBuilder be an existing
-//     // ProjectionBuilder and ConditionBuilder respectively.
-//     builder := expression.WithProjection(projectionBuilder)
-//
-//     builder = builder.WithCondition(conditionBuilder)   // Adding a ConditionBuilder
-//     expression := builder.Build()                      // Creating a Expression
-func WithProjection(projectionBuilder ProjectionBuilder) Builder {
-	ret := Builder{}
-	return ret.WithProjection(projectionBuilder)
 }
 
 // // WithKeyCondition method will add the argument KeyConditionBuilder as a treeBuilder to
@@ -227,24 +204,6 @@ func (b Builder) WithFilter(filterBuilder ConditionBuilder) Builder {
 	}
 	b.expressionMap[filter] = filterBuilder
 	return b
-}
-
-// WithFilter function will create a Builder with the argument
-// filterBuilder as a child treeBuilder. Users will able to add other
-// treeBuilders to the Builder or call Build() to build a Expression
-// struct.
-//
-// Example:
-//
-//     // let filterBuilder and conditionBuilder be an existing
-//     // ConditionBuilder and ConditionBuilder respectively.
-//     builder := expression.WithFilter(filterBuilder)
-//
-//     builder = builder.WithCondition(conditionBuilder)   // Adding a ConditionBuilder
-//     expression := builder.Build()                       // Creating a Expression
-func WithFilter(filterBuilder ConditionBuilder) Builder {
-	ret := Builder{}
-	return ret.WithFilter(filterBuilder)
 }
 
 // // WithUpdate method will add the argument UpdateBuilder as a treeBuilder to

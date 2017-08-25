@@ -41,7 +41,7 @@ func TestBuild(t *testing.T) {
 	}{
 		{
 			name:  "condition",
-			input: WithCondition(Name("foo").Equal(Value(5))),
+			input: NewBuilder().WithCondition(Name("foo").Equal(Value(5))),
 			expected: Expression{
 				expressionMap: map[expressionType]treeBuilder{
 					condition: ConditionBuilder{
@@ -60,7 +60,7 @@ func TestBuild(t *testing.T) {
 		},
 		{
 			name:  "projection",
-			input: WithProjection(NamesList(Name("foo"), Name("bar"), Name("baz"))),
+			input: NewBuilder().WithProjection(NamesList(Name("foo"), Name("bar"), Name("baz"))),
 			expected: Expression{
 				expressionMap: map[expressionType]treeBuilder{
 					projection: ProjectionBuilder{
@@ -100,7 +100,7 @@ func TestBuild(t *testing.T) {
 		// },
 		{
 			name:  "filter",
-			input: WithFilter(Name("foo").Equal(Value(5))),
+			input: NewBuilder().WithFilter(Name("foo").Equal(Value(5))),
 			expected: Expression{
 				expressionMap: map[expressionType]treeBuilder{
 					filter: ConditionBuilder{
@@ -137,8 +137,11 @@ func TestBuild(t *testing.T) {
 		// 	},
 		// },
 		{
-			name:  "compound",
-			input: WithCondition(Name("foo").Equal(Value(5))).WithFilter(Name("bar").LessThan(Value(6))).WithProjection(NamesList(Name("foo"), Name("bar"), Name("baz"))),
+			name: "compound",
+			input: NewBuilder().
+				WithCondition(Name("foo").Equal(Value(5))).
+				WithFilter(Name("bar").LessThan(Value(6))).
+				WithProjection(NamesList(Name("foo"), Name("bar"), Name("baz"))),
 			expected: Expression{
 				expressionMap: map[expressionType]treeBuilder{
 					condition: ConditionBuilder{
@@ -181,7 +184,7 @@ func TestBuild(t *testing.T) {
 		},
 		{
 			name:  "invalid Builder",
-			input: WithCondition(Name("").Equal(Value(5))),
+			input: NewBuilder().WithCondition(Name("").Equal(Value(5))),
 			err:   invalidExpressionBuildOperand,
 		},
 		{
