@@ -1,3 +1,10 @@
+Release v1.10.32 (2017-08-25)
+===
+
+### Service Client Updates
+* `service/rekognition`: Updates service API, documentation, and examples
+  * Update the enum value of LandmarkType and GenderType to be consistent with service response
+
 Release v1.10.31 (2017-08-23)
 ===
 
