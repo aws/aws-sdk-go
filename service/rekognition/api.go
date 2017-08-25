@@ -3518,12 +3518,12 @@ type Landmark struct {
 	// Type of the landmark.
 	Type *string `type:"string" enum:"LandmarkType"`
 
-	// x-coordinate from the top left of the landmark expressed as the ration of
+	// x-coordinate from the top left of the landmark expressed as the ratio of
 	// the width of the image. For example, if the images is 700x200 and the x-coordinate
 	// of the landmark is at 350 pixels, this value is 0.5.
 	X *float64 `type:"float"`
 
-	// y-coordinate from the top left of the landmark expressed as the ration of
+	// y-coordinate from the top left of the landmark expressed as the ratio of
 	// the height of the image. For example, if the images is 700x200 and the y-coordinate
 	// of the landmark is at 100 pixels, this value is 0.5.
 	Y *float64 `type:"float"`
@@ -4382,87 +4382,87 @@ const (
 
 const (
 	// GenderTypeMale is a GenderType enum value
-	GenderTypeMale = "MALE"
+	GenderTypeMale = "Male"
 
 	// GenderTypeFemale is a GenderType enum value
-	GenderTypeFemale = "FEMALE"
+	GenderTypeFemale = "Female"
 )
 
 const (
 	// LandmarkTypeEyeLeft is a LandmarkType enum value
-	LandmarkTypeEyeLeft = "EYE_LEFT"
+	LandmarkTypeEyeLeft = "eyeLeft"
 
 	// LandmarkTypeEyeRight is a LandmarkType enum value
-	LandmarkTypeEyeRight = "EYE_RIGHT"
+	LandmarkTypeEyeRight = "eyeRight"
 
 	// LandmarkTypeNose is a LandmarkType enum value
-	LandmarkTypeNose = "NOSE"
+	LandmarkTypeNose = "nose"
 
 	// LandmarkTypeMouthLeft is a LandmarkType enum value
-	LandmarkTypeMouthLeft = "MOUTH_LEFT"
+	LandmarkTypeMouthLeft = "mouthLeft"
 
 	// LandmarkTypeMouthRight is a LandmarkType enum value
-	LandmarkTypeMouthRight = "MOUTH_RIGHT"
+	LandmarkTypeMouthRight = "mouthRight"
 
-	// LandmarkTypeLeftEyebrowLeft is a LandmarkType enum value
-	LandmarkTypeLeftEyebrowLeft = "LEFT_EYEBROW_LEFT"
+	// LandmarkTypeLeftEyeBrowLeft is a LandmarkType enum value
+	LandmarkTypeLeftEyeBrowLeft = "leftEyeBrowLeft"
 
-	// LandmarkTypeLeftEyebrowRight is a LandmarkType enum value
-	LandmarkTypeLeftEyebrowRight = "LEFT_EYEBROW_RIGHT"
+	// LandmarkTypeLeftEyeBrowRight is a LandmarkType enum value
+	LandmarkTypeLeftEyeBrowRight = "leftEyeBrowRight"
 
-	// LandmarkTypeLeftEyebrowUp is a LandmarkType enum value
-	LandmarkTypeLeftEyebrowUp = "LEFT_EYEBROW_UP"
+	// LandmarkTypeLeftEyeBrowUp is a LandmarkType enum value
+	LandmarkTypeLeftEyeBrowUp = "leftEyeBrowUp"
 
-	// LandmarkTypeRightEyebrowLeft is a LandmarkType enum value
-	LandmarkTypeRightEyebrowLeft = "RIGHT_EYEBROW_LEFT"
+	// LandmarkTypeRightEyeBrowLeft is a LandmarkType enum value
+	LandmarkTypeRightEyeBrowLeft = "rightEyeBrowLeft"
 
-	// LandmarkTypeRightEyebrowRight is a LandmarkType enum value
-	LandmarkTypeRightEyebrowRight = "RIGHT_EYEBROW_RIGHT"
+	// LandmarkTypeRightEyeBrowRight is a LandmarkType enum value
+	LandmarkTypeRightEyeBrowRight = "rightEyeBrowRight"
 
-	// LandmarkTypeRightEyebrowUp is a LandmarkType enum value
-	LandmarkTypeRightEyebrowUp = "RIGHT_EYEBROW_UP"
+	// LandmarkTypeRightEyeBrowUp is a LandmarkType enum value
+	LandmarkTypeRightEyeBrowUp = "rightEyeBrowUp"
 
 	// LandmarkTypeLeftEyeLeft is a LandmarkType enum value
-	LandmarkTypeLeftEyeLeft = "LEFT_EYE_LEFT"
+	LandmarkTypeLeftEyeLeft = "leftEyeLeft"
 
 	// LandmarkTypeLeftEyeRight is a LandmarkType enum value
-	LandmarkTypeLeftEyeRight = "LEFT_EYE_RIGHT"
+	LandmarkTypeLeftEyeRight = "leftEyeRight"
 
 	// LandmarkTypeLeftEyeUp is a LandmarkType enum value
-	LandmarkTypeLeftEyeUp = "LEFT_EYE_UP"
+	LandmarkTypeLeftEyeUp = "leftEyeUp"
 
 	// LandmarkTypeLeftEyeDown is a LandmarkType enum value
-	LandmarkTypeLeftEyeDown = "LEFT_EYE_DOWN"
+	LandmarkTypeLeftEyeDown = "leftEyeDown"
 
 	// LandmarkTypeRightEyeLeft is a LandmarkType enum value
-	LandmarkTypeRightEyeLeft = "RIGHT_EYE_LEFT"
+	LandmarkTypeRightEyeLeft = "rightEyeLeft"
 
 	// LandmarkTypeRightEyeRight is a LandmarkType enum value
-	LandmarkTypeRightEyeRight = "RIGHT_EYE_RIGHT"
+	LandmarkTypeRightEyeRight = "rightEyeRight"
 
 	// LandmarkTypeRightEyeUp is a LandmarkType enum value
-	LandmarkTypeRightEyeUp = "RIGHT_EYE_UP"
+	LandmarkTypeRightEyeUp = "rightEyeUp"
 
 	// LandmarkTypeRightEyeDown is a LandmarkType enum value
-	LandmarkTypeRightEyeDown = "RIGHT_EYE_DOWN"
+	LandmarkTypeRightEyeDown = "rightEyeDown"
 
 	// LandmarkTypeNoseLeft is a LandmarkType enum value
-	LandmarkTypeNoseLeft = "NOSE_LEFT"
+	LandmarkTypeNoseLeft = "noseLeft"
 
 	// LandmarkTypeNoseRight is a LandmarkType enum value
-	LandmarkTypeNoseRight = "NOSE_RIGHT"
+	LandmarkTypeNoseRight = "noseRight"
 
 	// LandmarkTypeMouthUp is a LandmarkType enum value
-	LandmarkTypeMouthUp = "MOUTH_UP"
+	LandmarkTypeMouthUp = "mouthUp"
 
 	// LandmarkTypeMouthDown is a LandmarkType enum value
-	LandmarkTypeMouthDown = "MOUTH_DOWN"
+	LandmarkTypeMouthDown = "mouthDown"
 
 	// LandmarkTypeLeftPupil is a LandmarkType enum value
-	LandmarkTypeLeftPupil = "LEFT_PUPIL"
+	LandmarkTypeLeftPupil = "leftPupil"
 
 	// LandmarkTypeRightPupil is a LandmarkType enum value
-	LandmarkTypeRightPupil = "RIGHT_PUPIL"
+	LandmarkTypeRightPupil = "rightPupil"
 )
 
 const (
