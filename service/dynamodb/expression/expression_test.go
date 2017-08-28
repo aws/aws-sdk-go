@@ -43,17 +43,15 @@ func TestBuild(t *testing.T) {
 			name:  "condition",
 			input: NewBuilder().WithCondition(Name("foo").Equal(Value(5))),
 			expected: Expression{
-				expressionMap: map[expressionType]treeBuilder{
-					condition: ConditionBuilder{
-						operandList: []OperandBuilder{
-							NameBuilder{
-								name: "foo",
-							},
-							ValueBuilder{
-								value: 5,
-							},
-						},
-						mode: equalCond,
+				expressionMap: map[expressionType]string{
+					condition: "#0 = :0",
+				},
+				namesMap: map[string]*string{
+					"#0": aws.String("foo"),
+				},
+				valuesMap: map[string]*dynamodb.AttributeValue{
+					":0": {
+						N: aws.String("5"),
 					},
 				},
 			},
@@ -62,27 +60,20 @@ func TestBuild(t *testing.T) {
 			name:  "projection",
 			input: NewBuilder().WithProjection(NamesList(Name("foo"), Name("bar"), Name("baz"))),
 			expected: Expression{
-				expressionMap: map[expressionType]treeBuilder{
-					projection: ProjectionBuilder{
-						names: []NameBuilder{
-							{
-								name: "foo",
-							},
-							{
-								name: "bar",
-							},
-							{
-								name: "baz",
-							},
-						},
-					},
+				expressionMap: map[expressionType]string{
+					projection: "#0, #1, #2",
+				},
+				namesMap: map[string]*string{
+					"#0": aws.String("foo"),
+					"#1": aws.String("bar"),
+					"#2": aws.String("baz"),
 				},
 			},
 		},
 		// {
 		// 	name:  "keyCondition",
 		// 	input: WithKeyCondition(Name("foo").Equal(Value(5))),
-		// 	expected: Expression{
+		// 	expected: Builder{
 		// 		expressionMap: map[expressionType]treeBuilder{
 		// 			keyCondition: KeyConditionBuilder{
 		// 				operandList: []OperandBuilder{
@@ -102,17 +93,15 @@ func TestBuild(t *testing.T) {
 			name:  "filter",
 			input: NewBuilder().WithFilter(Name("foo").Equal(Value(5))),
 			expected: Expression{
-				expressionMap: map[expressionType]treeBuilder{
-					filter: ConditionBuilder{
-						operandList: []OperandBuilder{
-							NameBuilder{
-								name: "foo",
-							},
-							ValueBuilder{
-								value: 5,
-							},
-						},
-						mode: equalCond,
+				expressionMap: map[expressionType]string{
+					filter: "#0 = :0",
+				},
+				namesMap: map[string]*string{
+					"#0": aws.String("foo"),
+				},
+				valuesMap: map[string]*dynamodb.AttributeValue{
+					":0": {
+						N: aws.String("5"),
 					},
 				},
 			},
@@ -120,7 +109,7 @@ func TestBuild(t *testing.T) {
 		// {
 		// 	name:  "update",
 		// 	input: WithUpdate(Name("foo").Equal(Value(5))),
-		// 	expected: Expression{
+		// 	expected: Builder{
 		// 		expressionMap: map[expressionType]treeBuilder{
 		// 			update: UpdateBuilder{
 		// 				operandList: []OperandBuilder{
@@ -143,41 +132,22 @@ func TestBuild(t *testing.T) {
 				WithFilter(Name("bar").LessThan(Value(6))).
 				WithProjection(NamesList(Name("foo"), Name("bar"), Name("baz"))),
 			expected: Expression{
-				expressionMap: map[expressionType]treeBuilder{
-					condition: ConditionBuilder{
-						operandList: []OperandBuilder{
-							NameBuilder{
-								name: "foo",
-							},
-							ValueBuilder{
-								value: 5,
-							},
-						},
-						mode: equalCond,
+				expressionMap: map[expressionType]string{
+					condition:  "#0 = :0",
+					filter:     "#1 < :1",
+					projection: "#0, #1, #2",
+				},
+				namesMap: map[string]*string{
+					"#0": aws.String("foo"),
+					"#1": aws.String("bar"),
+					"#2": aws.String("baz"),
+				},
+				valuesMap: map[string]*dynamodb.AttributeValue{
+					":0": {
+						N: aws.String("5"),
 					},
-					filter: ConditionBuilder{
-						operandList: []OperandBuilder{
-							NameBuilder{
-								name: "bar",
-							},
-							ValueBuilder{
-								value: 6,
-							},
-						},
-						mode: lessThanCond,
-					},
-					projection: ProjectionBuilder{
-						names: []NameBuilder{
-							{
-								name: "foo",
-							},
-							{
-								name: "bar",
-							},
-							{
-								name: "baz",
-							},
-						},
+					":1": {
+						N: aws.String("6"),
 					},
 				},
 			},
@@ -220,12 +190,13 @@ func TestBuild(t *testing.T) {
 func TestCondition(t *testing.T) {
 	cases := []struct {
 		name     string
-		input    Expression
+		input    Builder
 		expected *string
+		err      exprErrorMode
 	}{
 		{
 			name: "condition",
-			input: Expression{
+			input: Builder{
 				expressionMap: map[expressionType]treeBuilder{
 					condition: Name("foo").Equal(Value(5)),
 				},
@@ -233,14 +204,28 @@ func TestCondition(t *testing.T) {
 			expected: aws.String("#0 = :0"),
 		},
 		{
-			name:     "nil",
-			input:    Expression{},
-			expected: nil,
+			name:  "empty builder",
+			input: Builder{},
+			err:   emptyBuilder,
 		},
 	}
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			actual := c.input.Condition()
+			expr, err := c.input.Build()
+			if c.err != noExpressionError {
+				if err == nil {
+					t.Errorf("expect error %q, got no error", c.err)
+				} else {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
+						t.Errorf("expect %q error message to be in %q", e, a)
+					}
+				}
+			} else {
+				if err != nil {
+					t.Errorf("expect no error, got unexpected Error %q", err)
+				}
+			}
+			actual := expr.Condition()
 			if e, a := c.expected, actual; !reflect.DeepEqual(a, e) {
 				t.Errorf("expect %v, got %v", e, a)
 			}
@@ -251,12 +236,13 @@ func TestCondition(t *testing.T) {
 func TestFilter(t *testing.T) {
 	cases := []struct {
 		name     string
-		input    Expression
+		input    Builder
 		expected *string
+		err      exprErrorMode
 	}{
 		{
 			name: "filter",
-			input: Expression{
+			input: Builder{
 				expressionMap: map[expressionType]treeBuilder{
 					filter: Name("foo").Equal(Value(5)),
 				},
@@ -264,14 +250,28 @@ func TestFilter(t *testing.T) {
 			expected: aws.String("#0 = :0"),
 		},
 		{
-			name:     "nil",
-			input:    Expression{},
-			expected: nil,
+			name:  "empty builder",
+			input: Builder{},
+			err:   emptyBuilder,
 		},
 	}
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			actual := c.input.Filter()
+			expr, err := c.input.Build()
+			if c.err != noExpressionError {
+				if err == nil {
+					t.Errorf("expect error %q, got no error", c.err)
+				} else {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
+						t.Errorf("expect %q error message to be in %q", e, a)
+					}
+				}
+			} else {
+				if err != nil {
+					t.Errorf("expect no error, got unexpected Error %q", err)
+				}
+			}
+			actual := expr.Filter()
 			if e, a := c.expected, actual; !reflect.DeepEqual(a, e) {
 				t.Errorf("expect %v, got %v", e, a)
 			}
@@ -282,12 +282,13 @@ func TestFilter(t *testing.T) {
 func TestProjection(t *testing.T) {
 	cases := []struct {
 		name     string
-		input    Expression
+		input    Builder
 		expected *string
+		err      exprErrorMode
 	}{
 		{
 			name: "projection",
-			input: Expression{
+			input: Builder{
 				expressionMap: map[expressionType]treeBuilder{
 					projection: NamesList(Name("foo"), Name("bar"), Name("baz")),
 				},
@@ -295,14 +296,28 @@ func TestProjection(t *testing.T) {
 			expected: aws.String("#0, #1, #2"),
 		},
 		{
-			name:     "nil",
-			input:    Expression{},
-			expected: nil,
+			name:  "empty builder",
+			input: Builder{},
+			err:   emptyBuilder,
 		},
 	}
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			actual := c.input.Projection()
+			expr, err := c.input.Build()
+			if c.err != noExpressionError {
+				if err == nil {
+					t.Errorf("expect error %q, got no error", c.err)
+				} else {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
+						t.Errorf("expect %q error message to be in %q", e, a)
+					}
+				}
+			} else {
+				if err != nil {
+					t.Errorf("expect no error, got unexpected Error %q", err)
+				}
+			}
+			actual := expr.Projection()
 			if e, a := c.expected, actual; !reflect.DeepEqual(a, e) {
 				t.Errorf("expect %v, got %v", e, a)
 			}
@@ -313,12 +328,13 @@ func TestProjection(t *testing.T) {
 func TestNames(t *testing.T) {
 	cases := []struct {
 		name     string
-		input    Expression
+		input    Builder
 		expected map[string]*string
+		err      exprErrorMode
 	}{
 		{
 			name: "projection",
-			input: Expression{
+			input: Builder{
 				expressionMap: map[expressionType]treeBuilder{
 					projection: NamesList(Name("foo"), Name("bar"), Name("baz")),
 				},
@@ -331,7 +347,7 @@ func TestNames(t *testing.T) {
 		},
 		{
 			name: "aggregate",
-			input: Expression{
+			input: Builder{
 				expressionMap: map[expressionType]treeBuilder{
 					condition: ConditionBuilder{
 						operandList: []OperandBuilder{
@@ -377,14 +393,28 @@ func TestNames(t *testing.T) {
 			},
 		},
 		{
-			name:     "empty",
-			input:    Expression{},
-			expected: nil,
+			name:  "empty",
+			input: Builder{},
+			err:   emptyBuilder,
 		},
 	}
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			actual := c.input.Names()
+			expr, err := c.input.Build()
+			if c.err != noExpressionError {
+				if err == nil {
+					t.Errorf("expect error %q, got no error", c.err)
+				} else {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
+						t.Errorf("expect %q error message to be in %q", e, a)
+					}
+				}
+			} else {
+				if err != nil {
+					t.Errorf("expect no error, got unexpected Error %q", err)
+				}
+			}
+			actual := expr.Names()
 			if e, a := c.expected, actual; !reflect.DeepEqual(a, e) {
 				t.Errorf("expect %v, got %v", e, a)
 			}
@@ -395,12 +425,13 @@ func TestNames(t *testing.T) {
 func TestValues(t *testing.T) {
 	cases := []struct {
 		name     string
-		input    Expression
+		input    Builder
 		expected map[string]*dynamodb.AttributeValue
+		err      exprErrorMode
 	}{
 		{
 			name: "condition",
-			input: Expression{
+			input: Builder{
 				expressionMap: map[expressionType]treeBuilder{
 					condition: Name("foo").Equal(Value(5)),
 				},
@@ -413,7 +444,7 @@ func TestValues(t *testing.T) {
 		},
 		{
 			name: "aggregate",
-			input: Expression{
+			input: Builder{
 				expressionMap: map[expressionType]treeBuilder{
 					condition: ConditionBuilder{
 						operandList: []OperandBuilder{
@@ -462,14 +493,28 @@ func TestValues(t *testing.T) {
 			},
 		},
 		{
-			name:     "empty",
-			input:    Expression{},
-			expected: nil,
+			name:  "empty",
+			input: Builder{},
+			err:   emptyBuilder,
 		},
 	}
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			actual := c.input.Values()
+			expr, err := c.input.Build()
+			if c.err != noExpressionError {
+				if err == nil {
+					t.Errorf("expect error %q, got no error", c.err)
+				} else {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
+						t.Errorf("expect %q error message to be in %q", e, a)
+					}
+				}
+			} else {
+				if err != nil {
+					t.Errorf("expect no error, got unexpected Error %q", err)
+				}
+			}
+			actual := expr.Values()
 			if e, a := c.expected, actual; !reflect.DeepEqual(a, e) {
 				t.Errorf("expect %v, got %v", e, a)
 			}
@@ -480,13 +525,14 @@ func TestValues(t *testing.T) {
 func TestBuildChildTrees(t *testing.T) {
 	cases := []struct {
 		name              string
-		input             Expression
+		input             Builder
 		expectedaliasList *aliasList
 		expectedStringMap map[expressionType]string
+		err               exprErrorMode
 	}{
 		{
 			name: "aggregate",
-			input: Expression{
+			input: Builder{
 				expressionMap: map[expressionType]treeBuilder{
 					condition: ConditionBuilder{
 						operandList: []OperandBuilder{
@@ -544,14 +590,27 @@ func TestBuildChildTrees(t *testing.T) {
 		},
 		{
 			name:              "empty",
-			input:             Expression{},
+			input:             Builder{},
 			expectedaliasList: &aliasList{},
 			expectedStringMap: map[expressionType]string{},
 		},
 	}
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			actualAL, actualSM := c.input.buildChildTrees()
+			actualAL, actualSM, err := c.input.buildChildTrees()
+			if c.err != noExpressionError {
+				if err == nil {
+					t.Errorf("expect error %q, got no error", c.err)
+				} else {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
+						t.Errorf("expect %q error message to be in %q", e, a)
+					}
+				}
+			} else {
+				if err != nil {
+					t.Errorf("expect no error, got unexpected Error %q", err)
+				}
+			}
 			if e, a := c.expectedaliasList, actualAL; !reflect.DeepEqual(a, e) {
 				t.Errorf("expect %v, got %v", e, a)
 			}

@@ -30,9 +30,9 @@ type ValueBuilder struct {
 }
 
 // NameBuilder represents a name of a top level item attribute or a nested
-// attribute. It will implement the OperandBuilder interface. It will
-// have various methods corresponding to the operations supported by DynamoDB
-// operations. (i.e. AND, BETWEEN, EQUALS)
+// attribute. Since NameBuilder represents a DynamoDB Operand, it will implement
+// the OperandBuilder interface. It will have various methods corresponding to
+// the operations supported by DynamoDB operations. (i.e. AND, BETWEEN, EQUALS)
 type NameBuilder struct {
 	name string
 }

@@ -848,7 +848,7 @@ func (cb ConditionBuilder) buildTree() (exprNode, error) {
 	case unsetCond:
 		return exprNode{}, ErrUnsetCondition
 	default:
-		return exprNode{}, fmt.Errorf("buildTree error: unsupported mode: %v", cb.mode)
+		return exprNode{}, fmt.Errorf("build condition error: unsupported mode: %v", cb.mode)
 	}
 }
 
@@ -871,6 +871,8 @@ func compareBuildCondition(conditionMode conditionMode, node exprNode) (exprNode
 		node.fmtExpr = "$c > $c"
 	case greaterThanEqualCond:
 		node.fmtExpr = "$c >= $c"
+	default:
+		return exprNode{}, fmt.Errorf("build compare condition error: unsupported mode: %v", conditionMode)
 	}
 
 	return node, nil
@@ -889,6 +891,8 @@ func compoundBuildCondition(conditionBuilder ConditionBuilder, node exprNode) (e
 		mode = " AND "
 	case orCond:
 		mode = " OR "
+	default:
+		return exprNode{}, fmt.Errorf("build compound condition error: unsupported mode: %v", conditionBuilder.mode)
 	}
 	node.fmtExpr = "($c)" + strings.Repeat(mode+"($c)", len(conditionBuilder.conditionList)-1)
 
