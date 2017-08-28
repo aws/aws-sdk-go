@@ -379,7 +379,7 @@ func TestNames(t *testing.T) {
 		{
 			name:     "empty",
 			input:    Expression{},
-			expected: map[string]*string{},
+			expected: nil,
 		},
 	}
 	for _, c := range cases {
@@ -464,7 +464,7 @@ func TestValues(t *testing.T) {
 		{
 			name:     "empty",
 			input:    Expression{},
-			expected: map[string]*dynamodb.AttributeValue{},
+			expected: nil,
 		},
 	}
 	for _, c := range cases {

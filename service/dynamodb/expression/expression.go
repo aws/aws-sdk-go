@@ -362,6 +362,10 @@ func (e Expression) Projection() *string {
 func (e Expression) Names() map[string]*string {
 	aliasList, _ := e.buildChildTrees()
 
+	if aliasList.namesList == nil {
+		return nil
+	}
+
 	namesMap := map[string]*string{}
 	for ind, val := range aliasList.namesList {
 		namesMap[fmt.Sprintf("#%v", ind)] = aws.String(val)
@@ -388,6 +392,10 @@ func (e Expression) Names() map[string]*string {
 //     }
 func (e Expression) Values() map[string]*dynamodb.AttributeValue {
 	aliasList, _ := e.buildChildTrees()
+
+	if aliasList.valuesList == nil {
+		return nil
+	}
 
 	valuesMap := map[string]*dynamodb.AttributeValue{}
 	for i := 0; i < len(aliasList.valuesList); i++ {
