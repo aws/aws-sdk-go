@@ -3,21 +3,8 @@ package expression
 import (
 	"strings"
 
-	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
-)
-
-var (
-	// ErrEmptyName is an error that is returned if the name specified is or has
-	// an empty string. (i.e. "", "foo..bar")
-	ErrEmptyName = awserr.New("EmptyName", "BuildOperand error: name is an empty string", nil)
-
-	// ErrInvalidNameIndex is an error that is returned if the index used in the
-	// name either does not have an item attribute associated with it or is an
-	// empty string.
-	// (i.e. "[2]", "foo[]")
-	ErrInvalidNameIndex = awserr.New("InvalidNameIndex", "BuildOperand error: invalid name index", nil)
 )
 
 // ValueBuilder represents a value operand and will implement the OperandBuilder
@@ -106,7 +93,7 @@ func (nb NameBuilder) Size() SizeBuilder {
 // More information on reserved words at http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html
 func (nb NameBuilder) BuildOperand() (Operand, error) {
 	if nb.name == "" {
-		return Operand{}, ErrEmptyName
+		return Operand{}, newUnsetParameterError("BuildOperand", "NameBuilder")
 	}
 
 	node := exprNode{
@@ -119,7 +106,7 @@ func (nb NameBuilder) BuildOperand() (Operand, error) {
 	for _, word := range nameSplit {
 		var substr string
 		if word == "" {
-			return Operand{}, ErrEmptyName
+			return Operand{}, newInvalidParameterError("BuildOperand", "NameBuilder")
 		}
 
 		if word[len(word)-1] == ']' {
@@ -133,7 +120,7 @@ func (nb NameBuilder) BuildOperand() (Operand, error) {
 		}
 
 		if word == "" {
-			return Operand{}, ErrInvalidNameIndex
+			return Operand{}, newInvalidParameterError("BuildOperand", "NameBuilder")
 		}
 
 		// Create a string with special characters that can be substituted later: $p
@@ -152,7 +139,7 @@ func (nb NameBuilder) BuildOperand() (Operand, error) {
 func (vb ValueBuilder) BuildOperand() (Operand, error) {
 	expr, err := dynamodbattribute.Marshal(vb.value)
 	if err != nil {
-		return Operand{}, err
+		return Operand{}, newInvalidParameterError("BuildOperand", "ValueBuilder")
 	}
 
 	// Create a string with special characters that can be substituted later: $v

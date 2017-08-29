@@ -13,12 +13,11 @@ type projErrorMode string
 
 const (
 	noProjError projErrorMode = ""
-	// invalidProjectionOperand error will occur when an invalid OperandBuilder is used as
-	// an argument
+	// invalidProjectionOperand error will occur when an invalid OperandBuilder is
+	// used as an argument
 	invalidProjectionOperand = "BuildOperand error"
-	// emptyNameList error will occur if the names member of ProjectionBuilder is
-	// empty
-	emptyNameList = "name list is empty"
+	// unsetProjection error will occur if the argument ProjectionBuilder is unset
+	unsetProjection = "unset parameter: ProjectionBuilder"
 )
 
 func TestProjectionBuilder(t *testing.T) {
@@ -135,7 +134,7 @@ func TestBuildProjection(t *testing.T) {
 		{
 			name:  "empty ProjectionBuilder",
 			input: ProjectionBuilder{},
-			err:   emptyNameList,
+			err:   unsetProjection,
 		},
 	}
 	for _, c := range cases {

@@ -5,13 +5,8 @@ import (
 	"sort"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
-
-// ErrEmptyBuilder is an error that is returned if Build() is called on an empty
-// Builder.
-var ErrEmptyBuilder = awserr.New("EmptyBuilder", "Build error: the argument Builder is empty", nil)
 
 // expressionType will specify the type of Expression. The const is used to
 // eliminate magic strings
@@ -87,7 +82,7 @@ func NewBuilder() Builder {
 // Calling Build on an empty Builder will return a typed error ErrEmptyBuilder.
 func (b Builder) Build() (Expression, error) {
 	if b.expressionMap == nil {
-		return Expression{}, ErrEmptyBuilder
+		return Expression{}, newUnsetParameterError("Build", "Builder")
 	}
 
 	aliasList, expressionMap, err := b.buildChildTrees()
@@ -123,8 +118,8 @@ func (b Builder) Build() (Expression, error) {
 // alias tokens used in the expression strings. The returned map[string]string
 // will map the type of expression (i.e. "condition", "update") to the
 // appropriate expression string.
-func (b Builder) buildChildTrees() (*aliasList, map[expressionType]string, error) {
-	aliasList := &aliasList{}
+func (b Builder) buildChildTrees() (aliasList, map[expressionType]string, error) {
+	aList := aliasList{}
 	formattedExpressions := map[expressionType]string{}
 	keys := typeList{}
 
@@ -137,16 +132,16 @@ func (b Builder) buildChildTrees() (*aliasList, map[expressionType]string, error
 	for _, key := range keys {
 		node, err := b.expressionMap[key].buildTree()
 		if err != nil {
-			return nil, nil, err
+			return aliasList{}, nil, err
 		}
-		formattedExpression, err := node.buildExpressionString(aliasList)
+		formattedExpression, err := node.buildExpressionString(&aList)
 		if err != nil {
-			return nil, nil, err
+			return aliasList{}, nil, err
 		}
 		formattedExpressions[key] = formattedExpression
 	}
 
-	return aliasList, formattedExpressions, nil
+	return aList, formattedExpressions, nil
 }
 
 // WithCondition method will add the argument ConditionBuilder as a treeBuilder
@@ -472,10 +467,6 @@ type aliasList struct {
 // specified by aliasList. The string corresponds to the expression that the
 // exprNode tree represents.
 func (en exprNode) buildExpressionString(aliasList *aliasList) (string, error) {
-	if aliasList == nil {
-		return "", fmt.Errorf("buildExprNodes error: aliasList is nil")
-	}
-
 	// Since each exprNode contains a slice of names, values, and children that
 	// correspond to the escaped characters, we an index to traverse the slices
 	index := struct {
@@ -569,10 +560,6 @@ func substituteChild(index int, node exprNode, aliasList *aliasList) (string, er
 // values are not deduplicated as of now, all values are just appended to the
 // aliasList and given the index as the alias.
 func (al *aliasList) aliasValue(dav dynamodb.AttributeValue) (string, error) {
-	if al == nil {
-		return "", fmt.Errorf("aliasValue error: aliasList is nil")
-	}
-
 	al.valuesList = append(al.valuesList, dav)
 	return fmt.Sprintf(":%d", len(al.valuesList)-1), nil
 }
@@ -581,10 +568,6 @@ func (al *aliasList) aliasValue(dav dynamodb.AttributeValue) (string, error) {
 // argument is checked against all existing aliasList names in order to avoid
 // duplicate strings getting two different aliases.
 func (al *aliasList) aliasPath(nm string) (string, error) {
-	if al == nil {
-		return "", fmt.Errorf("aliasValue error: aliasList is nil")
-	}
-
 	for ind, name := range al.namesList {
 		if nm == name {
 			return fmt.Sprintf("#%d", ind), nil

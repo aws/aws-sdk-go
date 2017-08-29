@@ -21,15 +21,11 @@ const (
 	// outOfRange error will occur if there are more escaped chars than there are
 	// actual values to be aliased.
 	outOfRange = "out of range"
-	// nilaliasList error will occur if the aliasList passed in has not been
-	// initialized
-	nilaliasList = "aliasList is nil"
 	// invalidBuilderOperand error will occur if an invalid operand is used
 	// as input for Build()
 	invalidExpressionBuildOperand = "BuildOperand error"
-	// emptyBuilder error will occur if Build() is called on an
-	// empty Builder
-	emptyBuilder = "EmptyBuilder"
+	// unsetBuilder error will occur if Build() is called on an unset Builder
+	unsetBuilder = "unset parameter: Builder"
 )
 
 func TestBuild(t *testing.T) {
@@ -158,9 +154,9 @@ func TestBuild(t *testing.T) {
 			err:   invalidExpressionBuildOperand,
 		},
 		{
-			name:  "empty Builder",
+			name:  "unset Builder",
 			input: Builder{},
-			err:   emptyBuilder,
+			err:   unsetBuilder,
 		},
 	}
 	for _, c := range cases {
@@ -204,9 +200,9 @@ func TestCondition(t *testing.T) {
 			expected: aws.String("#0 = :0"),
 		},
 		{
-			name:  "empty builder",
+			name:  "unset builder",
 			input: Builder{},
-			err:   emptyBuilder,
+			err:   unsetBuilder,
 		},
 	}
 	for _, c := range cases {
@@ -250,9 +246,9 @@ func TestFilter(t *testing.T) {
 			expected: aws.String("#0 = :0"),
 		},
 		{
-			name:  "empty builder",
+			name:  "unset builder",
 			input: Builder{},
-			err:   emptyBuilder,
+			err:   unsetBuilder,
 		},
 	}
 	for _, c := range cases {
@@ -296,9 +292,9 @@ func TestProjection(t *testing.T) {
 			expected: aws.String("#0, #1, #2"),
 		},
 		{
-			name:  "empty builder",
+			name:  "unset builder",
 			input: Builder{},
-			err:   emptyBuilder,
+			err:   unsetBuilder,
 		},
 	}
 	for _, c := range cases {
@@ -393,9 +389,9 @@ func TestNames(t *testing.T) {
 			},
 		},
 		{
-			name:  "empty",
+			name:  "unset",
 			input: Builder{},
-			err:   emptyBuilder,
+			err:   unsetBuilder,
 		},
 	}
 	for _, c := range cases {
@@ -493,9 +489,9 @@ func TestValues(t *testing.T) {
 			},
 		},
 		{
-			name:  "empty",
+			name:  "unset",
 			input: Builder{},
-			err:   emptyBuilder,
+			err:   unsetBuilder,
 		},
 	}
 	for _, c := range cases {
@@ -526,7 +522,7 @@ func TestBuildChildTrees(t *testing.T) {
 	cases := []struct {
 		name              string
 		input             Builder
-		expectedaliasList *aliasList
+		expectedaliasList aliasList
 		expectedStringMap map[expressionType]string
 		err               exprErrorMode
 	}{
@@ -571,7 +567,7 @@ func TestBuildChildTrees(t *testing.T) {
 					},
 				},
 			},
-			expectedaliasList: &aliasList{
+			expectedaliasList: aliasList{
 				namesList: []string{"foo", "bar", "baz"},
 				valuesList: []dynamodb.AttributeValue{
 					{
@@ -589,9 +585,9 @@ func TestBuildChildTrees(t *testing.T) {
 			},
 		},
 		{
-			name:              "empty",
+			name:              "unset",
 			input:             Builder{},
-			expectedaliasList: &aliasList{},
+			expectedaliasList: aliasList{},
 			expectedStringMap: map[expressionType]string{},
 		},
 	}
@@ -781,27 +777,15 @@ func TestBuildExpressionString(t *testing.T) {
 			err: invalidEscChar,
 		},
 		{
-			name:               "empty exprNode",
+			name:               "unset exprNode",
 			input:              exprNode{},
 			expectedExpression: "",
-		},
-		{
-			name:  "nil aliasList",
-			input: exprNode{},
-			err:   nilaliasList,
 		},
 	}
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			var expr string
-			var err error
-			if c.err == nilaliasList {
-				expr, err = c.input.buildExpressionString(nil)
-			} else {
-				expr, err = c.input.buildExpressionString(&aliasList{})
-			}
-
+			expr, err := c.input.buildExpressionString(&aliasList{})
 			if c.err != noExpressionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -830,11 +814,6 @@ func TestAliasValue(t *testing.T) {
 		expected string
 		err      exprErrorMode
 	}{
-		{
-			name:  "nil alias list",
-			input: nil,
-			err:   nilaliasList,
-		},
 		{
 			name:     "first item",
 			input:    &aliasList{},
@@ -887,11 +866,6 @@ func TestAliasPath(t *testing.T) {
 		expected  string
 		err       exprErrorMode
 	}{
-		{
-			name:      "nil alias list",
-			inputList: nil,
-			err:       nilaliasList,
-		},
 		{
 			name:      "new unique item",
 			inputList: &aliasList{},

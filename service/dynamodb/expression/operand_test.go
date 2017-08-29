@@ -16,16 +16,11 @@ type opeErrorMode string
 
 const (
 	noOperandError opeErrorMode = ""
-	// emptyName error will occur if an empty string is passed into NameBuilder or
-	// a nested name has an empty intermediary attribute name (i.e. foo.bar..baz)
-	emptyName = "name is an empty string"
-	// invalidNameIndex error will occur if there is an invalid index between the
-	// square brackets or there is no attribute that a square bracket iterates
-	// over
-	invalidNameIndex = "invalid name index"
-	// unsetExpr error will occur if an unset Expression is passed into
-	// mergeExpressionMaps
-	unsetExpr = "expression is unset"
+	// unsetName error will occur if an empty string is passed into NameBuilder
+	unsetName = "unset parameter: NameBuilder"
+	// invalidName error will occur if a nested name has an empty intermediary
+	// attribute name (i.e. foo.bar..baz)
+	invalidName = "invalid parameter: NameBuilder"
 )
 
 func TestBuildOperand(t *testing.T) {
@@ -91,19 +86,19 @@ func TestBuildOperand(t *testing.T) {
 			name:     "empty name error",
 			input:    Name(""),
 			expected: exprNode{},
-			err:      emptyName,
+			err:      unsetName,
 		},
 		{
 			name:     "invalid name",
 			input:    Name("foo..bar"),
 			expected: exprNode{},
-			err:      emptyName,
+			err:      invalidName,
 		},
 		{
 			name:     "invalid index",
 			input:    Name("[foo]"),
 			expected: exprNode{},
-			err:      invalidNameIndex,
+			err:      invalidName,
 		},
 	}
 
