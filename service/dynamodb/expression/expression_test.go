@@ -26,6 +26,9 @@ const (
 	invalidExpressionBuildOperand = "BuildOperand error"
 	// unsetBuilder error will occur if Build() is called on an unset Builder
 	unsetBuilder = "unset parameter: Builder"
+	// unsetConditionBuilder error will occur if an unset ConditionBuilder is
+	// used in WithCondition()
+	unsetConditionBuilder = "unset parameter: ConditionBuilder"
 )
 
 func TestBuild(t *testing.T) {
@@ -392,6 +395,11 @@ func TestNames(t *testing.T) {
 			name:  "unset",
 			input: Builder{},
 			err:   unsetBuilder,
+		},
+		{
+			name:  "unset ConditionBuilder",
+			input: NewBuilder().WithCondition(ConditionBuilder{}),
+			err:   unsetConditionBuilder,
 		},
 	}
 	for _, c := range cases {

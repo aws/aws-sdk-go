@@ -3,13 +3,7 @@ package expression
 import (
 	"fmt"
 	"strings"
-
-	"github.com/aws/aws-sdk-go/aws/awserr"
 )
-
-// ErrUnsetCondition is an error that is returned if an empty ConditionBuilder
-// is used as a part of an ExpressionBuilder.
-var ErrUnsetCondition = awserr.New("UnsetCondition", "buildTree error: the argument ConditionBuilder's mode is unset", nil)
 
 // conditionMode will specify the types of the struct conditionBuilder,
 // representing the different types of Conditions (i.e. And, Or, Between, ...)
@@ -846,7 +840,7 @@ func (cb ConditionBuilder) buildTree() (exprNode, error) {
 	case containsCond:
 		return containsBuildCondition(ret)
 	case unsetCond:
-		return exprNode{}, ErrUnsetCondition
+		return exprNode{}, newUnsetParameterError("buildTree", "ConditionBuilder")
 	default:
 		return exprNode{}, fmt.Errorf("build condition error: unsupported mode: %v", cb.mode)
 	}

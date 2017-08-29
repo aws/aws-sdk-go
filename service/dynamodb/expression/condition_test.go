@@ -18,7 +18,7 @@ const (
 	noConditionError condErrorMode = ""
 	// unsetCondition error will occur when BuildExpression is called on an empty
 	// ConditionBuilder
-	unsetCondition = "UnsetCondition"
+	unsetCondition = "unset parameter: ConditionBuilder"
 	// invalidOperand error will occur when an invalid OperandBuilder is used as
 	// an argument
 	invalidOperand = "BuildOperand error"

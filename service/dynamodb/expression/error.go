@@ -4,36 +4,54 @@ import (
 	"fmt"
 )
 
-// InvalidParameterError blah
+// InvalidParameterError is returned if invalid parameters are encountered. This
+// error specifically refers to situations where parameters are non-empty but
+// have an invalid syntax/format.
+//
+// Example:
+//
+//     // err will be of type InvalidParameterError
+//     _, err := expression.Name("foo..bar").BuildOperand
 type InvalidParameterError struct {
 	parameterType string
-	function      string
+	functionName  string
 }
 
 func (ipe InvalidParameterError) Error() string {
-	return fmt.Sprintf("%s error: invalid parameter: %s", ipe.function, ipe.parameterType)
+	return fmt.Sprintf("%s error: invalid parameter: %s", ipe.functionName, ipe.parameterType)
 }
 
-func newInvalidParameterError(function, paramType string) InvalidParameterError {
+func newInvalidParameterError(funcName, paramType string) InvalidParameterError {
 	return InvalidParameterError{
 		parameterType: paramType,
-		function:      function,
+		functionName:  funcName,
 	}
 }
 
-// UnsetParameterError blah
+// UnsetParameterError is returned if parameters are empty and uninitialized.
+// This error will be returned if opaque structs (ConditionBuilder, NameBuilder,
+// Builder, etc) are initialized outside of functions in the package, since all
+// structs in the package are designed to be initialized with functions.
+//
+// Example:
+//
+//     // err will be of type UnsetParameterError
+//     _, err := expression.Builder{}.Build()
+//     _, err := expression.NewBuilder().
+//                 WithCondition(expression.ConditionBuilder{}).
+//                 Build()
 type UnsetParameterError struct {
 	parameterType string
-	function      string
+	functionName  string
 }
 
 func (upe UnsetParameterError) Error() string {
-	return fmt.Sprintf("%s error: unset parameter: %s", upe.function, upe.parameterType)
+	return fmt.Sprintf("%s error: unset parameter: %s", upe.functionName, upe.parameterType)
 }
 
-func newUnsetParameterError(function, paramType string) UnsetParameterError {
+func newUnsetParameterError(funcName, paramType string) UnsetParameterError {
 	return UnsetParameterError{
 		parameterType: paramType,
-		function:      function,
+		functionName:  funcName,
 	}
 }
