@@ -2529,6 +2529,7 @@
           "shape":"Boolean",
           "locationName":"amazonProvidedIpv6CidrBlock"
         },
+        "CidrBlock":{"shape":"String"},
         "VpcId":{
           "shape":"String",
           "locationName":"vpcId"
@@ -2541,6 +2542,10 @@
         "Ipv6CidrBlockAssociation":{
           "shape":"VpcIpv6CidrBlockAssociation",
           "locationName":"ipv6CidrBlockAssociation"
+        },
+        "CidrBlockAssociation":{
+          "shape":"VpcCidrBlockAssociation",
+          "locationName":"cidrBlockAssociation"
         },
         "VpcId":{
           "shape":"String",
@@ -3274,6 +3279,22 @@
       "type":"list",
       "member":{
         "shape":"CancelledSpotInstanceRequest",
+        "locationName":"item"
+      }
+    },
+    "CidrBlock":{
+      "type":"structure",
+      "members":{
+        "CidrBlock":{
+          "shape":"String",
+          "locationName":"cidrBlock"
+        }
+      }
+    },
+    "CidrBlockSet":{
+      "type":"list",
+      "member":{
+        "shape":"CidrBlock",
         "locationName":"item"
       }
     },
@@ -7169,6 +7190,10 @@
         "Ipv6CidrBlockAssociation":{
           "shape":"VpcIpv6CidrBlockAssociation",
           "locationName":"ipv6CidrBlockAssociation"
+        },
+        "CidrBlockAssociation":{
+          "shape":"VpcCidrBlockAssociation",
+          "locationName":"cidrBlockAssociation"
         },
         "VpcId":{
           "shape":"String",
@@ -15502,6 +15527,10 @@
           "shape":"VpcIpv6CidrBlockAssociationSet",
           "locationName":"ipv6CidrBlockAssociationSet"
         },
+        "CidrBlockAssociationSet":{
+          "shape":"VpcCidrBlockAssociationSet",
+          "locationName":"cidrBlockAssociationSet"
+        },
         "IsDefault":{
           "shape":"Boolean",
           "locationName":"isDefault"
@@ -15538,6 +15567,30 @@
         "enableDnsSupport",
         "enableDnsHostnames"
       ]
+    },
+    "VpcCidrBlockAssociation":{
+      "type":"structure",
+      "members":{
+        "AssociationId":{
+          "shape":"String",
+          "locationName":"associationId"
+        },
+        "CidrBlock":{
+          "shape":"String",
+          "locationName":"cidrBlock"
+        },
+        "CidrBlockState":{
+          "shape":"VpcCidrBlockState",
+          "locationName":"cidrBlockState"
+        }
+      }
+    },
+    "VpcCidrBlockAssociationSet":{
+      "type":"list",
+      "member":{
+        "shape":"VpcCidrBlockAssociation",
+        "locationName":"item"
+      }
     },
     "VpcCidrBlockState":{
       "type":"structure",
@@ -15762,6 +15815,10 @@
         "Ipv6CidrBlockSet":{
           "shape":"Ipv6CidrBlockSet",
           "locationName":"ipv6CidrBlockSet"
+        },
+        "CidrBlockSet":{
+          "shape":"CidrBlockSet",
+          "locationName":"cidrBlockSet"
         },
         "OwnerId":{
           "shape":"String",

@@ -1,3 +1,14 @@
+Release v1.10.34 (2017-08-29)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Provides capability to add secondary CIDR blocks to a VPC.
+
+### SDK Bugs
+* `aws/signer/v4`: Fix Signing Unordered Multi Value Query Parameters ([#1491](https://github.com/aws/aws-sdk-go/pull/1491))
+  * Removes sorting of query string values when calculating v4 signing as this is not part of the spec. The spec only requires the keys, not values, to be sorted which is achieved by Query.Encode().
 Release v1.10.33 (2017-08-25)
 ===
 
