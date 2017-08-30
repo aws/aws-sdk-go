@@ -321,10 +321,6 @@ func (ub UpdateBuilder) buildTree() (exprNode, error) {
 	sort.Sort(modes)
 
 	for _, key := range modes {
-		if ub.operationList[key] == nil {
-			continue
-		}
-
 		ret.fmtExpr += string(key) + " $c\n"
 
 		childNode, err := buildChildNodes(ub.operationList[key])
