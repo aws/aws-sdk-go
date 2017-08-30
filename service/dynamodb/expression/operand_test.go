@@ -21,6 +21,8 @@ const (
 	// invalidName error will occur if a nested name has an empty intermediary
 	// attribute name (i.e. foo.bar..baz)
 	invalidName = "invalid parameter: NameBuilder"
+	// unsetKey error will occur if an empty string is passed into KeyBuilder
+	unsetKey = "unset parameter: KeyBuilder"
 )
 
 func TestBuildOperand(t *testing.T) {
@@ -81,6 +83,20 @@ func TestBuildOperand(t *testing.T) {
 				names:   []string{"foo"},
 				fmtExpr: "size ($n)",
 			},
+		},
+		{
+			name:  "key",
+			input: Key("foo"),
+			expected: exprNode{
+				names:   []string{"foo"},
+				fmtExpr: "$n",
+			},
+		},
+		{
+			name:     "unset key error",
+			input:    Key(""),
+			expected: exprNode{},
+			err:      unsetKey,
 		},
 		{
 			name:     "empty name error",

@@ -40,6 +40,17 @@ type Operand struct {
 	exprNode exprNode
 }
 
+// KeyBuilder represents either the partition key or the sort key, both of which
+// are top level attributes to some item in DynamoDB. KeyBuilder have a member
+// named key, which is a string that identifies the key. Keybuilder will
+// implement OperandBuilder interface. It will have various methods
+// corresponding to the operations supported by DynamoDB operations.
+// (i.e. AND, BETWEEN, EQUALS) KeyBuilder will only be used in the context of
+// Key Condition Expressions (KeyConditionBuilder)
+type KeyBuilder struct {
+	key string
+}
+
 // OperandBuilder represents the idea of Operand which are building blocks to
 // DynamoDB Expressions. OperandBuilders will be children of ConditionBuilders
 // to represent a tree like structure of Expression dependencies. The method
@@ -73,8 +84,8 @@ func Value(value interface{}) ValueBuilder {
 	}
 }
 
-// Size creates a SizeBuilder, which implements the OperandBuilder interface.
-// Size will mainly be called in a pattern in order to create ConditionBuilders.
+// Size creates a SizeBuilder which implements the OperandBuilder interface.
+// Size will only be called in a pattern in order to create ConditionBuilders.
 //
 // Example:
 //
@@ -82,6 +93,18 @@ func Value(value interface{}) ValueBuilder {
 func (nb NameBuilder) Size() SizeBuilder {
 	return SizeBuilder{
 		nameBuilder: nb,
+	}
+}
+
+// Key creates a KeyBuilder which implements the OperandBuilder interface.
+// Key will only be called in a pattern in order to create KeyConditionBuilders.
+//
+// Example:
+//
+//     keyCondition := expression.Key("foo").Equal(expression.Value("bar"))
+func Key(key string) KeyBuilder {
+	return KeyBuilder{
+		key: key,
 	}
 }
 
@@ -160,4 +183,22 @@ func (sb SizeBuilder) BuildOperand() (Operand, error) {
 	operand.exprNode.fmtExpr = "size (" + operand.exprNode.fmtExpr + ")"
 
 	return operand, err
+}
+
+// BuildOperand will create an Operand struct with an exprNode as a member,
+// which is a generic representation of Operands and Conditions. BuildOperand()
+// is mainly for the BuildTree() method to call on, not for users to invoke.
+func (kb KeyBuilder) BuildOperand() (Operand, error) {
+	if kb.key == "" {
+		return Operand{}, newUnsetParameterError("BuildOperand", "KeyBuilder")
+	}
+
+	ret := Operand{
+		exprNode: exprNode{
+			names:   []string{kb.key},
+			fmtExpr: "$n",
+		},
+	}
+
+	return ret, nil
 }

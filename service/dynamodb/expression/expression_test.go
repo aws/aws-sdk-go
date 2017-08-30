@@ -69,25 +69,23 @@ func TestBuild(t *testing.T) {
 				},
 			},
 		},
-		// {
-		// 	name:  "keyCondition",
-		// 	input: WithKeyCondition(Name("foo").Equal(Value(5))),
-		// 	expected: Builder{
-		// 		expressionMap: map[expressionType]treeBuilder{
-		// 			keyCondition: KeyConditionBuilder{
-		// 				operandList: []OperandBuilder{
-		// 					NameBuilder{
-		// 						name: "foo",
-		// 					},
-		// 					ValueBuilder{
-		// 						value: 5,
-		// 					},
-		// 				},
-		// 				mode: equalCond,
-		// 			},
-		// 		},
-		// 	},
-		// },
+		{
+			name:  "keyCondition",
+			input: NewBuilder().WithKeyCondition(Key("foo").Equal(Value(5))),
+			expected: Expression{
+				expressionMap: map[expressionType]string{
+					keyCondition: "#0 = :0",
+				},
+				namesMap: map[string]*string{
+					"#0": aws.String("foo"),
+				},
+				valuesMap: map[string]*dynamodb.AttributeValue{
+					":0": {
+						N: aws.String("5"),
+					},
+				},
+			},
+		},
 		{
 			name:  "filter",
 			input: NewBuilder().WithFilter(Name("foo").Equal(Value(5))),
@@ -129,12 +127,14 @@ func TestBuild(t *testing.T) {
 			input: NewBuilder().
 				WithCondition(Name("foo").Equal(Value(5))).
 				WithFilter(Name("bar").LessThan(Value(6))).
-				WithProjection(NamesList(Name("foo"), Name("bar"), Name("baz"))),
+				WithProjection(NamesList(Name("foo"), Name("bar"), Name("baz"))).
+				WithKeyCondition(Key("foo").Equal(Value(5))),
 			expected: Expression{
 				expressionMap: map[expressionType]string{
-					condition:  "#0 = :0",
-					filter:     "#1 < :1",
-					projection: "#0, #1, #2",
+					condition:    "#0 = :0",
+					filter:       "#1 < :1",
+					projection:   "#0, #1, #2",
+					keyCondition: "#0 = :2",
 				},
 				namesMap: map[string]*string{
 					"#0": aws.String("foo"),
@@ -147,6 +147,9 @@ func TestBuild(t *testing.T) {
 					},
 					":1": {
 						N: aws.String("6"),
+					},
+					":2": {
+						N: aws.String("5"),
 					},
 				},
 			},
@@ -317,6 +320,62 @@ func TestProjection(t *testing.T) {
 				}
 			}
 			actual := expr.Projection()
+			if e, a := c.expected, actual; !reflect.DeepEqual(a, e) {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
+	}
+}
+
+func TestKeyCondition(t *testing.T) {
+	cases := []struct {
+		name     string
+		input    Builder
+		expected *string
+		err      exprErrorMode
+	}{
+		{
+			name: "keyCondition",
+			input: Builder{
+				expressionMap: map[expressionType]treeBuilder{
+					keyCondition: KeyConditionBuilder{
+						operandList: []OperandBuilder{
+							KeyBuilder{
+								key: "foo",
+							},
+							ValueBuilder{
+								value: 5,
+							},
+						},
+						mode: equalKeyCond,
+					},
+				},
+			},
+			expected: aws.String("#0 = :0"),
+		},
+		{
+			name:  "empty builder",
+			input: Builder{},
+			err:   unsetBuilder,
+		},
+	}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			expr, err := c.input.Build()
+			if c.err != noExpressionError {
+				if err == nil {
+					t.Errorf("expect error %q, got no error", c.err)
+				} else {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
+						t.Errorf("expect %q error message to be in %q", e, a)
+					}
+				}
+			} else {
+				if err != nil {
+					t.Errorf("expect no error, got unexpected Error %q", err)
+				}
+			}
+			actual := expr.KeyCondition()
 			if e, a := c.expected, actual; !reflect.DeepEqual(a, e) {
 				t.Errorf("expect %v, got %v", e, a)
 			}
