@@ -186,44 +186,26 @@ func (b Builder) WithProjection(projectionBuilder ProjectionBuilder) Builder {
 	return b
 }
 
-// // WithKeyCondition method will add the argument KeyConditionBuilder as a treeBuilder to
-// // the argument Builder. If the argument Builder already has a
-// // KeyConditionBuilder, WithKeyCondition() will overwrite the existing KeyConditionBuilder.
-// // Users will able to add other treeBuilders to the Builder or call
-// // Build() to build a Expression struct.
-// //
-// // Example:
-// //
-// //     // let builder be an existing Builder{} and
-// //     // keyConditionBuilder be an existing keyConditionBuilder{}
-// //     builder = builder.WithKeyCondition(keyConditionBuilder)
-// //
-// //     expression := builder.Build()
-// func (b Builder) WithKeyCondition(keyConditionBuilder KeyConditionBuilder) Builder {
-// 	if b.expressionMap == nil {
-// 		b.expressionMap = map[expressionType]treeBuilder{}
-// 	}
-// 	b.expressionMap[keyCondition] = keyConditionBuilder
-// 	return b
-// }
+// WithKeyCondition method will add the argument KeyConditionBuilder as a treeBuilder to
+// the argument Builder. If the argument Builder already has a
+// KeyConditionBuilder, WithKeyCondition() will overwrite the existing KeyConditionBuilder.
+// Users will able to add other treeBuilders to the Builder or call
+// Build() to build a Expression struct.
 //
-// // WithKeyCondition function will create a Builder with the argument
-// // keyConditionBuilder as a child treeBuilder. Users will able to add other
-// // treeBuilders to the Builder or call Build() to build a Expression
-// // struct.
-// //
-// // Example:
-// //
-// //     // let keyConditionBuilder and conditionBuilder be an existing
-// //     // KeyConditionBuilder and ConditionBuilder respectively.
-// //     builder := expression.WithKeyCondition(keyConditionBuilder)
-// //
-// //     builder = builder.WithCondition(conditionBuilder)   // Adding a ConditionBuilder
-// //     expression := builder.Build()                      // Creating a Expression
-// func WithKeyCondition(keyConditionBuilder KeyConditionBuilder) Builder {
-// 	ret := Builder{}
-// 	return ret.WithKeyCondition(keyConditionBuilder)
-// }
+// Example:
+//
+//     // let builder be an existing Builder{} and
+//     // keyConditionBuilder be an existing keyConditionBuilder{}
+//     builder = builder.WithKeyCondition(keyConditionBuilder)
+//
+//     expression := builder.Build()
+func (b Builder) WithKeyCondition(keyConditionBuilder KeyConditionBuilder) Builder {
+	if b.expressionMap == nil {
+		b.expressionMap = map[expressionType]treeBuilder{}
+	}
+	b.expressionMap[keyCondition] = keyConditionBuilder
+	return b
+}
 
 // WithFilter method will add the argument ConditionBuilder as a treeBuilder to
 // the argument Builder. If the argument Builder already has a
@@ -383,6 +365,26 @@ func (e Expression) Filter() *string {
 //     }
 func (e Expression) Projection() *string {
 	return e.returnExpression(projection)
+}
+
+// KeyCondition will return the *string corresponding to the Key Condition
+// Expression of the argument Expression. This method is used to satisfy the
+// members of DynamoDB input structs. If the argument Expression does not have a
+// KeyConditionExpression, KeyCondition() will return nil.
+//
+// Example:
+//
+//     // let expression be an instance of Expression{}
+//
+//     queryInput := dynamodb.QueryInput{
+//       KeyConditionExpression:    expression.KeyCondition(),
+//       ProjectionExpression:      expression.Projection(),
+//       ExpressionAttributeNames:  expression.Names(),
+//       ExpressionAttributeValues: expression.Values(),
+//       TableName: aws.String("SomeTable"),
+//     }
+func (e Expression) KeyCondition() *string {
+	return e.returnExpression(keyCondition)
 }
 
 // Names will return the map[string]*string corresponding to the

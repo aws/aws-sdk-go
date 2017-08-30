@@ -160,7 +160,7 @@ func TestBuildProjection(t *testing.T) {
 	}
 }
 
-func TestBuildChildNodes(t *testing.T) {
+func TestBuildProjectionChildNodes(t *testing.T) {
 	cases := []struct {
 		name     string
 		input    ProjectionBuilder

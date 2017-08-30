@@ -21,7 +21,7 @@ const (
 	unsetCondition = "unset parameter: ConditionBuilder"
 	// invalidOperand error will occur when an invalid OperandBuilder is used as
 	// an argument
-	invalidOperand = "BuildOperand error"
+	invalidConditionOperand = "BuildOperand error"
 )
 
 //Compare
@@ -389,32 +389,32 @@ func TestCompare(t *testing.T) {
 		{
 			name:  "invalid operand error Equal",
 			input: Name("").Size().Equal(Value(5)),
-			err:   invalidOperand,
+			err:   invalidConditionOperand,
 		},
 		{
 			name:  "invalid operand error NotEqual",
 			input: Name("").Size().NotEqual(Value(5)),
-			err:   invalidOperand,
+			err:   invalidConditionOperand,
 		},
 		{
 			name:  "invalid operand error LessThan",
 			input: Name("").Size().LessThan(Value(5)),
-			err:   invalidOperand,
+			err:   invalidConditionOperand,
 		},
 		{
 			name:  "invalid operand error LessThanEqual",
 			input: Name("").Size().LessThanEqual(Value(5)),
-			err:   invalidOperand,
+			err:   invalidConditionOperand,
 		},
 		{
 			name:  "invalid operand error GreaterThan",
 			input: Name("").Size().GreaterThan(Value(5)),
-			err:   invalidOperand,
+			err:   invalidConditionOperand,
 		},
 		{
 			name:  "invalid operand error GreaterThanEqual",
 			input: Name("").Size().GreaterThanEqual(Value(5)),
-			err:   invalidOperand,
+			err:   invalidConditionOperand,
 		},
 	}
 	for _, c := range cases {
@@ -694,12 +694,12 @@ func TestBoolCondition(t *testing.T) {
 		{
 			name:  "invalid operand error And",
 			input: Name("").Size().GreaterThanEqual(Value(5)).And(Name("[5]").Between(Value(3), Value(9))),
-			err:   invalidOperand,
+			err:   invalidConditionOperand,
 		},
 		{
 			name:  "invalid operand error Or",
 			input: Name("").Size().GreaterThanEqual(Value(5)).Or(Name("[5]").Between(Value(3), Value(9))),
-			err:   invalidOperand,
+			err:   invalidConditionOperand,
 		},
 	}
 
@@ -788,7 +788,7 @@ func TestNotCondition(t *testing.T) {
 		{
 			name:  "invalid operand error not",
 			input: Name("").Size().GreaterThanEqual(Value(5)).Or(Name("[5]").Between(Value(3), Value(9))).Not(),
-			err:   invalidOperand,
+			err:   invalidConditionOperand,
 		},
 	}
 
@@ -916,7 +916,7 @@ func TestBetweenCondition(t *testing.T) {
 		{
 			name:  "invalid operand error between",
 			input: Name("[5]").Between(Value(3), Name("foo..bar")),
-			err:   invalidOperand,
+			err:   invalidConditionOperand,
 		},
 	}
 
@@ -1044,7 +1044,7 @@ func TestInCondition(t *testing.T) {
 		{
 			name:  "invalid operand error in",
 			input: Name("[5]").In(Value(3), Name("foo..bar")),
-			err:   invalidOperand,
+			err:   invalidConditionOperand,
 		},
 	}
 
@@ -1107,12 +1107,12 @@ func TestAttrExistsCondition(t *testing.T) {
 		{
 			name:  "invalid operand error attr exists",
 			input: AttributeExists(Name("")),
-			err:   invalidOperand,
+			err:   invalidConditionOperand,
 		},
 		{
 			name:  "invalid operand error attr not exists",
 			input: AttributeNotExists(Name("foo..bar")),
-			err:   invalidOperand,
+			err:   invalidConditionOperand,
 		},
 	}
 
@@ -1380,7 +1380,7 @@ func TestAttrTypeCondition(t *testing.T) {
 		{
 			name:  "attr type invalid operand",
 			input: Name("").AttributeType(Map),
-			err:   invalidOperand,
+			err:   invalidConditionOperand,
 		},
 	}
 
@@ -1438,7 +1438,7 @@ func TestBeginsWithCondition(t *testing.T) {
 		{
 			name:  "begins with invalid operand",
 			input: Name("").BeginsWith("bar"),
-			err:   invalidOperand,
+			err:   invalidConditionOperand,
 		},
 	}
 
@@ -1496,7 +1496,7 @@ func TestContainsCondition(t *testing.T) {
 		{
 			name:  "contains invalid operand",
 			input: Name("").Contains("bar"),
-			err:   invalidOperand,
+			err:   invalidConditionOperand,
 		},
 	}
 
