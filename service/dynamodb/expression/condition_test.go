@@ -18,7 +18,7 @@ const (
 	noConditionError condErrorMode = ""
 	// unsetCondition error will occur when BuildExpression is called on an empty
 	// ConditionBuilder
-	unsetCondition = "UnsetCondition"
+	unsetCondition = "unset parameter: ConditionBuilder"
 	// invalidOperand error will occur when an invalid OperandBuilder is used as
 	// an argument
 	invalidOperand = "BuildOperand error"
@@ -27,457 +27,399 @@ const (
 //Compare
 func TestCompare(t *testing.T) {
 	cases := []struct {
-		name     string
-		input    ConditionBuilder
-		expected Expression
-		err      condErrorMode
+		name         string
+		input        ConditionBuilder
+		expectedNode exprNode
+		err          condErrorMode
 	}{
 		{
-			name:  "nested path with path",
-			input: Path("foo.yay.cool.rad").Equal(Path("bar")),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-					"#1": aws.String("yay"),
-					"#2": aws.String("cool"),
-					"#3": aws.String("rad"),
-					"#4": aws.String("bar"),
-				},
-				Expression: "#0.#1.#2.#3 = #4",
-			},
-		},
-		{
-			name:  "nested path with value",
-			input: Path("foo.yay.cool.rad").Equal(Value(5)),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-					"#1": aws.String("yay"),
-					"#2": aws.String("cool"),
-					"#3": aws.String("rad"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("5"),
+			name:  "name equal name",
+			input: Name("foo").Equal(Name("bar")),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
+					},
+					{
+						names:   []string{"bar"},
+						fmtExpr: "$n",
 					},
 				},
-				Expression: "#0.#1.#2.#3 = :0",
+				fmtExpr: "$c = $c",
 			},
 		},
 		{
-			name:  "nested path with path size",
-			input: Path("foo.yay.cool.rad").Equal(Path("baz").Size()),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-					"#1": aws.String("yay"),
-					"#2": aws.String("cool"),
-					"#3": aws.String("rad"),
-					"#4": aws.String("baz"),
-				},
-				Expression: "#0.#1.#2.#3 = size (#4)",
-			},
-		},
-		{
-			name:  "value with path",
-			input: Value(5).Equal(Path("bar")),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("bar"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("5"),
-					},
-				},
-				Expression: ":0 = #0",
-			},
-		},
-		{
-			name: "nested value with path",
-			input: Value(map[string]int{
-				"five": 5,
-			}).Equal(Path("bar")),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("bar"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						M: map[string]*dynamodb.AttributeValue{
-							"five": &dynamodb.AttributeValue{
+			name:  "value equal value",
+			input: Value(5).Equal(Value("bar")),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						values: []dynamodb.AttributeValue{
+							{
 								N: aws.String("5"),
 							},
 						},
+						fmtExpr: "$v",
+					},
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								S: aws.String("bar"),
+							},
+						},
+						fmtExpr: "$v",
 					},
 				},
-				Expression: ":0 = #0",
+				fmtExpr: "$c = $c",
 			},
 		},
 		{
-			name: "nested value with value",
-			input: Value(map[string]int{
-				"five": 5,
-			}).Equal(Value(5)),
-			expected: Expression{
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						M: map[string]*dynamodb.AttributeValue{
-							"five": &dynamodb.AttributeValue{
+			name:  "name size equal name size",
+			input: Name("foo[1]").Size().Equal(Name("bar").Size()),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "size ($n[1])",
+					},
+					{
+						names:   []string{"bar"},
+						fmtExpr: "size ($n)",
+					},
+				},
+				fmtExpr: "$c = $c",
+			},
+		},
+		{
+			name:  "name not equal name",
+			input: Name("foo").NotEqual(Name("bar")),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
+					},
+					{
+						names:   []string{"bar"},
+						fmtExpr: "$n",
+					},
+				},
+				fmtExpr: "$c <> $c",
+			},
+		},
+		{
+			name:  "value not equal value",
+			input: Value(5).NotEqual(Value("bar")),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						values: []dynamodb.AttributeValue{
+							{
 								N: aws.String("5"),
 							},
 						},
+						fmtExpr: "$v",
 					},
-					":1": &dynamodb.AttributeValue{
-						N: aws.String("5"),
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								S: aws.String("bar"),
+							},
+						},
+						fmtExpr: "$v",
 					},
 				},
-				Expression: ":0 = :1",
+				fmtExpr: "$c <> $c",
 			},
 		},
 		{
-			name: "nested value with path size",
-			input: Value(map[string]int{
-				"five": 5,
-			}).Equal(Path("baz").Size()),
-			expected: Expression{
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						M: map[string]*dynamodb.AttributeValue{
-							"five": &dynamodb.AttributeValue{
+			name:  "name size not equal name size",
+			input: Name("foo[1]").Size().NotEqual(Name("bar").Size()),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "size ($n[1])",
+					},
+					{
+						names:   []string{"bar"},
+						fmtExpr: "size ($n)",
+					},
+				},
+				fmtExpr: "$c <> $c",
+			},
+		},
+		{
+			name:  "name less than name",
+			input: Name("foo").LessThan(Name("bar")),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
+					},
+					{
+						names:   []string{"bar"},
+						fmtExpr: "$n",
+					},
+				},
+				fmtExpr: "$c < $c",
+			},
+		},
+		{
+			name:  "value less than value",
+			input: Value(5).LessThan(Value("bar")),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						values: []dynamodb.AttributeValue{
+							{
 								N: aws.String("5"),
 							},
 						},
+						fmtExpr: "$v",
+					},
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								S: aws.String("bar"),
+							},
+						},
+						fmtExpr: "$v",
 					},
 				},
-				Names: map[string]*string{
-					"#0": aws.String("baz"),
-				},
-				Expression: ":0 = size (#0)",
+				fmtExpr: "$c < $c",
 			},
 		},
 		{
-			name:  "path size with path",
-			input: Path("foo[1]").Size().Equal(Path("bar")),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-					"#1": aws.String("bar"),
+			name:  "name size less than name size",
+			input: Name("foo[1]").Size().LessThan(Name("bar").Size()),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "size ($n[1])",
+					},
+					{
+						names:   []string{"bar"},
+						fmtExpr: "size ($n)",
+					},
 				},
-				Expression: "size (#0[1]) = #1",
+				fmtExpr: "$c < $c",
 			},
 		},
 		{
-			name:  "path size with value",
-			input: Path("foo[1]").Size().Equal(Value(5)),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("5"),
+			name:  "name less than equal name",
+			input: Name("foo").LessThanEqual(Name("bar")),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
+					},
+					{
+						names:   []string{"bar"},
+						fmtExpr: "$n",
 					},
 				},
-				Expression: "size (#0[1]) = :0",
+				fmtExpr: "$c <= $c",
 			},
 		},
 		{
-			name:  "path size with path size",
-			input: Path("foo[1]").Size().Equal(Path("baz").Size()),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-					"#1": aws.String("baz"),
+			name:  "value less than equal value",
+			input: Value(5).LessThanEqual(Value("bar")),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								N: aws.String("5"),
+							},
+						},
+						fmtExpr: "$v",
+					},
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								S: aws.String("bar"),
+							},
+						},
+						fmtExpr: "$v",
+					},
 				},
-				Expression: "size (#0[1]) = size (#1)",
+				fmtExpr: "$c <= $c",
 			},
 		},
 		{
-			name:  "path size comparison with duplicate names",
-			input: Path("foo.bar.baz").Size().Equal(Path("bar.qux.foo").Size()),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-					"#1": aws.String("bar"),
-					"#2": aws.String("baz"),
-					"#3": aws.String("qux"),
+			name:  "name size less than equal name size",
+			input: Name("foo[1]").Size().LessThanEqual(Name("bar").Size()),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "size ($n[1])",
+					},
+					{
+						names:   []string{"bar"},
+						fmtExpr: "size ($n)",
+					},
 				},
-				Expression: "size (#0.#1.#2) = size (#1.#3.#0)",
+				fmtExpr: "$c <= $c",
 			},
 		},
 		{
-			name:  "path size comparison with duplicate names",
-			input: Path("foo.bar.baz").Size().Equal(Path("bar.qux.foo").Size()),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-					"#1": aws.String("bar"),
-					"#2": aws.String("baz"),
-					"#3": aws.String("qux"),
+			name:  "name greater than name",
+			input: Name("foo").GreaterThan(Name("bar")),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
+					},
+					{
+						names:   []string{"bar"},
+						fmtExpr: "$n",
+					},
 				},
-				Expression: "size (#0.#1.#2) = size (#1.#3.#0)",
+				fmtExpr: "$c > $c",
 			},
 		},
 		{
-			name:  "path NotEqual",
-			input: Path("foo").NotEqual(Value(5)),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("5"),
+			name:  "value greater than value",
+			input: Value(5).GreaterThan(Value("bar")),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								N: aws.String("5"),
+							},
+						},
+						fmtExpr: "$v",
+					},
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								S: aws.String("bar"),
+							},
+						},
+						fmtExpr: "$v",
 					},
 				},
-				Expression: "#0 <> :0",
+				fmtExpr: "$c > $c",
 			},
 		},
 		{
-			name:  "value NotEqual",
-			input: Value(8).NotEqual(Value(5)),
-			expected: Expression{
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("8"),
+			name:  "name size greater than name size",
+			input: Name("foo[1]").Size().GreaterThan(Name("bar").Size()),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "size ($n[1])",
 					},
-					":1": &dynamodb.AttributeValue{
-						N: aws.String("5"),
+					{
+						names:   []string{"bar"},
+						fmtExpr: "size ($n)",
 					},
 				},
-				Expression: ":0 <> :1",
+				fmtExpr: "$c > $c",
 			},
 		},
 		{
-			name:  "path NotEqual",
-			input: Path("foo").Size().NotEqual(Value(5)),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("5"),
+			name:  "name greater than equal name",
+			input: Name("foo").GreaterThanEqual(Name("bar")),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
+					},
+					{
+						names:   []string{"bar"},
+						fmtExpr: "$n",
 					},
 				},
-				Expression: "size (#0) <> :0",
+				fmtExpr: "$c >= $c",
 			},
 		},
 		{
-			name:  "path Less",
-			input: Path("foo").Less(Value(5)),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("5"),
+			name:  "value greater than equal value",
+			input: Value(5).GreaterThanEqual(Value("bar")),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								N: aws.String("5"),
+							},
+						},
+						fmtExpr: "$v",
+					},
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								S: aws.String("bar"),
+							},
+						},
+						fmtExpr: "$v",
 					},
 				},
-				Expression: "#0 < :0",
+				fmtExpr: "$c >= $c",
 			},
 		},
 		{
-			name:  "value Less",
-			input: Value(8).Less(Value(5)),
-			expected: Expression{
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("8"),
+			name:  "name size greater than equal name size",
+			input: Name("foo[1]").Size().GreaterThanEqual(Name("bar").Size()),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "size ($n[1])",
 					},
-					":1": &dynamodb.AttributeValue{
-						N: aws.String("5"),
-					},
-				},
-				Expression: ":0 < :1",
-			},
-		},
-		{
-			name:  "path Less",
-			input: Path("foo").Size().Less(Value(5)),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("5"),
+					{
+						names:   []string{"bar"},
+						fmtExpr: "size ($n)",
 					},
 				},
-				Expression: "size (#0) < :0",
-			},
-		},
-		{
-			name:  "path LessEqual",
-			input: Path("foo").LessEqual(Value(5)),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("5"),
-					},
-				},
-				Expression: "#0 <= :0",
-			},
-		},
-		{
-			name:  "value LessEqual",
-			input: Value(8).LessEqual(Value(5)),
-			expected: Expression{
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("8"),
-					},
-					":1": &dynamodb.AttributeValue{
-						N: aws.String("5"),
-					},
-				},
-				Expression: ":0 <= :1",
-			},
-		},
-		{
-			name:  "path LessEqual",
-			input: Path("foo").Size().LessEqual(Value(5)),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("5"),
-					},
-				},
-				Expression: "size (#0) <= :0",
-			},
-		},
-		{
-			name:  "path Greater",
-			input: Path("foo").Greater(Value(5)),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("5"),
-					},
-				},
-				Expression: "#0 > :0",
-			},
-		},
-		{
-			name:  "value Greater",
-			input: Value(8).Greater(Value(5)),
-			expected: Expression{
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("8"),
-					},
-					":1": &dynamodb.AttributeValue{
-						N: aws.String("5"),
-					},
-				},
-				Expression: ":0 > :1",
-			},
-		},
-		{
-			name:  "path Greater",
-			input: Path("foo").Size().Greater(Value(5)),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("5"),
-					},
-				},
-				Expression: "size (#0) > :0",
-			},
-		},
-		{
-			name:  "path GreaterEqual",
-			input: Path("foo").GreaterEqual(Value(5)),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("5"),
-					},
-				},
-				Expression: "#0 >= :0",
-			},
-		},
-		{
-			name:  "value GreaterEqual",
-			input: Value(10).GreaterEqual(Value(5)),
-			expected: Expression{
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("10"),
-					},
-					":1": &dynamodb.AttributeValue{
-						N: aws.String("5"),
-					},
-				},
-				Expression: ":0 >= :1",
-			},
-		},
-		{
-			name:  "path GreaterEqual",
-			input: Path("foo").Size().GreaterEqual(Value(5)),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("5"),
-					},
-				},
-				Expression: "size (#0) >= :0",
+				fmtExpr: "$c >= $c",
 			},
 		},
 		{
 			name:  "invalid operand error Equal",
-			input: Path("").Size().Equal(Value(5)),
+			input: Name("").Size().Equal(Value(5)),
 			err:   invalidOperand,
 		},
 		{
 			name:  "invalid operand error NotEqual",
-			input: Path("").Size().NotEqual(Value(5)),
+			input: Name("").Size().NotEqual(Value(5)),
 			err:   invalidOperand,
 		},
 		{
-			name:  "invalid operand error Less",
-			input: Path("").Size().Less(Value(5)),
+			name:  "invalid operand error LessThan",
+			input: Name("").Size().LessThan(Value(5)),
 			err:   invalidOperand,
 		},
 		{
-			name:  "invalid operand error LessEqual",
-			input: Path("").Size().LessEqual(Value(5)),
+			name:  "invalid operand error LessThanEqual",
+			input: Name("").Size().LessThanEqual(Value(5)),
 			err:   invalidOperand,
 		},
 		{
-			name:  "invalid operand error Greater",
-			input: Path("").Size().Greater(Value(5)),
+			name:  "invalid operand error GreaterThan",
+			input: Name("").Size().GreaterThan(Value(5)),
 			err:   invalidOperand,
 		},
 		{
-			name:  "invalid operand error GreaterEqual",
-			input: Path("").Size().GreaterEqual(Value(5)),
+			name:  "invalid operand error GreaterThanEqual",
+			input: Name("").Size().GreaterThanEqual(Value(5)),
 			err:   invalidOperand,
 		},
 	}
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			expr, err := c.input.BuildExpression()
+			actual, err := c.input.buildTree()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -491,7 +433,7 @@ func TestCompare(t *testing.T) {
 					t.Errorf("expect no error, got unexpected Error %q", err)
 				}
 
-				if e, a := c.expected, expr; !reflect.DeepEqual(a, e) {
+				if e, a := c.expectedNode, actual; !reflect.DeepEqual(a, e) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 			}
@@ -503,7 +445,7 @@ func TestBuildCondition(t *testing.T) {
 	cases := []struct {
 		name     string
 		input    ConditionBuilder
-		expected ExprNode
+		expected exprNode
 		err      condErrorMode
 	}{
 		{
@@ -515,8 +457,7 @@ func TestBuildCondition(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			expr, err := c.input.buildCondition()
-
+			actual, err := c.input.buildTree()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -529,8 +470,7 @@ func TestBuildCondition(t *testing.T) {
 				if err != nil {
 					t.Errorf("expect no error, got unexpected Error %q", err)
 				}
-
-				if e, a := c.expected, expr; !reflect.DeepEqual(a, e) {
+				if e, a := c.expected, actual; !reflect.DeepEqual(a, e) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 			}
@@ -540,122 +480,232 @@ func TestBuildCondition(t *testing.T) {
 
 func TestBoolCondition(t *testing.T) {
 	cases := []struct {
-		name     string
-		input    ConditionBuilder
-		expected Expression
-		err      condErrorMode
+		name         string
+		input        ConditionBuilder
+		expectedNode exprNode
+		err          condErrorMode
 	}{
 		{
 			name:  "basic method and",
-			input: Path("foo").Equal(Value(5)).And(Path("bar").Equal(Value("baz"))),
-			expected: Expression{
-				Names: map[string]*string{
-					"#1": aws.String("bar"),
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("5"),
+			input: Name("foo").Equal(Value(5)).And(Name("bar").Equal(Value("baz"))),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						children: []exprNode{
+							{
+								names:   []string{"foo"},
+								fmtExpr: "$n",
+							},
+							{
+								values: []dynamodb.AttributeValue{
+									{
+										N: aws.String("5"),
+									},
+								},
+								fmtExpr: "$v",
+							},
+						},
+						fmtExpr: "$c = $c",
 					},
-					":1": &dynamodb.AttributeValue{
-						S: aws.String("baz"),
+					{
+						children: []exprNode{
+							{
+								names:   []string{"bar"},
+								fmtExpr: "$n",
+							},
+							{
+								values: []dynamodb.AttributeValue{
+									{
+										S: aws.String("baz"),
+									},
+								},
+								fmtExpr: "$v",
+							},
+						},
+						fmtExpr: "$c = $c",
 					},
 				},
-				Expression: "(#0 = :0) AND (#1 = :1)",
+				fmtExpr: "($c) AND ($c)",
 			},
 		},
 		{
 			name:  "basic method or",
-			input: Path("foo").Equal(Value(5)).Or(Path("bar").Equal(Value("baz"))),
-			expected: Expression{
-				Names: map[string]*string{
-					"#1": aws.String("bar"),
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("5"),
+			input: Name("foo").Equal(Value(5)).Or(Name("bar").Equal(Value("baz"))),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						children: []exprNode{
+							{
+								names:   []string{"foo"},
+								fmtExpr: "$n",
+							},
+							{
+								values: []dynamodb.AttributeValue{
+									{
+										N: aws.String("5"),
+									},
+								},
+								fmtExpr: "$v",
+							},
+						},
+						fmtExpr: "$c = $c",
 					},
-					":1": &dynamodb.AttributeValue{
-						S: aws.String("baz"),
+					{
+						children: []exprNode{
+							{
+								names:   []string{"bar"},
+								fmtExpr: "$n",
+							},
+							{
+								values: []dynamodb.AttributeValue{
+									{
+										S: aws.String("baz"),
+									},
+								},
+								fmtExpr: "$v",
+							},
+						},
+						fmtExpr: "$c = $c",
 					},
 				},
-				Expression: "(#0 = :0) OR (#1 = :1)",
+				fmtExpr: "($c) OR ($c)",
 			},
 		},
 		{
 			name:  "variadic function and",
-			input: And(Path("foo").Equal(Value(5)), Path("bar").Equal(Value("baz")), Path("qux").Equal(Value(true))),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-					"#1": aws.String("bar"),
-					"#2": aws.String("qux"),
+			input: And(Name("foo").Equal(Value(5)), Name("bar").Equal(Value("baz")), Name("qux").Equal(Value(true))),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						children: []exprNode{
+							{
+								names:   []string{"foo"},
+								fmtExpr: "$n",
+							},
+							{
+								values: []dynamodb.AttributeValue{
+									{
+										N: aws.String("5"),
+									},
+								},
+								fmtExpr: "$v",
+							},
+						},
+						fmtExpr: "$c = $c",
+					},
+					{
+						children: []exprNode{
+							{
+								names:   []string{"bar"},
+								fmtExpr: "$n",
+							},
+							{
+								values: []dynamodb.AttributeValue{
+									{
+										S: aws.String("baz"),
+									},
+								},
+								fmtExpr: "$v",
+							},
+						},
+						fmtExpr: "$c = $c",
+					},
+					{
+						children: []exprNode{
+							{
+								names:   []string{"qux"},
+								fmtExpr: "$n",
+							},
+							{
+								values: []dynamodb.AttributeValue{
+									{
+										BOOL: aws.Bool(true),
+									},
+								},
+								fmtExpr: "$v",
+							},
+						},
+						fmtExpr: "$c = $c",
+					},
 				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("5"),
-					},
-					":1": &dynamodb.AttributeValue{
-						S: aws.String("baz"),
-					},
-					":2": &dynamodb.AttributeValue{
-						BOOL: aws.Bool(true),
-					},
-				},
-				Expression: "(#0 = :0) AND (#1 = :1) AND (#2 = :2)",
+				fmtExpr: "($c) AND ($c) AND ($c)",
 			},
 		},
 		{
 			name:  "variadic function or",
-			input: Or(Path("foo").Equal(Value(5)), Path("bar").Equal(Value("baz")), Path("qux").Equal(Value(true))),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-					"#1": aws.String("bar"),
-					"#2": aws.String("qux"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("5"),
+			input: Or(Name("foo").Equal(Value(5)), Name("bar").Equal(Value("baz")), Name("qux").Equal(Value(true))),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						children: []exprNode{
+							{
+								names:   []string{"foo"},
+								fmtExpr: "$n",
+							},
+							{
+								values: []dynamodb.AttributeValue{
+									{
+										N: aws.String("5"),
+									},
+								},
+								fmtExpr: "$v",
+							},
+						},
+						fmtExpr: "$c = $c",
 					},
-					":1": &dynamodb.AttributeValue{
-						S: aws.String("baz"),
+					{
+						children: []exprNode{
+							{
+								names:   []string{"bar"},
+								fmtExpr: "$n",
+							},
+							{
+								values: []dynamodb.AttributeValue{
+									{
+										S: aws.String("baz"),
+									},
+								},
+								fmtExpr: "$v",
+							},
+						},
+						fmtExpr: "$c = $c",
 					},
-					":2": &dynamodb.AttributeValue{
-						BOOL: aws.Bool(true),
+					{
+						children: []exprNode{
+							{
+								names:   []string{"qux"},
+								fmtExpr: "$n",
+							},
+							{
+								values: []dynamodb.AttributeValue{
+									{
+										BOOL: aws.Bool(true),
+									},
+								},
+								fmtExpr: "$v",
+							},
+						},
+						fmtExpr: "$c = $c",
 					},
 				},
-				Expression: "(#0 = :0) OR (#1 = :1) OR (#2 = :2)",
-			},
-		},
-		{
-			name:  "duplicate paths and",
-			input: And(Path("foo").Equal(Path("foo")), Path("bar").Equal(Path("foo")), Path("qux").Equal(Path("foo"))),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-					"#1": aws.String("bar"),
-					"#2": aws.String("qux"),
-				},
-				Expression: "(#0 = #0) AND (#1 = #0) AND (#2 = #0)",
+				fmtExpr: "($c) OR ($c) OR ($c)",
 			},
 		},
 		{
 			name:  "invalid operand error And",
-			input: Path("").Size().GreaterEqual(Value(5)).And(Path("[5]").Between(Value(3), Value(9))),
+			input: Name("").Size().GreaterThanEqual(Value(5)).And(Name("[5]").Between(Value(3), Value(9))),
 			err:   invalidOperand,
 		},
 		{
 			name:  "invalid operand error Or",
-			input: Path("").Size().GreaterEqual(Value(5)).Or(Path("[5]").Between(Value(3), Value(9))),
+			input: Name("").Size().GreaterThanEqual(Value(5)).Or(Name("[5]").Between(Value(3), Value(9))),
 			err:   invalidOperand,
 		},
 	}
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			expr, err := c.input.BuildExpression()
+			actual, err := c.input.buildTree()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -668,8 +718,7 @@ func TestBoolCondition(t *testing.T) {
 				if err != nil {
 					t.Errorf("expect no error, got unexpected Error %q", err)
 				}
-
-				if e, a := c.expected, expr; !reflect.DeepEqual(a, e) {
+				if e, a := c.expectedNode, actual; !reflect.DeepEqual(a, e) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 			}
@@ -679,51 +728,73 @@ func TestBoolCondition(t *testing.T) {
 
 func TestNotCondition(t *testing.T) {
 	cases := []struct {
-		name     string
-		input    ConditionBuilder
-		expected Expression
-		err      condErrorMode
+		name         string
+		input        ConditionBuilder
+		expectedNode exprNode
+		err          condErrorMode
 	}{
 		{
 			name:  "basic method not",
-			input: Path("foo").Equal(Value(5)).Not(),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("5"),
+			input: Name("foo").Equal(Value(5)).Not(),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						children: []exprNode{
+							{
+								names:   []string{"foo"},
+								fmtExpr: "$n",
+							},
+							{
+								values: []dynamodb.AttributeValue{
+									{
+										N: aws.String("5"),
+									},
+								},
+								fmtExpr: "$v",
+							},
+						},
+						fmtExpr: "$c = $c",
 					},
 				},
-				Expression: "NOT (#0 = :0)",
+				fmtExpr: "NOT ($c)",
 			},
 		},
 		{
 			name:  "basic function not",
-			input: Not(Path("foo").Equal(Value(5))),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("5"),
+			input: Not(Name("foo").Equal(Value(5))),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						children: []exprNode{
+							{
+								names:   []string{"foo"},
+								fmtExpr: "$n",
+							},
+							{
+								values: []dynamodb.AttributeValue{
+									{
+										N: aws.String("5"),
+									},
+								},
+								fmtExpr: "$v",
+							},
+						},
+						fmtExpr: "$c = $c",
 					},
 				},
-				Expression: "NOT (#0 = :0)",
+				fmtExpr: "NOT ($c)",
 			},
 		},
 		{
 			name:  "invalid operand error not",
-			input: Path("").Size().GreaterEqual(Value(5)).Or(Path("[5]").Between(Value(3), Value(9))).Not(),
+			input: Name("").Size().GreaterThanEqual(Value(5)).Or(Name("[5]").Between(Value(3), Value(9))).Not(),
 			err:   invalidOperand,
 		},
 	}
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			expr, err := c.input.BuildExpression()
+			actual, err := c.input.buildTree()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -736,8 +807,7 @@ func TestNotCondition(t *testing.T) {
 				if err != nil {
 					t.Errorf("expect no error, got unexpected Error %q", err)
 				}
-
-				if e, a := c.expected, expr; !reflect.DeepEqual(a, e) {
+				if e, a := c.expectedNode, actual; !reflect.DeepEqual(a, e) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 			}
@@ -747,75 +817,112 @@ func TestNotCondition(t *testing.T) {
 
 func TestBetweenCondition(t *testing.T) {
 	cases := []struct {
-		name     string
-		input    ConditionBuilder
-		expected Expression
-		err      condErrorMode
+		name         string
+		input        ConditionBuilder
+		expectedNode exprNode
+		err          condErrorMode
 	}{
 		{
-			name:  "basic method between for path",
-			input: Path("foo").Between(Value(5), Value(7)),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("5"),
+			name:  "basic method between for name",
+			input: Name("foo").Between(Value(5), Value(7)),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
 					},
-					":1": &dynamodb.AttributeValue{
-						N: aws.String("7"),
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								N: aws.String("5"),
+							},
+						},
+						fmtExpr: "$v",
+					},
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								N: aws.String("7"),
+							},
+						},
+						fmtExpr: "$v",
 					},
 				},
-				Expression: "#0 BETWEEN :0 AND :1",
+				fmtExpr: "$c BETWEEN $c AND $c",
 			},
 		},
 		{
 			name:  "basic method between for value",
 			input: Value(6).Between(Value(5), Value(7)),
-			expected: Expression{
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("6"),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								N: aws.String("6"),
+							},
+						},
+						fmtExpr: "$v",
 					},
-					":1": &dynamodb.AttributeValue{
-						N: aws.String("5"),
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								N: aws.String("5"),
+							},
+						},
+						fmtExpr: "$v",
 					},
-					":2": &dynamodb.AttributeValue{
-						N: aws.String("7"),
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								N: aws.String("7"),
+							},
+						},
+						fmtExpr: "$v",
 					},
 				},
-				Expression: ":0 BETWEEN :1 AND :2",
+				fmtExpr: "$c BETWEEN $c AND $c",
 			},
 		},
 		{
 			name:  "basic method between for size",
-			input: Path("foo").Size().Between(Value(5), Value(7)),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("5"),
+			input: Name("foo").Size().Between(Value(5), Value(7)),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "size ($n)",
 					},
-					":1": &dynamodb.AttributeValue{
-						N: aws.String("7"),
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								N: aws.String("5"),
+							},
+						},
+						fmtExpr: "$v",
+					},
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								N: aws.String("7"),
+							},
+						},
+						fmtExpr: "$v",
 					},
 				},
-				Expression: "size (#0) BETWEEN :0 AND :1",
+				fmtExpr: "$c BETWEEN $c AND $c",
 			},
 		},
 		{
 			name:  "invalid operand error between",
-			input: Path("[5]").Between(Value(3), Path("foo..bar")),
+			input: Name("[5]").Between(Value(3), Name("foo..bar")),
 			err:   invalidOperand,
 		},
 	}
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			expr, err := c.input.BuildExpression()
+			actual, err := c.input.buildTree()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -828,8 +935,7 @@ func TestBetweenCondition(t *testing.T) {
 				if err != nil {
 					t.Errorf("expect no error, got unexpected Error %q", err)
 				}
-
-				if e, a := c.expected, expr; !reflect.DeepEqual(a, e) {
+				if e, a := c.expectedNode, actual; !reflect.DeepEqual(a, e) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 			}
@@ -839,75 +945,112 @@ func TestBetweenCondition(t *testing.T) {
 
 func TestInCondition(t *testing.T) {
 	cases := []struct {
-		name     string
-		input    ConditionBuilder
-		expected Expression
-		err      condErrorMode
+		name         string
+		input        ConditionBuilder
+		expectedNode exprNode
+		err          condErrorMode
 	}{
 		{
-			name:  "basic method in for path",
-			input: Path("foo").In(Value(5), Value(7)),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("5"),
+			name:  "basic method in for name",
+			input: Name("foo").In(Value(5), Value(7)),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
 					},
-					":1": &dynamodb.AttributeValue{
-						N: aws.String("7"),
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								N: aws.String("5"),
+							},
+						},
+						fmtExpr: "$v",
+					},
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								N: aws.String("7"),
+							},
+						},
+						fmtExpr: "$v",
 					},
 				},
-				Expression: "#0 IN (:0, :1)",
+				fmtExpr: "$c IN ($c, $c)",
 			},
 		},
 		{
 			name:  "basic method in for value",
 			input: Value(6).In(Value(5), Value(7)),
-			expected: Expression{
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("6"),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								N: aws.String("6"),
+							},
+						},
+						fmtExpr: "$v",
 					},
-					":1": &dynamodb.AttributeValue{
-						N: aws.String("5"),
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								N: aws.String("5"),
+							},
+						},
+						fmtExpr: "$v",
 					},
-					":2": &dynamodb.AttributeValue{
-						N: aws.String("7"),
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								N: aws.String("7"),
+							},
+						},
+						fmtExpr: "$v",
 					},
 				},
-				Expression: ":0 IN (:1, :2)",
+				fmtExpr: "$c IN ($c, $c)",
 			},
 		},
 		{
 			name:  "basic method in for size",
-			input: Path("foo").Size().In(Value(5), Value(7)),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": &dynamodb.AttributeValue{
-						N: aws.String("5"),
+			input: Name("foo").Size().In(Value(5), Value(7)),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "size ($n)",
 					},
-					":1": &dynamodb.AttributeValue{
-						N: aws.String("7"),
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								N: aws.String("5"),
+							},
+						},
+						fmtExpr: "$v",
+					},
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								N: aws.String("7"),
+							},
+						},
+						fmtExpr: "$v",
 					},
 				},
-				Expression: "size (#0) IN (:0, :1)",
+				fmtExpr: "$c IN ($c, $c)",
 			},
 		},
 		{
 			name:  "invalid operand error in",
-			input: Path("[5]").In(Value(3), Path("foo..bar")),
+			input: Name("[5]").In(Value(3), Name("foo..bar")),
 			err:   invalidOperand,
 		},
 	}
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			expr, err := c.input.BuildExpression()
+			actual, err := c.input.buildTree()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -920,8 +1063,7 @@ func TestInCondition(t *testing.T) {
 				if err != nil {
 					t.Errorf("expect no error, got unexpected Error %q", err)
 				}
-
-				if e, a := c.expected, expr; !reflect.DeepEqual(a, e) {
+				if e, a := c.expectedNode, actual; !reflect.DeepEqual(a, e) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 			}
@@ -931,46 +1073,52 @@ func TestInCondition(t *testing.T) {
 
 func TestAttrExistsCondition(t *testing.T) {
 	cases := []struct {
-		name     string
-		input    ConditionBuilder
-		expected Expression
-		err      condErrorMode
+		name         string
+		input        ConditionBuilder
+		expectedNode exprNode
+		err          condErrorMode
 	}{
 		{
 			name:  "basic attr exists",
-			input: Path("foo").AttributeExists(),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
+			input: Name("foo").AttributeExists(),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
+					},
 				},
-				Expression: "attribute_exists (#0)",
+				fmtExpr: "attribute_exists ($c)",
 			},
 		},
 		{
 			name:  "basic attr not exists",
-			input: Path("foo").AttributeNotExists(),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
+			input: Name("foo").AttributeNotExists(),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
+					},
 				},
-				Expression: "attribute_not_exists (#0)",
+				fmtExpr: "attribute_not_exists ($c)",
 			},
 		},
 		{
 			name:  "invalid operand error attr exists",
-			input: AttributeExists(Path("")),
+			input: AttributeExists(Name("")),
 			err:   invalidOperand,
 		},
 		{
 			name:  "invalid operand error attr not exists",
-			input: AttributeNotExists(Path("foo..bar")),
+			input: AttributeNotExists(Name("foo..bar")),
 			err:   invalidOperand,
 		},
 	}
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			expr, err := c.input.BuildExpression()
+			actual, err := c.input.buildTree()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -983,8 +1131,7 @@ func TestAttrExistsCondition(t *testing.T) {
 				if err != nil {
 					t.Errorf("expect no error, got unexpected Error %q", err)
 				}
-
-				if e, a := c.expected, expr; !reflect.DeepEqual(a, e) {
+				if e, a := c.expectedNode, actual; !reflect.DeepEqual(a, e) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 			}
@@ -994,171 +1141,252 @@ func TestAttrExistsCondition(t *testing.T) {
 
 func TestAttrTypeCondition(t *testing.T) {
 	cases := []struct {
-		name     string
-		input    ConditionBuilder
-		expected Expression
-		err      condErrorMode
+		name         string
+		input        ConditionBuilder
+		expectedNode exprNode
+		err          condErrorMode
 	}{
 		{
 			name:  "attr type String",
-			input: Path("foo").AttributeType(String),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": {
-						S: aws.String("S"),
+			input: Name("foo").AttributeType(String),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
+					},
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								S: aws.String("S"),
+							},
+						},
+						fmtExpr: "$v",
 					},
 				},
-				Expression: "attribute_type (#0, :0)",
+				fmtExpr: "attribute_type ($c, $c)",
+			},
+		},
+		{
+			name:  "attr type String",
+			input: Name("foo").AttributeType(String),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
+					},
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								S: aws.String("S"),
+							},
+						},
+						fmtExpr: "$v",
+					},
+				},
+				fmtExpr: "attribute_type ($c, $c)",
 			},
 		},
 		{
 			name:  "attr type StringSet",
-			input: Path("foo").AttributeType(StringSet),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": {
-						S: aws.String("SS"),
+			input: Name("foo").AttributeType(StringSet),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
+					},
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								S: aws.String("SS"),
+							},
+						},
+						fmtExpr: "$v",
 					},
 				},
-				Expression: "attribute_type (#0, :0)",
+				fmtExpr: "attribute_type ($c, $c)",
 			},
 		},
 		{
 			name:  "attr type Number",
-			input: Path("foo").AttributeType(Number),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": {
-						S: aws.String("N"),
+			input: Name("foo").AttributeType(Number),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
+					},
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								S: aws.String("N"),
+							},
+						},
+						fmtExpr: "$v",
 					},
 				},
-				Expression: "attribute_type (#0, :0)",
+				fmtExpr: "attribute_type ($c, $c)",
 			},
 		},
 		{
-			name:  "attr type Number Set",
-			input: Path("foo").AttributeType(NumberSet),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": {
-						S: aws.String("NS"),
+			name:  "attr type NumberSet",
+			input: Name("foo").AttributeType(NumberSet),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
+					},
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								S: aws.String("NS"),
+							},
+						},
+						fmtExpr: "$v",
 					},
 				},
-				Expression: "attribute_type (#0, :0)",
+				fmtExpr: "attribute_type ($c, $c)",
 			},
 		},
 		{
 			name:  "attr type Binary",
-			input: Path("foo").AttributeType(Binary),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": {
-						S: aws.String("B"),
+			input: Name("foo").AttributeType(Binary),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
+					},
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								S: aws.String("B"),
+							},
+						},
+						fmtExpr: "$v",
 					},
 				},
-				Expression: "attribute_type (#0, :0)",
+				fmtExpr: "attribute_type ($c, $c)",
 			},
 		},
 		{
-			name:  "attr type Binary Set",
-			input: Path("foo").AttributeType(BinarySet),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": {
-						S: aws.String("BS"),
+			name:  "attr type BinarySet",
+			input: Name("foo").AttributeType(BinarySet),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
+					},
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								S: aws.String("BS"),
+							},
+						},
+						fmtExpr: "$v",
 					},
 				},
-				Expression: "attribute_type (#0, :0)",
+				fmtExpr: "attribute_type ($c, $c)",
 			},
 		},
 		{
 			name:  "attr type Boolean",
-			input: Path("foo").AttributeType(Boolean),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": {
-						S: aws.String("BOOL"),
+			input: Name("foo").AttributeType(Boolean),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
+					},
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								S: aws.String("BOOL"),
+							},
+						},
+						fmtExpr: "$v",
 					},
 				},
-				Expression: "attribute_type (#0, :0)",
+				fmtExpr: "attribute_type ($c, $c)",
 			},
 		},
 		{
 			name:  "attr type Null",
-			input: Path("foo").AttributeType(Null),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": {
-						S: aws.String("NULL"),
+			input: Name("foo").AttributeType(Null),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
+					},
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								S: aws.String("NULL"),
+							},
+						},
+						fmtExpr: "$v",
 					},
 				},
-				Expression: "attribute_type (#0, :0)",
+				fmtExpr: "attribute_type ($c, $c)",
 			},
 		},
 		{
 			name:  "attr type List",
-			input: Path("foo").AttributeType(List),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": {
-						S: aws.String("L"),
+			input: Name("foo").AttributeType(List),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
+					},
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								S: aws.String("L"),
+							},
+						},
+						fmtExpr: "$v",
 					},
 				},
-				Expression: "attribute_type (#0, :0)",
+				fmtExpr: "attribute_type ($c, $c)",
 			},
 		},
 		{
 			name:  "attr type Map",
-			input: Path("foo").AttributeType(Map),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": {
-						S: aws.String("M"),
+			input: Name("foo").AttributeType(Map),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
+					},
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								S: aws.String("M"),
+							},
+						},
+						fmtExpr: "$v",
 					},
 				},
-				Expression: "attribute_type (#0, :0)",
+				fmtExpr: "attribute_type ($c, $c)",
 			},
 		},
 		{
 			name:  "attr type invalid operand",
-			input: Path("").AttributeType(Map),
+			input: Name("").AttributeType(Map),
 			err:   invalidOperand,
 		},
 	}
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			expr, err := c.input.BuildExpression()
+			actual, err := c.input.buildTree()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -1171,8 +1399,7 @@ func TestAttrTypeCondition(t *testing.T) {
 				if err != nil {
 					t.Errorf("expect no error, got unexpected Error %q", err)
 				}
-
-				if e, a := c.expected, expr; !reflect.DeepEqual(a, e) {
+				if e, a := c.expectedNode, actual; !reflect.DeepEqual(a, e) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 			}
@@ -1182,36 +1409,42 @@ func TestAttrTypeCondition(t *testing.T) {
 
 func TestBeginsWithCondition(t *testing.T) {
 	cases := []struct {
-		name     string
-		input    ConditionBuilder
-		expected Expression
-		err      condErrorMode
+		name         string
+		input        ConditionBuilder
+		expectedNode exprNode
+		err          condErrorMode
 	}{
 		{
 			name:  "basic begins with",
-			input: Path("foo").BeginsWith("bar"),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": {
-						S: aws.String("bar"),
+			input: Name("foo").BeginsWith("bar"),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
+					},
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								S: aws.String("bar"),
+							},
+						},
+						fmtExpr: "$v",
 					},
 				},
-				Expression: "begins_with (#0, :0)",
+				fmtExpr: "begins_with ($c, $c)",
 			},
 		},
 		{
 			name:  "begins with invalid operand",
-			input: Path("").BeginsWith("bar"),
+			input: Name("").BeginsWith("bar"),
 			err:   invalidOperand,
 		},
 	}
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			expr, err := c.input.BuildExpression()
+			actual, err := c.input.buildTree()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -1224,8 +1457,7 @@ func TestBeginsWithCondition(t *testing.T) {
 				if err != nil {
 					t.Errorf("expect no error, got unexpected Error %q", err)
 				}
-
-				if e, a := c.expected, expr; !reflect.DeepEqual(a, e) {
+				if e, a := c.expectedNode, actual; !reflect.DeepEqual(a, e) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 			}
@@ -1235,36 +1467,42 @@ func TestBeginsWithCondition(t *testing.T) {
 
 func TestContainsCondition(t *testing.T) {
 	cases := []struct {
-		name     string
-		input    ConditionBuilder
-		expected Expression
-		err      condErrorMode
+		name         string
+		input        ConditionBuilder
+		expectedNode exprNode
+		err          condErrorMode
 	}{
 		{
 			name:  "basic contains",
-			input: Path("foo").Contains("bar"),
-			expected: Expression{
-				Names: map[string]*string{
-					"#0": aws.String("foo"),
-				},
-				Values: map[string]*dynamodb.AttributeValue{
-					":0": {
-						S: aws.String("bar"),
+			input: Name("foo").Contains("bar"),
+			expectedNode: exprNode{
+				children: []exprNode{
+					{
+						names:   []string{"foo"},
+						fmtExpr: "$n",
+					},
+					{
+						values: []dynamodb.AttributeValue{
+							{
+								S: aws.String("bar"),
+							},
+						},
+						fmtExpr: "$v",
 					},
 				},
-				Expression: "contains (#0, :0)",
+				fmtExpr: "contains ($c, $c)",
 			},
 		},
 		{
 			name:  "contains invalid operand",
-			input: Path("").Contains("bar"),
+			input: Name("").Contains("bar"),
 			err:   invalidOperand,
 		},
 	}
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			expr, err := c.input.BuildExpression()
+			actual, err := c.input.buildTree()
 			if c.err != noConditionError {
 				if err == nil {
 					t.Errorf("expect error %q, got no error", c.err)
@@ -1277,8 +1515,7 @@ func TestContainsCondition(t *testing.T) {
 				if err != nil {
 					t.Errorf("expect no error, got unexpected Error %q", err)
 				}
-
-				if e, a := c.expected, expr; !reflect.DeepEqual(a, e) {
+				if e, a := c.expectedNode, actual; !reflect.DeepEqual(a, e) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 			}
@@ -1325,7 +1562,7 @@ func TestCompoundBuildCondition(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			en, err := compoundBuildCondition(c.inputCond, ExprNode{})
+			en, err := compoundBuildCondition(c.inputCond, exprNode{})
 			if err != nil {
 				t.Errorf("expect no error, got unexpected Error %q", err)
 			}
@@ -1347,13 +1584,13 @@ func TestInBuildCondition(t *testing.T) {
 			name: "in",
 			inputCond: ConditionBuilder{
 				operandList: []OperandBuilder{
-					PathBuilder{},
-					PathBuilder{},
-					PathBuilder{},
-					PathBuilder{},
-					PathBuilder{},
-					PathBuilder{},
-					PathBuilder{},
+					NameBuilder{},
+					NameBuilder{},
+					NameBuilder{},
+					NameBuilder{},
+					NameBuilder{},
+					NameBuilder{},
+					NameBuilder{},
 				},
 				mode: andCond,
 			},
@@ -1363,7 +1600,7 @@ func TestInBuildCondition(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			en, err := inBuildCondition(c.inputCond, ExprNode{})
+			en, err := inBuildCondition(c.inputCond, exprNode{})
 			if err != nil {
 				t.Errorf("expect no error, got unexpected Error %q", err)
 			}

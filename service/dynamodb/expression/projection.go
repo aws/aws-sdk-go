@@ -2,138 +2,105 @@ package expression
 
 import (
 	"strings"
-
-	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
-// ErrUnsetProjection is an error that is returned if BuildExpression is called
-// on an empty ProjectionBuilder.
-var ErrUnsetProjection = awserr.New("UnsetProjection", "buildProjection error: the argument ProjectionBuilder's path list is empty", nil)
-
 // ProjectionBuilder will represent Projection Expressions in DynamoDB. It is
-// composed of a list of PathBuilders. Users will be able to call the
-// BuildExpression() method on a ProjectionBuilder to create an Expression which
-// can then be used for operation inputs into DynamoDB.
+// composed of a list of NameBuilders. ProjectionBuilders will be a building
+// block of Builders.
 // More Information at: http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ProjectionExpressions.html
 type ProjectionBuilder struct {
-	paths []PathBuilder
+	names []NameBuilder
 }
 
-// Projection will create a ProjectionBuilder with at least one PathBuilder as a
-// child. The list of PathBuilders represent the item attribute that will be
+// NamesList will create a ProjectionBuilder with at least one NameBuilder as a
+// child. The list of NameBuilders represent the item attribute that will be
 // returned after the DynamoDB operation. The resulting ProjectionBuilder can be
-// used to build other ProjectionBuilder or to create an Expression to be used
-// in an operation input. This will be the function call.
+// used to build other ProjectionBuilder or to create an Builder to be used in
+// an operation input. This will be the function call.
 //
 // Example:
 //
-//     projection := expression.Projection(expression.Path("foo"), expression.Path("bar"))
+//     projection := expression.NamesList(expression.Name("foo"), expression.Name("bar"))
 //
-//     anotherProjection := expression.AddPaths(projection, expression.Path("baz")) // Used in another projection
-//     expression, err := projection.BuildExpression()                              // Used to make an Expression
-func Projection(p PathBuilder, pl ...PathBuilder) ProjectionBuilder {
-	pl = append([]PathBuilder{p}, pl...)
+//     anotherProjection := expression.AddNames(projection, expression.Name("baz")) // Used in another projection
+//     builder := WithProjection(newProjection)                                     // Used to make an Builder
+func NamesList(nameBuilder NameBuilder, namesList ...NameBuilder) ProjectionBuilder {
+	namesList = append([]NameBuilder{nameBuilder}, namesList...)
 	return ProjectionBuilder{
-		paths: pl,
+		names: namesList,
 	}
 }
 
-// Projection will create a ProjectionBuilder. This will be the method call.
+// NamesList will create a ProjectionBuilder. This will be the method call.
 //
 // Example:
 //
 //     // The following produces equivalent ProjectionBuilders:
-//     projection := expression.Projection(expression.Path("foo"), expression.Path("bar"))
-//     projection := expression.Path("foo").Projection(expression.Path("bar"))
-func (p PathBuilder) Projection(pl ...PathBuilder) ProjectionBuilder {
-	return Projection(p, pl...)
+//     projection := expression.NamesList(expression.Name("foo"), expression.Name("bar"))
+//     projection := expression.Name("foo").NamesList(expression.Name("bar"))
+func (nb NameBuilder) NamesList(namesList ...NameBuilder) ProjectionBuilder {
+	return NamesList(nb, namesList...)
 }
 
-// AddPaths will create a new ProjectionBuilder with a list of PathBuilders that
+// AddNames will create a new ProjectionBuilder with a list of NameBuilders that
 // is a combination of the list from the argument ProjectionBuilder and the
-// argument PathBuilder list. The resulting ProjectionBuilder can be used to
-// build other ProjectionBuilder or to create an Expression to be used in an
+// argument NameBuilder list. The resulting ProjectionBuilder can be used to
+// build other ProjectionBuilder or to create an Builder to be used in an
 // operation input. This will be the function call.
 //
 // Example:
 //
-//     newProjection := expression.AddPaths(oldProjection, expression.Path("foo"))
+//     newProjection := expression.AddNames(oldProjection, expression.Name("foo"))
 //
-//     anotherProjection := expression.AddPaths(newProjection, expression.Path("baz")) // Used in another projection
-//     expression, err := newProjection.BuildExpression()                              // Used to make an Expression
-func AddPaths(proj ProjectionBuilder, pl ...PathBuilder) ProjectionBuilder {
-	proj.paths = append(proj.paths, pl...)
-	return proj
+//     anotherProjection := expression.AddNames(newProjection, expression.Name("baz")) // Used in another projection
+//     builder := WithProjection(newProjection)                                        // Used to make an Builder
+func AddNames(projectionBuilder ProjectionBuilder, namesList ...NameBuilder) ProjectionBuilder {
+	projectionBuilder.names = append(projectionBuilder.names, namesList...)
+	return projectionBuilder
 }
 
-// AddPaths will create a ProjectionBuilder. This will be the method call.
+// AddNames will create a ProjectionBuilder. This will be the method call.
 //
 // Example:
 //
 //     // The following produces equivalent ProjectionBuilders:
-//     newProjection := expression.AddPaths(oldProjection, expression.Path("foo"))
-//     newProjection := oldProjection.AddPaths(expression.Path("foo"))
-func (proj ProjectionBuilder) AddPaths(pl ...PathBuilder) ProjectionBuilder {
-	return AddPaths(proj, pl...)
+//     newProjection := expression.AddNames(oldProjection, expression.Name("foo"))
+//     newProjection := oldProjection.AddNames(expression.Name("foo"))
+func (pb ProjectionBuilder) AddNames(namesList ...NameBuilder) ProjectionBuilder {
+	return AddNames(pb, namesList...)
 }
 
-// BuildExpression will take an ProjectionBuilder as input and output an
-// Expression which can be used in DynamoDB operational inputs (i.e.
-// GetItemInput, QueryInput, etc) In the future, the Expression struct
-// can be used in some injection method into the input structs.
-//
-// Example:
-//
-//     expr, err := someProjection.BuildExpression()
-//
-//     getItemInput := dynamodb.GetItemInput{
-//       ProjectionExpression:      aws.String(expr.Expression),
-// 	     ExpressionAttributeNames:  expr.Names,
-//       ExpressionAttributeValues: expr.Values,
-//       Key: map[string]*dynamodb.AttributeValue{
-//         "PartitionKey": &dynamodb.AttributeValue{
-//           S: aws.String("SomeKey"),
-//         },
-//       },
-//       TableName: aws.String("SomeTable"),
-//     }
-func (proj ProjectionBuilder) BuildExpression() (Expression, error) {
-	en, err := proj.buildProjection()
-	if err != nil {
-		return Expression{}, err
-	}
-	return en.buildExprNodes(&aliasList{})
-}
-
-// buildProjection will build a tree structure of ExprNodes based on the tree
-// structure of the input ProjectionBuilder's child PathBuilders.
-func (proj ProjectionBuilder) buildProjection() (ExprNode, error) {
-	if len(proj.paths) == 0 {
-		return ExprNode{}, ErrUnsetProjection
+// buildTree will build a tree structure of exprNodes based on the tree
+// structure of the input ProjectionBuilder's child NameBuilders. buildTree()
+// satisfies the treeBuilder interface so ProjectionBuilder can be a part of
+// Builder and Expression struct.
+func (pb ProjectionBuilder) buildTree() (exprNode, error) {
+	if len(pb.names) == 0 {
+		return exprNode{}, newUnsetParameterError("buildTree", "ProjectionBuilder")
 	}
 
-	childNodes, err := proj.buildChildNodes()
+	childNodes, err := pb.buildChildNodes()
 	if err != nil {
-		return ExprNode{}, err
+		return exprNode{}, err
 	}
-	ret := ExprNode{
+	ret := exprNode{
 		children: childNodes,
 	}
 
-	ret.fmtExpr = "$c" + strings.Repeat(", $c", len(proj.paths)-1)
+	ret.fmtExpr = "$c" + strings.Repeat(", $c", len(pb.names)-1)
 
 	return ret, nil
 }
 
-// buildChildNodes will create the list of the child ExprNodes.
-func (proj ProjectionBuilder) buildChildNodes() ([]ExprNode, error) {
-	childNodes := make([]ExprNode, 0, len(proj.paths))
-	for _, path := range proj.paths {
-		en, err := path.BuildOperand()
+// buildChildNodes will create the list of the child exprNodes.
+func (pb ProjectionBuilder) buildChildNodes() ([]exprNode, error) {
+	childNodes := make([]exprNode, 0, len(pb.names))
+	for _, name := range pb.names {
+		operand, err := name.BuildOperand()
 		if err != nil {
-			return []ExprNode{}, err
+			return []exprNode{}, err
 		}
-		childNodes = append(childNodes, en)
+		childNodes = append(childNodes, operand.exprNode)
 	}
 
 	return childNodes, nil
