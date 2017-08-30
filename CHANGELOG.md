@@ -1,3 +1,11 @@
+Release v1.10.35 (2017-08-30)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API and documentation
+* `service/organizations`: Updates service API and documentation
+  * The exception ConstraintViolationException now contains a new reason subcode MASTERACCOUNT_MISSING_CONTACT_INFO to make it easier to understand why attempting to remove an account from an Organization can fail. We also improved several other of the text descriptions and examples.
+
 Release v1.10.34 (2017-08-29)
 ===
 
