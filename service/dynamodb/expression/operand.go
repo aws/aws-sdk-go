@@ -1,6 +1,7 @@
 package expression
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/aws/aws-sdk-go/service/dynamodb"
@@ -49,6 +50,28 @@ type Operand struct {
 // Key Condition Expressions (KeyConditionBuilder)
 type KeyBuilder struct {
 	key string
+}
+
+// setValueMode will specify the type of SetValueBuilder. The default value will
+// be unsetValue so if a User were to create an empty SetValueBuilder, we can
+// return ErrUnsetSetValue when BuildOperand() is called.
+type setValueMode int
+
+const (
+	unsetValue setValueMode = iota
+	plus
+	minus
+	listAppend
+	ifNotExists
+)
+
+// SetValueBuilder represents the result of the Plus() function/method for DynamoDB
+// Update SET operations. The members represent the two values that will be
+// added. The PlusBuilder will only be used as an argument in the Set() function
+type SetValueBuilder struct {
+	leftOperand  OperandBuilder
+	rightOperand OperandBuilder
+	mode         setValueMode
 }
 
 // OperandBuilder represents the idea of Operand which are building blocks to
@@ -106,6 +129,159 @@ func Key(key string) KeyBuilder {
 	return KeyBuilder{
 		key: key,
 	}
+}
+
+// Plus will create a SetValueBuilder to be used in as an argument to Set().
+// The arguments can either be NameBuilders or ValueBuilders. Plus() only
+// supports DynamoDB Number types, so the ValueBuilder must be a Number and the
+// NameBuilder must specify an item attribute of type Number.
+// More information: http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.UpdateExpressions.html#Expressions.UpdateExpressions.SET.IncrementAndDecrement
+//
+// Example:
+//
+//     update, err := expression.Set(expression.Name("someName"), expression.Plus(expression.Value(5), expression.Value(10)))
+func Plus(leftOperand, rightOperand OperandBuilder) SetValueBuilder {
+	return SetValueBuilder{
+		leftOperand:  leftOperand,
+		rightOperand: rightOperand,
+		mode:         plus,
+	}
+}
+
+// Plus will create a SetValueBuilder. This will be the method call for
+// NameBuilders
+//
+// Example:
+//
+//     // The following produces equivalent SetValueBuilders
+//     SetValue := expression.Plus(expression.Name("someName"), expression.Value(5))
+//     SetValue := expression.Name("someName").Plus(expression.Value(5))
+func (nb NameBuilder) Plus(rightOperand OperandBuilder) SetValueBuilder {
+	return Plus(nb, rightOperand)
+}
+
+// Plus will create a SetValueBuilder. This will be the method call for
+// ValueBuilders
+//
+// Example:
+//
+//     // The following produces equivalent SetValueBuilders
+//     SetValue := expression.Plus(expression.Value(10), expression.Value(5))
+//     SetValue := expression.Value(10).Plus(expression.Value(5))
+func (vb ValueBuilder) Plus(rightOperand OperandBuilder) SetValueBuilder {
+	return Plus(vb, rightOperand)
+}
+
+// Minus will create a SetValueBuilder to be used in as an argument to Set().
+// The arguments can either be NameBuilders or ValueBuilders. Minus() only
+// supports DynamoDB Number types, so the ValueBuilder must be a Number and the
+// NameBuilder must specify an item attribute of type Number.
+// More information: http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.UpdateExpressions.html#Expressions.UpdateExpressions.SET.IncrementAndDecrement
+//
+// Example:
+//
+//     update, err := expression.Set(expression.Name("someName"), expression.Minus(expression.Value(5), expression.Value(10)))
+func Minus(leftOperand, rightOperand OperandBuilder) SetValueBuilder {
+	return SetValueBuilder{
+		leftOperand:  leftOperand,
+		rightOperand: rightOperand,
+		mode:         minus,
+	}
+}
+
+// Minus will create a SetValueBuilder. This will be the method call for
+// NameBuilders
+//
+// Example:
+//
+//     // The following produces equivalent SetValueBuilders
+//     SetValue := expression.Minus(expression.Name("someName"), expression.Value(5))
+//     SetValue := expression.Name("someName").Minus(expression.Value(5))
+func (nb NameBuilder) Minus(rightOperand OperandBuilder) SetValueBuilder {
+	return Minus(nb, rightOperand)
+}
+
+// Minus will create a SetValueBuilder. This will be the method call for
+// ValueBuilders
+//
+// Example:
+//
+//     // The following produces equivalent SetValueBuilders
+//     SetValue := expression.Minus(expression.Value(10), expression.Value(5))
+//     SetValue := expression.Value(10).Minus(expression.Value(5))
+func (vb ValueBuilder) Minus(rightOperand OperandBuilder) SetValueBuilder {
+	return Minus(vb, rightOperand)
+}
+
+// ListAppend will create a SetValueBuilder to be used in as an argument to
+// Set(). The arguments can either be NameBuilders or ValueBuilders.
+// ListAppend() only supports DynamoDB List types, so the ValueBuilder must be a
+// List and the NameBuilder must specify an item attribute of type List.
+// More information: http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.UpdateExpressions.html#Expressions.UpdateExpressions.SET.UpdatingListElements
+//
+// Example:
+//
+//     update, err := expression.Set(expression.Name("someName"), expression.ListAppend(expression.Name("nameToList"), expression.Value([]string{"some", "list"})))
+func ListAppend(leftOperand, rightOperand OperandBuilder) SetValueBuilder {
+	return SetValueBuilder{
+		leftOperand:  leftOperand,
+		rightOperand: rightOperand,
+		mode:         listAppend,
+	}
+}
+
+// ListAppend will create a SetValueBuilder. This will be the method call for
+// NameBuilders
+//
+// Example:
+//
+//     // The following produces equivalent SetValueBuilders
+//     SetValue := expression.ListAppend(expression.Name("nameToList"), expression.Value([]string{"some", "list"}))
+//     SetValue := expression.Name("nameToList").ListAppend(expression.Value([]string{"some", "list"}))
+func (nb NameBuilder) ListAppend(rightOperand OperandBuilder) SetValueBuilder {
+	return ListAppend(nb, rightOperand)
+}
+
+// ListAppend will create a SetValueBuilder. This will be the method call for
+// ValueBuilders
+//
+// Example:
+//
+//     // The following produces equivalent SetValueBuilders
+//     SetValue := expression.ListAppend(expression.Value([]string{"a", "list"}), expression.Value([]string{"some", "list"}))
+//     SetValue := expression.Value([]string{"a", "list"}).ListAppend(expression.Value([]string{"some", "list"}))
+func (vb ValueBuilder) ListAppend(rightOperand OperandBuilder) SetValueBuilder {
+	return ListAppend(vb, rightOperand)
+}
+
+// IfNotExists will create a SetValueBuilder to be used in as an argument to
+// Set(). The first argument must be a NameBuilder representing the name where
+// the new item attribute will be created. The second argument can either be a
+// NameBuilder or a ValueBuilder. In the case that it is a NameBuilder, the
+// value of the item attribute at the name specified will be the value of the
+// new item attribute.
+// More information: http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.UpdateExpressions.html#Expressions.UpdateExpressions.SET.PreventingAttributeOverwrites
+//
+// Example:
+//
+//     update, err := expression.Set(expression.Name("someName"), expression.IfNotExists(expression.Name("someName"), expression.Value(5))
+func IfNotExists(name NameBuilder, setValue OperandBuilder) SetValueBuilder {
+	return SetValueBuilder{
+		leftOperand:  name,
+		rightOperand: setValue,
+		mode:         ifNotExists,
+	}
+}
+
+// IfNotExists will create a SetValueBuilder.
+//
+// Example:
+//
+//     // The following produces equivalent SetValueBuilders
+//     SetValue := expression.IfNotExists(expression.Name("someName"), expression.Value(5))
+//     SetValue := expression.Name("someName").IfNotExists(expression.Value(5))
+func (nb NameBuilder) IfNotExists(rightOperand OperandBuilder) SetValueBuilder {
+	return IfNotExists(nb, rightOperand)
 }
 
 // BuildOperand will create an Operand struct with an exprNode as a member,
@@ -201,4 +377,48 @@ func (kb KeyBuilder) BuildOperand() (Operand, error) {
 	}
 
 	return ret, nil
+}
+
+// BuildOperand will create an Operand struct with an exprNode as a member,
+// which is a generic representation of Operands and Conditions. BuildOperand()
+// is mainly for the BuildTree() method to call on, not for users to invoke. If
+// the mode of SetValueBuilder is unset, ErrUnsetSetValue will be returned as
+// the error.
+func (svb SetValueBuilder) BuildOperand() (Operand, error) {
+	if svb.mode == unsetValue {
+		return Operand{}, newUnsetParameterError("BuildOperand", "SetValueBuilder")
+	}
+
+	left, err := svb.leftOperand.BuildOperand()
+	if err != nil {
+		return Operand{}, err
+	}
+	leftNode := left.exprNode
+
+	right, err := svb.rightOperand.BuildOperand()
+	if err != nil {
+		return Operand{}, err
+	}
+	rightNode := right.exprNode
+
+	node := exprNode{
+		children: []exprNode{leftNode, rightNode},
+	}
+
+	switch svb.mode {
+	case plus:
+		node.fmtExpr = "$c + $c"
+	case minus:
+		node.fmtExpr = "$c - $c"
+	case listAppend:
+		node.fmtExpr = "list_append($c, $c)"
+	case ifNotExists:
+		node.fmtExpr = "if_not_exists($c, $c)"
+	default:
+		return Operand{}, fmt.Errorf("build operand error: unsupported mode: %v", svb.mode)
+	}
+
+	return Operand{
+		exprNode: node,
+	}, nil
 }
