@@ -677,7 +677,8 @@
       "key":{"shape":"String"},
       "value":{"shape":"String"},
       "max":10,
-      "min":1
+      "min":1,
+      "sensitive":true
     },
     "ChannelType":{
       "type":"string",
@@ -804,7 +805,8 @@
         "lastUpdatedDate":{"shape":"Timestamp"},
         "createdDate":{"shape":"Timestamp"},
         "version":{"shape":"Version"},
-        "checksum":{"shape":"String"}
+        "checksum":{"shape":"String"},
+        "valueSelectionStrategy":{"shape":"SlotValueSelectionStrategy"}
       }
     },
     "CustomOrBuiltinSlotTypeName":{
@@ -975,7 +977,8 @@
       "type":"structure",
       "required":["value"],
       "members":{
-        "value":{"shape":"Value"}
+        "value":{"shape":"Value"},
+        "synonyms":{"shape":"SynonymList"}
       }
     },
     "EnumerationValues":{
@@ -1451,7 +1454,8 @@
         "lastUpdatedDate":{"shape":"Timestamp"},
         "createdDate":{"shape":"Timestamp"},
         "version":{"shape":"Version"},
-        "checksum":{"shape":"String"}
+        "checksum":{"shape":"String"},
+        "valueSelectionStrategy":{"shape":"SlotValueSelectionStrategy"}
       }
     },
     "GetSlotTypeVersionsRequest":{
@@ -1847,7 +1851,8 @@
         },
         "description":{"shape":"Description"},
         "enumerationValues":{"shape":"EnumerationValues"},
-        "checksum":{"shape":"String"}
+        "checksum":{"shape":"String"},
+        "valueSelectionStrategy":{"shape":"SlotValueSelectionStrategy"}
       }
     },
     "PutSlotTypeResponse":{
@@ -1859,7 +1864,8 @@
         "lastUpdatedDate":{"shape":"Timestamp"},
         "createdDate":{"shape":"Timestamp"},
         "version":{"shape":"Version"},
-        "checksum":{"shape":"String"}
+        "checksum":{"shape":"String"},
+        "valueSelectionStrategy":{"shape":"SlotValueSelectionStrategy"}
       }
     },
     "ReferenceType":{
@@ -1960,6 +1966,13 @@
       "max":10,
       "min":0
     },
+    "SlotValueSelectionStrategy":{
+      "type":"string",
+      "enum":[
+        "ORIGINAL_VALUE",
+        "TOP_RESOLUTION"
+      ]
+    },
     "Statement":{
       "type":"structure",
       "required":["messages"],
@@ -1985,6 +1998,10 @@
       ]
     },
     "String":{"type":"string"},
+    "SynonymList":{
+      "type":"list",
+      "member":{"shape":"Value"}
+    },
     "Timestamp":{"type":"timestamp"},
     "UserId":{
       "type":"string",
