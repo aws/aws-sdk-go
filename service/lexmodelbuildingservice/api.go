@@ -1394,7 +1394,7 @@ func (c *LexModelBuildingService) GetBotRequest(input *GetBotInput) (req *reques
 // Returns metadata information for a specific bot. You must provide the bot
 // name and the bot version or alias.
 //
-// The GetBot operation requires permissions for the lex:GetBot action.
+// This operation requires permissions for the lex:GetBot action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4890,6 +4890,10 @@ type CreateSlotTypeVersionOutput struct {
 	// The name of the slot type.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
+	// The strategy that Amazon Lex uses to determine the value of the slot. For
+	// more information, see PutSlotType.
+	ValueSelectionStrategy *string `locationName:"valueSelectionStrategy" type:"string" enum:"SlotValueSelectionStrategy"`
+
 	// The version assigned to the new slot type version.
 	Version *string `locationName:"version" min:"1" type:"string"`
 }
@@ -4937,6 +4941,12 @@ func (s *CreateSlotTypeVersionOutput) SetLastUpdatedDate(v time.Time) *CreateSlo
 // SetName sets the Name field's value.
 func (s *CreateSlotTypeVersionOutput) SetName(v string) *CreateSlotTypeVersionOutput {
 	s.Name = &v
+	return s
+}
+
+// SetValueSelectionStrategy sets the ValueSelectionStrategy field's value.
+func (s *CreateSlotTypeVersionOutput) SetValueSelectionStrategy(v string) *CreateSlotTypeVersionOutput {
+	s.ValueSelectionStrategy = &v
 	return s
 }
 
@@ -5601,6 +5611,9 @@ func (s DeleteUtterancesOutput) GoString() string {
 type EnumerationValue struct {
 	_ struct{} `type:"structure"`
 
+	// Additional values related to the slot type value.
+	Synonyms []*string `locationName:"synonyms" type:"list"`
+
 	// The value of the slot type.
 	//
 	// Value is a required field
@@ -5631,6 +5644,12 @@ func (s *EnumerationValue) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetSynonyms sets the Synonyms field's value.
+func (s *EnumerationValue) SetSynonyms(v []*string) *EnumerationValue {
+	s.Synonyms = v
+	return s
 }
 
 // SetValue sets the Value field's value.
@@ -7561,6 +7580,10 @@ type GetSlotTypeOutput struct {
 	// The name of the slot type.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
+	// The strategy that Amazon Lex uses to determine the value of the slot. For
+	// more information, see PutSlotType.
+	ValueSelectionStrategy *string `locationName:"valueSelectionStrategy" type:"string" enum:"SlotValueSelectionStrategy"`
+
 	// The version of the slot type.
 	Version *string `locationName:"version" min:"1" type:"string"`
 }
@@ -7608,6 +7631,12 @@ func (s *GetSlotTypeOutput) SetLastUpdatedDate(v time.Time) *GetSlotTypeOutput {
 // SetName sets the Name field's value.
 func (s *GetSlotTypeOutput) SetName(v string) *GetSlotTypeOutput {
 	s.Name = &v
+	return s
+}
+
+// SetValueSelectionStrategy sets the ValueSelectionStrategy field's value.
+func (s *GetSlotTypeOutput) SetValueSelectionStrategy(v string) *GetSlotTypeOutput {
+	s.ValueSelectionStrategy = &v
 	return s
 }
 
@@ -8885,9 +8914,9 @@ type PutIntentInput struct {
 	// You can specify only one.
 	FollowUpPrompt *FollowUpPrompt `locationName:"followUpPrompt" type:"structure"`
 
-	// Describes how the intent is fulfilled. For example, after a user provides
-	// all of the information for a pizza order, fulfillmentActivity defines how
-	// the bot places an order with a local pizza store.
+	// Required. Describes how the intent is fulfilled. For example, after a user
+	// provides all of the information for a pizza order, fulfillmentActivity defines
+	// how the bot places an order with a local pizza store.
 	//
 	// You might configure Amazon Lex to return all of the intent information to
 	// the client application, or direct it to invoke a Lambda function that can
@@ -8927,7 +8956,7 @@ type PutIntentInput struct {
 
 	// An array of intent slots. At runtime, Amazon Lex elicits required slot values
 	// from the user using prompts defined in the slots. For more information, see
-	// <xref linkend="how-it-works"/>.
+	// how-it-works.
 	Slots []*Slot `locationName:"slots" type:"list"`
 }
 
@@ -9246,7 +9275,16 @@ type PutSlotTypeInput struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// A list of EnumerationValue objects that defines the values that the slot
-	// type can take.
+	// type can take. Each value can have a list of synonyms, which are additional
+	// values that help train the machine learning model about the values that it
+	// resolves for a slot.
+	//
+	// When Amazon Lex resolves a slot value, it generates a resolution list that
+	// contains up to five possible values for the slot. If you are using a Lambda
+	// function, this resolution list is passed to the function. If you are not
+	// using a Lambda function you can choose to return the value that the user
+	// entered or the first value in the resolution list as the slot value. The
+	// valueSelectionStrategy field indicates the option to use.
 	EnumerationValues []*EnumerationValue `locationName:"enumerationValues" min:"1" type:"list"`
 
 	// The name of the slot type. The name is not case sensitive.
@@ -9260,6 +9298,19 @@ type PutSlotTypeInput struct {
 	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Determines the strategy that Amazon Lex uses to return slot type values.
+	// The field can be set to one of the following values:
+	//
+	//    * ORIGINAL_VALUE - Returns the value entered by the user.
+	//
+	//    * TOP_RESOLUTION - If there is a resolution list for the slot, return
+	//    the first value in the resolution list as the slot type value. If there
+	//    is no resolution list, null is returned.
+	//
+	// If you don't specify the valueSelectionStrategy is not provided, the default
+	// is ORIGINAL_VALUE.
+	ValueSelectionStrategy *string `locationName:"valueSelectionStrategy" type:"string" enum:"SlotValueSelectionStrategy"`
 }
 
 // String returns the string representation
@@ -9325,6 +9376,12 @@ func (s *PutSlotTypeInput) SetName(v string) *PutSlotTypeInput {
 	return s
 }
 
+// SetValueSelectionStrategy sets the ValueSelectionStrategy field's value.
+func (s *PutSlotTypeInput) SetValueSelectionStrategy(v string) *PutSlotTypeInput {
+	s.ValueSelectionStrategy = &v
+	return s
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lex-models-2017-04-19/PutSlotTypeResponse
 type PutSlotTypeOutput struct {
 	_ struct{} `type:"structure"`
@@ -9348,6 +9405,10 @@ type PutSlotTypeOutput struct {
 
 	// The name of the slot type.
 	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The strategy that Amazon Lex uses to determine the value of the slot. For
+	// more information, see PutSlotType.
+	ValueSelectionStrategy *string `locationName:"valueSelectionStrategy" type:"string" enum:"SlotValueSelectionStrategy"`
 
 	// The version of the slot type. For a new slot type, the version is always
 	// $LATEST.
@@ -9397,6 +9458,12 @@ func (s *PutSlotTypeOutput) SetLastUpdatedDate(v time.Time) *PutSlotTypeOutput {
 // SetName sets the Name field's value.
 func (s *PutSlotTypeOutput) SetName(v string) *PutSlotTypeOutput {
 	s.Name = &v
+	return s
+}
+
+// SetValueSelectionStrategy sets the ValueSelectionStrategy field's value.
+func (s *PutSlotTypeOutput) SetValueSelectionStrategy(v string) *PutSlotTypeOutput {
+	s.ValueSelectionStrategy = &v
 	return s
 }
 
@@ -9878,6 +9945,14 @@ const (
 
 	// SlotConstraintOptional is a SlotConstraint enum value
 	SlotConstraintOptional = "Optional"
+)
+
+const (
+	// SlotValueSelectionStrategyOriginalValue is a SlotValueSelectionStrategy enum value
+	SlotValueSelectionStrategyOriginalValue = "ORIGINAL_VALUE"
+
+	// SlotValueSelectionStrategyTopResolution is a SlotValueSelectionStrategy enum value
+	SlotValueSelectionStrategyTopResolution = "TOP_RESOLUTION"
 )
 
 const (

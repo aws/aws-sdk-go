@@ -1187,7 +1187,14 @@
     "TargetId": {
       "base": null,
       "refs": {
-        "TargetDescription$Id": "<p>The ID of the target.</p>"
+        "TargetDescription$Id": "<p>The ID of the target. If the target type of the target group is <code>instance</code>, specify an instance ID. If the target type is <code>ip</code>, specify an IP address.</p>"
+      }
+    },
+    "TargetTypeEnum": {
+      "base": null,
+      "refs": {
+        "CreateTargetGroupInput$TargetType": "<p>The type of target that you must specify when registering targets with this target group. The possible values are <code>instance</code> (targets are specified by instance ID) or <code>ip</code> (targets are specified by IP address). The default is <code>instance</code>. Note that you can't specify targets for a target group using both instance IDs and IP addresses.</p> <p>If the target type is <code>ip</code>, specify IP addresses from the subnets of the virtual private cloud (VPC) for the target group, the RFC 1918 range (10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16), and the RFC 6598 range (100.64.0.0/10). You can't specify publicly routable IP addresses.</p>",
+        "TargetGroup$TargetType": "<p>The type of target that you must specify when registering targets with this target group. The possible values are <code>instance</code> (targets are specified by instance ID) or <code>ip</code> (targets are specified by IP address).</p>"
       }
     },
     "TooManyCertificatesException": {
@@ -1246,7 +1253,8 @@
     "ZoneName": {
       "base": null,
       "refs": {
-        "AvailabilityZone$ZoneName": "<p>The name of the Availability Zone.</p>"
+        "AvailabilityZone$ZoneName": "<p>The name of the Availability Zone.</p>",
+        "TargetDescription$AvailabilityZone": "<p>The Availability Zone where the IP address is to be registered. Specify <code>all</code> to register an IP address outside the target group VPC with all Availability Zones that are enabled for the load balancer.</p> <p>If the IP address is in a subnet of the VPC for the target group, the Availability Zone is automatically detected and this parameter is optional.</p> <p>This parameter is not supported if the target type of the target group is <code>instance</code>.</p>"
       }
     }
   }

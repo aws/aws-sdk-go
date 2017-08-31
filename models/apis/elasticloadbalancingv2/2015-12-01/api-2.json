@@ -720,7 +720,8 @@
         "HealthCheckTimeoutSeconds":{"shape":"HealthCheckTimeoutSeconds"},
         "HealthyThresholdCount":{"shape":"HealthCheckThresholdCount"},
         "UnhealthyThresholdCount":{"shape":"HealthCheckThresholdCount"},
-        "Matcher":{"shape":"Matcher"}
+        "Matcher":{"shape":"Matcher"},
+        "TargetType":{"shape":"TargetTypeEnum"}
       }
     },
     "CreateTargetGroupOutput":{
@@ -1637,7 +1638,8 @@
       "required":["Id"],
       "members":{
         "Id":{"shape":"TargetId"},
-        "Port":{"shape":"Port"}
+        "Port":{"shape":"Port"},
+        "AvailabilityZone":{"shape":"ZoneName"}
       }
     },
     "TargetDescriptions":{
@@ -1660,7 +1662,8 @@
         "UnhealthyThresholdCount":{"shape":"HealthCheckThresholdCount"},
         "HealthCheckPath":{"shape":"Path"},
         "Matcher":{"shape":"Matcher"},
-        "LoadBalancerArns":{"shape":"LoadBalancerArns"}
+        "LoadBalancerArns":{"shape":"LoadBalancerArns"},
+        "TargetType":{"shape":"TargetTypeEnum"}
       }
     },
     "TargetGroupArn":{"type":"string"},
@@ -1748,6 +1751,7 @@
         "Target.NotInUse",
         "Target.DeregistrationInProgress",
         "Target.InvalidState",
+        "Target.IpUnusable",
         "Elb.InternalError"
       ]
     },
@@ -1762,6 +1766,13 @@
       ]
     },
     "TargetId":{"type":"string"},
+    "TargetTypeEnum":{
+      "type":"string",
+      "enum":[
+        "instance",
+        "ip"
+      ]
+    },
     "TooManyCertificatesException":{
       "type":"structure",
       "members":{
