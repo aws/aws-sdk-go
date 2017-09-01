@@ -1,3 +1,13 @@
+Release v1.10.37 (2017-09-01)
+===
+
+### Service Client Updates
+* `service/MobileHub`: Adds new service
+* `service/gamelift`: Updates service API and documentation
+  * GameLift VPC resources can be peered with any other AWS VPC. R4 memory-optimized instances now available to deploy.
+* `service/ssm`: Updates service API and documentation
+  * Adding KMS encryption support to SSM Inventory Resource Data Sync. Exposes the ClientToken parameter on SSM StartAutomationExecution to provide idempotent execution requests.
+
 Release v1.10.36 (2017-08-31)
 ===
 
