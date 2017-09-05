@@ -647,7 +647,7 @@
       },
       "elasticloadbalancing" : {
         "defaults" : {
-          "protocols" : [ "http", "https" ]
+          "protocols" : [ "https" ]
         },
         "endpoints" : {
           "ap-northeast-1" : { },
@@ -1688,7 +1688,7 @@
       },
       "elasticloadbalancing" : {
         "defaults" : {
-          "protocols" : [ "http", "https" ]
+          "protocols" : [ "https" ]
         },
         "endpoints" : {
           "cn-north-1" : { }

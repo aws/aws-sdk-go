@@ -856,7 +856,7 @@ var awsPartition = partition{
 		},
 		"elasticloadbalancing": service{
 			Defaults: endpoint{
-				Protocols: []string{"http", "https"},
+				Protocols: []string{"https"},
 			},
 			Endpoints: endpoints{
 				"ap-northeast-1": endpoint{},
@@ -1977,7 +1977,7 @@ var awscnPartition = partition{
 		},
 		"elasticloadbalancing": service{
 			Defaults: endpoint{
-				Protocols: []string{"http", "https"},
+				Protocols: []string{"https"},
 			},
 			Endpoints: endpoints{
 				"cn-north-1": endpoint{},
