@@ -1,3 +1,11 @@
+Release v1.10.38 (2017-09-05)
+===
+
+### Service Client Updates
+* `service/codestar`: Updates service API and documentation
+  * Added support to tag CodeStar projects. Tags can be used to organize and find CodeStar projects on key-value pairs that you can choose. For example, you could add a tag with a key of "Release" and a value of "Beta" to projects your organization is working on for an upcoming beta release.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.10.37 (2017-09-01)
 ===
 
