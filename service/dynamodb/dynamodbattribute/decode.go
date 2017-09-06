@@ -338,12 +338,12 @@ func (d *Decoder) decodeNumber(n *string, v reflect.Value, fieldTag tag) error {
 		}
 		v.SetFloat(i)
 	default:
-		if _, ok := v.Interface().(time.Time); ok && fieldTag.AsUnixTime {
+		if v.Type().ConvertibleTo(reflect.TypeOf(time.Time{})) && fieldTag.AsUnixTime {
 			t, err := decodeUnixTime(*n)
 			if err != nil {
 				return err
 			}
-			v.Set(reflect.ValueOf(t))
+			v.Set(reflect.ValueOf(t).Convert(v.Type()))
 			return nil
 		}
 		return &UnmarshalTypeError{Value: "number", Type: v.Type()}
@@ -502,12 +502,12 @@ func (d *Decoder) decodeString(s *string, v reflect.Value, fieldTag tag) error {
 
 	// To maintain backwards compatibility with ConvertFrom family of methods which
 	// converted strings to time.Time structs
-	if _, ok := v.Interface().(time.Time); ok {
+	if v.Type().ConvertibleTo(reflect.TypeOf(time.Time{})) {
 		t, err := time.Parse(time.RFC3339, *s)
 		if err != nil {
 			return err
 		}
-		v.Set(reflect.ValueOf(t))
+		v.Set(reflect.ValueOf(t).Convert(v.Type()))
 		return nil
 	}
 
