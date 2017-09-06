@@ -1,3 +1,10 @@
+Release v1.10.39 (2017-09-06)
+===
+
+### Service Client Updates
+* `service/budgets`: Updates service API and documentation
+  * Add an optional "thresholdType" to notifications to support percentage or absolute value thresholds.
+
 Release v1.10.38 (2017-09-05)
 ===
 
