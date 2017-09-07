@@ -24,6 +24,7 @@
     "GetBuiltinIntent": "<p>Returns information about a built-in intent.</p> <p>This operation requires permission for the <code>lex:GetBuiltinIntent</code> action.</p>",
     "GetBuiltinIntents": "<p>Gets a list of built-in intents that meet the specified criteria.</p> <p>This operation requires permission for the <code>lex:GetBuiltinIntents</code> action.</p>",
     "GetBuiltinSlotTypes": "<p>Gets a list of built-in slot types that meet the specified criteria.</p> <p>For a list of built-in slot types, see <a href=\"https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/built-in-intent-ref/slot-type-reference\">Slot Type Reference</a> in the <i>Alexa Skills Kit</i>.</p> <p>This operation requires permission for the <code>lex:GetBuiltInSlotTypes</code> action.</p>",
+    "GetExport": "<p>Exports the contents of a Amazon Lex resource in a specified format. </p>",
     "GetIntent": "<p> Returns information about an intent. In addition to the intent name, you must specify the intent version. </p> <p> This operation requires permissions to perform the <code>lex:GetIntent</code> action. </p>",
     "GetIntentVersions": "<p>Gets information about all of the versions of an intent.</p> <p>The <code>GetIntentVersions</code> operation returns an <code>IntentMetadata</code> object for each version of an intent. For example, if an intent has three numbered versions, the <code>GetIntentVersions</code> operation returns four <code>IntentMetadata</code> objects in the response, one for each numbered version and one for the <code>$LATEST</code> version. </p> <p>The <code>GetIntentVersions</code> operation always returns at least one version, the <code>$LATEST</code> version.</p> <p>This operation requires permissions for the <code>lex:GetIntentVersions</code> action.</p>",
     "GetIntents": "<p>Returns intent information as follows: </p> <ul> <li> <p>If you specify the <code>nameContains</code> field, returns the <code>$LATEST</code> version of all intents that contain the specified string.</p> </li> <li> <p> If you don't specify the <code>nameContains</code> field, returns information about the <code>$LATEST</code> version of all intents. </p> </li> </ul> <p> The operation requires permission for the <code>lex:GetIntents</code> action. </p>",
@@ -382,6 +383,19 @@
         "PutSlotTypeResponse$enumerationValues": "<p>A list of <code>EnumerationValue</code> objects that defines the values that the slot type can take.</p>"
       }
     },
+    "ExportStatus": {
+      "base": null,
+      "refs": {
+        "GetExportResponse$exportStatus": "<p>The status of the export. </p> <ul> <li> <p> <code>IN_PROGRESS</code> - The export is in progress.</p> </li> <li> <p> <code>READY</code> - The export is complete.</p> </li> <li> <p> <code>FAILED</code> - The export could not be completed.</p> </li> </ul>"
+      }
+    },
+    "ExportType": {
+      "base": null,
+      "refs": {
+        "GetExportRequest$exportType": "<p>The format of the exported data.</p>",
+        "GetExportResponse$exportType": "<p>The format of the exported data.</p>"
+      }
+    },
     "FollowUpPrompt": {
       "base": "<p>A prompt for additional activity after an intent is fulfilled. For example, after the <code>OrderPizza</code> intent is fulfilled, you might prompt the user to find out whether the user wants to order drinks.</p>",
       "refs": {
@@ -502,6 +516,16 @@
       }
     },
     "GetBuiltinSlotTypesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetExportRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetExportResponse": {
       "base": null,
       "refs": {
       }
@@ -715,6 +739,8 @@
     "Name": {
       "base": null,
       "refs": {
+        "GetExportRequest$name": "<p>The name of the bot to export.</p>",
+        "GetExportResponse$name": "<p>The name of the bot being exported.</p>",
         "ResourceReference$name": "<p>The name of the resource that is using the resource that you are trying to delete.</p>"
       }
     },
@@ -753,7 +779,9 @@
       "refs": {
         "DeleteBotVersionRequest$version": "<p>The version of the bot to delete. You cannot delete the <code>$LATEST</code> version of the bot. To delete the <code>$LATEST</code> version, use the <a>DeleteBot</a> operation.</p>",
         "DeleteIntentVersionRequest$version": "<p>The version of the intent to delete. You cannot delete the <code>$LATEST</code> version of the intent. To delete the <code>$LATEST</code> version, use the <a>DeleteIntent</a> operation.</p>",
-        "DeleteSlotTypeVersionRequest$version": "<p>The version of the slot type to delete. You cannot delete the <code>$LATEST</code> version of the slot type. To delete the <code>$LATEST</code> version, use the <a>DeleteSlotType</a> operation.</p>"
+        "DeleteSlotTypeVersionRequest$version": "<p>The version of the slot type to delete. You cannot delete the <code>$LATEST</code> version of the slot type. To delete the <code>$LATEST</code> version, use the <a>DeleteSlotType</a> operation.</p>",
+        "GetExportRequest$version": "<p>The version of the bot to export.</p>",
+        "GetExportResponse$version": "<p>The version of the bot being exported.</p>"
       }
     },
     "PreconditionFailedException": {
@@ -851,6 +879,13 @@
         "ResourceInUseException$exampleReference": null
       }
     },
+    "ResourceType": {
+      "base": null,
+      "refs": {
+        "GetExportRequest$resourceType": "<p>The type of resource to export. </p>",
+        "GetExportResponse$resourceType": "<p>The type of the exported resource.</p>"
+      }
+    },
     "ResponseCard": {
       "base": null,
       "refs": {
@@ -935,8 +970,8 @@
       "refs": {
         "CreateSlotTypeVersionResponse$valueSelectionStrategy": "<p>The strategy that Amazon Lex uses to determine the value of the slot. For more information, see <a>PutSlotType</a>.</p>",
         "GetSlotTypeResponse$valueSelectionStrategy": "<p>The strategy that Amazon Lex uses to determine the value of the slot. For more information, see <a>PutSlotType</a>.</p>",
-        "PutSlotTypeRequest$valueSelectionStrategy": "<p>Determines the strategy that Amazon Lex uses to return slot type values. The field can be set to one of the following values:</p> <ul> <li> <p> <code>ORIGINAL_VALUE</code> - Returns the value entered by the user.</p> </li> <li> <p> <code>TOP_RESOLUTION</code> - If there is a resolution list for the slot, return the first value in the resolution list as the slot type value. If there is no resolution list, null is returned.</p> </li> </ul> <p>If you don't specify the <code>valueSelectionStrategy</code> is not provided, the default is <code>ORIGINAL_VALUE</code>.</p>",
-        "PutSlotTypeResponse$valueSelectionStrategy": "<p>The strategy that Amazon Lex uses to determine the value of the slot. For more information, see <a>PutSlotType</a>.</p>"
+        "PutSlotTypeRequest$valueSelectionStrategy": "<p>Determines the slot resolution strategy that Amazon Lex uses to return slot type values. The field can be set to one of the following values:</p> <ul> <li> <p> <code>ORIGINAL_VALUE</code> - Returns the value entered by the user, if the user value is similar to the slot value.</p> </li> <li> <p> <code>TOP_RESOLUTION</code> - If there is a resolution list for the slot, return the first value in the resolution list as the slot type value. If there is no resolution list, null is returned.</p> </li> </ul> <p>If you don't specify the <code>valueSelectionStrategy</code>, the default is <code>ORIGINAL_VALUE</code>.</p>",
+        "PutSlotTypeResponse$valueSelectionStrategy": "<p>The slot resolution strategy that Amazon Lex uses to determine the value of the slot. For more information, see <a>PutSlotType</a>.</p>"
       }
     },
     "Statement": {
@@ -996,6 +1031,8 @@
         "GetBotResponse$checksum": "<p>Checksum of the bot used to identify a specific revision of the bot's <code>$LATEST</code> version.</p>",
         "GetBuiltinIntentsRequest$signatureContains": "<p>Substring to match in built-in intent signatures. An intent will be returned if any part of its signature matches the substring. For example, \"xyz\" matches both \"xyzabc\" and \"abcxyz.\" To find the signature for an intent, see <a href=\"https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/built-in-intent-ref/standard-intents\">Standard Built-in Intents</a> in the <i>Alexa Skills Kit</i>.</p>",
         "GetBuiltinSlotTypesRequest$signatureContains": "<p>Substring to match in built-in slot type signatures. A slot type will be returned if any part of its signature matches the substring. For example, \"xyz\" matches both \"xyzabc\" and \"abcxyz.\"</p>",
+        "GetExportResponse$failureReason": "<p>If <code>status</code> is <code>FAILED</code>, Amazon Lex provides the reason that it failed to export the resource.</p>",
+        "GetExportResponse$url": "<p>An S3 pre-signed URL that provides the location of the exported resource. The exported resource is a ZIP archive that contains the exported resource in JSON format. The structure of the archive may change. Your code should not rely on the archive structure.</p>",
         "GetIntentResponse$checksum": "<p>Checksum of the intent.</p>",
         "GetSlotTypeResponse$checksum": "<p>Checksum of the <code>$LATEST</code> version of the slot type.</p>",
         "InternalFailureException$message": null,
