@@ -228,44 +228,26 @@ func (b Builder) WithFilter(filterBuilder ConditionBuilder) Builder {
 	return b
 }
 
-// // WithUpdate method will add the argument UpdateBuilder as a treeBuilder to
-// // the argument Builder. If the argument Builder already has a
-// // UpdateBuilder, WithUpdate() will overwrite the existing UpdateBuilder.
-// // Users will able to add other treeBuilders to the Builder or call
-// // Build() to build a Expression struct.
-// //
-// // Example:
-// //
-// //     // let builder be an existing Builder{} and
-// //     // updateBuilder be an existing updateBuilder{}
-// //     builder = builder.WithUpdate(updateBuilder)
-// //
-// //     expression := builder.Build()
-// func (b Builder) WithUpdate(updateBuilder UpdateBuilder) Builder {
-// 	if b.expressionMap == nil {
-// 		b.expressionMap = map[expressionType]treeBuilder{}
-// 	}
-// 	b.expressionMap[update] = updateBuilder
-// 	return b
-// }
+// WithUpdate method will add the argument UpdateBuilder as a treeBuilder to
+// the argument Builder. If the argument Builder already has a
+// UpdateBuilder, WithUpdate() will overwrite the existing UpdateBuilder.
+// Users will able to add other treeBuilders to the Builder or call
+// Build() to build a Expression struct.
 //
-// // WithUpdate function will create a Builder with the argument
-// // updateBuilder as a child treeBuilder. Users will able to add other
-// // treeBuilders to the Builder or call Build() to build a Expression
-// // struct.
-// //
-// // Example:
-// //
-// //     // let updateBuilder and conditionBuilder be an existing
-// //     // UpdateBuilder and ConditionBuilder respectively.
-// //     builder := expression.WithUpdate(updateBuilder)
-// //
-// //     builder = builder.WithCondition(conditionBuilder)   // Adding a ConditionBuilder
-// //     expression := builder.Build()                      // Creating a Expression
-// func WithUpdate(updateBuilder UpdateBuilder) Builder {
-// 	ret := Builder{}
-// 	return ret.WithUpdate(updateBuilder)
-// }
+// Example:
+//
+//     // let builder be an existing Builder{} and
+//     // updateBuilder be an existing updateBuilder{}
+//     builder = builder.WithUpdate(updateBuilder)
+//
+//     expression := builder.Build()
+func (b Builder) WithUpdate(updateBuilder UpdateBuilder) Builder {
+	if b.expressionMap == nil {
+		b.expressionMap = map[expressionType]treeBuilder{}
+	}
+	b.expressionMap[update] = updateBuilder
+	return b
+}
 
 // Expression will be a struct that will be able to generate members to DynamoDB
 // inputs.
@@ -385,6 +367,29 @@ func (e Expression) Projection() *string {
 //     }
 func (e Expression) KeyCondition() *string {
 	return e.returnExpression(keyCondition)
+}
+
+// Update will return the *string corresponding to the Update Expression of the
+// argument Expression. This method is used to satisfy the members of DynamoDB
+// input structs.
+//
+// Example:
+//
+//     // let expression be an instance of Expression{}
+//
+//     updateInput := dynamodb.UpdateInput{
+//       Key: map[string]*dynamodb.AttributeValue{
+//         "PartitionKey": {
+//           S: aws.String("someKey"),
+//         },
+//       },
+//       UpdateExpression:          expression.Update(),
+//       ExpressionAttributeNames:  expression.Names(),
+//       ExpressionAttributeValues: expression.Values(),
+//       TableName: aws.String("SomeTable"),
+//     }
+func (e Expression) Update() *string {
+	return e.returnExpression(update)
 }
 
 // Names will return the map[string]*string corresponding to the

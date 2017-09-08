@@ -103,38 +103,38 @@ func TestBuild(t *testing.T) {
 				},
 			},
 		},
-		// {
-		// 	name:  "update",
-		// 	input: WithUpdate(Name("foo").Equal(Value(5))),
-		// 	expected: Builder{
-		// 		expressionMap: map[expressionType]treeBuilder{
-		// 			update: UpdateBuilder{
-		// 				operandList: []OperandBuilder{
-		// 					NameBuilder{
-		// 						name: "foo",
-		// 					},
-		// 					ValueBuilder{
-		// 						value: 5,
-		// 					},
-		// 				},
-		// 				mode: equalCond,
-		// 			},
-		// 		},
-		// 	},
-		// },
+		{
+			name:  "update",
+			input: NewBuilder().WithUpdate(Set(Name("foo"), (Value(5)))),
+			expected: Expression{
+				expressionMap: map[expressionType]string{
+					update: "SET #0 = :0\n",
+				},
+				namesMap: map[string]*string{
+					"#0": aws.String("foo"),
+				},
+				valuesMap: map[string]*dynamodb.AttributeValue{
+					":0": {
+						N: aws.String("5"),
+					},
+				},
+			},
+		},
 		{
 			name: "compound",
 			input: NewBuilder().
 				WithCondition(Name("foo").Equal(Value(5))).
 				WithFilter(Name("bar").LessThan(Value(6))).
 				WithProjection(NamesList(Name("foo"), Name("bar"), Name("baz"))).
-				WithKeyCondition(Key("foo").Equal(Value(5))),
+				WithKeyCondition(Key("foo").Equal(Value(5))).
+				WithUpdate(Set(Name("foo"), Value(5))),
 			expected: Expression{
 				expressionMap: map[expressionType]string{
 					condition:    "#0 = :0",
 					filter:       "#1 < :1",
 					projection:   "#0, #1, #2",
 					keyCondition: "#0 = :2",
+					update:       "SET #0 = :3\n",
 				},
 				namesMap: map[string]*string{
 					"#0": aws.String("foo"),
@@ -149,6 +149,9 @@ func TestBuild(t *testing.T) {
 						N: aws.String("6"),
 					},
 					":2": {
+						N: aws.String("5"),
+					},
+					":3": {
 						N: aws.String("5"),
 					},
 				},
@@ -376,6 +379,107 @@ func TestKeyCondition(t *testing.T) {
 				}
 			}
 			actual := expr.KeyCondition()
+			if e, a := c.expected, actual; !reflect.DeepEqual(a, e) {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
+	}
+}
+
+func TestUpdate(t *testing.T) {
+	cases := []struct {
+		name     string
+		input    Builder
+		expected *string
+		err      exprErrorMode
+	}{
+		{
+			name: "update",
+			input: Builder{
+				expressionMap: map[expressionType]treeBuilder{
+					update: UpdateBuilder{
+						operationList: map[operationMode][]operationBuilder{
+							setOperation: []operationBuilder{
+								{
+									name: NameBuilder{
+										name: "foo",
+									},
+									value: ValueBuilder{
+										value: 5,
+									},
+									mode: setOperation,
+								},
+							},
+						},
+					},
+				},
+			},
+			expected: aws.String("SET #0 = :0\n"),
+		},
+		{
+			name: "multiple sets",
+			input: Builder{
+				expressionMap: map[expressionType]treeBuilder{
+					update: UpdateBuilder{
+						operationList: map[operationMode][]operationBuilder{
+							setOperation: []operationBuilder{
+								{
+									name: NameBuilder{
+										name: "foo",
+									},
+									value: ValueBuilder{
+										value: 5,
+									},
+									mode: setOperation,
+								},
+								{
+									name: NameBuilder{
+										name: "bar",
+									},
+									value: ValueBuilder{
+										value: 6,
+									},
+									mode: setOperation,
+								},
+								{
+									name: NameBuilder{
+										name: "baz",
+									},
+									value: ValueBuilder{
+										value: 7,
+									},
+									mode: setOperation,
+								},
+							},
+						},
+					},
+				},
+			},
+			expected: aws.String("SET #0 = :0, #1 = :1, #2 = :2\n"),
+		},
+		{
+			name:  "unset builder",
+			input: Builder{},
+			err:   unsetBuilder,
+		},
+	}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			expr, err := c.input.Build()
+			if c.err != noExpressionError {
+				if err == nil {
+					t.Errorf("expect error %q, got no error", c.err)
+				} else {
+					if e, a := string(c.err), err.Error(); !strings.Contains(a, e) {
+						t.Errorf("expect %q error message to be in %q", e, a)
+					}
+				}
+			} else {
+				if err != nil {
+					t.Errorf("expect no error, got unexpected Error %q", err)
+				}
+			}
+			actual := expr.Update()
 			if e, a := c.expected, actual; !reflect.DeepEqual(a, e) {
 				t.Errorf("expect %v, got %v", e, a)
 			}
