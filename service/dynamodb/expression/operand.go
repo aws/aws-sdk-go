@@ -59,10 +59,10 @@ type setValueMode int
 
 const (
 	unsetValue setValueMode = iota
-	plus
-	minus
-	listAppend
-	ifNotExists
+	plusValueMode
+	minusValueMode
+	listAppendValueMode
+	ifNotExistsValueMode
 )
 
 // SetValueBuilder represents the result of the Plus() function/method for DynamoDB
@@ -144,7 +144,7 @@ func Plus(leftOperand, rightOperand OperandBuilder) SetValueBuilder {
 	return SetValueBuilder{
 		leftOperand:  leftOperand,
 		rightOperand: rightOperand,
-		mode:         plus,
+		mode:         plusValueMode,
 	}
 }
 
@@ -185,7 +185,7 @@ func Minus(leftOperand, rightOperand OperandBuilder) SetValueBuilder {
 	return SetValueBuilder{
 		leftOperand:  leftOperand,
 		rightOperand: rightOperand,
-		mode:         minus,
+		mode:         minusValueMode,
 	}
 }
 
@@ -226,7 +226,7 @@ func ListAppend(leftOperand, rightOperand OperandBuilder) SetValueBuilder {
 	return SetValueBuilder{
 		leftOperand:  leftOperand,
 		rightOperand: rightOperand,
-		mode:         listAppend,
+		mode:         listAppendValueMode,
 	}
 }
 
@@ -269,7 +269,7 @@ func IfNotExists(name NameBuilder, setValue OperandBuilder) SetValueBuilder {
 	return SetValueBuilder{
 		leftOperand:  name,
 		rightOperand: setValue,
-		mode:         ifNotExists,
+		mode:         ifNotExistsValueMode,
 	}
 }
 
@@ -406,13 +406,13 @@ func (svb SetValueBuilder) BuildOperand() (Operand, error) {
 	}
 
 	switch svb.mode {
-	case plus:
+	case plusValueMode:
 		node.fmtExpr = "$c + $c"
-	case minus:
+	case minusValueMode:
 		node.fmtExpr = "$c - $c"
-	case listAppend:
+	case listAppendValueMode:
 		node.fmtExpr = "list_append($c, $c)"
-	case ifNotExists:
+	case ifNotExistsValueMode:
 		node.fmtExpr = "if_not_exists($c, $c)"
 	default:
 		return Operand{}, fmt.Errorf("build operand error: unsupported mode: %v", svb.mode)
