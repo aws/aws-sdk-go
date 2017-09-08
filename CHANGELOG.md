@@ -1,3 +1,10 @@
+Release v1.10.41 (2017-09-08)
+===
+
+### Service Client Updates
+* `service/logs`: Updates service API and documentation
+  * Adds support for the PutResourcePolicy, DescribeResourcePolicy and DeleteResourcePolicy APIs.
+
 Release v1.10.40 (2017-09-07)
 ===
 
