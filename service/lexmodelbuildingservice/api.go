@@ -2610,6 +2610,96 @@ func (c *LexModelBuildingService) GetBuiltinSlotTypesPagesWithContext(ctx aws.Co
 	return p.Err()
 }
 
+const opGetExport = "GetExport"
+
+// GetExportRequest generates a "aws/request.Request" representing the
+// client's request for the GetExport operation. The "output" return
+// value will be populated with the request's response once the request complets
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetExport for more information on using the GetExport
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetExportRequest method.
+//    req, resp := client.GetExportRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/lex-models-2017-04-19/GetExport
+func (c *LexModelBuildingService) GetExportRequest(input *GetExportInput) (req *request.Request, output *GetExportOutput) {
+	op := &request.Operation{
+		Name:       opGetExport,
+		HTTPMethod: "GET",
+		HTTPPath:   "/exports/",
+	}
+
+	if input == nil {
+		input = &GetExportInput{}
+	}
+
+	output = &GetExportOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetExport API operation for Amazon Lex Model Building Service.
+//
+// Exports the contents of a Amazon Lex resource in a specified format.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building Service's
+// API operation GetExport for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource specified in the request was not found. Check the resource and
+//   try again.
+//
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   The request exceeded a limit. Try your request again.
+//
+//   * ErrCodeInternalFailureException "InternalFailureException"
+//   An internal Amazon Lex error occurred. Try your request again.
+//
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The request is not well formed. For example, a value is invalid or a required
+//   field is missing. Check the field values, and try again.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/lex-models-2017-04-19/GetExport
+func (c *LexModelBuildingService) GetExport(input *GetExportInput) (*GetExportOutput, error) {
+	req, out := c.GetExportRequest(input)
+	return out, req.Send()
+}
+
+// GetExportWithContext is the same as GetExport with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetExport for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelBuildingService) GetExportWithContext(ctx aws.Context, input *GetExportInput, opts ...request.Option) (*GetExportOutput, error) {
+	req, out := c.GetExportRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetIntent = "GetIntent"
 
 // GetIntentRequest generates a "aws/request.Request" representing the
@@ -4474,7 +4564,7 @@ type CreateBotVersionOutput struct {
 	IdleSessionTTLInSeconds *int64 `locationName:"idleSessionTTLInSeconds" min:"60" type:"integer"`
 
 	// An array of Intent objects. For more information, see PutBot.
-	Intents []*Intent `locationName:"intents" min:"1" type:"list"`
+	Intents []*Intent `locationName:"intents" type:"list"`
 
 	// The date when the $LATEST version of this bot was updated.
 	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp" timestampFormat:"unix"`
@@ -6458,7 +6548,7 @@ type GetBotOutput struct {
 	IdleSessionTTLInSeconds *int64 `locationName:"idleSessionTTLInSeconds" min:"60" type:"integer"`
 
 	// An array of intent objects. For more information, see PutBot.
-	Intents []*Intent `locationName:"intents" min:"1" type:"list"`
+	Intents []*Intent `locationName:"intents" type:"list"`
 
 	// The date that the bot was updated. When you create a resource, the creation
 	// date and last updated date are the same.
@@ -7078,6 +7168,181 @@ func (s *GetBuiltinSlotTypesOutput) SetNextToken(v string) *GetBuiltinSlotTypesO
 // SetSlotTypes sets the SlotTypes field's value.
 func (s *GetBuiltinSlotTypesOutput) SetSlotTypes(v []*BuiltinSlotTypeMetadata) *GetBuiltinSlotTypesOutput {
 	s.SlotTypes = v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/lex-models-2017-04-19/GetExportRequest
+type GetExportInput struct {
+	_ struct{} `type:"structure"`
+
+	// The format of the exported data.
+	//
+	// ExportType is a required field
+	ExportType *string `location:"querystring" locationName:"exportType" type:"string" required:"true" enum:"ExportType"`
+
+	// The name of the bot to export.
+	//
+	// Name is a required field
+	Name *string `location:"querystring" locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The type of resource to export.
+	//
+	// ResourceType is a required field
+	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
+
+	// The version of the bot to export.
+	//
+	// Version is a required field
+	Version *string `location:"querystring" locationName:"version" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetExportInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetExportInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetExportInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetExportInput"}
+	if s.ExportType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExportType"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+	if s.Version == nil {
+		invalidParams.Add(request.NewErrParamRequired("Version"))
+	}
+	if s.Version != nil && len(*s.Version) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Version", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExportType sets the ExportType field's value.
+func (s *GetExportInput) SetExportType(v string) *GetExportInput {
+	s.ExportType = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetExportInput) SetName(v string) *GetExportInput {
+	s.Name = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *GetExportInput) SetResourceType(v string) *GetExportInput {
+	s.ResourceType = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *GetExportInput) SetVersion(v string) *GetExportInput {
+	s.Version = &v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/lex-models-2017-04-19/GetExportResponse
+type GetExportOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the export.
+	//
+	//    * IN_PROGRESS - The export is in progress.
+	//
+	//    * READY - The export is complete.
+	//
+	//    * FAILED - The export could not be completed.
+	ExportStatus *string `locationName:"exportStatus" type:"string" enum:"ExportStatus"`
+
+	// The format of the exported data.
+	ExportType *string `locationName:"exportType" type:"string" enum:"ExportType"`
+
+	// If status is FAILED, Amazon Lex provides the reason that it failed to export
+	// the resource.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The name of the bot being exported.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The type of the exported resource.
+	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
+
+	// An S3 pre-signed URL that provides the location of the exported resource.
+	// The exported resource is a ZIP archive that contains the exported resource
+	// in JSON format. The structure of the archive may change. Your code should
+	// not rely on the archive structure.
+	Url *string `locationName:"url" type:"string"`
+
+	// The version of the bot being exported.
+	Version *string `locationName:"version" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s GetExportOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetExportOutput) GoString() string {
+	return s.String()
+}
+
+// SetExportStatus sets the ExportStatus field's value.
+func (s *GetExportOutput) SetExportStatus(v string) *GetExportOutput {
+	s.ExportStatus = &v
+	return s
+}
+
+// SetExportType sets the ExportType field's value.
+func (s *GetExportOutput) SetExportType(v string) *GetExportOutput {
+	s.ExportType = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *GetExportOutput) SetFailureReason(v string) *GetExportOutput {
+	s.FailureReason = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetExportOutput) SetName(v string) *GetExportOutput {
+	s.Name = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *GetExportOutput) SetResourceType(v string) *GetExportOutput {
+	s.ResourceType = &v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *GetExportOutput) SetUrl(v string) *GetExportOutput {
+	s.Url = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *GetExportOutput) SetVersion(v string) *GetExportOutput {
+	s.Version = &v
 	return s
 }
 
@@ -8502,7 +8767,7 @@ type PutBotInput struct {
 	// An array of Intent objects. Each intent represents a command that a user
 	// can express. For example, a pizza ordering bot might support an OrderPizza
 	// intent. For more information, see how-it-works.
-	Intents []*Intent `locationName:"intents" min:"1" type:"list"`
+	Intents []*Intent `locationName:"intents" type:"list"`
 
 	// Specifies the target locale for the bot. Any intent used in the bot must
 	// be compatible with the locale of the bot.
@@ -8549,9 +8814,6 @@ func (s *PutBotInput) Validate() error {
 	}
 	if s.IdleSessionTTLInSeconds != nil && *s.IdleSessionTTLInSeconds < 60 {
 		invalidParams.Add(request.NewErrParamMinValue("IdleSessionTTLInSeconds", 60))
-	}
-	if s.Intents != nil && len(s.Intents) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Intents", 1))
 	}
 	if s.Locale == nil {
 		invalidParams.Add(request.NewErrParamRequired("Locale"))
@@ -8710,7 +8972,7 @@ type PutBotOutput struct {
 	IdleSessionTTLInSeconds *int64 `locationName:"idleSessionTTLInSeconds" min:"60" type:"integer"`
 
 	// An array of Intent objects. For more information, see PutBot.
-	Intents []*Intent `locationName:"intents" min:"1" type:"list"`
+	Intents []*Intent `locationName:"intents" type:"list"`
 
 	// The date that the bot was updated. When you create a resource, the creation
 	// date and last updated date are the same.
@@ -9299,17 +9561,17 @@ type PutSlotTypeInput struct {
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
 
-	// Determines the strategy that Amazon Lex uses to return slot type values.
-	// The field can be set to one of the following values:
+	// Determines the slot resolution strategy that Amazon Lex uses to return slot
+	// type values. The field can be set to one of the following values:
 	//
-	//    * ORIGINAL_VALUE - Returns the value entered by the user.
+	//    * ORIGINAL_VALUE - Returns the value entered by the user, if the user
+	//    value is similar to the slot value.
 	//
 	//    * TOP_RESOLUTION - If there is a resolution list for the slot, return
 	//    the first value in the resolution list as the slot type value. If there
 	//    is no resolution list, null is returned.
 	//
-	// If you don't specify the valueSelectionStrategy is not provided, the default
-	// is ORIGINAL_VALUE.
+	// If you don't specify the valueSelectionStrategy, the default is ORIGINAL_VALUE.
 	ValueSelectionStrategy *string `locationName:"valueSelectionStrategy" type:"string" enum:"SlotValueSelectionStrategy"`
 }
 
@@ -9406,8 +9668,8 @@ type PutSlotTypeOutput struct {
 	// The name of the slot type.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// The strategy that Amazon Lex uses to determine the value of the slot. For
-	// more information, see PutSlotType.
+	// The slot resolution strategy that Amazon Lex uses to determine the value
+	// of the slot. For more information, see PutSlotType.
 	ValueSelectionStrategy *string `locationName:"valueSelectionStrategy" type:"string" enum:"SlotValueSelectionStrategy"`
 
 	// The version of the slot type. For a new slot type, the version is always
@@ -9905,6 +10167,22 @@ const (
 )
 
 const (
+	// ExportStatusInProgress is a ExportStatus enum value
+	ExportStatusInProgress = "IN_PROGRESS"
+
+	// ExportStatusReady is a ExportStatus enum value
+	ExportStatusReady = "READY"
+
+	// ExportStatusFailed is a ExportStatus enum value
+	ExportStatusFailed = "FAILED"
+)
+
+const (
+	// ExportTypeAlexaSkillsKit is a ExportType enum value
+	ExportTypeAlexaSkillsKit = "ALEXA_SKILLS_KIT"
+)
+
+const (
 	// FulfillmentActivityTypeReturnIntent is a FulfillmentActivityType enum value
 	FulfillmentActivityTypeReturnIntent = "ReturnIntent"
 
@@ -9937,6 +10215,11 @@ const (
 
 	// ReferenceTypeBotChannel is a ReferenceType enum value
 	ReferenceTypeBotChannel = "BotChannel"
+)
+
+const (
+	// ResourceTypeBot is a ResourceType enum value
+	ResourceTypeBot = "BOT"
 )
 
 const (

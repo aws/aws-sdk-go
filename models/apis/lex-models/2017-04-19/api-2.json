@@ -371,6 +371,22 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "GetExport":{
+      "name":"GetExport",
+      "http":{
+        "method":"GET",
+        "requestUri":"/exports/",
+        "responseCode":200
+      },
+      "input":{"shape":"GetExportRequest"},
+      "output":{"shape":"GetExportResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
     "GetIntent":{
       "name":"GetIntent",
       "http":{
@@ -987,6 +1003,18 @@
       "max":10000,
       "min":1
     },
+    "ExportStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "READY",
+        "FAILED"
+      ]
+    },
+    "ExportType":{
+      "type":"string",
+      "enum":["ALEXA_SKILLS_KIT"]
+    },
     "FollowUpPrompt":{
       "type":"structure",
       "required":[
@@ -1332,6 +1360,49 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "GetExportRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "version",
+        "resourceType",
+        "exportType"
+      ],
+      "members":{
+        "name":{
+          "shape":"Name",
+          "location":"querystring",
+          "locationName":"name"
+        },
+        "version":{
+          "shape":"NumericalVersion",
+          "location":"querystring",
+          "locationName":"version"
+        },
+        "resourceType":{
+          "shape":"ResourceType",
+          "location":"querystring",
+          "locationName":"resourceType"
+        },
+        "exportType":{
+          "shape":"ExportType",
+          "location":"querystring",
+          "locationName":"exportType"
+        }
+      }
+    },
+    "GetExportResponse":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"Name"},
+        "version":{"shape":"NumericalVersion"},
+        "resourceType":{"shape":"ResourceType"},
+        "exportType":{"shape":"ExportType"},
+        "exportStatus":{"shape":"ExportStatus"},
+        "failureReason":{"shape":"String"},
+        "url":{"shape":"String"}
+      }
+    },
     "GetIntentRequest":{
       "type":"structure",
       "required":[
@@ -1558,9 +1629,7 @@
     },
     "IntentList":{
       "type":"list",
-      "member":{"shape":"Intent"},
-      "max":100,
-      "min":1
+      "member":{"shape":"Intent"}
     },
     "IntentMetadata":{
       "type":"structure",
@@ -1664,7 +1733,7 @@
       "type":"string",
       "max":64,
       "min":1,
-      "pattern":"[a-zA-Z]+"
+      "pattern":"[a-zA-Z_]+"
     },
     "NextToken":{"type":"string"},
     "NotFoundException":{
@@ -1892,6 +1961,10 @@
         "name":{"shape":"Name"},
         "version":{"shape":"Version"}
       }
+    },
+    "ResourceType":{
+      "type":"string",
+      "enum":["BOT"]
     },
     "ResponseCard":{
       "type":"string",

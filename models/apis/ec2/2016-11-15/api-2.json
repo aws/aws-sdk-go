@@ -10814,6 +10814,10 @@
         "VpcId":{
           "shape":"String",
           "locationName":"vpcId"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },
