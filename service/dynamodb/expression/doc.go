@@ -1,0 +1,49 @@
+/*
+Package expression provides types and functions to create DynamoDB Expression
+strings, ExpressionAttributeNames maps, and ExpressionAttributeValues maps.
+
+Using the Package
+
+The package represents the various DynamoDB Expressions as builder structs named
+accordingly. For example, ConditionBuilder represents a DynamoDB Condition
+Expression, an UpdateBuilder represents a DynamoDB Update Expression, and so
+forth.
+The following example will show a sample ConditionExpression and how to build an
+equilvalent ConditionBuilder
+
+  // Let :a be an ExpressionAttributeValue representing the string "No One You
+  // Know"
+  condExpr := "Artist = :a"
+  condBuilder := expression.Name("Artist").Equal(expression.Value("No One You Know"))
+
+In order to retrieve the formatted DynamoDB Expression strings, users must call
+getter methods on the Expression struct. To create the Expression struct, users
+must call the Build() method on the Builder struct. Since some input structs,
+such as QueryInput, can have multiple DynamoDB Expressions, users can add
+multiple builder structs representing various DynamoDB Expressions to the
+Builder struct.
+The following example will show a generic usage of the whole package.
+
+  filt := expression.Name("Artist").Equal(expression.Value("No One You Know"))
+  proj := expression.NamesList(expression.Name("SongTitle"), expression.Name("AlbumTitle"))
+  expr, err := expression.NewBuilder().WithFilter(filt).WithProjection(proj).Build()
+  if err != nil {
+    fmt.Println(err)
+  }
+
+  input := &dynamodb.ScanInput{
+    ExpressionAttributeNames:  expr.Names(),
+    ExpressionAttributeValues: expr.Values(),
+    FilterExpression:          expr.Filter(),
+    ProjectionExpression:      expr.Projection(),
+    TableName:                 aws.String("Music"),
+  }
+
+Users must always fill in the ExpressionAttributeNames and
+ExpressionAttributeValues member of the input struct when using the Expression
+struct since all item attribute names and values are aliased. That means that if
+the ExpressionAttributeNames and ExpressionAttributeValues member is not
+assigned with the corresponding Names() and Values() methods, the DynamoDB
+operation will run into a logic error.
+*/
+package expression

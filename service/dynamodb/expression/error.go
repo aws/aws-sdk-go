@@ -6,11 +6,13 @@ import (
 
 // InvalidParameterError is returned if invalid parameters are encountered. This
 // error specifically refers to situations where parameters are non-empty but
-// have an invalid syntax/format.
+// have an invalid syntax/format. The error message includes the function
+// that returned the error originally and the parameter type that was deemed
+// invalid.
 //
 // Example:
 //
-//     // err will be of type InvalidParameterError
+//     // err is of type InvalidParameterError
 //     _, err := expression.Name("foo..bar").BuildOperand
 type InvalidParameterError struct {
 	parameterType string
@@ -29,13 +31,13 @@ func newInvalidParameterError(funcName, paramType string) InvalidParameterError 
 }
 
 // UnsetParameterError is returned if parameters are empty and uninitialized.
-// This error will be returned if opaque structs (ConditionBuilder, NameBuilder,
+// This error is returned if opaque structs (ConditionBuilder, NameBuilder,
 // Builder, etc) are initialized outside of functions in the package, since all
 // structs in the package are designed to be initialized with functions.
 //
 // Example:
 //
-//     // err will be of type UnsetParameterError
+//     // err is of type UnsetParameterError
 //     _, err := expression.Builder{}.Build()
 //     _, err := expression.NewBuilder().
 //                 WithCondition(expression.ConditionBuilder{}).

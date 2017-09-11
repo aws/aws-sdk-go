@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-// operationMode will specify the types of update operations that the
+// operationMode specifies the types of update operations that the
 // updateBuilder is going to represent. The const is in a string to use the
 // const value as a map key and as a string when creating the formatted
 // expression for the exprNodes.
@@ -34,19 +34,17 @@ func (ml modeList) Swap(i, j int) {
 	ml[i], ml[j] = ml[j], ml[i]
 }
 
-// UpdateBuilder will represent Update Expressions in DynamoDB. The
-// operationList represents the different update operations that are available
-// to DynamoDB. Each slice of operationBuilders will represent an update action,
-// specified by the map key. Each operationBuilder in the slice will represent
-// the specific update action. UpdateBuilder will be a building block of the
-// Builder struct.
+// UpdateBuilder represents Update Expressions in DynamoDB. UpdateBuilders
+// are the building blocks of the Builder struct. Note that there are different
+// update operations in DynamoDB and an UpdateBuilder can represent multiple
+// update operations.
 // More Information at: http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.UpdateExpressions.html
 type UpdateBuilder struct {
 	operationList map[operationMode][]operationBuilder
 }
 
-// operationBuilder will represent specific update actions (SET, REMOVE, ADD,
-// DELETE). The mode will specify what type of update action the
+// operationBuilder represents specific update actions (SET, REMOVE, ADD,
+// DELETE). The mode specifies what type of update action the
 // operationBuilder represents.
 type operationBuilder struct {
 	name  NameBuilder
@@ -55,7 +53,7 @@ type operationBuilder struct {
 }
 
 // buildOperation builds an exprNode from an operationBuilder. buildOperation
-// will be called recursively by buildTree in order to create a tree structure
+// is called recursively by buildTree in order to create a tree structure
 // of exprNodes representing the parent/child relationships between
 // UpdateBuilders and operationBuilders.
 func (ob operationBuilder) buildOperation() (exprNode, error) {
@@ -91,41 +89,59 @@ func (ob operationBuilder) buildOperation() (exprNode, error) {
 	return node, nil
 }
 
-// Delete as a function call will create an empty UpdateBuilder and call the
-// Delete method call.
-// The DELETE action only supports DynamoDB Set types. The argument name must be
-// a name to an item attribute of the Set type. The argument value must be a Set
-// type representing the subset of the set described by the name that is going
-// to be deleted.
-// The resulting UpdateBuilder can be used to create a Builder to be used
-// as a part of an Update Input. Users can also chain other update methods on
-// the UpdateBuilder.
+// Delete returns an UpdateBuilder representing one Delete operation for
+// DynamoDB Update Expressions. The argument name should specify the item
+// attribute and the argument value should specify the value to be deleted. The
+// resulting UpdateBuilder can be used as an argument to the WithUpdate() method
+// for the Builder struct. Users can also add other Update operations on the
+// UpdateBuilder.
 //
 // Example:
 //
+//     // update represents the delete operation to delete the string value
+//     // "subsetToDelete" from the item attribute "pathToList"
 //     update := expression.Delete(expression.Name("pathToList"), expression.Value("subsetToDelete"))
 //
 //     // Adding more update methods
 //     anotherUpdate := update.Remove(expression.Name("someName"))
 //     // Creating a Builder
 //     builder := Update(update)
+//
+// Expression Equivalent:
+//
+//     expression.Delete(expression.Name("pathToList"), expression.Value("subsetToDelete"))
+//     // let :del be an ExpressionAttributeValue representing the value
+//     // "subsetToDelete"
+//     "DELETE pathToList :del"
 func Delete(name NameBuilder, value ValueBuilder) UpdateBuilder {
 	emptyUpdateBuilder := UpdateBuilder{}
 	return emptyUpdateBuilder.Delete(name, value)
 }
 
-// Delete as a method call will add a delete action to the argument
-// UpdateBuilder in the form of adding an operationBuilder.
-// The DELETE action only supports DynamoDB Set types. The argument name must be
-// a name to an item attribute of the Set type. The argument value must be a Set
-// type representing the subset of the set described by the name that is going
-// to be deleted.
+// Delete adds a Delete operation to the argument UpdateBuilder. The
+// argument name should specify the item attribute and the argument value should
+// specify the value to be deleted. The resulting UpdateBuilder can be used as
+// an argument to the WithUpdate() method for the Builder struct. Users can also
+// add other Update operations on the UpdateBuilder.
 //
 // Example:
 //
-//     // newUpdate sets foo to 15 and deletes 5 from barList
-//     oldUpdate := expression.Set(expression.Name("foo"), expression.Value(15))
-//     newUpdate := oldUpdate.Delete(expression.Name("barList"), expression.Value([]int{5}))
+//     // Let update represent an already existing update expression. Delete()
+//     // adds the operation to delete the value "subsetToDelete" from the item
+//     // attribute "pathToList"
+//     update := update.Delete(expression.Name("pathToList"), expression.Value("subsetToDelete"))
+//
+//     // Adding more update methods
+//     anotherUpdate := update.Remove(expression.Name("someName"))
+//     // Creating a Builder
+//     builder := Update(update)
+//
+// Expression Equivalent:
+//
+//     Delete(expression.Name("pathToList"), expression.Value("subsetToDelete"))
+//     // let :del be an ExpressionAttributeValue representing the value
+//     // "subsetToDelete"
+//     "DELETE pathToList :del"
 func (ub UpdateBuilder) Delete(name NameBuilder, value ValueBuilder) UpdateBuilder {
 	if ub.operationList == nil {
 		ub.operationList = map[operationMode][]operationBuilder{}
@@ -138,49 +154,56 @@ func (ub UpdateBuilder) Delete(name NameBuilder, value ValueBuilder) UpdateBuild
 	return ub
 }
 
-// Add as a function call will create an empty UpdateBuilder and call the Add
-// method call.
-// The ADD action only supports the DynamoDB Set and Number types. The argument
-// value must be a set type or a number type. The argument name must specify the
-// item attribute that the value will be added to. If there is no existing item
-// attribute, the ADD action will create a new item attribute with the value
-// specified. (Similar to SET) If there is an existing item, the types of the
-// item attribute and value must match. If both are Numbers, the ADD action will
-// numerically add the value to the item attribute. If both are Sets, the ADD
-// action will append the value to the item attribute.
-// The resulting UpdateBuilder can be used to create a Builder to be used
-// as a part of an Update Input. Users can also chain other update methods on
-// the UpdateBuilder.
+// Add returns an UpdateBuilder representing the Add operation for DynamoDB
+// Update Expressions. The argument name should specify the item attribute and
+// the argument value should specify the value to be added. The resulting
+// UpdateBuilder can be used as an argument to the WithUpdate() method for the
+// Builder struct. Users can also add other Update operations on the
+// UpdateBuilder.
 //
 // Example:
 //
-//     update := expression.Add(expression.Name("pathToList"), expression.Value("valueToAdd"))
+//     // update represents the add operation to add the value 5 to the item
+//     // attribute "aPath"
+//     update := expression.Add(expression.Name("aPath"), expression.Value(5))
 //
 //     // Adding more update methods
 //     anotherUpdate := update.Remove(expression.Name("someName"))
 //     // Creating a Builder
 //     builder := Update(update)
+//
+// Expression Equivalent:
+//
+//     expression.Add(expression.Name("aPath"), expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "ADD aPath :5"
 func Add(name NameBuilder, value ValueBuilder) UpdateBuilder {
 	emptyUpdateBuilder := UpdateBuilder{}
 	return emptyUpdateBuilder.Add(name, value)
 }
 
-// Add as a method call will add an add action to the argument UpdateBuilder by
-// adding an operationBuilder.
-// The ADD action only supports the DynamoDB Set and Number types. The argument
-// value must be a set type or a number type. The argument name must specify the
-// item attribute that the value will be added to. If there is no existing item
-// attribute, the ADD action will create a new item attribute with the value
-// specified. (Similar to SET) If there is an existing item, the types of the
-// item attribute and value must match. If both are Numbers, the ADD action will
-// numerically add the value to the item attribute. If both are Sets, the ADD
-// action will append the value to the item attribute.
+// Add adds an Add operation to the argument UpdateBuilder. The argument
+// name should specify the item attribute and the argument value should specify
+// the value to be added. The resulting UpdateBuilder can be used as an argument
+// to the WithUpdate() method for the Builder struct. Users can also add other
+// Update operations on the UpdateBuilder.
 //
 // Example:
 //
-//     // newUpdate sets foo to 15 and adds 5 to barList
-//     oldUpdate := expression.Set(expression.Name("foo"), expression.Value(15))
-//     newUpdate := oldUpdate.Add(expression.Name("barList"), expression.Value([]int{5}))
+//     // Let update represent an already existing update expression. Add() adds
+//     // the operation to add the value 5 to the item attribute "aPath"
+//     update := update.Add(expression.Name("aPath"), expression.Value(5))
+//
+//     // Adding more update methods
+//     anotherUpdate := update.Remove(expression.Name("someName"))
+//     // Creating a Builder
+//     builder := Update(update)
+//
+// Expression Equivalent:
+//
+//     Add(expression.Name("aPath"), expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "ADD aPath :5"
 func (ub UpdateBuilder) Add(name NameBuilder, value ValueBuilder) UpdateBuilder {
 	if ub.operationList == nil {
 		ub.operationList = map[operationMode][]operationBuilder{}
@@ -193,37 +216,51 @@ func (ub UpdateBuilder) Add(name NameBuilder, value ValueBuilder) UpdateBuilder 
 	return ub
 }
 
-// Remove as a function call will create an empty UpdateBuilder and call the
-// Remove method call.
-// The argument name must represent a name to the item attribute that will be
-// removed.
-// The resulting UpdateBuilder can be used to create a Builder to be used as
-// a part of an Update Input. Users can also chain other update methods on the
-// UpdateBuilder. This will be the function call.
+// Remove returns an UpdateBuilder representing the Remove operation for
+// DynamoDB Update Expressions. The argument name should specify the item
+// attribute to delete. The resulting UpdateBuilder can be used as an argument
+// to the WithUpdate() method for the Builder struct. Users can also add other
+// Update operations on the UpdateBuilder.
 //
 // Example:
 //
-//     update := expression.Remove(expression.Name("pathToItem"))
+//     // update represents the remove operation to remove the item attribute
+//     // "itemToRemove"
+//     update := expression.Remove(expression.Name("itemToRemove"))
 //
 //     // Adding more update methods
 //     anotherUpdate := update.Remove(expression.Name("someName"))
 //     // Creating a Builder
 //     builder := Update(update)
+//
+// Expression Equivalent:
+//
+//     expression.Remove(expression.Name("itemToRemove"))
+//     "REMOVE itemToRemove"
 func Remove(name NameBuilder) UpdateBuilder {
 	emptyUpdateBuilder := UpdateBuilder{}
 	return emptyUpdateBuilder.Remove(name)
 }
 
-// Remove as a method call will add an remove action to the argument
-// UpdateBuilder by adding an operationBuilder.
-// The argument name must represent a name to the item attribute that will be
-// removed.
+// Remove adds a Remove operation to the argument UpdateBuilder. The
+// argument name should specify the item attribute to delete. The resulting
+// UpdateBuilder can be used as an argument to the WithUpdate() method for the
+// Builder struct. Users can also add other Update operations on the
+// UpdateBuilder.
 //
-// Example:
+//     // Let update represent an already existing update expression. Remove()
+//     // adds the operation to remove the item attribute "itemToRemove"
+//     update := update.Remove(expression.Name("itemToRemove"))
 //
-//     // newUpdate sets foo to 15 and removes attribute bar from the item
-//     oldUpdate := expression.Set(expression.Name("foo"), expression.Value(15))
-//     newUpdate := oldUpdate.Remove(expression.Name("bar"))
+//     // Adding more update methods
+//     anotherUpdate := update.Remove(expression.Name("someName"))
+//     // Creating a Builder
+//     builder := Update(update)
+//
+// Expression Equivalent:
+//
+//     Remove(expression.Name("itemToRemove"))
+//     "REMOVE itemToRemove"
 func (ub UpdateBuilder) Remove(name NameBuilder) UpdateBuilder {
 	if ub.operationList == nil {
 		ub.operationList = map[operationMode][]operationBuilder{}
@@ -235,59 +272,62 @@ func (ub UpdateBuilder) Remove(name NameBuilder) UpdateBuilder {
 	return ub
 }
 
-// Set as a function call will create an empty UpdateBuilder and call the
-// Set method call.
-// The argument name will represent the name to the item attribute that is being
-// modified. If an item attribute already exists at the specified name, it will
-// be overwritten unless otherwise specified (See IfNotExists()). If there are
-// no item attributes at the specified name, a new item attribute will be
-// created. setValue will represent the value that the item attribute will be
-// set to.
-// The setValue can be any of the following:
-//     NameBuilder
-//     ValueBuilder
-//     MinusBuilder
-//     PlusBuilder
-//     ListAppendBuilder
-//     IfNotExistsBuilder
-// The resulting UpdateBuilder can be used to create a Builder to be used as a
-// part of an Update Input. Users can also chain other update methods on the
-// UpdateBuilder. This will be the function call.
+// Set returns an UpdateBuilder representing the Set operation for DynamoDB
+// Update Expressions. The argument name should specify the item attribute to
+// modify. The argument OperandBuilder should specify the value to modify the
+// the item attribute to. The resulting UpdateBuilder can be used as an argument
+// to the WithUpdate() method for the Builder struct. Users can also add other
+// Update operations on the UpdateBuilder.
 //
 // Example:
 //
-//     update := expression.Set(expression.Name("pathToItem"), expression.Value("item"))
+//     // update represents the set operation to set the item attribute
+//     // "itemToSet" to the value "setValue" if the item attribute does not
+//     // exist yet. (conditional write)
+//     update := expression.Set(expression.Name("itemToSet"), expression.IfNotExists(expression.Name("itemToSet"), expression.Value("setValue")))
 //
 //     // Adding more update methods
 //     anotherUpdate := update.Remove(expression.Name("someName"))
 //     // Creating a Builder
 //     builder := Update(update)
+//
+// Expression Equivalent:
+//
+//     expression.Set(expression.Name("itemToSet"), expression.IfNotExists(expression.Name("itemToSet"), expression.Value("setValue")))
+//     // Let :val be an ExpressionAttributeValue representing the value
+//     // "setValue"
+//     "SET itemToSet = :val"
 func Set(name NameBuilder, operandBuilder OperandBuilder) UpdateBuilder {
 	emptyUpdateBuilder := UpdateBuilder{}
 	return emptyUpdateBuilder.Set(name, operandBuilder)
 }
 
-// Set as a method call will add an set action to the argument UpdateBuilder by
-// adding an operationBuilder.
-// The argument name will represent the name to the item attribute that is being
-// modified. If an item attribute already exists at the specified name, it will
-// be overwritten unless otherwise specified (See IfNotExists()). If there are
-// no item attributes at the specified name, a new item attribute will be
-// created. setValue will represent the value that the item attribute will be
-// set to.
-// The setValue can be any of the following:
-//     NameBuilder
-//     ValueBuilder
-//     MinusBuilder
-//     PlusBuilder
-//     ListAppendBuilder
-//     IfNotExistsBuilder
+// Set adds a Set operation to the argument UpdateBuilder. The argument name
+// should specify the item attribute to modify. The argument OperandBuilder
+// should specify the value to modify the the item attribute to. The resulting
+// UpdateBuilder can be used as an argument to the WithUpdate() method for the
+// Builder struct. Users can also add other Update operations on the
+// UpdateBuilder.
 //
 // Example:
 //
-//     // newUpdate sets foo to 15 and also sets bar to "baz"
-//     oldUpdate := expression.Set(expression.Name("foo"), expression.Value(15))
-//     newUpdate := oldUpdate.Set(expression.Name("bar"), expression.Name("baz"))
+//     // Let update represent an already existing update expression. Set() adds
+//     // the operation to to set the item attribute "itemToSet" to the value
+//     // "setValue" if the item attribute does not exist yet. (conditional
+//     // write)
+//     update := update.Set(expression.Name("itemToSet"), expression.IfNotExists(expression.Name("itemToSet"), expression.Value("setValue")))
+//
+//     // Adding more update methods
+//     anotherUpdate := update.Remove(expression.Name("someName"))
+//     // Creating a Builder
+//     builder := Update(update)
+//
+// Expression Equivalent:
+//
+//     Set(expression.Name("itemToSet"), expression.IfNotExists(expression.Name("itemToSet"), expression.Value("setValue")))
+//     // Let :val be an ExpressionAttributeValue representing the value
+//     // "setValue"
+//     "SET itemToSet = :val"
 func (ub UpdateBuilder) Set(name NameBuilder, operandBuilder OperandBuilder) UpdateBuilder {
 	if ub.operationList == nil {
 		ub.operationList = map[operationMode][]operationBuilder{}
@@ -300,7 +340,7 @@ func (ub UpdateBuilder) Set(name NameBuilder, operandBuilder OperandBuilder) Upd
 	return ub
 }
 
-// buildTree will build a tree structure of exprNodes based on the tree
+// buildTree builds a tree structure of exprNodes based on the tree
 // structure of the input UpdateBuilder's child UpdateBuilders/Operands.
 // buildTree() satisfies the TreeBuilder interface so ProjectionBuilder can be a
 // part of Expression struct.
@@ -334,7 +374,7 @@ func (ub UpdateBuilder) buildTree() (exprNode, error) {
 	return ret, nil
 }
 
-// buildChildNodes will create the list of the child exprNodes.
+// buildChildNodes creates the list of the child exprNodes.
 func buildChildNodes(operationBuilderList []operationBuilder) (exprNode, error) {
 	if len(operationBuilderList) == 0 {
 		return exprNode{}, fmt.Errorf("buildChildNodes error: operationBuilder list is empty")

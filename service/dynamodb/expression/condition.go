@@ -5,83 +5,80 @@ import (
 	"strings"
 )
 
-// conditionMode will specify the types of the struct conditionBuilder,
+// conditionMode specifies the types of the struct conditionBuilder,
 // representing the different types of Conditions (i.e. And, Or, Between, ...)
 type conditionMode int
 
 const (
-	// unsetCond will catch errors if users make an empty ConditionBuilder
+	// unsetCond catches errors if users make an empty ConditionBuilder
 	unsetCond conditionMode = iota
-	// equalCond will represent the Equals Condition
+	// equalCond represents the Equals Condition
 	equalCond
-	// notEqualCond will represent the Not Equals Condition
+	// notEqualCond represents the Not Equals Condition
 	notEqualCond
-	// lessThanCond will represent the LessThan Condition
+	// lessThanCond represents the LessThan Condition
 	lessThanCond
-	// lessThanEqualCond will represent the LessThanOrEqual Condition
+	// lessThanEqualCond represents the LessThanOrEqual Condition
 	lessThanEqualCond
-	// greaterThanCond will represent the GreaterThan Condition
+	// greaterThanCond represents the GreaterThan Condition
 	greaterThanCond
-	// greaterThanEqualCond will represent the GreaterThanEqual Condition
+	// greaterThanEqualCond represents the GreaterThanEqual Condition
 	greaterThanEqualCond
-	// andCond will represent the Logical And Condition
+	// andCond represents the Logical And Condition
 	andCond
-	// orCond will represent the Logical Or Condition
+	// orCond represents the Logical Or Condition
 	orCond
-	// notCond will represent the Logical Not Condition
+	// notCond represents the Logical Not Condition
 	notCond
-	// betweenCond will represent the Between Condition
+	// betweenCond represents the Between Condition
 	betweenCond
-	// inCond will represent the In Condition
+	// inCond represents the In Condition
 	inCond
-	// attrExistsCond will represent the Attribute Exists Condition
+	// attrExistsCond represents the Attribute Exists Condition
 	attrExistsCond
-	// attrNotExistsCond will represent the Attribute Not Exists Condition
+	// attrNotExistsCond represents the Attribute Not Exists Condition
 	attrNotExistsCond
-	// attrTypeCond will represent the Attribute Type Condition
+	// attrTypeCond represents the Attribute Type Condition
 	attrTypeCond
-	// beginsWithCond will represent the Begins With Condition
+	// beginsWithCond represents the Begins With Condition
 	beginsWithCond
-	// containsCond will represent the Contains Condition
+	// containsCond represents the Contains Condition
 	containsCond
 )
 
-// DynamoDBAttributeType will specify the type of an DynamoDB item attribute.
-// This enum will be used in the AttributeType() function in order to be
-// explicit about the DynamoDB type that is being checked and ensure compile
-// time checks
+// DynamoDBAttributeType specifies the type of an DynamoDB item attribute. This
+// enum is used in the AttributeType() function in order to be explicit about
+// the DynamoDB type that is being checked and ensure compile time checks.
 // More Informatin at http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.OperatorsAndFunctions.html#Expressions.OperatorsAndFunctions.Functions
 type DynamoDBAttributeType string
 
 const (
-	// String will represent the DynamoDB String type
+	// String represents the DynamoDB String type
 	String DynamoDBAttributeType = "S"
-	// StringSet will represent the DynamoDB String Set type
+	// StringSet represents the DynamoDB String Set type
 	StringSet = "SS"
-	// Number will represent the DynamoDB Number type
+	// Number represents the DynamoDB Number type
 	Number = "N"
-	// NumberSet will represent the DynamoDB Number Set type
+	// NumberSet represents the DynamoDB Number Set type
 	NumberSet = "NS"
-	// Binary will represent the DynamoDB Binary type
+	// Binary represents the DynamoDB Binary type
 	Binary = "B"
-	// BinarySet will represent the DynamoDB Binary Set type
+	// BinarySet represents the DynamoDB Binary Set type
 	BinarySet = "BS"
-	// Boolean will represent the DynamoDB Boolean type
+	// Boolean represents the DynamoDB Boolean type
 	Boolean = "BOOL"
-	// Null will represent the DynamoDB Null type
+	// Null represents the DynamoDB Null type
 	Null = "NULL"
-	// List will represent the DynamoDB List type
+	// List represents the DynamoDB List type
 	List = "L"
-	// Map will represent the DynamoDB Map type
+	// Map represents the DynamoDB Map type
 	Map = "M"
 )
 
-// ConditionBuilder will represent Condition Expressions and Filter Expressions
-// in DynamoDB. It is composed of operands (OperandBuilder) and other conditions
-// (ConditionBuilder). There are many different types of conditions, specified
-// by conditionMode. ConditionBuilders will be the building blocks of Builders.
-// Since Filter Expressions support all the same functions and formats as
-// Condition Expressions, ConditionBuilders will represent both types of
+// ConditionBuilder represents Condition Expressions and Filter Expressions
+// in DynamoDB. ConditionBuilders are one of the building blocks of the Builder
+// struct. Since Filter Expressions support all the same functions and formats
+// as Condition Expressions, ConditionBuilders represents both types of
 // Expressions.
 // More Information at: http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.html
 // More Information on Filter Expressions: http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html#Query.FilterExpression
@@ -91,17 +88,27 @@ type ConditionBuilder struct {
 	mode          conditionMode
 }
 
-// Equal will create a ConditionBuilder with two OperandBuilders as children,
-// representing the two operands that are being compared. The resulting
-// ConditionBuilder can be used to build other Conditions or to create an
-// Builder to be used in an operation input. This will be the function call.
+// Equal returns a ConditionBuilder representing the equality clause of the two
+// argument OperandBuilders. The resulting ConditionBuilder can be used as a
+// part of other Condition Expressions or as an argument to the WithCondition()
+// method for the Builder struct.
 //
 // Example:
 //
+//     // condition represents the equal clause of the item attribute "foo" and
+//     // the value 5
 //     condition := expression.Equal(expression.Name("foo"), expression.Value(5))
 //
-//     anotherCondition := expression.Not(condition)  // Used in another condition
-//     builder := WithCondition(condition)            // Used to make an Builder
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Equal(expression.Name("foo"), expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "foo = :five"
 func Equal(left, right OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{left, right},
@@ -109,52 +116,102 @@ func Equal(left, right OperandBuilder) ConditionBuilder {
 	}
 }
 
-// Equal will create a ConditionBuilder. This will be the method for NameBuilder
+// Equal returns a ConditionBuilder representing the equality clause of the two
+// argument OperandBuilders. The resulting ConditionBuilder can be used as a
+// part of other Condition Expressions or as an argument to the WithCondition()
+// method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.Equal(expression.Name("foo"), expression.Value(5))
+//     // condition represents the equal clause of the item attribute "foo" and
+//     // the value 5
 //     condition := expression.Name("foo").Equal(expression.Value(5))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Name("foo").Equal(expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "foo = :five"
 func (nb NameBuilder) Equal(right OperandBuilder) ConditionBuilder {
 	return Equal(nb, right)
 }
 
-// Equal will create a ConditionBuilder. This will be the method for
-// ValueBuilder
+// Equal returns a ConditionBuilder representing the equality clause of the two
+// argument OperandBuilders. The resulting ConditionBuilder can be used as a
+// part of other Condition Expressions or as an argument to the WithCondition()
+// method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.Equal(expression.Value(10), expression.Value(5))
-//     condition := expression.Value(10).Equal(expression.Value(5))
+//     // condition represents the equal clause of the item attribute "foo" and
+//     // the value 5
+//     condition := expression.Value(5).Equal(expression.Name("foo"))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Value(5).Equal(expression.Name("foo"))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     ":five = foo"
 func (vb ValueBuilder) Equal(right OperandBuilder) ConditionBuilder {
 	return Equal(vb, right)
 }
 
-// Equal will create a ConditionBuilder. This will be the method for SizeBuilder
+// Equal returns a ConditionBuilder representing the equality clause of the two
+// argument OperandBuilders. The resulting ConditionBuilder can be used as a
+// part of other Condition Expressions or as an argument to the WithCondition()
+// method for the Builder struct.
 //
 // Example:
 //
-//     The following produces equivalent conditions:
-//     condition := expression.Equal(expression.Name("foo").Size(), expression.Value(5))
-//     condition := expression.Name("foo").Size().Equal(expression.Value(5))
+//     // condition represents the equal clause of the size of the item
+//     // attribute "foo" and the value 5
+//     condition := expression.Size(expression.Name("foo")).Equal(expression.Value(5))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Size(expression.Name("foo")).Equal(expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "size (foo) = :five"
 func (sb SizeBuilder) Equal(right OperandBuilder) ConditionBuilder {
 	return Equal(sb, right)
 }
 
-// NotEqual will create a ConditionBuilder with two OperandBuilders as children,
-// representing the two operands that are being compared. The resulting
-// ConditionBuilder can be used to build other Conditions or to create an
-// Builder to be used in an operation input. This will be the function
-// call.
+// NotEqual returns a ConditionBuilder representing the not equal clause of the
+// two argument OperandBuilders. The resulting ConditionBuilder can be used as a
+// part of other Condition Expressions or as an argument to the WithCondition()
+// method for the Builder struct.
 //
 // Example:
 //
+//     // condition represents the not equal clause of the item attribute "foo"
+//     // and the value 5
 //     condition := expression.NotEqual(expression.Name("foo"), expression.Value(5))
 //
-//     anotherCondition := expression.Not(condition)  // Used in another condition
-//     builder := WithCondition(condition)            // Used to make an Builder
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.NotEqual(expression.Name("foo"), expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "foo <> :five"
 func NotEqual(left, right OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{left, right},
@@ -162,54 +219,102 @@ func NotEqual(left, right OperandBuilder) ConditionBuilder {
 	}
 }
 
-// NotEqual will create a ConditionBuilder. This will be the method for
-// NameBuilder
+// NotEqual returns a ConditionBuilder representing the not equal clause of the
+// two argument OperandBuilders. The resulting ConditionBuilder can be used as a
+// part of other Condition Expressions or as an argument to the WithCondition()
+// method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.NotEqual(expression.Name("foo"), expression.Value(5))
+//     // condition represents the not equal clause of the item attribute "foo"
+//     // and the value 5
 //     condition := expression.Name("foo").NotEqual(expression.Value(5))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Name("foo").NotEqual(expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "foo <> :five"
 func (nb NameBuilder) NotEqual(right OperandBuilder) ConditionBuilder {
 	return NotEqual(nb, right)
 }
 
-// NotEqual will create a ConditionBuilder. This will be the method for
-// ValueBuilder
+// NotEqual returns a ConditionBuilder representing the not equal clause of the
+// two argument OperandBuilders. The resulting ConditionBuilder can be used as a
+// part of other Condition Expressions or as an argument to the WithCondition()
+// method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.NotEqual(expression.Value(10), expression.Value(5))
-//     condition := expression.Value(10).NotEqual(expression.Value(5))
+//     // condition represents the not equal clause of the item attribute "foo"
+//     // and the value 5
+//     condition := expression.Value(5).NotEqual(expression.Name("foo"))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Value(5).NotEqual(expression.Name("foo"))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     ":five <> foo"
 func (vb ValueBuilder) NotEqual(right OperandBuilder) ConditionBuilder {
 	return NotEqual(vb, right)
 }
 
-// NotEqual will create a ConditionBuilder. This will be the method for
-// SizeBuilder
+// NotEqual returns a ConditionBuilder representing the not equal clause of the
+// two argument OperandBuilders. The resulting ConditionBuilder can be used as a
+// part of other Condition Expressions or as an argument to the WithCondition()
+// method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.NotEqual(expression.Name("foo").Size(), expression.Value(5))
-//     condition := expression.Name("foo").Size().NotEqual(expression.Value(5))
+//     // condition represents the not equal clause of the size of the item
+//     // attribute "foo" and the value 5
+//     condition := expression.Size(expression.Name("foo")).NotEqual(expression.Value(5))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Size(expression.Name("foo")).NotEqual(expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "size (foo) <> :five"
 func (sb SizeBuilder) NotEqual(right OperandBuilder) ConditionBuilder {
 	return NotEqual(sb, right)
 }
 
-// LessThan will create a ConditionBuilder with two OperandBuilders as children,
-// representing the two operands that are being compared. The resulting
-// ConditionBuilder can be used to build other Conditions or to create an
-// Builder to be used in an operation input. This will be the function
-// call.
+// LessThan returns a ConditionBuilder representing the less than clause of the
+// two argument OperandBuilders. The resulting ConditionBuilder can be used as a
+// part of other Condition Expressions or as an argument to the WithCondition()
+// method for the Builder struct.
 //
 // Example:
 //
+//     // condition represents the less than clause of the item attribute "foo"
+//     // and the value 5
 //     condition := expression.LessThan(expression.Name("foo"), expression.Value(5))
 //
-//     anotherCondition := expression.Not(condition)  // Used in another condition
-//     builder := WithCondition(condition)            // Used to make an Builder
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.LessThan(expression.Name("foo"), expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "foo < :five"
 func LessThan(left, right OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{left, right},
@@ -217,54 +322,102 @@ func LessThan(left, right OperandBuilder) ConditionBuilder {
 	}
 }
 
-// LessThan will create a ConditionBuilder. This will be the method for
-// NameBuilder
+// LessThan returns a ConditionBuilder representing the less than clause of the
+// two argument OperandBuilders. The resulting ConditionBuilder can be used as a
+// part of other Condition Expressions or as an argument to the WithCondition()
+// method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.LessThan(expression.Name("foo"), expression.Value(5))
+//     // condition represents the less than clause of the item attribute "foo"
+//     // and the value 5
 //     condition := expression.Name("foo").LessThan(expression.Value(5))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Name("foo").LessThan(expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "foo < :five"
 func (nb NameBuilder) LessThan(right OperandBuilder) ConditionBuilder {
 	return LessThan(nb, right)
 }
 
-// LessThan will create a ConditionBuilder. This will be the method for
-// ValueBuilder
+// LessThan returns a ConditionBuilder representing the less than clause of the
+// two argument OperandBuilders. The resulting ConditionBuilder can be used as a
+// part of other Condition Expressions or as an argument to the WithCondition()
+// method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.LessThan(expression.Value(10), expression.Value(5))
-//     condition := expression.Value(10).LessThan(expression.Value(5))
+//     // condition represents the less than clause of the item attribute "foo"
+//     // and the value 5
+//     condition := expression.Value(5).LessThan(expression.Name("foo"))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Value(5).LessThan(expression.Name("foo"))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     ":five < foo"
 func (vb ValueBuilder) LessThan(right OperandBuilder) ConditionBuilder {
 	return LessThan(vb, right)
 }
 
-// LessThan will create a ConditionBuilder. This will be the method for
-// SizeBuilder
+// LessThan returns a ConditionBuilder representing the less than clause of the
+// two argument OperandBuilders. The resulting ConditionBuilder can be used as a
+// part of other Condition Expressions or as an argument to the WithCondition()
+// method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.LessThan(expression.Name("foo").Size(), expression.Value(5))
-//     condition := expression.Name("foo").Size().LessThan(expression.Value(5))
+//     // condition represents the less than clause of the size of the item
+//     // attribute "foo" and the value 5
+//     condition := expression.Size(expression.Name("foo")).LessThan(expression.Value(5))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Size(expression.Name("foo")).LessThan(expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "size (foo) < :five"
 func (sb SizeBuilder) LessThan(right OperandBuilder) ConditionBuilder {
 	return LessThan(sb, right)
 }
 
-// LessThanEqual will create a ConditionBuilder with two OperandBuilders as
-// children, representing the two operands that are being compared. The
-// resulting ConditionBuilder can be used to build other Conditions or to create
-// an Builder to be used in an operation input. This will be the
-// function call.
+// LessThanEqual returns a ConditionBuilder representing the less than equal to
+// clause of the two argument OperandBuilders. The resulting ConditionBuilder
+// can be used as a part of other Condition Expressions or as an argument to the
+// WithCondition() method for the Builder struct.
 //
 // Example:
 //
+//     // condition represents the less than equal to clause of the item
+//     // attribute "foo" and the value 5
 //     condition := expression.LessThanEqual(expression.Name("foo"), expression.Value(5))
 //
-//     anotherCondition := expression.Not(condition)  // Used in another condition
-//     builder := WithCondition(condition)            // Used to make an Builder
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.LessThanEqual(expression.Name("foo"), expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "foo <= :five"
 func LessThanEqual(left, right OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{left, right},
@@ -272,53 +425,102 @@ func LessThanEqual(left, right OperandBuilder) ConditionBuilder {
 	}
 }
 
-// LessThanEqual will create a ConditionBuilder. This will be the method for
-// NameBuilder
+// LessThanEqual returns a ConditionBuilder representing the less than equal to
+// clause of the two argument OperandBuilders. The resulting ConditionBuilder
+// can be used as a part of other Condition Expressions or as an argument to the
+// WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.LessThanEqual(expression.Name("foo"), expression.Value(5))
+//     // condition represents the less than equal to clause of the item
+//     // attribute "foo" and the value 5
 //     condition := expression.Name("foo").LessThanEqual(expression.Value(5))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Name("foo").LessThanEqual(expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "foo <= :five"
 func (nb NameBuilder) LessThanEqual(right OperandBuilder) ConditionBuilder {
 	return LessThanEqual(nb, right)
 }
 
-// LessThanEqual will create a ConditionBuilder. This will be the method for
-// ValueBuilder
+// LessThanEqual returns a ConditionBuilder representing the less than equal to
+// clause of the two argument OperandBuilders. The resulting ConditionBuilder
+// can be used as a part of other Condition Expressions or as an argument to the
+// WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.LessThanEqual(expression.Value(10), expression.Value(5))
-//     condition := expression.Value(10).LessThanEqual(expression.Value(5))
+//     // condition represents the less than equal to clause of the item
+//     // attribute "foo" and the value 5
+//     condition := expression.Value(5).LessThanEqual(expression.Name("foo"))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Value(5).LessThanEqual(expression.Name("foo"))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     ":five <= foo"
 func (vb ValueBuilder) LessThanEqual(right OperandBuilder) ConditionBuilder {
 	return LessThanEqual(vb, right)
 }
 
-// LessThanEqual will create a ConditionBuilder. This will be the method for
-// SizeBuilder
+// LessThanEqual returns a ConditionBuilder representing the less than equal to
+// clause of the two argument OperandBuilders. The resulting ConditionBuilder
+// can be used as a part of other Condition Expressions or as an argument to the
+// WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.LessThanEqual(expression.Name("foo").Size(), expression.Value(5))
-//     condition := expression.Name("foo").Size().LessThanEqual(expression.Value(5))
+//     // condition represents the less than equal to clause of the size of the
+//     // item attribute "foo" and the value 5
+//     condition := expression.Size(expression.Name("foo")).LessThanEqual(expression.Value(5))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Size(expression.Name("foo")).LessThanEqual(expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "size (foo) <= :five"
 func (sb SizeBuilder) LessThanEqual(right OperandBuilder) ConditionBuilder {
 	return LessThanEqual(sb, right)
 }
 
-// GreaterThan will create a ConditionBuilder with two OperandBuilders as
-// children, representing the two operands that are being compared. The
-// resulting ConditionBuilder can be used to build other Conditions or to create
-// an Builder to be used in an operation input. This will be the function call.
+// GreaterThan returns a ConditionBuilder representing the greater than clause
+// of the two argument OperandBuilders. The resulting ConditionBuilder can be
+// used as a part of other Condition Expressions or as an argument to the
+// WithCondition() method for the Builder struct.
 //
 // Example:
 //
+//     // condition represents the greater than clause of the item attribute
+//     // "foo" and the value 5
 //     condition := expression.GreaterThan(expression.Name("foo"), expression.Value(5))
 //
-//     anotherCondition := expression.Not(condition)  // Used in another condition
-//     builder := WithCondition(condition)            // Used to make an Builder
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.GreaterThan(expression.Name("foo"), expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "foo > :five"
 func GreaterThan(left, right OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{left, right},
@@ -326,54 +528,102 @@ func GreaterThan(left, right OperandBuilder) ConditionBuilder {
 	}
 }
 
-// GreaterThan will create a ConditionBuilder. This will be the method for
-// NameBuilder
+// GreaterThan returns a ConditionBuilder representing the greater than clause
+// of the two argument OperandBuilders. The resulting ConditionBuilder can be
+// used as a part of other Condition Expressions or as an argument to the
+// WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.GreaterThan(expression.Name("foo"), expression.Value(5))
+//     // condition represents the greater than clause of the item attribute
+//     // "foo" and the value 5
 //     condition := expression.Name("foo").GreaterThan(expression.Value(5))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Name("foo").GreaterThan(expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "foo > :five"
 func (nb NameBuilder) GreaterThan(right OperandBuilder) ConditionBuilder {
 	return GreaterThan(nb, right)
 }
 
-// GreaterThan will create a ConditionBuilder. This will be the method for
-// ValueBuilder
+// GreaterThan returns a ConditionBuilder representing the greater than clause
+// of the two argument OperandBuilders. The resulting ConditionBuilder can be
+// used as a part of other Condition Expressions or as an argument to the
+// WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.GreaterThan(expression.Value(10), expression.Value(5))
-//     condition := expression.Value(10).GreaterThan(expression.Value(5))
+//     // condition represents the greater than clause of the item attribute
+//     // "foo" and the value 5
+//     condition := expression.Value(5).GreaterThan(expression.Name("foo"))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Value(5).GreaterThan(expression.Name("foo"))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     ":five > foo"
 func (vb ValueBuilder) GreaterThan(right OperandBuilder) ConditionBuilder {
 	return GreaterThan(vb, right)
 }
 
-// GreaterThan will create a ConditionBuilder. This will be the method for
-// SizeBuilder
+// GreaterThan returns a ConditionBuilder representing the greater than
+// clause of the two argument OperandBuilders. The resulting ConditionBuilder
+// can be used as a part of other Condition Expressions or as an argument to the
+// WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.GreaterThan(expression.Name("foo").Size(), expression.Value(5))
-//     condition := expression.Name("foo").Size().GreaterThan(expression.Value(5))
+//     // condition represents the greater than clause of the size of the item
+//     // attribute "foo" and the value 5
+//     condition := expression.Size(expression.Name("foo")).GreaterThan(expression.Value(5))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Size(expression.Name("foo")).GreaterThan(expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "size (foo) > :five"
 func (sb SizeBuilder) GreaterThan(right OperandBuilder) ConditionBuilder {
 	return GreaterThan(sb, right)
 }
 
-// GreaterThanEqual will create a ConditionBuilder with two OperandBuilders as
-// children, representing the two operands that are being compared. The
-// resulting ConditionBuilder can be used to build other Conditions or to create
-// an Builder to be used in an operation input. This will be the
-// function call.
+// GreaterThanEqual returns a ConditionBuilder representing the greater than
+// equal to clause of the two argument OperandBuilders. The resulting
+// ConditionBuilder can be used as a part of other Condition Expressions or as
+// an argument to the WithCondition() method for the Builder struct.
 //
 // Example:
 //
+//     // condition represents the greater than equal to clause of the item
+//     // attribute "foo" and the value 5
 //     condition := expression.GreaterThanEqual(expression.Name("foo"), expression.Value(5))
 //
-//     anotherCondition := expression.Not(condition)  // Used in another condition
-//     builder := WithCondition(condition)            // Used to make an Builder
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.GreaterThanEqual(expression.Name("foo"), expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "foo >= :five"
 func GreaterThanEqual(left, right OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{left, right},
@@ -381,57 +631,106 @@ func GreaterThanEqual(left, right OperandBuilder) ConditionBuilder {
 	}
 }
 
-// GreaterThanEqual will create a ConditionBuilder. This will be the method for
-// NameBuilder
+// GreaterThanEqual returns a ConditionBuilder representing the greater than
+// equal to clause of the two argument OperandBuilders. The resulting
+// ConditionBuilder can be used as a part of other Condition Expressions or as
+// an argument to the WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.GreaterThanEqual(expression.Name("foo"), expression.Value(5))
+//     // condition represents the greater than equal to clause of the item
+//     // attribute "foo" and the value 5
 //     condition := expression.Name("foo").GreaterThanEqual(expression.Value(5))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Name("foo").GreaterThanEqual(expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "foo >= :five"
 func (nb NameBuilder) GreaterThanEqual(right OperandBuilder) ConditionBuilder {
 	return GreaterThanEqual(nb, right)
 }
 
-// GreaterThanEqual will create a ConditionBuilder. This will be the method for
-// ValueBuilder
+// GreaterThanEqual returns a ConditionBuilder representing the greater than
+// equal to clause of the two argument OperandBuilders. The resulting
+// ConditionBuilder can be used as a part of other Condition Expressions or as
+// an argument to the WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.GreaterThanEqual(expression.Value(10), expression.Value(5))
-//     condition := expression.Value(10).GreaterThanEqual(expression.Value(5))
+//     // condition represents the greater than equal to clause of the item
+//     // attribute "foo" and the value 5
+//     condition := expression.Value(5).GreaterThanEqual(expression.Name("foo"))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Value(5).GreaterThanEqual(expression.Name("foo"))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     ":five >= foo"
 func (vb ValueBuilder) GreaterThanEqual(right OperandBuilder) ConditionBuilder {
 	return GreaterThanEqual(vb, right)
 }
 
-// GreaterThanEqual will create a ConditionBuilder. This will be the method for
-// SizeBuilder
+// GreaterThanEqual returns a ConditionBuilder representing the greater than
+// equal to clause of the two argument OperandBuilders. The resulting
+// ConditionBuilder can be used as a part of other Condition Expressions or as
+// an argument to the WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.GreaterThanEqual(expression.Name("foo").Size(), expression.Value(5))
-//     condition := expression.Name("foo").Size().GreaterThanEqual(expression.Value(5))
+//     // condition represents the greater than equal to clause of the size of
+//     // the item attribute "foo" and the value 5
+//     condition := expression.Size(expression.Name("foo")).GreaterThanEqual(expression.Value(5))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Size(expression.Name("foo")).GreaterThanEqual(expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "size (foo) >= :five"
 func (sb SizeBuilder) GreaterThanEqual(right OperandBuilder) ConditionBuilder {
 	return GreaterThanEqual(sb, right)
 }
 
-// And will create a ConditionBuilder with more than two other Conditions as
-// children, representing logical statements that will be logically ANDed
-// together. The resulting ConditionBuilder can be used to build other
-// Conditions or to create an Builder to be used in an operation input. This
-// will be the function call.
+// And returns a ConditionBuilder representing the logical AND clause of the
+// argument ConditionBuilders. The resulting ConditionBuilder can be used as a
+// part of other Condition Expressions or as an argument to the WithCondition()
+// method for the Builder struct. Note that And() can take a variadic number of
+// ConditionBuilders as arguments.
 //
 // Example:
 //
-//     condition1 := expression.Equal(expression.Name("foo"), expression.Value(5))
-//     condition2 := expression.LessThan(expression.Name("bar"), expression.Value(2010))
-//     condition3 := expression.Name("baz").Between(expression.Value(2), expression.Value(10))
-//     andCondition := expression.And(condition1, condition2, condition3)
+//     // condition represents the condition where the item attribute "Name" is
+//     // equal to value "Generic Name" AND the item attribute "Age" is less
+//     // than value 40
+//     condition := expression.And(expression.Name("Name").Equal(expression.Value("Generic Name")), expression.Name("Age").LessThan(expression.Value(40)))
 //
-//     anotherCondition := expression.Not(andCondition)  // Used in another condition
-//     builder := WithCondition(condition)               // Used to make an Builder
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.And(expression.Name("Name").Equal(expression.Value("Generic Name")), expression.Name("Age").LessThan(expression.Value(40)))
+//     // Let #NAME, :name, and :forty be ExpressionAttributeName and
+//     // ExpressionAttributeValues representing the item attribute "Name", the
+//     // value "Generic Name", and the value 40
+//     "(#NAME = :name) AND (Age < :forty)"
 func And(left, right ConditionBuilder, other ...ConditionBuilder) ConditionBuilder {
 	other = append([]ConditionBuilder{left, right}, other...)
 	return ConditionBuilder{
@@ -440,32 +739,59 @@ func And(left, right ConditionBuilder, other ...ConditionBuilder) ConditionBuild
 	}
 }
 
-// And will create a ConditionBuilder. This will be the method signature
+// And returns a ConditionBuilder representing the logical AND clause of the
+// argument ConditionBuilders. The resulting ConditionBuilder can be used as a
+// part of other Condition Expressions or as an argument to the WithCondition()
+// method for the Builder struct. Note that And() can take a variadic number of
+// ConditionBuilders as arguments.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.And(condition1, condition2, condition3)
-//     condition := condition1.And(condition2, condition3)
+//     // condition represents the condition where the item attribute "Name" is
+//     // equal to value "Generic Name" AND the item attribute "Age" is less
+//     // than value 40
+//     condition := expression.Name("Name").Equal(expression.Value("Generic Name")).And(expression.Name("Age").LessThan(expression.Value(40)))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Name("Name").Equal(expression.Value("Generic Name")).And(expression.Name("Age").LessThan(expression.Value(40)))
+//     // Let #NAME, :name, and :forty be ExpressionAttributeName and
+//     // ExpressionAttributeValues representing the item attribute "Name", the
+//     // value "Generic Name", and the value 40
+//     "(#NAME = :name) AND (Age < :forty)"
 func (cb ConditionBuilder) And(right ConditionBuilder, other ...ConditionBuilder) ConditionBuilder {
 	return And(cb, right, other...)
 }
 
-// Or will create a ConditionBuilder with more than two other Conditions as
-// children, representing logical statements that will be logically ORed
-// together. The resulting ConditionBuilder can be used to build other
-// Conditions or to create an Builder to be used in an operation input. This
-// will be the function call.
+// Or returns a ConditionBuilder representing the logical OR clause of the
+// argument ConditionBuilders. The resulting ConditionBuilder can be used as a
+// part of other Condition Expressions or as an argument to the WithCondition()
+// method for the Builder struct. Note that Or() can take a variadic number of
+// ConditionBuilders as arguments.
 //
 // Example:
 //
-//     condition1 := expression.Equal(expression.Name("foo"), expression.Value(5))
-//     condition2 := expression.LessThan(expression.Name("bar"), expression.Value(2010))
-//     condition3 := expression.Name("baz").Between(expression.Value(2), expression.Value(10))
-//     orCondition := expression.Or(condition1, condition2, condition3)
+//     // condition represents the condition where the item attribute "Price" is
+//     // less than the value 100 OR the item attribute "Rating" is greater than
+//     // the value 8
+//     condition := expression.Or(expression.Name("Price").Equal(expression.Value(100)), expression.Name("Rating").LessThan(expression.Value(8)))
 //
-//     anotherCondition := expression.Not(orCondition)  // Used in another condition
-//     builder := WithCondition(condition)              // Used to make an Builder
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Or(expression.Name("Price").Equal(expression.Value(100)), expression.Name("Rating").LessThan(expression.Value(8)))
+//     // Let :price and :rating be ExpressionAttributeValues representing the
+//     // the value 100 and value 8 respectively
+//     "(Price < :price) OR (Rating > :rating)"
 func Or(left, right ConditionBuilder, other ...ConditionBuilder) ConditionBuilder {
 	other = append([]ConditionBuilder{left, right}, other...)
 	return ConditionBuilder{
@@ -474,29 +800,56 @@ func Or(left, right ConditionBuilder, other ...ConditionBuilder) ConditionBuilde
 	}
 }
 
-// Or will create a ConditionBuilder. This will be the method signature
+// Or returns a ConditionBuilder representing the logical OR clause of the
+// argument ConditionBuilders. The resulting ConditionBuilder can be used as a
+// part of other Condition Expressions or as an argument to the WithCondition()
+// method for the Builder struct. Note that Or() can take a variadic number of
+// ConditionBuilders as arguments.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.Or(condition1, condition2, condition3)
-//     condition := condition1.Or(condition2, condition3)
+//     // condition represents the condition where the item attribute "Price" is
+//     // less than the value 100 OR the item attribute "Rating" is greater than
+//     // the value 8
+//     condition := expression.Name("Price").Equal(expression.Value(100)).Or(expression.Name("Rating").LessThan(expression.Value(8)))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Name("Price").Equal(expression.Value(100)).Or(expression.Name("Rating").LessThan(expression.Value(8)))
+//     // Let :price and :rating be ExpressionAttributeValues representing the
+//     // the value 100 and value 8 respectively
+//     "(Price < :price) OR (Rating > :rating)"
 func (cb ConditionBuilder) Or(right ConditionBuilder, other ...ConditionBuilder) ConditionBuilder {
 	return Or(cb, right, other...)
 }
 
-// Not will create a ConditionBuilder with one Conditions as a child,
-// representing the logical statements that will be logically negated. The
-// resulting ConditionBuilder can be used to build other Conditions or to create
-// an Builder to be used in an operation input. This will be the function call.
+// Not returns a ConditionBuilder representing the logical NOT clause of the
+// argument ConditionBuilder. The resulting ConditionBuilder can be used as a
+// part of other Condition Expressions or as an argument to the WithCondition()
+// method for the Builder struct.
 //
 // Example:
 //
-//     condition := expression.Equal(expression.Name("foo"), expression.Value(5))
-//     notCondition := expression.Or(condition)
+//     // condition represents the condition where the item attribute "Name"
+//     // does not begin with "test"
+//     condition := expression.Not(expression.Name("Name").BeginsWith("test"))
 //
-//     anotherCondition := expression.Not(notCondition)  // Used in another condition
-//     builder := WithCondition(condition)               // Used to make an Builder
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Not(expression.Name("Name").BeginsWith("test"))
+//     // Let :prefix be an ExpressionAttributeValue representing the value
+//     // "test"
+//     "NOT (begins_with (:prefix))"
 func Not(conditionBuilder ConditionBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		conditionList: []ConditionBuilder{conditionBuilder},
@@ -504,30 +857,54 @@ func Not(conditionBuilder ConditionBuilder) ConditionBuilder {
 	}
 }
 
-// Not will create a ConditionBuilder. This will be the method signature
+// Not returns a ConditionBuilder representing the logical NOT clause of the
+// argument ConditionBuilder. The resulting ConditionBuilder can be used as a
+// part of other Condition Expressions or as an argument to the WithCondition()
+// method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.Not(condition)
-//     condition := condition.Not()
+//     // condition represents the condition where the item attribute "Name"
+//     // does not begin with "test"
+//     condition := expression.Name("Name").BeginsWith("test").Not()
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Name("Name").BeginsWith("test").Not()
+//     // Let :prefix be an ExpressionAttributeValue representing the value
+//     // "test"
+//     "NOT (begins_with (:prefix))"
 func (cb ConditionBuilder) Not() ConditionBuilder {
 	return Not(cb)
 }
 
-// Between will create a ConditionBuilder with three operands as children, the
-// first operand representing the operand being compared, the second operand
-// representing the lower bound value of the first operand, and the third
-// operand representing the upper bound value of the first operand. The
-// resulting ConditionBuilder can be used to build other Conditions or to create
-// an Builder to be used in an operation input. This will be the function call.
+// Between returns a ConditionBuilder representing the result of the
+// BETWEEN function in DynamoDB Condition Expressions. The resulting
+// ConditionBuilder can be used as a part of other Condition Expressions or as
+// an argument to the WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     condition := expression.Between(expression.Name("foo"), expression.Value(2), expression.Value(6))
+//     // condition represents the condition where the value of the item
+//     // attribute "Rating" is between values 5 and 10
+//     condition := expression.Between(expression.Name("Rating"), expression.Value(5), expression.Value(10))
 //
-//     anotherCondition := expression.Not(condition)  // Used in another condition
-//     builder := WithCondition(condition)            // Used to make an Builder
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Between(expression.Name("Rating"), expression.Value(5), expression.Value(10))
+//     // Let :five and :ten be ExpressionAttributeValues representing the value
+//     // 5 and the value 10
+//     "Rating BETWEEN :five AND :ten"
 func Between(ope, lower, upper OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{ope, lower, upper},
@@ -535,55 +912,107 @@ func Between(ope, lower, upper OperandBuilder) ConditionBuilder {
 	}
 }
 
-// Between will create a ConditionBuilder. This will be the method signature for
-// NameBuilders.
+// Between returns a ConditionBuilder representing the result of the
+// BETWEEN function in DynamoDB Condition Expressions. The resulting
+// ConditionBuilder can be used as a part of other Condition Expressions or as
+// an argument to the WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.Between(operand1, operand2, operand3)
-//     condition := operand1.Between(operand2, operand3)
+//     // condition represents the condition where the value of the item
+//     // attribute "Rating" is between values 5 and 10
+//     condition := expression.Name("Rating").Between(expression.Value(5), expression.Value(10))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Name("Rating").Between(expression.Value(5), expression.Value(10))
+//     // Let :five and :ten be ExpressionAttributeValues representing the value
+//     // 5 and the value 10
+//     "Rating BETWEEN :five AND :ten"
 func (nb NameBuilder) Between(lower, upper OperandBuilder) ConditionBuilder {
 	return Between(nb, lower, upper)
 }
 
-// Between will create a ConditionBuilder. This will be the method signature for
-// ValueBuilders.
+// Between returns a ConditionBuilder representing the result of the
+// BETWEEN function in DynamoDB Condition Expressions. The resulting
+// ConditionBuilder can be used as a part of other Condition Expressions or as
+// an argument to the WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.Between(operand1, operand2, operand3)
-//     condition := operand1.Between(operand2, operand3)
+//     // condition represents the condition where the value 6 is between values
+//     // 5 and 10
+//     condition := expression.Value(6).Between(expression.Value(5), expression.Value(10))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Value(6).Between(expression.Value(5), expression.Value(10))
+//     // Let :six, :five and :ten be ExpressionAttributeValues representing the
+//     // values 6, 5, and 10 respectively
+//     ":six BETWEEN :five AND :ten"
 func (vb ValueBuilder) Between(lower, upper OperandBuilder) ConditionBuilder {
 	return Between(vb, lower, upper)
 }
 
-// Between will create a ConditionBuilder. This will be the method signature for
-// SizeBuilders.
+// Between returns a ConditionBuilder representing the result of the
+// BETWEEN function in DynamoDB Condition Expressions. The resulting
+// ConditionBuilder can be used as a part of other Condition Expressions or as
+// an argument to the WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.Between(operand1, operand2, operand3)
-//     condition := operand1.Between(operand2, operand3)
+//     // condition represents the condition where the size of the item
+//     // attribute "InviteList" is between values 5 and 10
+//     condition := expression.Size(expression.Name("InviteList")).Between(expression.Value(5), expression.Value(10))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Size(expression.Name("InviteList")).Between(expression.Value(5), expression.Value(10))
+//     // Let :five and :ten be ExpressionAttributeValues representing the value
+//     // 5 and the value 10
+//     "size (InviteList) BETWEEN :five AND :ten"
 func (sb SizeBuilder) Between(lower, upper OperandBuilder) ConditionBuilder {
 	return Between(sb, lower, upper)
 }
 
-// In will create a ConditionBuilder with two or more operands as children, the
-// first operand representing the operand being compared and the rest of the
-// operands representing a set in which the first operand either belongs to or
-// not. The argument must have at least two operands. The resulting
-// ConditionBuilder can be used to build other Conditions or to create an
-// Builder to be used in an operation input. This will be the function call.
+// In returns a ConditionBuilder representing the result of the IN function
+// in DynamoDB Condition Expressions. The resulting ConditionBuilder can be used
+// as a part of other Condition Expressions or as an argument to the
+// WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     condition := expression.Between(expression.Name("foo"), expression.Value(2), expression.Value(6))
+//     // condition represents the condition where the value of the item
+//     // attribute "Color" is checked against the list of colors "red",
+//     // "green", and "blue".
+//     condition := expression.In(expression.Name("Color"), expression.Value("red"), expression.Value("green"), expression.Value("blue"))
 //
-//     anotherCondition := expression.Not(condition)  // Used in another condition
-//     builder := WithCondition(condition)            // Used to make an Builder
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.In(expression.Name("Color"), expression.Value("red"), expression.Value("green"), expression.Value("blue"))
+//     // Let :red, :green, :blue be ExpressionAttributeValues representing the
+//     // values "red", "green", and "blue" respectively
+//     "Color IN (:red, :green, :blue)"
 func In(left, right OperandBuilder, other ...OperandBuilder) ConditionBuilder {
 	other = append([]OperandBuilder{left, right}, other...)
 	return ConditionBuilder{
@@ -592,54 +1021,108 @@ func In(left, right OperandBuilder, other ...OperandBuilder) ConditionBuilder {
 	}
 }
 
-// In will create a ConditionBuilder. This will be the method signature for
-// NameBuilders.
+// In returns a ConditionBuilder representing the result of the IN function
+// in DynamoDB Condition Expressions. The resulting ConditionBuilder can be used
+// as a part of other Condition Expressions or as an argument to the
+// WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.In(operand1, operand2, operand3)
-//     condition := operand1.In(operand2, operand3)
+//     // condition represents the condition where the value of the item
+//     // attribute "Color" is checked against the list of colors "red",
+//     // "green", and "blue".
+//     condition := expression.Name("Color").In(expression.Value("red"), expression.Value("green"), expression.Value("blue"))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Name("Color").In(expression.Value("red"), expression.Value("green"), expression.Value("blue"))
+//     // Let :red, :green, :blue be ExpressionAttributeValues representing the
+//     // values "red", "green", and "blue" respectively
+//     "Color IN (:red, :green, :blue)"
 func (nb NameBuilder) In(right OperandBuilder, other ...OperandBuilder) ConditionBuilder {
 	return In(nb, right, other...)
 }
 
-// In will create a ConditionBuilder. This will be the method signature for
-// ValueBuilders.
+// In returns a ConditionBuilder representing the result of the IN function
+// TODO change this one
+// in DynamoDB Condition Expressions. The resulting ConditionBuilder can be used
+// as a part of other Condition Expressions or as an argument to the
+// WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.In(operand1, operand2, operand3)
-//     condition := operand1.In(operand2, operand3)
+//     // condition represents the condition where the value "yellow" is checked
+//     // against the list of colors "red", "green", and "blue".
+//     condition := expression.Value("yellow").In(expression.Value("red"), expression.Value("green"), expression.Value("blue"))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Value("yellow").In(expression.Value("red"), expression.Value("green"), expression.Value("blue"))
+//     // Let :yellow, :red, :green, :blue be ExpressionAttributeValues
+//     // representing the values "yellow", "red", "green", and "blue"
+//     // respectively
+//     ":yellow IN (:red, :green, :blue)"
 func (vb ValueBuilder) In(right OperandBuilder, other ...OperandBuilder) ConditionBuilder {
 	return In(vb, right, other...)
 }
 
-// In will create a ConditionBuilder. This will be the method signature for
-// SizeBuilders.
+// In returns a ConditionBuilder representing the result of the IN function
+// in DynamoDB Condition Expressions. The resulting ConditionBuilder can be used
+// as a part of other Condition Expressions or as an argument to the
+// WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.In(operand1, operand2, operand3)
-//     condition := operand1.In(operand2, operand3)
+//     // condition represents the condition where the size of the item
+//     // attribute "Donuts" is checked against the list of numbers 12, 24, and
+//     // 36.
+//     condition := expression.Size(expression.Name("Donuts")).In(expression.Value(12), expression.Value(24), expression.Value(36))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Size(expression.Name("Donuts")).In(expression.Value(12), expression.Value(24), expression.Value(36))
+//     // Let :dozen, :twoDozen, :threeDozen be ExpressionAttributeValues
+//     // representing the values 12, 24, and 36 respectively
+//     "size (Donuts) IN (12, 24, 36)"
 func (sb SizeBuilder) In(right OperandBuilder, other ...OperandBuilder) ConditionBuilder {
 	return In(sb, right, other...)
 }
 
-// AttributeExists will create a ConditionBuilder with a name as a child. The
-// function will return true if the item attribute described by the name exists.
-// The resulting ConditionBuilder can be used to build other Conditions or to
-// create an Builder to be used in an operation input. This will be the function
-// call.
+// AttributeExists returns a ConditionBuilder representing the result of the
+// attribute_exists function in DynamoDB Condition Expressions. The resulting
+// ConditionBuilder can be used as a part of other Condition Expressions or as
+// an argument to the WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     condition := expression.AttributeExists(Name("foo"))
+//     // condition represents the boolean condition of whether the item
+//     // attribute "Age" exists or not
+//     condition := expression.AttributeExists(expression.Name("Age"))
 //
-//     anotherCondition := expression.Not(condition)  // Used in another condition
-//     builder := WithCondition(condition)            // Used to make an Builder
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.AttributeExists(expression.Name("Age"))
+//     "attribute_exists (Age))"
 func AttributeExists(nameBuilder NameBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{nameBuilder},
@@ -647,31 +1130,51 @@ func AttributeExists(nameBuilder NameBuilder) ConditionBuilder {
 	}
 }
 
-// AttributeExists will create a ConditionBuilder. AttributeExists will only
-// have a method for NameBuilders since that is the only valid operand that the
-// function can be called on.
+// AttributeExists returns a ConditionBuilder representing the result of the
+// attribute_exists function in DynamoDB Condition Expressions. The resulting
+// ConditionBuilder can be used as a part of other Condition Expressions or as
+// an argument to the WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.AttributeExists(Name("foo"))
-//     condition := Name("foo").AttributeExists()
+//     // condition represents the boolean condition of whether the item
+//     // attribute "Age" exists or not
+//     condition := expression.Name("Age").AttributeExists()
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Name("Age").AttributeExists()
+//     "attribute_exists (Age))"
 func (nb NameBuilder) AttributeExists() ConditionBuilder {
 	return AttributeExists(nb)
 }
 
-// AttributeNotExists will create a ConditionBuilder with a name as a child. The
-// function will return true if the item attribute described by the name does
-// not exist. The resulting ConditionBuilder can be used to build other
-// Conditions or to create an Builder to be used in an operation input. This
-// will be the function call.
+// AttributeNotExists returns a ConditionBuilder representing the result of
+// the attribute_not_exists function in DynamoDB Condition Expressions. The
+// resulting ConditionBuilder can be used as a part of other Condition
+// Expressions or as an argument to the WithCondition() method for the Builder
+// struct.
 //
 // Example:
 //
-//     condition := expression.AttributeNotExists(expression.Name("foo"))
+//     // condition represents the boolean condition of whether the item
+//     // attribute "Age" exists or not
+//     condition := expression.AttributeNotExists(expression.Name("Age"))
 //
-//     anotherCondition := expression.Not(condition)  // Used in another condition
-//     builder := WithCondition(condition)            // Used to make an Builder
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.AttributeNotExists(expression.Name("Age"))
+//     "attribute_not_exists (Age))"
 func AttributeNotExists(nameBuilder NameBuilder) ConditionBuilder {
 	return ConditionBuilder{
 		operandList: []OperandBuilder{nameBuilder},
@@ -679,33 +1182,53 @@ func AttributeNotExists(nameBuilder NameBuilder) ConditionBuilder {
 	}
 }
 
-// AttributeNotExists will create a ConditionBuilder. AttributeNotExists will
-// only have a method for NameBuilders since that is the only valid operand that
-// the function can be called on.
+// AttributeNotExists returns a ConditionBuilder representing the result of
+// the attribute_not_exists function in DynamoDB Condition Expressions. The
+// resulting ConditionBuilder can be used as a part of other Condition
+// Expressions or as an argument to the WithCondition() method for the Builder
+// struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.AttributeNotExists(expression.Name("foo"))
-//     condition := expression.Name("foo").AttributeNotExists()
+//     // condition represents the boolean condition of whether the item
+//     // attribute "Age" exists or not
+//     condition := expression.Name("Age").AttributeNotExists()
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Name("Age").AttributeNotExists()
+//     "attribute_not_exists (Age))"
 func (nb NameBuilder) AttributeNotExists() ConditionBuilder {
 	return AttributeNotExists(nb)
 }
 
-// AttributeType will create a ConditionBuilder with a name and a value as a
-// child. The name will represent the item attribute being compared. The value
-// will be a string corresponding to the argument DynamoDBAttributeType. The
-// function will return true if the item attribute described by the name is the
-// type specified by DynamoDBAttributeType. The resulting ConditionBuilder can
-// be used to build other Conditions or to create an Builder to be used in an
-// operation input. This will be the function call.
+// AttributeType returns a ConditionBuilder representing the result of the
+// attribute_type function in DynamoDB Condition Expressions. The DynamoDB types
+// are represented by the type DynamoDBAttributeType. The resulting
+// ConditionBuilder can be used as a part of other Condition Expressions or as
+// an argument to the WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     condition := expression.AttributeType(Name("foo"), expression.StringSet)
+//     // condition represents the boolean condition of whether the item
+//     // attribute "Age" has the DynamoDB type Number or not
+//     condition := expression.AttributeType(expression.Name("Age"), expression.Number)
 //
-//     anotherCondition := expression.Not(condition)  // Used in another condition
-//     builder := WithCondition(condition)            // Used to make an Builder
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.AttributeType(expression.Name("Age"), expression.Number)
+//     // Let :type be an ExpressionAttributeValue representing the value "N"
+//     "attribute_type (Age, :type)"
 func AttributeType(nameBuilder NameBuilder, attributeType DynamoDBAttributeType) ConditionBuilder {
 	v := ValueBuilder{
 		value: string(attributeType),
@@ -716,33 +1239,53 @@ func AttributeType(nameBuilder NameBuilder, attributeType DynamoDBAttributeType)
 	}
 }
 
-// AttributeType will create a ConditionBuilder. AttributeType will only have a
-// method for NameBuilders since that is the only valid operand that the
-// function can be called on.
+// AttributeType returns a ConditionBuilder representing the result of the
+// attribute_type function in DynamoDB Condition Expressions. The DynamoDB types
+// are represented by the type DynamoDBAttributeType. The resulting
+// ConditionBuilder can be used as a part of other Condition Expressions or as
+// an argument to the WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.AttributeType(expression.Name("foo"), expression.Number)
-//     condition := expression.Name("foo").AttributeType(expression.Number)
+//     // condition represents the boolean condition of whether the item
+//     // attribute "Age" has the DynamoDB type Number or not
+//     condition := expression.Name("Age").AttributeType(expression.Number)
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Name("Age").AttributeType(expression.Number)
+//     // Let :type be an ExpressionAttributeValue representing the value "N"
+//     "attribute_type (Age, :type)"
 func (nb NameBuilder) AttributeType(attributeType DynamoDBAttributeType) ConditionBuilder {
 	return AttributeType(nb, attributeType)
 }
 
-// BeginsWith will create a ConditionBuilder with a name and a value as
-// children. The name will represent the name to the item attribute being
-// compared. The value will represent the substring in which the item attribute
-// will be compared with. The function will return true if the item attribute
-// specified by the name starts with the substring. The resulting
-// ConditionBuilder can be used to build other Conditions or to create an
-// Builder to be used in an operation input. This will be the function call.
+// BeginsWith returns a ConditionBuilder representing the result of the
+// begins_with function in DynamoDB Condition Expressions. The resulting
+// ConditionBuilder can be used as a part of other Condition Expressions or as
+// an argument to the WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     condition := expression.BeginsWith(Name("foo"), "bar")
+//     // condition represents the boolean condition of whether the item
+//     // attribute "CodeName" starts with the substring "Ben"
+//     condition := expression.BeginsWith(expression.Name("CodeName"), "Ben")
 //
-//     anotherCondition := expression.Not(condition)  // Used in another condition
-//     builder := WithCondition(condition)            // Used to make an Builder
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.BeginsWith(expression.Name("CodeName"), "Ben")
+//     // Let :ben be an ExpressionAttributeValue representing the value "Ben"
+//     "begins_with (CodeName, :ben)"
 func BeginsWith(nameBuilder NameBuilder, prefix string) ConditionBuilder {
 	v := ValueBuilder{
 		value: prefix,
@@ -753,35 +1296,52 @@ func BeginsWith(nameBuilder NameBuilder, prefix string) ConditionBuilder {
 	}
 }
 
-// BeginsWith will create a ConditionBuilder. BeginsWith will only have a method
-// for NameBuilders since that is the only valid operand that the function can
-// be called on.
+// BeginsWith returns a ConditionBuilder representing the result of the
+// begins_with function in DynamoDB Condition Expressions. The resulting
+// ConditionBuilder can be used as a part of other Condition Expressions or as
+// an argument to the WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.BeginsWith(expression.Name("foo"), "bar")
-//     condition := expression.Name("foo").BeginsWith("bar")
+//     // condition represents the boolean condition of whether the item
+//     // attribute "CodeName" starts with the substring "Ben"
+//     condition := expression.Name("CodeName").BeginsWith("Ben")
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Name("CodeName").BeginsWith("Ben")
+//     // Let :ben be an ExpressionAttributeValue representing the value "Ben"
+//     "begins_with (CodeName, :ben)"
 func (nb NameBuilder) BeginsWith(prefix string) ConditionBuilder {
 	return BeginsWith(nb, prefix)
 }
 
-// Contains will create a ConditionBuilder with a name and a value as
-// children. The name will represent the name to the item attribute being
-// compared. The item attribute MUST be a String or a Set. The value will
-// represent the string in which the item attribute will be compared with. The
-// function will return true if the item attribute specified by the name
-// contains the substring specified by the value or if the item attribute is a
-// set that contains the string specified by the value. The resulting
-// ConditionBuilder can be used to build other Conditions or to create an
-// Builder to be used in an operation input. This will be the function call.
+// Contains returns a ConditionBuilder representing the result of the
+// contains function in DynamoDB Condition Expressions. The resulting
+// ConditionBuilder can be used as a part of other Condition Expressions or as
+// an argument to the WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     condition := expression.Contains(Name("foo"), "bar")
+//     // condition represents the boolean condition of whether the item
+//     // attribute "InviteList" has the value "Ben"
+//     condition := expression.Contains(expression.Name("InviteList"), expression.Value("Ben"))
 //
-//     anotherCondition := expression.Not(condition)  // Used in another condition
-//     builder := WithCondition(condition)            // Used to make an Builder
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Contains(expression.Name("InviteList"), expression.Value("Ben"))
+//     // Let :ben be an ExpressionAttributeValue representing the value "Ben"
+//     "contains (InviteList, :ben)"
 func Contains(nameBuilder NameBuilder, substr string) ConditionBuilder {
 	v := ValueBuilder{
 		value: substr,
@@ -792,20 +1352,32 @@ func Contains(nameBuilder NameBuilder, substr string) ConditionBuilder {
 	}
 }
 
-// Contains will create a ConditionBuilder. Contains will only have a method
-// for NameBuilders since that is the only valid operand that the function can
-// be called on.
+// Contains returns a ConditionBuilder representing the result of the
+// contains function in DynamoDB Condition Expressions. The resulting
+// ConditionBuilder can be used as a part of other Condition Expressions or as
+// an argument to the WithCondition() method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent conditions:
-//     condition := expression.Contains(expression.Name("foo"), "bar")
-//     condition := expression.Name("foo").Contains("bar")
+//     // condition represents the boolean condition of whether the item
+//     // attribute "InviteList" has the value "Ben"
+//     condition := expression.Name("InviteList").Contains(expression.Value("Ben"))
+//
+//     // Used in another Condition Expression
+//     anotherCondition := expression.Not(condition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithCondition(condition)
+//
+// Expression Equivalent:
+//
+//     expression.Name("InviteList").Contains(expression.Value("Ben"))
+//     // Let :ben be an ExpressionAttributeValue representing the value "Ben"
+//     "contains (InviteList, :ben)"
 func (nb NameBuilder) Contains(substr string) ConditionBuilder {
 	return Contains(nb, substr)
 }
 
-// buildTree will build a tree structure of exprNodes based on the tree
+// buildTree builds a tree structure of exprNodes based on the tree
 // structure of the input ConditionBuilder's child ConditionBuilders and
 // OperandBuilders. buildTree() satisfies the treeBuilder interface so
 // ConditionBuilder can be a part of Builder and Expression struct.
@@ -847,7 +1419,7 @@ func (cb ConditionBuilder) buildTree() (exprNode, error) {
 }
 
 // compareBuildCondition is the function to make exprNodes from Compare
-// ConditionBuilders. compareBuildCondition will only be called by the
+// ConditionBuilders. compareBuildCondition is only called by the
 // buildTree method. This function assumes that the argument ConditionBuilder
 // has the right format.
 func compareBuildCondition(conditionMode conditionMode, node exprNode) (exprNode, error) {
@@ -873,7 +1445,7 @@ func compareBuildCondition(conditionMode conditionMode, node exprNode) (exprNode
 }
 
 // compoundBuildCondition is the function to make exprNodes from And/Or
-// ConditionBuilders. compoundBuildCondition will only be called by the
+// ConditionBuilders. compoundBuildCondition is only called by the
 // buildTree method. This function assumes that the argument ConditionBuilder
 // has the right format.
 func compoundBuildCondition(conditionBuilder ConditionBuilder, node exprNode) (exprNode, error) {
@@ -894,7 +1466,7 @@ func compoundBuildCondition(conditionBuilder ConditionBuilder, node exprNode) (e
 }
 
 // notBuildCondition is the function to make exprNodes from Not
-// ConditionBuilders. notBuildCondition will only be called by the
+// ConditionBuilders. notBuildCondition is only called by the
 // buildTree method. This function assumes that the argument ConditionBuilder
 // has the right format.
 func notBuildCondition(node exprNode) (exprNode, error) {
@@ -906,7 +1478,7 @@ func notBuildCondition(node exprNode) (exprNode, error) {
 }
 
 // betweenBuildCondition is the function to make exprNodes from Between
-// ConditionBuilders. BuildCondition will only be called by the
+// ConditionBuilders. BuildCondition is only called by the
 // buildTree method. This function assumes that the argument ConditionBuilder
 // has the right format.
 func betweenBuildCondition(node exprNode) (exprNode, error) {
@@ -917,7 +1489,7 @@ func betweenBuildCondition(node exprNode) (exprNode, error) {
 }
 
 // inBuildCondition is the function to make exprNodes from In
-// ConditionBuilders. inBuildCondition will only be called by the
+// ConditionBuilders. inBuildCondition is only called by the
 // buildTree method. This function assumes that the argument ConditionBuilder
 // has the right format.
 func inBuildCondition(conditionBuilder ConditionBuilder, node exprNode) (exprNode, error) {
@@ -928,7 +1500,7 @@ func inBuildCondition(conditionBuilder ConditionBuilder, node exprNode) (exprNod
 }
 
 // attrExistsBuildCondition is the function to make exprNodes from
-// AttrExistsCond ConditionBuilders. attrExistsBuildCondition will only be
+// AttrExistsCond ConditionBuilders. attrExistsBuildCondition is only
 // called by the buildTree method. This function assumes that the argument
 // ConditionBuilder has the right format.
 func attrExistsBuildCondition(node exprNode) (exprNode, error) {
@@ -939,7 +1511,7 @@ func attrExistsBuildCondition(node exprNode) (exprNode, error) {
 }
 
 // attrNotExistsBuildCondition is the function to make exprNodes from
-// AttrNotExistsCond ConditionBuilders. attrNotExistsBuildCondition will only be
+// AttrNotExistsCond ConditionBuilders. attrNotExistsBuildCondition is only
 // called by the buildTree method. This function assumes that the argument
 // ConditionBuilder has the right format.
 func attrNotExistsBuildCondition(node exprNode) (exprNode, error) {
@@ -950,7 +1522,7 @@ func attrNotExistsBuildCondition(node exprNode) (exprNode, error) {
 }
 
 // attrTypeBuildCondition is the function to make exprNodes from AttrTypeCond
-// ConditionBuilders. attrTypeBuildCondition will only be called by the
+// ConditionBuilders. attrTypeBuildCondition is only called by the
 // buildTree method. This function assumes that the argument
 // ConditionBuilder has the right format.
 func attrTypeBuildCondition(node exprNode) (exprNode, error) {
@@ -961,7 +1533,7 @@ func attrTypeBuildCondition(node exprNode) (exprNode, error) {
 }
 
 // beginsWithBuildCondition is the function to make exprNodes from
-// BeginsWithCond ConditionBuilders. beginsWithBuildCondition will only be
+// BeginsWithCond ConditionBuilders. beginsWithBuildCondition is only
 // called by the buildTree method. This function assumes that the argument
 // ConditionBuilder has the right format.
 func beginsWithBuildCondition(node exprNode) (exprNode, error) {
@@ -972,7 +1544,7 @@ func beginsWithBuildCondition(node exprNode) (exprNode, error) {
 }
 
 // containsBuildCondition is the function to make exprNodes from
-// ContainsCond ConditionBuilders. containsBuildCondition will only be
+// ContainsCond ConditionBuilders. containsBuildCondition is only
 // called by the buildTree method. This function assumes that the argument
 // ConditionBuilder has the right format.
 func containsBuildCondition(node exprNode) (exprNode, error) {
@@ -982,7 +1554,7 @@ func containsBuildCondition(node exprNode) (exprNode, error) {
 	return node, nil
 }
 
-// buildChildNodes will create the list of the child exprNodes. This avoids
+// buildChildNodes creates the list of the child exprNodes. This avoids
 // duplication of code amongst the various buildTree functions.
 func (cb ConditionBuilder) buildChildNodes() ([]exprNode, error) {
 	childNodes := make([]exprNode, 0, len(cb.conditionList)+len(cb.operandList))

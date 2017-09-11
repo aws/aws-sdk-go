@@ -4,36 +4,33 @@ import (
 	"fmt"
 )
 
-// keyConditionMode will specify the types of the struct KeyConditionBuilder,
+// keyConditionMode specifies the types of the struct KeyConditionBuilder,
 // representing the different types of KeyConditions (i.e. And, Or, Between, ...)
 type keyConditionMode int
 
 const (
-	// unsetKeyCond will catch errors if users make an empty KeyConditionBuilder
+	// unsetKeyCond catches errors if users make an empty KeyConditionBuilder
 	unsetKeyCond keyConditionMode = iota
-	// equalKeyCond will represent the Equals KeyCondition
+	// equalKeyCond represents the Equals KeyCondition
 	equalKeyCond
-	// lessThanKeyCond will represent the Less Than KeyCondition
+	// lessThanKeyCond represents the Less Than KeyCondition
 	lessThanKeyCond
-	// lessThanEqualKeyCond will represent the Less Than Or Equal To KeyCondition
+	// lessThanEqualKeyCond represents the Less Than Or Equal To KeyCondition
 	lessThanEqualKeyCond
-	// greaterThanKeyCond will represent the Greater Than KeyCondition
+	// greaterThanKeyCond represents the Greater Than KeyCondition
 	greaterThanKeyCond
-	// greaterThanEqualKeyCond will represent the Greater Than Or Equal To KeyCondition
+	// greaterThanEqualKeyCond represents the Greater Than Or Equal To KeyCondition
 	greaterThanEqualKeyCond
-	// andKeyCond will represent the Logical And KeyCondition
+	// andKeyCond represents the Logical And KeyCondition
 	andKeyCond
-	// betweenKeyCond will represent the Between KeyCondition
+	// betweenKeyCond represents the Between KeyCondition
 	betweenKeyCond
-	// beginsWithKeyCond will represent the Begins With KeyCondition
+	// beginsWithKeyCond represents the Begins With KeyCondition
 	beginsWithKeyCond
 )
 
-// KeyConditionBuilder will represent Key Condition Expressions in DynamoDB. It
-// is composed of operands (OperandBuilder) and other key conditions
-// (KeyConditionBuilder). There are many different types of conditions,
-// specified by keyConditionMode. KeyConditionBuilders will be the building
-// blocks of Expressions.
+// KeyConditionBuilder represents Key Condition Expressions in DynamoDB.
+// KeyConditionBuilders are the building blocks of Expressions.
 // More Information at: http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html#Query.KeyConditionExpressions
 type KeyConditionBuilder struct {
 	operandList      []OperandBuilder
@@ -41,21 +38,27 @@ type KeyConditionBuilder struct {
 	mode             keyConditionMode
 }
 
-// KeyEqual will create a KeyConditionBuilder with a KeyBuilder and a
-// ValueBuilder as children. The KeyBuilder represents the key being compared
-// and the ValueBuilder represents the value that the key is being compared to.
-// The resulting KeyConditionBuilder can be used to build other
-// KeyConditionBuilder or to create an Expression to be used in an operation
-// input. This will be the function call.
+// KeyEqual returns a KeyConditionBuilder representing the equality clause
+// of the two argument OperandBuilders. The resulting KeyConditionBuilder can be
+// used as a part of other Key Condition Expressions or as an argument to the
+// WithKeyCondition() method for the Builder struct.
 //
 // Example:
 //
-//     keyCondition := expression.KeyEqual(expression.Key("partitionKey"), expression.Value(someValue))
+//     // keyCondition represents the equal clause of the key "foo" and the
+//     // value 5
+//     keyCondition := expression.KeyEqual(expression.Key("foo"), expression.Value(5))
 //
-//     // Used to make another KeyConditionBuilder
-//     anotherKeyCondition := keyCondition.And(expression.KeyEqual(expression.Key("sortKey"), expression.Value(someValue)))
-//     // Used to make an Expression
-//     expression := KeyCondition(keyCondition)
+//     // Used in another Key Condition Expression
+//     anotherKeyCondition := expression.Key("partitionKey").Equal(expression.Value("aValue")).And(keyCondition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithKeyCondition(keyCondition)
+//
+// Expression Equivalent:
+//
+//     expression.KeyEqual(expression.Key("foo"), expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "foo = :five"
 func KeyEqual(keyBuilder KeyBuilder, valueBuilder ValueBuilder) KeyConditionBuilder {
 	return KeyConditionBuilder{
 		operandList: []OperandBuilder{keyBuilder, valueBuilder},
@@ -63,31 +66,49 @@ func KeyEqual(keyBuilder KeyBuilder, valueBuilder ValueBuilder) KeyConditionBuil
 	}
 }
 
-// Equal will create a KeyConditionBuilder if and only if the method is called
-// on a KeyBuilder.
+// Equal returns a KeyConditionBuilder representing the equality clause of
+// the two argument OperandBuilders. The resulting KeyConditionBuilder can be
+// used as a part of other Key Condition Expressions or as an argument to the
+// WithKeyCondition() method for the Builder struct.
 //
 // Example:
 //
-//     // The following produces equivalent key conditions:
-//     keyCondition := expression.KeyEqual(expression.Key("foo"), expression.Value(5))
+//     // keyCondition represents the equal clause of the key "foo" and the
+//     // value 5
 //     keyCondition := expression.Key("foo").Equal(expression.Value(5))
+//
+//     // Used in another Key Condition Expression
+//     anotherKeyCondition := expression.Key("partitionKey").Equal(expression.Value("aValue")).And(keyCondition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithKeyCondition(keyCondition)
+//
+// Expression Equivalent:
+//
+//     expression.Key("foo").Equal(expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "foo = :five"
 func (kb KeyBuilder) Equal(valueBuilder ValueBuilder) KeyConditionBuilder {
 	return KeyEqual(kb, valueBuilder)
 }
 
-// KeyLessThan will create a KeyConditionBuilder with a KeyBuilder and a
-// ValueBuilder as children. The KeyBuilder represents the sort key being
-// compared and the ValueBuilder represents the value that the sort key is being
-// compared to. The resulting KeyConditionBuilder can be optionally provided in
-// addition to an equal clause on the partition key to specify a subset of sort
-// keys to retrieve. This will be the function call.
+// KeyLessThan returns a KeyConditionBuilder representing the less than
+// clause of the two argument OperandBuilders. The resulting KeyConditionBuilder
+// can be used as a part of other Key Condition Expressions.
 //
 // Example:
 //
-//     partitionKeyCondition := expression.Key("partitionKey").Equal(expression.Value(someValue))
-//     sortKeyCondition := expression.KeyLessThan(expression.Key("sortKey"), expression.Value(someValue))
+//     // keyCondition represents the less than clause of the key "foo" and the
+//     // value 5
+//     keyCondition := expression.KeyLessThan(expression.Key("foo"), expression.Value(5))
 //
-//     expression := KeyCondition(partitionKeyCondition.And(sortKeyCondition))
+//     // Used in another Key Condition Expression
+//     anotherKeyCondition := expression.Key("partitionKey").Equal(expression.Value("aValue")).And(keyCondition)
+//
+// Expression Equivalent:
+//
+//     expression.KeyLessThan(expression.Key("foo"), expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "foo < :five"
 func KeyLessThan(keyBuilder KeyBuilder, valueBuilder ValueBuilder) KeyConditionBuilder {
 	return KeyConditionBuilder{
 		operandList: []OperandBuilder{keyBuilder, valueBuilder},
@@ -95,31 +116,46 @@ func KeyLessThan(keyBuilder KeyBuilder, valueBuilder ValueBuilder) KeyConditionB
 	}
 }
 
-// LessThan will create a KeyConditionBuilder if and only if the method is
-// called on a KeyBuilder.
+// LessThan returns a KeyConditionBuilder representing the less than clause
+// of the two argument OperandBuilders. The resulting KeyConditionBuilder can be
+// used as a part of other Key Condition Expressions.
 //
 // Example:
 //
-//     // The following produces equivalent key conditions:
-//     keyCondition := expression.KeyLessThan(expression.Key("foo"), expression.Value(5))
+//     // keyCondition represents the less than clause of the key "foo" and the
+//     // value 5
 //     keyCondition := expression.Key("foo").LessThan(expression.Value(5))
+//
+//     // Used in another Key Condition Expression
+//     anotherKeyCondition := expression.Key("partitionKey").Equal(expression.Value("aValue")).And(keyCondition)
+//
+// Expression Equivalent:
+//
+//     expression.Key("foo").LessThan(expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "foo < :five"
 func (kb KeyBuilder) LessThan(valueBuilder ValueBuilder) KeyConditionBuilder {
 	return KeyLessThan(kb, valueBuilder)
 }
 
-// KeyLessThanEqual will create a KeyConditionBuilder with a KeyBuilder and a
-// ValueBuilder as children. The KeyBuilder represents the key being compared
-// and the ValueBuilder represents the value that the key is being compared to.
-// The resulting KeyConditionBuilder can be optionally provided in addition to
-// an equal clause on the partition key to specify a subset of sort keys to
-// retrieve. This will be the function call.
+// KeyLessThanEqual returns a KeyConditionBuilder representing the less than
+// equal to clause of the two argument OperandBuilders. The resulting
+// KeyConditionBuilder can be used as a part of other Key Condition Expressions.
 //
 // Example:
 //
-//     partitionKeyCondition := expression.Key("partitionKey").Equal(expression.Value(someValue))
-//     sortKeyCondition := expression.KeyLessThanEqual(expression.Key("sortKey"), expression.Value(someValue))
+//     // keyCondition represents the less than equal to clause of the key
+//     // "foo" and the value 5
+//     keyCondition := expression.KeyLessThanEqual(expression.Key("foo"), expression.Value(5))
 //
-//     expression := KeyCondition(partitionKeyCondition.And(sortKeyCondition))
+//     // Used in another Key Condition Expression
+//     anotherKeyCondition := expression.Key("partitionKey").Equal(expression.Value("aValue")).And(keyCondition)
+//
+// Expression Equivalent:
+//
+//     expression.KeyLessThanEqual(expression.Key("foo"), expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "foo <= :five"
 func KeyLessThanEqual(keyBuilder KeyBuilder, valueBuilder ValueBuilder) KeyConditionBuilder {
 	return KeyConditionBuilder{
 		operandList: []OperandBuilder{keyBuilder, valueBuilder},
@@ -127,31 +163,46 @@ func KeyLessThanEqual(keyBuilder KeyBuilder, valueBuilder ValueBuilder) KeyCondi
 	}
 }
 
-// LessThanEqual will create a KeyConditionBuilder if and only if the method is
-// called on a KeyBuilder.
+// LessThanEqual returns a KeyConditionBuilder representing the less than
+// equal to clause of the two argument OperandBuilders. The resulting
+// KeyConditionBuilder can be used as a part of other Key Condition Expressions.
 //
 // Example:
 //
-//     // The following produces equivalent key conditions:
-//     keyCondition := expression.KeyLessThanEqual(expression.Key("foo"), expression.Value(5))
+//     // keyCondition represents the less than equal to clause of the key
+//     // "foo" and the value 5
 //     keyCondition := expression.Key("foo").LessThanEqual(expression.Value(5))
+//
+//     // Used in another Key Condition Expression
+//     anotherKeyCondition := expression.Key("partitionKey").Equal(expression.Value("aValue")).And(keyCondition)
+//
+// Expression Equivalent:
+//
+//     expression.Key("foo").LessThanEqual(expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "foo <= :five"
 func (kb KeyBuilder) LessThanEqual(valueBuilder ValueBuilder) KeyConditionBuilder {
 	return KeyLessThanEqual(kb, valueBuilder)
 }
 
-// KeyGreaterThan will create a KeyConditionBuilder with a KeyBuilder and a
-// ValueBuilder as children. The KeyBuilder represents the key being compared
-// and the ValueBuilder represents the value that the key is being compared to.
-// The resulting KeyConditionBuilder can be optionally provided in addition to
-// an equal clause on the partition key to specify a subset of sort keys to
-// retrieve. This will be the function call.
+// KeyGreaterThan returns a KeyConditionBuilder representing the greater
+// than clause of the two argument OperandBuilders. The resulting
+// KeyConditionBuilder can be used as a part of other Key Condition Expressions.
 //
 // Example:
 //
-//     partitionKeyCondition := expression.Key("partitionKey").Equal(expression.Value(someValue))
-//     sortKeyCondition := expression.KeyGreaterThan(expression.Key("sortKey"), expression.Value(someValue))
+//     // keyCondition represents the greater than clause of the key "foo" and
+//     // the value 5
+//     keyCondition := expression.KeyGreaterThan(expression.Key("foo"), expression.Value(5))
 //
-//     expression := KeyCondition(partitionKeyCondition.And(sortKeyCondition))
+//     // Used in another Key Condition Expression
+//     anotherKeyCondition := expression.Key("partitionKey").Equal(expression.Value("aValue")).And(keyCondition)
+//
+// Expression Equivalent:
+//
+//     expression.KeyGreaterThan(expression.Key("foo"), expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "foo > :five"
 func KeyGreaterThan(keyBuilder KeyBuilder, valueBuilder ValueBuilder) KeyConditionBuilder {
 	return KeyConditionBuilder{
 		operandList: []OperandBuilder{keyBuilder, valueBuilder},
@@ -159,31 +210,47 @@ func KeyGreaterThan(keyBuilder KeyBuilder, valueBuilder ValueBuilder) KeyConditi
 	}
 }
 
-// GreaterThan will create a KeyConditionBuilder if and only if the method
-// is called on a KeyBuilder.
+// GreaterThan returns a KeyConditionBuilder representing the greater than
+// clause of the two argument OperandBuilders. The resulting KeyConditionBuilder
+// can be used as a part of other Key Condition Expressions.
 //
 // Example:
 //
-//     // The following produces equivalent key conditions:
-//     keyCondition := expression.KeyGreaterThan(expression.Key("foo"), expression.Value(5))
+//     // key condition represents the greater than clause of the key "foo" and
+//     // the value 5
 //     keyCondition := expression.Key("foo").GreaterThan(expression.Value(5))
+//
+//     // Used in another Key Condition Expression
+//     anotherKeyCondition := expression.Key("partitionKey").Equal(expression.Value("aValue")).And(keyCondition)
+//
+// Expression Equivalent:
+//
+//     expression.Key("foo").GreaterThan(expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "foo > :five"
 func (kb KeyBuilder) GreaterThan(valueBuilder ValueBuilder) KeyConditionBuilder {
 	return KeyGreaterThan(kb, valueBuilder)
 }
 
-// KeyGreaterThanEqual will create a KeyConditionBuilder with a KeyBuilder and a
-// ValueBuilder as children. The KeyBuilder represents the key being compared and
-// the ValueBuilder represents the value that the key is being compared to.
-// The resulting KeyConditionBuilder can be optionally provided in addition to
-// an equal clause on the partition key to specify a subset of sort keys to
-// retrieve. This will be the function call.
+// KeyGreaterThanEqual returns a KeyConditionBuilder representing the
+// greater than equal to clause of the two argument OperandBuilders. The
+// resulting KeyConditionBuilder can be used as a part of other Key Condition
+// Expressions.
 //
 // Example:
 //
-//     partitionKeyCondition := expression.Key("partitionKey").Equal(expression.Value(someValue))
-//     sortKeyCondition := expression.KeyGreaterThanEqual(expression.Key("sortKey"), expression.Value(someValue))
+//     // keyCondition represents the greater than equal to clause of the key
+//     // "foo" and the value 5
+//     keyCondition := expression.KeyGreaterThanEqual(expression.Key("foo"), expression.Value(5))
 //
-//     expression := KeyCondition(partitionKeyCondition.And(sortKeyCondition))
+//     // Used in another Key Condition Expression
+//     anotherKeyCondition := expression.Key("partitionKey").Equal(expression.Value("aValue")).And(keyCondition)
+//
+// Expression Equivalent:
+//
+//     expression.KeyGreaterThanEqual(expression.Key("foo"), expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "foo >= :five"
 func KeyGreaterThanEqual(keyBuilder KeyBuilder, valueBuilder ValueBuilder) KeyConditionBuilder {
 	return KeyConditionBuilder{
 		operandList: []OperandBuilder{keyBuilder, valueBuilder},
@@ -191,34 +258,50 @@ func KeyGreaterThanEqual(keyBuilder KeyBuilder, valueBuilder ValueBuilder) KeyCo
 	}
 }
 
-// GreaterThanEqual will create a KeyConditionBuilder if and only if the method
-// is called on a KeyBuilder.
+// GreaterThanEqual returns a KeyConditionBuilder representing the greater
+// than equal to clause of the two argument OperandBuilders. The resulting
+// KeyConditionBuilder can be used as a part of other Key Condition Expressions.
 //
 // Example:
 //
-//     // The following produces equivalent key conditions:
-//     keyCondition := expression.KeyGreaterThanEqual(expression.Key("foo"), expression.Value(5))
+//     // keyCondition represents the greater than equal to clause of the key
+//     // "foo" and the value 5
 //     keyCondition := expression.Key("foo").GreaterThanEqual(expression.Value(5))
+//
+//     // Used in another Key Condition Expression
+//     anotherKeyCondition := expression.Key("partitionKey").Equal(expression.Value("aValue")).And(keyCondition)
+//
+// Expression Equivalent:
+//
+//     expression.Key("foo").GreaterThanEqual(expression.Value(5))
+//     // Let :five be an ExpressionAttributeValue representing the value 5
+//     "foo >= :five"
 func (kb KeyBuilder) GreaterThanEqual(valueBuilder ValueBuilder) KeyConditionBuilder {
 	return KeyGreaterThanEqual(kb, valueBuilder)
 }
 
-// KeyAnd will create a KeyConditionBuilder with two KeyConditionBuilders as
-// children. The first KeyConditionBuilder must be an equalKeyCond
-// KeyConditionBuilder, representing the equal clause on the partition key of
-// an item. The second KeyConditionBuilder must not be another andKeyCond
-// KeyConditionBuilder since Key Conditions only allow the first partition key
-// equal clause to be optionally extended with a rule on the sort key.
-// The resulting KeyConditionBuilder is used to create a Expression.
-// This will be the function call.
+// KeyAnd returns a KeyConditionBuilder representing the logical AND clause
+// of the two argument KeyConditionBuilders. The resulting KeyConditionBuilder
+// can be used as an argument to the WithKeyCondition() method for the Builder
+// struct.
 //
 // Example:
 //
-//     partitionKeyCondition := expression.Key("partitionKey").Equal(expression.Value(someValue))
-//     sortKeyCondition := expression.KeyGreaterThanEqual(expression.Key("sortKey"), expression.Value(someValue))
-//     andKeyCondition := expression.KeyAnd(partitionKeyCondition, sortKeyCondition)
+//     // keyCondition represents the key condition where the partition key
+//     // "TeamName" is equal to value "Wildcats" and sort key "Number" is equal
+//     // to value 1
+//     keyCondition := expression.KeyAnd(expression.Key("TeamName").Equal(expression.Value("Wildcats")), expression.Key("Number").Equal(expression.Value(1)))
 //
-//     expression := KeyCondition(andKeyCondition)
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithKeyCondition(keyCondition)
+//
+// Expression Equivalent:
+//
+//     expression.KeyAnd(expression.Key("TeamName").Equal(expression.Value("Wildcats")), expression.Key("Number").Equal(expression.Value(1)))
+//     // Let #NUMBER, :teamName, and :one be ExpressionAttributeName and
+//     // ExpressionAttributeValues representing the item attribute "Number",
+//     // the value "Wildcats", and the value 1
+//     "(TeamName = :teamName) AND (#NUMBER = :one)"
 func KeyAnd(left, right KeyConditionBuilder) KeyConditionBuilder {
 	if left.mode != equalKeyCond {
 		return KeyConditionBuilder{
@@ -236,32 +319,51 @@ func KeyAnd(left, right KeyConditionBuilder) KeyConditionBuilder {
 	}
 }
 
-// And will create a KeyConditionBuilder if and only if the method is called on
-// a KeyConditionBuilder.
+// And returns a KeyConditionBuilder representing the logical AND clause of
+// the two argument KeyConditionBuilders. The resulting KeyConditionBuilder can
+// be used as an argument to the WithKeyCondition() method for the Builder
+// struct.
 //
 // Example:
 //
-//     // The following produces equivalent key conditions:
-//     keyCondition := expression.KeyAnd(partitionKeyCondition, sortKeyCondition)
-//     keyCondition := partitionKeyCondition.And(sortKeyCondition)
+//     // keyCondition represents the key condition where the partition key
+//     // "TeamName" is equal to value "Wildcats" and sort key "Number" is equal
+//     // to value 1
+//     keyCondition := expression.Key("TeamName").Equal(expression.Value("Wildcats")).And(expression.Key("Number").Equal(expression.Value(1)))
+//
+//     // Used to make an Builder
+//     builder := expression.NewBuilder().WithKeyCondition(keyCondition)
+//
+// Expression Equivalent:
+//
+//     expression.Key("TeamName").Equal(expression.Value("Wildcats")).And(expression.Key("Number").Equal(expression.Value(1)))
+//     // Let #NUMBER, :teamName, and :one be ExpressionAttributeName and
+//     // ExpressionAttributeValues representing the item attribute "Number",
+//     // the value "Wildcats", and the value 1
+//     "(TeamName = :teamName) AND (#NUMBER = :one)"
 func (kcb KeyConditionBuilder) And(right KeyConditionBuilder) KeyConditionBuilder {
 	return KeyAnd(kcb, right)
 }
 
-// KeyBetween will create a KeyConditionBuilder with three operands as children, the
-// first operand representing the sort key being compared, the second operand
-// representing the lower bound value of the first operand, and the third
-// operand representing the upper bound value of the first operand. The
-// resulting KeyConditionBuilder is used narrow down possible values of sort keys
-// in conjunction with an equal clause on the partition key. This will be the
-// function call.
+// KeyBetween returns a KeyConditionBuilder representing the result of the
+// BETWEEN function in DynamoDB Key Condition Expressions. The resulting
+// KeyConditionBuilder can be used as a part of other Key Condition Expressions.
 //
 // Example:
 //
-//     partitionKeyCondition := expression.Key("partitionKey").Equal(expression.Value(someValue))
-//     sortKeyCondition := expression.KeyBetween(expression.Key("sortKey"), expression.Value(lower), expression.Value(upper))
+//     // keyCondition represents the boolean key condition of whether the value
+//     // of the key "foo" is between values 5 and 10
+//     keyCondition := expression.KeyBetween(expression.Key("foo"), expression.Value(5), expression.Value(10))
 //
-//     expression := KeyCondition(partitionKeyCondition.And(sortKeyCondition))
+//     // Used in another Key Condition Expression
+//     anotherKeyCondition := expression.Key("partitionKey").Equal(expression.Value("aValue")).And(keyCondition)
+//
+// Expression Equivalent:
+//
+//     expression.KeyBetween(expression.Key("foo"), expression.Value(5), expression.Value(10))
+//     // Let :five and :ten be ExpressionAttributeValues representing the
+//     // values 5 and 10 respectively
+//     "foo BETWEEN :five AND :ten"
 func KeyBetween(keyBuilder KeyBuilder, lower, upper ValueBuilder) KeyConditionBuilder {
 	return KeyConditionBuilder{
 		operandList: []OperandBuilder{keyBuilder, lower, upper},
@@ -269,32 +371,47 @@ func KeyBetween(keyBuilder KeyBuilder, lower, upper ValueBuilder) KeyConditionBu
 	}
 }
 
-// Between will create a KeyConditionBuilder if and only if the method is called
-// on KeyBuilder.
+// Between returns a KeyConditionBuilder representing the result of the
+// BETWEEN function in DynamoDB Key Condition Expressions. The resulting
+// KeyConditionBuilder can be used as a part of other Key Condition Expressions.
 //
 // Example:
 //
-//     // The following produces equivalent key conditions:
-//     keyCondition := expression.KeyBetween(expression.Key("sortKey"), expression.Value(lower), expression.Value(upper))
-//     keyCondition := expression.Key("sortKey").Between(expression.Value(lower), expression.Value(upper))
+//     // keyCondition represents the boolean key condition of whether the value
+//     // of the key "foo" is between values 5 and 10
+//     keyCondition := expression.Key("foo").Between(expression.Value(5), expression.Value(10))
+//
+//     // Used in another Key Condition Expression
+//     anotherKeyCondition := expression.Key("partitionKey").Equal(expression.Value("aValue")).And(keyCondition)
+//
+// Expression Equivalent:
+//
+//     expression.Key("foo").Between(expression.Value(5), expression.Value(10))
+//     // Let :five and :ten be ExpressionAttributeValues representing the
+//     // values 5 and 10 respectively
+//     "foo BETWEEN :five AND :ten"
 func (kb KeyBuilder) Between(lower, upper ValueBuilder) KeyConditionBuilder {
 	return KeyBetween(kb, lower, upper)
 }
 
-// KeyBeginsWith will create a KeyConditionBuilder with a key and a value as
-// children. The key will represent the sortKey of the item being compared. The
-// value will represent the prefix in which the sortKey will be compared
-// with. The function will return true if the sortKey starts with the prefix.
-// The resulting KeyConditionBuilder can be optionally provided in addition to
-// an equal clause on the partition key to specify a subset of sort keys to
-// retrieve. This will be the function call.
+// KeyBeginsWith returns a KeyConditionBuilder representing the result of
+// the begins_with function in DynamoDB Key Condition Expressions. The resulting
+// KeyConditionBuilder can be used as a part of other Key Condition Expressions.
 //
 // Example:
 //
-//     partitionKeyCondition := expression.Key("partitionKey").Equal(expression.Value(someValue))
-//     sortKeyCondition := expression.KeyBeginsWith(expression.Key("sortKey"), "prefix")
+//     // keyCondition represents the boolean key condition of whether the value
+//     // of the key "foo" is begins with the prefix "bar"
+//     keyCondition := expression.KeyBeginsWith(expression.Key("foo"), "bar")
 //
-//     expression := KeyCondition(partitionKeyCondition.And(sortKeyCondition)) // Used to make a Expression
+//     // Used in another Key Condition Expression
+//     anotherKeyCondition := expression.Key("partitionKey").Equal(expression.Value("aValue")).And(keyCondition)
+//
+// Expression Equivalent:
+//
+//     expression.KeyBeginsWith(expression.Key("foo"), "bar")
+//     // Let :bar be an ExpressionAttributeValue representing the value "bar"
+//     "begins_with(foo, :bar)"
 func KeyBeginsWith(keyBuilder KeyBuilder, prefix string) KeyConditionBuilder {
 	valueBuilder := ValueBuilder{
 		value: prefix,
@@ -305,19 +422,29 @@ func KeyBeginsWith(keyBuilder KeyBuilder, prefix string) KeyConditionBuilder {
 	}
 }
 
-// BeginsWith will create a KeyConditionBuilder if and only if the method is called
-// on KeyBuilder.
+// BeginsWith returns a KeyConditionBuilder representing the result of the
+// begins_with function in DynamoDB Key Condition Expressions. The resulting
+// KeyConditionBuilder can be used as a part of other Key Condition Expressions.
 //
 // Example:
 //
-//     // The following produces equivalent key conditions:
-//     keyCondition := expression.KeyBeginsWith(expression.Key("sortKey"), "prefix")
-//     keyCondition := expression.Key("sortKey").BeginsWith("prefix")
+//     // keyCondition represents the boolean key condition of whether the value
+//     // of the key "foo" is begins with the prefix "bar"
+//     keyCondition := expression.Key("foo").BeginsWith("bar")
+//
+//     // Used in another Key Condition Expression
+//     anotherKeyCondition := expression.Key("partitionKey").Equal(expression.Value("aValue")).And(keyCondition)
+//
+// Expression Equivalent:
+//
+//     expression.Key("foo").BeginsWith("bar")
+//     // Let :bar be an ExpressionAttributeValue representing the value "bar"
+//     "begins_with(foo, :bar)"
 func (kb KeyBuilder) BeginsWith(prefix string) KeyConditionBuilder {
 	return KeyBeginsWith(kb, prefix)
 }
 
-// buildTree will build a tree structure of exprNodes based on the tree
+// buildTree builds a tree structure of exprNodes based on the tree
 // structure of the input KeyConditionBuilder's child KeyConditions/Operands.
 // buildTree() satisfies the treeBuilder interface so KeyConditionBuilder can be
 // a part of Expression struct.
@@ -347,7 +474,7 @@ func (kcb KeyConditionBuilder) buildTree() (exprNode, error) {
 }
 
 // compareBuildKeyCondition is the function to make exprNodes from Compare
-// KeyConditionBuilders. compareBuildKeyCondition will only be called by the
+// KeyConditionBuilders. compareBuildKeyCondition is only called by the
 // buildKeyCondition method. This function assumes that the argument
 // KeyConditionBuilder has the right format.
 func compareBuildKeyCondition(keyConditionMode keyConditionMode, node exprNode) (exprNode, error) {
@@ -371,7 +498,7 @@ func compareBuildKeyCondition(keyConditionMode keyConditionMode, node exprNode) 
 }
 
 // andBuildKeyCondition is the function to make exprNodes from And
-// KeyConditionBuilders. andBuildKeyCondition will only be called by the
+// KeyConditionBuilders. andBuildKeyCondition is only called by the
 // buildKeyCondition method. This function assumes that the argument
 // KeyConditionBuilder has the right format.
 func andBuildKeyCondition(keyConditionBuilder KeyConditionBuilder, node exprNode) (exprNode, error) {
@@ -386,7 +513,7 @@ func andBuildKeyCondition(keyConditionBuilder KeyConditionBuilder, node exprNode
 }
 
 // betweenBuildKeyCondition is the function to make exprNodes from Between
-// KeyConditionBuilders. betweenBuildKeyCondition will only be called by the
+// KeyConditionBuilders. betweenBuildKeyCondition is only called by the
 // buildKeyCondition method. This function assumes that the argument
 // KeyConditionBuilder has the right format.
 func betweenBuildKeyCondition(node exprNode) (exprNode, error) {
@@ -397,7 +524,7 @@ func betweenBuildKeyCondition(node exprNode) (exprNode, error) {
 }
 
 // beginsWithBuildKeyCondition is the function to make exprNodes from
-// BeginsWith KeyConditionBuilders. beginsWithBuildKeyCondition will only be
+// BeginsWith KeyConditionBuilders. beginsWithBuildKeyCondition is only
 // called by the buildKeyCondition method. This function assumes that the argument
 // KeyConditionBuilder has the right format.
 func beginsWithBuildKeyCondition(node exprNode) (exprNode, error) {
@@ -407,7 +534,7 @@ func beginsWithBuildKeyCondition(node exprNode) (exprNode, error) {
 	return node, nil
 }
 
-// buildChildNodes will create the list of the child exprNodes. This avoids
+// buildChildNodes creates the list of the child exprNodes. This avoids
 // duplication of code amongst the various buildConditions.
 func (kcb KeyConditionBuilder) buildChildNodes() ([]exprNode, error) {
 	childNodes := make([]exprNode, 0, len(kcb.keyConditionList)+len(kcb.operandList))
