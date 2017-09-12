@@ -285,9 +285,9 @@ func (e *Encoder) encode(av *dynamodb.AttributeValue, v reflect.Value, fieldTag 
 func (e *Encoder) encodeStruct(av *dynamodb.AttributeValue, v reflect.Value, fieldTag tag) error {
 	// To maintain backwards compatibility with ConvertTo family of methods which
 	// converted time.Time structs to strings
-	if v.Type().ConvertibleTo(reflect.TypeOf(time.Time{})) {
+	if v.Type().ConvertibleTo(timeType) {
 		var t time.Time
-		t = v.Convert(reflect.TypeOf(time.Time{})).Interface().(time.Time)
+		t = v.Convert(timeType).Interface().(time.Time)
 		if fieldTag.AsUnixTime {
 			return UnixTime(t).MarshalDynamoDBAttributeValue(av)
 		}
