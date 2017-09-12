@@ -10,7 +10,7 @@ import (
 type conditionMode int
 
 const (
-	// unsetCond catches errors if users make an empty ConditionBuilder
+	// unsetCond catches errors for unset ConditionBuilder structs
 	unsetCond conditionMode = iota
 	// equalCond represents the Equals Condition
 	equalCond

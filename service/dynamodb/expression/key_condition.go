@@ -9,7 +9,7 @@ import (
 type keyConditionMode int
 
 const (
-	// unsetKeyCond catches errors if users make an empty KeyConditionBuilder
+	// unsetKeyCond catches errors for unset KeyConditionBuilder structs
 	unsetKeyCond keyConditionMode = iota
 	// equalKeyCond represents the Equals KeyCondition
 	equalKeyCond

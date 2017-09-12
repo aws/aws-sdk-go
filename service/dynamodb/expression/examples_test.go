@@ -15,7 +15,7 @@ import (
 // This example queries items in the Music table. The table has a partition key and
 // sort key (Artist and SongTitle), but this query only specifies the partition key
 // value. It returns song titles by the artist named "No One You Know".
-func ExampleBuilder_WithProjection_shared00() {
+func ExampleBuilder_WithProjection() {
 	svc := dynamodb.New(session.New())
 
 	keyCond := expression.Key("Artist").Equal(expression.Value("No One You Know"))
@@ -60,7 +60,7 @@ func ExampleBuilder_WithProjection_shared00() {
 // This example queries items in the Music table. The table has a partition key and
 // sort key (Artist and SongTitle), but this query only specifies the partition key
 // value. It returns song titles by the artist named "No One You Know".
-func ExampleBuilder_WithKeyCondition_shared00() {
+func ExampleBuilder_WithKeyCondition() {
 	svc := dynamodb.New(session.New())
 
 	keyCond := expression.Key("Artist").Equal(expression.Value("No One You Know"))
@@ -105,7 +105,7 @@ func ExampleBuilder_WithKeyCondition_shared00() {
 // This example scans the entire Music table, and then narrows the results to songs
 // by the artist "No One You Know". For each item, only the album title and song title
 // are returned.
-func ExampleBuilder_WithFilter_shared00() {
+func ExampleBuilder_WithFilter() {
 	svc := dynamodb.New(session.New())
 
 	filt := expression.Name("Artist").Equal(expression.Value("No One You Know"))
@@ -151,7 +151,7 @@ func ExampleBuilder_WithFilter_shared00() {
 // This example updates an item in the Music table. It adds a new attribute (Year) and
 // modifies the AlbumTitle attribute.  All of the attributes in the item, as they appear
 // after the update, are returned in the response.
-func ExampleBuilder_WithUpdate_shared00() {
+func ExampleBuilder_WithUpdate() {
 	svc := dynamodb.New(session.New())
 
 	update := expression.Set(expression.Name("Year"), expression.Value(2015)).Set(expression.Name("AlbumTitle"), expression.Value("Louder Than Ever"))
@@ -204,7 +204,7 @@ func ExampleBuilder_WithUpdate_shared00() {
 //
 // This example deletes an item from the Music table if the rating is lower than
 // 7.
-func ExampleBuilder_WithCondition_shared00() {
+func ExampleBuilder_WithCondition() {
 	svc := dynamodb.New(session.New())
 
 	cond := expression.Name("Rating").LessThan(expression.Value(7))

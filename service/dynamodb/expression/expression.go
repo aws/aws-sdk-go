@@ -35,10 +35,10 @@ func (l typeList) Swap(i, j int) {
 	l[i], l[j] = l[j], l[i]
 }
 
-// Builder represents the struct that builds the Expression struct. Users can
-// add different types of DynamoDB Expressions to the Builder by using methods
-// WithProjection(), WithCondition(), etc. The method Build() creates an
-// Expression struct with the specified types of DynamoDB Expressions.
+// Builder represents the struct that builds the Expression struct. Methods such
+// as WithProjection() and WithCondition() can add different kinds of DynamoDB
+// Expressions to the Builder. The method Build() creates an Expression struct
+// with the specified types of DynamoDB Expressions.
 //
 // Example:
 //
@@ -59,10 +59,10 @@ type Builder struct {
 	expressionMap map[expressionType]treeBuilder
 }
 
-// NewBuilder returns an empty Builder struct. Users can add different types of
-// DynamoDB Expressions to the Builder by using methods WithProjection(),
-// WithCondition(), etc. The method Build() creates an Expression struct with
-// the specified types of DynamoDB Expressions.
+// NewBuilder returns an empty Builder struct. Methods such as WithProjection()
+// and WithCondition() can add different kinds of DynamoDB Expressions to the
+// Builder. The method Build() creates an Expression struct with the specified
+// types of DynamoDB Expressions.
 //
 // Example:
 //
@@ -74,11 +74,10 @@ func NewBuilder() Builder {
 }
 
 // Build builds an Expression struct representing multiple types of DynamoDB
-// Expressions. Users are able to call getter functions on the resulting
-// Expression struct to access the DynamoDB Expression strings as well as the
-// maps that correspond to ExpressionAttributeNames and
-// ExpressionAttributeValues. Calling Build() on an empty Builder returns the
-// typed error EmptyParameterError.
+// Expressions. Getter methods on the resulting Expression struct returns the
+// DynamoDB Expression strings as well as the maps that correspond to
+// ExpressionAttributeNames and ExpressionAttributeValues. Calling Build() on an
+// empty Builder returns the typed error EmptyParameterError.
 //
 // Example:
 //
@@ -166,9 +165,7 @@ func (b Builder) buildChildTrees() (aliasList, map[expressionType]string, error)
 // WithCondition method adds the argument ConditionBuilder as a Condition
 // Expression to the argument Builder. If the argument Builder already has a
 // ConditionBuilder representing a Condition Expression, WithCondition()
-// overwrites the existing ConditionBuilder. Users are able to add other
-// DynamoDB Expressions to the Builder or call Build() to build an Expression
-// struct.
+// overwrites the existing ConditionBuilder.
 //
 // Example:
 //
@@ -192,9 +189,7 @@ func (b Builder) WithCondition(conditionBuilder ConditionBuilder) Builder {
 // WithProjection method adds the argument ProjectionBuilder as a Projection
 // Expression to the argument Builder. If the argument Builder already has a
 // ProjectionBuilder representing a Projection Expression, WithProjection()
-// overwrites the existing ProjectionBuilder. Users are able to add other
-// DynamoDB Expressions to the Builder or call Build() to build an Expression
-// struct.
+// overwrites the existing ProjectionBuilder.
 //
 // Example:
 //
@@ -218,9 +213,7 @@ func (b Builder) WithProjection(projectionBuilder ProjectionBuilder) Builder {
 // WithKeyCondition method adds the argument KeyConditionBuilder as a Key
 // Condition Expression to the argument Builder. If the argument Builder already
 // has a KeyConditionBuilder representing a Key Condition Expression,
-// WithKeyCondition() overwrites the existing KeyConditionBuilder. Users are
-// able to add other DynamoDB Expressions to the Builder or call Build() to
-// build an Expression struct.
+// WithKeyCondition() overwrites the existing KeyConditionBuilder.
 //
 // Example:
 //
@@ -244,9 +237,7 @@ func (b Builder) WithKeyCondition(keyConditionBuilder KeyConditionBuilder) Build
 // WithFilter method adds the argument ConditionBuilder as a Filter Expression
 // to the argument Builder. If the argument Builder already has a
 // ConditionBuilder representing a Filter Expression, WithFilter()
-// overwrites the existing ConditionBuilder. Users are able to add other
-// DynamoDB Expressions to the Builder or call Build() to build an Expression
-// struct.
+// overwrites the existing ConditionBuilder.
 //
 // Example:
 //
@@ -270,8 +261,7 @@ func (b Builder) WithFilter(filterBuilder ConditionBuilder) Builder {
 // WithUpdate method adds the argument UpdateBuilder as an Update Expression
 // to the argument Builder. If the argument Builder already has a UpdateBuilder
 // representing a Update Expression, WithUpdate() overwrites the existing
-// UpdateBuilder. Users are able to add other DynamoDB Expressions to the
-// Builder or call Build() to build an Expression struct.
+// UpdateBuilder.
 //
 // Example:
 //
@@ -292,10 +282,9 @@ func (b Builder) WithUpdate(updateBuilder UpdateBuilder) Builder {
 	return b
 }
 
-// Expression represents a collection of DynamoDB Expressions. Users are able to
-// retrieve the formatted DynamoDB Expressions, ExpressionAttributeNames, and
-// ExpressionAttributeValues by getter methods such as Condition(),
-// Projection(), Names(), etc.
+// Expression represents a collection of DynamoDB Expressions. The getter
+// methods of the Expression struct retrieves the formatted DynamoDB
+// Expressions, ExpressionAttributeNames, and ExpressionAttributeValues.
 //
 // Example:
 //
@@ -443,13 +432,13 @@ func (e Expression) Update() *string {
 // Names returns the map[string]*string corresponding to the
 // ExpressionAttributeNames of the argument Expression. This method is used to
 // satisfy the members of DynamoDB input structs. If Expression does not use
-// ExpressionAttributeNames, this method returns nil. Users must always fill in
-// the ExpressionAttributeNames and ExpressionAttributeValues member of the
-// input struct when using the Expression struct since all item attribute names
-// and values are aliased. That means that if the ExpressionAttributeNames and
-// ExpressionAttributeValues member is not assigned with the corresponding
-// Names() and Values() methods, the DynamoDB operation will run into a logic
-// error.
+// ExpressionAttributeNames, this method returns nil. The
+// ExpressionAttributeNames and ExpressionAttributeValues member of the input
+// struct must always be injected when using the Expression struct since all
+// item attribute names and values are aliased. That means that if the
+// ExpressionAttributeNames and ExpressionAttributeValues member is not assigned
+// with the corresponding Names() and Values() methods, the DynamoDB operation
+// will run into a logic error.
 //
 // Example:
 //
@@ -469,13 +458,14 @@ func (e Expression) Names() map[string]*string {
 // Values returns the map[string]*dynamodb.AttributeValue corresponding to
 // the ExpressionAttributeValues of the argument Expression. This method is used
 // to satisfy the members of DynamoDB input structs. If Expression does not use
-// ExpressionAttributeValues, this method returns nil. Users must always fill in
-// the ExpressionAttributeNames and ExpressionAttributeValues member of the
-// input struct when using the Expression struct since all item attribute names
-// and values are aliased. That means that if the ExpressionAttributeNames and
-// ExpressionAttributeValues member is not assigned with the corresponding
-// Names() and Values() methods, the DynamoDB operation will run into a logic
-// error.
+// ExpressionAttributeValues, this method returns nil. The
+// ExpressionAttributeNames and ExpressionAttributeValues member of the input
+// struct must always be injected when using the Expression struct since all
+// item attribute names and values are aliased. That means that if the
+// ExpressionAttributeNames and ExpressionAttributeValues member is not assigned
+// with the corresponding Names() and Values() methods, the DynamoDB operation
+// will run into a logic error.
+//
 // Example:
 //
 //     // let expression be an instance of Expression{}

@@ -8,7 +8,7 @@ The package represents the various DynamoDB Expressions as builder structs named
 accordingly. For example, ConditionBuilder represents a DynamoDB Condition
 Expression, an UpdateBuilder represents a DynamoDB Update Expression, and so
 forth.
-The following example will show a sample ConditionExpression and how to build an
+The following example shows a sample ConditionExpression and how to build an
 equilvalent ConditionBuilder
 
   // Let :a be an ExpressionAttributeValue representing the string "No One You
@@ -16,13 +16,12 @@ equilvalent ConditionBuilder
   condExpr := "Artist = :a"
   condBuilder := expression.Name("Artist").Equal(expression.Value("No One You Know"))
 
-In order to retrieve the formatted DynamoDB Expression strings, users must call
-getter methods on the Expression struct. To create the Expression struct, users
-must call the Build() method on the Builder struct. Since some input structs,
-such as QueryInput, can have multiple DynamoDB Expressions, users can add
-multiple builder structs representing various DynamoDB Expressions to the
-Builder struct.
-The following example will show a generic usage of the whole package.
+In order to retrieve the formatted DynamoDB Expression strings, call the getter
+methods on the Expression struct. To create the Expression struct, call the
+Build() method on the Builder struct. Since some input structs, such as
+QueryInput, can have multiple DynamoDB Expressions, multiple builder structs
+representing various DynamoDB Expressions can be added to the Builder struct.
+The following example shows a generic usage of the whole package.
 
   filt := expression.Name("Artist").Equal(expression.Value("No One You Know"))
   proj := expression.NamesList(expression.Name("SongTitle"), expression.Name("AlbumTitle"))
@@ -44,6 +43,6 @@ ExpressionAttributeValues member of the input struct when using the Expression
 struct since all item attribute names and values are aliased. That means that if
 the ExpressionAttributeNames and ExpressionAttributeValues member is not
 assigned with the corresponding Names() and Values() methods, the DynamoDB
-operation will run into a logic error.
+operation runs into a logic error.
 */
 package expression

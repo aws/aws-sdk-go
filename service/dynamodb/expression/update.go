@@ -93,8 +93,7 @@ func (ob operationBuilder) buildOperation() (exprNode, error) {
 // DynamoDB Update Expressions. The argument name should specify the item
 // attribute and the argument value should specify the value to be deleted. The
 // resulting UpdateBuilder can be used as an argument to the WithUpdate() method
-// for the Builder struct. Users can also add other Update operations on the
-// UpdateBuilder.
+// for the Builder struct.
 //
 // Example:
 //
@@ -121,8 +120,7 @@ func Delete(name NameBuilder, value ValueBuilder) UpdateBuilder {
 // Delete adds a Delete operation to the argument UpdateBuilder. The
 // argument name should specify the item attribute and the argument value should
 // specify the value to be deleted. The resulting UpdateBuilder can be used as
-// an argument to the WithUpdate() method for the Builder struct. Users can also
-// add other Update operations on the UpdateBuilder.
+// an argument to the WithUpdate() method for the Builder struct.
 //
 // Example:
 //
@@ -158,8 +156,7 @@ func (ub UpdateBuilder) Delete(name NameBuilder, value ValueBuilder) UpdateBuild
 // Update Expressions. The argument name should specify the item attribute and
 // the argument value should specify the value to be added. The resulting
 // UpdateBuilder can be used as an argument to the WithUpdate() method for the
-// Builder struct. Users can also add other Update operations on the
-// UpdateBuilder.
+// Builder struct.
 //
 // Example:
 //
@@ -185,8 +182,7 @@ func Add(name NameBuilder, value ValueBuilder) UpdateBuilder {
 // Add adds an Add operation to the argument UpdateBuilder. The argument
 // name should specify the item attribute and the argument value should specify
 // the value to be added. The resulting UpdateBuilder can be used as an argument
-// to the WithUpdate() method for the Builder struct. Users can also add other
-// Update operations on the UpdateBuilder.
+// to the WithUpdate() method for the Builder struct.
 //
 // Example:
 //
@@ -219,8 +215,7 @@ func (ub UpdateBuilder) Add(name NameBuilder, value ValueBuilder) UpdateBuilder 
 // Remove returns an UpdateBuilder representing the Remove operation for
 // DynamoDB Update Expressions. The argument name should specify the item
 // attribute to delete. The resulting UpdateBuilder can be used as an argument
-// to the WithUpdate() method for the Builder struct. Users can also add other
-// Update operations on the UpdateBuilder.
+// to the WithUpdate() method for the Builder struct.
 //
 // Example:
 //
@@ -245,8 +240,9 @@ func Remove(name NameBuilder) UpdateBuilder {
 // Remove adds a Remove operation to the argument UpdateBuilder. The
 // argument name should specify the item attribute to delete. The resulting
 // UpdateBuilder can be used as an argument to the WithUpdate() method for the
-// Builder struct. Users can also add other Update operations on the
-// UpdateBuilder.
+// Builder struct.
+//
+// Example:
 //
 //     // Let update represent an already existing update expression. Remove()
 //     // adds the operation to remove the item attribute "itemToRemove"
@@ -276,8 +272,7 @@ func (ub UpdateBuilder) Remove(name NameBuilder) UpdateBuilder {
 // Update Expressions. The argument name should specify the item attribute to
 // modify. The argument OperandBuilder should specify the value to modify the
 // the item attribute to. The resulting UpdateBuilder can be used as an argument
-// to the WithUpdate() method for the Builder struct. Users can also add other
-// Update operations on the UpdateBuilder.
+// to the WithUpdate() method for the Builder struct.
 //
 // Example:
 //
@@ -306,8 +301,7 @@ func Set(name NameBuilder, operandBuilder OperandBuilder) UpdateBuilder {
 // should specify the item attribute to modify. The argument OperandBuilder
 // should specify the value to modify the the item attribute to. The resulting
 // UpdateBuilder can be used as an argument to the WithUpdate() method for the
-// Builder struct. Users can also add other Update operations on the
-// UpdateBuilder.
+// Builder struct.
 //
 // Example:
 //

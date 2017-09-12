@@ -9,9 +9,9 @@ import (
 )
 
 // ValueBuilder represents an item attribute value operand and implements the
-// OperandBuilder interface. Users can establish relationships between operands
-// using methods and functions available in the package. Users should only
-// initialize a ValueBuilder using the function Value().
+// OperandBuilder interface. Methods and functions in the package take
+// ValueBuilder as an argument and establishes relationships between operands.
+// ValueBuilder should only be initialized using the function Value().
 //
 // Example:
 //
@@ -23,9 +23,9 @@ type ValueBuilder struct {
 
 // NameBuilder represents a name of a top level item attribute or a nested
 // attribute. Since NameBuilder represents a DynamoDB Operand, it implements the
-// OperandBuilder interface. Users can establish relationships between operands
-// using methods and functions available in the package. Users should only
-// initialize a NameBuilder using the function Name().
+// OperandBuilder interface. Methods and functions in the package take
+// NameBuilder as an argument and establishes relationships between operands.
+// NameBuilder should only be initialized using the function Name().
 //
 // Example:
 //
@@ -38,9 +38,9 @@ type NameBuilder struct {
 // SizeBuilder represents the output of the function size ("someName"), which
 // evaluates to the size of the item attribute defined by "someName". Since
 // SizeBuilder represents an operand, SizeBuilder implements the OperandBuilder
-// interface. Users can establish relationships between operands using methods
-// and functions available in the package. Users should only initialize a
-// SizeBuilder using the function Size().
+// interface. Methods and functions in the package take SizeBuilder as an
+// argument and establishes relationships between operands. SizeBuilder should
+// only be initialized using the function Size().
 //
 // Example:
 //
@@ -54,10 +54,10 @@ type SizeBuilder struct {
 // KeyBuilder represents either the partition key or the sort key, both of which
 // are top level attributes to some item in DynamoDB. Since KeyBuilder
 // represents an operand, KeyBuilder implements the OperandBuilder interface.
-// Users can establish relationships between operands using methods and
-// functions available in the package. However, KeyBuilder should only be used
-// to describe Key Condition Expressions. Users should only initialize a
-// KeyBuilder using the function Key().
+// Methods and functions in the package take KeyBuilder as an argument and
+// establishes relationships between operands. However, KeyBuilder should only
+// be used to describe Key Condition Expressions. KeyBuilder should only be
+// initialized using the function Key().
 //
 // Example:
 //
@@ -68,8 +68,8 @@ type KeyBuilder struct {
 }
 
 // setValueMode specifies the type of SetValueBuilder. The default value is
-// unsetValue so if a User were to create an empty SetValueBuilder, we can
-// return an UnsetParameterError when BuildOperand() is called.
+// unsetValue so that an UnsetParameterError when BuildOperand() is called on an
+// empty SetValueBuilder.
 type setValueMode int
 
 const (
@@ -89,7 +89,7 @@ const (
 // For documentation on the above functions,
 // see: http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.UpdateExpressions.html#Expressions.UpdateExpressions.SET
 // Since SetValueBuilder represents an operand, it implements the OperandBuilder
-// interface. Users can use a SetValueBuilder as an argument to the Set()
+// interface. SetValueBuilder structs are used as arguments to the Set()
 // function. SetValueBuilders should only initialize a SetValueBuilder using the
 // functions listed above.
 type SetValueBuilder struct {
@@ -107,12 +107,12 @@ type Operand struct {
 }
 
 // OperandBuilder represents the idea of Operand which are building blocks to
-// DynamoDB Expressions. Users can establish relationships between operands by
-// calling the package functions, representing DynamoDB Expressions. The method
+// DynamoDB Expressions. Package methods and functions can establish
+// relationships between operands, representing DynamoDB Expressions. The method
 // BuildOperand() is called recursively when the Build() method on the type
-// Builder is called. Users should never call BuildOperand(). OperandBuilder and
-// BuildOperand are exported to allow package functions to take an interface as
-// an argument.
+// Builder is called. BuildOperand() should never be called externally.
+// OperandBuilder and BuildOperand() are exported to allow package functions to
+// take an interface as an argument.
 type OperandBuilder interface {
 	BuildOperand() (Operand, error)
 }
@@ -461,11 +461,12 @@ func (nb NameBuilder) IfNotExists(rightOperand OperandBuilder) SetValueBuilder {
 }
 
 // BuildOperand creates an Operand struct which are building blocks to DynamoDB
-// Expressions. Users are able to establish relationships between operands by
-// calling the package functions, representing DynamoDB Expressions. The method
+// Expressions. Package methods and functions can establish relationships
+// between operands, representing DynamoDB Expressions. The method
 // BuildOperand() is called recursively when the Build() method on the type
-// Builder is called. Users should never call BuildOperand(). BuildOperand
-// aliases all strings to avoid stepping over DynamoDB's reserved words.
+// Builder is called. BuildOperand() should never be called externally.
+// BuildOperand() aliases all strings to avoid stepping over DynamoDB's reserved
+// words.
 // More information on reserved words at http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html
 func (nb NameBuilder) BuildOperand() (Operand, error) {
 	if nb.name == "" {
@@ -510,11 +511,12 @@ func (nb NameBuilder) BuildOperand() (Operand, error) {
 }
 
 // BuildOperand creates an Operand struct which are building blocks to DynamoDB
-// Expressions. Users are able to establish relationships between operands by
-// calling the package functions, representing DynamoDB Expressions. The method
+// Expressions. Package methods and functions can establish relationships
+// between operands, representing DynamoDB Expressions. The method
 // BuildOperand() is called recursively when the Build() method on the type
-// Builder is called. Users should never call BuildOperand(). BuildOperand
-// aliases all strings to avoid stepping over DynamoDB's reserved words.
+// Builder is called. BuildOperand() should never be called externally.
+// BuildOperand() aliases all strings to avoid stepping over DynamoDB's reserved
+// words.
 // More information on reserved words at http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html
 func (vb ValueBuilder) BuildOperand() (Operand, error) {
 	expr, err := dynamodbattribute.Marshal(vb.value)
@@ -533,11 +535,12 @@ func (vb ValueBuilder) BuildOperand() (Operand, error) {
 }
 
 // BuildOperand creates an Operand struct which are building blocks to DynamoDB
-// Expressions. Users are able to establish relationships between operands by
-// calling the package functions, representing DynamoDB Expressions. The method
+// Expressions. Package methods and functions can establish relationships
+// between operands, representing DynamoDB Expressions. The method
 // BuildOperand() is called recursively when the Build() method on the type
-// Builder is called. Users should never call BuildOperand(). BuildOperand
-// aliases all strings to avoid stepping over DynamoDB's reserved words.
+// Builder is called. BuildOperand() should never be called externally.
+// BuildOperand() aliases all strings to avoid stepping over DynamoDB's reserved
+// words.
 // More information on reserved words at http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html
 func (sb SizeBuilder) BuildOperand() (Operand, error) {
 	operand, err := sb.nameBuilder.BuildOperand()
@@ -547,11 +550,12 @@ func (sb SizeBuilder) BuildOperand() (Operand, error) {
 }
 
 // BuildOperand creates an Operand struct which are building blocks to DynamoDB
-// Expressions. Users are able to establish relationships between operands by
-// calling the package functions, representing DynamoDB Expressions. The method
+// Expressions. Package methods and functions can establish relationships
+// between operands, representing DynamoDB Expressions. The method
 // BuildOperand() is called recursively when the Build() method on the type
-// Builder is called. Users should never call BuildOperand(). BuildOperand
-// aliases all strings to avoid stepping over DynamoDB's reserved words.
+// Builder is called. BuildOperand() should never be called externally.
+// BuildOperand() aliases all strings to avoid stepping over DynamoDB's reserved
+// words.
 // More information on reserved words at http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html
 func (kb KeyBuilder) BuildOperand() (Operand, error) {
 	if kb.key == "" {
@@ -569,11 +573,12 @@ func (kb KeyBuilder) BuildOperand() (Operand, error) {
 }
 
 // BuildOperand creates an Operand struct which are building blocks to DynamoDB
-// Expressions. Users are able to establish relationships between operands by
-// calling the package functions, representing DynamoDB Expressions. The method
+// Expressions. Package methods and functions can establish relationships
+// between operands, representing DynamoDB Expressions. The method
 // BuildOperand() is called recursively when the Build() method on the type
-// Builder is called. Users should never call BuildOperand(). BuildOperand
-// aliases all strings to avoid stepping over DynamoDB's reserved words.
+// Builder is called. BuildOperand() should never be called externally.
+// BuildOperand() aliases all strings to avoid stepping over DynamoDB's reserved
+// words.
 // More information on reserved words at http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html
 func (svb SetValueBuilder) BuildOperand() (Operand, error) {
 	if svb.mode == unsetValue {
