@@ -30425,7 +30425,7 @@ type DescribeHostReservationOfferingsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// Information about the offerings.
-	OfferingSet []*HostOffering `locationName:"offeringSet" type:"list"`
+	OfferingSet []*HostOffering `locationName:"offeringSet" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation

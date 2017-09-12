@@ -1777,6 +1777,11 @@
           "cn-north-1" : { }
         }
       },
+      "snowball" : {
+        "endpoints" : {
+          "cn-north-1" : { }
+        }
+      },
       "sns" : {
         "defaults" : {
           "protocols" : [ "http", "https" ]

@@ -1,3 +1,11 @@
+Release v1.10.43 (2017-09-12)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * Fixed bug in EC2 clients preventing HostOfferingSet from being set
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.10.42 (2017-09-12)
 ===
 
