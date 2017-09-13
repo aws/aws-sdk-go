@@ -4,7 +4,7 @@ strings, ExpressionAttributeNames maps, and ExpressionAttributeValues maps.
 
 Using the Package
 
-The package represents the various DynamoDB Expressions as builder structs named
+The package represents the various DynamoDB Expressions as structs named
 accordingly. For example, ConditionBuilder represents a DynamoDB Condition
 Expression, an UpdateBuilder represents a DynamoDB Update Expression, and so
 forth.
@@ -19,7 +19,7 @@ equilvalent ConditionBuilder
 In order to retrieve the formatted DynamoDB Expression strings, call the getter
 methods on the Expression struct. To create the Expression struct, call the
 Build() method on the Builder struct. Since some input structs, such as
-QueryInput, can have multiple DynamoDB Expressions, multiple builder structs
+QueryInput, can have multiple DynamoDB Expressions, multiple structs
 representing various DynamoDB Expressions can be added to the Builder struct.
 The following example shows a generic usage of the whole package.
 
