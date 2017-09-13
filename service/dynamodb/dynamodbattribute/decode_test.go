@@ -589,6 +589,10 @@ func TestDecodeAliasedUnixTime(t *testing.T) {
 	actual := A{}
 
 	err := Unmarshal(input, &actual)
-	assert.NoError(t, err)
-	assert.Equal(t, expect, actual)
+	if err != nil {
+		t.Errorf("expect no error, got %v", err)
+	}
+	if expect != actual {
+		t.Errorf("expect %v, got %v", expect, actual)
+	}
 }

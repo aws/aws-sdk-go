@@ -252,7 +252,9 @@ func TestEncodeAliasedUnixTime(t *testing.T) {
 	}
 
 	actual, err := Marshal(a)
-	assert.NoError(t, err)
+	if err != nil {
+		t.Errorf("expect no err, got %v", err)
+	}
 	expect := &dynamodb.AttributeValue{
 		M: map[string]*dynamodb.AttributeValue{
 			"Normal": {
@@ -263,5 +265,7 @@ func TestEncodeAliasedUnixTime(t *testing.T) {
 			},
 		},
 	}
-	assert.Equal(t, expect, actual)
+	if e, a := expect, actual; !reflect.DeepEqual(e, a) {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 }
