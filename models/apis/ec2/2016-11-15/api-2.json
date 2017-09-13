@@ -9898,6 +9898,7 @@
         "r4.16xlarge",
         "x1.16xlarge",
         "x1.32xlarge",
+        "x1e.32xlarge",
         "i2.xlarge",
         "i2.2xlarge",
         "i2.4xlarge",

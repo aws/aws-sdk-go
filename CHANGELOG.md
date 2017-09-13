@@ -1,3 +1,23 @@
+Release v1.10.44 (2017-09-13)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * Customers can create Life Cycle Hooks at the time of creating Auto Scaling Groups through the CreateAutoScalingGroup API
+* `service/batch`: Updates service documentation and examples
+  * Documentation updates for batch
+* `service/ec2`: Updates service API
+  * You are now able to create and launch EC2 x1e.32xlarge instance, a new EC2 instance in the X1 family, in us-east-1, us-west-2, eu-west-1, and ap-northeast-1. x1e.32xlarge offers 128 vCPUs, 3,904 GiB of DDR4 instance memory, high memory bandwidth, large L3 caches, and leading reliability capabilities to boost the performance and reliability of in-memory applications.
+* `service/events`: Updates service API and documentation
+  * Exposes ConcurrentModificationException as one of the valid exceptions for PutPermission and RemovePermission operation.
+
+### SDK Enhancements
+* `service/autoscaling`: Fix documentation for PutScalingPolicy.AutoScalingGroupName [#1522](https://github.com/aws/aws-sdk-go/pull/1522)
+* `service/s3/s3manager`: Clarify S3 Upload manager Concurrency config [#1521](https://github.com/aws/aws-sdk-go/pull/1521)
+  * Fixes [#1458](https://github.com/aws/aws-sdk-go/issues/1458)
+* `service/dynamodb/dynamodbattribute`: Add support for time alias. [#1520](https://github.com/aws/aws-sdk-go/pull/1520)
+  * Related to [#1505](https://github.com/aws/aws-sdk-go/pull/1505)
+
 Release v1.10.43 (2017-09-12)
 ===
 
