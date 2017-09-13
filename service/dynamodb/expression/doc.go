@@ -38,11 +38,11 @@ The following example shows a generic usage of the whole package.
     TableName:                 aws.String("Music"),
   }
 
-Users must always fill in the ExpressionAttributeNames and
-ExpressionAttributeValues member of the input struct when using the Expression
-struct since all item attribute names and values are aliased. That means that if
-the ExpressionAttributeNames and ExpressionAttributeValues member is not
-assigned with the corresponding Names() and Values() methods, the DynamoDB
-operation runs into a logic error.
+The ExpressionAttributeNames and ExpressionAttributeValues member of the input
+struct must always be assigned when using the Expression struct since all item
+attribute names and values are aliased. That means that if the
+ExpressionAttributeNames and ExpressionAttributeValues member is not assigned
+with the corresponding Names() and Values() methods, the DynamoDB operation will
+run into a logic error.
 */
 package expression

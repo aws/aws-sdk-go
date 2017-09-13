@@ -434,7 +434,7 @@ func (e Expression) Update() *string {
 // satisfy the members of DynamoDB input structs. If Expression does not use
 // ExpressionAttributeNames, this method returns nil. The
 // ExpressionAttributeNames and ExpressionAttributeValues member of the input
-// struct must always be injected when using the Expression struct since all
+// struct must always be assigned when using the Expression struct since all
 // item attribute names and values are aliased. That means that if the
 // ExpressionAttributeNames and ExpressionAttributeValues member is not assigned
 // with the corresponding Names() and Values() methods, the DynamoDB operation
@@ -460,7 +460,7 @@ func (e Expression) Names() map[string]*string {
 // to satisfy the members of DynamoDB input structs. If Expression does not use
 // ExpressionAttributeValues, this method returns nil. The
 // ExpressionAttributeNames and ExpressionAttributeValues member of the input
-// struct must always be injected when using the Expression struct since all
+// struct must always be assigned when using the Expression struct since all
 // item attribute names and values are aliased. That means that if the
 // ExpressionAttributeNames and ExpressionAttributeValues member is not assigned
 // with the corresponding Names() and Values() methods, the DynamoDB operation
