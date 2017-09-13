@@ -8,8 +8,8 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
-// expressionType will specify the type of Expression. The const is used to
-// eliminate magic strings
+// expressionType specifies the type of Expression. Declaring this type is used
+// to eliminate magic strings
 type expressionType string
 
 const (
@@ -20,7 +20,7 @@ const (
 	update                      = "update"
 )
 
-// Implementing the Sort interface
+// Implement the Sort interface
 type typeList []expressionType
 
 func (l typeList) Len() int {
@@ -35,20 +35,16 @@ func (l typeList) Swap(i, j int) {
 	l[i], l[j] = l[j], l[i]
 }
 
-// Builder contains a list of structs fulfilling the treeBuilder interface,
-// representing the different types of Expressions that make up the total
-// Expression as a whole. Builder will have methods corresponding to different
-// types of expressions (WithUpdate(), WithCondition(), WithFilter(), etc) that
-// will allow users to add expressions to the input member Expression that
-// Builder creates. Builder will have a method Build() which will build the
-// Expression struct which can be used to produce members of DynamoDB input
-// structs.
-// Builder is to be created with functions, not to be initialized.
+// Builder represents the struct that builds the Expression struct. Methods such
+// as WithProjection() and WithCondition() can add different kinds of DynamoDB
+// Expressions to the Builder. The method Build() creates an Expression struct
+// with the specified types of DynamoDB Expressions.
 //
 // Example:
 //
 //     keyCond := expression.Key("someKey").Equal(expression.Value("someValue"))
 //     proj := expression.NamesList(expression.Name("aName"), expression.Name("anotherName"), expression.Name("oneOtherName"))
+//
 //     builder := expression.NewBuilder().WithKeyCondition(keyCond).WithProjection(proj)
 //     expression := builder.Build()
 //
@@ -63,8 +59,10 @@ type Builder struct {
 	expressionMap map[expressionType]treeBuilder
 }
 
-// NewBuilder returns an empty Builder struct. The NewBuilder function can be
-// used to functionally build the Builder.
+// NewBuilder returns an empty Builder struct. Methods such as WithProjection()
+// and WithCondition() can add different kinds of DynamoDB Expressions to the
+// Builder. The method Build() creates an Expression struct with the specified
+// types of DynamoDB Expressions.
 //
 // Example:
 //
@@ -75,11 +73,31 @@ func NewBuilder() Builder {
 	return Builder{}
 }
 
-// Build builds a Expression struct with the same expressionMap as the argument
-// Builder. The aim of this method is to check the child treeBuilders for their
-// formats and return an error. This makes sure that any Expression has the
-// right format or is an empty struct
-// Calling Build on an empty Builder will return a typed error ErrEmptyBuilder.
+// Build builds an Expression struct representing multiple types of DynamoDB
+// Expressions. Getter methods on the resulting Expression struct returns the
+// DynamoDB Expression strings as well as the maps that correspond to
+// ExpressionAttributeNames and ExpressionAttributeValues. Calling Build() on an
+// empty Builder returns the typed error EmptyParameterError.
+//
+// Example:
+//
+//     // keyCond represents the Key Condition Expression
+//     keyCond := expression.Key("someKey").Equal(expression.Value("someValue"))
+//     // proj represents the Projection Expression
+//     proj := expression.NamesList(expression.Name("aName"), expression.Name("anotherName"), expression.Name("oneOtherName"))
+//
+//     // Add keyCond and proj to builder as a Key Condition and Projection
+//     // respectively
+//     builder := expression.NewBuilder().WithKeyCondition(keyCond).WithProjection(proj)
+//     expression := builder.Build()
+//
+//     queryInput := dynamodb.QueryInput{
+//       KeyConditionExpression:    expression.KeyCondition(),
+//       ProjectionExpression:      expression.Projection(),
+//       ExpressionAttributeNames:  expression.Names(),
+//       ExpressionAttributeValues: expression.Values(),
+//       TableName: aws.String("SomeTable"),
+//     }
 func (b Builder) Build() (Expression, error) {
 	if b.expressionMap == nil {
 		return Expression{}, newUnsetParameterError("Build", "Builder")
@@ -113,11 +131,11 @@ func (b Builder) Build() (Expression, error) {
 	return expression, nil
 }
 
-// buildChildTrees will compile the list of treeBuilders that are the children
-// of the argument Builder. The returned aliasList will represent all the
-// alias tokens used in the expression strings. The returned map[string]string
-// will map the type of expression (i.e. "condition", "update") to the
-// appropriate expression string.
+// buildChildTrees compiles the list of treeBuilders that are the children of
+// the argument Builder. The returned aliasList represents all the alias tokens
+// used in the expression strings. The returned map[string]string maps the type
+// of expression (i.e. "condition", "update") to the appropriate expression
+// string.
 func (b Builder) buildChildTrees() (aliasList, map[expressionType]string, error) {
 	aList := aliasList{}
 	formattedExpressions := map[expressionType]string{}
@@ -144,18 +162,21 @@ func (b Builder) buildChildTrees() (aliasList, map[expressionType]string, error)
 	return aList, formattedExpressions, nil
 }
 
-// WithCondition method will add the argument ConditionBuilder as a treeBuilder
-// to the argument Builder. If the argument Builder already has a
-// ConditionBuilder under the key condition, WithCondition() will overwrite the
-// existing ConditionBuilder. Users will able to add other treeBuilders to the
-// Builder or call Build() to build a Expression struct.
+// WithCondition method adds the argument ConditionBuilder as a Condition
+// Expression to the argument Builder. If the argument Builder already has a
+// ConditionBuilder representing a Condition Expression, WithCondition()
+// overwrites the existing ConditionBuilder.
 //
 // Example:
 //
-//     // let builder be an existing Builder{} and
-//     // conditionBuilder be an existing ConditionBuilder{}
-//     builder = builder.WithCondition(conditionBuilder)
+//     // let builder be an existing Builder{} and cond be an existing
+//     // ConditionBuilder{}
+//     builder = builder.WithCondition(cond)
 //
+//     // add other DynamoDB Expressions to the builder. let proj be an already
+//     // existing ProjectionBuilder
+//     builder = builder.WithProjection(proj)
+//     // create an Expression struct
 //     expression := builder.Build()
 func (b Builder) WithCondition(conditionBuilder ConditionBuilder) Builder {
 	if b.expressionMap == nil {
@@ -165,18 +186,21 @@ func (b Builder) WithCondition(conditionBuilder ConditionBuilder) Builder {
 	return b
 }
 
-// WithProjection method will add the argument ProjectionBuilder as a
-// treeBuilder to the argument Builder. If the argument Builder already has a
-// ProjectionBuilder, WithProjection() will overwrite the existing
-// ProjectionBuilder. Users will able to add other treeBuilders to the Builder
-// or call Build() to build a Expression struct.
+// WithProjection method adds the argument ProjectionBuilder as a Projection
+// Expression to the argument Builder. If the argument Builder already has a
+// ProjectionBuilder representing a Projection Expression, WithProjection()
+// overwrites the existing ProjectionBuilder.
 //
 // Example:
 //
-//     // let builder be an existing Builder{} and
-//     // projectionBuilder be an existing projectionBuilder{}
-//     builder = builder.WithProjection(projectionBuilder)
+//     // let builder be an existing Builder{} and proj be an existing
+//     // ProjectionBuilder{}
+//     builder = builder.WithProjection(proj)
 //
+//     // add other DynamoDB Expressions to the builder. let cond be an already
+//     // existing ConditionBuilder
+//     builder = builder.WithCondition(cond)
+//     // create an Expression struct
 //     expression := builder.Build()
 func (b Builder) WithProjection(projectionBuilder ProjectionBuilder) Builder {
 	if b.expressionMap == nil {
@@ -186,18 +210,21 @@ func (b Builder) WithProjection(projectionBuilder ProjectionBuilder) Builder {
 	return b
 }
 
-// WithKeyCondition method will add the argument KeyConditionBuilder as a treeBuilder to
-// the argument Builder. If the argument Builder already has a
-// KeyConditionBuilder, WithKeyCondition() will overwrite the existing KeyConditionBuilder.
-// Users will able to add other treeBuilders to the Builder or call
-// Build() to build a Expression struct.
+// WithKeyCondition method adds the argument KeyConditionBuilder as a Key
+// Condition Expression to the argument Builder. If the argument Builder already
+// has a KeyConditionBuilder representing a Key Condition Expression,
+// WithKeyCondition() overwrites the existing KeyConditionBuilder.
 //
 // Example:
 //
-//     // let builder be an existing Builder{} and
-//     // keyConditionBuilder be an existing keyConditionBuilder{}
-//     builder = builder.WithKeyCondition(keyConditionBuilder)
+//     // let builder be an existing Builder{} and keyCond be an existing
+//     // KeyConditionBuilder{}
+//     builder = builder.WithKeyCondition(keyCond)
 //
+//     // add other DynamoDB Expressions to the builder. let cond be an already
+//     // existing ConditionBuilder
+//     builder = builder.WithCondition(cond)
+//     // create an Expression struct
 //     expression := builder.Build()
 func (b Builder) WithKeyCondition(keyConditionBuilder KeyConditionBuilder) Builder {
 	if b.expressionMap == nil {
@@ -207,18 +234,21 @@ func (b Builder) WithKeyCondition(keyConditionBuilder KeyConditionBuilder) Build
 	return b
 }
 
-// WithFilter method will add the argument ConditionBuilder as a treeBuilder to
-// the argument Builder. If the argument Builder already has a
-// ConditionBuilder under the key filter, WithFilter() will overwrite the
-// existing ConditionBuilder. Users will able to add other treeBuilders to the
-// Builder or call Build() to build a Expression struct.
+// WithFilter method adds the argument ConditionBuilder as a Filter Expression
+// to the argument Builder. If the argument Builder already has a
+// ConditionBuilder representing a Filter Expression, WithFilter()
+// overwrites the existing ConditionBuilder.
 //
 // Example:
 //
-//     // let builder be an existing Builder{} and
-//     // filterBuilder be an existing filterBuilder{}
-//     builder = builder.WithFilter(filterBuilder)
+//     // let builder be an existing Builder{} and filt be an existing
+//     // ConditionBuilder{}
+//     builder = builder.WithFilter(filt)
 //
+//     // add other DynamoDB Expressions to the builder. let cond be an already
+//     // existing ConditionBuilder
+//     builder = builder.WithCondition(cond)
+//     // create an Expression struct
 //     expression := builder.Build()
 func (b Builder) WithFilter(filterBuilder ConditionBuilder) Builder {
 	if b.expressionMap == nil {
@@ -228,18 +258,21 @@ func (b Builder) WithFilter(filterBuilder ConditionBuilder) Builder {
 	return b
 }
 
-// WithUpdate method will add the argument UpdateBuilder as a treeBuilder to
-// the argument Builder. If the argument Builder already has a
-// UpdateBuilder, WithUpdate() will overwrite the existing UpdateBuilder.
-// Users will able to add other treeBuilders to the Builder or call
-// Build() to build a Expression struct.
+// WithUpdate method adds the argument UpdateBuilder as an Update Expression
+// to the argument Builder. If the argument Builder already has a UpdateBuilder
+// representing a Update Expression, WithUpdate() overwrites the existing
+// UpdateBuilder.
 //
 // Example:
 //
-//     // let builder be an existing Builder{} and
-//     // updateBuilder be an existing updateBuilder{}
-//     builder = builder.WithUpdate(updateBuilder)
+//     // let builder be an existing Builder{} and update be an existing
+//     // UpdateBuilder{}
+//     builder = builder.WithUpdate(update)
 //
+//     // add other DynamoDB Expressions to the builder. let cond be an already
+//     // existing ConditionBuilder
+//     builder = builder.WithCondition(cond)
+//     // create an Expression struct
 //     expression := builder.Build()
 func (b Builder) WithUpdate(updateBuilder UpdateBuilder) Builder {
 	if b.expressionMap == nil {
@@ -249,17 +282,20 @@ func (b Builder) WithUpdate(updateBuilder UpdateBuilder) Builder {
 	return b
 }
 
-// Expression will be a struct that will be able to generate members to DynamoDB
-// inputs.
-// The idea of Builder and Expression is separated to be able to check the
-// format of the child treeBuilders and to return an error with the Build()
-// method for ExpressionBuilder.
+// Expression represents a collection of DynamoDB Expressions. The getter
+// methods of the Expression struct retrieves the formatted DynamoDB
+// Expressions, ExpressionAttributeNames, and ExpressionAttributeValues.
 //
 // Example:
 //
+//     // keyCond represents the Key Condition Expression
 //     keyCond := expression.Key("someKey").Equal(expression.Value("someValue"))
+//     // proj represents the Projection Expression
 //     proj := expression.NamesList(expression.Name("aName"), expression.Name("anotherName"), expression.Name("oneOtherName"))
-//     builder := expression.WithKeyCondition(keyCond).WithProjection(proj)
+//
+//     // Add keyCond and proj to builder as a Key Condition and Projection
+//     // respectively
+//     builder := expression.NewBuilder().WithKeyCondition(keyCond).WithProjection(proj)
 //     expression := builder.Build()
 //
 //     queryInput := dynamodb.QueryInput{
@@ -275,20 +311,20 @@ type Expression struct {
 	valuesMap     map[string]*dynamodb.AttributeValue
 }
 
-// treeBuilder interface will be fulfilled by builder structs that represent
+// treeBuilder interface is fulfilled by builder structs that represent
 // different types of Expressions.
 type treeBuilder interface {
-	// buildTree will create the tree structure of exprNodes. The tree structure
-	// of exprNodes will be traversed in order to build the string representing
+	// buildTree creates the tree structure of exprNodes. The tree structure
+	// of exprNodes are traversed in order to build the string representing
 	// different types of Expressions as well as the maps that represent
 	// ExpressionAttributeNames and ExpressionAttributeValues.
 	buildTree() (exprNode, error)
 }
 
-// Condition will return the *string corresponding to the Condition Expression
+// Condition returns the *string corresponding to the Condition Expression
 // of the argument Expression. This method is used to satisfy the members of
 // DynamoDB input structs. If the Expression does not have a condition
-// expression this method will return nil.
+// expression this method returns nil.
 //
 // Example:
 //
@@ -309,10 +345,10 @@ func (e Expression) Condition() *string {
 	return e.returnExpression(condition)
 }
 
-// Filter will return the *string corresponding to the Filter Expression of the
+// Filter returns the *string corresponding to the Filter Expression of the
 // argument Expression. This method is used to satisfy the members of DynamoDB
 // input structs. If the Expression does not have a filter expression this
-// method will return nil.
+// method returns nil.
 //
 // Example:
 //
@@ -329,10 +365,10 @@ func (e Expression) Filter() *string {
 	return e.returnExpression(filter)
 }
 
-// Projection will return the *string corresponding to the Projection Expression
+// Projection returns the *string corresponding to the Projection Expression
 // of the argument Expression. This method is used to satisfy the members of
 // DynamoDB input structs. If the Expression does not have a projection
-// expression this method will return nil.
+// expression this method returns nil.
 //
 // Example:
 //
@@ -349,10 +385,10 @@ func (e Expression) Projection() *string {
 	return e.returnExpression(projection)
 }
 
-// KeyCondition will return the *string corresponding to the Key Condition
+// KeyCondition returns the *string corresponding to the Key Condition
 // Expression of the argument Expression. This method is used to satisfy the
 // members of DynamoDB input structs. If the argument Expression does not have a
-// KeyConditionExpression, KeyCondition() will return nil.
+// KeyConditionExpression, KeyCondition() returns nil.
 //
 // Example:
 //
@@ -369,9 +405,10 @@ func (e Expression) KeyCondition() *string {
 	return e.returnExpression(keyCondition)
 }
 
-// Update will return the *string corresponding to the Update Expression of the
+// Update returns the *string corresponding to the Update Expression of the
 // argument Expression. This method is used to satisfy the members of DynamoDB
-// input structs.
+// input structs. If the argument Expression does not have a UpdateExpression,
+// Update() returns nil.
 //
 // Example:
 //
@@ -392,10 +429,16 @@ func (e Expression) Update() *string {
 	return e.returnExpression(update)
 }
 
-// Names will return the map[string]*string corresponding to the
+// Names returns the map[string]*string corresponding to the
 // ExpressionAttributeNames of the argument Expression. This method is used to
 // satisfy the members of DynamoDB input structs. If Expression does not use
-// ExpressionAttributeNames, this method will return nil
+// ExpressionAttributeNames, this method returns nil. The
+// ExpressionAttributeNames and ExpressionAttributeValues member of the input
+// struct must always be assigned when using the Expression struct since all
+// item attribute names and values are aliased. That means that if the
+// ExpressionAttributeNames and ExpressionAttributeValues member is not assigned
+// with the corresponding Names() and Values() methods, the DynamoDB operation
+// will run into a logic error.
 //
 // Example:
 //
@@ -412,10 +455,17 @@ func (e Expression) Names() map[string]*string {
 	return e.namesMap
 }
 
-// Values will return the map[string]*dynamodb.AttributeValue corresponding to
+// Values returns the map[string]*dynamodb.AttributeValue corresponding to
 // the ExpressionAttributeValues of the argument Expression. This method is used
 // to satisfy the members of DynamoDB input structs. If Expression does not use
-// ExpressionAttributeValues, this method will return nil
+// ExpressionAttributeValues, this method returns nil. The
+// ExpressionAttributeNames and ExpressionAttributeValues member of the input
+// struct must always be assigned when using the Expression struct since all
+// item attribute names and values are aliased. That means that if the
+// ExpressionAttributeNames and ExpressionAttributeValues member is not assigned
+// with the corresponding Names() and Values() methods, the DynamoDB operation
+// will run into a logic error.
+//
 // Example:
 //
 //     // let expression be an instance of Expression{}
@@ -431,9 +481,9 @@ func (e Expression) Values() map[string]*dynamodb.AttributeValue {
 	return e.valuesMap
 }
 
-// returnExpression will return *string corresponding to the type of Expression
+// returnExpression returns *string corresponding to the type of Expression
 // string specified by the expressionType. If there is no corresponding
-// expression available in Expression, the method will return nil
+// expression available in Expression, the method returns nil
 func (e Expression) returnExpression(expressionType expressionType) *string {
 	if e.expressionMap == nil {
 		return nil
@@ -441,7 +491,7 @@ func (e Expression) returnExpression(expressionType expressionType) *string {
 	return aws.String(e.expressionMap[expressionType])
 }
 
-// exprNode will be the generic nodes that will represent both Operands and
+// exprNode are the generic nodes that represents both Operands and
 // Conditions. The purpose of exprNode is to be able to call an generic
 // recursive function on the top level exprNode to be able to determine a root
 // node in order to deduplicate name aliases.
@@ -449,9 +499,9 @@ func (e Expression) returnExpression(expressionType expressionType) *string {
 // names/values/children which needs to be aliased at runtime in order to avoid
 // duplicate values. The rules are as follows:
 //     $n: Indicates that an alias of a name needs to be inserted. The
-//         corresponding name to be aliased will be in the []names slice.
+//         corresponding name to be alias is in the []names slice.
 //     $v: Indicates that an alias of a value needs to be inserted. The
-//         corresponding value to be aliased will be in the []values slice.
+//         corresponding value to be alias is in the []values slice.
 //     $c: Indicates that the fmtExpr of a child exprNode needs to be inserted.
 //         The corresponding child node is in the []children slice.
 type exprNode struct {
@@ -461,9 +511,9 @@ type exprNode struct {
 	fmtExpr  string
 }
 
-// aliasList will keep track of all the names we need to alias in the nested
-// struct of conditions and operands. This will allow each alias to be unique.
-// aliasList will be passed in as a pointer when buildChildTrees is called in
+// aliasList keeps track of all the names we need to alias in the nested
+// struct of conditions and operands. This allows each alias to be unique.
+// aliasList is passed in as a pointer when buildChildTrees is called in
 // order to deduplicate all names within the tree strcuture of the exprNodes.
 type aliasList struct {
 	namesList  []string
@@ -528,7 +578,7 @@ func (en exprNode) buildExpressionString(aliasList *aliasList) (string, error) {
 	return formattedExpression, nil
 }
 
-// substitutePath will substitute the escaped character $n with the appropriate
+// substitutePath substitutes the escaped character $n with the appropriate
 // alias.
 func substitutePath(index int, node exprNode, aliasList *aliasList) (string, error) {
 	if index >= len(node.names) {
@@ -541,7 +591,7 @@ func substitutePath(index int, node exprNode, aliasList *aliasList) (string, err
 	return str, nil
 }
 
-// substituteValue will substitute the escaped character $v with the appropriate
+// substituteValue substitutes the escaped character $v with the appropriate
 // alias.
 func substituteValue(index int, node exprNode, aliasList *aliasList) (string, error) {
 	if index >= len(node.values) {
@@ -554,7 +604,7 @@ func substituteValue(index int, node exprNode, aliasList *aliasList) (string, er
 	return str, nil
 }
 
-// substituteChild will substitute the escaped character $c with the appropriate
+// substituteChild substitutes the escaped character $c with the appropriate
 // alias.
 func substituteChild(index int, node exprNode, aliasList *aliasList) (string, error) {
 	if index >= len(node.children) {
