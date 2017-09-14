@@ -1,3 +1,14 @@
+Release v1.10.45 (2017-09-14)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * Supporting Parameter Store in environment variables for AWS CodeBuild
+* `service/organizations`: Updates service documentation
+  * Documentation updates for AWS Organizations
+* `service/servicecatalog`: Updates service API, documentation, and paginators
+  * This release of Service Catalog adds API support to copy products.
+
 Release v1.10.44 (2017-09-13)
 ===
 
