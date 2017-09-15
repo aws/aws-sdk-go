@@ -1,3 +1,10 @@
+Release v1.10.46 (2017-09-15)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API and documentation
+  * Add a new enum "REQUEST" to '--type <value>' field in the current create-authorizer API, and make "identitySource" optional.
+
 Release v1.10.45 (2017-09-14)
 ===
 
