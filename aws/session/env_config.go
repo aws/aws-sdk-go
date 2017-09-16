@@ -7,6 +7,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/credentials"
 )
 
+// EnvProviderName provides a name of the provider when config is loaded from environment.
 const EnvProviderName = "EnvConfigCredentials"
 
 // envConfig is a collection of environment values the SDK will read
