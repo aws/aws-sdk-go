@@ -3535,6 +3535,14 @@
         "UnmonitorInstancesRequest$InstanceIds": "<p>One or more instance IDs.</p>"
       }
     },
+    "InstanceInterruptionBehavior": {
+      "base": null,
+      "refs": {
+        "RequestSpotInstancesRequest$InstanceInterruptionBehavior": "<p>Indicates whether a Spot instance stops or terminates when it is interrupted.</p>",
+        "SpotFleetRequestConfigData$InstanceInterruptionBehavior": "<p>Indicates whether a Spot instance stops or terminates when it is interrupted.</p>",
+        "SpotInstanceRequest$InstanceInterruptionBehavior": "<p>Indicates whether a Spot instance stops or terminates when it is interrupted.</p>"
+      }
+    },
     "InstanceIpv6Address": {
       "base": "<p>Describes an IPv6 address.</p>",
       "refs": {
