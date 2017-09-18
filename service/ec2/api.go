@@ -50147,6 +50147,9 @@ type RequestSpotInstancesInput struct {
 	// Default: 1
 	InstanceCount *int64 `locationName:"instanceCount" type:"integer"`
 
+	// Indicates whether a Spot instance stops or terminates when it is interrupted.
+	InstanceInterruptionBehavior *string `type:"string" enum:"InstanceInterruptionBehavior"`
+
 	// The instance launch group. Launch groups are Spot instances that launch together
 	// and terminate together.
 	//
@@ -50240,6 +50243,12 @@ func (s *RequestSpotInstancesInput) SetDryRun(v bool) *RequestSpotInstancesInput
 // SetInstanceCount sets the InstanceCount field's value.
 func (s *RequestSpotInstancesInput) SetInstanceCount(v int64) *RequestSpotInstancesInput {
 	s.InstanceCount = &v
+	return s
+}
+
+// SetInstanceInterruptionBehavior sets the InstanceInterruptionBehavior field's value.
+func (s *RequestSpotInstancesInput) SetInstanceInterruptionBehavior(v string) *RequestSpotInstancesInput {
+	s.InstanceInterruptionBehavior = &v
 	return s
 }
 
@@ -54984,6 +54993,9 @@ type SpotFleetRequestConfigData struct {
 	// IamFleetRole is a required field
 	IamFleetRole *string `locationName:"iamFleetRole" type:"string" required:"true"`
 
+	// Indicates whether a Spot instance stops or terminates when it is interrupted.
+	InstanceInterruptionBehavior *string `locationName:"instanceInterruptionBehavior" type:"string" enum:"InstanceInterruptionBehavior"`
+
 	// Information about the launch specifications for the Spot fleet request.
 	//
 	// LaunchSpecifications is a required field
@@ -55103,6 +55115,12 @@ func (s *SpotFleetRequestConfigData) SetIamFleetRole(v string) *SpotFleetRequest
 	return s
 }
 
+// SetInstanceInterruptionBehavior sets the InstanceInterruptionBehavior field's value.
+func (s *SpotFleetRequestConfigData) SetInstanceInterruptionBehavior(v string) *SpotFleetRequestConfigData {
+	s.InstanceInterruptionBehavior = &v
+	return s
+}
+
 // SetLaunchSpecifications sets the LaunchSpecifications field's value.
 func (s *SpotFleetRequestConfigData) SetLaunchSpecifications(v []*SpotFleetLaunchSpecification) *SpotFleetRequestConfigData {
 	s.LaunchSpecifications = v
@@ -55214,6 +55232,9 @@ type SpotInstanceRequest struct {
 	// request.
 	InstanceId *string `locationName:"instanceId" type:"string"`
 
+	// Indicates whether a Spot instance stops or terminates when it is interrupted.
+	InstanceInterruptionBehavior *string `locationName:"instanceInterruptionBehavior" type:"string" enum:"InstanceInterruptionBehavior"`
+
 	// The instance launch group. Launch groups are Spot instances that launch together
 	// and terminate together.
 	LaunchGroup *string `locationName:"launchGroup" type:"string"`
@@ -55303,6 +55324,12 @@ func (s *SpotInstanceRequest) SetFault(v *SpotInstanceStateFault) *SpotInstanceR
 // SetInstanceId sets the InstanceId field's value.
 func (s *SpotInstanceRequest) SetInstanceId(v string) *SpotInstanceRequest {
 	s.InstanceId = &v
+	return s
+}
+
+// SetInstanceInterruptionBehavior sets the InstanceInterruptionBehavior field's value.
+func (s *SpotInstanceRequest) SetInstanceInterruptionBehavior(v string) *SpotInstanceRequest {
+	s.InstanceInterruptionBehavior = &v
 	return s
 }
 
@@ -59261,6 +59288,14 @@ const (
 
 	// InstanceHealthStatusUnhealthy is a InstanceHealthStatus enum value
 	InstanceHealthStatusUnhealthy = "unhealthy"
+)
+
+const (
+	// InstanceInterruptionBehaviorStop is a InstanceInterruptionBehavior enum value
+	InstanceInterruptionBehaviorStop = "stop"
+
+	// InstanceInterruptionBehaviorTerminate is a InstanceInterruptionBehavior enum value
+	InstanceInterruptionBehaviorTerminate = "terminate"
 )
 
 const (
