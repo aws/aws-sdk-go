@@ -7446,7 +7446,10 @@
     },
     "ElasticGpuSet":{
       "type":"list",
-      "member":{"shape":"ElasticGpus"}
+      "member":{
+        "shape":"ElasticGpus",
+        "locationName":"item"
+      }
     },
     "ElasticGpuSpecification":{
       "type":"structure",
