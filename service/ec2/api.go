@@ -29983,7 +29983,7 @@ type DescribeElasticGpusOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the Elastic GPUs.
-	ElasticGpuSet []*ElasticGpus `locationName:"elasticGpuSet" type:"list"`
+	ElasticGpuSet []*ElasticGpus `locationName:"elasticGpuSet" locationNameList:"item" type:"list"`
 
 	// The total number of items to return. If the total number of items available
 	// is more than the value specified in max-items then a Next-Token will be provided

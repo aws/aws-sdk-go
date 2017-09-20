@@ -1,3 +1,15 @@
+Release v1.10.48 (2017-09-19)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * Fixed bug in EC2 clients preventing ElasticGpuSet from being set.
+
+### SDK Enhancements
+* `aws/credentials`: Add EnvProviderName constant. ([#1531](https://github.com/aws/aws-sdk-go/issues/1531))
+  * Adds the "EnvConfigCredentials" string literal as EnvProviderName constant.
+  * Fixes [#1444](https://github.com/aws/aws-sdk-go/issues/1444)
+
 Release v1.10.47 (2017-09-18)
 ===
 
