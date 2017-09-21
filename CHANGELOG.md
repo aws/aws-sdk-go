@@ -1,3 +1,17 @@
+Release v1.10.49 (2017-09-20)
+===
+
+### Service Client Updates
+* `service/Greengrass`: Adds new service
+* `service/appstream`: Updates service API and documentation
+  * API updates for supporting On-Demand fleets.
+* `service/codepipeline`: Updates service API and documentation
+  * This change includes a PipelineMetadata object that is part of the output from the GetPipeline API that includes the Pipeline ARN, created, and updated timestamp.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/rds`: Updates service API and documentation
+  * Introduces the --option-group-name parameter to the ModifyDBSnapshot CLI command. You can specify this parameter when you upgrade an Oracle DB snapshot. The same option group considerations apply when upgrading a DB snapshot as when upgrading a DB instance.  For more information, see http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Oracle.html#USER_UpgradeDBInstance.Oracle.OGPG.OG
+* `service/runtime.lex`: Updates service API and documentation
+
 Release v1.10.48 (2017-09-19)
 ===
 
