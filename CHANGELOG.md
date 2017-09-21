@@ -1,3 +1,18 @@
+Release v1.10.50 (2017-09-21)
+===
+
+### Service Client Updates
+* `service/budgets`: Updates service API
+  * Including "DuplicateRecordException" in UpdateNotification and UpdateSubscriber.
+* `service/ec2`: Updates service API and documentation
+  * Add EC2 APIs to copy Amazon FPGA Images (AFIs) within the same region and across multiple regions, delete AFIs, and modify AFI attributes. AFI attributes include name, description and granting/denying other AWS accounts to load the AFI.
+* `service/logs`: Updates service API and documentation
+  * Adds support for associating LogGroups with KMS Keys.
+
+### SDK Bugs
+* Fix greengrass service model being duplicated with different casing. ([#1541](https://github.com/aws/aws-sdk-go/pull/1541))
+  * Fixes [#1540](https://github.com/aws/aws-sdk-go/issues/1540)
+  * Fixes [#1539](https://github.com/aws/aws-sdk-go/issues/1539)
 Release v1.10.49 (2017-09-20)
 ===
 
