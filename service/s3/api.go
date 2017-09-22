@@ -13902,7 +13902,6 @@ func (s *Grant) MarshalFields(e protocol.FieldEncoder) error {
 	if s.Grantee != nil {
 		v := s.Grantee
 		attrs := make([]protocol.Attribute, 0, 1)
-		// TODO only create array if an attribute value is set
 
 		if s.Grantee.Type != nil {
 			v := *s.Grantee.Type
@@ -23528,7 +23527,6 @@ func (s *TargetGrant) MarshalFields(e protocol.FieldEncoder) error {
 	if s.Grantee != nil {
 		v := s.Grantee
 		attrs := make([]protocol.Attribute, 0, 1)
-		// TODO only create array if an attribute value is set
 
 		if s.Grantee.Type != nil {
 			v := *s.Grantee.Type

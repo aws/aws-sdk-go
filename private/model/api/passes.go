@@ -62,7 +62,6 @@ func (a *API) resolveReferences() {
 		}
 	}
 
-	// TODO put this somewhere better
 	for _, s := range a.Shapes {
 		switch s.Type {
 		case "list":

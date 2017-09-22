@@ -195,7 +195,6 @@ var marshalShapeRefTmpl = template.Must(template.New("marshalShapeRefTmpl").Pars
 
 {{ define "attributes" -}}
 	attrs := make([]protocol.Attribute, 0, {{ $.NumAttributes }})
-	// TODO only create array if an attribute value is set
 
 	{{ range $name, $child := $.ChildrenRefs -}}
 		{{ if $child.Ref.XMLAttribute -}}
