@@ -7140,11 +7140,9 @@ func (c *RDS) ModifyDBSnapshotRequest(input *ModifyDBSnapshotInput) (req *reques
 // ModifyDBSnapshot API operation for Amazon Relational Database Service.
 //
 // Updates a manual DB snapshot, which can be encrypted or not encrypted, with
-// a new engine version. You can update the engine version to either a new major
-// or minor engine version.
+// a new engine version.
 //
-// Amazon RDS supports upgrading a MySQL DB snapshot from MySQL 5.1 to MySQL
-// 5.5.
+// Amazon RDS supports upgrading DB snapshots for MySQL and Oracle.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -22886,9 +22884,30 @@ type ModifyDBSnapshotInput struct {
 	// DBSnapshotIdentifier is a required field
 	DBSnapshotIdentifier *string `type:"string" required:"true"`
 
-	// The engine version to update the DB snapshot to.
+	// The engine version to upgrade the DB snapshot to.
+	//
+	// The following are the database engines and engine versions that are available
+	// when you upgrade a DB snapshot.
+	//
+	// MySQL
+	//
+	//    * 5.5.46 (supported for 5.1 DB snapshots)
+	//
+	// Oracle
+	//
+	//    * 12.1.0.2.v8 (supported for 12.1.0.1 DB snapshots)
+	//
+	//    * 11.2.0.4.v12 (supported for 11.2.0.2 DB snapshots)
+	//
+	//    * 11.2.0.4.v11 (supported for 11.2.0.3 DB snapshots)
 	EngineVersion *string `type:"string"`
 
+	// The option group to identify with the upgraded DB snapshot.
+	//
+	// You can specify this parameter when you upgrade an Oracle DB snapshot. The
+	// same option group considerations apply when upgrading a DB snapshot as when
+	// upgrading a DB instance. For more information, see Option Group Considerations
+	// (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Oracle.html#USER_UpgradeDBInstance.Oracle.OGPG.OG).
 	OptionGroupName *string `type:"string"`
 }
 
