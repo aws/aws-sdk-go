@@ -1,3 +1,14 @@
+Release v1.10.51 (2017-09-22)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API and documentation
+* `service/ecs`: Updates service API and documentation
+  * Amazon ECS users can now add and drop Linux capabilities to their containers through the use of docker's cap-add and cap-drop features. Customers can specify the capabilities they wish to add or drop for each container in their task definition.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/rds`: Updates service documentation
+  * Documentation updates for rds
+
 Release v1.10.50 (2017-09-21)
 ===
 
