@@ -14,7 +14,7 @@ import (
 type Encoder struct {
 	encoder    *xml.Encoder
 	encodedBuf *bytes.Buffer
-	fieldBuf   fieldBuffer
+	fieldBuf   protocol.FieldBuffer
 	err        error
 }
 
@@ -158,37 +158,37 @@ type ListEncoder struct {
 	Base     *Encoder
 	Flatten  bool
 	ListName string
-	Err      error
+	err      error
 }
 
 // ListAddValue will add the value to the list.
 func (e *ListEncoder) ListAddValue(v protocol.ValueMarshaler) {
-	if e.Err != nil {
+	if e.err != nil {
 		return
 	}
 
-	e.Err = addValueToken(e.Base.encoder, &e.Base.fieldBuf, e.ListName, v, protocol.Metadata{})
+	e.err = addValueToken(e.Base.encoder, &e.Base.fieldBuf, e.ListName, v, protocol.Metadata{})
 }
 
 // ListAddList is not supported for XML encoder.
 func (e *ListEncoder) ListAddList(fn func(le protocol.ListEncoder)) {
-	e.Err = fmt.Errorf("xml encoder ListAddList not supported, %s", e.ListName)
+	e.err = fmt.Errorf("xml encoder ListAddList not supported, %s", e.ListName)
 }
 
 // ListAddMap is not supported for XML encoder.
 func (e *ListEncoder) ListAddMap(fn func(me protocol.MapEncoder)) {
-	e.Err = fmt.Errorf("xml encoder ListAddMap not supported, %s", e.ListName)
+	e.err = fmt.Errorf("xml encoder ListAddMap not supported, %s", e.ListName)
 }
 
 // ListAddFields will set the nested type's fields to the list.
 func (e *ListEncoder) ListAddFields(m protocol.FieldMarshaler) {
-	if e.Err != nil {
+	if e.err != nil {
 		return
 	}
 
 	var tok xml.StartElement
-	tok, e.Err = xmlStartElem(e.ListName, protocol.Metadata{})
-	if e.Err != nil {
+	tok, e.err = xmlStartElem(e.ListName, protocol.Metadata{})
+	if e.err != nil {
 		return
 	}
 
@@ -203,19 +203,19 @@ type MapEncoder struct {
 	Flatten   bool
 	KeyName   string
 	ValueName string
-	Err       error
+	err       error
 }
 
 // MapSetValue sets a map value.
 func (e *MapEncoder) MapSetValue(k string, v protocol.ValueMarshaler) {
-	if e.Err != nil {
+	if e.err != nil {
 		return
 	}
 
 	var tok xml.StartElement
 	if !e.Flatten {
-		tok, e.Err = xmlStartElem("entry", protocol.Metadata{})
-		if e.Err != nil {
+		tok, e.err = xmlStartElem("entry", protocol.Metadata{})
+		if e.err != nil {
 			return
 		}
 		e.Base.encoder.EncodeToken(tok)
@@ -229,13 +229,13 @@ func (e *MapEncoder) MapSetValue(k string, v protocol.ValueMarshaler) {
 		valueName = "value"
 	}
 
-	e.Err = addValueToken(e.Base.encoder, &e.Base.fieldBuf, keyName, protocol.StringValue(k), protocol.Metadata{})
-	if e.Err != nil {
+	e.err = addValueToken(e.Base.encoder, &e.Base.fieldBuf, keyName, protocol.StringValue(k), protocol.Metadata{})
+	if e.err != nil {
 		return
 	}
 
-	e.Err = addValueToken(e.Base.encoder, &e.Base.fieldBuf, valueName, v, protocol.Metadata{})
-	if e.Err != nil {
+	e.err = addValueToken(e.Base.encoder, &e.Base.fieldBuf, valueName, v, protocol.Metadata{})
+	if e.err != nil {
 		return
 	}
 
@@ -246,24 +246,24 @@ func (e *MapEncoder) MapSetValue(k string, v protocol.ValueMarshaler) {
 
 // MapSetList is not supported.
 func (e *MapEncoder) MapSetList(k string, fn func(le protocol.ListEncoder)) {
-	e.Err = fmt.Errorf("xml map encoder MapSetList not supported, %s", k)
+	e.err = fmt.Errorf("xml map encoder MapSetList not supported, %s", k)
 }
 
 // MapSetMap is not supported.
 func (e *MapEncoder) MapSetMap(k string, fn func(me protocol.MapEncoder)) {
-	e.Err = fmt.Errorf("xml map encoder MapSetMap not supported, %s", k)
+	e.err = fmt.Errorf("xml map encoder MapSetMap not supported, %s", k)
 }
 
 // MapSetFields will set the nested type's fields under the map.
 func (e *MapEncoder) MapSetFields(k string, m protocol.FieldMarshaler) {
-	if e.Err != nil {
+	if e.err != nil {
 		return
 	}
 
 	var tok xml.StartElement
 	if !e.Flatten {
-		tok, e.Err = xmlStartElem("entry", protocol.Metadata{})
-		if e.Err != nil {
+		tok, e.err = xmlStartElem("entry", protocol.Metadata{})
+		if e.err != nil {
 			return
 		}
 		e.Base.encoder.EncodeToken(tok)
@@ -277,14 +277,14 @@ func (e *MapEncoder) MapSetFields(k string, m protocol.FieldMarshaler) {
 		valueName = "value"
 	}
 
-	e.Err = addValueToken(e.Base.encoder, &e.Base.fieldBuf, keyName, protocol.StringValue(k), protocol.Metadata{})
-	if e.Err != nil {
+	e.err = addValueToken(e.Base.encoder, &e.Base.fieldBuf, keyName, protocol.StringValue(k), protocol.Metadata{})
+	if e.err != nil {
 		return
 	}
 
 	valTok, err := xmlStartElem(valueName, protocol.Metadata{})
 	if err != nil {
-		e.Err = err
+		e.err = err
 		return
 	}
 	e.Base.encoder.EncodeToken(valTok)
@@ -298,18 +298,7 @@ func (e *MapEncoder) MapSetFields(k string, m protocol.FieldMarshaler) {
 	}
 }
 
-type fieldBuffer struct {
-	buf []byte
-}
-
-func (b *fieldBuffer) GetValue(m protocol.ValueMarshaler) ([]byte, error) {
-	v, err := m.MarshalValueBuf(b.buf)
-	b.buf = v
-	b.buf = b.buf[0:0]
-	return v, err
-}
-
-func addValueToken(e *xml.Encoder, fieldBuf *fieldBuffer, k string, v protocol.ValueMarshaler, meta protocol.Metadata) error {
+func addValueToken(e *xml.Encoder, fieldBuf *protocol.FieldBuffer, k string, v protocol.ValueMarshaler, meta protocol.Metadata) error {
 	b, err := fieldBuf.GetValue(v)
 	if err != nil {
 		return err
