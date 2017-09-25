@@ -13,7 +13,7 @@ import (
 // Example:
 //
 //     // err is of type InvalidParameterError
-//     _, err := expression.Name("foo..bar").BuildOperand
+//     _, err := expression.Name("foo..bar").BuildOperand()
 type InvalidParameterError struct {
 	parameterType string
 	functionName  string

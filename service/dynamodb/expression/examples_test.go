@@ -18,12 +18,24 @@ import (
 func ExampleBuilder_WithProjection() {
 	svc := dynamodb.New(session.New())
 
+	// Construct the Key condition builder
 	keyCond := expression.Key("Artist").Equal(expression.Value("No One You Know"))
+
+	// Create the project expression builder with a names list.
 	proj := expression.NamesList(expression.Name("SongTitle"))
-	expr, err := expression.NewBuilder().WithKeyCondition(keyCond).WithProjection(proj).Build()
+
+	// Combine the key condition, and projection together as a DynamoDB expression
+	// builder.
+	expr, err := expression.NewBuilder().
+		WithKeyCondition(keyCond).
+		WithProjection(proj).
+		Build()
 	if err != nil {
 		fmt.Println(err)
 	}
+
+	// Use the built expression to populate the DynamoDB Query's API input
+	// parameters.
 	input := &dynamodb.QueryInput{
 		ExpressionAttributeValues: expr.Values(),
 		KeyConditionExpression:    expr.KeyCondition(),
@@ -63,12 +75,24 @@ func ExampleBuilder_WithProjection() {
 func ExampleBuilder_WithKeyCondition() {
 	svc := dynamodb.New(session.New())
 
+	// Construct the Key condition builder
 	keyCond := expression.Key("Artist").Equal(expression.Value("No One You Know"))
+
+	// Create the project expression builder with a names list.
 	proj := expression.NamesList(expression.Name("SongTitle"))
-	expr, err := expression.NewBuilder().WithKeyCondition(keyCond).WithProjection(proj).Build()
+
+	// Combine the key condition, and projection together as a DynamoDB expression
+	// builder.
+	expr, err := expression.NewBuilder().
+		WithKeyCondition(keyCond).
+		WithProjection(proj).
+		Build()
 	if err != nil {
 		fmt.Println(err)
 	}
+
+	// Use the built expression to populate the DynamoDB Query's API input
+	// parameters.
 	input := &dynamodb.QueryInput{
 		ExpressionAttributeValues: expr.Values(),
 		KeyConditionExpression:    expr.KeyCondition(),
@@ -108,12 +132,25 @@ func ExampleBuilder_WithKeyCondition() {
 func ExampleBuilder_WithFilter() {
 	svc := dynamodb.New(session.New())
 
+	// Construct the filter builder with a name and value.
 	filt := expression.Name("Artist").Equal(expression.Value("No One You Know"))
-	proj := expression.NamesList(expression.Name("AlbumTitle"), expression.Name("SongTitle"))
-	expr, err := expression.NewBuilder().WithFilter(filt).WithProjection(proj).Build()
+
+	// Create the names list projection of names to project.
+	proj := expression.NamesList(
+		expression.Name("AlbumTitle"),
+		expression.Name("SongTitle"),
+	)
+
+	// Using the filter and projections create a DynamoDB expression from the two.
+	expr, err := expression.NewBuilder().
+		WithFilter(filt).
+		WithProjection(proj).
+		Build()
 	if err != nil {
 		fmt.Println(err)
 	}
+
+	// Use the built expression to populate the DynamoDB Scan API input parameters.
 	input := &dynamodb.ScanInput{
 		ExpressionAttributeNames:  expr.Names(),
 		ExpressionAttributeValues: expr.Values(),
@@ -154,8 +191,22 @@ func ExampleBuilder_WithFilter() {
 func ExampleBuilder_WithUpdate() {
 	svc := dynamodb.New(session.New())
 
-	update := expression.Set(expression.Name("Year"), expression.Value(2015)).Set(expression.Name("AlbumTitle"), expression.Value("Louder Than Ever"))
-	expr, err := expression.NewBuilder().WithUpdate(update).Build()
+	// Create an update to set two fields in the table.
+	update := expression.Set(
+		expression.Name("Year"),
+		expression.Value(2015),
+	).Set(
+		expression.Name("AlbumTitle"),
+		expression.Value("Louder Than Ever"),
+	)
+
+	// Create the DynamoDB expression from the Update.
+	expr, err := expression.NewBuilder().
+		WithUpdate(update).
+		Build()
+
+	// Use the built expression to populate the DynamoDB UpdateItem API
+	// input parameters.
 	input := &dynamodb.UpdateItemInput{
 		ExpressionAttributeNames:  expr.Names(),
 		ExpressionAttributeValues: expr.Values(),
@@ -207,11 +258,19 @@ func ExampleBuilder_WithUpdate() {
 func ExampleBuilder_WithCondition() {
 	svc := dynamodb.New(session.New())
 
+	// Create a condition where the Rating field must be less than 7.
 	cond := expression.Name("Rating").LessThan(expression.Value(7))
-	expr, err := expression.NewBuilder().WithCondition(cond).Build()
+
+	// Create a DynamoDB expression from the condition.
+	expr, err := expression.NewBuilder().
+		WithCondition(cond).
+		Build()
 	if err != nil {
 		fmt.Println(err)
 	}
+
+	// Use the built expression to populate the DeleteItem API operation with the
+	// condition expression.
 	input := &dynamodb.DeleteItemInput{
 		Key: map[string]*dynamodb.AttributeValue{
 			"Artist": {
