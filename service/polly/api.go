@@ -9,6 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
 const opDeleteLexicon = "DeleteLexicon"
@@ -627,6 +628,17 @@ func (s *DeleteLexiconInput) SetName(v string) *DeleteLexiconInput {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DeleteLexiconInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Name != nil {
+		v := *s.Name
+
+		e.SetValue(protocol.PathTarget, "LexiconName", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/polly-2016-06-10/DeleteLexiconOutput
 type DeleteLexiconOutput struct {
 	_ struct{} `type:"structure"`
@@ -640,6 +652,12 @@ func (s DeleteLexiconOutput) String() string {
 // GoString returns the string representation
 func (s DeleteLexiconOutput) GoString() string {
 	return s.String()
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DeleteLexiconOutput) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/polly-2016-06-10/DescribeVoicesInput
@@ -678,6 +696,22 @@ func (s *DescribeVoicesInput) SetNextToken(v string) *DescribeVoicesInput {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DescribeVoicesInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.LanguageCode != nil {
+		v := *s.LanguageCode
+
+		e.SetValue(protocol.QueryTarget, "LanguageCode", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.NextToken != nil {
+		v := *s.NextToken
+
+		e.SetValue(protocol.QueryTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/polly-2016-06-10/DescribeVoicesOutput
 type DescribeVoicesOutput struct {
 	_ struct{} `type:"structure"`
@@ -710,6 +744,22 @@ func (s *DescribeVoicesOutput) SetNextToken(v string) *DescribeVoicesOutput {
 func (s *DescribeVoicesOutput) SetVoices(v []*Voice) *DescribeVoicesOutput {
 	s.Voices = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DescribeVoicesOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.NextToken != nil {
+		v := *s.NextToken
+
+		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if len(s.Voices) > 0 {
+		v := s.Voices
+
+		e.SetList(protocol.BodyTarget, "Voices", encodeVoiceList(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/polly-2016-06-10/GetLexiconInput
@@ -751,6 +801,17 @@ func (s *GetLexiconInput) SetName(v string) *GetLexiconInput {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetLexiconInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Name != nil {
+		v := *s.Name
+
+		e.SetValue(protocol.PathTarget, "LexiconName", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/polly-2016-06-10/GetLexiconOutput
 type GetLexiconOutput struct {
 	_ struct{} `type:"structure"`
@@ -784,6 +845,22 @@ func (s *GetLexiconOutput) SetLexicon(v *Lexicon) *GetLexiconOutput {
 func (s *GetLexiconOutput) SetLexiconAttributes(v *LexiconAttributes) *GetLexiconOutput {
 	s.LexiconAttributes = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetLexiconOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Lexicon != nil {
+		v := s.Lexicon
+
+		e.SetFields(protocol.BodyTarget, "Lexicon", v, protocol.Metadata{})
+	}
+	if s.LexiconAttributes != nil {
+		v := s.LexiconAttributes
+
+		e.SetFields(protocol.BodyTarget, "LexiconAttributes", v, protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // Provides lexicon name and lexicon content in string format. For more information,
@@ -820,6 +897,22 @@ func (s *Lexicon) SetContent(v string) *Lexicon {
 func (s *Lexicon) SetName(v string) *Lexicon {
 	s.Name = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *Lexicon) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Content != nil {
+		v := *s.Content
+
+		e.SetValue(protocol.BodyTarget, "Content", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Name != nil {
+		v := *s.Name
+
+		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // Contains metadata describing the lexicon such as the number of lexemes, language
@@ -895,6 +988,42 @@ func (s *LexiconAttributes) SetSize(v int64) *LexiconAttributes {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *LexiconAttributes) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Alphabet != nil {
+		v := *s.Alphabet
+
+		e.SetValue(protocol.BodyTarget, "Alphabet", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.LanguageCode != nil {
+		v := *s.LanguageCode
+
+		e.SetValue(protocol.BodyTarget, "LanguageCode", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.LastModified != nil {
+		v := *s.LastModified
+
+		e.SetValue(protocol.BodyTarget, "LastModified", protocol.TimeValue{V: v, Format: protocol.UnixTimeFormat}, protocol.Metadata{})
+	}
+	if s.LexemesCount != nil {
+		v := *s.LexemesCount
+
+		e.SetValue(protocol.BodyTarget, "LexemesCount", protocol.Int64Value(v), protocol.Metadata{})
+	}
+	if s.LexiconArn != nil {
+		v := *s.LexiconArn
+
+		e.SetValue(protocol.BodyTarget, "LexiconArn", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Size != nil {
+		v := *s.Size
+
+		e.SetValue(protocol.BodyTarget, "Size", protocol.Int64Value(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // Describes the content of the lexicon.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/polly-2016-06-10/LexiconDescription
 type LexiconDescription struct {
@@ -929,6 +1058,30 @@ func (s *LexiconDescription) SetName(v string) *LexiconDescription {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *LexiconDescription) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Attributes != nil {
+		v := s.Attributes
+
+		e.SetFields(protocol.BodyTarget, "Attributes", v, protocol.Metadata{})
+	}
+	if s.Name != nil {
+		v := *s.Name
+
+		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
+func encodeLexiconDescriptionList(vs []*LexiconDescription) func(protocol.ListEncoder) {
+	return func(le protocol.ListEncoder) {
+		for _, v := range vs {
+			le.ListAddFields(v)
+		}
+	}
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/polly-2016-06-10/ListLexiconsInput
 type ListLexiconsInput struct {
 	_ struct{} `type:"structure"`
@@ -952,6 +1105,17 @@ func (s ListLexiconsInput) GoString() string {
 func (s *ListLexiconsInput) SetNextToken(v string) *ListLexiconsInput {
 	s.NextToken = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListLexiconsInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.NextToken != nil {
+		v := *s.NextToken
+
+		e.SetValue(protocol.QueryTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/polly-2016-06-10/ListLexiconsOutput
@@ -986,6 +1150,22 @@ func (s *ListLexiconsOutput) SetLexicons(v []*LexiconDescription) *ListLexiconsO
 func (s *ListLexiconsOutput) SetNextToken(v string) *ListLexiconsOutput {
 	s.NextToken = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListLexiconsOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.Lexicons) > 0 {
+		v := s.Lexicons
+
+		e.SetList(protocol.BodyTarget, "Lexicons", encodeLexiconDescriptionList(v), protocol.Metadata{})
+	}
+	if s.NextToken != nil {
+		v := *s.NextToken
+
+		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/polly-2016-06-10/PutLexiconInput
@@ -1043,6 +1223,22 @@ func (s *PutLexiconInput) SetName(v string) *PutLexiconInput {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *PutLexiconInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Content != nil {
+		v := *s.Content
+
+		e.SetValue(protocol.BodyTarget, "Content", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Name != nil {
+		v := *s.Name
+
+		e.SetValue(protocol.PathTarget, "LexiconName", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/polly-2016-06-10/PutLexiconOutput
 type PutLexiconOutput struct {
 	_ struct{} `type:"structure"`
@@ -1056,6 +1252,12 @@ func (s PutLexiconOutput) String() string {
 // GoString returns the string representation
 func (s PutLexiconOutput) GoString() string {
 	return s.String()
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *PutLexiconOutput) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/polly-2016-06-10/SynthesizeSpeechInput
@@ -1174,6 +1376,47 @@ func (s *SynthesizeSpeechInput) SetVoiceId(v string) *SynthesizeSpeechInput {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *SynthesizeSpeechInput) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.LexiconNames) > 0 {
+		v := s.LexiconNames
+
+		e.SetList(protocol.BodyTarget, "LexiconNames", protocol.EncodeStringList(v), protocol.Metadata{})
+	}
+	if s.OutputFormat != nil {
+		v := *s.OutputFormat
+
+		e.SetValue(protocol.BodyTarget, "OutputFormat", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.SampleRate != nil {
+		v := *s.SampleRate
+
+		e.SetValue(protocol.BodyTarget, "SampleRate", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if len(s.SpeechMarkTypes) > 0 {
+		v := s.SpeechMarkTypes
+
+		e.SetList(protocol.BodyTarget, "SpeechMarkTypes", protocol.EncodeStringList(v), protocol.Metadata{})
+	}
+	if s.Text != nil {
+		v := *s.Text
+
+		e.SetValue(protocol.BodyTarget, "Text", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.TextType != nil {
+		v := *s.TextType
+
+		e.SetValue(protocol.BodyTarget, "TextType", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.VoiceId != nil {
+		v := *s.VoiceId
+
+		e.SetValue(protocol.BodyTarget, "VoiceId", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/polly-2016-06-10/SynthesizeSpeechOutput
 type SynthesizeSpeechOutput struct {
 	_ struct{} `type:"structure" payload:"AudioStream"`
@@ -1228,6 +1471,23 @@ func (s *SynthesizeSpeechOutput) SetContentType(v string) *SynthesizeSpeechOutpu
 func (s *SynthesizeSpeechOutput) SetRequestCharacters(v int64) *SynthesizeSpeechOutput {
 	s.RequestCharacters = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *SynthesizeSpeechOutput) MarshalFields(e protocol.FieldEncoder) error {
+	// Skipping AudioStream Output type's body not valid.
+	if s.ContentType != nil {
+		v := *s.ContentType
+
+		e.SetValue(protocol.HeaderTarget, "Content-Type", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.RequestCharacters != nil {
+		v := *s.RequestCharacters
+
+		e.SetValue(protocol.HeaderTarget, "x-amzn-RequestCharacters", protocol.Int64Value(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // Description of the voice.
@@ -1291,6 +1551,45 @@ func (s *Voice) SetLanguageName(v string) *Voice {
 func (s *Voice) SetName(v string) *Voice {
 	s.Name = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *Voice) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Gender != nil {
+		v := *s.Gender
+
+		e.SetValue(protocol.BodyTarget, "Gender", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Id != nil {
+		v := *s.Id
+
+		e.SetValue(protocol.BodyTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.LanguageCode != nil {
+		v := *s.LanguageCode
+
+		e.SetValue(protocol.BodyTarget, "LanguageCode", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.LanguageName != nil {
+		v := *s.LanguageName
+
+		e.SetValue(protocol.BodyTarget, "LanguageName", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Name != nil {
+		v := *s.Name
+
+		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
+func encodeVoiceList(vs []*Voice) func(protocol.ListEncoder) {
+	return func(le protocol.ListEncoder) {
+		for _, v := range vs {
+			le.ListAddFields(v)
+		}
+	}
 }
 
 const (

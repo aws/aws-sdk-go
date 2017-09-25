@@ -339,7 +339,7 @@ func (r marshalShapeRef) Location() string {
 		return "Headers"
 	case "uri":
 		return "Path"
-	case "StatusCode":
+	case "statusCode":
 		return "StatusCode"
 	default:
 		if len(loc) != 0 {
@@ -423,7 +423,7 @@ func (r marshalShapeRef) TimeFormat() string {
 	default:
 		switch r.Context.API.Metadata.Protocol {
 		case "json", "rest-json":
-			return "protocol.FormatUnixTime"
+			return "protocol.UnixTimeFormat"
 		case "rest-xml", "ec2", "query":
 			return "protocol.ISO8601TimeFormat"
 		default:
