@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/awstesting"
 	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
@@ -76,9 +77,7 @@ func TestEncodeMapShape(t *testing.T) {
 
 	expect := `{"mapShape":{"abc":{"value":"1"},"123":{"intval":123}}}`
 
-	if e, a := expect, string(b); e != a {
-		t.Errorf("expect bodies to match, did not.\n,\tExpect:\n%s\n\tActual:\n%s\n", e, a)
-	}
+	awstesting.AssertJSON(t, expect, string(b), "expect bodies to match")
 }
 func TestEncodeListString(t *testing.T) {
 	r, err := encode(baseShape{
