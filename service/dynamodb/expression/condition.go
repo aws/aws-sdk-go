@@ -907,7 +907,7 @@ func (cb ConditionBuilder) Not() ConditionBuilder {
 //     "Rating BETWEEN :five AND :ten"
 func Between(op, lower, upper OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
-		operandList: []OperandBuilder{ope, lower, upper},
+		operandList: []OperandBuilder{op, lower, upper},
 		mode:        betweenCond,
 	}
 }
