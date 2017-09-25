@@ -905,9 +905,9 @@ func (cb ConditionBuilder) Not() ConditionBuilder {
 //     // Let :five and :ten be ExpressionAttributeValues representing the value
 //     // 5 and the value 10
 //     "Rating BETWEEN :five AND :ten"
-func Between(ope, lower, upper OperandBuilder) ConditionBuilder {
+func Between(op, lower, upper OperandBuilder) ConditionBuilder {
 	return ConditionBuilder{
-		operandList: []OperandBuilder{ope, lower, upper},
+		operandList: []OperandBuilder{op, lower, upper},
 		mode:        betweenCond,
 	}
 }
