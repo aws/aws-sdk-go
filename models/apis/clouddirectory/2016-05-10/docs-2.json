@@ -399,6 +399,18 @@
         "BatchWriteOperationResponse$DetachObject": "<p>Detaches an object from a <a>Directory</a>.</p>"
       }
     },
+    "BatchDetachPolicy": {
+      "base": "<p>Detaches the specified policy from the specified directory inside a <a>BatchRead</a> operation. For more information, see <a>DetachPolicy</a> and <a>BatchReadRequest$Operations</a>.</p>",
+      "refs": {
+        "BatchWriteOperation$DetachPolicy": "<p>Detaches a policy from a <a>Directory</a>.</p>"
+      }
+    },
+    "BatchDetachPolicyResponse": {
+      "base": "<p>Represents the output of a <a>DetachPolicy</a> response operation.</p>",
+      "refs": {
+        "BatchWriteOperationResponse$DetachPolicy": "<p>Detaches a policy from a <a>Directory</a>.</p>"
+      }
+    },
     "BatchDetachTypedLink": {
       "base": "<p>Detaches a typed link from a specified source and target object inside a <a>BatchRead</a> operation. For more information, see <a>DetachTypedLink</a> and <a>BatchReadRequest$Operations</a>.</p>",
       "refs": {
@@ -1660,6 +1672,8 @@
         "BatchDetachFromIndex$IndexReference": "<p>A reference to the index object.</p>",
         "BatchDetachFromIndex$TargetReference": "<p>A reference to the object being detached from the index.</p>",
         "BatchDetachObject$ParentReference": "<p>Parent reference from which the object with the specified link name is detached.</p>",
+        "BatchDetachPolicy$PolicyReference": "<p>Reference that identifies the policy object.</p>",
+        "BatchDetachPolicy$ObjectReference": "<p>Reference that identifies the object whose policy object will be detached.</p>",
         "BatchGetObjectInformation$ObjectReference": "<p>A reference to the object.</p>",
         "BatchListAttachedIndices$TargetReference": "<p>A reference to the object that has indices attached.</p>",
         "BatchListIncomingTypedLinks$ObjectReference": "<p>The reference that identifies the object whose attributes will be listed.</p>",

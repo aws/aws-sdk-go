@@ -935,7 +935,10 @@
     },
     "CreateDeploymentConfigInput":{
       "type":"structure",
-      "required":["deploymentConfigName"],
+      "required":[
+        "deploymentConfigName",
+        "minimumHealthyHosts"
+      ],
       "members":{
         "deploymentConfigName":{"shape":"DeploymentConfigName"},
         "minimumHealthyHosts":{"shape":"MinimumHealthyHosts"}
@@ -2088,7 +2091,8 @@
     "LoadBalancerInfo":{
       "type":"structure",
       "members":{
-        "elbInfoList":{"shape":"ELBInfoList"}
+        "elbInfoList":{"shape":"ELBInfoList"},
+        "targetGroupInfoList":{"shape":"TargetGroupInfoList"}
       }
     },
     "LogTail":{"type":"string"},
@@ -2326,6 +2330,17 @@
       },
       "exception":true
     },
+    "TargetGroupInfo":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"TargetGroupName"}
+      }
+    },
+    "TargetGroupInfoList":{
+      "type":"list",
+      "member":{"shape":"TargetGroupInfo"}
+    },
+    "TargetGroupName":{"type":"string"},
     "TargetInstances":{
       "type":"structure",
       "members":{

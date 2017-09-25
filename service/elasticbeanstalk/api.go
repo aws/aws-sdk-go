@@ -4719,7 +4719,7 @@ type ConfigurationSettingsDescription struct {
 	// set.
 	OptionSettings []*ConfigurationOptionSetting `type:"list"`
 
-	// The ARN of the custom platform.
+	// The ARN of the platform.
 	PlatformArn *string `type:"string"`
 
 	// The name of the solution stack this configuration set uses.
@@ -5194,8 +5194,9 @@ type CreateEnvironmentInput struct {
 	//
 	// Constraint: Must be from 4 to 40 characters in length. The name can contain
 	// only letters, numbers, and hyphens. It cannot start or end with a hyphen.
-	// This name must be unique in your account. If the specified name already exists,
-	// AWS Elastic Beanstalk returns an InvalidParameterValue error.
+	// This name must be unique within a region in your account. If the specified
+	// name already exists in the region, AWS Elastic Beanstalk returns an InvalidParameterValue
+	// error.
 	//
 	// Default: If the CNAME parameter is not specified, the environment name becomes
 	// part of the CNAME, and therefore part of the visible URL for your application.
@@ -5218,7 +5219,7 @@ type CreateEnvironmentInput struct {
 	// set for this new environment.
 	OptionsToRemove []*OptionSpecification `type:"list"`
 
-	// The ARN of the custom platform.
+	// The ARN of the platform.
 	PlatformArn *string `type:"string"`
 
 	// This is an alternative to specifying a template name. If specified, AWS Elastic
@@ -5963,7 +5964,7 @@ type Deployment struct {
 	// deploy source code or change instance configuration settings.
 	DeploymentId *int64 `type:"long"`
 
-	// For in-progress deployments, the time that the deloyment started.
+	// For in-progress deployments, the time that the deployment started.
 	//
 	// For completed deployments, the time that the deployment ended.
 	DeploymentTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -6023,10 +6024,18 @@ type DescribeApplicationVersionsInput struct {
 	// Specify an application name to show only application versions for that application.
 	ApplicationName *string `min:"1" type:"string"`
 
-	// Specify a maximum number of application versions to paginate in the request.
+	// For a paginated request. Specify a maximum number of application versions
+	// to include in each response.
+	//
+	// If no MaxRecords is specified, all available application versions are retrieved
+	// in a single response.
 	MaxRecords *int64 `min:"1" type:"integer"`
 
-	// Specify a next token to retrieve the next page in a paginated request.
+	// For a paginated request. Specify a token from a previous response page to
+	// retrieve the next response page. All other parameter values must be identical
+	// to the ones specified in the initial request.
+	//
+	// If no NextToken is specified, the first page is retrieved.
 	NextToken *string `type:"string"`
 
 	// Specify a version label to show a specific application version.
@@ -6091,8 +6100,8 @@ type DescribeApplicationVersionsOutput struct {
 	// List of ApplicationVersionDescription objects sorted in order of creation.
 	ApplicationVersions []*ApplicationVersionDescription `type:"list"`
 
-	// For a paginated request, the token that you can pass in a subsequent request
-	// to get the next page.
+	// In a paginated request, the token that you can pass in a subsequent request
+	// to get the next response page.
 	NextToken *string `type:"string"`
 }
 
@@ -6279,7 +6288,7 @@ type DescribeConfigurationOptionsOutput struct {
 	// A list of ConfigurationOptionDescription.
 	Options []*ConfigurationOptionDescription `type:"list"`
 
-	// The ARN of the custom platform.
+	// The ARN of the platform.
 	PlatformArn *string `type:"string"`
 
 	// The name of the solution stack these configuration options belong to.
@@ -6847,6 +6856,20 @@ type DescribeEnvironmentsInput struct {
 	// after this date are displayed.
 	IncludedDeletedBackTo *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// For a paginated request. Specify a maximum number of environments to include
+	// in each response.
+	//
+	// If no MaxRecords is specified, all available environments are retrieved in
+	// a single response.
+	MaxRecords *int64 `min:"1" type:"integer"`
+
+	// For a paginated request. Specify a token from a previous response page to
+	// retrieve the next response page. All other parameter values must be identical
+	// to the ones specified in the initial request.
+	//
+	// If no NextToken is specified, the first page is retrieved.
+	NextToken *string `type:"string"`
+
 	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
 	// include only those that are associated with this application version.
 	VersionLabel *string `min:"1" type:"string"`
@@ -6867,6 +6890,9 @@ func (s *DescribeEnvironmentsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeEnvironmentsInput"}
 	if s.ApplicationName != nil && len(*s.ApplicationName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ApplicationName", 1))
+	}
+	if s.MaxRecords != nil && *s.MaxRecords < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxRecords", 1))
 	}
 	if s.VersionLabel != nil && len(*s.VersionLabel) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("VersionLabel", 1))
@@ -6905,6 +6931,18 @@ func (s *DescribeEnvironmentsInput) SetIncludeDeleted(v bool) *DescribeEnvironme
 // SetIncludedDeletedBackTo sets the IncludedDeletedBackTo field's value.
 func (s *DescribeEnvironmentsInput) SetIncludedDeletedBackTo(v time.Time) *DescribeEnvironmentsInput {
 	s.IncludedDeletedBackTo = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeEnvironmentsInput) SetMaxRecords(v int64) *DescribeEnvironmentsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeEnvironmentsInput) SetNextToken(v string) *DescribeEnvironmentsInput {
+	s.NextToken = &v
 	return s
 }
 
@@ -7301,6 +7339,10 @@ type EnvironmentDescription struct {
 	// For single-instance environments, the IP address of the instance.
 	EndpointURL *string `type:"string"`
 
+	// The environment's Amazon Resource Name (ARN), which can be used in other
+	// API reuqests that require an ARN.
+	EnvironmentArn *string `type:"string"`
+
 	// The ID of this environment.
 	EnvironmentId *string `type:"string"`
 
@@ -7332,7 +7374,7 @@ type EnvironmentDescription struct {
 	// For more information, see Health Colors and Statuses (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html).
 	HealthStatus *string `type:"string" enum:"EnvironmentHealthStatus"`
 
-	// The ARN of the custom platform.
+	// The ARN of the platform.
 	PlatformArn *string `type:"string"`
 
 	// The description of the AWS resources used by this environment.
@@ -7418,6 +7460,12 @@ func (s *EnvironmentDescription) SetEndpointURL(v string) *EnvironmentDescriptio
 	return s
 }
 
+// SetEnvironmentArn sets the EnvironmentArn field's value.
+func (s *EnvironmentDescription) SetEnvironmentArn(v string) *EnvironmentDescription {
+	s.EnvironmentArn = &v
+	return s
+}
+
 // SetEnvironmentId sets the EnvironmentId field's value.
 func (s *EnvironmentDescription) SetEnvironmentId(v string) *EnvironmentDescription {
 	s.EnvironmentId = &v
@@ -7497,6 +7545,10 @@ type EnvironmentDescriptionsMessage struct {
 
 	// Returns an EnvironmentDescription list.
 	Environments []*EnvironmentDescription `type:"list"`
+
+	// In a paginated request, the token that you can pass in a subsequent request
+	// to get the next response page.
+	NextToken *string `type:"string"`
 }
 
 // String returns the string representation
@@ -7512,6 +7564,12 @@ func (s EnvironmentDescriptionsMessage) GoString() string {
 // SetEnvironments sets the Environments field's value.
 func (s *EnvironmentDescriptionsMessage) SetEnvironments(v []*EnvironmentDescription) *EnvironmentDescriptionsMessage {
 	s.Environments = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *EnvironmentDescriptionsMessage) SetNextToken(v string) *EnvironmentDescriptionsMessage {
+	s.NextToken = &v
 	return s
 }
 
@@ -7770,7 +7828,7 @@ type EventDescription struct {
 	// The event message.
 	Message *string `type:"string"`
 
-	// The ARN of the custom platform.
+	// The ARN of the platform.
 	PlatformArn *string `type:"string"`
 
 	// The web service request ID for the activity of this event.

@@ -1306,6 +1306,32 @@ type CreateFileSystemInput struct {
 	// CreationToken is a required field
 	CreationToken *string `min:"1" type:"string" required:"true"`
 
+	// A boolean value that, if true, creates an encrypted file system. When creating
+	// an encrypted file system, you have the option of specifying a CreateFileSystemRequest$KmsKeyId
+	// for an existing AWS Key Management Service (AWS KMS) customer master key
+	// (CMK). If you don't specify a CMK, then the default CMK for Amazon EFS, /aws/elasticfilesystem,
+	// is used to protect the encrypted file system.
+	Encrypted *bool `type:"boolean"`
+
+	// The id of the AWS KMS CMK that will be used to protect the encrypted file
+	// system. This parameter is only required if you want to use a non-default
+	// CMK. If this parameter is not specified, the default CMK for Amazon EFS is
+	// used. This id can be in one of the following formats:
+	//
+	//    * Key ID - A unique identifier of the key. For example, 1234abcd-12ab-34cd-56ef-1234567890ab.
+	//
+	//    * ARN - An Amazon Resource Name for the key. For example, arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab.
+	//
+	//    * Key alias - A previously created display name for a key. For example,
+	//    alias/projectKey1.
+	//
+	//    * Key alias ARN - An Amazon Resource Name for a key alias. For example,
+	//    arn:aws:kms:us-west-2:444455556666:alias/projectKey1.
+	//
+	// Note that if the KmsKeyId is specified, the CreateFileSystemRequest$Encrypted
+	// parameter must be set to true.
+	KmsKeyId *string `min:"1" type:"string"`
+
 	// The PerformanceMode of the file system. We recommend generalPurpose performance
 	// mode for most file systems. File systems using the maxIO performance mode
 	// can scale to higher levels of aggregate throughput and operations per second
@@ -1333,6 +1359,9 @@ func (s *CreateFileSystemInput) Validate() error {
 	if s.CreationToken != nil && len(*s.CreationToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("CreationToken", 1))
 	}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -1343,6 +1372,18 @@ func (s *CreateFileSystemInput) Validate() error {
 // SetCreationToken sets the CreationToken field's value.
 func (s *CreateFileSystemInput) SetCreationToken(v string) *CreateFileSystemInput {
 	s.CreationToken = &v
+	return s
+}
+
+// SetEncrypted sets the Encrypted field's value.
+func (s *CreateFileSystemInput) SetEncrypted(v bool) *CreateFileSystemInput {
+	s.Encrypted = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CreateFileSystemInput) SetKmsKeyId(v string) *CreateFileSystemInput {
+	s.KmsKeyId = &v
 	return s
 }
 
@@ -2102,10 +2143,17 @@ type FileSystemDescription struct {
 	// CreationToken is a required field
 	CreationToken *string `min:"1" type:"string" required:"true"`
 
+	// A boolean value that, if true, indicates that the file system is encrypted.
+	Encrypted *bool `type:"boolean"`
+
 	// ID of the file system, assigned by Amazon EFS.
 	//
 	// FileSystemId is a required field
 	FileSystemId *string `type:"string" required:"true"`
+
+	// The id of an AWS Key Management Service (AWS KMS) customer master key (CMK)
+	// that was used to protect the encrypted file system.
+	KmsKeyId *string `min:"1" type:"string"`
 
 	// Lifecycle phase of the file system.
 	//
@@ -2170,9 +2218,21 @@ func (s *FileSystemDescription) SetCreationToken(v string) *FileSystemDescriptio
 	return s
 }
 
+// SetEncrypted sets the Encrypted field's value.
+func (s *FileSystemDescription) SetEncrypted(v bool) *FileSystemDescription {
+	s.Encrypted = &v
+	return s
+}
+
 // SetFileSystemId sets the FileSystemId field's value.
 func (s *FileSystemDescription) SetFileSystemId(v string) *FileSystemDescription {
 	s.FileSystemId = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *FileSystemDescription) SetKmsKeyId(v string) *FileSystemDescription {
+	s.KmsKeyId = &v
 	return s
 }
 

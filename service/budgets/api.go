@@ -1039,6 +1039,10 @@ func (c *Budgets) UpdateNotificationRequest(input *UpdateNotificationInput) (req
 //   This exception is thrown if a requested entity is not found. E.g., if a budget
 //   id doesn't exist for an account ID.
 //
+//   * ErrCodeDuplicateRecordException "DuplicateRecordException"
+//   The exception is thrown when customer tries to create a record (e.g. budget)
+//   that already exists.
+//
 func (c *Budgets) UpdateNotification(input *UpdateNotificationInput) (*UpdateNotificationOutput, error) {
 	req, out := c.UpdateNotificationRequest(input)
 	return out, req.Send()
@@ -1123,6 +1127,10 @@ func (c *Budgets) UpdateSubscriberRequest(input *UpdateSubscriberInput) (req *re
 //   This exception is thrown if a requested entity is not found. E.g., if a budget
 //   id doesn't exist for an account ID.
 //
+//   * ErrCodeDuplicateRecordException "DuplicateRecordException"
+//   The exception is thrown when customer tries to create a record (e.g. budget)
+//   that already exists.
+//
 func (c *Budgets) UpdateSubscriber(input *UpdateSubscriberInput) (*UpdateSubscriberOutput, error) {
 	req, out := c.UpdateSubscriberRequest(input)
 	return out, req.Send()
@@ -1148,8 +1156,8 @@ func (c *Budgets) UpdateSubscriberWithContext(ctx aws.Context, input *UpdateSubs
 type Budget struct {
 	_ struct{} `type:"structure"`
 
-	// A structure represent either a cost spend or usage spend. Contains an amount
-	// and a unit.
+	// A structure that represents either a cost spend or usage spend. Contains
+	// an amount and a unit.
 	//
 	// BudgetLimit is a required field
 	BudgetLimit *Spend `type:"structure" required:"true"`
@@ -1164,10 +1172,10 @@ type Budget struct {
 	// BudgetType is a required field
 	BudgetType *string `type:"string" required:"true" enum:"BudgetType"`
 
-	// A structure holds the actual and forecasted spend for a budget.
+	// A structure that holds the actual and forecasted spend for a budget.
 	CalculatedSpend *CalculatedSpend `type:"structure"`
 
-	// A map represents the cost filters applied to the budget.
+	// A map that represents the cost filters applied to the budget.
 	CostFilters map[string][]*string `type:"map"`
 
 	// This includes the options for getting the cost of a budget.
@@ -1175,7 +1183,7 @@ type Budget struct {
 	// CostTypes is a required field
 	CostTypes *CostTypes `type:"structure" required:"true"`
 
-	// A time period indicated the start date and end date of a budget.
+	// A time period indicating the start date and end date of a budget.
 	//
 	// TimePeriod is a required field
 	TimePeriod *TimePeriod `type:"structure" required:"true"`
@@ -1292,18 +1300,18 @@ func (s *Budget) SetTimeUnit(v string) *Budget {
 	return s
 }
 
-// A structure holds the actual and forecasted spend for a budget.
+// A structure that holds the actual and forecasted spend for a budget.
 type CalculatedSpend struct {
 	_ struct{} `type:"structure"`
 
-	// A structure represent either a cost spend or usage spend. Contains an amount
-	// and a unit.
+	// A structure that represents either a cost spend or usage spend. Contains
+	// an amount and a unit.
 	//
 	// ActualSpend is a required field
 	ActualSpend *Spend `type:"structure" required:"true"`
 
-	// A structure represent either a cost spend or usage spend. Contains an amount
-	// and a unit.
+	// A structure that represents either a cost spend or usage spend. Contains
+	// an amount and a unit.
 	ForecastedSpend *Spend `type:"structure"`
 }
 
@@ -2105,8 +2113,8 @@ type DescribeBudgetsInput struct {
 	// AccountId is a required field
 	AccountId *string `min:"12" type:"string" required:"true"`
 
-	// An integer to represent how many entries should a pagianted response contains.
-	// Maxium is set to 100.
+	// An integer to represent how many entries a paginated response contains. Maximum
+	// is set to 100.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// A generic String.
@@ -2207,8 +2215,8 @@ type DescribeNotificationsForBudgetInput struct {
 	// BudgetName is a required field
 	BudgetName *string `type:"string" required:"true"`
 
-	// An integer to represent how many entries should a pagianted response contains.
-	// Maxium is set to 100.
+	// An integer to represent how many entries a paginated response contains. Maximum
+	// is set to 100.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// A generic String.
@@ -2318,8 +2326,8 @@ type DescribeSubscribersForNotificationInput struct {
 	// BudgetName is a required field
 	BudgetName *string `type:"string" required:"true"`
 
-	// An integer to represent how many entries should a pagianted response contains.
-	// Maxium is set to 100.
+	// An integer to represent how many entries a paginated response contains. Maximum
+	// is set to 100.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// A generic String.
@@ -2451,11 +2459,13 @@ type Notification struct {
 	// NotificationType is a required field
 	NotificationType *string `type:"string" required:"true" enum:"NotificationType"`
 
-	// The threshold of the a notification. It should be a number between 0 and
-	// 100.
+	// The threshold of a notification. It should be a number between 0 and 1,000,000,000.
 	//
 	// Threshold is a required field
 	Threshold *float64 `min:"0.1" type:"double" required:"true"`
+
+	// The type of threshold for a notification. It can be PERCENTAGE or ABSOLUTE_VALUE.
+	ThresholdType *string `type:"string" enum:"ThresholdType"`
 }
 
 // String returns the string representation
@@ -2505,6 +2515,12 @@ func (s *Notification) SetNotificationType(v string) *Notification {
 // SetThreshold sets the Threshold field's value.
 func (s *Notification) SetThreshold(v float64) *Notification {
 	s.Threshold = &v
+	return s
+}
+
+// SetThresholdType sets the ThresholdType field's value.
+func (s *Notification) SetThresholdType(v string) *Notification {
+	s.ThresholdType = &v
 	return s
 }
 
@@ -2581,8 +2597,8 @@ func (s *NotificationWithSubscribers) SetSubscribers(v []*Subscriber) *Notificat
 	return s
 }
 
-// A structure represent either a cost spend or usage spend. Contains an amount
-// and a unit.
+// A structure that represents either a cost spend or usage spend. Contains
+// an amount and a unit.
 type Spend struct {
 	_ struct{} `type:"structure"`
 
@@ -2692,7 +2708,7 @@ func (s *Subscriber) SetSubscriptionType(v string) *Subscriber {
 	return s
 }
 
-// A time period indicated the start date and end date of a budget.
+// A time period indicating the start date and end date of a budget.
 type TimePeriod struct {
 	_ struct{} `type:"structure"`
 
@@ -3104,6 +3120,15 @@ const (
 
 	// SubscriptionTypeEmail is a SubscriptionType enum value
 	SubscriptionTypeEmail = "EMAIL"
+)
+
+// The type of threshold for a notification. It can be PERCENTAGE or ABSOLUTE_VALUE.
+const (
+	// ThresholdTypePercentage is a ThresholdType enum value
+	ThresholdTypePercentage = "PERCENTAGE"
+
+	// ThresholdTypeAbsoluteValue is a ThresholdType enum value
+	ThresholdTypeAbsoluteValue = "ABSOLUTE_VALUE"
 )
 
 // The time unit of the budget. e.g. MONTHLY, QUARTERLY, etc.

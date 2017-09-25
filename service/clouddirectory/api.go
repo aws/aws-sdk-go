@@ -9586,6 +9586,77 @@ func (s *BatchDetachObjectResponse) SetDetachedObjectIdentifier(v string) *Batch
 	return s
 }
 
+// Detaches the specified policy from the specified directory inside a BatchRead
+// operation. For more information, see DetachPolicy and BatchReadRequest$Operations.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/BatchDetachPolicy
+type BatchDetachPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// Reference that identifies the object whose policy object will be detached.
+	//
+	// ObjectReference is a required field
+	ObjectReference *ObjectReference `type:"structure" required:"true"`
+
+	// Reference that identifies the policy object.
+	//
+	// PolicyReference is a required field
+	PolicyReference *ObjectReference `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s BatchDetachPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchDetachPolicy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchDetachPolicy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchDetachPolicy"}
+	if s.ObjectReference == nil {
+		invalidParams.Add(request.NewErrParamRequired("ObjectReference"))
+	}
+	if s.PolicyReference == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyReference"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetObjectReference sets the ObjectReference field's value.
+func (s *BatchDetachPolicy) SetObjectReference(v *ObjectReference) *BatchDetachPolicy {
+	s.ObjectReference = v
+	return s
+}
+
+// SetPolicyReference sets the PolicyReference field's value.
+func (s *BatchDetachPolicy) SetPolicyReference(v *ObjectReference) *BatchDetachPolicy {
+	s.PolicyReference = v
+	return s
+}
+
+// Represents the output of a DetachPolicy response operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/BatchDetachPolicyResponse
+type BatchDetachPolicyResponse struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s BatchDetachPolicyResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchDetachPolicyResponse) GoString() string {
+	return s.String()
+}
+
 // Detaches a typed link from a specified source and target object inside a
 // BatchRead operation. For more information, see DetachTypedLink and BatchReadRequest$Operations.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/BatchDetachTypedLink
@@ -11553,6 +11624,9 @@ type BatchWriteOperation struct {
 	// Detaches an object from a Directory.
 	DetachObject *BatchDetachObject `type:"structure"`
 
+	// Detaches a policy from a Directory.
+	DetachPolicy *BatchDetachPolicy `type:"structure"`
+
 	// Detaches a typed link from a specified source and target object. For more
 	// information, see Typed link (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink).
 	DetachTypedLink *BatchDetachTypedLink `type:"structure"`
@@ -11625,6 +11699,11 @@ func (s *BatchWriteOperation) Validate() error {
 	if s.DetachObject != nil {
 		if err := s.DetachObject.Validate(); err != nil {
 			invalidParams.AddNested("DetachObject", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DetachPolicy != nil {
+		if err := s.DetachPolicy.Validate(); err != nil {
+			invalidParams.AddNested("DetachPolicy", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.DetachTypedLink != nil {
@@ -11709,6 +11788,12 @@ func (s *BatchWriteOperation) SetDetachObject(v *BatchDetachObject) *BatchWriteO
 	return s
 }
 
+// SetDetachPolicy sets the DetachPolicy field's value.
+func (s *BatchWriteOperation) SetDetachPolicy(v *BatchDetachPolicy) *BatchWriteOperation {
+	s.DetachPolicy = v
+	return s
+}
+
 // SetDetachTypedLink sets the DetachTypedLink field's value.
 func (s *BatchWriteOperation) SetDetachTypedLink(v *BatchDetachTypedLink) *BatchWriteOperation {
 	s.DetachTypedLink = v
@@ -11764,6 +11849,9 @@ type BatchWriteOperationResponse struct {
 
 	// Detaches an object from a Directory.
 	DetachObject *BatchDetachObjectResponse `type:"structure"`
+
+	// Detaches a policy from a Directory.
+	DetachPolicy *BatchDetachPolicyResponse `type:"structure"`
 
 	// Detaches a typed link from a specified source and target object. For more
 	// information, see Typed link (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink).
@@ -11843,6 +11931,12 @@ func (s *BatchWriteOperationResponse) SetDetachFromIndex(v *BatchDetachFromIndex
 // SetDetachObject sets the DetachObject field's value.
 func (s *BatchWriteOperationResponse) SetDetachObject(v *BatchDetachObjectResponse) *BatchWriteOperationResponse {
 	s.DetachObject = v
+	return s
+}
+
+// SetDetachPolicy sets the DetachPolicy field's value.
+func (s *BatchWriteOperationResponse) SetDetachPolicy(v *BatchDetachPolicyResponse) *BatchWriteOperationResponse {
+	s.DetachPolicy = v
 	return s
 }
 

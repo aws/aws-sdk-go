@@ -4996,7 +4996,9 @@ type CreateDeploymentConfigInput struct {
 	//
 	// For example, to set a minimum of 95% healthy instance, specify a type of
 	// FLEET_PERCENT and a value of 95.
-	MinimumHealthyHosts *MinimumHealthyHosts `locationName:"minimumHealthyHosts" type:"structure"`
+	//
+	// MinimumHealthyHosts is a required field
+	MinimumHealthyHosts *MinimumHealthyHosts `locationName:"minimumHealthyHosts" type:"structure" required:"true"`
 }
 
 // String returns the string representation
@@ -5017,6 +5019,9 @@ func (s *CreateDeploymentConfigInput) Validate() error {
 	}
 	if s.DeploymentConfigName != nil && len(*s.DeploymentConfigName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DeploymentConfigName", 1))
+	}
+	if s.MinimumHealthyHosts == nil {
+		invalidParams.Add(request.NewErrParamRequired("MinimumHealthyHosts"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6578,6 +6583,8 @@ func (s *EC2TagSet) SetEc2TagSetList(v [][]*EC2TagFilter) *EC2TagSet {
 }
 
 // Information about a load balancer in Elastic Load Balancing to use in a deployment.
+// Instances are registered directly with a load balancer, and traffic is routed
+// to the load balancer.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/ELBInfo
 type ELBInfo struct {
 	_ struct{} `type:"structure"`
@@ -6585,7 +6592,7 @@ type ELBInfo struct {
 	// For blue/green deployments, the name of the load balancer that will be used
 	// to route traffic from original instances to replacement instances in a blue/green
 	// deployment. For in-place deployments, the name of the load balancer that
-	// instances are deregistered from so they are not serving traffic during a
+	// instances are deregistered from, so they are not serving traffic during a
 	// deployment, and then re-registered with after the deployment completes.
 	Name *string `locationName:"name" type:"string"`
 }
@@ -8422,14 +8429,21 @@ func (s *ListOnPremisesInstancesOutput) SetNextToken(v string) *ListOnPremisesIn
 	return s
 }
 
-// Information about the load balancer used in a deployment.
+// Information about the Elastic Load Balancing load balancer or target group
+// used in a deployment.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/LoadBalancerInfo
 type LoadBalancerInfo struct {
 	_ struct{} `type:"structure"`
 
-	// An array containing information about the load balancer in Elastic Load Balancing
-	// to use in a deployment.
+	// An array containing information about the load balancer to use for load balancing
+	// in a deployment. In Elastic Load Balancing, load balancers are used with
+	// Classic Load Balancers.
 	ElbInfoList []*ELBInfo `locationName:"elbInfoList" type:"list"`
+
+	// An array containing information about the target group to use for load balancing
+	// in a deployment. In Elastic Load Balancing, target groups are used with Application
+	// Load Balancers.
+	TargetGroupInfoList []*TargetGroupInfo `locationName:"targetGroupInfoList" type:"list"`
 }
 
 // String returns the string representation
@@ -8445,6 +8459,12 @@ func (s LoadBalancerInfo) GoString() string {
 // SetElbInfoList sets the ElbInfoList field's value.
 func (s *LoadBalancerInfo) SetElbInfoList(v []*ELBInfo) *LoadBalancerInfo {
 	s.ElbInfoList = v
+	return s
+}
+
+// SetTargetGroupInfoList sets the TargetGroupInfoList field's value.
+func (s *LoadBalancerInfo) SetTargetGroupInfoList(v []*TargetGroupInfo) *LoadBalancerInfo {
+	s.TargetGroupInfoList = v
 	return s
 }
 
@@ -9173,6 +9193,37 @@ func (s *TagFilter) SetType(v string) *TagFilter {
 // SetValue sets the Value field's value.
 func (s *TagFilter) SetValue(v string) *TagFilter {
 	s.Value = &v
+	return s
+}
+
+// Information about a target group in Elastic Load Balancing to use in a deployment.
+// Instances are registered as targets in a target group, and traffic is routed
+// to the target group.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/TargetGroupInfo
+type TargetGroupInfo struct {
+	_ struct{} `type:"structure"`
+
+	// For blue/green deployments, the name of the target group that instances in
+	// the original environment are deregistered from, and instances in the replacement
+	// environment registered with. For in-place deployments, the name of the target
+	// group that instances are deregistered from, so they are not serving traffic
+	// during a deployment, and then re-registered with after the deployment completes.
+	Name *string `locationName:"name" type:"string"`
+}
+
+// String returns the string representation
+func (s TargetGroupInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TargetGroupInfo) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *TargetGroupInfo) SetName(v string) *TargetGroupInfo {
+	s.Name = &v
 	return s
 }
 

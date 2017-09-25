@@ -11,7 +11,7 @@ import (
 
 // WaitUntilLoadBalancerAvailable uses the Elastic Load Balancing v2 API operation
 // DescribeLoadBalancers to wait for a condition to be met before returning.
-// If the condition is not meet within the max attempt window an error will
+// If the condition is not met within the max attempt window, an error will
 // be returned.
 func (c *ELBV2) WaitUntilLoadBalancerAvailable(input *DescribeLoadBalancersInput) error {
 	return c.WaitUntilLoadBalancerAvailableWithContext(aws.BackgroundContext(), input)
@@ -67,7 +67,7 @@ func (c *ELBV2) WaitUntilLoadBalancerAvailableWithContext(ctx aws.Context, input
 
 // WaitUntilLoadBalancerExists uses the Elastic Load Balancing v2 API operation
 // DescribeLoadBalancers to wait for a condition to be met before returning.
-// If the condition is not meet within the max attempt window an error will
+// If the condition is not met within the max attempt window, an error will
 // be returned.
 func (c *ELBV2) WaitUntilLoadBalancerExists(input *DescribeLoadBalancersInput) error {
 	return c.WaitUntilLoadBalancerExistsWithContext(aws.BackgroundContext(), input)
@@ -118,7 +118,7 @@ func (c *ELBV2) WaitUntilLoadBalancerExistsWithContext(ctx aws.Context, input *D
 
 // WaitUntilLoadBalancersDeleted uses the Elastic Load Balancing v2 API operation
 // DescribeLoadBalancers to wait for a condition to be met before returning.
-// If the condition is not meet within the max attempt window an error will
+// If the condition is not met within the max attempt window, an error will
 // be returned.
 func (c *ELBV2) WaitUntilLoadBalancersDeleted(input *DescribeLoadBalancersInput) error {
 	return c.WaitUntilLoadBalancersDeletedWithContext(aws.BackgroundContext(), input)
@@ -169,7 +169,7 @@ func (c *ELBV2) WaitUntilLoadBalancersDeletedWithContext(ctx aws.Context, input 
 
 // WaitUntilTargetDeregistered uses the Elastic Load Balancing v2 API operation
 // DescribeTargetHealth to wait for a condition to be met before returning.
-// If the condition is not meet within the max attempt window an error will
+// If the condition is not met within the max attempt window, an error will
 // be returned.
 func (c *ELBV2) WaitUntilTargetDeregistered(input *DescribeTargetHealthInput) error {
 	return c.WaitUntilTargetDeregisteredWithContext(aws.BackgroundContext(), input)
@@ -220,7 +220,7 @@ func (c *ELBV2) WaitUntilTargetDeregisteredWithContext(ctx aws.Context, input *D
 
 // WaitUntilTargetInService uses the Elastic Load Balancing v2 API operation
 // DescribeTargetHealth to wait for a condition to be met before returning.
-// If the condition is not meet within the max attempt window an error will
+// If the condition is not met within the max attempt window, an error will
 // be returned.
 func (c *ELBV2) WaitUntilTargetInService(input *DescribeTargetHealthInput) error {
 	return c.WaitUntilTargetInServiceWithContext(aws.BackgroundContext(), input)
