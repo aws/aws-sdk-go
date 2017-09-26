@@ -53,7 +53,7 @@ func TestBuildOperand(t *testing.T) {
 			input: Value(5),
 			expected: exprNode{
 				values: []dynamodb.AttributeValue{
-					dynamodb.AttributeValue{
+					{
 						N: aws.String("5"),
 					},
 				},

@@ -399,7 +399,7 @@ func TestUpdate(t *testing.T) {
 				expressionMap: map[expressionType]treeBuilder{
 					update: UpdateBuilder{
 						operationList: map[operationMode][]operationBuilder{
-							setOperation: []operationBuilder{
+							setOperation: {
 								{
 									name: NameBuilder{
 										name: "foo",
@@ -422,7 +422,7 @@ func TestUpdate(t *testing.T) {
 				expressionMap: map[expressionType]treeBuilder{
 					update: UpdateBuilder{
 						operationList: map[operationMode][]operationBuilder{
-							setOperation: []operationBuilder{
+							setOperation: {
 								{
 									name: NameBuilder{
 										name: "foo",
@@ -814,7 +814,7 @@ func TestBuildExpressionString(t *testing.T) {
 			name: "basic value",
 			input: exprNode{
 				values: []dynamodb.AttributeValue{
-					dynamodb.AttributeValue{
+					{
 						N: aws.String("5"),
 					},
 				},
@@ -822,7 +822,7 @@ func TestBuildExpressionString(t *testing.T) {
 			},
 			expectedNames: map[string]*string{},
 			expectedValues: map[string]*dynamodb.AttributeValue{
-				":0": &dynamodb.AttributeValue{
+				":0": {
 					N: aws.String("5"),
 				},
 			},
@@ -884,13 +884,13 @@ func TestBuildExpressionString(t *testing.T) {
 			name: "equal expression",
 			input: exprNode{
 				children: []exprNode{
-					exprNode{
+					{
 						names:   []string{"foo"},
 						fmtExpr: "$n",
 					},
-					exprNode{
+					{
 						values: []dynamodb.AttributeValue{
-							dynamodb.AttributeValue{
+							{
 								N: aws.String("5"),
 							},
 						},
@@ -904,7 +904,7 @@ func TestBuildExpressionString(t *testing.T) {
 				"#0": aws.String("foo"),
 			},
 			expectedValues: map[string]*dynamodb.AttributeValue{
-				":0": &dynamodb.AttributeValue{
+				":0": {
 					N: aws.String("5"),
 				},
 			},
