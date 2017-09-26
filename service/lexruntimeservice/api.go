@@ -9,7 +9,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/aws/signer/v4"
-	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
 const opPostContent = "PostContent"
@@ -391,30 +390,6 @@ func (s *Button) SetValue(v string) *Button {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *Button) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Text != nil {
-		v := *s.Text
-
-		e.SetValue(protocol.BodyTarget, "text", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Value != nil {
-		v := *s.Value
-
-		e.SetValue(protocol.BodyTarget, "value", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
-func encodeButtonList(vs []*Button) func(protocol.ListEncoder) {
-	return func(le protocol.ListEncoder) {
-		for _, v := range vs {
-			le.ListAddFields(v)
-		}
-	}
-}
-
 // Represents an option rendered to the user when a prompt is shown. It could
 // be an image, a button, a link, or text.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/runtime.lex-2016-11-28/GenericAttachment
@@ -475,45 +450,6 @@ func (s *GenericAttachment) SetSubTitle(v string) *GenericAttachment {
 func (s *GenericAttachment) SetTitle(v string) *GenericAttachment {
 	s.Title = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *GenericAttachment) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AttachmentLinkUrl != nil {
-		v := *s.AttachmentLinkUrl
-
-		e.SetValue(protocol.BodyTarget, "attachmentLinkUrl", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if len(s.Buttons) > 0 {
-		v := s.Buttons
-
-		e.SetList(protocol.BodyTarget, "buttons", encodeButtonList(v), protocol.Metadata{})
-	}
-	if s.ImageUrl != nil {
-		v := *s.ImageUrl
-
-		e.SetValue(protocol.BodyTarget, "imageUrl", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.SubTitle != nil {
-		v := *s.SubTitle
-
-		e.SetValue(protocol.BodyTarget, "subTitle", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Title != nil {
-		v := *s.Title
-
-		e.SetValue(protocol.BodyTarget, "title", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
-func encodeGenericAttachmentList(vs []*GenericAttachment) func(protocol.ListEncoder) {
-	return func(le protocol.ListEncoder) {
-		for _, v := range vs {
-			le.ListAddFields(v)
-		}
-	}
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/runtime.lex-2016-11-28/PostContentRequest
@@ -728,52 +664,6 @@ func (s *PostContentInput) SetUserId(v string) *PostContentInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *PostContentInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Accept != nil {
-		v := *s.Accept
-
-		e.SetValue(protocol.HeaderTarget, "Accept", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.BotAlias != nil {
-		v := *s.BotAlias
-
-		e.SetValue(protocol.PathTarget, "botAlias", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.BotName != nil {
-		v := *s.BotName
-
-		e.SetValue(protocol.PathTarget, "botName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.ContentType != nil {
-		v := *s.ContentType
-
-		e.SetValue(protocol.HeaderTarget, "Content-Type", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.InputStream != nil {
-		v := s.InputStream
-
-		e.SetStream(protocol.PayloadTarget, "inputStream", protocol.ReadSeekerStream{V: v}, protocol.Metadata{})
-	}
-	if s.RequestAttributes != nil {
-		v := s.RequestAttributes
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-lex-request-attributes", protocol.JSONValue{V: v, Base64: true}, protocol.Metadata{})
-	}
-	if s.SessionAttributes != nil {
-		v := s.SessionAttributes
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-lex-session-attributes", protocol.JSONValue{V: v, Base64: true}, protocol.Metadata{})
-	}
-	if s.UserId != nil {
-		v := *s.UserId
-
-		e.SetValue(protocol.PathTarget, "userId", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/runtime.lex-2016-11-28/PostContentResponse
 type PostContentOutput struct {
 	_ struct{} `type:"structure" payload:"AudioStream"`
@@ -943,53 +833,6 @@ func (s *PostContentOutput) SetSlots(v aws.JSONValue) *PostContentOutput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *PostContentOutput) MarshalFields(e protocol.FieldEncoder) error {
-	// Skipping AudioStream Output type's body not valid.
-	if s.ContentType != nil {
-		v := *s.ContentType
-
-		e.SetValue(protocol.HeaderTarget, "Content-Type", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.DialogState != nil {
-		v := *s.DialogState
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-lex-dialog-state", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.InputTranscript != nil {
-		v := *s.InputTranscript
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-lex-input-transcript", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.IntentName != nil {
-		v := *s.IntentName
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-lex-intent-name", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Message != nil {
-		v := *s.Message
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-lex-message", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.SessionAttributes != nil {
-		v := s.SessionAttributes
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-lex-session-attributes", protocol.JSONValue{V: v, Base64: true}, protocol.Metadata{})
-	}
-	if s.SlotToElicit != nil {
-		v := *s.SlotToElicit
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-lex-slot-to-elicit", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Slots != nil {
-		v := s.Slots
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-lex-slots", protocol.JSONValue{V: v, Base64: true}, protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/runtime.lex-2016-11-28/PostTextRequest
 type PostTextInput struct {
 	_ struct{} `type:"structure"`
@@ -1122,42 +965,6 @@ func (s *PostTextInput) SetSessionAttributes(v map[string]*string) *PostTextInpu
 func (s *PostTextInput) SetUserId(v string) *PostTextInput {
 	s.UserId = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *PostTextInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.BotAlias != nil {
-		v := *s.BotAlias
-
-		e.SetValue(protocol.PathTarget, "botAlias", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.BotName != nil {
-		v := *s.BotName
-
-		e.SetValue(protocol.PathTarget, "botName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.InputText != nil {
-		v := *s.InputText
-
-		e.SetValue(protocol.BodyTarget, "inputText", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if len(s.RequestAttributes) > 0 {
-		v := s.RequestAttributes
-
-		e.SetMap(protocol.BodyTarget, "requestAttributes", protocol.EncodeStringMap(v), protocol.Metadata{})
-	}
-	if len(s.SessionAttributes) > 0 {
-		v := s.SessionAttributes
-
-		e.SetMap(protocol.BodyTarget, "sessionAttributes", protocol.EncodeStringMap(v), protocol.Metadata{})
-	}
-	if s.UserId != nil {
-		v := *s.UserId
-
-		e.SetValue(protocol.PathTarget, "userId", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/runtime.lex-2016-11-28/PostTextResponse
@@ -1302,47 +1109,6 @@ func (s *PostTextOutput) SetSlots(v map[string]*string) *PostTextOutput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *PostTextOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DialogState != nil {
-		v := *s.DialogState
-
-		e.SetValue(protocol.BodyTarget, "dialogState", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.IntentName != nil {
-		v := *s.IntentName
-
-		e.SetValue(protocol.BodyTarget, "intentName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Message != nil {
-		v := *s.Message
-
-		e.SetValue(protocol.BodyTarget, "message", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.ResponseCard != nil {
-		v := s.ResponseCard
-
-		e.SetFields(protocol.BodyTarget, "responseCard", v, protocol.Metadata{})
-	}
-	if len(s.SessionAttributes) > 0 {
-		v := s.SessionAttributes
-
-		e.SetMap(protocol.BodyTarget, "sessionAttributes", protocol.EncodeStringMap(v), protocol.Metadata{})
-	}
-	if s.SlotToElicit != nil {
-		v := *s.SlotToElicit
-
-		e.SetValue(protocol.BodyTarget, "slotToElicit", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if len(s.Slots) > 0 {
-		v := s.Slots
-
-		e.SetMap(protocol.BodyTarget, "slots", protocol.EncodeStringMap(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // If you configure a response card when creating your bots, Amazon Lex substitutes
 // the session attributes and slot values that are available, and then returns
 // it. The response card can also come from a Lambda function ( dialogCodeHook
@@ -1387,27 +1153,6 @@ func (s *ResponseCard) SetGenericAttachments(v []*GenericAttachment) *ResponseCa
 func (s *ResponseCard) SetVersion(v string) *ResponseCard {
 	s.Version = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ResponseCard) MarshalFields(e protocol.FieldEncoder) error {
-	if s.ContentType != nil {
-		v := *s.ContentType
-
-		e.SetValue(protocol.BodyTarget, "contentType", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if len(s.GenericAttachments) > 0 {
-		v := s.GenericAttachments
-
-		e.SetList(protocol.BodyTarget, "genericAttachments", encodeGenericAttachmentList(v), protocol.Metadata{})
-	}
-	if s.Version != nil {
-		v := *s.Version
-
-		e.SetValue(protocol.BodyTarget, "version", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 const (

@@ -3931,27 +3931,6 @@ func (s *AbortMultipartUploadInput) SetVaultName(v string) *AbortMultipartUpload
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *AbortMultipartUploadInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.UploadId != nil {
-		v := *s.UploadId
-
-		e.SetValue(protocol.PathTarget, "uploadId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 type AbortMultipartUploadOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3964,12 +3943,6 @@ func (s AbortMultipartUploadOutput) String() string {
 // GoString returns the string representation
 func (s AbortMultipartUploadOutput) GoString() string {
 	return s.String()
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *AbortMultipartUploadOutput) MarshalFields(e protocol.FieldEncoder) error {
-
-	return nil
 }
 
 // The input values for AbortVaultLock.
@@ -4030,22 +4003,6 @@ func (s *AbortVaultLockInput) SetVaultName(v string) *AbortVaultLockInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *AbortVaultLockInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 type AbortVaultLockOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4058,12 +4015,6 @@ func (s AbortVaultLockOutput) String() string {
 // GoString returns the string representation
 func (s AbortVaultLockOutput) GoString() string {
 	return s.String()
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *AbortVaultLockOutput) MarshalFields(e protocol.FieldEncoder) error {
-
-	return nil
 }
 
 // The input values for AddTagsToVault.
@@ -4133,27 +4084,6 @@ func (s *AddTagsToVaultInput) SetVaultName(v string) *AddTagsToVaultInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *AddTagsToVaultInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if len(s.Tags) > 0 {
-		v := s.Tags
-
-		e.SetMap(protocol.BodyTarget, "Tags", protocol.EncodeStringMap(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 type AddTagsToVaultOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4166,12 +4096,6 @@ func (s AddTagsToVaultOutput) String() string {
 // GoString returns the string representation
 func (s AddTagsToVaultOutput) GoString() string {
 	return s.String()
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *AddTagsToVaultOutput) MarshalFields(e protocol.FieldEncoder) error {
-
-	return nil
 }
 
 // Contains the Amazon Glacier response to your request.
@@ -4217,27 +4141,6 @@ func (s *ArchiveCreationOutput) SetChecksum(v string) *ArchiveCreationOutput {
 func (s *ArchiveCreationOutput) SetLocation(v string) *ArchiveCreationOutput {
 	s.Location = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ArchiveCreationOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.ArchiveId != nil {
-		v := *s.ArchiveId
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-archive-id", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Checksum != nil {
-		v := *s.Checksum
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-sha256-tree-hash", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Location != nil {
-		v := *s.Location
-
-		e.SetValue(protocol.HeaderTarget, "Location", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Provides options to complete a multipart upload operation. This informs Amazon
@@ -4337,37 +4240,6 @@ func (s *CompleteMultipartUploadInput) SetVaultName(v string) *CompleteMultipart
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *CompleteMultipartUploadInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.ArchiveSize != nil {
-		v := *s.ArchiveSize
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-archive-size", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Checksum != nil {
-		v := *s.Checksum
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-sha256-tree-hash", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.UploadId != nil {
-		v := *s.UploadId
-
-		e.SetValue(protocol.PathTarget, "uploadId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // The input values for CompleteVaultLock.
 type CompleteVaultLockInput struct {
 	_ struct{} `type:"structure"`
@@ -4440,27 +4312,6 @@ func (s *CompleteVaultLockInput) SetVaultName(v string) *CompleteVaultLockInput 
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *CompleteVaultLockInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.LockId != nil {
-		v := *s.LockId
-
-		e.SetValue(protocol.PathTarget, "lockId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 type CompleteVaultLockOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4473,12 +4324,6 @@ func (s CompleteVaultLockOutput) String() string {
 // GoString returns the string representation
 func (s CompleteVaultLockOutput) GoString() string {
 	return s.String()
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *CompleteVaultLockOutput) MarshalFields(e protocol.FieldEncoder) error {
-
-	return nil
 }
 
 // Provides options to create a vault.
@@ -4539,22 +4384,6 @@ func (s *CreateVaultInput) SetVaultName(v string) *CreateVaultInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *CreateVaultInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Contains the Amazon Glacier response to your request.
 type CreateVaultOutput struct {
 	_ struct{} `type:"structure"`
@@ -4577,17 +4406,6 @@ func (s CreateVaultOutput) GoString() string {
 func (s *CreateVaultOutput) SetLocation(v string) *CreateVaultOutput {
 	s.Location = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *CreateVaultOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Location != nil {
-		v := *s.Location
-
-		e.SetValue(protocol.HeaderTarget, "Location", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Data retrieval policy.
@@ -4613,17 +4431,6 @@ func (s DataRetrievalPolicy) GoString() string {
 func (s *DataRetrievalPolicy) SetRules(v []*DataRetrievalRule) *DataRetrievalPolicy {
 	s.Rules = v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *DataRetrievalPolicy) MarshalFields(e protocol.FieldEncoder) error {
-	if len(s.Rules) > 0 {
-		v := s.Rules
-
-		e.SetList(protocol.BodyTarget, "Rules", encodeDataRetrievalRuleList(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Data retrieval policy rule.
@@ -4663,30 +4470,6 @@ func (s *DataRetrievalRule) SetBytesPerHour(v int64) *DataRetrievalRule {
 func (s *DataRetrievalRule) SetStrategy(v string) *DataRetrievalRule {
 	s.Strategy = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *DataRetrievalRule) MarshalFields(e protocol.FieldEncoder) error {
-	if s.BytesPerHour != nil {
-		v := *s.BytesPerHour
-
-		e.SetValue(protocol.BodyTarget, "BytesPerHour", protocol.Int64Value(v), protocol.Metadata{})
-	}
-	if s.Strategy != nil {
-		v := *s.Strategy
-
-		e.SetValue(protocol.BodyTarget, "Strategy", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
-func encodeDataRetrievalRuleList(vs []*DataRetrievalRule) func(protocol.ListEncoder) {
-	return func(le protocol.ListEncoder) {
-		for _, v := range vs {
-			le.ListAddFields(v)
-		}
-	}
 }
 
 // Provides options for deleting an archive from an Amazon Glacier vault.
@@ -4760,27 +4543,6 @@ func (s *DeleteArchiveInput) SetVaultName(v string) *DeleteArchiveInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *DeleteArchiveInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.ArchiveId != nil {
-		v := *s.ArchiveId
-
-		e.SetValue(protocol.PathTarget, "archiveId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 type DeleteArchiveOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4793,12 +4555,6 @@ func (s DeleteArchiveOutput) String() string {
 // GoString returns the string representation
 func (s DeleteArchiveOutput) GoString() string {
 	return s.String()
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *DeleteArchiveOutput) MarshalFields(e protocol.FieldEncoder) error {
-
-	return nil
 }
 
 // DeleteVaultAccessPolicy input.
@@ -4858,22 +4614,6 @@ func (s *DeleteVaultAccessPolicyInput) SetVaultName(v string) *DeleteVaultAccess
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *DeleteVaultAccessPolicyInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 type DeleteVaultAccessPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4886,12 +4626,6 @@ func (s DeleteVaultAccessPolicyOutput) String() string {
 // GoString returns the string representation
 func (s DeleteVaultAccessPolicyOutput) GoString() string {
 	return s.String()
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *DeleteVaultAccessPolicyOutput) MarshalFields(e protocol.FieldEncoder) error {
-
-	return nil
 }
 
 // Provides options for deleting a vault from Amazon Glacier.
@@ -4949,22 +4683,6 @@ func (s *DeleteVaultInput) SetAccountId(v string) *DeleteVaultInput {
 func (s *DeleteVaultInput) SetVaultName(v string) *DeleteVaultInput {
 	s.VaultName = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *DeleteVaultInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Provides options for deleting a vault notification configuration from an
@@ -5025,22 +4743,6 @@ func (s *DeleteVaultNotificationsInput) SetVaultName(v string) *DeleteVaultNotif
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *DeleteVaultNotificationsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 type DeleteVaultNotificationsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5055,12 +4757,6 @@ func (s DeleteVaultNotificationsOutput) GoString() string {
 	return s.String()
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *DeleteVaultNotificationsOutput) MarshalFields(e protocol.FieldEncoder) error {
-
-	return nil
-}
-
 type DeleteVaultOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5073,12 +4769,6 @@ func (s DeleteVaultOutput) String() string {
 // GoString returns the string representation
 func (s DeleteVaultOutput) GoString() string {
 	return s.String()
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *DeleteVaultOutput) MarshalFields(e protocol.FieldEncoder) error {
-
-	return nil
 }
 
 // Provides options for retrieving a job description.
@@ -5152,27 +4842,6 @@ func (s *DescribeJobInput) SetVaultName(v string) *DescribeJobInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *DescribeJobInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.JobId != nil {
-		v := *s.JobId
-
-		e.SetValue(protocol.PathTarget, "jobId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Provides options for retrieving metadata for a specific vault in Amazon Glacier.
 type DescribeVaultInput struct {
 	_ struct{} `type:"structure"`
@@ -5228,22 +4897,6 @@ func (s *DescribeVaultInput) SetAccountId(v string) *DescribeVaultInput {
 func (s *DescribeVaultInput) SetVaultName(v string) *DescribeVaultInput {
 	s.VaultName = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *DescribeVaultInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Contains the Amazon Glacier response to your request.
@@ -5322,50 +4975,6 @@ func (s *DescribeVaultOutput) SetVaultName(v string) *DescribeVaultOutput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *DescribeVaultOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.CreationDate != nil {
-		v := *s.CreationDate
-
-		e.SetValue(protocol.BodyTarget, "CreationDate", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.LastInventoryDate != nil {
-		v := *s.LastInventoryDate
-
-		e.SetValue(protocol.BodyTarget, "LastInventoryDate", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.NumberOfArchives != nil {
-		v := *s.NumberOfArchives
-
-		e.SetValue(protocol.BodyTarget, "NumberOfArchives", protocol.Int64Value(v), protocol.Metadata{})
-	}
-	if s.SizeInBytes != nil {
-		v := *s.SizeInBytes
-
-		e.SetValue(protocol.BodyTarget, "SizeInBytes", protocol.Int64Value(v), protocol.Metadata{})
-	}
-	if s.VaultARN != nil {
-		v := *s.VaultARN
-
-		e.SetValue(protocol.BodyTarget, "VaultARN", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.BodyTarget, "VaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
-func encodeDescribeVaultOutputList(vs []*DescribeVaultOutput) func(protocol.ListEncoder) {
-	return func(le protocol.ListEncoder) {
-		for _, v := range vs {
-			le.ListAddFields(v)
-		}
-	}
-}
-
 // Input for GetDataRetrievalPolicy.
 type GetDataRetrievalPolicyInput struct {
 	_ struct{} `type:"structure"`
@@ -5410,17 +5019,6 @@ func (s *GetDataRetrievalPolicyInput) SetAccountId(v string) *GetDataRetrievalPo
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *GetDataRetrievalPolicyInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Contains the Amazon Glacier response to the GetDataRetrievalPolicy request.
 type GetDataRetrievalPolicyOutput struct {
 	_ struct{} `type:"structure"`
@@ -5443,17 +5041,6 @@ func (s GetDataRetrievalPolicyOutput) GoString() string {
 func (s *GetDataRetrievalPolicyOutput) SetPolicy(v *DataRetrievalPolicy) *GetDataRetrievalPolicyOutput {
 	s.Policy = v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *GetDataRetrievalPolicyOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Policy != nil {
-		v := s.Policy
-
-		e.SetFields(protocol.BodyTarget, "Policy", v, protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Provides options for downloading output of an Amazon Glacier job.
@@ -5564,32 +5151,6 @@ func (s *GetJobOutputInput) SetVaultName(v string) *GetJobOutputInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *GetJobOutputInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.JobId != nil {
-		v := *s.JobId
-
-		e.SetValue(protocol.PathTarget, "jobId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Range != nil {
-		v := *s.Range
-
-		e.SetValue(protocol.HeaderTarget, "Range", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Contains the Amazon Glacier response to your request.
 type GetJobOutputOutput struct {
 	_ struct{} `type:"structure" payload:"Body"`
@@ -5690,39 +5251,6 @@ func (s *GetJobOutputOutput) SetStatus(v int64) *GetJobOutputOutput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *GetJobOutputOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AcceptRanges != nil {
-		v := *s.AcceptRanges
-
-		e.SetValue(protocol.HeaderTarget, "Accept-Ranges", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.ArchiveDescription != nil {
-		v := *s.ArchiveDescription
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-archive-description", protocol.StringValue(v), protocol.Metadata{})
-	}
-	// Skipping Body Output type's body not valid.
-	if s.Checksum != nil {
-		v := *s.Checksum
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-sha256-tree-hash", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.ContentRange != nil {
-		v := *s.ContentRange
-
-		e.SetValue(protocol.HeaderTarget, "Content-Range", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.ContentType != nil {
-		v := *s.ContentType
-
-		e.SetValue(protocol.HeaderTarget, "Content-Type", protocol.StringValue(v), protocol.Metadata{})
-	}
-	// ignoring invalid encode state, StatusCode. Status
-
-	return nil
-}
-
 // Input for GetVaultAccessPolicy.
 type GetVaultAccessPolicyInput struct {
 	_ struct{} `type:"structure"`
@@ -5780,22 +5308,6 @@ func (s *GetVaultAccessPolicyInput) SetVaultName(v string) *GetVaultAccessPolicy
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *GetVaultAccessPolicyInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Output for GetVaultAccessPolicy.
 type GetVaultAccessPolicyOutput struct {
 	_ struct{} `type:"structure" payload:"Policy"`
@@ -5818,17 +5330,6 @@ func (s GetVaultAccessPolicyOutput) GoString() string {
 func (s *GetVaultAccessPolicyOutput) SetPolicy(v *VaultAccessPolicy) *GetVaultAccessPolicyOutput {
 	s.Policy = v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *GetVaultAccessPolicyOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Policy != nil {
-		v := s.Policy
-
-		e.SetFields(protocol.PayloadTarget, "policy", v, protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // The input values for GetVaultLock.
@@ -5888,22 +5389,6 @@ func (s *GetVaultLockInput) SetVaultName(v string) *GetVaultLockInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *GetVaultLockInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Contains the Amazon Glacier response to your request.
 type GetVaultLockOutput struct {
 	_ struct{} `type:"structure"`
@@ -5955,32 +5440,6 @@ func (s *GetVaultLockOutput) SetPolicy(v string) *GetVaultLockOutput {
 func (s *GetVaultLockOutput) SetState(v string) *GetVaultLockOutput {
 	s.State = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *GetVaultLockOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.CreationDate != nil {
-		v := *s.CreationDate
-
-		e.SetValue(protocol.BodyTarget, "CreationDate", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.ExpirationDate != nil {
-		v := *s.ExpirationDate
-
-		e.SetValue(protocol.BodyTarget, "ExpirationDate", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Policy != nil {
-		v := *s.Policy
-
-		e.SetValue(protocol.BodyTarget, "Policy", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.State != nil {
-		v := *s.State
-
-		e.SetValue(protocol.BodyTarget, "State", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Provides options for retrieving the notification configuration set on an
@@ -6041,22 +5500,6 @@ func (s *GetVaultNotificationsInput) SetVaultName(v string) *GetVaultNotificatio
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *GetVaultNotificationsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Contains the Amazon Glacier response to your request.
 type GetVaultNotificationsOutput struct {
 	_ struct{} `type:"structure" payload:"VaultNotificationConfig"`
@@ -6079,17 +5522,6 @@ func (s GetVaultNotificationsOutput) GoString() string {
 func (s *GetVaultNotificationsOutput) SetVaultNotificationConfig(v *VaultNotificationConfig) *GetVaultNotificationsOutput {
 	s.VaultNotificationConfig = v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *GetVaultNotificationsOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.VaultNotificationConfig != nil {
-		v := s.VaultNotificationConfig
-
-		e.SetFields(protocol.PayloadTarget, "vaultNotificationConfig", v, protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Provides options for initiating an Amazon Glacier job.
@@ -6158,27 +5590,6 @@ func (s *InitiateJobInput) SetVaultName(v string) *InitiateJobInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *InitiateJobInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.JobParameters != nil {
-		v := s.JobParameters
-
-		e.SetFields(protocol.PayloadTarget, "jobParameters", v, protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Contains the Amazon Glacier response to your request.
 type InitiateJobOutput struct {
 	_ struct{} `type:"structure"`
@@ -6210,22 +5621,6 @@ func (s *InitiateJobOutput) SetJobId(v string) *InitiateJobOutput {
 func (s *InitiateJobOutput) SetLocation(v string) *InitiateJobOutput {
 	s.Location = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *InitiateJobOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.JobId != nil {
-		v := *s.JobId
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-job-id", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Location != nil {
-		v := *s.Location
-
-		e.SetValue(protocol.HeaderTarget, "Location", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Provides options for initiating a multipart upload to an Amazon Glacier vault.
@@ -6309,32 +5704,6 @@ func (s *InitiateMultipartUploadInput) SetVaultName(v string) *InitiateMultipart
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *InitiateMultipartUploadInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.ArchiveDescription != nil {
-		v := *s.ArchiveDescription
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-archive-description", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.PartSize != nil {
-		v := *s.PartSize
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-part-size", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // The Amazon Glacier response to your request.
 type InitiateMultipartUploadOutput struct {
 	_ struct{} `type:"structure"`
@@ -6367,22 +5736,6 @@ func (s *InitiateMultipartUploadOutput) SetLocation(v string) *InitiateMultipart
 func (s *InitiateMultipartUploadOutput) SetUploadId(v string) *InitiateMultipartUploadOutput {
 	s.UploadId = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *InitiateMultipartUploadOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Location != nil {
-		v := *s.Location
-
-		e.SetValue(protocol.HeaderTarget, "Location", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.UploadId != nil {
-		v := *s.UploadId
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-multipart-upload-id", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // The input values for InitiateVaultLock.
@@ -6452,27 +5805,6 @@ func (s *InitiateVaultLockInput) SetVaultName(v string) *InitiateVaultLockInput 
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *InitiateVaultLockInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Policy != nil {
-		v := s.Policy
-
-		e.SetFields(protocol.PayloadTarget, "policy", v, protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Contains the Amazon Glacier response to your request.
 type InitiateVaultLockOutput struct {
 	_ struct{} `type:"structure"`
@@ -6495,17 +5827,6 @@ func (s InitiateVaultLockOutput) GoString() string {
 func (s *InitiateVaultLockOutput) SetLockId(v string) *InitiateVaultLockOutput {
 	s.LockId = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *InitiateVaultLockOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.LockId != nil {
-		v := *s.LockId
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-lock-id", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Describes the options for a range inventory retrieval job.
@@ -6580,37 +5901,6 @@ func (s *InventoryRetrievalJobDescription) SetStartDate(v string) *InventoryRetr
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *InventoryRetrievalJobDescription) MarshalFields(e protocol.FieldEncoder) error {
-	if s.EndDate != nil {
-		v := *s.EndDate
-
-		e.SetValue(protocol.BodyTarget, "EndDate", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Format != nil {
-		v := *s.Format
-
-		e.SetValue(protocol.BodyTarget, "Format", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Limit != nil {
-		v := *s.Limit
-
-		e.SetValue(protocol.BodyTarget, "Limit", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Marker != nil {
-		v := *s.Marker
-
-		e.SetValue(protocol.BodyTarget, "Marker", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.StartDate != nil {
-		v := *s.StartDate
-
-		e.SetValue(protocol.BodyTarget, "StartDate", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Provides options for specifying a range inventory retrieval job.
 type InventoryRetrievalJobInput struct {
 	_ struct{} `type:"structure"`
@@ -6668,32 +5958,6 @@ func (s *InventoryRetrievalJobInput) SetMarker(v string) *InventoryRetrievalJobI
 func (s *InventoryRetrievalJobInput) SetStartDate(v string) *InventoryRetrievalJobInput {
 	s.StartDate = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *InventoryRetrievalJobInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.EndDate != nil {
-		v := *s.EndDate
-
-		e.SetValue(protocol.BodyTarget, "EndDate", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Limit != nil {
-		v := *s.Limit
-
-		e.SetValue(protocol.BodyTarget, "Limit", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Marker != nil {
-		v := *s.Marker
-
-		e.SetValue(protocol.BodyTarget, "Marker", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.StartDate != nil {
-		v := *s.StartDate
-
-		e.SetValue(protocol.BodyTarget, "StartDate", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Describes an Amazon Glacier job.
@@ -6902,110 +6166,6 @@ func (s *JobDescription) SetVaultARN(v string) *JobDescription {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *JobDescription) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Action != nil {
-		v := *s.Action
-
-		e.SetValue(protocol.BodyTarget, "Action", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.ArchiveId != nil {
-		v := *s.ArchiveId
-
-		e.SetValue(protocol.BodyTarget, "ArchiveId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.ArchiveSHA256TreeHash != nil {
-		v := *s.ArchiveSHA256TreeHash
-
-		e.SetValue(protocol.BodyTarget, "ArchiveSHA256TreeHash", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.ArchiveSizeInBytes != nil {
-		v := *s.ArchiveSizeInBytes
-
-		e.SetValue(protocol.BodyTarget, "ArchiveSizeInBytes", protocol.Int64Value(v), protocol.Metadata{})
-	}
-	if s.Completed != nil {
-		v := *s.Completed
-
-		e.SetValue(protocol.BodyTarget, "Completed", protocol.BoolValue(v), protocol.Metadata{})
-	}
-	if s.CompletionDate != nil {
-		v := *s.CompletionDate
-
-		e.SetValue(protocol.BodyTarget, "CompletionDate", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.CreationDate != nil {
-		v := *s.CreationDate
-
-		e.SetValue(protocol.BodyTarget, "CreationDate", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.InventoryRetrievalParameters != nil {
-		v := s.InventoryRetrievalParameters
-
-		e.SetFields(protocol.BodyTarget, "InventoryRetrievalParameters", v, protocol.Metadata{})
-	}
-	if s.InventorySizeInBytes != nil {
-		v := *s.InventorySizeInBytes
-
-		e.SetValue(protocol.BodyTarget, "InventorySizeInBytes", protocol.Int64Value(v), protocol.Metadata{})
-	}
-	if s.JobDescription != nil {
-		v := *s.JobDescription
-
-		e.SetValue(protocol.BodyTarget, "JobDescription", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.JobId != nil {
-		v := *s.JobId
-
-		e.SetValue(protocol.BodyTarget, "JobId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.RetrievalByteRange != nil {
-		v := *s.RetrievalByteRange
-
-		e.SetValue(protocol.BodyTarget, "RetrievalByteRange", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.SHA256TreeHash != nil {
-		v := *s.SHA256TreeHash
-
-		e.SetValue(protocol.BodyTarget, "SHA256TreeHash", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.SNSTopic != nil {
-		v := *s.SNSTopic
-
-		e.SetValue(protocol.BodyTarget, "SNSTopic", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.StatusCode != nil {
-		v := *s.StatusCode
-
-		e.SetValue(protocol.BodyTarget, "StatusCode", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.StatusMessage != nil {
-		v := *s.StatusMessage
-
-		e.SetValue(protocol.BodyTarget, "StatusMessage", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Tier != nil {
-		v := *s.Tier
-
-		e.SetValue(protocol.BodyTarget, "Tier", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultARN != nil {
-		v := *s.VaultARN
-
-		e.SetValue(protocol.BodyTarget, "VaultARN", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
-func encodeJobDescriptionList(vs []*JobDescription) func(protocol.ListEncoder) {
-	return func(le protocol.ListEncoder) {
-		for _, v := range vs {
-			le.ListAddFields(v)
-		}
-	}
-}
-
 // Provides options for defining a job.
 type JobParameters struct {
 	_ struct{} `type:"structure"`
@@ -7113,52 +6273,6 @@ func (s *JobParameters) SetType(v string) *JobParameters {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *JobParameters) MarshalFields(e protocol.FieldEncoder) error {
-	if s.ArchiveId != nil {
-		v := *s.ArchiveId
-
-		e.SetValue(protocol.BodyTarget, "ArchiveId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Description != nil {
-		v := *s.Description
-
-		e.SetValue(protocol.BodyTarget, "Description", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Format != nil {
-		v := *s.Format
-
-		e.SetValue(protocol.BodyTarget, "Format", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.InventoryRetrievalParameters != nil {
-		v := s.InventoryRetrievalParameters
-
-		e.SetFields(protocol.BodyTarget, "InventoryRetrievalParameters", v, protocol.Metadata{})
-	}
-	if s.RetrievalByteRange != nil {
-		v := *s.RetrievalByteRange
-
-		e.SetValue(protocol.BodyTarget, "RetrievalByteRange", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.SNSTopic != nil {
-		v := *s.SNSTopic
-
-		e.SetValue(protocol.BodyTarget, "SNSTopic", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Tier != nil {
-		v := *s.Tier
-
-		e.SetValue(protocol.BodyTarget, "Tier", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Type != nil {
-		v := *s.Type
-
-		e.SetValue(protocol.BodyTarget, "Type", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Provides options for retrieving a job list for an Amazon Glacier vault.
 type ListJobsInput struct {
 	_ struct{} `type:"structure"`
@@ -7258,42 +6372,6 @@ func (s *ListJobsInput) SetVaultName(v string) *ListJobsInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ListJobsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Completed != nil {
-		v := *s.Completed
-
-		e.SetValue(protocol.QueryTarget, "completed", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Limit != nil {
-		v := *s.Limit
-
-		e.SetValue(protocol.QueryTarget, "limit", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Marker != nil {
-		v := *s.Marker
-
-		e.SetValue(protocol.QueryTarget, "marker", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Statuscode != nil {
-		v := *s.Statuscode
-
-		e.SetValue(protocol.QueryTarget, "statuscode", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Contains the Amazon Glacier response to your request.
 type ListJobsOutput struct {
 	_ struct{} `type:"structure"`
@@ -7328,22 +6406,6 @@ func (s *ListJobsOutput) SetJobList(v []*JobDescription) *ListJobsOutput {
 func (s *ListJobsOutput) SetMarker(v string) *ListJobsOutput {
 	s.Marker = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ListJobsOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if len(s.JobList) > 0 {
-		v := s.JobList
-
-		e.SetList(protocol.BodyTarget, "JobList", encodeJobDescriptionList(v), protocol.Metadata{})
-	}
-	if s.Marker != nil {
-		v := *s.Marker
-
-		e.SetValue(protocol.BodyTarget, "Marker", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Provides options for retrieving list of in-progress multipart uploads for
@@ -7427,32 +6489,6 @@ func (s *ListMultipartUploadsInput) SetVaultName(v string) *ListMultipartUploads
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ListMultipartUploadsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Limit != nil {
-		v := *s.Limit
-
-		e.SetValue(protocol.QueryTarget, "limit", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Marker != nil {
-		v := *s.Marker
-
-		e.SetValue(protocol.QueryTarget, "marker", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Contains the Amazon Glacier response to your request.
 type ListMultipartUploadsOutput struct {
 	_ struct{} `type:"structure"`
@@ -7486,22 +6522,6 @@ func (s *ListMultipartUploadsOutput) SetMarker(v string) *ListMultipartUploadsOu
 func (s *ListMultipartUploadsOutput) SetUploadsList(v []*UploadListElement) *ListMultipartUploadsOutput {
 	s.UploadsList = v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ListMultipartUploadsOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Marker != nil {
-		v := *s.Marker
-
-		e.SetValue(protocol.BodyTarget, "Marker", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if len(s.UploadsList) > 0 {
-		v := s.UploadsList
-
-		e.SetList(protocol.BodyTarget, "UploadsList", encodeUploadListElementList(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Provides options for retrieving a list of parts of an archive that have been
@@ -7600,37 +6620,6 @@ func (s *ListPartsInput) SetVaultName(v string) *ListPartsInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ListPartsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Limit != nil {
-		v := *s.Limit
-
-		e.SetValue(protocol.QueryTarget, "limit", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Marker != nil {
-		v := *s.Marker
-
-		e.SetValue(protocol.QueryTarget, "marker", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.UploadId != nil {
-		v := *s.UploadId
-
-		e.SetValue(protocol.PathTarget, "uploadId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Contains the Amazon Glacier response to your request.
 type ListPartsOutput struct {
 	_ struct{} `type:"structure"`
@@ -7715,47 +6704,6 @@ func (s *ListPartsOutput) SetVaultARN(v string) *ListPartsOutput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ListPartsOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.ArchiveDescription != nil {
-		v := *s.ArchiveDescription
-
-		e.SetValue(protocol.BodyTarget, "ArchiveDescription", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.CreationDate != nil {
-		v := *s.CreationDate
-
-		e.SetValue(protocol.BodyTarget, "CreationDate", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Marker != nil {
-		v := *s.Marker
-
-		e.SetValue(protocol.BodyTarget, "Marker", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.MultipartUploadId != nil {
-		v := *s.MultipartUploadId
-
-		e.SetValue(protocol.BodyTarget, "MultipartUploadId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.PartSizeInBytes != nil {
-		v := *s.PartSizeInBytes
-
-		e.SetValue(protocol.BodyTarget, "PartSizeInBytes", protocol.Int64Value(v), protocol.Metadata{})
-	}
-	if len(s.Parts) > 0 {
-		v := s.Parts
-
-		e.SetList(protocol.BodyTarget, "Parts", encodePartListElementList(v), protocol.Metadata{})
-	}
-	if s.VaultARN != nil {
-		v := *s.VaultARN
-
-		e.SetValue(protocol.BodyTarget, "VaultARN", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 type ListProvisionedCapacityInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7798,17 +6746,6 @@ func (s *ListProvisionedCapacityInput) SetAccountId(v string) *ListProvisionedCa
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ListProvisionedCapacityInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 type ListProvisionedCapacityOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7830,17 +6767,6 @@ func (s ListProvisionedCapacityOutput) GoString() string {
 func (s *ListProvisionedCapacityOutput) SetProvisionedCapacityList(v []*ProvisionedCapacityDescription) *ListProvisionedCapacityOutput {
 	s.ProvisionedCapacityList = v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ListProvisionedCapacityOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if len(s.ProvisionedCapacityList) > 0 {
-		v := s.ProvisionedCapacityList
-
-		e.SetList(protocol.BodyTarget, "ProvisionedCapacityList", encodeProvisionedCapacityDescriptionList(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // The input value for ListTagsForVaultInput.
@@ -7900,22 +6826,6 @@ func (s *ListTagsForVaultInput) SetVaultName(v string) *ListTagsForVaultInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ListTagsForVaultInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Contains the Amazon Glacier response to your request.
 type ListTagsForVaultOutput struct {
 	_ struct{} `type:"structure"`
@@ -7938,17 +6848,6 @@ func (s ListTagsForVaultOutput) GoString() string {
 func (s *ListTagsForVaultOutput) SetTags(v map[string]*string) *ListTagsForVaultOutput {
 	s.Tags = v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ListTagsForVaultOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if len(s.Tags) > 0 {
-		v := s.Tags
-
-		e.SetMap(protocol.BodyTarget, "Tags", protocol.EncodeStringMap(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Provides options to retrieve the vault list owned by the calling user's account.
@@ -8017,27 +6916,6 @@ func (s *ListVaultsInput) SetMarker(v string) *ListVaultsInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ListVaultsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Limit != nil {
-		v := *s.Limit
-
-		e.SetValue(protocol.QueryTarget, "limit", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Marker != nil {
-		v := *s.Marker
-
-		e.SetValue(protocol.QueryTarget, "marker", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Contains the Amazon Glacier response to your request.
 type ListVaultsOutput struct {
 	_ struct{} `type:"structure"`
@@ -8072,22 +6950,6 @@ func (s *ListVaultsOutput) SetVaultList(v []*DescribeVaultOutput) *ListVaultsOut
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ListVaultsOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Marker != nil {
-		v := *s.Marker
-
-		e.SetValue(protocol.BodyTarget, "Marker", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if len(s.VaultList) > 0 {
-		v := s.VaultList
-
-		e.SetList(protocol.BodyTarget, "VaultList", encodeDescribeVaultOutputList(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // A list of the part sizes of the multipart upload.
 type PartListElement struct {
 	_ struct{} `type:"structure"`
@@ -8120,30 +6982,6 @@ func (s *PartListElement) SetRangeInBytes(v string) *PartListElement {
 func (s *PartListElement) SetSHA256TreeHash(v string) *PartListElement {
 	s.SHA256TreeHash = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *PartListElement) MarshalFields(e protocol.FieldEncoder) error {
-	if s.RangeInBytes != nil {
-		v := *s.RangeInBytes
-
-		e.SetValue(protocol.BodyTarget, "RangeInBytes", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.SHA256TreeHash != nil {
-		v := *s.SHA256TreeHash
-
-		e.SetValue(protocol.BodyTarget, "SHA256TreeHash", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
-func encodePartListElementList(vs []*PartListElement) func(protocol.ListEncoder) {
-	return func(le protocol.ListEncoder) {
-		for _, v := range vs {
-			le.ListAddFields(v)
-		}
-	}
 }
 
 // The definition for a provisioned capacity unit.
@@ -8190,35 +7028,6 @@ func (s *ProvisionedCapacityDescription) SetStartDate(v string) *ProvisionedCapa
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ProvisionedCapacityDescription) MarshalFields(e protocol.FieldEncoder) error {
-	if s.CapacityId != nil {
-		v := *s.CapacityId
-
-		e.SetValue(protocol.BodyTarget, "CapacityId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.ExpirationDate != nil {
-		v := *s.ExpirationDate
-
-		e.SetValue(protocol.BodyTarget, "ExpirationDate", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.StartDate != nil {
-		v := *s.StartDate
-
-		e.SetValue(protocol.BodyTarget, "StartDate", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
-func encodeProvisionedCapacityDescriptionList(vs []*ProvisionedCapacityDescription) func(protocol.ListEncoder) {
-	return func(le protocol.ListEncoder) {
-		for _, v := range vs {
-			le.ListAddFields(v)
-		}
-	}
-}
-
 type PurchaseProvisionedCapacityInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8261,17 +7070,6 @@ func (s *PurchaseProvisionedCapacityInput) SetAccountId(v string) *PurchaseProvi
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *PurchaseProvisionedCapacityInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 type PurchaseProvisionedCapacityOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8293,17 +7091,6 @@ func (s PurchaseProvisionedCapacityOutput) GoString() string {
 func (s *PurchaseProvisionedCapacityOutput) SetCapacityId(v string) *PurchaseProvisionedCapacityOutput {
 	s.CapacityId = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *PurchaseProvisionedCapacityOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.CapacityId != nil {
-		v := *s.CapacityId
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-capacity-id", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // The input value for RemoveTagsFromVaultInput.
@@ -8372,27 +7159,6 @@ func (s *RemoveTagsFromVaultInput) SetVaultName(v string) *RemoveTagsFromVaultIn
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *RemoveTagsFromVaultInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if len(s.TagKeys) > 0 {
-		v := s.TagKeys
-
-		e.SetList(protocol.BodyTarget, "TagKeys", protocol.EncodeStringList(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 type RemoveTagsFromVaultOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8405,12 +7171,6 @@ func (s RemoveTagsFromVaultOutput) String() string {
 // GoString returns the string representation
 func (s RemoveTagsFromVaultOutput) GoString() string {
 	return s.String()
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *RemoveTagsFromVaultOutput) MarshalFields(e protocol.FieldEncoder) error {
-
-	return nil
 }
 
 // SetDataRetrievalPolicy input.
@@ -8466,22 +7226,6 @@ func (s *SetDataRetrievalPolicyInput) SetPolicy(v *DataRetrievalPolicy) *SetData
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *SetDataRetrievalPolicyInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Policy != nil {
-		v := s.Policy
-
-		e.SetFields(protocol.BodyTarget, "Policy", v, protocol.Metadata{})
-	}
-
-	return nil
-}
-
 type SetDataRetrievalPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8494,12 +7238,6 @@ func (s SetDataRetrievalPolicyOutput) String() string {
 // GoString returns the string representation
 func (s SetDataRetrievalPolicyOutput) GoString() string {
 	return s.String()
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *SetDataRetrievalPolicyOutput) MarshalFields(e protocol.FieldEncoder) error {
-
-	return nil
 }
 
 // SetVaultAccessPolicy input.
@@ -8568,27 +7306,6 @@ func (s *SetVaultAccessPolicyInput) SetVaultName(v string) *SetVaultAccessPolicy
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *SetVaultAccessPolicyInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Policy != nil {
-		v := s.Policy
-
-		e.SetFields(protocol.PayloadTarget, "policy", v, protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 type SetVaultAccessPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8601,12 +7318,6 @@ func (s SetVaultAccessPolicyOutput) String() string {
 // GoString returns the string representation
 func (s SetVaultAccessPolicyOutput) GoString() string {
 	return s.String()
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *SetVaultAccessPolicyOutput) MarshalFields(e protocol.FieldEncoder) error {
-
-	return nil
 }
 
 // Provides options to configure notifications that will be sent when specific
@@ -8676,27 +7387,6 @@ func (s *SetVaultNotificationsInput) SetVaultNotificationConfig(v *VaultNotifica
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *SetVaultNotificationsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultNotificationConfig != nil {
-		v := s.VaultNotificationConfig
-
-		e.SetFields(protocol.PayloadTarget, "vaultNotificationConfig", v, protocol.Metadata{})
-	}
-
-	return nil
-}
-
 type SetVaultNotificationsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8709,12 +7399,6 @@ func (s SetVaultNotificationsOutput) String() string {
 // GoString returns the string representation
 func (s SetVaultNotificationsOutput) GoString() string {
 	return s.String()
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *SetVaultNotificationsOutput) MarshalFields(e protocol.FieldEncoder) error {
-
-	return nil
 }
 
 // Provides options to add an archive to a vault.
@@ -8801,37 +7485,6 @@ func (s *UploadArchiveInput) SetVaultName(v string) *UploadArchiveInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *UploadArchiveInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.ArchiveDescription != nil {
-		v := *s.ArchiveDescription
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-archive-description", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Body != nil {
-		v := s.Body
-
-		e.SetStream(protocol.PayloadTarget, "body", protocol.ReadSeekerStream{V: v}, protocol.Metadata{})
-	}
-	if s.Checksum != nil {
-		v := *s.Checksum
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-sha256-tree-hash", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // A list of in-progress multipart uploads for a vault.
 type UploadListElement struct {
 	_ struct{} `type:"structure"`
@@ -8893,45 +7546,6 @@ func (s *UploadListElement) SetPartSizeInBytes(v int64) *UploadListElement {
 func (s *UploadListElement) SetVaultARN(v string) *UploadListElement {
 	s.VaultARN = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *UploadListElement) MarshalFields(e protocol.FieldEncoder) error {
-	if s.ArchiveDescription != nil {
-		v := *s.ArchiveDescription
-
-		e.SetValue(protocol.BodyTarget, "ArchiveDescription", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.CreationDate != nil {
-		v := *s.CreationDate
-
-		e.SetValue(protocol.BodyTarget, "CreationDate", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.MultipartUploadId != nil {
-		v := *s.MultipartUploadId
-
-		e.SetValue(protocol.BodyTarget, "MultipartUploadId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.PartSizeInBytes != nil {
-		v := *s.PartSizeInBytes
-
-		e.SetValue(protocol.BodyTarget, "PartSizeInBytes", protocol.Int64Value(v), protocol.Metadata{})
-	}
-	if s.VaultARN != nil {
-		v := *s.VaultARN
-
-		e.SetValue(protocol.BodyTarget, "VaultARN", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
-func encodeUploadListElementList(vs []*UploadListElement) func(protocol.ListEncoder) {
-	return func(le protocol.ListEncoder) {
-		for _, v := range vs {
-			le.ListAddFields(v)
-		}
-	}
 }
 
 // Provides options to upload a part of an archive in a multipart upload operation.
@@ -9035,42 +7649,6 @@ func (s *UploadMultipartPartInput) SetVaultName(v string) *UploadMultipartPartIn
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *UploadMultipartPartInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountId != nil {
-		v := *s.AccountId
-
-		e.SetValue(protocol.PathTarget, "accountId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Body != nil {
-		v := s.Body
-
-		e.SetStream(protocol.PayloadTarget, "body", protocol.ReadSeekerStream{V: v}, protocol.Metadata{})
-	}
-	if s.Checksum != nil {
-		v := *s.Checksum
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-sha256-tree-hash", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Range != nil {
-		v := *s.Range
-
-		e.SetValue(protocol.HeaderTarget, "Content-Range", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.UploadId != nil {
-		v := *s.UploadId
-
-		e.SetValue(protocol.PathTarget, "uploadId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VaultName != nil {
-		v := *s.VaultName
-
-		e.SetValue(protocol.PathTarget, "vaultName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Contains the Amazon Glacier response to your request.
 type UploadMultipartPartOutput struct {
 	_ struct{} `type:"structure"`
@@ -9093,17 +7671,6 @@ func (s UploadMultipartPartOutput) GoString() string {
 func (s *UploadMultipartPartOutput) SetChecksum(v string) *UploadMultipartPartOutput {
 	s.Checksum = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *UploadMultipartPartOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Checksum != nil {
-		v := *s.Checksum
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-sha256-tree-hash", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Contains the vault access policy.
@@ -9130,17 +7697,6 @@ func (s *VaultAccessPolicy) SetPolicy(v string) *VaultAccessPolicy {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *VaultAccessPolicy) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Policy != nil {
-		v := *s.Policy
-
-		e.SetValue(protocol.BodyTarget, "Policy", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Contains the vault lock policy.
 type VaultLockPolicy struct {
 	_ struct{} `type:"structure"`
@@ -9163,17 +7719,6 @@ func (s VaultLockPolicy) GoString() string {
 func (s *VaultLockPolicy) SetPolicy(v string) *VaultLockPolicy {
 	s.Policy = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *VaultLockPolicy) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Policy != nil {
-		v := *s.Policy
-
-		e.SetValue(protocol.BodyTarget, "Policy", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Represents a vault's notification configuration.
@@ -9209,22 +7754,6 @@ func (s *VaultNotificationConfig) SetEvents(v []*string) *VaultNotificationConfi
 func (s *VaultNotificationConfig) SetSNSTopic(v string) *VaultNotificationConfig {
 	s.SNSTopic = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *VaultNotificationConfig) MarshalFields(e protocol.FieldEncoder) error {
-	if len(s.Events) > 0 {
-		v := s.Events
-
-		e.SetList(protocol.BodyTarget, "Events", protocol.EncodeStringList(v), protocol.Metadata{})
-	}
-	if s.SNSTopic != nil {
-		v := *s.SNSTopic
-
-		e.SetValue(protocol.BodyTarget, "SNSTopic", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 const (

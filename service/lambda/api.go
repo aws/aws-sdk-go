@@ -3058,32 +3058,6 @@ func (s *AccountLimit) SetTotalCodeSize(v int64) *AccountLimit {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *AccountLimit) MarshalFields(e protocol.FieldEncoder) error {
-	if s.CodeSizeUnzipped != nil {
-		v := *s.CodeSizeUnzipped
-
-		e.SetValue(protocol.BodyTarget, "CodeSizeUnzipped", protocol.Int64Value(v), protocol.Metadata{})
-	}
-	if s.CodeSizeZipped != nil {
-		v := *s.CodeSizeZipped
-
-		e.SetValue(protocol.BodyTarget, "CodeSizeZipped", protocol.Int64Value(v), protocol.Metadata{})
-	}
-	if s.ConcurrentExecutions != nil {
-		v := *s.ConcurrentExecutions
-
-		e.SetValue(protocol.BodyTarget, "ConcurrentExecutions", protocol.Int64Value(v), protocol.Metadata{})
-	}
-	if s.TotalCodeSize != nil {
-		v := *s.TotalCodeSize
-
-		e.SetValue(protocol.BodyTarget, "TotalCodeSize", protocol.Int64Value(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Provides code size usage and function count associated with the current account
 // and region.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/AccountUsage
@@ -3117,22 +3091,6 @@ func (s *AccountUsage) SetFunctionCount(v int64) *AccountUsage {
 func (s *AccountUsage) SetTotalCodeSize(v int64) *AccountUsage {
 	s.TotalCodeSize = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *AccountUsage) MarshalFields(e protocol.FieldEncoder) error {
-	if s.FunctionCount != nil {
-		v := *s.FunctionCount
-
-		e.SetValue(protocol.BodyTarget, "FunctionCount", protocol.Int64Value(v), protocol.Metadata{})
-	}
-	if s.TotalCodeSize != nil {
-		v := *s.TotalCodeSize
-
-		e.SetValue(protocol.BodyTarget, "TotalCodeSize", protocol.Int64Value(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/AddPermissionRequest
@@ -3306,52 +3264,6 @@ func (s *AddPermissionInput) SetStatementId(v string) *AddPermissionInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *AddPermissionInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Action != nil {
-		v := *s.Action
-
-		e.SetValue(protocol.BodyTarget, "Action", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.EventSourceToken != nil {
-		v := *s.EventSourceToken
-
-		e.SetValue(protocol.BodyTarget, "EventSourceToken", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.FunctionName != nil {
-		v := *s.FunctionName
-
-		e.SetValue(protocol.PathTarget, "FunctionName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Principal != nil {
-		v := *s.Principal
-
-		e.SetValue(protocol.BodyTarget, "Principal", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Qualifier != nil {
-		v := *s.Qualifier
-
-		e.SetValue(protocol.QueryTarget, "Qualifier", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.SourceAccount != nil {
-		v := *s.SourceAccount
-
-		e.SetValue(protocol.BodyTarget, "SourceAccount", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.SourceArn != nil {
-		v := *s.SourceArn
-
-		e.SetValue(protocol.BodyTarget, "SourceArn", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.StatementId != nil {
-		v := *s.StatementId
-
-		e.SetValue(protocol.BodyTarget, "StatementId", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/AddPermissionResponse
 type AddPermissionOutput struct {
 	_ struct{} `type:"structure"`
@@ -3376,17 +3288,6 @@ func (s AddPermissionOutput) GoString() string {
 func (s *AddPermissionOutput) SetStatement(v string) *AddPermissionOutput {
 	s.Statement = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *AddPermissionOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Statement != nil {
-		v := *s.Statement
-
-		e.SetValue(protocol.BodyTarget, "Statement", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Provides configuration information about a Lambda function version alias.
@@ -3441,40 +3342,6 @@ func (s *AliasConfiguration) SetFunctionVersion(v string) *AliasConfiguration {
 func (s *AliasConfiguration) SetName(v string) *AliasConfiguration {
 	s.Name = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *AliasConfiguration) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AliasArn != nil {
-		v := *s.AliasArn
-
-		e.SetValue(protocol.BodyTarget, "AliasArn", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Description != nil {
-		v := *s.Description
-
-		e.SetValue(protocol.BodyTarget, "Description", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.FunctionVersion != nil {
-		v := *s.FunctionVersion
-
-		e.SetValue(protocol.BodyTarget, "FunctionVersion", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Name != nil {
-		v := *s.Name
-
-		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
-func encodeAliasConfigurationList(vs []*AliasConfiguration) func(protocol.ListEncoder) {
-	return func(le protocol.ListEncoder) {
-		for _, v := range vs {
-			le.ListAddFields(v)
-		}
-	}
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/CreateAliasRequest
@@ -3562,32 +3429,6 @@ func (s *CreateAliasInput) SetFunctionVersion(v string) *CreateAliasInput {
 func (s *CreateAliasInput) SetName(v string) *CreateAliasInput {
 	s.Name = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *CreateAliasInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Description != nil {
-		v := *s.Description
-
-		e.SetValue(protocol.BodyTarget, "Description", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.FunctionName != nil {
-		v := *s.FunctionName
-
-		e.SetValue(protocol.PathTarget, "FunctionName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.FunctionVersion != nil {
-		v := *s.FunctionVersion
-
-		e.SetValue(protocol.BodyTarget, "FunctionVersion", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Name != nil {
-		v := *s.Name
-
-		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/CreateEventSourceMappingRequest
@@ -3716,42 +3557,6 @@ func (s *CreateEventSourceMappingInput) SetStartingPosition(v string) *CreateEve
 func (s *CreateEventSourceMappingInput) SetStartingPositionTimestamp(v time.Time) *CreateEventSourceMappingInput {
 	s.StartingPositionTimestamp = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *CreateEventSourceMappingInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.BatchSize != nil {
-		v := *s.BatchSize
-
-		e.SetValue(protocol.BodyTarget, "BatchSize", protocol.Int64Value(v), protocol.Metadata{})
-	}
-	if s.Enabled != nil {
-		v := *s.Enabled
-
-		e.SetValue(protocol.BodyTarget, "Enabled", protocol.BoolValue(v), protocol.Metadata{})
-	}
-	if s.EventSourceArn != nil {
-		v := *s.EventSourceArn
-
-		e.SetValue(protocol.BodyTarget, "EventSourceArn", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.FunctionName != nil {
-		v := *s.FunctionName
-
-		e.SetValue(protocol.BodyTarget, "FunctionName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.StartingPosition != nil {
-		v := *s.StartingPosition
-
-		e.SetValue(protocol.BodyTarget, "StartingPosition", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.StartingPositionTimestamp != nil {
-		v := *s.StartingPositionTimestamp
-
-		e.SetValue(protocol.BodyTarget, "StartingPositionTimestamp", protocol.TimeValue{V: v, Format: protocol.UnixTimeFormat}, protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/CreateFunctionRequest
@@ -3990,87 +3795,6 @@ func (s *CreateFunctionInput) SetVpcConfig(v *VpcConfig) *CreateFunctionInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *CreateFunctionInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Code != nil {
-		v := s.Code
-
-		e.SetFields(protocol.BodyTarget, "Code", v, protocol.Metadata{})
-	}
-	if s.DeadLetterConfig != nil {
-		v := s.DeadLetterConfig
-
-		e.SetFields(protocol.BodyTarget, "DeadLetterConfig", v, protocol.Metadata{})
-	}
-	if s.Description != nil {
-		v := *s.Description
-
-		e.SetValue(protocol.BodyTarget, "Description", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Environment != nil {
-		v := s.Environment
-
-		e.SetFields(protocol.BodyTarget, "Environment", v, protocol.Metadata{})
-	}
-	if s.FunctionName != nil {
-		v := *s.FunctionName
-
-		e.SetValue(protocol.BodyTarget, "FunctionName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Handler != nil {
-		v := *s.Handler
-
-		e.SetValue(protocol.BodyTarget, "Handler", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.KMSKeyArn != nil {
-		v := *s.KMSKeyArn
-
-		e.SetValue(protocol.BodyTarget, "KMSKeyArn", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.MemorySize != nil {
-		v := *s.MemorySize
-
-		e.SetValue(protocol.BodyTarget, "MemorySize", protocol.Int64Value(v), protocol.Metadata{})
-	}
-	if s.Publish != nil {
-		v := *s.Publish
-
-		e.SetValue(protocol.BodyTarget, "Publish", protocol.BoolValue(v), protocol.Metadata{})
-	}
-	if s.Role != nil {
-		v := *s.Role
-
-		e.SetValue(protocol.BodyTarget, "Role", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Runtime != nil {
-		v := *s.Runtime
-
-		e.SetValue(protocol.BodyTarget, "Runtime", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if len(s.Tags) > 0 {
-		v := s.Tags
-
-		e.SetMap(protocol.BodyTarget, "Tags", protocol.EncodeStringMap(v), protocol.Metadata{})
-	}
-	if s.Timeout != nil {
-		v := *s.Timeout
-
-		e.SetValue(protocol.BodyTarget, "Timeout", protocol.Int64Value(v), protocol.Metadata{})
-	}
-	if s.TracingConfig != nil {
-		v := s.TracingConfig
-
-		e.SetFields(protocol.BodyTarget, "TracingConfig", v, protocol.Metadata{})
-	}
-	if s.VpcConfig != nil {
-		v := s.VpcConfig
-
-		e.SetFields(protocol.BodyTarget, "VpcConfig", v, protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // The parent object that contains the target ARN (Amazon Resource Name) of
 // an Amazon SQS queue or Amazon SNS topic.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/DeadLetterConfig
@@ -4096,17 +3820,6 @@ func (s DeadLetterConfig) GoString() string {
 func (s *DeadLetterConfig) SetTargetArn(v string) *DeadLetterConfig {
 	s.TargetArn = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *DeadLetterConfig) MarshalFields(e protocol.FieldEncoder) error {
-	if s.TargetArn != nil {
-		v := *s.TargetArn
-
-		e.SetValue(protocol.BodyTarget, "TargetArn", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/DeleteAliasRequest
@@ -4171,22 +3884,6 @@ func (s *DeleteAliasInput) SetName(v string) *DeleteAliasInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *DeleteAliasInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.FunctionName != nil {
-		v := *s.FunctionName
-
-		e.SetValue(protocol.PathTarget, "FunctionName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Name != nil {
-		v := *s.Name
-
-		e.SetValue(protocol.PathTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/DeleteAliasOutput
 type DeleteAliasOutput struct {
 	_ struct{} `type:"structure"`
@@ -4200,12 +3897,6 @@ func (s DeleteAliasOutput) String() string {
 // GoString returns the string representation
 func (s DeleteAliasOutput) GoString() string {
 	return s.String()
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *DeleteAliasOutput) MarshalFields(e protocol.FieldEncoder) error {
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/DeleteEventSourceMappingRequest
@@ -4245,17 +3936,6 @@ func (s *DeleteEventSourceMappingInput) Validate() error {
 func (s *DeleteEventSourceMappingInput) SetUUID(v string) *DeleteEventSourceMappingInput {
 	s.UUID = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *DeleteEventSourceMappingInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.UUID != nil {
-		v := *s.UUID
-
-		e.SetValue(protocol.PathTarget, "UUID", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/DeleteFunctionRequest
@@ -4333,22 +4013,6 @@ func (s *DeleteFunctionInput) SetQualifier(v string) *DeleteFunctionInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *DeleteFunctionInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.FunctionName != nil {
-		v := *s.FunctionName
-
-		e.SetValue(protocol.PathTarget, "FunctionName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Qualifier != nil {
-		v := *s.Qualifier
-
-		e.SetValue(protocol.QueryTarget, "Qualifier", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/DeleteFunctionOutput
 type DeleteFunctionOutput struct {
 	_ struct{} `type:"structure"`
@@ -4362,12 +4026,6 @@ func (s DeleteFunctionOutput) String() string {
 // GoString returns the string representation
 func (s DeleteFunctionOutput) GoString() string {
 	return s.String()
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *DeleteFunctionOutput) MarshalFields(e protocol.FieldEncoder) error {
-
-	return nil
 }
 
 // The parent object that contains your environment's configuration settings.
@@ -4393,17 +4051,6 @@ func (s Environment) GoString() string {
 func (s *Environment) SetVariables(v map[string]*string) *Environment {
 	s.Variables = v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *Environment) MarshalFields(e protocol.FieldEncoder) error {
-	if len(s.Variables) > 0 {
-		v := s.Variables
-
-		e.SetMap(protocol.BodyTarget, "Variables", protocol.EncodeStringMap(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // The parent object that contains error information associated with your configuration
@@ -4441,22 +4088,6 @@ func (s *EnvironmentError) SetMessage(v string) *EnvironmentError {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *EnvironmentError) MarshalFields(e protocol.FieldEncoder) error {
-	if s.ErrorCode != nil {
-		v := *s.ErrorCode
-
-		e.SetValue(protocol.BodyTarget, "ErrorCode", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Message != nil {
-		v := *s.Message
-
-		e.SetValue(protocol.BodyTarget, "Message", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // The parent object returned that contains your environment's configuration
 // settings or any error information associated with your configuration settings.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/EnvironmentResponse
@@ -4492,22 +4123,6 @@ func (s *EnvironmentResponse) SetError(v *EnvironmentError) *EnvironmentResponse
 func (s *EnvironmentResponse) SetVariables(v map[string]*string) *EnvironmentResponse {
 	s.Variables = v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *EnvironmentResponse) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Error != nil {
-		v := s.Error
-
-		e.SetFields(protocol.BodyTarget, "Error", v, protocol.Metadata{})
-	}
-	if len(s.Variables) > 0 {
-		v := s.Variables
-
-		e.SetMap(protocol.BodyTarget, "Variables", protocol.EncodeStringMap(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Describes mapping between an Amazon Kinesis stream and a Lambda function.
@@ -4603,60 +4218,6 @@ func (s *EventSourceMappingConfiguration) SetUUID(v string) *EventSourceMappingC
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *EventSourceMappingConfiguration) MarshalFields(e protocol.FieldEncoder) error {
-	if s.BatchSize != nil {
-		v := *s.BatchSize
-
-		e.SetValue(protocol.BodyTarget, "BatchSize", protocol.Int64Value(v), protocol.Metadata{})
-	}
-	if s.EventSourceArn != nil {
-		v := *s.EventSourceArn
-
-		e.SetValue(protocol.BodyTarget, "EventSourceArn", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.FunctionArn != nil {
-		v := *s.FunctionArn
-
-		e.SetValue(protocol.BodyTarget, "FunctionArn", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.LastModified != nil {
-		v := *s.LastModified
-
-		e.SetValue(protocol.BodyTarget, "LastModified", protocol.TimeValue{V: v, Format: protocol.UnixTimeFormat}, protocol.Metadata{})
-	}
-	if s.LastProcessingResult != nil {
-		v := *s.LastProcessingResult
-
-		e.SetValue(protocol.BodyTarget, "LastProcessingResult", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.State != nil {
-		v := *s.State
-
-		e.SetValue(protocol.BodyTarget, "State", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.StateTransitionReason != nil {
-		v := *s.StateTransitionReason
-
-		e.SetValue(protocol.BodyTarget, "StateTransitionReason", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.UUID != nil {
-		v := *s.UUID
-
-		e.SetValue(protocol.BodyTarget, "UUID", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
-func encodeEventSourceMappingConfigurationList(vs []*EventSourceMappingConfiguration) func(protocol.ListEncoder) {
-	return func(le protocol.ListEncoder) {
-		for _, v := range vs {
-			le.ListAddFields(v)
-		}
-	}
-}
-
 // The code for the Lambda function.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/FunctionCode
 type FunctionCode struct {
@@ -4737,32 +4298,6 @@ func (s *FunctionCode) SetZipFile(v []byte) *FunctionCode {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *FunctionCode) MarshalFields(e protocol.FieldEncoder) error {
-	if s.S3Bucket != nil {
-		v := *s.S3Bucket
-
-		e.SetValue(protocol.BodyTarget, "S3Bucket", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.S3Key != nil {
-		v := *s.S3Key
-
-		e.SetValue(protocol.BodyTarget, "S3Key", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.S3ObjectVersion != nil {
-		v := *s.S3ObjectVersion
-
-		e.SetValue(protocol.BodyTarget, "S3ObjectVersion", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.ZipFile != nil {
-		v := s.ZipFile
-
-		e.SetValue(protocol.BodyTarget, "ZipFile", protocol.BytesValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // The object for the Lambda function location.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/FunctionCodeLocation
 type FunctionCodeLocation struct {
@@ -4796,22 +4331,6 @@ func (s *FunctionCodeLocation) SetLocation(v string) *FunctionCodeLocation {
 func (s *FunctionCodeLocation) SetRepositoryType(v string) *FunctionCodeLocation {
 	s.RepositoryType = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *FunctionCodeLocation) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Location != nil {
-		v := *s.Location
-
-		e.SetValue(protocol.BodyTarget, "Location", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.RepositoryType != nil {
-		v := *s.RepositoryType
-
-		e.SetValue(protocol.BodyTarget, "RepositoryType", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // A complex type that describes function metadata.
@@ -5004,110 +4523,6 @@ func (s *FunctionConfiguration) SetVpcConfig(v *VpcConfigResponse) *FunctionConf
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *FunctionConfiguration) MarshalFields(e protocol.FieldEncoder) error {
-	if s.CodeSha256 != nil {
-		v := *s.CodeSha256
-
-		e.SetValue(protocol.BodyTarget, "CodeSha256", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.CodeSize != nil {
-		v := *s.CodeSize
-
-		e.SetValue(protocol.BodyTarget, "CodeSize", protocol.Int64Value(v), protocol.Metadata{})
-	}
-	if s.DeadLetterConfig != nil {
-		v := s.DeadLetterConfig
-
-		e.SetFields(protocol.BodyTarget, "DeadLetterConfig", v, protocol.Metadata{})
-	}
-	if s.Description != nil {
-		v := *s.Description
-
-		e.SetValue(protocol.BodyTarget, "Description", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Environment != nil {
-		v := s.Environment
-
-		e.SetFields(protocol.BodyTarget, "Environment", v, protocol.Metadata{})
-	}
-	if s.FunctionArn != nil {
-		v := *s.FunctionArn
-
-		e.SetValue(protocol.BodyTarget, "FunctionArn", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.FunctionName != nil {
-		v := *s.FunctionName
-
-		e.SetValue(protocol.BodyTarget, "FunctionName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Handler != nil {
-		v := *s.Handler
-
-		e.SetValue(protocol.BodyTarget, "Handler", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.KMSKeyArn != nil {
-		v := *s.KMSKeyArn
-
-		e.SetValue(protocol.BodyTarget, "KMSKeyArn", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.LastModified != nil {
-		v := *s.LastModified
-
-		e.SetValue(protocol.BodyTarget, "LastModified", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.MasterArn != nil {
-		v := *s.MasterArn
-
-		e.SetValue(protocol.BodyTarget, "MasterArn", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.MemorySize != nil {
-		v := *s.MemorySize
-
-		e.SetValue(protocol.BodyTarget, "MemorySize", protocol.Int64Value(v), protocol.Metadata{})
-	}
-	if s.Role != nil {
-		v := *s.Role
-
-		e.SetValue(protocol.BodyTarget, "Role", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Runtime != nil {
-		v := *s.Runtime
-
-		e.SetValue(protocol.BodyTarget, "Runtime", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Timeout != nil {
-		v := *s.Timeout
-
-		e.SetValue(protocol.BodyTarget, "Timeout", protocol.Int64Value(v), protocol.Metadata{})
-	}
-	if s.TracingConfig != nil {
-		v := s.TracingConfig
-
-		e.SetFields(protocol.BodyTarget, "TracingConfig", v, protocol.Metadata{})
-	}
-	if s.Version != nil {
-		v := *s.Version
-
-		e.SetValue(protocol.BodyTarget, "Version", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.VpcConfig != nil {
-		v := s.VpcConfig
-
-		e.SetFields(protocol.BodyTarget, "VpcConfig", v, protocol.Metadata{})
-	}
-
-	return nil
-}
-
-func encodeFunctionConfigurationList(vs []*FunctionConfiguration) func(protocol.ListEncoder) {
-	return func(le protocol.ListEncoder) {
-		for _, v := range vs {
-			le.ListAddFields(v)
-		}
-	}
-}
-
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetAccountSettingsRequest
 type GetAccountSettingsInput struct {
 	_ struct{} `type:"structure"`
@@ -5121,12 +4536,6 @@ func (s GetAccountSettingsInput) String() string {
 // GoString returns the string representation
 func (s GetAccountSettingsInput) GoString() string {
 	return s.String()
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *GetAccountSettingsInput) MarshalFields(e protocol.FieldEncoder) error {
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetAccountSettingsResponse
@@ -5162,22 +4571,6 @@ func (s *GetAccountSettingsOutput) SetAccountLimit(v *AccountLimit) *GetAccountS
 func (s *GetAccountSettingsOutput) SetAccountUsage(v *AccountUsage) *GetAccountSettingsOutput {
 	s.AccountUsage = v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *GetAccountSettingsOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccountLimit != nil {
-		v := s.AccountLimit
-
-		e.SetFields(protocol.BodyTarget, "AccountLimit", v, protocol.Metadata{})
-	}
-	if s.AccountUsage != nil {
-		v := s.AccountUsage
-
-		e.SetFields(protocol.BodyTarget, "AccountUsage", v, protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetAliasRequest
@@ -5243,22 +4636,6 @@ func (s *GetAliasInput) SetName(v string) *GetAliasInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *GetAliasInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.FunctionName != nil {
-		v := *s.FunctionName
-
-		e.SetValue(protocol.PathTarget, "FunctionName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Name != nil {
-		v := *s.Name
-
-		e.SetValue(protocol.PathTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetEventSourceMappingRequest
 type GetEventSourceMappingInput struct {
 	_ struct{} `type:"structure"`
@@ -5296,17 +4673,6 @@ func (s *GetEventSourceMappingInput) Validate() error {
 func (s *GetEventSourceMappingInput) SetUUID(v string) *GetEventSourceMappingInput {
 	s.UUID = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *GetEventSourceMappingInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.UUID != nil {
-		v := *s.UUID
-
-		e.SetValue(protocol.PathTarget, "UUID", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetFunctionConfigurationRequest
@@ -5377,22 +4743,6 @@ func (s *GetFunctionConfigurationInput) SetQualifier(v string) *GetFunctionConfi
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *GetFunctionConfigurationInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.FunctionName != nil {
-		v := *s.FunctionName
-
-		e.SetValue(protocol.PathTarget, "FunctionName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Qualifier != nil {
-		v := *s.Qualifier
-
-		e.SetValue(protocol.QueryTarget, "Qualifier", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetFunctionRequest
 type GetFunctionInput struct {
 	_ struct{} `type:"structure"`
@@ -5459,22 +4809,6 @@ func (s *GetFunctionInput) SetQualifier(v string) *GetFunctionInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *GetFunctionInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.FunctionName != nil {
-		v := *s.FunctionName
-
-		e.SetValue(protocol.PathTarget, "FunctionName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Qualifier != nil {
-		v := *s.Qualifier
-
-		e.SetValue(protocol.QueryTarget, "Qualifier", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // This response contains the object for the Lambda function location (see FunctionCodeLocation.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetFunctionResponse
 type GetFunctionOutput struct {
@@ -5516,27 +4850,6 @@ func (s *GetFunctionOutput) SetConfiguration(v *FunctionConfiguration) *GetFunct
 func (s *GetFunctionOutput) SetTags(v map[string]*string) *GetFunctionOutput {
 	s.Tags = v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *GetFunctionOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Code != nil {
-		v := s.Code
-
-		e.SetFields(protocol.BodyTarget, "Code", v, protocol.Metadata{})
-	}
-	if s.Configuration != nil {
-		v := s.Configuration
-
-		e.SetFields(protocol.BodyTarget, "Configuration", v, protocol.Metadata{})
-	}
-	if len(s.Tags) > 0 {
-		v := s.Tags
-
-		e.SetMap(protocol.BodyTarget, "Tags", protocol.EncodeStringMap(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetPolicyRequest
@@ -5605,22 +4918,6 @@ func (s *GetPolicyInput) SetQualifier(v string) *GetPolicyInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *GetPolicyInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.FunctionName != nil {
-		v := *s.FunctionName
-
-		e.SetValue(protocol.PathTarget, "FunctionName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Qualifier != nil {
-		v := *s.Qualifier
-
-		e.SetValue(protocol.QueryTarget, "Qualifier", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetPolicyResponse
 type GetPolicyOutput struct {
 	_ struct{} `type:"structure"`
@@ -5645,17 +4942,6 @@ func (s GetPolicyOutput) GoString() string {
 func (s *GetPolicyOutput) SetPolicy(v string) *GetPolicyOutput {
 	s.Policy = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *GetPolicyOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Policy != nil {
-		v := *s.Policy
-
-		e.SetValue(protocol.BodyTarget, "Policy", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/InvokeAsyncRequest
@@ -5716,22 +5002,6 @@ func (s *InvokeAsyncInput) SetInvokeArgs(v io.ReadSeeker) *InvokeAsyncInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *InvokeAsyncInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.FunctionName != nil {
-		v := *s.FunctionName
-
-		e.SetValue(protocol.PathTarget, "FunctionName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.InvokeArgs != nil {
-		v := s.InvokeArgs
-
-		e.SetStream(protocol.PayloadTarget, "InvokeArgs", protocol.ReadSeekerStream{V: v}, protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Upon success, it returns empty response. Otherwise, throws an exception.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/InvokeAsyncResponse
 type InvokeAsyncOutput struct {
@@ -5755,13 +5025,6 @@ func (s InvokeAsyncOutput) GoString() string {
 func (s *InvokeAsyncOutput) SetStatus(v int64) *InvokeAsyncOutput {
 	s.Status = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *InvokeAsyncOutput) MarshalFields(e protocol.FieldEncoder) error {
-	// ignoring invalid encode state, StatusCode. Status
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/InvocationRequest
@@ -5882,42 +5145,6 @@ func (s *InvokeInput) SetQualifier(v string) *InvokeInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *InvokeInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.ClientContext != nil {
-		v := *s.ClientContext
-
-		e.SetValue(protocol.HeaderTarget, "X-Amz-Client-Context", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.FunctionName != nil {
-		v := *s.FunctionName
-
-		e.SetValue(protocol.PathTarget, "FunctionName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.InvocationType != nil {
-		v := *s.InvocationType
-
-		e.SetValue(protocol.HeaderTarget, "X-Amz-Invocation-Type", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.LogType != nil {
-		v := *s.LogType
-
-		e.SetValue(protocol.HeaderTarget, "X-Amz-Log-Type", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Payload != nil {
-		v := s.Payload
-
-		e.SetStream(protocol.PayloadTarget, "Payload", protocol.BytesStream(v), protocol.Metadata{})
-	}
-	if s.Qualifier != nil {
-		v := *s.Qualifier
-
-		e.SetValue(protocol.QueryTarget, "Qualifier", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Upon success, returns an empty response. Otherwise, throws an exception.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/InvocationResponse
 type InvokeOutput struct {
@@ -5983,28 +5210,6 @@ func (s *InvokeOutput) SetPayload(v []byte) *InvokeOutput {
 func (s *InvokeOutput) SetStatusCode(v int64) *InvokeOutput {
 	s.StatusCode = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *InvokeOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.FunctionError != nil {
-		v := *s.FunctionError
-
-		e.SetValue(protocol.HeaderTarget, "X-Amz-Function-Error", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.LogResult != nil {
-		v := *s.LogResult
-
-		e.SetValue(protocol.HeaderTarget, "X-Amz-Log-Result", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Payload != nil {
-		v := s.Payload
-
-		e.SetStream(protocol.PayloadTarget, "Payload", protocol.BytesStream(v), protocol.Metadata{})
-	}
-	// ignoring invalid encode state, StatusCode. StatusCode
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/ListAliasesRequest
@@ -6088,32 +5293,6 @@ func (s *ListAliasesInput) SetMaxItems(v int64) *ListAliasesInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ListAliasesInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.FunctionName != nil {
-		v := *s.FunctionName
-
-		e.SetValue(protocol.PathTarget, "FunctionName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.FunctionVersion != nil {
-		v := *s.FunctionVersion
-
-		e.SetValue(protocol.QueryTarget, "FunctionVersion", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Marker != nil {
-		v := *s.Marker
-
-		e.SetValue(protocol.QueryTarget, "Marker", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.MaxItems != nil {
-		v := *s.MaxItems
-
-		e.SetValue(protocol.QueryTarget, "MaxItems", protocol.Int64Value(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/ListAliasesResponse
 type ListAliasesOutput struct {
 	_ struct{} `type:"structure"`
@@ -6145,22 +5324,6 @@ func (s *ListAliasesOutput) SetAliases(v []*AliasConfiguration) *ListAliasesOutp
 func (s *ListAliasesOutput) SetNextMarker(v string) *ListAliasesOutput {
 	s.NextMarker = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ListAliasesOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if len(s.Aliases) > 0 {
-		v := s.Aliases
-
-		e.SetList(protocol.BodyTarget, "Aliases", encodeAliasConfigurationList(v), protocol.Metadata{})
-	}
-	if s.NextMarker != nil {
-		v := *s.NextMarker
-
-		e.SetValue(protocol.BodyTarget, "NextMarker", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/ListEventSourceMappingsRequest
@@ -6243,32 +5406,6 @@ func (s *ListEventSourceMappingsInput) SetMaxItems(v int64) *ListEventSourceMapp
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ListEventSourceMappingsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.EventSourceArn != nil {
-		v := *s.EventSourceArn
-
-		e.SetValue(protocol.QueryTarget, "EventSourceArn", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.FunctionName != nil {
-		v := *s.FunctionName
-
-		e.SetValue(protocol.QueryTarget, "FunctionName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Marker != nil {
-		v := *s.Marker
-
-		e.SetValue(protocol.QueryTarget, "Marker", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.MaxItems != nil {
-		v := *s.MaxItems
-
-		e.SetValue(protocol.QueryTarget, "MaxItems", protocol.Int64Value(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Contains a list of event sources (see EventSourceMappingConfiguration)
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/ListEventSourceMappingsResponse
 type ListEventSourceMappingsOutput struct {
@@ -6301,22 +5438,6 @@ func (s *ListEventSourceMappingsOutput) SetEventSourceMappings(v []*EventSourceM
 func (s *ListEventSourceMappingsOutput) SetNextMarker(v string) *ListEventSourceMappingsOutput {
 	s.NextMarker = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ListEventSourceMappingsOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if len(s.EventSourceMappings) > 0 {
-		v := s.EventSourceMappings
-
-		e.SetList(protocol.BodyTarget, "EventSourceMappings", encodeEventSourceMappingConfigurationList(v), protocol.Metadata{})
-	}
-	if s.NextMarker != nil {
-		v := *s.NextMarker
-
-		e.SetValue(protocol.BodyTarget, "NextMarker", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/ListFunctionsRequest
@@ -6400,32 +5521,6 @@ func (s *ListFunctionsInput) SetMaxItems(v int64) *ListFunctionsInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ListFunctionsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.FunctionVersion != nil {
-		v := *s.FunctionVersion
-
-		e.SetValue(protocol.QueryTarget, "FunctionVersion", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Marker != nil {
-		v := *s.Marker
-
-		e.SetValue(protocol.QueryTarget, "Marker", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.MasterRegion != nil {
-		v := *s.MasterRegion
-
-		e.SetValue(protocol.QueryTarget, "MasterRegion", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.MaxItems != nil {
-		v := *s.MaxItems
-
-		e.SetValue(protocol.QueryTarget, "MaxItems", protocol.Int64Value(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Contains a list of AWS Lambda function configurations (see FunctionConfiguration.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/ListFunctionsResponse
 type ListFunctionsOutput struct {
@@ -6458,22 +5553,6 @@ func (s *ListFunctionsOutput) SetFunctions(v []*FunctionConfiguration) *ListFunc
 func (s *ListFunctionsOutput) SetNextMarker(v string) *ListFunctionsOutput {
 	s.NextMarker = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ListFunctionsOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if len(s.Functions) > 0 {
-		v := s.Functions
-
-		e.SetList(protocol.BodyTarget, "Functions", encodeFunctionConfigurationList(v), protocol.Metadata{})
-	}
-	if s.NextMarker != nil {
-		v := *s.NextMarker
-
-		e.SetValue(protocol.BodyTarget, "NextMarker", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/ListTagsRequest
@@ -6515,17 +5594,6 @@ func (s *ListTagsInput) SetResource(v string) *ListTagsInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ListTagsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Resource != nil {
-		v := *s.Resource
-
-		e.SetValue(protocol.PathTarget, "ARN", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/ListTagsResponse
 type ListTagsOutput struct {
 	_ struct{} `type:"structure"`
@@ -6548,17 +5616,6 @@ func (s ListTagsOutput) GoString() string {
 func (s *ListTagsOutput) SetTags(v map[string]*string) *ListTagsOutput {
 	s.Tags = v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ListTagsOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if len(s.Tags) > 0 {
-		v := s.Tags
-
-		e.SetMap(protocol.BodyTarget, "Tags", protocol.EncodeStringMap(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/ListVersionsByFunctionRequest
@@ -6631,27 +5688,6 @@ func (s *ListVersionsByFunctionInput) SetMaxItems(v int64) *ListVersionsByFuncti
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ListVersionsByFunctionInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.FunctionName != nil {
-		v := *s.FunctionName
-
-		e.SetValue(protocol.PathTarget, "FunctionName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Marker != nil {
-		v := *s.Marker
-
-		e.SetValue(protocol.QueryTarget, "Marker", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.MaxItems != nil {
-		v := *s.MaxItems
-
-		e.SetValue(protocol.QueryTarget, "MaxItems", protocol.Int64Value(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/ListVersionsByFunctionResponse
 type ListVersionsByFunctionOutput struct {
 	_ struct{} `type:"structure"`
@@ -6683,22 +5719,6 @@ func (s *ListVersionsByFunctionOutput) SetNextMarker(v string) *ListVersionsByFu
 func (s *ListVersionsByFunctionOutput) SetVersions(v []*FunctionConfiguration) *ListVersionsByFunctionOutput {
 	s.Versions = v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *ListVersionsByFunctionOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.NextMarker != nil {
-		v := *s.NextMarker
-
-		e.SetValue(protocol.BodyTarget, "NextMarker", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if len(s.Versions) > 0 {
-		v := s.Versions
-
-		e.SetList(protocol.BodyTarget, "Versions", encodeFunctionConfigurationList(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/PublishVersionRequest
@@ -6768,27 +5788,6 @@ func (s *PublishVersionInput) SetDescription(v string) *PublishVersionInput {
 func (s *PublishVersionInput) SetFunctionName(v string) *PublishVersionInput {
 	s.FunctionName = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *PublishVersionInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.CodeSha256 != nil {
-		v := *s.CodeSha256
-
-		e.SetValue(protocol.BodyTarget, "CodeSha256", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Description != nil {
-		v := *s.Description
-
-		e.SetValue(protocol.BodyTarget, "Description", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.FunctionName != nil {
-		v := *s.FunctionName
-
-		e.SetValue(protocol.PathTarget, "FunctionName", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/RemovePermissionRequest
@@ -6871,27 +5870,6 @@ func (s *RemovePermissionInput) SetStatementId(v string) *RemovePermissionInput 
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *RemovePermissionInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.FunctionName != nil {
-		v := *s.FunctionName
-
-		e.SetValue(protocol.PathTarget, "FunctionName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Qualifier != nil {
-		v := *s.Qualifier
-
-		e.SetValue(protocol.QueryTarget, "Qualifier", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.StatementId != nil {
-		v := *s.StatementId
-
-		e.SetValue(protocol.PathTarget, "StatementId", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/RemovePermissionOutput
 type RemovePermissionOutput struct {
 	_ struct{} `type:"structure"`
@@ -6905,12 +5883,6 @@ func (s RemovePermissionOutput) String() string {
 // GoString returns the string representation
 func (s RemovePermissionOutput) GoString() string {
 	return s.String()
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *RemovePermissionOutput) MarshalFields(e protocol.FieldEncoder) error {
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/TagResourceRequest
@@ -6966,22 +5938,6 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *TagResourceInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Resource != nil {
-		v := *s.Resource
-
-		e.SetValue(protocol.PathTarget, "ARN", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if len(s.Tags) > 0 {
-		v := s.Tags
-
-		e.SetMap(protocol.BodyTarget, "Tags", protocol.EncodeStringMap(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/TagResourceOutput
 type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
@@ -6995,12 +5951,6 @@ func (s TagResourceOutput) String() string {
 // GoString returns the string representation
 func (s TagResourceOutput) GoString() string {
 	return s.String()
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *TagResourceOutput) MarshalFields(e protocol.FieldEncoder) error {
-
-	return nil
 }
 
 // The parent object that contains your function's tracing settings.
@@ -7032,17 +5982,6 @@ func (s *TracingConfig) SetMode(v string) *TracingConfig {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *TracingConfig) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Mode != nil {
-		v := *s.Mode
-
-		e.SetValue(protocol.BodyTarget, "Mode", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Parent object of the tracing information associated with your Lambda function.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/TracingConfigResponse
 type TracingConfigResponse struct {
@@ -7066,17 +6005,6 @@ func (s TracingConfigResponse) GoString() string {
 func (s *TracingConfigResponse) SetMode(v string) *TracingConfigResponse {
 	s.Mode = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *TracingConfigResponse) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Mode != nil {
-		v := *s.Mode
-
-		e.SetValue(protocol.BodyTarget, "Mode", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/UntagResourceRequest
@@ -7132,22 +6060,6 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *UntagResourceInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Resource != nil {
-		v := *s.Resource
-
-		e.SetValue(protocol.PathTarget, "ARN", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if len(s.TagKeys) > 0 {
-		v := s.TagKeys
-
-		e.SetList(protocol.QueryTarget, "tagKeys", protocol.EncodeStringList(v), protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/UntagResourceOutput
 type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
@@ -7161,12 +6073,6 @@ func (s UntagResourceOutput) String() string {
 // GoString returns the string representation
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *UntagResourceOutput) MarshalFields(e protocol.FieldEncoder) error {
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/UpdateAliasRequest
@@ -7250,32 +6156,6 @@ func (s *UpdateAliasInput) SetFunctionVersion(v string) *UpdateAliasInput {
 func (s *UpdateAliasInput) SetName(v string) *UpdateAliasInput {
 	s.Name = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *UpdateAliasInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Description != nil {
-		v := *s.Description
-
-		e.SetValue(protocol.BodyTarget, "Description", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.FunctionName != nil {
-		v := *s.FunctionName
-
-		e.SetValue(protocol.PathTarget, "FunctionName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.FunctionVersion != nil {
-		v := *s.FunctionVersion
-
-		e.SetValue(protocol.BodyTarget, "FunctionVersion", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Name != nil {
-		v := *s.Name
-
-		e.SetValue(protocol.PathTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/UpdateEventSourceMappingRequest
@@ -7364,32 +6244,6 @@ func (s *UpdateEventSourceMappingInput) SetFunctionName(v string) *UpdateEventSo
 func (s *UpdateEventSourceMappingInput) SetUUID(v string) *UpdateEventSourceMappingInput {
 	s.UUID = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *UpdateEventSourceMappingInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.BatchSize != nil {
-		v := *s.BatchSize
-
-		e.SetValue(protocol.BodyTarget, "BatchSize", protocol.Int64Value(v), protocol.Metadata{})
-	}
-	if s.Enabled != nil {
-		v := *s.Enabled
-
-		e.SetValue(protocol.BodyTarget, "Enabled", protocol.BoolValue(v), protocol.Metadata{})
-	}
-	if s.FunctionName != nil {
-		v := *s.FunctionName
-
-		e.SetValue(protocol.BodyTarget, "FunctionName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.UUID != nil {
-		v := *s.UUID
-
-		e.SetValue(protocol.PathTarget, "UUID", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/UpdateFunctionCodeRequest
@@ -7516,47 +6370,6 @@ func (s *UpdateFunctionCodeInput) SetS3ObjectVersion(v string) *UpdateFunctionCo
 func (s *UpdateFunctionCodeInput) SetZipFile(v []byte) *UpdateFunctionCodeInput {
 	s.ZipFile = v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *UpdateFunctionCodeInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DryRun != nil {
-		v := *s.DryRun
-
-		e.SetValue(protocol.BodyTarget, "DryRun", protocol.BoolValue(v), protocol.Metadata{})
-	}
-	if s.FunctionName != nil {
-		v := *s.FunctionName
-
-		e.SetValue(protocol.PathTarget, "FunctionName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Publish != nil {
-		v := *s.Publish
-
-		e.SetValue(protocol.BodyTarget, "Publish", protocol.BoolValue(v), protocol.Metadata{})
-	}
-	if s.S3Bucket != nil {
-		v := *s.S3Bucket
-
-		e.SetValue(protocol.BodyTarget, "S3Bucket", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.S3Key != nil {
-		v := *s.S3Key
-
-		e.SetValue(protocol.BodyTarget, "S3Key", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.S3ObjectVersion != nil {
-		v := *s.S3ObjectVersion
-
-		e.SetValue(protocol.BodyTarget, "S3ObjectVersion", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.ZipFile != nil {
-		v := s.ZipFile
-
-		e.SetValue(protocol.BodyTarget, "ZipFile", protocol.BytesValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/UpdateFunctionConfigurationRequest
@@ -7742,72 +6555,6 @@ func (s *UpdateFunctionConfigurationInput) SetVpcConfig(v *VpcConfig) *UpdateFun
 	return s
 }
 
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *UpdateFunctionConfigurationInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DeadLetterConfig != nil {
-		v := s.DeadLetterConfig
-
-		e.SetFields(protocol.BodyTarget, "DeadLetterConfig", v, protocol.Metadata{})
-	}
-	if s.Description != nil {
-		v := *s.Description
-
-		e.SetValue(protocol.BodyTarget, "Description", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Environment != nil {
-		v := s.Environment
-
-		e.SetFields(protocol.BodyTarget, "Environment", v, protocol.Metadata{})
-	}
-	if s.FunctionName != nil {
-		v := *s.FunctionName
-
-		e.SetValue(protocol.PathTarget, "FunctionName", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Handler != nil {
-		v := *s.Handler
-
-		e.SetValue(protocol.BodyTarget, "Handler", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.KMSKeyArn != nil {
-		v := *s.KMSKeyArn
-
-		e.SetValue(protocol.BodyTarget, "KMSKeyArn", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.MemorySize != nil {
-		v := *s.MemorySize
-
-		e.SetValue(protocol.BodyTarget, "MemorySize", protocol.Int64Value(v), protocol.Metadata{})
-	}
-	if s.Role != nil {
-		v := *s.Role
-
-		e.SetValue(protocol.BodyTarget, "Role", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Runtime != nil {
-		v := *s.Runtime
-
-		e.SetValue(protocol.BodyTarget, "Runtime", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Timeout != nil {
-		v := *s.Timeout
-
-		e.SetValue(protocol.BodyTarget, "Timeout", protocol.Int64Value(v), protocol.Metadata{})
-	}
-	if s.TracingConfig != nil {
-		v := s.TracingConfig
-
-		e.SetFields(protocol.BodyTarget, "TracingConfig", v, protocol.Metadata{})
-	}
-	if s.VpcConfig != nil {
-		v := s.VpcConfig
-
-		e.SetFields(protocol.BodyTarget, "VpcConfig", v, protocol.Metadata{})
-	}
-
-	return nil
-}
-
 // If your Lambda function accesses resources in a VPC, you provide this parameter
 // identifying the list of security group IDs and subnet IDs. These must belong
 // to the same VPC. You must provide at least one security group and one subnet
@@ -7843,22 +6590,6 @@ func (s *VpcConfig) SetSecurityGroupIds(v []*string) *VpcConfig {
 func (s *VpcConfig) SetSubnetIds(v []*string) *VpcConfig {
 	s.SubnetIds = v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *VpcConfig) MarshalFields(e protocol.FieldEncoder) error {
-	if len(s.SecurityGroupIds) > 0 {
-		v := s.SecurityGroupIds
-
-		e.SetList(protocol.BodyTarget, "SecurityGroupIds", protocol.EncodeStringList(v), protocol.Metadata{})
-	}
-	if len(s.SubnetIds) > 0 {
-		v := s.SubnetIds
-
-		e.SetList(protocol.BodyTarget, "SubnetIds", protocol.EncodeStringList(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 // VPC configuration associated with your Lambda function.
@@ -7902,27 +6633,6 @@ func (s *VpcConfigResponse) SetSubnetIds(v []*string) *VpcConfigResponse {
 func (s *VpcConfigResponse) SetVpcId(v string) *VpcConfigResponse {
 	s.VpcId = &v
 	return s
-}
-
-// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
-func (s *VpcConfigResponse) MarshalFields(e protocol.FieldEncoder) error {
-	if len(s.SecurityGroupIds) > 0 {
-		v := s.SecurityGroupIds
-
-		e.SetList(protocol.BodyTarget, "SecurityGroupIds", protocol.EncodeStringList(v), protocol.Metadata{})
-	}
-	if len(s.SubnetIds) > 0 {
-		v := s.SubnetIds
-
-		e.SetList(protocol.BodyTarget, "SubnetIds", protocol.EncodeStringList(v), protocol.Metadata{})
-	}
-	if s.VpcId != nil {
-		v := *s.VpcId
-
-		e.SetValue(protocol.BodyTarget, "VpcId", protocol.StringValue(v), protocol.Metadata{})
-	}
-
-	return nil
 }
 
 const (

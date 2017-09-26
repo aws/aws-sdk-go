@@ -7,13 +7,11 @@ package restjson
 
 import (
 	"encoding/json"
-	"io"
 	"io/ioutil"
 	"strings"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/private/protocol/rest"
 )
@@ -32,25 +30,6 @@ var UnmarshalErrorHandler = request.NamedHandler{Name: "awssdk.restjson.Unmarsha
 
 // Build builds a request for the REST JSON protocol.
 func Build(r *request.Request) {
-	if m, ok := r.Params.(protocol.FieldMarshaler); ok {
-		e := NewEncoder(r.HTTPRequest)
-
-		m.MarshalFields(e)
-
-		var body io.ReadSeeker
-		var err error
-		r.HTTPRequest, body, err = e.Encode()
-		if err != nil {
-			r.Error = awserr.New(request.ErrCodeSerialization, "failed to encode rest JSON request", err)
-			return
-		}
-		if body != nil {
-			r.SetReaderBody(body)
-		}
-		return
-	}
-
-	// Fall back to old reflection based marshaler
 	rest.Build(r)
 
 	if t := rest.PayloadType(r.Params); t == "structure" || t == "" {
