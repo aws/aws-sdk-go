@@ -320,6 +320,12 @@ type InputService1TestShapeInputService1TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService1TestShapeInputService1TestCaseOperation1Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
+}
+
 type InputService1TestShapeInputService1TestCaseOperation2Input struct {
 	_ struct{} `locationName:"OperationRequest" type:"structure" xmlURI:"https://foo/"`
 
@@ -340,16 +346,50 @@ func (s *InputService1TestShapeInputService1TestCaseOperation2Input) SetName(v s
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService1TestShapeInputService1TestCaseOperation2Input) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Description != nil {
+		v := *s.Description
+
+		e.SetValue(protocol.BodyTarget, "Description", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Name != nil {
+		v := *s.Name
+
+		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 type InputService1TestShapeInputService1TestCaseOperation2Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService1TestShapeInputService1TestCaseOperation2Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 type InputService1TestShapeInputService1TestCaseOperation3Input struct {
 	_ struct{} `type:"structure"`
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService1TestShapeInputService1TestCaseOperation3Input) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
+}
+
 type InputService1TestShapeInputService1TestCaseOperation3Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService1TestShapeInputService1TestCaseOperation3Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // InputService2ProtocolTest provides the API operation methods for making requests to
@@ -518,8 +558,40 @@ func (s *InputService2TestShapeInputService2TestCaseOperation1Input) SetThird(v 
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService2TestShapeInputService2TestCaseOperation1Input) MarshalFields(e protocol.FieldEncoder) error {
+	if s.First != nil {
+		v := *s.First
+
+		e.SetValue(protocol.BodyTarget, "First", protocol.BoolValue(v), protocol.Metadata{})
+	}
+	if s.Fourth != nil {
+		v := *s.Fourth
+
+		e.SetValue(protocol.BodyTarget, "Fourth", protocol.Int64Value(v), protocol.Metadata{})
+	}
+	if s.Second != nil {
+		v := *s.Second
+
+		e.SetValue(protocol.BodyTarget, "Second", protocol.BoolValue(v), protocol.Metadata{})
+	}
+	if s.Third != nil {
+		v := *s.Third
+
+		e.SetValue(protocol.BodyTarget, "Third", protocol.Float64Value(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 type InputService2TestShapeInputService2TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService2TestShapeInputService2TestCaseOperation1Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // InputService3ProtocolTest provides the API operation methods for making requests to
@@ -727,6 +799,12 @@ type InputService3TestShapeInputService3TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService3TestShapeInputService3TestCaseOperation1Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
+}
+
 type InputService3TestShapeInputService3TestCaseOperation2Input struct {
 	_ struct{} `locationName:"OperationRequest" type:"structure" xmlURI:"https://foo/"`
 
@@ -747,8 +825,30 @@ func (s *InputService3TestShapeInputService3TestCaseOperation2Input) SetSubStruc
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService3TestShapeInputService3TestCaseOperation2Input) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Description != nil {
+		v := *s.Description
+
+		e.SetValue(protocol.BodyTarget, "Description", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.SubStructure != nil {
+		v := s.SubStructure
+
+		e.SetFields(protocol.BodyTarget, "SubStructure", v, protocol.Metadata{})
+	}
+
+	return nil
+}
+
 type InputService3TestShapeInputService3TestCaseOperation2Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService3TestShapeInputService3TestCaseOperation2Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 type InputService3TestShapeSubStructure struct {
@@ -769,6 +869,22 @@ func (s *InputService3TestShapeSubStructure) SetBar(v string) *InputService3Test
 func (s *InputService3TestShapeSubStructure) SetFoo(v string) *InputService3TestShapeSubStructure {
 	s.Foo = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService3TestShapeSubStructure) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Bar != nil {
+		v := *s.Bar
+
+		e.SetValue(protocol.BodyTarget, "Bar", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Foo != nil {
+		v := *s.Foo
+
+		e.SetValue(protocol.BodyTarget, "Foo", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // InputService4ProtocolTest provides the API operation methods for making requests to
@@ -921,8 +1037,30 @@ func (s *InputService4TestShapeInputService4TestCaseOperation1Input) SetSubStruc
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService4TestShapeInputService4TestCaseOperation1Input) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Description != nil {
+		v := *s.Description
+
+		e.SetValue(protocol.BodyTarget, "Description", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.SubStructure != nil {
+		v := s.SubStructure
+
+		e.SetFields(protocol.BodyTarget, "SubStructure", v, protocol.Metadata{})
+	}
+
+	return nil
+}
+
 type InputService4TestShapeInputService4TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService4TestShapeInputService4TestCaseOperation1Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 type InputService4TestShapeSubStructure struct {
@@ -943,6 +1081,22 @@ func (s *InputService4TestShapeSubStructure) SetBar(v string) *InputService4Test
 func (s *InputService4TestShapeSubStructure) SetFoo(v string) *InputService4TestShapeSubStructure {
 	s.Foo = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService4TestShapeSubStructure) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Bar != nil {
+		v := *s.Bar
+
+		e.SetValue(protocol.BodyTarget, "Bar", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Foo != nil {
+		v := *s.Foo
+
+		e.SetValue(protocol.BodyTarget, "Foo", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // InputService5ProtocolTest provides the API operation methods for making requests to
@@ -1087,8 +1241,25 @@ func (s *InputService5TestShapeInputService5TestCaseOperation1Input) SetListPara
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService5TestShapeInputService5TestCaseOperation1Input) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.ListParam) > 0 {
+		v := s.ListParam
+
+		e.SetList(protocol.BodyTarget, "ListParam", protocol.EncodeStringList(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 type InputService5TestShapeInputService5TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService5TestShapeInputService5TestCaseOperation1Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // InputService6ProtocolTest provides the API operation methods for making requests to
@@ -1233,8 +1404,25 @@ func (s *InputService6TestShapeInputService6TestCaseOperation1Input) SetListPara
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService6TestShapeInputService6TestCaseOperation1Input) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.ListParam) > 0 {
+		v := s.ListParam
+
+		e.SetList(protocol.BodyTarget, "AlternateName", protocol.EncodeStringList(v), protocol.Metadata{ListLocationName: "NotMember"})
+	}
+
+	return nil
+}
+
 type InputService6TestShapeInputService6TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService6TestShapeInputService6TestCaseOperation1Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // InputService7ProtocolTest provides the API operation methods for making requests to
@@ -1379,8 +1567,25 @@ func (s *InputService7TestShapeInputService7TestCaseOperation1Input) SetListPara
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService7TestShapeInputService7TestCaseOperation1Input) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.ListParam) > 0 {
+		v := s.ListParam
+
+		e.SetList(protocol.BodyTarget, "ListParam", protocol.EncodeStringList(v), protocol.Metadata{Flatten: true})
+	}
+
+	return nil
+}
+
 type InputService7TestShapeInputService7TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService7TestShapeInputService7TestCaseOperation1Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // InputService8ProtocolTest provides the API operation methods for making requests to
@@ -1525,8 +1730,25 @@ func (s *InputService8TestShapeInputService8TestCaseOperation1Input) SetListPara
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService8TestShapeInputService8TestCaseOperation1Input) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.ListParam) > 0 {
+		v := s.ListParam
+
+		e.SetList(protocol.BodyTarget, "item", protocol.EncodeStringList(v), protocol.Metadata{Flatten: true})
+	}
+
+	return nil
+}
+
 type InputService8TestShapeInputService8TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService8TestShapeInputService8TestCaseOperation1Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // InputService9ProtocolTest provides the API operation methods for making requests to
@@ -1671,8 +1893,25 @@ func (s *InputService9TestShapeInputService9TestCaseOperation1Input) SetListPara
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService9TestShapeInputService9TestCaseOperation1Input) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.ListParam) > 0 {
+		v := s.ListParam
+
+		e.SetList(protocol.BodyTarget, "item", encodeInputService9TestShapeSingleFieldStructList(v), protocol.Metadata{Flatten: true})
+	}
+
+	return nil
+}
+
 type InputService9TestShapeInputService9TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService9TestShapeInputService9TestCaseOperation1Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 type InputService9TestShapeSingleFieldStruct struct {
@@ -1685,6 +1924,25 @@ type InputService9TestShapeSingleFieldStruct struct {
 func (s *InputService9TestShapeSingleFieldStruct) SetElement(v string) *InputService9TestShapeSingleFieldStruct {
 	s.Element = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService9TestShapeSingleFieldStruct) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Element != nil {
+		v := *s.Element
+
+		e.SetValue(protocol.BodyTarget, "value", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
+func encodeInputService9TestShapeSingleFieldStructList(vs []*InputService9TestShapeSingleFieldStruct) func(protocol.ListEncoder) {
+	return func(le protocol.ListEncoder) {
+		for _, v := range vs {
+			le.ListAddFields(v)
+		}
+	}
 }
 
 // InputService10ProtocolTest provides the API operation methods for making requests to
@@ -1829,8 +2087,25 @@ func (s *InputService10TestShapeInputService10TestCaseOperation1Input) SetStruct
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService10TestShapeInputService10TestCaseOperation1Input) MarshalFields(e protocol.FieldEncoder) error {
+	if s.StructureParam != nil {
+		v := s.StructureParam
+
+		e.SetFields(protocol.BodyTarget, "StructureParam", v, protocol.Metadata{})
+	}
+
+	return nil
+}
+
 type InputService10TestShapeInputService10TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService10TestShapeInputService10TestCaseOperation1Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 type InputService10TestShapeStructureShape struct {
@@ -1852,6 +2127,22 @@ func (s *InputService10TestShapeStructureShape) SetB(v []byte) *InputService10Te
 func (s *InputService10TestShapeStructureShape) SetT(v time.Time) *InputService10TestShapeStructureShape {
 	s.T = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService10TestShapeStructureShape) MarshalFields(e protocol.FieldEncoder) error {
+	if s.B != nil {
+		v := s.B
+
+		e.SetValue(protocol.BodyTarget, "b", protocol.BytesValue(v), protocol.Metadata{})
+	}
+	if s.T != nil {
+		v := *s.T
+
+		e.SetValue(protocol.BodyTarget, "t", protocol.TimeValue{V: v, Format: protocol.ISO8601TimeFormat}, protocol.Metadata{})
+	}
+
+	return nil
 }
 
 // InputService11ProtocolTest provides the API operation methods for making requests to
@@ -1996,8 +2287,25 @@ func (s *InputService11TestShapeInputService11TestCaseOperation1Input) SetFoo(v 
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService11TestShapeInputService11TestCaseOperation1Input) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.Foo) > 0 {
+		v := s.Foo
+
+		e.SetMap(protocol.HeadersTarget, "x-foo-", protocol.EncodeStringMap(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 type InputService11TestShapeInputService11TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService11TestShapeInputService11TestCaseOperation1Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // InputService12ProtocolTest provides the API operation methods for making requests to
@@ -2142,8 +2450,25 @@ func (s *InputService12TestShapeInputService12TestCaseOperation1Input) SetItems(
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService12TestShapeInputService12TestCaseOperation1Input) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.Items) > 0 {
+		v := s.Items
+
+		e.SetList(protocol.QueryTarget, "item", protocol.EncodeStringList(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 type InputService12TestShapeInputService12TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService12TestShapeInputService12TestCaseOperation1Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // InputService13ProtocolTest provides the API operation methods for making requests to
@@ -2296,8 +2621,30 @@ func (s *InputService13TestShapeInputService13TestCaseOperation1Input) SetQueryD
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService13TestShapeInputService13TestCaseOperation1Input) MarshalFields(e protocol.FieldEncoder) error {
+	if s.PipelineId != nil {
+		v := *s.PipelineId
+
+		e.SetValue(protocol.PathTarget, "PipelineId", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if len(s.QueryDoc) > 0 {
+		v := s.QueryDoc
+
+		e.SetMap(protocol.QueryTarget, "QueryDoc", protocol.EncodeStringMap(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 type InputService13TestShapeInputService13TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService13TestShapeInputService13TestCaseOperation1Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // InputService14ProtocolTest provides the API operation methods for making requests to
@@ -2450,8 +2797,35 @@ func (s *InputService14TestShapeInputService14TestCaseOperation1Input) SetQueryD
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService14TestShapeInputService14TestCaseOperation1Input) MarshalFields(e protocol.FieldEncoder) error {
+	if s.PipelineId != nil {
+		v := *s.PipelineId
+
+		e.SetValue(protocol.PathTarget, "PipelineId", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if len(s.QueryDoc) > 0 {
+		v := s.QueryDoc
+
+		e.SetMap(protocol.QueryTarget, "QueryDoc", func(me protocol.MapEncoder) {
+			for k, item := range v {
+				v := item
+				me.MapSetList(k, protocol.EncodeStringList(v))
+			}
+		}, protocol.Metadata{})
+	}
+
+	return nil
+}
+
 type InputService14TestShapeInputService14TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService14TestShapeInputService14TestCaseOperation1Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // InputService15ProtocolTest provides the API operation methods for making requests to
@@ -2659,6 +3033,12 @@ type InputService15TestShapeInputService15TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService15TestShapeInputService15TestCaseOperation1Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
+}
+
 type InputService15TestShapeInputService15TestCaseOperation2Input struct {
 	_ struct{} `type:"structure"`
 
@@ -2671,8 +3051,25 @@ func (s *InputService15TestShapeInputService15TestCaseOperation2Input) SetBoolQu
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService15TestShapeInputService15TestCaseOperation2Input) MarshalFields(e protocol.FieldEncoder) error {
+	if s.BoolQuery != nil {
+		v := *s.BoolQuery
+
+		e.SetValue(protocol.QueryTarget, "bool-query", protocol.BoolValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 type InputService15TestShapeInputService15TestCaseOperation2Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService15TestShapeInputService15TestCaseOperation2Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // InputService16ProtocolTest provides the API operation methods for making requests to
@@ -2817,8 +3214,25 @@ func (s *InputService16TestShapeInputService16TestCaseOperation1Input) SetFoo(v 
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService16TestShapeInputService16TestCaseOperation1Input) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Foo != nil {
+		v := *s.Foo
+
+		e.SetStream(protocol.PayloadTarget, "foo", protocol.StringStream(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 type InputService16TestShapeInputService16TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService16TestShapeInputService16TestCaseOperation1Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // InputService17ProtocolTest provides the API operation methods for making requests to
@@ -3026,6 +3440,12 @@ type InputService17TestShapeInputService17TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService17TestShapeInputService17TestCaseOperation1Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
+}
+
 type InputService17TestShapeInputService17TestCaseOperation2Input struct {
 	_ struct{} `type:"structure" payload:"Foo"`
 
@@ -3038,8 +3458,25 @@ func (s *InputService17TestShapeInputService17TestCaseOperation2Input) SetFoo(v 
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService17TestShapeInputService17TestCaseOperation2Input) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Foo != nil {
+		v := s.Foo
+
+		e.SetStream(protocol.PayloadTarget, "foo", protocol.BytesStream(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 type InputService17TestShapeInputService17TestCaseOperation2Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService17TestShapeInputService17TestCaseOperation2Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // InputService18ProtocolTest provides the API operation methods for making requests to
@@ -3397,16 +3834,45 @@ func (s *InputService18TestShapeFooShape) SetBaz(v string) *InputService18TestSh
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService18TestShapeFooShape) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Baz != nil {
+		v := *s.Baz
+
+		e.SetValue(protocol.BodyTarget, "baz", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 type InputService18TestShapeInputService18TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService18TestShapeInputService18TestCaseOperation1Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 type InputService18TestShapeInputService18TestCaseOperation2Output struct {
 	_ struct{} `type:"structure"`
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService18TestShapeInputService18TestCaseOperation2Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
+}
+
 type InputService18TestShapeInputService18TestCaseOperation3Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService18TestShapeInputService18TestCaseOperation3Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 type InputService18TestShapeInputService18TestCaseOperation4Input struct {
@@ -3421,8 +3887,25 @@ func (s *InputService18TestShapeInputService18TestCaseOperation4Input) SetFoo(v 
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService18TestShapeInputService18TestCaseOperation4Input) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Foo != nil {
+		v := s.Foo
+
+		e.SetFields(protocol.PayloadTarget, "foo", v, protocol.Metadata{})
+	}
+
+	return nil
+}
+
 type InputService18TestShapeInputService18TestCaseOperation4Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService18TestShapeInputService18TestCaseOperation4Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // InputService19ProtocolTest provides the API operation methods for making requests to
@@ -3567,6 +4050,22 @@ func (s *InputService19TestShapeGrant) SetGrantee(v *InputService19TestShapeGran
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService19TestShapeGrant) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Grantee != nil {
+		v := s.Grantee
+		attrs := make([]protocol.Attribute, 0, 1)
+
+		if s.Grantee.Type != nil {
+			v := *s.Grantee.Type
+			attrs = append(attrs, protocol.Attribute{Name: "xsi:type", Value: protocol.StringValue(v), Meta: protocol.Metadata{}})
+		}
+		e.SetFields(protocol.BodyTarget, "Grantee", v, protocol.Metadata{Attributes: attrs, XMLNamespacePrefix: "xsi", XMLNamespaceURI: "http://www.w3.org/2001/XMLSchema-instance"})
+	}
+
+	return nil
+}
+
 type InputService19TestShapeGrantee struct {
 	_ struct{} `type:"structure" xmlPrefix:"xsi" xmlURI:"http://www.w3.org/2001/XMLSchema-instance"`
 
@@ -3587,6 +4086,18 @@ func (s *InputService19TestShapeGrantee) SetType(v string) *InputService19TestSh
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService19TestShapeGrantee) MarshalFields(e protocol.FieldEncoder) error {
+	if s.EmailAddress != nil {
+		v := *s.EmailAddress
+
+		e.SetValue(protocol.BodyTarget, "EmailAddress", protocol.StringValue(v), protocol.Metadata{})
+	}
+	// Skipping Type XML Attribute.
+
+	return nil
+}
+
 type InputService19TestShapeInputService19TestCaseOperation1Input struct {
 	_ struct{} `type:"structure" payload:"Grant"`
 
@@ -3599,8 +4110,25 @@ func (s *InputService19TestShapeInputService19TestCaseOperation1Input) SetGrant(
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService19TestShapeInputService19TestCaseOperation1Input) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Grant != nil {
+		v := s.Grant
+
+		e.SetFields(protocol.PayloadTarget, "Grant", v, protocol.Metadata{})
+	}
+
+	return nil
+}
+
 type InputService19TestShapeInputService19TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService19TestShapeInputService19TestCaseOperation1Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // InputService20ProtocolTest provides the API operation methods for making requests to
@@ -3753,8 +4281,30 @@ func (s *InputService20TestShapeInputService20TestCaseOperation1Input) SetKey(v 
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService20TestShapeInputService20TestCaseOperation1Input) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Bucket != nil {
+		v := *s.Bucket
+
+		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Key != nil {
+		v := *s.Key
+
+		e.SetValue(protocol.PathTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 type InputService20TestShapeInputService20TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService20TestShapeInputService20TestCaseOperation1Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // InputService21ProtocolTest provides the API operation methods for making requests to
@@ -3962,6 +4512,12 @@ type InputService21TestShapeInputService21TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService21TestShapeInputService21TestCaseOperation1Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
+}
+
 type InputService21TestShapeInputService21TestCaseOperation2Input struct {
 	_ struct{} `type:"structure"`
 
@@ -3974,8 +4530,25 @@ func (s *InputService21TestShapeInputService21TestCaseOperation2Input) SetFoo(v 
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService21TestShapeInputService21TestCaseOperation2Input) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Foo != nil {
+		v := *s.Foo
+
+		e.SetValue(protocol.QueryTarget, "param-name", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 type InputService21TestShapeInputService21TestCaseOperation2Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService21TestShapeInputService21TestCaseOperation2Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // InputService22ProtocolTest provides the API operation methods for making requests to
@@ -4467,20 +5040,50 @@ type InputService22TestShapeInputService22TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService22TestShapeInputService22TestCaseOperation1Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
+}
+
 type InputService22TestShapeInputService22TestCaseOperation2Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService22TestShapeInputService22TestCaseOperation2Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 type InputService22TestShapeInputService22TestCaseOperation3Output struct {
 	_ struct{} `type:"structure"`
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService22TestShapeInputService22TestCaseOperation3Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
+}
+
 type InputService22TestShapeInputService22TestCaseOperation4Output struct {
 	_ struct{} `type:"structure"`
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService22TestShapeInputService22TestCaseOperation4Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
+}
+
 type InputService22TestShapeInputService22TestCaseOperation5Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService22TestShapeInputService22TestCaseOperation5Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 type InputService22TestShapeInputService22TestCaseOperation6Input struct {
@@ -4495,8 +5098,25 @@ func (s *InputService22TestShapeInputService22TestCaseOperation6Input) SetRecurs
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService22TestShapeInputService22TestCaseOperation6Input) MarshalFields(e protocol.FieldEncoder) error {
+	if s.RecursiveStruct != nil {
+		v := s.RecursiveStruct
+
+		e.SetFields(protocol.BodyTarget, "RecursiveStruct", v, protocol.Metadata{})
+	}
+
+	return nil
+}
+
 type InputService22TestShapeInputService22TestCaseOperation6Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService22TestShapeInputService22TestCaseOperation6Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 type InputService22TestShapeRecursiveStructType struct {
@@ -4533,6 +5153,48 @@ func (s *InputService22TestShapeRecursiveStructType) SetRecursiveMap(v map[strin
 func (s *InputService22TestShapeRecursiveStructType) SetRecursiveStruct(v *InputService22TestShapeRecursiveStructType) *InputService22TestShapeRecursiveStructType {
 	s.RecursiveStruct = v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService22TestShapeRecursiveStructType) MarshalFields(e protocol.FieldEncoder) error {
+	if s.NoRecurse != nil {
+		v := *s.NoRecurse
+
+		e.SetValue(protocol.BodyTarget, "NoRecurse", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if len(s.RecursiveList) > 0 {
+		v := s.RecursiveList
+
+		e.SetList(protocol.BodyTarget, "RecursiveList", encodeInputService22TestShapeRecursiveStructTypeList(v), protocol.Metadata{})
+	}
+	if len(s.RecursiveMap) > 0 {
+		v := s.RecursiveMap
+
+		e.SetMap(protocol.BodyTarget, "RecursiveMap", encodeInputService22TestShapeRecursiveStructTypeMap(v), protocol.Metadata{})
+	}
+	if s.RecursiveStruct != nil {
+		v := s.RecursiveStruct
+
+		e.SetFields(protocol.BodyTarget, "RecursiveStruct", v, protocol.Metadata{})
+	}
+
+	return nil
+}
+
+func encodeInputService22TestShapeRecursiveStructTypeList(vs []*InputService22TestShapeRecursiveStructType) func(protocol.ListEncoder) {
+	return func(le protocol.ListEncoder) {
+		for _, v := range vs {
+			le.ListAddFields(v)
+		}
+	}
+}
+
+func encodeInputService22TestShapeRecursiveStructTypeMap(vs map[string]*InputService22TestShapeRecursiveStructType) func(protocol.MapEncoder) {
+	return func(me protocol.MapEncoder) {
+		for k, v := range vs {
+			me.MapSetFields(k, v)
+		}
+	}
 }
 
 // InputService23ProtocolTest provides the API operation methods for making requests to
@@ -4677,8 +5339,25 @@ func (s *InputService23TestShapeInputService23TestCaseOperation1Input) SetTimeAr
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService23TestShapeInputService23TestCaseOperation1Input) MarshalFields(e protocol.FieldEncoder) error {
+	if s.TimeArgInHeader != nil {
+		v := *s.TimeArgInHeader
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-timearg", protocol.TimeValue{V: v, Format: protocol.RFC822TimeFromat}, protocol.Metadata{})
+	}
+
+	return nil
+}
+
 type InputService23TestShapeInputService23TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService23TestShapeInputService23TestCaseOperation1Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 // InputService24ProtocolTest provides the API operation methods for making requests to
@@ -4886,6 +5565,12 @@ type InputService24TestShapeInputService24TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService24TestShapeInputService24TestCaseOperation1Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
+}
+
 type InputService24TestShapeInputService24TestCaseOperation2Input struct {
 	_ struct{} `type:"structure"`
 
@@ -4898,8 +5583,31 @@ func (s *InputService24TestShapeInputService24TestCaseOperation2Input) SetToken(
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService24TestShapeInputService24TestCaseOperation2Input) MarshalFields(e protocol.FieldEncoder) error {
+	var Token string
+	if s.Token != nil {
+		Token = *s.Token
+	} else {
+		Token = protocol.GetIdempotencyToken()
+	}
+	{
+		v := Token
+
+		e.SetValue(protocol.BodyTarget, "Token", protocol.StringValue(v), protocol.Metadata{})
+	}
+
+	return nil
+}
+
 type InputService24TestShapeInputService24TestCaseOperation2Output struct {
 	_ struct{} `type:"structure"`
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *InputService24TestShapeInputService24TestCaseOperation2Output) MarshalFields(e protocol.FieldEncoder) error {
+
+	return nil
 }
 
 //

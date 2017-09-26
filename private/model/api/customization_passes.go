@@ -47,6 +47,21 @@ func (a *API) customizationPasses() {
 	if fn := svcCustomizations[a.PackageName()]; fn != nil {
 		fn(a)
 	}
+
+	// TODO until generated marshalers are all supported
+	a.EnableSelectGeneratedMarshalers()
+}
+
+func (a *API) EnableSelectGeneratedMarshalers() {
+	// Selectivily enable generated marshalers as available
+	a.NoGenMarshalers = true
+	a.NoGenUnmarshalers = true
+
+	// Enable generated marshalers
+	switch a.Metadata.Protocol {
+	case "rest-xml", "rest-json":
+		a.NoGenMarshalers = false
+	}
 }
 
 // s3Customizations customizes the API generation to replace values specific to S3.
