@@ -5137,7 +5137,7 @@ func TestInputService11ProtocolTestStreamingPayloadCase1(t *testing.T) {
 	}
 	body, _ := ioutil.ReadAll(r.Body)
 	if e, a := "contents", util.Trim(string(body)); e != a {
-		t.Errorf("expect %!v(MISSING), got %!v(MISSING)", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 
 	// assert URL
@@ -5199,7 +5199,7 @@ func TestInputService13ProtocolTestBlobPayloadCase1(t *testing.T) {
 	}
 	body, _ := ioutil.ReadAll(r.Body)
 	if e, a := "bar", util.Trim(string(body)); e != a {
-		t.Errorf("expect %!v(MISSING), got %!v(MISSING)", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 
 	// assert URL
@@ -5628,7 +5628,7 @@ func TestInputService19ProtocolTestStringPayloadCase1(t *testing.T) {
 	}
 	body, _ := ioutil.ReadAll(r.Body)
 	if e, a := "bar", util.Trim(string(body)); e != a {
-		t.Errorf("expect %!v(MISSING), got %!v(MISSING)", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 
 	// assert URL

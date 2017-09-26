@@ -6183,7 +6183,7 @@ func TestInputService16ProtocolTestStringPayloadCase1(t *testing.T) {
 	}
 	body := util.SortXML(r.Body)
 	if e, a := "bar", util.Trim(string(body)); e != a {
-		t.Errorf("expect %!v(MISSING), got %!v(MISSING)", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 
 	// assert URL
@@ -6213,7 +6213,7 @@ func TestInputService17ProtocolTestBlobPayloadCase1(t *testing.T) {
 	}
 	body := util.SortXML(r.Body)
 	if e, a := "bar", util.Trim(string(body)); e != a {
-		t.Errorf("expect %!v(MISSING), got %!v(MISSING)", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 
 	// assert URL

@@ -27,7 +27,7 @@ func TestUnmarhsalErrorLeak(t *testing.T) {
 	unmarshalError(req)
 
 	if req.Error == nil {
-		t.Errorf("expect error, got nil", req.Error)
+		t.Errorf("expect error, got nil")
 	}
 	if !reader.Closed {
 		t.Errorf("expect closed, was not")

@@ -190,17 +190,17 @@ func (t tplInputTestCaseData) BodyAssertions() string {
 			fmt.Fprintf(code, "awstesting.AssertXML(t, `%s`, util.Trim(string(body)), %s{})",
 				expectedBody, t.TestCase.Given.InputRef.ShapeName)
 		} else {
-			fmt.Fprintf(code, fmtAssertEqual(fmt.Sprintf("%q", expectedBody), "util.Trim(string(body))"))
+			code.WriteString(fmtAssertEqual(fmt.Sprintf("%q", expectedBody), "util.Trim(string(body))"))
 		}
 	case "json", "jsonrpc", "rest-json":
 		if strings.HasPrefix(expectedBody, "{") {
 			fmt.Fprintf(code, "awstesting.AssertJSON(t, `%s`, util.Trim(string(body)))",
 				expectedBody)
 		} else {
-			fmt.Fprintf(code, fmtAssertEqual(fmt.Sprintf("%q", expectedBody), "util.Trim(string(body))"))
+			code.WriteString(fmtAssertEqual(fmt.Sprintf("%q", expectedBody), "util.Trim(string(body))"))
 		}
 	default:
-		fmt.Fprintf(code, fmtAssertEqual(expectedBody, "util.Trim(string(body))"))
+		code.WriteString(fmtAssertEqual(expectedBody, "util.Trim(string(body))"))
 	}
 
 	return code.String()
