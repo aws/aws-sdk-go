@@ -61,15 +61,6 @@ func (a *API) resolveReferences() {
 			o.ErrorRefs[i].Shape.IsError = true
 		}
 	}
-
-	for _, s := range a.Shapes {
-		switch s.Type {
-		case "list":
-			s.MemberRef.Shape.UsedInList = true
-		case "map":
-			s.ValueRef.Shape.UsedInMap = true
-		}
-	}
 }
 
 // A referenceResolver provides a way to resolve shape references to
