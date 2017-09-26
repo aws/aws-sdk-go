@@ -146,21 +146,3 @@ func EncodeTimeMap(vs map[string]*time.Time) func(MapEncoder) {
 		}
 	}
 }
-
-// A FieldBuffer provides buffering of fields so the number of
-// allocations are reduced by providng a persistent buffer that is
-// used between fields.
-type FieldBuffer struct {
-	buf []byte
-}
-
-// GetValue will retrieve the ValueMarshaler's value by appending the
-// value to the buffer. Will return the buffer that was populated.
-//
-// This buffer is only valid until the next time GetValue is called.
-func (b *FieldBuffer) GetValue(m ValueMarshaler) ([]byte, error) {
-	v, err := m.MarshalValueBuf(b.buf)
-	b.buf = v
-	b.buf = b.buf[0:0]
-	return v, err
-}
