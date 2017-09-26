@@ -1,3 +1,10 @@
+Release v1.12.0 (2017-09-26)
+===
+
+### SDK Bugs
+* `API Marshaler`: Revert REST JSON and XML protocol marshaler improvements
+  * Bug [#1550](https://github.com/aws/aws-sdk-go/issues/1550) identified a missed condition in the Amazon Route 53 RESTXML protocol marshaling causing requests to that service to fail. Reverting the marshaler improvements until the bug can be fixed.
+
 Release v1.11.0 (2017-09-26)
 ===
 
