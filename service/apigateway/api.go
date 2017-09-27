@@ -10608,7 +10608,6 @@ func (s *AccessLogSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "format", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10721,7 +10720,6 @@ func (s *Account) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "throttleSettings", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10874,7 +10872,6 @@ func (s *ApiKey) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "value", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10931,7 +10928,6 @@ func (s *ApiStage) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "stage", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11145,7 +11141,6 @@ func (s *Authorizer) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11222,7 +11217,6 @@ func (s *BasePathMapping) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "stage", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11328,7 +11322,6 @@ func (s *ClientCertificate) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "pemEncodedCertificate", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11457,7 +11450,6 @@ func (s *CreateApiKeyInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "value", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11675,17 +11667,16 @@ func (s *CreateAuthorizerInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "providerARNs", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-	if s.RestApiId != nil {
-		v := *s.RestApiId
-
-		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.Type != nil {
 		v := *s.Type
 
 		e.SetValue(protocol.BodyTarget, "type", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.RestApiId != nil {
+		v := *s.RestApiId
 
+		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -11772,11 +11763,6 @@ func (s *CreateBasePathMappingInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.BodyTarget, "basePath", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.DomainName != nil {
-		v := *s.DomainName
-
-		e.SetValue(protocol.PathTarget, "domain_name", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.RestApiId != nil {
 		v := *s.RestApiId
 
@@ -11787,7 +11773,11 @@ func (s *CreateBasePathMappingInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.BodyTarget, "stage", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.DomainName != nil {
+		v := *s.DomainName
 
+		e.SetValue(protocol.PathTarget, "domain_name", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -11904,11 +11894,6 @@ func (s *CreateDeploymentInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "description", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.RestApiId != nil {
-		v := *s.RestApiId
-
-		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.StageDescription != nil {
 		v := *s.StageDescription
 
@@ -11924,7 +11909,11 @@ func (s *CreateDeploymentInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetMap(protocol.BodyTarget, "variables", protocol.EncodeStringMap(v), protocol.Metadata{})
 	}
+	if s.RestApiId != nil {
+		v := *s.RestApiId
 
+		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -12020,7 +12009,6 @@ func (s *CreateDocumentationPartInput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12107,17 +12095,16 @@ func (s *CreateDocumentationVersionInput) MarshalFields(e protocol.FieldEncoder)
 
 		e.SetValue(protocol.BodyTarget, "documentationVersion", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.RestApiId != nil {
-		v := *s.RestApiId
-
-		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.StageName != nil {
 		v := *s.StageName
 
 		e.SetValue(protocol.BodyTarget, "stageName", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.RestApiId != nil {
+		v := *s.RestApiId
 
+		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -12294,7 +12281,6 @@ func (s *CreateDomainNameInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "regionalCertificateName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12401,17 +12387,16 @@ func (s *CreateModelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "name", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.RestApiId != nil {
-		v := *s.RestApiId
-
-		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.Schema != nil {
 		v := *s.Schema
 
 		e.SetValue(protocol.BodyTarget, "schema", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.RestApiId != nil {
+		v := *s.RestApiId
 
+		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -12490,11 +12475,6 @@ func (s *CreateRequestValidatorInput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.BodyTarget, "name", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.RestApiId != nil {
-		v := *s.RestApiId
-
-		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.ValidateRequestBody != nil {
 		v := *s.ValidateRequestBody
 
@@ -12505,7 +12485,11 @@ func (s *CreateRequestValidatorInput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.BodyTarget, "validateRequestParameters", protocol.BoolValue(v), protocol.Metadata{})
 	}
+	if s.RestApiId != nil {
+		v := *s.RestApiId
 
+		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -12578,22 +12562,21 @@ func (s *CreateResourceInput) SetRestApiId(v string) *CreateResourceInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateResourceInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.ParentId != nil {
-		v := *s.ParentId
-
-		e.SetValue(protocol.PathTarget, "parent_id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.PathPart != nil {
 		v := *s.PathPart
 
 		e.SetValue(protocol.BodyTarget, "pathPart", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.ParentId != nil {
+		v := *s.ParentId
+
+		e.SetValue(protocol.PathTarget, "parent_id", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.RestApiId != nil {
 		v := *s.RestApiId
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12715,7 +12698,6 @@ func (s *CreateRestApiInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12860,11 +12842,6 @@ func (s *CreateStageInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "documentationVersion", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.RestApiId != nil {
-		v := *s.RestApiId
-
-		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.StageName != nil {
 		v := *s.StageName
 
@@ -12875,7 +12852,11 @@ func (s *CreateStageInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetMap(protocol.BodyTarget, "variables", protocol.EncodeStringMap(v), protocol.Metadata{})
 	}
+	if s.RestApiId != nil {
+		v := *s.RestApiId
 
+		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -12983,7 +12964,6 @@ func (s *CreateUsagePlanInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "throttle", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13073,7 +13053,6 @@ func (s *CreateUsagePlanKeyInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "usageplanId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13123,7 +13102,6 @@ func (s *DeleteApiKeyInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "api_Key", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13143,7 +13121,6 @@ func (s DeleteApiKeyOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteApiKeyOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -13212,7 +13189,6 @@ func (s *DeleteAuthorizerInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13232,7 +13208,6 @@ func (s DeleteAuthorizerOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteAuthorizerOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -13301,7 +13276,6 @@ func (s *DeleteBasePathMappingInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.PathTarget, "domain_name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13321,7 +13295,6 @@ func (s DeleteBasePathMappingOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteBasePathMappingOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -13371,7 +13344,6 @@ func (s *DeleteClientCertificateInput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.PathTarget, "clientcertificate_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13391,7 +13363,6 @@ func (s DeleteClientCertificateOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteClientCertificateOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -13460,7 +13431,6 @@ func (s *DeleteDeploymentInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13480,7 +13450,6 @@ func (s DeleteDeploymentOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteDeploymentOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -13549,7 +13518,6 @@ func (s *DeleteDocumentationPartInput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13569,7 +13537,6 @@ func (s DeleteDocumentationPartOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteDocumentationPartOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -13638,7 +13605,6 @@ func (s *DeleteDocumentationVersionInput) MarshalFields(e protocol.FieldEncoder)
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13658,7 +13624,6 @@ func (s DeleteDocumentationVersionOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteDocumentationVersionOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -13708,7 +13673,6 @@ func (s *DeleteDomainNameInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "domain_name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13728,7 +13692,6 @@ func (s DeleteDomainNameOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteDomainNameOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -13818,7 +13781,6 @@ func (s *DeleteGatewayResponseInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13838,7 +13800,6 @@ func (s DeleteGatewayResponseOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteGatewayResponseOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -13926,7 +13887,6 @@ func (s *DeleteIntegrationInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13946,7 +13906,6 @@ func (s DeleteIntegrationOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteIntegrationOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -14053,7 +14012,6 @@ func (s *DeleteIntegrationResponseInput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetValue(protocol.PathTarget, "status_code", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14073,7 +14031,6 @@ func (s DeleteIntegrationResponseOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteIntegrationResponseOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -14161,7 +14118,6 @@ func (s *DeleteMethodInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14181,7 +14137,6 @@ func (s DeleteMethodOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteMethodOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -14288,7 +14243,6 @@ func (s *DeleteMethodResponseInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.PathTarget, "status_code", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14308,7 +14262,6 @@ func (s DeleteMethodResponseOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteMethodResponseOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -14377,7 +14330,6 @@ func (s *DeleteModelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14397,7 +14349,6 @@ func (s DeleteModelOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteModelOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -14466,7 +14417,6 @@ func (s *DeleteRequestValidatorInput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14486,7 +14436,6 @@ func (s DeleteRequestValidatorOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteRequestValidatorOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -14555,7 +14504,6 @@ func (s *DeleteResourceInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14575,7 +14523,6 @@ func (s DeleteResourceOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteResourceOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -14625,7 +14572,6 @@ func (s *DeleteRestApiInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14645,7 +14591,6 @@ func (s DeleteRestApiOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteRestApiOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -14714,7 +14659,6 @@ func (s *DeleteStageInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "stage_name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14734,7 +14678,6 @@ func (s DeleteStageOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteStageOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -14784,7 +14727,6 @@ func (s *DeleteUsagePlanInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "usageplanId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14855,7 +14797,6 @@ func (s *DeleteUsagePlanKeyInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "usageplanId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14875,7 +14816,6 @@ func (s DeleteUsagePlanKeyOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteUsagePlanKeyOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -14895,7 +14835,6 @@ func (s DeleteUsagePlanOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteUsagePlanOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -14987,7 +14926,6 @@ func (s *Deployment) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15083,7 +15021,6 @@ func (s *DocumentationPart) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "properties", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15222,7 +15159,6 @@ func (s *DocumentationPartLocation) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15292,7 +15228,6 @@ func (s *DocumentationVersion) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15505,7 +15440,6 @@ func (s *DomainName) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "regionalHostedZoneId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15552,7 +15486,6 @@ func (s *EndpointConfiguration) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "types", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15621,7 +15554,6 @@ func (s *FlushStageAuthorizersCacheInput) MarshalFields(e protocol.FieldEncoder)
 
 		e.SetValue(protocol.PathTarget, "stage_name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15641,7 +15573,6 @@ func (s FlushStageAuthorizersCacheOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *FlushStageAuthorizersCacheOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -15710,7 +15641,6 @@ func (s *FlushStageCacheInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "stage_name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15730,7 +15660,6 @@ func (s FlushStageCacheOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *FlushStageCacheOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -15765,7 +15694,6 @@ func (s *GenerateClientCertificateInput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetValue(protocol.BodyTarget, "description", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15787,7 +15715,6 @@ func (s GetAccountInput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetAccountInput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -15852,7 +15779,6 @@ func (s *GetApiKeyInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "includeValue", protocol.BoolValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15945,7 +15871,6 @@ func (s *GetApiKeysInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16010,7 +15935,6 @@ func (s *GetApiKeysOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "warnings", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16079,7 +16003,6 @@ func (s *GetAuthorizerInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16142,6 +16065,11 @@ func (s *GetAuthorizersInput) SetRestApiId(v string) *GetAuthorizersInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetAuthorizersInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.RestApiId != nil {
+		v := *s.RestApiId
+
+		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Limit != nil {
 		v := *s.Limit
 
@@ -16152,12 +16080,6 @@ func (s *GetAuthorizersInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.RestApiId != nil {
-		v := *s.RestApiId
-
-		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -16207,7 +16129,6 @@ func (s *GetAuthorizersOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16279,7 +16200,6 @@ func (s *GetBasePathMappingInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "domain_name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16358,7 +16278,6 @@ func (s *GetBasePathMappingsInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.QueryTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16408,7 +16327,6 @@ func (s *GetBasePathMappingsOutput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16458,7 +16376,6 @@ func (s *GetClientCertificateInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.PathTarget, "clientcertificate_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16508,7 +16425,6 @@ func (s *GetClientCertificatesInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.QueryTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16558,7 +16474,6 @@ func (s *GetClientCertificatesOutput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.BodyTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16637,17 +16552,16 @@ func (s *GetDeploymentInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "deployment_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if len(s.Embed) > 0 {
-		v := s.Embed
-
-		e.SetList(protocol.QueryTarget, "embed", protocol.EncodeStringList(v), protocol.Metadata{})
-	}
 	if s.RestApiId != nil {
 		v := *s.RestApiId
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if len(s.Embed) > 0 {
+		v := s.Embed
 
+		e.SetList(protocol.QueryTarget, "embed", protocol.EncodeStringList(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -16711,6 +16625,11 @@ func (s *GetDeploymentsInput) SetRestApiId(v string) *GetDeploymentsInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetDeploymentsInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.RestApiId != nil {
+		v := *s.RestApiId
+
+		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Limit != nil {
 		v := *s.Limit
 
@@ -16721,12 +16640,6 @@ func (s *GetDeploymentsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.RestApiId != nil {
-		v := *s.RestApiId
-
-		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -16785,7 +16698,6 @@ func (s *GetDeploymentsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16854,7 +16766,6 @@ func (s *GetDocumentationPartInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16956,6 +16867,11 @@ func (s *GetDocumentationPartsInput) SetType(v string) *GetDocumentationPartsInp
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetDocumentationPartsInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.RestApiId != nil {
+		v := *s.RestApiId
+
+		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Limit != nil {
 		v := *s.Limit
 
@@ -16981,17 +16897,11 @@ func (s *GetDocumentationPartsInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.QueryTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.RestApiId != nil {
-		v := *s.RestApiId
-
-		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.Type != nil {
 		v := *s.Type
 
 		e.SetValue(protocol.QueryTarget, "type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17041,7 +16951,6 @@ func (s *GetDocumentationPartsOutput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.BodyTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17110,7 +17019,6 @@ func (s *GetDocumentationVersionInput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17173,6 +17081,11 @@ func (s *GetDocumentationVersionsInput) SetRestApiId(v string) *GetDocumentation
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetDocumentationVersionsInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.RestApiId != nil {
+		v := *s.RestApiId
+
+		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Limit != nil {
 		v := *s.Limit
 
@@ -17183,12 +17096,6 @@ func (s *GetDocumentationVersionsInput) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetValue(protocol.QueryTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.RestApiId != nil {
-		v := *s.RestApiId
-
-		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -17242,7 +17149,6 @@ func (s *GetDocumentationVersionsOutput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetValue(protocol.BodyTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17292,7 +17198,6 @@ func (s *GetDomainNameInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "domain_name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17342,7 +17247,6 @@ func (s *GetDomainNamesInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17392,7 +17296,6 @@ func (s *GetDomainNamesOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17501,11 +17404,6 @@ func (s *GetExportInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "export_type", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if len(s.Parameters) > 0 {
-		v := s.Parameters
-
-		e.SetMap(protocol.QueryTarget, "parameters", protocol.EncodeStringMap(v), protocol.Metadata{})
-	}
 	if s.RestApiId != nil {
 		v := *s.RestApiId
 
@@ -17516,7 +17414,11 @@ func (s *GetExportInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "stage_name", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if len(s.Parameters) > 0 {
+		v := s.Parameters
 
+		e.SetMap(protocol.QueryTarget, "parameters", protocol.EncodeStringMap(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -17565,11 +17467,6 @@ func (s *GetExportOutput) SetContentType(v string) *GetExportOutput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetExportOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Body != nil {
-		v := s.Body
-
-		e.SetStream(protocol.PayloadTarget, "body", protocol.BytesStream(v), protocol.Metadata{})
-	}
 	if s.ContentDisposition != nil {
 		v := *s.ContentDisposition
 
@@ -17580,7 +17477,11 @@ func (s *GetExportOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "Content-Type", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.Body != nil {
+		v := s.Body
 
+		e.SetStream(protocol.PayloadTarget, "body", protocol.BytesStream(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -17669,7 +17570,6 @@ func (s *GetGatewayResponseInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17737,6 +17637,11 @@ func (s *GetGatewayResponsesInput) SetRestApiId(v string) *GetGatewayResponsesIn
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetGatewayResponsesInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.RestApiId != nil {
+		v := *s.RestApiId
+
+		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Limit != nil {
 		v := *s.Limit
 
@@ -17747,12 +17652,6 @@ func (s *GetGatewayResponsesInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.QueryTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.RestApiId != nil {
-		v := *s.RestApiId
-
-		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -17959,7 +17858,6 @@ func (s *GetGatewayResponsesOutput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18047,7 +17945,6 @@ func (s *GetIntegrationInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18154,7 +18051,6 @@ func (s *GetIntegrationResponseInput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.PathTarget, "status_code", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18242,7 +18138,6 @@ func (s *GetMethodInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18349,7 +18244,6 @@ func (s *GetMethodResponseInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "status_code", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18419,11 +18313,6 @@ func (s *GetModelInput) SetRestApiId(v string) *GetModelInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetModelInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Flatten != nil {
-		v := *s.Flatten
-
-		e.SetValue(protocol.QueryTarget, "flatten", protocol.BoolValue(v), protocol.Metadata{})
-	}
 	if s.ModelName != nil {
 		v := *s.ModelName
 
@@ -18434,7 +18323,11 @@ func (s *GetModelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.Flatten != nil {
+		v := *s.Flatten
 
+		e.SetValue(protocol.QueryTarget, "flatten", protocol.BoolValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -18503,7 +18396,6 @@ func (s *GetModelTemplateInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18541,7 +18433,6 @@ func (s *GetModelTemplateOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "value", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18605,6 +18496,11 @@ func (s *GetModelsInput) SetRestApiId(v string) *GetModelsInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetModelsInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.RestApiId != nil {
+		v := *s.RestApiId
+
+		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Limit != nil {
 		v := *s.Limit
 
@@ -18615,12 +18511,6 @@ func (s *GetModelsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.RestApiId != nil {
-		v := *s.RestApiId
-
-		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -18670,7 +18560,6 @@ func (s *GetModelsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18739,7 +18628,6 @@ func (s *GetRequestValidatorInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18802,6 +18690,11 @@ func (s *GetRequestValidatorsInput) SetRestApiId(v string) *GetRequestValidators
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetRequestValidatorsInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.RestApiId != nil {
+		v := *s.RestApiId
+
+		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Limit != nil {
 		v := *s.Limit
 
@@ -18812,12 +18705,6 @@ func (s *GetRequestValidatorsInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.QueryTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.RestApiId != nil {
-		v := *s.RestApiId
-
-		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -18871,7 +18758,6 @@ func (s *GetRequestValidatorsOutput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.BodyTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18944,11 +18830,6 @@ func (s *GetResourceInput) SetRestApiId(v string) *GetResourceInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetResourceInput) MarshalFields(e protocol.FieldEncoder) error {
-	if len(s.Embed) > 0 {
-		v := s.Embed
-
-		e.SetList(protocol.QueryTarget, "embed", protocol.EncodeStringList(v), protocol.Metadata{})
-	}
 	if s.ResourceId != nil {
 		v := *s.ResourceId
 
@@ -18959,7 +18840,11 @@ func (s *GetResourceInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if len(s.Embed) > 0 {
+		v := s.Embed
 
+		e.SetList(protocol.QueryTarget, "embed", protocol.EncodeStringList(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -19037,6 +18922,11 @@ func (s *GetResourcesInput) SetRestApiId(v string) *GetResourcesInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetResourcesInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.RestApiId != nil {
+		v := *s.RestApiId
+
+		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if len(s.Embed) > 0 {
 		v := s.Embed
 
@@ -19052,12 +18942,6 @@ func (s *GetResourcesInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.RestApiId != nil {
-		v := *s.RestApiId
-
-		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -19107,7 +18991,6 @@ func (s *GetResourcesOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19157,7 +19040,6 @@ func (s *GetRestApiInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19207,7 +19089,6 @@ func (s *GetRestApisInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19258,7 +19139,6 @@ func (s *GetRestApisOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19345,11 +19225,6 @@ func (s *GetSdkInput) SetStageName(v string) *GetSdkInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetSdkInput) MarshalFields(e protocol.FieldEncoder) error {
-	if len(s.Parameters) > 0 {
-		v := s.Parameters
-
-		e.SetMap(protocol.QueryTarget, "parameters", protocol.EncodeStringMap(v), protocol.Metadata{})
-	}
 	if s.RestApiId != nil {
 		v := *s.RestApiId
 
@@ -19365,7 +19240,11 @@ func (s *GetSdkInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "stage_name", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if len(s.Parameters) > 0 {
+		v := s.Parameters
 
+		e.SetMap(protocol.QueryTarget, "parameters", protocol.EncodeStringMap(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -19413,11 +19292,6 @@ func (s *GetSdkOutput) SetContentType(v string) *GetSdkOutput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetSdkOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Body != nil {
-		v := s.Body
-
-		e.SetStream(protocol.PayloadTarget, "body", protocol.BytesStream(v), protocol.Metadata{})
-	}
 	if s.ContentDisposition != nil {
 		v := *s.ContentDisposition
 
@@ -19428,7 +19302,11 @@ func (s *GetSdkOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "Content-Type", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.Body != nil {
+		v := s.Body
 
+		e.SetStream(protocol.PayloadTarget, "body", protocol.BytesStream(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -19478,7 +19356,6 @@ func (s *GetSdkTypeInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "sdktype_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19527,7 +19404,6 @@ func (s *GetSdkTypesInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19575,7 +19451,6 @@ func (s *GetSdkTypesOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19644,7 +19519,6 @@ func (s *GetStageInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "stage_name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19698,17 +19572,16 @@ func (s *GetStagesInput) SetRestApiId(v string) *GetStagesInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetStagesInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DeploymentId != nil {
-		v := *s.DeploymentId
-
-		e.SetValue(protocol.QueryTarget, "deploymentId", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.RestApiId != nil {
 		v := *s.RestApiId
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.DeploymentId != nil {
+		v := *s.DeploymentId
 
+		e.SetValue(protocol.QueryTarget, "deploymentId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -19745,7 +19618,6 @@ func (s *GetStagesOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "item", encodeStageList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19846,6 +19718,11 @@ func (s *GetUsageInput) SetUsagePlanId(v string) *GetUsageInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetUsageInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.UsagePlanId != nil {
+		v := *s.UsagePlanId
+
+		e.SetValue(protocol.PathTarget, "usageplanId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.EndDate != nil {
 		v := *s.EndDate
 
@@ -19871,12 +19748,6 @@ func (s *GetUsageInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "startDate", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.UsagePlanId != nil {
-		v := *s.UsagePlanId
-
-		e.SetValue(protocol.PathTarget, "usageplanId", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -19926,7 +19797,6 @@ func (s *GetUsagePlanInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "usageplanId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19997,7 +19867,6 @@ func (s *GetUsagePlanKeyInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "usageplanId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20071,6 +19940,11 @@ func (s *GetUsagePlanKeysInput) SetUsagePlanId(v string) *GetUsagePlanKeysInput 
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetUsagePlanKeysInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.UsagePlanId != nil {
+		v := *s.UsagePlanId
+
+		e.SetValue(protocol.PathTarget, "usageplanId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Limit != nil {
 		v := *s.Limit
 
@@ -20086,12 +19960,6 @@ func (s *GetUsagePlanKeysInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.UsagePlanId != nil {
-		v := *s.UsagePlanId
-
-		e.SetValue(protocol.PathTarget, "usageplanId", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -20142,7 +20010,6 @@ func (s *GetUsagePlanKeysOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20205,7 +20072,6 @@ func (s *GetUsagePlansInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20255,7 +20121,6 @@ func (s *GetUsagePlansOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "position", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20342,7 +20207,6 @@ func (s *ImportApiKeysInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "format", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20391,7 +20255,6 @@ func (s *ImportApiKeysOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "warnings", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20473,6 +20336,11 @@ func (s *ImportDocumentationPartsInput) SetRestApiId(v string) *ImportDocumentat
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *ImportDocumentationPartsInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.RestApiId != nil {
+		v := *s.RestApiId
+
+		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Body != nil {
 		v := s.Body
 
@@ -20488,12 +20356,6 @@ func (s *ImportDocumentationPartsInput) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetValue(protocol.QueryTarget, "mode", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.RestApiId != nil {
-		v := *s.RestApiId
-
-		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -20548,7 +20410,6 @@ func (s *ImportDocumentationPartsOutput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetList(protocol.BodyTarget, "warnings", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20650,7 +20511,6 @@ func (s *ImportRestApiInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetMap(protocol.QueryTarget, "parameters", protocol.EncodeStringMap(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20921,7 +20781,6 @@ func (s *Integration) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "uri", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -21045,7 +20904,6 @@ func (s *IntegrationResponse) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "statusCode", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -21365,7 +21223,6 @@ func (s *Method) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "requestValidatorId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -21473,7 +21330,6 @@ func (s *MethodResponse) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "statusCode", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -21663,7 +21519,6 @@ func (s *MethodSetting) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "unauthorizedCacheControlHeaderStrategy", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -21722,7 +21577,6 @@ func (s *MethodSnapshot) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "authorizationType", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -21836,7 +21690,6 @@ func (s *Model) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "schema", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -21937,7 +21790,6 @@ func (s *PatchOperation) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "value", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -22064,6 +21916,11 @@ func (s *PutGatewayResponseInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetMap(protocol.BodyTarget, "responseTemplates", protocol.EncodeStringMap(v), protocol.Metadata{})
 	}
+	if s.StatusCode != nil {
+		v := *s.StatusCode
+
+		e.SetValue(protocol.BodyTarget, "statusCode", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.ResponseType != nil {
 		v := *s.ResponseType
 
@@ -22074,12 +21931,6 @@ func (s *PutGatewayResponseInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.StatusCode != nil {
-		v := *s.StatusCode
-
-		e.SetValue(protocol.BodyTarget, "statusCode", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -22319,11 +22170,6 @@ func (s *PutIntegrationInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "credentials", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.HttpMethod != nil {
-		v := *s.HttpMethod
-
-		e.SetValue(protocol.PathTarget, "http_method", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.IntegrationHttpMethod != nil {
 		v := *s.IntegrationHttpMethod
 
@@ -22344,16 +22190,6 @@ func (s *PutIntegrationInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetMap(protocol.BodyTarget, "requestTemplates", protocol.EncodeStringMap(v), protocol.Metadata{})
 	}
-	if s.ResourceId != nil {
-		v := *s.ResourceId
-
-		e.SetValue(protocol.PathTarget, "resource_id", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.RestApiId != nil {
-		v := *s.RestApiId
-
-		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.TimeoutInMillis != nil {
 		v := *s.TimeoutInMillis
 
@@ -22369,7 +22205,21 @@ func (s *PutIntegrationInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "uri", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.HttpMethod != nil {
+		v := *s.HttpMethod
 
+		e.SetValue(protocol.PathTarget, "http_method", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.ResourceId != nil {
+		v := *s.ResourceId
+
+		e.SetValue(protocol.PathTarget, "resource_id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.RestApiId != nil {
+		v := *s.RestApiId
+
+		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -22517,16 +22367,6 @@ func (s *PutIntegrationResponseInput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.BodyTarget, "contentHandling", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.HttpMethod != nil {
-		v := *s.HttpMethod
-
-		e.SetValue(protocol.PathTarget, "http_method", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.ResourceId != nil {
-		v := *s.ResourceId
-
-		e.SetValue(protocol.PathTarget, "resource_id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.ResponseParameters) > 0 {
 		v := s.ResponseParameters
 
@@ -22537,22 +22377,31 @@ func (s *PutIntegrationResponseInput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetMap(protocol.BodyTarget, "responseTemplates", protocol.EncodeStringMap(v), protocol.Metadata{})
 	}
-	if s.RestApiId != nil {
-		v := *s.RestApiId
-
-		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.SelectionPattern != nil {
 		v := *s.SelectionPattern
 
 		e.SetValue(protocol.BodyTarget, "selectionPattern", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.HttpMethod != nil {
+		v := *s.HttpMethod
+
+		e.SetValue(protocol.PathTarget, "http_method", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.ResourceId != nil {
+		v := *s.ResourceId
+
+		e.SetValue(protocol.PathTarget, "resource_id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.RestApiId != nil {
+		v := *s.RestApiId
+
+		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.StatusCode != nil {
 		v := *s.StatusCode
 
 		e.SetValue(protocol.PathTarget, "status_code", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -22722,11 +22571,6 @@ func (s *PutMethodInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "authorizerId", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.HttpMethod != nil {
-		v := *s.HttpMethod
-
-		e.SetValue(protocol.PathTarget, "http_method", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.OperationName != nil {
 		v := *s.OperationName
 
@@ -22747,6 +22591,11 @@ func (s *PutMethodInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "requestValidatorId", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.HttpMethod != nil {
+		v := *s.HttpMethod
+
+		e.SetValue(protocol.PathTarget, "http_method", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.ResourceId != nil {
 		v := *s.ResourceId
 
@@ -22757,7 +22606,6 @@ func (s *PutMethodInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -22874,16 +22722,6 @@ func (s *PutMethodResponseInput) SetStatusCode(v string) *PutMethodResponseInput
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutMethodResponseInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.HttpMethod != nil {
-		v := *s.HttpMethod
-
-		e.SetValue(protocol.PathTarget, "http_method", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.ResourceId != nil {
-		v := *s.ResourceId
-
-		e.SetValue(protocol.PathTarget, "resource_id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.ResponseModels) > 0 {
 		v := s.ResponseModels
 
@@ -22893,6 +22731,16 @@ func (s *PutMethodResponseInput) MarshalFields(e protocol.FieldEncoder) error {
 		v := s.ResponseParameters
 
 		e.SetMap(protocol.BodyTarget, "responseParameters", protocol.EncodeBoolMap(v), protocol.Metadata{})
+	}
+	if s.HttpMethod != nil {
+		v := *s.HttpMethod
+
+		e.SetValue(protocol.PathTarget, "http_method", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.ResourceId != nil {
+		v := *s.ResourceId
+
+		e.SetValue(protocol.PathTarget, "resource_id", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.RestApiId != nil {
 		v := *s.RestApiId
@@ -22904,7 +22752,6 @@ func (s *PutMethodResponseInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "status_code", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -22998,6 +22845,11 @@ func (s *PutRestApiInput) SetRestApiId(v string) *PutRestApiInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutRestApiInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.RestApiId != nil {
+		v := *s.RestApiId
+
+		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Body != nil {
 		v := s.Body
 
@@ -23018,12 +22870,6 @@ func (s *PutRestApiInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetMap(protocol.QueryTarget, "parameters", protocol.EncodeStringMap(v), protocol.Metadata{})
 	}
-	if s.RestApiId != nil {
-		v := *s.RestApiId
-
-		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -23088,7 +22934,6 @@ func (s *QuotaSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "period", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -23237,7 +23082,6 @@ func (s *Resource) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetMap(protocol.BodyTarget, "resourceMethods", encodeMethodMap(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -23384,7 +23228,6 @@ func (s *RestApi) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "warnings", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -23484,7 +23327,6 @@ func (s *SdkConfigurationProperty) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.BodyTarget, "required", protocol.BoolValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -23569,7 +23411,6 @@ func (s *SdkType) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -23789,7 +23630,6 @@ func (s *Stage) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetMap(protocol.BodyTarget, "variables", protocol.EncodeStringMap(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -23846,7 +23686,6 @@ func (s *StageKey) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "stageName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -23967,11 +23806,6 @@ func (s *TestInvokeAuthorizerInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetMap(protocol.BodyTarget, "additionalContext", protocol.EncodeStringMap(v), protocol.Metadata{})
 	}
-	if s.AuthorizerId != nil {
-		v := *s.AuthorizerId
-
-		e.SetValue(protocol.PathTarget, "authorizer_id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.Body != nil {
 		v := *s.Body
 
@@ -23987,17 +23821,21 @@ func (s *TestInvokeAuthorizerInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "pathWithQueryString", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.RestApiId != nil {
-		v := *s.RestApiId
-
-		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.StageVariables) > 0 {
 		v := s.StageVariables
 
 		e.SetMap(protocol.BodyTarget, "stageVariables", protocol.EncodeStringMap(v), protocol.Metadata{})
 	}
+	if s.AuthorizerId != nil {
+		v := *s.AuthorizerId
 
+		e.SetValue(protocol.PathTarget, "authorizer_id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.RestApiId != nil {
+		v := *s.RestApiId
+
+		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -24123,7 +23961,6 @@ func (s *TestInvokeAuthorizerOutput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.BodyTarget, "principalId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -24260,15 +24097,20 @@ func (s *TestInvokeMethodInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetMap(protocol.BodyTarget, "headers", protocol.EncodeStringMap(v), protocol.Metadata{})
 	}
-	if s.HttpMethod != nil {
-		v := *s.HttpMethod
-
-		e.SetValue(protocol.PathTarget, "http_method", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.PathWithQueryString != nil {
 		v := *s.PathWithQueryString
 
 		e.SetValue(protocol.BodyTarget, "pathWithQueryString", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if len(s.StageVariables) > 0 {
+		v := s.StageVariables
+
+		e.SetMap(protocol.BodyTarget, "stageVariables", protocol.EncodeStringMap(v), protocol.Metadata{})
+	}
+	if s.HttpMethod != nil {
+		v := *s.HttpMethod
+
+		e.SetValue(protocol.PathTarget, "http_method", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.ResourceId != nil {
 		v := *s.ResourceId
@@ -24280,12 +24122,6 @@ func (s *TestInvokeMethodInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if len(s.StageVariables) > 0 {
-		v := s.StageVariables
-
-		e.SetMap(protocol.BodyTarget, "stageVariables", protocol.EncodeStringMap(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -24378,7 +24214,6 @@ func (s *TestInvokeMethodOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "status", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -24429,7 +24264,6 @@ func (s *ThrottleSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "rateLimit", protocol.Float64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -24466,7 +24300,6 @@ func (s *UpdateAccountInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "patchOperations", encodePatchOperationList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -24521,17 +24354,16 @@ func (s *UpdateApiKeyInput) SetPatchOperations(v []*PatchOperation) *UpdateApiKe
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateApiKeyInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.ApiKey != nil {
-		v := *s.ApiKey
-
-		e.SetValue(protocol.PathTarget, "api_Key", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.PatchOperations) > 0 {
 		v := s.PatchOperations
 
 		e.SetList(protocol.BodyTarget, "patchOperations", encodePatchOperationList(v), protocol.Metadata{})
 	}
+	if s.ApiKey != nil {
+		v := *s.ApiKey
 
+		e.SetValue(protocol.PathTarget, "api_Key", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -24600,22 +24432,21 @@ func (s *UpdateAuthorizerInput) SetRestApiId(v string) *UpdateAuthorizerInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateAuthorizerInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AuthorizerId != nil {
-		v := *s.AuthorizerId
-
-		e.SetValue(protocol.PathTarget, "authorizer_id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.PatchOperations) > 0 {
 		v := s.PatchOperations
 
 		e.SetList(protocol.BodyTarget, "patchOperations", encodePatchOperationList(v), protocol.Metadata{})
+	}
+	if s.AuthorizerId != nil {
+		v := *s.AuthorizerId
+
+		e.SetValue(protocol.PathTarget, "authorizer_id", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.RestApiId != nil {
 		v := *s.RestApiId
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -24684,6 +24515,11 @@ func (s *UpdateBasePathMappingInput) SetPatchOperations(v []*PatchOperation) *Up
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateBasePathMappingInput) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.PatchOperations) > 0 {
+		v := s.PatchOperations
+
+		e.SetList(protocol.BodyTarget, "patchOperations", encodePatchOperationList(v), protocol.Metadata{})
+	}
 	if s.BasePath != nil {
 		v := *s.BasePath
 
@@ -24694,12 +24530,6 @@ func (s *UpdateBasePathMappingInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.PathTarget, "domain_name", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if len(s.PatchOperations) > 0 {
-		v := s.PatchOperations
-
-		e.SetList(protocol.BodyTarget, "patchOperations", encodePatchOperationList(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -24754,17 +24584,16 @@ func (s *UpdateClientCertificateInput) SetPatchOperations(v []*PatchOperation) *
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateClientCertificateInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.ClientCertificateId != nil {
-		v := *s.ClientCertificateId
-
-		e.SetValue(protocol.PathTarget, "clientcertificate_id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.PatchOperations) > 0 {
 		v := s.PatchOperations
 
 		e.SetList(protocol.BodyTarget, "patchOperations", encodePatchOperationList(v), protocol.Metadata{})
 	}
+	if s.ClientCertificateId != nil {
+		v := *s.ClientCertificateId
 
+		e.SetValue(protocol.PathTarget, "clientcertificate_id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -24834,22 +24663,21 @@ func (s *UpdateDeploymentInput) SetRestApiId(v string) *UpdateDeploymentInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateDeploymentInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DeploymentId != nil {
-		v := *s.DeploymentId
-
-		e.SetValue(protocol.PathTarget, "deployment_id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.PatchOperations) > 0 {
 		v := s.PatchOperations
 
 		e.SetList(protocol.BodyTarget, "patchOperations", encodePatchOperationList(v), protocol.Metadata{})
+	}
+	if s.DeploymentId != nil {
+		v := *s.DeploymentId
+
+		e.SetValue(protocol.PathTarget, "deployment_id", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.RestApiId != nil {
 		v := *s.RestApiId
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -24918,22 +24746,21 @@ func (s *UpdateDocumentationPartInput) SetRestApiId(v string) *UpdateDocumentati
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateDocumentationPartInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DocumentationPartId != nil {
-		v := *s.DocumentationPartId
-
-		e.SetValue(protocol.PathTarget, "part_id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.PatchOperations) > 0 {
 		v := s.PatchOperations
 
 		e.SetList(protocol.BodyTarget, "patchOperations", encodePatchOperationList(v), protocol.Metadata{})
+	}
+	if s.DocumentationPartId != nil {
+		v := *s.DocumentationPartId
+
+		e.SetValue(protocol.PathTarget, "part_id", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.RestApiId != nil {
 		v := *s.RestApiId
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -25002,22 +24829,21 @@ func (s *UpdateDocumentationVersionInput) SetRestApiId(v string) *UpdateDocument
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateDocumentationVersionInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DocumentationVersion != nil {
-		v := *s.DocumentationVersion
-
-		e.SetValue(protocol.PathTarget, "doc_version", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.PatchOperations) > 0 {
 		v := s.PatchOperations
 
 		e.SetList(protocol.BodyTarget, "patchOperations", encodePatchOperationList(v), protocol.Metadata{})
+	}
+	if s.DocumentationVersion != nil {
+		v := *s.DocumentationVersion
+
+		e.SetValue(protocol.PathTarget, "doc_version", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.RestApiId != nil {
 		v := *s.RestApiId
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -25072,17 +24898,16 @@ func (s *UpdateDomainNameInput) SetPatchOperations(v []*PatchOperation) *UpdateD
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateDomainNameInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DomainName != nil {
-		v := *s.DomainName
-
-		e.SetValue(protocol.PathTarget, "domain_name", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.PatchOperations) > 0 {
 		v := s.PatchOperations
 
 		e.SetList(protocol.BodyTarget, "patchOperations", encodePatchOperationList(v), protocol.Metadata{})
 	}
+	if s.DomainName != nil {
+		v := *s.DomainName
 
+		e.SetValue(protocol.PathTarget, "domain_name", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -25186,7 +25011,6 @@ func (s *UpdateGatewayResponseInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -25341,7 +25165,6 @@ func (s *UpdateGatewayResponseOutput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.BodyTarget, "statusCode", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -25432,15 +25255,15 @@ func (s *UpdateIntegrationInput) SetRestApiId(v string) *UpdateIntegrationInput 
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateIntegrationInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.HttpMethod != nil {
-		v := *s.HttpMethod
-
-		e.SetValue(protocol.PathTarget, "http_method", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.PatchOperations) > 0 {
 		v := s.PatchOperations
 
 		e.SetList(protocol.BodyTarget, "patchOperations", encodePatchOperationList(v), protocol.Metadata{})
+	}
+	if s.HttpMethod != nil {
+		v := *s.HttpMethod
+
+		e.SetValue(protocol.PathTarget, "http_method", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.ResourceId != nil {
 		v := *s.ResourceId
@@ -25452,7 +25275,6 @@ func (s *UpdateIntegrationInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -25549,15 +25371,15 @@ func (s *UpdateIntegrationResponseInput) SetStatusCode(v string) *UpdateIntegrat
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateIntegrationResponseInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.HttpMethod != nil {
-		v := *s.HttpMethod
-
-		e.SetValue(protocol.PathTarget, "http_method", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.PatchOperations) > 0 {
 		v := s.PatchOperations
 
 		e.SetList(protocol.BodyTarget, "patchOperations", encodePatchOperationList(v), protocol.Metadata{})
+	}
+	if s.HttpMethod != nil {
+		v := *s.HttpMethod
+
+		e.SetValue(protocol.PathTarget, "http_method", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.ResourceId != nil {
 		v := *s.ResourceId
@@ -25574,7 +25396,6 @@ func (s *UpdateIntegrationResponseInput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetValue(protocol.PathTarget, "status_code", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -25657,15 +25478,15 @@ func (s *UpdateMethodInput) SetRestApiId(v string) *UpdateMethodInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateMethodInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.HttpMethod != nil {
-		v := *s.HttpMethod
-
-		e.SetValue(protocol.PathTarget, "http_method", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.PatchOperations) > 0 {
 		v := s.PatchOperations
 
 		e.SetList(protocol.BodyTarget, "patchOperations", encodePatchOperationList(v), protocol.Metadata{})
+	}
+	if s.HttpMethod != nil {
+		v := *s.HttpMethod
+
+		e.SetValue(protocol.PathTarget, "http_method", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.ResourceId != nil {
 		v := *s.ResourceId
@@ -25677,7 +25498,6 @@ func (s *UpdateMethodInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -25774,15 +25594,15 @@ func (s *UpdateMethodResponseInput) SetStatusCode(v string) *UpdateMethodRespons
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateMethodResponseInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.HttpMethod != nil {
-		v := *s.HttpMethod
-
-		e.SetValue(protocol.PathTarget, "http_method", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.PatchOperations) > 0 {
 		v := s.PatchOperations
 
 		e.SetList(protocol.BodyTarget, "patchOperations", encodePatchOperationList(v), protocol.Metadata{})
+	}
+	if s.HttpMethod != nil {
+		v := *s.HttpMethod
+
+		e.SetValue(protocol.PathTarget, "http_method", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.ResourceId != nil {
 		v := *s.ResourceId
@@ -25799,7 +25619,6 @@ func (s *UpdateMethodResponseInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.PathTarget, "status_code", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -25868,22 +25687,21 @@ func (s *UpdateModelInput) SetRestApiId(v string) *UpdateModelInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateModelInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.ModelName != nil {
-		v := *s.ModelName
-
-		e.SetValue(protocol.PathTarget, "model_name", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.PatchOperations) > 0 {
 		v := s.PatchOperations
 
 		e.SetList(protocol.BodyTarget, "patchOperations", encodePatchOperationList(v), protocol.Metadata{})
+	}
+	if s.ModelName != nil {
+		v := *s.ModelName
+
+		e.SetValue(protocol.PathTarget, "model_name", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.RestApiId != nil {
 		v := *s.RestApiId
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -25967,7 +25785,6 @@ func (s *UpdateRequestValidatorInput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -26054,7 +25871,6 @@ func (s *UpdateRequestValidatorOutput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.BodyTarget, "validateRequestParameters", protocol.BoolValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -26146,7 +25962,6 @@ func (s *UpdateResourceInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -26211,7 +26026,6 @@ func (s *UpdateRestApiInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "restapi_id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -26295,7 +26109,6 @@ func (s *UpdateStageInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "stage_name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -26366,22 +26179,21 @@ func (s *UpdateUsageInput) SetUsagePlanId(v string) *UpdateUsageInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateUsageInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.KeyId != nil {
-		v := *s.KeyId
-
-		e.SetValue(protocol.PathTarget, "keyId", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.PatchOperations) > 0 {
 		v := s.PatchOperations
 
 		e.SetList(protocol.BodyTarget, "patchOperations", encodePatchOperationList(v), protocol.Metadata{})
+	}
+	if s.KeyId != nil {
+		v := *s.KeyId
+
+		e.SetValue(protocol.PathTarget, "keyId", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.UsagePlanId != nil {
 		v := *s.UsagePlanId
 
 		e.SetValue(protocol.PathTarget, "usageplanId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -26446,7 +26258,6 @@ func (s *UpdateUsagePlanInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "usageplanId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -26552,7 +26363,6 @@ func (s *Usage) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "usagePlanId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -26679,7 +26489,6 @@ func (s *UsagePlan) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "throttle", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -26769,7 +26578,6 @@ func (s *UsagePlanKey) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "value", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 

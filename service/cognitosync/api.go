@@ -1720,7 +1720,6 @@ func (s *BulkPublishInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "IdentityPoolId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1757,7 +1756,6 @@ func (s *BulkPublishOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "IdentityPoolId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1844,7 +1842,6 @@ func (s *CognitoStreams) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "StreamingStatus", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1970,7 +1967,6 @@ func (s *Dataset) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "NumRecords", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2079,7 +2075,6 @@ func (s *DeleteDatasetInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "IdentityPoolId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2119,7 +2114,6 @@ func (s *DeleteDatasetOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Dataset", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2221,7 +2215,6 @@ func (s *DescribeDatasetInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "IdentityPoolId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2261,7 +2254,6 @@ func (s *DescribeDatasetOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Dataset", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2316,7 +2308,6 @@ func (s *DescribeIdentityPoolUsageInput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetValue(protocol.PathTarget, "IdentityPoolId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2352,7 +2343,6 @@ func (s *DescribeIdentityPoolUsageOutput) MarshalFields(e protocol.FieldEncoder)
 
 		e.SetFields(protocol.BodyTarget, "IdentityPoolUsage", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2430,7 +2420,6 @@ func (s *DescribeIdentityUsageInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.PathTarget, "IdentityPoolId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2466,7 +2455,6 @@ func (s *DescribeIdentityUsageOutput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetFields(protocol.BodyTarget, "IdentityUsage", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2521,7 +2509,6 @@ func (s *GetBulkPublishDetailsInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.PathTarget, "IdentityPoolId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2625,7 +2612,6 @@ func (s *GetBulkPublishDetailsOutput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.BodyTarget, "IdentityPoolId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2679,7 +2665,6 @@ func (s *GetCognitoEventsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "IdentityPoolId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2715,7 +2700,6 @@ func (s *GetCognitoEventsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetMap(protocol.BodyTarget, "Events", protocol.EncodeStringMap(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2771,7 +2755,6 @@ func (s *GetIdentityPoolConfigurationInput) MarshalFields(e protocol.FieldEncode
 
 		e.SetValue(protocol.PathTarget, "IdentityPoolId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2836,7 +2819,6 @@ func (s *GetIdentityPoolConfigurationOutput) MarshalFields(e protocol.FieldEncod
 
 		e.SetFields(protocol.BodyTarget, "PushSync", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2915,7 +2897,6 @@ func (s *IdentityPoolUsage) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "SyncSessionsCount", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3017,7 +2998,6 @@ func (s *IdentityUsage) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "LastModifiedDate", protocol.TimeValue{V: v, Format: protocol.UnixTimeFormat}, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3123,7 +3103,6 @@ func (s *ListDatasetsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3187,7 +3166,6 @@ func (s *ListDatasetsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3237,7 +3215,6 @@ func (s *ListIdentityPoolUsageInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.QueryTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3315,7 +3292,6 @@ func (s *ListIdentityPoolUsageOutput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3472,7 +3448,6 @@ func (s *ListRecordsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "syncSessionToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3620,7 +3595,6 @@ func (s *ListRecordsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "SyncSessionToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3683,7 +3657,6 @@ func (s *PushSync) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "RoleArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3789,7 +3762,6 @@ func (s *Record) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Value", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3917,7 +3889,6 @@ func (s *RecordPatch) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Value", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4021,16 +3992,6 @@ func (s *RegisterDeviceInput) SetToken(v string) *RegisterDeviceInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *RegisterDeviceInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.IdentityId != nil {
-		v := *s.IdentityId
-
-		e.SetValue(protocol.PathTarget, "IdentityId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.IdentityPoolId != nil {
-		v := *s.IdentityPoolId
-
-		e.SetValue(protocol.PathTarget, "IdentityPoolId", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.Platform != nil {
 		v := *s.Platform
 
@@ -4041,7 +4002,16 @@ func (s *RegisterDeviceInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Token", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.IdentityId != nil {
+		v := *s.IdentityId
 
+		e.SetValue(protocol.PathTarget, "IdentityId", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.IdentityPoolId != nil {
+		v := *s.IdentityPoolId
+
+		e.SetValue(protocol.PathTarget, "IdentityPoolId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -4077,7 +4047,6 @@ func (s *RegisterDeviceOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "DeviceId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4150,7 +4119,6 @@ func (s *SetCognitoEventsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "IdentityPoolId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4171,7 +4139,6 @@ func (s SetCognitoEventsOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *SetCognitoEventsOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -4254,17 +4221,16 @@ func (s *SetIdentityPoolConfigurationInput) MarshalFields(e protocol.FieldEncode
 
 		e.SetFields(protocol.BodyTarget, "CognitoStreams", v, protocol.Metadata{})
 	}
-	if s.IdentityPoolId != nil {
-		v := *s.IdentityPoolId
-
-		e.SetValue(protocol.PathTarget, "IdentityPoolId", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.PushSync != nil {
 		v := s.PushSync
 
 		e.SetFields(protocol.BodyTarget, "PushSync", v, protocol.Metadata{})
 	}
+	if s.IdentityPoolId != nil {
+		v := *s.IdentityPoolId
 
+		e.SetValue(protocol.PathTarget, "IdentityPoolId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -4329,7 +4295,6 @@ func (s *SetIdentityPoolConfigurationOutput) MarshalFields(e protocol.FieldEncod
 
 		e.SetFields(protocol.BodyTarget, "PushSync", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4450,7 +4415,6 @@ func (s *SubscribeToDatasetInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "IdentityPoolId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4472,7 +4436,6 @@ func (s SubscribeToDatasetOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *SubscribeToDatasetOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -4593,7 +4556,6 @@ func (s *UnsubscribeFromDatasetInput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.PathTarget, "IdentityPoolId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4615,7 +4577,6 @@ func (s UnsubscribeFromDatasetOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UnsubscribeFromDatasetOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -4758,30 +4719,10 @@ func (s *UpdateRecordsInput) SetSyncSessionToken(v string) *UpdateRecordsInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateRecordsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.ClientContext != nil {
-		v := *s.ClientContext
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-Client-Context", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.DatasetName != nil {
-		v := *s.DatasetName
-
-		e.SetValue(protocol.PathTarget, "DatasetName", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.DeviceId != nil {
 		v := *s.DeviceId
 
 		e.SetValue(protocol.BodyTarget, "DeviceId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.IdentityId != nil {
-		v := *s.IdentityId
-
-		e.SetValue(protocol.PathTarget, "IdentityId", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.IdentityPoolId != nil {
-		v := *s.IdentityPoolId
-
-		e.SetValue(protocol.PathTarget, "IdentityPoolId", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if len(s.RecordPatches) > 0 {
 		v := s.RecordPatches
@@ -4793,7 +4734,26 @@ func (s *UpdateRecordsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "SyncSessionToken", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.ClientContext != nil {
+		v := *s.ClientContext
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-Client-Context", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.DatasetName != nil {
+		v := *s.DatasetName
+
+		e.SetValue(protocol.PathTarget, "DatasetName", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.IdentityId != nil {
+		v := *s.IdentityId
+
+		e.SetValue(protocol.PathTarget, "IdentityId", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.IdentityPoolId != nil {
+		v := *s.IdentityPoolId
+
+		e.SetValue(protocol.PathTarget, "IdentityPoolId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -4829,7 +4789,6 @@ func (s *UpdateRecordsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Records", encodeRecordList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 

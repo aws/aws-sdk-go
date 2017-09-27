@@ -1115,7 +1115,6 @@ func (s *BundleDetails) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1204,7 +1203,6 @@ func (s *CreateProjectInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "snapshotId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1240,7 +1238,6 @@ func (s *CreateProjectOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "details", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1291,7 +1288,6 @@ func (s *DeleteProjectInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "projectId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1342,7 +1338,6 @@ func (s *DeleteProjectOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "orphanedResources", encodeResourceList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1393,7 +1388,6 @@ func (s *DescribeBundleInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "bundleId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1429,7 +1423,6 @@ func (s *DescribeBundleOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "details", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1496,7 +1489,6 @@ func (s *DescribeProjectInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "syncFromResources", protocol.BoolValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1532,7 +1524,6 @@ func (s *DescribeProjectOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "details", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1612,7 +1603,6 @@ func (s *ExportBundleInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "projectId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1652,7 +1642,6 @@ func (s *ExportBundleOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "downloadUrl", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1703,7 +1692,6 @@ func (s *ExportProjectInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "projectId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1773,7 +1761,6 @@ func (s *ExportProjectOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "snapshotId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1825,7 +1812,6 @@ func (s *ListBundlesInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1876,7 +1862,6 @@ func (s *ListBundlesOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1928,7 +1913,6 @@ func (s *ListProjectsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1980,7 +1964,6 @@ func (s *ListProjectsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "projects", encodeProjectSummaryList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2114,7 +2097,6 @@ func (s *ProjectDetails) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "state", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2164,7 +2146,6 @@ func (s *ProjectSummary) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "projectId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2265,7 +2246,6 @@ func (s *Resource) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2340,7 +2320,6 @@ func (s *UpdateProjectInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "projectId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2376,7 +2355,6 @@ func (s *UpdateProjectOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "details", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 

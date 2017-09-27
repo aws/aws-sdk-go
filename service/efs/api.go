@@ -1415,7 +1415,6 @@ func (s *CreateFileSystemInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "PerformanceMode", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1513,7 +1512,6 @@ func (s *CreateMountTargetInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "SubnetId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1583,17 +1581,16 @@ func (s *CreateTagsInput) SetTags(v []*Tag) *CreateTagsInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateTagsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.FileSystemId != nil {
-		v := *s.FileSystemId
-
-		e.SetValue(protocol.PathTarget, "FileSystemId", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.Tags) > 0 {
 		v := s.Tags
 
 		e.SetList(protocol.BodyTarget, "Tags", encodeTagList(v), protocol.Metadata{})
 	}
+	if s.FileSystemId != nil {
+		v := *s.FileSystemId
 
+		e.SetValue(protocol.PathTarget, "FileSystemId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -1614,7 +1611,6 @@ func (s CreateTagsOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateTagsOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -1664,7 +1660,6 @@ func (s *DeleteFileSystemInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "FileSystemId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1685,7 +1680,6 @@ func (s DeleteFileSystemOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteFileSystemOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -1735,7 +1729,6 @@ func (s *DeleteMountTargetInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "MountTargetId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1756,7 +1749,6 @@ func (s DeleteMountTargetOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteMountTargetOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -1815,17 +1807,16 @@ func (s *DeleteTagsInput) SetTagKeys(v []*string) *DeleteTagsInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteTagsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.FileSystemId != nil {
-		v := *s.FileSystemId
-
-		e.SetValue(protocol.PathTarget, "FileSystemId", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.TagKeys) > 0 {
 		v := s.TagKeys
 
 		e.SetList(protocol.BodyTarget, "TagKeys", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
+	if s.FileSystemId != nil {
+		v := *s.FileSystemId
 
+		e.SetValue(protocol.PathTarget, "FileSystemId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -1846,7 +1837,6 @@ func (s DeleteTagsOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteTagsOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -1947,7 +1937,6 @@ func (s *DescribeFileSystemsInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.QueryTarget, "MaxItems", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2011,7 +2000,6 @@ func (s *DescribeFileSystemsOutput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "NextMarker", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2061,7 +2049,6 @@ func (s *DescribeMountTargetSecurityGroupsInput) MarshalFields(e protocol.FieldE
 
 		e.SetValue(protocol.PathTarget, "MountTargetId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2098,7 +2085,6 @@ func (s *DescribeMountTargetSecurityGroupsOutput) MarshalFields(e protocol.Field
 
 		e.SetList(protocol.BodyTarget, "SecurityGroups", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2193,7 +2179,6 @@ func (s *DescribeMountTargetsInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.QueryTarget, "MountTargetId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2260,7 +2245,6 @@ func (s *DescribeMountTargetsOutput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.BodyTarget, "NextMarker", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2344,7 +2328,6 @@ func (s *DescribeTagsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "MaxItems", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2412,7 +2395,6 @@ func (s *DescribeTagsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Tags", encodeTagList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2617,7 +2599,6 @@ func (s *FileSystemDescription) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "SizeInBytes", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2685,7 +2666,6 @@ func (s *FileSystemSize) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Value", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2739,17 +2719,16 @@ func (s *ModifyMountTargetSecurityGroupsInput) SetSecurityGroups(v []*string) *M
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *ModifyMountTargetSecurityGroupsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.MountTargetId != nil {
-		v := *s.MountTargetId
-
-		e.SetValue(protocol.PathTarget, "MountTargetId", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.SecurityGroups) > 0 {
 		v := s.SecurityGroups
 
 		e.SetList(protocol.BodyTarget, "SecurityGroups", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
+	if s.MountTargetId != nil {
+		v := *s.MountTargetId
 
+		e.SetValue(protocol.PathTarget, "MountTargetId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -2770,7 +2749,6 @@ func (s ModifyMountTargetSecurityGroupsOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *ModifyMountTargetSecurityGroupsOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -2899,7 +2877,6 @@ func (s *MountTargetDescription) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "SubnetId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2981,7 +2958,6 @@ func (s *Tag) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Value", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 

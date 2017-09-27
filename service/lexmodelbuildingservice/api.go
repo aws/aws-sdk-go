@@ -4174,7 +4174,6 @@ func (s *BotAliasMetadata) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4309,7 +4308,6 @@ func (s *BotChannelAssociation) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4424,7 +4422,6 @@ func (s *BotMetadata) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4484,7 +4481,6 @@ func (s *BuiltinIntentMetadata) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "supportedLocales", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4528,7 +4524,6 @@ func (s *BuiltinIntentSlot) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4588,7 +4583,6 @@ func (s *BuiltinSlotTypeMetadata) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "supportedLocales", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4674,7 +4668,6 @@ func (s *CodeHook) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "uri", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4746,7 +4739,6 @@ func (s *CreateBotVersionInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5007,7 +4999,6 @@ func (s *CreateBotVersionOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "voiceId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5079,7 +5070,6 @@ func (s *CreateIntentVersionInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.PathTarget, "name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5315,7 +5305,6 @@ func (s *CreateIntentVersionOutput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5387,7 +5376,6 @@ func (s *CreateSlotTypeVersionInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.PathTarget, "name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5523,7 +5511,6 @@ func (s *CreateSlotTypeVersionOutput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.BodyTarget, "version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5598,7 +5585,6 @@ func (s *DeleteBotAliasInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5619,7 +5605,6 @@ func (s DeleteBotAliasOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteBotAliasOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -5717,7 +5702,6 @@ func (s *DeleteBotChannelAssociationInput) MarshalFields(e protocol.FieldEncoder
 
 		e.SetValue(protocol.PathTarget, "name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5738,7 +5722,6 @@ func (s DeleteBotChannelAssociationOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteBotChannelAssociationOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -5791,7 +5774,6 @@ func (s *DeleteBotInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5812,7 +5794,6 @@ func (s DeleteBotOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteBotOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -5888,7 +5869,6 @@ func (s *DeleteBotVersionInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5909,7 +5889,6 @@ func (s DeleteBotVersionOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteBotVersionOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -5962,7 +5941,6 @@ func (s *DeleteIntentInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5983,7 +5961,6 @@ func (s DeleteIntentOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteIntentOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -6059,7 +6036,6 @@ func (s *DeleteIntentVersionInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.PathTarget, "version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6080,7 +6056,6 @@ func (s DeleteIntentVersionOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteIntentVersionOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -6133,7 +6108,6 @@ func (s *DeleteSlotTypeInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6154,7 +6128,6 @@ func (s DeleteSlotTypeOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteSlotTypeOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -6230,7 +6203,6 @@ func (s *DeleteSlotTypeVersionInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.PathTarget, "version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6251,7 +6223,6 @@ func (s DeleteSlotTypeVersionOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteSlotTypeVersionOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -6329,7 +6300,6 @@ func (s *DeleteUtterancesInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "userId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6350,7 +6320,6 @@ func (s DeleteUtterancesOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteUtterancesOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -6429,7 +6398,6 @@ func (s *EnumerationValue) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "value", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6520,7 +6488,6 @@ func (s *FollowUpPrompt) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "rejectionStatement", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6608,7 +6575,6 @@ func (s *FulfillmentActivity) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6683,7 +6649,6 @@ func (s *GetBotAliasInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6803,7 +6768,6 @@ func (s *GetBotAliasOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6910,7 +6874,6 @@ func (s *GetBotAliasesInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6962,7 +6925,6 @@ func (s *GetBotAliasesOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7061,7 +7023,6 @@ func (s *GetBotChannelAssociationInput) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetValue(protocol.PathTarget, "name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7182,7 +7143,6 @@ func (s *GetBotChannelAssociationOutput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetValue(protocol.BodyTarget, "type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7313,7 +7273,6 @@ func (s *GetBotChannelAssociationsInput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetValue(protocol.QueryTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7366,7 +7325,6 @@ func (s *GetBotChannelAssociationsOutput) MarshalFields(e protocol.FieldEncoder)
 
 		e.SetValue(protocol.BodyTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7438,7 +7396,6 @@ func (s *GetBotInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "versionoralias", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7700,7 +7657,6 @@ func (s *GetBotOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "voiceId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7773,22 +7729,21 @@ func (s *GetBotVersionsInput) SetNextToken(v string) *GetBotVersionsInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetBotVersionsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.MaxResults != nil {
-		v := *s.MaxResults
-
-		e.SetValue(protocol.QueryTarget, "maxResults", protocol.Int64Value(v), protocol.Metadata{})
-	}
 	if s.Name != nil {
 		v := *s.Name
 
 		e.SetValue(protocol.PathTarget, "name", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.MaxResults != nil {
+		v := *s.MaxResults
+
+		e.SetValue(protocol.QueryTarget, "maxResults", protocol.Int64Value(v), protocol.Metadata{})
 	}
 	if s.NextToken != nil {
 		v := *s.NextToken
 
 		e.SetValue(protocol.QueryTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7841,7 +7796,6 @@ func (s *GetBotVersionsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7926,7 +7880,6 @@ func (s *GetBotsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7976,7 +7929,6 @@ func (s *GetBotsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8028,7 +7980,6 @@ func (s *GetBuiltinIntentInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "signature", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8092,7 +8043,6 @@ func (s *GetBuiltinIntentOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "supportedLocales", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8188,7 +8138,6 @@ func (s *GetBuiltinIntentsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "signatureContains", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8240,7 +8189,6 @@ func (s *GetBuiltinIntentsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8336,7 +8284,6 @@ func (s *GetBuiltinSlotTypesInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.QueryTarget, "signatureContains", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8387,7 +8334,6 @@ func (s *GetBuiltinSlotTypesOutput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetList(protocol.BodyTarget, "slotTypes", encodeBuiltinSlotTypeMetadataList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8500,7 +8446,6 @@ func (s *GetExportInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8629,7 +8574,6 @@ func (s *GetExportOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8704,7 +8648,6 @@ func (s *GetIntentInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8941,7 +8884,6 @@ func (s *GetIntentOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9014,22 +8956,21 @@ func (s *GetIntentVersionsInput) SetNextToken(v string) *GetIntentVersionsInput 
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetIntentVersionsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.MaxResults != nil {
-		v := *s.MaxResults
-
-		e.SetValue(protocol.QueryTarget, "maxResults", protocol.Int64Value(v), protocol.Metadata{})
-	}
 	if s.Name != nil {
 		v := *s.Name
 
 		e.SetValue(protocol.PathTarget, "name", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.MaxResults != nil {
+		v := *s.MaxResults
+
+		e.SetValue(protocol.QueryTarget, "maxResults", protocol.Int64Value(v), protocol.Metadata{})
 	}
 	if s.NextToken != nil {
 		v := *s.NextToken
 
 		e.SetValue(protocol.QueryTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9082,7 +9023,6 @@ func (s *GetIntentVersionsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9166,7 +9106,6 @@ func (s *GetIntentsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9216,7 +9155,6 @@ func (s *GetIntentsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9291,7 +9229,6 @@ func (s *GetSlotTypeInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9427,7 +9364,6 @@ func (s *GetSlotTypeOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9500,22 +9436,21 @@ func (s *GetSlotTypeVersionsInput) SetNextToken(v string) *GetSlotTypeVersionsIn
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetSlotTypeVersionsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.MaxResults != nil {
-		v := *s.MaxResults
-
-		e.SetValue(protocol.QueryTarget, "maxResults", protocol.Int64Value(v), protocol.Metadata{})
-	}
 	if s.Name != nil {
 		v := *s.Name
 
 		e.SetValue(protocol.PathTarget, "name", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.MaxResults != nil {
+		v := *s.MaxResults
+
+		e.SetValue(protocol.QueryTarget, "maxResults", protocol.Int64Value(v), protocol.Metadata{})
 	}
 	if s.NextToken != nil {
 		v := *s.NextToken
 
 		e.SetValue(protocol.QueryTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9568,7 +9503,6 @@ func (s *GetSlotTypeVersionsOutput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetList(protocol.BodyTarget, "slotTypes", encodeSlotTypeMetadataList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9653,7 +9587,6 @@ func (s *GetSlotTypesInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9704,7 +9637,6 @@ func (s *GetSlotTypesOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "slotTypes", encodeSlotTypeMetadataList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9800,7 +9732,6 @@ func (s *GetUtterancesViewInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "status_type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9851,7 +9782,6 @@ func (s *GetUtterancesViewOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "utterances", encodeUtteranceListList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9927,7 +9857,6 @@ func (s *Intent) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "intentVersion", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10028,7 +9957,6 @@ func (s *IntentMetadata) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10109,7 +10037,6 @@ func (s *Message) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "contentType", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10227,7 +10154,6 @@ func (s *Prompt) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "responseCard", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10335,11 +10261,6 @@ func (s *PutBotAliasInput) SetName(v string) *PutBotAliasInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutBotAliasInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.BotName != nil {
-		v := *s.BotName
-
-		e.SetValue(protocol.PathTarget, "botName", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.BotVersion != nil {
 		v := *s.BotVersion
 
@@ -10355,12 +10276,16 @@ func (s *PutBotAliasInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "description", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.BotName != nil {
+		v := *s.BotName
+
+		e.SetValue(protocol.PathTarget, "botName", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Name != nil {
 		v := *s.Name
 
 		e.SetValue(protocol.PathTarget, "name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10480,7 +10405,6 @@ func (s *PutBotAliasOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10770,11 +10694,6 @@ func (s *PutBotInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "locale", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.Name != nil {
-		v := *s.Name
-
-		e.SetValue(protocol.PathTarget, "name", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.ProcessBehavior != nil {
 		v := *s.ProcessBehavior
 
@@ -10785,7 +10704,11 @@ func (s *PutBotInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "voiceId", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.Name != nil {
+		v := *s.Name
 
+		e.SetValue(protocol.PathTarget, "name", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -11051,7 +10974,6 @@ func (s *PutBotOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "voiceId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11350,11 +11272,6 @@ func (s *PutIntentInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "fulfillmentActivity", v, protocol.Metadata{})
 	}
-	if s.Name != nil {
-		v := *s.Name
-
-		e.SetValue(protocol.PathTarget, "name", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.ParentIntentSignature != nil {
 		v := *s.ParentIntentSignature
 
@@ -11375,7 +11292,11 @@ func (s *PutIntentInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "slots", encodeSlotList(v), protocol.Metadata{})
 	}
+	if s.Name != nil {
+		v := *s.Name
 
+		e.SetValue(protocol.PathTarget, "name", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -11614,7 +11535,6 @@ func (s *PutIntentOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11761,17 +11681,16 @@ func (s *PutSlotTypeInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "enumerationValues", encodeEnumerationValueList(v), protocol.Metadata{})
 	}
-	if s.Name != nil {
-		v := *s.Name
-
-		e.SetValue(protocol.PathTarget, "name", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.ValueSelectionStrategy != nil {
 		v := *s.ValueSelectionStrategy
 
 		e.SetValue(protocol.BodyTarget, "valueSelectionStrategy", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.Name != nil {
+		v := *s.Name
 
+		e.SetValue(protocol.PathTarget, "name", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -11908,7 +11827,6 @@ func (s *PutSlotTypeOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11962,7 +11880,6 @@ func (s *ResourceReference) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12158,7 +12075,6 @@ func (s *Slot) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "valueElicitationPrompt", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12259,7 +12175,6 @@ func (s *SlotTypeMetadata) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12352,7 +12267,6 @@ func (s *Statement) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "responseCard", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12445,7 +12359,6 @@ func (s *UtteranceData) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "utteranceString", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12505,7 +12418,6 @@ func (s *UtteranceList) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "utterances", encodeUtteranceDataList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 

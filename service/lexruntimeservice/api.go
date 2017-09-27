@@ -403,7 +403,6 @@ func (s *Button) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "value", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -504,7 +503,6 @@ func (s *GenericAttachment) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "title", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -735,25 +733,10 @@ func (s *PostContentInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "Accept", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.BotAlias != nil {
-		v := *s.BotAlias
-
-		e.SetValue(protocol.PathTarget, "botAlias", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.BotName != nil {
-		v := *s.BotName
-
-		e.SetValue(protocol.PathTarget, "botName", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.ContentType != nil {
 		v := *s.ContentType
 
 		e.SetValue(protocol.HeaderTarget, "Content-Type", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.InputStream != nil {
-		v := s.InputStream
-
-		e.SetStream(protocol.PayloadTarget, "inputStream", protocol.ReadSeekerStream{V: v}, protocol.Metadata{})
 	}
 	if s.RequestAttributes != nil {
 		v := s.RequestAttributes
@@ -765,12 +748,26 @@ func (s *PostContentInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-lex-session-attributes", protocol.JSONValue{V: v, Base64: true}, protocol.Metadata{})
 	}
+	if s.BotAlias != nil {
+		v := *s.BotAlias
+
+		e.SetValue(protocol.PathTarget, "botAlias", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.BotName != nil {
+		v := *s.BotName
+
+		e.SetValue(protocol.PathTarget, "botName", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.UserId != nil {
 		v := *s.UserId
 
 		e.SetValue(protocol.PathTarget, "userId", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.InputStream != nil {
+		v := s.InputStream
 
+		e.SetStream(protocol.PayloadTarget, "inputStream", protocol.ReadSeekerStream{V: v}, protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -945,7 +942,6 @@ func (s *PostContentOutput) SetSlots(v aws.JSONValue) *PostContentOutput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PostContentOutput) MarshalFields(e protocol.FieldEncoder) error {
-	// Skipping AudioStream Output type's body not valid.
 	if s.ContentType != nil {
 		v := *s.ContentType
 
@@ -986,7 +982,7 @@ func (s *PostContentOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-lex-slots", protocol.JSONValue{V: v, Base64: true}, protocol.Metadata{})
 	}
-
+	// Skipping AudioStream Output type's body not valid.
 	return nil
 }
 
@@ -1126,16 +1122,6 @@ func (s *PostTextInput) SetUserId(v string) *PostTextInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PostTextInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.BotAlias != nil {
-		v := *s.BotAlias
-
-		e.SetValue(protocol.PathTarget, "botAlias", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.BotName != nil {
-		v := *s.BotName
-
-		e.SetValue(protocol.PathTarget, "botName", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.InputText != nil {
 		v := *s.InputText
 
@@ -1151,12 +1137,21 @@ func (s *PostTextInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetMap(protocol.BodyTarget, "sessionAttributes", protocol.EncodeStringMap(v), protocol.Metadata{})
 	}
+	if s.BotAlias != nil {
+		v := *s.BotAlias
+
+		e.SetValue(protocol.PathTarget, "botAlias", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.BotName != nil {
+		v := *s.BotName
+
+		e.SetValue(protocol.PathTarget, "botName", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.UserId != nil {
 		v := *s.UserId
 
 		e.SetValue(protocol.PathTarget, "userId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1339,7 +1334,6 @@ func (s *PostTextOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetMap(protocol.BodyTarget, "slots", protocol.EncodeStringMap(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1406,7 +1400,6 @@ func (s *ResponseCard) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 

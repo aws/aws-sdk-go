@@ -855,7 +855,6 @@ func (s *Alias) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -928,7 +927,6 @@ func (s *AnnotationValue) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "StringValue", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1027,7 +1025,6 @@ func (s *BackendConnectionErrors) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "UnknownHostCount", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1091,7 +1088,6 @@ func (s *BatchGetTracesInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "TraceIds", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1154,7 +1150,6 @@ func (s *BatchGetTracesOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "UnprocessedTraceIds", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1260,7 +1255,6 @@ func (s *Edge) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "SummaryStatistics", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1360,7 +1354,6 @@ func (s *EdgeStatistics) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "TotalResponseTime", protocol.Float64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1425,7 +1418,6 @@ func (s *ErrorStatistics) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "TotalCount", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1476,7 +1468,6 @@ func (s *FaultStatistics) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "TotalCount", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1559,7 +1550,6 @@ func (s *GetServiceGraphInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "StartTime", protocol.TimeValue{V: v, Format: protocol.UnixTimeFormat}, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1637,7 +1627,6 @@ func (s *GetServiceGraphOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "StartTime", protocol.TimeValue{V: v, Format: protocol.UnixTimeFormat}, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1701,7 +1690,6 @@ func (s *GetTraceGraphInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "TraceIds", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1750,7 +1738,6 @@ func (s *GetTraceGraphOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Services", encodeServiceList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1866,7 +1853,6 @@ func (s *GetTraceSummariesInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "StartTime", protocol.TimeValue{V: v, Format: protocol.UnixTimeFormat}, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1945,7 +1931,6 @@ func (s *GetTraceSummariesOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "TracesProcessedCount", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1996,7 +1981,6 @@ func (s *HistogramEntry) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Value", protocol.Float64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2096,7 +2080,6 @@ func (s *Http) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "UserAgent", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2193,7 +2176,6 @@ func (s *PutTelemetryRecordsInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetList(protocol.BodyTarget, "TelemetryRecords", encodeTelemetryRecordList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2214,7 +2196,6 @@ func (s PutTelemetryRecordsOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutTelemetryRecordsOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -2264,7 +2245,6 @@ func (s *PutTraceSegmentsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "TraceSegmentDocuments", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2299,7 +2279,6 @@ func (s *PutTraceSegmentsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "UnprocessedTraceSegments", encodeUnprocessedTraceSegmentList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2352,7 +2331,6 @@ func (s *Segment) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2578,7 +2556,6 @@ func (s *Service) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2659,7 +2636,6 @@ func (s *ServiceId) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2759,7 +2735,6 @@ func (s *ServiceStatistics) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "TotalResponseTime", protocol.Float64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2872,7 +2847,6 @@ func (s *TelemetryRecord) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Timestamp", protocol.TimeValue{V: v, Format: protocol.UnixTimeFormat}, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2946,7 +2920,6 @@ func (s *Trace) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Segments", encodeSegmentList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3140,7 +3113,6 @@ func (s *TraceSummary) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Users", encodeTraceUserList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3198,7 +3170,6 @@ func (s *TraceUser) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "UserName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3270,7 +3241,6 @@ func (s *UnprocessedTraceSegment) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Message", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3328,7 +3298,6 @@ func (s *ValueWithServiceIds) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "ServiceIds", encodeServiceIdList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 

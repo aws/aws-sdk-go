@@ -489,7 +489,6 @@ func (s *DeleteObjectInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "Path", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -510,7 +509,6 @@ func (s DeleteObjectOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -564,7 +562,6 @@ func (s *DescribeObjectInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "Path", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -659,7 +656,6 @@ func (s *DescribeObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "Last-Modified", protocol.TimeValue{V: v, Format: protocol.RFC822TimeFromat}, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -740,17 +736,16 @@ func (s *GetObjectInput) SetRange(v string) *GetObjectInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetObjectInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Path != nil {
-		v := *s.Path
-
-		e.SetValue(protocol.PathTarget, "Path", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.Range != nil {
 		v := *s.Range
 
 		e.SetValue(protocol.HeaderTarget, "Range", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.Path != nil {
+		v := *s.Path
 
+		e.SetValue(protocol.PathTarget, "Path", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -859,7 +854,6 @@ func (s *GetObjectOutput) SetStatusCode(v int64) *GetObjectOutput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
-	// Skipping Body Output type's body not valid.
 	if s.CacheControl != nil {
 		v := *s.CacheControl
 
@@ -890,8 +884,8 @@ func (s *GetObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "Last-Modified", protocol.TimeValue{V: v, Format: protocol.RFC822TimeFromat}, protocol.Metadata{})
 	}
+	// Skipping Body Output type's body not valid.
 	// ignoring invalid encode state, StatusCode. StatusCode
-
 	return nil
 }
 
@@ -997,7 +991,6 @@ func (s *Item) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1083,7 +1076,6 @@ func (s *ListItemsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "Path", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1132,7 +1124,6 @@ func (s *ListItemsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1260,11 +1251,6 @@ func (s *PutObjectInput) SetStorageClass(v string) *PutObjectInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutObjectInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Body != nil {
-		v := s.Body
-
-		e.SetStream(protocol.PayloadTarget, "Body", protocol.ReadSeekerStream{V: v}, protocol.Metadata{})
-	}
 	if s.CacheControl != nil {
 		v := *s.CacheControl
 
@@ -1275,17 +1261,21 @@ func (s *PutObjectInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "Content-Type", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.Path != nil {
-		v := *s.Path
-
-		e.SetValue(protocol.PathTarget, "Path", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.StorageClass != nil {
 		v := *s.StorageClass
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-storage-class", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.Path != nil {
+		v := *s.Path
 
+		e.SetValue(protocol.PathTarget, "Path", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Body != nil {
+		v := s.Body
+
+		e.SetStream(protocol.PayloadTarget, "Body", protocol.ReadSeekerStream{V: v}, protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -1348,7 +1338,6 @@ func (s *PutObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "StorageClass", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 

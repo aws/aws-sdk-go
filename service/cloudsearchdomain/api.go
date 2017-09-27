@@ -341,7 +341,6 @@ func (s *Bucket) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "value", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -384,7 +383,6 @@ func (s *BucketInfo) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "buckets", encodeBucketList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -428,7 +426,6 @@ func (s *DocumentServiceWarning) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "message", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -591,7 +588,6 @@ func (s *FieldStats) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "sumOfSquares", protocol.Float64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -681,7 +677,6 @@ func (s *Hit) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -767,7 +762,6 @@ func (s *Hits) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "start", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1254,7 +1248,6 @@ func (s *SearchInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "stats", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1332,7 +1325,6 @@ func (s *SearchOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "status", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1382,7 +1374,6 @@ func (s *SearchStatus) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "timems", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1465,7 +1456,6 @@ func (s *SuggestInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "suggester", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1528,7 +1518,6 @@ func (s *SuggestModel) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "suggestions", encodeSuggestionMatchList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1578,7 +1567,6 @@ func (s *SuggestOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "suggest", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1628,7 +1616,6 @@ func (s *SuggestStatus) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "timems", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1691,7 +1678,6 @@ func (s *SuggestionMatch) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "suggestion", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1772,7 +1758,6 @@ func (s *UploadDocumentsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetStream(protocol.PayloadTarget, "documents", protocol.ReadSeekerStream{V: v}, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1849,7 +1834,6 @@ func (s *UploadDocumentsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "warnings", encodeDocumentServiceWarningList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 

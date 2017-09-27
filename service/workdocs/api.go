@@ -4176,7 +4176,6 @@ func (s *AbortDocumentVersionUploadInput) MarshalFields(e protocol.FieldEncoder)
 
 		e.SetValue(protocol.PathTarget, "VersionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4197,7 +4196,6 @@ func (s AbortDocumentVersionUploadOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *AbortDocumentVersionUploadOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -4268,7 +4266,6 @@ func (s *ActivateUserInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "UserId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4303,7 +4300,6 @@ func (s *ActivateUserOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "User", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4441,7 +4437,6 @@ func (s *Activity) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4543,11 +4538,6 @@ func (s *AddResourcePermissionsInput) SetResourceId(v string) *AddResourcePermis
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *AddResourcePermissionsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AuthenticationToken != nil {
-		v := *s.AuthenticationToken
-
-		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.NotificationOptions != nil {
 		v := s.NotificationOptions
 
@@ -4558,12 +4548,16 @@ func (s *AddResourcePermissionsInput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetList(protocol.BodyTarget, "Principals", encodeSharePrincipalList(v), protocol.Metadata{})
 	}
+	if s.AuthenticationToken != nil {
+		v := *s.AuthenticationToken
+
+		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.ResourceId != nil {
 		v := *s.ResourceId
 
 		e.SetValue(protocol.PathTarget, "ResourceId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4598,7 +4592,6 @@ func (s *AddResourcePermissionsOutput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetList(protocol.BodyTarget, "ShareResults", encodeShareResultList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4751,7 +4744,6 @@ func (s *Comment) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Visibility", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4851,7 +4843,6 @@ func (s *CommentMetadata) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "RecipientId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4991,16 +4982,6 @@ func (s *CreateCommentInput) SetVisibility(v string) *CreateCommentInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateCommentInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AuthenticationToken != nil {
-		v := *s.AuthenticationToken
-
-		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.DocumentId != nil {
-		v := *s.DocumentId
-
-		e.SetValue(protocol.PathTarget, "DocumentId", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.NotifyCollaborators != nil {
 		v := *s.NotifyCollaborators
 
@@ -5021,17 +5002,26 @@ func (s *CreateCommentInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "ThreadId", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.VersionId != nil {
-		v := *s.VersionId
-
-		e.SetValue(protocol.PathTarget, "VersionId", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.Visibility != nil {
 		v := *s.Visibility
 
 		e.SetValue(protocol.BodyTarget, "Visibility", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.AuthenticationToken != nil {
+		v := *s.AuthenticationToken
 
+		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.DocumentId != nil {
+		v := *s.DocumentId
+
+		e.SetValue(protocol.PathTarget, "DocumentId", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.VersionId != nil {
+		v := *s.VersionId
+
+		e.SetValue(protocol.PathTarget, "VersionId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -5066,7 +5056,6 @@ func (s *CreateCommentOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Comment", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5157,15 +5146,15 @@ func (s *CreateCustomMetadataInput) SetVersionId(v string) *CreateCustomMetadata
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateCustomMetadataInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AuthenticationToken != nil {
-		v := *s.AuthenticationToken
-
-		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.CustomMetadata) > 0 {
 		v := s.CustomMetadata
 
 		e.SetMap(protocol.BodyTarget, "CustomMetadata", protocol.EncodeStringMap(v), protocol.Metadata{})
+	}
+	if s.AuthenticationToken != nil {
+		v := *s.AuthenticationToken
+
+		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.ResourceId != nil {
 		v := *s.ResourceId
@@ -5177,7 +5166,6 @@ func (s *CreateCustomMetadataInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.QueryTarget, "versionid", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5198,7 +5186,6 @@ func (s CreateCustomMetadataOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateCustomMetadataOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -5271,11 +5258,6 @@ func (s *CreateFolderInput) SetParentFolderId(v string) *CreateFolderInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateFolderInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AuthenticationToken != nil {
-		v := *s.AuthenticationToken
-
-		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.Name != nil {
 		v := *s.Name
 
@@ -5286,7 +5268,11 @@ func (s *CreateFolderInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "ParentFolderId", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.AuthenticationToken != nil {
+		v := *s.AuthenticationToken
 
+		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -5321,7 +5307,6 @@ func (s *CreateFolderOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Metadata", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5396,22 +5381,21 @@ func (s *CreateLabelsInput) SetResourceId(v string) *CreateLabelsInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateLabelsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AuthenticationToken != nil {
-		v := *s.AuthenticationToken
-
-		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.Labels) > 0 {
 		v := s.Labels
 
 		e.SetList(protocol.BodyTarget, "Labels", protocol.EncodeStringList(v), protocol.Metadata{})
+	}
+	if s.AuthenticationToken != nil {
+		v := *s.AuthenticationToken
+
+		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.ResourceId != nil {
 		v := *s.ResourceId
 
 		e.SetValue(protocol.PathTarget, "ResourceId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5432,7 +5416,6 @@ func (s CreateLabelsOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateLabelsOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -5532,11 +5515,6 @@ func (s *CreateNotificationSubscriptionInput) MarshalFields(e protocol.FieldEnco
 
 		e.SetValue(protocol.BodyTarget, "Endpoint", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.OrganizationId != nil {
-		v := *s.OrganizationId
-
-		e.SetValue(protocol.PathTarget, "OrganizationId", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.Protocol != nil {
 		v := *s.Protocol
 
@@ -5547,7 +5525,11 @@ func (s *CreateNotificationSubscriptionInput) MarshalFields(e protocol.FieldEnco
 
 		e.SetValue(protocol.BodyTarget, "SubscriptionType", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.OrganizationId != nil {
+		v := *s.OrganizationId
 
+		e.SetValue(protocol.PathTarget, "OrganizationId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -5582,7 +5564,6 @@ func (s *CreateNotificationSubscriptionOutput) MarshalFields(e protocol.FieldEnc
 
 		e.SetFields(protocol.BodyTarget, "Subscription", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5739,11 +5720,6 @@ func (s *CreateUserInput) SetUsername(v string) *CreateUserInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateUserInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AuthenticationToken != nil {
-		v := *s.AuthenticationToken
-
-		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.EmailAddress != nil {
 		v := *s.EmailAddress
 
@@ -5784,7 +5760,11 @@ func (s *CreateUserInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Username", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.AuthenticationToken != nil {
+		v := *s.AuthenticationToken
 
+		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -5819,7 +5799,6 @@ func (s *CreateUserOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "User", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5890,7 +5869,6 @@ func (s *DeactivateUserInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "UserId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5911,7 +5889,6 @@ func (s DeactivateUserOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeactivateUserOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -6026,7 +6003,6 @@ func (s *DeleteCommentInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "VersionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6047,7 +6023,6 @@ func (s DeleteCommentOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteCommentOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -6145,6 +6120,11 @@ func (s *DeleteCustomMetadataInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.ResourceId != nil {
+		v := *s.ResourceId
+
+		e.SetValue(protocol.PathTarget, "ResourceId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.DeleteAll != nil {
 		v := *s.DeleteAll
 
@@ -6155,17 +6135,11 @@ func (s *DeleteCustomMetadataInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetList(protocol.QueryTarget, "keys", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-	if s.ResourceId != nil {
-		v := *s.ResourceId
-
-		e.SetValue(protocol.PathTarget, "ResourceId", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.VersionId != nil {
 		v := *s.VersionId
 
 		e.SetValue(protocol.QueryTarget, "versionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6186,7 +6160,6 @@ func (s DeleteCustomMetadataOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteCustomMetadataOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -6257,7 +6230,6 @@ func (s *DeleteDocumentInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "DocumentId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6278,7 +6250,6 @@ func (s DeleteDocumentOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteDocumentOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -6349,7 +6320,6 @@ func (s *DeleteFolderContentsInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.PathTarget, "FolderId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6370,7 +6340,6 @@ func (s DeleteFolderContentsOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteFolderContentsOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -6441,7 +6410,6 @@ func (s *DeleteFolderInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "FolderId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6462,7 +6430,6 @@ func (s DeleteFolderOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteFolderOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -6546,6 +6513,11 @@ func (s *DeleteLabelsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.ResourceId != nil {
+		v := *s.ResourceId
+
+		e.SetValue(protocol.PathTarget, "ResourceId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.DeleteAll != nil {
 		v := *s.DeleteAll
 
@@ -6556,12 +6528,6 @@ func (s *DeleteLabelsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.QueryTarget, "labels", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-	if s.ResourceId != nil {
-		v := *s.ResourceId
-
-		e.SetValue(protocol.PathTarget, "ResourceId", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -6582,7 +6548,6 @@ func (s DeleteLabelsOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteLabelsOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -6657,7 +6622,6 @@ func (s *DeleteNotificationSubscriptionInput) MarshalFields(e protocol.FieldEnco
 
 		e.SetValue(protocol.PathTarget, "SubscriptionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6678,7 +6642,6 @@ func (s DeleteNotificationSubscriptionOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteNotificationSubscriptionOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -6749,7 +6712,6 @@ func (s *DeleteUserInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "UserId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6770,7 +6732,6 @@ func (s DeleteUserOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteUserOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -6920,7 +6881,6 @@ func (s *DescribeActivitiesInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "userId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6969,7 +6929,6 @@ func (s *DescribeActivitiesOutput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetList(protocol.BodyTarget, "UserActivities", encodeActivityList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7082,6 +7041,11 @@ func (s *DescribeCommentsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "DocumentId", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.VersionId != nil {
+		v := *s.VersionId
+
+		e.SetValue(protocol.PathTarget, "VersionId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Limit != nil {
 		v := *s.Limit
 
@@ -7092,12 +7056,6 @@ func (s *DescribeCommentsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "marker", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.VersionId != nil {
-		v := *s.VersionId
-
-		e.SetValue(protocol.PathTarget, "VersionId", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -7147,7 +7105,6 @@ func (s *DescribeCommentsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Marker", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7289,7 +7246,6 @@ func (s *DescribeDocumentVersionsInput) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetValue(protocol.QueryTarget, "marker", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7339,7 +7295,6 @@ func (s *DescribeDocumentVersionsOutput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetValue(protocol.BodyTarget, "Marker", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7504,7 +7459,6 @@ func (s *DescribeFolderContentsInput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.QueryTarget, "type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7568,7 +7522,6 @@ func (s *DescribeFolderContentsOutput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.BodyTarget, "Marker", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7691,7 +7644,6 @@ func (s *DescribeGroupsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "searchQuery", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7741,7 +7693,6 @@ func (s *DescribeGroupsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Marker", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7814,6 +7765,11 @@ func (s *DescribeNotificationSubscriptionsInput) SetOrganizationId(v string) *De
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DescribeNotificationSubscriptionsInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.OrganizationId != nil {
+		v := *s.OrganizationId
+
+		e.SetValue(protocol.PathTarget, "OrganizationId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Limit != nil {
 		v := *s.Limit
 
@@ -7824,12 +7780,6 @@ func (s *DescribeNotificationSubscriptionsInput) MarshalFields(e protocol.FieldE
 
 		e.SetValue(protocol.QueryTarget, "marker", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.OrganizationId != nil {
-		v := *s.OrganizationId
-
-		e.SetValue(protocol.PathTarget, "OrganizationId", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -7879,7 +7829,6 @@ func (s *DescribeNotificationSubscriptionsOutput) MarshalFields(e protocol.Field
 
 		e.SetList(protocol.BodyTarget, "Subscriptions", encodeSubscriptionList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7982,6 +7931,11 @@ func (s *DescribeResourcePermissionsInput) MarshalFields(e protocol.FieldEncoder
 
 		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.ResourceId != nil {
+		v := *s.ResourceId
+
+		e.SetValue(protocol.PathTarget, "ResourceId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Limit != nil {
 		v := *s.Limit
 
@@ -7997,12 +7951,6 @@ func (s *DescribeResourcePermissionsInput) MarshalFields(e protocol.FieldEncoder
 
 		e.SetValue(protocol.QueryTarget, "principalId", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.ResourceId != nil {
-		v := *s.ResourceId
-
-		e.SetValue(protocol.PathTarget, "ResourceId", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -8052,7 +8000,6 @@ func (s *DescribeResourcePermissionsOutput) MarshalFields(e protocol.FieldEncode
 
 		e.SetList(protocol.BodyTarget, "Principals", encodePrincipalList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8141,7 +8088,6 @@ func (s *DescribeRootFoldersInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.QueryTarget, "marker", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8190,7 +8136,6 @@ func (s *DescribeRootFoldersOutput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "Marker", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8385,7 +8330,6 @@ func (s *DescribeUsersInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "userIds", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8449,7 +8393,6 @@ func (s *DescribeUsersOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Users", encodeUserList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8583,7 +8526,6 @@ func (s *DocumentMetadata) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "ResourceState", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8795,7 +8737,6 @@ func (s *DocumentVersionMetadata) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetMap(protocol.BodyTarget, "Thumbnail", protocol.EncodeStringMap(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8979,7 +8920,6 @@ func (s *FolderMetadata) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Size", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9041,7 +8981,6 @@ func (s *GetCurrentUserInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9076,7 +9015,6 @@ func (s *GetCurrentUserOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "User", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9161,7 +9099,6 @@ func (s *GetDocumentInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "includeCustomMetadata", protocol.BoolValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9210,7 +9147,6 @@ func (s *GetDocumentOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Metadata", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9333,7 +9269,6 @@ func (s *GetDocumentPathInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "marker", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9368,7 +9303,6 @@ func (s *GetDocumentPathOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Path", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9478,6 +9412,11 @@ func (s *GetDocumentVersionInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "DocumentId", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.VersionId != nil {
+		v := *s.VersionId
+
+		e.SetValue(protocol.PathTarget, "VersionId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Fields != nil {
 		v := *s.Fields
 
@@ -9488,12 +9427,6 @@ func (s *GetDocumentVersionInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "includeCustomMetadata", protocol.BoolValue(v), protocol.Metadata{})
 	}
-	if s.VersionId != nil {
-		v := *s.VersionId
-
-		e.SetValue(protocol.PathTarget, "VersionId", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -9542,7 +9475,6 @@ func (s *GetDocumentVersionOutput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetFields(protocol.BodyTarget, "Metadata", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9627,7 +9559,6 @@ func (s *GetFolderInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "includeCustomMetadata", protocol.BoolValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9676,7 +9607,6 @@ func (s *GetFolderOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Metadata", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9779,15 +9709,15 @@ func (s *GetFolderPathInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.Fields != nil {
-		v := *s.Fields
-
-		e.SetValue(protocol.QueryTarget, "fields", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.FolderId != nil {
 		v := *s.FolderId
 
 		e.SetValue(protocol.PathTarget, "FolderId", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Fields != nil {
+		v := *s.Fields
+
+		e.SetValue(protocol.QueryTarget, "fields", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.Limit != nil {
 		v := *s.Limit
@@ -9799,7 +9729,6 @@ func (s *GetFolderPathInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "marker", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9834,7 +9763,6 @@ func (s *GetFolderPathOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Path", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9884,7 +9812,6 @@ func (s *GroupMetadata) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10016,11 +9943,6 @@ func (s *InitiateDocumentVersionUploadInput) SetParentFolderId(v string) *Initia
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *InitiateDocumentVersionUploadInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AuthenticationToken != nil {
-		v := *s.AuthenticationToken
-
-		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.ContentCreatedTimestamp != nil {
 		v := *s.ContentCreatedTimestamp
 
@@ -10056,7 +9978,11 @@ func (s *InitiateDocumentVersionUploadInput) MarshalFields(e protocol.FieldEncod
 
 		e.SetValue(protocol.BodyTarget, "ParentFolderId", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.AuthenticationToken != nil {
+		v := *s.AuthenticationToken
 
+		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -10105,7 +10031,6 @@ func (s *InitiateDocumentVersionUploadOutput) MarshalFields(e protocol.FieldEnco
 
 		e.SetFields(protocol.BodyTarget, "UploadMetadata", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10155,7 +10080,6 @@ func (s *NotificationOptions) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "SendEmail", protocol.BoolValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10205,7 +10129,6 @@ func (s *Participants) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Users", encodeUserMetadataList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10255,7 +10178,6 @@ func (s *PermissionInfo) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10327,7 +10249,6 @@ func (s *Principal) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10406,7 +10327,6 @@ func (s *RemoveAllResourcePermissionsInput) MarshalFields(e protocol.FieldEncode
 
 		e.SetValue(protocol.PathTarget, "ResourceId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10427,7 +10347,6 @@ func (s RemoveAllResourcePermissionsOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *RemoveAllResourcePermissionsOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -10524,17 +10443,16 @@ func (s *RemoveResourcePermissionInput) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetValue(protocol.PathTarget, "PrincipalId", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.PrincipalType != nil {
-		v := *s.PrincipalType
-
-		e.SetValue(protocol.QueryTarget, "type", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.ResourceId != nil {
 		v := *s.ResourceId
 
 		e.SetValue(protocol.PathTarget, "ResourceId", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.PrincipalType != nil {
+		v := *s.PrincipalType
 
+		e.SetValue(protocol.QueryTarget, "type", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -10555,7 +10473,6 @@ func (s RemoveResourcePermissionOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *RemoveResourcePermissionOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -10676,7 +10593,6 @@ func (s *ResourceMetadata) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "VersionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10712,7 +10628,6 @@ func (s *ResourcePath) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Components", encodeResourcePathComponentList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10762,7 +10677,6 @@ func (s *ResourcePathComponent) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10862,7 +10776,6 @@ func (s *SharePrincipal) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10962,7 +10875,6 @@ func (s *ShareResult) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "StatusMessage", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11020,7 +10932,6 @@ func (s *StorageRuleType) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "StorageType", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11084,7 +10995,6 @@ func (s *Subscription) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "SubscriptionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11186,16 +11096,6 @@ func (s *UpdateDocumentInput) SetResourceState(v string) *UpdateDocumentInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateDocumentInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AuthenticationToken != nil {
-		v := *s.AuthenticationToken
-
-		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.DocumentId != nil {
-		v := *s.DocumentId
-
-		e.SetValue(protocol.PathTarget, "DocumentId", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.Name != nil {
 		v := *s.Name
 
@@ -11211,7 +11111,16 @@ func (s *UpdateDocumentInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "ResourceState", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.AuthenticationToken != nil {
+		v := *s.AuthenticationToken
 
+		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.DocumentId != nil {
+		v := *s.DocumentId
+
+		e.SetValue(protocol.PathTarget, "DocumentId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -11232,7 +11141,6 @@ func (s UpdateDocumentOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateDocumentOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -11319,6 +11227,11 @@ func (s *UpdateDocumentVersionInput) SetVersionStatus(v string) *UpdateDocumentV
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateDocumentVersionInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.VersionStatus != nil {
+		v := *s.VersionStatus
+
+		e.SetValue(protocol.BodyTarget, "VersionStatus", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.AuthenticationToken != nil {
 		v := *s.AuthenticationToken
 
@@ -11334,12 +11247,6 @@ func (s *UpdateDocumentVersionInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.PathTarget, "VersionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.VersionStatus != nil {
-		v := *s.VersionStatus
-
-		e.SetValue(protocol.BodyTarget, "VersionStatus", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -11360,7 +11267,6 @@ func (s UpdateDocumentVersionOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateDocumentVersionOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -11455,16 +11361,6 @@ func (s *UpdateFolderInput) SetResourceState(v string) *UpdateFolderInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateFolderInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AuthenticationToken != nil {
-		v := *s.AuthenticationToken
-
-		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.FolderId != nil {
-		v := *s.FolderId
-
-		e.SetValue(protocol.PathTarget, "FolderId", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.Name != nil {
 		v := *s.Name
 
@@ -11480,7 +11376,16 @@ func (s *UpdateFolderInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "ResourceState", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.AuthenticationToken != nil {
+		v := *s.AuthenticationToken
 
+		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.FolderId != nil {
+		v := *s.FolderId
+
+		e.SetValue(protocol.PathTarget, "FolderId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -11501,7 +11406,6 @@ func (s UpdateFolderOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateFolderOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -11634,11 +11538,6 @@ func (s *UpdateUserInput) SetUserId(v string) *UpdateUserInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateUserInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AuthenticationToken != nil {
-		v := *s.AuthenticationToken
-
-		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.GivenName != nil {
 		v := *s.GivenName
 
@@ -11674,12 +11573,16 @@ func (s *UpdateUserInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Type", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.AuthenticationToken != nil {
+		v := *s.AuthenticationToken
+
+		e.SetValue(protocol.HeaderTarget, "Authentication", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.UserId != nil {
 		v := *s.UserId
 
 		e.SetValue(protocol.PathTarget, "UserId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11714,7 +11617,6 @@ func (s *UpdateUserOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "User", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11764,7 +11666,6 @@ func (s *UploadMetadata) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "UploadUrl", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11996,7 +11897,6 @@ func (s *User) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Username", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12096,7 +11996,6 @@ func (s *UserMetadata) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Username", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12154,7 +12053,6 @@ func (s *UserStorageMetadata) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "StorageUtilizedInBytes", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 

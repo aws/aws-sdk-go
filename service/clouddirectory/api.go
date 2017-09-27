@@ -7905,11 +7905,6 @@ func (s *AddFacetToObjectInput) SetSchemaFacet(v *SchemaFacet) *AddFacetToObject
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *AddFacetToObjectInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.ObjectAttributeList) > 0 {
 		v := s.ObjectAttributeList
 
@@ -7925,7 +7920,11 @@ func (s *AddFacetToObjectInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "SchemaFacet", v, protocol.Metadata{})
 	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -7946,7 +7945,6 @@ func (s AddFacetToObjectOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *AddFacetToObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -8007,17 +8005,16 @@ func (s *ApplySchemaInput) SetPublishedSchemaArn(v string) *ApplySchemaInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *ApplySchemaInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.PublishedSchemaArn != nil {
 		v := *s.PublishedSchemaArn
 
 		e.SetValue(protocol.BodyTarget, "PublishedSchemaArn", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -8069,7 +8066,6 @@ func (s *ApplySchemaOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "DirectoryArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8165,11 +8161,6 @@ func (s *AttachObjectInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "ChildReference", v, protocol.Metadata{})
 	}
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.LinkName != nil {
 		v := *s.LinkName
 
@@ -8180,7 +8171,11 @@ func (s *AttachObjectInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "ParentReference", v, protocol.Metadata{})
 	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -8215,7 +8210,6 @@ func (s *AttachObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "AttachedObjectIdentifier", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8284,11 +8278,6 @@ func (s *AttachPolicyInput) SetPolicyReference(v *ObjectReference) *AttachPolicy
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *AttachPolicyInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.ObjectReference != nil {
 		v := s.ObjectReference
 
@@ -8299,7 +8288,11 @@ func (s *AttachPolicyInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "PolicyReference", v, protocol.Metadata{})
 	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -8320,7 +8313,6 @@ func (s AttachPolicyOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *AttachPolicyOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -8394,11 +8386,6 @@ func (s *AttachToIndexInput) SetTargetReference(v *ObjectReference) *AttachToInd
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *AttachToIndexInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.IndexReference != nil {
 		v := s.IndexReference
 
@@ -8409,7 +8396,11 @@ func (s *AttachToIndexInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "TargetReference", v, protocol.Metadata{})
 	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -8444,7 +8435,6 @@ func (s *AttachToIndexOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "AttachedObjectIdentifier", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8566,11 +8556,6 @@ func (s *AttachTypedLinkInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Attributes", encodeAttributeNameAndValueList(v), protocol.Metadata{})
 	}
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.SourceObjectReference != nil {
 		v := s.SourceObjectReference
 
@@ -8586,7 +8571,11 @@ func (s *AttachTypedLinkInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "TypedLinkFacet", v, protocol.Metadata{})
 	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -8621,7 +8610,6 @@ func (s *AttachTypedLinkOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "TypedLinkSpecifier", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8717,7 +8705,6 @@ func (s *AttributeKey) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "SchemaArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8800,7 +8787,6 @@ func (s *AttributeKeyAndValue) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Value", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8881,7 +8867,6 @@ func (s *AttributeNameAndValue) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Value", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8993,7 +8978,6 @@ func (s *BatchAddFacetToObject) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "SchemaFacet", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9015,7 +8999,6 @@ func (s BatchAddFacetToObjectResponse) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *BatchAddFacetToObjectResponse) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -9107,7 +9090,6 @@ func (s *BatchAttachObject) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "ParentReference", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9143,7 +9125,6 @@ func (s *BatchAttachObjectResponse) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "attachedObjectIdentifier", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9214,7 +9195,6 @@ func (s *BatchAttachPolicy) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "PolicyReference", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9236,7 +9216,6 @@ func (s BatchAttachPolicyResponse) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *BatchAttachPolicyResponse) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -9307,7 +9286,6 @@ func (s *BatchAttachToIndex) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "TargetReference", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9343,7 +9321,6 @@ func (s *BatchAttachToIndexResponse) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.BodyTarget, "AttachedObjectIdentifier", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9467,7 +9444,6 @@ func (s *BatchAttachTypedLink) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "TypedLinkFacet", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9503,7 +9479,6 @@ func (s *BatchAttachTypedLinkResponse) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetFields(protocol.BodyTarget, "TypedLinkSpecifier", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9632,7 +9607,6 @@ func (s *BatchCreateIndex) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "ParentReference", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9668,7 +9642,6 @@ func (s *BatchCreateIndexResponse) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.BodyTarget, "ObjectIdentifier", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9821,7 +9794,6 @@ func (s *BatchCreateObject) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "SchemaFacet", encodeSchemaFacetList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9857,7 +9829,6 @@ func (s *BatchCreateObjectResponse) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "ObjectIdentifier", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9908,7 +9879,6 @@ func (s *BatchDeleteObject) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "ObjectReference", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9930,7 +9900,6 @@ func (s BatchDeleteObjectResponse) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *BatchDeleteObjectResponse) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -10001,7 +9970,6 @@ func (s *BatchDetachFromIndex) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "TargetReference", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10037,7 +10005,6 @@ func (s *BatchDetachFromIndexResponse) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.BodyTarget, "DetachedObjectIdentifier", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10130,7 +10097,6 @@ func (s *BatchDetachObject) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "ParentReference", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10166,7 +10132,6 @@ func (s *BatchDetachObjectResponse) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "detachedObjectIdentifier", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10237,7 +10202,6 @@ func (s *BatchDetachPolicy) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "PolicyReference", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10259,7 +10223,6 @@ func (s BatchDetachPolicyResponse) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *BatchDetachPolicyResponse) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -10316,7 +10279,6 @@ func (s *BatchDetachTypedLink) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "TypedLinkSpecifier", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10338,7 +10300,6 @@ func (s BatchDetachTypedLinkResponse) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *BatchDetachTypedLinkResponse) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -10390,7 +10351,6 @@ func (s *BatchGetObjectInformation) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetFields(protocol.BodyTarget, "ObjectReference", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10440,7 +10400,6 @@ func (s *BatchGetObjectInformationResponse) MarshalFields(e protocol.FieldEncode
 
 		e.SetList(protocol.BodyTarget, "SchemaFacets", encodeSchemaFacetList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10523,7 +10482,6 @@ func (s *BatchListAttachedIndices) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetFields(protocol.BodyTarget, "TargetReference", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10573,7 +10531,6 @@ func (s *BatchListAttachedIndicesResponse) MarshalFields(e protocol.FieldEncoder
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10704,7 +10661,6 @@ func (s *BatchListIncomingTypedLinks) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetFields(protocol.BodyTarget, "ObjectReference", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10754,7 +10710,6 @@ func (s *BatchListIncomingTypedLinksResponse) MarshalFields(e protocol.FieldEnco
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10861,7 +10816,6 @@ func (s *BatchListIndex) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "RangesOnIndexedValues", encodeObjectAttributeRangeList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10911,7 +10865,6 @@ func (s *BatchListIndexResponse) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11014,7 +10967,6 @@ func (s *BatchListObjectAttributes) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetFields(protocol.BodyTarget, "ObjectReference", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11065,7 +11017,6 @@ func (s *BatchListObjectAttributesResponse) MarshalFields(e protocol.FieldEncode
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11148,7 +11099,6 @@ func (s *BatchListObjectChildren) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "ObjectReference", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11199,7 +11149,6 @@ func (s *BatchListObjectChildrenResponse) MarshalFields(e protocol.FieldEncoder)
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11283,7 +11232,6 @@ func (s *BatchListObjectParentPaths) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetFields(protocol.BodyTarget, "ObjectReference", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11333,7 +11281,6 @@ func (s *BatchListObjectParentPathsResponse) MarshalFields(e protocol.FieldEncod
 
 		e.SetList(protocol.BodyTarget, "PathToObjectIdentifiersList", encodePathToObjectIdentifiersList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11416,7 +11363,6 @@ func (s *BatchListObjectPolicies) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "ObjectReference", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11466,7 +11412,6 @@ func (s *BatchListObjectPoliciesResponse) MarshalFields(e protocol.FieldEncoder)
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11597,7 +11542,6 @@ func (s *BatchListOutgoingTypedLinks) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetFields(protocol.BodyTarget, "ObjectReference", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11647,7 +11591,6 @@ func (s *BatchListOutgoingTypedLinksResponse) MarshalFields(e protocol.FieldEnco
 
 		e.SetList(protocol.BodyTarget, "TypedLinkSpecifiers", encodeTypedLinkSpecifierList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11731,7 +11674,6 @@ func (s *BatchListPolicyAttachments) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetFields(protocol.BodyTarget, "PolicyReference", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11781,7 +11723,6 @@ func (s *BatchListPolicyAttachmentsResponse) MarshalFields(e protocol.FieldEncod
 
 		e.SetList(protocol.BodyTarget, "ObjectIdentifiers", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11865,7 +11806,6 @@ func (s *BatchLookupPolicy) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "ObjectReference", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11916,7 +11856,6 @@ func (s *BatchLookupPolicyResponse) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetList(protocol.BodyTarget, "PolicyToPathList", encodePolicyToPathList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11967,7 +11906,6 @@ func (s *BatchReadException) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12047,6 +11985,11 @@ func (s *BatchReadInput) SetOperations(v []*BatchReadOperation) *BatchReadInput 
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *BatchReadInput) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.Operations) > 0 {
+		v := s.Operations
+
+		e.SetList(protocol.BodyTarget, "Operations", encodeBatchReadOperationList(v), protocol.Metadata{})
+	}
 	if s.ConsistencyLevel != nil {
 		v := *s.ConsistencyLevel
 
@@ -12057,12 +12000,6 @@ func (s *BatchReadInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if len(s.Operations) > 0 {
-		v := s.Operations
-
-		e.SetList(protocol.BodyTarget, "Operations", encodeBatchReadOperationList(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -12316,7 +12253,6 @@ func (s *BatchReadOperation) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "LookupPolicy", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12374,7 +12310,6 @@ func (s *BatchReadOperationResponse) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetFields(protocol.BodyTarget, "SuccessfulResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12417,7 +12352,6 @@ func (s *BatchReadOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Responses", encodeBatchReadOperationResponseList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12606,7 +12540,6 @@ func (s *BatchReadSuccessfulResponse) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetFields(protocol.BodyTarget, "LookupPolicy", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12681,7 +12614,6 @@ func (s *BatchRemoveFacetFromObject) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetFields(protocol.BodyTarget, "SchemaFacet", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12703,7 +12635,6 @@ func (s BatchRemoveFacetFromObjectResponse) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *BatchRemoveFacetFromObjectResponse) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -12783,7 +12714,6 @@ func (s *BatchUpdateObjectAttributes) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetFields(protocol.BodyTarget, "ObjectReference", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12819,7 +12749,6 @@ func (s *BatchUpdateObjectAttributesResponse) MarshalFields(e protocol.FieldEnco
 
 		e.SetValue(protocol.BodyTarget, "ObjectIdentifier", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12889,17 +12818,16 @@ func (s *BatchWriteInput) SetOperations(v []*BatchWriteOperation) *BatchWriteInp
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *BatchWriteInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.Operations) > 0 {
 		v := s.Operations
 
 		e.SetList(protocol.BodyTarget, "Operations", encodeBatchWriteOperationList(v), protocol.Metadata{})
 	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -13201,7 +13129,6 @@ func (s *BatchWriteOperation) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "UpdateObjectAttributes", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13431,7 +13358,6 @@ func (s *BatchWriteOperationResponse) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetFields(protocol.BodyTarget, "UpdateObjectAttributes", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13474,7 +13400,6 @@ func (s *BatchWriteOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Responses", encodeBatchWriteOperationResponseList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13547,7 +13472,6 @@ func (s *CreateDirectoryInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13635,7 +13559,6 @@ func (s *CreateDirectoryOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "ObjectIdentifier", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13761,7 +13684,6 @@ func (s *CreateFacetInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13782,7 +13704,6 @@ func (s CreateFacetOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateFacetOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -13888,11 +13809,6 @@ func (s *CreateIndexInput) SetParentReference(v *ObjectReference) *CreateIndexIn
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateIndexInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.IsUnique != nil {
 		v := *s.IsUnique
 
@@ -13913,7 +13829,11 @@ func (s *CreateIndexInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "ParentReference", v, protocol.Metadata{})
 	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -13948,7 +13868,6 @@ func (s *CreateIndexOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "ObjectIdentifier", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14060,11 +13979,6 @@ func (s *CreateObjectInput) SetSchemaFacets(v []*SchemaFacet) *CreateObjectInput
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateObjectInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.LinkName != nil {
 		v := *s.LinkName
 
@@ -14085,7 +13999,11 @@ func (s *CreateObjectInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "SchemaFacets", encodeSchemaFacetList(v), protocol.Metadata{})
 	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -14120,7 +14038,6 @@ func (s *CreateObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "ObjectIdentifier", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14174,7 +14091,6 @@ func (s *CreateSchemaInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14210,7 +14126,6 @@ func (s *CreateSchemaOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "SchemaArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14285,7 +14200,6 @@ func (s *CreateTypedLinkFacetInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14306,7 +14220,6 @@ func (s CreateTypedLinkFacetOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateTypedLinkFacetOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -14356,7 +14269,6 @@ func (s *DeleteDirectoryInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14393,7 +14305,6 @@ func (s *DeleteDirectoryOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "DirectoryArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14466,7 +14377,6 @@ func (s *DeleteFacetInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14487,7 +14397,6 @@ func (s DeleteFacetOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteFacetOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -14547,17 +14456,16 @@ func (s *DeleteObjectInput) SetObjectReference(v *ObjectReference) *DeleteObject
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteObjectInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.ObjectReference != nil {
 		v := s.ObjectReference
 
 		e.SetFields(protocol.BodyTarget, "ObjectReference", v, protocol.Metadata{})
 	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -14578,7 +14486,6 @@ func (s DeleteObjectOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -14629,7 +14536,6 @@ func (s *DeleteSchemaInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14665,7 +14571,6 @@ func (s *DeleteSchemaOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "SchemaArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14735,7 +14640,6 @@ func (s *DeleteTypedLinkFacetInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14756,7 +14660,6 @@ func (s DeleteTypedLinkFacetOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteTypedLinkFacetOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -14830,11 +14733,6 @@ func (s *DetachFromIndexInput) SetTargetReference(v *ObjectReference) *DetachFro
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DetachFromIndexInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.IndexReference != nil {
 		v := s.IndexReference
 
@@ -14845,7 +14743,11 @@ func (s *DetachFromIndexInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "TargetReference", v, protocol.Metadata{})
 	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -14880,7 +14782,6 @@ func (s *DetachFromIndexOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "DetachedObjectIdentifier", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14958,11 +14859,6 @@ func (s *DetachObjectInput) SetParentReference(v *ObjectReference) *DetachObject
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DetachObjectInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.LinkName != nil {
 		v := *s.LinkName
 
@@ -14973,7 +14869,11 @@ func (s *DetachObjectInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "ParentReference", v, protocol.Metadata{})
 	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -15008,7 +14908,6 @@ func (s *DetachObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "DetachedObjectIdentifier", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15082,11 +14981,6 @@ func (s *DetachPolicyInput) SetPolicyReference(v *ObjectReference) *DetachPolicy
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DetachPolicyInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.ObjectReference != nil {
 		v := s.ObjectReference
 
@@ -15097,7 +14991,11 @@ func (s *DetachPolicyInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "PolicyReference", v, protocol.Metadata{})
 	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -15118,7 +15016,6 @@ func (s DetachPolicyOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DetachPolicyOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -15183,17 +15080,16 @@ func (s *DetachTypedLinkInput) SetTypedLinkSpecifier(v *TypedLinkSpecifier) *Det
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DetachTypedLinkInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.TypedLinkSpecifier != nil {
 		v := s.TypedLinkSpecifier
 
 		e.SetFields(protocol.BodyTarget, "TypedLinkSpecifier", v, protocol.Metadata{})
 	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -15214,7 +15110,6 @@ func (s DetachTypedLinkOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DetachTypedLinkOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -15293,7 +15188,6 @@ func (s *Directory) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "State", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15351,7 +15245,6 @@ func (s *DisableDirectoryInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15388,7 +15281,6 @@ func (s *DisableDirectoryOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "DirectoryArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15438,7 +15330,6 @@ func (s *EnableDirectoryInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15475,7 +15366,6 @@ func (s *EnableDirectoryOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "DirectoryArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15526,7 +15416,6 @@ func (s *Facet) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "ObjectType", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15636,7 +15525,6 @@ func (s *FacetAttribute) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "RequiredBehavior", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15738,7 +15626,6 @@ func (s *FacetAttributeDefinition) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.BodyTarget, "Type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15819,7 +15706,6 @@ func (s *FacetAttributeReference) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "TargetFacetName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15884,7 +15770,6 @@ func (s *FacetAttributeUpdate) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Attribute", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15942,7 +15827,6 @@ func (s *GetDirectoryInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15979,7 +15863,6 @@ func (s *GetDirectoryOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Directory", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16052,7 +15935,6 @@ func (s *GetFacetInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16087,7 +15969,6 @@ func (s *GetFacetOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Facet", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16155,6 +16036,11 @@ func (s *GetObjectInformationInput) SetObjectReference(v *ObjectReference) *GetO
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetObjectInformationInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.ObjectReference != nil {
+		v := s.ObjectReference
+
+		e.SetFields(protocol.BodyTarget, "ObjectReference", v, protocol.Metadata{})
+	}
 	if s.ConsistencyLevel != nil {
 		v := *s.ConsistencyLevel
 
@@ -16165,12 +16051,6 @@ func (s *GetObjectInformationInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.ObjectReference != nil {
-		v := s.ObjectReference
-
-		e.SetFields(protocol.BodyTarget, "ObjectReference", v, protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -16219,7 +16099,6 @@ func (s *GetObjectInformationOutput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetList(protocol.BodyTarget, "SchemaFacets", encodeSchemaFacetList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16269,7 +16148,6 @@ func (s *GetSchemaAsJsonInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16318,7 +16196,6 @@ func (s *GetSchemaAsJsonOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16388,7 +16265,6 @@ func (s *GetTypedLinkFacetInformationInput) MarshalFields(e protocol.FieldEncode
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16430,7 +16306,6 @@ func (s *GetTypedLinkFacetInformationOutput) MarshalFields(e protocol.FieldEncod
 
 		e.SetList(protocol.BodyTarget, "IdentityAttributeOrder", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16480,7 +16355,6 @@ func (s *IndexAttachment) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "ObjectIdentifier", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16569,7 +16443,6 @@ func (s *ListAppliedSchemaArnsInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16618,7 +16491,6 @@ func (s *ListAppliedSchemaArnsOutput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetList(protocol.BodyTarget, "SchemaArns", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16707,16 +16579,6 @@ func (s *ListAttachedIndicesInput) SetTargetReference(v *ObjectReference) *ListA
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *ListAttachedIndicesInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.ConsistencyLevel != nil {
-		v := *s.ConsistencyLevel
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-consistency-level", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.MaxResults != nil {
 		v := *s.MaxResults
 
@@ -16732,7 +16594,16 @@ func (s *ListAttachedIndicesInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetFields(protocol.BodyTarget, "TargetReference", v, protocol.Metadata{})
 	}
+	if s.ConsistencyLevel != nil {
+		v := *s.ConsistencyLevel
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-consistency-level", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -16781,7 +16652,6 @@ func (s *ListAttachedIndicesOutput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16843,7 +16713,6 @@ func (s *ListDevelopmentSchemaArnsInput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16892,7 +16761,6 @@ func (s *ListDevelopmentSchemaArnsOutput) MarshalFields(e protocol.FieldEncoder)
 
 		e.SetList(protocol.BodyTarget, "SchemaArns", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16969,7 +16837,6 @@ func (s *ListDirectoriesInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "state", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17021,7 +16888,6 @@ func (s *ListDirectoriesOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17124,7 +16990,6 @@ func (s *ListFacetAttributesInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17173,7 +17038,6 @@ func (s *ListFacetAttributesOutput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17254,7 +17118,6 @@ func (s *ListFacetNamesInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17303,7 +17166,6 @@ func (s *ListFacetNamesOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17435,11 +17297,6 @@ func (s *ListIncomingTypedLinksInput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.BodyTarget, "ConsistencyLevel", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.FilterAttributeRanges) > 0 {
 		v := s.FilterAttributeRanges
 
@@ -17465,7 +17322,11 @@ func (s *ListIncomingTypedLinksInput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetFields(protocol.BodyTarget, "ObjectReference", v, protocol.Metadata{})
 	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -17514,7 +17375,6 @@ func (s *ListIncomingTypedLinksOutput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17622,16 +17482,6 @@ func (s *ListIndexInput) SetRangesOnIndexedValues(v []*ObjectAttributeRange) *Li
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *ListIndexInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.ConsistencyLevel != nil {
-		v := *s.ConsistencyLevel
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-consistency-level", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.IndexReference != nil {
 		v := s.IndexReference
 
@@ -17652,7 +17502,16 @@ func (s *ListIndexInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "RangesOnIndexedValues", encodeObjectAttributeRangeList(v), protocol.Metadata{})
 	}
+	if s.ConsistencyLevel != nil {
+		v := *s.ConsistencyLevel
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-consistency-level", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -17701,7 +17560,6 @@ func (s *ListIndexOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17808,16 +17666,6 @@ func (s *ListObjectAttributesInput) SetObjectReference(v *ObjectReference) *List
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *ListObjectAttributesInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.ConsistencyLevel != nil {
-		v := *s.ConsistencyLevel
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-consistency-level", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.FacetFilter != nil {
 		v := s.FacetFilter
 
@@ -17838,7 +17686,16 @@ func (s *ListObjectAttributesInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetFields(protocol.BodyTarget, "ObjectReference", v, protocol.Metadata{})
 	}
+	if s.ConsistencyLevel != nil {
+		v := *s.ConsistencyLevel
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-consistency-level", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -17888,7 +17745,6 @@ func (s *ListObjectAttributesOutput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17981,16 +17837,6 @@ func (s *ListObjectChildrenInput) SetObjectReference(v *ObjectReference) *ListOb
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *ListObjectChildrenInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.ConsistencyLevel != nil {
-		v := *s.ConsistencyLevel
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-consistency-level", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.MaxResults != nil {
 		v := *s.MaxResults
 
@@ -18006,7 +17852,16 @@ func (s *ListObjectChildrenInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "ObjectReference", v, protocol.Metadata{})
 	}
+	if s.ConsistencyLevel != nil {
+		v := *s.ConsistencyLevel
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-consistency-level", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -18056,7 +17911,6 @@ func (s *ListObjectChildrenOutput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18137,11 +17991,6 @@ func (s *ListObjectParentPathsInput) SetObjectReference(v *ObjectReference) *Lis
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *ListObjectParentPathsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.MaxResults != nil {
 		v := *s.MaxResults
 
@@ -18157,7 +18006,11 @@ func (s *ListObjectParentPathsInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetFields(protocol.BodyTarget, "ObjectReference", v, protocol.Metadata{})
 	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -18206,7 +18059,6 @@ func (s *ListObjectParentPathsOutput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetList(protocol.BodyTarget, "PathToObjectIdentifiersList", encodePathToObjectIdentifiersList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18299,16 +18151,6 @@ func (s *ListObjectParentsInput) SetObjectReference(v *ObjectReference) *ListObj
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *ListObjectParentsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.ConsistencyLevel != nil {
-		v := *s.ConsistencyLevel
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-consistency-level", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.MaxResults != nil {
 		v := *s.MaxResults
 
@@ -18324,7 +18166,16 @@ func (s *ListObjectParentsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "ObjectReference", v, protocol.Metadata{})
 	}
+	if s.ConsistencyLevel != nil {
+		v := *s.ConsistencyLevel
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-consistency-level", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -18374,7 +18225,6 @@ func (s *ListObjectParentsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetMap(protocol.BodyTarget, "Parents", protocol.EncodeStringMap(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18466,16 +18316,6 @@ func (s *ListObjectPoliciesInput) SetObjectReference(v *ObjectReference) *ListOb
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *ListObjectPoliciesInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.ConsistencyLevel != nil {
-		v := *s.ConsistencyLevel
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-consistency-level", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.MaxResults != nil {
 		v := *s.MaxResults
 
@@ -18491,7 +18331,16 @@ func (s *ListObjectPoliciesInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "ObjectReference", v, protocol.Metadata{})
 	}
+	if s.ConsistencyLevel != nil {
+		v := *s.ConsistencyLevel
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-consistency-level", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -18540,7 +18389,6 @@ func (s *ListObjectPoliciesOutput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18672,11 +18520,6 @@ func (s *ListOutgoingTypedLinksInput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.BodyTarget, "ConsistencyLevel", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if len(s.FilterAttributeRanges) > 0 {
 		v := s.FilterAttributeRanges
 
@@ -18702,7 +18545,11 @@ func (s *ListOutgoingTypedLinksInput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetFields(protocol.BodyTarget, "ObjectReference", v, protocol.Metadata{})
 	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -18751,7 +18598,6 @@ func (s *ListOutgoingTypedLinksOutput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetList(protocol.BodyTarget, "TypedLinkSpecifiers", encodeTypedLinkSpecifierList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18843,16 +18689,6 @@ func (s *ListPolicyAttachmentsInput) SetPolicyReference(v *ObjectReference) *Lis
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *ListPolicyAttachmentsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.ConsistencyLevel != nil {
-		v := *s.ConsistencyLevel
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-consistency-level", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.MaxResults != nil {
 		v := *s.MaxResults
 
@@ -18868,7 +18704,16 @@ func (s *ListPolicyAttachmentsInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetFields(protocol.BodyTarget, "PolicyReference", v, protocol.Metadata{})
 	}
+	if s.ConsistencyLevel != nil {
+		v := *s.ConsistencyLevel
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-consistency-level", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -18917,7 +18762,6 @@ func (s *ListPolicyAttachmentsOutput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetList(protocol.BodyTarget, "ObjectIdentifiers", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18979,7 +18823,6 @@ func (s *ListPublishedSchemaArnsInput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19028,7 +18871,6 @@ func (s *ListPublishedSchemaArnsOutput) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetList(protocol.BodyTarget, "SchemaArns", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19112,7 +18954,6 @@ func (s *ListTagsForResourceInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.BodyTarget, "ResourceArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19162,7 +19003,6 @@ func (s *ListTagsForResourceOutput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetList(protocol.BodyTarget, "Tags", encodeTagList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19263,7 +19103,6 @@ func (s *ListTypedLinkFacetAttributesInput) MarshalFields(e protocol.FieldEncode
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19312,7 +19151,6 @@ func (s *ListTypedLinkFacetAttributesOutput) MarshalFields(e protocol.FieldEncod
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19394,7 +19232,6 @@ func (s *ListTypedLinkFacetNamesInput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19443,7 +19280,6 @@ func (s *ListTypedLinkFacetNamesOutput) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19525,11 +19361,6 @@ func (s *LookupPolicyInput) SetObjectReference(v *ObjectReference) *LookupPolicy
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *LookupPolicyInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.MaxResults != nil {
 		v := *s.MaxResults
 
@@ -19545,7 +19376,11 @@ func (s *LookupPolicyInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "ObjectReference", v, protocol.Metadata{})
 	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -19595,7 +19430,6 @@ func (s *LookupPolicyOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "PolicyToPathList", encodePolicyToPathList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19645,7 +19479,6 @@ func (s *ObjectAttributeAction) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "ObjectAttributeUpdateValue", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19715,7 +19548,6 @@ func (s *ObjectAttributeRange) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Range", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19788,7 +19620,6 @@ func (s *ObjectAttributeUpdate) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "ObjectAttributeKey", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19846,7 +19677,6 @@ func (s *ObjectReference) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Selector", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19897,7 +19727,6 @@ func (s *PathToObjectIdentifiers) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Path", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19970,7 +19799,6 @@ func (s *PolicyAttachment) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "PolicyType", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20030,7 +19858,6 @@ func (s *PolicyToPath) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Policies", encodePolicyAttachmentList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20114,11 +19941,6 @@ func (s *PublishSchemaInput) SetVersion(v string) *PublishSchemaInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PublishSchemaInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DevelopmentSchemaArn != nil {
-		v := *s.DevelopmentSchemaArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.Name != nil {
 		v := *s.Name
 
@@ -20129,7 +19951,11 @@ func (s *PublishSchemaInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.DevelopmentSchemaArn != nil {
+		v := *s.DevelopmentSchemaArn
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -20165,7 +19991,6 @@ func (s *PublishSchemaOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "PublishedSchemaArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20234,7 +20059,6 @@ func (s *PutSchemaFromJsonInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20269,7 +20093,6 @@ func (s *PutSchemaFromJsonOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Arn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20347,11 +20170,6 @@ func (s *RemoveFacetFromObjectInput) SetSchemaFacet(v *SchemaFacet) *RemoveFacet
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *RemoveFacetFromObjectInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.ObjectReference != nil {
 		v := s.ObjectReference
 
@@ -20362,7 +20180,11 @@ func (s *RemoveFacetFromObjectInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetFields(protocol.BodyTarget, "SchemaFacet", v, protocol.Metadata{})
 	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -20383,7 +20205,6 @@ func (s RemoveFacetFromObjectOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *RemoveFacetFromObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -20434,7 +20255,6 @@ func (s *Rule) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20505,7 +20325,6 @@ func (s *SchemaFacet) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "SchemaArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20563,7 +20382,6 @@ func (s *Tag) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Value", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20641,7 +20459,6 @@ func (s *TagResourceInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Tags", encodeTagList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20662,7 +20479,6 @@ func (s TagResourceOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *TagResourceOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -20758,7 +20574,6 @@ func (s *TypedAttributeValue) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "StringValue", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20856,7 +20671,6 @@ func (s *TypedAttributeValueRange) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetFields(protocol.BodyTarget, "StartValue", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20990,7 +20804,6 @@ func (s *TypedLinkAttributeDefinition) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.BodyTarget, "Type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -21071,7 +20884,6 @@ func (s *TypedLinkAttributeRange) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Range", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -21185,7 +20997,6 @@ func (s *TypedLinkFacet) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -21260,7 +21071,6 @@ func (s *TypedLinkFacetAttributeUpdate) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetFields(protocol.BodyTarget, "Attribute", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -21340,7 +21150,6 @@ func (s *TypedLinkSchemaAndFacetName) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.BodyTarget, "TypedLinkName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -21468,7 +21277,6 @@ func (s *TypedLinkSpecifier) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "TypedLinkFacet", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -21546,7 +21354,6 @@ func (s *UntagResourceInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "TagKeys", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -21567,7 +21374,6 @@ func (s UntagResourceOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UntagResourceOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -21681,7 +21487,6 @@ func (s *UpdateFacetInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -21702,7 +21507,6 @@ func (s UpdateFacetOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateFacetOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -21791,17 +21595,16 @@ func (s *UpdateObjectAttributesInput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetList(protocol.BodyTarget, "AttributeUpdates", encodeObjectAttributeUpdateList(v), protocol.Metadata{})
 	}
-	if s.DirectoryArn != nil {
-		v := *s.DirectoryArn
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.ObjectReference != nil {
 		v := s.ObjectReference
 
 		e.SetFields(protocol.BodyTarget, "ObjectReference", v, protocol.Metadata{})
 	}
+	if s.DirectoryArn != nil {
+		v := *s.DirectoryArn
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -21836,7 +21639,6 @@ func (s *UpdateObjectAttributesOutput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.BodyTarget, "ObjectIdentifier", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -21909,7 +21711,6 @@ func (s *UpdateSchemaInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -21945,7 +21746,6 @@ func (s *UpdateSchemaOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "SchemaArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -22070,7 +21870,6 @@ func (s *UpdateTypedLinkFacetInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-data-partition", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -22091,7 +21890,6 @@ func (s UpdateTypedLinkFacetOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateTypedLinkFacetOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 

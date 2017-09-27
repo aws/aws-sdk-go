@@ -1590,7 +1590,6 @@ func (s *AacSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "vbrQuality", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1715,7 +1714,6 @@ func (s *Ac3Settings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "metadataControl", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1749,7 +1747,6 @@ func (s *ArchiveContainerSettings) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetFields(protocol.BodyTarget, "m2tsSettings", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1801,7 +1798,6 @@ func (s *ArchiveGroupSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "rolloverInterval", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1866,7 +1862,6 @@ func (s *ArchiveOutputSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "nameModifier", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1887,7 +1882,6 @@ func (s AribDestinationSettings) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *AribDestinationSettings) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -1908,7 +1902,6 @@ func (s AribSourceSettings) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *AribSourceSettings) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -1958,7 +1951,6 @@ func (s *AudioChannelMapping) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "outputChannel", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2052,7 +2044,6 @@ func (s *AudioCodecSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "passThroughSettings", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2227,7 +2218,6 @@ func (s *AudioDescription) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "streamName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2289,7 +2279,6 @@ func (s *AudioLanguageSelection) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "languageSelectionPolicy", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2357,7 +2346,6 @@ func (s *AudioNormalizationSettings) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.BodyTarget, "targetLkfs", protocol.Float64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2436,7 +2424,6 @@ func (s *AudioOnlyHlsSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "audioTrackType", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2471,7 +2458,6 @@ func (s *AudioPidSelection) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "pid", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2521,7 +2507,6 @@ func (s *AudioSelector) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "selectorSettings", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2576,7 +2561,6 @@ func (s *AudioSelectorSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "audioPidSelection", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2627,7 +2611,6 @@ func (s *AvailBlanking) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "state", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2662,7 +2645,6 @@ func (s *AvailConfiguration) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "availSettings", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2709,7 +2691,6 @@ func (s *AvailSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "scte35TimeSignalApos", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2808,7 +2789,6 @@ func (s *BlackoutSlate) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "state", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3109,7 +3089,6 @@ func (s *BurnInDestinationSettings) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "yPosition", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3206,7 +3185,6 @@ func (s *CaptionDescription) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3378,7 +3356,6 @@ func (s *CaptionDestinationSettings) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetFields(protocol.BodyTarget, "webvttDestinationSettings", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3444,7 +3421,6 @@ func (s *CaptionLanguageMapping) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "languageDescription", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3520,7 +3496,6 @@ func (s *CaptionSelector) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "selectorSettings", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3627,7 +3602,6 @@ func (s *CaptionSelectorSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "teletextSourceSettings", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3788,7 +3762,6 @@ func (s *Channel) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "state", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3823,7 +3796,6 @@ func (s *ChannelEgressEndpoint) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "sourceIp", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3979,7 +3951,6 @@ func (s *ChannelSummary) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "state", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4105,7 +4076,6 @@ func (s *CreateChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "roleArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4139,7 +4109,6 @@ func (s *CreateChannelOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "channel", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4244,7 +4213,6 @@ func (s *CreateInputInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4278,7 +4246,6 @@ func (s *CreateInputOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "input", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4312,7 +4279,6 @@ func (s *CreateInputSecurityGroupInput) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetList(protocol.BodyTarget, "whitelistRules", encodeInputWhitelistRuleCidrList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4347,7 +4313,6 @@ func (s *CreateInputSecurityGroupOutput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetFields(protocol.BodyTarget, "securityGroup", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4395,7 +4360,6 @@ func (s *DeleteChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "channelId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4546,7 +4510,6 @@ func (s *DeleteChannelOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "state", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4594,7 +4557,6 @@ func (s *DeleteInputInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "inputId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4615,7 +4577,6 @@ func (s DeleteInputOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteInputOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -4663,7 +4624,6 @@ func (s *DeleteInputSecurityGroupInput) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetValue(protocol.PathTarget, "inputSecurityGroupId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4684,7 +4644,6 @@ func (s DeleteInputSecurityGroupOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteInputSecurityGroupOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -4732,7 +4691,6 @@ func (s *DescribeChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "channelId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4883,7 +4841,6 @@ func (s *DescribeChannelOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "state", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4931,7 +4888,6 @@ func (s *DescribeInputInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "inputId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5069,7 +5025,6 @@ func (s *DescribeInputOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5117,7 +5072,6 @@ func (s *DescribeInputSecurityGroupInput) MarshalFields(e protocol.FieldEncoder)
 
 		e.SetValue(protocol.PathTarget, "inputSecurityGroupId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5177,7 +5131,6 @@ func (s *DescribeInputSecurityGroupOutput) MarshalFields(e protocol.FieldEncoder
 
 		e.SetList(protocol.BodyTarget, "whitelistRules", encodeInputWhitelistRuleList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5243,7 +5196,6 @@ func (s *DvbNitSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "repInterval", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5329,7 +5281,6 @@ func (s *DvbSdtSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "serviceProviderName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5636,7 +5587,6 @@ func (s *DvbSubDestinationSettings) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "yPosition", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5673,7 +5623,6 @@ func (s *DvbSubSourceSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "pid", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5710,7 +5659,6 @@ func (s *DvbTdtSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "repInterval", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6024,7 +5972,6 @@ func (s *Eac3Settings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "surroundMode", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6045,7 +5992,6 @@ func (s EmbeddedDestinationSettings) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *EmbeddedDestinationSettings) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -6066,7 +6012,6 @@ func (s EmbeddedPlusScte20DestinationSettings) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *EmbeddedPlusScte20DestinationSettings) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -6147,7 +6092,6 @@ func (s *EmbeddedSourceSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "source608TrackNumber", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6291,7 +6235,6 @@ func (s *EncoderSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "videoDescriptions", encodeVideoDescriptionList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6361,7 +6304,6 @@ func (s *FecOutputSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "rowLength", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6462,7 +6404,6 @@ func (s *GlobalConfiguration) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "supportLowFramerateInputs", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7012,7 +6953,6 @@ func (s *H264Settings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "timecodeInsertion", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7135,7 +7075,6 @@ func (s *HlsAkamaiSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "token", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7215,7 +7154,6 @@ func (s *HlsBasicPutSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "restartDelay", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7288,7 +7226,6 @@ func (s *HlsCdnSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "hlsWebdavSettings", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7848,7 +7785,6 @@ func (s *HlsGroupSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "tsFileMode", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7932,7 +7868,6 @@ func (s *HlsInputSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "retryInterval", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8027,7 +7962,6 @@ func (s *HlsMediaStoreSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "restartDelay", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8092,7 +8026,6 @@ func (s *HlsOutputSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "segmentModifier", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8139,7 +8072,6 @@ func (s *HlsSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "standardHlsSettings", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8233,7 +8165,6 @@ func (s *HlsWebdavSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "restartDelay", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8379,7 +8310,6 @@ func (s *Input) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8436,7 +8366,6 @@ func (s *InputAttachment) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "inputSettings", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8494,7 +8423,6 @@ func (s *InputChannelLevel) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "inputChannel", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8567,7 +8495,6 @@ func (s *InputDestination) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "url", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8611,7 +8538,6 @@ func (s *InputDestinationRequest) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "streamName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8687,7 +8613,6 @@ func (s *InputLocation) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "username", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8786,7 +8711,6 @@ func (s *InputLossBehavior) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "repeatFrameMsec", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8850,7 +8774,6 @@ func (s *InputSecurityGroup) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "whitelistRules", encodeInputWhitelistRuleList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9011,7 +8934,6 @@ func (s *InputSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "videoSelector", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9075,7 +8997,6 @@ func (s *InputSource) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "username", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9147,7 +9068,6 @@ func (s *InputSourceRequest) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "username", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9191,7 +9111,6 @@ func (s *InputWhitelistRule) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "cidr", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9235,7 +9154,6 @@ func (s *InputWhitelistRuleCidr) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "cidr", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9277,7 +9195,6 @@ func (s *KeyProviderSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "staticKeySettings", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9337,7 +9254,6 @@ func (s *ListChannelsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9384,7 +9300,6 @@ func (s *ListChannelsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9444,7 +9359,6 @@ func (s *ListInputSecurityGroupsInput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.QueryTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9491,7 +9405,6 @@ func (s *ListInputSecurityGroupsOutput) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetValue(protocol.BodyTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9551,7 +9464,6 @@ func (s *ListInputsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9598,7 +9510,6 @@ func (s *ListInputsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10348,7 +10259,6 @@ func (s *M2tsSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "videoPid", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10596,7 +10506,6 @@ func (s *M3u8Settings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "videoPid", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10660,7 +10569,6 @@ func (s *Mp2Settings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "sampleRate", protocol.Float64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10978,7 +10886,6 @@ func (s *MsSmoothGroupSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "timestampOffsetMode", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11014,7 +10921,6 @@ func (s *MsSmoothOutputSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "nameModifier", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11070,7 +10976,6 @@ func (s *NetworkInputSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "serverValidation", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11162,7 +11067,6 @@ func (s *Output) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "videoDescriptionName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11219,7 +11123,6 @@ func (s *OutputDestination) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "settings", encodeOutputDestinationSettingsList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11290,7 +11193,6 @@ func (s *OutputDestinationSettings) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "username", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11363,7 +11265,6 @@ func (s *OutputGroup) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "outputs", encodeOutputList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11444,7 +11345,6 @@ func (s *OutputGroupSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "udpGroupSettings", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11479,7 +11379,6 @@ func (s *OutputLocationRef) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "destinationRefId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11552,7 +11451,6 @@ func (s *OutputSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "udpOutputSettings", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11573,7 +11471,6 @@ func (s PassThroughSettings) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PassThroughSettings) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -11636,7 +11533,6 @@ func (s *RemixSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "channelsOut", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11657,7 +11553,6 @@ func (s Scte20PlusEmbeddedDestinationSettings) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *Scte20PlusEmbeddedDestinationSettings) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -11709,7 +11604,6 @@ func (s *Scte20SourceSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "source608ChannelNumber", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11730,7 +11624,6 @@ func (s Scte27DestinationSettings) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *Scte27DestinationSettings) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -11771,7 +11664,6 @@ func (s *Scte27SourceSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "pid", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11838,7 +11730,6 @@ func (s *Scte35SpliceInsert) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "webDeliveryAllowedFlag", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11905,7 +11796,6 @@ func (s *Scte35TimeSignalApos) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "webDeliveryAllowedFlag", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11926,7 +11816,6 @@ func (s SmpteTtDestinationSettings) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *SmpteTtDestinationSettings) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -11976,7 +11865,6 @@ func (s *StandardHlsSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "m3u8Settings", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12024,7 +11912,6 @@ func (s *StartChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "channelId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12175,7 +12062,6 @@ func (s *StartChannelOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "state", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12224,7 +12110,6 @@ func (s *StaticKeySettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "staticKeyValue", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12272,7 +12157,6 @@ func (s *StopChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "channelId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12423,7 +12307,6 @@ func (s *StopChannelOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "state", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12444,7 +12327,6 @@ func (s TeletextDestinationSettings) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *TeletextDestinationSettings) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -12481,7 +12363,6 @@ func (s *TeletextSourceSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "pageNumber", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12538,7 +12419,6 @@ func (s *TimecodeConfig) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "syncThreshold", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12575,7 +12455,6 @@ func (s *TtmlDestinationSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "styleControl", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12609,7 +12488,6 @@ func (s *UdpContainerSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "m2tsSettings", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12678,7 +12556,6 @@ func (s *UdpGroupSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "timedMetadataId3Period", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12758,7 +12635,6 @@ func (s *UdpOutputSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "fecOutputSettings", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12805,7 +12681,6 @@ func (s *ValidationError) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "errorMessage", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12847,7 +12722,6 @@ func (s *VideoCodecSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "h264Settings", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12978,7 +12852,6 @@ func (s *VideoDescription) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "width", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13059,7 +12932,6 @@ func (s *VideoSelector) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "selectorSettings", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13094,7 +12966,6 @@ func (s *VideoSelectorPid) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "pid", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13131,7 +13002,6 @@ func (s *VideoSelectorProgramId) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "programId", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13178,7 +13048,6 @@ func (s *VideoSelectorSettings) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "videoSelectorProgramId", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13199,7 +13068,6 @@ func (s WebvttDestinationSettings) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *WebvttDestinationSettings) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 

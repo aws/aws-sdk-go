@@ -1455,7 +1455,6 @@ func (s *AccessPoliciesStatus) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Status", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1535,7 +1534,6 @@ func (s *AddTagsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "TagList", encodeTagList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1555,7 +1553,6 @@ func (s AddTagsOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *AddTagsOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -1610,7 +1607,6 @@ func (s *AdditionalLimit) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "LimitValues", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1682,7 +1678,6 @@ func (s *AdvancedOptionsStatus) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Status", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1860,7 +1855,6 @@ func (s *CreateElasticsearchDomainInput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetFields(protocol.BodyTarget, "VPCOptions", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1896,7 +1890,6 @@ func (s *CreateElasticsearchDomainOutput) MarshalFields(e protocol.FieldEncoder)
 
 		e.SetFields(protocol.BodyTarget, "DomainStatus", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1950,7 +1943,6 @@ func (s *DeleteElasticsearchDomainInput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetValue(protocol.PathTarget, "DomainName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1987,7 +1979,6 @@ func (s *DeleteElasticsearchDomainOutput) MarshalFields(e protocol.FieldEncoder)
 
 		e.SetFields(protocol.BodyTarget, "DomainStatus", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2007,7 +1998,6 @@ func (s DeleteElasticsearchServiceRoleInput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteElasticsearchServiceRoleInput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -2027,7 +2017,6 @@ func (s DeleteElasticsearchServiceRoleOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteElasticsearchServiceRoleOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -2081,7 +2070,6 @@ func (s *DescribeElasticsearchDomainConfigInput) MarshalFields(e protocol.FieldE
 
 		e.SetValue(protocol.PathTarget, "DomainName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2120,7 +2108,6 @@ func (s *DescribeElasticsearchDomainConfigOutput) MarshalFields(e protocol.Field
 
 		e.SetFields(protocol.BodyTarget, "DomainConfig", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2173,7 +2160,6 @@ func (s *DescribeElasticsearchDomainInput) MarshalFields(e protocol.FieldEncoder
 
 		e.SetValue(protocol.PathTarget, "DomainName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2211,7 +2197,6 @@ func (s *DescribeElasticsearchDomainOutput) MarshalFields(e protocol.FieldEncode
 
 		e.SetFields(protocol.BodyTarget, "DomainStatus", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2262,7 +2247,6 @@ func (s *DescribeElasticsearchDomainsInput) MarshalFields(e protocol.FieldEncode
 
 		e.SetList(protocol.BodyTarget, "DomainNames", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2300,7 +2284,6 @@ func (s *DescribeElasticsearchDomainsOutput) MarshalFields(e protocol.FieldEncod
 
 		e.SetList(protocol.BodyTarget, "DomainStatusList", encodeElasticsearchDomainStatusList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2374,11 +2357,6 @@ func (s *DescribeElasticsearchInstanceTypeLimitsInput) SetInstanceType(v string)
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DescribeElasticsearchInstanceTypeLimitsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DomainName != nil {
-		v := *s.DomainName
-
-		e.SetValue(protocol.QueryTarget, "domainName", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.ElasticsearchVersion != nil {
 		v := *s.ElasticsearchVersion
 
@@ -2389,7 +2367,11 @@ func (s *DescribeElasticsearchInstanceTypeLimitsInput) MarshalFields(e protocol.
 
 		e.SetValue(protocol.PathTarget, "InstanceType", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.DomainName != nil {
+		v := *s.DomainName
 
+		e.SetValue(protocol.QueryTarget, "domainName", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -2428,7 +2410,6 @@ func (s *DescribeElasticsearchInstanceTypeLimitsOutput) MarshalFields(e protocol
 
 		e.SetMap(protocol.BodyTarget, "LimitsByRole", encodeLimitsMap(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2462,7 +2443,6 @@ func (s *DomainInfo) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "DomainName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2548,7 +2528,6 @@ func (s *EBSOptions) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "VolumeType", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2601,7 +2580,6 @@ func (s *EBSOptionsStatus) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Status", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2711,7 +2689,6 @@ func (s *ElasticsearchClusterConfig) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.BodyTarget, "ZoneAwarenessEnabled", protocol.BoolValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2765,7 +2742,6 @@ func (s *ElasticsearchClusterConfigStatus) MarshalFields(e protocol.FieldEncoder
 
 		e.SetFields(protocol.BodyTarget, "Status", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2901,7 +2877,6 @@ func (s *ElasticsearchDomainConfig) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetFields(protocol.BodyTarget, "VPCOptions", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3169,7 +3144,6 @@ func (s *ElasticsearchDomainStatus) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetFields(protocol.BodyTarget, "VPCOptions", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3232,7 +3206,6 @@ func (s *ElasticsearchVersionStatus) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetFields(protocol.BodyTarget, "Status", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3282,7 +3255,6 @@ func (s *InstanceCountLimits) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "MinimumInstanceCount", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3319,7 +3291,6 @@ func (s *InstanceLimits) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "InstanceCountLimits", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3385,7 +3356,6 @@ func (s *Limits) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "StorageTypes", encodeStorageTypeList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3413,7 +3383,6 @@ func (s ListDomainNamesInput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *ListDomainNamesInput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -3449,7 +3418,6 @@ func (s *ListDomainNamesOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "DomainNames", encodeDomainInfoList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3529,15 +3497,15 @@ func (s *ListElasticsearchInstanceTypesInput) SetNextToken(v string) *ListElasti
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *ListElasticsearchInstanceTypesInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DomainName != nil {
-		v := *s.DomainName
-
-		e.SetValue(protocol.QueryTarget, "domainName", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.ElasticsearchVersion != nil {
 		v := *s.ElasticsearchVersion
 
 		e.SetValue(protocol.PathTarget, "ElasticsearchVersion", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.DomainName != nil {
+		v := *s.DomainName
+
+		e.SetValue(protocol.QueryTarget, "domainName", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.MaxResults != nil {
 		v := *s.MaxResults
@@ -3549,7 +3517,6 @@ func (s *ListElasticsearchInstanceTypesInput) MarshalFields(e protocol.FieldEnco
 
 		e.SetValue(protocol.QueryTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3601,7 +3568,6 @@ func (s *ListElasticsearchInstanceTypesOutput) MarshalFields(e protocol.FieldEnc
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3658,7 +3624,6 @@ func (s *ListElasticsearchVersionsInput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetValue(protocol.QueryTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3710,7 +3675,6 @@ func (s *ListElasticsearchVersionsOutput) MarshalFields(e protocol.FieldEncoder)
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3763,7 +3727,6 @@ func (s *ListTagsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "arn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3799,7 +3762,6 @@ func (s *ListTagsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "TagList", encodeTagList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3850,7 +3812,6 @@ func (s *LogPublishingOption) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Enabled", protocol.BoolValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3908,7 +3869,6 @@ func (s *LogPublishingOptionsStatus) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetFields(protocol.BodyTarget, "Status", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4005,7 +3965,6 @@ func (s *OptionStatus) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "UpdateVersion", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4078,7 +4037,6 @@ func (s *RemoveTagsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "TagKeys", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4098,7 +4056,6 @@ func (s RemoveTagsOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *RemoveTagsOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -4135,7 +4092,6 @@ func (s *SnapshotOptions) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "AutomatedSnapshotStartHour", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4188,7 +4144,6 @@ func (s *SnapshotOptionsStatus) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Status", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4259,7 +4214,6 @@ func (s *StorageType) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "StorageTypeName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4325,7 +4279,6 @@ func (s *StorageTypeLimit) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "LimitValues", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4409,7 +4362,6 @@ func (s *Tag) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Value", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4546,11 +4498,6 @@ func (s *UpdateElasticsearchDomainConfigInput) MarshalFields(e protocol.FieldEnc
 
 		e.SetMap(protocol.BodyTarget, "AdvancedOptions", protocol.EncodeStringMap(v), protocol.Metadata{})
 	}
-	if s.DomainName != nil {
-		v := *s.DomainName
-
-		e.SetValue(protocol.PathTarget, "DomainName", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.EBSOptions != nil {
 		v := s.EBSOptions
 
@@ -4576,7 +4523,11 @@ func (s *UpdateElasticsearchDomainConfigInput) MarshalFields(e protocol.FieldEnc
 
 		e.SetFields(protocol.BodyTarget, "VPCOptions", v, protocol.Metadata{})
 	}
+	if s.DomainName != nil {
+		v := *s.DomainName
 
+		e.SetValue(protocol.PathTarget, "DomainName", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -4614,7 +4565,6 @@ func (s *UpdateElasticsearchDomainConfigOutput) MarshalFields(e protocol.FieldEn
 
 		e.SetFields(protocol.BodyTarget, "DomainConfig", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4695,7 +4645,6 @@ func (s *VPCDerivedInfo) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "VPCId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4748,7 +4697,6 @@ func (s *VPCDerivedInfoStatus) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Status", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4799,7 +4747,6 @@ func (s *VPCOptions) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "SubnetIds", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 

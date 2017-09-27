@@ -6205,7 +6205,6 @@ func (s *AbortIncompleteMultipartUpload) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetValue(protocol.BodyTarget, "DaysAfterInitiation", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6294,6 +6293,11 @@ func (s *AbortMultipartUploadInput) SetUploadId(v string) *AbortMultipartUploadI
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *AbortMultipartUploadInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.RequestPayer != nil {
+		v := *s.RequestPayer
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-request-payer", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Bucket != nil {
 		v := *s.Bucket
 
@@ -6304,17 +6308,11 @@ func (s *AbortMultipartUploadInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.PathTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.RequestPayer != nil {
-		v := *s.RequestPayer
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-request-payer", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.UploadId != nil {
 		v := *s.UploadId
 
 		e.SetValue(protocol.QueryTarget, "uploadId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6350,7 +6348,6 @@ func (s *AbortMultipartUploadOutput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-request-charged", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6385,7 +6382,6 @@ func (s *AccelerateConfiguration) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Status", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6453,7 +6449,6 @@ func (s *AccessControlPolicy) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Owner", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6504,7 +6499,6 @@ func (s *AccessControlTranslation) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.BodyTarget, "Owner", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6573,7 +6567,6 @@ func (s *AnalyticsAndOperator) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Tag", encodeTagList(v), protocol.Metadata{Flatten: true})
 	}
-
 	return nil
 }
 
@@ -6669,7 +6662,6 @@ func (s *AnalyticsConfiguration) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "StorageClassAnalysis", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6732,7 +6724,6 @@ func (s *AnalyticsExportDestination) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetFields(protocol.BodyTarget, "S3BucketDestination", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6816,7 +6807,6 @@ func (s *AnalyticsFilter) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Tag", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6922,7 +6912,6 @@ func (s *AnalyticsS3BucketDestination) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.BodyTarget, "Prefix", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6971,7 +6960,6 @@ func (s *Bucket) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7037,7 +7025,6 @@ func (s *BucketLifecycleConfiguration) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetList(protocol.BodyTarget, "Rule", encodeLifecycleRuleList(v), protocol.Metadata{Flatten: true})
 	}
-
 	return nil
 }
 
@@ -7086,7 +7073,6 @@ func (s *BucketLoggingStatus) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "LoggingEnabled", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7144,7 +7130,6 @@ func (s *CORSConfiguration) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "CORSRule", encodeCORSRuleList(v), protocol.Metadata{Flatten: true})
 	}
-
 	return nil
 }
 
@@ -7259,7 +7244,6 @@ func (s *CORSRule) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "MaxAgeSeconds", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7356,7 +7340,6 @@ func (s *CloudFunctionConfiguration) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.BodyTarget, "InvocationRole", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7390,7 +7373,6 @@ func (s *CommonPrefix) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Prefix", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7495,6 +7477,11 @@ func (s *CompleteMultipartUploadInput) SetUploadId(v string) *CompleteMultipartU
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CompleteMultipartUploadInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.RequestPayer != nil {
+		v := *s.RequestPayer
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-request-payer", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Bucket != nil {
 		v := *s.Bucket
 
@@ -7510,17 +7497,11 @@ func (s *CompleteMultipartUploadInput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetFields(protocol.PayloadTarget, "CompleteMultipartUpload", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
 	}
-	if s.RequestPayer != nil {
-		v := *s.RequestPayer
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-request-payer", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.UploadId != nil {
 		v := *s.UploadId
 
 		e.SetValue(protocol.QueryTarget, "uploadId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7640,11 +7621,6 @@ func (s *CompleteMultipartUploadOutput) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetValue(protocol.BodyTarget, "ETag", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.Expiration != nil {
-		v := *s.Expiration
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-expiration", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.Key != nil {
 		v := *s.Key
 
@@ -7654,6 +7630,11 @@ func (s *CompleteMultipartUploadOutput) MarshalFields(e protocol.FieldEncoder) e
 		v := *s.Location
 
 		e.SetValue(protocol.BodyTarget, "Location", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Expiration != nil {
+		v := *s.Expiration
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-expiration", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.RequestCharged != nil {
 		v := *s.RequestCharged
@@ -7675,7 +7656,6 @@ func (s *CompleteMultipartUploadOutput) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-version-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7709,7 +7689,6 @@ func (s *CompletedMultipartUpload) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetList(protocol.BodyTarget, "Part", encodeCompletedPartList(v), protocol.Metadata{Flatten: true})
 	}
-
 	return nil
 }
 
@@ -7759,7 +7738,6 @@ func (s *CompletedPart) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "PartNumber", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7826,7 +7804,6 @@ func (s *Condition) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "KeyPrefixEquals", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8221,11 +8198,6 @@ func (s *CopyObjectInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-acl", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.Bucket != nil {
-		v := *s.Bucket
-
-		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.CacheControl != nil {
 		v := *s.CacheControl
 
@@ -8316,16 +8288,6 @@ func (s *CopyObjectInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-grant-write-acp", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.Key != nil {
-		v := *s.Key
-
-		e.SetValue(protocol.PathTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if len(s.Metadata) > 0 {
-		v := s.Metadata
-
-		e.SetMap(protocol.HeadersTarget, "x-amz-meta-", protocol.EncodeStringMap(v), protocol.Metadata{})
-	}
 	if s.MetadataDirective != nil {
 		v := *s.MetadataDirective
 
@@ -8381,7 +8343,21 @@ func (s *CopyObjectInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-website-redirect-location", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if len(s.Metadata) > 0 {
+		v := s.Metadata
 
+		e.SetMap(protocol.HeadersTarget, "x-amz-meta-", protocol.EncodeStringMap(v), protocol.Metadata{})
+	}
+	if s.Bucket != nil {
+		v := *s.Bucket
+
+		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Key != nil {
+		v := *s.Key
+
+		e.SetValue(protocol.PathTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -8488,11 +8464,6 @@ func (s *CopyObjectOutput) SetVersionId(v string) *CopyObjectOutput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CopyObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.CopyObjectResult != nil {
-		v := s.CopyObjectResult
-
-		e.SetFields(protocol.PayloadTarget, "CopyObjectResult", v, protocol.Metadata{})
-	}
 	if s.CopySourceVersionId != nil {
 		v := *s.CopySourceVersionId
 
@@ -8533,7 +8504,11 @@ func (s *CopyObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-version-id", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.CopyObjectResult != nil {
+		v := s.CopyObjectResult
 
+		e.SetFields(protocol.PayloadTarget, "CopyObjectResult", v, protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -8580,7 +8555,6 @@ func (s *CopyObjectResult) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "LastModified", protocol.TimeValue{V: v, Format: protocol.ISO8601TimeFormat}, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8629,7 +8603,6 @@ func (s *CopyPartResult) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "LastModified", protocol.TimeValue{V: v, Format: protocol.ISO8601TimeFormat}, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8665,7 +8638,6 @@ func (s *CreateBucketConfiguration) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "LocationConstraint", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8783,16 +8755,6 @@ func (s *CreateBucketInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-acl", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.Bucket != nil {
-		v := *s.Bucket
-
-		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.CreateBucketConfiguration != nil {
-		v := s.CreateBucketConfiguration
-
-		e.SetFields(protocol.PayloadTarget, "CreateBucketConfiguration", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
-	}
 	if s.GrantFullControl != nil {
 		v := *s.GrantFullControl
 
@@ -8818,7 +8780,16 @@ func (s *CreateBucketInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-grant-write-acp", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.Bucket != nil {
+		v := *s.Bucket
 
+		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.CreateBucketConfiguration != nil {
+		v := s.CreateBucketConfiguration
+
+		e.SetFields(protocol.PayloadTarget, "CreateBucketConfiguration", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
+	}
 	return nil
 }
 
@@ -8852,7 +8823,6 @@ func (s *CreateBucketOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "Location", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9135,11 +9105,6 @@ func (s *CreateMultipartUploadInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-acl", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.Bucket != nil {
-		v := *s.Bucket
-
-		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.CacheControl != nil {
 		v := *s.CacheControl
 
@@ -9190,16 +9155,6 @@ func (s *CreateMultipartUploadInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-grant-write-acp", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.Key != nil {
-		v := *s.Key
-
-		e.SetValue(protocol.PathTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if len(s.Metadata) > 0 {
-		v := s.Metadata
-
-		e.SetMap(protocol.HeadersTarget, "x-amz-meta-", protocol.EncodeStringMap(v), protocol.Metadata{})
-	}
 	if s.RequestPayer != nil {
 		v := *s.RequestPayer
 
@@ -9245,7 +9200,21 @@ func (s *CreateMultipartUploadInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-website-redirect-location", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if len(s.Metadata) > 0 {
+		v := s.Metadata
 
+		e.SetMap(protocol.HeadersTarget, "x-amz-meta-", protocol.EncodeStringMap(v), protocol.Metadata{})
+	}
+	if s.Bucket != nil {
+		v := *s.Bucket
+
+		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Key != nil {
+		v := *s.Key
+
+		e.SetValue(protocol.PathTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -9371,16 +9340,6 @@ func (s *CreateMultipartUploadOutput) SetUploadId(v string) *CreateMultipartUplo
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateMultipartUploadOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AbortDate != nil {
-		v := *s.AbortDate
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-abort-date", protocol.TimeValue{V: v, Format: protocol.RFC822TimeFromat}, protocol.Metadata{})
-	}
-	if s.AbortRuleId != nil {
-		v := *s.AbortRuleId
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-abort-rule-id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.Bucket != nil {
 		v := *s.Bucket
 
@@ -9390,6 +9349,21 @@ func (s *CreateMultipartUploadOutput) MarshalFields(e protocol.FieldEncoder) err
 		v := *s.Key
 
 		e.SetValue(protocol.BodyTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.UploadId != nil {
+		v := *s.UploadId
+
+		e.SetValue(protocol.BodyTarget, "UploadId", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.AbortDate != nil {
+		v := *s.AbortDate
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-abort-date", protocol.TimeValue{V: v, Format: protocol.RFC822TimeFromat}, protocol.Metadata{})
+	}
+	if s.AbortRuleId != nil {
+		v := *s.AbortRuleId
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-abort-rule-id", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.RequestCharged != nil {
 		v := *s.RequestCharged
@@ -9416,12 +9390,6 @@ func (s *CreateMultipartUploadOutput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-server-side-encryption", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.UploadId != nil {
-		v := *s.UploadId
-
-		e.SetValue(protocol.BodyTarget, "UploadId", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -9494,7 +9462,6 @@ func (s *Delete) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Quiet", protocol.BoolValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9570,7 +9537,6 @@ func (s *DeleteBucketAnalyticsConfigurationInput) MarshalFields(e protocol.Field
 
 		e.SetValue(protocol.QueryTarget, "id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9591,7 +9557,6 @@ func (s DeleteBucketAnalyticsConfigurationOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteBucketAnalyticsConfigurationOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -9646,7 +9611,6 @@ func (s *DeleteBucketCorsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9667,7 +9631,6 @@ func (s DeleteBucketCorsOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteBucketCorsOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -9725,7 +9688,6 @@ func (s *DeleteBucketEncryptionInput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9746,7 +9708,6 @@ func (s DeleteBucketEncryptionOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteBucketEncryptionOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -9801,7 +9762,6 @@ func (s *DeleteBucketInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9877,7 +9837,6 @@ func (s *DeleteBucketInventoryConfigurationInput) MarshalFields(e protocol.Field
 
 		e.SetValue(protocol.QueryTarget, "id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9898,7 +9857,6 @@ func (s DeleteBucketInventoryConfigurationOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteBucketInventoryConfigurationOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -9953,7 +9911,6 @@ func (s *DeleteBucketLifecycleInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9974,7 +9931,6 @@ func (s DeleteBucketLifecycleOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteBucketLifecycleOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -10050,7 +10006,6 @@ func (s *DeleteBucketMetricsConfigurationInput) MarshalFields(e protocol.FieldEn
 
 		e.SetValue(protocol.QueryTarget, "id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10071,7 +10026,6 @@ func (s DeleteBucketMetricsConfigurationOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteBucketMetricsConfigurationOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -10092,7 +10046,6 @@ func (s DeleteBucketOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteBucketOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -10147,7 +10100,6 @@ func (s *DeleteBucketPolicyInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10168,7 +10120,6 @@ func (s DeleteBucketPolicyOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteBucketPolicyOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -10223,7 +10174,6 @@ func (s *DeleteBucketReplicationInput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10244,7 +10194,6 @@ func (s DeleteBucketReplicationOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteBucketReplicationOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -10299,7 +10248,6 @@ func (s *DeleteBucketTaggingInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10320,7 +10268,6 @@ func (s DeleteBucketTaggingOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteBucketTaggingOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -10375,7 +10322,6 @@ func (s *DeleteBucketWebsiteInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10396,7 +10342,6 @@ func (s DeleteBucketWebsiteOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteBucketWebsiteOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -10487,7 +10432,6 @@ func (s *DeleteMarkerEntry) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "VersionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10591,16 +10535,6 @@ func (s *DeleteObjectInput) SetVersionId(v string) *DeleteObjectInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteObjectInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Bucket != nil {
-		v := *s.Bucket
-
-		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Key != nil {
-		v := *s.Key
-
-		e.SetValue(protocol.PathTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.MFA != nil {
 		v := *s.MFA
 
@@ -10611,12 +10545,21 @@ func (s *DeleteObjectInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-request-payer", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.Bucket != nil {
+		v := *s.Bucket
+
+		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Key != nil {
+		v := *s.Key
+
+		e.SetValue(protocol.PathTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.VersionId != nil {
 		v := *s.VersionId
 
 		e.SetValue(protocol.QueryTarget, "versionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10682,7 +10625,6 @@ func (s *DeleteObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-version-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10771,7 +10713,6 @@ func (s *DeleteObjectTaggingInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.QueryTarget, "versionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10806,7 +10747,6 @@ func (s *DeleteObjectTaggingOutput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-version-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10895,16 +10835,6 @@ func (s *DeleteObjectsInput) SetRequestPayer(v string) *DeleteObjectsInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteObjectsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Bucket != nil {
-		v := *s.Bucket
-
-		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Delete != nil {
-		v := s.Delete
-
-		e.SetFields(protocol.PayloadTarget, "Delete", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
-	}
 	if s.MFA != nil {
 		v := *s.MFA
 
@@ -10915,7 +10845,16 @@ func (s *DeleteObjectsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-request-payer", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.Bucket != nil {
+		v := *s.Bucket
 
+		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Delete != nil {
+		v := s.Delete
+
+		e.SetFields(protocol.PayloadTarget, "Delete", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
+	}
 	return nil
 }
 
@@ -10977,7 +10916,6 @@ func (s *DeleteObjectsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-request-charged", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11050,7 +10988,6 @@ func (s *DeletedObject) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "VersionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11179,7 +11116,6 @@ func (s *Destination) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "StorageClass", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11215,7 +11151,6 @@ func (s *EncryptionConfiguration) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "ReplicaKmsKeyID", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11288,7 +11223,6 @@ func (s *Error) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "VersionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11349,7 +11283,6 @@ func (s *ErrorDocument) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11401,7 +11334,6 @@ func (s *FilterRule) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Value", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11466,7 +11398,6 @@ func (s *GetBucketAccelerateConfigurationInput) MarshalFields(e protocol.FieldEn
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11501,7 +11432,6 @@ func (s *GetBucketAccelerateConfigurationOutput) MarshalFields(e protocol.FieldE
 
 		e.SetValue(protocol.BodyTarget, "Status", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11556,7 +11486,6 @@ func (s *GetBucketAclInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11604,7 +11533,6 @@ func (s *GetBucketAclOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Owner", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11680,7 +11608,6 @@ func (s *GetBucketAnalyticsConfigurationInput) MarshalFields(e protocol.FieldEnc
 
 		e.SetValue(protocol.QueryTarget, "id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11715,7 +11642,6 @@ func (s *GetBucketAnalyticsConfigurationOutput) MarshalFields(e protocol.FieldEn
 
 		e.SetFields(protocol.PayloadTarget, "AnalyticsConfiguration", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11770,7 +11696,6 @@ func (s *GetBucketCorsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11804,7 +11729,6 @@ func (s *GetBucketCorsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "CORSRule", encodeCORSRuleList(v), protocol.Metadata{Flatten: true})
 	}
-
 	return nil
 }
 
@@ -11862,7 +11786,6 @@ func (s *GetBucketEncryptionInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11898,7 +11821,6 @@ func (s *GetBucketEncryptionOutput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetFields(protocol.PayloadTarget, "ServerSideEncryptionConfiguration", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11974,7 +11896,6 @@ func (s *GetBucketInventoryConfigurationInput) MarshalFields(e protocol.FieldEnc
 
 		e.SetValue(protocol.QueryTarget, "id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12009,7 +11930,6 @@ func (s *GetBucketInventoryConfigurationOutput) MarshalFields(e protocol.FieldEn
 
 		e.SetFields(protocol.PayloadTarget, "InventoryConfiguration", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12064,7 +11984,6 @@ func (s *GetBucketLifecycleConfigurationInput) MarshalFields(e protocol.FieldEnc
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12098,7 +12017,6 @@ func (s *GetBucketLifecycleConfigurationOutput) MarshalFields(e protocol.FieldEn
 
 		e.SetList(protocol.BodyTarget, "Rule", encodeLifecycleRuleList(v), protocol.Metadata{Flatten: true})
 	}
-
 	return nil
 }
 
@@ -12153,7 +12071,6 @@ func (s *GetBucketLifecycleInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12187,7 +12104,6 @@ func (s *GetBucketLifecycleOutput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetList(protocol.BodyTarget, "Rule", encodeRuleList(v), protocol.Metadata{Flatten: true})
 	}
-
 	return nil
 }
 
@@ -12242,7 +12158,6 @@ func (s *GetBucketLocationInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12276,7 +12191,6 @@ func (s *GetBucketLocationOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "LocationConstraint", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12331,7 +12245,6 @@ func (s *GetBucketLoggingInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12365,7 +12278,6 @@ func (s *GetBucketLoggingOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "LoggingEnabled", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12441,7 +12353,6 @@ func (s *GetBucketMetricsConfigurationInput) MarshalFields(e protocol.FieldEncod
 
 		e.SetValue(protocol.QueryTarget, "id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12476,7 +12387,6 @@ func (s *GetBucketMetricsConfigurationOutput) MarshalFields(e protocol.FieldEnco
 
 		e.SetFields(protocol.PayloadTarget, "MetricsConfiguration", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12533,7 +12443,6 @@ func (s *GetBucketNotificationConfigurationRequest) MarshalFields(e protocol.Fie
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12588,7 +12497,6 @@ func (s *GetBucketPolicyInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12623,7 +12531,6 @@ func (s *GetBucketPolicyOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetStream(protocol.PayloadTarget, "Policy", protocol.StringStream(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12678,7 +12585,6 @@ func (s *GetBucketReplicationInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12714,7 +12620,6 @@ func (s *GetBucketReplicationOutput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetFields(protocol.PayloadTarget, "ReplicationConfiguration", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12769,7 +12674,6 @@ func (s *GetBucketRequestPaymentInput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12804,7 +12708,6 @@ func (s *GetBucketRequestPaymentOutput) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetValue(protocol.BodyTarget, "Payer", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12859,7 +12762,6 @@ func (s *GetBucketTaggingInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12894,7 +12796,6 @@ func (s *GetBucketTaggingOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "TagSet", encodeTagList(v), protocol.Metadata{ListLocationName: "Tag"})
 	}
-
 	return nil
 }
 
@@ -12949,7 +12850,6 @@ func (s *GetBucketVersioningInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13000,7 +12900,6 @@ func (s *GetBucketVersioningOutput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "Status", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13055,7 +12954,6 @@ func (s *GetBucketWebsiteInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13128,7 +13026,6 @@ func (s *GetBucketWebsiteOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "RoutingRules", encodeRoutingRuleList(v), protocol.Metadata{ListLocationName: "RoutingRule"})
 	}
-
 	return nil
 }
 
@@ -13214,6 +13111,11 @@ func (s *GetObjectAclInput) SetVersionId(v string) *GetObjectAclInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetObjectAclInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.RequestPayer != nil {
+		v := *s.RequestPayer
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-request-payer", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Bucket != nil {
 		v := *s.Bucket
 
@@ -13224,17 +13126,11 @@ func (s *GetObjectAclInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.RequestPayer != nil {
-		v := *s.RequestPayer
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-request-payer", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.VersionId != nil {
 		v := *s.VersionId
 
 		e.SetValue(protocol.QueryTarget, "versionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13297,7 +13193,6 @@ func (s *GetObjectAclOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-request-charged", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13538,11 +13433,6 @@ func (s *GetObjectInput) SetVersionId(v string) *GetObjectInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetObjectInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Bucket != nil {
-		v := *s.Bucket
-
-		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.IfMatch != nil {
 		v := *s.IfMatch
 
@@ -13563,16 +13453,6 @@ func (s *GetObjectInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "If-Unmodified-Since", protocol.TimeValue{V: v, Format: protocol.RFC822TimeFromat}, protocol.Metadata{})
 	}
-	if s.Key != nil {
-		v := *s.Key
-
-		e.SetValue(protocol.PathTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.PartNumber != nil {
-		v := *s.PartNumber
-
-		e.SetValue(protocol.QueryTarget, "partNumber", protocol.Int64Value(v), protocol.Metadata{})
-	}
 	if s.Range != nil {
 		v := *s.Range
 
@@ -13582,6 +13462,36 @@ func (s *GetObjectInput) MarshalFields(e protocol.FieldEncoder) error {
 		v := *s.RequestPayer
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-request-payer", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.SSECustomerAlgorithm != nil {
+		v := *s.SSECustomerAlgorithm
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-server-side-encryption-customer-algorithm", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.SSECustomerKey != nil {
+		v := *s.SSECustomerKey
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-server-side-encryption-customer-key", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.SSECustomerKeyMD5 != nil {
+		v := *s.SSECustomerKeyMD5
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-server-side-encryption-customer-key-MD5", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Bucket != nil {
+		v := *s.Bucket
+
+		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Key != nil {
+		v := *s.Key
+
+		e.SetValue(protocol.PathTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.PartNumber != nil {
+		v := *s.PartNumber
+
+		e.SetValue(protocol.QueryTarget, "partNumber", protocol.Int64Value(v), protocol.Metadata{})
 	}
 	if s.ResponseCacheControl != nil {
 		v := *s.ResponseCacheControl
@@ -13613,27 +13523,11 @@ func (s *GetObjectInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "response-expires", protocol.TimeValue{V: v, Format: protocol.ISO8601TimeFormat}, protocol.Metadata{})
 	}
-	if s.SSECustomerAlgorithm != nil {
-		v := *s.SSECustomerAlgorithm
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-server-side-encryption-customer-algorithm", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.SSECustomerKey != nil {
-		v := *s.SSECustomerKey
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-server-side-encryption-customer-key", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.SSECustomerKeyMD5 != nil {
-		v := *s.SSECustomerKeyMD5
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-server-side-encryption-customer-key-MD5", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.VersionId != nil {
 		v := *s.VersionId
 
 		e.SetValue(protocol.QueryTarget, "versionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13928,7 +13822,6 @@ func (s *GetObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "accept-ranges", protocol.StringValue(v), protocol.Metadata{})
 	}
-	// Skipping Body Output type's body not valid.
 	if s.CacheControl != nil {
 		v := *s.CacheControl
 
@@ -13988,11 +13881,6 @@ func (s *GetObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
 		v := *s.LastModified
 
 		e.SetValue(protocol.HeaderTarget, "Last-Modified", protocol.TimeValue{V: v, Format: protocol.RFC822TimeFromat}, protocol.Metadata{})
-	}
-	if len(s.Metadata) > 0 {
-		v := s.Metadata
-
-		e.SetMap(protocol.HeadersTarget, "x-amz-meta-", protocol.EncodeStringMap(v), protocol.Metadata{})
 	}
 	if s.MissingMeta != nil {
 		v := *s.MissingMeta
@@ -14059,7 +13947,12 @@ func (s *GetObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-website-redirect-location", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if len(s.Metadata) > 0 {
+		v := s.Metadata
 
+		e.SetMap(protocol.HeadersTarget, "x-amz-meta-", protocol.EncodeStringMap(v), protocol.Metadata{})
+	}
+	// Skipping Body Output type's body not valid.
 	return nil
 }
 
@@ -14147,7 +14040,6 @@ func (s *GetObjectTaggingInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "versionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14195,7 +14087,6 @@ func (s *GetObjectTaggingOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-version-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14272,6 +14163,11 @@ func (s *GetObjectTorrentInput) SetRequestPayer(v string) *GetObjectTorrentInput
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetObjectTorrentInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.RequestPayer != nil {
+		v := *s.RequestPayer
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-request-payer", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Bucket != nil {
 		v := *s.Bucket
 
@@ -14282,12 +14178,6 @@ func (s *GetObjectTorrentInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.RequestPayer != nil {
-		v := *s.RequestPayer
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-request-payer", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -14326,13 +14216,12 @@ func (s *GetObjectTorrentOutput) SetRequestCharged(v string) *GetObjectTorrentOu
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetObjectTorrentOutput) MarshalFields(e protocol.FieldEncoder) error {
-	// Skipping Body Output type's body not valid.
 	if s.RequestCharged != nil {
 		v := *s.RequestCharged
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-request-charged", protocol.StringValue(v), protocol.Metadata{})
 	}
-
+	// Skipping Body Output type's body not valid.
 	return nil
 }
 
@@ -14382,7 +14271,6 @@ func (s *GlacierJobParameters) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Tier", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14450,7 +14338,6 @@ func (s *Grant) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Permission", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14560,7 +14447,6 @@ func (s *Grantee) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "URI", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14615,7 +14501,6 @@ func (s *HeadBucketInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14636,7 +14521,6 @@ func (s HeadBucketOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *HeadBucketOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -14824,11 +14708,6 @@ func (s *HeadObjectInput) SetVersionId(v string) *HeadObjectInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *HeadObjectInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Bucket != nil {
-		v := *s.Bucket
-
-		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.IfMatch != nil {
 		v := *s.IfMatch
 
@@ -14848,16 +14727,6 @@ func (s *HeadObjectInput) MarshalFields(e protocol.FieldEncoder) error {
 		v := *s.IfUnmodifiedSince
 
 		e.SetValue(protocol.HeaderTarget, "If-Unmodified-Since", protocol.TimeValue{V: v, Format: protocol.RFC822TimeFromat}, protocol.Metadata{})
-	}
-	if s.Key != nil {
-		v := *s.Key
-
-		e.SetValue(protocol.PathTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.PartNumber != nil {
-		v := *s.PartNumber
-
-		e.SetValue(protocol.QueryTarget, "partNumber", protocol.Int64Value(v), protocol.Metadata{})
 	}
 	if s.Range != nil {
 		v := *s.Range
@@ -14884,12 +14753,26 @@ func (s *HeadObjectInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-server-side-encryption-customer-key-MD5", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.Bucket != nil {
+		v := *s.Bucket
+
+		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Key != nil {
+		v := *s.Key
+
+		e.SetValue(protocol.PathTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.PartNumber != nil {
+		v := *s.PartNumber
+
+		e.SetValue(protocol.QueryTarget, "partNumber", protocol.Int64Value(v), protocol.Metadata{})
+	}
 	if s.VersionId != nil {
 		v := *s.VersionId
 
 		e.SetValue(protocol.QueryTarget, "versionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15212,11 +15095,6 @@ func (s *HeadObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "Last-Modified", protocol.TimeValue{V: v, Format: protocol.RFC822TimeFromat}, protocol.Metadata{})
 	}
-	if len(s.Metadata) > 0 {
-		v := s.Metadata
-
-		e.SetMap(protocol.HeadersTarget, "x-amz-meta-", protocol.EncodeStringMap(v), protocol.Metadata{})
-	}
 	if s.MissingMeta != nil {
 		v := *s.MissingMeta
 
@@ -15277,7 +15155,11 @@ func (s *HeadObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-website-redirect-location", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if len(s.Metadata) > 0 {
+		v := s.Metadata
 
+		e.SetMap(protocol.HeadersTarget, "x-amz-meta-", protocol.EncodeStringMap(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -15330,7 +15212,6 @@ func (s *IndexDocument) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Suffix", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15380,7 +15261,6 @@ func (s *Initiator) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "ID", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15550,7 +15430,6 @@ func (s *InventoryConfiguration) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Schedule", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15614,7 +15493,6 @@ func (s *InventoryDestination) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "S3BucketDestination", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15680,7 +15558,6 @@ func (s *InventoryEncryption) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "SSE-S3", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15730,7 +15607,6 @@ func (s *InventoryFilter) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Prefix", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15855,7 +15731,6 @@ func (s *InventoryS3BucketDestination) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.BodyTarget, "Prefix", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15905,7 +15780,6 @@ func (s *InventorySchedule) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Frequency", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15942,7 +15816,6 @@ func (s *KeyFilter) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "FilterRule", encodeFilterRuleList(v), protocol.Metadata{Flatten: true})
 	}
-
 	return nil
 }
 
@@ -16041,7 +15914,6 @@ func (s *LambdaFunctionConfiguration) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.BodyTarget, "CloudFunction", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16107,7 +15979,6 @@ func (s *LifecycleConfiguration) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Rule", encodeRuleList(v), protocol.Metadata{Flatten: true})
 	}
-
 	return nil
 }
 
@@ -16175,7 +16046,6 @@ func (s *LifecycleExpiration) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "ExpiredObjectDeleteMarker", protocol.BoolValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16347,7 +16217,6 @@ func (s *LifecycleRule) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Transition", encodeTransitionList(v), protocol.Metadata{Flatten: true})
 	}
-
 	return nil
 }
 
@@ -16427,7 +16296,6 @@ func (s *LifecycleRuleAndOperator) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetList(protocol.BodyTarget, "Tag", encodeTagList(v), protocol.Metadata{Flatten: true})
 	}
-
 	return nil
 }
 
@@ -16514,7 +16382,6 @@ func (s *LifecycleRuleFilter) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Tag", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16586,7 +16453,6 @@ func (s *ListBucketAnalyticsConfigurationsInput) MarshalFields(e protocol.FieldE
 
 		e.SetValue(protocol.QueryTarget, "continuation-token", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16667,7 +16533,6 @@ func (s *ListBucketAnalyticsConfigurationsOutput) MarshalFields(e protocol.Field
 
 		e.SetValue(protocol.BodyTarget, "NextContinuationToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16741,7 +16606,6 @@ func (s *ListBucketInventoryConfigurationsInput) MarshalFields(e protocol.FieldE
 
 		e.SetValue(protocol.QueryTarget, "continuation-token", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16822,7 +16686,6 @@ func (s *ListBucketInventoryConfigurationsOutput) MarshalFields(e protocol.Field
 
 		e.SetValue(protocol.BodyTarget, "NextContinuationToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16896,7 +16759,6 @@ func (s *ListBucketMetricsConfigurationsInput) MarshalFields(e protocol.FieldEnc
 
 		e.SetValue(protocol.QueryTarget, "continuation-token", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16979,7 +16841,6 @@ func (s *ListBucketMetricsConfigurationsOutput) MarshalFields(e protocol.FieldEn
 
 		e.SetValue(protocol.BodyTarget, "NextContinuationToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17000,7 +16861,6 @@ func (s ListBucketsInput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *ListBucketsInput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -17047,7 +16907,6 @@ func (s *ListBucketsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Owner", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17197,7 +17056,6 @@ func (s *ListMultipartUploadsInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.QueryTarget, "upload-id-marker", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17397,7 +17255,6 @@ func (s *ListMultipartUploadsOutput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetList(protocol.BodyTarget, "Upload", encodeMultipartUploadList(v), protocol.Metadata{Flatten: true})
 	}
-
 	return nil
 }
 
@@ -17542,7 +17399,6 @@ func (s *ListObjectVersionsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "version-id-marker", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17741,7 +17597,6 @@ func (s *ListObjectVersionsOutput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetList(protocol.BodyTarget, "Version", encodeObjectVersionList(v), protocol.Metadata{Flatten: true})
 	}
-
 	return nil
 }
 
@@ -17853,6 +17708,11 @@ func (s *ListObjectsInput) SetRequestPayer(v string) *ListObjectsInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *ListObjectsInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.RequestPayer != nil {
+		v := *s.RequestPayer
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-request-payer", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Bucket != nil {
 		v := *s.Bucket
 
@@ -17883,12 +17743,6 @@ func (s *ListObjectsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "prefix", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.RequestPayer != nil {
-		v := *s.RequestPayer
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-request-payer", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -18049,7 +17903,6 @@ func (s *ListObjectsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Prefix", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18181,6 +18034,11 @@ func (s *ListObjectsV2Input) SetStartAfter(v string) *ListObjectsV2Input {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *ListObjectsV2Input) MarshalFields(e protocol.FieldEncoder) error {
+	if s.RequestPayer != nil {
+		v := *s.RequestPayer
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-request-payer", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Bucket != nil {
 		v := *s.Bucket
 
@@ -18216,17 +18074,11 @@ func (s *ListObjectsV2Input) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "prefix", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.RequestPayer != nil {
-		v := *s.RequestPayer
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-request-payer", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.StartAfter != nil {
 		v := *s.StartAfter
 
 		e.SetValue(protocol.QueryTarget, "start-after", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18426,7 +18278,6 @@ func (s *ListObjectsV2Output) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "StartAfter", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18536,6 +18387,11 @@ func (s *ListPartsInput) SetUploadId(v string) *ListPartsInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *ListPartsInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.RequestPayer != nil {
+		v := *s.RequestPayer
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-request-payer", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Bucket != nil {
 		v := *s.Bucket
 
@@ -18556,17 +18412,11 @@ func (s *ListPartsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "part-number-marker", protocol.Int64Value(v), protocol.Metadata{})
 	}
-	if s.RequestPayer != nil {
-		v := *s.RequestPayer
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-request-payer", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.UploadId != nil {
 		v := *s.UploadId
 
 		e.SetValue(protocol.QueryTarget, "uploadId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18722,16 +18572,6 @@ func (s *ListPartsOutput) SetUploadId(v string) *ListPartsOutput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *ListPartsOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AbortDate != nil {
-		v := *s.AbortDate
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-abort-date", protocol.TimeValue{V: v, Format: protocol.RFC822TimeFromat}, protocol.Metadata{})
-	}
-	if s.AbortRuleId != nil {
-		v := *s.AbortRuleId
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-abort-rule-id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.Bucket != nil {
 		v := *s.Bucket
 
@@ -18777,11 +18617,6 @@ func (s *ListPartsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Part", encodePartList(v), protocol.Metadata{Flatten: true})
 	}
-	if s.RequestCharged != nil {
-		v := *s.RequestCharged
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-request-charged", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.StorageClass != nil {
 		v := *s.StorageClass
 
@@ -18792,7 +18627,21 @@ func (s *ListPartsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "UploadId", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.AbortDate != nil {
+		v := *s.AbortDate
 
+		e.SetValue(protocol.HeaderTarget, "x-amz-abort-date", protocol.TimeValue{V: v, Format: protocol.RFC822TimeFromat}, protocol.Metadata{})
+	}
+	if s.AbortRuleId != nil {
+		v := *s.AbortRuleId
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-abort-rule-id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.RequestCharged != nil {
+		v := *s.RequestCharged
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-request-charged", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -18880,7 +18729,6 @@ func (s *LoggingEnabled) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "TargetPrefix", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18949,7 +18797,6 @@ func (s *MetricsAndOperator) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Tag", encodeTagList(v), protocol.Metadata{Flatten: true})
 	}
-
 	return nil
 }
 
@@ -19020,7 +18867,6 @@ func (s *MetricsConfiguration) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19113,7 +18959,6 @@ func (s *MetricsFilter) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Tag", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19217,7 +19062,6 @@ func (s *MultipartUpload) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "UploadId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19268,7 +19112,6 @@ func (s *NoncurrentVersionExpiration) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.BodyTarget, "NoncurrentDays", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19325,7 +19168,6 @@ func (s *NoncurrentVersionTransition) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.BodyTarget, "StorageClass", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19435,7 +19277,6 @@ func (s *NotificationConfiguration) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetList(protocol.BodyTarget, "TopicConfiguration", encodeTopicConfigurationList(v), protocol.Metadata{Flatten: true})
 	}
-
 	return nil
 }
 
@@ -19495,7 +19336,6 @@ func (s *NotificationConfigurationDeprecated) MarshalFields(e protocol.FieldEnco
 
 		e.SetFields(protocol.BodyTarget, "TopicConfiguration", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19532,7 +19372,6 @@ func (s *NotificationConfigurationFilter) MarshalFields(e protocol.FieldEncoder)
 
 		e.SetFields(protocol.BodyTarget, "S3Key", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19632,7 +19471,6 @@ func (s *Object) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "StorageClass", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19707,7 +19545,6 @@ func (s *ObjectIdentifier) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "VersionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19847,7 +19684,6 @@ func (s *ObjectVersion) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "VersionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19902,7 +19738,6 @@ func (s *Owner) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "ID", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19980,7 +19815,6 @@ func (s *Part) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Size", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20054,17 +19888,16 @@ func (s *PutBucketAccelerateConfigurationInput) getBucket() (v string) {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutBucketAccelerateConfigurationInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AccelerateConfiguration != nil {
-		v := s.AccelerateConfiguration
-
-		e.SetFields(protocol.PayloadTarget, "AccelerateConfiguration", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
-	}
 	if s.Bucket != nil {
 		v := *s.Bucket
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.AccelerateConfiguration != nil {
+		v := s.AccelerateConfiguration
 
+		e.SetFields(protocol.PayloadTarget, "AccelerateConfiguration", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
+	}
 	return nil
 }
 
@@ -20085,7 +19918,6 @@ func (s PutBucketAccelerateConfigurationOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutBucketAccelerateConfigurationOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -20208,16 +20040,6 @@ func (s *PutBucketAclInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-acl", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.AccessControlPolicy != nil {
-		v := s.AccessControlPolicy
-
-		e.SetFields(protocol.PayloadTarget, "AccessControlPolicy", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
-	}
-	if s.Bucket != nil {
-		v := *s.Bucket
-
-		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.GrantFullControl != nil {
 		v := *s.GrantFullControl
 
@@ -20243,7 +20065,16 @@ func (s *PutBucketAclInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-grant-write-acp", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.Bucket != nil {
+		v := *s.Bucket
 
+		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.AccessControlPolicy != nil {
+		v := s.AccessControlPolicy
+
+		e.SetFields(protocol.PayloadTarget, "AccessControlPolicy", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
+	}
 	return nil
 }
 
@@ -20264,7 +20095,6 @@ func (s PutBucketAclOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutBucketAclOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -20349,22 +20179,21 @@ func (s *PutBucketAnalyticsConfigurationInput) SetId(v string) *PutBucketAnalyti
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutBucketAnalyticsConfigurationInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AnalyticsConfiguration != nil {
-		v := s.AnalyticsConfiguration
-
-		e.SetFields(protocol.PayloadTarget, "AnalyticsConfiguration", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
-	}
 	if s.Bucket != nil {
 		v := *s.Bucket
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.AnalyticsConfiguration != nil {
+		v := s.AnalyticsConfiguration
+
+		e.SetFields(protocol.PayloadTarget, "AnalyticsConfiguration", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
 	}
 	if s.Id != nil {
 		v := *s.Id
 
 		e.SetValue(protocol.QueryTarget, "id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20385,7 +20214,6 @@ func (s PutBucketAnalyticsConfigurationOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutBucketAnalyticsConfigurationOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -20462,7 +20290,6 @@ func (s *PutBucketCorsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "CORSConfiguration", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
 	}
-
 	return nil
 }
 
@@ -20483,7 +20310,6 @@ func (s PutBucketCorsOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutBucketCorsOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -20566,7 +20392,6 @@ func (s *PutBucketEncryptionInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetFields(protocol.PayloadTarget, "ServerSideEncryptionConfiguration", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
 	}
-
 	return nil
 }
 
@@ -20587,7 +20412,6 @@ func (s PutBucketEncryptionOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutBucketEncryptionOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -20677,17 +20501,16 @@ func (s *PutBucketInventoryConfigurationInput) MarshalFields(e protocol.FieldEnc
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.Id != nil {
-		v := *s.Id
-
-		e.SetValue(protocol.QueryTarget, "id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.InventoryConfiguration != nil {
 		v := s.InventoryConfiguration
 
 		e.SetFields(protocol.PayloadTarget, "InventoryConfiguration", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
 	}
+	if s.Id != nil {
+		v := *s.Id
 
+		e.SetValue(protocol.QueryTarget, "id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -20708,7 +20531,6 @@ func (s PutBucketInventoryConfigurationOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutBucketInventoryConfigurationOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -20781,7 +20603,6 @@ func (s *PutBucketLifecycleConfigurationInput) MarshalFields(e protocol.FieldEnc
 
 		e.SetFields(protocol.PayloadTarget, "LifecycleConfiguration", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
 	}
-
 	return nil
 }
 
@@ -20802,7 +20623,6 @@ func (s PutBucketLifecycleConfigurationOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutBucketLifecycleConfigurationOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -20875,7 +20695,6 @@ func (s *PutBucketLifecycleInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "LifecycleConfiguration", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
 	}
-
 	return nil
 }
 
@@ -20896,7 +20715,6 @@ func (s PutBucketLifecycleOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutBucketLifecycleOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -20973,7 +20791,6 @@ func (s *PutBucketLoggingInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "BucketLoggingStatus", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
 	}
-
 	return nil
 }
 
@@ -20994,7 +20811,6 @@ func (s PutBucketLoggingOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutBucketLoggingOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -21084,17 +20900,16 @@ func (s *PutBucketMetricsConfigurationInput) MarshalFields(e protocol.FieldEncod
 
 		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.Id != nil {
-		v := *s.Id
-
-		e.SetValue(protocol.QueryTarget, "id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.MetricsConfiguration != nil {
 		v := s.MetricsConfiguration
 
 		e.SetFields(protocol.PayloadTarget, "MetricsConfiguration", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
 	}
+	if s.Id != nil {
+		v := *s.Id
 
+		e.SetValue(protocol.QueryTarget, "id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -21115,7 +20930,6 @@ func (s PutBucketMetricsConfigurationOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutBucketMetricsConfigurationOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -21195,7 +21009,6 @@ func (s *PutBucketNotificationConfigurationInput) MarshalFields(e protocol.Field
 
 		e.SetFields(protocol.PayloadTarget, "NotificationConfiguration", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
 	}
-
 	return nil
 }
 
@@ -21216,7 +21029,6 @@ func (s PutBucketNotificationConfigurationOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutBucketNotificationConfigurationOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -21288,7 +21100,6 @@ func (s *PutBucketNotificationInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetFields(protocol.PayloadTarget, "NotificationConfiguration", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
 	}
-
 	return nil
 }
 
@@ -21309,7 +21120,6 @@ func (s PutBucketNotificationOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutBucketNotificationOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -21383,22 +21193,21 @@ func (s *PutBucketPolicyInput) SetPolicy(v string) *PutBucketPolicyInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutBucketPolicyInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Bucket != nil {
-		v := *s.Bucket
-
-		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.ConfirmRemoveSelfBucketAccess != nil {
 		v := *s.ConfirmRemoveSelfBucketAccess
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-confirm-remove-self-bucket-access", protocol.BoolValue(v), protocol.Metadata{})
+	}
+	if s.Bucket != nil {
+		v := *s.Bucket
+
+		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.Policy != nil {
 		v := *s.Policy
 
 		e.SetStream(protocol.PayloadTarget, "Policy", protocol.StringStream(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -21419,7 +21228,6 @@ func (s PutBucketPolicyOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutBucketPolicyOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -21499,7 +21307,6 @@ func (s *PutBucketReplicationInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetFields(protocol.PayloadTarget, "ReplicationConfiguration", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
 	}
-
 	return nil
 }
 
@@ -21520,7 +21327,6 @@ func (s PutBucketReplicationOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutBucketReplicationOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -21597,7 +21403,6 @@ func (s *PutBucketRequestPaymentInput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetFields(protocol.PayloadTarget, "RequestPaymentConfiguration", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
 	}
-
 	return nil
 }
 
@@ -21618,7 +21423,6 @@ func (s PutBucketRequestPaymentOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutBucketRequestPaymentOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -21695,7 +21499,6 @@ func (s *PutBucketTaggingInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "Tagging", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
 	}
-
 	return nil
 }
 
@@ -21716,7 +21519,6 @@ func (s PutBucketTaggingOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutBucketTaggingOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -21788,22 +21590,21 @@ func (s *PutBucketVersioningInput) SetVersioningConfiguration(v *VersioningConfi
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutBucketVersioningInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Bucket != nil {
-		v := *s.Bucket
-
-		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.MFA != nil {
 		v := *s.MFA
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-mfa", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Bucket != nil {
+		v := *s.Bucket
+
+		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.VersioningConfiguration != nil {
 		v := s.VersioningConfiguration
 
 		e.SetFields(protocol.PayloadTarget, "VersioningConfiguration", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
 	}
-
 	return nil
 }
 
@@ -21824,7 +21625,6 @@ func (s PutBucketVersioningOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutBucketVersioningOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -21901,7 +21701,6 @@ func (s *PutBucketWebsiteInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "WebsiteConfiguration", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
 	}
-
 	return nil
 }
 
@@ -21922,7 +21721,6 @@ func (s PutBucketWebsiteOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutBucketWebsiteOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -22081,16 +21879,6 @@ func (s *PutObjectAclInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-acl", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.AccessControlPolicy != nil {
-		v := s.AccessControlPolicy
-
-		e.SetFields(protocol.PayloadTarget, "AccessControlPolicy", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
-	}
-	if s.Bucket != nil {
-		v := *s.Bucket
-
-		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.GrantFullControl != nil {
 		v := *s.GrantFullControl
 
@@ -22116,22 +21904,31 @@ func (s *PutObjectAclInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-grant-write-acp", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.RequestPayer != nil {
+		v := *s.RequestPayer
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-request-payer", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Bucket != nil {
+		v := *s.Bucket
+
+		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Key != nil {
 		v := *s.Key
 
 		e.SetValue(protocol.PathTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.RequestPayer != nil {
-		v := *s.RequestPayer
+	if s.AccessControlPolicy != nil {
+		v := s.AccessControlPolicy
 
-		e.SetValue(protocol.HeaderTarget, "x-amz-request-payer", protocol.StringValue(v), protocol.Metadata{})
+		e.SetFields(protocol.PayloadTarget, "AccessControlPolicy", v, protocol.Metadata{XMLNamespaceURI: "http://s3.amazonaws.com/doc/2006-03-01/"})
 	}
 	if s.VersionId != nil {
 		v := *s.VersionId
 
 		e.SetValue(protocol.QueryTarget, "versionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -22167,7 +21964,6 @@ func (s *PutObjectAclOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-request-charged", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -22482,16 +22278,6 @@ func (s *PutObjectInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-acl", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.Body != nil {
-		v := s.Body
-
-		e.SetStream(protocol.PayloadTarget, "Body", protocol.ReadSeekerStream{V: v}, protocol.Metadata{})
-	}
-	if s.Bucket != nil {
-		v := *s.Bucket
-
-		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.CacheControl != nil {
 		v := *s.CacheControl
 
@@ -22552,16 +22338,6 @@ func (s *PutObjectInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-grant-write-acp", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.Key != nil {
-		v := *s.Key
-
-		e.SetValue(protocol.PathTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if len(s.Metadata) > 0 {
-		v := s.Metadata
-
-		e.SetMap(protocol.HeadersTarget, "x-amz-meta-", protocol.EncodeStringMap(v), protocol.Metadata{})
-	}
 	if s.RequestPayer != nil {
 		v := *s.RequestPayer
 
@@ -22607,7 +22383,26 @@ func (s *PutObjectInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-website-redirect-location", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if len(s.Metadata) > 0 {
+		v := s.Metadata
 
+		e.SetMap(protocol.HeadersTarget, "x-amz-meta-", protocol.EncodeStringMap(v), protocol.Metadata{})
+	}
+	if s.Bucket != nil {
+		v := *s.Bucket
+
+		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Key != nil {
+		v := *s.Key
+
+		e.SetValue(protocol.PathTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Body != nil {
+		v := s.Body
+
+		e.SetStream(protocol.PayloadTarget, "Body", protocol.ReadSeekerStream{V: v}, protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -22748,7 +22543,6 @@ func (s *PutObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-version-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -22858,7 +22652,6 @@ func (s *PutObjectTaggingInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "versionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -22892,7 +22685,6 @@ func (s *PutObjectTaggingOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-version-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -22992,7 +22784,6 @@ func (s *QueueConfiguration) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Queue", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -23076,7 +22867,6 @@ func (s *QueueConfigurationDeprecated) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.BodyTarget, "Queue", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -23176,7 +22966,6 @@ func (s *Redirect) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "ReplaceKeyWith", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -23241,7 +23030,6 @@ func (s *RedirectAllRequestsTo) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Protocol", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -23324,7 +23112,6 @@ func (s *ReplicationConfiguration) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetList(protocol.BodyTarget, "Rule", encodeReplicationRuleList(v), protocol.Metadata{Flatten: true})
 	}
-
 	return nil
 }
 
@@ -23453,7 +23240,6 @@ func (s *ReplicationRule) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Status", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -23511,7 +23297,6 @@ func (s *RequestPaymentConfiguration) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.BodyTarget, "Payer", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -23609,6 +23394,11 @@ func (s *RestoreObjectInput) SetVersionId(v string) *RestoreObjectInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *RestoreObjectInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.RequestPayer != nil {
+		v := *s.RequestPayer
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-request-payer", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Bucket != nil {
 		v := *s.Bucket
 
@@ -23618,11 +23408,6 @@ func (s *RestoreObjectInput) MarshalFields(e protocol.FieldEncoder) error {
 		v := *s.Key
 
 		e.SetValue(protocol.PathTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.RequestPayer != nil {
-		v := *s.RequestPayer
-
-		e.SetValue(protocol.HeaderTarget, "x-amz-request-payer", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.RestoreRequest != nil {
 		v := s.RestoreRequest
@@ -23634,7 +23419,6 @@ func (s *RestoreObjectInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "versionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -23670,7 +23454,6 @@ func (s *RestoreObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-request-charged", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -23739,7 +23522,6 @@ func (s *RestoreRequest) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "GlacierJobParameters", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -23808,7 +23590,6 @@ func (s *RoutingRule) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Redirect", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -23977,7 +23758,6 @@ func (s *Rule) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Transition", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -24032,12 +23812,14 @@ func (s *SSEKMS) SetKeyId(v string) *SSEKMS {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *SSEKMS) MarshalFields(e protocol.FieldEncoder) error {
-	if s.KeyId != nil {
-		v := *s.KeyId
+	e.SetFields(protocol.BodyTarget, "SSE-KMS", protocol.FieldMarshalerFunc(func(e protocol.FieldEncoder) error {
+		if s.KeyId != nil {
+			v := *s.KeyId
 
-		e.SetValue(protocol.BodyTarget, "KeyId", protocol.StringValue(v), protocol.Metadata{})
-	}
-
+			e.SetValue(protocol.BodyTarget, "KeyId", protocol.StringValue(v), protocol.Metadata{})
+		}
+		return nil
+	}), protocol.Metadata{})
 	return nil
 }
 
@@ -24059,7 +23841,6 @@ func (s SSES3) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *SSES3) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -24127,7 +23908,6 @@ func (s *ServerSideEncryptionByDefault) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetValue(protocol.BodyTarget, "SSEAlgorithm", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -24190,7 +23970,6 @@ func (s *ServerSideEncryptionConfiguration) MarshalFields(e protocol.FieldEncode
 
 		e.SetList(protocol.BodyTarget, "Rule", encodeServerSideEncryptionRuleList(v), protocol.Metadata{Flatten: true})
 	}
-
 	return nil
 }
 
@@ -24244,7 +24023,6 @@ func (s *ServerSideEncryptionRule) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetFields(protocol.BodyTarget, "ApplyServerSideEncryptionByDefault", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -24303,7 +24081,6 @@ func (s *SourceSelectionCriteria) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "SseKmsEncryptedObjects", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -24355,7 +24132,6 @@ func (s *SseKmsEncryptedObjects) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Status", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -24406,7 +24182,6 @@ func (s *StorageClassAnalysis) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "DataExport", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -24480,7 +24255,6 @@ func (s *StorageClassAnalysisDataExport) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetValue(protocol.BodyTarget, "OutputSchemaVersion", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -24552,7 +24326,6 @@ func (s *Tag) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Value", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -24618,7 +24391,6 @@ func (s *Tagging) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "TagSet", encodeTagList(v), protocol.Metadata{ListLocationName: "Tag"})
 	}
-
 	return nil
 }
 
@@ -24686,7 +24458,6 @@ func (s *TargetGrant) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Permission", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -24794,7 +24565,6 @@ func (s *TopicConfiguration) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Topic", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -24880,7 +24650,6 @@ func (s *TopicConfigurationDeprecated) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.BodyTarget, "Topic", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -24945,7 +24714,6 @@ func (s *Transition) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "StorageClass", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -25203,11 +24971,6 @@ func (s *UploadPartCopyInput) SetUploadId(v string) *UploadPartCopyInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UploadPartCopyInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Bucket != nil {
-		v := *s.Bucket
-
-		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.CopySource != nil {
 		v := *s.CopySource
 
@@ -25253,16 +25016,6 @@ func (s *UploadPartCopyInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-copy-source-server-side-encryption-customer-key-MD5", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.Key != nil {
-		v := *s.Key
-
-		e.SetValue(protocol.PathTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.PartNumber != nil {
-		v := *s.PartNumber
-
-		e.SetValue(protocol.QueryTarget, "partNumber", protocol.Int64Value(v), protocol.Metadata{})
-	}
 	if s.RequestPayer != nil {
 		v := *s.RequestPayer
 
@@ -25283,12 +25036,26 @@ func (s *UploadPartCopyInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-server-side-encryption-customer-key-MD5", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.Bucket != nil {
+		v := *s.Bucket
+
+		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Key != nil {
+		v := *s.Key
+
+		e.SetValue(protocol.PathTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.PartNumber != nil {
+		v := *s.PartNumber
+
+		e.SetValue(protocol.QueryTarget, "partNumber", protocol.Int64Value(v), protocol.Metadata{})
+	}
 	if s.UploadId != nil {
 		v := *s.UploadId
 
 		e.SetValue(protocol.QueryTarget, "uploadId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -25379,11 +25146,6 @@ func (s *UploadPartCopyOutput) SetServerSideEncryption(v string) *UploadPartCopy
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UploadPartCopyOutput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.CopyPartResult != nil {
-		v := s.CopyPartResult
-
-		e.SetFields(protocol.PayloadTarget, "CopyPartResult", v, protocol.Metadata{})
-	}
 	if s.CopySourceVersionId != nil {
 		v := *s.CopySourceVersionId
 
@@ -25414,7 +25176,11 @@ func (s *UploadPartCopyOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-server-side-encryption", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.CopyPartResult != nil {
+		v := s.CopyPartResult
 
+		e.SetFields(protocol.PayloadTarget, "CopyPartResult", v, protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -25593,16 +25359,6 @@ func (s *UploadPartInput) SetUploadId(v string) *UploadPartInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UploadPartInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Body != nil {
-		v := s.Body
-
-		e.SetStream(protocol.PayloadTarget, "Body", protocol.ReadSeekerStream{V: v}, protocol.Metadata{})
-	}
-	if s.Bucket != nil {
-		v := *s.Bucket
-
-		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.ContentLength != nil {
 		v := *s.ContentLength
 
@@ -25612,16 +25368,6 @@ func (s *UploadPartInput) MarshalFields(e protocol.FieldEncoder) error {
 		v := *s.ContentMD5
 
 		e.SetValue(protocol.HeaderTarget, "Content-MD5", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.Key != nil {
-		v := *s.Key
-
-		e.SetValue(protocol.PathTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
-	}
-	if s.PartNumber != nil {
-		v := *s.PartNumber
-
-		e.SetValue(protocol.QueryTarget, "partNumber", protocol.Int64Value(v), protocol.Metadata{})
 	}
 	if s.RequestPayer != nil {
 		v := *s.RequestPayer
@@ -25643,12 +25389,31 @@ func (s *UploadPartInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-server-side-encryption-customer-key-MD5", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.Bucket != nil {
+		v := *s.Bucket
+
+		e.SetValue(protocol.PathTarget, "Bucket", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Key != nil {
+		v := *s.Key
+
+		e.SetValue(protocol.PathTarget, "Key", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Body != nil {
+		v := s.Body
+
+		e.SetStream(protocol.PayloadTarget, "Body", protocol.ReadSeekerStream{V: v}, protocol.Metadata{})
+	}
+	if s.PartNumber != nil {
+		v := *s.PartNumber
+
+		e.SetValue(protocol.QueryTarget, "partNumber", protocol.Int64Value(v), protocol.Metadata{})
+	}
 	if s.UploadId != nil {
 		v := *s.UploadId
 
 		e.SetValue(protocol.QueryTarget, "uploadId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -25760,7 +25525,6 @@ func (s *UploadPartOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-server-side-encryption", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -25811,7 +25575,6 @@ func (s *VersioningConfiguration) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Status", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -25919,7 +25682,6 @@ func (s *WebsiteConfiguration) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "RoutingRules", encodeRoutingRuleList(v), protocol.Metadata{ListLocationName: "RoutingRule"})
 	}
-
 	return nil
 }
 

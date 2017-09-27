@@ -232,7 +232,6 @@ func (s *Event) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -319,6 +318,11 @@ func (s *PutEventsInput) SetEvents(v []*Event) *PutEventsInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutEventsInput) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.Events) > 0 {
+		v := s.Events
+
+		e.SetList(protocol.BodyTarget, "events", encodeEventList(v), protocol.Metadata{})
+	}
 	if s.ClientContext != nil {
 		v := *s.ClientContext
 
@@ -329,12 +333,6 @@ func (s *PutEventsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amz-Client-Context-Encoding", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if len(s.Events) > 0 {
-		v := s.Events
-
-		e.SetList(protocol.BodyTarget, "events", encodeEventList(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -354,7 +352,6 @@ func (s PutEventsOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutEventsOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -446,6 +443,5 @@ func (s *Session) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "stopTimestamp", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }

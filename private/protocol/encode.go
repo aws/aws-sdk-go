@@ -10,6 +10,16 @@ type FieldMarshaler interface {
 	MarshalFields(FieldEncoder) error
 }
 
+// FieldMarshalerFunc is a helper utility that wrapps a function and allows
+// that function to be called as a FieldMarshaler.
+type FieldMarshalerFunc func(FieldEncoder) error
+
+// MarshalFields will call the underlying function passing in the field encoder
+// with the protocol field encoder.
+func (fn FieldMarshalerFunc) MarshalFields(e FieldEncoder) error {
+	return fn(e)
+}
+
 // ValueMarshaler provides a generic type for all encoding field values to be
 // passed into a encoder's methods with.
 type ValueMarshaler interface {

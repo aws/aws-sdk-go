@@ -1501,7 +1501,6 @@ func (s *AttemptContainerDetail) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "taskArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1582,7 +1581,6 @@ func (s *AttemptDetail) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "stoppedAt", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1661,7 +1659,6 @@ func (s *CancelJobInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "reason", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1682,7 +1679,6 @@ func (s CancelJobOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CancelJobOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -1841,7 +1837,6 @@ func (s *ComputeEnvironmentDetail) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.BodyTarget, "type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1922,7 +1917,6 @@ func (s *ComputeEnvironmentOrder) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "order", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2194,7 +2188,6 @@ func (s *ComputeResource) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2259,7 +2252,6 @@ func (s *ComputeResourceUpdate) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "minvCpus", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2530,7 +2522,6 @@ func (s *ContainerDetail) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "volumes", encodeVolumeList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2616,7 +2607,6 @@ func (s *ContainerOverrides) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "vcpus", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2904,7 +2894,6 @@ func (s *ContainerProperties) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "volumes", encodeVolumeList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3040,7 +3029,6 @@ func (s *CreateComputeEnvironmentInput) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetValue(protocol.BodyTarget, "type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3089,7 +3077,6 @@ func (s *CreateComputeEnvironmentOutput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetValue(protocol.BodyTarget, "computeEnvironmentName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3210,7 +3197,6 @@ func (s *CreateJobQueueInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "state", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3263,7 +3249,6 @@ func (s *CreateJobQueueOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "jobQueueName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3313,7 +3298,6 @@ func (s *DeleteComputeEnvironmentInput) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetValue(protocol.BodyTarget, "computeEnvironment", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3334,7 +3318,6 @@ func (s DeleteComputeEnvironmentOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteComputeEnvironmentOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -3384,7 +3367,6 @@ func (s *DeleteJobQueueInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "jobQueue", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3405,7 +3387,6 @@ func (s DeleteJobQueueOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteJobQueueOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -3456,7 +3437,6 @@ func (s *DeregisterJobDefinitionInput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.BodyTarget, "jobDefinition", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3477,7 +3457,6 @@ func (s DeregisterJobDefinitionOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeregisterJobDefinitionOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -3555,7 +3534,6 @@ func (s *DescribeComputeEnvironmentsInput) MarshalFields(e protocol.FieldEncoder
 
 		e.SetValue(protocol.BodyTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3607,7 +3585,6 @@ func (s *DescribeComputeEnvironmentsOutput) MarshalFields(e protocol.FieldEncode
 
 		e.SetValue(protocol.BodyTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3712,7 +3689,6 @@ func (s *DescribeJobDefinitionsInput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.BodyTarget, "status", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3764,7 +3740,6 @@ func (s *DescribeJobDefinitionsOutput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.BodyTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3841,7 +3816,6 @@ func (s *DescribeJobQueuesInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3893,7 +3867,6 @@ func (s *DescribeJobQueuesOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3943,7 +3916,6 @@ func (s *DescribeJobsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "jobs", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3978,7 +3950,6 @@ func (s *DescribeJobsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "jobs", encodeJobDetailList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4024,7 +3995,6 @@ func (s *Host) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "sourcePath", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4170,7 +4140,6 @@ func (s *JobDefinition) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4214,7 +4183,6 @@ func (s *JobDependency) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "jobId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4459,7 +4427,6 @@ func (s *JobDetail) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "stoppedAt", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4600,7 +4567,6 @@ func (s *JobQueueDetail) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "statusReason", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4662,7 +4628,6 @@ func (s *JobSummary) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "jobName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4722,7 +4687,6 @@ func (s *KeyValuePair) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "value", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4836,7 +4800,6 @@ func (s *ListJobsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4890,7 +4853,6 @@ func (s *ListJobsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4956,7 +4918,6 @@ func (s *MountPoint) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "sourceVolume", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5086,7 +5047,6 @@ func (s *RegisterJobDefinitionInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.BodyTarget, "type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5155,7 +5115,6 @@ func (s *RegisterJobDefinitionOutput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.BodyTarget, "revision", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5193,7 +5152,6 @@ func (s *RetryStrategy) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "attempts", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5353,7 +5311,6 @@ func (s *SubmitJobInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "retryStrategy", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5406,7 +5363,6 @@ func (s *SubmitJobOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "jobName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5477,7 +5433,6 @@ func (s *TerminateJobInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "reason", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5498,7 +5453,6 @@ func (s TerminateJobOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *TerminateJobOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -5587,7 +5541,6 @@ func (s *Ulimit) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "softLimit", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5702,7 +5655,6 @@ func (s *UpdateComputeEnvironmentInput) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetValue(protocol.BodyTarget, "state", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5751,7 +5703,6 @@ func (s *UpdateComputeEnvironmentOutput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetValue(protocol.BodyTarget, "computeEnvironmentName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5859,7 +5810,6 @@ func (s *UpdateJobQueueInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "state", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5908,7 +5858,6 @@ func (s *UpdateJobQueueOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "jobQueueName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5964,7 +5913,6 @@ func (s *Volume) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 

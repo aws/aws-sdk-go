@@ -5224,17 +5224,16 @@ func (s *AssociateRoleToGroupInput) SetRoleArn(v string) *AssociateRoleToGroupIn
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *AssociateRoleToGroupInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.GroupId != nil {
-		v := *s.GroupId
-
-		e.SetValue(protocol.PathTarget, "GroupId", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.RoleArn != nil {
 		v := *s.RoleArn
 
 		e.SetValue(protocol.BodyTarget, "RoleArn", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.GroupId != nil {
+		v := *s.GroupId
 
+		e.SetValue(protocol.PathTarget, "GroupId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -5269,7 +5268,6 @@ func (s *AssociateRoleToGroupOutput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.BodyTarget, "AssociatedAt", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5304,7 +5302,6 @@ func (s *AssociateServiceRoleToAccountInput) MarshalFields(e protocol.FieldEncod
 
 		e.SetValue(protocol.BodyTarget, "RoleArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5339,7 +5336,6 @@ func (s *AssociateServiceRoleToAccountOutput) MarshalFields(e protocol.FieldEnco
 
 		e.SetValue(protocol.BodyTarget, "AssociatedAt", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5417,7 +5413,6 @@ func (s *ConnectivityInfo) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "PortNumber", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5504,7 +5499,6 @@ func (s *Core) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "ThingArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5548,7 +5542,6 @@ func (s *CoreDefinitionVersion) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Cores", encodeCoreList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5594,11 +5587,6 @@ func (s *CreateCoreDefinitionInput) SetName(v string) *CreateCoreDefinitionInput
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateCoreDefinitionInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AmznClientToken != nil {
-		v := *s.AmznClientToken
-
-		e.SetValue(protocol.HeaderTarget, "X-Amzn-Client-Token", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.InitialVersion != nil {
 		v := s.InitialVersion
 
@@ -5609,7 +5597,11 @@ func (s *CreateCoreDefinitionInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.AmznClientToken != nil {
+		v := *s.AmznClientToken
 
+		e.SetValue(protocol.HeaderTarget, "X-Amzn-Client-Token", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -5721,7 +5713,6 @@ func (s *CreateCoreDefinitionOutput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5780,6 +5771,11 @@ func (s *CreateCoreDefinitionVersionInput) SetCores(v []*Core) *CreateCoreDefini
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateCoreDefinitionVersionInput) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.Cores) > 0 {
+		v := s.Cores
+
+		e.SetList(protocol.BodyTarget, "Cores", encodeCoreList(v), protocol.Metadata{})
+	}
 	if s.AmznClientToken != nil {
 		v := *s.AmznClientToken
 
@@ -5790,12 +5786,6 @@ func (s *CreateCoreDefinitionVersionInput) MarshalFields(e protocol.FieldEncoder
 
 		e.SetValue(protocol.PathTarget, "CoreDefinitionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if len(s.Cores) > 0 {
-		v := s.Cores
-
-		e.SetList(protocol.BodyTarget, "Cores", encodeCoreList(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -5868,7 +5858,6 @@ func (s *CreateCoreDefinitionVersionOutput) MarshalFields(e protocol.FieldEncode
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5948,11 +5937,6 @@ func (s *CreateDeploymentInput) SetGroupVersionId(v string) *CreateDeploymentInp
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateDeploymentInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AmznClientToken != nil {
-		v := *s.AmznClientToken
-
-		e.SetValue(protocol.HeaderTarget, "X-Amzn-Client-Token", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.DeploymentId != nil {
 		v := *s.DeploymentId
 
@@ -5963,17 +5947,21 @@ func (s *CreateDeploymentInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "DeploymentType", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.GroupId != nil {
-		v := *s.GroupId
-
-		e.SetValue(protocol.PathTarget, "GroupId", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.GroupVersionId != nil {
 		v := *s.GroupVersionId
 
 		e.SetValue(protocol.BodyTarget, "GroupVersionId", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.AmznClientToken != nil {
+		v := *s.AmznClientToken
 
+		e.SetValue(protocol.HeaderTarget, "X-Amzn-Client-Token", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.GroupId != nil {
+		v := *s.GroupId
+
+		e.SetValue(protocol.PathTarget, "GroupId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -6022,7 +6010,6 @@ func (s *CreateDeploymentOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "DeploymentId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6068,11 +6055,6 @@ func (s *CreateDeviceDefinitionInput) SetName(v string) *CreateDeviceDefinitionI
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateDeviceDefinitionInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AmznClientToken != nil {
-		v := *s.AmznClientToken
-
-		e.SetValue(protocol.HeaderTarget, "X-Amzn-Client-Token", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.InitialVersion != nil {
 		v := s.InitialVersion
 
@@ -6083,7 +6065,11 @@ func (s *CreateDeviceDefinitionInput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.AmznClientToken != nil {
+		v := *s.AmznClientToken
 
+		e.SetValue(protocol.HeaderTarget, "X-Amzn-Client-Token", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -6195,7 +6181,6 @@ func (s *CreateDeviceDefinitionOutput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6254,6 +6239,11 @@ func (s *CreateDeviceDefinitionVersionInput) SetDevices(v []*Device) *CreateDevi
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateDeviceDefinitionVersionInput) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.Devices) > 0 {
+		v := s.Devices
+
+		e.SetList(protocol.BodyTarget, "Devices", encodeDeviceList(v), protocol.Metadata{})
+	}
 	if s.AmznClientToken != nil {
 		v := *s.AmznClientToken
 
@@ -6264,12 +6254,6 @@ func (s *CreateDeviceDefinitionVersionInput) MarshalFields(e protocol.FieldEncod
 
 		e.SetValue(protocol.PathTarget, "DeviceDefinitionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if len(s.Devices) > 0 {
-		v := s.Devices
-
-		e.SetList(protocol.BodyTarget, "Devices", encodeDeviceList(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -6342,7 +6326,6 @@ func (s *CreateDeviceDefinitionVersionOutput) MarshalFields(e protocol.FieldEnco
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6388,11 +6371,6 @@ func (s *CreateFunctionDefinitionInput) SetName(v string) *CreateFunctionDefinit
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateFunctionDefinitionInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AmznClientToken != nil {
-		v := *s.AmznClientToken
-
-		e.SetValue(protocol.HeaderTarget, "X-Amzn-Client-Token", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.InitialVersion != nil {
 		v := s.InitialVersion
 
@@ -6403,7 +6381,11 @@ func (s *CreateFunctionDefinitionInput) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.AmznClientToken != nil {
+		v := *s.AmznClientToken
 
+		e.SetValue(protocol.HeaderTarget, "X-Amzn-Client-Token", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -6515,7 +6497,6 @@ func (s *CreateFunctionDefinitionOutput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6574,6 +6555,11 @@ func (s *CreateFunctionDefinitionVersionInput) SetFunctions(v []*Function) *Crea
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateFunctionDefinitionVersionInput) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.Functions) > 0 {
+		v := s.Functions
+
+		e.SetList(protocol.BodyTarget, "Functions", encodeFunctionList(v), protocol.Metadata{})
+	}
 	if s.AmznClientToken != nil {
 		v := *s.AmznClientToken
 
@@ -6584,12 +6570,6 @@ func (s *CreateFunctionDefinitionVersionInput) MarshalFields(e protocol.FieldEnc
 
 		e.SetValue(protocol.PathTarget, "FunctionDefinitionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if len(s.Functions) > 0 {
-		v := s.Functions
-
-		e.SetList(protocol.BodyTarget, "Functions", encodeFunctionList(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -6662,7 +6642,6 @@ func (s *CreateFunctionDefinitionVersionOutput) MarshalFields(e protocol.FieldEn
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6723,7 +6702,6 @@ func (s *CreateGroupCertificateAuthorityInput) MarshalFields(e protocol.FieldEnc
 
 		e.SetValue(protocol.PathTarget, "GroupId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6758,7 +6736,6 @@ func (s *CreateGroupCertificateAuthorityOutput) MarshalFields(e protocol.FieldEn
 
 		e.SetValue(protocol.BodyTarget, "GroupCertificateAuthorityArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6804,11 +6781,6 @@ func (s *CreateGroupInput) SetName(v string) *CreateGroupInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateGroupInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AmznClientToken != nil {
-		v := *s.AmznClientToken
-
-		e.SetValue(protocol.HeaderTarget, "X-Amzn-Client-Token", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.InitialVersion != nil {
 		v := s.InitialVersion
 
@@ -6819,7 +6791,11 @@ func (s *CreateGroupInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.AmznClientToken != nil {
+		v := *s.AmznClientToken
 
+		e.SetValue(protocol.HeaderTarget, "X-Amzn-Client-Token", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -6931,7 +6907,6 @@ func (s *CreateGroupOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7022,11 +6997,6 @@ func (s *CreateGroupVersionInput) SetSubscriptionDefinitionVersionArn(v string) 
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateGroupVersionInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AmznClientToken != nil {
-		v := *s.AmznClientToken
-
-		e.SetValue(protocol.HeaderTarget, "X-Amzn-Client-Token", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.CoreDefinitionVersionArn != nil {
 		v := *s.CoreDefinitionVersionArn
 
@@ -7042,11 +7012,6 @@ func (s *CreateGroupVersionInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "FunctionDefinitionVersionArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.GroupId != nil {
-		v := *s.GroupId
-
-		e.SetValue(protocol.PathTarget, "GroupId", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.LoggerDefinitionVersionArn != nil {
 		v := *s.LoggerDefinitionVersionArn
 
@@ -7057,7 +7022,16 @@ func (s *CreateGroupVersionInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "SubscriptionDefinitionVersionArn", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.AmznClientToken != nil {
+		v := *s.AmznClientToken
 
+		e.SetValue(protocol.HeaderTarget, "X-Amzn-Client-Token", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.GroupId != nil {
+		v := *s.GroupId
+
+		e.SetValue(protocol.PathTarget, "GroupId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -7130,7 +7104,6 @@ func (s *CreateGroupVersionOutput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7176,11 +7149,6 @@ func (s *CreateLoggerDefinitionInput) SetName(v string) *CreateLoggerDefinitionI
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateLoggerDefinitionInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AmznClientToken != nil {
-		v := *s.AmznClientToken
-
-		e.SetValue(protocol.HeaderTarget, "X-Amzn-Client-Token", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.InitialVersion != nil {
 		v := s.InitialVersion
 
@@ -7191,7 +7159,11 @@ func (s *CreateLoggerDefinitionInput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.AmznClientToken != nil {
+		v := *s.AmznClientToken
 
+		e.SetValue(protocol.HeaderTarget, "X-Amzn-Client-Token", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -7303,7 +7275,6 @@ func (s *CreateLoggerDefinitionOutput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7362,6 +7333,11 @@ func (s *CreateLoggerDefinitionVersionInput) SetLoggers(v []*Logger) *CreateLogg
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateLoggerDefinitionVersionInput) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.Loggers) > 0 {
+		v := s.Loggers
+
+		e.SetList(protocol.BodyTarget, "Loggers", encodeLoggerList(v), protocol.Metadata{})
+	}
 	if s.AmznClientToken != nil {
 		v := *s.AmznClientToken
 
@@ -7372,12 +7348,6 @@ func (s *CreateLoggerDefinitionVersionInput) MarshalFields(e protocol.FieldEncod
 
 		e.SetValue(protocol.PathTarget, "LoggerDefinitionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if len(s.Loggers) > 0 {
-		v := s.Loggers
-
-		e.SetList(protocol.BodyTarget, "Loggers", encodeLoggerList(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -7450,7 +7420,6 @@ func (s *CreateLoggerDefinitionVersionOutput) MarshalFields(e protocol.FieldEnco
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7496,11 +7465,6 @@ func (s *CreateSubscriptionDefinitionInput) SetName(v string) *CreateSubscriptio
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateSubscriptionDefinitionInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AmznClientToken != nil {
-		v := *s.AmznClientToken
-
-		e.SetValue(protocol.HeaderTarget, "X-Amzn-Client-Token", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.InitialVersion != nil {
 		v := s.InitialVersion
 
@@ -7511,7 +7475,11 @@ func (s *CreateSubscriptionDefinitionInput) MarshalFields(e protocol.FieldEncode
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.AmznClientToken != nil {
+		v := *s.AmznClientToken
 
+		e.SetValue(protocol.HeaderTarget, "X-Amzn-Client-Token", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -7623,7 +7591,6 @@ func (s *CreateSubscriptionDefinitionOutput) MarshalFields(e protocol.FieldEncod
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7682,6 +7649,11 @@ func (s *CreateSubscriptionDefinitionVersionInput) SetSubscriptions(v []*Subscri
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CreateSubscriptionDefinitionVersionInput) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.Subscriptions) > 0 {
+		v := s.Subscriptions
+
+		e.SetList(protocol.BodyTarget, "Subscriptions", encodeSubscriptionList(v), protocol.Metadata{})
+	}
 	if s.AmznClientToken != nil {
 		v := *s.AmznClientToken
 
@@ -7692,12 +7664,6 @@ func (s *CreateSubscriptionDefinitionVersionInput) MarshalFields(e protocol.Fiel
 
 		e.SetValue(protocol.PathTarget, "SubscriptionDefinitionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if len(s.Subscriptions) > 0 {
-		v := s.Subscriptions
-
-		e.SetList(protocol.BodyTarget, "Subscriptions", encodeSubscriptionList(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -7770,7 +7736,6 @@ func (s *CreateSubscriptionDefinitionVersionOutput) MarshalFields(e protocol.Fie
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7890,7 +7855,6 @@ func (s *DefinitionInformation) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7946,7 +7910,6 @@ func (s *DeleteCoreDefinitionInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.PathTarget, "CoreDefinitionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7967,7 +7930,6 @@ func (s DeleteCoreDefinitionOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteCoreDefinitionOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -8015,7 +7977,6 @@ func (s *DeleteDeviceDefinitionInput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.PathTarget, "DeviceDefinitionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8036,7 +7997,6 @@ func (s DeleteDeviceDefinitionOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteDeviceDefinitionOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -8084,7 +8044,6 @@ func (s *DeleteFunctionDefinitionInput) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetValue(protocol.PathTarget, "FunctionDefinitionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8105,7 +8064,6 @@ func (s DeleteFunctionDefinitionOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteFunctionDefinitionOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -8153,7 +8111,6 @@ func (s *DeleteGroupInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "GroupId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8174,7 +8131,6 @@ func (s DeleteGroupOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteGroupOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -8222,7 +8178,6 @@ func (s *DeleteLoggerDefinitionInput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.PathTarget, "LoggerDefinitionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8243,7 +8198,6 @@ func (s DeleteLoggerDefinitionOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteLoggerDefinitionOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -8291,7 +8245,6 @@ func (s *DeleteSubscriptionDefinitionInput) MarshalFields(e protocol.FieldEncode
 
 		e.SetValue(protocol.PathTarget, "SubscriptionDefinitionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8312,7 +8265,6 @@ func (s DeleteSubscriptionDefinitionOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteSubscriptionDefinitionOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -8404,7 +8356,6 @@ func (s *Deployment) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "GroupArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8491,7 +8442,6 @@ func (s *Device) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "ThingArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8535,7 +8485,6 @@ func (s *DeviceDefinitionVersion) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Devices", encodeDeviceList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8583,7 +8532,6 @@ func (s *DisassociateRoleFromGroupInput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetValue(protocol.PathTarget, "GroupId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8618,7 +8566,6 @@ func (s *DisassociateRoleFromGroupOutput) MarshalFields(e protocol.FieldEncoder)
 
 		e.SetValue(protocol.BodyTarget, "DisassociatedAt", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8639,7 +8586,6 @@ func (s DisassociateServiceRoleFromAccountInput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DisassociateServiceRoleFromAccountInput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -8674,7 +8620,6 @@ func (s *DisassociateServiceRoleFromAccountOutput) MarshalFields(e protocol.Fiel
 
 		e.SetValue(protocol.BodyTarget, "DisassociatedAt", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8724,7 +8669,6 @@ func (s *ErrorDetail) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "DetailedErrorMessage", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8796,7 +8740,6 @@ func (s *Function) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8912,7 +8855,6 @@ func (s *FunctionConfiguration) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Timeout", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8947,7 +8889,6 @@ func (s *FunctionConfigurationEnvironment) MarshalFields(e protocol.FieldEncoder
 
 		e.SetMap(protocol.BodyTarget, "Variables", protocol.EncodeStringMap(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8983,7 +8924,6 @@ func (s *FunctionDefinitionVersion) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetList(protocol.BodyTarget, "Functions", encodeFunctionList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9031,7 +8971,6 @@ func (s *GetAssociatedRoleInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "GroupId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9080,7 +9019,6 @@ func (s *GetAssociatedRoleOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "RoleArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9128,7 +9066,6 @@ func (s *GetConnectivityInfoInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.PathTarget, "ThingName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9177,7 +9114,6 @@ func (s *GetConnectivityInfoOutput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "message", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9225,7 +9161,6 @@ func (s *GetCoreDefinitionInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "CoreDefinitionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9337,7 +9272,6 @@ func (s *GetCoreDefinitionOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9402,7 +9336,6 @@ func (s *GetCoreDefinitionVersionInput) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetValue(protocol.PathTarget, "CoreDefinitionVersionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9493,7 +9426,6 @@ func (s *GetCoreDefinitionVersionOutput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9558,7 +9490,6 @@ func (s *GetDeploymentStatusInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.PathTarget, "GroupId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9650,7 +9581,6 @@ func (s *GetDeploymentStatusOutput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "UpdatedAt", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9698,7 +9628,6 @@ func (s *GetDeviceDefinitionInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.PathTarget, "DeviceDefinitionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9810,7 +9739,6 @@ func (s *GetDeviceDefinitionOutput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9875,7 +9803,6 @@ func (s *GetDeviceDefinitionVersionInput) MarshalFields(e protocol.FieldEncoder)
 
 		e.SetValue(protocol.PathTarget, "DeviceDefinitionVersionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9966,7 +9893,6 @@ func (s *GetDeviceDefinitionVersionOutput) MarshalFields(e protocol.FieldEncoder
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10014,7 +9940,6 @@ func (s *GetFunctionDefinitionInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.PathTarget, "FunctionDefinitionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10126,7 +10051,6 @@ func (s *GetFunctionDefinitionOutput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10191,7 +10115,6 @@ func (s *GetFunctionDefinitionVersionInput) MarshalFields(e protocol.FieldEncode
 
 		e.SetValue(protocol.PathTarget, "FunctionDefinitionVersionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10283,7 +10206,6 @@ func (s *GetFunctionDefinitionVersionOutput) MarshalFields(e protocol.FieldEncod
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10348,7 +10270,6 @@ func (s *GetGroupCertificateAuthorityInput) MarshalFields(e protocol.FieldEncode
 
 		e.SetValue(protocol.PathTarget, "GroupId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10412,7 +10333,6 @@ func (s *GetGroupCertificateAuthorityOutput) MarshalFields(e protocol.FieldEncod
 
 		e.SetValue(protocol.BodyTarget, "PemEncodedCertificate", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10460,7 +10380,6 @@ func (s *GetGroupCertificateConfigurationInput) MarshalFields(e protocol.FieldEn
 
 		e.SetValue(protocol.PathTarget, "GroupId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10520,7 +10439,6 @@ func (s *GetGroupCertificateConfigurationOutput) MarshalFields(e protocol.FieldE
 
 		e.SetValue(protocol.BodyTarget, "GroupId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10568,7 +10486,6 @@ func (s *GetGroupInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "GroupId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10680,7 +10597,6 @@ func (s *GetGroupOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10745,7 +10661,6 @@ func (s *GetGroupVersionInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "GroupVersionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10837,7 +10752,6 @@ func (s *GetGroupVersionOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10885,7 +10799,6 @@ func (s *GetLoggerDefinitionInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.PathTarget, "LoggerDefinitionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10997,7 +10910,6 @@ func (s *GetLoggerDefinitionOutput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11062,7 +10974,6 @@ func (s *GetLoggerDefinitionVersionInput) MarshalFields(e protocol.FieldEncoder)
 
 		e.SetValue(protocol.PathTarget, "LoggerDefinitionVersionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11154,7 +11065,6 @@ func (s *GetLoggerDefinitionVersionOutput) MarshalFields(e protocol.FieldEncoder
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11175,7 +11085,6 @@ func (s GetServiceRoleForAccountInput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *GetServiceRoleForAccountInput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -11224,7 +11133,6 @@ func (s *GetServiceRoleForAccountOutput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetValue(protocol.BodyTarget, "RoleArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11272,7 +11180,6 @@ func (s *GetSubscriptionDefinitionInput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetValue(protocol.PathTarget, "SubscriptionDefinitionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11384,7 +11291,6 @@ func (s *GetSubscriptionDefinitionOutput) MarshalFields(e protocol.FieldEncoder)
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11449,7 +11355,6 @@ func (s *GetSubscriptionDefinitionVersionInput) MarshalFields(e protocol.FieldEn
 
 		e.SetValue(protocol.PathTarget, "SubscriptionDefinitionVersionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11541,7 +11446,6 @@ func (s *GetSubscriptionDefinitionVersionOutput) MarshalFields(e protocol.FieldE
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11591,7 +11495,6 @@ func (s *GroupCertificateAuthorityProperties) MarshalFields(e protocol.FieldEnco
 
 		e.SetValue(protocol.BodyTarget, "GroupCertificateAuthorityId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11719,7 +11622,6 @@ func (s *GroupInformation) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11819,7 +11721,6 @@ func (s *GroupVersion) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "SubscriptionDefinitionVersionArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11893,7 +11794,6 @@ func (s *ListCoreDefinitionVersionsInput) MarshalFields(e protocol.FieldEncoder)
 
 		e.SetValue(protocol.QueryTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11940,7 +11840,6 @@ func (s *ListCoreDefinitionVersionsOutput) MarshalFields(e protocol.FieldEncoder
 
 		e.SetList(protocol.BodyTarget, "Versions", encodeVersionInformationList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11987,7 +11886,6 @@ func (s *ListCoreDefinitionsInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.QueryTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12034,7 +11932,6 @@ func (s *ListCoreDefinitionsOutput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12108,7 +12005,6 @@ func (s *ListDeploymentsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12158,7 +12054,6 @@ func (s *ListDeploymentsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12232,7 +12127,6 @@ func (s *ListDeviceDefinitionVersionsInput) MarshalFields(e protocol.FieldEncode
 
 		e.SetValue(protocol.QueryTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12279,7 +12173,6 @@ func (s *ListDeviceDefinitionVersionsOutput) MarshalFields(e protocol.FieldEncod
 
 		e.SetList(protocol.BodyTarget, "Versions", encodeVersionInformationList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12326,7 +12219,6 @@ func (s *ListDeviceDefinitionsInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.QueryTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12373,7 +12265,6 @@ func (s *ListDeviceDefinitionsOutput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12447,7 +12338,6 @@ func (s *ListFunctionDefinitionVersionsInput) MarshalFields(e protocol.FieldEnco
 
 		e.SetValue(protocol.QueryTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12494,7 +12384,6 @@ func (s *ListFunctionDefinitionVersionsOutput) MarshalFields(e protocol.FieldEnc
 
 		e.SetList(protocol.BodyTarget, "Versions", encodeVersionInformationList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12541,7 +12430,6 @@ func (s *ListFunctionDefinitionsInput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.QueryTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12588,7 +12476,6 @@ func (s *ListFunctionDefinitionsOutput) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12636,7 +12523,6 @@ func (s *ListGroupCertificateAuthoritiesInput) MarshalFields(e protocol.FieldEnc
 
 		e.SetValue(protocol.PathTarget, "GroupId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12671,7 +12557,6 @@ func (s *ListGroupCertificateAuthoritiesOutput) MarshalFields(e protocol.FieldEn
 
 		e.SetList(protocol.BodyTarget, "GroupCertificateAuthorities", encodeGroupCertificateAuthorityPropertiesList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12745,7 +12630,6 @@ func (s *ListGroupVersionsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12792,7 +12676,6 @@ func (s *ListGroupVersionsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Versions", encodeVersionInformationList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12839,7 +12722,6 @@ func (s *ListGroupsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12889,7 +12771,6 @@ func (s *ListGroupsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12963,7 +12844,6 @@ func (s *ListLoggerDefinitionVersionsInput) MarshalFields(e protocol.FieldEncode
 
 		e.SetValue(protocol.QueryTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13010,7 +12890,6 @@ func (s *ListLoggerDefinitionVersionsOutput) MarshalFields(e protocol.FieldEncod
 
 		e.SetList(protocol.BodyTarget, "Versions", encodeVersionInformationList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13057,7 +12936,6 @@ func (s *ListLoggerDefinitionsInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.QueryTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13104,7 +12982,6 @@ func (s *ListLoggerDefinitionsOutput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13163,6 +13040,11 @@ func (s *ListSubscriptionDefinitionVersionsInput) SetSubscriptionDefinitionId(v 
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *ListSubscriptionDefinitionVersionsInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.SubscriptionDefinitionId != nil {
+		v := *s.SubscriptionDefinitionId
+
+		e.SetValue(protocol.PathTarget, "SubscriptionDefinitionId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.MaxResults != nil {
 		v := *s.MaxResults
 
@@ -13173,12 +13055,6 @@ func (s *ListSubscriptionDefinitionVersionsInput) MarshalFields(e protocol.Field
 
 		e.SetValue(protocol.QueryTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.SubscriptionDefinitionId != nil {
-		v := *s.SubscriptionDefinitionId
-
-		e.SetValue(protocol.PathTarget, "SubscriptionDefinitionId", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -13225,7 +13101,6 @@ func (s *ListSubscriptionDefinitionVersionsOutput) MarshalFields(e protocol.Fiel
 
 		e.SetList(protocol.BodyTarget, "Versions", encodeVersionInformationList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13272,7 +13147,6 @@ func (s *ListSubscriptionDefinitionsInput) MarshalFields(e protocol.FieldEncoder
 
 		e.SetValue(protocol.QueryTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13319,7 +13193,6 @@ func (s *ListSubscriptionDefinitionsOutput) MarshalFields(e protocol.FieldEncode
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13412,7 +13285,6 @@ func (s *Logger) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13456,7 +13328,6 @@ func (s *LoggerDefinitionVersion) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Loggers", encodeLoggerList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13517,22 +13388,21 @@ func (s *ResetDeploymentsInput) SetGroupId(v string) *ResetDeploymentsInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *ResetDeploymentsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.AmznClientToken != nil {
-		v := *s.AmznClientToken
-
-		e.SetValue(protocol.HeaderTarget, "X-Amzn-Client-Token", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.Force != nil {
 		v := *s.Force
 
 		e.SetValue(protocol.BodyTarget, "Force", protocol.BoolValue(v), protocol.Metadata{})
+	}
+	if s.AmznClientToken != nil {
+		v := *s.AmznClientToken
+
+		e.SetValue(protocol.HeaderTarget, "X-Amzn-Client-Token", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.GroupId != nil {
 		v := *s.GroupId
 
 		e.SetValue(protocol.PathTarget, "GroupId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13581,7 +13451,6 @@ func (s *ResetDeploymentsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "DeploymentId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13659,7 +13528,6 @@ func (s *Subscription) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Target", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13703,7 +13571,6 @@ func (s *SubscriptionDefinitionVersion) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetList(protocol.BodyTarget, "Subscriptions", encodeSubscriptionList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13766,7 +13633,6 @@ func (s *UpdateConnectivityInfoInput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.PathTarget, "ThingName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13814,7 +13680,6 @@ func (s *UpdateConnectivityInfoOutput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13865,17 +13730,16 @@ func (s *UpdateCoreDefinitionInput) SetName(v string) *UpdateCoreDefinitionInput
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateCoreDefinitionInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.CoreDefinitionId != nil {
-		v := *s.CoreDefinitionId
-
-		e.SetValue(protocol.PathTarget, "CoreDefinitionId", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.Name != nil {
 		v := *s.Name
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.CoreDefinitionId != nil {
+		v := *s.CoreDefinitionId
 
+		e.SetValue(protocol.PathTarget, "CoreDefinitionId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -13896,7 +13760,6 @@ func (s UpdateCoreDefinitionOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateCoreDefinitionOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -13947,17 +13810,16 @@ func (s *UpdateDeviceDefinitionInput) SetName(v string) *UpdateDeviceDefinitionI
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateDeviceDefinitionInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.DeviceDefinitionId != nil {
-		v := *s.DeviceDefinitionId
-
-		e.SetValue(protocol.PathTarget, "DeviceDefinitionId", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.Name != nil {
 		v := *s.Name
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.DeviceDefinitionId != nil {
+		v := *s.DeviceDefinitionId
 
+		e.SetValue(protocol.PathTarget, "DeviceDefinitionId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -13978,7 +13840,6 @@ func (s UpdateDeviceDefinitionOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateDeviceDefinitionOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -14029,17 +13890,16 @@ func (s *UpdateFunctionDefinitionInput) SetName(v string) *UpdateFunctionDefinit
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateFunctionDefinitionInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.FunctionDefinitionId != nil {
-		v := *s.FunctionDefinitionId
-
-		e.SetValue(protocol.PathTarget, "FunctionDefinitionId", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.Name != nil {
 		v := *s.Name
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.FunctionDefinitionId != nil {
+		v := *s.FunctionDefinitionId
 
+		e.SetValue(protocol.PathTarget, "FunctionDefinitionId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -14060,7 +13920,6 @@ func (s UpdateFunctionDefinitionOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateFunctionDefinitionOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -14122,7 +13981,6 @@ func (s *UpdateGroupCertificateConfigurationInput) MarshalFields(e protocol.Fiel
 
 		e.SetValue(protocol.PathTarget, "GroupId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14182,7 +14040,6 @@ func (s *UpdateGroupCertificateConfigurationOutput) MarshalFields(e protocol.Fie
 
 		e.SetValue(protocol.BodyTarget, "GroupId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14233,17 +14090,16 @@ func (s *UpdateGroupInput) SetName(v string) *UpdateGroupInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateGroupInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.GroupId != nil {
-		v := *s.GroupId
-
-		e.SetValue(protocol.PathTarget, "GroupId", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.Name != nil {
 		v := *s.Name
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.GroupId != nil {
+		v := *s.GroupId
 
+		e.SetValue(protocol.PathTarget, "GroupId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -14264,7 +14120,6 @@ func (s UpdateGroupOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateGroupOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -14315,17 +14170,16 @@ func (s *UpdateLoggerDefinitionInput) SetName(v string) *UpdateLoggerDefinitionI
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateLoggerDefinitionInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.LoggerDefinitionId != nil {
-		v := *s.LoggerDefinitionId
-
-		e.SetValue(protocol.PathTarget, "LoggerDefinitionId", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.Name != nil {
 		v := *s.Name
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.LoggerDefinitionId != nil {
+		v := *s.LoggerDefinitionId
 
+		e.SetValue(protocol.PathTarget, "LoggerDefinitionId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -14346,7 +14200,6 @@ func (s UpdateLoggerDefinitionOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateLoggerDefinitionOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -14407,7 +14260,6 @@ func (s *UpdateSubscriptionDefinitionInput) MarshalFields(e protocol.FieldEncode
 
 		e.SetValue(protocol.PathTarget, "SubscriptionDefinitionId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14428,7 +14280,6 @@ func (s UpdateSubscriptionDefinitionOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateSubscriptionDefinitionOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -14506,7 +14357,6 @@ func (s *VersionInformation) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 

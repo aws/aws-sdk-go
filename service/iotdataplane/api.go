@@ -452,7 +452,6 @@ func (s *DeleteThingShadowInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "thingName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -489,7 +488,6 @@ func (s *DeleteThingShadowOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetStream(protocol.PayloadTarget, "payload", protocol.BytesStream(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -542,7 +540,6 @@ func (s *GetThingShadowInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "thingName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -577,7 +574,6 @@ func (s *GetThingShadowOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetStream(protocol.PayloadTarget, "payload", protocol.BytesStream(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -640,6 +636,11 @@ func (s *PublishInput) SetTopic(v string) *PublishInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PublishInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Topic != nil {
+		v := *s.Topic
+
+		e.SetValue(protocol.PathTarget, "topic", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Payload != nil {
 		v := s.Payload
 
@@ -650,12 +651,6 @@ func (s *PublishInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "qos", protocol.Int64Value(v), protocol.Metadata{})
 	}
-	if s.Topic != nil {
-		v := *s.Topic
-
-		e.SetValue(protocol.PathTarget, "topic", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -675,7 +670,6 @@ func (s PublishOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PublishOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -737,17 +731,16 @@ func (s *UpdateThingShadowInput) SetThingName(v string) *UpdateThingShadowInput 
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateThingShadowInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Payload != nil {
-		v := s.Payload
-
-		e.SetStream(protocol.PayloadTarget, "payload", protocol.BytesStream(v), protocol.Metadata{})
-	}
 	if s.ThingName != nil {
 		v := *s.ThingName
 
 		e.SetValue(protocol.PathTarget, "thingName", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.Payload != nil {
+		v := s.Payload
 
+		e.SetStream(protocol.PayloadTarget, "payload", protocol.BytesStream(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -782,6 +775,5 @@ func (s *UpdateThingShadowOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetStream(protocol.PayloadTarget, "payload", protocol.BytesStream(v), protocol.Metadata{})
 	}
-
 	return nil
 }

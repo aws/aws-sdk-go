@@ -1163,7 +1163,6 @@ func (s *Channel) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1232,7 +1231,6 @@ func (s *CreateChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1306,7 +1304,6 @@ func (s *CreateChannelOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1493,7 +1490,6 @@ func (s *CreateOriginEndpointInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetList(protocol.BodyTarget, "whitelist", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1673,7 +1669,6 @@ func (s *CreateOriginEndpointOutput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetList(protocol.BodyTarget, "whitelist", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1744,7 +1739,6 @@ func (s *DashEncryption) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "spekeKeyProvider", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1897,7 +1891,6 @@ func (s *DashPackage) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "suggestedPresentationDelaySeconds", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1945,7 +1938,6 @@ func (s *DeleteChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1966,7 +1958,6 @@ func (s DeleteChannelOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteChannelOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -2014,7 +2005,6 @@ func (s *DeleteOriginEndpointInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.PathTarget, "id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2035,7 +2025,6 @@ func (s DeleteOriginEndpointOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteOriginEndpointOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -2083,7 +2072,6 @@ func (s *DescribeChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2157,7 +2145,6 @@ func (s *DescribeChannelOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2205,7 +2192,6 @@ func (s *DescribeOriginEndpointInput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.PathTarget, "id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2385,7 +2371,6 @@ func (s *DescribeOriginEndpointOutput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetList(protocol.BodyTarget, "whitelist", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2499,7 +2484,6 @@ func (s *HlsEncryption) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "spekeKeyProvider", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2535,7 +2519,6 @@ func (s *HlsIngest) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "ingestEndpoints", encodeIngestEndpointList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2712,7 +2695,6 @@ func (s *HlsPackage) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "useAudioRenditionGroup", protocol.BoolValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2776,7 +2758,6 @@ func (s *IngestEndpoint) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "username", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2844,7 +2825,6 @@ func (s *ListChannelsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2891,7 +2871,6 @@ func (s *ListChannelsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2964,7 +2943,6 @@ func (s *ListOriginEndpointsInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.QueryTarget, "nextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3011,7 +2989,6 @@ func (s *ListOriginEndpointsOutput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetList(protocol.BodyTarget, "originEndpoints", encodeOriginEndpointList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3068,7 +3045,6 @@ func (s *MssEncryption) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "spekeKeyProvider", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3161,7 +3137,6 @@ func (s *MssPackage) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "streamSelection", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3353,7 +3328,6 @@ func (s *OriginEndpoint) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "whitelist", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3409,7 +3383,6 @@ func (s *RotateChannelCredentialsInput) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetValue(protocol.PathTarget, "id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3483,7 +3456,6 @@ func (s *RotateChannelCredentialsOutput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetValue(protocol.BodyTarget, "id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3593,7 +3565,6 @@ func (s *SpekeKeyProvider) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "url", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3657,7 +3628,6 @@ func (s *StreamSelection) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "streamOrder", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3718,7 +3688,6 @@ func (s *UpdateChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3792,7 +3761,6 @@ func (s *UpdateChannelOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3932,11 +3900,6 @@ func (s *UpdateOriginEndpointInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetFields(protocol.BodyTarget, "hlsPackage", v, protocol.Metadata{})
 	}
-	if s.Id != nil {
-		v := *s.Id
-
-		e.SetValue(protocol.PathTarget, "id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.ManifestName != nil {
 		v := *s.ManifestName
 
@@ -3962,7 +3925,11 @@ func (s *UpdateOriginEndpointInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetList(protocol.BodyTarget, "whitelist", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
+	if s.Id != nil {
+		v := *s.Id
 
+		e.SetValue(protocol.PathTarget, "id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -4142,7 +4109,6 @@ func (s *UpdateOriginEndpointOutput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetList(protocol.BodyTarget, "whitelist", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 

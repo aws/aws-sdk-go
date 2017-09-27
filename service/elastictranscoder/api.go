@@ -2024,7 +2024,6 @@ func (s *Artwork) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "SizingPolicy", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2151,7 +2150,6 @@ func (s *AudioCodecOptions) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Signed", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2397,7 +2395,6 @@ func (s *AudioParameters) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "SampleRate", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2450,7 +2447,6 @@ func (s *CancelJobInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2472,7 +2468,6 @@ func (s CancelJobOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *CancelJobOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -2577,7 +2572,6 @@ func (s *CaptionFormat) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Pattern", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2714,7 +2708,6 @@ func (s *CaptionSource) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "TimeOffset", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2825,7 +2818,6 @@ func (s *Captions) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "MergePolicy", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -2861,7 +2853,6 @@ func (s *Clip) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "TimeSpan", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3078,7 +3069,6 @@ func (s *CreateJobInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetMap(protocol.BodyTarget, "UserMetadata", protocol.EncodeStringMap(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3394,7 +3384,6 @@ func (s *CreateJobOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Watermarks", encodeJobWatermarkList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3558,7 +3547,6 @@ func (s *CreateJobPlaylist) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "PlayReadyDrm", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3602,7 +3590,6 @@ func (s *CreateJobResponse) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Job", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -3955,7 +3942,6 @@ func (s *CreatePipelineInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "ThumbnailConfig", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4011,7 +3997,6 @@ func (s *CreatePipelineOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Warnings", encodeWarningList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4147,7 +4132,6 @@ func (s *CreatePresetInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Video", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4200,7 +4184,6 @@ func (s *CreatePresetOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Warning", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4250,7 +4233,6 @@ func (s *DeletePipelineInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4271,7 +4253,6 @@ func (s DeletePipelineOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeletePipelineOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -4321,7 +4302,6 @@ func (s *DeletePresetInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4342,7 +4322,6 @@ func (s DeletePresetOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeletePresetOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -4434,7 +4413,6 @@ func (s *DetectedProperties) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Width", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4563,7 +4541,6 @@ func (s *Encryption) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Mode", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4696,7 +4673,6 @@ func (s *HlsContentProtection) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Method", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -4784,7 +4760,6 @@ func (s *InputCaptions) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "MergePolicy", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5017,7 +4992,6 @@ func (s *Job) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetMap(protocol.BodyTarget, "UserMetadata", protocol.EncodeStringMap(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5107,7 +5081,6 @@ func (s *JobAlbumArt) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "MergePolicy", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5365,7 +5338,6 @@ func (s *JobInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "TimeSpan", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5838,7 +5810,6 @@ func (s *JobOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Width", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5937,7 +5908,6 @@ func (s *JobWatermark) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "PresetWatermarkId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6010,6 +5980,11 @@ func (s *ListJobsByPipelineInput) SetPipelineId(v string) *ListJobsByPipelineInp
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *ListJobsByPipelineInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.PipelineId != nil {
+		v := *s.PipelineId
+
+		e.SetValue(protocol.PathTarget, "PipelineId", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Ascending != nil {
 		v := *s.Ascending
 
@@ -6020,12 +5995,6 @@ func (s *ListJobsByPipelineInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "PageToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.PipelineId != nil {
-		v := *s.PipelineId
-
-		e.SetValue(protocol.PathTarget, "PipelineId", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -6076,7 +6045,6 @@ func (s *ListJobsByPipelineOutput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.BodyTarget, "NextPageToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6143,6 +6111,11 @@ func (s *ListJobsByStatusInput) SetStatus(v string) *ListJobsByStatusInput {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *ListJobsByStatusInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Status != nil {
+		v := *s.Status
+
+		e.SetValue(protocol.PathTarget, "Status", protocol.StringValue(v), protocol.Metadata{})
+	}
 	if s.Ascending != nil {
 		v := *s.Ascending
 
@@ -6153,12 +6126,6 @@ func (s *ListJobsByStatusInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "PageToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.Status != nil {
-		v := *s.Status
-
-		e.SetValue(protocol.PathTarget, "Status", protocol.StringValue(v), protocol.Metadata{})
-	}
-
 	return nil
 }
 
@@ -6209,7 +6176,6 @@ func (s *ListJobsByStatusOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "NextPageToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6261,7 +6227,6 @@ func (s *ListPipelinesInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "PageToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6312,7 +6277,6 @@ func (s *ListPipelinesOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Pipelines", encodePipelineList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6364,7 +6328,6 @@ func (s *ListPresetsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "PageToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6415,7 +6378,6 @@ func (s *ListPresetsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Presets", encodePresetList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6500,7 +6462,6 @@ func (s *Notifications) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Warning", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6603,7 +6564,6 @@ func (s *Permission) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "GranteeType", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6907,7 +6867,6 @@ func (s *Pipeline) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "ThumbnailConfig", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7030,7 +6989,6 @@ func (s *PipelineOutputConfig) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "StorageClass", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7177,7 +7135,6 @@ func (s *PlayReadyDrm) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "LicenseAcquisitionUrl", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7347,7 +7304,6 @@ func (s *Playlist) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "StatusDetail", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7513,7 +7469,6 @@ func (s *Preset) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Video", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7825,7 +7780,6 @@ func (s *PresetWatermark) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "VerticalOffset", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7883,7 +7837,6 @@ func (s *ReadJobInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7918,7 +7871,6 @@ func (s *ReadJobOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Job", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7968,7 +7920,6 @@ func (s *ReadPipelineInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8022,7 +7973,6 @@ func (s *ReadPipelineOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Warnings", encodeWarningList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8072,7 +8022,6 @@ func (s *ReadPresetInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8107,7 +8056,6 @@ func (s *ReadPresetOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Preset", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8218,7 +8166,6 @@ func (s *TestRoleInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Topics", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8269,7 +8216,6 @@ func (s *TestRoleOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Success", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8458,7 +8404,6 @@ func (s *Thumbnails) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "SizingPolicy", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8516,7 +8461,6 @@ func (s *TimeSpan) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "StartTime", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8579,7 +8523,6 @@ func (s *Timing) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "SubmitTimeMillis", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8864,11 +8807,6 @@ func (s *UpdatePipelineInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "ContentConfig", v, protocol.Metadata{})
 	}
-	if s.Id != nil {
-		v := *s.Id
-
-		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.InputBucket != nil {
 		v := *s.InputBucket
 
@@ -8894,7 +8832,11 @@ func (s *UpdatePipelineInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "ThumbnailConfig", v, protocol.Metadata{})
 	}
+	if s.Id != nil {
+		v := *s.Id
 
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -8975,17 +8917,16 @@ func (s *UpdatePipelineNotificationsInput) SetNotifications(v *Notifications) *U
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdatePipelineNotificationsInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Id != nil {
-		v := *s.Id
-
-		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.Notifications != nil {
 		v := s.Notifications
 
 		e.SetFields(protocol.BodyTarget, "Notifications", v, protocol.Metadata{})
 	}
+	if s.Id != nil {
+		v := *s.Id
 
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -9021,7 +8962,6 @@ func (s *UpdatePipelineNotificationsOutput) MarshalFields(e protocol.FieldEncode
 
 		e.SetFields(protocol.BodyTarget, "Pipeline", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9076,7 +9016,6 @@ func (s *UpdatePipelineOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Warnings", encodeWarningList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9139,17 +9078,16 @@ func (s *UpdatePipelineStatusInput) SetStatus(v string) *UpdatePipelineStatusInp
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdatePipelineStatusInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.Id != nil {
-		v := *s.Id
-
-		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.Status != nil {
 		v := *s.Status
 
 		e.SetValue(protocol.BodyTarget, "Status", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.Id != nil {
+		v := *s.Id
 
+		e.SetValue(protocol.PathTarget, "Id", protocol.StringValue(v), protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -9185,7 +9123,6 @@ func (s *UpdatePipelineStatusOutput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetFields(protocol.BodyTarget, "Pipeline", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9803,7 +9740,6 @@ func (s *VideoParameters) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Watermarks", encodePresetWatermarkList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9860,7 +9796,6 @@ func (s *Warning) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Message", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 

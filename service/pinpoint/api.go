@@ -5349,7 +5349,6 @@ func (s *ADMChannelRequest) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Enabled", protocol.BoolValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5511,7 +5510,6 @@ func (s *ADMChannelResponse) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5778,7 +5776,6 @@ func (s *ADMMessage) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Url", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -5912,7 +5909,6 @@ func (s *APNSChannelRequest) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "TokenKeyId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6102,7 +6098,6 @@ func (s *APNSChannelResponse) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6389,7 +6384,6 @@ func (s *APNSMessage) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Url", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6523,7 +6517,6 @@ func (s *APNSSandboxChannelRequest) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "TokenKeyId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6713,7 +6706,6 @@ func (s *APNSSandboxChannelResponse) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -6847,7 +6839,6 @@ func (s *APNSVoipChannelRequest) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "TokenKeyId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7037,7 +7028,6 @@ func (s *APNSVoipChannelResponse) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7171,7 +7161,6 @@ func (s *APNSVoipSandboxChannelRequest) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetValue(protocol.BodyTarget, "TokenKeyId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7361,7 +7350,6 @@ func (s *APNSVoipSandboxChannelResponse) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7397,7 +7385,6 @@ func (s *ActivitiesResponse) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Item", encodeActivityResponseList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7604,7 +7591,6 @@ func (s *ActivityResponse) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "TreatmentId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7722,7 +7708,6 @@ func (s *AddressConfiguration) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "TitleOverride", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7780,7 +7765,6 @@ func (s *ApplicationResponse) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7870,7 +7854,6 @@ func (s *ApplicationSettingsResource) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetFields(protocol.BodyTarget, "QuietTime", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7921,7 +7904,6 @@ func (s *ApplicationsResponse) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -7972,7 +7954,6 @@ func (s *AttributeDimension) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Values", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8044,7 +8025,6 @@ func (s *BaiduChannelRequest) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "SecretKey", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8220,7 +8200,6 @@ func (s *BaiduChannelResponse) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8441,7 +8420,6 @@ func (s *BaiduMessage) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Url", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8520,7 +8498,6 @@ func (s *CampaignEmailMessage) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Title", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8601,7 +8578,6 @@ func (s *CampaignLimits) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Total", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8893,7 +8869,6 @@ func (s *CampaignResponse) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -8965,7 +8940,6 @@ func (s *CampaignSmsMessage) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "SenderId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9003,7 +8977,6 @@ func (s *CampaignState) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "CampaignStatus", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9054,7 +9027,6 @@ func (s *CampaignsResponse) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9104,7 +9076,6 @@ func (s *CreateAppInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "CreateApplicationRequest", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9141,7 +9112,6 @@ func (s *CreateAppOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "ApplicationResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9177,7 +9147,6 @@ func (s *CreateApplicationRequest) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9244,7 +9213,6 @@ func (s *CreateCampaignInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "WriteCampaignRequest", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9281,7 +9249,6 @@ func (s *CreateCampaignOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "CampaignResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9346,7 +9313,6 @@ func (s *CreateImportJobInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "ImportJobRequest", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9381,7 +9347,6 @@ func (s *CreateImportJobOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "ImportJobResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9448,7 +9413,6 @@ func (s *CreateSegmentInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "WriteSegmentRequest", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9485,7 +9449,6 @@ func (s *CreateSegmentOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "SegmentResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9539,7 +9502,6 @@ func (s *DefaultMessage) MarshalFields(e protocol.FieldEncoder) error {
 			}
 		}, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9670,7 +9632,6 @@ func (s *DefaultPushNotificationMessage) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetValue(protocol.BodyTarget, "Url", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9718,7 +9679,6 @@ func (s *DeleteAdmChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9755,7 +9715,6 @@ func (s *DeleteAdmChannelOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "ADMChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9803,7 +9762,6 @@ func (s *DeleteApnsChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9840,7 +9798,6 @@ func (s *DeleteApnsChannelOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "APNSChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9888,7 +9845,6 @@ func (s *DeleteApnsSandboxChannelInput) MarshalFields(e protocol.FieldEncoder) e
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9925,7 +9881,6 @@ func (s *DeleteApnsSandboxChannelOutput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetFields(protocol.PayloadTarget, "APNSSandboxChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -9973,7 +9928,6 @@ func (s *DeleteApnsVoipChannelInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10010,7 +9964,6 @@ func (s *DeleteApnsVoipChannelOutput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetFields(protocol.PayloadTarget, "APNSVoipChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10058,7 +10011,6 @@ func (s *DeleteApnsVoipSandboxChannelInput) MarshalFields(e protocol.FieldEncode
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10095,7 +10047,6 @@ func (s *DeleteApnsVoipSandboxChannelOutput) MarshalFields(e protocol.FieldEncod
 
 		e.SetFields(protocol.PayloadTarget, "APNSVoipSandboxChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10143,7 +10094,6 @@ func (s *DeleteAppInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10180,7 +10130,6 @@ func (s *DeleteAppOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "ApplicationResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10228,7 +10177,6 @@ func (s *DeleteBaiduChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10265,7 +10213,6 @@ func (s *DeleteBaiduChannelOutput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetFields(protocol.PayloadTarget, "BaiduChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10330,7 +10277,6 @@ func (s *DeleteCampaignInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "campaign-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10367,7 +10313,6 @@ func (s *DeleteCampaignOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "CampaignResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10415,7 +10360,6 @@ func (s *DeleteEmailChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10452,7 +10396,6 @@ func (s *DeleteEmailChannelOutput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetFields(protocol.PayloadTarget, "EmailChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10502,7 +10445,6 @@ func (s *DeleteEventStreamInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10539,7 +10481,6 @@ func (s *DeleteEventStreamOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "EventStream", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10587,7 +10528,6 @@ func (s *DeleteGcmChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10624,7 +10564,6 @@ func (s *DeleteGcmChannelOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "GCMChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10689,7 +10628,6 @@ func (s *DeleteSegmentInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "segment-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10726,7 +10664,6 @@ func (s *DeleteSegmentOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "SegmentResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10774,7 +10711,6 @@ func (s *DeleteSmsChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10811,7 +10747,6 @@ func (s *DeleteSmsChannelOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "SMSChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -10932,7 +10867,6 @@ func (s *DirectMessageConfiguration) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetFields(protocol.BodyTarget, "SMSMessage", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11011,7 +10945,6 @@ func (s *EmailChannelRequest) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "RoleArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11216,7 +11149,6 @@ func (s *EmailChannelResponse) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11413,7 +11345,6 @@ func (s *EndpointBatchItem) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "User", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11457,7 +11388,6 @@ func (s *EndpointBatchRequest) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Item", encodeEndpointBatchItemList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11592,7 +11522,6 @@ func (s *EndpointDemographic) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Timezone", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11701,7 +11630,6 @@ func (s *EndpointLocation) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Region", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11793,7 +11721,6 @@ func (s *EndpointMessageResult) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "UpdatedToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -11984,7 +11911,6 @@ func (s *EndpointRequest) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "User", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12228,7 +12154,6 @@ func (s *EndpointResponse) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "User", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12324,7 +12249,6 @@ func (s *EndpointSendConfiguration) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.BodyTarget, "TitleOverride", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12386,7 +12310,6 @@ func (s *EndpointUser) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "UserId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12496,7 +12419,6 @@ func (s *EventStream) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "RoleArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12546,7 +12468,6 @@ func (s *GCMChannelRequest) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Enabled", protocol.BoolValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -12722,7 +12643,6 @@ func (s *GCMChannelResponse) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13005,7 +12925,6 @@ func (s *GCMMessage) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Url", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13053,7 +12972,6 @@ func (s *GetAdmChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13090,7 +13008,6 @@ func (s *GetAdmChannelOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "ADMChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13138,7 +13055,6 @@ func (s *GetApnsChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13175,7 +13091,6 @@ func (s *GetApnsChannelOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "APNSChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13223,7 +13138,6 @@ func (s *GetApnsSandboxChannelInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13260,7 +13174,6 @@ func (s *GetApnsSandboxChannelOutput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetFields(protocol.PayloadTarget, "APNSSandboxChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13308,7 +13221,6 @@ func (s *GetApnsVoipChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13345,7 +13257,6 @@ func (s *GetApnsVoipChannelOutput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetFields(protocol.PayloadTarget, "APNSVoipChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13393,7 +13304,6 @@ func (s *GetApnsVoipSandboxChannelInput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13430,7 +13340,6 @@ func (s *GetApnsVoipSandboxChannelOutput) MarshalFields(e protocol.FieldEncoder)
 
 		e.SetFields(protocol.PayloadTarget, "APNSVoipSandboxChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13478,7 +13387,6 @@ func (s *GetAppInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13515,7 +13423,6 @@ func (s *GetAppOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "ApplicationResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13563,7 +13470,6 @@ func (s *GetApplicationSettingsInput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13600,7 +13506,6 @@ func (s *GetApplicationSettingsOutput) MarshalFields(e protocol.FieldEncoder) er
 
 		e.SetFields(protocol.PayloadTarget, "ApplicationSettingsResource", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13647,7 +13552,6 @@ func (s *GetAppsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "token", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13684,7 +13588,6 @@ func (s *GetAppsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "ApplicationsResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13732,7 +13635,6 @@ func (s *GetBaiduChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13769,7 +13671,6 @@ func (s *GetBaiduChannelOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "BaiduChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13860,7 +13761,6 @@ func (s *GetCampaignActivitiesInput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetValue(protocol.QueryTarget, "token", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13897,7 +13797,6 @@ func (s *GetCampaignActivitiesOutput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetFields(protocol.PayloadTarget, "ActivitiesResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13962,7 +13861,6 @@ func (s *GetCampaignInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "campaign-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -13999,7 +13897,6 @@ func (s *GetCampaignOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "CampaignResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14081,7 +13978,6 @@ func (s *GetCampaignVersionInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14118,7 +14014,6 @@ func (s *GetCampaignVersionOutput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetFields(protocol.PayloadTarget, "CampaignResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14209,7 +14104,6 @@ func (s *GetCampaignVersionsInput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetValue(protocol.QueryTarget, "token", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14246,7 +14140,6 @@ func (s *GetCampaignVersionsOutput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetFields(protocol.PayloadTarget, "CampaignsResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14320,7 +14213,6 @@ func (s *GetCampaignsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "token", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14357,7 +14249,6 @@ func (s *GetCampaignsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "CampaignsResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14405,7 +14296,6 @@ func (s *GetEmailChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14442,7 +14332,6 @@ func (s *GetEmailChannelOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "EmailChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14507,7 +14396,6 @@ func (s *GetEndpointInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "endpoint-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14544,7 +14432,6 @@ func (s *GetEndpointOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "EndpointResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14594,7 +14481,6 @@ func (s *GetEventStreamInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14631,7 +14517,6 @@ func (s *GetEventStreamOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "EventStream", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14679,7 +14564,6 @@ func (s *GetGcmChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14716,7 +14600,6 @@ func (s *GetGcmChannelOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "GCMChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14781,7 +14664,6 @@ func (s *GetImportJobInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "job-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14816,7 +14698,6 @@ func (s *GetImportJobOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "ImportJobResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14890,7 +14771,6 @@ func (s *GetImportJobsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "token", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -14927,7 +14807,6 @@ func (s *GetImportJobsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "ImportJobsResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15003,22 +14882,21 @@ func (s *GetSegmentImportJobsInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.PageSize != nil {
-		v := *s.PageSize
-
-		e.SetValue(protocol.QueryTarget, "page-size", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.SegmentId != nil {
 		v := *s.SegmentId
 
 		e.SetValue(protocol.PathTarget, "segment-id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.PageSize != nil {
+		v := *s.PageSize
+
+		e.SetValue(protocol.QueryTarget, "page-size", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.Token != nil {
 		v := *s.Token
 
 		e.SetValue(protocol.QueryTarget, "token", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15055,7 +14933,6 @@ func (s *GetSegmentImportJobsOutput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetFields(protocol.PayloadTarget, "ImportJobsResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15120,7 +14997,6 @@ func (s *GetSegmentInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "segment-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15157,7 +15033,6 @@ func (s *GetSegmentOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "SegmentResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15239,7 +15114,6 @@ func (s *GetSegmentVersionInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "version", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15276,7 +15150,6 @@ func (s *GetSegmentVersionOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "SegmentResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15352,22 +15225,21 @@ func (s *GetSegmentVersionsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-	if s.PageSize != nil {
-		v := *s.PageSize
-
-		e.SetValue(protocol.QueryTarget, "page-size", protocol.StringValue(v), protocol.Metadata{})
-	}
 	if s.SegmentId != nil {
 		v := *s.SegmentId
 
 		e.SetValue(protocol.PathTarget, "segment-id", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.PageSize != nil {
+		v := *s.PageSize
+
+		e.SetValue(protocol.QueryTarget, "page-size", protocol.StringValue(v), protocol.Metadata{})
 	}
 	if s.Token != nil {
 		v := *s.Token
 
 		e.SetValue(protocol.QueryTarget, "token", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15404,7 +15276,6 @@ func (s *GetSegmentVersionsOutput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetFields(protocol.PayloadTarget, "SegmentsResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15478,7 +15349,6 @@ func (s *GetSegmentsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "token", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15515,7 +15385,6 @@ func (s *GetSegmentsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "SegmentsResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15563,7 +15432,6 @@ func (s *GetSmsChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15600,7 +15468,6 @@ func (s *GetSmsChannelOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "SMSChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15742,7 +15609,6 @@ func (s *ImportJobRequest) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "SegmentName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -15884,7 +15750,6 @@ func (s *ImportJobResource) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "SegmentName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16091,7 +15956,6 @@ func (s *ImportJobResponse) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Type", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16150,7 +16014,6 @@ func (s *ImportJobsResponse) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16335,7 +16198,6 @@ func (s *Message) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Url", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16385,7 +16247,6 @@ func (s *MessageBody) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "RequestID", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16509,7 +16370,6 @@ func (s *MessageConfiguration) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "SMSMessage", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16588,7 +16448,6 @@ func (s *MessageRequest) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "MessageConfiguration", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16669,7 +16528,6 @@ func (s *MessageResponse) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetMap(protocol.BodyTarget, "Result", encodeMessageResultMap(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16747,7 +16605,6 @@ func (s *MessageResult) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "UpdatedToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16824,7 +16681,6 @@ func (s *PutEventStreamInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "WriteEventStream", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16861,7 +16717,6 @@ func (s *PutEventStreamOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "EventStream", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16911,7 +16766,6 @@ func (s *QuietTime) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Start", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -16964,7 +16818,6 @@ func (s *RecencyDimension) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "RecencyType", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17028,7 +16881,6 @@ func (s *SMSChannelRequest) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "ShortCode", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17218,7 +17070,6 @@ func (s *SMSChannelResponse) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17300,7 +17151,6 @@ func (s *SMSMessage) MarshalFields(e protocol.FieldEncoder) error {
 			}
 		}, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17409,7 +17259,6 @@ func (s *Schedule) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Timezone", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17445,7 +17294,6 @@ func (s *SegmentBehaviors) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Recency", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17551,7 +17399,6 @@ func (s *SegmentDemographics) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Platform", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17643,7 +17490,6 @@ func (s *SegmentDimensions) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetMap(protocol.BodyTarget, "UserAttributes", encodeAttributeDimensionMap(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17752,7 +17598,6 @@ func (s *SegmentImportResource) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Size", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17788,7 +17633,6 @@ func (s *SegmentLocation) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "Country", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -17942,7 +17786,6 @@ func (s *SegmentResponse) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Version", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18001,7 +17844,6 @@ func (s *SegmentsResponse) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18068,7 +17910,6 @@ func (s *SendMessagesInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "MessageRequest", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18105,7 +17946,6 @@ func (s *SendMessagesOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "MessageResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18169,7 +18009,6 @@ func (s *SendUsersMessageRequest) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetMap(protocol.BodyTarget, "Users", encodeEndpointSendConfigurationMap(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18238,7 +18077,6 @@ func (s *SendUsersMessageResponse) MarshalFields(e protocol.FieldEncoder) error 
 			}
 		}, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18305,7 +18143,6 @@ func (s *SendUsersMessagesInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "SendUsersMessageRequest", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18342,7 +18179,6 @@ func (s *SendUsersMessagesOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "SendUsersMessageResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18393,7 +18229,6 @@ func (s *SetDimension) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Values", protocol.EncodeStringList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18513,7 +18348,6 @@ func (s *TreatmentResource) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "TreatmentName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18578,17 +18412,16 @@ func (s *UpdateAdmChannelInput) SetApplicationId(v string) *UpdateAdmChannelInpu
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateAdmChannelInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.ADMChannelRequest != nil {
-		v := s.ADMChannelRequest
-
-		e.SetFields(protocol.PayloadTarget, "ADMChannelRequest", v, protocol.Metadata{})
-	}
 	if s.ApplicationId != nil {
 		v := *s.ApplicationId
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.ADMChannelRequest != nil {
+		v := s.ADMChannelRequest
 
+		e.SetFields(protocol.PayloadTarget, "ADMChannelRequest", v, protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -18625,7 +18458,6 @@ func (s *UpdateAdmChannelOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "ADMChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18682,17 +18514,16 @@ func (s *UpdateApnsChannelInput) SetApplicationId(v string) *UpdateApnsChannelIn
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateApnsChannelInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.APNSChannelRequest != nil {
-		v := s.APNSChannelRequest
-
-		e.SetFields(protocol.PayloadTarget, "APNSChannelRequest", v, protocol.Metadata{})
-	}
 	if s.ApplicationId != nil {
 		v := *s.ApplicationId
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.APNSChannelRequest != nil {
+		v := s.APNSChannelRequest
 
+		e.SetFields(protocol.PayloadTarget, "APNSChannelRequest", v, protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -18729,7 +18560,6 @@ func (s *UpdateApnsChannelOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "APNSChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18786,17 +18616,16 @@ func (s *UpdateApnsSandboxChannelInput) SetApplicationId(v string) *UpdateApnsSa
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateApnsSandboxChannelInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.APNSSandboxChannelRequest != nil {
-		v := s.APNSSandboxChannelRequest
-
-		e.SetFields(protocol.PayloadTarget, "APNSSandboxChannelRequest", v, protocol.Metadata{})
-	}
 	if s.ApplicationId != nil {
 		v := *s.ApplicationId
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.APNSSandboxChannelRequest != nil {
+		v := s.APNSSandboxChannelRequest
 
+		e.SetFields(protocol.PayloadTarget, "APNSSandboxChannelRequest", v, protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -18833,7 +18662,6 @@ func (s *UpdateApnsSandboxChannelOutput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetFields(protocol.PayloadTarget, "APNSSandboxChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18890,17 +18718,16 @@ func (s *UpdateApnsVoipChannelInput) SetApplicationId(v string) *UpdateApnsVoipC
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateApnsVoipChannelInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.APNSVoipChannelRequest != nil {
-		v := s.APNSVoipChannelRequest
-
-		e.SetFields(protocol.PayloadTarget, "APNSVoipChannelRequest", v, protocol.Metadata{})
-	}
 	if s.ApplicationId != nil {
 		v := *s.ApplicationId
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.APNSVoipChannelRequest != nil {
+		v := s.APNSVoipChannelRequest
 
+		e.SetFields(protocol.PayloadTarget, "APNSVoipChannelRequest", v, protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -18937,7 +18764,6 @@ func (s *UpdateApnsVoipChannelOutput) MarshalFields(e protocol.FieldEncoder) err
 
 		e.SetFields(protocol.PayloadTarget, "APNSVoipChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -18994,17 +18820,16 @@ func (s *UpdateApnsVoipSandboxChannelInput) SetApplicationId(v string) *UpdateAp
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *UpdateApnsVoipSandboxChannelInput) MarshalFields(e protocol.FieldEncoder) error {
-	if s.APNSVoipSandboxChannelRequest != nil {
-		v := s.APNSVoipSandboxChannelRequest
-
-		e.SetFields(protocol.PayloadTarget, "APNSVoipSandboxChannelRequest", v, protocol.Metadata{})
-	}
 	if s.ApplicationId != nil {
 		v := *s.ApplicationId
 
 		e.SetValue(protocol.PathTarget, "application-id", protocol.StringValue(v), protocol.Metadata{})
 	}
+	if s.APNSVoipSandboxChannelRequest != nil {
+		v := s.APNSVoipSandboxChannelRequest
 
+		e.SetFields(protocol.PayloadTarget, "APNSVoipSandboxChannelRequest", v, protocol.Metadata{})
+	}
 	return nil
 }
 
@@ -19041,7 +18866,6 @@ func (s *UpdateApnsVoipSandboxChannelOutput) MarshalFields(e protocol.FieldEncod
 
 		e.SetFields(protocol.PayloadTarget, "APNSVoipSandboxChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19108,7 +18932,6 @@ func (s *UpdateApplicationSettingsInput) MarshalFields(e protocol.FieldEncoder) 
 
 		e.SetFields(protocol.PayloadTarget, "WriteApplicationSettingsRequest", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19145,7 +18968,6 @@ func (s *UpdateApplicationSettingsOutput) MarshalFields(e protocol.FieldEncoder)
 
 		e.SetFields(protocol.PayloadTarget, "ApplicationSettingsResource", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19212,7 +19034,6 @@ func (s *UpdateBaiduChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "BaiduChannelRequest", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19249,7 +19070,6 @@ func (s *UpdateBaiduChannelOutput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetFields(protocol.PayloadTarget, "BaiduChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19333,7 +19153,6 @@ func (s *UpdateCampaignInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "WriteCampaignRequest", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19370,7 +19189,6 @@ func (s *UpdateCampaignOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "CampaignResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19437,7 +19255,6 @@ func (s *UpdateEmailChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "EmailChannelRequest", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19474,7 +19291,6 @@ func (s *UpdateEmailChannelOutput) MarshalFields(e protocol.FieldEncoder) error 
 
 		e.SetFields(protocol.PayloadTarget, "EmailChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19558,7 +19374,6 @@ func (s *UpdateEndpointInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "EndpointRequest", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19595,7 +19410,6 @@ func (s *UpdateEndpointOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "MessageBody", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19662,7 +19476,6 @@ func (s *UpdateEndpointsBatchInput) MarshalFields(e protocol.FieldEncoder) error
 
 		e.SetFields(protocol.PayloadTarget, "EndpointBatchRequest", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19699,7 +19512,6 @@ func (s *UpdateEndpointsBatchOutput) MarshalFields(e protocol.FieldEncoder) erro
 
 		e.SetFields(protocol.PayloadTarget, "MessageBody", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19766,7 +19578,6 @@ func (s *UpdateGcmChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "GCMChannelRequest", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19803,7 +19614,6 @@ func (s *UpdateGcmChannelOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "GCMChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19887,7 +19697,6 @@ func (s *UpdateSegmentInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "WriteSegmentRequest", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19924,7 +19733,6 @@ func (s *UpdateSegmentOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "SegmentResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -19991,7 +19799,6 @@ func (s *UpdateSmsChannelInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "SMSChannelRequest", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20028,7 +19835,6 @@ func (s *UpdateSmsChannelOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.PayloadTarget, "SMSChannelResponse", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20082,7 +19888,6 @@ func (s *WriteApplicationSettingsRequest) MarshalFields(e protocol.FieldEncoder)
 
 		e.SetFields(protocol.BodyTarget, "QuietTime", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20274,7 +20079,6 @@ func (s *WriteCampaignRequest) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "TreatmentName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20327,7 +20131,6 @@ func (s *WriteEventStream) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "RoleArn", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20377,7 +20180,6 @@ func (s *WriteSegmentRequest) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -20469,7 +20271,6 @@ func (s *WriteTreatmentResource) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "TreatmentName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 

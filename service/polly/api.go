@@ -635,7 +635,6 @@ func (s *DeleteLexiconInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "LexiconName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -656,7 +655,6 @@ func (s DeleteLexiconOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *DeleteLexiconOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -708,7 +706,6 @@ func (s *DescribeVoicesInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -758,7 +755,6 @@ func (s *DescribeVoicesOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetList(protocol.BodyTarget, "Voices", encodeVoiceList(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -808,7 +804,6 @@ func (s *GetLexiconInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "LexiconName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -859,7 +854,6 @@ func (s *GetLexiconOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetFields(protocol.BodyTarget, "LexiconAttributes", v, protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -911,7 +905,6 @@ func (s *Lexicon) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1020,7 +1013,6 @@ func (s *LexiconAttributes) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Size", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1070,7 +1062,6 @@ func (s *LexiconDescription) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1114,7 +1105,6 @@ func (s *ListLexiconsInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.QueryTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1164,7 +1154,6 @@ func (s *ListLexiconsOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1235,7 +1224,6 @@ func (s *PutLexiconInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.PathTarget, "LexiconName", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1256,7 +1244,6 @@ func (s PutLexiconOutput) GoString() string {
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *PutLexiconOutput) MarshalFields(e protocol.FieldEncoder) error {
-
 	return nil
 }
 
@@ -1413,7 +1400,6 @@ func (s *SynthesizeSpeechInput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "VoiceId", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 
@@ -1475,7 +1461,6 @@ func (s *SynthesizeSpeechOutput) SetRequestCharacters(v int64) *SynthesizeSpeech
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *SynthesizeSpeechOutput) MarshalFields(e protocol.FieldEncoder) error {
-	// Skipping AudioStream Output type's body not valid.
 	if s.ContentType != nil {
 		v := *s.ContentType
 
@@ -1486,7 +1471,7 @@ func (s *SynthesizeSpeechOutput) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.HeaderTarget, "x-amzn-RequestCharacters", protocol.Int64Value(v), protocol.Metadata{})
 	}
-
+	// Skipping AudioStream Output type's body not valid.
 	return nil
 }
 
@@ -1580,7 +1565,6 @@ func (s *Voice) MarshalFields(e protocol.FieldEncoder) error {
 
 		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
 	}
-
 	return nil
 }
 

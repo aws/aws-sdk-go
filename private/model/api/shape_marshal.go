@@ -15,7 +15,7 @@ import (
 // Will panic if error.
 func MarshalShapeGoCode(s *Shape) string {
 	w := &bytes.Buffer{}
-	if err := marshalShapeTmpl.Execute(w, s); err != nil {
+	if err := marshalShapeTmpl.ExecuteTemplate(w, "encode shape", s); err != nil {
 		panic(fmt.Sprintf("failed to render shape's fields marshaler, %v", err))
 	}
 
@@ -57,15 +57,29 @@ func MarshalShapeRefGoCode(refName string, ref *ShapeRef, context *Shape) string
 var marshalShapeTmpl = template.Must(template.New("marshalShapeTmpl").Funcs(
 	map[string]interface{}{
 		"MarshalShapeRefGoCode": MarshalShapeRefGoCode,
+		"nestedRefsByLocation":  nestedRefsByLocation,
+		"isShapeFieldsNested":   isShapeFieldsNested,
 	},
 ).Parse(`
+{{ define "encode shape" -}}
 {{ $shapeName := $.ShapeName -}}
 
 // MarshalFields encodes the AWS API shape using the passed in protocol encoder.
 func (s *{{ $shapeName }}) MarshalFields(e protocol.FieldEncoder) error {
-	{{ range $name, $ref := $.MemberRefs -}}
-		{{ MarshalShapeRefGoCode $name $ref $ }}
-	{{ end }}
+	{{ $refMap := nestedRefsByLocation $ -}}
+	{{ range $loc, $refs := $refMap -}}
+		{{ $fieldsNested := isShapeFieldsNested $loc $ -}}
+		{{ if $fieldsNested -}}
+			e.SetFields(protocol.BodyTarget, "{{ $.LocationName }}", protocol.FieldMarshalerFunc(func(e protocol.FieldEncoder) error {
+		{{ end -}}
+		{{ range $name, $ref := $refs -}}
+			{{ MarshalShapeRefGoCode $name $ref $ }}
+		{{ end -}}
+		{{ if $fieldsNested -}}
+			return nil
+		}), {{ template "shape metadata" $ }})
+		{{ end -}}
+	{{ end -}}
 	return nil
 }
 
@@ -88,7 +102,44 @@ func encode{{ $shapeName }}Map(vs map[string]*{{ $shapeName }}) func(protocol.Ma
 	}
 }
 {{- end }}
+{{- end }}
+
+{{ define "shape metadata" -}}
+	protocol.Metadata{
+		{{- if $.XMLNamespace.URI -}}
+			XMLNamespaceURI: "{{ $.XMLNamespace.URI }}",
+		{{- end -}}
+	}
+{{- end }}
 `))
+
+func nestedRefsByLocation(s *Shape) map[string]map[string]*ShapeRef {
+	refs := map[string]map[string]*ShapeRef{}
+
+	for refName, ref := range s.MemberRefs {
+		mRef := marshalShapeRef{
+			Name:    refName,
+			Ref:     ref,
+			Context: s,
+		}
+
+		loc := mRef.Location()
+
+		var rs map[string]*ShapeRef
+		var ok bool
+		if rs, ok = refs[loc]; !ok {
+			rs = map[string]*ShapeRef{}
+		}
+		rs[refName] = ref
+
+		refs[loc] = rs
+	}
+
+	return refs
+}
+func isShapeFieldsNested(loc string, s *Shape) bool {
+	return loc == "Body" && len(s.LocationName) != 0 && s.API.Metadata.Protocol == "rest-xml"
+}
 
 var marshalShapeRefTmpl = template.Must(template.New("marshalShapeRefTmpl").Parse(`
 {{ define "encode field" -}}
@@ -353,6 +404,7 @@ func (r marshalShapeRef) Location() string {
 		return "Body"
 	}
 }
+
 func (r marshalShapeRef) LocationName() string {
 	if l := r.Ref.QueryName; len(l) > 0 {
 		// Special case for EC2 query
