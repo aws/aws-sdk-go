@@ -170,7 +170,8 @@ type FieldBuffer struct {
 // This buffer is only valid until the next time GetValue is called.
 func (b *FieldBuffer) GetValue(m ValueMarshaler) ([]byte, error) {
 	v, err := m.MarshalValueBuf(b.buf)
-	b.buf = v
-	b.buf = b.buf[0:0]
+	if len(v) > len(b.buf) {
+		b.buf = v
+	}
 	return v, err
 }

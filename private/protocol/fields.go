@@ -39,18 +39,15 @@ func (v BytesValue) MarshalValue() (string, error) {
 
 // MarshalValueBuf formats the value into a byte slice for encoding.
 // If there is enough room in the passed in slice v will be appended to it.
-//
-// Will reset the length of the passed in slice to 0.
 func (v BytesValue) MarshalValueBuf(b []byte) ([]byte, error) {
-	b = b[0:0]
 	m := []byte(v)
 
 	n := base64.StdEncoding.EncodedLen(len(m))
-	if cap(b) < n {
+	if len(b) < n {
 		b = make([]byte, n)
 	}
 	base64.StdEncoding.Encode(b, m)
-	return b, nil
+	return b[:n], nil
 }
 
 // StringValue provies encoding of string for AWS protocols.
