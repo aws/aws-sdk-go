@@ -110,7 +110,7 @@ func init() {
 				gucumber.T.Errorf("expect %v, got %v", e, a)
 			}
 			if e, a := plaintexts[caseKey], ciphertext; !bytes.Equal(e, a) {
-				t.Errorf("expect %v, got %v", e, a)
+				gucumber.T.Errorf("expect %v, got %v", e, a)
 			}
 		}
 	})
