@@ -35,7 +35,7 @@ func init() {
 			gucumber.T.Errorf("error returned")
 		}
 		if err != nil {
-			t.Errorf("expect no error, got %v", err)
+			gucumber.T.Errorf("expect no error, got %v", err)
 		}
 	})
 
