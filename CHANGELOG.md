@@ -1,3 +1,23 @@
+Release v1.12.2 (2017-09-29)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API and documentation
+  * Includes APIs for managing and accessing image builders, and deleting images.
+* `service/codebuild`: Updates service API and documentation
+  * Adding support for Building GitHub Pull Requests in AWS CodeBuild
+* `service/mturk-requester`: Updates service API and documentation
+* `service/organizations`: Updates service API and documentation
+  * This release flags the HandshakeParty structure's Type and Id fields as 'required'. They effectively were required in the past, as you received an error if you did not include them. This is now reflected at the API definition level.
+* `service/route53`: Updates service API and documentation
+  * This change allows customers to reset elements of health check.
+
+### SDK Bugs
+* `private/protocol/query`: Fix query protocol handling of nested byte slices ([#1557](https://github.com/aws/aws-sdk-go/issues/1557))
+  * Fixes the query protocol to correctly marshal nested []byte values of API operations.
+* `service/s3`: Fix PutObject and UploadPart API to include ContentMD5 field ([#1559](https://github.com/aws/aws-sdk-go/pull/1559))
+  * Fixes the SDK's S3 PutObject and UploadPart API code generation to correctly render the ContentMD5 field into the associated input types for these two API operations.
+  * Fixes [#1553](https://github.com/aws/aws-sdk-go/pull/1553)
 Release v1.12.1 (2017-09-27)
 ===
 
