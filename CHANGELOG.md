@@ -1,3 +1,10 @@
+Release v1.12.3 (2017-10-02)
+===
+
+### Service Client Updates
+* `service/cloudhsm`: Updates service documentation and paginators
+  * Documentation updates for CloudHSM
+
 Release v1.12.2 (2017-09-29)
 ===
 
