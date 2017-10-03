@@ -1,3 +1,12 @@
+Release v1.12.4 (2017-10-03)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API, documentation, and waiters
+  * This release includes service updates to AWS VPN.
+* `service/ssm`: Updates service API and documentation
+  * EC2 Systems Manager support for tagging SSM Documents. Also support for tag-based permissions to restrict access to SSM Documents based on these tags.
+
 Release v1.12.3 (2017-10-02)
 ===
 
