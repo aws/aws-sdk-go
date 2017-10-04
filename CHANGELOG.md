@@ -1,3 +1,15 @@
+Release v1.12.5 (2017-10-04)
+===
+
+### Service Client Updates
+* `service/kinesisanalytics`: Updates service API and documentation
+  * Kinesis Analytics now supports schema discovery on objects in S3. Additionally, Kinesis Analytics now supports input data preprocessing through Lambda.
+* `service/route53domains`: Updates service API and documentation
+  * Added a new API that checks whether a domain name can be transferred to Amazon Route 53.
+
+### SDK Bugs
+* `service/s3/s3crypto`: Correct PutObjectRequest documentation ([#1568](https://github.com/aws/aws-sdk-go/pull/1568))
+  * s3Crypto's PutObjectRequest docstring example was using an incorrect value. Corrected the type used in the example.
 Release v1.12.4 (2017-10-03)
 ===
 
