@@ -1,3 +1,10 @@
+Release v1.12.6 (2017-10-05)
+===
+
+### Service Client Updates
+* `service/redshift`: Updates service API and documentation
+  * DescribeEventSubscriptions API supports tag keys and tag values as request parameters.
+
 Release v1.12.5 (2017-10-04)
 ===
 
