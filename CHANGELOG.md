@@ -1,3 +1,10 @@
+Release v1.12.7 (2017-10-06)
+===
+
+### Service Client Updates
+* `service/sqs`: Updates service documentation
+  * Documentation updates regarding availability of FIFO queues and miscellaneous corrections.
+
 Release v1.12.6 (2017-10-05)
 ===
 
