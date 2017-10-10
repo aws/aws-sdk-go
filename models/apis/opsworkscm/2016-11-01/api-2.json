@@ -452,7 +452,8 @@
     "DescribeNodeAssociationStatusResponse":{
       "type":"structure",
       "members":{
-        "NodeAssociationStatus":{"shape":"NodeAssociationStatus"}
+        "NodeAssociationStatus":{"shape":"NodeAssociationStatus"},
+        "EngineAttributes":{"shape":"EngineAttributes"}
       }
     },
     "DescribeServersRequest":{
@@ -665,7 +666,8 @@
       "type":"structure",
       "required":["ServerName"],
       "members":{
-        "ServerName":{"shape":"ServerName"}
+        "ServerName":{"shape":"ServerName"},
+        "EngineAttributes":{"shape":"EngineAttributes"}
       }
     },
     "StartMaintenanceResponse":{
