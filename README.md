@@ -185,7 +185,7 @@ Option's SharedConfigState parameter.
   }))
 ```
 
-[credentials_pkg]: ttps://docs.aws.amazon.com/sdk-for-go/api/aws/credentials
+[credentials_pkg]: https://docs.aws.amazon.com/sdk-for-go/api/aws/credentials
 
 ### Configuring AWS Region
 
