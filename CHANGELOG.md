@@ -1,3 +1,13 @@
+Release v1.12.8 (2017-10-10)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release includes updates to AWS Virtual Private Gateway.
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `service/opsworkscm`: Updates service API and documentation
+  * Provide engine specific information for node associations.
+
 Release v1.12.7 (2017-10-06)
 ===
 

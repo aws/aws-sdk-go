@@ -1999,7 +1999,7 @@ type CreateServerInput struct {
 	// uses to work with your account. Although the AWS OpsWorks management console
 	// typically creates the service role for you, if you are using the AWS CLI
 	// or API commands, run the service-role-creation.yaml AWS CloudFormation template,
-	// located at https://s3.amazonaws.com/opsworks-stuff/latest/service-role-creation.yaml.
+	// located at https://s3.amazonaws.com/opsworks-cm-us-east-1-prod-default-assets/misc/opsworks-cm-roles.yaml.
 	// This template creates a CloudFormation stack that includes the service role
 	// that you need.
 	//
@@ -2017,7 +2017,7 @@ type CreateServerInput struct {
 	// enabled.
 	//
 	// For more information about supported Amazon EC2 platforms, see Supported
-	// Platforms (http://docs.aws.amazon.com/https:/docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html).
+	// Platforms (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html).
 	SubnetIds []*string `type:"list"`
 }
 
@@ -2572,6 +2572,8 @@ func (s *DescribeEventsOutput) SetServerEvents(v []*ServerEvent) *DescribeEvents
 type DescribeNodeAssociationStatusInput struct {
 	_ struct{} `type:"structure"`
 
+	// The token returned in either the AssociateNodeResponse or the DisassociateNodeResponse.
+	//
 	// NodeAssociationStatusToken is a required field
 	NodeAssociationStatusToken *string `type:"string" required:"true"`
 
@@ -2626,6 +2628,9 @@ func (s *DescribeNodeAssociationStatusInput) SetServerName(v string) *DescribeNo
 type DescribeNodeAssociationStatusOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Attributes specific to the node association.
+	EngineAttributes []*EngineAttribute `type:"list"`
+
 	// The status of the association or disassociation request.
 	//
 	// Possible values:
@@ -2646,6 +2651,12 @@ func (s DescribeNodeAssociationStatusOutput) String() string {
 // GoString returns the string representation
 func (s DescribeNodeAssociationStatusOutput) GoString() string {
 	return s.String()
+}
+
+// SetEngineAttributes sets the EngineAttributes field's value.
+func (s *DescribeNodeAssociationStatusOutput) SetEngineAttributes(v []*EngineAttribute) *DescribeNodeAssociationStatusOutput {
+	s.EngineAttributes = v
+	return s
 }
 
 // SetNodeAssociationStatus sets the NodeAssociationStatus field's value.
@@ -3289,6 +3300,10 @@ func (s *ServerEvent) SetServerName(v string) *ServerEvent {
 type StartMaintenanceInput struct {
 	_ struct{} `type:"structure"`
 
+	// Engine attributes that are specific to the server on which you want to run
+	// maintenance.
+	EngineAttributes []*EngineAttribute `type:"list"`
+
 	// The name of the server on which to run maintenance.
 	//
 	// ServerName is a required field
@@ -3319,6 +3334,12 @@ func (s *StartMaintenanceInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEngineAttributes sets the EngineAttributes field's value.
+func (s *StartMaintenanceInput) SetEngineAttributes(v []*EngineAttribute) *StartMaintenanceInput {
+	s.EngineAttributes = v
+	return s
 }
 
 // SetServerName sets the ServerName field's value.

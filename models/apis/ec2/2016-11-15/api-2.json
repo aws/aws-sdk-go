@@ -4468,6 +4468,7 @@
       "members":{
         "AvailabilityZone":{"shape":"String"},
         "Type":{"shape":"GatewayType"},
+        "AmazonSideAsn":{"shape":"Long"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -16296,6 +16297,10 @@
         "VpnGatewayId":{
           "shape":"String",
           "locationName":"vpnGatewayId"
+        },
+        "AmazonSideAsn":{
+          "shape":"Long",
+          "locationName":"amazonSideAsn"
         },
         "Tags":{
           "shape":"TagList",
