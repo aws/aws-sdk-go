@@ -202,6 +202,12 @@ type Encoder struct {
 	//
 	// Enabled by default.
 	NullEmptyString bool
+
+	// Recognise encoding/json.Number and marshal to the DynamoDB Number type
+	// (otherwise, marshal to String)
+	//
+	// Enabled by default.
+	SupportJSONNumber bool
 }
 
 // NewEncoder creates a new Encoder with default configuration. Use
@@ -211,7 +217,8 @@ func NewEncoder(opts ...func(*Encoder)) *Encoder {
 		MarshalOptions: MarshalOptions{
 			SupportJSONTags: true,
 		},
-		NullEmptyString: true,
+		NullEmptyString:   true,
+		SupportJSONNumber: true,
 	}
 	for _, o := range opts {
 		o(e)
@@ -438,7 +445,7 @@ func (e *Encoder) encodeList(v reflect.Value, fieldTag tag, elemFn func(dynamodb
 }
 
 func (e *Encoder) encodeScalar(av *dynamodb.AttributeValue, v reflect.Value, fieldTag tag) error {
-	if v.Type() == numberType {
+	if v.Type() == numberType || (e.SupportJSONNumber && (v.Type() == jsonNumberType)) {
 		s := v.String()
 		if fieldTag.AsString {
 			av.S = &s

@@ -1,6 +1,7 @@
 package dynamodbattribute
 
 import (
+	"encoding/json"
 	"fmt"
 	"reflect"
 	"strconv"
@@ -59,8 +60,10 @@ type Unmarshaler interface {
 //		map[string]interface{}, AV Map (M)
 //		float64,                AV Number (N)
 //		Number,                 AV Number (N) with UseNumber set
+//		encoding/json.Number,   AV Number (N) with UseJSONNumber set
 //		[]float64,              AV Number Set (NS)
 //		[]Number,               AV Number Set (NS) with UseNumber set
+//		[]encoding/json.Number, AV Number Set (NS) with UseJSONNumber set
 //		string,                 AV String (S)
 //		[]string,               AV String Set (SS)
 //
@@ -69,6 +72,12 @@ type Unmarshaler interface {
 // string formating of the number as it was represented in the AttributeValue.
 // In addition provides additional opportunities to parse the number
 // string based on individual use cases.
+//
+// If the Decoder option, UseJSONNumber is set numbers will be unmarshaled
+// as encoding/json.Number values instead of float64. This is similar to the
+// UseNumber option, but it produces a result which can more easily be used
+// with APIs that are designed to be compatible with the standard Go JSON
+// encoder.
 //
 // When unmarshaling any error that occurs will halt the unmarshal
 // and return the error.
@@ -118,6 +127,12 @@ type Decoder struct {
 	// Number type instead of float64 when the destination type
 	// is interface{}. Similar to encoding/json.Number
 	UseNumber bool
+
+	// Instructs the decoder to decode AttributeValue Numbers as
+	// encoding/json.Number type instead of float64 when the
+	// destination type is interface{}. Ignored if UseNumber is
+	// also true.
+	UseJSONNumber bool
 }
 
 // NewDecoder creates a new Decoder with default configuration. Use
@@ -153,6 +168,7 @@ var stringInterfaceMapType = reflect.TypeOf(map[string]interface{}(nil))
 var byteSliceType = reflect.TypeOf([]byte(nil))
 var byteSliceSlicetype = reflect.TypeOf([][]byte(nil))
 var numberType = reflect.TypeOf(Number(""))
+var jsonNumberType = reflect.TypeOf(json.Number(""))
 var timeType = reflect.TypeOf(time.Time{})
 
 func (d *Decoder) decode(av *dynamodb.AttributeValue, v reflect.Value, fieldTag tag) error {
@@ -300,6 +316,9 @@ func (d *Decoder) decodeNumber(n *string, v reflect.Value, fieldTag tag) error {
 		if v.Type() == numberType { // Support Number value type
 			v.Set(reflect.ValueOf(Number(*n)))
 			return nil
+		} else if v.Type() == jsonNumberType {
+			v.Set(reflect.ValueOf(json.Number(*n)))
+			return nil
 		}
 		v.Set(reflect.ValueOf(*n))
 	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
@@ -356,6 +375,8 @@ func (d *Decoder) decodeNumber(n *string, v reflect.Value, fieldTag tag) error {
 func (d *Decoder) decodeNumberToInterface(n *string) (interface{}, error) {
 	if d.UseNumber {
 		return Number(*n), nil
+	} else if d.UseJSONNumber {
+		return json.Number(*n), nil
 	}
 
 	// Default to float64 for all numbers
@@ -375,6 +396,14 @@ func (d *Decoder) decodeNumberSet(ns []*string, v reflect.Value) error {
 	case reflect.Interface:
 		if d.UseNumber {
 			set := make([]Number, len(ns))
+			for i, n := range ns {
+				if err := d.decodeNumber(n, reflect.ValueOf(&set[i]).Elem(), tag{}); err != nil {
+					return err
+				}
+			}
+			v.Set(reflect.ValueOf(set))
+		} else if d.UseJSONNumber {
+			set := make([]json.Number, len(ns))
 			for i, n := range ns {
 				if err := d.decodeNumber(n, reflect.ValueOf(&set[i]).Elem(), tag{}); err != nil {
 					return err
