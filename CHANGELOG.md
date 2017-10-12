@@ -1,3 +1,18 @@
+Release v1.12.10 (2017-10-12)
+===
+
+### Service Client Updates
+* `service/codecommit`: Updates service API and documentation
+  * This release includes the DeleteBranch API and a change to the contents of a Commit object.
+* `service/dms`: Updates service API and documentation
+  * This change includes addition of new optional parameter to an existing API
+* `service/elasticbeanstalk`: Updates service API and documentation
+  * Added the ability to add, delete or update Tags
+* `service/polly`: Updates service API
+  * Amazon Polly exposes two new voices: "Matthew" (US English) and "Takumi" (Japanese)
+* `service/rds`: Updates service API and documentation
+  * You can now call DescribeValidDBInstanceModifications to learn what modifications you can make to your DB instance. You can use this information when you call ModifyDBInstance.
+
 Release v1.12.9 (2017-10-11)
 ===
 

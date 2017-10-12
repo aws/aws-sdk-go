@@ -1466,6 +1466,9 @@ const (
 	// VoiceIdKimberly is a VoiceId enum value
 	VoiceIdKimberly = "Kimberly"
 
+	// VoiceIdMatthew is a VoiceId enum value
+	VoiceIdMatthew = "Matthew"
+
 	// VoiceIdSalli is a VoiceId enum value
 	VoiceIdSalli = "Salli"
 
@@ -1555,4 +1558,7 @@ const (
 
 	// VoiceIdVicki is a VoiceId enum value
 	VoiceIdVicki = "Vicki"
+
+	// VoiceIdTakumi is a VoiceId enum value
+	VoiceIdTakumi = "Takumi"
 )

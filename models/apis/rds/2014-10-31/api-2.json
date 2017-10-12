@@ -952,6 +952,22 @@
         "resultWrapper":"DescribeSourceRegionsResult"
       }
     },
+    "DescribeValidDBInstanceModifications":{
+      "name":"DescribeValidDBInstanceModifications",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeValidDBInstanceModificationsMessage"},
+      "output":{
+        "shape":"DescribeValidDBInstanceModificationsResult",
+        "resultWrapper":"DescribeValidDBInstanceModificationsResult"
+      },
+      "errors":[
+        {"shape":"DBInstanceNotFoundFault"},
+        {"shape":"InvalidDBInstanceStateFault"}
+      ]
+    },
     "DownloadDBLogFilePortion":{
       "name":"DownloadDBLogFilePortion",
       "http":{
@@ -3405,6 +3421,19 @@
         "Filters":{"shape":"FilterList"}
       }
     },
+    "DescribeValidDBInstanceModificationsMessage":{
+      "type":"structure",
+      "required":["DBInstanceIdentifier"],
+      "members":{
+        "DBInstanceIdentifier":{"shape":"String"}
+      }
+    },
+    "DescribeValidDBInstanceModificationsResult":{
+      "type":"structure",
+      "members":{
+        "ValidDBInstanceModificationsMessage":{"shape":"ValidDBInstanceModificationsMessage"}
+      }
+    },
     "DomainMembership":{
       "type":"structure",
       "members":{
@@ -3433,6 +3462,20 @@
       "exception":true
     },
     "Double":{"type":"double"},
+    "DoubleRange":{
+      "type":"structure",
+      "members":{
+        "From":{"shape":"Double"},
+        "To":{"shape":"Double"}
+      }
+    },
+    "DoubleRangeList":{
+      "type":"list",
+      "member":{
+        "shape":"DoubleRange",
+        "locationName":"DoubleRange"
+      }
+    },
     "DownloadDBLogFilePortionDetails":{
       "type":"structure",
       "members":{
@@ -4465,6 +4508,21 @@
         "ReservedDBInstance":{"shape":"ReservedDBInstance"}
       }
     },
+    "Range":{
+      "type":"structure",
+      "members":{
+        "From":{"shape":"Integer"},
+        "To":{"shape":"Integer"},
+        "Step":{"shape":"IntegerOptional"}
+      }
+    },
+    "RangeList":{
+      "type":"list",
+      "member":{
+        "shape":"Range",
+        "locationName":"Range"
+      }
+    },
     "ReadReplicaDBClusterIdentifierList":{
       "type":"list",
       "member":{
@@ -5166,6 +5224,29 @@
         "Description":{"shape":"String"},
         "AutoUpgrade":{"shape":"Boolean"},
         "IsMajorVersionUpgrade":{"shape":"Boolean"}
+      }
+    },
+    "ValidDBInstanceModificationsMessage":{
+      "type":"structure",
+      "members":{
+        "Storage":{"shape":"ValidStorageOptionsList"}
+      },
+      "wrapper":true
+    },
+    "ValidStorageOptions":{
+      "type":"structure",
+      "members":{
+        "StorageType":{"shape":"String"},
+        "StorageSize":{"shape":"RangeList"},
+        "ProvisionedIops":{"shape":"RangeList"},
+        "IopsToStorageRatio":{"shape":"DoubleRangeList"}
+      }
+    },
+    "ValidStorageOptionsList":{
+      "type":"list",
+      "member":{
+        "shape":"ValidStorageOptions",
+        "locationName":"ValidStorageOptions"
       }
     },
     "ValidUpgradeTargetList":{
