@@ -1,11 +1,12 @@
 {
   "version": "2.0",
-  "service": "<fullname>AWS CodeCommit</fullname> <p>This is the <i>AWS CodeCommit API Reference</i>. This reference provides descriptions of the operations and data types for AWS CodeCommit API along with usage examples.</p> <p>You can use the AWS CodeCommit API to work with the following objects:</p> <p>Repositories, by calling the following:</p> <ul> <li> <p> <a>BatchGetRepositories</a>, which returns information about one or more repositories associated with your AWS account</p> </li> <li> <p> <a>CreateRepository</a>, which creates an AWS CodeCommit repository</p> </li> <li> <p> <a>DeleteRepository</a>, which deletes an AWS CodeCommit repository</p> </li> <li> <p> <a>GetRepository</a>, which returns information about a specified repository</p> </li> <li> <p> <a>ListRepositories</a>, which lists all AWS CodeCommit repositories associated with your AWS account</p> </li> <li> <p> <a>UpdateRepositoryDescription</a>, which sets or updates the description of the repository</p> </li> <li> <p> <a>UpdateRepositoryName</a>, which changes the name of the repository. If you change the name of a repository, no other users of that repository will be able to access it until you send them the new HTTPS or SSH URL to use.</p> </li> </ul> <p>Branches, by calling the following:</p> <ul> <li> <p> <a>CreateBranch</a>, which creates a new branch in a specified repository</p> </li> <li> <p> <a>GetBranch</a>, which returns information about a specified branch</p> </li> <li> <p> <a>ListBranches</a>, which lists all branches for a specified repository</p> </li> <li> <p> <a>UpdateDefaultBranch</a>, which changes the default branch for a repository</p> </li> </ul> <p>Information about committed code in a repository, by calling the following:</p> <ul> <li> <p> <a>GetBlob</a>, which returns the base-64 encoded content of an individual Git blob object within a repository</p> </li> <li> <p> <a>GetCommit</a>, which returns information about a commit, including commit messages and author and committer information</p> </li> <li> <p> <a>GetDifferences</a>, which returns information about the differences in a valid commit specifier (such as a branch, tag, HEAD, commit ID or other fully qualified reference)</p> </li> </ul> <p>Triggers, by calling the following:</p> <ul> <li> <p> <a>GetRepositoryTriggers</a>, which returns information about triggers configured for a repository</p> </li> <li> <p> <a>PutRepositoryTriggers</a>, which replaces all triggers for a repository and can be used to create or delete triggers</p> </li> <li> <p> <a>TestRepositoryTriggers</a>, which tests the functionality of a repository trigger by sending data to the trigger target</p> </li> </ul> <p>For information about how to use AWS CodeCommit, see the <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit User Guide</a>.</p>",
+  "service": "<fullname>AWS CodeCommit</fullname> <p>This is the <i>AWS CodeCommit API Reference</i>. This reference provides descriptions of the operations and data types for AWS CodeCommit API along with usage examples.</p> <p>You can use the AWS CodeCommit API to work with the following objects:</p> <p>Repositories, by calling the following:</p> <ul> <li> <p> <a>BatchGetRepositories</a>, which returns information about one or more repositories associated with your AWS account</p> </li> <li> <p> <a>CreateRepository</a>, which creates an AWS CodeCommit repository</p> </li> <li> <p> <a>DeleteRepository</a>, which deletes an AWS CodeCommit repository</p> </li> <li> <p> <a>GetRepository</a>, which returns information about a specified repository</p> </li> <li> <p> <a>ListRepositories</a>, which lists all AWS CodeCommit repositories associated with your AWS account</p> </li> <li> <p> <a>UpdateRepositoryDescription</a>, which sets or updates the description of the repository</p> </li> <li> <p> <a>UpdateRepositoryName</a>, which changes the name of the repository. If you change the name of a repository, no other users of that repository will be able to access it until you send them the new HTTPS or SSH URL to use.</p> </li> </ul> <p>Branches, by calling the following:</p> <ul> <li> <p> <a>CreateBranch</a>, which creates a new branch in a specified repository</p> </li> <li> <p> <a>DeleteBranch</a>, which deletes the specified branch in a repository unless it is the default branch</p> </li> <li> <p> <a>GetBranch</a>, which returns information about a specified branch</p> </li> <li> <p> <a>ListBranches</a>, which lists all branches for a specified repository</p> </li> <li> <p> <a>UpdateDefaultBranch</a>, which changes the default branch for a repository</p> </li> </ul> <p>Information about committed code in a repository, by calling the following:</p> <ul> <li> <p> <a>GetBlob</a>, which returns the base-64 encoded content of an individual Git blob object within a repository</p> </li> <li> <p> <a>GetCommit</a>, which returns information about a commit, including commit messages and author and committer information</p> </li> <li> <p> <a>GetDifferences</a>, which returns information about the differences in a valid commit specifier (such as a branch, tag, HEAD, commit ID or other fully qualified reference)</p> </li> </ul> <p>Triggers, by calling the following:</p> <ul> <li> <p> <a>GetRepositoryTriggers</a>, which returns information about triggers configured for a repository</p> </li> <li> <p> <a>PutRepositoryTriggers</a>, which replaces all triggers for a repository and can be used to create or delete triggers</p> </li> <li> <p> <a>TestRepositoryTriggers</a>, which tests the functionality of a repository trigger by sending data to the trigger target</p> </li> </ul> <p>For information about how to use AWS CodeCommit, see the <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit User Guide</a>.</p>",
   "operations": {
     "BatchGetRepositories": "<p>Returns information about one or more repositories.</p> <note> <p>The description field for a repository accepts all HTML characters and all valid Unicode characters. Applications that do not HTML-encode the description and display it in a web page could expose users to potentially malicious code. Make sure that you HTML-encode the description field in any application that uses this API to display the repository description on a web page.</p> </note>",
     "CreateBranch": "<p>Creates a new branch in a repository and points the branch to a commit.</p> <note> <p>Calling the create branch operation does not set a repository's default branch. To do this, call the update default branch operation.</p> </note>",
     "CreateRepository": "<p>Creates a new, empty repository.</p>",
-    "DeleteRepository": "<p>Deletes a repository. If a specified repository was already deleted, a null repository ID will be returned.</p> <important><p>Deleting a repository also deletes all associated objects and metadata. After a repository is deleted, all future push calls to the deleted repository will fail.</p> </important>",
+    "DeleteBranch": "<p>Deletes a branch from a repository, unless that branch is the default branch for the repository. </p>",
+    "DeleteRepository": "<p>Deletes a repository. If a specified repository was already deleted, a null repository ID will be returned.</p> <important> <p>Deleting a repository also deletes all associated objects and metadata. After a repository is deleted, all future push calls to the deleted repository will fail.</p> </important>",
     "GetBlob": "<p>Returns the base-64 encoded content of an individual blob within a repository.</p>",
     "GetBranch": "<p>Returns information about a repository branch, including its name and the last commit ID.</p>",
     "GetCommit": "<p>Returns information about a commit, including commit message and committer information.</p>",
@@ -75,6 +76,7 @@
     "BranchInfo": {
       "base": "<p>Returns information about a branch.</p>",
       "refs": {
+        "DeleteBranchOutput$deletedBranch": "<p>Information about the branch deleted by the operation, including the branch name and the commit ID that was the tip of the branch.</p>",
         "GetBranchOutput$branch": "<p>The name of the branch.</p>"
       }
     },
@@ -84,6 +86,7 @@
         "BranchInfo$branchName": "<p>The name of the branch.</p>",
         "BranchNameList$member": null,
         "CreateBranchInput$branchName": "<p>The name of the new branch to create.</p>",
+        "DeleteBranchInput$branchName": "<p>The name of the branch to delete.</p>",
         "GetBranchInput$branchName": "<p>The name of the branch for which you want to retrieve information.</p>",
         "RepositoryMetadata$defaultBranch": "<p>The repository's default branch name.</p>",
         "UpdateDefaultBranchInput$defaultBranchName": "<p>The name of the branch to set as the default.</p>"
@@ -98,7 +101,7 @@
       "base": null,
       "refs": {
         "ListBranchesOutput$branches": "<p>The list of branch names.</p>",
-        "RepositoryTrigger$branches": "<p>The branches that will be included in the trigger configuration. If no branches are specified, the trigger will apply to all branches.</p>"
+        "RepositoryTrigger$branches": "<p>The branches that will be included in the trigger configuration. If you specify an empty array, the trigger will apply to all branches.</p> <note> <p>While no content is required in the array, you must include the array itself.</p> </note>"
       }
     },
     "BranchNameRequiredException": {
@@ -189,6 +192,21 @@
       "base": null,
       "refs": {
         "UserInfo$date": "<p>The date when the specified commit was pushed to the repository.</p>"
+      }
+    },
+    "DefaultBranchCannotBeDeletedException": {
+      "base": "<p>The specified branch is the default branch for the repository, and cannot be deleted. To delete this branch, you must first set another branch as the default branch.</p>",
+      "refs": {
+      }
+    },
+    "DeleteBranchInput": {
+      "base": "<p>Represents the input of a delete branch operation.</p>",
+      "refs": {
+      }
+    },
+    "DeleteBranchOutput": {
+      "base": "<p>Represents the output of a delete branch operation.</p>",
+      "refs": {
       }
     },
     "DeleteRepositoryInput": {
@@ -474,9 +492,10 @@
       "base": null,
       "refs": {
         "BlobMetadata$blobId": "<p>The full ID of the blob.</p>",
+        "Commit$commitId": "<p>The full SHA of the specified commit. </p>",
         "Commit$treeId": "<p>Tree information for the specified commit.</p>",
         "GetBlobInput$blobId": "<p>The ID of the blob, which is its SHA-1 pointer.</p>",
-        "GetCommitInput$commitId": "<p>The commit ID.</p>",
+        "GetCommitInput$commitId": "<p>The commit ID. Commit IDs are the full SHA of the commit.</p>",
         "ParentList$member": null
       }
     },
@@ -560,6 +579,7 @@
       "refs": {
         "CreateBranchInput$repositoryName": "<p>The name of the repository in which you want to create the new branch.</p>",
         "CreateRepositoryInput$repositoryName": "<p>The name of the new repository to be created.</p> <note> <p>The repository name must be unique across the calling AWS account. In addition, repository names are limited to 100 alphanumeric, dash, and underscore characters, and cannot include certain characters. For a full description of the limits on repository names, see <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/limits.html\">Limits</a> in the AWS CodeCommit User Guide. The suffix \".git\" is prohibited.</p> </note>",
+        "DeleteBranchInput$repositoryName": "<p>The name of the repository that contains the branch to be deleted.</p>",
         "DeleteRepositoryInput$repositoryName": "<p>The name of the repository to delete.</p>",
         "GetBlobInput$repositoryName": "<p>The name of the repository that contains the blob.</p>",
         "GetBranchInput$repositoryName": "<p>The name of the repository that contains the branch for which you want to retrieve information.</p>",

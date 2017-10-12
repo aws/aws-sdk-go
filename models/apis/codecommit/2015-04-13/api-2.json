@@ -76,6 +76,28 @@
         {"shape":"EncryptionKeyUnavailableException"}
       ]
     },
+    "DeleteBranch":{
+      "name":"DeleteBranch",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteBranchInput"},
+      "output":{"shape":"DeleteBranchOutput"},
+      "errors":[
+        {"shape":"RepositoryNameRequiredException"},
+        {"shape":"RepositoryDoesNotExistException"},
+        {"shape":"InvalidRepositoryNameException"},
+        {"shape":"BranchNameRequiredException"},
+        {"shape":"InvalidBranchNameException"},
+        {"shape":"DefaultBranchCannotBeDeletedException"},
+        {"shape":"EncryptionIntegrityChecksFailedException"},
+        {"shape":"EncryptionKeyAccessDeniedException"},
+        {"shape":"EncryptionKeyDisabledException"},
+        {"shape":"EncryptionKeyNotFoundException"},
+        {"shape":"EncryptionKeyUnavailableException"}
+      ]
+    },
     "DeleteRepository":{
       "name":"DeleteRepository",
       "http":{
@@ -464,6 +486,7 @@
     "Commit":{
       "type":"structure",
       "members":{
+        "commitId":{"shape":"ObjectId"},
         "treeId":{"shape":"ObjectId"},
         "parents":{"shape":"ParentList"},
         "message":{"shape":"Message"},
@@ -527,6 +550,29 @@
     },
     "CreationDate":{"type":"timestamp"},
     "Date":{"type":"string"},
+    "DefaultBranchCannotBeDeletedException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "DeleteBranchInput":{
+      "type":"structure",
+      "required":[
+        "repositoryName",
+        "branchName"
+      ],
+      "members":{
+        "repositoryName":{"shape":"RepositoryName"},
+        "branchName":{"shape":"BranchName"}
+      }
+    },
+    "DeleteBranchOutput":{
+      "type":"structure",
+      "members":{
+        "deletedBranch":{"shape":"BranchInfo"}
+      }
+    },
     "DeleteRepositoryInput":{
       "type":"structure",
       "required":["repositoryName"],

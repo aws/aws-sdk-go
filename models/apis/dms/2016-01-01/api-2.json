@@ -1076,7 +1076,8 @@
       "members":{
         "ReplicationTaskArn":{"shape":"String"},
         "MaxRecords":{"shape":"IntegerOptional"},
-        "Marker":{"shape":"String"}
+        "Marker":{"shape":"String"},
+        "Filters":{"shape":"FilterList"}
       }
     },
     "DescribeTableStatisticsResponse":{
