@@ -1550,6 +1550,10 @@ type CreateElasticsearchDomainInput struct {
 	// in the Amazon Elasticsearch Service Developer Guide.
 	ElasticsearchVersion *string `type:"string"`
 
+	// Map of LogType and LogPublishingOption, each containing options to publish
+	// a given type of Elasticsearch log.
+	LogPublishingOptions map[string]*LogPublishingOption `type:"map"`
+
 	// Option to set time, in UTC format, of the daily automated snapshot. Default
 	// value is 0 hours.
 	SnapshotOptions *SnapshotOptions `type:"structure"`
@@ -1614,6 +1618,12 @@ func (s *CreateElasticsearchDomainInput) SetElasticsearchClusterConfig(v *Elasti
 // SetElasticsearchVersion sets the ElasticsearchVersion field's value.
 func (s *CreateElasticsearchDomainInput) SetElasticsearchVersion(v string) *CreateElasticsearchDomainInput {
 	s.ElasticsearchVersion = &v
+	return s
+}
+
+// SetLogPublishingOptions sets the LogPublishingOptions field's value.
+func (s *CreateElasticsearchDomainInput) SetLogPublishingOptions(v map[string]*LogPublishingOption) *CreateElasticsearchDomainInput {
+	s.LogPublishingOptions = v
 	return s
 }
 
@@ -2265,6 +2275,9 @@ type ElasticsearchDomainConfig struct {
 	// String of format X.Y to specify version for the Elasticsearch domain.
 	ElasticsearchVersion *ElasticsearchVersionStatus `type:"structure"`
 
+	// Log publishing options for the given domain.
+	LogPublishingOptions *LogPublishingOptionsStatus `type:"structure"`
+
 	// Specifies the SnapshotOptions for the Elasticsearch domain.
 	SnapshotOptions *SnapshotOptionsStatus `type:"structure"`
 }
@@ -2306,6 +2319,12 @@ func (s *ElasticsearchDomainConfig) SetElasticsearchClusterConfig(v *Elasticsear
 // SetElasticsearchVersion sets the ElasticsearchVersion field's value.
 func (s *ElasticsearchDomainConfig) SetElasticsearchVersion(v *ElasticsearchVersionStatus) *ElasticsearchDomainConfig {
 	s.ElasticsearchVersion = v
+	return s
+}
+
+// SetLogPublishingOptions sets the LogPublishingOptions field's value.
+func (s *ElasticsearchDomainConfig) SetLogPublishingOptions(v *LogPublishingOptionsStatus) *ElasticsearchDomainConfig {
+	s.LogPublishingOptions = v
 	return s
 }
 
@@ -2370,6 +2389,9 @@ type ElasticsearchDomainStatus struct {
 	// The Elasticsearch domain endpoint that you use to submit index and search
 	// requests.
 	Endpoint *string `type:"string"`
+
+	// Log publishing options for the given domain.
+	LogPublishingOptions map[string]*LogPublishingOption `type:"map"`
 
 	// The status of the Elasticsearch domain configuration. True if Amazon Elasticsearch
 	// Service is processing configuration changes. False if the configuration is
@@ -2453,6 +2475,12 @@ func (s *ElasticsearchDomainStatus) SetElasticsearchVersion(v string) *Elasticse
 // SetEndpoint sets the Endpoint field's value.
 func (s *ElasticsearchDomainStatus) SetEndpoint(v string) *ElasticsearchDomainStatus {
 	s.Endpoint = &v
+	return s
+}
+
+// SetLogPublishingOptions sets the LogPublishingOptions field's value.
+func (s *ElasticsearchDomainStatus) SetLogPublishingOptions(v map[string]*LogPublishingOption) *ElasticsearchDomainStatus {
+	s.LogPublishingOptions = v
 	return s
 }
 
@@ -2905,6 +2933,75 @@ func (s *ListTagsOutput) SetTagList(v []*Tag) *ListTagsOutput {
 	return s
 }
 
+// Log Publishing option that is set for given domain. Attributes and their details: CloudWatchLogsLogGroupArn: ARN of the Cloudwatch
+// log group to which log needs to be published.
+// Enabled: Whether the log publishing for given log type is enabled or not
+type LogPublishingOption struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the Cloudwatch log group to which log needs to be published.
+	CloudWatchLogsLogGroupArn *string `type:"string"`
+
+	// Specifies whether given log publishing option is enabled or not.
+	Enabled *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s LogPublishingOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LogPublishingOption) GoString() string {
+	return s.String()
+}
+
+// SetCloudWatchLogsLogGroupArn sets the CloudWatchLogsLogGroupArn field's value.
+func (s *LogPublishingOption) SetCloudWatchLogsLogGroupArn(v string) *LogPublishingOption {
+	s.CloudWatchLogsLogGroupArn = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *LogPublishingOption) SetEnabled(v bool) *LogPublishingOption {
+	s.Enabled = &v
+	return s
+}
+
+// The configured log publishing options for the domain and their current status.
+type LogPublishingOptionsStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The log publishing options configured for the Elasticsearch domain.
+	Options map[string]*LogPublishingOption `type:"map"`
+
+	// The status of the log publishing options for the Elasticsearch domain. See
+	// OptionStatus for the status information that's included.
+	Status *OptionStatus `type:"structure"`
+}
+
+// String returns the string representation
+func (s LogPublishingOptionsStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LogPublishingOptionsStatus) GoString() string {
+	return s.String()
+}
+
+// SetOptions sets the Options field's value.
+func (s *LogPublishingOptionsStatus) SetOptions(v map[string]*LogPublishingOption) *LogPublishingOptionsStatus {
+	s.Options = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *LogPublishingOptionsStatus) SetStatus(v *OptionStatus) *LogPublishingOptionsStatus {
+	s.Status = v
+	return s
+}
+
 // Provides the current status of the entity.
 type OptionStatus struct {
 	_ struct{} `type:"structure"`
@@ -3282,6 +3379,10 @@ type UpdateElasticsearchDomainConfigInput struct {
 	// The type and number of instances to instantiate for the domain cluster.
 	ElasticsearchClusterConfig *ElasticsearchClusterConfig `type:"structure"`
 
+	// Map of LogType and LogPublishingOption, each containing options to publish
+	// a given type of Elasticsearch log.
+	LogPublishingOptions map[string]*LogPublishingOption `type:"map"`
+
 	// Option to set the time, in UTC format, for the daily automated snapshot.
 	// Default value is 0 hours.
 	SnapshotOptions *SnapshotOptions `type:"structure"`
@@ -3340,6 +3441,12 @@ func (s *UpdateElasticsearchDomainConfigInput) SetEBSOptions(v *EBSOptions) *Upd
 // SetElasticsearchClusterConfig sets the ElasticsearchClusterConfig field's value.
 func (s *UpdateElasticsearchDomainConfigInput) SetElasticsearchClusterConfig(v *ElasticsearchClusterConfig) *UpdateElasticsearchDomainConfigInput {
 	s.ElasticsearchClusterConfig = v
+	return s
+}
+
+// SetLogPublishingOptions sets the LogPublishingOptions field's value.
+func (s *UpdateElasticsearchDomainConfigInput) SetLogPublishingOptions(v map[string]*LogPublishingOption) *UpdateElasticsearchDomainConfigInput {
+	s.LogPublishingOptions = v
 	return s
 }
 
@@ -3478,6 +3585,19 @@ const (
 
 	// ESPartitionInstanceTypeR416xlargeElasticsearch is a ESPartitionInstanceType enum value
 	ESPartitionInstanceTypeR416xlargeElasticsearch = "r4.16xlarge.elasticsearch"
+)
+
+// Type of Log File, it can be one of the following: INDEX_SLOW_LOGS: Index
+// slow logs contains insert requests that took more time than configured index
+// query log threshold to execute.
+// SEARCH_SLOW_LOGS: Search slow logs contains search queries that took more
+// time than configured search query log threshold to execute.
+const (
+	// LogTypeIndexSlowLogs is a LogType enum value
+	LogTypeIndexSlowLogs = "INDEX_SLOW_LOGS"
+
+	// LogTypeSearchSlowLogs is a LogType enum value
+	LogTypeSearchSlowLogs = "SEARCH_SLOW_LOGS"
 )
 
 // The state of a requested change. One of the following:

@@ -476,6 +476,12 @@ type RDSAPI interface {
 
 	WaitUntilDBInstanceDeleted(*rds.DescribeDBInstancesInput) error
 	WaitUntilDBInstanceDeletedWithContext(aws.Context, *rds.DescribeDBInstancesInput, ...request.WaiterOption) error
+
+	WaitUntilDBSnapshotAvailable(*rds.DescribeDBSnapshotsInput) error
+	WaitUntilDBSnapshotAvailableWithContext(aws.Context, *rds.DescribeDBSnapshotsInput, ...request.WaiterOption) error
+
+	WaitUntilDBSnapshotDeleted(*rds.DescribeDBSnapshotsInput) error
+	WaitUntilDBSnapshotDeletedWithContext(aws.Context, *rds.DescribeDBSnapshotsInput, ...request.WaiterOption) error
 }
 
 var _ RDSAPI = (*rds.RDS)(nil)

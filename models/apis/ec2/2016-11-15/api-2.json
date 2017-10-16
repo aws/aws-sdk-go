@@ -1807,6 +1807,15 @@
       "input":{"shape":"ModifyVpcPeeringConnectionOptionsRequest"},
       "output":{"shape":"ModifyVpcPeeringConnectionOptionsResult"}
     },
+    "ModifyVpcTenancy":{
+      "name":"ModifyVpcTenancy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyVpcTenancyRequest"},
+      "output":{"shape":"ModifyVpcTenancyResult"}
+    },
     "MonitorInstances":{
       "name":"MonitorInstances",
       "http":{
@@ -10912,6 +10921,27 @@
         }
       }
     },
+    "ModifyVpcTenancyRequest":{
+      "type":"structure",
+      "required":[
+        "VpcId",
+        "InstanceTenancy"
+      ],
+      "members":{
+        "VpcId":{"shape":"String"},
+        "InstanceTenancy":{"shape":"VpcTenancy"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "ModifyVpcTenancyResult":{
+      "type":"structure",
+      "members":{
+        "ReturnValue":{
+          "shape":"Boolean",
+          "locationName":"return"
+        }
+      }
+    },
     "MonitorInstancesRequest":{
       "type":"structure",
       "required":["InstanceIds"],
@@ -16192,6 +16222,10 @@
         "pending",
         "available"
       ]
+    },
+    "VpcTenancy":{
+      "type":"string",
+      "enum":["default"]
     },
     "VpnConnection":{
       "type":"structure",
