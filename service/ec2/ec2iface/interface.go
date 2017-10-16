@@ -913,6 +913,10 @@ type EC2API interface {
 	ModifyVpcPeeringConnectionOptionsWithContext(aws.Context, *ec2.ModifyVpcPeeringConnectionOptionsInput, ...request.Option) (*ec2.ModifyVpcPeeringConnectionOptionsOutput, error)
 	ModifyVpcPeeringConnectionOptionsRequest(*ec2.ModifyVpcPeeringConnectionOptionsInput) (*request.Request, *ec2.ModifyVpcPeeringConnectionOptionsOutput)
 
+	ModifyVpcTenancy(*ec2.ModifyVpcTenancyInput) (*ec2.ModifyVpcTenancyOutput, error)
+	ModifyVpcTenancyWithContext(aws.Context, *ec2.ModifyVpcTenancyInput, ...request.Option) (*ec2.ModifyVpcTenancyOutput, error)
+	ModifyVpcTenancyRequest(*ec2.ModifyVpcTenancyInput) (*request.Request, *ec2.ModifyVpcTenancyOutput)
+
 	MonitorInstances(*ec2.MonitorInstancesInput) (*ec2.MonitorInstancesOutput, error)
 	MonitorInstancesWithContext(aws.Context, *ec2.MonitorInstancesInput, ...request.Option) (*ec2.MonitorInstancesOutput, error)
 	MonitorInstancesRequest(*ec2.MonitorInstancesInput) (*request.Request, *ec2.MonitorInstancesOutput)

@@ -184,7 +184,7 @@
     "GetConsoleScreenshot": "<p>Retrieve a JPG-format screenshot of a running instance to help with troubleshooting.</p> <p>The returned content is Base64-encoded.</p>",
     "GetHostReservationPurchasePreview": "<p>Preview a reservation purchase with configurations that match those of your Dedicated Host. You must have active Dedicated Hosts in your account before you purchase a reservation.</p> <p>This is a preview of the <a>PurchaseHostReservation</a> action and does not result in the offering being purchased.</p>",
     "GetPasswordData": "<p>Retrieves the encrypted administrator password for a running Windows instance.</p> <p>The Windows password is generated at boot by the <code>EC2Config</code> service or <code>EC2Launch</code> scripts (Windows Server 2016 and later). This usually only happens the first time an instance is launched. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/UsingConfig_WinAMI.html\">EC2Config</a> and <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2launch.html\">EC2Launch</a> in the Amazon Elastic Compute Cloud User Guide.</p> <p>For the <code>EC2Config</code> service, the password is not generated for rebundled AMIs unless <code>Ec2SetPassword</code> is enabled before bundling.</p> <p>The password is encrypted using the key pair that you specified when you launched the instance. You must provide the corresponding key pair file.</p> <p>When you launch an instance, password generation and encryption may take a few minutes. If you try to retrieve the password before it's available, the output returns an empty string. We recommend that you wait up to 15 minutes after launching an instance before trying to retrieve the generated password.</p>",
-    "GetReservedInstancesExchangeQuote": "<p>Returns details about the values and term of your specified Convertible Reserved Instances. When a target configuration is specified, it returns information about whether the exchange is valid and can be performed.</p>",
+    "GetReservedInstancesExchangeQuote": "<p>Returns a quote and exchange information for exchanging one or more specified Convertible Reserved Instances for a new Convertible Reserved Instance. If the exchange cannot be performed, the reason is returned in the response. Use <a>AcceptReservedInstancesExchangeQuote</a> to perform the exchange.</p>",
     "ImportImage": "<p>Import single or multi-volume disk images or EBS snapshots into an Amazon Machine Image (AMI). For more information, see <a href=\"http://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-image-import.html\">Importing a VM as an Image Using VM Import/Export</a> in the <i>VM Import/Export User Guide</i>.</p>",
     "ImportInstance": "<p>Creates an import instance task using metadata from the specified disk image. <code>ImportInstance</code> only supports single-volume VMs. To import multi-volume VMs, use <a>ImportImage</a>. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/ec2-cli-vmimport-export.html\">Importing a Virtual Machine Using the Amazon EC2 CLI</a>.</p> <p>For information about the import manifest referenced by this API action, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html\">VM Import Manifest</a>.</p>",
     "ImportKeyPair": "<p>Imports the public key from an RSA key pair that you created with a third-party tool. Compare this with <a>CreateKeyPair</a>, in which AWS creates the key pair and gives the keys to you (AWS keeps a copy of the public key). With ImportKeyPair, you create the key pair and give AWS just the public key. The private key is never transferred between you and AWS.</p> <p>For more information about key pairs, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html\">Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
@@ -198,7 +198,7 @@
     "ModifyInstanceAttribute": "<p>Modifies the specified attribute of the specified instance. You can specify only one attribute at a time.</p> <p>To modify some attributes, the instance must be stopped. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_ChangingAttributesWhileInstanceStopped.html\">Modifying Attributes of a Stopped Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "ModifyInstancePlacement": "<p>Set the instance affinity value for a specific stopped instance and modify the instance tenancy setting.</p> <p>Instance affinity is disabled by default. When instance affinity is <code>host</code> and it is not associated with a specific Dedicated Host, the next time it is launched it will automatically be associated with the host it lands on. This relationship will persist if the instance is stopped/started, or rebooted.</p> <p>You can modify the host ID associated with a stopped instance. If a stopped instance has a new host ID association, the instance will target that host when restarted.</p> <p>You can modify the tenancy of a stopped instance with a tenancy of <code>host</code> or <code>dedicated</code>.</p> <p>Affinity, hostID, and tenancy are not required parameters, but at least one of them must be specified in the request. Affinity and tenancy can be modified in the same request, but tenancy can only be modified on instances that are stopped.</p>",
     "ModifyNetworkInterfaceAttribute": "<p>Modifies the specified network interface attribute. You can specify only one attribute at a time.</p>",
-    "ModifyReservedInstances": "<p>Modifies the Availability Zone, instance count, instance type, or network platform (EC2-Classic or EC2-VPC) of your Standard Reserved Instances. The Reserved Instances to be modified must be identical, except for Availability Zone, network platform, and instance type.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html\">Modifying Reserved Instances</a> in the Amazon Elastic Compute Cloud User Guide.</p>",
+    "ModifyReservedInstances": "<p>Modifies the Availability Zone, instance count, instance type, or network platform (EC2-Classic or EC2-VPC) of your Reserved Instances. The Reserved Instances to be modified must be identical, except for Availability Zone, network platform, and instance type.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html\">Modifying Reserved Instances</a> in the Amazon Elastic Compute Cloud User Guide.</p>",
     "ModifySnapshotAttribute": "<p>Adds or removes permission settings for the specified snapshot. You may add or remove specified AWS account IDs from a snapshot's list of create volume permissions, but you cannot do both in a single API call. If you need to both add and remove account IDs for a snapshot, you must use multiple API calls.</p> <note> <p>Encrypted snapshots and snapshots with AWS Marketplace product codes cannot be made public. Snapshots encrypted with your default CMK cannot be shared with other accounts.</p> </note> <p>For more information on modifying snapshot permissions, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modifying-snapshot-permissions.html\">Sharing Snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "ModifySpotFleetRequest": "<p>Modifies the specified Spot fleet request.</p> <p>While the Spot fleet request is being modified, it is in the <code>modifying</code> state.</p> <p>To scale up your Spot fleet, increase its target capacity. The Spot fleet launches the additional Spot instances according to the allocation strategy for the Spot fleet request. If the allocation strategy is <code>lowestPrice</code>, the Spot fleet launches instances using the Spot pool with the lowest price. If the allocation strategy is <code>diversified</code>, the Spot fleet distributes the instances across the Spot pools.</p> <p>To scale down your Spot fleet, decrease its target capacity. First, the Spot fleet cancels any open bids that exceed the new target capacity. You can request that the Spot fleet terminate Spot instances until the size of the fleet no longer exceeds the new target capacity. If the allocation strategy is <code>lowestPrice</code>, the Spot fleet terminates the instances with the highest price per unit. If the allocation strategy is <code>diversified</code>, the Spot fleet terminates instances across the Spot pools. Alternatively, you can request that the Spot fleet keep the fleet at its current size, but not replace any Spot instances that are interrupted or that you terminate manually.</p>",
     "ModifySubnetAttribute": "<p>Modifies a subnet attribute. You can only modify one attribute at a time.</p>",
@@ -207,6 +207,7 @@
     "ModifyVpcAttribute": "<p>Modifies the specified attribute of the specified VPC.</p>",
     "ModifyVpcEndpoint": "<p>Modifies attributes of a specified VPC endpoint. You can modify the policy associated with the endpoint, and you can add and remove route tables associated with the endpoint.</p>",
     "ModifyVpcPeeringConnectionOptions": "<p>Modifies the VPC peering connection options on one side of a VPC peering connection. You can do the following:</p> <ul> <li> <p>Enable/disable communication over the peering connection between an EC2-Classic instance that's linked to your VPC (using ClassicLink) and instances in the peer VPC.</p> </li> <li> <p>Enable/disable communication over the peering connection between instances in your VPC and an EC2-Classic instance that's linked to the peer VPC.</p> </li> <li> <p>Enable/disable a local VPC to resolve public DNS hostnames to private IP addresses when queried from instances in the peer VPC.</p> </li> </ul> <p>If the peered VPCs are in different accounts, each owner must initiate a separate request to modify the peering connection options, depending on whether their VPC was the requester or accepter for the VPC peering connection. If the peered VPCs are in the same account, you can modify the requester and accepter options in the same request. To confirm which VPC is the accepter and requester for a VPC peering connection, use the <a>DescribeVpcPeeringConnections</a> command.</p>",
+    "ModifyVpcTenancy": "<p>Modifies the instance tenancy attribute of the specified VPC. You can change the instance tenancy attribute of a VPC to <code>default</code> only. You cannot change the instance tenancy attribute to <code>dedicated</code>.</p> <p>After you modify the tenancy of the VPC, any new instances that you launch into the VPC have a tenancy of <code>default</code>, unless you specify otherwise during launch. The tenancy of any existing instances in the VPC is not affected.</p> <p>For more information about Dedicated Instances, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-instance.html\">Dedicated Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "MonitorInstances": "<p>Enables detailed monitoring for a running instance. Otherwise, basic monitoring is enabled. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html\">Monitoring Your Instances and Volumes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>To disable detailed monitoring, see .</p>",
     "MoveAddressToVpc": "<p>Moves an Elastic IP address from the EC2-Classic platform to the EC2-VPC platform. The Elastic IP address must be allocated to your account for more than 24 hours, and it must not be associated with an instance. After the Elastic IP address is moved, it is no longer available for use in the EC2-Classic platform, unless you move it back using the <a>RestoreAddressToClassic</a> request. You cannot move an Elastic IP address that was originally allocated for use in the EC2-VPC platform to the EC2-Classic platform. </p>",
     "PurchaseHostReservation": "<p>Purchase a reservation with configurations that match those of your Dedicated Host. You must have active Dedicated Hosts in your account before you purchase a reservation. This action results in the specified reservation being purchased and charged to your account.</p>",
@@ -890,6 +891,8 @@
         "ModifyVpcEndpointRequest$ResetPolicy": "<p>Specify <code>true</code> to reset the policy document to the default policy. The default policy allows access to the service.</p>",
         "ModifyVpcEndpointResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
         "ModifyVpcPeeringConnectionOptionsRequest$DryRun": "<p>Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "ModifyVpcTenancyRequest$DryRun": "<p>Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "ModifyVpcTenancyResult$ReturnValue": "<p>Returns <code>true</code> if the request succeeds; otherwise, returns an error.</p>",
         "MonitorInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "MoveAddressToVpcRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "NetworkAcl$IsDefault": "<p>Indicates whether this is the default network ACL for the VPC.</p>",
@@ -4282,6 +4285,16 @@
       "refs": {
       }
     },
+    "ModifyVpcTenancyRequest": {
+      "base": "<p>Contains the parameters for ModifyVpcTenancy.</p>",
+      "refs": {
+      }
+    },
+    "ModifyVpcTenancyResult": {
+      "base": "<p>Contains the output of ModifyVpcTenancy.</p>",
+      "refs": {
+      }
+    },
     "MonitorInstancesRequest": {
       "base": "<p>Contains the parameters for MonitorInstances.</p>",
       "refs": {
@@ -5113,7 +5126,7 @@
     "ReservedInstanceIdSet": {
       "base": null,
       "refs": {
-        "AcceptReservedInstancesExchangeQuoteRequest$ReservedInstanceIds": "<p>The IDs of the Convertible Reserved Instances to exchange for other Convertible Reserved Instances of the same or higher value.</p>",
+        "AcceptReservedInstancesExchangeQuoteRequest$ReservedInstanceIds": "<p>The IDs of the Convertible Reserved Instances to exchange for another Convertible Reserved Instance of the same or higher value.</p>",
         "GetReservedInstancesExchangeQuoteRequest$ReservedInstanceIds": "<p>The IDs of the Convertible Reserved Instances to exchange.</p>"
       }
     },
@@ -6501,6 +6514,7 @@
         "ModifyVpcEndpointRequest$PolicyDocument": "<p>A policy document to attach to the endpoint. The policy must be in valid JSON format.</p>",
         "ModifyVpcEndpointRequest$VpcEndpointId": "<p>The ID of the endpoint.</p>",
         "ModifyVpcPeeringConnectionOptionsRequest$VpcPeeringConnectionId": "<p>The ID of the VPC peering connection.</p>",
+        "ModifyVpcTenancyRequest$VpcId": "<p>The ID of the VPC.</p>",
         "MoveAddressToVpcRequest$PublicIp": "<p>The Elastic IP address.</p>",
         "MoveAddressToVpcResult$AllocationId": "<p>The allocation ID for the Elastic IP address.</p>",
         "MovingAddressStatus$PublicIp": "<p>The Elastic IP address.</p>",
@@ -6712,7 +6726,7 @@
         "RunInstancesRequest$KeyName": "<p>The name of the key pair. You can create a key pair using <a>CreateKeyPair</a> or <a>ImportKeyPair</a>.</p> <important> <p>If you do not specify a key pair, you can't connect to the instance unless you choose an AMI that is configured to allow users another way to log in.</p> </important>",
         "RunInstancesRequest$RamdiskId": "<p>The ID of the RAM disk.</p> <important> <p>We recommend that you use PV-GRUB instead of kernels and RAM disks. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html\"> PV-GRUB</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> </important>",
         "RunInstancesRequest$SubnetId": "<p>[EC2-VPC] The ID of the subnet to launch the instance into.</p>",
-        "RunInstancesRequest$UserData": "<p>The user data to make available to the instance. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html\">Running Commands on Your Linux Instance at Launch</a> (Linux) and <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-instance-metadata.html#instancedata-add-user-data\">Adding User Data</a> (Windows). If you are using an AWS SDK or command line tool, base64-encoding is performed for you, and you can load the text from a file. Otherwise, you must provide base64-encoded text.</p>",
+        "RunInstancesRequest$UserData": "<p>The user data to make available to the instance. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html\">Running Commands on Your Linux Instance at Launch</a> (Linux) and <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-instance-metadata.html#instancedata-add-user-data\">Adding User Data</a> (Windows). If you are using a command line tool, base64-encoding is performed for you, and you can load the text from a file. Otherwise, you must provide base64-encoded text.</p>",
         "RunInstancesRequest$AdditionalInfo": "<p>Reserved.</p>",
         "RunInstancesRequest$ClientToken": "<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p> <p>Constraints: Maximum 64 ASCII characters</p>",
         "RunInstancesRequest$PrivateIpAddress": "<p>[EC2-VPC] The primary IPv4 address. You must specify a value from the IPv4 address range of the subnet.</p> <p>Only one private IP address can be designated as primary. You can't specify this option if you've specified the option to designate a private IP address as the primary IP address in a network interface specification. You cannot specify this option if you're launching more than one instance in the request.</p>",
@@ -7074,8 +7088,8 @@
     "TargetConfigurationRequestSet": {
       "base": null,
       "refs": {
-        "AcceptReservedInstancesExchangeQuoteRequest$TargetConfigurations": "<p>The configurations of the Convertible Reserved Instance offerings that you are purchasing in this exchange.</p>",
-        "GetReservedInstancesExchangeQuoteRequest$TargetConfigurations": "<p>The configuration requirements of the Convertible Reserved Instances to exchange for your current Convertible Reserved Instances.</p>"
+        "AcceptReservedInstancesExchangeQuoteRequest$TargetConfigurations": "<p>The configuration of the target Convertible Reserved Instance to exchange for your current Convertible Reserved Instances.</p>",
+        "GetReservedInstancesExchangeQuoteRequest$TargetConfigurations": "<p>The configuration of the target Convertible Reserved Instance to exchange for your current Convertible Reserved Instances.</p>"
       }
     },
     "TargetReservationValue": {
@@ -7615,6 +7629,12 @@
       "base": null,
       "refs": {
         "Vpc$State": "<p>The current state of the VPC.</p>"
+      }
+    },
+    "VpcTenancy": {
+      "base": null,
+      "refs": {
+        "ModifyVpcTenancyRequest$InstanceTenancy": "<p>The instance tenancy attribute for the VPC. </p>"
       }
     },
     "VpnConnection": {

@@ -1,3 +1,19 @@
+Release v1.12.11 (2017-10-16)
+===
+
+### Service Client Updates
+* `service/cloudhsm`: Updates service API and documentation
+  * Documentation updates for AWS CloudHSM Classic.
+* `service/ec2`: Updates service API and documentation
+  * You can now change the tenancy of your VPC from dedicated to default with a single API operation. For more details refer to the documentation for changing VPC tenancy.
+* `service/es`: Updates service API and documentation
+  * AWS Elasticsearch adds support for enabling slow log publishing. Using slow log publishing options customers can configure and enable index/query slow log publishing of their domain to preferred AWS Cloudwatch log group.
+* `service/rds`: Updates service API and waiters
+  * Adds waiters for DBSnapshotAvailable and DBSnapshotDeleted.
+* `service/waf`: Updates service API and documentation
+  * This release adds support for regular expressions as match conditions in rules, and support for geographical location by country of request IP address as a match condition in rules.
+* `service/waf-regional`: Updates service API and documentation
+
 Release v1.12.10 (2017-10-12)
 ===
 

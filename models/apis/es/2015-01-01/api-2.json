@@ -264,6 +264,7 @@
       "exception":true
     },
     "Boolean":{"type":"boolean"},
+    "CloudWatchLogsLogGroupArn":{"type":"string"},
     "CreateElasticsearchDomainRequest":{
       "type":"structure",
       "required":["DomainName"],
@@ -274,7 +275,8 @@
         "EBSOptions":{"shape":"EBSOptions"},
         "AccessPolicies":{"shape":"PolicyDocument"},
         "SnapshotOptions":{"shape":"SnapshotOptions"},
-        "AdvancedOptions":{"shape":"AdvancedOptions"}
+        "AdvancedOptions":{"shape":"AdvancedOptions"},
+        "LogPublishingOptions":{"shape":"LogPublishingOptions"}
       }
     },
     "CreateElasticsearchDomainResponse":{
@@ -501,7 +503,8 @@
         "EBSOptions":{"shape":"EBSOptionsStatus"},
         "AccessPolicies":{"shape":"AccessPoliciesStatus"},
         "SnapshotOptions":{"shape":"SnapshotOptionsStatus"},
-        "AdvancedOptions":{"shape":"AdvancedOptionsStatus"}
+        "AdvancedOptions":{"shape":"AdvancedOptionsStatus"},
+        "LogPublishingOptions":{"shape":"LogPublishingOptionsStatus"}
       }
     },
     "ElasticsearchDomainStatus":{
@@ -525,7 +528,8 @@
         "EBSOptions":{"shape":"EBSOptions"},
         "AccessPolicies":{"shape":"PolicyDocument"},
         "SnapshotOptions":{"shape":"SnapshotOptions"},
-        "AdvancedOptions":{"shape":"AdvancedOptions"}
+        "AdvancedOptions":{"shape":"AdvancedOptions"},
+        "LogPublishingOptions":{"shape":"LogPublishingOptions"}
       }
     },
     "ElasticsearchDomainStatusList":{
@@ -686,6 +690,32 @@
         "TagList":{"shape":"TagList"}
       }
     },
+    "LogPublishingOption":{
+      "type":"structure",
+      "members":{
+        "CloudWatchLogsLogGroupArn":{"shape":"CloudWatchLogsLogGroupArn"},
+        "Enabled":{"shape":"Boolean"}
+      }
+    },
+    "LogPublishingOptions":{
+      "type":"map",
+      "key":{"shape":"LogType"},
+      "value":{"shape":"LogPublishingOption"}
+    },
+    "LogPublishingOptionsStatus":{
+      "type":"structure",
+      "members":{
+        "Options":{"shape":"LogPublishingOptions"},
+        "Status":{"shape":"OptionStatus"}
+      }
+    },
+    "LogType":{
+      "type":"string",
+      "enum":[
+        "INDEX_SLOW_LOGS",
+        "SEARCH_SLOW_LOGS"
+      ]
+    },
     "MaxResults":{
       "type":"integer",
       "max":100
@@ -832,7 +862,8 @@
         "EBSOptions":{"shape":"EBSOptions"},
         "SnapshotOptions":{"shape":"SnapshotOptions"},
         "AdvancedOptions":{"shape":"AdvancedOptions"},
-        "AccessPolicies":{"shape":"PolicyDocument"}
+        "AccessPolicies":{"shape":"PolicyDocument"},
+        "LogPublishingOptions":{"shape":"LogPublishingOptions"}
       }
     },
     "UpdateElasticsearchDomainConfigResponse":{
