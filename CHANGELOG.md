@@ -1,3 +1,12 @@
+Release v1.12.12 (2017-10-17)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/es`: Updates service API and documentation
+  * This release adds support for VPC access to Amazon Elasticsearch Service.
+  * This release adds support for VPC access to Amazon Elasticsearch Service.
+
 Release v1.12.11 (2017-10-16)
 ===
 
