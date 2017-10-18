@@ -959,7 +959,8 @@
         "version":{"shape":"string"},
         "versionCode":{"shape":"string"},
         "productUrl":{"shape":"string"},
-        "licenseUrl":{"shape":"string"}
+        "licenseUrl":{"shape":"string"},
+        "platform":{"shape":"InstancePlatform"}
       }
     },
     "BlueprintList":{
@@ -985,7 +986,8 @@
         "name":{"shape":"string"},
         "power":{"shape":"integer"},
         "ramSizeInGb":{"shape":"float"},
-        "transferPerMonthInGb":{"shape":"integer"}
+        "transferPerMonthInGb":{"shape":"integer"},
+        "supportedPlatforms":{"shape":"InstancePlatformList"}
       }
     },
     "BundleList":{
@@ -1620,6 +1622,7 @@
         "expiresAt":{"shape":"IsoDate"},
         "ipAddress":{"shape":"IpAddress"},
         "password":{"shape":"string"},
+        "passwordData":{"shape":"PasswordData"},
         "privateKey":{"shape":"string"},
         "protocol":{"shape":"InstanceAccessProtocol"},
         "instanceName":{"shape":"ResourceName"},
@@ -1662,6 +1665,17 @@
         "monthlyTransfer":{"shape":"MonthlyTransfer"},
         "ports":{"shape":"InstancePortInfoList"}
       }
+    },
+    "InstancePlatform":{
+      "type":"string",
+      "enum":[
+        "LINUX_UNIX",
+        "WINDOWS"
+      ]
+    },
+    "InstancePlatformList":{
+      "type":"list",
+      "member":{"shape":"InstancePlatform"}
     },
     "InstancePortInfo":{
       "type":"structure",
@@ -1950,6 +1964,13 @@
         "DeleteInstanceSnapshot",
         "CreateInstancesFromSnapshot"
       ]
+    },
+    "PasswordData":{
+      "type":"structure",
+      "members":{
+        "ciphertext":{"shape":"string"},
+        "keyPairName":{"shape":"ResourceName"}
+      }
     },
     "PeerVpcRequest":{
       "type":"structure",
