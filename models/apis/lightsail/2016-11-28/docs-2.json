@@ -616,6 +616,19 @@
         "Instance$networking": "<p>Information about the public ports and monthly data transfer rates for the instance.</p>"
       }
     },
+    "InstancePlatform": {
+      "base": null,
+      "refs": {
+        "Blueprint$platform": "<p>The operating system platform (either Linux/Unix-based or Windows Server-based) of the blueprint.</p>",
+        "InstancePlatformList$member": null
+      }
+    },
+    "InstancePlatformList": {
+      "base": null,
+      "refs": {
+        "Bundle$supportedPlatforms": "<p>The operating system platform (Linux/Unix-based or Windows Server-based) that the bundle supports. You can only launch a <code>WINDOWS</code> bundle on a blueprint that supports the <code>WINDOWS</code> platform. <code>LINUX_UNIX</code> blueprints require a <code>LINUX_UNIX</code> bundle.</p>"
+      }
+    },
     "InstancePortInfo": {
       "base": "<p>Describes information about the instance ports.</p>",
       "refs": {
@@ -873,6 +886,12 @@
         "Operation$operationType": "<p>The type of operation. </p>"
       }
     },
+    "PasswordData": {
+      "base": "<p>The password data for the Windows Server-based instance, including the ciphertext and the key pair name.</p>",
+      "refs": {
+        "InstanceAccessDetails$passwordData": "<p>For a Windows Server-based instance, an object with the data you can use to retrieve your password. This is only needed if <code>password</code> is empty and the instance is not new (and therefore the password is not ready yet). When you create an instance, it can take up to 15 minutes for the instance to be ready.</p>"
+      }
+    },
     "PeerVpcRequest": {
       "base": null,
       "refs": {
@@ -1020,6 +1039,7 @@
         "KeyPair$name": "<p>The friendly name of the SSH key pair.</p>",
         "OpenInstancePublicPortsRequest$instanceName": "<p>The name of the instance for which you want to open the public ports.</p>",
         "Operation$resourceName": "<p>The resource name.</p>",
+        "PasswordData$keyPairName": "<p>The name of the key pair that you used when creating your instance. If no key pair name was specified when creating the instance, Lightsail uses the default key pair (<code>LightsailDefaultKeyPair</code>).</p> <p>If you are using a custom key pair, you need to use your own means of decrypting your password using the <code>ciphertext</code>. Lightsail creates the ciphertext by encrypting your password with the public key part of this key pair.</p>",
         "PutInstancePublicPortsRequest$instanceName": "<p>The Lightsail instance name of the public port(s) you are setting.</p>",
         "RebootInstanceRequest$instanceName": "<p>The name of the instance to reboot.</p>",
         "ReleaseStaticIpRequest$staticIpName": "<p>The name of the static IP to delete.</p>",
@@ -1149,10 +1169,10 @@
     "integer": {
       "base": null,
       "refs": {
-        "Blueprint$minPower": "<p>The minimum machine size required to run this blueprint. <code>0</code> indicates that the blueprint runs on all instances.</p>",
+        "Blueprint$minPower": "<p>The minimum bundle power required to run this blueprint. For example, you need a bundle with a power value of 500 or more to create an instance that uses a blueprint with a minimum power value of 500. <code>0</code> indicates that the blueprint runs on all instance sizes. </p>",
         "Bundle$cpuCount": "<p>The number of vCPUs included in the bundle (e.g., <code>2</code>).</p>",
         "Bundle$diskSizeInGb": "<p>The size of the SSD (e.g., <code>30</code>).</p>",
-        "Bundle$power": "<p>The power of the bundle (e.g., <code>500</code>).</p>",
+        "Bundle$power": "<p>A numeric value that represents the power of the bundle (e.g., <code>500</code>). You can use the bundle's power value in conjunction with a blueprint's minimum power value to determine whether the blueprint will run on the bundle. For example, you need a bundle with a power value of 500 or more to create an instance that uses a blueprint with a minimum power value of 500.</p>",
         "Bundle$transferPerMonthInGb": "<p>The data transfer rate per month in GB (e.g., <code>2000</code>).</p>",
         "Disk$sizeInGb": "<p>The size of the disk in GB.</p>",
         "Disk$gbInUse": "<p>The number of GB in use by the disk.</p>",
@@ -1184,7 +1204,7 @@
         "CreateInstancesFromSnapshotRequest$availabilityZone": "<p>The Availability Zone where you want to create your instances. Use the following formatting: <code>us-east-1a</code> (case sensitive). You can get a list of availability zones by using the <a href=\"http://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetRegions.html\">get regions</a> operation. Be sure to add the <code>include availability zones</code> parameter to your request.</p>",
         "CreateInstancesFromSnapshotRequest$userData": "<p>You can create a launch script that configures a server with additional user data. For example, <code>apt-get –y update</code>.</p> <note> <p>Depending on the machine image you choose, the command to get software on your instance varies. Amazon Linux and CentOS use <code>yum</code>, Debian and Ubuntu use <code>apt-get</code>, and FreeBSD uses <code>pkg</code>. For a complete list, see the <a href=\"http://lightsail.aws.amazon.com/ls/docs/getting-started/articles/pre-installed-apps\">Dev Guide</a>.</p> </note>",
         "CreateInstancesRequest$availabilityZone": "<p>The Availability Zone in which to create your instance. Use the following format: <code>us-east-1a</code> (case sensitive). You can get a list of availability zones by using the <a href=\"http://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetRegions.html\">get regions</a> operation. Be sure to add the <code>include availability zones</code> parameter to your request.</p>",
-        "CreateInstancesRequest$userData": "<p>A launch script you can create that configures a server with additional user data. For example, you might want to run <code>apt-get –y update</code>.</p> <note> <p>Depending on the machine image you choose, the command to get software on your instance varies. Amazon Linux and CentOS use <code>yum</code>, Debian and Ubuntu use <code>apt-get</code>, and FreeBSD uses <code>pkg</code>. For a complete list, see the <a href=\"http://lightsail.aws.amazon.com/ls/docs/getting-started/articles/pre-installed-apps\">Dev Guide</a>.</p> </note>",
+        "CreateInstancesRequest$userData": "<p>A launch script you can create that configures a server with additional user data. For example, you might want to run <code>apt-get –y update</code>.</p> <note> <p>Depending on the machine image you choose, the command to get software on your instance varies. Amazon Linux and CentOS use <code>yum</code>, Debian and Ubuntu use <code>apt-get</code>, and FreeBSD uses <code>pkg</code>. For a complete list, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/getting-started/article/compare-options-choose-lightsail-instance-image\">Dev Guide</a>.</p> </note>",
         "Disk$supportCode": "<p>The support code. Include this code in your email to support when you have questions about an instance or another resource in Lightsail. This code enables our support team to look up your Lightsail information more easily.</p>",
         "Disk$path": "<p>The disk path.</p>",
         "Disk$attachedTo": "<p>The resources to which the disk is attached.</p>",
@@ -1215,7 +1235,7 @@
         "GetStaticIpsResult$nextPageToken": "<p>A token used for advancing to the next page of results from your get static IPs request.</p>",
         "Instance$supportCode": "<p>The support code. Include this code in your email to support when you have questions about an instance or another resource in Lightsail. This code enables our support team to look up your Lightsail information more easily.</p>",
         "InstanceAccessDetails$certKey": "<p>For SSH access, the public key to use when accessing your instance For OpenSSH clients (e.g., command line SSH), you should save this value to <code>tempkey-cert.pub</code>.</p>",
-        "InstanceAccessDetails$password": "<p>For RDP access, the temporary password of the Amazon EC2 instance.</p>",
+        "InstanceAccessDetails$password": "<p>For RDP access, the password for your Amazon Lightsail instance. Password will be an empty string if the password for your new instance is not ready yet. When you create an instance, it can take up to 15 minutes for the instance to be ready.</p> <note> <p>If you create an instance using any key pair other than the default (<code>LightsailDefaultKeyPair</code>), <code>password</code> will always be an empty string.</p> <p>If you change the Administrator password on the instance, Lightsail will continue to return the original password value. When accessing the instance using RDP, you need to manually enter the Administrator password after changing it from the default.</p> </note>",
         "InstanceAccessDetails$privateKey": "<p>For SSH access, the temporary private key. For OpenSSH clients (e.g., command line SSH), you should save this value to <code>tempkey</code>).</p>",
         "InstanceAccessDetails$username": "<p>The user name to use when logging in to the Amazon Lightsail instance.</p>",
         "InstancePortInfo$accessFrom": "<p>The location from which access is allowed (e.g., <code>Anywhere (0.0.0.0/0)</code>).</p>",
@@ -1241,6 +1261,7 @@
         "OperationFailureException$docs": null,
         "OperationFailureException$message": null,
         "OperationFailureException$tip": null,
+        "PasswordData$ciphertext": "<p>The encrypted password. Ciphertext will be an empty string if access to your new instance is not ready yet. When you create an instance, it can take up to 15 minutes for the instance to be ready.</p> <note> <p>If you use the default key pair (<code>LightsailDefaultKeyPair</code>), the decrypted password will be available in the password field.</p> <p>If you are using a custom key pair, you need to use your own means of decryption.</p> <p>If you change the Administrator password on the instance, Lightsail will continue to return the original ciphertext value. When accessing the instance using RDP, you need to manually enter the Administrator password after changing it from the default.</p> </note>",
         "Region$continentCode": "<p>The continent code (e.g., <code>NA</code>, meaning North America).</p>",
         "Region$description": "<p>The description of the AWS Region (e.g., <code>This region is recommended to serve users in the eastern United States and eastern Canada</code>).</p>",
         "Region$displayName": "<p>The display name (e.g., <code>Virginia</code>).</p>",
