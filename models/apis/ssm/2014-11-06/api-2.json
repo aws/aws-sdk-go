@@ -169,7 +169,8 @@
       "errors":[
         {"shape":"InvalidActivationId"},
         {"shape":"InvalidActivation"},
-        {"shape":"InternalServerError"}
+        {"shape":"InternalServerError"},
+        {"shape":"TooManyUpdates"}
       ]
     },
     "DeleteAssociation":{
@@ -806,7 +807,8 @@
       "errors":[
         {"shape":"InternalServerError"},
         {"shape":"InvalidKeyId"},
-        {"shape":"ParameterNotFound"}
+        {"shape":"ParameterNotFound"},
+        {"shape":"ParameterVersionNotFound"}
       ]
     },
     "GetParameterHistory":{
@@ -1128,6 +1130,7 @@
         {"shape":"HierarchyLevelLimitExceededException"},
         {"shape":"HierarchyTypeMismatchException"},
         {"shape":"InvalidAllowedPatternException"},
+        {"shape":"ParameterMaxVersionLimitExceeded"},
         {"shape":"ParameterPatternMismatchException"},
         {"shape":"UnsupportedParameterType"}
       ]
@@ -5242,7 +5245,7 @@
     },
     "PSParameterName":{
       "type":"string",
-      "max":1024,
+      "max":2048,
       "min":1
     },
     "PSParameterValue":{
@@ -5250,12 +5253,14 @@
       "max":4096,
       "min":1
     },
+    "PSParameterVersion":{"type":"long"},
     "Parameter":{
       "type":"structure",
       "members":{
         "Name":{"shape":"PSParameterName"},
         "Type":{"shape":"ParameterType"},
-        "Value":{"shape":"PSParameterValue"}
+        "Value":{"shape":"PSParameterValue"},
+        "Version":{"shape":"PSParameterVersion"}
       }
     },
     "ParameterAlreadyExists":{
@@ -5268,7 +5273,7 @@
     "ParameterDescription":{
       "type":"string",
       "max":1024,
-      "min":1
+      "min":0
     },
     "ParameterHistory":{
       "type":"structure",
@@ -5280,7 +5285,8 @@
         "LastModifiedUser":{"shape":"String"},
         "Description":{"shape":"ParameterDescription"},
         "Value":{"shape":"PSParameterValue"},
-        "AllowedPattern":{"shape":"AllowedPattern"}
+        "AllowedPattern":{"shape":"AllowedPattern"},
+        "Version":{"shape":"PSParameterVersion"}
       }
     },
     "ParameterHistoryList":{
@@ -5304,6 +5310,13 @@
       "type":"list",
       "member":{"shape":"Parameter"}
     },
+    "ParameterMaxVersionLimitExceeded":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "exception":true
+    },
     "ParameterMetadata":{
       "type":"structure",
       "members":{
@@ -5313,7 +5326,8 @@
         "LastModifiedDate":{"shape":"DateTime"},
         "LastModifiedUser":{"shape":"String"},
         "Description":{"shape":"ParameterDescription"},
-        "AllowedPattern":{"shape":"AllowedPattern"}
+        "AllowedPattern":{"shape":"AllowedPattern"},
+        "Version":{"shape":"PSParameterVersion"}
       }
     },
     "ParameterMetadataList":{
@@ -5388,6 +5402,13 @@
     "ParameterValueList":{
       "type":"list",
       "member":{"shape":"ParameterValue"}
+    },
+    "ParameterVersionNotFound":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "exception":true
     },
     "Parameters":{
       "type":"map",
@@ -5778,6 +5799,7 @@
     "PutParameterResult":{
       "type":"structure",
       "members":{
+        "Version":{"shape":"PSParameterVersion"}
       }
     },
     "RegisterDefaultPatchBaselineRequest":{

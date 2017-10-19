@@ -1,3 +1,12 @@
+Release v1.12.14 (2017-10-19)
+===
+
+### Service Client Updates
+* `service/sqs`: Updates service API and documentation
+  * Added support for tracking cost allocation by adding, updating, removing, and listing the metadata tags of Amazon SQS queues.
+* `service/ssm`: Updates service API and documentation
+  * EC2 Systems Manager versioning support for Parameter Store. Also support for referencing parameter versions in SSM Documents.
+
 Release v1.12.13 (2017-10-18)
 ===
 
