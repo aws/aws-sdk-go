@@ -18,6 +18,7 @@ import (
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 )
 
+// Not used, but this is the signed plaintext contained in the PKCS7 data below
 const instanceIdentityDocument = `{
   "devpayProductCodes" : null,
   "availabilityZone" : "us-east-1d",
@@ -34,6 +35,48 @@ const instanceIdentityDocument = `{
   "ramdiskId" : null,
   "architecture" : "x86_64"
 }`
+
+const PKCS7 = `MIIDdQYJKoZIhvcNAQcCoIIDZjCCA2ICAQExCzAJBgUrDgMCGgUAMIIBzgYJKoZI
+hvcNAQcBoIIBvwSCAbt7CiAgImRldnBheVByb2R1Y3RDb2RlcyIgOiBudWxsLAog
+ICJhdmFpbGFiaWxpdHlab25lIiA6ICJ1cy1lYXN0LTFkIiwKICAicHJpdmF0ZUlw
+IiA6ICIxMC4xNTguMTEyLjg0IiwKICAidmVyc2lvbiIgOiAiMjAxMC0wOC0zMSIs
+CiAgInJlZ2lvbiIgOiAidXMtZWFzdC0xIiwKICAiaW5zdGFuY2VJZCIgOiAiaS0x
+MjM0NTY3ODkwYWJjZGVmMCIsCiAgImJpbGxpbmdQcm9kdWN0cyIgOiBudWxsLAog
+ICJpbnN0YW5jZVR5cGUiIDogInQxLm1pY3JvIiwKICAiYWNjb3VudElkIiA6ICIx
+MjM0NTY3ODkwMTIiLAogICJwZW5kaW5nVGltZSIgOiAiMjAxNS0xMS0xOVQxNjoz
+MjoxMVoiLAogICJpbWFnZUlkIiA6ICJhbWktNWZiOGM4MzUiLAogICJrZXJuZWxJ
+ZCIgOiAiYWtpLTkxOWRjYWY4IiwKICAicmFtZGlza0lkIiA6IG51bGwsCiAgImFy
+Y2hpdGVjdHVyZSIgOiAieDg2XzY0Igp9CjGCAXwwggF4AgEBMFIwRTELMAkGA1UE
+BhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUxITAfBgNVBAoMGEludGVybmV0IFdp
+ZGdpdHMgUHR5IEx0ZAIJAILBjm7QgIp6MAkGBSsOAwIaBQCggdgwGAYJKoZIhvcN
+AQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTcxMDE4MjMyMzA4WjAj
+BgkqhkiG9w0BCQQxFgQUjo+fcC+mFKZW46pOQppLyhF4vq4weQYJKoZIhvcNAQkP
+MWwwajALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFlAwQBAjAKBggq
+hkiG9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwICAUAwBwYFKw4DAgcw
+DQYIKoZIhvcNAwICASgwCQYHKoZIzjgEAwQuMCwCFEswo7mYpSI+Jm3SEXRBu3Lu
+U4jQAhQ04k3XPWh6qC6MXFgPpaCqCogJGA==`
+
+// Certificate created for test purpose. The corresponding private key
+// is checked in testdata/
+const testCert = `-----BEGIN CERTIFICATE-----
+MIIDGjCCAtigAwIBAgIJAILBjm7QgIp6MAsGCWCGSAFlAwQDAjBFMQswCQYDVQQG
+EwJBVTETMBEGA1UECAwKU29tZS1TdGF0ZTEhMB8GA1UECgwYSW50ZXJuZXQgV2lk
+Z2l0cyBQdHkgTHRkMB4XDTE3MTAxODIyMDAwM1oXDTE3MTExNzIyMDAwM1owRTEL
+MAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUxITAfBgNVBAoMGEludGVy
+bmV0IFdpZGdpdHMgUHR5IEx0ZDCCAbcwggEsBgcqhkjOOAQBMIIBHwKBgQCVNC8S
+zv/6FpuxWsC9fzVmXQPyjxUc98xFcm75EneF6D+qsefSJeubcnWVRmLmNl1fU+iH
+/BsNJbM0nXGNvMmT2pJCREsB8lNK7JkqfSpzYbwYoVtnTVppWTMZf4GO9i0fWDE0
+vwffVviGWgTaBIKpcKaP+BvPt4d6OkBAiErcXQIVAI7aoB4F5deSrt8N0+pTKV/l
+FhHdAoGBAJHkM1yXL5G/AhwnQeNH5Sp7e8wEnUpvA6wo6vdHJ1WlRlPeClKr4zgW
+XYr3+1wNmIFW8nCnR5jXPrzBLMo7MZzlOk+1ogbgNG7nCCUMcFXYXRfYSYKoUrrA
+/356mDD9ruiHb4HwwKq7ah22+6050cTXwvnigfvGDCt1NJE/GSLeA4GEAAKBgBq1
+t3iLtyZVs8kxriLBapt+qPaYGCZ2MBruZRyDQNwaAeOvExMDZnja/CbxPyLTXWpT
+E3LSFVAnvieAXE0ZcNg+RG5tYBr99g4ZlWm/XJsnzlglEtUxzL6ZndjKSNfWYIm/
+8dKFVqq4BHvG5J+B4UGoIIQiSvsgLx0uEq5ezLaoo1AwTjAdBgNVHQ4EFgQUhaBr
+c5u63ltwBhuB8IpH9aY5RUowHwYDVR0jBBgwFoAUhaBrc5u63ltwBhuB8IpH9aY5
+RUowDAYDVR0TBAUwAwEB/zALBglghkgBZQMEAwIDLwAwLAIUK7XuiiURX/w5WagP
+Y7uo+rp7S/oCFA15khEHbJ6oNutjJYwC60WmENT9
+-----END CERTIFICATE-----`
 
 const validIamInfo = `{
   "Code" : "Success",
@@ -267,23 +310,23 @@ func TestMetadataErrorResponse(t *testing.T) {
 
 func TestEC2RoleProviderInstanceIdentity(t *testing.T) {
 	server := initTestServer(
-		"/latest/dynamic/instance-identity/document",
-		instanceIdentityDocument,
+		"/latest/dynamic/instance-identity/pkcs7",
+		PKCS7,
 	)
 	defer server.Close()
 	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
 
-	doc, err := c.GetInstanceIdentityDocument()
+	doc, err := c.GetInstanceIdentityDocument(testCert)
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
-	if e, a := doc.AccountID, "123456789012"; e != a {
+	if e, a := "123456789012", doc.AccountID; e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
-	if e, a := doc.AvailabilityZone, "us-east-1d"; e != a {
+	if e, a := "us-east-1d", doc.AvailabilityZone; e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
-	if e, a := doc.Region, "us-east-1"; e != a {
+	if e, a := "us-east-1", doc.Region; e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 }
