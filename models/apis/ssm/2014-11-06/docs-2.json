@@ -3547,6 +3547,15 @@
         "PutParameterRequest$Value": "<p>The parameter value that you want to add to the system.</p>"
       }
     },
+    "PSParameterVersion": {
+      "base": null,
+      "refs": {
+        "Parameter$Version": "<p>The parameter version.</p>",
+        "ParameterHistory$Version": "<p>The parameter version.</p>",
+        "ParameterMetadata$Version": "<p>The parameter version.</p>",
+        "PutParameterResult$Version": "<p>The new version number of a parameter. If you edit a parameter value, Parameter Store automatically creates a new version and assigns this new version a unique ID. You can reference a parameter version ID in API actions or in Systems Manager documents (SSM documents). By default, if you don't specify a specific version, the system returns the latest parameter value when a parameter is called.</p>"
+      }
+    },
     "Parameter": {
       "base": "<p>An Amazon EC2 Systems Manager parameter in Parameter Store.</p>",
       "refs": {
@@ -3597,6 +3606,11 @@
       "refs": {
         "GetParametersByPathResult$Parameters": "<p>A list of parameters found in the specified hierarchy.</p>",
         "GetParametersResult$Parameters": "<p>A list of details for a parameter.</p>"
+      }
+    },
+    "ParameterMaxVersionLimitExceeded": {
+      "base": "<p>The parameter exceeded the maximum number of allowed versions.</p>",
+      "refs": {
       }
     },
     "ParameterMetadata": {
@@ -3693,6 +3707,11 @@
       "base": null,
       "refs": {
         "Parameters$value": null
+      }
+    },
+    "ParameterVersionNotFound": {
+      "base": "<p>The specified parameter version was not found. Verify the parameter name and version, and try again.</p>",
+      "refs": {
       }
     },
     "Parameters": {
@@ -4300,7 +4319,7 @@
     "ResourceId": {
       "base": null,
       "refs": {
-        "AddTagsToResourceRequest$ResourceId": "<p>The resource ID you want to tag.</p>",
+        "AddTagsToResourceRequest$ResourceId": "<p>The resource ID you want to tag.</p> <p>For the ManagedInstance, MaintenanceWindow, and PatchBaseline values, use the ID of the resource, such as mw-01234361858c9b57b for a Maintenance Window.</p> <p>For the Document and Parameter values, use the name of the resource.</p>",
         "ListTagsForResourceRequest$ResourceId": "<p>The resource ID for which you want to see a list of tags.</p>",
         "RemoveTagsFromResourceRequest$ResourceId": "<p>The resource ID for which you want to remove tags.</p>"
       }
@@ -4616,9 +4635,11 @@
         "ParameterAlreadyExists$message": null,
         "ParameterHistory$LastModifiedUser": "<p>Amazon Resource Name (ARN) of the AWS user who last changed the parameter.</p>",
         "ParameterLimitExceeded$message": null,
+        "ParameterMaxVersionLimitExceeded$message": null,
         "ParameterMetadata$LastModifiedUser": "<p>Amazon Resource Name (ARN) of the AWS user who last changed the parameter.</p>",
         "ParameterNotFound$message": null,
         "ParameterPatternMismatchException$message": "<p>The parameter name is not valid.</p>",
+        "ParameterVersionNotFound$message": null,
         "ResourceDataSyncCountExceededException$Message": null,
         "ResourceDataSyncInvalidConfigurationException$Message": null,
         "ResourceInUseException$Message": null,
