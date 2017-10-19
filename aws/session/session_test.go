@@ -91,7 +91,8 @@ func TestSessionCopy(t *testing.T) {
 
 func TestSessionClientConfig(t *testing.T) {
 	s, err := NewSession(&aws.Config{
-		Region: aws.String("orig_region"),
+		Credentials: credentials.AnonymousCredentials,
+		Region:      aws.String("orig_region"),
 		EndpointResolver: endpoints.ResolverFunc(
 			func(service, region string, opts ...func(*endpoints.Options)) (endpoints.ResolvedEndpoint, error) {
 				if e, a := "mock-service", service; e != a {
