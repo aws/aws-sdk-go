@@ -1,3 +1,10 @@
+Release v1.12.15 (2017-10-20)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Adding pagination support for DescribeSecurityGroups for EC2 Classic and VPC Security Groups
+
 Release v1.12.14 (2017-10-19)
 ===
 
