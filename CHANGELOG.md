@@ -1,3 +1,11 @@
+Release v1.12.16 (2017-10-23)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/organizations`: Updates service API and documentation
+  * This release supports integrating other AWS services with AWS Organizations through the use of an IAM service-linked role called AWSServiceRoleForOrganizations. Certain operations automatically create that role if it does not already exist.
+
 Release v1.12.15 (2017-10-20)
 ===
 

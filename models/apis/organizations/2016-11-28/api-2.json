@@ -7,6 +7,7 @@
     "protocol":"json",
     "serviceAbbreviation":"Organizations",
     "serviceFullName":"AWS Organizations",
+    "serviceId":"Organizations",
     "signatureVersion":"v4",
     "targetPrefix":"AWSOrganizationsV20161128",
     "timestampFormat":"unixTimestamp",
@@ -31,7 +32,8 @@
         {"shape":"InvalidInputException"},
         {"shape":"ConcurrentModificationException"},
         {"shape":"ServiceException"},
-        {"shape":"TooManyRequestsException"}
+        {"shape":"TooManyRequestsException"},
+        {"shape":"AccessDeniedForDependencyException"}
       ]
     },
     "AttachPolicy":{
@@ -108,7 +110,8 @@
         {"shape":"ConstraintViolationException"},
         {"shape":"InvalidInputException"},
         {"shape":"ServiceException"},
-        {"shape":"TooManyRequestsException"}
+        {"shape":"TooManyRequestsException"},
+        {"shape":"AccessDeniedForDependencyException"}
       ]
     },
     "CreateOrganizationalUnit":{
@@ -747,6 +750,18 @@
       },
       "exception":true
     },
+    "AccessDeniedForDependencyException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ExceptionMessage"},
+        "Reason":{"shape":"AccessDeniedForDependencyExceptionReason"}
+      },
+      "exception":true
+    },
+    "AccessDeniedForDependencyExceptionReason":{
+      "type":"string",
+      "enum":["ACCESS_DENIED_DURING_CREATE_SERVICE_LINKED_ROLE"]
+    },
     "Account":{
       "type":"structure",
       "members":{
@@ -803,7 +818,8 @@
       "enum":[
         "INVITE",
         "ENABLE_ALL_FEATURES",
-        "APPROVE_ALL_FEATURES"
+        "APPROVE_ALL_FEATURES",
+        "ADD_ORGANIZATIONS_SERVICE_LINKED_ROLE"
       ]
     },
     "AlreadyInOrganizationException":{
@@ -909,6 +925,7 @@
         "EMAIL_ALREADY_EXISTS",
         "INVALID_ADDRESS",
         "INVALID_EMAIL",
+        "CONCURRENT_ACCOUNT_MODIFICATION",
         "INTERNAL_FAILURE"
       ]
     },
