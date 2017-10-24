@@ -624,6 +624,182 @@ func (c *Pinpoint) DeleteApnsSandboxChannelWithContext(ctx aws.Context, input *D
 	return out, req.Send()
 }
 
+const opDeleteApnsVoipChannel = "DeleteApnsVoipChannel"
+
+// DeleteApnsVoipChannelRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteApnsVoipChannel operation. The "output" return
+// value will be populated with the request's response once the request complets
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteApnsVoipChannel for more information on using the DeleteApnsVoipChannel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteApnsVoipChannelRequest method.
+//    req, resp := client.DeleteApnsVoipChannelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipChannel
+func (c *Pinpoint) DeleteApnsVoipChannelRequest(input *DeleteApnsVoipChannelInput) (req *request.Request, output *DeleteApnsVoipChannelOutput) {
+	op := &request.Operation{
+		Name:       opDeleteApnsVoipChannel,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v1/apps/{application-id}/channels/apns_voip",
+	}
+
+	if input == nil {
+		input = &DeleteApnsVoipChannelInput{}
+	}
+
+	output = &DeleteApnsVoipChannelOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteApnsVoipChannel API operation for Amazon Pinpoint.
+//
+// Delete an APNS VOIP channel
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint's
+// API operation DeleteApnsVoipChannel for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//
+//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//
+//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipChannel
+func (c *Pinpoint) DeleteApnsVoipChannel(input *DeleteApnsVoipChannelInput) (*DeleteApnsVoipChannelOutput, error) {
+	req, out := c.DeleteApnsVoipChannelRequest(input)
+	return out, req.Send()
+}
+
+// DeleteApnsVoipChannelWithContext is the same as DeleteApnsVoipChannel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteApnsVoipChannel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) DeleteApnsVoipChannelWithContext(ctx aws.Context, input *DeleteApnsVoipChannelInput, opts ...request.Option) (*DeleteApnsVoipChannelOutput, error) {
+	req, out := c.DeleteApnsVoipChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteApnsVoipSandboxChannel = "DeleteApnsVoipSandboxChannel"
+
+// DeleteApnsVoipSandboxChannelRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteApnsVoipSandboxChannel operation. The "output" return
+// value will be populated with the request's response once the request complets
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteApnsVoipSandboxChannel for more information on using the DeleteApnsVoipSandboxChannel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteApnsVoipSandboxChannelRequest method.
+//    req, resp := client.DeleteApnsVoipSandboxChannelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipSandboxChannel
+func (c *Pinpoint) DeleteApnsVoipSandboxChannelRequest(input *DeleteApnsVoipSandboxChannelInput) (req *request.Request, output *DeleteApnsVoipSandboxChannelOutput) {
+	op := &request.Operation{
+		Name:       opDeleteApnsVoipSandboxChannel,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v1/apps/{application-id}/channels/apns_voip_sandbox",
+	}
+
+	if input == nil {
+		input = &DeleteApnsVoipSandboxChannelInput{}
+	}
+
+	output = &DeleteApnsVoipSandboxChannelOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteApnsVoipSandboxChannel API operation for Amazon Pinpoint.
+//
+// Delete an APNS VOIP sandbox channel
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint's
+// API operation DeleteApnsVoipSandboxChannel for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//
+//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//
+//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipSandboxChannel
+func (c *Pinpoint) DeleteApnsVoipSandboxChannel(input *DeleteApnsVoipSandboxChannelInput) (*DeleteApnsVoipSandboxChannelOutput, error) {
+	req, out := c.DeleteApnsVoipSandboxChannelRequest(input)
+	return out, req.Send()
+}
+
+// DeleteApnsVoipSandboxChannelWithContext is the same as DeleteApnsVoipSandboxChannel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteApnsVoipSandboxChannel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) DeleteApnsVoipSandboxChannelWithContext(ctx aws.Context, input *DeleteApnsVoipSandboxChannelInput, opts ...request.Option) (*DeleteApnsVoipSandboxChannelOutput, error) {
+	req, out := c.DeleteApnsVoipSandboxChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteApp = "DeleteApp"
 
 // DeleteAppRequest generates a "aws/request.Request" representing the
@@ -1587,6 +1763,182 @@ func (c *Pinpoint) GetApnsSandboxChannel(input *GetApnsSandboxChannelInput) (*Ge
 // for more information on using Contexts.
 func (c *Pinpoint) GetApnsSandboxChannelWithContext(ctx aws.Context, input *GetApnsSandboxChannelInput, opts ...request.Option) (*GetApnsSandboxChannelOutput, error) {
 	req, out := c.GetApnsSandboxChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetApnsVoipChannel = "GetApnsVoipChannel"
+
+// GetApnsVoipChannelRequest generates a "aws/request.Request" representing the
+// client's request for the GetApnsVoipChannel operation. The "output" return
+// value will be populated with the request's response once the request complets
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetApnsVoipChannel for more information on using the GetApnsVoipChannel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetApnsVoipChannelRequest method.
+//    req, resp := client.GetApnsVoipChannelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipChannel
+func (c *Pinpoint) GetApnsVoipChannelRequest(input *GetApnsVoipChannelInput) (req *request.Request, output *GetApnsVoipChannelOutput) {
+	op := &request.Operation{
+		Name:       opGetApnsVoipChannel,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/apps/{application-id}/channels/apns_voip",
+	}
+
+	if input == nil {
+		input = &GetApnsVoipChannelInput{}
+	}
+
+	output = &GetApnsVoipChannelOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetApnsVoipChannel API operation for Amazon Pinpoint.
+//
+// Get an APNS Voip channel
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint's
+// API operation GetApnsVoipChannel for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//
+//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//
+//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipChannel
+func (c *Pinpoint) GetApnsVoipChannel(input *GetApnsVoipChannelInput) (*GetApnsVoipChannelOutput, error) {
+	req, out := c.GetApnsVoipChannelRequest(input)
+	return out, req.Send()
+}
+
+// GetApnsVoipChannelWithContext is the same as GetApnsVoipChannel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetApnsVoipChannel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetApnsVoipChannelWithContext(ctx aws.Context, input *GetApnsVoipChannelInput, opts ...request.Option) (*GetApnsVoipChannelOutput, error) {
+	req, out := c.GetApnsVoipChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetApnsVoipSandboxChannel = "GetApnsVoipSandboxChannel"
+
+// GetApnsVoipSandboxChannelRequest generates a "aws/request.Request" representing the
+// client's request for the GetApnsVoipSandboxChannel operation. The "output" return
+// value will be populated with the request's response once the request complets
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetApnsVoipSandboxChannel for more information on using the GetApnsVoipSandboxChannel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetApnsVoipSandboxChannelRequest method.
+//    req, resp := client.GetApnsVoipSandboxChannelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipSandboxChannel
+func (c *Pinpoint) GetApnsVoipSandboxChannelRequest(input *GetApnsVoipSandboxChannelInput) (req *request.Request, output *GetApnsVoipSandboxChannelOutput) {
+	op := &request.Operation{
+		Name:       opGetApnsVoipSandboxChannel,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/apps/{application-id}/channels/apns_voip_sandbox",
+	}
+
+	if input == nil {
+		input = &GetApnsVoipSandboxChannelInput{}
+	}
+
+	output = &GetApnsVoipSandboxChannelOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetApnsVoipSandboxChannel API operation for Amazon Pinpoint.
+//
+// Get an APNS VoipSandbox channel
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint's
+// API operation GetApnsVoipSandboxChannel for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//
+//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//
+//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipSandboxChannel
+func (c *Pinpoint) GetApnsVoipSandboxChannel(input *GetApnsVoipSandboxChannelInput) (*GetApnsVoipSandboxChannelOutput, error) {
+	req, out := c.GetApnsVoipSandboxChannelRequest(input)
+	return out, req.Send()
+}
+
+// GetApnsVoipSandboxChannelWithContext is the same as GetApnsVoipSandboxChannel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetApnsVoipSandboxChannel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetApnsVoipSandboxChannelWithContext(ctx aws.Context, input *GetApnsVoipSandboxChannelInput, opts ...request.Option) (*GetApnsVoipSandboxChannelOutput, error) {
+	req, out := c.GetApnsVoipSandboxChannelRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3968,6 +4320,182 @@ func (c *Pinpoint) UpdateApnsSandboxChannelWithContext(ctx aws.Context, input *U
 	return out, req.Send()
 }
 
+const opUpdateApnsVoipChannel = "UpdateApnsVoipChannel"
+
+// UpdateApnsVoipChannelRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateApnsVoipChannel operation. The "output" return
+// value will be populated with the request's response once the request complets
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateApnsVoipChannel for more information on using the UpdateApnsVoipChannel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateApnsVoipChannelRequest method.
+//    req, resp := client.UpdateApnsVoipChannelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipChannel
+func (c *Pinpoint) UpdateApnsVoipChannelRequest(input *UpdateApnsVoipChannelInput) (req *request.Request, output *UpdateApnsVoipChannelOutput) {
+	op := &request.Operation{
+		Name:       opUpdateApnsVoipChannel,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v1/apps/{application-id}/channels/apns_voip",
+	}
+
+	if input == nil {
+		input = &UpdateApnsVoipChannelInput{}
+	}
+
+	output = &UpdateApnsVoipChannelOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateApnsVoipChannel API operation for Amazon Pinpoint.
+//
+// Update an APNS VOIP channel
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint's
+// API operation UpdateApnsVoipChannel for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//
+//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//
+//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipChannel
+func (c *Pinpoint) UpdateApnsVoipChannel(input *UpdateApnsVoipChannelInput) (*UpdateApnsVoipChannelOutput, error) {
+	req, out := c.UpdateApnsVoipChannelRequest(input)
+	return out, req.Send()
+}
+
+// UpdateApnsVoipChannelWithContext is the same as UpdateApnsVoipChannel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateApnsVoipChannel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) UpdateApnsVoipChannelWithContext(ctx aws.Context, input *UpdateApnsVoipChannelInput, opts ...request.Option) (*UpdateApnsVoipChannelOutput, error) {
+	req, out := c.UpdateApnsVoipChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateApnsVoipSandboxChannel = "UpdateApnsVoipSandboxChannel"
+
+// UpdateApnsVoipSandboxChannelRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateApnsVoipSandboxChannel operation. The "output" return
+// value will be populated with the request's response once the request complets
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateApnsVoipSandboxChannel for more information on using the UpdateApnsVoipSandboxChannel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateApnsVoipSandboxChannelRequest method.
+//    req, resp := client.UpdateApnsVoipSandboxChannelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipSandboxChannel
+func (c *Pinpoint) UpdateApnsVoipSandboxChannelRequest(input *UpdateApnsVoipSandboxChannelInput) (req *request.Request, output *UpdateApnsVoipSandboxChannelOutput) {
+	op := &request.Operation{
+		Name:       opUpdateApnsVoipSandboxChannel,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v1/apps/{application-id}/channels/apns_voip_sandbox",
+	}
+
+	if input == nil {
+		input = &UpdateApnsVoipSandboxChannelInput{}
+	}
+
+	output = &UpdateApnsVoipSandboxChannelOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateApnsVoipSandboxChannel API operation for Amazon Pinpoint.
+//
+// Update an APNS VOIP sandbox channel
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint's
+// API operation UpdateApnsVoipSandboxChannel for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//
+//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//
+//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipSandboxChannel
+func (c *Pinpoint) UpdateApnsVoipSandboxChannel(input *UpdateApnsVoipSandboxChannelInput) (*UpdateApnsVoipSandboxChannelOutput, error) {
+	req, out := c.UpdateApnsVoipSandboxChannelRequest(input)
+	return out, req.Send()
+}
+
+// UpdateApnsVoipSandboxChannelWithContext is the same as UpdateApnsVoipSandboxChannel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateApnsVoipSandboxChannel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) UpdateApnsVoipSandboxChannelWithContext(ctx aws.Context, input *UpdateApnsVoipSandboxChannelInput, opts ...request.Option) (*UpdateApnsVoipSandboxChannelOutput, error) {
+	req, out := c.UpdateApnsVoipSandboxChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateApplicationSettings = "UpdateApplicationSettings"
 
 // UpdateApplicationSettingsRequest generates a "aws/request.Request" representing the
@@ -4817,6 +5345,9 @@ type ADMChannelResponse struct {
 	// If the channel is enabled for sending messages.
 	Enabled *bool `type:"boolean"`
 
+	// If the channel is registered with a credential for authentication.
+	HasCredential *bool `type:"boolean"`
+
 	// Channel ID. Not used, only for backwards compatibility.
 	Id *string `type:"string"`
 
@@ -4861,6 +5392,12 @@ func (s *ADMChannelResponse) SetCreationDate(v string) *ADMChannelResponse {
 // SetEnabled sets the Enabled field's value.
 func (s *ADMChannelResponse) SetEnabled(v bool) *ADMChannelResponse {
 	s.Enabled = &v
+	return s
+}
+
+// SetHasCredential sets the HasCredential field's value.
+func (s *ADMChannelResponse) SetHasCredential(v bool) *ADMChannelResponse {
+	s.HasCredential = &v
 	return s
 }
 
@@ -4937,10 +5474,6 @@ type ADMMessage struct {
 
 	// The URL that points to an image used in the push notification.
 	ImageUrl *string `type:"string"`
-
-	// The data payload used for a silent push. This payload is added to the notifications'
-	// data.pinpoint.jsonBody' object
-	JsonData *string `type:"string"`
 
 	// Optional. Base-64-encoded MD5 checksum of the data parameter. Used to verify
 	// data integrity
@@ -5029,12 +5562,6 @@ func (s *ADMMessage) SetImageIconUrl(v string) *ADMMessage {
 // SetImageUrl sets the ImageUrl field's value.
 func (s *ADMMessage) SetImageUrl(v string) *ADMMessage {
 	s.ImageUrl = &v
-	return s
-}
-
-// SetJsonData sets the JsonData field's value.
-func (s *ADMMessage) SetJsonData(v string) *ADMMessage {
-	s.JsonData = &v
 	return s
 }
 
@@ -5185,8 +5712,17 @@ type APNSChannelResponse struct {
 	// When was this segment created
 	CreationDate *string `type:"string"`
 
+	// The default authentication method used for APNs.
+	DefaultAuthenticationMethod *string `type:"string"`
+
 	// If the channel is enabled for sending messages.
 	Enabled *bool `type:"boolean"`
+
+	// If the channel is registered with a credential for authentication.
+	HasCredential *bool `type:"boolean"`
+
+	// If the channel is registered with a token key for authentication.
+	HasTokenKey *bool `type:"boolean"`
 
 	// Channel ID. Not used. Present only for backwards compatibility.
 	Id *string `type:"string"`
@@ -5229,9 +5765,27 @@ func (s *APNSChannelResponse) SetCreationDate(v string) *APNSChannelResponse {
 	return s
 }
 
+// SetDefaultAuthenticationMethod sets the DefaultAuthenticationMethod field's value.
+func (s *APNSChannelResponse) SetDefaultAuthenticationMethod(v string) *APNSChannelResponse {
+	s.DefaultAuthenticationMethod = &v
+	return s
+}
+
 // SetEnabled sets the Enabled field's value.
 func (s *APNSChannelResponse) SetEnabled(v bool) *APNSChannelResponse {
 	s.Enabled = &v
+	return s
+}
+
+// SetHasCredential sets the HasCredential field's value.
+func (s *APNSChannelResponse) SetHasCredential(v bool) *APNSChannelResponse {
+	s.HasCredential = &v
+	return s
+}
+
+// SetHasTokenKey sets the HasTokenKey field's value.
+func (s *APNSChannelResponse) SetHasTokenKey(v bool) *APNSChannelResponse {
+	s.HasTokenKey = &v
 	return s
 }
 
@@ -5298,17 +5852,21 @@ type APNSMessage struct {
 	// your app's registered categories.
 	Category *string `type:"string"`
 
-	Data map[string]*string `type:"map"`
+	// Multiple notifications with the same collapse identifier are displayed to
+	// the user as a single notification. The value of this key must not exceed
+	// 64 bytes.
+	CollapseId *string `type:"string"`
 
-	// The data payload used for a silent push. This payload is added to the notifications'
-	// data.pinpoint.jsonBody' object
-	JsonData *string `type:"string"`
+	Data map[string]*string `type:"map"`
 
 	// The URL that points to a video used in the push notification.
 	MediaUrl *string `type:"string"`
 
 	// The preferred authentication method, either "CERTIFICATE" or "TOKEN"
 	PreferredAuthenticationMethod *string `type:"string"`
+
+	// Is this a transaction priority message or lower priority.
+	Priority *string `type:"string"`
 
 	// The Raw JSON formatted string to be used as the payload. This value overrides
 	// the message.
@@ -5330,6 +5888,13 @@ type APNSMessage struct {
 	// for grouping notifications. If you provide a Notification Content app extension,
 	// you can use this value to group your notifications together.
 	ThreadId *string `type:"string"`
+
+	// This parameter specifies how long (in seconds) the message should be kept
+	// if APNS is unable to deliver the notification the first time. If the value
+	// is 0, APNS treats the notification as if it expires immediately and does
+	// not store the notification or attempt to redeliver it. This value is converted
+	// to the expiration field when sent to APNS
+	TimeToLive *int64 `type:"integer"`
 
 	// The message title that displays above the message on the user's device.
 	Title *string `type:"string"`
@@ -5373,15 +5938,15 @@ func (s *APNSMessage) SetCategory(v string) *APNSMessage {
 	return s
 }
 
-// SetData sets the Data field's value.
-func (s *APNSMessage) SetData(v map[string]*string) *APNSMessage {
-	s.Data = v
+// SetCollapseId sets the CollapseId field's value.
+func (s *APNSMessage) SetCollapseId(v string) *APNSMessage {
+	s.CollapseId = &v
 	return s
 }
 
-// SetJsonData sets the JsonData field's value.
-func (s *APNSMessage) SetJsonData(v string) *APNSMessage {
-	s.JsonData = &v
+// SetData sets the Data field's value.
+func (s *APNSMessage) SetData(v map[string]*string) *APNSMessage {
+	s.Data = v
 	return s
 }
 
@@ -5394,6 +5959,12 @@ func (s *APNSMessage) SetMediaUrl(v string) *APNSMessage {
 // SetPreferredAuthenticationMethod sets the PreferredAuthenticationMethod field's value.
 func (s *APNSMessage) SetPreferredAuthenticationMethod(v string) *APNSMessage {
 	s.PreferredAuthenticationMethod = &v
+	return s
+}
+
+// SetPriority sets the Priority field's value.
+func (s *APNSMessage) SetPriority(v string) *APNSMessage {
+	s.Priority = &v
 	return s
 }
 
@@ -5424,6 +5995,12 @@ func (s *APNSMessage) SetSubstitutions(v map[string][]*string) *APNSMessage {
 // SetThreadId sets the ThreadId field's value.
 func (s *APNSMessage) SetThreadId(v string) *APNSMessage {
 	s.ThreadId = &v
+	return s
+}
+
+// SetTimeToLive sets the TimeToLive field's value.
+func (s *APNSMessage) SetTimeToLive(v int64) *APNSMessage {
+	s.TimeToLive = &v
 	return s
 }
 
@@ -5538,8 +6115,17 @@ type APNSSandboxChannelResponse struct {
 	// When was this segment created
 	CreationDate *string `type:"string"`
 
+	// The default authentication method used for APNs.
+	DefaultAuthenticationMethod *string `type:"string"`
+
 	// If the channel is enabled for sending messages.
 	Enabled *bool `type:"boolean"`
+
+	// If the channel is registered with a credential for authentication.
+	HasCredential *bool `type:"boolean"`
+
+	// If the channel is registered with a token key for authentication.
+	HasTokenKey *bool `type:"boolean"`
 
 	// Channel ID. Not used, only for backwards compatibility.
 	Id *string `type:"string"`
@@ -5582,9 +6168,27 @@ func (s *APNSSandboxChannelResponse) SetCreationDate(v string) *APNSSandboxChann
 	return s
 }
 
+// SetDefaultAuthenticationMethod sets the DefaultAuthenticationMethod field's value.
+func (s *APNSSandboxChannelResponse) SetDefaultAuthenticationMethod(v string) *APNSSandboxChannelResponse {
+	s.DefaultAuthenticationMethod = &v
+	return s
+}
+
 // SetEnabled sets the Enabled field's value.
 func (s *APNSSandboxChannelResponse) SetEnabled(v bool) *APNSSandboxChannelResponse {
 	s.Enabled = &v
+	return s
+}
+
+// SetHasCredential sets the HasCredential field's value.
+func (s *APNSSandboxChannelResponse) SetHasCredential(v bool) *APNSSandboxChannelResponse {
+	s.HasCredential = &v
+	return s
+}
+
+// SetHasTokenKey sets the HasTokenKey field's value.
+func (s *APNSSandboxChannelResponse) SetHasTokenKey(v bool) *APNSSandboxChannelResponse {
+	s.HasTokenKey = &v
 	return s
 }
 
@@ -5620,6 +6224,430 @@ func (s *APNSSandboxChannelResponse) SetPlatform(v string) *APNSSandboxChannelRe
 
 // SetVersion sets the Version field's value.
 func (s *APNSSandboxChannelResponse) SetVersion(v int64) *APNSSandboxChannelResponse {
+	s.Version = &v
+	return s
+}
+
+// Apple VOIP Push Notification Service channel definition.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSVoipChannelRequest
+type APNSVoipChannelRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The bundle id used for APNs Tokens.
+	BundleId *string `type:"string"`
+
+	// The distribution certificate from Apple.
+	Certificate *string `type:"string"`
+
+	// The default authentication method used for APNs.
+	DefaultAuthenticationMethod *string `type:"string"`
+
+	// If the channel is enabled for sending messages.
+	Enabled *bool `type:"boolean"`
+
+	// The certificate private key.
+	PrivateKey *string `type:"string"`
+
+	// The team id used for APNs Tokens.
+	TeamId *string `type:"string"`
+
+	// The token key used for APNs Tokens.
+	TokenKey *string `type:"string"`
+
+	// The token key used for APNs Tokens.
+	TokenKeyId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s APNSVoipChannelRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s APNSVoipChannelRequest) GoString() string {
+	return s.String()
+}
+
+// SetBundleId sets the BundleId field's value.
+func (s *APNSVoipChannelRequest) SetBundleId(v string) *APNSVoipChannelRequest {
+	s.BundleId = &v
+	return s
+}
+
+// SetCertificate sets the Certificate field's value.
+func (s *APNSVoipChannelRequest) SetCertificate(v string) *APNSVoipChannelRequest {
+	s.Certificate = &v
+	return s
+}
+
+// SetDefaultAuthenticationMethod sets the DefaultAuthenticationMethod field's value.
+func (s *APNSVoipChannelRequest) SetDefaultAuthenticationMethod(v string) *APNSVoipChannelRequest {
+	s.DefaultAuthenticationMethod = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *APNSVoipChannelRequest) SetEnabled(v bool) *APNSVoipChannelRequest {
+	s.Enabled = &v
+	return s
+}
+
+// SetPrivateKey sets the PrivateKey field's value.
+func (s *APNSVoipChannelRequest) SetPrivateKey(v string) *APNSVoipChannelRequest {
+	s.PrivateKey = &v
+	return s
+}
+
+// SetTeamId sets the TeamId field's value.
+func (s *APNSVoipChannelRequest) SetTeamId(v string) *APNSVoipChannelRequest {
+	s.TeamId = &v
+	return s
+}
+
+// SetTokenKey sets the TokenKey field's value.
+func (s *APNSVoipChannelRequest) SetTokenKey(v string) *APNSVoipChannelRequest {
+	s.TokenKey = &v
+	return s
+}
+
+// SetTokenKeyId sets the TokenKeyId field's value.
+func (s *APNSVoipChannelRequest) SetTokenKeyId(v string) *APNSVoipChannelRequest {
+	s.TokenKeyId = &v
+	return s
+}
+
+// Apple VOIP Push Notification Service channel definition.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSVoipChannelResponse
+type APNSVoipChannelResponse struct {
+	_ struct{} `type:"structure"`
+
+	// Application id
+	ApplicationId *string `type:"string"`
+
+	// When was this segment created
+	CreationDate *string `type:"string"`
+
+	// The default authentication method used for APNs.
+	DefaultAuthenticationMethod *string `type:"string"`
+
+	// If the channel is enabled for sending messages.
+	Enabled *bool `type:"boolean"`
+
+	// If the channel is registered with a credential for authentication.
+	HasCredential *bool `type:"boolean"`
+
+	// If the channel is registered with a token key for authentication.
+	HasTokenKey *bool `type:"boolean"`
+
+	// Channel ID. Not used, only for backwards compatibility.
+	Id *string `type:"string"`
+
+	// Is this channel archived
+	IsArchived *bool `type:"boolean"`
+
+	// Who made the last change
+	LastModifiedBy *string `type:"string"`
+
+	// Last date this was updated
+	LastModifiedDate *string `type:"string"`
+
+	// The platform type. Will be APNS.
+	Platform *string `type:"string"`
+
+	// Version of channel
+	Version *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s APNSVoipChannelResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s APNSVoipChannelResponse) GoString() string {
+	return s.String()
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *APNSVoipChannelResponse) SetApplicationId(v string) *APNSVoipChannelResponse {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *APNSVoipChannelResponse) SetCreationDate(v string) *APNSVoipChannelResponse {
+	s.CreationDate = &v
+	return s
+}
+
+// SetDefaultAuthenticationMethod sets the DefaultAuthenticationMethod field's value.
+func (s *APNSVoipChannelResponse) SetDefaultAuthenticationMethod(v string) *APNSVoipChannelResponse {
+	s.DefaultAuthenticationMethod = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *APNSVoipChannelResponse) SetEnabled(v bool) *APNSVoipChannelResponse {
+	s.Enabled = &v
+	return s
+}
+
+// SetHasCredential sets the HasCredential field's value.
+func (s *APNSVoipChannelResponse) SetHasCredential(v bool) *APNSVoipChannelResponse {
+	s.HasCredential = &v
+	return s
+}
+
+// SetHasTokenKey sets the HasTokenKey field's value.
+func (s *APNSVoipChannelResponse) SetHasTokenKey(v bool) *APNSVoipChannelResponse {
+	s.HasTokenKey = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *APNSVoipChannelResponse) SetId(v string) *APNSVoipChannelResponse {
+	s.Id = &v
+	return s
+}
+
+// SetIsArchived sets the IsArchived field's value.
+func (s *APNSVoipChannelResponse) SetIsArchived(v bool) *APNSVoipChannelResponse {
+	s.IsArchived = &v
+	return s
+}
+
+// SetLastModifiedBy sets the LastModifiedBy field's value.
+func (s *APNSVoipChannelResponse) SetLastModifiedBy(v string) *APNSVoipChannelResponse {
+	s.LastModifiedBy = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *APNSVoipChannelResponse) SetLastModifiedDate(v string) *APNSVoipChannelResponse {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *APNSVoipChannelResponse) SetPlatform(v string) *APNSVoipChannelResponse {
+	s.Platform = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *APNSVoipChannelResponse) SetVersion(v int64) *APNSVoipChannelResponse {
+	s.Version = &v
+	return s
+}
+
+// Apple VOIP Developer Push Notification Service channel definition.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSVoipSandboxChannelRequest
+type APNSVoipSandboxChannelRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The bundle id used for APNs Tokens.
+	BundleId *string `type:"string"`
+
+	// The distribution certificate from Apple.
+	Certificate *string `type:"string"`
+
+	// The default authentication method used for APNs.
+	DefaultAuthenticationMethod *string `type:"string"`
+
+	// If the channel is enabled for sending messages.
+	Enabled *bool `type:"boolean"`
+
+	// The certificate private key.
+	PrivateKey *string `type:"string"`
+
+	// The team id used for APNs Tokens.
+	TeamId *string `type:"string"`
+
+	// The token key used for APNs Tokens.
+	TokenKey *string `type:"string"`
+
+	// The token key used for APNs Tokens.
+	TokenKeyId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s APNSVoipSandboxChannelRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s APNSVoipSandboxChannelRequest) GoString() string {
+	return s.String()
+}
+
+// SetBundleId sets the BundleId field's value.
+func (s *APNSVoipSandboxChannelRequest) SetBundleId(v string) *APNSVoipSandboxChannelRequest {
+	s.BundleId = &v
+	return s
+}
+
+// SetCertificate sets the Certificate field's value.
+func (s *APNSVoipSandboxChannelRequest) SetCertificate(v string) *APNSVoipSandboxChannelRequest {
+	s.Certificate = &v
+	return s
+}
+
+// SetDefaultAuthenticationMethod sets the DefaultAuthenticationMethod field's value.
+func (s *APNSVoipSandboxChannelRequest) SetDefaultAuthenticationMethod(v string) *APNSVoipSandboxChannelRequest {
+	s.DefaultAuthenticationMethod = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *APNSVoipSandboxChannelRequest) SetEnabled(v bool) *APNSVoipSandboxChannelRequest {
+	s.Enabled = &v
+	return s
+}
+
+// SetPrivateKey sets the PrivateKey field's value.
+func (s *APNSVoipSandboxChannelRequest) SetPrivateKey(v string) *APNSVoipSandboxChannelRequest {
+	s.PrivateKey = &v
+	return s
+}
+
+// SetTeamId sets the TeamId field's value.
+func (s *APNSVoipSandboxChannelRequest) SetTeamId(v string) *APNSVoipSandboxChannelRequest {
+	s.TeamId = &v
+	return s
+}
+
+// SetTokenKey sets the TokenKey field's value.
+func (s *APNSVoipSandboxChannelRequest) SetTokenKey(v string) *APNSVoipSandboxChannelRequest {
+	s.TokenKey = &v
+	return s
+}
+
+// SetTokenKeyId sets the TokenKeyId field's value.
+func (s *APNSVoipSandboxChannelRequest) SetTokenKeyId(v string) *APNSVoipSandboxChannelRequest {
+	s.TokenKeyId = &v
+	return s
+}
+
+// Apple VOIP Developer Push Notification Service channel definition.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSVoipSandboxChannelResponse
+type APNSVoipSandboxChannelResponse struct {
+	_ struct{} `type:"structure"`
+
+	// Application id
+	ApplicationId *string `type:"string"`
+
+	// When was this segment created
+	CreationDate *string `type:"string"`
+
+	// The default authentication method used for APNs.
+	DefaultAuthenticationMethod *string `type:"string"`
+
+	// If the channel is enabled for sending messages.
+	Enabled *bool `type:"boolean"`
+
+	// If the channel is registered with a credential for authentication.
+	HasCredential *bool `type:"boolean"`
+
+	// If the channel is registered with a token key for authentication.
+	HasTokenKey *bool `type:"boolean"`
+
+	// Channel ID. Not used, only for backwards compatibility.
+	Id *string `type:"string"`
+
+	// Is this channel archived
+	IsArchived *bool `type:"boolean"`
+
+	// Who made the last change
+	LastModifiedBy *string `type:"string"`
+
+	// Last date this was updated
+	LastModifiedDate *string `type:"string"`
+
+	// The platform type. Will be APNS.
+	Platform *string `type:"string"`
+
+	// Version of channel
+	Version *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s APNSVoipSandboxChannelResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s APNSVoipSandboxChannelResponse) GoString() string {
+	return s.String()
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *APNSVoipSandboxChannelResponse) SetApplicationId(v string) *APNSVoipSandboxChannelResponse {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *APNSVoipSandboxChannelResponse) SetCreationDate(v string) *APNSVoipSandboxChannelResponse {
+	s.CreationDate = &v
+	return s
+}
+
+// SetDefaultAuthenticationMethod sets the DefaultAuthenticationMethod field's value.
+func (s *APNSVoipSandboxChannelResponse) SetDefaultAuthenticationMethod(v string) *APNSVoipSandboxChannelResponse {
+	s.DefaultAuthenticationMethod = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *APNSVoipSandboxChannelResponse) SetEnabled(v bool) *APNSVoipSandboxChannelResponse {
+	s.Enabled = &v
+	return s
+}
+
+// SetHasCredential sets the HasCredential field's value.
+func (s *APNSVoipSandboxChannelResponse) SetHasCredential(v bool) *APNSVoipSandboxChannelResponse {
+	s.HasCredential = &v
+	return s
+}
+
+// SetHasTokenKey sets the HasTokenKey field's value.
+func (s *APNSVoipSandboxChannelResponse) SetHasTokenKey(v bool) *APNSVoipSandboxChannelResponse {
+	s.HasTokenKey = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *APNSVoipSandboxChannelResponse) SetId(v string) *APNSVoipSandboxChannelResponse {
+	s.Id = &v
+	return s
+}
+
+// SetIsArchived sets the IsArchived field's value.
+func (s *APNSVoipSandboxChannelResponse) SetIsArchived(v bool) *APNSVoipSandboxChannelResponse {
+	s.IsArchived = &v
+	return s
+}
+
+// SetLastModifiedBy sets the LastModifiedBy field's value.
+func (s *APNSVoipSandboxChannelResponse) SetLastModifiedBy(v string) *APNSVoipSandboxChannelResponse {
+	s.LastModifiedBy = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *APNSVoipSandboxChannelResponse) SetLastModifiedDate(v string) *APNSVoipSandboxChannelResponse {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *APNSVoipSandboxChannelResponse) SetPlatform(v string) *APNSVoipSandboxChannelResponse {
+	s.Platform = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *APNSVoipSandboxChannelResponse) SetVersion(v int64) *APNSVoipSandboxChannelResponse {
 	s.Version = &v
 	return s
 }
@@ -6074,6 +7102,9 @@ type BaiduChannelResponse struct {
 	// If the channel is enabled for sending messages.
 	Enabled *bool `type:"boolean"`
 
+	// If the channel is registered with a credential for authentication.
+	HasCredential *bool `type:"boolean"`
+
 	// Channel ID. Not used, only for backwards compatibility.
 	Id *string `type:"string"`
 
@@ -6124,6 +7155,12 @@ func (s *BaiduChannelResponse) SetCredential(v string) *BaiduChannelResponse {
 // SetEnabled sets the Enabled field's value.
 func (s *BaiduChannelResponse) SetEnabled(v bool) *BaiduChannelResponse {
 	s.Enabled = &v
+	return s
+}
+
+// SetHasCredential sets the HasCredential field's value.
+func (s *BaiduChannelResponse) SetHasCredential(v bool) *BaiduChannelResponse {
+	s.HasCredential = &v
 	return s
 }
 
@@ -6191,10 +7228,6 @@ type BaiduMessage struct {
 
 	// The URL that points to an image used in the push notification.
 	ImageUrl *string `type:"string"`
-
-	// The data payload used for a silent push. This payload is added to the notifications'
-	// data.pinpoint.jsonBody' object
-	JsonData *string `type:"string"`
 
 	// The Raw JSON formatted string to be used as the payload. This value overrides
 	// the message.
@@ -6267,12 +7300,6 @@ func (s *BaiduMessage) SetImageIconUrl(v string) *BaiduMessage {
 // SetImageUrl sets the ImageUrl field's value.
 func (s *BaiduMessage) SetImageUrl(v string) *BaiduMessage {
 	s.ImageUrl = &v
-	return s
-}
-
-// SetJsonData sets the JsonData field's value.
-func (s *BaiduMessage) SetJsonData(v string) *BaiduMessage {
-	s.JsonData = &v
 	return s
 }
 
@@ -7091,10 +8118,6 @@ type DefaultPushNotificationMessage struct {
 
 	Data map[string]*string `type:"map"`
 
-	// The data payload used for a silent push. This payload is added to the notifications'
-	// data.pinpoint.jsonBody' object
-	JsonData *string `type:"string"`
-
 	// Indicates if the message should display on the users device. Silent pushes
 	// can be used for Remote Configuration and Phone Home use cases.
 	SilentPush *bool `type:"boolean"`
@@ -7134,12 +8157,6 @@ func (s *DefaultPushNotificationMessage) SetBody(v string) *DefaultPushNotificat
 // SetData sets the Data field's value.
 func (s *DefaultPushNotificationMessage) SetData(v map[string]*string) *DefaultPushNotificationMessage {
 	s.Data = v
-	return s
-}
-
-// SetJsonData sets the JsonData field's value.
-func (s *DefaultPushNotificationMessage) SetJsonData(v string) *DefaultPushNotificationMessage {
-	s.JsonData = &v
 	return s
 }
 
@@ -7353,6 +8370,132 @@ func (s DeleteApnsSandboxChannelOutput) GoString() string {
 // SetAPNSSandboxChannelResponse sets the APNSSandboxChannelResponse field's value.
 func (s *DeleteApnsSandboxChannelOutput) SetAPNSSandboxChannelResponse(v *APNSSandboxChannelResponse) *DeleteApnsSandboxChannelOutput {
 	s.APNSSandboxChannelResponse = v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipChannelRequest
+type DeleteApnsVoipChannelInput struct {
+	_ struct{} `type:"structure"`
+
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteApnsVoipChannelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteApnsVoipChannelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteApnsVoipChannelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteApnsVoipChannelInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *DeleteApnsVoipChannelInput) SetApplicationId(v string) *DeleteApnsVoipChannelInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipChannelResponse
+type DeleteApnsVoipChannelOutput struct {
+	_ struct{} `type:"structure" payload:"APNSVoipChannelResponse"`
+
+	// Apple VOIP Push Notification Service channel definition.
+	//
+	// APNSVoipChannelResponse is a required field
+	APNSVoipChannelResponse *APNSVoipChannelResponse `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteApnsVoipChannelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteApnsVoipChannelOutput) GoString() string {
+	return s.String()
+}
+
+// SetAPNSVoipChannelResponse sets the APNSVoipChannelResponse field's value.
+func (s *DeleteApnsVoipChannelOutput) SetAPNSVoipChannelResponse(v *APNSVoipChannelResponse) *DeleteApnsVoipChannelOutput {
+	s.APNSVoipChannelResponse = v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipSandboxChannelRequest
+type DeleteApnsVoipSandboxChannelInput struct {
+	_ struct{} `type:"structure"`
+
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteApnsVoipSandboxChannelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteApnsVoipSandboxChannelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteApnsVoipSandboxChannelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteApnsVoipSandboxChannelInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *DeleteApnsVoipSandboxChannelInput) SetApplicationId(v string) *DeleteApnsVoipSandboxChannelInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipSandboxChannelResponse
+type DeleteApnsVoipSandboxChannelOutput struct {
+	_ struct{} `type:"structure" payload:"APNSVoipSandboxChannelResponse"`
+
+	// Apple VOIP Developer Push Notification Service channel definition.
+	//
+	// APNSVoipSandboxChannelResponse is a required field
+	APNSVoipSandboxChannelResponse *APNSVoipSandboxChannelResponse `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteApnsVoipSandboxChannelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteApnsVoipSandboxChannelOutput) GoString() string {
+	return s.String()
+}
+
+// SetAPNSVoipSandboxChannelResponse sets the APNSVoipSandboxChannelResponse field's value.
+func (s *DeleteApnsVoipSandboxChannelOutput) SetAPNSVoipSandboxChannelResponse(v *APNSVoipSandboxChannelResponse) *DeleteApnsVoipSandboxChannelOutput {
+	s.APNSVoipSandboxChannelResponse = v
 	return s
 }
 
@@ -7624,6 +8767,8 @@ func (s *DeleteEmailChannelOutput) SetEmailChannelResponse(v *EmailChannelRespon
 type DeleteEventStreamInput struct {
 	_ struct{} `type:"structure"`
 
+	// Application Id.
+	//
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
 }
@@ -7905,9 +9050,6 @@ type DirectMessageConfiguration struct {
 	// The default push notification message for all push channels.
 	DefaultPushNotificationMessage *DefaultPushNotificationMessage `type:"structure"`
 
-	// The message to Email channels. Overrides the default message.
-	EmailMessage *EmailMessage `type:"structure"`
-
 	// The message to GCM channels. Overrides the default push notification message.
 	GCMMessage *GCMMessage `type:"structure"`
 
@@ -7952,12 +9094,6 @@ func (s *DirectMessageConfiguration) SetDefaultMessage(v *DefaultMessage) *Direc
 // SetDefaultPushNotificationMessage sets the DefaultPushNotificationMessage field's value.
 func (s *DirectMessageConfiguration) SetDefaultPushNotificationMessage(v *DefaultPushNotificationMessage) *DirectMessageConfiguration {
 	s.DefaultPushNotificationMessage = v
-	return s
-}
-
-// SetEmailMessage sets the EmailMessage field's value.
-func (s *DirectMessageConfiguration) SetEmailMessage(v *EmailMessage) *DirectMessageConfiguration {
-	s.EmailMessage = v
 	return s
 }
 
@@ -8043,6 +9179,9 @@ type EmailChannelResponse struct {
 	// The email address used to send emails from.
 	FromAddress *string `type:"string"`
 
+	// If the channel is registered with a credential for authentication.
+	HasCredential *bool `type:"boolean"`
+
 	// Channel ID. Not used, only for backwards compatibility.
 	Id *string `type:"string"`
 
@@ -8103,6 +9242,12 @@ func (s *EmailChannelResponse) SetFromAddress(v string) *EmailChannelResponse {
 	return s
 }
 
+// SetHasCredential sets the HasCredential field's value.
+func (s *EmailChannelResponse) SetHasCredential(v bool) *EmailChannelResponse {
+	s.HasCredential = &v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *EmailChannelResponse) SetId(v string) *EmailChannelResponse {
 	s.Id = &v
@@ -8148,76 +9293,6 @@ func (s *EmailChannelResponse) SetRoleArn(v string) *EmailChannelResponse {
 // SetVersion sets the Version field's value.
 func (s *EmailChannelResponse) SetVersion(v int64) *EmailChannelResponse {
 	s.Version = &v
-	return s
-}
-
-// Email Message.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EmailMessage
-type EmailMessage struct {
-	_ struct{} `type:"structure"`
-
-	// The message body of the notification, the email body or the text message.
-	Body *string `type:"string"`
-
-	// The email address used to send the email from. Defaults to use FromAddress
-	// specified in the Email Channel.
-	FromAddress *string `type:"string"`
-
-	// The HTML part of the email.
-	HtmlBody *string `type:"string"`
-
-	Substitutions map[string][]*string `type:"map"`
-
-	// The ARN of the template to use for the email.
-	TemplateArn *string `type:"string"`
-
-	// The subject of the email.
-	Title *string `type:"string"`
-}
-
-// String returns the string representation
-func (s EmailMessage) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s EmailMessage) GoString() string {
-	return s.String()
-}
-
-// SetBody sets the Body field's value.
-func (s *EmailMessage) SetBody(v string) *EmailMessage {
-	s.Body = &v
-	return s
-}
-
-// SetFromAddress sets the FromAddress field's value.
-func (s *EmailMessage) SetFromAddress(v string) *EmailMessage {
-	s.FromAddress = &v
-	return s
-}
-
-// SetHtmlBody sets the HtmlBody field's value.
-func (s *EmailMessage) SetHtmlBody(v string) *EmailMessage {
-	s.HtmlBody = &v
-	return s
-}
-
-// SetSubstitutions sets the Substitutions field's value.
-func (s *EmailMessage) SetSubstitutions(v map[string][]*string) *EmailMessage {
-	s.Substitutions = v
-	return s
-}
-
-// SetTemplateArn sets the TemplateArn field's value.
-func (s *EmailMessage) SetTemplateArn(v string) *EmailMessage {
-	s.TemplateArn = &v
-	return s
-}
-
-// SetTitle sets the Title field's value.
-func (s *EmailMessage) SetTitle(v string) *EmailMessage {
-	s.Title = &v
 	return s
 }
 
@@ -8766,9 +9841,6 @@ type EndpointResponse struct {
 	// The unique ID for the most recent request to update the endpoint.
 	RequestId *string `type:"string"`
 
-	// The ShardId of endpoint.
-	ShardId *string `type:"string"`
-
 	// Custom user-specific attributes that your app reports to Amazon Pinpoint.
 	User *EndpointUser `type:"structure"`
 }
@@ -8864,12 +9936,6 @@ func (s *EndpointResponse) SetOptOut(v string) *EndpointResponse {
 // SetRequestId sets the RequestId field's value.
 func (s *EndpointResponse) SetRequestId(v string) *EndpointResponse {
 	s.RequestId = &v
-	return s
-}
-
-// SetShardId sets the ShardId field's value.
-func (s *EndpointResponse) SetShardId(v string) *EndpointResponse {
-	s.ShardId = &v
 	return s
 }
 
@@ -9097,6 +10163,9 @@ type GCMChannelResponse struct {
 	// If the channel is enabled for sending messages.
 	Enabled *bool `type:"boolean"`
 
+	// If the channel is registered with a credential for authentication.
+	HasCredential *bool `type:"boolean"`
+
 	// Channel ID. Not used. Present only for backwards compatibility.
 	Id *string `type:"string"`
 
@@ -9147,6 +10216,12 @@ func (s *GCMChannelResponse) SetCredential(v string) *GCMChannelResponse {
 // SetEnabled sets the Enabled field's value.
 func (s *GCMChannelResponse) SetEnabled(v bool) *GCMChannelResponse {
 	s.Enabled = &v
+	return s
+}
+
+// SetHasCredential sets the HasCredential field's value.
+func (s *GCMChannelResponse) SetHasCredential(v bool) *GCMChannelResponse {
+	s.HasCredential = &v
 	return s
 }
 
@@ -9221,9 +10296,8 @@ type GCMMessage struct {
 	// The URL that points to an image used in the push notification.
 	ImageUrl *string `type:"string"`
 
-	// The data payload used for a silent push. This payload is added to the notifications'
-	// data.pinpoint.jsonBody' object
-	JsonData *string `type:"string"`
+	// Is this a transaction priority message or lower priority.
+	Priority *string `type:"string"`
 
 	// The Raw JSON formatted string to be used as the payload. This value overrides
 	// the message.
@@ -9248,6 +10322,11 @@ type GCMMessage struct {
 	Sound *string `type:"string"`
 
 	Substitutions map[string][]*string `type:"map"`
+
+	// This parameter specifies how long (in seconds) the message should be kept
+	// in GCM storage if the device is offline. The maximum time to live supported
+	// is 4 weeks, and the default value is 4 weeks.
+	TimeToLive *int64 `type:"integer"`
 
 	// The message title that displays above the message on the user's device.
 	Title *string `type:"string"`
@@ -9309,9 +10388,9 @@ func (s *GCMMessage) SetImageUrl(v string) *GCMMessage {
 	return s
 }
 
-// SetJsonData sets the JsonData field's value.
-func (s *GCMMessage) SetJsonData(v string) *GCMMessage {
-	s.JsonData = &v
+// SetPriority sets the Priority field's value.
+func (s *GCMMessage) SetPriority(v string) *GCMMessage {
+	s.Priority = &v
 	return s
 }
 
@@ -9348,6 +10427,12 @@ func (s *GCMMessage) SetSound(v string) *GCMMessage {
 // SetSubstitutions sets the Substitutions field's value.
 func (s *GCMMessage) SetSubstitutions(v map[string][]*string) *GCMMessage {
 	s.Substitutions = v
+	return s
+}
+
+// SetTimeToLive sets the TimeToLive field's value.
+func (s *GCMMessage) SetTimeToLive(v int64) *GCMMessage {
+	s.TimeToLive = &v
 	return s
 }
 
@@ -9549,6 +10634,132 @@ func (s GetApnsSandboxChannelOutput) GoString() string {
 // SetAPNSSandboxChannelResponse sets the APNSSandboxChannelResponse field's value.
 func (s *GetApnsSandboxChannelOutput) SetAPNSSandboxChannelResponse(v *APNSSandboxChannelResponse) *GetApnsSandboxChannelOutput {
 	s.APNSSandboxChannelResponse = v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipChannelRequest
+type GetApnsVoipChannelInput struct {
+	_ struct{} `type:"structure"`
+
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetApnsVoipChannelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetApnsVoipChannelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetApnsVoipChannelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetApnsVoipChannelInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *GetApnsVoipChannelInput) SetApplicationId(v string) *GetApnsVoipChannelInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipChannelResponse
+type GetApnsVoipChannelOutput struct {
+	_ struct{} `type:"structure" payload:"APNSVoipChannelResponse"`
+
+	// Apple VOIP Push Notification Service channel definition.
+	//
+	// APNSVoipChannelResponse is a required field
+	APNSVoipChannelResponse *APNSVoipChannelResponse `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s GetApnsVoipChannelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetApnsVoipChannelOutput) GoString() string {
+	return s.String()
+}
+
+// SetAPNSVoipChannelResponse sets the APNSVoipChannelResponse field's value.
+func (s *GetApnsVoipChannelOutput) SetAPNSVoipChannelResponse(v *APNSVoipChannelResponse) *GetApnsVoipChannelOutput {
+	s.APNSVoipChannelResponse = v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipSandboxChannelRequest
+type GetApnsVoipSandboxChannelInput struct {
+	_ struct{} `type:"structure"`
+
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetApnsVoipSandboxChannelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetApnsVoipSandboxChannelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetApnsVoipSandboxChannelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetApnsVoipSandboxChannelInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *GetApnsVoipSandboxChannelInput) SetApplicationId(v string) *GetApnsVoipSandboxChannelInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipSandboxChannelResponse
+type GetApnsVoipSandboxChannelOutput struct {
+	_ struct{} `type:"structure" payload:"APNSVoipSandboxChannelResponse"`
+
+	// Apple VOIP Developer Push Notification Service channel definition.
+	//
+	// APNSVoipSandboxChannelResponse is a required field
+	APNSVoipSandboxChannelResponse *APNSVoipSandboxChannelResponse `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s GetApnsVoipSandboxChannelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetApnsVoipSandboxChannelOutput) GoString() string {
+	return s.String()
+}
+
+// SetAPNSVoipSandboxChannelResponse sets the APNSVoipSandboxChannelResponse field's value.
+func (s *GetApnsVoipSandboxChannelOutput) SetAPNSVoipSandboxChannelResponse(v *APNSVoipSandboxChannelResponse) *GetApnsVoipSandboxChannelOutput {
+	s.APNSVoipSandboxChannelResponse = v
 	return s
 }
 
@@ -10363,6 +11574,8 @@ func (s *GetEndpointOutput) SetEndpointResponse(v *EndpointResponse) *GetEndpoin
 type GetEventStreamInput struct {
 	_ struct{} `type:"structure"`
 
+	// Application Id.
+	//
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
 }
@@ -11649,9 +12862,17 @@ func (s *MessageBody) SetRequestID(v string) *MessageBody {
 type MessageConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The message that the campaign delivers to ADM channels. Overrides the default
+	// message.
+	ADMMessage *Message `type:"structure"`
+
 	// The message that the campaign delivers to APNS channels. Overrides the default
 	// message.
 	APNSMessage *Message `type:"structure"`
+
+	// The message that the campaign delivers to Baidu channels. Overrides the default
+	// message.
+	BaiduMessage *Message `type:"structure"`
 
 	// The default message for all channels.
 	DefaultMessage *Message `type:"structure"`
@@ -11677,9 +12898,21 @@ func (s MessageConfiguration) GoString() string {
 	return s.String()
 }
 
+// SetADMMessage sets the ADMMessage field's value.
+func (s *MessageConfiguration) SetADMMessage(v *Message) *MessageConfiguration {
+	s.ADMMessage = v
+	return s
+}
+
 // SetAPNSMessage sets the APNSMessage field's value.
 func (s *MessageConfiguration) SetAPNSMessage(v *Message) *MessageConfiguration {
 	s.APNSMessage = v
+	return s
+}
+
+// SetBaiduMessage sets the BaiduMessage field's value.
+func (s *MessageConfiguration) SetBaiduMessage(v *Message) *MessageConfiguration {
+	s.BaiduMessage = v
 	return s
 }
 
@@ -11716,8 +12949,6 @@ type MessageRequest struct {
 	// phone number or push token) and the Address Configuration as the value.
 	Addresses map[string]*AddressConfiguration `type:"map"`
 
-	Campaign map[string]*string `type:"map"`
-
 	Context map[string]*string `type:"map"`
 
 	// A map of destination addresses, with the address as the key(Email address,
@@ -11726,9 +12957,6 @@ type MessageRequest struct {
 
 	// Message configuration.
 	MessageConfiguration *DirectMessageConfiguration `type:"structure"`
-
-	// Original request Id for which this message is delivered.
-	RequestId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -11747,12 +12975,6 @@ func (s *MessageRequest) SetAddresses(v map[string]*AddressConfiguration) *Messa
 	return s
 }
 
-// SetCampaign sets the Campaign field's value.
-func (s *MessageRequest) SetCampaign(v map[string]*string) *MessageRequest {
-	s.Campaign = v
-	return s
-}
-
 // SetContext sets the Context field's value.
 func (s *MessageRequest) SetContext(v map[string]*string) *MessageRequest {
 	s.Context = v
@@ -11768,12 +12990,6 @@ func (s *MessageRequest) SetEndpoints(v map[string]*EndpointSendConfiguration) *
 // SetMessageConfiguration sets the MessageConfiguration field's value.
 func (s *MessageRequest) SetMessageConfiguration(v *DirectMessageConfiguration) *MessageRequest {
 	s.MessageConfiguration = v
-	return s
-}
-
-// SetRequestId sets the RequestId field's value.
-func (s *MessageRequest) SetRequestId(v string) *MessageRequest {
-	s.RequestId = &v
 	return s
 }
 
@@ -11888,10 +13104,12 @@ func (s *MessageResult) SetUpdatedToken(v string) *MessageResult {
 type PutEventStreamInput struct {
 	_ struct{} `type:"structure" payload:"WriteEventStream"`
 
+	// Application Id.
+	//
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
 
-	// Request to save an EventStream.
+	// Write event stream wrapper.
 	//
 	// WriteEventStream is a required field
 	WriteEventStream *WriteEventStream `type:"structure" required:"true"`
@@ -12089,6 +13307,9 @@ type SMSChannelResponse struct {
 	// If the channel is enabled for sending messages.
 	Enabled *bool `type:"boolean"`
 
+	// If the channel is registered with a credential for authentication.
+	HasCredential *bool `type:"boolean"`
+
 	// Channel ID. Not used, only for backwards compatibility.
 	Id *string `type:"string"`
 
@@ -12139,6 +13360,12 @@ func (s *SMSChannelResponse) SetCreationDate(v string) *SMSChannelResponse {
 // SetEnabled sets the Enabled field's value.
 func (s *SMSChannelResponse) SetEnabled(v bool) *SMSChannelResponse {
 	s.Enabled = &v
+	return s
+}
+
+// SetHasCredential sets the HasCredential field's value.
+func (s *SMSChannelResponse) SetHasCredential(v bool) *SMSChannelResponse {
+	s.HasCredential = &v
 	return s
 }
 
@@ -12793,9 +14020,6 @@ type SendUsersMessageRequest struct {
 	// Message configuration.
 	MessageConfiguration *DirectMessageConfiguration `type:"structure"`
 
-	// Original request Id for which this message is delivered.
-	RequestId *string `type:"string"`
-
 	// A map of destination endpoints, with the EndpointId as the key Endpoint Message
 	// Configuration as the value.
 	Users map[string]*EndpointSendConfiguration `type:"map"`
@@ -12820,12 +14044,6 @@ func (s *SendUsersMessageRequest) SetContext(v map[string]*string) *SendUsersMes
 // SetMessageConfiguration sets the MessageConfiguration field's value.
 func (s *SendUsersMessageRequest) SetMessageConfiguration(v *DirectMessageConfiguration) *SendUsersMessageRequest {
 	s.MessageConfiguration = v
-	return s
-}
-
-// SetRequestId sets the RequestId field's value.
-func (s *SendUsersMessageRequest) SetRequestId(v string) *SendUsersMessageRequest {
-	s.RequestId = &v
 	return s
 }
 
@@ -13297,6 +14515,160 @@ func (s UpdateApnsSandboxChannelOutput) GoString() string {
 // SetAPNSSandboxChannelResponse sets the APNSSandboxChannelResponse field's value.
 func (s *UpdateApnsSandboxChannelOutput) SetAPNSSandboxChannelResponse(v *APNSSandboxChannelResponse) *UpdateApnsSandboxChannelOutput {
 	s.APNSSandboxChannelResponse = v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipChannelRequest
+type UpdateApnsVoipChannelInput struct {
+	_ struct{} `type:"structure" payload:"APNSVoipChannelRequest"`
+
+	// Apple VOIP Push Notification Service channel definition.
+	//
+	// APNSVoipChannelRequest is a required field
+	APNSVoipChannelRequest *APNSVoipChannelRequest `type:"structure" required:"true"`
+
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateApnsVoipChannelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateApnsVoipChannelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateApnsVoipChannelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateApnsVoipChannelInput"}
+	if s.APNSVoipChannelRequest == nil {
+		invalidParams.Add(request.NewErrParamRequired("APNSVoipChannelRequest"))
+	}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAPNSVoipChannelRequest sets the APNSVoipChannelRequest field's value.
+func (s *UpdateApnsVoipChannelInput) SetAPNSVoipChannelRequest(v *APNSVoipChannelRequest) *UpdateApnsVoipChannelInput {
+	s.APNSVoipChannelRequest = v
+	return s
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *UpdateApnsVoipChannelInput) SetApplicationId(v string) *UpdateApnsVoipChannelInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipChannelResponse
+type UpdateApnsVoipChannelOutput struct {
+	_ struct{} `type:"structure" payload:"APNSVoipChannelResponse"`
+
+	// Apple VOIP Push Notification Service channel definition.
+	//
+	// APNSVoipChannelResponse is a required field
+	APNSVoipChannelResponse *APNSVoipChannelResponse `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateApnsVoipChannelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateApnsVoipChannelOutput) GoString() string {
+	return s.String()
+}
+
+// SetAPNSVoipChannelResponse sets the APNSVoipChannelResponse field's value.
+func (s *UpdateApnsVoipChannelOutput) SetAPNSVoipChannelResponse(v *APNSVoipChannelResponse) *UpdateApnsVoipChannelOutput {
+	s.APNSVoipChannelResponse = v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipSandboxChannelRequest
+type UpdateApnsVoipSandboxChannelInput struct {
+	_ struct{} `type:"structure" payload:"APNSVoipSandboxChannelRequest"`
+
+	// Apple VOIP Developer Push Notification Service channel definition.
+	//
+	// APNSVoipSandboxChannelRequest is a required field
+	APNSVoipSandboxChannelRequest *APNSVoipSandboxChannelRequest `type:"structure" required:"true"`
+
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateApnsVoipSandboxChannelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateApnsVoipSandboxChannelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateApnsVoipSandboxChannelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateApnsVoipSandboxChannelInput"}
+	if s.APNSVoipSandboxChannelRequest == nil {
+		invalidParams.Add(request.NewErrParamRequired("APNSVoipSandboxChannelRequest"))
+	}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAPNSVoipSandboxChannelRequest sets the APNSVoipSandboxChannelRequest field's value.
+func (s *UpdateApnsVoipSandboxChannelInput) SetAPNSVoipSandboxChannelRequest(v *APNSVoipSandboxChannelRequest) *UpdateApnsVoipSandboxChannelInput {
+	s.APNSVoipSandboxChannelRequest = v
+	return s
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *UpdateApnsVoipSandboxChannelInput) SetApplicationId(v string) *UpdateApnsVoipSandboxChannelInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipSandboxChannelResponse
+type UpdateApnsVoipSandboxChannelOutput struct {
+	_ struct{} `type:"structure" payload:"APNSVoipSandboxChannelResponse"`
+
+	// Apple VOIP Developer Push Notification Service channel definition.
+	//
+	// APNSVoipSandboxChannelResponse is a required field
+	APNSVoipSandboxChannelResponse *APNSVoipSandboxChannelResponse `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateApnsVoipSandboxChannelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateApnsVoipSandboxChannelOutput) GoString() string {
+	return s.String()
+}
+
+// SetAPNSVoipSandboxChannelResponse sets the APNSVoipSandboxChannelResponse field's value.
+func (s *UpdateApnsVoipSandboxChannelOutput) SetAPNSVoipSandboxChannelResponse(v *APNSVoipSandboxChannelResponse) *UpdateApnsVoipSandboxChannelOutput {
+	s.APNSVoipSandboxChannelResponse = v
 	return s
 }
 
@@ -14104,9 +15476,6 @@ type WriteCampaignRequest struct {
 	// The version of the segment to which the campaign sends messages.
 	SegmentVersion *int64 `type:"integer"`
 
-	// Whether or not to enable trace logging for the campaign. Undocumented
-	Trace *bool `type:"boolean"`
-
 	// A custom description for the treatment.
 	TreatmentDescription *string `type:"string"`
 
@@ -14184,12 +15553,6 @@ func (s *WriteCampaignRequest) SetSegmentVersion(v int64) *WriteCampaignRequest 
 	return s
 }
 
-// SetTrace sets the Trace field's value.
-func (s *WriteCampaignRequest) SetTrace(v bool) *WriteCampaignRequest {
-	s.Trace = &v
-	return s
-}
-
 // SetTreatmentDescription sets the TreatmentDescription field's value.
 func (s *WriteCampaignRequest) SetTreatmentDescription(v string) *WriteCampaignRequest {
 	s.TreatmentDescription = &v
@@ -14212,10 +15575,6 @@ type WriteEventStream struct {
 	// Kinesis ARN: arn:aws:kinesis:REGION:ACCOUNT_ID:stream/STREAM_NAME
 	DestinationStreamArn *string `type:"string"`
 
-	// The external ID assigned the IAM role that authorizes Amazon Pinpoint to
-	// publish to the stream.
-	ExternalId *string `type:"string"`
-
 	// The IAM role that authorizes Amazon Pinpoint to publish events to the stream
 	// in your account.
 	RoleArn *string `type:"string"`
@@ -14234,12 +15593,6 @@ func (s WriteEventStream) GoString() string {
 // SetDestinationStreamArn sets the DestinationStreamArn field's value.
 func (s *WriteEventStream) SetDestinationStreamArn(v string) *WriteEventStream {
 	s.DestinationStreamArn = &v
-	return s
-}
-
-// SetExternalId sets the ExternalId field's value.
-func (s *WriteEventStream) SetExternalId(v string) *WriteEventStream {
-	s.ExternalId = &v
 	return s
 }
 
@@ -14389,6 +15742,12 @@ const (
 
 	// ChannelTypeApnsSandbox is a ChannelType enum value
 	ChannelTypeApnsSandbox = "APNS_SANDBOX"
+
+	// ChannelTypeApnsVoip is a ChannelType enum value
+	ChannelTypeApnsVoip = "APNS_VOIP"
+
+	// ChannelTypeApnsVoipSandbox is a ChannelType enum value
+	ChannelTypeApnsVoipSandbox = "APNS_VOIP_SANDBOX"
 
 	// ChannelTypeAdm is a ChannelType enum value
 	ChannelTypeAdm = "ADM"

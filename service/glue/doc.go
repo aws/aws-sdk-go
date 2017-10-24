@@ -3,7 +3,7 @@
 // Package glue provides the client and types for making API
 // requests to AWS Glue.
 //
-// Defines service operations used by the GlueFrontendService
+// Defines the public endpoint for the AWS Glue service.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31 for more information on this service.
 //
