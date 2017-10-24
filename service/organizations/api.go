@@ -65,6 +65,13 @@ func (c *Organizations) AcceptHandshakeRequest(input *AcceptHandshakeInput) (req
 //    * Invitation to join or Approve all features request handshakes: only
 //    a principal from the member account.
 //
+// The user who calls the API for an invitation to join must have the organizations:AcceptHandshake
+//    permission. If you enabled all features in the organization, then the
+//    user must also have the iam:CreateServiceLinkedRole permission so that
+//    Organizations can create the required service-linked role named OrgsServiceLinkedRoleName.
+//    For more information, see AWS Organizations and Service-Linked Roles (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_integration_services.html#orgs_integration_service-linked-roles)
+//    in the AWS Organizations User Guide.
+//
 //    * Enable all features final confirmation handshake: only a principal from
 //    the master account.
 //
@@ -213,6 +220,11 @@ func (c *Organizations) AcceptHandshakeRequest(input *AcceptHandshakeInput) (req
 //   You've sent too many requests in too short a period of time. The limit helps
 //   protect against denial-of-service attacks. Try again later.
 //
+//   * ErrCodeAccessDeniedForDependencyException "AccessDeniedForDependencyException"
+//   The operation you attempted requires you to have the iam:CreateServiceLinkedRole
+//   so that Organizations can create the required service-linked role. You do
+//   not have that permission.
+//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/AcceptHandshake
 func (c *Organizations) AcceptHandshake(input *AcceptHandshakeInput) (*AcceptHandshakeOutput, error) {
 	req, out := c.AcceptHandshakeRequest(input)
@@ -349,7 +361,10 @@ func (c *Organizations) AttachPolicyRequest(input *AttachPolicyInput) (req *requ
 //   example, attempting to removing the last SCP from an OU or root, inviting
 //   or creating too many accounts to the organization, or attaching too many
 //   policies to an account, OU, or root. This exception includes a reason that
-//   contains additional information about the violated limit:
+//   contains additional information about the violated limit.
+//
+//   Some of the reasons in the following list might not be applicable to this
+//   specific API or operation:
 //
 //   ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on the number
 //   of accounts in an organization. If you need more accounts, contact AWS Support
@@ -743,15 +758,23 @@ func (c *Organizations) CreateAccountRequest(input *CreateAccountInput) (req *re
 // later, you need the OperationId response element from this operation to provide
 // as a parameter to the DescribeCreateAccountStatus operation.
 //
-// AWS Organizations preconfigures the new member account with a role (named
-// OrganizationAccountAccessRole by default) that grants administrator permissions
-// to the new account. Principals in the master account can assume the role.
-// AWS Organizations clones the company name and address information for the
-// new account from the organization's master account.
+// The user who calls the API for an invitation to join must have the organizations:CreateAccount
+// permission. If you enabled all features in the organization, then the user
+// must also have the iam:CreateServiceLinkedRole permission so that Organizations
+// can create the required service-linked role named OrgsServiceLinkedRoleName.
+// For more information, see AWS Organizations and Service-Linked Roles (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_integration_services.html#orgs_integration_service-linked-roles)
+// in the AWS Organizations User Guide.
+//
+// The user in the master account who calls this API must also have the iam:CreateRole
+// permission because AWS Organizations preconfigures the new member account
+// with a role (named OrganizationAccountAccessRole by default) that grants
+// users in the master account administrator permissions in the new member account.
+// Principals in the master account can assume the role. AWS Organizations clones
+// the company name and address information for the new account from the organization's
+// master account.
 //
 // For more information about creating accounts, see Creating an AWS Account
-// in Your Organization (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_create.html)
-// in the AWS Organizations User Guide.
+// in Your Organization (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_create.html)in the AWS Organizations User Guide.
 //
 // When you create an account in an organization using the AWS Organizations
 // console, API, or CLI commands, the information required for the account to
@@ -804,7 +827,10 @@ func (c *Organizations) CreateAccountRequest(input *CreateAccountInput) (req *re
 //   example, attempting to removing the last SCP from an OU or root, inviting
 //   or creating too many accounts to the organization, or attaching too many
 //   policies to an account, OU, or root. This exception includes a reason that
-//   contains additional information about the violated limit:
+//   contains additional information about the violated limit.
+//
+//   Some of the reasons in the following list might not be applicable to this
+//   specific API or operation:
 //
 //   ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on the number
 //   of accounts in an organization. If you need more accounts, contact AWS Support
@@ -1055,7 +1081,10 @@ func (c *Organizations) CreateOrganizationRequest(input *CreateOrganizationInput
 //   example, attempting to removing the last SCP from an OU or root, inviting
 //   or creating too many accounts to the organization, or attaching too many
 //   policies to an account, OU, or root. This exception includes a reason that
-//   contains additional information about the violated limit:
+//   contains additional information about the violated limit.
+//
+//   Some of the reasons in the following list might not be applicable to this
+//   specific API or operation:
 //
 //   ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on the number
 //   of accounts in an organization. If you need more accounts, contact AWS Support
@@ -1193,6 +1222,11 @@ func (c *Organizations) CreateOrganizationRequest(input *CreateOrganizationInput
 //   You've sent too many requests in too short a period of time. The limit helps
 //   protect against denial-of-service attacks. Try again later.
 //
+//   * ErrCodeAccessDeniedForDependencyException "AccessDeniedForDependencyException"
+//   The operation you attempted requires you to have the iam:CreateServiceLinkedRole
+//   so that Organizations can create the required service-linked role. You do
+//   not have that permission.
+//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/CreateOrganization
 func (c *Organizations) CreateOrganization(input *CreateOrganizationInput) (*CreateOrganizationOutput, error) {
 	req, out := c.CreateOrganizationRequest(input)
@@ -1298,7 +1332,10 @@ func (c *Organizations) CreateOrganizationalUnitRequest(input *CreateOrganizatio
 //   example, attempting to removing the last SCP from an OU or root, inviting
 //   or creating too many accounts to the organization, or attaching too many
 //   policies to an account, OU, or root. This exception includes a reason that
-//   contains additional information about the violated limit:
+//   contains additional information about the violated limit.
+//
+//   Some of the reasons in the following list might not be applicable to this
+//   specific API or operation:
 //
 //   ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on the number
 //   of accounts in an organization. If you need more accounts, contact AWS Support
@@ -1545,7 +1582,10 @@ func (c *Organizations) CreatePolicyRequest(input *CreatePolicyInput) (req *requ
 //   example, attempting to removing the last SCP from an OU or root, inviting
 //   or creating too many accounts to the organization, or attaching too many
 //   policies to an account, OU, or root. This exception includes a reason that
-//   contains additional information about the violated limit:
+//   contains additional information about the violated limit.
+//
+//   Some of the reasons in the following list might not be applicable to this
+//   specific API or operation:
 //
 //   ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on the number
 //   of accounts in an organization. If you need more accounts, contact AWS Support
@@ -3348,7 +3388,10 @@ func (c *Organizations) DetachPolicyRequest(input *DetachPolicyInput) (req *requ
 //   example, attempting to removing the last SCP from an OU or root, inviting
 //   or creating too many accounts to the organization, or attaching too many
 //   policies to an account, OU, or root. This exception includes a reason that
-//   contains additional information about the violated limit:
+//   contains additional information about the violated limit.
+//
+//   Some of the reasons in the following list might not be applicable to this
+//   specific API or operation:
 //
 //   ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on the number
 //   of accounts in an organization. If you need more accounts, contact AWS Support
@@ -3597,7 +3640,10 @@ func (c *Organizations) DisablePolicyTypeRequest(input *DisablePolicyTypeInput) 
 //   example, attempting to removing the last SCP from an OU or root, inviting
 //   or creating too many accounts to the organization, or attaching too many
 //   policies to an account, OU, or root. This exception includes a reason that
-//   contains additional information about the violated limit:
+//   contains additional information about the violated limit.
+//
+//   Some of the reasons in the following list might not be applicable to this
+//   specific API or operation:
 //
 //   ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on the number
 //   of accounts in an organization. If you need more accounts, contact AWS Support
@@ -4062,7 +4108,10 @@ func (c *Organizations) EnablePolicyTypeRequest(input *EnablePolicyTypeInput) (r
 //   example, attempting to removing the last SCP from an OU or root, inviting
 //   or creating too many accounts to the organization, or attaching too many
 //   policies to an account, OU, or root. This exception includes a reason that
-//   contains additional information about the violated limit:
+//   contains additional information about the violated limit.
+//
+//   Some of the reasons in the following list might not be applicable to this
+//   specific API or operation:
 //
 //   ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on the number
 //   of accounts in an organization. If you need more accounts, contact AWS Support
@@ -4562,7 +4611,10 @@ func (c *Organizations) LeaveOrganizationRequest(input *LeaveOrganizationInput) 
 //   example, attempting to removing the last SCP from an OU or root, inviting
 //   or creating too many accounts to the organization, or attaching too many
 //   policies to an account, OU, or root. This exception includes a reason that
-//   contains additional information about the violated limit:
+//   contains additional information about the violated limit.
+//
+//   Some of the reasons in the following list might not be applicable to this
+//   specific API or operation:
 //
 //   ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on the number
 //   of accounts in an organization. If you need more accounts, contact AWS Support
@@ -7530,7 +7582,10 @@ func (c *Organizations) RemoveAccountFromOrganizationRequest(input *RemoveAccoun
 //   example, attempting to removing the last SCP from an OU or root, inviting
 //   or creating too many accounts to the organization, or attaching too many
 //   policies to an account, OU, or root. This exception includes a reason that
-//   contains additional information about the violated limit:
+//   contains additional information about the violated limit.
+//
+//   Some of the reasons in the following list might not be applicable to this
+//   specific API or operation:
 //
 //   ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on the number
 //   of accounts in an organization. If you need more accounts, contact AWS Support
@@ -7936,7 +7991,10 @@ func (c *Organizations) UpdatePolicyRequest(input *UpdatePolicyInput) (req *requ
 //   example, attempting to removing the last SCP from an OU or root, inviting
 //   or creating too many accounts to the organization, or attaching too many
 //   policies to an account, OU, or root. This exception includes a reason that
-//   contains additional information about the violated limit:
+//   contains additional information about the violated limit.
+//
+//   Some of the reasons in the following list might not be applicable to this
+//   specific API or operation:
 //
 //   ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on the number
 //   of accounts in an organization. If you need more accounts, contact AWS Support
@@ -9879,7 +9937,21 @@ type Handshake struct {
 	_ struct{} `type:"structure"`
 
 	// The type of handshake, indicating what action occurs when the recipient accepts
-	// the handshake.
+	// the handshake. The following handshake types are supported:
+	//
+	//    * INVITE: This type of handshake represents a request to join an organization.
+	//    It is always sent from the master account to only non-member accounts.
+	//
+	//    * ENABLE_ALL_FEATURES: This type of handshake represents a request to
+	//    enable all features in an organization. It is always sent from the master
+	//    account to only invited member accounts. Created accounts do not receive
+	//    this because those accounts were created by the organization's master
+	//    account and approval is inferred.
+	//
+	//    * APPROVE_ALL_FEATURES: This type of handshake is sent from the Organizations
+	//    service when all member accounts have approved the ENABLE_ALL_FEATURES
+	//    invitation. It is sent only to the master account and signals the master
+	//    that it can finalize the process to enable all features.
 	Action *string `type:"string" enum:"ActionType"`
 
 	// The Amazon Resource Name (ARN) of a handshake.
@@ -12502,6 +12574,11 @@ func (s *UpdatePolicyOutput) SetPolicy(v *Policy) *UpdatePolicyOutput {
 }
 
 const (
+	// AccessDeniedForDependencyExceptionReasonAccessDeniedDuringCreateServiceLinkedRole is a AccessDeniedForDependencyExceptionReason enum value
+	AccessDeniedForDependencyExceptionReasonAccessDeniedDuringCreateServiceLinkedRole = "ACCESS_DENIED_DURING_CREATE_SERVICE_LINKED_ROLE"
+)
+
+const (
 	// AccountJoinedMethodInvited is a AccountJoinedMethod enum value
 	AccountJoinedMethodInvited = "INVITED"
 
@@ -12526,6 +12603,9 @@ const (
 
 	// ActionTypeApproveAllFeatures is a ActionType enum value
 	ActionTypeApproveAllFeatures = "APPROVE_ALL_FEATURES"
+
+	// ActionTypeAddOrganizationsServiceLinkedRole is a ActionType enum value
+	ActionTypeAddOrganizationsServiceLinkedRole = "ADD_ORGANIZATIONS_SERVICE_LINKED_ROLE"
 )
 
 const (
@@ -12595,6 +12675,9 @@ const (
 
 	// CreateAccountFailureReasonInvalidEmail is a CreateAccountFailureReason enum value
 	CreateAccountFailureReasonInvalidEmail = "INVALID_EMAIL"
+
+	// CreateAccountFailureReasonConcurrentAccountModification is a CreateAccountFailureReason enum value
+	CreateAccountFailureReasonConcurrentAccountModification = "CONCURRENT_ACCOUNT_MODIFICATION"
 
 	// CreateAccountFailureReasonInternalFailure is a CreateAccountFailureReason enum value
 	CreateAccountFailureReasonInternalFailure = "INTERNAL_FAILURE"

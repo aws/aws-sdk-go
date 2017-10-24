@@ -21,6 +21,14 @@ const (
 	// in the IAM User Guide.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
+	// ErrCodeAccessDeniedForDependencyException for service response error code
+	// "AccessDeniedForDependencyException".
+	//
+	// The operation you attempted requires you to have the iam:CreateServiceLinkedRole
+	// so that Organizations can create the required service-linked role. You do
+	// not have that permission.
+	ErrCodeAccessDeniedForDependencyException = "AccessDeniedForDependencyException"
+
 	// ErrCodeAccountNotFoundException for service response error code
 	// "AccountNotFoundException".
 	//
@@ -57,7 +65,10 @@ const (
 	// example, attempting to removing the last SCP from an OU or root, inviting
 	// or creating too many accounts to the organization, or attaching too many
 	// policies to an account, OU, or root. This exception includes a reason that
-	// contains additional information about the violated limit:
+	// contains additional information about the violated limit.
+	//
+	// Some of the reasons in the following list might not be applicable to this
+	// specific API or operation:
 	//
 	// ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on the number
 	// of accounts in an organization. If you need more accounts, contact AWS Support
