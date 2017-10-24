@@ -861,7 +861,10 @@
         "SecurityGroups":{"shape":"SecurityGroupMembershipList"},
         "ReplicationGroupId":{"shape":"String"},
         "SnapshotRetentionLimit":{"shape":"IntegerOptional"},
-        "SnapshotWindow":{"shape":"String"}
+        "SnapshotWindow":{"shape":"String"},
+        "AuthTokenEnabled":{"shape":"BooleanOptional"},
+        "TransitEncryptionEnabled":{"shape":"BooleanOptional"},
+        "AtRestEncryptionEnabled":{"shape":"BooleanOptional"}
       },
       "wrapper":true
     },
@@ -1386,7 +1389,9 @@
         "AutoMinorVersionUpgrade":{"shape":"BooleanOptional"},
         "SnapshotRetentionLimit":{"shape":"IntegerOptional"},
         "SnapshotWindow":{"shape":"String"},
-        "AuthToken":{"shape":"String"}
+        "AuthToken":{"shape":"String"},
+        "TransitEncryptionEnabled":{"shape":"BooleanOptional"},
+        "AtRestEncryptionEnabled":{"shape":"BooleanOptional"}
       }
     },
     "CreateReplicationGroupResult":{
@@ -2147,7 +2152,10 @@
         "SnapshotRetentionLimit":{"shape":"IntegerOptional"},
         "SnapshotWindow":{"shape":"String"},
         "ClusterEnabled":{"shape":"BooleanOptional"},
-        "CacheNodeType":{"shape":"String"}
+        "CacheNodeType":{"shape":"String"},
+        "AuthTokenEnabled":{"shape":"BooleanOptional"},
+        "TransitEncryptionEnabled":{"shape":"BooleanOptional"},
+        "AtRestEncryptionEnabled":{"shape":"BooleanOptional"}
       },
       "wrapper":true
     },
