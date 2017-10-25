@@ -23,3 +23,7 @@ script:
 matrix:
   allow_failures:
     - go: tip
+
+branches:
+  only:
+    - master
