@@ -60925,6 +60925,15 @@ const (
 	// InstanceTypeP216xlarge is a InstanceType enum value
 	InstanceTypeP216xlarge = "p2.16xlarge"
 
+	// InstanceTypeP32xlarge is a InstanceType enum value
+	InstanceTypeP32xlarge = "p3.2xlarge"
+
+	// InstanceTypeP38xlarge is a InstanceType enum value
+	InstanceTypeP38xlarge = "p3.8xlarge"
+
+	// InstanceTypeP316xlarge is a InstanceType enum value
+	InstanceTypeP316xlarge = "p3.16xlarge"
+
 	// InstanceTypeD2Xlarge is a InstanceType enum value
 	InstanceTypeD2Xlarge = "d2.xlarge"
 
