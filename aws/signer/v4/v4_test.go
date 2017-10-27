@@ -187,6 +187,26 @@ func TestSignBodyS3(t *testing.T) {
 	}
 }
 
+func TestSignElasticsearch(t *testing.T) {
+	endpoint := "https://estest.us-east-1.es.amazonaws.com:443/_search"
+	reader := strings.NewReader("")
+	req, _ := http.NewRequest("GET", endpoint, reader)
+
+	signer := buildSigner()
+	signer.Sign(req, reader, "es", "us-east-1", time.Unix(0, 0))
+
+	expectedDate := "19700101T000000Z"
+	expectedSig := "AWS4-HMAC-SHA256 Credential=AKID/19700101/us-east-1/es/aws4_request, SignedHeaders=host;x-amz-date;x-amz-security-token, Signature=e573fc9aa3a156b720976419319be98fb2824a3abc2ddd895ecb1d1611c6a82d"
+
+	q := req.Header
+	if e, a := expectedSig, q.Get("Authorization"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := expectedDate, q.Get("X-Amz-Date"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+}
+
 func TestSignBodyGlacier(t *testing.T) {
 	req, body := buildRequest("glacier", "us-east-1", "hello")
 	signer := buildSigner()

@@ -604,11 +604,18 @@ func (ctx *signingCtx) buildCanonicalHeaders(r rule, header http.Header) {
 	headerValues := make([]string, len(headers))
 	for i, k := range headers {
 		if k == "host" {
+			var host string
 			if ctx.Request.Host != "" {
-				headerValues[i] = "host:" + ctx.Request.Host
+				colon := strings.IndexByte(ctx.Request.Host, ':')
+				if colon == -1 {
+					host = ctx.Request.Host
+				} else {
+					host = ctx.Request.Host[:colon]
+				}
 			} else {
-				headerValues[i] = "host:" + ctx.Request.URL.Host
+				host = aws.URLHostname(ctx.Request.URL)
 			}
+			headerValues[i] = "host:" + host
 		} else {
 			headerValues[i] = k + ":" +
 				strings.Join(ctx.SignedHeaderVals[k], ",")
