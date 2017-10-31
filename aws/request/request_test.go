@@ -112,7 +112,8 @@ func TestRequestRecoverRetry4xxRetryable(t *testing.T) {
 	reqNum := 0
 	reqs := []http.Response{
 		{StatusCode: 400, Body: body(`{"__type":"Throttling","message":"Rate exceeded."}`)},
-		{StatusCode: 429, Body: body(`{"__type":"ProvisionedThroughputExceededException","message":"Rate exceeded."}`)},
+		{StatusCode: 400, Body: body(`{"__type":"ProvisionedThroughputExceededException","message":"Rate exceeded."}`)},
+		{StatusCode: 429, Body: body(`{"__type":"FooException","message":"Rate exceeded."}`)},
 		{StatusCode: 200, Body: body(`{"data":"valid"}`)},
 	}
 
@@ -131,7 +132,7 @@ func TestRequestRecoverRetry4xxRetryable(t *testing.T) {
 	if err != nil {
 		t.Fatalf("expect no error, but got %v", err)
 	}
-	if e, a := 2, int(r.RetryCount); e != a {
+	if e, a := 3, int(r.RetryCount); e != a {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 	if e, a := "valid", out.Data; e != a {
