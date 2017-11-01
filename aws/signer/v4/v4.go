@@ -698,25 +698,36 @@ func (ctx *signingCtx) removePresign() {
 	ctx.Query.Del("X-Amz-SignedHeaders")
 }
 
-// Set ctx.Request.Host to host:port for non-standard ports, and to host otherwise
+// Set ctx.Request.Host to host:port for non-standard ports, and to host for explicit standart ports
 func (ctx *signingCtx) sanitizeHost() {
 	if ctx.Request == nil || ctx.Request.URL == nil {
 		return
 	}
 
-	var host, port string
+	var port string
 	if ctx.Request.Host != "" {
-		host = stripPort(ctx.Request.Host)
 		port = portOnly(ctx.Request.Host)
 	} else {
-		host = ctx.Request.URL.Hostname()
 		port = ctx.Request.URL.Port()
 	}
 
 	if isUsingNonDefaultPort(ctx.Request.URL.Scheme, port) {
-		ctx.Request.Host = host + ":" + port
+		ctx.Request.Host = hostname(ctx.Request) + ":" + port
+	} else if port != "" { // remove default port
+		ctx.Request.Host = hostname(ctx.Request)
+	}
+}
+
+// Returns host without port number
+func hostname(req *http.Request) string {
+	if req == nil {
+		return ""
+	}
+
+	if req.Host != "" {
+		return stripPort(req.Host)
 	} else {
-		ctx.Request.Host = host
+		return req.URL.Hostname()
 	}
 }
 
