@@ -504,6 +504,8 @@ func (ctx *signingCtx) build(disableHeaderHoisting bool) {
 
 	ctx.buildBodyDigest()
 
+	ctx.sanitizeHost()
+
 	unsignedHeaders := ctx.Request.Header
 	if ctx.isPresign {
 		if !disableHeaderHoisting {
@@ -604,18 +606,11 @@ func (ctx *signingCtx) buildCanonicalHeaders(r rule, header http.Header) {
 	headerValues := make([]string, len(headers))
 	for i, k := range headers {
 		if k == "host" {
-			var host string
 			if ctx.Request.Host != "" {
-				colon := strings.IndexByte(ctx.Request.Host, ':')
-				if colon == -1 {
-					host = ctx.Request.Host
-				} else {
-					host = ctx.Request.Host[:colon]
-				}
+				headerValues[i] = "host:" + ctx.Request.Host
 			} else {
-				host = aws.URLHostname(ctx.Request.URL)
+				headerValues[i] = "host:" + ctx.Request.URL.Host
 			}
-			headerValues[i] = "host:" + host
 		} else {
 			headerValues[i] = k + ":" +
 				strings.Join(ctx.SignedHeaderVals[k], ",")
@@ -701,6 +696,69 @@ func (ctx *signingCtx) removePresign() {
 	ctx.Query.Del("X-Amz-Expires")
 	ctx.Query.Del("X-Amz-Credential")
 	ctx.Query.Del("X-Amz-SignedHeaders")
+}
+
+// Set ctx.Request.Host to host:port for non-standard ports, and to host otherwise
+func (ctx *signingCtx) sanitizeHost() {
+	if ctx.Request == nil || ctx.Request.URL == nil {
+		return
+	}
+
+	var host, port string
+	if ctx.Request.Host != "" {
+		host = stripPort(ctx.Request.Host)
+		port = portOnly(ctx.Request.Host)
+	} else {
+		host = ctx.Request.URL.Hostname()
+		port = ctx.Request.URL.Port()
+	}
+
+	if isUsingNonDefaultPort(ctx.Request.URL.Scheme, port) {
+		ctx.Request.Host = host + ":" + port
+	} else {
+		ctx.Request.Host = host
+	}
+}
+
+// Copy of url.stripPort()
+func stripPort(hostport string) string {
+	colon := strings.IndexByte(hostport, ':')
+	if colon == -1 {
+		return hostport
+	}
+	if i := strings.IndexByte(hostport, ']'); i != -1 {
+		return strings.TrimPrefix(hostport[:i], "[")
+	}
+	return hostport[:colon]
+}
+
+// Copy of url.portOnly()
+func portOnly(hostport string) string {
+	colon := strings.IndexByte(hostport, ':')
+	if colon == -1 {
+		return ""
+	}
+	if i := strings.Index(hostport, "]:"); i != -1 {
+		return hostport[i+len("]:"):]
+	}
+	if strings.Contains(hostport, "]") {
+		return ""
+	}
+	return hostport[colon+len(":"):]
+}
+
+// Returns true if the specified URI is using a non-standard port
+// (i.e. any port other than 80 for HTTP URIs or any port other than 443 for HTTPS URIs)
+func isUsingNonDefaultPort(scheme, port string) bool {
+	lowerCaseScheme := strings.ToLower(scheme)
+
+	if port == "" ||
+		(lowerCaseScheme == "http" && port == "80") ||
+		(lowerCaseScheme == "https" && port == "443") {
+		return false
+	}
+
+	return true;
 }
 
 func makeHmac(key []byte, data []byte) []byte {

@@ -164,3 +164,72 @@ func TestStandaloneSign_CustomURIEscape(t *testing.T) {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 }
+
+func TestStandaloneSignWithStandardHttpsPort(t *testing.T) {
+	expectedHost := "estest.us-east-1.es.amazonaws.com"
+	expectedSig := "AWS4-HMAC-SHA256 Credential=AKID/19700101/us-east-1/es/aws4_request, SignedHeaders=host;x-amz-date;x-amz-security-token, Signature=e573fc9aa3a156b720976419319be98fb2824a3abc2ddd895ecb1d1611c6a82d"
+	urlWithStandardPort := "https://estest.us-east-1.es.amazonaws.com:443/_search"
+
+	signer := v4.NewSigner(unit.Session.Config.Credentials)
+	req, _ := http.NewRequest("GET", urlWithStandardPort, nil)
+	_, err := signer.Sign(req, nil, "es", "us-east-1", time.Unix(0, 0))
+	if err != nil {
+		t.Fatalf("expect no error, got %v", err)
+	}
+
+	actualHost := req.Host
+	if e, a := expectedHost, actualHost; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+
+	actual := req.Header.Get("Authorization")
+	if e, a := expectedSig, actual; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+}
+
+func TestStandaloneSignNonWithStandardHttpPort(t *testing.T) {
+	expectedHost := "example.com:9200"
+	expectedSig := "AWS4-HMAC-SHA256 Credential=AKID/19700101/us-east-1/es/aws4_request, SignedHeaders=host;x-amz-date;x-amz-security-token, Signature=cd9d926a460f8d3b58b57beadbd87666dc667e014c0afaa4cea37b2867f51b4f"
+	urlWithNonStandardHttpPort := "http://example.com:9200/_search"
+
+	signer := v4.NewSigner(unit.Session.Config.Credentials)
+	req, _ := http.NewRequest("GET", urlWithNonStandardHttpPort, nil)
+	_, err := signer.Sign(req, nil, "es", "us-east-1", time.Unix(0, 0))
+	if err != nil {
+		t.Fatalf("expect no error, got %v", err)
+	}
+
+	actualHost := req.Host
+	if e, a := expectedHost, actualHost; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+
+	actual := req.Header.Get("Authorization")
+	if e, a := expectedSig, actual; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+}
+
+func TestStandaloneSignWithNonStandardHttpsPort(t *testing.T) {
+	expectedHost := "example.com:9200"
+	expectedSig := "AWS4-HMAC-SHA256 Credential=AKID/19700101/us-east-1/es/aws4_request, SignedHeaders=host;x-amz-date;x-amz-security-token, Signature=cd9d926a460f8d3b58b57beadbd87666dc667e014c0afaa4cea37b2867f51b4f"
+	urlWithNonStandardHttpsPort := "https://example.com:9200/_search"
+
+	signer := v4.NewSigner(unit.Session.Config.Credentials)
+	req, _ := http.NewRequest("GET", urlWithNonStandardHttpsPort, nil)
+	_, err := signer.Sign(req, nil, "es", "us-east-1", time.Unix(0, 0))
+	if err != nil {
+		t.Fatalf("expect no error, got %v", err)
+	}
+
+	actualHost := req.Host
+	if e, a := expectedHost, actualHost; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+
+	actual := req.Header.Get("Authorization")
+	if e, a := expectedSig, actual; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+}
