@@ -165,7 +165,7 @@ func TestStandaloneSign_CustomURIEscape(t *testing.T) {
 	}
 }
 
-func TestStandaloneSignWithStandardHttpsPort(t *testing.T) {
+func TestStandaloneSign_StandardHttpsPort(t *testing.T) {
 	expectedHost := "estest.us-east-1.es.amazonaws.com"
 	expectedSig := "AWS4-HMAC-SHA256 Credential=AKID/19700101/us-east-1/es/aws4_request, SignedHeaders=host;x-amz-date;x-amz-security-token, Signature=e573fc9aa3a156b720976419319be98fb2824a3abc2ddd895ecb1d1611c6a82d"
 	urlWithStandardPort := "https://estest.us-east-1.es.amazonaws.com:443/_search"
@@ -188,7 +188,7 @@ func TestStandaloneSignWithStandardHttpsPort(t *testing.T) {
 	}
 }
 
-func TestStandaloneSignNonWithStandardHttpPort(t *testing.T) {
+func TestStandaloneSign_NonStandardHttpPort(t *testing.T) {
 	expectedHost := "example.com:9200"
 	expectedSig := "AWS4-HMAC-SHA256 Credential=AKID/19700101/us-east-1/es/aws4_request, SignedHeaders=host;x-amz-date;x-amz-security-token, Signature=cd9d926a460f8d3b58b57beadbd87666dc667e014c0afaa4cea37b2867f51b4f"
 	urlWithNonStandardHttpPort := "http://example.com:9200/_search"
@@ -211,7 +211,7 @@ func TestStandaloneSignNonWithStandardHttpPort(t *testing.T) {
 	}
 }
 
-func TestStandaloneSignWithNonStandardHttpsPort(t *testing.T) {
+func TestStandaloneSign_NonStandardHttpsPort(t *testing.T) {
 	expectedHost := "example.com:9200"
 	expectedSig := "AWS4-HMAC-SHA256 Credential=AKID/19700101/us-east-1/es/aws4_request, SignedHeaders=host;x-amz-date;x-amz-security-token, Signature=cd9d926a460f8d3b58b57beadbd87666dc667e014c0afaa4cea37b2867f51b4f"
 	urlWithNonStandardHttpsPort := "https://example.com:9200/_search"
