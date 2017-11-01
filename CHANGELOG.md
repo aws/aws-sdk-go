@@ -1,3 +1,18 @@
+Release v1.12.20 (2017-11-01)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service documentation
+  * Documentation updates for ACM
+* `service/cloudhsmv2`: Updates service documentation
+  * Minor documentation update for AWS CloudHSM (cloudhsmv2).
+* `service/directconnect`: Updates service API and documentation
+  * AWS DirectConnect now provides support for Global Access for Virtual Private Cloud (VPC) via a new feature called Direct Connect Gateway. A Direct Connect Gateway will allow you to group multiple Direct Connect Private Virtual Interfaces (DX-VIF) and Private Virtual Gateways (VGW) from different AWS regions (but belonging to the same AWS Account) and pass traffic from any DX-VIF to any VPC in the grouping.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
+### SDK Enhancements
+* `aws/client`: Adding status code 429 to throttlable status codes in default retryer (#1621)
+
 Release v1.12.19 (2017-10-26)
 ===
 

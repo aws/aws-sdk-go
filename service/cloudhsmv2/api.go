@@ -2034,7 +2034,8 @@ type InitializeClusterInput struct {
 	ClusterId *string `type:"string" required:"true"`
 
 	// The cluster certificate issued (signed) by your issuing certificate authority
-	// (CA). The certificate must be in PEM format.
+	// (CA). The certificate must be in PEM format and can contain a maximum of
+	// 5000 characters.
 	//
 	// SignedCert is a required field
 	SignedCert *string `type:"string" required:"true"`
@@ -2043,7 +2044,7 @@ type InitializeClusterInput struct {
 	// (signed) the cluster certificate. This can be a root (self-signed) certificate
 	// or a certificate chain that begins with the certificate that issued the cluster
 	// certificate and ends with a root certificate. The certificate or certificate
-	// chain must be in PEM format.
+	// chain must be in PEM format and can contain a maximum of 5000 characters.
 	//
 	// TrustAnchor is a required field
 	TrustAnchor *string `type:"string" required:"true"`
