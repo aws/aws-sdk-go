@@ -302,7 +302,6 @@ func getPresignedURL(r *Request, expire time.Duration) (string, http.Header, err
 	r.ExpireTime = expire
 
 	if r.Operation.BeforePresignFn != nil {
-		r = r.copy()
 		if err := r.Operation.BeforePresignFn(r); err != nil {
 			return "", nil, err
 		}
