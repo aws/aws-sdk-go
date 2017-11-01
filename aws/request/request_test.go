@@ -915,10 +915,8 @@ func TestRequest_Presign(t *testing.T) {
 		},
 		{
 			// PresignRequest returns signed headers
-			Expire: 1 * time.Minute,
-			PresignFn: func(r *request.Request, dur time.Duration) (string, http.Header, error) {
-				return presignRequest(r, dur)
-			},
+			Expire:    1 * time.Minute,
+			PresignFn: presignRequest,
 			SignerFn: func(r *request.Request) {
 				r.HTTPRequest.URL = mustParseURL("https://endpoint/presignedURL")
 				r.HTTPRequest.Header.Set("UnsigndHeader", "abc")
