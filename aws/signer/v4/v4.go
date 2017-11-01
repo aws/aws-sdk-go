@@ -761,11 +761,12 @@ func portOnly(hostport string) string {
 // Returns true if the specified URI is using a non-standard port
 // (i.e. any port other than 80 for HTTP URIs or any port other than 443 for HTTPS URIs)
 func isUsingNonDefaultPort(scheme, port string) bool {
-	lowerCaseScheme := strings.ToLower(scheme)
+	if port == "" {
+		return false
+	}
 
-	if port == "" ||
-		(lowerCaseScheme == "http" && port == "80") ||
-		(lowerCaseScheme == "https" && port == "443") {
+	lowerCaseScheme := strings.ToLower(scheme)
+	if (lowerCaseScheme == "http" && port == "80") || (lowerCaseScheme == "https" && port == "443") {
 		return false
 	}
 
