@@ -265,7 +265,7 @@ func (r *Request) Presign(expire time.Duration) (string, error) {
 	r = r.copy()
 
 	// Presign requires all headers be hoisted. There is no way to retrieve
-	// the signed headers not hoisted without this. Makign the presigned URL
+	// the signed headers not hoisted without this. Making the presigned URL
 	// useless.
 	r.NotHoist = false
 
