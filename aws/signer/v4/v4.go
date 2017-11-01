@@ -713,7 +713,7 @@ func (ctx *signingCtx) sanitizeHost() {
 
 	if isUsingNonDefaultPort(ctx.Request.URL.Scheme, port) {
 		ctx.Request.Host = hostname(ctx.Request) + ":" + port
-	} else if port != "" { // remove default port
+	} else if port != "" { // remove standard port, if set explicitly
 		ctx.Request.Host = hostname(ctx.Request)
 	}
 }
