@@ -708,7 +708,7 @@ func (ctx *signingCtx) sanitizeHost() {
 	if ctx.Request.Host != "" {
 		port = portOnly(ctx.Request.Host)
 	} else {
-		port = ctx.Request.URL.Port()
+		port = portOnly(ctx.Request.URL.Host)
 	}
 
 	if isUsingNonDefaultPort(ctx.Request.URL.Scheme, port) {
@@ -727,7 +727,7 @@ func hostname(req *http.Request) string {
 	if req.Host != "" {
 		return stripPort(req.Host)
 	} else {
-		return req.URL.Hostname()
+		return aws.URLHostname(req.URL)
 	}
 }
 
