@@ -8,9 +8,11 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
+	"net/url"
 	"reflect"
 	"runtime"
 	"strconv"
+	"strings"
 	"testing"
 	"time"
 
@@ -841,5 +843,120 @@ func TestRequest_TemporaryRetry(t *testing.T) {
 	terr := aerr.OrigErr().(temporary)
 	if !terr.Temporary() {
 		t.Errorf("expect temporary error, was not")
+	}
+}
+
+func TestRequest_Presign(t *testing.T) {
+	presign := func(r *request.Request, expire time.Duration) (string, http.Header, error) {
+		u, err := r.Presign(expire)
+		return u, nil, err
+	}
+	presignRequest := func(r *request.Request, expire time.Duration) (string, http.Header, error) {
+		return r.PresignRequest(expire)
+	}
+	mustParseURL := func(v string) *url.URL {
+		u, err := url.Parse(v)
+		if err != nil {
+			panic(err)
+		}
+		return u
+	}
+
+	cases := []struct {
+		Expire    time.Duration
+		PresignFn func(*request.Request, time.Duration) (string, http.Header, error)
+		SignerFn  func(*request.Request)
+		URL       string
+		Header    http.Header
+		Err       string
+	}{
+		{
+			PresignFn: presign,
+			Err:       request.ErrCodeInvalidPresignExpire,
+		},
+		{
+			PresignFn: presignRequest,
+			Err:       request.ErrCodeInvalidPresignExpire,
+		},
+		{
+			Expire:    -1,
+			PresignFn: presign,
+			Err:       request.ErrCodeInvalidPresignExpire,
+		},
+		{
+			// Presign clear NotHoist
+			Expire: 1 * time.Minute,
+			PresignFn: func(r *request.Request, dur time.Duration) (string, http.Header, error) {
+				r.NotHoist = true
+				return presign(r, dur)
+			},
+			SignerFn: func(r *request.Request) {
+				r.HTTPRequest.URL = mustParseURL("https://endpoint/presignedURL")
+				fmt.Println("url", r.HTTPRequest.URL.String())
+				if r.NotHoist {
+					r.Error = fmt.Errorf("expect NotHoist to be cleared")
+				}
+			},
+			URL: "https://endpoint/presignedURL",
+		},
+		{
+			// PresignRequest does not clear NotHoist
+			Expire: 1 * time.Minute,
+			PresignFn: func(r *request.Request, dur time.Duration) (string, http.Header, error) {
+				r.NotHoist = true
+				return presignRequest(r, dur)
+			},
+			SignerFn: func(r *request.Request) {
+				r.HTTPRequest.URL = mustParseURL("https://endpoint/presignedURL")
+				if !r.NotHoist {
+					r.Error = fmt.Errorf("expect NotHoist not to be cleared")
+				}
+			},
+			URL: "https://endpoint/presignedURL",
+		},
+		{
+			// PresignRequest returns signed headers
+			Expire:    1 * time.Minute,
+			PresignFn: presignRequest,
+			SignerFn: func(r *request.Request) {
+				r.HTTPRequest.URL = mustParseURL("https://endpoint/presignedURL")
+				r.HTTPRequest.Header.Set("UnsigndHeader", "abc")
+				r.SignedHeaderVals = http.Header{
+					"X-Amzn-Header":  []string{"abc", "123"},
+					"X-Amzn-Header2": []string{"efg", "456"},
+				}
+			},
+			URL: "https://endpoint/presignedURL",
+			Header: http.Header{
+				"X-Amzn-Header":  []string{"abc", "123"},
+				"X-Amzn-Header2": []string{"efg", "456"},
+			},
+		},
+	}
+
+	svc := awstesting.NewClient()
+	svc.Handlers.Clear()
+	for i, c := range cases {
+		req := svc.NewRequest(&request.Operation{
+			Name: "name", HTTPMethod: "GET", HTTPPath: "/path",
+		}, &struct{}{}, &struct{}{})
+		req.Handlers.Sign.PushBack(c.SignerFn)
+
+		u, h, err := c.PresignFn(req, c.Expire)
+		if len(c.Err) != 0 {
+			if e, a := c.Err, err.Error(); !strings.Contains(a, e) {
+				t.Errorf("%d, expect %v to be in %v", i, e, a)
+			}
+			continue
+		} else if err != nil {
+			t.Errorf("%d, expect no error, got %v", i, err)
+			continue
+		}
+		if e, a := c.URL, u; e != a {
+			t.Errorf("%d, expect %v URL, got %v", i, e, a)
+		}
+		if e, a := c.Header, h; !reflect.DeepEqual(e, a) {
+			t.Errorf("%d, expect %v header got %v", i, e, a)
+		}
 	}
 }
