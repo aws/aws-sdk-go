@@ -726,9 +726,9 @@ func hostname(req *http.Request) string {
 
 	if req.Host != "" {
 		return stripPort(req.Host)
-	} else {
-		return aws.URLHostname(req.URL)
 	}
+
+	return aws.URLHostname(req.URL)
 }
 
 // Copy of url.stripPort()
