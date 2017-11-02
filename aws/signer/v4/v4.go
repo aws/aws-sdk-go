@@ -698,12 +698,8 @@ func (ctx *signingCtx) removePresign() {
 	ctx.Query.Del("X-Amz-SignedHeaders")
 }
 
-// Set ctx.Request.Host to host:port for non-standard ports, and to host for explicit standart ports
+// Remove default port, if present
 func (ctx *signingCtx) sanitizeHost() {
-	if ctx.Request == nil || ctx.Request.URL == nil {
-		return
-	}
-
 	var port string
 	if ctx.Request.Host != "" {
 		port = portOnly(ctx.Request.Host)
@@ -711,19 +707,13 @@ func (ctx *signingCtx) sanitizeHost() {
 		port = portOnly(ctx.Request.URL.Host)
 	}
 
-	if isUsingNonDefaultPort(ctx.Request.URL.Scheme, port) {
-		ctx.Request.Host = hostname(ctx.Request) + ":" + port
-	} else if port != "" { // remove standard port, if set explicitly
+	if port != "" && isDefaultPort(ctx.Request.URL.Scheme, port) {
 		ctx.Request.Host = hostname(ctx.Request)
 	}
 }
 
 // Returns host without port number
 func hostname(req *http.Request) string {
-	if req == nil {
-		return ""
-	}
-
 	if req.Host != "" {
 		return stripPort(req.Host)
 	}
@@ -731,7 +721,7 @@ func hostname(req *http.Request) string {
 	return aws.URLHostname(req.URL)
 }
 
-// Copy of url.stripPort()
+// Copied from the Go 1.8 standard library, url package
 func stripPort(hostport string) string {
 	colon := strings.IndexByte(hostport, ':')
 	if colon == -1 {
@@ -743,7 +733,7 @@ func stripPort(hostport string) string {
 	return hostport[:colon]
 }
 
-// Copy of url.portOnly()
+// Copied from the Go 1.8 standard library, url package
 func portOnly(hostport string) string {
 	colon := strings.IndexByte(hostport, ':')
 	if colon == -1 {
@@ -758,19 +748,19 @@ func portOnly(hostport string) string {
 	return hostport[colon+len(":"):]
 }
 
-// Returns true if the specified URI is using a non-standard port
-// (i.e. any port other than 80 for HTTP URIs or any port other than 443 for HTTPS URIs)
-func isUsingNonDefaultPort(scheme, port string) bool {
+// Returns true if the specified URI is using the standard port
+// (i.e. port 80 for HTTP URIs or 443 for HTTPS URIs)
+func isDefaultPort(scheme, port string) bool {
 	if port == "" {
-		return false
+		return true
 	}
 
 	lowerCaseScheme := strings.ToLower(scheme)
 	if (lowerCaseScheme == "http" && port == "80") || (lowerCaseScheme == "https" && port == "443") {
-		return false
+		return true
 	}
 
-	return true;
+	return false
 }
 
 func makeHmac(key []byte, data []byte) []byte {
