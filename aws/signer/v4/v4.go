@@ -504,8 +504,6 @@ func (ctx *signingCtx) build(disableHeaderHoisting bool) {
 
 	ctx.buildBodyDigest()
 
-	ctx.sanitizeHost()
-
 	unsignedHeaders := ctx.Request.Header
 	if ctx.isPresign {
 		if !disableHeaderHoisting {
@@ -606,11 +604,13 @@ func (ctx *signingCtx) buildCanonicalHeaders(r rule, header http.Header) {
 	headerValues := make([]string, len(headers))
 	for i, k := range headers {
 		if k == "host" {
+			var host string
 			if ctx.Request.Host != "" {
-				headerValues[i] = "host:" + ctx.Request.Host
+				host = ctx.Request.Host
 			} else {
-				headerValues[i] = "host:" + ctx.Request.URL.Host
+				host = ctx.Request.URL.Host
 			}
+			headerValues[i] = "host:" + stripDefaultPort(ctx.Request.URL.Scheme, host)
 		} else {
 			headerValues[i] = k + ":" +
 				strings.Join(ctx.SignedHeaderVals[k], ",")
@@ -698,30 +698,23 @@ func (ctx *signingCtx) removePresign() {
 	ctx.Query.Del("X-Amz-SignedHeaders")
 }
 
-// Remove default port, if present
-func (ctx *signingCtx) sanitizeHost() {
-	var port string
-	if ctx.Request.Host != "" {
-		port = portOnly(ctx.Request.Host)
-	} else {
-		port = portOnly(ctx.Request.URL.Host)
+// Returns hostname without default port (80, 443)
+func stripDefaultPort(scheme, host string) string {
+	port := portOnly(host)
+	if port != "" && isDefaultPort(scheme, port) {
+		return stripPort(host)
 	}
 
-	if port != "" && isDefaultPort(ctx.Request.URL.Scheme, port) {
-		ctx.Request.Host = hostname(ctx.Request)
-	}
+	return host
 }
 
-// Returns host without port number
-func hostname(req *http.Request) string {
-	if req.Host != "" {
-		return stripPort(req.Host)
-	}
-
-	return aws.URLHostname(req.URL)
-}
-
-// Copied from the Go 1.8 standard library, url package
+// Hostname returns u.Host, without any port number.
+//
+// If Host is an IPv6 literal with a port number, Hostname returns the
+// IPv6 literal without the square brackets. IPv6 literals may include
+// a zone identifier.
+//
+// Copied from the Go 1.8 standard library (net/url)
 func stripPort(hostport string) string {
 	colon := strings.IndexByte(hostport, ':')
 	if colon == -1 {
@@ -733,7 +726,10 @@ func stripPort(hostport string) string {
 	return hostport[:colon]
 }
 
-// Copied from the Go 1.8 standard library, url package
+// Port returns the port part of u.Host, without the leading colon.
+// If u.Host doesn't contain a port, Port returns an empty string.
+//
+// Copied from the Go 1.8 standard library (net/url)
 func portOnly(hostport string) string {
 	colon := strings.IndexByte(hostport, ':')
 	if colon == -1 {
