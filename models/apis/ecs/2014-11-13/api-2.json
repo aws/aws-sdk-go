@@ -856,6 +856,31 @@
         "STOPPED"
       ]
     },
+    "Device":{
+      "type":"structure",
+      "required":["hostPath"],
+      "members":{
+        "hostPath":{"shape":"String"},
+        "containerPath":{"shape":"String"},
+        "permissions":{"shape":"DeviceCgroupPermissions"}
+      }
+    },
+    "DeviceCgroupPermission":{
+      "type":"string",
+      "enum":[
+        "read",
+        "write",
+        "mknod"
+      ]
+    },
+    "DeviceCgroupPermissions":{
+      "type":"list",
+      "member":{"shape":"DeviceCgroupPermission"}
+    },
+    "DevicesList":{
+      "type":"list",
+      "member":{"shape":"Device"}
+    },
     "DiscoverPollEndpointRequest":{
       "type":"structure",
       "members":{
@@ -936,7 +961,9 @@
     "LinuxParameters":{
       "type":"structure",
       "members":{
-        "capabilities":{"shape":"KernelCapabilities"}
+        "capabilities":{"shape":"KernelCapabilities"},
+        "devices":{"shape":"DevicesList"},
+        "initProcessEnabled":{"shape":"BoxedBoolean"}
       }
     },
     "ListAttributesRequest":{
