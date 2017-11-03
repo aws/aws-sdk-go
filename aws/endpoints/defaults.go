@@ -1933,6 +1933,12 @@ var awscnPartition = partition{
 				"cn-north-1": endpoint{},
 			},
 		},
+		"cognito-identity": service{
+
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
 		"config": service{
 
 			Endpoints: endpoints{
