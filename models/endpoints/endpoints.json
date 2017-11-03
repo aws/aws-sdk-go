@@ -1661,6 +1661,11 @@
           "cn-north-1" : { }
         }
       },
+      "cognito-identity" : {
+        "endpoints" : {
+          "cn-north-1" : { }
+        }
+      },
       "config" : {
         "endpoints" : {
           "cn-north-1" : { }
