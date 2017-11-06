@@ -339,6 +339,7 @@ func (v4 Signer) signWithBody(r *http.Request, body io.ReadSeeker, service, regi
 		return http.Header{}, err
 	}
 
+	ctx.sanitizeHostForHeader()
 	ctx.assignAmzQueryValues()
 	ctx.build(v4.DisableHeaderHoisting)
 
@@ -361,6 +362,10 @@ func (v4 Signer) signWithBody(r *http.Request, body io.ReadSeeker, service, regi
 	}
 
 	return ctx.SignedHeaderVals, nil
+}
+
+func (ctx *signingCtx) sanitizeHostForHeader() {
+	request.SanitizeHostForHeader(ctx.Request)
 }
 
 func (ctx *signingCtx) handlePresignRemoval() {
@@ -610,7 +615,7 @@ func (ctx *signingCtx) buildCanonicalHeaders(r rule, header http.Header) {
 			} else {
 				host = ctx.Request.URL.Host
 			}
-			headerValues[i] = "host:" + stripDefaultPort(ctx.Request.URL.Scheme, host)
+			headerValues[i] = "host:" + host
 		} else {
 			headerValues[i] = k + ":" +
 				strings.Join(ctx.SignedHeaderVals[k], ",")
@@ -696,67 +701,6 @@ func (ctx *signingCtx) removePresign() {
 	ctx.Query.Del("X-Amz-Expires")
 	ctx.Query.Del("X-Amz-Credential")
 	ctx.Query.Del("X-Amz-SignedHeaders")
-}
-
-// Returns hostname without default port (80, 443)
-func stripDefaultPort(scheme, host string) string {
-	port := portOnly(host)
-	if port != "" && isDefaultPort(scheme, port) {
-		return stripPort(host)
-	}
-
-	return host
-}
-
-// Hostname returns u.Host, without any port number.
-//
-// If Host is an IPv6 literal with a port number, Hostname returns the
-// IPv6 literal without the square brackets. IPv6 literals may include
-// a zone identifier.
-//
-// Copied from the Go 1.8 standard library (net/url)
-func stripPort(hostport string) string {
-	colon := strings.IndexByte(hostport, ':')
-	if colon == -1 {
-		return hostport
-	}
-	if i := strings.IndexByte(hostport, ']'); i != -1 {
-		return strings.TrimPrefix(hostport[:i], "[")
-	}
-	return hostport[:colon]
-}
-
-// Port returns the port part of u.Host, without the leading colon.
-// If u.Host doesn't contain a port, Port returns an empty string.
-//
-// Copied from the Go 1.8 standard library (net/url)
-func portOnly(hostport string) string {
-	colon := strings.IndexByte(hostport, ':')
-	if colon == -1 {
-		return ""
-	}
-	if i := strings.Index(hostport, "]:"); i != -1 {
-		return hostport[i+len("]:"):]
-	}
-	if strings.Contains(hostport, "]") {
-		return ""
-	}
-	return hostport[colon+len(":"):]
-}
-
-// Returns true if the specified URI is using the standard port
-// (i.e. port 80 for HTTP URIs or 443 for HTTPS URIs)
-func isDefaultPort(scheme, port string) bool {
-	if port == "" {
-		return true
-	}
-
-	lowerCaseScheme := strings.ToLower(scheme)
-	if (lowerCaseScheme == "http" && port == "80") || (lowerCaseScheme == "https" && port == "443") {
-		return true
-	}
-
-	return false
 }
 
 func makeHmac(key []byte, data []byte) []byte {
