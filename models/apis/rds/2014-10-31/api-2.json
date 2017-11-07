@@ -3463,6 +3463,7 @@
       "exception":true
     },
     "Double":{"type":"double"},
+    "DoubleOptional":{"type":"double"},
     "DoubleRange":{
       "type":"structure",
       "members":{
@@ -4353,7 +4354,13 @@
         "SupportsIops":{"shape":"Boolean"},
         "SupportsEnhancedMonitoring":{"shape":"Boolean"},
         "SupportsIAMDatabaseAuthentication":{"shape":"Boolean"},
-        "SupportsPerformanceInsights":{"shape":"Boolean"}
+        "SupportsPerformanceInsights":{"shape":"Boolean"},
+        "MinStorageSize":{"shape":"IntegerOptional"},
+        "MaxStorageSize":{"shape":"IntegerOptional"},
+        "MinIopsPerDbInstance":{"shape":"IntegerOptional"},
+        "MaxIopsPerDbInstance":{"shape":"IntegerOptional"},
+        "MinIopsPerGib":{"shape":"DoubleOptional"},
+        "MaxIopsPerGib":{"shape":"DoubleOptional"}
       },
       "wrapper":true
     },

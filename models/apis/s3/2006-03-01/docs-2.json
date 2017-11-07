@@ -10,6 +10,7 @@
     "DeleteBucket": "Deletes the bucket. All objects (including all object versions and Delete Markers) in the bucket must be deleted before the bucket itself can be deleted.",
     "DeleteBucketAnalyticsConfiguration": "Deletes an analytics configuration for the bucket (specified by the analytics configuration ID).",
     "DeleteBucketCors": "Deletes the cors configuration information set for the bucket.",
+    "DeleteBucketEncryption": "Deletes the server-side encryption configuration from the bucket.",
     "DeleteBucketInventoryConfiguration": "Deletes an inventory configuration (identified by the inventory ID) from the bucket.",
     "DeleteBucketLifecycle": "Deletes the lifecycle configuration from the bucket.",
     "DeleteBucketMetricsConfiguration": "Deletes a metrics configuration (specified by the metrics configuration ID) from the bucket.",
@@ -24,6 +25,7 @@
     "GetBucketAcl": "Gets the access control policy for the bucket.",
     "GetBucketAnalyticsConfiguration": "Gets an analytics configuration for the bucket (specified by the analytics configuration ID).",
     "GetBucketCors": "Returns the cors configuration for the bucket.",
+    "GetBucketEncryption": "Returns the server-side encryption configuration of a bucket.",
     "GetBucketInventoryConfiguration": "Returns an inventory configuration (identified by the inventory ID) from the bucket.",
     "GetBucketLifecycle": "Deprecated, see the GetBucketLifecycleConfiguration operation.",
     "GetBucketLifecycleConfiguration": "Returns the lifecycle configuration information set on the bucket.",
@@ -57,6 +59,7 @@
     "PutBucketAcl": "Sets the permissions on a bucket using access control lists (ACL).",
     "PutBucketAnalyticsConfiguration": "Sets an analytics configuration for the bucket (specified by the analytics configuration ID).",
     "PutBucketCors": "Sets the cors configuration for a bucket.",
+    "PutBucketEncryption": "Creates a new server-side encryption configuration (or replaces an existing one, if present).",
     "PutBucketInventoryConfiguration": "Adds an inventory configuration (identified by the inventory ID) from the bucket.",
     "PutBucketLifecycle": "Deprecated, see the PutBucketLifecycleConfiguration operation.",
     "PutBucketLifecycleConfiguration": "Sets lifecycle configuration for your bucket. If a lifecycle configuration exists, it replaces it.",
@@ -129,10 +132,17 @@
         "PutObjectAclRequest$AccessControlPolicy": null
       }
     },
+    "AccessControlTranslation": {
+      "base": "Container for information regarding the access control for replicas.",
+      "refs": {
+        "Destination$AccessControlTranslation": "Container for information regarding the access control for replicas."
+      }
+    },
     "AccountId": {
       "base": null,
       "refs": {
         "AnalyticsS3BucketDestination$BucketAccountId": "The account ID that owns the destination bucket. If no account ID is provided, the owner will not be validated prior to exporting data.",
+        "Destination$Account": "Account ID of the destination bucket. Currently this is only being verified if Access Control Translation is enabled",
         "InventoryS3BucketDestination$AccountId": "The ID of the account that owns the destination bucket."
       }
     },
@@ -303,6 +313,7 @@
         "CreateMultipartUploadRequest$Bucket": null,
         "DeleteBucketAnalyticsConfigurationRequest$Bucket": "The name of the bucket from which an analytics configuration is deleted.",
         "DeleteBucketCorsRequest$Bucket": null,
+        "DeleteBucketEncryptionRequest$Bucket": "The name of the bucket containing the server-side encryption configuration to delete.",
         "DeleteBucketInventoryConfigurationRequest$Bucket": "The name of the bucket containing the inventory configuration to delete.",
         "DeleteBucketLifecycleRequest$Bucket": null,
         "DeleteBucketMetricsConfigurationRequest$Bucket": "The name of the bucket containing the metrics configuration to delete.",
@@ -319,6 +330,7 @@
         "GetBucketAclRequest$Bucket": null,
         "GetBucketAnalyticsConfigurationRequest$Bucket": "The name of the bucket from which an analytics configuration is retrieved.",
         "GetBucketCorsRequest$Bucket": null,
+        "GetBucketEncryptionRequest$Bucket": "The name of the bucket from which the server-side encryption configuration is retrieved.",
         "GetBucketInventoryConfigurationRequest$Bucket": "The name of the bucket containing the inventory configuration to retrieve.",
         "GetBucketLifecycleConfigurationRequest$Bucket": null,
         "GetBucketLifecycleRequest$Bucket": null,
@@ -356,6 +368,7 @@
         "PutBucketAclRequest$Bucket": null,
         "PutBucketAnalyticsConfigurationRequest$Bucket": "The name of the bucket to which an analytics configuration is stored.",
         "PutBucketCorsRequest$Bucket": null,
+        "PutBucketEncryptionRequest$Bucket": "The name of the bucket for which the server-side encryption configuration is set.",
         "PutBucketInventoryConfigurationRequest$Bucket": "The name of the bucket where the inventory configuration will be stored.",
         "PutBucketLifecycleConfigurationRequest$Bucket": null,
         "PutBucketLifecycleRequest$Bucket": null,
@@ -492,6 +505,12 @@
         "RoutingRule$Condition": "A container for describing a condition that must be met for the specified redirect to apply. For example, 1. If request is for pages in the /docs folder, redirect to the /documents folder. 2. If request results in HTTP error 4xx, redirect request to another host where you might process the error."
       }
     },
+    "ConfirmRemoveSelfBucketAccess": {
+      "base": null,
+      "refs": {
+        "PutBucketPolicyRequest$ConfirmRemoveSelfBucketAccess": "Set this parameter to true to confirm that you want to remove your permissions to change this bucket policy in the future."
+      }
+    },
     "ContentDisposition": {
       "base": null,
       "refs": {
@@ -536,6 +555,7 @@
       "refs": {
         "PutBucketAclRequest$ContentMD5": null,
         "PutBucketCorsRequest$ContentMD5": null,
+        "PutBucketEncryptionRequest$ContentMD5": "The base64-encoded 128-bit MD5 digest of the server-side encryption configuration.",
         "PutBucketLifecycleRequest$ContentMD5": null,
         "PutBucketLoggingRequest$ContentMD5": null,
         "PutBucketNotificationRequest$ContentMD5": null,
@@ -729,6 +749,11 @@
       "refs": {
       }
     },
+    "DeleteBucketEncryptionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteBucketInventoryConfigurationRequest": {
       "base": null,
       "refs": {
@@ -852,9 +877,9 @@
       }
     },
     "Destination": {
-      "base": null,
+      "base": "Container for replication destination information.",
       "refs": {
-        "ReplicationRule$Destination": null
+        "ReplicationRule$Destination": "Container for replication destination information."
       }
     },
     "DisplayName": {
@@ -898,6 +923,12 @@
         "ListObjectsRequest$EncodingType": null,
         "ListObjectsV2Output$EncodingType": "Encoding type used by Amazon S3 to encode object keys in the response.",
         "ListObjectsV2Request$EncodingType": "Encoding type used by Amazon S3 to encode object keys in the response."
+      }
+    },
+    "EncryptionConfiguration": {
+      "base": "Container for information regarding encryption based configuration for replicas.",
+      "refs": {
+        "Destination$EncryptionConfiguration": "Container for information regarding encryption based configuration for replicas."
       }
     },
     "Error": {
@@ -1050,6 +1081,16 @@
       }
     },
     "GetBucketCorsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetBucketEncryptionOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetBucketEncryptionRequest": {
       "base": null,
       "refs": {
       }
@@ -1409,6 +1450,12 @@
       "base": null,
       "refs": {
         "InventoryConfiguration$Destination": "Contains information about where to publish the inventory results."
+      }
+    },
+    "InventoryEncryption": {
+      "base": "Contains the type of server-side encryption used to encrypt the inventory results.",
+      "refs": {
+        "InventoryS3BucketDestination$Encryption": "Contains the type of server-side encryption used to encrypt the inventory results."
       }
     },
     "InventoryFilter": {
@@ -2093,6 +2140,12 @@
         "ObjectVersion$Owner": null
       }
     },
+    "OwnerOverride": {
+      "base": null,
+      "refs": {
+        "AccessControlTranslation$Owner": "The override value for the owner of the replica object."
+      }
+    },
     "Part": {
       "base": null,
       "refs": {
@@ -2199,6 +2252,11 @@
       }
     },
     "PutBucketCorsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutBucketEncryptionRequest": {
       "base": null,
       "refs": {
       }
@@ -2361,6 +2419,12 @@
         "Redirect$ReplaceKeyWith": "The specific object key to use in the redirect request. For example, redirect request to error.html. Not required if one of the sibling is present. Can be present only if ReplaceKeyPrefixWith is not provided."
       }
     },
+    "ReplicaKmsKeyID": {
+      "base": null,
+      "refs": {
+        "EncryptionConfiguration$ReplicaKmsKeyID": "The id of the KMS key used to encrypt the replica object."
+      }
+    },
     "ReplicationConfiguration": {
       "base": "Container for replication rules. You can add as many as 1,000 rules. Total replication configuration size can be up to 2 MB.",
       "refs": {
@@ -2369,7 +2433,7 @@
       }
     },
     "ReplicationRule": {
-      "base": null,
+      "base": "Container for information about a particular replication rule.",
       "refs": {
         "ReplicationRules$member": null
       }
@@ -2590,6 +2654,12 @@
         "UploadPartRequest$SSECustomerKeyMD5": "Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure the encryption key was transmitted without error."
       }
     },
+    "SSEKMS": {
+      "base": "Specifies the use of SSE-KMS to encrypt delievered Inventory reports.",
+      "refs": {
+        "InventoryEncryption$SSEKMS": "Specifies the use of SSE-KMS to encrypt delievered Inventory reports."
+      }
+    },
     "SSEKMSKeyId": {
       "base": null,
       "refs": {
@@ -2602,8 +2672,16 @@
         "HeadObjectOutput$SSEKMSKeyId": "If present, specifies the ID of the AWS Key Management Service (KMS) master encryption key that was used for the object.",
         "PutObjectOutput$SSEKMSKeyId": "If present, specifies the ID of the AWS Key Management Service (KMS) master encryption key that was used for the object.",
         "PutObjectRequest$SSEKMSKeyId": "Specifies the AWS KMS key ID to use for object encryption. All GET and PUT requests for an object protected by AWS KMS will fail if not made via SSL or using SigV4. Documentation on configuring any of the officially supported AWS SDKs and CLI can be found at http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#specify-signature-version",
+        "SSEKMS$KeyId": "Specifies the ID of the AWS Key Management Service (KMS) master encryption key to use for encrypting Inventory reports.",
+        "ServerSideEncryptionByDefault$KMSMasterKeyID": "KMS master key ID to use for the default encryption. This parameter is allowed if SSEAlgorithm is aws:kms.",
         "UploadPartCopyOutput$SSEKMSKeyId": "If present, specifies the ID of the AWS Key Management Service (KMS) master encryption key that was used for the object.",
         "UploadPartOutput$SSEKMSKeyId": "If present, specifies the ID of the AWS Key Management Service (KMS) master encryption key that was used for the object."
+      }
+    },
+    "SSES3": {
+      "base": "Specifies the use of SSE-S3 to encrypt delievered Inventory reports.",
+      "refs": {
+        "InventoryEncryption$SSES3": "Specifies the use of SSE-S3 to encrypt delievered Inventory reports."
       }
     },
     "ServerSideEncryption": {
@@ -2618,8 +2696,34 @@
         "HeadObjectOutput$ServerSideEncryption": "The Server-side encryption algorithm used when storing this object in S3 (e.g., AES256, aws:kms).",
         "PutObjectOutput$ServerSideEncryption": "The Server-side encryption algorithm used when storing this object in S3 (e.g., AES256, aws:kms).",
         "PutObjectRequest$ServerSideEncryption": "The Server-side encryption algorithm used when storing this object in S3 (e.g., AES256, aws:kms).",
+        "ServerSideEncryptionByDefault$SSEAlgorithm": "Server-side encryption algorithm to use for the default encryption.",
         "UploadPartCopyOutput$ServerSideEncryption": "The Server-side encryption algorithm used when storing this object in S3 (e.g., AES256, aws:kms).",
         "UploadPartOutput$ServerSideEncryption": "The Server-side encryption algorithm used when storing this object in S3 (e.g., AES256, aws:kms)."
+      }
+    },
+    "ServerSideEncryptionByDefault": {
+      "base": "Describes the default server-side encryption to apply to new objects in the bucket. If Put Object request does not specify any server-side encryption, this default encryption will be applied.",
+      "refs": {
+        "ServerSideEncryptionRule$ApplyServerSideEncryptionByDefault": "Describes the default server-side encryption to apply to new objects in the bucket. If Put Object request does not specify any server-side encryption, this default encryption will be applied."
+      }
+    },
+    "ServerSideEncryptionConfiguration": {
+      "base": "Container for server-side encryption configuration rules. Currently S3 supports one rule only.",
+      "refs": {
+        "GetBucketEncryptionOutput$ServerSideEncryptionConfiguration": null,
+        "PutBucketEncryptionRequest$ServerSideEncryptionConfiguration": null
+      }
+    },
+    "ServerSideEncryptionRule": {
+      "base": "Container for information about a particular server-side encryption configuration rule.",
+      "refs": {
+        "ServerSideEncryptionRules$member": null
+      }
+    },
+    "ServerSideEncryptionRules": {
+      "base": null,
+      "refs": {
+        "ServerSideEncryptionConfiguration$Rules": "Container for information about a particular server-side encryption configuration rule."
       }
     },
     "Size": {
@@ -2628,6 +2732,24 @@
         "Object$Size": null,
         "ObjectVersion$Size": "Size in bytes of the object.",
         "Part$Size": "Size of the uploaded part data."
+      }
+    },
+    "SourceSelectionCriteria": {
+      "base": "Container for filters that define which source objects should be replicated.",
+      "refs": {
+        "ReplicationRule$SourceSelectionCriteria": "Container for filters that define which source objects should be replicated."
+      }
+    },
+    "SseKmsEncryptedObjects": {
+      "base": "Container for filter information of selection of KMS Encrypted S3 objects.",
+      "refs": {
+        "SourceSelectionCriteria$SseKmsEncryptedObjects": "Container for filter information of selection of KMS Encrypted S3 objects."
+      }
+    },
+    "SseKmsEncryptedObjectsStatus": {
+      "base": null,
+      "refs": {
+        "SseKmsEncryptedObjects$Status": "The replication for KMS encrypted S3 objects is disabled if status is not Enabled."
       }
     },
     "StartAfter": {
