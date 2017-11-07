@@ -72,6 +72,16 @@
           "us-west-2" : { }
         }
       },
+      "api.pricing" : {
+        "defaults" : {
+          "credentialScope" : {
+            "service" : "pricing"
+          }
+        },
+        "endpoints" : {
+          "us-east-1" : { }
+        }
+      },
       "apigateway" : {
         "endpoints" : {
           "ap-northeast-1" : { },
