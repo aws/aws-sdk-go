@@ -1,3 +1,18 @@
+Release v1.12.23 (2017-11-07)
+===
+
+### Service Client Updates
+* `service/api.pricing`: Adds new service
+* `service/ec2`: Updates service API
+  * You are now able to create and launch EC2 C5 instances, the next generation of EC2's compute-optimized instances, in us-east-1, us-west-2 and eu-west-1. C5 instances offer up to 72 vCPUs, 144 GiB of DDR4 instance memory, 25 Gbps in Network bandwidth and improved EBS and Networking bandwidth on smaller instance sizes to deliver improved performance for compute-intensive workloads.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/kms`: Updates service API, documentation, and examples
+  * Documentation updates for AWS KMS.
+* `service/organizations`: Updates service documentation
+  * This release updates permission statements for several API operations, and corrects some other minor errors.
+* `service/states`: Updates service API, documentation, and paginators
+  * Documentation update.
+
 Release v1.12.22 (2017-11-03)
 ===
 
