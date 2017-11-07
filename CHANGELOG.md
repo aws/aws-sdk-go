@@ -1,3 +1,14 @@
+Release v1.12.24 (2017-11-07)
+===
+
+### Service Client Updates
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/rds`: Updates service API and documentation
+  * DescribeOrderableDBInstanceOptions now returns the minimum and maximum allowed values for storage size, total provisioned IOPS, and provisioned IOPS per GiB for a DB instance.
+* `service/s3`: Updates service API, documentation, and examples
+  * This releases adds support for 4 features: 1. Default encryption for S3 Bucket, 2. Encryption status in inventory and Encryption support for inventory.  3. Cross region replication of KMS-encrypted objects, and 4. ownership overwrite for CRR.
+
 Release v1.12.23 (2017-11-07)
 ===
 
