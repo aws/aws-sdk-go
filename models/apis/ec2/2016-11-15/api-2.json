@@ -292,6 +292,15 @@
       "input":{"shape":"CreateCustomerGatewayRequest"},
       "output":{"shape":"CreateCustomerGatewayResult"}
     },
+    "CreateDefaultSubnet":{
+      "name":"CreateDefaultSubnet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateDefaultSubnetRequest"},
+      "output":{"shape":"CreateDefaultSubnetResult"}
+    },
     "CreateDefaultVpc":{
       "name":"CreateDefaultVpc",
       "http":{
@@ -3418,6 +3427,35 @@
         "locationName":"item"
       }
     },
+    "ClassicLoadBalancer":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
+        }
+      }
+    },
+    "ClassicLoadBalancers":{
+      "type":"list",
+      "member":{
+        "shape":"ClassicLoadBalancer",
+        "locationName":"item"
+      },
+      "max":5,
+      "min":1
+    },
+    "ClassicLoadBalancersConfig":{
+      "type":"structure",
+      "required":["ClassicLoadBalancers"],
+      "members":{
+        "ClassicLoadBalancers":{
+          "shape":"ClassicLoadBalancers",
+          "locationName":"classicLoadBalancers"
+        }
+      }
+    },
     "ClientData":{
       "type":"structure",
       "members":{
@@ -3639,6 +3677,23 @@
         "CustomerGateway":{
           "shape":"CustomerGateway",
           "locationName":"customerGateway"
+        }
+      }
+    },
+    "CreateDefaultSubnetRequest":{
+      "type":"structure",
+      "required":["AvailabilityZone"],
+      "members":{
+        "AvailabilityZone":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "CreateDefaultSubnetResult":{
+      "type":"structure",
+      "members":{
+        "Subnet":{
+          "shape":"Subnet",
+          "locationName":"subnet"
         }
       }
     },
@@ -10500,6 +10555,19 @@
         "closed"
       ]
     },
+    "LoadBalancersConfig":{
+      "type":"structure",
+      "members":{
+        "ClassicLoadBalancersConfig":{
+          "shape":"ClassicLoadBalancersConfig",
+          "locationName":"classicLoadBalancersConfig"
+        },
+        "TargetGroupsConfig":{
+          "shape":"TargetGroupsConfig",
+          "locationName":"targetGroupsConfig"
+        }
+      }
+    },
     "LoadPermission":{
       "type":"structure",
       "members":{
@@ -14693,6 +14761,10 @@
         "InstanceInterruptionBehavior":{
           "shape":"InstanceInterruptionBehavior",
           "locationName":"instanceInterruptionBehavior"
+        },
+        "LoadBalancersConfig":{
+          "shape":"LoadBalancersConfig",
+          "locationName":"loadBalancersConfig"
         }
       }
     },
@@ -15324,6 +15396,35 @@
       "member":{
         "shape":"TargetConfigurationRequest",
         "locationName":"TargetConfigurationRequest"
+      }
+    },
+    "TargetGroup":{
+      "type":"structure",
+      "required":["Arn"],
+      "members":{
+        "Arn":{
+          "shape":"String",
+          "locationName":"arn"
+        }
+      }
+    },
+    "TargetGroups":{
+      "type":"list",
+      "member":{
+        "shape":"TargetGroup",
+        "locationName":"item"
+      },
+      "max":5,
+      "min":1
+    },
+    "TargetGroupsConfig":{
+      "type":"structure",
+      "required":["TargetGroups"],
+      "members":{
+        "TargetGroups":{
+          "shape":"TargetGroups",
+          "locationName":"targetGroups"
+        }
       }
     },
     "TargetReservationValue":{

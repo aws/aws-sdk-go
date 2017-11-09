@@ -1783,6 +1783,11 @@
           "cn-north-1" : { }
         }
       },
+      "lambda" : {
+        "endpoints" : {
+          "cn-north-1" : { }
+        }
+      },
       "logs" : {
         "endpoints" : {
           "cn-north-1" : { }

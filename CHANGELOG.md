@@ -1,3 +1,11 @@
+Release v1.12.26 (2017-11-09)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Introduces the following features: 1. Create a default subnet in an Availability Zone if no default subnet exists. 2. Spot Fleet integrates with Elastic Load Balancing to enable you to attach one or more load balancers to a Spot Fleet request. When you attach the load balancer, it automatically registers the instance in the Spot Fleet to the load balancers which distributes incoming traffic across the instances.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.12.25 (2017-11-08)
 ===
 
