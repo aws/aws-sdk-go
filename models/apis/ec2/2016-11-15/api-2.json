@@ -4344,31 +4344,41 @@
     "CreateVpcEndpointRequest":{
       "type":"structure",
       "required":[
-        "ServiceName",
-        "VpcId"
+        "VpcId",
+        "ServiceName"
       ],
       "members":{
-        "ClientToken":{"shape":"String"},
         "DryRun":{"shape":"Boolean"},
+        "VpcEndpointType":{"shape":"VpcEndpointType"},
+        "VpcId":{"shape":"String"},
+        "ServiceName":{"shape":"String"},
         "PolicyDocument":{"shape":"String"},
         "RouteTableIds":{
           "shape":"ValueStringList",
           "locationName":"RouteTableId"
         },
-        "ServiceName":{"shape":"String"},
-        "VpcId":{"shape":"String"}
+        "SubnetIds":{
+          "shape":"ValueStringList",
+          "locationName":"SubnetId"
+        },
+        "SecurityGroupIds":{
+          "shape":"ValueStringList",
+          "locationName":"SecurityGroupId"
+        },
+        "ClientToken":{"shape":"String"},
+        "PrivateDnsEnabled":{"shape":"Boolean"}
       }
     },
     "CreateVpcEndpointResult":{
       "type":"structure",
       "members":{
-        "ClientToken":{
-          "shape":"String",
-          "locationName":"clientToken"
-        },
         "VpcEndpoint":{
           "shape":"VpcEndpoint",
           "locationName":"vpcEndpoint"
+        },
+        "ClientToken":{
+          "shape":"String",
+          "locationName":"clientToken"
         }
       }
     },
@@ -6889,6 +6899,14 @@
       "type":"structure",
       "members":{
         "DryRun":{"shape":"Boolean"},
+        "ServiceNames":{
+          "shape":"ValueStringList",
+          "locationName":"ServiceName"
+        },
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
         "MaxResults":{"shape":"Integer"},
         "NextToken":{"shape":"String"}
       }
@@ -6896,13 +6914,17 @@
     "DescribeVpcEndpointServicesResult":{
       "type":"structure",
       "members":{
-        "NextToken":{
-          "shape":"String",
-          "locationName":"nextToken"
-        },
         "ServiceNames":{
           "shape":"ValueStringList",
           "locationName":"serviceNameSet"
+        },
+        "ServiceDetails":{
+          "shape":"ServiceDetailSet",
+          "locationName":"serviceDetailSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
@@ -6910,28 +6932,28 @@
       "type":"structure",
       "members":{
         "DryRun":{"shape":"Boolean"},
+        "VpcEndpointIds":{
+          "shape":"ValueStringList",
+          "locationName":"VpcEndpointId"
+        },
         "Filters":{
           "shape":"FilterList",
           "locationName":"Filter"
         },
         "MaxResults":{"shape":"Integer"},
-        "NextToken":{"shape":"String"},
-        "VpcEndpointIds":{
-          "shape":"ValueStringList",
-          "locationName":"VpcEndpointId"
-        }
+        "NextToken":{"shape":"String"}
       }
     },
     "DescribeVpcEndpointsResult":{
       "type":"structure",
       "members":{
-        "NextToken":{
-          "shape":"String",
-          "locationName":"nextToken"
-        },
         "VpcEndpoints":{
           "shape":"VpcEndpointSet",
           "locationName":"vpcEndpointSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
@@ -7422,6 +7444,26 @@
           "shape":"Long",
           "locationName":"size"
         }
+      }
+    },
+    "DnsEntry":{
+      "type":"structure",
+      "members":{
+        "DnsName":{
+          "shape":"String",
+          "locationName":"dnsName"
+        },
+        "HostedZoneId":{
+          "shape":"String",
+          "locationName":"hostedZoneId"
+        }
+      }
+    },
+    "DnsEntrySet":{
+      "type":"list",
+      "member":{
+        "shape":"DnsEntry",
+        "locationName":"item"
       }
     },
     "DomainType":{
@@ -8248,6 +8290,13 @@
       "type":"list",
       "member":{
         "shape":"GroupIdentifier",
+        "locationName":"item"
+      }
+    },
+    "GroupIdentifierSet":{
+      "type":"list",
+      "member":{
+        "shape":"SecurityGroupIdentifier",
         "locationName":"item"
       }
     },
@@ -10890,18 +10939,35 @@
       "type":"structure",
       "required":["VpcEndpointId"],
       "members":{
+        "DryRun":{"shape":"Boolean"},
+        "VpcEndpointId":{"shape":"String"},
+        "ResetPolicy":{"shape":"Boolean"},
+        "PolicyDocument":{"shape":"String"},
         "AddRouteTableIds":{
           "shape":"ValueStringList",
           "locationName":"AddRouteTableId"
         },
-        "DryRun":{"shape":"Boolean"},
-        "PolicyDocument":{"shape":"String"},
         "RemoveRouteTableIds":{
           "shape":"ValueStringList",
           "locationName":"RemoveRouteTableId"
         },
-        "ResetPolicy":{"shape":"Boolean"},
-        "VpcEndpointId":{"shape":"String"}
+        "AddSubnetIds":{
+          "shape":"ValueStringList",
+          "locationName":"AddSubnetId"
+        },
+        "RemoveSubnetIds":{
+          "shape":"ValueStringList",
+          "locationName":"RemoveSubnetId"
+        },
+        "AddSecurityGroupIds":{
+          "shape":"ValueStringList",
+          "locationName":"AddSecurityGroupId"
+        },
+        "RemoveSecurityGroupIds":{
+          "shape":"ValueStringList",
+          "locationName":"RemoveSecurityGroupId"
+        },
+        "PrivateDnsEnabled":{"shape":"Boolean"}
       }
     },
     "ModifyVpcEndpointResult":{
@@ -14082,6 +14148,19 @@
         "locationName":"SecurityGroupId"
       }
     },
+    "SecurityGroupIdentifier":{
+      "type":"structure",
+      "members":{
+        "GroupId":{
+          "shape":"String",
+          "locationName":"groupId"
+        },
+        "GroupName":{
+          "shape":"String",
+          "locationName":"groupName"
+        }
+      }
+    },
     "SecurityGroupList":{
       "type":"list",
       "member":{
@@ -14122,6 +14201,73 @@
       "member":{
         "shape":"String",
         "locationName":"SecurityGroup"
+      }
+    },
+    "ServiceDetail":{
+      "type":"structure",
+      "members":{
+        "ServiceName":{
+          "shape":"String",
+          "locationName":"serviceName"
+        },
+        "ServiceType":{
+          "shape":"ServiceTypeDetailSet",
+          "locationName":"serviceType"
+        },
+        "AvailabilityZones":{
+          "shape":"ValueStringList",
+          "locationName":"availabilityZoneSet"
+        },
+        "Owner":{
+          "shape":"String",
+          "locationName":"owner"
+        },
+        "BaseEndpointDnsNames":{
+          "shape":"ValueStringList",
+          "locationName":"baseEndpointDnsNameSet"
+        },
+        "PrivateDnsName":{
+          "shape":"String",
+          "locationName":"privateDnsName"
+        },
+        "VpcEndpointPolicySupported":{
+          "shape":"Boolean",
+          "locationName":"vpcEndpointPolicySupported"
+        },
+        "AcceptanceRequired":{
+          "shape":"Boolean",
+          "locationName":"acceptanceRequired"
+        }
+      }
+    },
+    "ServiceDetailSet":{
+      "type":"list",
+      "member":{
+        "shape":"ServiceDetail",
+        "locationName":"item"
+      }
+    },
+    "ServiceType":{
+      "type":"string",
+      "enum":[
+        "Interface",
+        "Gateway"
+      ]
+    },
+    "ServiceTypeDetail":{
+      "type":"structure",
+      "members":{
+        "ServiceType":{
+          "shape":"ServiceType",
+          "locationName":"serviceType"
+        }
+      }
+    },
+    "ServiceTypeDetailSet":{
+      "type":"list",
+      "member":{
+        "shape":"ServiceTypeDetail",
+        "locationName":"item"
       }
     },
     "ShutdownBehavior":{
@@ -14871,10 +15017,14 @@
     "State":{
       "type":"string",
       "enum":[
+        "PendingAcceptance",
         "Pending",
         "Available",
         "Deleting",
-        "Deleted"
+        "Deleted",
+        "Rejected",
+        "Failed",
+        "Expired"
       ]
     },
     "StateReason":{
@@ -16047,17 +16197,17 @@
     "VpcEndpoint":{
       "type":"structure",
       "members":{
-        "CreationTimestamp":{
-          "shape":"DateTime",
-          "locationName":"creationTimestamp"
-        },
-        "PolicyDocument":{
+        "VpcEndpointId":{
           "shape":"String",
-          "locationName":"policyDocument"
+          "locationName":"vpcEndpointId"
         },
-        "RouteTableIds":{
-          "shape":"ValueStringList",
-          "locationName":"routeTableIdSet"
+        "VpcEndpointType":{
+          "shape":"VpcEndpointType",
+          "locationName":"vpcEndpointType"
+        },
+        "VpcId":{
+          "shape":"String",
+          "locationName":"vpcId"
         },
         "ServiceName":{
           "shape":"String",
@@ -16067,13 +16217,37 @@
           "shape":"State",
           "locationName":"state"
         },
-        "VpcEndpointId":{
+        "PolicyDocument":{
           "shape":"String",
-          "locationName":"vpcEndpointId"
+          "locationName":"policyDocument"
         },
-        "VpcId":{
-          "shape":"String",
-          "locationName":"vpcId"
+        "RouteTableIds":{
+          "shape":"ValueStringList",
+          "locationName":"routeTableIdSet"
+        },
+        "SubnetIds":{
+          "shape":"ValueStringList",
+          "locationName":"subnetIdSet"
+        },
+        "Groups":{
+          "shape":"GroupIdentifierSet",
+          "locationName":"groupSet"
+        },
+        "PrivateDnsEnabled":{
+          "shape":"Boolean",
+          "locationName":"privateDnsEnabled"
+        },
+        "NetworkInterfaceIds":{
+          "shape":"ValueStringList",
+          "locationName":"networkInterfaceIdSet"
+        },
+        "DnsEntries":{
+          "shape":"DnsEntrySet",
+          "locationName":"dnsEntrySet"
+        },
+        "CreationTimestamp":{
+          "shape":"DateTime",
+          "locationName":"creationTimestamp"
         }
       }
     },
@@ -16083,6 +16257,13 @@
         "shape":"VpcEndpoint",
         "locationName":"item"
       }
+    },
+    "VpcEndpointType":{
+      "type":"string",
+      "enum":[
+        "Interface",
+        "Gateway"
+      ]
     },
     "VpcIdStringList":{
       "type":"list",
