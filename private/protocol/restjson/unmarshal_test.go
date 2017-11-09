@@ -1417,8 +1417,6 @@ func (c *OutputService9ProtocolTest) OutputService9TestCaseOperation1Request(inp
 
 	output = &OutputService9TestShapeOutputService9TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1457,6 +1455,22 @@ type OutputService9TestShapeOutputService9TestCaseOperation1Input struct {
 
 type OutputService9TestShapeOutputService9TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
+
+	AllHeaders map[string]*string `location:"headers" type:"map"`
+
+	PrefixedHeaders map[string]*string `location:"headers" locationName:"X-" type:"map"`
+}
+
+// SetAllHeaders sets the AllHeaders field's value.
+func (s *OutputService9TestShapeOutputService9TestCaseOperation1Output) SetAllHeaders(v map[string]*string) *OutputService9TestShapeOutputService9TestCaseOperation1Output {
+	s.AllHeaders = v
+	return s
+}
+
+// SetPrefixedHeaders sets the PrefixedHeaders field's value.
+func (s *OutputService9TestShapeOutputService9TestCaseOperation1Output) SetPrefixedHeaders(v map[string]*string) *OutputService9TestShapeOutputService9TestCaseOperation1Output {
+	s.PrefixedHeaders = v
+	return s
 }
 
 // OutputService10ProtocolTest provides the API operation methods for making requests to
@@ -1586,27 +1600,39 @@ func (c *OutputService10ProtocolTest) OutputService10TestCaseOperation1WithConte
 	return out, req.Send()
 }
 
+type OutputService10TestShapeBodyStructure struct {
+	_ struct{} `type:"structure"`
+
+	Foo *string `type:"string"`
+}
+
+// SetFoo sets the Foo field's value.
+func (s *OutputService10TestShapeBodyStructure) SetFoo(v string) *OutputService10TestShapeBodyStructure {
+	s.Foo = &v
+	return s
+}
+
 type OutputService10TestShapeOutputService10TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 }
 
 type OutputService10TestShapeOutputService10TestCaseOperation1Output struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" payload:"Data"`
 
-	AllHeaders map[string]*string `location:"headers" type:"map"`
+	Data *OutputService10TestShapeBodyStructure `type:"structure"`
 
-	PrefixedHeaders map[string]*string `location:"headers" locationName:"X-" type:"map"`
+	Header *string `location:"header" locationName:"X-Foo" type:"string"`
 }
 
-// SetAllHeaders sets the AllHeaders field's value.
-func (s *OutputService10TestShapeOutputService10TestCaseOperation1Output) SetAllHeaders(v map[string]*string) *OutputService10TestShapeOutputService10TestCaseOperation1Output {
-	s.AllHeaders = v
+// SetData sets the Data field's value.
+func (s *OutputService10TestShapeOutputService10TestCaseOperation1Output) SetData(v *OutputService10TestShapeBodyStructure) *OutputService10TestShapeOutputService10TestCaseOperation1Output {
+	s.Data = v
 	return s
 }
 
-// SetPrefixedHeaders sets the PrefixedHeaders field's value.
-func (s *OutputService10TestShapeOutputService10TestCaseOperation1Output) SetPrefixedHeaders(v map[string]*string) *OutputService10TestShapeOutputService10TestCaseOperation1Output {
-	s.PrefixedHeaders = v
+// SetHeader sets the Header field's value.
+func (s *OutputService10TestShapeOutputService10TestCaseOperation1Output) SetHeader(v string) *OutputService10TestShapeOutputService10TestCaseOperation1Output {
+	s.Header = &v
 	return s
 }
 
@@ -1737,39 +1763,19 @@ func (c *OutputService11ProtocolTest) OutputService11TestCaseOperation1WithConte
 	return out, req.Send()
 }
 
-type OutputService11TestShapeBodyStructure struct {
-	_ struct{} `type:"structure"`
-
-	Foo *string `type:"string"`
-}
-
-// SetFoo sets the Foo field's value.
-func (s *OutputService11TestShapeBodyStructure) SetFoo(v string) *OutputService11TestShapeBodyStructure {
-	s.Foo = &v
-	return s
-}
-
 type OutputService11TestShapeOutputService11TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 }
 
 type OutputService11TestShapeOutputService11TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" payload:"Data"`
+	_ struct{} `type:"structure" payload:"Stream"`
 
-	Data *OutputService11TestShapeBodyStructure `type:"structure"`
-
-	Header *string `location:"header" locationName:"X-Foo" type:"string"`
+	Stream []byte `type:"blob"`
 }
 
-// SetData sets the Data field's value.
-func (s *OutputService11TestShapeOutputService11TestCaseOperation1Output) SetData(v *OutputService11TestShapeBodyStructure) *OutputService11TestShapeOutputService11TestCaseOperation1Output {
-	s.Data = v
-	return s
-}
-
-// SetHeader sets the Header field's value.
-func (s *OutputService11TestShapeOutputService11TestCaseOperation1Output) SetHeader(v string) *OutputService11TestShapeOutputService11TestCaseOperation1Output {
-	s.Header = &v
+// SetStream sets the Stream field's value.
+func (s *OutputService11TestShapeOutputService11TestCaseOperation1Output) SetStream(v []byte) *OutputService11TestShapeOutputService11TestCaseOperation1Output {
+	s.Stream = v
 	return s
 }
 
@@ -1856,7 +1862,7 @@ const opOutputService12TestCaseOperation1 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1Request(input *OutputService12TestShapeOutputService12TestCaseOperation1Input) (req *request.Request, output *OutputService12TestShapeOutputService12TestCaseOperation1Output) {
+func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1Request(input *OutputService12TestShapeOutputService12TestCaseOperation1Input) (req *request.Request, output *OutputService12TestShapeOutputService12TestCaseOperation2Output) {
 	op := &request.Operation{
 		Name:     opOutputService12TestCaseOperation1,
 		HTTPPath: "/",
@@ -1866,7 +1872,7 @@ func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1Request(i
 		input = &OutputService12TestShapeOutputService12TestCaseOperation1Input{}
 	}
 
-	output = &OutputService12TestShapeOutputService12TestCaseOperation1Output{}
+	output = &OutputService12TestShapeOutputService12TestCaseOperation2Output{}
 	req = c.newRequest(op, input, output)
 	return
 }
@@ -1879,7 +1885,7 @@ func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1Request(i
 //
 // See the AWS API reference guide for 's
 // API operation OutputService12TestCaseOperation1 for usage and error information.
-func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1(input *OutputService12TestShapeOutputService12TestCaseOperation1Input) (*OutputService12TestShapeOutputService12TestCaseOperation1Output, error) {
+func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1(input *OutputService12TestShapeOutputService12TestCaseOperation1Input) (*OutputService12TestShapeOutputService12TestCaseOperation2Output, error) {
 	req, out := c.OutputService12TestCaseOperation1Request(input)
 	return out, req.Send()
 }
@@ -1893,8 +1899,76 @@ func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1(input *O
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1WithContext(ctx aws.Context, input *OutputService12TestShapeOutputService12TestCaseOperation1Input, opts ...request.Option) (*OutputService12TestShapeOutputService12TestCaseOperation1Output, error) {
+func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1WithContext(ctx aws.Context, input *OutputService12TestShapeOutputService12TestCaseOperation1Input, opts ...request.Option) (*OutputService12TestShapeOutputService12TestCaseOperation2Output, error) {
 	req, out := c.OutputService12TestCaseOperation1Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opOutputService12TestCaseOperation2 = "OperationName"
+
+// OutputService12TestCaseOperation2Request generates a "aws/request.Request" representing the
+// client's request for the OutputService12TestCaseOperation2 operation. The "output" return
+// value will be populated with the request's response once the request complets
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See OutputService12TestCaseOperation2 for more information on using the OutputService12TestCaseOperation2
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the OutputService12TestCaseOperation2Request method.
+//    req, resp := client.OutputService12TestCaseOperation2Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation2Request(input *OutputService12TestShapeOutputService12TestCaseOperation2Input) (req *request.Request, output *OutputService12TestShapeOutputService12TestCaseOperation2Output) {
+	op := &request.Operation{
+		Name:     opOutputService12TestCaseOperation2,
+		HTTPPath: "/",
+	}
+
+	if input == nil {
+		input = &OutputService12TestShapeOutputService12TestCaseOperation2Input{}
+	}
+
+	output = &OutputService12TestShapeOutputService12TestCaseOperation2Output{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// OutputService12TestCaseOperation2 API operation for .
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for 's
+// API operation OutputService12TestCaseOperation2 for usage and error information.
+func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation2(input *OutputService12TestShapeOutputService12TestCaseOperation2Input) (*OutputService12TestShapeOutputService12TestCaseOperation2Output, error) {
+	req, out := c.OutputService12TestCaseOperation2Request(input)
+	return out, req.Send()
+}
+
+// OutputService12TestCaseOperation2WithContext is the same as OutputService12TestCaseOperation2 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See OutputService12TestCaseOperation2 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation2WithContext(ctx aws.Context, input *OutputService12TestShapeOutputService12TestCaseOperation2Input, opts ...request.Option) (*OutputService12TestShapeOutputService12TestCaseOperation2Output, error) {
+	req, out := c.OutputService12TestCaseOperation2Request(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1904,158 +1978,35 @@ type OutputService12TestShapeOutputService12TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 }
 
-type OutputService12TestShapeOutputService12TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" payload:"Stream"`
-
-	Stream []byte `type:"blob"`
+type OutputService12TestShapeOutputService12TestCaseOperation2Input struct {
+	_ struct{} `type:"structure"`
 }
 
-// SetStream sets the Stream field's value.
-func (s *OutputService12TestShapeOutputService12TestCaseOperation1Output) SetStream(v []byte) *OutputService12TestShapeOutputService12TestCaseOperation1Output {
-	s.Stream = v
+type OutputService12TestShapeOutputService12TestCaseOperation2Output struct {
+	_ struct{} `type:"structure"`
+
+	BodyField aws.JSONValue `type:"jsonvalue"`
+
+	BodyListField []aws.JSONValue `type:"list"`
+
+	HeaderField aws.JSONValue `location:"header" locationName:"X-Amz-Foo" type:"jsonvalue"`
+}
+
+// SetBodyField sets the BodyField field's value.
+func (s *OutputService12TestShapeOutputService12TestCaseOperation2Output) SetBodyField(v aws.JSONValue) *OutputService12TestShapeOutputService12TestCaseOperation2Output {
+	s.BodyField = v
 	return s
 }
 
-// OutputService13ProtocolTest provides the API operation methods for making requests to
-// . See this package's package overview docs
-// for details on the service.
-//
-// OutputService13ProtocolTest methods are safe to use concurrently. It is not safe to
-// modify mutate any of the struct's properties though.
-type OutputService13ProtocolTest struct {
-	*client.Client
+// SetBodyListField sets the BodyListField field's value.
+func (s *OutputService12TestShapeOutputService12TestCaseOperation2Output) SetBodyListField(v []aws.JSONValue) *OutputService12TestShapeOutputService12TestCaseOperation2Output {
+	s.BodyListField = v
+	return s
 }
 
-// New creates a new instance of the OutputService13ProtocolTest client with a session.
-// If additional configuration is needed for the client instance use the optional
-// aws.Config parameter to add your extra config.
-//
-// Example:
-//     // Create a OutputService13ProtocolTest client from just a session.
-//     svc := outputservice13protocoltest.New(mySession)
-//
-//     // Create a OutputService13ProtocolTest client with additional configuration
-//     svc := outputservice13protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
-func NewOutputService13ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService13ProtocolTest {
-	c := p.ClientConfig("outputservice13protocoltest", cfgs...)
-	return newOutputService13ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
-}
-
-// newClient creates, initializes and returns a new service client instance.
-func newOutputService13ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *OutputService13ProtocolTest {
-	svc := &OutputService13ProtocolTest{
-		Client: client.New(
-			cfg,
-			metadata.ClientInfo{
-				ServiceName:   "outputservice13protocoltest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				Endpoint:      endpoint,
-				APIVersion:    "",
-			},
-			handlers,
-		),
-	}
-
-	// Handlers
-	svc.Handlers.Sign.PushBackNamed(v4.SignRequestHandler)
-	svc.Handlers.Build.PushBackNamed(restjson.BuildHandler)
-	svc.Handlers.Unmarshal.PushBackNamed(restjson.UnmarshalHandler)
-	svc.Handlers.UnmarshalMeta.PushBackNamed(restjson.UnmarshalMetaHandler)
-	svc.Handlers.UnmarshalError.PushBackNamed(restjson.UnmarshalErrorHandler)
-
-	return svc
-}
-
-// newRequest creates a new request for a OutputService13ProtocolTest operation and runs any
-// custom request initialization.
-func (c *OutputService13ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
-	req := c.NewRequest(op, params, data)
-
-	return req
-}
-
-const opOutputService13TestCaseOperation1 = "OperationName"
-
-// OutputService13TestCaseOperation1Request generates a "aws/request.Request" representing the
-// client's request for the OutputService13TestCaseOperation1 operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
-//
-// Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
-//
-// See OutputService13TestCaseOperation1 for more information on using the OutputService13TestCaseOperation1
-// API call, and error handling.
-//
-// This method is useful when you want to inject custom logic or configuration
-// into the SDK's request lifecycle. Such as custom headers, or retry logic.
-//
-//
-//    // Example sending a request using the OutputService13TestCaseOperation1Request method.
-//    req, resp := client.OutputService13TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
-func (c *OutputService13ProtocolTest) OutputService13TestCaseOperation1Request(input *OutputService13TestShapeOutputService13TestCaseOperation1Input) (req *request.Request, output *OutputService13TestShapeOutputService13TestCaseOperation1Output) {
-	op := &request.Operation{
-		Name:     opOutputService13TestCaseOperation1,
-		HTTPPath: "/",
-	}
-
-	if input == nil {
-		input = &OutputService13TestShapeOutputService13TestCaseOperation1Input{}
-	}
-
-	output = &OutputService13TestShapeOutputService13TestCaseOperation1Output{}
-	req = c.newRequest(op, input, output)
-	return
-}
-
-// OutputService13TestCaseOperation1 API operation for .
-//
-// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
-// with awserr.Error's Code and Message methods to get detailed information about
-// the error.
-//
-// See the AWS API reference guide for 's
-// API operation OutputService13TestCaseOperation1 for usage and error information.
-func (c *OutputService13ProtocolTest) OutputService13TestCaseOperation1(input *OutputService13TestShapeOutputService13TestCaseOperation1Input) (*OutputService13TestShapeOutputService13TestCaseOperation1Output, error) {
-	req, out := c.OutputService13TestCaseOperation1Request(input)
-	return out, req.Send()
-}
-
-// OutputService13TestCaseOperation1WithContext is the same as OutputService13TestCaseOperation1 with the addition of
-// the ability to pass a context and additional request options.
-//
-// See OutputService13TestCaseOperation1 for details on how to use this API operation.
-//
-// The context must be non-nil and will be used for request cancellation. If
-// the context is nil a panic will occur. In the future the SDK may create
-// sub-contexts for http.Requests. See https://golang.org/pkg/context/
-// for more information on using Contexts.
-func (c *OutputService13ProtocolTest) OutputService13TestCaseOperation1WithContext(ctx aws.Context, input *OutputService13TestShapeOutputService13TestCaseOperation1Input, opts ...request.Option) (*OutputService13TestShapeOutputService13TestCaseOperation1Output, error) {
-	req, out := c.OutputService13TestCaseOperation1Request(input)
-	req.SetContext(ctx)
-	req.ApplyOptions(opts...)
-	return out, req.Send()
-}
-
-type OutputService13TestShapeOutputService13TestCaseOperation1Input struct {
-	_ struct{} `type:"structure"`
-}
-
-type OutputService13TestShapeOutputService13TestCaseOperation1Output struct {
-	_ struct{} `type:"structure"`
-
-	Attr aws.JSONValue `location:"header" locationName:"X-Amz-Foo" type:"jsonvalue"`
-}
-
-// SetAttr sets the Attr field's value.
-func (s *OutputService13TestShapeOutputService13TestCaseOperation1Output) SetAttr(v aws.JSONValue) *OutputService13TestShapeOutputService13TestCaseOperation1Output {
-	s.Attr = v
+// SetHeaderField sets the HeaderField field's value.
+func (s *OutputService12TestShapeOutputService12TestCaseOperation2Output) SetHeaderField(v aws.JSONValue) *OutputService12TestShapeOutputService12TestCaseOperation2Output {
+	s.HeaderField = v
 	return s
 }
 
@@ -2324,34 +2275,11 @@ func TestOutputService8ProtocolTestIgnoresExtraDataCase1(t *testing.T) {
 
 }
 
-func TestOutputService9ProtocolTestIgnoresUndefinedOutputCase1(t *testing.T) {
+func TestOutputService9ProtocolTestSupportsHeaderMapsCase1(t *testing.T) {
 	svc := NewOutputService9ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 
-	buf := bytes.NewReader([]byte("OK"))
-	req, out := svc.OutputService9TestCaseOperation1Request(nil)
-	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
-
-	// set headers
-
-	// unmarshal response
-	restjson.UnmarshalMeta(req)
-	restjson.Unmarshal(req)
-	if req.Error != nil {
-		t.Errorf("expect not error, got %v", req.Error)
-	}
-
-	// assert response
-	if out == nil {
-		t.Errorf("expect not to be nil")
-	}
-
-}
-
-func TestOutputService10ProtocolTestSupportsHeaderMapsCase1(t *testing.T) {
-	svc := NewOutputService10ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
-
 	buf := bytes.NewReader([]byte("{}"))
-	req, out := svc.OutputService10TestCaseOperation1Request(nil)
+	req, out := svc.OutputService9TestCaseOperation1Request(nil)
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
 	// set headers
@@ -2388,11 +2316,11 @@ func TestOutputService10ProtocolTestSupportsHeaderMapsCase1(t *testing.T) {
 
 }
 
-func TestOutputService11ProtocolTestJSONPayloadCase1(t *testing.T) {
-	svc := NewOutputService11ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
+func TestOutputService10ProtocolTestJSONPayloadCase1(t *testing.T) {
+	svc := NewOutputService10ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 
 	buf := bytes.NewReader([]byte("{\"Foo\": \"abc\"}"))
-	req, out := svc.OutputService11TestCaseOperation1Request(nil)
+	req, out := svc.OutputService10TestCaseOperation1Request(nil)
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
 	// set headers
@@ -2418,11 +2346,11 @@ func TestOutputService11ProtocolTestJSONPayloadCase1(t *testing.T) {
 
 }
 
-func TestOutputService12ProtocolTestStreamingPayloadCase1(t *testing.T) {
-	svc := NewOutputService12ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
+func TestOutputService11ProtocolTestStreamingPayloadCase1(t *testing.T) {
+	svc := NewOutputService11ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 
 	buf := bytes.NewReader([]byte("abc"))
-	req, out := svc.OutputService12TestCaseOperation1Request(nil)
+	req, out := svc.OutputService11TestCaseOperation1Request(nil)
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
 	// set headers
@@ -2444,11 +2372,11 @@ func TestOutputService12ProtocolTestStreamingPayloadCase1(t *testing.T) {
 
 }
 
-func TestOutputService13ProtocolTestJSONValueTraitCase1(t *testing.T) {
-	svc := NewOutputService13ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
+func TestOutputService12ProtocolTestJSONValueTraitCase1(t *testing.T) {
+	svc := NewOutputService12ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 
-	buf := bytes.NewReader([]byte(""))
-	req, out := svc.OutputService13TestCaseOperation1Request(nil)
+	buf := bytes.NewReader([]byte("{\"BodyField\":\"{\\\"Foo\\\":\\\"Bar\\\"}\"}"))
+	req, out := svc.OutputService12TestCaseOperation1Request(nil)
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
 	// set headers
@@ -2465,5 +2393,31 @@ func TestOutputService13ProtocolTestJSONValueTraitCase1(t *testing.T) {
 	if out == nil {
 		t.Errorf("expect not to be nil")
 	}
-	reflect.DeepEqual(out.Attr, map[string]interface{}{"Foo": "Bar"})
+	reflect.DeepEqual(out.BodyField, map[string]interface{}{"Foo": "Bar"})
+	reflect.DeepEqual(out.HeaderField, map[string]interface{}{"Foo": "Bar"})
+
+}
+
+func TestOutputService12ProtocolTestJSONValueTraitCase2(t *testing.T) {
+	svc := NewOutputService12ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
+
+	buf := bytes.NewReader([]byte("{\"BodyListField\":[\"{\\\"Foo\\\":\\\"Bar\\\"}\"]}"))
+	req, out := svc.OutputService12TestCaseOperation2Request(nil)
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
+
+	// unmarshal response
+	restjson.UnmarshalMeta(req)
+	restjson.Unmarshal(req)
+	if req.Error != nil {
+		t.Errorf("expect not error, got %v", req.Error)
+	}
+
+	// assert response
+	if out == nil {
+		t.Errorf("expect not to be nil")
+	}
+	reflect.DeepEqual(out.BodyListField[0], map[string]interface{}{"Foo": "Bar"})
+
 }
