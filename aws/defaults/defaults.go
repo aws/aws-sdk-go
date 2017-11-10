@@ -9,6 +9,7 @@ package defaults
 
 import (
 	"fmt"
+	"net"
 	"net/http"
 	"net/url"
 	"os"
@@ -118,14 +119,36 @@ func RemoteCredProvider(cfg aws.Config, handlers request.Handlers) credentials.P
 	return ec2RoleProvider(cfg, handlers)
 }
 
+var lookupHostFn = net.LookupHost
+
+func isLoopbackHost(host string) bool {
+	ip := net.ParseIP(host)
+	if ip != nil {
+		return ip.IsLoopback()
+	}
+
+	// Host is not an ip, perform lookup
+	addrs, err := lookupHostFn(host)
+	if err != nil {
+		return false
+	}
+	for _, addr := range addrs {
+		if !net.ParseIP(addr).IsLoopback() {
+			return false
+		}
+	}
+
+	return true
+}
+
 func localHTTPCredProvider(cfg aws.Config, handlers request.Handlers, u string) credentials.Provider {
 	var errMsg string
 
 	parsed, err := url.Parse(u)
 	if err != nil {
 		errMsg = fmt.Sprintf("invalid URL, %v", err)
-	} else if host := aws.URLHostname(parsed); !(host == "localhost" || host == "127.0.0.1") {
-		errMsg = fmt.Sprintf("invalid host address, %q, only localhost and 127.0.0.1 are valid.", host)
+	} else if host := aws.URLHostname(parsed); len(host) == 0 || !isLoopbackHost(host) {
+		errMsg = fmt.Sprintf("invalid endpoint host, %q, only loopback hosts are allowed.", host)
 	}
 
 	if len(errMsg) > 0 {
