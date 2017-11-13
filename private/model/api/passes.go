@@ -164,7 +164,7 @@ func (a *API) fixStutterNames() {
 
 	for name, op := range a.Operations {
 		newName := re.ReplaceAllString(name, "")
-		if newName != name {
+		if newName != name && len(newName) > 0 {
 			delete(a.Operations, name)
 			a.Operations[newName] = op
 		}
@@ -173,7 +173,7 @@ func (a *API) fixStutterNames() {
 
 	for k, s := range a.Shapes {
 		newName := re.ReplaceAllString(k, "")
-		if newName != s.ShapeName {
+		if newName != s.ShapeName && len(newName) > 0 {
 			s.Rename(newName)
 		}
 	}
