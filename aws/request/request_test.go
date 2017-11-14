@@ -28,6 +28,7 @@ import (
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/private/protocol/rest"
+	"github.com/aws/aws-sdk-go/aws/defaults"
 )
 
 type testData struct {
@@ -959,4 +960,45 @@ func TestRequest_Presign(t *testing.T) {
 			t.Errorf("%d, expect %v header got %v", i, e, a)
 		}
 	}
+}
+  
+func TestNew_EndpointWithDefaultPort(t *testing.T) {
+	endpoint := "https://estest.us-east-1.es.amazonaws.com:443"
+	expectedRequestHost := "estest.us-east-1.es.amazonaws.com"
+
+	r := request.New(
+		aws.Config{},
+		metadata.ClientInfo{Endpoint: endpoint},
+		defaults.Handlers(),
+		client.DefaultRetryer{},
+		&request.Operation{},
+		nil,
+		nil,
+	)
+
+	if h := r.HTTPRequest.Host; h != expectedRequestHost {
+		t.Errorf("expect %v host, got %q", expectedRequestHost, h)
+	}
+}
+
+func TestSanitizeHostForHeader(t *testing.T) {
+	cases := []struct {
+		url            string
+		expectedRequestHost string
+	}{
+		{"https://estest.us-east-1.es.amazonaws.com:443", "estest.us-east-1.es.amazonaws.com"},
+		{"https://estest.us-east-1.es.amazonaws.com", "estest.us-east-1.es.amazonaws.com"},
+		{"https://localhost:9200", "localhost:9200"},
+		{"http://localhost:80", "localhost"},
+		{"http://localhost:8080", "localhost:8080"},
+	}
+
+	for _, c := range cases {
+		r, _ := http.NewRequest("GET", c.url, nil)
+		request.SanitizeHostForHeader(r)
+
+		if h := r.Host; h != c.expectedRequestHost {
+			t.Errorf("expect %v host, got %q", c.expectedRequestHost, h)
+    }
+  }
 }
