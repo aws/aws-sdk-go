@@ -64,6 +64,10 @@ type LightsailAPI interface {
 	AllocateStaticIpWithContext(aws.Context, *lightsail.AllocateStaticIpInput, ...request.Option) (*lightsail.AllocateStaticIpOutput, error)
 	AllocateStaticIpRequest(*lightsail.AllocateStaticIpInput) (*request.Request, *lightsail.AllocateStaticIpOutput)
 
+	AttachDisk(*lightsail.AttachDiskInput) (*lightsail.AttachDiskOutput, error)
+	AttachDiskWithContext(aws.Context, *lightsail.AttachDiskInput, ...request.Option) (*lightsail.AttachDiskOutput, error)
+	AttachDiskRequest(*lightsail.AttachDiskInput) (*request.Request, *lightsail.AttachDiskOutput)
+
 	AttachStaticIp(*lightsail.AttachStaticIpInput) (*lightsail.AttachStaticIpOutput, error)
 	AttachStaticIpWithContext(aws.Context, *lightsail.AttachStaticIpInput, ...request.Option) (*lightsail.AttachStaticIpOutput, error)
 	AttachStaticIpRequest(*lightsail.AttachStaticIpInput) (*request.Request, *lightsail.AttachStaticIpOutput)
@@ -71,6 +75,18 @@ type LightsailAPI interface {
 	CloseInstancePublicPorts(*lightsail.CloseInstancePublicPortsInput) (*lightsail.CloseInstancePublicPortsOutput, error)
 	CloseInstancePublicPortsWithContext(aws.Context, *lightsail.CloseInstancePublicPortsInput, ...request.Option) (*lightsail.CloseInstancePublicPortsOutput, error)
 	CloseInstancePublicPortsRequest(*lightsail.CloseInstancePublicPortsInput) (*request.Request, *lightsail.CloseInstancePublicPortsOutput)
+
+	CreateDisk(*lightsail.CreateDiskInput) (*lightsail.CreateDiskOutput, error)
+	CreateDiskWithContext(aws.Context, *lightsail.CreateDiskInput, ...request.Option) (*lightsail.CreateDiskOutput, error)
+	CreateDiskRequest(*lightsail.CreateDiskInput) (*request.Request, *lightsail.CreateDiskOutput)
+
+	CreateDiskFromSnapshot(*lightsail.CreateDiskFromSnapshotInput) (*lightsail.CreateDiskFromSnapshotOutput, error)
+	CreateDiskFromSnapshotWithContext(aws.Context, *lightsail.CreateDiskFromSnapshotInput, ...request.Option) (*lightsail.CreateDiskFromSnapshotOutput, error)
+	CreateDiskFromSnapshotRequest(*lightsail.CreateDiskFromSnapshotInput) (*request.Request, *lightsail.CreateDiskFromSnapshotOutput)
+
+	CreateDiskSnapshot(*lightsail.CreateDiskSnapshotInput) (*lightsail.CreateDiskSnapshotOutput, error)
+	CreateDiskSnapshotWithContext(aws.Context, *lightsail.CreateDiskSnapshotInput, ...request.Option) (*lightsail.CreateDiskSnapshotOutput, error)
+	CreateDiskSnapshotRequest(*lightsail.CreateDiskSnapshotInput) (*request.Request, *lightsail.CreateDiskSnapshotOutput)
 
 	CreateDomain(*lightsail.CreateDomainInput) (*lightsail.CreateDomainOutput, error)
 	CreateDomainWithContext(aws.Context, *lightsail.CreateDomainInput, ...request.Option) (*lightsail.CreateDomainOutput, error)
@@ -96,6 +112,14 @@ type LightsailAPI interface {
 	CreateKeyPairWithContext(aws.Context, *lightsail.CreateKeyPairInput, ...request.Option) (*lightsail.CreateKeyPairOutput, error)
 	CreateKeyPairRequest(*lightsail.CreateKeyPairInput) (*request.Request, *lightsail.CreateKeyPairOutput)
 
+	DeleteDisk(*lightsail.DeleteDiskInput) (*lightsail.DeleteDiskOutput, error)
+	DeleteDiskWithContext(aws.Context, *lightsail.DeleteDiskInput, ...request.Option) (*lightsail.DeleteDiskOutput, error)
+	DeleteDiskRequest(*lightsail.DeleteDiskInput) (*request.Request, *lightsail.DeleteDiskOutput)
+
+	DeleteDiskSnapshot(*lightsail.DeleteDiskSnapshotInput) (*lightsail.DeleteDiskSnapshotOutput, error)
+	DeleteDiskSnapshotWithContext(aws.Context, *lightsail.DeleteDiskSnapshotInput, ...request.Option) (*lightsail.DeleteDiskSnapshotOutput, error)
+	DeleteDiskSnapshotRequest(*lightsail.DeleteDiskSnapshotInput) (*request.Request, *lightsail.DeleteDiskSnapshotOutput)
+
 	DeleteDomain(*lightsail.DeleteDomainInput) (*lightsail.DeleteDomainOutput, error)
 	DeleteDomainWithContext(aws.Context, *lightsail.DeleteDomainInput, ...request.Option) (*lightsail.DeleteDomainOutput, error)
 	DeleteDomainRequest(*lightsail.DeleteDomainInput) (*request.Request, *lightsail.DeleteDomainOutput)
@@ -116,6 +140,10 @@ type LightsailAPI interface {
 	DeleteKeyPairWithContext(aws.Context, *lightsail.DeleteKeyPairInput, ...request.Option) (*lightsail.DeleteKeyPairOutput, error)
 	DeleteKeyPairRequest(*lightsail.DeleteKeyPairInput) (*request.Request, *lightsail.DeleteKeyPairOutput)
 
+	DetachDisk(*lightsail.DetachDiskInput) (*lightsail.DetachDiskOutput, error)
+	DetachDiskWithContext(aws.Context, *lightsail.DetachDiskInput, ...request.Option) (*lightsail.DetachDiskOutput, error)
+	DetachDiskRequest(*lightsail.DetachDiskInput) (*request.Request, *lightsail.DetachDiskOutput)
+
 	DetachStaticIp(*lightsail.DetachStaticIpInput) (*lightsail.DetachStaticIpOutput, error)
 	DetachStaticIpWithContext(aws.Context, *lightsail.DetachStaticIpInput, ...request.Option) (*lightsail.DetachStaticIpOutput, error)
 	DetachStaticIpRequest(*lightsail.DetachStaticIpInput) (*request.Request, *lightsail.DetachStaticIpOutput)
@@ -135,6 +163,22 @@ type LightsailAPI interface {
 	GetBundles(*lightsail.GetBundlesInput) (*lightsail.GetBundlesOutput, error)
 	GetBundlesWithContext(aws.Context, *lightsail.GetBundlesInput, ...request.Option) (*lightsail.GetBundlesOutput, error)
 	GetBundlesRequest(*lightsail.GetBundlesInput) (*request.Request, *lightsail.GetBundlesOutput)
+
+	GetDisk(*lightsail.GetDiskInput) (*lightsail.GetDiskOutput, error)
+	GetDiskWithContext(aws.Context, *lightsail.GetDiskInput, ...request.Option) (*lightsail.GetDiskOutput, error)
+	GetDiskRequest(*lightsail.GetDiskInput) (*request.Request, *lightsail.GetDiskOutput)
+
+	GetDiskSnapshot(*lightsail.GetDiskSnapshotInput) (*lightsail.GetDiskSnapshotOutput, error)
+	GetDiskSnapshotWithContext(aws.Context, *lightsail.GetDiskSnapshotInput, ...request.Option) (*lightsail.GetDiskSnapshotOutput, error)
+	GetDiskSnapshotRequest(*lightsail.GetDiskSnapshotInput) (*request.Request, *lightsail.GetDiskSnapshotOutput)
+
+	GetDiskSnapshots(*lightsail.GetDiskSnapshotsInput) (*lightsail.GetDiskSnapshotsOutput, error)
+	GetDiskSnapshotsWithContext(aws.Context, *lightsail.GetDiskSnapshotsInput, ...request.Option) (*lightsail.GetDiskSnapshotsOutput, error)
+	GetDiskSnapshotsRequest(*lightsail.GetDiskSnapshotsInput) (*request.Request, *lightsail.GetDiskSnapshotsOutput)
+
+	GetDisks(*lightsail.GetDisksInput) (*lightsail.GetDisksOutput, error)
+	GetDisksWithContext(aws.Context, *lightsail.GetDisksInput, ...request.Option) (*lightsail.GetDisksOutput, error)
+	GetDisksRequest(*lightsail.GetDisksInput) (*request.Request, *lightsail.GetDisksOutput)
 
 	GetDomain(*lightsail.GetDomainInput) (*lightsail.GetDomainOutput, error)
 	GetDomainWithContext(aws.Context, *lightsail.GetDomainInput, ...request.Option) (*lightsail.GetDomainOutput, error)

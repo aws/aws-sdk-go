@@ -10,7 +10,7 @@
     "CreateDocument": "<p>Creates a Systems Manager document.</p> <p>After you create a document, you can use CreateAssociation to associate it with one or more running instances.</p>",
     "CreateMaintenanceWindow": "<p>Creates a new Maintenance Window.</p>",
     "CreatePatchBaseline": "<p>Creates a patch baseline.</p>",
-    "CreateResourceDataSync": "<p>Creates a resource data sync configuration to a single bucket in Amazon S3. This is an asynchronous operation that returns immediately. After a successful initial sync is completed, the system continuously syncs data to the Amazon S3 bucket. To check the status of the sync, use the <a href=\"API_ListResourceDataSync.html\">ListResourceDataSync</a> operation.</p> <p>By default, data is not encrypted in Amazon S3. We strongly recommend that you enable encryption in Amazon S3 to ensure secure data storage. We also recommend that you secure access to the Amazon S3 bucket by creating a restrictive bucket policy. To view an example of a restrictive Amazon S3 bucket policy for Resource Data Sync, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-inventory-configuring.html#sysman-inventory-datasync\">Configuring Resource Data Sync for Inventory</a>.</p>",
+    "CreateResourceDataSync": "<p>Creates a resource data sync configuration to a single bucket in Amazon S3. This is an asynchronous operation that returns immediately. After a successful initial sync is completed, the system continuously syncs data to the Amazon S3 bucket. To check the status of the sync, use the <a>ListResourceDataSync</a>.</p> <p>By default, data is not encrypted in Amazon S3. We strongly recommend that you enable encryption in Amazon S3 to ensure secure data storage. We also recommend that you secure access to the Amazon S3 bucket by creating a restrictive bucket policy. To view an example of a restrictive Amazon S3 bucket policy for Resource Data Sync, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-inventory-configuring.html#sysman-inventory-datasync\">Configuring Resource Data Sync for Inventory</a>.</p>",
     "DeleteActivation": "<p>Deletes an activation. You are not required to delete an activation. If you delete an activation, you can no longer use it to register additional managed instances. Deleting an activation does not de-register managed instances. You must manually de-register managed instances.</p>",
     "DeleteAssociation": "<p>Disassociates the specified Systems Manager document from the specified instance.</p> <p>When you disassociate a document from an instance, it does not change the configuration of the instance. To change the configuration state of an instance after you disassociate a document, you must create a new document with the desired configuration and associate it with the instance.</p>",
     "DeleteDocument": "<p>Deletes the Systems Manager document and all instance associations to the document.</p> <p>Before you delete the document, we recommend that you use <a>DeleteAssociation</a> to disassociate all instances that are associated with the document.</p>",
@@ -24,7 +24,7 @@
     "DeregisterTargetFromMaintenanceWindow": "<p>Removes a target from a Maintenance Window.</p>",
     "DeregisterTaskFromMaintenanceWindow": "<p>Removes a task from a Maintenance Window.</p>",
     "DescribeActivations": "<p>Details about the activation, including: the date and time the activation was created, the expiration date, the IAM role assigned to the instances in the activation, and the number of instances activated by this registration.</p>",
-    "DescribeAssociation": "<p>Describes the associations for the specified Systems Manager document or instance.</p>",
+    "DescribeAssociation": "<p>Describes the association for the specified target or instance. If you created the association by using the <code>Targets</code> parameter, then you must retrieve the association by using the association ID. If you created the association by specifying an instance ID and a Systems Manager document, then you retrieve the association by specifying the document name and the instance ID. </p>",
     "DescribeAutomationExecutions": "<p>Provides details about all active and terminated Automation executions.</p>",
     "DescribeAvailablePatches": "<p>Lists all patches that could possibly be included in a patch baseline.</p>",
     "DescribeDocument": "<p>Describes the specified Systems Manager document.</p>",
@@ -162,6 +162,12 @@
       "base": null,
       "refs": {
         "InstanceAssociationStatusInfo$ErrorCode": "<p>An error code returned by the request to create the association.</p>"
+      }
+    },
+    "AggregatorSchemaOnly": {
+      "base": null,
+      "refs": {
+        "GetInventorySchemaRequest$Aggregator": "<p>Returns inventory schemas that support aggregation. For example, this call returns the <code>AWS:InstanceInformation</code> type, because it supports aggregation based on the <code>PlatformName</code>, <code>PlatformType</code>, and <code>PlatformVersion</code> attributes.</p>"
       }
     },
     "AllowedPattern": {
@@ -2450,6 +2456,25 @@
       "refs": {
       }
     },
+    "InventoryAggregator": {
+      "base": "<p>Specifies the inventory type and attribute for the aggregation execution.</p>",
+      "refs": {
+        "InventoryAggregatorList$member": null
+      }
+    },
+    "InventoryAggregatorExpression": {
+      "base": null,
+      "refs": {
+        "InventoryAggregator$Expression": "<p>The inventory type and attribute name for aggregation.</p>"
+      }
+    },
+    "InventoryAggregatorList": {
+      "base": null,
+      "refs": {
+        "GetInventoryRequest$Aggregators": "<p>Returns counts of inventory types based on one or more expressions. For example, if you aggregate by using an expression that uses the <code>AWS:InstanceInformation.PlatformType</code> type, you can see a count of how many Windows and Linux instances exist in your inventoried fleet.</p>",
+        "InventoryAggregator$Aggregators": "<p>Nested aggregators to further refine aggregation for an inventory type.</p>"
+      }
+    },
     "InventoryAttributeDataType": {
       "base": null,
       "refs": {
@@ -2634,6 +2659,12 @@
       "base": null,
       "refs": {
         "InventoryResultEntity$Data": "<p>The data section in the inventory result entity json.</p>"
+      }
+    },
+    "InventoryTypeDisplayName": {
+      "base": null,
+      "refs": {
+        "InventoryItemSchema$DisplayName": "<p>The alias name of the inventory type. The alias name is used for display purposes.</p>"
       }
     },
     "InvocationDoesNotExist": {
@@ -3503,13 +3534,13 @@
     "OperatingSystem": {
       "base": null,
       "refs": {
-        "CreatePatchBaselineRequest$OperatingSystem": "<p>Defines the operating system the patch baseline applies to. Supported operating systems include WINDOWS, AMAZON_LINUX, UBUNTU and REDHAT_ENTERPRISE_LINUX. The Default value is WINDOWS.</p>",
+        "CreatePatchBaselineRequest$OperatingSystem": "<p>Defines the operating system the patch baseline applies to. The Default value is WINDOWS.</p>",
         "GetDefaultPatchBaselineRequest$OperatingSystem": "<p>Returns the default patch baseline for the specified operating system.</p>",
         "GetDefaultPatchBaselineResult$OperatingSystem": "<p>The operating system for the returned patch baseline. </p>",
         "GetPatchBaselineForPatchGroupRequest$OperatingSystem": "<p>Returns he operating system rule specified for patch groups using the patch baseline.</p>",
         "GetPatchBaselineForPatchGroupResult$OperatingSystem": "<p>The operating system rule specified for patch groups using the patch baseline.</p>",
         "GetPatchBaselineResult$OperatingSystem": "<p>Returns the operating system specified for the patch baseline.</p>",
-        "PatchBaselineIdentity$OperatingSystem": "<p>Defines the operating system the patch baseline applies to. Supported operating systems include WINDOWS, AMAZON_LINUX, UBUNTU and REDHAT_ENTERPRISE_LINUX. The Default value is WINDOWS. </p>",
+        "PatchBaselineIdentity$OperatingSystem": "<p>Defines the operating system the patch baseline applies to. The Default value is WINDOWS. </p>",
         "UpdatePatchBaselineResult$OperatingSystem": "<p>The operating system rule used by the updated patch baseline.</p>"
       }
     },
@@ -3531,12 +3562,12 @@
         "DeleteParameterRequest$Name": "<p>The name of the parameter to delete.</p>",
         "GetParameterHistoryRequest$Name": "<p>The name of a parameter you want to query.</p>",
         "GetParameterRequest$Name": "<p>The name of the parameter you want to query.</p>",
-        "GetParametersByPathRequest$Path": "<p>The hierarchy for the parameter. Hierarchies start with a forward slash (/) and end with the parameter name. A hierarchy can have a maximum of five levels. Examples: /Environment/Test/DBString003</p> <p>/Finance/Prod/IAD/OS/WinServ2016/license15</p>",
+        "GetParametersByPathRequest$Path": "<p>The hierarchy for the parameter. Hierarchies start with a forward slash (/) and end with the parameter name. A hierarchy can have a maximum of five levels. For example: <code>/Finance/Prod/IAD/WinServ2016/license15</code> </p>",
         "Parameter$Name": "<p>The name of the parameter.</p>",
         "ParameterHistory$Name": "<p>The name of the parameter.</p>",
         "ParameterMetadata$Name": "<p>The parameter name.</p>",
         "ParameterNameList$member": null,
-        "PutParameterRequest$Name": "<p>The name of the parameter that you want to add to the system.</p>"
+        "PutParameterRequest$Name": "<p>The fully qualified name of the parameter that you want to add to the system. The fully qualified name includes the complete hierarchy of the parameter path and name. For example: <code>/Dev/DBServer/MySQL/db-string13</code> </p> <note> <p>The maximum length constraint listed below includes capacity for additional system attributes that are not part of the name. The maximum length for the fully qualified parameter name is 1011 characters. </p> </note>"
       }
     },
     "PSParameterValue": {
@@ -3573,7 +3604,7 @@
       "refs": {
         "ParameterHistory$Description": "<p>Information about the parameter.</p>",
         "ParameterMetadata$Description": "<p>Description of the parameter actions.</p>",
-        "PutParameterRequest$Description": "<p>Information about the parameter that you want to add to the system</p>"
+        "PutParameterRequest$Description": "<p>Information about the parameter that you want to add to the system.</p>"
       }
     },
     "ParameterHistory": {

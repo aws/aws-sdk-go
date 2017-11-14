@@ -6,6 +6,7 @@
     "jsonVersion":"1.1",
     "protocol":"json",
     "serviceFullName":"Amazon Lightsail",
+    "serviceId":"Lightsail",
     "signatureVersion":"v4",
     "targetPrefix":"Lightsail_20161128",
     "uid":"lightsail-2016-11-28"
@@ -19,6 +20,24 @@
       },
       "input":{"shape":"AllocateStaticIpRequest"},
       "output":{"shape":"AllocateStaticIpResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "AttachDisk":{
+      "name":"AttachDisk",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AttachDiskRequest"},
+      "output":{"shape":"AttachDiskResult"},
       "errors":[
         {"shape":"ServiceException"},
         {"shape":"InvalidInputException"},
@@ -55,6 +74,60 @@
       },
       "input":{"shape":"CloseInstancePublicPortsRequest"},
       "output":{"shape":"CloseInstancePublicPortsResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "CreateDisk":{
+      "name":"CreateDisk",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateDiskRequest"},
+      "output":{"shape":"CreateDiskResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "CreateDiskFromSnapshot":{
+      "name":"CreateDiskFromSnapshot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateDiskFromSnapshotRequest"},
+      "output":{"shape":"CreateDiskFromSnapshotResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "CreateDiskSnapshot":{
+      "name":"CreateDiskSnapshot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateDiskSnapshotRequest"},
+      "output":{"shape":"CreateDiskSnapshotResult"},
       "errors":[
         {"shape":"ServiceException"},
         {"shape":"InvalidInputException"},
@@ -173,6 +246,42 @@
         {"shape":"UnauthenticatedException"}
       ]
     },
+    "DeleteDisk":{
+      "name":"DeleteDisk",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteDiskRequest"},
+      "output":{"shape":"DeleteDiskResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "DeleteDiskSnapshot":{
+      "name":"DeleteDiskSnapshot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteDiskSnapshotRequest"},
+      "output":{"shape":"DeleteDiskSnapshotResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
     "DeleteDomain":{
       "name":"DeleteDomain",
       "http":{
@@ -263,6 +372,24 @@
         {"shape":"UnauthenticatedException"}
       ]
     },
+    "DetachDisk":{
+      "name":"DetachDisk",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DetachDiskRequest"},
+      "output":{"shape":"DetachDiskResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
     "DetachStaticIp":{
       "name":"DetachStaticIp",
       "http":{
@@ -343,6 +470,78 @@
       },
       "input":{"shape":"GetBundlesRequest"},
       "output":{"shape":"GetBundlesResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "GetDisk":{
+      "name":"GetDisk",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetDiskRequest"},
+      "output":{"shape":"GetDiskResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "GetDiskSnapshot":{
+      "name":"GetDiskSnapshot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetDiskSnapshotRequest"},
+      "output":{"shape":"GetDiskSnapshotResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "GetDiskSnapshots":{
+      "name":"GetDiskSnapshots",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetDiskSnapshotsRequest"},
+      "output":{"shape":"GetDiskSnapshotsResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "GetDisks":{
+      "name":"GetDisks",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetDisksRequest"},
+      "output":{"shape":"GetDisksResult"},
       "errors":[
         {"shape":"ServiceException"},
         {"shape":"InvalidInputException"},
@@ -917,6 +1116,25 @@
         "operations":{"shape":"OperationList"}
       }
     },
+    "AttachDiskRequest":{
+      "type":"structure",
+      "required":[
+        "diskName",
+        "instanceName",
+        "diskPath"
+      ],
+      "members":{
+        "diskName":{"shape":"ResourceName"},
+        "instanceName":{"shape":"ResourceName"},
+        "diskPath":{"shape":"NonEmptyString"}
+      }
+    },
+    "AttachDiskResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
     "AttachStaticIpRequest":{
       "type":"structure",
       "required":[
@@ -933,6 +1151,11 @@
       "members":{
         "operations":{"shape":"OperationList"}
       }
+    },
+    "AttachedDiskMap":{
+      "type":"map",
+      "key":{"shape":"ResourceName"},
+      "value":{"shape":"DiskMapList"}
     },
     "AvailabilityZone":{
       "type":"structure",
@@ -1011,6 +1234,63 @@
         "operation":{"shape":"Operation"}
       }
     },
+    "CreateDiskFromSnapshotRequest":{
+      "type":"structure",
+      "required":[
+        "diskName",
+        "diskSnapshotName",
+        "availabilityZone",
+        "sizeInGb"
+      ],
+      "members":{
+        "diskName":{"shape":"ResourceName"},
+        "diskSnapshotName":{"shape":"ResourceName"},
+        "availabilityZone":{"shape":"NonEmptyString"},
+        "sizeInGb":{"shape":"integer"}
+      }
+    },
+    "CreateDiskFromSnapshotResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
+    "CreateDiskRequest":{
+      "type":"structure",
+      "required":[
+        "diskName",
+        "availabilityZone",
+        "sizeInGb"
+      ],
+      "members":{
+        "diskName":{"shape":"ResourceName"},
+        "availabilityZone":{"shape":"NonEmptyString"},
+        "sizeInGb":{"shape":"integer"}
+      }
+    },
+    "CreateDiskResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
+    "CreateDiskSnapshotRequest":{
+      "type":"structure",
+      "required":[
+        "diskName",
+        "diskSnapshotName"
+      ],
+      "members":{
+        "diskName":{"shape":"ResourceName"},
+        "diskSnapshotName":{"shape":"ResourceName"}
+      }
+    },
+    "CreateDiskSnapshotResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
     "CreateDomainEntryRequest":{
       "type":"structure",
       "required":[
@@ -1068,6 +1348,7 @@
       ],
       "members":{
         "instanceNames":{"shape":"StringList"},
+        "attachedDiskMapping":{"shape":"AttachedDiskMap"},
         "availabilityZone":{"shape":"string"},
         "instanceSnapshotName":{"shape":"ResourceName"},
         "bundleId":{"shape":"NonEmptyString"},
@@ -1122,6 +1403,32 @@
         "publicKeyBase64":{"shape":"Base64"},
         "privateKeyBase64":{"shape":"Base64"},
         "operation":{"shape":"Operation"}
+      }
+    },
+    "DeleteDiskRequest":{
+      "type":"structure",
+      "required":["diskName"],
+      "members":{
+        "diskName":{"shape":"ResourceName"}
+      }
+    },
+    "DeleteDiskResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
+    "DeleteDiskSnapshotRequest":{
+      "type":"structure",
+      "required":["diskSnapshotName"],
+      "members":{
+        "diskSnapshotName":{"shape":"ResourceName"}
+      }
+    },
+    "DeleteDiskSnapshotResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
       }
     },
     "DeleteDomainEntryRequest":{
@@ -1193,6 +1500,19 @@
         "operation":{"shape":"Operation"}
       }
     },
+    "DetachDiskRequest":{
+      "type":"structure",
+      "required":["diskName"],
+      "members":{
+        "diskName":{"shape":"ResourceName"}
+      }
+    },
+    "DetachDiskResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
     "DetachStaticIpRequest":{
       "type":"structure",
       "required":["staticIpName"],
@@ -1216,18 +1536,75 @@
         "location":{"shape":"ResourceLocation"},
         "resourceType":{"shape":"ResourceType"},
         "sizeInGb":{"shape":"integer"},
-        "gbInUse":{"shape":"integer"},
         "isSystemDisk":{"shape":"boolean"},
         "iops":{"shape":"integer"},
         "path":{"shape":"string"},
-        "attachedTo":{"shape":"string"},
+        "state":{"shape":"DiskState"},
+        "attachedTo":{"shape":"ResourceName"},
         "isAttached":{"shape":"boolean"},
-        "attachmentState":{"shape":"string"}
+        "attachmentState":{
+          "shape":"string",
+          "deprecated":true
+        },
+        "gbInUse":{
+          "shape":"integer",
+          "deprecated":true
+        }
       }
     },
     "DiskList":{
       "type":"list",
       "member":{"shape":"Disk"}
+    },
+    "DiskMap":{
+      "type":"structure",
+      "members":{
+        "originalDiskPath":{"shape":"NonEmptyString"},
+        "newDiskName":{"shape":"ResourceName"}
+      }
+    },
+    "DiskMapList":{
+      "type":"list",
+      "member":{"shape":"DiskMap"}
+    },
+    "DiskSnapshot":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"ResourceName"},
+        "arn":{"shape":"NonEmptyString"},
+        "supportCode":{"shape":"string"},
+        "createdAt":{"shape":"IsoDate"},
+        "location":{"shape":"ResourceLocation"},
+        "resourceType":{"shape":"ResourceType"},
+        "sizeInGb":{"shape":"integer"},
+        "state":{"shape":"DiskSnapshotState"},
+        "progress":{"shape":"string"},
+        "fromDiskName":{"shape":"ResourceName"},
+        "fromDiskArn":{"shape":"NonEmptyString"}
+      }
+    },
+    "DiskSnapshotList":{
+      "type":"list",
+      "member":{"shape":"DiskSnapshot"}
+    },
+    "DiskSnapshotState":{
+      "type":"string",
+      "enum":[
+        "pending",
+        "completed",
+        "error",
+        "unknown"
+      ]
+    },
+    "DiskState":{
+      "type":"string",
+      "enum":[
+        "pending",
+        "error",
+        "available",
+        "in-use",
+        "unknown"
+      ]
     },
     "Domain":{
       "type":"structure",
@@ -1317,6 +1694,58 @@
       "type":"structure",
       "members":{
         "bundles":{"shape":"BundleList"},
+        "nextPageToken":{"shape":"string"}
+      }
+    },
+    "GetDiskRequest":{
+      "type":"structure",
+      "required":["diskName"],
+      "members":{
+        "diskName":{"shape":"ResourceName"}
+      }
+    },
+    "GetDiskResult":{
+      "type":"structure",
+      "members":{
+        "disk":{"shape":"Disk"}
+      }
+    },
+    "GetDiskSnapshotRequest":{
+      "type":"structure",
+      "required":["diskSnapshotName"],
+      "members":{
+        "diskSnapshotName":{"shape":"ResourceName"}
+      }
+    },
+    "GetDiskSnapshotResult":{
+      "type":"structure",
+      "members":{
+        "diskSnapshot":{"shape":"DiskSnapshot"}
+      }
+    },
+    "GetDiskSnapshotsRequest":{
+      "type":"structure",
+      "members":{
+        "pageToken":{"shape":"string"}
+      }
+    },
+    "GetDiskSnapshotsResult":{
+      "type":"structure",
+      "members":{
+        "diskSnapshots":{"shape":"DiskSnapshotList"},
+        "nextPageToken":{"shape":"string"}
+      }
+    },
+    "GetDisksRequest":{
+      "type":"structure",
+      "members":{
+        "pageToken":{"shape":"string"}
+      }
+    },
+    "GetDisksResult":{
+      "type":"structure",
+      "members":{
+        "disks":{"shape":"DiskList"},
         "nextPageToken":{"shape":"string"}
       }
     },
@@ -1717,6 +2146,7 @@
         "resourceType":{"shape":"ResourceType"},
         "state":{"shape":"InstanceSnapshotState"},
         "progress":{"shape":"string"},
+        "fromAttachedDisks":{"shape":"DiskList"},
         "fromInstanceName":{"shape":"ResourceName"},
         "fromInstanceArn":{"shape":"NonEmptyString"},
         "fromBlueprintId":{"shape":"string"},
@@ -1962,7 +2392,14 @@
         "DeleteDomain",
         "CreateInstanceSnapshot",
         "DeleteInstanceSnapshot",
-        "CreateInstancesFromSnapshot"
+        "CreateInstancesFromSnapshot",
+        "CreateDisk",
+        "DeleteDisk",
+        "AttachDisk",
+        "DetachDisk",
+        "CreateDiskSnapshot",
+        "DeleteDiskSnapshot",
+        "CreateDiskFromSnapshot"
       ]
     },
     "PasswordData":{
@@ -2106,7 +2543,9 @@
         "KeyPair",
         "InstanceSnapshot",
         "Domain",
-        "PeeredVpc"
+        "PeeredVpc",
+        "Disk",
+        "DiskSnapshot"
       ]
     },
     "ServiceException":{
@@ -2155,7 +2594,8 @@
       "type":"structure",
       "required":["instanceName"],
       "members":{
-        "instanceName":{"shape":"ResourceName"}
+        "instanceName":{"shape":"ResourceName"},
+        "force":{"shape":"boolean"}
       }
     },
     "StopInstanceResult":{

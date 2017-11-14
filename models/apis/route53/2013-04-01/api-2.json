@@ -1882,6 +1882,7 @@
       "members":{
         "Id":{"shape":"HealthCheckId"},
         "CallerReference":{"shape":"HealthCheckNonce"},
+        "LinkedService":{"shape":"LinkedService"},
         "HealthCheckConfig":{"shape":"HealthCheckConfig"},
         "HealthCheckVersion":{"shape":"HealthCheckVersion"},
         "CloudWatchAlarmConfiguration":{"shape":"CloudWatchAlarmConfiguration"}
@@ -2023,7 +2024,8 @@
         "Name":{"shape":"DNSName"},
         "CallerReference":{"shape":"Nonce"},
         "Config":{"shape":"HostedZoneConfig"},
-        "ResourceRecordSetCount":{"shape":"HostedZoneRRSetCount"}
+        "ResourceRecordSetCount":{"shape":"HostedZoneRRSetCount"},
+        "LinkedService":{"shape":"LinkedService"}
       }
     },
     "HostedZoneAlreadyExists":{
@@ -2166,6 +2168,13 @@
         "message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "LinkedService":{
+      "type":"structure",
+      "members":{
+        "ServicePrincipal":{"shape":"ServicePrincipal"},
+        "Description":{"shape":"ResourceDescription"}
+      }
     },
     "ListGeoLocationsRequest":{
       "type":"structure",
@@ -3050,6 +3059,10 @@
     "SearchString":{
       "type":"string",
       "max":255
+    },
+    "ServicePrincipal":{
+      "type":"string",
+      "max":128
     },
     "Statistic":{
       "type":"string",
