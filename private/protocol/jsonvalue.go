@@ -9,8 +9,10 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 )
 
+// EscapeMode is the mode that should be use for escaping a value
 type EscapeMode int
 
+// The modes for escaping a value before it is marshaled, and unmarshaled.
 const (
 	NoEscape EscapeMode = iota
 	Base64Escape
