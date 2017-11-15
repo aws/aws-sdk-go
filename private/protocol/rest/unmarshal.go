@@ -204,7 +204,7 @@ func unmarshalHeader(v reflect.Value, header string, tag reflect.StructTag) erro
 		}
 		v.Set(reflect.ValueOf(&t))
 	case aws.JSONValue:
-		var escaping protocol.EscapeMode
+		escaping := protocol.NoEscape
 		if tag.Get("location") == "header" {
 			escaping = protocol.Base64Escape
 		}

@@ -275,7 +275,7 @@ func convertType(v reflect.Value, tag reflect.StructTag) (str string, err error)
 		if len(value) == 0 {
 			return "", errValueNotSet
 		}
-		var escaping protocol.EscapeMode
+		escaping := protocol.NoEscape
 		if tag.Get("location") == "header" {
 			escaping = protocol.Base64Escape
 		}
