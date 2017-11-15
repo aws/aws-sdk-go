@@ -2638,9 +2638,11 @@
         "certificateArn":{"shape":"String"},
         "certificateUploadDate":{"shape":"Timestamp"},
         "regionalDomainName":{"shape":"String"},
+        "regionalHostedZoneId":{"shape":"String"},
         "regionalCertificateName":{"shape":"String"},
         "regionalCertificateArn":{"shape":"String"},
         "distributionDomainName":{"shape":"String"},
+        "distributionHostedZoneId":{"shape":"String"},
         "endpointConfiguration":{"shape":"EndpointConfiguration"}
       }
     },
@@ -3028,6 +3030,11 @@
           "shape":"NullableInteger",
           "location":"querystring",
           "locationName":"limit"
+        },
+        "locationStatus":{
+          "shape":"LocationStatusType",
+          "location":"querystring",
+          "locationName":"locationStatus"
         }
       }
     },
@@ -3886,6 +3893,13 @@
     "ListOfUsagePlanKey":{
       "type":"list",
       "member":{"shape":"UsagePlanKey"}
+    },
+    "LocationStatusType":{
+      "type":"string",
+      "enum":[
+        "DOCUMENTED",
+        "UNDOCUMENTED"
+      ]
     },
     "Long":{"type":"long"},
     "MapOfHeaderValues":{

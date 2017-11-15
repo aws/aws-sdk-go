@@ -1,3 +1,16 @@
+Release v1.12.28 (2017-11-15)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API and documentation
+  * 1. Extended GetDocumentationParts operation to support retrieving documentation parts resources without contents.  2. Added hosted zone ID in the custom domain response.
+* `service/email`: Updates service API, documentation, and examples
+  * SES launches Configuration Set Reputation Metrics and Email Pausing Today, two features that build upon the capabilities of the reputation dashboard. The first is the ability to export reputation metrics for individual configuration sets. The second is the ability to temporarily pause email sending, either at the configuration set level, or across your entire Amazon SES account.
+* `service/polly`: Updates service API
+  * Amazon Polly adds Korean language support with new female voice - "Seoyeon" and new Indian English female voice - "Aditi"
+* `service/states`: Updates service API and documentation
+  * You can now use the UpdateStateMachine API to update your state machine definition and role ARN. Existing executions will continue to use the previous definition and role ARN. You can use the DescribeStateMachineForExecution API to determine which state machine definition and role ARN is associated with an execution
+
 Release v1.12.27 (2017-11-14)
 ===
 
