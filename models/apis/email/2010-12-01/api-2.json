@@ -6,6 +6,7 @@
     "protocol":"query",
     "serviceAbbreviation":"Amazon SES",
     "serviceFullName":"Amazon Simple Email Service",
+    "serviceId":"SES",
     "signatureVersion":"v4",
     "signingName":"ses",
     "uid":"email-2010-12-01",
@@ -344,6 +345,17 @@
         {"shape":"RuleSetDoesNotExistException"}
       ]
     },
+    "GetAccountSendingEnabled":{
+      "name":"GetAccountSendingEnabled",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "output":{
+        "shape":"GetAccountSendingEnabledResponse",
+        "resultWrapper":"GetAccountSendingEnabledResult"
+      }
+    },
     "GetIdentityDkimAttributes":{
       "name":"GetIdentityDkimAttributes",
       "http":{
@@ -585,7 +597,9 @@
         {"shape":"MessageRejected"},
         {"shape":"MailFromDomainNotVerifiedException"},
         {"shape":"ConfigurationSetDoesNotExistException"},
-        {"shape":"TemplateDoesNotExistException"}
+        {"shape":"TemplateDoesNotExistException"},
+        {"shape":"ConfigurationSetSendingPausedException"},
+        {"shape":"AccountSendingPausedException"}
       ]
     },
     "SendEmail":{
@@ -602,7 +616,9 @@
       "errors":[
         {"shape":"MessageRejected"},
         {"shape":"MailFromDomainNotVerifiedException"},
-        {"shape":"ConfigurationSetDoesNotExistException"}
+        {"shape":"ConfigurationSetDoesNotExistException"},
+        {"shape":"ConfigurationSetSendingPausedException"},
+        {"shape":"AccountSendingPausedException"}
       ]
     },
     "SendRawEmail":{
@@ -619,7 +635,9 @@
       "errors":[
         {"shape":"MessageRejected"},
         {"shape":"MailFromDomainNotVerifiedException"},
-        {"shape":"ConfigurationSetDoesNotExistException"}
+        {"shape":"ConfigurationSetDoesNotExistException"},
+        {"shape":"ConfigurationSetSendingPausedException"},
+        {"shape":"AccountSendingPausedException"}
       ]
     },
     "SendTemplatedEmail":{
@@ -637,7 +655,9 @@
         {"shape":"MessageRejected"},
         {"shape":"MailFromDomainNotVerifiedException"},
         {"shape":"ConfigurationSetDoesNotExistException"},
-        {"shape":"TemplateDoesNotExistException"}
+        {"shape":"TemplateDoesNotExistException"},
+        {"shape":"ConfigurationSetSendingPausedException"},
+        {"shape":"AccountSendingPausedException"}
       ]
     },
     "SetActiveReceiptRuleSet":{
@@ -748,6 +768,14 @@
         {"shape":"MissingRenderingAttributeException"}
       ]
     },
+    "UpdateAccountSendingEnabled":{
+      "name":"UpdateAccountSendingEnabled",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateAccountSendingEnabledRequest"}
+    },
     "UpdateConfigurationSetEventDestination":{
       "name":"UpdateConfigurationSetEventDestination",
       "http":{
@@ -765,6 +793,28 @@
         {"shape":"InvalidCloudWatchDestinationException"},
         {"shape":"InvalidFirehoseDestinationException"},
         {"shape":"InvalidSNSDestinationException"}
+      ]
+    },
+    "UpdateConfigurationSetReputationMetricsEnabled":{
+      "name":"UpdateConfigurationSetReputationMetricsEnabled",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateConfigurationSetReputationMetricsEnabledRequest"},
+      "errors":[
+        {"shape":"ConfigurationSetDoesNotExistException"}
+      ]
+    },
+    "UpdateConfigurationSetSendingEnabled":{
+      "name":"UpdateConfigurationSetSendingEnabled",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateConfigurationSetSendingEnabledRequest"},
+      "errors":[
+        {"shape":"ConfigurationSetDoesNotExistException"}
       ]
     },
     "UpdateConfigurationSetTrackingOptions":{
@@ -866,6 +916,17 @@
     }
   },
   "shapes":{
+    "AccountSendingPausedException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"AccountSendingPausedException",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "AddHeaderAction":{
       "type":"structure",
       "required":[
@@ -990,6 +1051,8 @@
         "AccountThrottled",
         "AccountDailyQuotaExceeded",
         "InvalidSendingPoolName",
+        "AccountSendingPaused",
+        "ConfigurationSetSendingPaused",
         "InvalidParameterValue",
         "TransientFailure",
         "Failed"
@@ -1072,7 +1135,8 @@
       "type":"string",
       "enum":[
         "eventDestinations",
-        "trackingOptions"
+        "trackingOptions",
+        "reputationOptions"
       ]
     },
     "ConfigurationSetAttributeList":{
@@ -1092,6 +1156,18 @@
       "exception":true
     },
     "ConfigurationSetName":{"type":"string"},
+    "ConfigurationSetSendingPausedException":{
+      "type":"structure",
+      "members":{
+        "ConfigurationSetName":{"shape":"ConfigurationSetName"}
+      },
+      "error":{
+        "code":"ConfigurationSetSendingPausedException",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "ConfigurationSets":{
       "type":"list",
       "member":{"shape":"ConfigurationSet"}
@@ -1365,7 +1441,8 @@
       "members":{
         "ConfigurationSet":{"shape":"ConfigurationSet"},
         "EventDestinations":{"shape":"EventDestinations"},
-        "TrackingOptions":{"shape":"TrackingOptions"}
+        "TrackingOptions":{"shape":"TrackingOptions"},
+        "ReputationOptions":{"shape":"ReputationOptions"}
       }
     },
     "DescribeReceiptRuleRequest":{
@@ -1517,6 +1594,12 @@
     },
     "ExtensionFieldName":{"type":"string"},
     "ExtensionFieldValue":{"type":"string"},
+    "GetAccountSendingEnabledResponse":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Enabled"}
+      }
+    },
     "GetIdentityDkimAttributesRequest":{
       "type":"structure",
       "required":["Identities"],
@@ -1844,6 +1927,7 @@
       }
     },
     "LastAttemptDate":{"type":"timestamp"},
+    "LastFreshStart":{"type":"timestamp"},
     "LimitExceededException":{
       "type":"structure",
       "members":{
@@ -2207,6 +2291,14 @@
       }
     },
     "ReportingMta":{"type":"string"},
+    "ReputationOptions":{
+      "type":"structure",
+      "members":{
+        "SendingEnabled":{"shape":"Enabled"},
+        "ReputationMetricsEnabled":{"shape":"Enabled"},
+        "LastFreshStart":{"shape":"LastFreshStart"}
+      }
+    },
     "RuleDoesNotExistException":{
       "type":"structure",
       "members":{
@@ -2623,6 +2715,12 @@
       },
       "exception":true
     },
+    "UpdateAccountSendingEnabledRequest":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Enabled"}
+      }
+    },
     "UpdateConfigurationSetEventDestinationRequest":{
       "type":"structure",
       "required":[
@@ -2637,6 +2735,28 @@
     "UpdateConfigurationSetEventDestinationResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateConfigurationSetReputationMetricsEnabledRequest":{
+      "type":"structure",
+      "required":[
+        "ConfigurationSetName",
+        "Enabled"
+      ],
+      "members":{
+        "ConfigurationSetName":{"shape":"ConfigurationSetName"},
+        "Enabled":{"shape":"Enabled"}
+      }
+    },
+    "UpdateConfigurationSetSendingEnabledRequest":{
+      "type":"structure",
+      "required":[
+        "ConfigurationSetName",
+        "Enabled"
+      ],
+      "members":{
+        "ConfigurationSetName":{"shape":"ConfigurationSetName"},
+        "Enabled":{"shape":"Enabled"}
       }
     },
     "UpdateConfigurationSetTrackingOptionsRequest":{

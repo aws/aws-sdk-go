@@ -148,6 +148,10 @@ type SESAPI interface {
 	DescribeReceiptRuleSetWithContext(aws.Context, *ses.DescribeReceiptRuleSetInput, ...request.Option) (*ses.DescribeReceiptRuleSetOutput, error)
 	DescribeReceiptRuleSetRequest(*ses.DescribeReceiptRuleSetInput) (*request.Request, *ses.DescribeReceiptRuleSetOutput)
 
+	GetAccountSendingEnabled(*ses.GetAccountSendingEnabledInput) (*ses.GetAccountSendingEnabledOutput, error)
+	GetAccountSendingEnabledWithContext(aws.Context, *ses.GetAccountSendingEnabledInput, ...request.Option) (*ses.GetAccountSendingEnabledOutput, error)
+	GetAccountSendingEnabledRequest(*ses.GetAccountSendingEnabledInput) (*request.Request, *ses.GetAccountSendingEnabledOutput)
+
 	GetIdentityDkimAttributes(*ses.GetIdentityDkimAttributesInput) (*ses.GetIdentityDkimAttributesOutput, error)
 	GetIdentityDkimAttributesWithContext(aws.Context, *ses.GetIdentityDkimAttributesInput, ...request.Option) (*ses.GetIdentityDkimAttributesOutput, error)
 	GetIdentityDkimAttributesRequest(*ses.GetIdentityDkimAttributesInput) (*request.Request, *ses.GetIdentityDkimAttributesOutput)
@@ -271,9 +275,21 @@ type SESAPI interface {
 	TestRenderTemplateWithContext(aws.Context, *ses.TestRenderTemplateInput, ...request.Option) (*ses.TestRenderTemplateOutput, error)
 	TestRenderTemplateRequest(*ses.TestRenderTemplateInput) (*request.Request, *ses.TestRenderTemplateOutput)
 
+	UpdateAccountSendingEnabled(*ses.UpdateAccountSendingEnabledInput) (*ses.UpdateAccountSendingEnabledOutput, error)
+	UpdateAccountSendingEnabledWithContext(aws.Context, *ses.UpdateAccountSendingEnabledInput, ...request.Option) (*ses.UpdateAccountSendingEnabledOutput, error)
+	UpdateAccountSendingEnabledRequest(*ses.UpdateAccountSendingEnabledInput) (*request.Request, *ses.UpdateAccountSendingEnabledOutput)
+
 	UpdateConfigurationSetEventDestination(*ses.UpdateConfigurationSetEventDestinationInput) (*ses.UpdateConfigurationSetEventDestinationOutput, error)
 	UpdateConfigurationSetEventDestinationWithContext(aws.Context, *ses.UpdateConfigurationSetEventDestinationInput, ...request.Option) (*ses.UpdateConfigurationSetEventDestinationOutput, error)
 	UpdateConfigurationSetEventDestinationRequest(*ses.UpdateConfigurationSetEventDestinationInput) (*request.Request, *ses.UpdateConfigurationSetEventDestinationOutput)
+
+	UpdateConfigurationSetReputationMetricsEnabled(*ses.UpdateConfigurationSetReputationMetricsEnabledInput) (*ses.UpdateConfigurationSetReputationMetricsEnabledOutput, error)
+	UpdateConfigurationSetReputationMetricsEnabledWithContext(aws.Context, *ses.UpdateConfigurationSetReputationMetricsEnabledInput, ...request.Option) (*ses.UpdateConfigurationSetReputationMetricsEnabledOutput, error)
+	UpdateConfigurationSetReputationMetricsEnabledRequest(*ses.UpdateConfigurationSetReputationMetricsEnabledInput) (*request.Request, *ses.UpdateConfigurationSetReputationMetricsEnabledOutput)
+
+	UpdateConfigurationSetSendingEnabled(*ses.UpdateConfigurationSetSendingEnabledInput) (*ses.UpdateConfigurationSetSendingEnabledOutput, error)
+	UpdateConfigurationSetSendingEnabledWithContext(aws.Context, *ses.UpdateConfigurationSetSendingEnabledInput, ...request.Option) (*ses.UpdateConfigurationSetSendingEnabledOutput, error)
+	UpdateConfigurationSetSendingEnabledRequest(*ses.UpdateConfigurationSetSendingEnabledInput) (*request.Request, *ses.UpdateConfigurationSetSendingEnabledOutput)
 
 	UpdateConfigurationSetTrackingOptions(*ses.UpdateConfigurationSetTrackingOptionsInput) (*ses.UpdateConfigurationSetTrackingOptionsOutput, error)
 	UpdateConfigurationSetTrackingOptionsWithContext(aws.Context, *ses.UpdateConfigurationSetTrackingOptionsInput, ...request.Option) (*ses.UpdateConfigurationSetTrackingOptionsOutput, error)
