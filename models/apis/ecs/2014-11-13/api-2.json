@@ -7,6 +7,7 @@
     "protocol":"json",
     "serviceAbbreviation":"Amazon ECS",
     "serviceFullName":"Amazon EC2 Container Service",
+    "serviceId":"ECS",
     "signatureVersion":"v4",
     "targetPrefix":"AmazonEC2ContainerServiceV20141113",
     "uid":"ecs-2014-11-13"
@@ -480,6 +481,38 @@
         "FAILED"
       ]
     },
+    "Attachment":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"String"},
+        "type":{"shape":"String"},
+        "status":{"shape":"String"},
+        "details":{"shape":"AttachmentDetails"}
+      }
+    },
+    "AttachmentDetails":{
+      "type":"list",
+      "member":{"shape":"KeyValuePair"}
+    },
+    "AttachmentStateChange":{
+      "type":"structure",
+      "required":[
+        "attachmentArn",
+        "status"
+      ],
+      "members":{
+        "attachmentArn":{"shape":"String"},
+        "status":{"shape":"String"}
+      }
+    },
+    "AttachmentStateChanges":{
+      "type":"list",
+      "member":{"shape":"AttachmentStateChange"}
+    },
+    "Attachments":{
+      "type":"list",
+      "member":{"shape":"Attachment"}
+    },
     "Attribute":{
       "type":"structure",
       "required":["name"],
@@ -499,6 +532,14 @@
     "Attributes":{
       "type":"list",
       "member":{"shape":"Attribute"}
+    },
+    "AwsVpcConfiguration":{
+      "type":"structure",
+      "required":["subnets"],
+      "members":{
+        "subnets":{"shape":"StringList"},
+        "securityGroups":{"shape":"StringList"}
+      }
     },
     "Boolean":{"type":"boolean"},
     "BoxedBoolean":{
@@ -559,7 +600,8 @@
         "lastStatus":{"shape":"String"},
         "exitCode":{"shape":"BoxedInteger"},
         "reason":{"shape":"String"},
-        "networkBindings":{"shape":"NetworkBindings"}
+        "networkBindings":{"shape":"NetworkBindings"},
+        "networkInterfaces":{"shape":"NetworkInterfaces"}
       }
     },
     "ContainerDefinition":{
@@ -613,7 +655,8 @@
         "pendingTasksCount":{"shape":"Integer"},
         "agentUpdateStatus":{"shape":"AgentUpdateStatus"},
         "attributes":{"shape":"Attributes"},
-        "registeredAt":{"shape":"Timestamp"}
+        "registeredAt":{"shape":"Timestamp"},
+        "attachments":{"shape":"Attachments"}
       }
     },
     "ContainerInstanceStatus":{
@@ -641,6 +684,20 @@
     "ContainerOverrides":{
       "type":"list",
       "member":{"shape":"ContainerOverride"}
+    },
+    "ContainerStateChange":{
+      "type":"structure",
+      "members":{
+        "containerName":{"shape":"String"},
+        "exitCode":{"shape":"BoxedInteger"},
+        "networkBindings":{"shape":"NetworkBindings"},
+        "reason":{"shape":"String"},
+        "status":{"shape":"String"}
+      }
+    },
+    "ContainerStateChanges":{
+      "type":"list",
+      "member":{"shape":"ContainerStateChange"}
     },
     "Containers":{
       "type":"list",
@@ -675,7 +732,8 @@
         "role":{"shape":"String"},
         "deploymentConfiguration":{"shape":"DeploymentConfiguration"},
         "placementConstraints":{"shape":"PlacementConstraints"},
-        "placementStrategy":{"shape":"PlacementStrategies"}
+        "placementStrategy":{"shape":"PlacementStrategies"},
+        "networkConfiguration":{"shape":"NetworkConfiguration"}
       }
     },
     "CreateServiceResponse":{
@@ -735,7 +793,8 @@
         "pendingCount":{"shape":"Integer"},
         "runningCount":{"shape":"Integer"},
         "createdAt":{"shape":"Timestamp"},
-        "updatedAt":{"shape":"Timestamp"}
+        "updatedAt":{"shape":"Timestamp"},
+        "networkConfiguration":{"shape":"NetworkConfiguration"}
       }
     },
     "DeploymentConfiguration":{
@@ -1154,11 +1213,30 @@
       "type":"list",
       "member":{"shape":"NetworkBinding"}
     },
+    "NetworkConfiguration":{
+      "type":"structure",
+      "members":{
+        "awsvpcConfiguration":{"shape":"AwsVpcConfiguration"}
+      }
+    },
+    "NetworkInterface":{
+      "type":"structure",
+      "members":{
+        "attachmentId":{"shape":"String"},
+        "privateIpv4Address":{"shape":"String"},
+        "ipv6Address":{"shape":"String"}
+      }
+    },
+    "NetworkInterfaces":{
+      "type":"list",
+      "member":{"shape":"NetworkInterface"}
+    },
     "NetworkMode":{
       "type":"string",
       "enum":[
         "bridge",
         "host",
+        "awsvpc",
         "none"
       ]
     },
@@ -1300,7 +1378,8 @@
         "startedBy":{"shape":"String"},
         "group":{"shape":"String"},
         "placementConstraints":{"shape":"PlacementConstraints"},
-        "placementStrategy":{"shape":"PlacementStrategies"}
+        "placementStrategy":{"shape":"PlacementStrategies"},
+        "networkConfiguration":{"shape":"NetworkConfiguration"}
       }
     },
     "RunTaskResponse":{
@@ -1336,7 +1415,8 @@
         "events":{"shape":"ServiceEvents"},
         "createdAt":{"shape":"Timestamp"},
         "placementConstraints":{"shape":"PlacementConstraints"},
-        "placementStrategy":{"shape":"PlacementStrategies"}
+        "placementStrategy":{"shape":"PlacementStrategies"},
+        "networkConfiguration":{"shape":"NetworkConfiguration"}
       }
     },
     "ServiceEvent":{
@@ -1386,7 +1466,8 @@
         "overrides":{"shape":"TaskOverride"},
         "containerInstances":{"shape":"StringList"},
         "startedBy":{"shape":"String"},
-        "group":{"shape":"String"}
+        "group":{"shape":"String"},
+        "networkConfiguration":{"shape":"NetworkConfiguration"}
       }
     },
     "StartTaskResponse":{
@@ -1440,7 +1521,9 @@
         "cluster":{"shape":"String"},
         "task":{"shape":"String"},
         "status":{"shape":"String"},
-        "reason":{"shape":"String"}
+        "reason":{"shape":"String"},
+        "containers":{"shape":"ContainerStateChanges"},
+        "attachments":{"shape":"AttachmentStateChanges"}
       }
     },
     "SubmitTaskStateChangeResponse":{
@@ -1476,7 +1559,8 @@
         "createdAt":{"shape":"Timestamp"},
         "startedAt":{"shape":"Timestamp"},
         "stoppedAt":{"shape":"Timestamp"},
-        "group":{"shape":"String"}
+        "group":{"shape":"String"},
+        "attachments":{"shape":"Attachments"}
       }
     },
     "TaskDefinition":{
@@ -1627,7 +1711,8 @@
         "service":{"shape":"String"},
         "desiredCount":{"shape":"BoxedInteger"},
         "taskDefinition":{"shape":"String"},
-        "deploymentConfiguration":{"shape":"DeploymentConfiguration"}
+        "deploymentConfiguration":{"shape":"DeploymentConfiguration"},
+        "networkConfiguration":{"shape":"NetworkConfiguration"}
       }
     },
     "UpdateServiceResponse":{

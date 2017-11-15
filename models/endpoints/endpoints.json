@@ -79,6 +79,7 @@
           }
         },
         "endpoints" : {
+          "ap-south-1" : { },
           "us-east-1" : { }
         }
       },
@@ -1640,6 +1641,11 @@
       }
     },
     "services" : {
+      "apigateway" : {
+        "endpoints" : {
+          "cn-north-1" : { }
+        }
+      },
       "application-autoscaling" : {
         "defaults" : {
           "credentialScope" : {
@@ -1944,7 +1950,13 @@
       },
       "dynamodb" : {
         "endpoints" : {
-          "us-gov-west-1" : { }
+          "us-gov-west-1" : { },
+          "us-gov-west-1-fips" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "dynamodb.us-gov-west-1.amazonaws.com"
+          }
         }
       },
       "ec2" : {
@@ -1953,6 +1965,11 @@
         }
       },
       "elasticache" : {
+        "endpoints" : {
+          "us-gov-west-1" : { }
+        }
+      },
+      "elasticbeanstalk" : {
         "endpoints" : {
           "us-gov-west-1" : { }
         }
@@ -2089,7 +2106,13 @@
           }
         },
         "endpoints" : {
-          "us-gov-west-1" : { }
+          "us-gov-west-1" : { },
+          "us-gov-west-1-fips" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "dynamodb.us-gov-west-1.amazonaws.com"
+          }
         }
       },
       "sts" : {
