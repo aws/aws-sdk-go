@@ -24,6 +24,7 @@
     "DescribeConfigurationSet": "<p>Returns the details of the specified configuration set. For information about using configuration sets, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html\">Amazon SES Developer Guide</a>.</p> <p>You can execute this operation no more than once per second.</p>",
     "DescribeReceiptRule": "<p>Returns the details of the specified receipt rule.</p> <p>For information about setting up receipt rules, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html\">Amazon SES Developer Guide</a>.</p> <p>You can execute this operation no more than once per second.</p>",
     "DescribeReceiptRuleSet": "<p>Returns the details of the specified receipt rule set.</p> <p>For information about managing receipt rule sets, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html\">Amazon SES Developer Guide</a>.</p> <p>You can execute this operation no more than once per second.</p>",
+    "GetAccountSendingEnabled": "<p>Returns the email sending status of the Amazon SES account.</p> <p>You can execute this operation no more than once per second.</p>",
     "GetIdentityDkimAttributes": "<p>Returns the current status of Easy DKIM signing for an entity. For domain name identities, this operation also returns the DKIM tokens that are required for Easy DKIM signing, and whether Amazon SES has successfully verified that these tokens have been published.</p> <p>This operation takes a list of identities as input and returns the following information for each:</p> <ul> <li> <p>Whether Easy DKIM signing is enabled or disabled.</p> </li> <li> <p>A set of DKIM tokens that represent the identity. If the identity is an email address, the tokens represent the domain of that address.</p> </li> <li> <p>Whether Amazon SES has successfully verified the DKIM tokens published in the domain's DNS. This information is only returned for domain name identities, not for email addresses.</p> </li> </ul> <p>This operation is throttled at one request per second and can only get DKIM attributes for up to 100 identities at a time.</p> <p>For more information about creating DNS records using DKIM tokens, go to the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html\">Amazon SES Developer Guide</a>.</p>",
     "GetIdentityMailFromDomainAttributes": "<p>Returns the custom MAIL FROM attributes for a list of identities (email addresses : domains).</p> <p>This operation is throttled at one request per second and can only get custom MAIL FROM attributes for up to 100 identities at a time.</p>",
     "GetIdentityNotificationAttributes": "<p>Given a list of verified identities (email addresses and/or domains), returns a structure describing identity notification attributes.</p> <p>This operation is throttled at one request per second and can only get notification attributes for up to 100 identities at a time.</p> <p>For more information about using notifications with Amazon SES, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html\">Amazon SES Developer Guide</a>.</p>",
@@ -54,7 +55,10 @@
     "SetIdentityNotificationTopic": "<p>Given an identity (an email address or a domain), sets the Amazon Simple Notification Service (Amazon SNS) topic to which Amazon SES will publish bounce, complaint, and/or delivery notifications for emails sent with that identity as the <code>Source</code>.</p> <note> <p>Unless feedback forwarding is enabled, you must specify Amazon SNS topics for bounce and complaint notifications. For more information, see <code>SetIdentityFeedbackForwardingEnabled</code>.</p> </note> <p>You can execute this operation no more than once per second.</p> <p>For more information about feedback notification, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html\">Amazon SES Developer Guide</a>.</p>",
     "SetReceiptRulePosition": "<p>Sets the position of the specified receipt rule in the receipt rule set.</p> <p>For information about managing receipt rules, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html\">Amazon SES Developer Guide</a>.</p> <p>You can execute this operation no more than once per second.</p>",
     "TestRenderTemplate": "<p>Creates a preview of the MIME content of an email when provided with a template and a set of replacement data.</p> <p>You can execute this operation no more than once per second.</p>",
+    "UpdateAccountSendingEnabled": "<p>Enables or disables email sending across your entire Amazon SES account. You can use this operation in conjunction with Amazon CloudWatch alarms to temporarily pause email sending across your Amazon SES account when reputation metrics (such as your bounce on complaint rate) reach certain thresholds.</p> <p>You can execute this operation no more than once per second.</p>",
     "UpdateConfigurationSetEventDestination": "<p>Updates the event destination of a configuration set. Event destinations are associated with configuration sets, which enable you to publish email sending events to Amazon CloudWatch, Amazon Kinesis Firehose, or Amazon Simple Notification Service (Amazon SNS). For information about using configuration sets, see <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html\">Monitoring Your Amazon SES Sending Activity</a> in the <i>Amazon SES Developer Guide.</i> </p> <note> <p>When you create or update an event destination, you must provide one, and only one, destination. The destination can be Amazon CloudWatch, Amazon Kinesis Firehose, or Amazon Simple Notification Service (Amazon SNS).</p> </note> <p>You can execute this operation no more than once per second.</p>",
+    "UpdateConfigurationSetReputationMetricsEnabled": "<p>Enables or disables the publishing of reputation metrics for emails sent using a specific configuration set. Reputation metrics include bounce and complaint rates. These metrics are published to Amazon CloudWatch. By using Amazon CloudWatch, you can create alarms when bounce or complaint rates exceed a certain threshold.</p> <p>You can execute this operation no more than once per second.</p>",
+    "UpdateConfigurationSetSendingEnabled": "<p>Enables or disables email sending for messages sent using a specific configuration set. You can use this operation in conjunction with Amazon CloudWatch alarms to temporarily pause email sending for a configuration set when the reputation metrics for that configuration set (such as your bounce on complaint rate) reach certain thresholds.</p> <p>You can execute this operation no more than once per second.</p>",
     "UpdateConfigurationSetTrackingOptions": "<p>Modifies an association between a configuration set and a custom domain for open and click event tracking. </p> <p>By default, images and links used for tracking open and click events are hosted on domains operated by Amazon SES. You can configure a subdomain of your own to handle these events. For information about using configuration sets, see <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html\">Configuring Custom Domains to Handle Open and Click Tracking</a> in the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/Welcome.html\">Amazon SES Developer Guide</a>.</p>",
     "UpdateReceiptRule": "<p>Updates a receipt rule.</p> <p>For information about managing receipt rules, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html\">Amazon SES Developer Guide</a>.</p> <p>You can execute this operation no more than once per second.</p>",
     "UpdateTemplate": "<p>Updates an email template. Email templates enable you to send personalized email to one or more destinations in a single API operation. For more information, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html\">Amazon SES Developer Guide</a>.</p> <p>You can execute this operation no more than once per second.</p>",
@@ -64,6 +68,11 @@
     "VerifyEmailIdentity": "<p>Adds an email address to the list of identities for your Amazon SES account and attempts to verify it. This operation causes a confirmation email message to be sent to the specified address.</p> <p>You can execute this operation no more than once per second.</p>"
   },
   "shapes": {
+    "AccountSendingPausedException": {
+      "base": "<p>Indicates that email sending is disabled for your entire Amazon SES account.</p> <p>You can enable or disable email sending for your Amazon SES account using <a>UpdateAccountSendingEnabled</a>.</p>",
+      "refs": {
+      }
+    },
     "AddHeaderAction": {
       "base": "<p>When included in a receipt rule, this action adds a header to the received email.</p> <p>For information about adding a header using a receipt rule, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-action-add-header.html\">Amazon SES Developer Guide</a>.</p>",
       "refs": {
@@ -228,7 +237,7 @@
     "BulkEmailStatus": {
       "base": null,
       "refs": {
-        "BulkEmailDestinationStatus$Status": "<p>The status of a message sent using the <code>SendBulkTemplatedEmail</code> operation.</p> <p>Possible values for this parameter include:</p> <ul> <li> <p> <code>Success</code>: Amazon SES accepted the message, and will attempt to deliver it to the recipients.</p> </li> <li> <p> <code>MessageRejected</code>: The message was rejected because it contained a virus.</p> </li> <li> <p> <code>MailFromDomainNotVerified</code>: The sender's email address or domain was not verified.</p> </li> <li> <p> <code>ConfigurationSetDoesNotExist</code>: The configuration set you specified does not exist.</p> </li> <li> <p> <code>TemplateDoesNotExist</code>: The template you specified does not exist.</p> </li> <li> <p> <code>AccountSuspended</code>: Your account has been shut down because of issues related to your email sending practices.</p> </li> <li> <p> <code>AccountThrottled</code>: The number of emails you can send has been reduced because your account has exceeded its allocated sending limit.</p> </li> <li> <p> <code>AccountDailyQuotaExceeded</code>: You have reached or exceeded the maximum number of emails you can send from your account in a 24-hour period.</p> </li> <li> <p> <code>InvalidSendingPoolName</code>: The configuration set you specified refers to an IP pool that does not exist.</p> </li> <li> <p> <code>InvalidParameterValue</code>: One or more of the parameters you specified when calling this operation was invalid. See the error message for additional information.</p> </li> <li> <p> <code>TransientFailure</code>: Amazon SES was unable to process your request because of a temporary issue.</p> </li> <li> <p> <code>Failed</code>: Amazon SES was unable to process your request. See the error message for additional information.</p> </li> </ul>"
+        "BulkEmailDestinationStatus$Status": "<p>The status of a message sent using the <code>SendBulkTemplatedEmail</code> operation.</p> <p>Possible values for this parameter include:</p> <ul> <li> <p> <code>Success</code>: Amazon SES accepted the message, and will attempt to deliver it to the recipients.</p> </li> <li> <p> <code>MessageRejected</code>: The message was rejected because it contained a virus.</p> </li> <li> <p> <code>MailFromDomainNotVerified</code>: The sender's email address or domain was not verified.</p> </li> <li> <p> <code>ConfigurationSetDoesNotExist</code>: The configuration set you specified does not exist.</p> </li> <li> <p> <code>TemplateDoesNotExist</code>: The template you specified does not exist.</p> </li> <li> <p> <code>AccountSuspended</code>: Your account has been shut down because of issues related to your email sending practices.</p> </li> <li> <p> <code>AccountThrottled</code>: The number of emails you can send has been reduced because your account has exceeded its allocated sending limit.</p> </li> <li> <p> <code>AccountDailyQuotaExceeded</code>: You have reached or exceeded the maximum number of emails you can send from your account in a 24-hour period.</p> </li> <li> <p> <code>InvalidSendingPoolName</code>: The configuration set you specified refers to an IP pool that does not exist.</p> </li> <li> <p> <code>AccountSendingPaused</code>: Email sending for the Amazon SES account was disabled using the <a>UpdateAccountSendingEnabled</a> operation.</p> </li> <li> <p> <code>ConfigurationSetSendingPaused</code>: Email sending for this configuration set was disabled using the <a>UpdateConfigurationSetSendingEnabled</a> operation.</p> </li> <li> <p> <code>InvalidParameterValue</code>: One or more of the parameters you specified when calling this operation was invalid. See the error message for additional information.</p> </li> <li> <p> <code>TransientFailure</code>: Amazon SES was unable to process your request because of a temporary issue.</p> </li> <li> <p> <code>Failed</code>: Amazon SES was unable to process your request. See the error message for additional information.</p> </li> </ul>"
       }
     },
     "CannotDeleteException": {
@@ -312,6 +321,7 @@
         "ConfigurationSet$Name": "<p>The name of the configuration set. The name must meet the following requirements:</p> <ul> <li> <p>Contain only letters (a-z, A-Z), numbers (0-9), underscores (_), or dashes (-).</p> </li> <li> <p>Contain 64 characters or fewer.</p> </li> </ul>",
         "ConfigurationSetAlreadyExistsException$ConfigurationSetName": "<p>Indicates that the configuration set does not exist.</p>",
         "ConfigurationSetDoesNotExistException$ConfigurationSetName": "<p>Indicates that the configuration set does not exist.</p>",
+        "ConfigurationSetSendingPausedException$ConfigurationSetName": "<p>The name of the configuration set for which email sending is disabled.</p>",
         "CreateConfigurationSetEventDestinationRequest$ConfigurationSetName": "<p>The name of the configuration set that the event destination should be associated with.</p>",
         "CreateConfigurationSetTrackingOptionsRequest$ConfigurationSetName": "<p>The name of the configuration set that the tracking options should be associated with.</p>",
         "DeleteConfigurationSetEventDestinationRequest$ConfigurationSetName": "<p>The name of the configuration set from which to delete the event destination.</p>",
@@ -330,7 +340,14 @@
         "TrackingOptionsAlreadyExistsException$ConfigurationSetName": "<p>Indicates that a TrackingOptions object already exists in the specified configuration set.</p>",
         "TrackingOptionsDoesNotExistException$ConfigurationSetName": "<p>Indicates that a TrackingOptions object does not exist in the specified configuration set.</p>",
         "UpdateConfigurationSetEventDestinationRequest$ConfigurationSetName": "<p>The name of the configuration set that contains the event destination that you want to update.</p>",
+        "UpdateConfigurationSetReputationMetricsEnabledRequest$ConfigurationSetName": "<p>The name of the configuration set that you want to update.</p>",
+        "UpdateConfigurationSetSendingEnabledRequest$ConfigurationSetName": "<p>The name of the configuration set that you want to update.</p>",
         "UpdateConfigurationSetTrackingOptionsRequest$ConfigurationSetName": "<p>The name of the configuration set for which you want to update the custom tracking domain.</p>"
+      }
+    },
+    "ConfigurationSetSendingPausedException": {
+      "base": "<p>Indicates that email sending is disabled for the configuration set.</p> <p>You can enable or disable email sending for a configuration set using <a>UpdateConfigurationSetSendingEnabled</a>.</p>",
+      "refs": {
       }
     },
     "ConfigurationSets": {
@@ -634,6 +651,7 @@
       "base": null,
       "refs": {
         "EventDestination$Enabled": "<p>Sets whether Amazon SES publishes events to this destination when you send an email with the associated configuration set. Set to <code>true</code> to enable publishing to this destination; set to <code>false</code> to prevent publishing to this destination. The default value is <code>false</code>.</p>",
+        "GetAccountSendingEnabledResponse$Enabled": "<p>Describes whether email sending is enabled or disabled for your Amazon SES account.</p>",
         "IdentityDkimAttributes$DkimEnabled": "<p>True if DKIM signing is enabled for email sent from the identity; false otherwise. The default value is true.</p>",
         "IdentityNotificationAttributes$ForwardingEnabled": "<p>Describes whether Amazon SES will forward bounce and complaint notifications as email. <code>true</code> indicates that Amazon SES will forward bounce and complaint notifications as email, while <code>false</code> indicates that bounce and complaint notifications will be published only to the specified bounce and complaint Amazon SNS topics.</p>",
         "IdentityNotificationAttributes$HeadersInBounceNotificationsEnabled": "<p>Describes whether Amazon SES includes the original email headers in Amazon SNS notifications of type <code>Bounce</code>. A value of <code>true</code> specifies that Amazon SES will include headers in bounce notifications, and a value of <code>false</code> specifies that Amazon SES will not include headers in bounce notifications.</p>",
@@ -641,9 +659,14 @@
         "IdentityNotificationAttributes$HeadersInDeliveryNotificationsEnabled": "<p>Describes whether Amazon SES includes the original email headers in Amazon SNS notifications of type <code>Delivery</code>. A value of <code>true</code> specifies that Amazon SES will include headers in delivery notifications, and a value of <code>false</code> specifies that Amazon SES will not include headers in delivery notifications.</p>",
         "ReceiptRule$Enabled": "<p>If <code>true</code>, the receipt rule is active. The default value is <code>false</code>.</p>",
         "ReceiptRule$ScanEnabled": "<p>If <code>true</code>, then messages that this receipt rule applies to are scanned for spam and viruses. The default value is <code>false</code>.</p>",
+        "ReputationOptions$SendingEnabled": "<p>Describes whether email sending is enabled or disabled for the configuration set. If the value is <code>true</code>, then Amazon SES will send emails that use the configuration set. If the value is <code>false</code>, Amazon SES will not send emails that use the configuration set. The default value is <code>true</code>. You can change this setting using <a>UpdateConfigurationSetSendingEnabled</a>.</p>",
+        "ReputationOptions$ReputationMetricsEnabled": "<p>Describes whether or not Amazon SES publishes reputation metrics for the configuration set, such as bounce and complaint rates, to Amazon CloudWatch.</p> <p>If the value is <code>true</code>, reputation metrics are published. If the value is <code>false</code>, reputation metrics are not published. The default value is <code>false</code>.</p>",
         "SetIdentityDkimEnabledRequest$DkimEnabled": "<p>Sets whether DKIM signing is enabled for an identity. Set to <code>true</code> to enable DKIM signing for this identity; <code>false</code> to disable it. </p>",
         "SetIdentityFeedbackForwardingEnabledRequest$ForwardingEnabled": "<p>Sets whether Amazon SES will forward bounce and complaint notifications as email. <code>true</code> specifies that Amazon SES will forward bounce and complaint notifications as email, in addition to any Amazon SNS topic publishing otherwise specified. <code>false</code> specifies that Amazon SES will publish bounce and complaint notifications only through Amazon SNS. This value can only be set to <code>false</code> when Amazon SNS topics are set for both <code>Bounce</code> and <code>Complaint</code> notification types.</p>",
-        "SetIdentityHeadersInNotificationsEnabledRequest$Enabled": "<p>Sets whether Amazon SES includes the original email headers in Amazon SNS notifications of the specified notification type. A value of <code>true</code> specifies that Amazon SES will include headers in notifications, and a value of <code>false</code> specifies that Amazon SES will not include headers in notifications.</p> <p>This value can only be set when <code>NotificationType</code> is already set to use a particular Amazon SNS topic.</p>"
+        "SetIdentityHeadersInNotificationsEnabledRequest$Enabled": "<p>Sets whether Amazon SES includes the original email headers in Amazon SNS notifications of the specified notification type. A value of <code>true</code> specifies that Amazon SES will include headers in notifications, and a value of <code>false</code> specifies that Amazon SES will not include headers in notifications.</p> <p>This value can only be set when <code>NotificationType</code> is already set to use a particular Amazon SNS topic.</p>",
+        "UpdateAccountSendingEnabledRequest$Enabled": "<p>Describes whether email sending is enabled or disabled for your Amazon SES account.</p>",
+        "UpdateConfigurationSetReputationMetricsEnabledRequest$Enabled": "<p>Describes whether or not Amazon SES will publish reputation metrics for the configuration set, such as bounce and complaint rates, to Amazon CloudWatch.</p>",
+        "UpdateConfigurationSetSendingEnabledRequest$Enabled": "<p>Describes whether email sending is enabled or disabled for the configuration set. </p>"
       }
     },
     "Error": {
@@ -729,6 +752,11 @@
       "base": null,
       "refs": {
         "ExtensionField$Value": "<p>The value of the header to add. Must be less than 2048 characters, and must not contain newline characters (\"\\r\" or \"\\n\").</p>"
+      }
+    },
+    "GetAccountSendingEnabledResponse": {
+      "base": "<p>Represents a request to return the email sending status for your Amazon SES account.</p>",
+      "refs": {
       }
     },
     "GetIdentityDkimAttributesRequest": {
@@ -956,6 +984,12 @@
       "base": null,
       "refs": {
         "RecipientDsnFields$LastAttemptDate": "<p>The time the final delivery attempt was made, in <a href=\"https://www.ietf.org/rfc/rfc0822.txt\">RFC 822</a> date-time format.</p>"
+      }
+    },
+    "LastFreshStart": {
+      "base": null,
+      "refs": {
+        "ReputationOptions$LastFreshStart": "<p>The date and time at which the reputation metrics for the configuration set were last reset. Resetting these metrics is known as a <i>fresh start</i>.</p> <p>When you disable email sending for a configuration set using <a>UpdateConfigurationSetSendingEnabled</a> and later re-enable it, the reputation metrics for the configuration set (but not for the entire Amazon SES account) are reset.</p> <p>If email sending for the configuration set has never been disabled and later re-enabled, the value of this attribute is <code>null</code>.</p>"
       }
     },
     "LimitExceededException": {
@@ -1375,6 +1409,12 @@
         "MessageDsn$ReportingMta": "<p>The reporting MTA that attempted to deliver the message, formatted as specified in <a href=\"https://tools.ietf.org/html/rfc3464\">RFC 3464</a> (<code>mta-name-type; mta-name</code>). The default value is <code>dns; inbound-smtp.[region].amazonaws.com</code>.</p>"
       }
     },
+    "ReputationOptions": {
+      "base": "<p>Contains information about the reputation settings for a configuration set.</p>",
+      "refs": {
+        "DescribeConfigurationSetResponse$ReputationOptions": "<p>An object that represents the reputation settings for the configuration set. </p>"
+      }
+    },
     "RuleDoesNotExistException": {
       "base": "<p>Indicates that the provided receipt rule does not exist.</p>",
       "refs": {
@@ -1685,6 +1725,11 @@
       "refs": {
       }
     },
+    "UpdateAccountSendingEnabledRequest": {
+      "base": "<p>Represents a request to enable or disable the email sending capabilities for your entire Amazon SES account.</p>",
+      "refs": {
+      }
+    },
     "UpdateConfigurationSetEventDestinationRequest": {
       "base": "<p>Represents a request to update the event destination of a configuration set. Configuration sets enable you to publish email sending events. For information about using configuration sets, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html\">Amazon SES Developer Guide</a>.</p>",
       "refs": {
@@ -1692,6 +1737,16 @@
     },
     "UpdateConfigurationSetEventDestinationResponse": {
       "base": "<p>An empty element returned on a successful request.</p>",
+      "refs": {
+      }
+    },
+    "UpdateConfigurationSetReputationMetricsEnabledRequest": {
+      "base": "<p>Represents a request to modify the reputation metric publishing settings for a configuration set.</p>",
+      "refs": {
+      }
+    },
+    "UpdateConfigurationSetSendingEnabledRequest": {
+      "base": "<p>Represents a request to enable or disable the email sending capabilities for a specific configuration set.</p>",
       "refs": {
       }
     },
