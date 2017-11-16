@@ -21,6 +21,7 @@
     "DeleteTrafficPolicyInstance": "<p>Deletes a traffic policy instance and all of the resource record sets that Amazon Route 53 created when you created the instance.</p> <note> <p>In the Amazon Route 53 console, traffic policy instances are known as policy records.</p> </note>",
     "DeleteVPCAssociationAuthorization": "<p>Removes authorization to submit an <code>AssociateVPCWithHostedZone</code> request to associate a specified VPC with a hosted zone that was created by a different account. You must use the account that created the hosted zone to submit a <code>DeleteVPCAssociationAuthorization</code> request.</p> <important> <p>Sending this request only prevents the AWS account that created the VPC from associating the VPC with the Amazon Route 53 hosted zone in the future. If the VPC is already associated with the hosted zone, <code>DeleteVPCAssociationAuthorization</code> won't disassociate the VPC from the hosted zone. If you want to delete an existing association, use <code>DisassociateVPCFromHostedZone</code>.</p> </important>",
     "DisassociateVPCFromHostedZone": "<p>Disassociates a VPC from a Amazon Route 53 private hosted zone. </p> <note> <p>You can't disassociate the last VPC from a private hosted zone.</p> </note> <important> <p>You can't disassociate a VPC from a private hosted zone when only one VPC is associated with the hosted zone. You also can't convert a private hosted zone into a public hosted zone.</p> </important>",
+    "GetAccountLimit": "<p>Gets the specified limit for the current account, for example, the maximum number of health checks that you can create using the account.</p> <p>For the default limit, see <a href=\"http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html\">Limits</a> in the <i>Amazon Route 53 Developer Guide</i>. To request a higher limit, <a href=\"https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&amp;limitType=service-code-route53\">open a case</a>.</p>",
     "GetChange": "<p>Returns the current status of a change batch request. The status is one of the following values:</p> <ul> <li> <p> <code>PENDING</code> indicates that the changes in this request have not propagated to all Amazon Route 53 DNS servers. This is the initial status of all change batch requests.</p> </li> <li> <p> <code>INSYNC</code> indicates that the changes have propagated to all Amazon Route 53 DNS servers. </p> </li> </ul>",
     "GetCheckerIpRanges": "<p> <code>GetCheckerIpRanges</code> still works, but we recommend that you download ip-ranges.json, which includes IP address ranges for all AWS services. For more information, see <a href=\"http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/route-53-ip-addresses.html\">IP Address Ranges of Amazon Route 53 Servers</a> in the <i>Amazon Route 53 Developer Guide</i>.</p>",
     "GetGeoLocation": "<p>Gets information about whether a specified geographic location is supported for Amazon Route 53 geolocation resource record sets.</p> <p>Use the following syntax to determine whether a continent is supported for geolocation:</p> <p> <code>GET /2013-04-01/geolocation?ContinentCode=<i>two-letter abbreviation for a continent</i> </code> </p> <p>Use the following syntax to determine whether a country is supported for geolocation:</p> <p> <code>GET /2013-04-01/geolocation?CountryCode=<i>two-character country code</i> </code> </p> <p>Use the following syntax to determine whether a subdivision of a country is supported for geolocation:</p> <p> <code>GET /2013-04-01/geolocation?CountryCode=<i>two-character country code</i>&amp;SubdivisionCode=<i>subdivision code</i> </code> </p>",
@@ -30,8 +31,10 @@
     "GetHealthCheckStatus": "<p>Gets status of a specified health check. </p>",
     "GetHostedZone": "<p>Gets information about a specified hosted zone including the four name servers assigned to the hosted zone.</p>",
     "GetHostedZoneCount": "<p>Retrieves the number of hosted zones that are associated with the current AWS account.</p>",
+    "GetHostedZoneLimit": "<p>Gets the specified limit for a specified hosted zone, for example, the maximum number of records that you can create in the hosted zone. </p> <p>For the default limit, see <a href=\"http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html\">Limits</a> in the <i>Amazon Route 53 Developer Guide</i>. To request a higher limit, <a href=\"https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&amp;limitType=service-code-route53\">open a case</a>.</p>",
     "GetQueryLoggingConfig": "<p>Gets information about a specified configuration for DNS query logging.</p> <p>For more information about DNS query logs, see <a>CreateQueryLoggingConfig</a> and <a href=\"http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/query-logs.html\">Logging DNS Queries</a>.</p>",
     "GetReusableDelegationSet": "<p>Retrieves information about a specified reusable delegation set, including the four name servers that are assigned to the delegation set.</p>",
+    "GetReusableDelegationSetLimit": "<p>Gets the maximum number of hosted zones that you can associate with the specified reusable delegation set.</p> <p>For the default limit, see <a href=\"http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html\">Limits</a> in the <i>Amazon Route 53 Developer Guide</i>. To request a higher limit, <a href=\"https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&amp;limitType=service-code-route53\">open a case</a>.</p>",
     "GetTrafficPolicy": "<p>Gets information about a specific traffic policy version.</p>",
     "GetTrafficPolicyInstance": "<p>Gets information about a specified traffic policy instance.</p> <note> <p>After you submit a <code>CreateTrafficPolicyInstance</code> or an <code>UpdateTrafficPolicyInstance</code> request, there's a brief delay while Amazon Route 53 creates the resource record sets that are specified in the traffic policy definition. For more information, see the <code>State</code> response element.</p> </note> <note> <p>In the Amazon Route 53 console, traffic policy instances are known as policy records.</p> </note>",
     "GetTrafficPolicyInstanceCount": "<p>Gets the number of traffic policy instances that are associated with the current AWS account.</p>",
@@ -57,6 +60,19 @@
     "UpdateTrafficPolicyInstance": "<p>Updates the resource record sets in a specified hosted zone that were created based on the settings in a specified traffic policy version.</p> <p>When you update a traffic policy instance, Amazon Route 53 continues to respond to DNS queries for the root resource record set name (such as example.com) while it replaces one group of resource record sets with another. Amazon Route 53 performs the following operations:</p> <ol> <li> <p>Amazon Route 53 creates a new group of resource record sets based on the specified traffic policy. This is true regardless of how significant the differences are between the existing resource record sets and the new resource record sets. </p> </li> <li> <p>When all of the new resource record sets have been created, Amazon Route 53 starts to respond to DNS queries for the root resource record set name (such as example.com) by using the new resource record sets.</p> </li> <li> <p>Amazon Route 53 deletes the old group of resource record sets that are associated with the root resource record set name.</p> </li> </ol>"
   },
   "shapes": {
+    "AccountLimit": {
+      "base": "<p>A complex type that contains the type of limit that you specified in the request and the current value for that limit.</p>",
+      "refs": {
+        "GetAccountLimitResponse$Limit": "<p>The current setting for the specified limit. For example, if you specified <code>MAX_HEALTH_CHECKS_BY_OWNER</code> for the value of <code>Type</code> in the request, the value of <code>Limit</code> is the maximum number of health checks that you can create using the current account.</p>"
+      }
+    },
+    "AccountLimitType": {
+      "base": null,
+      "refs": {
+        "AccountLimit$Type": "<p>The limit that you requested. Valid values include the following:</p> <ul> <li> <p> <b>MAX_HEALTH_CHECKS_BY_OWNER</b>: The maximum number of health checks that you can create using the current account.</p> </li> <li> <p> <b>MAX_HOSTED_ZONES_BY_OWNER</b>: The maximum number of hosted zones that you can create using the current account.</p> </li> <li> <p> <b>MAX_REUSABLE_DELEGATION_SETS_BY_OWNER</b>: The maximum number of reusable delegation sets that you can create using the current account.</p> </li> <li> <p> <b>MAX_TRAFFIC_POLICIES_BY_OWNER</b>: The maximum number of traffic policies that you can create using the current account.</p> </li> <li> <p> <b>MAX_TRAFFIC_POLICY_INSTANCES_BY_OWNER</b>: The maximum number of traffic policy instances that you can create using the current account. (Traffic policy instances are referred to as traffic flow policy records in the Amazon Route 53 console.)</p> </li> </ul>",
+        "GetAccountLimitRequest$Type": "<p>The limit that you want to get. Valid values include the following:</p> <ul> <li> <p> <b>MAX_HEALTH_CHECKS_BY_OWNER</b>: The maximum number of health checks that you can create using the current account.</p> </li> <li> <p> <b>MAX_HOSTED_ZONES_BY_OWNER</b>: The maximum number of hosted zones that you can create using the current account.</p> </li> <li> <p> <b>MAX_REUSABLE_DELEGATION_SETS_BY_OWNER</b>: The maximum number of reusable delegation sets that you can create using the current account.</p> </li> <li> <p> <b>MAX_TRAFFIC_POLICIES_BY_OWNER</b>: The maximum number of traffic policies that you can create using the current account.</p> </li> <li> <p> <b>MAX_TRAFFIC_POLICY_INSTANCES_BY_OWNER</b>: The maximum number of traffic policy instances that you can create using the current account. (Traffic policy instances are referred to as traffic flow policy records in the Amazon Route 53 console.)</p> </li> </ul>"
+      }
+    },
     "AlarmIdentifier": {
       "base": "<p>A complex type that identifies the CloudWatch alarm that you want Amazon Route 53 health checkers to use to determine whether this health check is healthy.</p>",
       "refs": {
@@ -107,7 +123,7 @@
     "ChangeAction": {
       "base": null,
       "refs": {
-        "Change$Action": "<p>The action to perform:</p> <ul> <li> <p> <code>CREATE</code>: Creates a resource record set that has the specified values.</p> </li> <li> <p> <code>DELETE</code>: Deletes a existing resource record set.</p> <important> <p>To delete the resource record set that is associated with a traffic policy instance, use <code> <a>DeleteTrafficPolicyInstance</a> </code>. Amazon Route 53 will delete the resource record set automatically. If you delete the resource record set by using <code>ChangeResourceRecordSets</code>, Amazon Route 53 doesn't automatically delete the traffic policy instance, and you'll continue to be charged for it even though it's no longer in use. </p> </important> </li> <li> <p> <code>UPSERT</code>: If a resource record set doesn't already exist, Amazon Route 53 creates it. If a resource record set does exist, Amazon Route 53 updates it with the values in the request.</p> </li> </ul> <p>The values that you need to include in the request depend on the type of resource record set that you're creating, deleting, or updating:</p> <p> <b>Basic resource record sets (excluding alias, failover, geolocation, latency, and weighted resource record sets)</b> </p> <ul> <li> <p> <code>Name</code> </p> </li> <li> <p> <code>Type</code> </p> </li> <li> <p> <code>TTL</code> </p> </li> </ul> <p> <b>Failover, geolocation, latency, or weighted resource record sets (excluding alias resource record sets)</b> </p> <ul> <li> <p> <code>Name</code> </p> </li> <li> <p> <code>Type</code> </p> </li> <li> <p> <code>TTL</code> </p> </li> <li> <p> <code>SetIdentifier</code> </p> </li> </ul> <p> <b>Alias resource record sets (including failover alias, geolocation alias, latency alias, and weighted alias resource record sets)</b> </p> <ul> <li> <p> <code>Name</code> </p> </li> <li> <p> <code>Type</code> </p> </li> <li> <p> <code>AliasTarget</code> (includes <code>DNSName</code>, <code>EvaluateTargetHealth</code>, and <code>HostedZoneId</code>)</p> </li> <li> <p> <code>SetIdentifier</code> (for failover, geolocation, latency, and weighted resource record sets)</p> </li> </ul>"
+        "Change$Action": "<p>The action to perform:</p> <ul> <li> <p> <code>CREATE</code>: Creates a resource record set that has the specified values.</p> </li> <li> <p> <code>DELETE</code>: Deletes a existing resource record set.</p> <important> <p>To delete the resource record set that is associated with a traffic policy instance, use <code> <a>DeleteTrafficPolicyInstance</a> </code>. Amazon Route 53 will delete the resource record set automatically. If you delete the resource record set by using <code>ChangeResourceRecordSets</code>, Amazon Route 53 doesn't automatically delete the traffic policy instance, and you'll continue to be charged for it even though it's no longer in use. </p> </important> </li> <li> <p> <code>UPSERT</code>: If a resource record set doesn't already exist, Amazon Route 53 creates it. If a resource record set does exist, Amazon Route 53 updates it with the values in the request.</p> </li> </ul>"
       }
     },
     "ChangeBatch": {
@@ -500,6 +516,7 @@
         "HostedZoneAlreadyExists$message": "<p>Descriptive message for the error response.</p>",
         "HostedZoneNotEmpty$message": "<p>Descriptive message for the error response.</p>",
         "HostedZoneNotFound$message": "<p>Descriptive message for the error response.</p>",
+        "HostedZoneNotPrivate$message": "<p>Descriptive message for the error response.</p>",
         "IncompatibleVersion$message": null,
         "InsufficientCloudWatchLogsResourcePolicy$message": null,
         "InvalidArgument$message": "<p>Descriptive message for the error response.</p>",
@@ -630,6 +647,16 @@
         "GeoLocationDetails$SubdivisionName": "<p>The full name of the subdivision, for example, a state in the United States or a province in Canada.</p>"
       }
     },
+    "GetAccountLimitRequest": {
+      "base": "<p>A complex type that contains information about the request to create a hosted zone.</p>",
+      "refs": {
+      }
+    },
+    "GetAccountLimitResponse": {
+      "base": "<p>A complex type that contains the requested limit. </p>",
+      "refs": {
+      }
+    },
     "GetChangeRequest": {
       "base": "<p>The input for a GetChange request.</p>",
       "refs": {
@@ -710,6 +737,16 @@
       "refs": {
       }
     },
+    "GetHostedZoneLimitRequest": {
+      "base": "<p>A complex type that contains information about the request to create a hosted zone.</p>",
+      "refs": {
+      }
+    },
+    "GetHostedZoneLimitResponse": {
+      "base": "<p>A complex type that contains the requested limit. </p>",
+      "refs": {
+      }
+    },
     "GetHostedZoneRequest": {
       "base": "<p>A request to get information about a specified hosted zone. </p>",
       "refs": {
@@ -727,6 +764,16 @@
     },
     "GetQueryLoggingConfigResponse": {
       "base": null,
+      "refs": {
+      }
+    },
+    "GetReusableDelegationSetLimitRequest": {
+      "base": "<p>A complex type that contains information about the request to create a hosted zone.</p>",
+      "refs": {
+      }
+    },
+    "GetReusableDelegationSetLimitResponse": {
+      "base": "<p>A complex type that contains the requested limit. </p>",
       "refs": {
       }
     },
@@ -907,6 +954,19 @@
         "GetHostedZoneCountResponse$HostedZoneCount": "<p>The total number of public and private hosted zones that are associated with the current AWS account.</p>"
       }
     },
+    "HostedZoneLimit": {
+      "base": "<p>A complex type that contains the type of limit that you specified in the request and the current value for that limit.</p>",
+      "refs": {
+        "GetHostedZoneLimitResponse$Limit": "<p>The current setting for the specified limit. For example, if you specified <code>MAX_RRSETS_BY_ZONE</code> for the value of <code>Type</code> in the request, the value of <code>Limit</code> is the maximum number of records that you can create in the specified hosted zone.</p>"
+      }
+    },
+    "HostedZoneLimitType": {
+      "base": null,
+      "refs": {
+        "GetHostedZoneLimitRequest$Type": "<p>The limit that you want to get. Valid values include the following:</p> <ul> <li> <p> <b>MAX_RRSETS_BY_ZONE</b>: The maximum number of records that you can create in the specified hosted zone.</p> </li> <li> <p> <b>MAX_VPCS_ASSOCIATED_BY_TYPE</b>: The maximum number of Amazon VPCs that you can associate with the specified private hosted zone.</p> </li> </ul>",
+        "HostedZoneLimit$Type": "<p>The limit that you requested. Valid values include the following:</p> <ul> <li> <p> <b>MAX_RRSETS_BY_ZONE</b>: The maximum number of records that you can create in the specified hosted zone.</p> </li> <li> <p> <b>MAX_VPCS_ASSOCIATED_BY_TYPE</b>: The maximum number of Amazon VPCs that you can associate with the specified private hosted zone.</p> </li> </ul>"
+      }
+    },
     "HostedZoneNotEmpty": {
       "base": "<p>The hosted zone contains resource records that are not SOA or NS records.</p>",
       "refs": {
@@ -914,6 +974,11 @@
     },
     "HostedZoneNotFound": {
       "base": "<p>The specified HostedZone can't be found.</p>",
+      "refs": {
+      }
+    },
+    "HostedZoneNotPrivate": {
+      "base": "<p>The specified hosted zone is a public hosted zone, not a private hosted zone.</p>",
       "refs": {
       }
     },
@@ -1016,8 +1081,16 @@
       "refs": {
       }
     },
+    "LimitValue": {
+      "base": null,
+      "refs": {
+        "AccountLimit$Value": "<p>The current value for the limit that is specified by <a>AccountLimit$Type</a>.</p>",
+        "HostedZoneLimit$Value": "<p>The current value for the limit that is specified by <code>Type</code>.</p>",
+        "ReusableDelegationSetLimit$Value": "<p>The current value for the <code>MAX_ZONES_BY_REUSABLE_DELEGATION_SET</code> limit.</p>"
+      }
+    },
     "LimitsExceeded": {
-      "base": "<p>The limits specified for a resource have been exceeded.</p>",
+      "base": "<p>This operation can't be completed either because the current account has reached the limit on reusable delegation sets that it can create or because you've reached the limit on the number of Amazon VPCs that you can associate with a private hosted zone. To get the current limit on the number of reusable delegation sets, see <a>GetAccountLimit</a>. To get the current limit on the number of Amazon VPCs that you can associate with a private hosted zone, see <a>GetHostedZoneLimit</a>. To request a higher limit, <a href=\"http://aws.amazon.com/route53-request\">create a case</a> with the AWS Support Center.</p>",
       "refs": {
       }
     },
@@ -1458,7 +1531,7 @@
     "ResourceId": {
       "base": null,
       "refs": {
-        "AliasTarget$HostedZoneId": "<p> <i>Alias resource records sets only</i>: The value used depends on where you want to route traffic:</p> <dl> <dt>CloudFront distribution</dt> <dd> <p>Specify <code>Z2FDTNDATAQYW2</code>.</p> <note> <p>Alias resource record sets for CloudFront can't be created in a private zone.</p> </note> </dd> <dt>Elastic Beanstalk environment</dt> <dd> <p>Specify the hosted zone ID for the region in which you created the environment. The environment must have a regionalized subdomain. For a list of regions and the corresponding hosted zone IDs, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticbeanstalk_region\">AWS Elastic Beanstalk</a> in the \"AWS Regions and Endpoints\" chapter of the <i>Amazon Web Services General Reference</i>.</p> </dd> <dt>ELB load balancer</dt> <dd> <p>Specify the value of the hosted zone ID for the load balancer. Use the following methods to get the hosted zone ID:</p> <ul> <li> <p> <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html#elb_region\">Elastic Load Balancing</a> table in the \"AWS Regions and Endpoints\" chapter of the <i>Amazon Web Services General Reference</i>: Use the value that corresponds with the region that you created your load balancer in. Note that there are separate columns for Application and Classic Load Balancers and for Network Load Balancers.</p> </li> <li> <p> <b>AWS Management Console</b>: Go to the Amazon EC2 page, choose <b>Load Balancers</b> in the navigation pane, select the load balancer, and get the value of the <b>Hosted zone</b> field on the <b>Description</b> tab.</p> </li> <li> <p> <b>Elastic Load Balancing API</b>: Use <code>DescribeLoadBalancers</code> to get the value of <code>CanonicalHostedZoneNameId</code>. For more information, see the applicable guide:</p> <ul> <li> <p>Classic Load Balancers: <a href=\"http://docs.aws.amazon.com/elasticloadbalancing/2012-06-01/APIReference/API_DescribeLoadBalancers.html\">DescribeLoadBalancers</a> </p> </li> <li> <p>Application and Network Load Balancers: <a href=\"http://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeLoadBalancers.html\">DescribeLoadBalancers</a> </p> </li> </ul> </li> <li> <p> <b>AWS CLI</b>: Use <code>describe-load-balancers</code> to get the value of <code>CanonicalHostedZoneNameID</code> (for Classic Load Balancers) or <code>CanonicalHostedZoneNameID</code> (for Application and Network Load Balancers). For more information, see the applicable guide:</p> <ul> <li> <p>Classic Load Balancers: <a href=\"http://docs.aws.amazon.com/cli/latest/reference/elb/describe-load-balancers.html\">describe-load-balancers</a> </p> </li> <li> <p>Application and Network Load Balancers: <a href=\"http://docs.aws.amazon.com/cli/latest/reference/elbv2/describe-load-balancers.html\">describe-load-balancers</a> </p> </li> </ul> </li> </ul> </dd> <dt>An Amazon S3 bucket configured as a static website</dt> <dd> <p>Specify the hosted zone ID for the region that you created the bucket in. For more information about valid values, see the <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region\">Amazon Simple Storage Service Website Endpoints</a> table in the \"AWS Regions and Endpoints\" chapter of the <i>Amazon Web Services General Reference</i>.</p> </dd> <dt>Another Amazon Route 53 resource record set in your hosted zone</dt> <dd> <p>Specify the hosted zone ID of your hosted zone. (An alias resource record set can't reference a resource record set in a different hosted zone.)</p> </dd> </dl>",
+        "AliasTarget$HostedZoneId": "<p> <i>Alias resource records sets only</i>: The value used depends on where you want to route traffic:</p> <dl> <dt>CloudFront distribution</dt> <dd> <p>Specify <code>Z2FDTNDATAQYW2</code>.</p> <note> <p>Alias resource record sets for CloudFront can't be created in a private zone.</p> </note> </dd> <dt>Elastic Beanstalk environment</dt> <dd> <p>Specify the hosted zone ID for the region in which you created the environment. The environment must have a regionalized subdomain. For a list of regions and the corresponding hosted zone IDs, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticbeanstalk_region\">AWS Elastic Beanstalk</a> in the \"AWS Regions and Endpoints\" chapter of the <i>Amazon Web Services General Reference</i>.</p> </dd> <dt>ELB load balancer</dt> <dd> <p>Specify the value of the hosted zone ID for the load balancer. Use the following methods to get the hosted zone ID:</p> <ul> <li> <p> <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html#elb_region\">Elastic Load Balancing</a> table in the \"AWS Regions and Endpoints\" chapter of the <i>Amazon Web Services General Reference</i>: Use the value that corresponds with the region that you created your load balancer in. Note that there are separate columns for Application and Classic Load Balancers and for Network Load Balancers.</p> </li> <li> <p> <b>AWS Management Console</b>: Go to the Amazon EC2 page, choose <b>Load Balancers</b> in the navigation pane, select the load balancer, and get the value of the <b>Hosted zone</b> field on the <b>Description</b> tab.</p> </li> <li> <p> <b>Elastic Load Balancing API</b>: Use <code>DescribeLoadBalancers</code> to get the applicable value. For more information, see the applicable guide:</p> <ul> <li> <p>Classic Load Balancers: Use <a href=\"http://docs.aws.amazon.com/elasticloadbalancing/2012-06-01/APIReference/API_DescribeLoadBalancers.html\">DescribeLoadBalancers</a> to get the value of <code>CanonicalHostedZoneNameId</code>.</p> </li> <li> <p>Application and Network Load Balancers: Use <a href=\"http://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeLoadBalancers.html\">DescribeLoadBalancers</a> to get the value of <code>CanonicalHostedZoneId</code>.</p> </li> </ul> </li> <li> <p> <b>AWS CLI</b>: Use <code>describe-load-balancers</code> to get the applicable value. For more information, see the applicable guide:</p> <ul> <li> <p>Classic Load Balancers: Use <a href=\"http://docs.aws.amazon.com/cli/latest/reference/elb/describe-load-balancers.html\">describe-load-balancers</a> to get the value of <code>CanonicalHostedZoneNameId</code>.</p> </li> <li> <p>Application and Network Load Balancers: Use <a href=\"http://docs.aws.amazon.com/cli/latest/reference/elbv2/describe-load-balancers.html\">describe-load-balancers</a> to get the value of <code>CanonicalHostedZoneId</code>.</p> </li> </ul> </li> </ul> </dd> <dt>An Amazon S3 bucket configured as a static website</dt> <dd> <p>Specify the hosted zone ID for the region that you created the bucket in. For more information about valid values, see the <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region\">Amazon Simple Storage Service Website Endpoints</a> table in the \"AWS Regions and Endpoints\" chapter of the <i>Amazon Web Services General Reference</i>.</p> </dd> <dt>Another Amazon Route 53 resource record set in your hosted zone</dt> <dd> <p>Specify the hosted zone ID of your hosted zone. (An alias resource record set can't reference a resource record set in a different hosted zone.)</p> </dd> </dl>",
         "AssociateVPCWithHostedZoneRequest$HostedZoneId": "<p>The ID of the private hosted zone that you want to associate an Amazon VPC with.</p> <p>Note that you can't associate a VPC with a hosted zone that doesn't have an existing VPC association.</p>",
         "ChangeInfo$Id": "<p>The ID of the request.</p>",
         "ChangeResourceRecordSetsRequest$HostedZoneId": "<p>The ID of the hosted zone that contains the resource record sets that you want to change.</p>",
@@ -1474,7 +1547,9 @@
         "DeleteVPCAssociationAuthorizationRequest$HostedZoneId": "<p>When removing authorization to associate a VPC that was created by one AWS account with a hosted zone that was created with a different AWS account, the ID of the hosted zone.</p>",
         "DisassociateVPCFromHostedZoneRequest$HostedZoneId": "<p>The ID of the private hosted zone that you want to disassociate a VPC from.</p>",
         "GetChangeRequest$Id": "<p>The ID of the change batch request. The value that you specify here is the value that <code>ChangeResourceRecordSets</code> returned in the <code>Id</code> element when you submitted the request.</p>",
+        "GetHostedZoneLimitRequest$HostedZoneId": "<p>The ID of the hosted zone that you want to get a limit for.</p>",
         "GetHostedZoneRequest$Id": "<p>The ID of the hosted zone that you want to get information about.</p>",
+        "GetReusableDelegationSetLimitRequest$DelegationSetId": "<p>The ID of the delegation set that you want to get the limit for.</p>",
         "GetReusableDelegationSetRequest$Id": "<p>The ID of the reusable delegation set that you want to get a list of name servers for.</p>",
         "HostedZone$Id": "<p>The ID that Amazon Route 53 assigned to the hosted zone when you created it.</p>",
         "ListHostedZonesByNameRequest$HostedZoneId": "<p>(Optional) For your first request to <code>ListHostedZonesByName</code>, do not include the <code>hostedzoneid</code> parameter.</p> <p>If you have more hosted zones than the value of <code>maxitems</code>, <code>ListHostedZonesByName</code> returns only the first <code>maxitems</code> hosted zones. To get the next group of <code>maxitems</code> hosted zones, submit another request to <code>ListHostedZonesByName</code> and include both <code>dnsname</code> and <code>hostedzoneid</code> parameters. For the value of <code>hostedzoneid</code>, specify the value of the <code>NextHostedZoneId</code> element from the previous response.</p>",
@@ -1583,6 +1658,19 @@
         "CreateTrafficPolicyInstanceResponse$Location": "<p>A unique URL that represents a new traffic policy instance.</p>",
         "CreateTrafficPolicyResponse$Location": "<p>A unique URL that represents a new traffic policy.</p>",
         "CreateTrafficPolicyVersionResponse$Location": "<p>A unique URL that represents a new traffic policy version.</p>"
+      }
+    },
+    "ReusableDelegationSetLimit": {
+      "base": "<p>A complex type that contains the type of limit that you specified in the request and the current value for that limit.</p>",
+      "refs": {
+        "GetReusableDelegationSetLimitResponse$Limit": "<p>The current setting for the limit on hosted zones that you can associate with the specified reusable delegation set.</p>"
+      }
+    },
+    "ReusableDelegationSetLimitType": {
+      "base": null,
+      "refs": {
+        "GetReusableDelegationSetLimitRequest$Type": "<p>Specify <code>MAX_ZONES_BY_REUSABLE_DELEGATION_SET</code> to get the maximum number of hosted zones that you can associate with the specified reusable delegation set.</p>",
+        "ReusableDelegationSetLimit$Type": "<p>The limit that you requested: <code>MAX_ZONES_BY_REUSABLE_DELEGATION_SET</code>, the maximum number of hosted zones that you can associate with the specified reusable delegation set.</p>"
       }
     },
     "SearchString": {
@@ -1716,22 +1804,22 @@
       }
     },
     "TooManyHealthChecks": {
-      "base": "<p>You have reached the maximum number of active health checks for an AWS account. The default limit is 100. To request a higher limit, <a href=\"http://aws.amazon.com/route53-request\">create a case</a> with the AWS Support Center.</p>",
+      "base": "<p>This health check can't be created because the current account has reached the limit on the number of active health checks.</p> <p>For information about default limits, see <a href=\"http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html\">Limits</a> in the <i>Amazon Route 53 Developer Guide</i>.</p> <p>For information about how to get the current limit for an account, see <a>GetAccountLimit</a>. To request a higher limit, <a href=\"http://aws.amazon.com/route53-request\">create a case</a> with the AWS Support Center.</p> <p>You have reached the maximum number of active health checks for an AWS account. To request a higher limit, <a href=\"http://aws.amazon.com/route53-request\">create a case</a> with the AWS Support Center.</p>",
       "refs": {
       }
     },
     "TooManyHostedZones": {
-      "base": "<p>This hosted zone can't be created because the hosted zone limit is exceeded. To request a limit increase, go to the Amazon Route 53 <a href=\"http://aws.amazon.com/route53-request/\">Contact Us</a> page.</p>",
+      "base": "<p>This operation can't be completed either because the current account has reached the limit on the number of hosted zones or because you've reached the limit on the number of hosted zones that can be associated with a reusable delegation set.</p> <p>For information about default limits, see <a href=\"http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html\">Limits</a> in the <i>Amazon Route 53 Developer Guide</i>.</p> <p>To get the current limit on hosted zones that can be created by an account, see <a>GetAccountLimit</a>.</p> <p>To get the current limit on hosted zones that can be associated with a reusable delegation set, see <a>GetReusableDelegationSetLimit</a>.</p> <p>To request a higher limit, <a href=\"http://aws.amazon.com/route53-request\">create a case</a> with the AWS Support Center.</p>",
       "refs": {
       }
     },
     "TooManyTrafficPolicies": {
-      "base": "<p>You've created the maximum number of traffic policies that can be created for the current AWS account. You can request an increase to the limit on the <a href=\"http://aws.amazon.com/route53-request/\">Contact Us</a> page.</p>",
+      "base": "<p>This traffic policy can't be created because the current account has reached the limit on the number of traffic policies.</p> <p>For information about default limits, see <a href=\"http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html\">Limits</a> in the <i>Amazon Route 53 Developer Guide</i>.</p> <p>To get the current limit for an account, see <a>GetAccountLimit</a>. </p> <p>To request a higher limit, <a href=\"http://aws.amazon.com/route53-request\">create a case</a> with the AWS Support Center.</p>",
       "refs": {
       }
     },
     "TooManyTrafficPolicyInstances": {
-      "base": "<p>You've created the maximum number of traffic policy instances that can be created for the current AWS account. You can request an increase to the limit on the <a href=\"http://aws.amazon.com/route53-request/\">Contact Us</a> page.</p>",
+      "base": "<p>This traffic policy instance can't be created because the current account has reached the limit on the number of traffic policy instances.</p> <p>For information about default limits, see <a href=\"http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html\">Limits</a> in the <i>Amazon Route 53 Developer Guide</i>.</p> <p>For information about how to get the current limit for an account, see <a>GetAccountLimit</a>.</p> <p>To request a higher limit, <a href=\"http://aws.amazon.com/route53-request\">create a case</a> with the AWS Support Center.</p>",
       "refs": {
       }
     },
@@ -1931,6 +2019,14 @@
     "UpdateTrafficPolicyInstanceResponse": {
       "base": "<p>A complex type that contains information about the resource record sets that Amazon Route 53 created based on a specified traffic policy.</p>",
       "refs": {
+      }
+    },
+    "UsageCount": {
+      "base": null,
+      "refs": {
+        "GetAccountLimitResponse$Count": "<p>The current number of entities that you have created of the specified type. For example, if you specified <code>MAX_HEALTH_CHECKS_BY_OWNER</code> for the value of <code>Type</code> in the request, the value of <code>Count</code> is the current number of health checks that you have created using the current account.</p>",
+        "GetHostedZoneLimitResponse$Count": "<p>The current number of entities that you have created of the specified type. For example, if you specified <code>MAX_RRSETS_BY_ZONE</code> for the value of <code>Type</code> in the request, the value of <code>Count</code> is the current number of records that you have created in the specified hosted zone.</p>",
+        "GetReusableDelegationSetLimitResponse$Count": "<p>The current number of hosted zones that you can associate with the specified reusable delegation set.</p>"
       }
     },
     "VPC": {

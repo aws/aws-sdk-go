@@ -418,7 +418,9 @@
       "type":"string",
       "enum":[
         "DynamoDBReadCapacityUtilization",
-        "DynamoDBWriteCapacityUtilization"
+        "DynamoDBWriteCapacityUtilization",
+        "RDSReaderAverageCPUUtilization",
+        "RDSReaderAverageDatabaseConnections"
       ]
     },
     "MetricUnit":{"type":"string"},
@@ -551,7 +553,8 @@
         "dynamodb:table:ReadCapacityUnits",
         "dynamodb:table:WriteCapacityUnits",
         "dynamodb:index:ReadCapacityUnits",
-        "dynamodb:index:WriteCapacityUnits"
+        "dynamodb:index:WriteCapacityUnits",
+        "rds:cluster:ReadReplicaCount"
       ]
     },
     "ScalableTarget":{
@@ -696,7 +699,8 @@
         "elasticmapreduce",
         "ec2",
         "appstream",
-        "dynamodb"
+        "dynamodb",
+        "rds"
       ]
     },
     "StepAdjustment":{
