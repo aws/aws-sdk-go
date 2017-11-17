@@ -1469,6 +1469,36 @@
         {"shape":"DomainNotFoundFault"}
       ]
     },
+    "RestoreDBInstanceFromS3":{
+      "name":"RestoreDBInstanceFromS3",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RestoreDBInstanceFromS3Message"},
+      "output":{
+        "shape":"RestoreDBInstanceFromS3Result",
+        "resultWrapper":"RestoreDBInstanceFromS3Result"
+      },
+      "errors":[
+        {"shape":"DBInstanceAlreadyExistsFault"},
+        {"shape":"InsufficientDBInstanceCapacityFault"},
+        {"shape":"DBParameterGroupNotFoundFault"},
+        {"shape":"DBSecurityGroupNotFoundFault"},
+        {"shape":"InstanceQuotaExceededFault"},
+        {"shape":"StorageQuotaExceededFault"},
+        {"shape":"DBSubnetGroupNotFoundFault"},
+        {"shape":"DBSubnetGroupDoesNotCoverEnoughAZs"},
+        {"shape":"InvalidSubnet"},
+        {"shape":"InvalidVPCNetworkStateFault"},
+        {"shape":"InvalidS3BucketFault"},
+        {"shape":"ProvisionedIopsNotAvailableInAZFault"},
+        {"shape":"OptionGroupNotFoundFault"},
+        {"shape":"StorageTypeNotSupportedFault"},
+        {"shape":"AuthorizationNotFoundFault"},
+        {"shape":"KMSKeyNotAccessibleFault"}
+      ]
+    },
     "RestoreDBInstanceToPointInTime":{
       "name":"RestoreDBInstanceToPointInTime",
       "http":{
@@ -4900,6 +4930,64 @@
       }
     },
     "RestoreDBInstanceFromDBSnapshotResult":{
+      "type":"structure",
+      "members":{
+        "DBInstance":{"shape":"DBInstance"}
+      }
+    },
+    "RestoreDBInstanceFromS3Message":{
+      "type":"structure",
+      "required":[
+        "DBInstanceIdentifier",
+        "DBInstanceClass",
+        "Engine",
+        "SourceEngine",
+        "SourceEngineVersion",
+        "S3BucketName",
+        "S3IngestionRoleArn"
+      ],
+      "members":{
+        "DBName":{"shape":"String"},
+        "DBInstanceIdentifier":{"shape":"String"},
+        "AllocatedStorage":{"shape":"IntegerOptional"},
+        "DBInstanceClass":{"shape":"String"},
+        "Engine":{"shape":"String"},
+        "MasterUsername":{"shape":"String"},
+        "MasterUserPassword":{"shape":"String"},
+        "DBSecurityGroups":{"shape":"DBSecurityGroupNameList"},
+        "VpcSecurityGroupIds":{"shape":"VpcSecurityGroupIdList"},
+        "AvailabilityZone":{"shape":"String"},
+        "DBSubnetGroupName":{"shape":"String"},
+        "PreferredMaintenanceWindow":{"shape":"String"},
+        "DBParameterGroupName":{"shape":"String"},
+        "BackupRetentionPeriod":{"shape":"IntegerOptional"},
+        "PreferredBackupWindow":{"shape":"String"},
+        "Port":{"shape":"IntegerOptional"},
+        "MultiAZ":{"shape":"BooleanOptional"},
+        "EngineVersion":{"shape":"String"},
+        "AutoMinorVersionUpgrade":{"shape":"BooleanOptional"},
+        "LicenseModel":{"shape":"String"},
+        "Iops":{"shape":"IntegerOptional"},
+        "OptionGroupName":{"shape":"String"},
+        "PubliclyAccessible":{"shape":"BooleanOptional"},
+        "Tags":{"shape":"TagList"},
+        "StorageType":{"shape":"String"},
+        "StorageEncrypted":{"shape":"BooleanOptional"},
+        "KmsKeyId":{"shape":"String"},
+        "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
+        "MonitoringInterval":{"shape":"IntegerOptional"},
+        "MonitoringRoleArn":{"shape":"String"},
+        "EnableIAMDatabaseAuthentication":{"shape":"BooleanOptional"},
+        "SourceEngine":{"shape":"String"},
+        "SourceEngineVersion":{"shape":"String"},
+        "S3BucketName":{"shape":"String"},
+        "S3Prefix":{"shape":"String"},
+        "S3IngestionRoleArn":{"shape":"String"},
+        "EnablePerformanceInsights":{"shape":"BooleanOptional"},
+        "PerformanceInsightsKMSKeyId":{"shape":"String"}
+      }
+    },
+    "RestoreDBInstanceFromS3Result":{
       "type":"structure",
       "members":{
         "DBInstance":{"shape":"DBInstance"}

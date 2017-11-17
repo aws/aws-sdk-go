@@ -465,6 +465,8 @@ func ExampleELBV2_DeleteLoadBalancer_shared00() {
 				fmt.Println(elbv2.ErrCodeLoadBalancerNotFoundException, aerr.Error())
 			case elbv2.ErrCodeOperationNotPermittedException:
 				fmt.Println(elbv2.ErrCodeOperationNotPermittedException, aerr.Error())
+			case elbv2.ErrCodeResourceInUseException:
+				fmt.Println(elbv2.ErrCodeResourceInUseException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
