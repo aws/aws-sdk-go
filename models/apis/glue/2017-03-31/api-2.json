@@ -664,7 +664,8 @@
       "errors":[
         {"shape":"InvalidInputException"},
         {"shape":"InternalServiceException"},
-        {"shape":"OperationTimeoutException"}
+        {"shape":"OperationTimeoutException"},
+        {"shape":"EntityNotFoundException"}
       ]
     },
     "GetPartition":{
@@ -1349,7 +1350,8 @@
     "Classifier":{
       "type":"structure",
       "members":{
-        "GrokClassifier":{"shape":"GrokClassifier"}
+        "GrokClassifier":{"shape":"GrokClassifier"},
+        "XMLClassifier":{"shape":"XMLClassifier"}
       }
     },
     "ClassifierList":{
@@ -1539,7 +1541,7 @@
       "type":"structure",
       "members":{
         "Name":{"shape":"NameString"},
-        "Role":{"shape":"RoleArn"},
+        "Role":{"shape":"Role"},
         "Targets":{"shape":"CrawlerTargets"},
         "DatabaseName":{"shape":"DatabaseName"},
         "Description":{"shape":"DescriptionString"},
@@ -1552,9 +1554,11 @@
         "CreationTime":{"shape":"Timestamp"},
         "LastUpdated":{"shape":"Timestamp"},
         "LastCrawl":{"shape":"LastCrawlInfo"},
-        "Version":{"shape":"VersionId"}
+        "Version":{"shape":"VersionId"},
+        "Configuration":{"shape":"CrawlerConfiguration"}
       }
     },
+    "CrawlerConfiguration":{"type":"string"},
     "CrawlerList":{
       "type":"list",
       "member":{"shape":"Crawler"}
@@ -1621,7 +1625,8 @@
     "CreateClassifierRequest":{
       "type":"structure",
       "members":{
-        "GrokClassifier":{"shape":"CreateGrokClassifierRequest"}
+        "GrokClassifier":{"shape":"CreateGrokClassifierRequest"},
+        "XMLClassifier":{"shape":"CreateXMLClassifierRequest"}
       }
     },
     "CreateClassifierResponse":{
@@ -1652,14 +1657,15 @@
       ],
       "members":{
         "Name":{"shape":"NameString"},
-        "Role":{"shape":"RoleArn"},
+        "Role":{"shape":"Role"},
         "DatabaseName":{"shape":"DatabaseName"},
         "Description":{"shape":"DescriptionString"},
         "Targets":{"shape":"CrawlerTargets"},
         "Schedule":{"shape":"CronExpression"},
         "Classifiers":{"shape":"ClassifierNameList"},
         "TablePrefix":{"shape":"TablePrefix"},
-        "SchemaChangePolicy":{"shape":"SchemaChangePolicy"}
+        "SchemaChangePolicy":{"shape":"SchemaChangePolicy"},
+        "Configuration":{"shape":"CrawlerConfiguration"}
       }
     },
     "CreateCrawlerResponse":{
@@ -1843,6 +1849,18 @@
     "CreateUserDefinedFunctionResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "CreateXMLClassifierRequest":{
+      "type":"structure",
+      "required":[
+        "Classification",
+        "Name"
+      ],
+      "members":{
+        "Classification":{"shape":"Classification"},
+        "Name":{"shape":"NameString"},
+        "RowTag":{"shape":"RowTag"}
       }
     },
     "CronExpression":{"type":"string"},
@@ -3047,11 +3065,13 @@
       "max":1000,
       "min":0
     },
+    "Role":{"type":"string"},
     "RoleArn":{
       "type":"string",
       "pattern":"arn:aws:iam::\\d{12}:role/.*"
     },
     "RoleString":{"type":"string"},
+    "RowTag":{"type":"string"},
     "S3Target":{
       "type":"structure",
       "members":{
@@ -3396,7 +3416,8 @@
     "UpdateClassifierRequest":{
       "type":"structure",
       "members":{
-        "GrokClassifier":{"shape":"UpdateGrokClassifierRequest"}
+        "GrokClassifier":{"shape":"UpdateGrokClassifierRequest"},
+        "XMLClassifier":{"shape":"UpdateXMLClassifierRequest"}
       }
     },
     "UpdateClassifierResponse":{
@@ -3426,14 +3447,15 @@
       "required":["Name"],
       "members":{
         "Name":{"shape":"NameString"},
-        "Role":{"shape":"RoleArn"},
+        "Role":{"shape":"Role"},
         "DatabaseName":{"shape":"DatabaseName"},
         "Description":{"shape":"DescriptionStringRemovable"},
         "Targets":{"shape":"CrawlerTargets"},
         "Schedule":{"shape":"CronExpression"},
         "Classifiers":{"shape":"ClassifierNameList"},
         "TablePrefix":{"shape":"TablePrefix"},
-        "SchemaChangePolicy":{"shape":"SchemaChangePolicy"}
+        "SchemaChangePolicy":{"shape":"SchemaChangePolicy"},
+        "Configuration":{"shape":"CrawlerConfiguration"}
       }
     },
     "UpdateCrawlerResponse":{
@@ -3587,6 +3609,15 @@
       "members":{
       }
     },
+    "UpdateXMLClassifierRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"NameString"},
+        "Classification":{"shape":"Classification"},
+        "RowTag":{"shape":"RowTag"}
+      }
+    },
     "UriString":{"type":"string"},
     "UserDefinedFunction":{
       "type":"structure",
@@ -3645,6 +3676,21 @@
     "ViewTextString":{
       "type":"string",
       "max":2048
+    },
+    "XMLClassifier":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Classification"
+      ],
+      "members":{
+        "Name":{"shape":"NameString"},
+        "Classification":{"shape":"Classification"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastUpdated":{"shape":"Timestamp"},
+        "Version":{"shape":"VersionId"},
+        "RowTag":{"shape":"RowTag"}
+      }
     }
   }
 }

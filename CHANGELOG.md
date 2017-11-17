@@ -1,3 +1,19 @@
+Release v1.12.29 (2017-11-16)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API and documentation
+* `service/ec2`: Updates service API
+  * You are now able to create and launch EC2 x1e smaller instance sizes
+* `service/glue`: Updates service API and documentation
+  * API update for AWS Glue. New crawler configuration attribute enables customers to specify crawler behavior. New XML classifier enables classification of XML data.
+* `service/opsworkscm`: Updates service API, documentation, and waiters
+  * Documentation updates for OpsWorks-cm: a new feature, OpsWorks for Puppet Enterprise, that allows users to create and manage OpsWorks-hosted Puppet Enterprise servers.
+* `service/organizations`: Updates service API, documentation, and paginators
+  * This release adds APIs that you can use to enable and disable integration with AWS services designed to work with AWS Organizations. This integration allows the AWS service to perform operations on your behalf on all of the accounts in your organization. Although you can use these APIs yourself, we recommend that you instead use the commands provided in the other AWS service to enable integration with AWS Organizations.
+* `service/route53`: Updates service API and documentation
+  * You can use Route 53's GetAccountLimit/GetHostedZoneLimit/GetReusableDelegationSetLimit APIs to view your current limits (including custom set limits) on Route 53 resources such as hosted zones and health checks. These APIs also return the number of each resource you're currently using to enable comparison against your current limits.
+
 Release v1.12.28 (2017-11-15)
 ===
 
