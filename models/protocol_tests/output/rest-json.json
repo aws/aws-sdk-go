@@ -614,16 +614,30 @@
       "OutputShape": {
         "type": "structure",
         "members": {
-          "Attr": {
+          "HeaderField": {
             "shape": "StringType",
-              "jsonvalue": true,
-              "location": "header",
-              "locationName": "X-Amz-Foo"
+            "jsonvalue": true,
+            "location": "header",
+            "locationName": "X-Amz-Foo"
+          },
+          "BodyField":{
+            "shape": "StringType",
+            "jsonvalue": true
+          },
+          "BodyListField": {
+            "shape": "ListType"
           }
         }
       },
       "StringType": {
         "type": "string"
+      },
+      "ListType": {
+        "type": "list",
+        "member": {
+          "shape": "StringType",
+          "jsonvalue": true
+        }
       }
     },
     "cases": [
@@ -635,11 +649,43 @@
           "name": "OperationName"
         },
         "result": {
-          "Attr": {"Foo":"Bar"}
+          "HeaderField": {"Foo":"Bar"},
+          "BodyField": {"Foo":"Bar"}
         },
         "response": {
           "status_code": 200,
           "headers": {"X-Amz-Foo": "eyJGb28iOiJCYXIifQ=="},
+          "body": "{\"BodyField\":\"{\\\"Foo\\\":\\\"Bar\\\"}\"}"
+        }
+      },
+      {
+        "given": {
+          "output": {
+            "shape": "OutputShape"
+          },
+          "name": "OperationName"
+        },
+        "result": {
+          "BodyListField": [{"Foo":"Bar"}]
+        },
+        "response": {
+          "status_code": 200,
+          "headers": {},
+          "body": "{\"BodyListField\":[\"{\\\"Foo\\\":\\\"Bar\\\"}\"]}"
+        }
+      },
+      {
+        "given": {
+          "output": {
+            "shape": "OutputShape"
+          },
+          "name": "OperationName"
+        },
+        "result": {
+        },
+        "response": {
+          "status_code": 200,
+          "headers": {},
           "body": ""
         }
       }
