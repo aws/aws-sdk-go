@@ -6,6 +6,7 @@
     "jsonVersion":"1.1",
     "protocol":"json",
     "serviceFullName":"Application Auto Scaling",
+    "serviceId":"Application Auto Scaling",
     "signatureVersion":"v4",
     "signingName":"application-autoscaling",
     "targetPrefix":"AnyScaleFrontendService",
@@ -419,8 +420,12 @@
       "enum":[
         "DynamoDBReadCapacityUtilization",
         "DynamoDBWriteCapacityUtilization",
+        "ALBRequestCountPerTarget",
         "RDSReaderAverageCPUUtilization",
-        "RDSReaderAverageDatabaseConnections"
+        "RDSReaderAverageDatabaseConnections",
+        "EC2SpotFleetRequestAverageCPUUtilization",
+        "EC2SpotFleetRequestAverageNetworkIn",
+        "EC2SpotFleetRequestAverageNetworkOut"
       ]
     },
     "MetricUnit":{"type":"string"},

@@ -1,3 +1,21 @@
+Release v1.12.30 (2017-11-17)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API and documentation
+* `service/dms`: Updates service API, documentation, and paginators
+  * Support for migration task assessment. Support for data validation after the migration.
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/rds`: Updates service API and documentation
+  * Amazon RDS now supports importing MySQL databases by using backup files from Amazon S3.
+* `service/s3`: Updates service API
+  * Added ORC to the supported S3 Inventory formats.
+
+### SDK Bugs
+* `private/protocol/restjson`: Define JSONValue marshaling for body and querystring ([#1640](https://github.com/aws/aws-sdk-go/pull/1640))
+  * Adds support for APIs which use JSONValue for body and querystring targets.
+  * Fixes [#1636](https://github.com/aws/aws-sdk-go/issues/1636)
 Release v1.12.29 (2017-11-16)
 ===
 

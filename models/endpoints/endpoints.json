@@ -1948,6 +1948,11 @@
           "us-gov-west-1" : { }
         }
       },
+      "dms" : {
+        "endpoints" : {
+          "us-gov-west-1" : { }
+        }
+      },
       "dynamodb" : {
         "endpoints" : {
           "us-gov-west-1" : { },

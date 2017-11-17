@@ -2533,12 +2533,24 @@ func (s *MetricDimension) SetValue(v string) *MetricDimension {
 type PredefinedMetricSpecification struct {
 	_ struct{} `type:"structure"`
 
-	// The metric type.
+	// The metric type. The ALBRequestCountPerTarget metric type applies only to
+	// Spot fleet requests.
 	//
 	// PredefinedMetricType is a required field
 	PredefinedMetricType *string `type:"string" required:"true" enum:"MetricType"`
 
-	// Reserved for future use.
+	// Identifies the resource associated with the metric type. You can't specify
+	// a resource label unless the metric type is ALBRequestCountPerTarget and there
+	// is a target group attached to the Spot fleet request.
+	//
+	// The format is app/<load-balancer-name>/<load-balancer-id>/targetgroup/<target-group-name>/<target-group-id>,
+	// where:
+	//
+	//    * app/<load-balancer-name>/<load-balancer-id> is the final portion of
+	//    the load balancer ARN
+	//
+	//    * targetgroup/<target-group-name>/<target-group-id> is the final portion
+	//    of the target group ARN.
 	ResourceLabel *string `min:"1" type:"string"`
 }
 
@@ -4264,11 +4276,23 @@ const (
 	// MetricTypeDynamoDbwriteCapacityUtilization is a MetricType enum value
 	MetricTypeDynamoDbwriteCapacityUtilization = "DynamoDBWriteCapacityUtilization"
 
+	// MetricTypeAlbrequestCountPerTarget is a MetricType enum value
+	MetricTypeAlbrequestCountPerTarget = "ALBRequestCountPerTarget"
+
 	// MetricTypeRdsreaderAverageCpuutilization is a MetricType enum value
 	MetricTypeRdsreaderAverageCpuutilization = "RDSReaderAverageCPUUtilization"
 
 	// MetricTypeRdsreaderAverageDatabaseConnections is a MetricType enum value
 	MetricTypeRdsreaderAverageDatabaseConnections = "RDSReaderAverageDatabaseConnections"
+
+	// MetricTypeEc2spotFleetRequestAverageCpuutilization is a MetricType enum value
+	MetricTypeEc2spotFleetRequestAverageCpuutilization = "EC2SpotFleetRequestAverageCPUUtilization"
+
+	// MetricTypeEc2spotFleetRequestAverageNetworkIn is a MetricType enum value
+	MetricTypeEc2spotFleetRequestAverageNetworkIn = "EC2SpotFleetRequestAverageNetworkIn"
+
+	// MetricTypeEc2spotFleetRequestAverageNetworkOut is a MetricType enum value
+	MetricTypeEc2spotFleetRequestAverageNetworkOut = "EC2SpotFleetRequestAverageNetworkOut"
 )
 
 const (

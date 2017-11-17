@@ -228,7 +228,7 @@
     "MetricType": {
       "base": null,
       "refs": {
-        "PredefinedMetricSpecification$PredefinedMetricType": "<p>The metric type.</p>"
+        "PredefinedMetricSpecification$PredefinedMetricType": "<p>The metric type. The <code>ALBRequestCountPerTarget</code> metric type applies only to Spot fleet requests.</p>"
       }
     },
     "MetricUnit": {
@@ -356,7 +356,7 @@
     "ResourceLabel": {
       "base": null,
       "refs": {
-        "PredefinedMetricSpecification$ResourceLabel": "<p>Reserved for future use.</p>"
+        "PredefinedMetricSpecification$ResourceLabel": "<p>Identifies the resource associated with the metric type. You can't specify a resource label unless the metric type is <code>ALBRequestCountPerTarget</code> and there is a target group attached to the Spot fleet request.</p> <p>The format is app/&lt;load-balancer-name&gt;/&lt;load-balancer-id&gt;/targetgroup/&lt;target-group-name&gt;/&lt;target-group-id&gt;, where:</p> <ul> <li> <p>app/&lt;load-balancer-name&gt;/&lt;load-balancer-id&gt; is the final portion of the load balancer ARN</p> </li> <li> <p>targetgroup/&lt;target-group-name&gt;/&lt;target-group-id&gt; is the final portion of the target group ARN.</p> </li> </ul>"
       }
     },
     "ScalableDimension": {
