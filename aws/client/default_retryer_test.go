@@ -164,3 +164,26 @@ func TestGetRetryDelay(t *testing.T) {
 		}
 	}
 }
+
+func TestRetryDelay(t *testing.T) {
+	r := request.Request{}
+	for i := 0; i < 100; i++ {
+		rTemp := r
+		rTemp.HTTPResponse = &http.Response{StatusCode: 500, Header: http.Header{"Retry-After": []string{""}}}
+		rTemp.RetryCount = i
+		a, _ := getRetryDelay(&rTemp)
+		if a > 5*time.Minute {
+			t.Errorf("retry delay should never be greater than five minutes, received %d", a)
+		}
+	}
+
+	for i := 0; i < 100; i++ {
+		rTemp := r
+		rTemp.RetryCount = i
+		rTemp.HTTPResponse = &http.Response{StatusCode: 503, Header: http.Header{"Retry-After": []string{""}}}
+		a, _ := getRetryDelay(&rTemp)
+		if a > 5*time.Minute {
+			t.Errorf("retry delay should never be greater than five minutes, received %d", a)
+		}
+	}
+}
