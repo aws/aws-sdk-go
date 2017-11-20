@@ -1,3 +1,23 @@
+Release v1.12.31 (2017-11-20)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service documentation
+  * Documentation updates for Apigateway
+* `service/codecommit`: Updates service API, documentation, and paginators
+  * AWS CodeCommit now supports pull requests. You can use pull requests to collaboratively review code changes for minor changes or fixes, major feature additions, or new versions of your released software.
+* `service/firehose`: Updates service API and documentation
+  * This release includes a new Kinesis Firehose feature that supports Splunk as Kinesis Firehose delivery destination. You can now use Kinesis Firehose to ingest real-time data to Splunk in a serverless, reliable, and salable manner. This release also includes a new feature that allows you to configure Lambda buffer size in Kinesis Firehose data transformation feature. You can now customize the data buffer size before invoking Lambda function in Kinesis Firehose for data transformation. This feature allows you to flexibly trade-off processing and delivery latency with cost and efficiency based on your specific use cases and requirements.
+* `service/iis`: Adds new service
+  * The AWS Cost Explorer API gives customers programmatic access to AWS cost and usage information, allowing them to perform adhoc queries and build interactive cost management applications that leverage this dataset.
+* `service/kinesis`: Updates service API and documentation
+  * Customers can now obtain the important characteristics of their stream with DescribeStreamSummary. The response will not include the shard list for the stream but will have the number of open shards, and all the other fields included in the DescribeStream response.
+* `service/workdocs`: Updates service API and documentation
+  * DescribeGroups API and miscellaneous enhancements
+
+### SDK Bugs
+* `aws/client`: Retry delays for throttled exception were not limited to 5 mintues [#1654](https://github.com/aws/aws-sdk-go/pull/1654)
+  * Fixes [#1653](https://github.com/aws/aws-sdk-go/issues/1653)
 Release v1.12.30 (2017-11-17)
 ===
 

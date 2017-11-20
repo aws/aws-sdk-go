@@ -85,8 +85,8 @@ func (c *WorkDocs) AbortDocumentVersionUploadRequest(input *AbortDocumentVersion
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -178,8 +178,8 @@ func (c *WorkDocs) ActivateUserRequest(input *ActivateUserInput) (req *request.R
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -269,8 +269,8 @@ func (c *WorkDocs) AddResourcePermissionsRequest(input *AddResourcePermissionsIn
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -365,8 +365,8 @@ func (c *WorkDocs) CreateCommentRequest(input *CreateCommentInput) (req *request
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -470,8 +470,8 @@ func (c *WorkDocs) CreateCustomMetadataRequest(input *CreateCustomMetadataInput)
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -572,8 +572,8 @@ func (c *WorkDocs) CreateFolderRequest(input *CreateFolderInput) (req *request.R
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -665,8 +665,8 @@ func (c *WorkDocs) CreateLabelsRequest(input *CreateLabelsInput) (req *request.R
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -852,8 +852,8 @@ func (c *WorkDocs) CreateUserRequest(input *CreateUserInput) (req *request.Reque
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -948,8 +948,8 @@ func (c *WorkDocs) DeactivateUserRequest(input *DeactivateUserInput) (req *reque
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -1046,8 +1046,8 @@ func (c *WorkDocs) DeleteCommentRequest(input *DeleteCommentInput) (req *request
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -1146,8 +1146,8 @@ func (c *WorkDocs) DeleteCustomMetadataRequest(input *DeleteCustomMetadataInput)
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -1247,8 +1247,8 @@ func (c *WorkDocs) DeleteDocumentRequest(input *DeleteDocumentInput) (req *reque
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -1348,8 +1348,8 @@ func (c *WorkDocs) DeleteFolderRequest(input *DeleteFolderInput) (req *request.R
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -1443,8 +1443,8 @@ func (c *WorkDocs) DeleteFolderContentsRequest(input *DeleteFolderContentsInput)
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -1536,8 +1536,8 @@ func (c *WorkDocs) DeleteLabelsRequest(input *DeleteLabelsInput) (req *request.R
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -1721,8 +1721,8 @@ func (c *WorkDocs) DeleteUserRequest(input *DeleteUserInput) (req *request.Reque
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -1810,12 +1810,12 @@ func (c *WorkDocs) DescribeActivitiesRequest(input *DescribeActivitiesInput) (re
 //   The caller does not have access to perform the action on the resource.
 //
 //   * ErrCodeInvalidArgumentException "InvalidArgumentException"
-//   The pagination marker and/or limit fields are not valid.
+//   The pagination marker or limit fields are not valid.
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -1910,8 +1910,8 @@ func (c *WorkDocs) DescribeCommentsRequest(input *DescribeCommentsInput) (req *r
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -2010,12 +2010,12 @@ func (c *WorkDocs) DescribeDocumentVersionsRequest(input *DescribeDocumentVersio
 //   The caller does not have access to perform the action on the resource.
 //
 //   * ErrCodeInvalidArgumentException "InvalidArgumentException"
-//   The pagination marker and/or limit fields are not valid.
+//   The pagination marker or limit fields are not valid.
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -2168,12 +2168,12 @@ func (c *WorkDocs) DescribeFolderContentsRequest(input *DescribeFolderContentsIn
 //   The caller does not have access to perform the action on the resource.
 //
 //   * ErrCodeInvalidArgumentException "InvalidArgumentException"
-//   The pagination marker and/or limit fields are not valid.
+//   The pagination marker or limit fields are not valid.
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -2251,6 +2251,96 @@ func (c *WorkDocs) DescribeFolderContentsPagesWithContext(ctx aws.Context, input
 		cont = fn(p.Page().(*DescribeFolderContentsOutput), !p.HasNextPage())
 	}
 	return p.Err()
+}
+
+const opDescribeGroups = "DescribeGroups"
+
+// DescribeGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeGroups operation. The "output" return
+// value will be populated with the request's response once the request complets
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeGroups for more information on using the DescribeGroups
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeGroupsRequest method.
+//    req, resp := client.DescribeGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeGroups
+func (c *WorkDocs) DescribeGroupsRequest(input *DescribeGroupsInput) (req *request.Request, output *DescribeGroupsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeGroups,
+		HTTPMethod: "GET",
+		HTTPPath:   "/api/v1/groups",
+	}
+
+	if input == nil {
+		input = &DescribeGroupsInput{}
+	}
+
+	output = &DescribeGroupsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeGroups API operation for Amazon WorkDocs.
+//
+// Describes the groups specified by query.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkDocs's
+// API operation DescribeGroups for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeUnauthorizedOperationException "UnauthorizedOperationException"
+//   The operation is not permitted.
+//
+//   * ErrCodeUnauthorizedResourceAccessException "UnauthorizedResourceAccessException"
+//   The caller does not have access to perform the action on the resource.
+//
+//   * ErrCodeFailedDependencyException "FailedDependencyException"
+//   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   One or more of the dependencies is unavailable.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeGroups
+func (c *WorkDocs) DescribeGroups(input *DescribeGroupsInput) (*DescribeGroupsOutput, error) {
+	req, out := c.DescribeGroupsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeGroupsWithContext is the same as DescribeGroups with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeGroups for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkDocs) DescribeGroupsWithContext(ctx aws.Context, input *DescribeGroupsInput, opts ...request.Option) (*DescribeGroupsOutput, error) {
+	req, out := c.DescribeGroupsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeNotificationSubscriptions = "DescribeNotificationSubscriptions"
@@ -2400,8 +2490,8 @@ func (c *WorkDocs) DescribeResourcePermissionsRequest(input *DescribeResourcePer
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -2472,10 +2562,10 @@ func (c *WorkDocs) DescribeRootFoldersRequest(input *DescribeRootFoldersInput) (
 
 // DescribeRootFolders API operation for Amazon WorkDocs.
 //
-// Describes the current user's special folders; the RootFolder and the RecyleBin.
-// RootFolder is the root of user's files and folders and RecyleBin is the root
-// of recycled items. This is not a valid action for SigV4 (administrative API)
-// clients.
+// Describes the current user's special folders; the RootFolder and the RecycleBin.
+// RootFolder is the root of user's files and folders and RecycleBin is the
+// root of recycled items. This is not a valid action for SigV4 (administrative
+// API) clients.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2492,12 +2582,12 @@ func (c *WorkDocs) DescribeRootFoldersRequest(input *DescribeRootFoldersInput) (
 //   The caller does not have access to perform the action on the resource.
 //
 //   * ErrCodeInvalidArgumentException "InvalidArgumentException"
-//   The pagination marker and/or limit fields are not valid.
+//   The pagination marker or limit fields are not valid.
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -2597,14 +2687,14 @@ func (c *WorkDocs) DescribeUsersRequest(input *DescribeUsersInput) (req *request
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
 //   * ErrCodeInvalidArgumentException "InvalidArgumentException"
-//   The pagination marker and/or limit fields are not valid.
+//   The pagination marker or limit fields are not valid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeUsers
 func (c *WorkDocs) DescribeUsers(input *DescribeUsersInput) (*DescribeUsersOutput, error) {
@@ -2744,8 +2834,8 @@ func (c *WorkDocs) GetCurrentUserRequest(input *GetCurrentUserInput) (req *reque
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -2836,15 +2926,18 @@ func (c *WorkDocs) GetDocumentRequest(input *GetDocumentInput) (req *request.Req
 //   The caller does not have access to perform the action on the resource.
 //
 //   * ErrCodeInvalidArgumentException "InvalidArgumentException"
-//   The pagination marker and/or limit fields are not valid.
+//   The pagination marker or limit fields are not valid.
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
+//
+//   * ErrCodeInvalidPasswordException "InvalidPasswordException"
+//   The password is invalid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocument
 func (c *WorkDocs) GetDocument(input *GetDocumentInput) (*GetDocumentOutput, error) {
@@ -2939,8 +3032,8 @@ func (c *WorkDocs) GetDocumentPathRequest(input *GetDocumentPathInput) (req *req
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -3032,14 +3125,17 @@ func (c *WorkDocs) GetDocumentVersionRequest(input *GetDocumentVersionInput) (re
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
 //   * ErrCodeProhibitedStateException "ProhibitedStateException"
 //   The specified document version is not in the INITIALIZED state.
+//
+//   * ErrCodeInvalidPasswordException "InvalidPasswordException"
+//   The password is invalid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocumentVersion
 func (c *WorkDocs) GetDocumentVersion(input *GetDocumentVersionInput) (*GetDocumentVersionOutput, error) {
@@ -3127,12 +3223,12 @@ func (c *WorkDocs) GetFolderRequest(input *GetFolderInput) (req *request.Request
 //   The caller does not have access to perform the action on the resource.
 //
 //   * ErrCodeInvalidArgumentException "InvalidArgumentException"
-//   The pagination marker and/or limit fields are not valid.
+//   The pagination marker or limit fields are not valid.
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -3233,8 +3329,8 @@ func (c *WorkDocs) GetFolderPathRequest(input *GetFolderPathInput) (req *request
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -3345,8 +3441,8 @@ func (c *WorkDocs) InitiateDocumentVersionUploadRequest(input *InitiateDocumentV
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -3444,8 +3540,8 @@ func (c *WorkDocs) RemoveAllResourcePermissionsRequest(input *RemoveAllResourceP
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -3536,8 +3632,8 @@ func (c *WorkDocs) RemoveResourcePermissionRequest(input *RemoveResourcePermissi
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -3644,8 +3740,8 @@ func (c *WorkDocs) UpdateDocumentRequest(input *UpdateDocumentInput) (req *reque
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -3752,8 +3848,8 @@ func (c *WorkDocs) UpdateDocumentVersionRequest(input *UpdateDocumentVersionInpu
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -3860,8 +3956,8 @@ func (c *WorkDocs) UpdateFolderRequest(input *UpdateFolderInput) (req *request.R
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
@@ -3957,14 +4053,17 @@ func (c *WorkDocs) UpdateUserRequest(input *UpdateUserInput) (req *request.Reque
 //
 //   * ErrCodeFailedDependencyException "FailedDependencyException"
 //   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
-//   under the control of the organization is failing, such as a connected active
-//   directory.
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
 //   * ErrCodeDeactivatingLastSystemUserException "DeactivatingLastSystemUserException"
 //   The last user in the organization is being deactivated.
+//
+//   * ErrCodeInvalidArgumentException "InvalidArgumentException"
+//   The pagination marker or limit fields are not valid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateUser
 func (c *WorkDocs) UpdateUser(input *UpdateUserInput) (*UpdateUserOutput, error) {
@@ -3992,8 +4091,8 @@ func (c *WorkDocs) UpdateUserWithContext(ctx aws.Context, input *UpdateUserInput
 type AbortDocumentVersionUploadInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The ID of the document.
@@ -4079,8 +4178,8 @@ func (s AbortDocumentVersionUploadOutput) GoString() string {
 type ActivateUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The ID of the user.
@@ -4250,9 +4349,12 @@ func (s *Activity) SetType(v string) *Activity {
 type AddResourcePermissionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
+
+	// The notification options.
+	NotificationOptions *NotificationOptions `type:"structure"`
 
 	// The users, groups, or organization being granted permission.
 	//
@@ -4310,6 +4412,12 @@ func (s *AddResourcePermissionsInput) Validate() error {
 // SetAuthenticationToken sets the AuthenticationToken field's value.
 func (s *AddResourcePermissionsInput) SetAuthenticationToken(v string) *AddResourcePermissionsInput {
 	s.AuthenticationToken = &v
+	return s
+}
+
+// SetNotificationOptions sets the NotificationOptions field's value.
+func (s *AddResourcePermissionsInput) SetNotificationOptions(v *NotificationOptions) *AddResourcePermissionsInput {
+	s.NotificationOptions = v
 	return s
 }
 
@@ -4459,11 +4567,13 @@ type CommentMetadata struct {
 	// The ID of the comment.
 	CommentId *string `min:"1" type:"string"`
 
+	// The status of the comment.
 	CommentStatus *string `type:"string" enum:"CommentStatusType"`
 
 	// The user who made the comment.
 	Contributor *User `type:"structure"`
 
+	// The timestamp that the comment was created.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The ID of the user being replied to.
@@ -4514,8 +4624,8 @@ func (s *CommentMetadata) SetRecipientId(v string) *CommentMetadata {
 type CreateCommentInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The ID of the document.
@@ -4672,8 +4782,8 @@ func (s *CreateCommentOutput) SetComment(v *Comment) *CreateCommentOutput {
 type CreateCustomMetadataInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// Custom metadata in the form of name-value pairs.
@@ -4772,8 +4882,8 @@ func (s CreateCustomMetadataOutput) GoString() string {
 type CreateFolderInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The name of the new folder.
@@ -4863,8 +4973,8 @@ func (s *CreateFolderOutput) SetMetadata(v *FolderMetadata) *CreateFolderOutput 
 type CreateLabelsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// List of labels to add to the resource.
@@ -4959,7 +5069,7 @@ type CreateNotificationSubscriptionInput struct {
 	OrganizationId *string `location:"uri" locationName:"OrganizationId" min:"1" type:"string" required:"true"`
 
 	// The protocol to use. The supported value is https, which delivers JSON-encoded
-	// messasges using HTTPS POST.
+	// messages using HTTPS POST.
 	//
 	// Protocol is a required field
 	Protocol *string `type:"string" required:"true" enum:"SubscriptionProtocolType"`
@@ -5060,8 +5170,8 @@ func (s *CreateNotificationSubscriptionOutput) SetSubscription(v *Subscription) 
 type CreateUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The email address of the user.
@@ -5235,8 +5345,8 @@ func (s *CreateUserOutput) SetUser(v *User) *CreateUserOutput {
 type DeactivateUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The ID of the user.
@@ -5305,8 +5415,8 @@ func (s DeactivateUserOutput) GoString() string {
 type DeleteCommentInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The ID of the comment.
@@ -5409,8 +5519,8 @@ func (s DeleteCommentOutput) GoString() string {
 type DeleteCustomMetadataInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// Flag to indicate removal of all custom metadata properties from the specified
@@ -5511,8 +5621,8 @@ func (s DeleteCustomMetadataOutput) GoString() string {
 type DeleteDocumentInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The ID of the document.
@@ -5581,8 +5691,8 @@ func (s DeleteDocumentOutput) GoString() string {
 type DeleteFolderContentsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The ID of the folder.
@@ -5651,8 +5761,8 @@ func (s DeleteFolderContentsOutput) GoString() string {
 type DeleteFolderInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The ID of the folder.
@@ -5721,8 +5831,8 @@ func (s DeleteFolderOutput) GoString() string {
 type DeleteLabelsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// Flag to request removal of all labels from the specified resource.
@@ -5883,8 +5993,8 @@ func (s DeleteNotificationSubscriptionOutput) GoString() string {
 type DeleteUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The ID of the user.
@@ -5953,26 +6063,25 @@ func (s DeleteUserOutput) GoString() string {
 type DescribeActivitiesInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
-	// The timestamp that determines the end time of the activities; the response
+	// The timestamp that determines the end time of the activities. The response
 	// includes the activities performed before the specified timestamp.
 	EndTime *time.Time `location:"querystring" locationName:"endTime" type:"timestamp" timestampFormat:"unix"`
 
 	// The maximum number of items to return.
 	Limit *int64 `location:"querystring" locationName:"limit" min:"1" type:"integer"`
 
-	// The marker for the next set of results. (You received this marker from a
-	// previous call.)
+	// The marker for the next set of results.
 	Marker *string `location:"querystring" locationName:"marker" min:"1" type:"string"`
 
 	// The ID of the organization. This is a mandatory parameter when using administrative
 	// API (SigV4) requests.
 	OrganizationId *string `location:"querystring" locationName:"organizationId" min:"1" type:"string"`
 
-	// The timestamp that determines the starting time of the activities; the response
+	// The timestamp that determines the starting time of the activities. The response
 	// includes the activities performed after the specified timestamp.
 	StartTime *time.Time `location:"querystring" locationName:"startTime" type:"timestamp" timestampFormat:"unix"`
 
@@ -6096,8 +6205,8 @@ func (s *DescribeActivitiesOutput) SetUserActivities(v []*Activity) *DescribeAct
 type DescribeCommentsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The ID of the document.
@@ -6227,8 +6336,8 @@ func (s *DescribeCommentsOutput) SetMarker(v string) *DescribeCommentsOutput {
 type DescribeDocumentVersionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The ID of the document.
@@ -6367,8 +6476,8 @@ func (s *DescribeDocumentVersionsOutput) SetMarker(v string) *DescribeDocumentVe
 type DescribeFolderContentsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The ID of the folder.
@@ -6525,6 +6634,132 @@ func (s *DescribeFolderContentsOutput) SetMarker(v string) *DescribeFolderConten
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeGroupsRequest
+type DescribeGroupsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
+	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
+
+	// The maximum number of items to return with this call.
+	Limit *int64 `location:"querystring" locationName:"limit" min:"1" type:"integer"`
+
+	// The marker for the next set of results. (You received this marker from a
+	// previous call.)
+	Marker *string `location:"querystring" locationName:"marker" min:"1" type:"string"`
+
+	// The ID of the organization.
+	OrganizationId *string `location:"querystring" locationName:"organizationId" min:"1" type:"string"`
+
+	// A query to describe groups by group name.
+	//
+	// SearchQuery is a required field
+	SearchQuery *string `location:"querystring" locationName:"searchQuery" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeGroupsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeGroupsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeGroupsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeGroupsInput"}
+	if s.AuthenticationToken != nil && len(*s.AuthenticationToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AuthenticationToken", 1))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.Marker != nil && len(*s.Marker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Marker", 1))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 1))
+	}
+	if s.SearchQuery == nil {
+		invalidParams.Add(request.NewErrParamRequired("SearchQuery"))
+	}
+	if s.SearchQuery != nil && len(*s.SearchQuery) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SearchQuery", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthenticationToken sets the AuthenticationToken field's value.
+func (s *DescribeGroupsInput) SetAuthenticationToken(v string) *DescribeGroupsInput {
+	s.AuthenticationToken = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *DescribeGroupsInput) SetLimit(v int64) *DescribeGroupsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeGroupsInput) SetMarker(v string) *DescribeGroupsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *DescribeGroupsInput) SetOrganizationId(v string) *DescribeGroupsInput {
+	s.OrganizationId = &v
+	return s
+}
+
+// SetSearchQuery sets the SearchQuery field's value.
+func (s *DescribeGroupsInput) SetSearchQuery(v string) *DescribeGroupsInput {
+	s.SearchQuery = &v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeGroupsResponse
+type DescribeGroupsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of groups.
+	Groups []*GroupMetadata `type:"list"`
+
+	// The marker to use when requesting the next set of results. If there are no
+	// additional results, the string is empty.
+	Marker *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeGroupsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeGroupsOutput) GoString() string {
+	return s.String()
+}
+
+// SetGroups sets the Groups field's value.
+func (s *DescribeGroupsOutput) SetGroups(v []*GroupMetadata) *DescribeGroupsOutput {
+	s.Groups = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeGroupsOutput) SetMarker(v string) *DescribeGroupsOutput {
+	s.Marker = &v
+	return s
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeNotificationSubscriptionsRequest
 type DescribeNotificationSubscriptionsInput struct {
 	_ struct{} `type:"structure"`
@@ -6630,8 +6865,8 @@ func (s *DescribeNotificationSubscriptionsOutput) SetSubscriptions(v []*Subscrip
 type DescribeResourcePermissionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The maximum number of items to return with this call.
@@ -6640,6 +6875,9 @@ type DescribeResourcePermissionsInput struct {
 	// The marker for the next set of results. (You received this marker from a
 	// previous call)
 	Marker *string `location:"querystring" locationName:"marker" min:"1" type:"string"`
+
+	// The ID of the principal to filter permissions by.
+	PrincipalId *string `location:"querystring" locationName:"principalId" min:"1" type:"string"`
 
 	// The ID of the resource.
 	//
@@ -6669,6 +6907,9 @@ func (s *DescribeResourcePermissionsInput) Validate() error {
 	if s.Marker != nil && len(*s.Marker) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Marker", 1))
 	}
+	if s.PrincipalId != nil && len(*s.PrincipalId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PrincipalId", 1))
+	}
 	if s.ResourceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
 	}
@@ -6697,6 +6938,12 @@ func (s *DescribeResourcePermissionsInput) SetLimit(v int64) *DescribeResourcePe
 // SetMarker sets the Marker field's value.
 func (s *DescribeResourcePermissionsInput) SetMarker(v string) *DescribeResourcePermissionsInput {
 	s.Marker = &v
+	return s
+}
+
+// SetPrincipalId sets the PrincipalId field's value.
+func (s *DescribeResourcePermissionsInput) SetPrincipalId(v string) *DescribeResourcePermissionsInput {
+	s.PrincipalId = &v
 	return s
 }
 
@@ -6744,8 +6991,8 @@ func (s *DescribeResourcePermissionsOutput) SetPrincipals(v []*Principal) *Descr
 type DescribeRootFoldersInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	//
 	// AuthenticationToken is a required field
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" required:"true"`
@@ -6845,8 +7092,8 @@ func (s *DescribeRootFoldersOutput) SetMarker(v string) *DescribeRootFoldersOutp
 type DescribeUsersInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// A comma-separated list of values. Specify "STORAGE_METADATA" to include the
@@ -6989,7 +7236,7 @@ type DescribeUsersOutput struct {
 	Marker *string `min:"1" type:"string"`
 
 	// The total number of users included in the results.
-	TotalNumberOfUsers *int64 `type:"long"`
+	TotalNumberOfUsers *int64 `deprecated:"true" type:"long"`
 
 	// The users.
 	Users []*User `type:"list"`
@@ -7116,16 +7363,16 @@ func (s *DocumentMetadata) SetResourceState(v string) *DocumentMetadata {
 type DocumentVersionMetadata struct {
 	_ struct{} `type:"structure"`
 
-	// The time stamp when the content of the document was originally created.
+	// The timestamp when the content of the document was originally created.
 	ContentCreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	// The time stamp when the content of the document was modified.
+	// The timestamp when the content of the document was modified.
 	ContentModifiedTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The content type of the document.
 	ContentType *string `min:"1" type:"string"`
 
-	// The time stamp when the document was first uploaded.
+	// The timestamp when the document was first uploaded.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The ID of the creator.
@@ -7134,7 +7381,7 @@ type DocumentVersionMetadata struct {
 	// The ID of the version.
 	Id *string `min:"1" type:"string"`
 
-	// The time stamp when the document was last uploaded.
+	// The timestamp when the document was last uploaded.
 	ModifiedTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The name of the version.
@@ -7363,7 +7610,8 @@ func (s *FolderMetadata) SetSize(v int64) *FolderMetadata {
 type GetCurrentUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	//
 	// AuthenticationToken is a required field
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" required:"true"`
@@ -7429,8 +7677,8 @@ func (s *GetCurrentUserOutput) SetUser(v *User) *GetCurrentUserOutput {
 type GetDocumentInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The ID of the document.
@@ -7526,8 +7774,8 @@ func (s *GetDocumentOutput) SetMetadata(v *DocumentMetadata) *GetDocumentOutput 
 type GetDocumentPathInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The ID of the document.
@@ -7642,8 +7890,8 @@ func (s *GetDocumentPathOutput) SetPath(v *ResourcePath) *GetDocumentPathOutput 
 type GetDocumentVersionInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The ID of the document.
@@ -7769,8 +8017,8 @@ func (s *GetDocumentVersionOutput) SetMetadata(v *DocumentVersionMetadata) *GetD
 type GetFolderInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The ID of the folder.
@@ -7866,8 +8114,8 @@ func (s *GetFolderOutput) SetMetadata(v *FolderMetadata) *GetFolderOutput {
 type GetFolderPathInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// A comma-separated list of values. Specify "NAME" to include the names of
@@ -8016,14 +8264,14 @@ func (s *GroupMetadata) SetName(v string) *GroupMetadata {
 type InitiateDocumentVersionUploadInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
-	// The time stamp when the content of the document was originally created.
+	// The timestamp when the content of the document was originally created.
 	ContentCreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	// The time stamp when the content of the document was modified.
+	// The timestamp when the content of the document was modified.
 	ContentModifiedTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The content type of the document.
@@ -8163,7 +8411,41 @@ func (s *InitiateDocumentVersionUploadOutput) SetUploadMetadata(v *UploadMetadat
 	return s
 }
 
-// Describes the users and/or user groups.
+// Set of options which defines notification preferences of given action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/NotificationOptions
+type NotificationOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Text value to be included in the email body.
+	EmailMessage *string `type:"string"`
+
+	// Boolean value to indicate an email notification should be sent to the receipients.
+	SendEmail *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s NotificationOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NotificationOptions) GoString() string {
+	return s.String()
+}
+
+// SetEmailMessage sets the EmailMessage field's value.
+func (s *NotificationOptions) SetEmailMessage(v string) *NotificationOptions {
+	s.EmailMessage = &v
+	return s
+}
+
+// SetSendEmail sets the SendEmail field's value.
+func (s *NotificationOptions) SetSendEmail(v bool) *NotificationOptions {
+	s.SendEmail = &v
+	return s
+}
+
+// Describes the users or user groups.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/Participants
 type Participants struct {
 	_ struct{} `type:"structure"`
@@ -8278,8 +8560,8 @@ func (s *Principal) SetType(v string) *Principal {
 type RemoveAllResourcePermissionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The ID of the resource.
@@ -8348,8 +8630,8 @@ func (s RemoveAllResourcePermissionsOutput) GoString() string {
 type RemoveResourcePermissionInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The principal ID of the resource.
@@ -8451,7 +8733,7 @@ type ResourceMetadata struct {
 	// The name of the resource.
 	Name *string `min:"1" type:"string"`
 
-	// The original name of the resource prior to a rename operation.
+	// The original name of the resource before a rename operation.
 	OriginalName *string `min:"1" type:"string"`
 
 	// The owner of the resource.
@@ -8792,8 +9074,8 @@ func (s *Subscription) SetSubscriptionId(v string) *Subscription {
 type UpdateDocumentInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The ID of the document.
@@ -8807,8 +9089,7 @@ type UpdateDocumentInput struct {
 	// The ID of the parent folder.
 	ParentFolderId *string `min:"1" type:"string"`
 
-	// The resource state of the document. Note that only ACTIVE and RECYCLED are
-	// supported.
+	// The resource state of the document. Only ACTIVE and RECYCLED are supported.
 	ResourceState *string `type:"string" enum:"ResourceStateType"`
 }
 
@@ -8896,8 +9177,8 @@ func (s UpdateDocumentOutput) GoString() string {
 type UpdateDocumentVersionInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The ID of the document.
@@ -8992,8 +9273,8 @@ func (s UpdateDocumentVersionOutput) GoString() string {
 type UpdateFolderInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The ID of the folder.
@@ -9007,8 +9288,8 @@ type UpdateFolderInput struct {
 	// The ID of the parent folder.
 	ParentFolderId *string `min:"1" type:"string"`
 
-	// The resource state of the folder. Note that only ACTIVE and RECYCLED are
-	// accepted values from the API.
+	// The resource state of the folder. Only ACTIVE and RECYCLED are accepted values
+	// from the API.
 	ResourceState *string `type:"string" enum:"ResourceStateType"`
 }
 
@@ -9096,12 +9377,15 @@ func (s UpdateFolderOutput) GoString() string {
 type UpdateUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. This field should not be set when using
-	// administrative API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Do not set this field when using administrative
+	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The given name of the user.
 	GivenName *string `min:"1" type:"string"`
+
+	// Boolean value to determine whether the user is granted Poweruser privileges.
+	GrantPoweruserPrivileges *string `type:"string" enum:"BooleanEnumType"`
 
 	// The locale of the user.
 	Locale *string `type:"string" enum:"LocaleType"`
@@ -9171,6 +9455,12 @@ func (s *UpdateUserInput) SetAuthenticationToken(v string) *UpdateUserInput {
 // SetGivenName sets the GivenName field's value.
 func (s *UpdateUserInput) SetGivenName(v string) *UpdateUserInput {
 	s.GivenName = &v
+	return s
+}
+
+// SetGrantPoweruserPrivileges sets the GrantPoweruserPrivileges field's value.
+func (s *UpdateUserInput) SetGrantPoweruserPrivileges(v string) *UpdateUserInput {
+	s.GrantPoweruserPrivileges = &v
 	return s
 }
 
@@ -9436,7 +9726,7 @@ type UserMetadata struct {
 	// The surname of the user.
 	Surname *string `min:"1" type:"string"`
 
-	// The username of the user.
+	// The name of the user.
 	Username *string `min:"1" type:"string"`
 }
 
@@ -9488,7 +9778,7 @@ type UserStorageMetadata struct {
 	// The storage for a user.
 	StorageRule *StorageRuleType `type:"structure"`
 
-	// The amount of storage utilized, in bytes.
+	// The amount of storage used, in bytes.
 	StorageUtilizedInBytes *int64 `type:"long"`
 }
 
@@ -9607,6 +9897,14 @@ const (
 
 	// ActivityTypeFolderMoved is a ActivityType enum value
 	ActivityTypeFolderMoved = "FOLDER_MOVED"
+)
+
+const (
+	// BooleanEnumTypeTrue is a BooleanEnumType enum value
+	BooleanEnumTypeTrue = "TRUE"
+
+	// BooleanEnumTypeFalse is a BooleanEnumType enum value
+	BooleanEnumTypeFalse = "FALSE"
 )
 
 const (
@@ -9851,4 +10149,13 @@ const (
 
 	// UserTypeAdmin is a UserType enum value
 	UserTypeAdmin = "ADMIN"
+
+	// UserTypePoweruser is a UserType enum value
+	UserTypePoweruser = "POWERUSER"
+
+	// UserTypeMinimaluser is a UserType enum value
+	UserTypeMinimaluser = "MINIMALUSER"
+
+	// UserTypeWorkspacesuser is a UserType enum value
+	UserTypeWorkspacesuser = "WORKSPACESUSER"
 )
