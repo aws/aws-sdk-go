@@ -16911,7 +16911,7 @@ type GetSdkInput struct {
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// The language for the generated SDK. Currently java, javascript, android,
-	// objectivec and swift (for iOS) are supported.
+	// objectivec (for iOS), swift (for iOS), and ruby are supported.
 	//
 	// SdkType is a required field
 	SdkType *string `location:"uri" locationName:"sdk_type" type:"string" required:"true"`

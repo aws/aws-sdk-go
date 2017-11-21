@@ -1592,7 +1592,7 @@
         "GetRestApisRequest$position": "<p>The current pagination position in the paged result set.</p>",
         "GetSdkRequest$restApiId": "<p>The string identifier of the associated <a>RestApi</a>.</p>",
         "GetSdkRequest$stageName": "<p>The name of the <a>Stage</a> that the SDK will use.</p>",
-        "GetSdkRequest$sdkType": "<p>The language for the generated SDK. Currently <code>java</code>, <code>javascript</code>, <code>android</code>, <code>objectivec</code> and <code>swift</code> (for iOS) are supported.</p>",
+        "GetSdkRequest$sdkType": "<p>The language for the generated SDK. Currently <code>java</code>, <code>javascript</code>, <code>android</code>, <code>objectivec</code> (for iOS), <code>swift</code> (for iOS), and <code>ruby</code> are supported.</p>",
         "GetSdkTypeRequest$id": "<p>The identifier of the queried <a>SdkType</a> instance.</p>",
         "GetSdkTypesRequest$position": "<p>The current pagination position in the paged result set.</p>",
         "GetStageRequest$restApiId": "<p>The string identifier of the associated <a>RestApi</a>.</p>",
