@@ -6,6 +6,7 @@
     "jsonVersion":"1.1",
     "protocol":"json",
     "serviceFullName":"Amazon Rekognition",
+    "serviceId":"Rekognition",
     "signatureVersion":"v4",
     "targetPrefix":"RekognitionService",
     "uid":"rekognition-2016-06-27"
@@ -127,6 +128,25 @@
       },
       "input":{"shape":"DetectModerationLabelsRequest"},
       "output":{"shape":"DetectModerationLabelsResponse"},
+      "errors":[
+        {"shape":"InvalidS3ObjectException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ImageTooLargeException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerError"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ProvisionedThroughputExceededException"},
+        {"shape":"InvalidImageFormatException"}
+      ]
+    },
+    "DetectText":{
+      "name":"DetectText",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DetectTextRequest"},
+      "output":{"shape":"DetectTextResponse"},
       "errors":[
         {"shape":"InvalidS3ObjectException"},
         {"shape":"InvalidParameterException"},
@@ -404,7 +424,8 @@
       "type":"structure",
       "members":{
         "StatusCode":{"shape":"UInteger"},
-        "CollectionArn":{"shape":"String"}
+        "CollectionArn":{"shape":"String"},
+        "FaceModelVersion":{"shape":"String"}
       }
     },
     "Degree":{
@@ -485,6 +506,19 @@
       "type":"structure",
       "members":{
         "ModerationLabels":{"shape":"ModerationLabels"}
+      }
+    },
+    "DetectTextRequest":{
+      "type":"structure",
+      "required":["Image"],
+      "members":{
+        "Image":{"shape":"Image"}
+      }
+    },
+    "DetectTextResponse":{
+      "type":"structure",
+      "members":{
+        "TextDetections":{"shape":"TextDetectionList"}
       }
     },
     "Emotion":{
@@ -590,6 +624,10 @@
       "type":"list",
       "member":{"shape":"FaceMatch"}
     },
+    "FaceModelVersionList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "FaceRecord":{
       "type":"structure",
       "members":{
@@ -615,6 +653,13 @@
         "Male",
         "Female"
       ]
+    },
+    "Geometry":{
+      "type":"structure",
+      "members":{
+        "BoundingBox":{"shape":"BoundingBox"},
+        "Polygon":{"shape":"Polygon"}
+      }
     },
     "GetCelebrityInfoRequest":{
       "type":"structure",
@@ -676,7 +721,8 @@
       "type":"structure",
       "members":{
         "FaceRecords":{"shape":"FaceRecordList"},
-        "OrientationCorrection":{"shape":"OrientationCorrection"}
+        "OrientationCorrection":{"shape":"OrientationCorrection"},
+        "FaceModelVersion":{"shape":"String"}
       }
     },
     "InternalServerError":{
@@ -774,7 +820,8 @@
       "type":"structure",
       "members":{
         "CollectionIds":{"shape":"CollectionIdList"},
-        "NextToken":{"shape":"PaginationToken"}
+        "NextToken":{"shape":"PaginationToken"},
+        "FaceModelVersions":{"shape":"FaceModelVersionList"}
       }
     },
     "ListFacesRequest":{
@@ -790,7 +837,8 @@
       "type":"structure",
       "members":{
         "Faces":{"shape":"FaceList"},
-        "NextToken":{"shape":"String"}
+        "NextToken":{"shape":"String"},
+        "FaceModelVersion":{"shape":"String"}
       }
     },
     "MaxFaces":{
@@ -846,6 +894,17 @@
       "type":"float",
       "max":100,
       "min":0
+    },
+    "Point":{
+      "type":"structure",
+      "members":{
+        "X":{"shape":"Float"},
+        "Y":{"shape":"Float"}
+      }
+    },
+    "Polygon":{
+      "type":"list",
+      "member":{"shape":"Point"}
     },
     "Pose":{
       "type":"structure",
@@ -934,7 +993,8 @@
       "members":{
         "SearchedFaceBoundingBox":{"shape":"BoundingBox"},
         "SearchedFaceConfidence":{"shape":"Percent"},
-        "FaceMatches":{"shape":"FaceMatchList"}
+        "FaceMatches":{"shape":"FaceMatchList"},
+        "FaceModelVersion":{"shape":"String"}
       }
     },
     "SearchFacesRequest":{
@@ -954,7 +1014,8 @@
       "type":"structure",
       "members":{
         "SearchedFaceId":{"shape":"FaceId"},
-        "FaceMatches":{"shape":"FaceMatchList"}
+        "FaceMatches":{"shape":"FaceMatchList"},
+        "FaceModelVersion":{"shape":"String"}
       }
     },
     "Smile":{
@@ -971,6 +1032,28 @@
         "Value":{"shape":"Boolean"},
         "Confidence":{"shape":"Percent"}
       }
+    },
+    "TextDetection":{
+      "type":"structure",
+      "members":{
+        "DetectedText":{"shape":"String"},
+        "Type":{"shape":"TextTypes"},
+        "Id":{"shape":"UInteger"},
+        "ParentId":{"shape":"UInteger"},
+        "Confidence":{"shape":"Percent"},
+        "Geometry":{"shape":"Geometry"}
+      }
+    },
+    "TextDetectionList":{
+      "type":"list",
+      "member":{"shape":"TextDetection"}
+    },
+    "TextTypes":{
+      "type":"string",
+      "enum":[
+        "LINE",
+        "WORD"
+      ]
     },
     "ThrottlingException":{
       "type":"structure",

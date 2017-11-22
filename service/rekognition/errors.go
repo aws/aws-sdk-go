@@ -64,7 +64,7 @@ const (
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	// Collection specified in the request is not found.
+	// The collection specified in the request cannot be found.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
 	// ErrCodeThrottlingException for service response error code

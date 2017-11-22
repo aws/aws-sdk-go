@@ -50,11 +50,16 @@ func (c *Rekognition) CompareFacesRequest(input *CompareFacesInput) (req *reques
 
 // CompareFaces API operation for Amazon Rekognition.
 //
-// Compares a face in the source input image with each face detected in the
-// target input image.
+// Compares a face in the source input image with each of the 100 largest faces
+// detected in the target input image.
 //
 // If the source image contains multiple faces, the service detects the largest
 // face and compares it with each face detected in the target image.
+//
+// You pass the input and target images either as base64-encoded image bytes
+// or as a references to images in an Amazon S3 bucket. If you use the Amazon
+// CLI to call Amazon Rekognition operations, passing image bytes is not supported.
+// The image must be either a PNG or JPEG formatted file.
 //
 // In response, the operation returns an array of face matches ordered by similarity
 // score in descending order. For each face match, the response provides a bounding
@@ -76,6 +81,9 @@ func (c *Rekognition) CompareFacesRequest(input *CompareFacesInput) (req *reques
 // If the image doesn't contain Exif metadata, CompareFaces returns orientation
 // information for the source and target images. Use these values to display
 // the images with the correct image orientation.
+//
+// If no faces are detected in the source or target images, CompareFaces returns
+// an InvalidParameterException error.
 //
 // This is a stateless API operation. That is, data returned by this operation
 // doesn't persist.
@@ -324,7 +332,7 @@ func (c *Rekognition) DeleteCollectionRequest(input *DeleteCollectionInput) (req
 //   this limit, contact Amazon Rekognition.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   Collection specified in the request is not found.
+//   The collection specified in the request cannot be found.
 //
 func (c *Rekognition) DeleteCollection(input *DeleteCollectionInput) (*DeleteCollectionOutput, error) {
 	req, out := c.DeleteCollectionRequest(input)
@@ -422,7 +430,7 @@ func (c *Rekognition) DeleteFacesRequest(input *DeleteFacesInput) (req *request.
 //   this limit, contact Amazon Rekognition.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   Collection specified in the request is not found.
+//   The collection specified in the request cannot be found.
 //
 func (c *Rekognition) DeleteFaces(input *DeleteFacesInput) (*DeleteFacesOutput, error) {
 	req, out := c.DeleteFacesRequest(input)
@@ -487,16 +495,22 @@ func (c *Rekognition) DetectFacesRequest(input *DetectFacesInput) (req *request.
 
 // DetectFaces API operation for Amazon Rekognition.
 //
-// Detects faces within an image (JPEG or PNG) that is provided as input.
+// Detects faces within an image that is provided as input.
 //
-// For each face detected, the operation returns face details including a bounding
-// box of the face, a confidence value (that the bounding box contains a face),
-// and a fixed set of attributes such as facial landmarks (for example, coordinates
-// of eye and mouth), gender, presence of beard, sunglasses, etc.
+// DetectFaces detects the 100 largest faces in the image. For each face detected,
+// the operation returns face details including a bounding box of the face,
+// a confidence value (that the bounding box contains a face), and a fixed set
+// of attributes such as facial landmarks (for example, coordinates of eye and
+// mouth), gender, presence of beard, sunglasses, etc.
 //
 // The face-detection algorithm is most effective on frontal faces. For non-frontal
 // or obscured faces, the algorithm may not detect the faces or might detect
 // faces with lower confidence.
+//
+// You pass the input image either as base64-encoded image bytes or as a reference
+// to an image in an Amazon S3 bucket. If you use the Amazon CLI to call Amazon
+// Rekognition operations, passing image bytes is not supported. The image must
+// be either a PNG or JPEG formatted file.
 //
 // This is a stateless API operation. That is, the operation does not persist
 // any data.
@@ -610,6 +624,11 @@ func (c *Rekognition) DetectLabelsRequest(input *DetectLabelsInput) (req *reques
 // wedding, graduation, and birthday party; and concepts like landscape, evening,
 // and nature. For an example, see get-started-exercise-detect-labels.
 //
+// You pass the input image as base64-encoded image bytes or as a reference
+// to an image in an Amazon S3 bucket. If you use the Amazon CLI to call Amazon
+// Rekognition operations, passing image bytes is not supported. The image must
+// be either a PNG or JPEG formatted file.
+//
 // For each object, scene, and concept the API returns one or more labels. Each
 // label provides the object name, and the level of confidence that the image
 // contains the object. For example, suppose the input image has a lighthouse,
@@ -636,7 +655,6 @@ func (c *Rekognition) DetectLabelsRequest(input *DetectLabelsInput) (req *reques
 // In this example, the detection algorithm more precisely identifies the flower
 // as a tulip.
 //
-// You can provide the input image as an S3 object or as base64-encoded bytes.
 // In response, the API returns an array of labels. In addition, the response
 // also includes the orientation correction. Optionally, you can specify MinConfidence
 // to control the confidence threshold for the labels returned. The default
@@ -760,6 +778,11 @@ func (c *Rekognition) DetectModerationLabelsRequest(input *DetectModerationLabel
 // which types of content are appropriate. For information about moderation
 // labels, see image-moderation.
 //
+// You pass the input image either as base64-encoded image bytes or as a reference
+// to an image in an Amazon S3 bucket. If you use the Amazon CLI to call Amazon
+// Rekognition operations, passing image bytes is not supported. The image must
+// be either a PNG or JPEG formatted file.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -812,6 +835,137 @@ func (c *Rekognition) DetectModerationLabels(input *DetectModerationLabelsInput)
 // for more information on using Contexts.
 func (c *Rekognition) DetectModerationLabelsWithContext(ctx aws.Context, input *DetectModerationLabelsInput, opts ...request.Option) (*DetectModerationLabelsOutput, error) {
 	req, out := c.DetectModerationLabelsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDetectText = "DetectText"
+
+// DetectTextRequest generates a "aws/request.Request" representing the
+// client's request for the DetectText operation. The "output" return
+// value will be populated with the request's response once the request complets
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DetectText for more information on using the DetectText
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DetectTextRequest method.
+//    req, resp := client.DetectTextRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Rekognition) DetectTextRequest(input *DetectTextInput) (req *request.Request, output *DetectTextOutput) {
+	op := &request.Operation{
+		Name:       opDetectText,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DetectTextInput{}
+	}
+
+	output = &DetectTextOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DetectText API operation for Amazon Rekognition.
+//
+// Detects text in the input image and converts it into machine-readable text.
+//
+// Pass the input image as base64-encoded image bytes or as a reference to an
+// image in an Amazon S3 bucket. If you use the AWS CLI to call Amazon Rekognition
+// operations, you must pass it as a reference to an image in an Amazon S3 bucket.
+// For the AWS CLI, passing image bytes is not supported. The image must be
+// either a .png or .jpeg formatted file.
+//
+// The DetectText operation returns text in an array of elements, TextDetections.
+// Each TextDetection element provides information about a single word or line
+// of text that was detected in the image.
+//
+// A word is one or more ISO basic latin script characters that are not separated
+// by spaces. DetectText can detect up to 50 words in an image.
+//
+// A line is a string of equally spaced words. A line isn't necessarily a complete
+// sentence. For example, a driver's license number is detected as a line. A
+// line ends when there is no aligned text after it. Also, a line ends when
+// there is a large gap between words, relative to the length of the words.
+// This means, depending on the gap between words, Amazon Rekognition may detect
+// multiple lines in text aligned in the same direction. Periods don't represent
+// the end of a line. If a sentence spans multiple lines, the DetectText operation
+// returns multiple lines.
+//
+// To determine whether a TextDetection element is a line of text or a word,
+// use the TextDetection object Type field.
+//
+// To be detected, text must be within +/- 30 degrees orientation of the horizontal
+// axis.
+//
+// For more information, see text-detection.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation DetectText for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidS3ObjectException "InvalidS3ObjectException"
+//   Amazon Rekognition is unable to access the S3 object specified in the request.
+//
+//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   Input parameter violated a constraint. Validate your parameter before calling
+//   the API operation again.
+//
+//   * ErrCodeImageTooLargeException "ImageTooLargeException"
+//   The input image size exceeds the allowed limit. For more information, see
+//   limits.
+//
+//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   You are not authorized to perform the action.
+//
+//   * ErrCodeInternalServerError "InternalServerError"
+//   Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   * ErrCodeThrottlingException "ThrottlingException"
+//   Amazon Rekognition is temporarily unable to process the request. Try your
+//   call again.
+//
+//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   The number of requests exceeded your throughput limit. If you want to increase
+//   this limit, contact Amazon Rekognition.
+//
+//   * ErrCodeInvalidImageFormatException "InvalidImageFormatException"
+//   The provided image format is not supported.
+//
+func (c *Rekognition) DetectText(input *DetectTextInput) (*DetectTextOutput, error) {
+	req, out := c.DetectTextRequest(input)
+	return out, req.Send()
+}
+
+// DetectTextWithContext is the same as DetectText with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DetectText for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) DetectTextWithContext(ctx aws.Context, input *DetectTextInput, opts ...request.Option) (*DetectTextOutput, error) {
+	req, out := c.DetectTextRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -894,7 +1048,7 @@ func (c *Rekognition) GetCelebrityInfoRequest(input *GetCelebrityInfoInput) (req
 //   this limit, contact Amazon Rekognition.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   Collection specified in the request is not found.
+//   The collection specified in the request cannot be found.
 //
 func (c *Rekognition) GetCelebrityInfo(input *GetCelebrityInfoInput) (*GetCelebrityInfoOutput, error) {
 	req, out := c.GetCelebrityInfoRequest(input)
@@ -967,7 +1121,13 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 // it in the back-end database. Amazon Rekognition uses feature vectors when
 // performing face match and search operations using the and operations.
 //
-// If you provide the optional externalImageID for the input image you provided,
+// If you are using version 1.0 of the face detection model, IndexFaces indexes
+// the 15 largest faces in the input image. Later versions of the face detection
+// model index the 100 largest faces in the input image. To determine which
+// version of the model you are using, check the the value of FaceModelVersion
+// in the response from IndexFaces. For more information, see face-detection-model.
+//
+// If you provide the optional ExternalImageID for the input image you provided,
 // Amazon Rekognition associates this ID with all faces that it detects. When
 // you call the operation, the response returns the external ID. You can use
 // this external image ID to create a client-side index to associate the faces
@@ -983,6 +1143,11 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 // and mount) and other facial attributes such gender. If you provide the same
 // image, specify the same collection, and use the same external ID in the IndexFaces
 // operation, Amazon Rekognition doesn't save duplicate face metadata.
+//
+// The input image is passed either as base64-encoded image bytes or as a reference
+// to an image in an Amazon S3 bucket. If you use the Amazon CLI to call Amazon
+// Rekognition operations, passing image bytes is not supported. The image must
+// be either a PNG or JPEG formatted file.
 //
 // For an example, see example2.
 //
@@ -1023,7 +1188,7 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 //   this limit, contact Amazon Rekognition.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   Collection specified in the request is not found.
+//   The collection specified in the request cannot be found.
 //
 //   * ErrCodeInvalidImageFormatException "InvalidImageFormatException"
 //   The provided image format is not supported.
@@ -1136,7 +1301,7 @@ func (c *Rekognition) ListCollectionsRequest(input *ListCollectionsInput) (req *
 //   Pagination token in the request is not valid.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   Collection specified in the request is not found.
+//   The collection specified in the request cannot be found.
 //
 func (c *Rekognition) ListCollections(input *ListCollectionsInput) (*ListCollectionsOutput, error) {
 	req, out := c.ListCollectionsRequest(input)
@@ -1294,7 +1459,7 @@ func (c *Rekognition) ListFacesRequest(input *ListFacesInput) (req *request.Requ
 //   Pagination token in the request is not valid.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   Collection specified in the request is not found.
+//   The collection specified in the request cannot be found.
 //
 func (c *Rekognition) ListFaces(input *ListFacesInput) (*ListFacesOutput, error) {
 	req, out := c.ListFacesRequest(input)
@@ -1409,20 +1574,18 @@ func (c *Rekognition) RecognizeCelebritiesRequest(input *RecognizeCelebritiesInp
 
 // RecognizeCelebrities API operation for Amazon Rekognition.
 //
-// Returns an array of celebrities recognized in the input image. The image
-// is passed either as base64-encoded image bytes or as a reference to an image
-// in an Amazon S3 bucket. The image must be either a PNG or JPEG formatted
-// file. For more information, see celebrity-recognition.
+// Returns an array of celebrities recognized in the input image. For more information,
+// see celebrity-recognition.
 //
-// RecognizeCelebrities returns the 15 largest faces in the image. It lists
-// recognized celebrities in the CelebrityFaces list and unrecognized faces
-// in the UnrecognizedFaces list. The operation doesn't return celebrities whose
-// face sizes are smaller than the largest 15 faces in the image.
+// RecognizeCelebrities returns the 100 largest faces in the image. It lists
+// recognized celebrities in the CelebrityFaces array and unrecognized faces
+// in the UnrecognizedFaces array. RecognizeCelebrities doesn't return celebrities
+// whose faces are not amongst the largest 100 faces in the image.
 //
-// For each celebrity recognized, the API returns a Celebrity object. The Celebrity
-// object contains the celebrity name, ID, URL links to additional information,
-// match confidence, and a ComparedFace object that you can use to locate the
-// celebrity's face on the image.
+// For each celebrity recognized, the RecognizeCelebrities returns a Celebrity
+// object. The Celebrity object contains the celebrity name, ID, URL links to
+// additional information, match confidence, and a ComparedFace object that
+// you can use to locate the celebrity's face on the image.
 //
 // Rekognition does not retain information about which images a celebrity has
 // been recognized in. Your application must store this information and use
@@ -1430,6 +1593,11 @@ func (c *Rekognition) RecognizeCelebritiesRequest(input *RecognizeCelebritiesInp
 // don't store the celebrity name or additional information URLs returned by
 // RecognizeCelebrities, you will need the ID to identify the celebrity in a
 // call to the operation.
+//
+// You pass the imput image either as base64-encoded image bytes or as a reference
+// to an image in an Amazon S3 bucket. If you use the Amazon CLI to call Amazon
+// Rekognition operations, passing image bytes is not supported. The image must
+// be either a PNG or JPEG formatted file.
 //
 // For an example, see recognize-celebrities-tutorial.
 //
@@ -1584,7 +1752,7 @@ func (c *Rekognition) SearchFacesRequest(input *SearchFacesInput) (req *request.
 //   this limit, contact Amazon Rekognition.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   Collection specified in the request is not found.
+//   The collection specified in the request cannot be found.
 //
 func (c *Rekognition) SearchFaces(input *SearchFacesInput) (*SearchFacesOutput, error) {
 	req, out := c.SearchFacesRequest(input)
@@ -1660,6 +1828,11 @@ func (c *Rekognition) SearchFacesByImageRequest(input *SearchFacesByImageInput) 
 // the response to make face crops, which then you can pass in to the SearchFacesByImage
 // operation.
 //
+// You pass the input image either as base64-encoded image bytes or as a reference
+// to an image in an Amazon S3 bucket. If you use the Amazon CLI to call Amazon
+// Rekognition operations, passing image bytes is not supported. The image must
+// be either a PNG or JPEG formatted file.
+//
 // The response returns an array of faces that match, ordered by similarity
 // score with the highest similarity first. More specifically, it is an array
 // of metadata for each face match found. Along with the metadata, the response
@@ -1707,7 +1880,7 @@ func (c *Rekognition) SearchFacesByImageRequest(input *SearchFacesByImageInput) 
 //   this limit, contact Amazon Rekognition.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   Collection specified in the request is not found.
+//   The collection specified in the request cannot be found.
 //
 //   * ErrCodeInvalidImageFormatException "InvalidImageFormatException"
 //   The provided image format is not supported.
@@ -1805,7 +1978,7 @@ func (s *Beard) SetValue(v bool) *Beard {
 	return s
 }
 
-// Identifies the bounding box around the object or face. The left (x-coordinate)
+// Identifies the bounding box around the object, face or text. The left (x-coordinate)
 // and top (y-coordinate) are coordinates representing the top and left sides
 // of the bounding box. Note that the upper-left corner of the image is the
 // origin (0,0).
@@ -1945,12 +2118,16 @@ type CompareFacesInput struct {
 	// to be included in the FaceMatches array.
 	SimilarityThreshold *float64 `type:"float"`
 
-	// The source image, either as bytes or as an S3 object.
+	// The input image as base64-encoded bytes or an S3 object. If you use the AWS
+	// CLI to call Amazon Rekognition operations, passing base64-encoded image bytes
+	// is not supported.
 	//
 	// SourceImage is a required field
 	SourceImage *Image `type:"structure" required:"true"`
 
-	// The target image, either as bytes or as an S3 object.
+	// The target image as base64-encoded bytes or an S3 object. If you use the
+	// AWS CLI to call Amazon Rekognition operations, passing base64-encoded image
+	// bytes is not supported.
 	//
 	// TargetImage is a required field
 	TargetImage *Image `type:"structure" required:"true"`
@@ -2276,6 +2453,10 @@ type CreateCollectionOutput struct {
 	// permissions on your resources.
 	CollectionArn *string `type:"string"`
 
+	// Version number of the face detection model associated with the collection
+	// you are creating.
+	FaceModelVersion *string `type:"string"`
+
 	// HTTP status code indicating the result of the operation.
 	StatusCode *int64 `type:"integer"`
 }
@@ -2293,6 +2474,12 @@ func (s CreateCollectionOutput) GoString() string {
 // SetCollectionArn sets the CollectionArn field's value.
 func (s *CreateCollectionOutput) SetCollectionArn(v string) *CreateCollectionOutput {
 	s.CollectionArn = &v
+	return s
+}
+
+// SetFaceModelVersion sets the FaceModelVersion field's value.
+func (s *CreateCollectionOutput) SetFaceModelVersion(v string) *CreateCollectionOutput {
+	s.FaceModelVersion = &v
 	return s
 }
 
@@ -2461,8 +2648,9 @@ type DetectFacesInput struct {
 	// to determine which attributes to return (in this case, all attributes).
 	Attributes []*string `type:"list"`
 
-	// The image in which you want to detect faces. You can specify a blob or an
-	// S3 object.
+	// The input image as base64-encoded bytes or an S3 object. If you use the AWS
+	// CLI to call Amazon Rekognition operations, passing base64-encoded image bytes
+	// is not supported.
 	//
 	// Image is a required field
 	Image *Image `type:"structure" required:"true"`
@@ -2553,7 +2741,9 @@ func (s *DetectFacesOutput) SetOrientationCorrection(v string) *DetectFacesOutpu
 type DetectLabelsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The input image. You can provide a blob of image bytes or an S3 object.
+	// The input image as base64-encoded bytes or an S3 object. If you use the AWS
+	// CLI to call Amazon Rekognition operations, passing base64-encoded image bytes
+	// is not supported.
 	//
 	// Image is a required field
 	Image *Image `type:"structure" required:"true"`
@@ -2658,7 +2848,9 @@ func (s *DetectLabelsOutput) SetOrientationCorrection(v string) *DetectLabelsOut
 type DetectModerationLabelsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The input image as bytes or an S3 object.
+	// The input image as base64-encoded bytes or an S3 object. If you use the AWS
+	// CLI to call Amazon Rekognition operations, passing base64-encoded image bytes
+	// is not supported.
 	//
 	// Image is a required field
 	Image *Image `type:"structure" required:"true"`
@@ -2716,8 +2908,9 @@ type DetectModerationLabelsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// An array of labels for explicit or suggestive adult content found in the
-	// image. The list includes the top-level label and each child label detected
-	// in the image. This is useful for filtering specific categories of content.
+	// image. The list includes the top-level label and each second-level label
+	// detected in the image. This is useful for filtering specific categories of
+	// content.
 	ModerationLabels []*ModerationLabel `type:"list"`
 }
 
@@ -2734,6 +2927,73 @@ func (s DetectModerationLabelsOutput) GoString() string {
 // SetModerationLabels sets the ModerationLabels field's value.
 func (s *DetectModerationLabelsOutput) SetModerationLabels(v []*ModerationLabel) *DetectModerationLabelsOutput {
 	s.ModerationLabels = v
+	return s
+}
+
+type DetectTextInput struct {
+	_ struct{} `type:"structure"`
+
+	// The input image as base64-encoded bytes or an Amazon S3 object. If you use
+	// the AWS CLI to call Amazon Rekognition operations, you can't pass image bytes.
+	//
+	// Image is a required field
+	Image *Image `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s DetectTextInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DetectTextInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DetectTextInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DetectTextInput"}
+	if s.Image == nil {
+		invalidParams.Add(request.NewErrParamRequired("Image"))
+	}
+	if s.Image != nil {
+		if err := s.Image.Validate(); err != nil {
+			invalidParams.AddNested("Image", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImage sets the Image field's value.
+func (s *DetectTextInput) SetImage(v *Image) *DetectTextInput {
+	s.Image = v
+	return s
+}
+
+type DetectTextOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of text that was detected in the input image.
+	TextDetections []*TextDetection `type:"list"`
+}
+
+// String returns the string representation
+func (s DetectTextOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DetectTextOutput) GoString() string {
+	return s.String()
+}
+
+// SetTextDetections sets the TextDetections field's value.
+func (s *DetectTextOutput) SetTextDetections(v []*TextDetection) *DetectTextOutput {
+	s.TextDetections = v
 	return s
 }
 
@@ -3164,6 +3424,40 @@ func (s *Gender) SetValue(v string) *Gender {
 	return s
 }
 
+// Information about where text detected by is located on an image.
+type Geometry struct {
+	_ struct{} `type:"structure"`
+
+	// An axis-aligned coarse representation of the detected text's location on
+	// the image.
+	BoundingBox *BoundingBox `type:"structure"`
+
+	// Within the bounding box, a fine-grained polygon around the detected text.
+	Polygon []*Point `type:"list"`
+}
+
+// String returns the string representation
+func (s Geometry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Geometry) GoString() string {
+	return s.String()
+}
+
+// SetBoundingBox sets the BoundingBox field's value.
+func (s *Geometry) SetBoundingBox(v *BoundingBox) *Geometry {
+	s.BoundingBox = v
+	return s
+}
+
+// SetPolygon sets the Polygon field's value.
+func (s *Geometry) SetPolygon(v []*Point) *Geometry {
+	s.Polygon = v
+	return s
+}
+
 type GetCelebrityInfoInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3368,7 +3662,9 @@ type IndexFacesInput struct {
 	// ID you want to assign to all the faces detected in the image.
 	ExternalImageId *string `min:"1" type:"string"`
 
-	// The input image as bytes or an S3 object.
+	// The input image as base64-encoded bytes or an S3 object. If you use the AWS
+	// CLI to call Amazon Rekognition operations, passing base64-encoded image bytes
+	// is not supported.
 	//
 	// Image is a required field
 	Image *Image `type:"structure" required:"true"`
@@ -3438,6 +3734,10 @@ func (s *IndexFacesInput) SetImage(v *Image) *IndexFacesInput {
 type IndexFacesOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Version number of the face detection model associated with the input collection
+	// (CollectionId).
+	FaceModelVersion *string `type:"string"`
+
 	// An array of faces detected and added to the collection. For more information,
 	// see howitworks-index-faces.
 	FaceRecords []*FaceRecord `type:"list"`
@@ -3463,6 +3763,12 @@ func (s IndexFacesOutput) String() string {
 // GoString returns the string representation
 func (s IndexFacesOutput) GoString() string {
 	return s.String()
+}
+
+// SetFaceModelVersion sets the FaceModelVersion field's value.
+func (s *IndexFacesOutput) SetFaceModelVersion(v string) *IndexFacesOutput {
+	s.FaceModelVersion = &v
+	return s
 }
 
 // SetFaceRecords sets the FaceRecords field's value.
@@ -3595,6 +3901,12 @@ type ListCollectionsOutput struct {
 	// An array of collection IDs.
 	CollectionIds []*string `type:"list"`
 
+	// Version numbers of the face detection models associated with the collections
+	// in the array CollectionIds. For example, the value of FaceModelVersions[2]
+	// is the version number for the face detection model used by the collection
+	// in CollectionId[2].
+	FaceModelVersions []*string `type:"list"`
+
 	// If the result is truncated, the response provides a NextToken that you can
 	// use in the subsequent request to fetch the next set of collection IDs.
 	NextToken *string `type:"string"`
@@ -3613,6 +3925,12 @@ func (s ListCollectionsOutput) GoString() string {
 // SetCollectionIds sets the CollectionIds field's value.
 func (s *ListCollectionsOutput) SetCollectionIds(v []*string) *ListCollectionsOutput {
 	s.CollectionIds = v
+	return s
+}
+
+// SetFaceModelVersions sets the FaceModelVersions field's value.
+func (s *ListCollectionsOutput) SetFaceModelVersions(v []*string) *ListCollectionsOutput {
+	s.FaceModelVersions = v
 	return s
 }
 
@@ -3686,6 +4004,10 @@ func (s *ListFacesInput) SetNextToken(v string) *ListFacesInput {
 type ListFacesOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Version number of the face detection model associated with the input collection
+	// (CollectionId).
+	FaceModelVersion *string `type:"string"`
+
 	// An array of Face objects.
 	Faces []*Face `type:"list"`
 
@@ -3702,6 +4024,12 @@ func (s ListFacesOutput) String() string {
 // GoString returns the string representation
 func (s ListFacesOutput) GoString() string {
 	return s.String()
+}
+
+// SetFaceModelVersion sets the FaceModelVersion field's value.
+func (s *ListFacesOutput) SetFaceModelVersion(v string) *ListFacesOutput {
+	s.FaceModelVersion = &v
+	return s
 }
 
 // SetFaces sets the Faces field's value.
@@ -3834,6 +4162,45 @@ func (s *Mustache) SetValue(v bool) *Mustache {
 	return s
 }
 
+// The X and Y coordinates of a point on an image. The X and Y values returned
+// are ratios of the overall image size. For example, if the input image is
+// 700x200 and the operation returns X=0.5 and Y=0.25, then the point is at
+// the (350,50) pixel coordinate on the image.
+//
+// An array of Point objects, Polygon, is returned by . Polygon represents a
+// fine-grained polygon around detected text. For more information, see .
+type Point struct {
+	_ struct{} `type:"structure"`
+
+	// The value of the X coordinate for a point on a Polygon.
+	X *float64 `type:"float"`
+
+	// The value of the Y coordinate for a point on a Polygon.
+	Y *float64 `type:"float"`
+}
+
+// String returns the string representation
+func (s Point) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Point) GoString() string {
+	return s.String()
+}
+
+// SetX sets the X field's value.
+func (s *Point) SetX(v float64) *Point {
+	s.X = &v
+	return s
+}
+
+// SetY sets the Y field's value.
+func (s *Point) SetY(v float64) *Point {
+	s.Y = &v
+	return s
+}
+
 // Indicates the pose of the face as determined by its pitch, roll, and yaw.
 type Pose struct {
 	_ struct{} `type:"structure"`
@@ -3879,7 +4246,9 @@ func (s *Pose) SetYaw(v float64) *Pose {
 type RecognizeCelebritiesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The input image to use for celebrity recognition.
+	// The input image as base64-encoded bytes or an S3 object. If you use the AWS
+	// CLI to call Amazon Rekognition operations, passing base64-encoded image bytes
+	// is not supported.
 	//
 	// Image is a required field
 	Image *Image `type:"structure" required:"true"`
@@ -4052,7 +4421,9 @@ type SearchFacesByImageInput struct {
 	// than 70%.
 	FaceMatchThreshold *float64 `type:"float"`
 
-	// The input image as bytes or an S3 object.
+	// The input image as base64-encoded bytes or an S3 object. If you use the AWS
+	// CLI to call Amazon Rekognition operations, passing base64-encoded image bytes
+	// is not supported.
 	//
 	// Image is a required field
 	Image *Image `type:"structure" required:"true"`
@@ -4130,6 +4501,10 @@ type SearchFacesByImageOutput struct {
 	// the match.
 	FaceMatches []*FaceMatch `type:"list"`
 
+	// Version number of the face detection model associated with the input collection
+	// (CollectionId).
+	FaceModelVersion *string `type:"string"`
+
 	// The bounding box around the face in the input image that Amazon Rekognition
 	// used for the search.
 	SearchedFaceBoundingBox *BoundingBox `type:"structure"`
@@ -4151,6 +4526,12 @@ func (s SearchFacesByImageOutput) GoString() string {
 // SetFaceMatches sets the FaceMatches field's value.
 func (s *SearchFacesByImageOutput) SetFaceMatches(v []*FaceMatch) *SearchFacesByImageOutput {
 	s.FaceMatches = v
+	return s
+}
+
+// SetFaceModelVersion sets the FaceModelVersion field's value.
+func (s *SearchFacesByImageOutput) SetFaceModelVersion(v string) *SearchFacesByImageOutput {
+	s.FaceModelVersion = &v
 	return s
 }
 
@@ -4252,6 +4633,10 @@ type SearchFacesOutput struct {
 	// in the match.
 	FaceMatches []*FaceMatch `type:"list"`
 
+	// Version number of the face detection model associated with the input collection
+	// (CollectionId).
+	FaceModelVersion *string `type:"string"`
+
 	// ID of the face that was searched for matches in a collection.
 	SearchedFaceId *string `type:"string"`
 }
@@ -4269,6 +4654,12 @@ func (s SearchFacesOutput) GoString() string {
 // SetFaceMatches sets the FaceMatches field's value.
 func (s *SearchFacesOutput) SetFaceMatches(v []*FaceMatch) *SearchFacesOutput {
 	s.FaceMatches = v
+	return s
+}
+
+// SetFaceModelVersion sets the FaceModelVersion field's value.
+func (s *SearchFacesOutput) SetFaceModelVersion(v string) *SearchFacesOutput {
+	s.FaceModelVersion = &v
 	return s
 }
 
@@ -4343,6 +4734,90 @@ func (s *Sunglasses) SetConfidence(v float64) *Sunglasses {
 // SetValue sets the Value field's value.
 func (s *Sunglasses) SetValue(v bool) *Sunglasses {
 	s.Value = &v
+	return s
+}
+
+// Information about a word or line of text detected by .
+//
+// The DetectedText field contains the text that Amazon Rekognition detected
+// in the image.
+//
+// Every word and line has an identifier (Id). Each word belongs to a line and
+// has a parent identifier (ParentId) that identifies the line of text in which
+// the word appears. The word Id is also an index for the word within a line
+// of words.
+//
+// For more information, see text-detection.
+type TextDetection struct {
+	_ struct{} `type:"structure"`
+
+	// The confidence that Amazon Rekognition has in the accuracy of the detected
+	// text and the accuracy of the geometry points around the detected text.
+	Confidence *float64 `type:"float"`
+
+	// The word or line of text recognized by Amazon Rekognition.
+	DetectedText *string `type:"string"`
+
+	// The location of the detected text on the image. Includes an axis aligned
+	// coarse bounding box surrounding the text and a finer grain polygon for more
+	// accurate spatial information.
+	Geometry *Geometry `type:"structure"`
+
+	// The identifier for the detected text. The identifier is only unique for a
+	// single call to DetectText.
+	Id *int64 `type:"integer"`
+
+	// The Parent identifier for the detected text identified by the value of ID.
+	// If the type of detected text is LINE, the value of ParentId is Null.
+	ParentId *int64 `type:"integer"`
+
+	// The type of text that was detected.
+	Type *string `type:"string" enum:"TextTypes"`
+}
+
+// String returns the string representation
+func (s TextDetection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TextDetection) GoString() string {
+	return s.String()
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *TextDetection) SetConfidence(v float64) *TextDetection {
+	s.Confidence = &v
+	return s
+}
+
+// SetDetectedText sets the DetectedText field's value.
+func (s *TextDetection) SetDetectedText(v string) *TextDetection {
+	s.DetectedText = &v
+	return s
+}
+
+// SetGeometry sets the Geometry field's value.
+func (s *TextDetection) SetGeometry(v *Geometry) *TextDetection {
+	s.Geometry = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *TextDetection) SetId(v int64) *TextDetection {
+	s.Id = &v
+	return s
+}
+
+// SetParentId sets the ParentId field's value.
+func (s *TextDetection) SetParentId(v int64) *TextDetection {
+	s.ParentId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *TextDetection) SetType(v string) *TextDetection {
+	s.Type = &v
 	return s
 }
 
@@ -4477,4 +4952,12 @@ const (
 
 	// OrientationCorrectionRotate270 is a OrientationCorrection enum value
 	OrientationCorrectionRotate270 = "ROTATE_270"
+)
+
+const (
+	// TextTypesLine is a TextTypes enum value
+	TextTypesLine = "LINE"
+
+	// TextTypesWord is a TextTypes enum value
+	TextTypesWord = "WORD"
 )
