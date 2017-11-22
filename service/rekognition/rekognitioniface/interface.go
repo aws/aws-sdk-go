@@ -88,6 +88,10 @@ type RekognitionAPI interface {
 	DetectModerationLabelsWithContext(aws.Context, *rekognition.DetectModerationLabelsInput, ...request.Option) (*rekognition.DetectModerationLabelsOutput, error)
 	DetectModerationLabelsRequest(*rekognition.DetectModerationLabelsInput) (*request.Request, *rekognition.DetectModerationLabelsOutput)
 
+	DetectText(*rekognition.DetectTextInput) (*rekognition.DetectTextOutput, error)
+	DetectTextWithContext(aws.Context, *rekognition.DetectTextInput, ...request.Option) (*rekognition.DetectTextOutput, error)
+	DetectTextRequest(*rekognition.DetectTextInput) (*request.Request, *rekognition.DetectTextOutput)
+
 	GetCelebrityInfo(*rekognition.GetCelebrityInfoInput) (*rekognition.GetCelebrityInfoOutput, error)
 	GetCelebrityInfoWithContext(aws.Context, *rekognition.GetCelebrityInfoInput, ...request.Option) (*rekognition.GetCelebrityInfoOutput, error)
 	GetCelebrityInfoRequest(*rekognition.GetCelebrityInfoInput) (*request.Request, *rekognition.GetCelebrityInfoOutput)

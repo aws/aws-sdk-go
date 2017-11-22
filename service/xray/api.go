@@ -3,6 +3,7 @@
 package xray
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -41,6 +42,12 @@ func (c *XRay) BatchGetTracesRequest(input *BatchGetTracesInput) (req *request.R
 		Name:       opBatchGetTraces,
 		HTTPMethod: "POST",
 		HTTPPath:   "/Traces",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -94,6 +101,56 @@ func (c *XRay) BatchGetTracesWithContext(ctx aws.Context, input *BatchGetTracesI
 	return out, req.Send()
 }
 
+// BatchGetTracesPages iterates over the pages of a BatchGetTraces operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See BatchGetTraces method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a BatchGetTraces operation.
+//    pageNum := 0
+//    err := client.BatchGetTracesPages(params,
+//        func(page *BatchGetTracesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *XRay) BatchGetTracesPages(input *BatchGetTracesInput, fn func(*BatchGetTracesOutput, bool) bool) error {
+	return c.BatchGetTracesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// BatchGetTracesPagesWithContext same as BatchGetTracesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *XRay) BatchGetTracesPagesWithContext(ctx aws.Context, input *BatchGetTracesInput, fn func(*BatchGetTracesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *BatchGetTracesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.BatchGetTracesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*BatchGetTracesOutput), !p.HasNextPage())
+	}
+	return p.Err()
+}
+
 const opGetServiceGraph = "GetServiceGraph"
 
 // GetServiceGraphRequest generates a "aws/request.Request" representing the
@@ -125,6 +182,12 @@ func (c *XRay) GetServiceGraphRequest(input *GetServiceGraphInput) (req *request
 		Name:       opGetServiceGraph,
 		HTTPMethod: "POST",
 		HTTPPath:   "/ServiceGraph",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -180,6 +243,56 @@ func (c *XRay) GetServiceGraphWithContext(ctx aws.Context, input *GetServiceGrap
 	return out, req.Send()
 }
 
+// GetServiceGraphPages iterates over the pages of a GetServiceGraph operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetServiceGraph method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetServiceGraph operation.
+//    pageNum := 0
+//    err := client.GetServiceGraphPages(params,
+//        func(page *GetServiceGraphOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *XRay) GetServiceGraphPages(input *GetServiceGraphInput, fn func(*GetServiceGraphOutput, bool) bool) error {
+	return c.GetServiceGraphPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetServiceGraphPagesWithContext same as GetServiceGraphPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *XRay) GetServiceGraphPagesWithContext(ctx aws.Context, input *GetServiceGraphInput, fn func(*GetServiceGraphOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetServiceGraphInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetServiceGraphRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*GetServiceGraphOutput), !p.HasNextPage())
+	}
+	return p.Err()
+}
+
 const opGetTraceGraph = "GetTraceGraph"
 
 // GetTraceGraphRequest generates a "aws/request.Request" representing the
@@ -211,6 +324,12 @@ func (c *XRay) GetTraceGraphRequest(input *GetTraceGraphInput) (req *request.Req
 		Name:       opGetTraceGraph,
 		HTTPMethod: "POST",
 		HTTPPath:   "/TraceGraph",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -262,6 +381,56 @@ func (c *XRay) GetTraceGraphWithContext(ctx aws.Context, input *GetTraceGraphInp
 	return out, req.Send()
 }
 
+// GetTraceGraphPages iterates over the pages of a GetTraceGraph operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetTraceGraph method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetTraceGraph operation.
+//    pageNum := 0
+//    err := client.GetTraceGraphPages(params,
+//        func(page *GetTraceGraphOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *XRay) GetTraceGraphPages(input *GetTraceGraphInput, fn func(*GetTraceGraphOutput, bool) bool) error {
+	return c.GetTraceGraphPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetTraceGraphPagesWithContext same as GetTraceGraphPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *XRay) GetTraceGraphPagesWithContext(ctx aws.Context, input *GetTraceGraphInput, fn func(*GetTraceGraphOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetTraceGraphInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetTraceGraphRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*GetTraceGraphOutput), !p.HasNextPage())
+	}
+	return p.Err()
+}
+
 const opGetTraceSummaries = "GetTraceSummaries"
 
 // GetTraceSummariesRequest generates a "aws/request.Request" representing the
@@ -293,6 +462,12 @@ func (c *XRay) GetTraceSummariesRequest(input *GetTraceSummariesInput) (req *req
 		Name:       opGetTraceSummaries,
 		HTTPMethod: "POST",
 		HTTPPath:   "/TraceSummaries",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -358,6 +533,56 @@ func (c *XRay) GetTraceSummariesWithContext(ctx aws.Context, input *GetTraceSumm
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// GetTraceSummariesPages iterates over the pages of a GetTraceSummaries operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetTraceSummaries method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetTraceSummaries operation.
+//    pageNum := 0
+//    err := client.GetTraceSummariesPages(params,
+//        func(page *GetTraceSummariesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *XRay) GetTraceSummariesPages(input *GetTraceSummariesInput, fn func(*GetTraceSummariesOutput, bool) bool) error {
+	return c.GetTraceSummariesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetTraceSummariesPagesWithContext same as GetTraceSummariesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *XRay) GetTraceSummariesPagesWithContext(ctx aws.Context, input *GetTraceSummariesInput, fn func(*GetTraceSummariesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetTraceSummariesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetTraceSummariesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*GetTraceSummariesOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opPutTelemetryRecords = "PutTelemetryRecords"
@@ -1225,7 +1450,7 @@ type GetTraceSummariesInput struct {
 
 	// Specify a filter expression to retrieve trace summaries for services or requests
 	// that meet certain requirements.
-	FilterExpression *string `type:"string"`
+	FilterExpression *string `min:"1" type:"string"`
 
 	// Specify the pagination token returned by a previous request to retrieve the
 	// next page of results.
@@ -1255,6 +1480,9 @@ func (s *GetTraceSummariesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetTraceSummariesInput"}
 	if s.EndTime == nil {
 		invalidParams.Add(request.NewErrParamRequired("EndTime"))
+	}
+	if s.FilterExpression != nil && len(*s.FilterExpression) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FilterExpression", 1))
 	}
 	if s.StartTime == nil {
 		invalidParams.Add(request.NewErrParamRequired("StartTime"))
@@ -1475,6 +1703,16 @@ func (s *PutTelemetryRecordsInput) Validate() error {
 	if s.TelemetryRecords == nil {
 		invalidParams.Add(request.NewErrParamRequired("TelemetryRecords"))
 	}
+	if s.TelemetryRecords != nil {
+		for i, v := range s.TelemetryRecords {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TelemetryRecords", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -1596,7 +1834,7 @@ type Segment struct {
 	Document *string `min:"1" type:"string"`
 
 	// The segment's ID.
-	Id *string `min:"16" type:"string"`
+	Id *string `type:"string"`
 }
 
 // String returns the string representation
@@ -1890,7 +2128,8 @@ type TelemetryRecord struct {
 
 	SegmentsSpilloverCount *int64 `type:"integer"`
 
-	Timestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	// Timestamp is a required field
+	Timestamp *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
 }
 
 // String returns the string representation
@@ -1901,6 +2140,19 @@ func (s TelemetryRecord) String() string {
 // GoString returns the string representation
 func (s TelemetryRecord) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TelemetryRecord) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TelemetryRecord"}
+	if s.Timestamp == nil {
+		invalidParams.Add(request.NewErrParamRequired("Timestamp"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetBackendConnectionErrors sets the BackendConnectionErrors field's value.
@@ -1950,7 +2202,7 @@ type Trace struct {
 
 	// The unique identifier for the request that generated the trace's segments
 	// and subsegments.
-	Id *string `min:"35" type:"string"`
+	Id *string `min:"1" type:"string"`
 
 	// Segment documents for the segments and subsegments that comprise the trace.
 	Segments []*Segment `type:"list"`
@@ -2010,7 +2262,7 @@ type TraceSummary struct {
 
 	// The unique identifier for the request that generated the trace's segments
 	// and subsegments.
-	Id *string `min:"35" type:"string"`
+	Id *string `min:"1" type:"string"`
 
 	// One or more of the segment documents is in progress.
 	IsPartial *bool `type:"boolean"`

@@ -59,7 +59,7 @@
     "GetExport": "<p>Exports a deployed version of a <a>RestApi</a> in a specified format.</p>",
     "GetGatewayResponse": "<p>Gets a <a>GatewayResponse</a> of a specified response type on the given <a>RestApi</a>.</p>",
     "GetGatewayResponses": "<p>Gets the <a>GatewayResponses</a> collection on the given <a>RestApi</a>. If an API developer has not added any definitions for gateway responses, the result will be the Amazon API Gateway-generated default <a>GatewayResponses</a> collection for the supported response types.</p>",
-    "GetIntegration": "<p>Represents a get integration.</p>",
+    "GetIntegration": "<p>Get the integration settings.</p>",
     "GetIntegrationResponse": "<p>Represents a get integration response.</p>",
     "GetMethod": "<p>Describe an existing <a>Method</a> resource.</p>",
     "GetMethodResponse": "<p>Describes a <a>MethodResponse</a> resource.</p>",
@@ -116,6 +116,12 @@
     "UpdateUsagePlan": "<p>Updates a usage plan of a given plan Id.</p>"
   },
   "shapes": {
+    "AccessLogSettings": {
+      "base": "<p>Access log settings, including the access log format and access log destination ARN.</p>",
+      "refs": {
+        "Stage$accessLogSettings": "<p>The access log settings in this stage.</p>"
+      }
+    },
     "Account": {
       "base": "<p>Represents an AWS account that is associated with Amazon API Gateway.</p> <div class=\"remarks\"> <p>To view the account info, call <code>GET</code> on this resource.</p> <h4>Error Codes</h4> <p>The following exception may be thrown when the request fails.</p> <ul> <li>UnauthorizedException</li> <li>NotFoundException</li> <li>TooManyRequestsException</li> </ul> <p>For detailed error code information, including the corresponding HTTP Status Codes, see <a href=\"http://docs.aws.amazon.com/apigateway/api-reference/handling-errors/#api-error-codes\">API Gateway Error Codes</a></p> <h4>Example: Get the information about an account.</h4> <h5>Request</h5> <pre><code>GET /account HTTP/1.1 Content-Type: application/json Host: apigateway.us-east-1.amazonaws.com X-Amz-Date: 20160531T184618Z Authorization: AWS4-HMAC-SHA256 Credential={access_key_ID}/us-east-1/apigateway/aws4_request, SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash} </code></pre> <h5>Response</h5> <p>The successful response returns a <code>200 OK</code> status code and a payload similar to the following:</p> <pre><code>{ \"_links\": { \"curies\": { \"href\": \"http://docs.aws.amazon.com/apigateway/latest/developerguide/account-apigateway-{rel}.html\", \"name\": \"account\", \"templated\": true }, \"self\": { \"href\": \"/account\" }, \"account:update\": { \"href\": \"/account\" } }, \"cloudwatchRoleArn\": \"arn:aws:iam::123456789012:role/apigAwsProxyRole\", \"throttleSettings\": { \"rateLimit\": 500, \"burstLimit\": 1000 } } </code></pre> <p>In addition to making the REST API call directly, you can use the AWS CLI and an AWS SDK to access this resource.</p> </div> <div class=\"seeAlso\"> <a href=\"http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-limits.html\">API Gateway Limits</a> <a href=\"http://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html\">Developer Guide</a>, <a href=\"http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-account.html\">AWS CLI</a> </div>",
       "refs": {
@@ -664,7 +670,7 @@
       }
     },
     "GetIntegrationRequest": {
-      "base": "<p>Represents a get integration request.</p>",
+      "base": "<p>Represents a request to get the integration configuration.</p>",
       "refs": {
       }
     },
@@ -796,6 +802,7 @@
     "Integer": {
       "base": null,
       "refs": {
+        "Integration$timeoutInMillis": "<p>Custom timeout between 50 and 29,000 milliseconds. The default value is 29,000 milliseconds or 29 seconds.</p>",
         "MethodSetting$throttlingBurstLimit": "<p>Specifies the throttling burst limit. The PATCH path for this setting is <code>/{method_setting_key}/throttling/burstLimit</code>, and the value is an integer.</p>",
         "MethodSetting$cacheTtlInSeconds": "<p>Specifies the time to live (TTL), in seconds, for cached responses. The higher the TTL, the longer the response will be cached. The PATCH path for this setting is <code>/{method_setting_key}/caching/ttlInSeconds</code>, and the value is an integer.</p>",
         "QuotaSettings$limit": "<p>The maximum number of requests that can be made in a given time period.</p>",
@@ -1198,7 +1205,8 @@
         "GetSdkTypesRequest$limit": "<p>The maximum number of returned results per page.</p>",
         "GetUsagePlanKeysRequest$limit": "<p>The maximum number of returned results per page.</p>",
         "GetUsagePlansRequest$limit": "<p>The maximum number of returned results per page.</p>",
-        "GetUsageRequest$limit": "<p>The maximum number of returned results per page.</p>"
+        "GetUsageRequest$limit": "<p>The maximum number of returned results per page.</p>",
+        "PutIntegrationRequest$timeoutInMillis": "<p>Custom timeout between 50 and 29,000 milliseconds. The default value is 29,000 milliseconds or 29 seconds.</p>"
       }
     },
     "Op": {
@@ -1372,6 +1380,8 @@
     "String": {
       "base": null,
       "refs": {
+        "AccessLogSettings$format": "<p>A single line format of the access logs of data, as specified by selected <a href=\"http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html#context-variable-reference\">$context variables</a>. The format must include at least <code>$context.requestId</code>.</p>",
+        "AccessLogSettings$destinationArn": "<p>The ARN of the CloudWatch Logs log group to receive access logs.</p>",
         "Account$cloudwatchRoleArn": "<p>The ARN of an Amazon CloudWatch role for the current <a>Account</a>. </p>",
         "Account$apiKeyVersion": "<p>The version of the API keys used for the account.</p>",
         "ApiKey$id": "<p>The identifier of the API Key.</p>",
