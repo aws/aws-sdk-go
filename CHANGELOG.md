@@ -1,3 +1,11 @@
+Release v1.12.33 (2017-11-22)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service API and documentation
+  * AWS Certificate Manager now supports the ability to import domainless certs and additional Key Types as well as an additional validation method for DNS.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.12.32 (2017-11-22)
 ===
 
