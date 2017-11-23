@@ -55,17 +55,15 @@ func (a *API) Setup() {
 	a.resolveReferences()
 	a.fixStutterNames()
 	a.renameExportable()
+	if !a.NoRemoveUnusedShapes {
+		a.removeUnusedShapes()
+	}
 	if !a.NoRenameToplevelShapes {
 		a.renameToplevelShapes()
 	}
 	a.updateTopLevelShapeReferences()
 	a.createInputOutputShapes()
 	a.customizationPasses()
-
-	if !a.NoRemoveUnusedShapes {
-		a.removeUnusedShapes()
-	}
-
 	if !a.NoValidataShapeMethods {
 		a.addShapeValidations()
 	}
