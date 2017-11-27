@@ -10,6 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/aws/signer/v4"
+	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
 const opDeleteObject = "DeleteObject"
@@ -481,6 +482,16 @@ func (s *DeleteObjectInput) SetPath(v string) *DeleteObjectInput {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DeleteObjectInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Path != nil {
+		v := *s.Path
+
+		e.SetValue(protocol.PathTarget, "Path", protocol.StringValue(v), protocol.Metadata{})
+	}
+	return nil
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/mediastore-data-2017-09-01/DeleteObjectResponse
 type DeleteObjectOutput struct {
 	_ struct{} `type:"structure"`
@@ -494,6 +505,11 @@ func (s DeleteObjectOutput) String() string {
 // GoString returns the string representation
 func (s DeleteObjectOutput) GoString() string {
 	return s.String()
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DeleteObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
+	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/mediastore-data-2017-09-01/DescribeObjectRequest
@@ -537,6 +553,16 @@ func (s *DescribeObjectInput) Validate() error {
 func (s *DescribeObjectInput) SetPath(v string) *DescribeObjectInput {
 	s.Path = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DescribeObjectInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Path != nil {
+		v := *s.Path
+
+		e.SetValue(protocol.PathTarget, "Path", protocol.StringValue(v), protocol.Metadata{})
+	}
+	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/mediastore-data-2017-09-01/DescribeObjectResponse
@@ -601,6 +627,36 @@ func (s *DescribeObjectOutput) SetETag(v string) *DescribeObjectOutput {
 func (s *DescribeObjectOutput) SetLastModified(v time.Time) *DescribeObjectOutput {
 	s.LastModified = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *DescribeObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.CacheControl != nil {
+		v := *s.CacheControl
+
+		e.SetValue(protocol.HeaderTarget, "Cache-Control", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.ContentLength != nil {
+		v := *s.ContentLength
+
+		e.SetValue(protocol.HeaderTarget, "Content-Length", protocol.Int64Value(v), protocol.Metadata{})
+	}
+	if s.ContentType != nil {
+		v := *s.ContentType
+
+		e.SetValue(protocol.HeaderTarget, "Content-Type", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.ETag != nil {
+		v := *s.ETag
+
+		e.SetValue(protocol.HeaderTarget, "ETag", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.LastModified != nil {
+		v := *s.LastModified
+
+		e.SetValue(protocol.HeaderTarget, "Last-Modified", protocol.TimeValue{V: v, Format: protocol.RFC822TimeFromat}, protocol.Metadata{})
+	}
+	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/mediastore-data-2017-09-01/GetObjectRequest
@@ -676,6 +732,21 @@ func (s *GetObjectInput) SetPath(v string) *GetObjectInput {
 func (s *GetObjectInput) SetRange(v string) *GetObjectInput {
 	s.Range = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetObjectInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.Range != nil {
+		v := *s.Range
+
+		e.SetValue(protocol.HeaderTarget, "Range", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Path != nil {
+		v := *s.Path
+
+		e.SetValue(protocol.PathTarget, "Path", protocol.StringValue(v), protocol.Metadata{})
+	}
+	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/mediastore-data-2017-09-01/GetObjectResponse
@@ -781,6 +852,43 @@ func (s *GetObjectOutput) SetStatusCode(v int64) *GetObjectOutput {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *GetObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.CacheControl != nil {
+		v := *s.CacheControl
+
+		e.SetValue(protocol.HeaderTarget, "Cache-Control", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.ContentLength != nil {
+		v := *s.ContentLength
+
+		e.SetValue(protocol.HeaderTarget, "Content-Length", protocol.Int64Value(v), protocol.Metadata{})
+	}
+	if s.ContentRange != nil {
+		v := *s.ContentRange
+
+		e.SetValue(protocol.HeaderTarget, "Content-Range", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.ContentType != nil {
+		v := *s.ContentType
+
+		e.SetValue(protocol.HeaderTarget, "Content-Type", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.ETag != nil {
+		v := *s.ETag
+
+		e.SetValue(protocol.HeaderTarget, "ETag", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.LastModified != nil {
+		v := *s.LastModified
+
+		e.SetValue(protocol.HeaderTarget, "Last-Modified", protocol.TimeValue{V: v, Format: protocol.RFC822TimeFromat}, protocol.Metadata{})
+	}
+	// Skipping Body Output type's body not valid.
+	// ignoring invalid encode state, StatusCode. StatusCode
+	return nil
+}
+
 // A metadata entry for a folder or object.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/mediastore-data-2017-09-01/Item
 type Item struct {
@@ -851,6 +959,49 @@ func (s *Item) SetType(v string) *Item {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *Item) MarshalFields(e protocol.FieldEncoder) error {
+	if s.ContentLength != nil {
+		v := *s.ContentLength
+
+		e.SetValue(protocol.BodyTarget, "ContentLength", protocol.Int64Value(v), protocol.Metadata{})
+	}
+	if s.ContentType != nil {
+		v := *s.ContentType
+
+		e.SetValue(protocol.BodyTarget, "ContentType", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.ETag != nil {
+		v := *s.ETag
+
+		e.SetValue(protocol.BodyTarget, "ETag", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.LastModified != nil {
+		v := *s.LastModified
+
+		e.SetValue(protocol.BodyTarget, "LastModified", protocol.TimeValue{V: v, Format: protocol.UnixTimeFormat}, protocol.Metadata{})
+	}
+	if s.Name != nil {
+		v := *s.Name
+
+		e.SetValue(protocol.BodyTarget, "Name", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Type != nil {
+		v := *s.Type
+
+		e.SetValue(protocol.BodyTarget, "Type", protocol.StringValue(v), protocol.Metadata{})
+	}
+	return nil
+}
+
+func encodeItemList(vs []*Item) func(protocol.ListEncoder) {
+	return func(le protocol.ListEncoder) {
+		for _, v := range vs {
+			le.ListAddFields(v)
+		}
+	}
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/mediastore-data-2017-09-01/ListItemsRequest
 type ListItemsInput struct {
 	_ struct{} `type:"structure"`
@@ -908,6 +1059,26 @@ func (s *ListItemsInput) SetPath(v string) *ListItemsInput {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListItemsInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.MaxResults != nil {
+		v := *s.MaxResults
+
+		e.SetValue(protocol.QueryTarget, "MaxResults", protocol.Int64Value(v), protocol.Metadata{})
+	}
+	if s.NextToken != nil {
+		v := *s.NextToken
+
+		e.SetValue(protocol.QueryTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Path != nil {
+		v := *s.Path
+
+		e.SetValue(protocol.QueryTarget, "Path", protocol.StringValue(v), protocol.Metadata{})
+	}
+	return nil
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/mediastore-data-2017-09-01/ListItemsResponse
 type ListItemsOutput struct {
 	_ struct{} `type:"structure"`
@@ -939,6 +1110,21 @@ func (s *ListItemsOutput) SetItems(v []*Item) *ListItemsOutput {
 func (s *ListItemsOutput) SetNextToken(v string) *ListItemsOutput {
 	s.NextToken = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *ListItemsOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if len(s.Items) > 0 {
+		v := s.Items
+
+		e.SetList(protocol.BodyTarget, "Items", encodeItemList(v), protocol.Metadata{})
+	}
+	if s.NextToken != nil {
+		v := *s.NextToken
+
+		e.SetValue(protocol.BodyTarget, "NextToken", protocol.StringValue(v), protocol.Metadata{})
+	}
+	return nil
 }
 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/mediastore-data-2017-09-01/PutObjectRequest
@@ -1063,6 +1249,36 @@ func (s *PutObjectInput) SetStorageClass(v string) *PutObjectInput {
 	return s
 }
 
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *PutObjectInput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.CacheControl != nil {
+		v := *s.CacheControl
+
+		e.SetValue(protocol.HeaderTarget, "Cache-Control", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.ContentType != nil {
+		v := *s.ContentType
+
+		e.SetValue(protocol.HeaderTarget, "Content-Type", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.StorageClass != nil {
+		v := *s.StorageClass
+
+		e.SetValue(protocol.HeaderTarget, "x-amz-storage-class", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Path != nil {
+		v := *s.Path
+
+		e.SetValue(protocol.PathTarget, "Path", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.Body != nil {
+		v := s.Body
+
+		e.SetStream(protocol.PayloadTarget, "Body", protocol.ReadSeekerStream{V: v}, protocol.Metadata{})
+	}
+	return nil
+}
+
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/mediastore-data-2017-09-01/PutObjectResponse
 type PutObjectOutput struct {
 	_ struct{} `type:"structure"`
@@ -1103,6 +1319,26 @@ func (s *PutObjectOutput) SetETag(v string) *PutObjectOutput {
 func (s *PutObjectOutput) SetStorageClass(v string) *PutObjectOutput {
 	s.StorageClass = &v
 	return s
+}
+
+// MarshalFields encodes the AWS API shape using the passed in protocol encoder.
+func (s *PutObjectOutput) MarshalFields(e protocol.FieldEncoder) error {
+	if s.ContentSHA256 != nil {
+		v := *s.ContentSHA256
+
+		e.SetValue(protocol.BodyTarget, "ContentSHA256", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.ETag != nil {
+		v := *s.ETag
+
+		e.SetValue(protocol.BodyTarget, "ETag", protocol.StringValue(v), protocol.Metadata{})
+	}
+	if s.StorageClass != nil {
+		v := *s.StorageClass
+
+		e.SetValue(protocol.BodyTarget, "StorageClass", protocol.StringValue(v), protocol.Metadata{})
+	}
+	return nil
 }
 
 const (
