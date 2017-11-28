@@ -410,5 +410,69 @@
         }
       }
     ]
+  },
+  {
+    "description": "Enum",
+    "metadata": {
+      "protocol": "ec2",
+      "apiVersion": "2014-01-01"
+    },
+    "shapes": {
+      "InputShape": {
+        "type": "structure",
+        "members": {
+          "FooEnum": {
+            "shape": "EnumType"
+          },
+          "ListEnums": {
+            "shape": "EnumList"
+          }
+        }
+      },
+      "EnumType":{
+        "type":"string",
+        "enum":[
+          "foo",
+          "bar"
+        ]
+      },
+      "EnumList":{
+        "type":"list",
+				"member": {"shape": "EnumType"}
+      }
+    },
+    "cases": [
+      {
+        "given": {
+          "input": {
+            "shape": "InputShape"
+          },
+          "name": "OperationName"
+        },
+        "params": {
+          "ListEnums": ["foo", "", "bar"]
+        },
+        "serialized": {
+          "uri": "/",
+          "headers": {},
+          "body": "Action=OperationName&Version=2014-01-01&ListEnums.1=foo&ListEnums.2=&ListEnums.3=bar"
+        }
+      },
+      {
+        "given": {
+          "input": {
+            "shape": "InputShape"
+          },
+          "name": "OperationName"
+        },
+        "params": {
+        },
+        "serialized": {
+          "uri": "/",
+          "headers": {},
+          "body": "Action=OperationName&Version=2014-01-01"
+        }
+      }
+    ]
   }
 ]

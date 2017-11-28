@@ -716,5 +716,84 @@
         }
       }
     ]
+  },
+  {
+    "description": "Enum",
+    "metadata": {
+      "protocol": "rest-xml"
+    },
+    "shapes": {
+      "OutputShape": {
+        "type": "structure",
+        "members": {
+          "HeaderEnum": {
+            "shape": "RESTJSONEnumType",
+            "location": "header",
+            "locationName": "x-amz-enum"
+          },
+          "FooEnum": {
+            "shape": "RESTJSONEnumType"
+          },
+          "ListEnums": {
+            "shape": "EnumList"
+          }
+        }
+      },
+      "RESTJSONEnumType":{
+        "type":"string",
+        "enum":[
+          "foo",
+          "bar",
+          "0",
+          "1"
+        ]
+      },
+      "EnumList":{
+        "type":"list",
+        "member": {"shape": "RESTJSONEnumType"}
+      }
+    },
+    "cases": [
+      {
+        "given": {
+          "output": {
+            "shape": "OutputShape"
+          },
+          "http": {
+            "method": "POST",
+            "requestUri": "/path"
+          },
+          "name": "OperationName"
+        },
+        "result": {
+          "HeaderEnum": "baz",
+          "FooEnum": "foo",
+          "ListEnums": ["0", "1"]
+        },
+        "response": {
+          "status_code": 200,
+          "headers": {"x-amz-enum": "baz"},
+          "body": "<OperationNameResponse><FooEnum>foo</FooEnum><ListEnums><member>0</member><member>1</member></ListEnums></OperationNameResponse>"
+        }
+      },
+      {
+        "given": {
+          "input": {
+            "shape": "OutputShape"
+          },
+          "http": {
+            "method": "POST",
+            "requestUri": "/path"
+          },
+          "name": "OperationName"
+        },
+        "result": {
+        },
+        "response": {
+          "status_code": 200,
+          "headers": {}
+        }
+      }
+    ]
   }
 ]
