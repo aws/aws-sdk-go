@@ -60,6 +60,18 @@
       "refs": {
       }
     },
+    "AdditionalVersion": {
+      "base": null,
+      "refs": {
+        "AdditionalVersionWeights$key": null
+      }
+    },
+    "AdditionalVersionWeights": {
+      "base": null,
+      "refs": {
+        "AliasRoutingConfiguration$AdditionalVersionWeights": "<p>Set this property value to dictate what percentage of traffic will invoke the updated function version. If set to an empty string, 100 percent of traffic will invoke <code>function-version</code>.</p>"
+      }
+    },
     "Alias": {
       "base": null,
       "refs": {
@@ -80,6 +92,14 @@
       "base": null,
       "refs": {
         "ListAliasesResponse$Aliases": "<p>A list of aliases.</p>"
+      }
+    },
+    "AliasRoutingConfiguration": {
+      "base": "<p>The parent object that implements what percentage of traffic will invoke each function version. For more information, see <a>lambda-traffic-shifting-using-aliases</a>.</p>",
+      "refs": {
+        "AliasConfiguration$RoutingConfig": "<p>Specifies an additional function versions the alias points to, allowing you to dictate what percentage of traffic will invoke each version. For more information, see <a>lambda-traffic-shifting-using-aliases</a>.</p>",
+        "CreateAliasRequest$RoutingConfig": "<p>Specifies an additional version your alias can point to, allowing you to dictate what percentage of traffic will invoke each version. For more information, see <a>lambda-traffic-shifting-using-aliases</a>.</p>",
+        "UpdateAliasRequest$RoutingConfig": "<p>Specifies an additional version your alias can point to, allowing you to dictate what percentage of traffic will invoke each version. For more information, see <a>lambda-traffic-shifting-using-aliases</a>.</p>"
       }
     },
     "Arn": {
@@ -119,7 +139,7 @@
       "refs": {
         "CreateFunctionRequest$Publish": "<p>This boolean parameter can be used to request AWS Lambda to create the Lambda function and publish a version as an atomic operation.</p>",
         "UpdateFunctionCodeRequest$Publish": "<p>This boolean parameter can be used to request AWS Lambda to update the Lambda function and publish a version as an atomic operation.</p>",
-        "UpdateFunctionCodeRequest$DryRun": "<p>This boolean parameter can be used to test your request to AWS Lambda to update the Lambda function and publish a version as an atomic operation. It will do all necessary computation and validation of your code but will not upload it or a publish a version. Each time this operation is invoked, the <code>CodeSha256</code> hash value the provided code will also be computed and returned in the response.</p>"
+        "UpdateFunctionCodeRequest$DryRun": "<p>This boolean parameter can be used to test your request to AWS Lambda to update the Lambda function and publish a version as an atomic operation. It will do all necessary computation and validation of your code but will not upload it or a publish a version. Each time this operation is invoked, the <code>CodeSha256</code> hash value of the provided code will also be computed and returned in the response.</p>"
       }
     },
     "CodeStorageExceededException": {
@@ -333,7 +353,7 @@
     "FunctionVersion": {
       "base": null,
       "refs": {
-        "ListFunctionsRequest$FunctionVersion": "<p>Optional string. If not specified, only the unqualified functions ARNs (Amazon Resource Names) will be returned.</p> <p>Valid value:</p> <p> <code>ALL</code> _ Will return all versions, including <code>$LATEST</code> which will have fully qualified ARNs (Amazon Resource Names).</p>"
+        "ListFunctionsRequest$FunctionVersion": "<p>Optional string. If not specified, only the unqualified functions ARNs (Amazon Resource Names) will be returned.</p> <p>Valid value:</p> <p> <code>ALL</code>: Will return all versions, including <code>$LATEST</code> which will have fully qualified ARNs (Amazon Resource Names).</p>"
       }
     },
     "GetAccountSettingsRequest": {
@@ -398,12 +418,12 @@
     "Integer": {
       "base": null,
       "refs": {
-        "AccountLimit$ConcurrentExecutions": "<p>Number of simultaneous executions of your function per region. For more information or to request a limit increase for concurrent executions, see <a href=\"http://docs.aws.amazon.com/lambda/latest/dg/concurrent-executions.html\">Lambda Function Concurrent Executions</a>. The default limit is 100.</p>",
+        "AccountLimit$ConcurrentExecutions": "<p>Number of simultaneous executions of your function per region. For more information or to request a limit increase for concurrent executions, see <a href=\"http://docs.aws.amazon.com/lambda/latest/dg/concurrent-executions.html\">Lambda Function Concurrent Executions</a>. The default limit is 1000.</p>",
         "InvocationResponse$StatusCode": "<p>The HTTP status code will be in the 200 range for successful request. For the <code>RequestResponse</code> invocation type this status code will be 200. For the <code>Event</code> invocation type this status code will be 202. For the <code>DryRun</code> invocation type the status code will be 204. </p>"
       }
     },
     "InvalidParameterValueException": {
-      "base": "<p>One of the parameters in the request is invalid. For example, if you provided an IAM role for AWS Lambda to assume in the <code>CreateFunction</code> or the <code>UpdateFunctionConfiguration</code> API, that AWS Lambda is unable to assume you will get this exception. You will also get this exception if you have selected a deprecated runtime, such as Node v0.10.42. </p>",
+      "base": "<p>One of the parameters in the request is invalid. For example, if you provided an IAM role for AWS Lambda to assume in the <code>CreateFunction</code> or the <code>UpdateFunctionConfiguration</code> API, that AWS Lambda is unable to assume you will get this exception. You will also get this exception if you have selected a deprecated runtime, such as Node v0.10.42 or if you point to an additional version when the version specified is <code>$LATEST</code>.</p>",
       "refs": {
       }
     },
@@ -556,7 +576,7 @@
     "MasterRegion": {
       "base": null,
       "refs": {
-        "ListFunctionsRequest$MasterRegion": "<p>Optional string. If not specified, will return only regular function versions (i.e., non-replicated versions).</p> <p>Valid values are:</p> <p>The region from which the functions are replicated. For example, if you specify <code>us-east-1</code>, only functions replicated from that region will be returned.</p> <p> <code>ALL</code> _ Will return all functions from any region. If specified, you also must specify a valid FunctionVersion parameter.</p>"
+        "ListFunctionsRequest$MasterRegion": "<p>Optional string. If not specified, will return only regular function versions (i.e., non-replicated versions).</p> <p>Valid values are:</p> <p>The region from which the functions are replicated. For example, if you specify <code>us-east-1</code>, only functions replicated from that region will be returned.</p> <p> <code>ALL</code>: Will return all functions from any region. If specified, you also must specify a valid FunctionVersion parameter.</p>"
       }
     },
     "MaxListItems": {
@@ -622,7 +642,7 @@
         "AddPermissionRequest$Qualifier": "<p>You can use this optional query parameter to describe a qualified ARN using a function version or an alias name. The permission will then apply to the specific qualified ARN. For example, if you specify function version 2 as the qualifier, then permission applies only when request is made using qualified function ARN:</p> <p> <code>arn:aws:lambda:aws-region:acct-id:function:function-name:2</code> </p> <p>If you specify an alias name, for example <code>PROD</code>, then the permission is valid only for requests made using the alias ARN:</p> <p> <code>arn:aws:lambda:aws-region:acct-id:function:function-name:PROD</code> </p> <p>If the qualifier is not specified, the permission is valid only when requests is made using unqualified function ARN.</p> <p> <code>arn:aws:lambda:aws-region:acct-id:function:function-name</code> </p>",
         "DeleteFunctionRequest$Qualifier": "<p>Using this optional parameter you can specify a function version (but not the <code>$LATEST</code> version) to direct AWS Lambda to delete a specific function version. If the function version has one or more aliases pointing to it, you will get an error because you cannot have aliases pointing to it. You can delete any function version but not the <code>$LATEST</code>, that is, you cannot specify <code>$LATEST</code> as the value of this parameter. The <code>$LATEST</code> version can be deleted only when you want to delete all the function versions and aliases.</p> <p>You can only specify a function version, not an alias name, using this parameter. You cannot delete a function version using its alias.</p> <p>If you don't specify this parameter, AWS Lambda will delete the function, including all of its versions and aliases.</p>",
         "GetFunctionConfigurationRequest$Qualifier": "<p>Using this optional parameter you can specify a function version or an alias name. If you specify function version, the API uses qualified function ARN and returns information about the specific function version. If you specify an alias name, the API uses the alias ARN and returns information about the function version to which the alias points.</p> <p>If you don't specify this parameter, the API uses unqualified function ARN, and returns information about the <code>$LATEST</code> function version.</p>",
-        "GetFunctionRequest$Qualifier": "<p>Using this optional parameter to specify a function version or an alias name. If you specify function version, the API uses qualified function ARN for the request and returns information about the specific Lambda function version. If you specify an alias name, the API uses the alias ARN and returns information about the function version to which the alias points. If you don't provide this parameter, the API uses unqualified function ARN and returns information about the <code>$LATEST</code> version of the Lambda function.</p>",
+        "GetFunctionRequest$Qualifier": "<p>Use this optional parameter to specify a function version or an alias name. If you specify function version, the API uses qualified function ARN for the request and returns information about the specific Lambda function version. If you specify an alias name, the API uses the alias ARN and returns information about the function version to which the alias points. If you don't provide this parameter, the API uses unqualified function ARN and returns information about the <code>$LATEST</code> version of the Lambda function. </p>",
         "GetPolicyRequest$Qualifier": "<p>You can specify this optional query parameter to specify a function version or an alias name in which case this API will return all permissions associated with the specific qualified ARN. If you don't provide this parameter, the API will return permissions that apply to the unqualified function ARN.</p>",
         "InvocationRequest$Qualifier": "<p>You can use this optional parameter to specify a Lambda function version or alias name. If you specify a function version, the API uses the qualified function ARN to invoke a specific Lambda function. If you specify an alias name, the API uses the alias ARN to invoke the Lambda function version to which the alias points.</p> <p>If you don't provide this parameter, then the API uses unqualified function ARN which results in invocation of the <code>$LATEST</code> version.</p>",
         "RemovePermissionRequest$Qualifier": "<p>You can specify this optional parameter to remove permission associated with a specific function version or function alias. If you don't specify this parameter, the API removes permission associated with the unqualified function ARN.</p>"
@@ -765,7 +785,7 @@
         "InvalidSubnetIDException$Message": null,
         "InvalidZipFileException$Type": null,
         "InvalidZipFileException$Message": null,
-        "InvocationRequest$ClientContext": "<p>Using the <code>ClientContext</code> you can pass client-specific information to the Lambda function you are invoking. You can then process the client information in your Lambda function as you choose through the context variable. For an example of a <code>ClientContext</code> JSON, see <a href=\"http://docs.aws.amazon.com/mobileanalytics/latest/ug/PutEvents.html\">PutEvents</a> in the <i>Amazon Mobile Analytics API Reference and User Guide</i>.</p> <p>The ClientContext JSON must be base64-encoded.</p>",
+        "InvocationRequest$ClientContext": "<p>Using the <code>ClientContext</code> you can pass client-specific information to the Lambda function you are invoking. You can then process the client information in your Lambda function as you choose through the context variable. For an example of a <code>ClientContext</code> JSON, see <a href=\"http://docs.aws.amazon.com/mobileanalytics/latest/ug/PutEvents.html\">PutEvents</a> in the <i>Amazon Mobile Analytics API Reference and User Guide</i>.</p> <p>The ClientContext JSON must be base64-encoded and has a maximum size of 3583 bytes.</p>",
         "InvocationResponse$FunctionError": "<p>Indicates whether an error occurred while executing the Lambda function. If an error occurred this field will have one of two values; <code>Handled</code> or <code>Unhandled</code>. <code>Handled</code> errors are errors that are reported by the function while the <code>Unhandled</code> errors are those detected and reported by AWS Lambda. Unhandled errors include out of memory errors and function timeouts. For information about how to report an <code>Handled</code> error, see <a href=\"http://docs.aws.amazon.com/lambda/latest/dg/programming-model.html\">Programming Model</a>. </p>",
         "InvocationResponse$LogResult": "<p> It is the base64-encoded logs for the Lambda function invocation. This is present only if the invocation type is <code>RequestResponse</code> and the logs were requested. </p>",
         "KMSAccessDeniedException$Type": null,
@@ -786,7 +806,7 @@
         "ListVersionsByFunctionResponse$NextMarker": "<p>A string, present if there are more function versions.</p>",
         "PolicyLengthExceededException$Type": null,
         "PolicyLengthExceededException$message": null,
-        "PublishVersionRequest$CodeSha256": "<p>The SHA256 hash of the deployment package you want to publish. This provides validation on the code you are publishing. If you provide this parameter value must match the SHA256 of the $LATEST version for the publication to succeed.</p>",
+        "PublishVersionRequest$CodeSha256": "<p>The SHA256 hash of the deployment package you want to publish. This provides validation on the code you are publishing. If you provide this parameter, the value must match the SHA256 of the $LATEST version for the publication to succeed. You can use the <b>DryRun</b> parameter of <a>UpdateFunctionCode</a> to verify the hash value that will be returned before publishing your new version.</p>",
         "RequestTooLargeException$Type": null,
         "RequestTooLargeException$message": null,
         "ResourceConflictException$Type": "<p/>",
@@ -937,6 +957,7 @@
         "AliasConfiguration$FunctionVersion": "<p>Function version to which the alias points.</p>",
         "CreateAliasRequest$FunctionVersion": "<p>Lambda function version for which you are creating the alias.</p>",
         "FunctionConfiguration$Version": "<p>The version of the Lambda function.</p>",
+        "InvocationResponse$ExecutedVersion": "<p>The function version that has been executed. This value is returned only if the invocation type is <code>RequestResponse</code>.</p>",
         "ListAliasesRequest$FunctionVersion": "<p>If you specify this optional parameter, the API returns only the aliases that are pointing to the specific Lambda function version, otherwise the API returns all of the aliases created for the Lambda function.</p>",
         "UpdateAliasRequest$FunctionVersion": "<p>Using this parameter you can change the Lambda function version to which the alias points.</p>"
       }
@@ -958,6 +979,12 @@
       "base": null,
       "refs": {
         "VpcConfigResponse$VpcId": "<p>The VPC ID associated with you Lambda function.</p>"
+      }
+    },
+    "Weight": {
+      "base": null,
+      "refs": {
+        "AdditionalVersionWeights$value": null
       }
     }
   }
