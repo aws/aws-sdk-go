@@ -1,3 +1,31 @@
+Release v1.12.36 (2017-11-29)
+===
+
+### Service Client Updates
+* `service/DeepInsight`: Adds new service
+* `service/IronmanRuntime`: Adds new service
+* `service/Orchestra - Laser`: Adds new service
+* `service/SageMaker`: Adds new service
+* `service/Shine`: Adds new service
+* `service/archived.kinesisvideo`: Adds new service
+* `service/data.kinesisvideo`: Adds new service
+* `service/dynamodb`: Updates service API and documentation
+  * Amazon DynamoDB now supports the following features: Global Table and On-Demand Backup. Global Table is a fully-managed, multi-region, multi-master database. DynamoDB customers can now write anywhere and read anywhere with single-digit millisecond latency by performing database operations closest to where end users reside. Global Table also enables customers to disaster-proof their applications, keeping them running and data accessible even in the face of natural disasters or region disruptions. Customers can set up Global Table with just a few clicks in the AWS Management Console-no application rewrites required. On-Demand Backup capability is to protect data from loss due to application errors, and meet customers' archival needs for compliance and regulatory reasons. Customers can backup and restore their DynamoDB table data anytime, with a single-click in the AWS management console or a single API call. Backup and restore actions execute with zero impact on table performance or availability. For more information, see the Amazon DynamoDB Developer Guide.
+* `service/ecs`: Updates service API and documentation
+  * Amazon Elastic Container Service (Amazon ECS) released a new launch type for running containers on a serverless infrastructure. The Fargate launch type allows you to run your containerized applications without the need to provision and manage the backend infrastructure. Just register your task definition and Fargate launches the container for you.
+* `service/glacier`: Updates service API and documentation
+  * This release includes support for Glacier Select, a new feature that allows you to filter and analyze your Glacier archives and store the results in a user-specified S3 location.
+* `service/greengrass`: Updates service API and documentation
+  * Greengrass OTA feature allows updating Greengrass Core and Greengrass OTA Agent. Local Resource Access feature allows Greengrass Lambdas to access local resources such as peripheral devices and volumes.
+* `service/iot`: Updates service API and documentation
+  * This release adds support for a number of new IoT features, including AWS IoT Device Management (Jobs, Fleet Index and Thing Registration), Thing Groups, Policies on Thing Groups, Registry & Job Events, JSON Logs, Fine-Grained Logging Controls, Custom Authorization and AWS Service Authentication Using X.509 Certificates.
+* `service/kinesisvideo`: Adds new service
+  * Announcing Amazon Kinesis Video Streams, a fully managed video ingestion and storage service. Kinesis Video Streams makes it easy to securely stream video from connected devices to AWS for machine learning, analytics, and processing. You can also stream other time-encoded data like RADAR and LIDAR signals using Kinesis Video Streams.
+* `service/rekognition`: Updates service API, documentation, and paginators
+  * This release introduces Amazon Rekognition support for video analysis.
+* `service/s3`: Updates service API and documentation
+  * This release includes support for Glacier Select, a new feature that allows you to filter and analyze your Glacier storage class objects and store the results in a user-specified S3 location.
+
 Release v1.12.35 (2017-11-29)
 ===
 

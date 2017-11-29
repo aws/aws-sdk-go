@@ -39,7 +39,11 @@
         {"shape":"ServerException"},
         {"shape":"ClientException"},
         {"shape":"InvalidParameterException"},
-        {"shape":"ClusterNotFoundException"}
+        {"shape":"ClusterNotFoundException"},
+        {"shape":"UnsupportedFeatureException"},
+        {"shape":"PlatformUnknownException"},
+        {"shape":"PlatformTaskDefinitionIncompatibilityException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "DeleteAttributes":{
@@ -70,7 +74,8 @@
         {"shape":"InvalidParameterException"},
         {"shape":"ClusterNotFoundException"},
         {"shape":"ClusterContainsContainerInstancesException"},
-        {"shape":"ClusterContainsServicesException"}
+        {"shape":"ClusterContainsServicesException"},
+        {"shape":"ClusterContainsTasksException"}
       ]
     },
     "DeleteService":{
@@ -330,7 +335,8 @@
       "output":{"shape":"RegisterContainerInstanceResponse"},
       "errors":[
         {"shape":"ServerException"},
-        {"shape":"ClientException"}
+        {"shape":"ClientException"},
+        {"shape":"InvalidParameterException"}
       ]
     },
     "RegisterTaskDefinition":{
@@ -359,7 +365,12 @@
         {"shape":"ServerException"},
         {"shape":"ClientException"},
         {"shape":"InvalidParameterException"},
-        {"shape":"ClusterNotFoundException"}
+        {"shape":"ClusterNotFoundException"},
+        {"shape":"UnsupportedFeatureException"},
+        {"shape":"PlatformUnknownException"},
+        {"shape":"PlatformTaskDefinitionIncompatibilityException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"BlockedException"}
       ]
     },
     "StartTask":{
@@ -402,7 +413,8 @@
       "output":{"shape":"SubmitContainerStateChangeResponse"},
       "errors":[
         {"shape":"ServerException"},
-        {"shape":"ClientException"}
+        {"shape":"ClientException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "SubmitTaskStateChange":{
@@ -415,7 +427,8 @@
       "output":{"shape":"SubmitTaskStateChangeResponse"},
       "errors":[
         {"shape":"ServerException"},
-        {"shape":"ClientException"}
+        {"shape":"ClientException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "UpdateContainerAgent":{
@@ -465,11 +478,20 @@
         {"shape":"InvalidParameterException"},
         {"shape":"ClusterNotFoundException"},
         {"shape":"ServiceNotFoundException"},
-        {"shape":"ServiceNotActiveException"}
+        {"shape":"ServiceNotActiveException"},
+        {"shape":"PlatformUnknownException"},
+        {"shape":"PlatformTaskDefinitionIncompatibilityException"},
+        {"shape":"AccessDeniedException"}
       ]
     }
   },
   "shapes":{
+    "AccessDeniedException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "AgentUpdateStatus":{
       "type":"string",
       "enum":[
@@ -479,6 +501,13 @@
         "UPDATING",
         "UPDATED",
         "FAILED"
+      ]
+    },
+    "AssignPublicIp":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
       ]
     },
     "Attachment":{
@@ -538,8 +567,15 @@
       "required":["subnets"],
       "members":{
         "subnets":{"shape":"StringList"},
-        "securityGroups":{"shape":"StringList"}
+        "securityGroups":{"shape":"StringList"},
+        "assignPublicIp":{"shape":"AssignPublicIp"}
       }
+    },
+    "BlockedException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
     },
     "Boolean":{"type":"boolean"},
     "BoxedBoolean":{
@@ -566,7 +602,8 @@
         "registeredContainerInstancesCount":{"shape":"Integer"},
         "runningTasksCount":{"shape":"Integer"},
         "pendingTasksCount":{"shape":"Integer"},
-        "activeServicesCount":{"shape":"Integer"}
+        "activeServicesCount":{"shape":"Integer"},
+        "statistics":{"shape":"Statistics"}
       }
     },
     "ClusterContainsContainerInstancesException":{
@@ -581,6 +618,20 @@
       },
       "exception":true
     },
+    "ClusterContainsTasksException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "ClusterField":{
+      "type":"string",
+      "enum":["STATISTICS"]
+    },
+    "ClusterFieldList":{
+      "type":"list",
+      "member":{"shape":"ClusterField"}
+    },
     "ClusterNotFoundException":{
       "type":"structure",
       "members":{
@@ -590,6 +641,24 @@
     "Clusters":{
       "type":"list",
       "member":{"shape":"Cluster"}
+    },
+    "Compatibility":{
+      "type":"string",
+      "enum":[
+        "EC2",
+        "FARGATE"
+      ]
+    },
+    "CompatibilityList":{
+      "type":"list",
+      "member":{"shape":"Compatibility"}
+    },
+    "Connectivity":{
+      "type":"string",
+      "enum":[
+        "CONNECTED",
+        "DISCONNECTED"
+      ]
     },
     "Container":{
       "type":"structure",
@@ -729,6 +798,8 @@
         "loadBalancers":{"shape":"LoadBalancers"},
         "desiredCount":{"shape":"BoxedInteger"},
         "clientToken":{"shape":"String"},
+        "launchType":{"shape":"LaunchType"},
+        "platformVersion":{"shape":"String"},
         "role":{"shape":"String"},
         "deploymentConfiguration":{"shape":"DeploymentConfiguration"},
         "placementConstraints":{"shape":"PlacementConstraints"},
@@ -794,6 +865,8 @@
         "runningCount":{"shape":"Integer"},
         "createdAt":{"shape":"Timestamp"},
         "updatedAt":{"shape":"Timestamp"},
+        "launchType":{"shape":"LaunchType"},
+        "platformVersion":{"shape":"String"},
         "networkConfiguration":{"shape":"NetworkConfiguration"}
       }
     },
@@ -839,7 +912,8 @@
     "DescribeClustersRequest":{
       "type":"structure",
       "members":{
-        "clusters":{"shape":"StringList"}
+        "clusters":{"shape":"StringList"},
+        "include":{"shape":"ClusterFieldList"}
       }
     },
     "DescribeClustersResponse":{
@@ -1017,6 +1091,13 @@
         "value":{"shape":"String"}
       }
     },
+    "LaunchType":{
+      "type":"string",
+      "enum":[
+        "EC2",
+        "FARGATE"
+      ]
+    },
     "LinuxParameters":{
       "type":"structure",
       "members":{
@@ -1080,7 +1161,8 @@
       "members":{
         "cluster":{"shape":"String"},
         "nextToken":{"shape":"String"},
-        "maxResults":{"shape":"BoxedInteger"}
+        "maxResults":{"shape":"BoxedInteger"},
+        "launchType":{"shape":"LaunchType"}
       }
     },
     "ListServicesResponse":{
@@ -1133,7 +1215,8 @@
         "maxResults":{"shape":"BoxedInteger"},
         "startedBy":{"shape":"String"},
         "serviceName":{"shape":"String"},
-        "desiredStatus":{"shape":"DesiredStatus"}
+        "desiredStatus":{"shape":"DesiredStatus"},
+        "launchType":{"shape":"LaunchType"}
       }
     },
     "ListTasksResponse":{
@@ -1283,6 +1366,18 @@
         "binpack"
       ]
     },
+    "PlatformTaskDefinitionIncompatibilityException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "PlatformUnknownException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "PortMapping":{
       "type":"structure",
       "members":{
@@ -1336,10 +1431,14 @@
       "members":{
         "family":{"shape":"String"},
         "taskRoleArn":{"shape":"String"},
+        "executionRoleArn":{"shape":"String"},
         "networkMode":{"shape":"NetworkMode"},
         "containerDefinitions":{"shape":"ContainerDefinitions"},
         "volumes":{"shape":"VolumeList"},
-        "placementConstraints":{"shape":"TaskDefinitionPlacementConstraints"}
+        "placementConstraints":{"shape":"TaskDefinitionPlacementConstraints"},
+        "requiresCompatibilities":{"shape":"CompatibilityList"},
+        "cpu":{"shape":"String"},
+        "memory":{"shape":"String"}
       }
     },
     "RegisterTaskDefinitionResponse":{
@@ -1379,6 +1478,8 @@
         "group":{"shape":"String"},
         "placementConstraints":{"shape":"PlacementConstraints"},
         "placementStrategy":{"shape":"PlacementStrategies"},
+        "launchType":{"shape":"LaunchType"},
+        "platformVersion":{"shape":"String"},
         "networkConfiguration":{"shape":"NetworkConfiguration"}
       }
     },
@@ -1408,6 +1509,8 @@
         "desiredCount":{"shape":"Integer"},
         "runningCount":{"shape":"Integer"},
         "pendingCount":{"shape":"Integer"},
+        "launchType":{"shape":"LaunchType"},
+        "platformVersion":{"shape":"String"},
         "taskDefinition":{"shape":"String"},
         "deploymentConfiguration":{"shape":"DeploymentConfiguration"},
         "deployments":{"shape":"Deployments"},
@@ -1477,6 +1580,10 @@
         "failures":{"shape":"Failures"}
       }
     },
+    "Statistics":{
+      "type":"list",
+      "member":{"shape":"KeyValuePair"}
+    },
     "StopTaskRequest":{
       "type":"structure",
       "required":["task"],
@@ -1523,7 +1630,10 @@
         "status":{"shape":"String"},
         "reason":{"shape":"String"},
         "containers":{"shape":"ContainerStateChanges"},
-        "attachments":{"shape":"AttachmentStateChanges"}
+        "attachments":{"shape":"AttachmentStateChanges"},
+        "pullStartedAt":{"shape":"Timestamp"},
+        "pullStoppedAt":{"shape":"Timestamp"},
+        "executionStoppedAt":{"shape":"Timestamp"}
       }
     },
     "SubmitTaskStateChangeResponse":{
@@ -1552,14 +1662,24 @@
         "overrides":{"shape":"TaskOverride"},
         "lastStatus":{"shape":"String"},
         "desiredStatus":{"shape":"String"},
+        "cpu":{"shape":"String"},
+        "memory":{"shape":"String"},
         "containers":{"shape":"Containers"},
         "startedBy":{"shape":"String"},
         "version":{"shape":"Long"},
         "stoppedReason":{"shape":"String"},
+        "connectivity":{"shape":"Connectivity"},
+        "connectivityAt":{"shape":"Timestamp"},
+        "pullStartedAt":{"shape":"Timestamp"},
+        "pullStoppedAt":{"shape":"Timestamp"},
+        "executionStoppedAt":{"shape":"Timestamp"},
         "createdAt":{"shape":"Timestamp"},
         "startedAt":{"shape":"Timestamp"},
+        "stoppingAt":{"shape":"Timestamp"},
         "stoppedAt":{"shape":"Timestamp"},
         "group":{"shape":"String"},
+        "launchType":{"shape":"LaunchType"},
+        "platformVersion":{"shape":"String"},
         "attachments":{"shape":"Attachments"}
       }
     },
@@ -1570,12 +1690,17 @@
         "containerDefinitions":{"shape":"ContainerDefinitions"},
         "family":{"shape":"String"},
         "taskRoleArn":{"shape":"String"},
+        "executionRoleArn":{"shape":"String"},
         "networkMode":{"shape":"NetworkMode"},
         "revision":{"shape":"Integer"},
         "volumes":{"shape":"VolumeList"},
         "status":{"shape":"TaskDefinitionStatus"},
         "requiresAttributes":{"shape":"RequiresAttributes"},
-        "placementConstraints":{"shape":"TaskDefinitionPlacementConstraints"}
+        "placementConstraints":{"shape":"TaskDefinitionPlacementConstraints"},
+        "compatibilities":{"shape":"CompatibilityList"},
+        "requiresCompatibilities":{"shape":"CompatibilityList"},
+        "cpu":{"shape":"String"},
+        "memory":{"shape":"String"}
       }
     },
     "TaskDefinitionFamilyStatus":{
@@ -1612,7 +1737,8 @@
       "type":"structure",
       "members":{
         "containerOverrides":{"shape":"ContainerOverrides"},
-        "taskRoleArn":{"shape":"String"}
+        "taskRoleArn":{"shape":"String"},
+        "executionRoleArn":{"shape":"String"}
       }
     },
     "Tasks":{
@@ -1664,6 +1790,12 @@
         "stack"
       ]
     },
+    "UnsupportedFeatureException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "UpdateContainerAgentRequest":{
       "type":"structure",
       "required":["containerInstance"],
@@ -1712,7 +1844,9 @@
         "desiredCount":{"shape":"BoxedInteger"},
         "taskDefinition":{"shape":"String"},
         "deploymentConfiguration":{"shape":"DeploymentConfiguration"},
-        "networkConfiguration":{"shape":"NetworkConfiguration"}
+        "networkConfiguration":{"shape":"NetworkConfiguration"},
+        "platformVersion":{"shape":"String"},
+        "forceNewDeployment":{"shape":"Boolean"}
       }
     },
     "UpdateServiceResponse":{
