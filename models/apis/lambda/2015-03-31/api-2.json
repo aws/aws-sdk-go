@@ -529,6 +529,17 @@
         "Statement":{"shape":"String"}
       }
     },
+    "AdditionalVersion":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"[0-9]+"
+    },
+    "AdditionalVersionWeights":{
+      "type":"map",
+      "key":{"shape":"AdditionalVersion"},
+      "value":{"shape":"Weight"}
+    },
     "Alias":{
       "type":"string",
       "max":128,
@@ -541,12 +552,19 @@
         "AliasArn":{"shape":"FunctionArn"},
         "Name":{"shape":"Alias"},
         "FunctionVersion":{"shape":"Version"},
-        "Description":{"shape":"Description"}
+        "Description":{"shape":"Description"},
+        "RoutingConfig":{"shape":"AliasRoutingConfiguration"}
       }
     },
     "AliasList":{
       "type":"list",
       "member":{"shape":"AliasConfiguration"}
+    },
+    "AliasRoutingConfiguration":{
+      "type":"structure",
+      "members":{
+        "AdditionalVersionWeights":{"shape":"AdditionalVersionWeights"}
+      }
     },
     "Arn":{
       "type":"string",
@@ -590,7 +608,8 @@
         },
         "Name":{"shape":"Alias"},
         "FunctionVersion":{"shape":"Version"},
-        "Description":{"shape":"Description"}
+        "Description":{"shape":"Description"},
+        "RoutingConfig":{"shape":"AliasRoutingConfiguration"}
       }
     },
     "CreateEventSourceMappingRequest":{
@@ -1070,7 +1089,12 @@
           "location":"header",
           "locationName":"X-Amz-Log-Result"
         },
-        "Payload":{"shape":"Blob"}
+        "Payload":{"shape":"Blob"},
+        "ExecutedVersion":{
+          "shape":"Version",
+          "location":"header",
+          "locationName":"X-Amz-Executed-Version"
+        }
       },
       "payload":"Payload"
     },
@@ -1613,7 +1637,8 @@
           "locationName":"Name"
         },
         "FunctionVersion":{"shape":"Version"},
-        "Description":{"shape":"Description"}
+        "Description":{"shape":"Description"},
+        "RoutingConfig":{"shape":"AliasRoutingConfiguration"}
       }
     },
     "UpdateEventSourceMappingRequest":{
@@ -1690,6 +1715,11 @@
         "VpcId":{"shape":"VpcId"}
       }
     },
-    "VpcId":{"type":"string"}
+    "VpcId":{"type":"string"},
+    "Weight":{
+      "type":"double",
+      "max":1.0,
+      "min":0.0
+    }
   }
 }

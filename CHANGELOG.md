@@ -1,3 +1,21 @@
+Release v1.12.35 (2017-11-29)
+===
+
+### Service Client Updates
+* `service/AmazonMQ`: Adds new service
+* `service/GuardDuty`: Adds new service
+* `service/apigateway`: Updates service API and documentation
+  * Changes related to CanaryReleaseDeployment feature. Enables API developer to create a deployment as canary deployment and test API changes with percentage of customers before promoting changes to all customers.
+* `service/batch`: Updates service API and documentation
+  * Add support for Array Jobs which allow users to easily submit many copies of a job with a single API call. This change also enhances the job dependency model to support N_TO_N and sequential dependency chains. The ListJobs and DescribeJobs APIs now have the ability to list or describe the status of entire Array Jobs or individual elements within the array.
+* `service/cognito-idp`: Updates service API and documentation
+* `service/deepdish`: Adds new service
+  * AWS AppSync is an enterprise-level, fully managed GraphQL service with real-time data synchronization and offline programming features.
+* `service/ec2`: Updates service API and documentation
+  * Adds the following updates: 1. You are now able to host a service powered by AWS PrivateLink to provide private connectivity to other VPCs. You are now also able to create endpoints to other services powered by PrivateLink including AWS services, Marketplace Seller services or custom services created by yourself or other AWS VPC customers. 2. You are now able to save launch parameters in a single template that can be used with Auto Scaling, Spot Fleet, Spot, and On Demand instances. 3. You are now able to launch Spot instances via the RunInstances API, using a single additional parameter. RunInstances will response synchronously with an instance ID should capacity be available for your Spot request. 4. A simplified Spot pricing model which delivers low, predictable prices that adjust gradually, based on long-term trends in supply and demand. 5. Amazon EC2 Spot can now hibernate Amazon EBS-backed instances in the event of an interruption, so your workloads pick up from where they left off. Spot can fulfill your request by resuming instances from a hibernated state when capacity is available.
+* `service/lambda`: Updates service API and documentation
+  * Lambda aliases can now shift traffic between two function versions, based on preassigned weights.
+
 Release v1.12.34 (2017-11-27)
 ===
 

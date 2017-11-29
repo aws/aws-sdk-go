@@ -1898,6 +1898,15 @@
         "FLUSH_IN_PROGRESS"
       ]
     },
+    "CanarySettings":{
+      "type":"structure",
+      "members":{
+        "percentTraffic":{"shape":"Double"},
+        "deploymentId":{"shape":"String"},
+        "stageVariableOverrides":{"shape":"MapOfStringToString"},
+        "useStageCache":{"shape":"Boolean"}
+      }
+    },
     "ClientCertificate":{
       "type":"structure",
       "members":{
@@ -2000,7 +2009,8 @@
         "description":{"shape":"String"},
         "cacheClusterEnabled":{"shape":"NullableBoolean"},
         "cacheClusterSize":{"shape":"CacheClusterSize"},
-        "variables":{"shape":"MapOfStringToString"}
+        "variables":{"shape":"MapOfStringToString"},
+        "canarySettings":{"shape":"DeploymentCanarySettings"}
       }
     },
     "CreateDocumentationPartRequest":{
@@ -2137,7 +2147,8 @@
         "cacheClusterEnabled":{"shape":"Boolean"},
         "cacheClusterSize":{"shape":"CacheClusterSize"},
         "variables":{"shape":"MapOfStringToString"},
-        "documentationVersion":{"shape":"String"}
+        "documentationVersion":{"shape":"String"},
+        "canarySettings":{"shape":"CanarySettings"}
       }
     },
     "CreateUsagePlanKeyRequest":{
@@ -2551,6 +2562,14 @@
         "description":{"shape":"String"},
         "createdDate":{"shape":"Timestamp"},
         "apiSummary":{"shape":"PathToMapOfMethodSnapshot"}
+      }
+    },
+    "DeploymentCanarySettings":{
+      "type":"structure",
+      "members":{
+        "percentTraffic":{"shape":"Double"},
+        "stageVariableOverrides":{"shape":"MapOfStringToString"},
+        "useStageCache":{"shape":"Boolean"}
       }
     },
     "Deployments":{
@@ -4414,6 +4433,7 @@
         "variables":{"shape":"MapOfStringToString"},
         "documentationVersion":{"shape":"String"},
         "accessLogSettings":{"shape":"AccessLogSettings"},
+        "canarySettings":{"shape":"CanarySettings"},
         "createdDate":{"shape":"Timestamp"},
         "lastUpdatedDate":{"shape":"Timestamp"}
       }
