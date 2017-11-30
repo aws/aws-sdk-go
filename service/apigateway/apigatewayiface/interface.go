@@ -116,6 +116,10 @@ type APIGatewayAPI interface {
 	CreateUsagePlanKeyWithContext(aws.Context, *apigateway.CreateUsagePlanKeyInput, ...request.Option) (*apigateway.UsagePlanKey, error)
 	CreateUsagePlanKeyRequest(*apigateway.CreateUsagePlanKeyInput) (*request.Request, *apigateway.UsagePlanKey)
 
+	CreateVpcLink(*apigateway.CreateVpcLinkInput) (*apigateway.UpdateVpcLinkOutput, error)
+	CreateVpcLinkWithContext(aws.Context, *apigateway.CreateVpcLinkInput, ...request.Option) (*apigateway.UpdateVpcLinkOutput, error)
+	CreateVpcLinkRequest(*apigateway.CreateVpcLinkInput) (*request.Request, *apigateway.UpdateVpcLinkOutput)
+
 	DeleteApiKey(*apigateway.DeleteApiKeyInput) (*apigateway.DeleteApiKeyOutput, error)
 	DeleteApiKeyWithContext(aws.Context, *apigateway.DeleteApiKeyInput, ...request.Option) (*apigateway.DeleteApiKeyOutput, error)
 	DeleteApiKeyRequest(*apigateway.DeleteApiKeyInput) (*request.Request, *apigateway.DeleteApiKeyOutput)
@@ -195,6 +199,10 @@ type APIGatewayAPI interface {
 	DeleteUsagePlanKey(*apigateway.DeleteUsagePlanKeyInput) (*apigateway.DeleteUsagePlanKeyOutput, error)
 	DeleteUsagePlanKeyWithContext(aws.Context, *apigateway.DeleteUsagePlanKeyInput, ...request.Option) (*apigateway.DeleteUsagePlanKeyOutput, error)
 	DeleteUsagePlanKeyRequest(*apigateway.DeleteUsagePlanKeyInput) (*request.Request, *apigateway.DeleteUsagePlanKeyOutput)
+
+	DeleteVpcLink(*apigateway.DeleteVpcLinkInput) (*apigateway.DeleteVpcLinkOutput, error)
+	DeleteVpcLinkWithContext(aws.Context, *apigateway.DeleteVpcLinkInput, ...request.Option) (*apigateway.DeleteVpcLinkOutput, error)
+	DeleteVpcLinkRequest(*apigateway.DeleteVpcLinkInput) (*request.Request, *apigateway.DeleteVpcLinkOutput)
 
 	FlushStageAuthorizersCache(*apigateway.FlushStageAuthorizersCacheInput) (*apigateway.FlushStageAuthorizersCacheOutput, error)
 	FlushStageAuthorizersCacheWithContext(aws.Context, *apigateway.FlushStageAuthorizersCacheInput, ...request.Option) (*apigateway.FlushStageAuthorizersCacheOutput, error)
@@ -413,6 +421,17 @@ type APIGatewayAPI interface {
 	GetUsagePlansPages(*apigateway.GetUsagePlansInput, func(*apigateway.GetUsagePlansOutput, bool) bool) error
 	GetUsagePlansPagesWithContext(aws.Context, *apigateway.GetUsagePlansInput, func(*apigateway.GetUsagePlansOutput, bool) bool, ...request.Option) error
 
+	GetVpcLink(*apigateway.GetVpcLinkInput) (*apigateway.UpdateVpcLinkOutput, error)
+	GetVpcLinkWithContext(aws.Context, *apigateway.GetVpcLinkInput, ...request.Option) (*apigateway.UpdateVpcLinkOutput, error)
+	GetVpcLinkRequest(*apigateway.GetVpcLinkInput) (*request.Request, *apigateway.UpdateVpcLinkOutput)
+
+	GetVpcLinks(*apigateway.GetVpcLinksInput) (*apigateway.GetVpcLinksOutput, error)
+	GetVpcLinksWithContext(aws.Context, *apigateway.GetVpcLinksInput, ...request.Option) (*apigateway.GetVpcLinksOutput, error)
+	GetVpcLinksRequest(*apigateway.GetVpcLinksInput) (*request.Request, *apigateway.GetVpcLinksOutput)
+
+	GetVpcLinksPages(*apigateway.GetVpcLinksInput, func(*apigateway.GetVpcLinksOutput, bool) bool) error
+	GetVpcLinksPagesWithContext(aws.Context, *apigateway.GetVpcLinksInput, func(*apigateway.GetVpcLinksOutput, bool) bool, ...request.Option) error
+
 	ImportApiKeys(*apigateway.ImportApiKeysInput) (*apigateway.ImportApiKeysOutput, error)
 	ImportApiKeysWithContext(aws.Context, *apigateway.ImportApiKeysInput, ...request.Option) (*apigateway.ImportApiKeysOutput, error)
 	ImportApiKeysRequest(*apigateway.ImportApiKeysInput) (*request.Request, *apigateway.ImportApiKeysOutput)
@@ -540,6 +559,10 @@ type APIGatewayAPI interface {
 	UpdateUsagePlan(*apigateway.UpdateUsagePlanInput) (*apigateway.UsagePlan, error)
 	UpdateUsagePlanWithContext(aws.Context, *apigateway.UpdateUsagePlanInput, ...request.Option) (*apigateway.UsagePlan, error)
 	UpdateUsagePlanRequest(*apigateway.UpdateUsagePlanInput) (*request.Request, *apigateway.UsagePlan)
+
+	UpdateVpcLink(*apigateway.UpdateVpcLinkInput) (*apigateway.UpdateVpcLinkOutput, error)
+	UpdateVpcLinkWithContext(aws.Context, *apigateway.UpdateVpcLinkInput, ...request.Option) (*apigateway.UpdateVpcLinkOutput, error)
+	UpdateVpcLinkRequest(*apigateway.UpdateVpcLinkInput) (*request.Request, *apigateway.UpdateVpcLinkOutput)
 }
 
 var _ APIGatewayAPI = (*apigateway.APIGateway)(nil)
