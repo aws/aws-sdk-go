@@ -255,6 +255,21 @@
         {"shape":"TooManyRequestsException"}
       ]
     },
+    "CreateVpcLink":{
+      "name":"CreateVpcLink",
+      "http":{
+        "method":"POST",
+        "requestUri":"/vpclinks",
+        "responseCode":202
+      },
+      "input":{"shape":"CreateVpcLinkRequest"},
+      "output":{"shape":"VpcLink"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "DeleteApiKey":{
       "name":"DeleteApiKey",
       "http":{
@@ -562,6 +577,21 @@
         {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
         {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "DeleteVpcLink":{
+      "name":"DeleteVpcLink",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/vpclinks/{vpclink_id}",
+        "responseCode":202
+      },
+      "input":{"shape":"DeleteVpcLinkRequest"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
       ]
     },
     "FlushStageAuthorizersCache":{
@@ -1234,6 +1264,34 @@
         {"shape":"NotFoundException"}
       ]
     },
+    "GetVpcLink":{
+      "name":"GetVpcLink",
+      "http":{
+        "method":"GET",
+        "requestUri":"/vpclinks/{vpclink_id}"
+      },
+      "input":{"shape":"GetVpcLinkRequest"},
+      "output":{"shape":"VpcLink"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "GetVpcLinks":{
+      "name":"GetVpcLinks",
+      "http":{
+        "method":"GET",
+        "requestUri":"/vpclinks"
+      },
+      "input":{"shape":"GetVpcLinksRequest"},
+      "output":{"shape":"VpcLinks"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "ImportApiKeys":{
       "name":"ImportApiKeys",
       "http":{
@@ -1752,6 +1810,22 @@
         {"shape":"NotFoundException"},
         {"shape":"ConflictException"}
       ]
+    },
+    "UpdateVpcLink":{
+      "name":"UpdateVpcLink",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/vpclinks/{vpclink_id}"
+      },
+      "input":{"shape":"UpdateVpcLinkRequest"},
+      "output":{"shape":"VpcLink"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"TooManyRequestsException"}
+      ]
     }
   },
   "shapes":{
@@ -1934,6 +2008,13 @@
       },
       "error":{"httpStatusCode":409},
       "exception":true
+    },
+    "ConnectionType":{
+      "type":"string",
+      "enum":[
+        "INTERNET",
+        "VPC_LINK"
+      ]
     },
     "ContentHandlingStrategy":{
       "type":"string",
@@ -2177,6 +2258,18 @@
         "apiStages":{"shape":"ListOfApiStage"},
         "throttle":{"shape":"ThrottleSettings"},
         "quota":{"shape":"QuotaSettings"}
+      }
+    },
+    "CreateVpcLinkRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "targetArns"
+      ],
+      "members":{
+        "name":{"shape":"String"},
+        "description":{"shape":"String"},
+        "targetArns":{"shape":"ListOfString"}
       }
     },
     "DeleteApiKeyRequest":{
@@ -2552,6 +2645,17 @@
           "shape":"String",
           "location":"uri",
           "locationName":"usageplanId"
+        }
+      }
+    },
+    "DeleteVpcLinkRequest":{
+      "type":"structure",
+      "required":["vpcLinkId"],
+      "members":{
+        "vpcLinkId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"vpclink_id"
         }
       }
     },
@@ -3703,6 +3807,32 @@
         }
       }
     },
+    "GetVpcLinkRequest":{
+      "type":"structure",
+      "required":["vpcLinkId"],
+      "members":{
+        "vpcLinkId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"vpclink_id"
+        }
+      }
+    },
+    "GetVpcLinksRequest":{
+      "type":"structure",
+      "members":{
+        "position":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"position"
+        },
+        "limit":{
+          "shape":"NullableInteger",
+          "location":"querystring",
+          "locationName":"limit"
+        }
+      }
+    },
     "ImportApiKeysRequest":{
       "type":"structure",
       "required":[
@@ -3774,6 +3904,8 @@
         "type":{"shape":"IntegrationType"},
         "httpMethod":{"shape":"String"},
         "uri":{"shape":"String"},
+        "connectionType":{"shape":"ConnectionType"},
+        "connectionId":{"shape":"String"},
         "credentials":{"shape":"String"},
         "requestParameters":{"shape":"MapOfStringToString"},
         "requestTemplates":{"shape":"MapOfStringToString"},
@@ -3921,6 +4053,10 @@
     "ListOfUsagePlanKey":{
       "type":"list",
       "member":{"shape":"UsagePlanKey"}
+    },
+    "ListOfVpcLink":{
+      "type":"list",
+      "member":{"shape":"VpcLink"}
     },
     "LocationStatusType":{
       "type":"string",
@@ -4133,6 +4269,8 @@
           "locationName":"httpMethod"
         },
         "uri":{"shape":"String"},
+        "connectionType":{"shape":"ConnectionType"},
+        "connectionId":{"shape":"String"},
         "credentials":{"shape":"String"},
         "requestParameters":{"shape":"MapOfStringToString"},
         "requestTemplates":{"shape":"MapOfStringToString"},
@@ -4977,6 +5115,18 @@
         "patchOperations":{"shape":"ListOfPatchOperation"}
       }
     },
+    "UpdateVpcLinkRequest":{
+      "type":"structure",
+      "required":["vpcLinkId"],
+      "members":{
+        "vpcLinkId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"vpclink_id"
+        },
+        "patchOperations":{"shape":"ListOfPatchOperation"}
+      }
+    },
     "Usage":{
       "type":"structure",
       "members":{
@@ -5027,6 +5177,36 @@
         "position":{"shape":"String"},
         "items":{
           "shape":"ListOfUsagePlan",
+          "locationName":"item"
+        }
+      }
+    },
+    "VpcLink":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"String"},
+        "name":{"shape":"String"},
+        "description":{"shape":"String"},
+        "targetArns":{"shape":"ListOfString"},
+        "status":{"shape":"VpcLinkStatus"},
+        "statusMessage":{"shape":"String"}
+      }
+    },
+    "VpcLinkStatus":{
+      "type":"string",
+      "enum":[
+        "AVAILABLE",
+        "PENDING",
+        "DELETING",
+        "FAILED"
+      ]
+    },
+    "VpcLinks":{
+      "type":"structure",
+      "members":{
+        "position":{"shape":"String"},
+        "items":{
+          "shape":"ListOfVpcLink",
           "locationName":"item"
         }
       }

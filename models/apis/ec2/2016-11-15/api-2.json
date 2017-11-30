@@ -4857,7 +4857,8 @@
         "VpcId":{
           "shape":"String",
           "locationName":"vpcId"
-        }
+        },
+        "PeerRegion":{"shape":"String"}
       }
     },
     "CreateVpcPeeringConnectionResult":{
@@ -13378,7 +13379,10 @@
     },
     "PlacementStrategy":{
       "type":"string",
-      "enum":["cluster"]
+      "enum":[
+        "cluster",
+        "spread"
+      ]
     },
     "PlatformValues":{
       "type":"string",
@@ -18367,6 +18371,10 @@
         "VpcId":{
           "shape":"String",
           "locationName":"vpcId"
+        },
+        "Region":{
+          "shape":"String",
+          "locationName":"region"
         }
       }
     },
