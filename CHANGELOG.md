@@ -1,3 +1,20 @@
+Release v1.12.37 (2017-11-30)
+===
+
+### Service Client Updates
+* `service/Ardi`: Adds new service
+* `service/autoscaling`: Updates service API and documentation
+  * You can now use Auto Scaling with EC2 Launch Templates via the CreateAutoScalingGroup and UpdateAutoScalingGroup APIs.
+* `service/ec2`: Updates service API and documentation
+  * Adds the following updates: 1. T2 Unlimited enables high CPU performance for any period of time whenever required 2. You are now able to create and launch EC2 m5 and h1 instances
+* `service/lightsail`: Updates service API and documentation
+  * This release adds support for load balancer and TLS/SSL certificate management. This set of APIs allows customers to create, manage, and scale secure load balanced applications on Lightsail infrastructure. To provide support for customers who manage their DNS on Lightsail, we've added the ability create an Alias A type record which can point to a load balancer DNS name via the CreateDomainEntry API http://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_CreateDomainEntry.html.
+* `service/ssm`: Updates service API and documentation
+  * This release updates AWS Systems Manager APIs to enable executing automations at controlled rate, target resources in a resource groups and execute entire automation at once or single step at a time. It is now also possible to use YAML, in addition to JSON, when creating Systems Manager documents.
+* `service/waf`: Updates service API and documentation
+  * This release adds support for rule group and managed rule group. Rule group is a container of rules that customers can create, put rules in it and associate the rule group to a WebACL. All rules in a rule group will function identically as they would if each rule was individually associated to the WebACL. Managed rule group is a pre-configured rule group composed by our security partners and made available via the AWS Marketplace. Customers can subscribe to these managed rule groups, associate the managed rule group to their WebACL and start using them immediately to protect their resources.
+* `service/waf-regional`: Updates service API and documentation
+
 Release v1.12.36 (2017-11-29)
 ===
 

@@ -1105,6 +1105,15 @@
       "input":{"shape":"DescribeInstanceAttributeRequest"},
       "output":{"shape":"InstanceAttribute"}
     },
+    "DescribeInstanceCreditSpecifications":{
+      "name":"DescribeInstanceCreditSpecifications",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeInstanceCreditSpecificationsRequest"},
+      "output":{"shape":"DescribeInstanceCreditSpecificationsResult"}
+    },
     "DescribeInstanceStatus":{
       "name":"DescribeInstanceStatus",
       "http":{
@@ -1866,6 +1875,15 @@
         "requestUri":"/"
       },
       "input":{"shape":"ModifyInstanceAttributeRequest"}
+    },
+    "ModifyInstanceCreditSpecification":{
+      "name":"ModifyInstanceCreditSpecification",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyInstanceCreditSpecificationRequest"},
+      "output":{"shape":"ModifyInstanceCreditSpecificationResult"}
     },
     "ModifyInstancePlacement":{
       "name":"ModifyInstancePlacement",
@@ -4953,6 +4971,7 @@
     },
     "CreditSpecificationRequest":{
       "type":"structure",
+      "required":["CpuCredits"],
       "members":{
         "CpuCredits":{"shape":"String"}
       }
@@ -6197,6 +6216,35 @@
         "InstanceId":{
           "shape":"String",
           "locationName":"instanceId"
+        }
+      }
+    },
+    "DescribeInstanceCreditSpecificationsRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "InstanceIds":{
+          "shape":"InstanceIdStringList",
+          "locationName":"InstanceId"
+        },
+        "MaxResults":{"shape":"Integer"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeInstanceCreditSpecificationsResult":{
+      "type":"structure",
+      "members":{
+        "InstanceCreditSpecifications":{
+          "shape":"InstanceCreditSpecificationList",
+          "locationName":"instanceCreditSpecificationSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
@@ -10452,6 +10500,40 @@
         "locationName":"item"
       }
     },
+    "InstanceCreditSpecification":{
+      "type":"structure",
+      "members":{
+        "InstanceId":{
+          "shape":"String",
+          "locationName":"instanceId"
+        },
+        "CpuCredits":{
+          "shape":"String",
+          "locationName":"cpuCredits"
+        }
+      }
+    },
+    "InstanceCreditSpecificationList":{
+      "type":"list",
+      "member":{
+        "shape":"InstanceCreditSpecification",
+        "locationName":"item"
+      }
+    },
+    "InstanceCreditSpecificationListRequest":{
+      "type":"list",
+      "member":{
+        "shape":"InstanceCreditSpecificationRequest",
+        "locationName":"item"
+      }
+    },
+    "InstanceCreditSpecificationRequest":{
+      "type":"structure",
+      "members":{
+        "InstanceId":{"shape":"String"},
+        "CpuCredits":{"shape":"String"}
+      }
+    },
     "InstanceExportDetails":{
       "type":"structure",
       "members":{
@@ -11014,7 +11096,17 @@
         "d2.4xlarge",
         "d2.8xlarge",
         "f1.2xlarge",
-        "f1.16xlarge"
+        "f1.16xlarge",
+        "m5.large",
+        "m5.xlarge",
+        "m5.2xlarge",
+        "m5.4xlarge",
+        "m5.12xlarge",
+        "m5.24xlarge",
+        "h1.2xlarge",
+        "h1.4xlarge",
+        "h1.8xlarge",
+        "h1.16xlarge"
       ]
     },
     "InstanceTypeList":{
@@ -12109,6 +12201,31 @@
         "Value":{
           "shape":"String",
           "locationName":"value"
+        }
+      }
+    },
+    "ModifyInstanceCreditSpecificationRequest":{
+      "type":"structure",
+      "required":["InstanceCreditSpecifications"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "ClientToken":{"shape":"String"},
+        "InstanceCreditSpecifications":{
+          "shape":"InstanceCreditSpecificationListRequest",
+          "locationName":"InstanceCreditSpecification"
+        }
+      }
+    },
+    "ModifyInstanceCreditSpecificationResult":{
+      "type":"structure",
+      "members":{
+        "SuccessfulInstanceCreditSpecifications":{
+          "shape":"SuccessfulInstanceCreditSpecificationSet",
+          "locationName":"successfulInstanceCreditSpecificationSet"
+        },
+        "UnsuccessfulInstanceCreditSpecifications":{
+          "shape":"UnsuccessfulInstanceCreditSpecificationSet",
+          "locationName":"unsuccessfulInstanceCreditSpecificationSet"
         }
       }
     },
@@ -15371,7 +15488,8 @@
           "locationName":"TagSpecification"
         },
         "LaunchTemplate":{"shape":"LaunchTemplateSpecification"},
-        "InstanceMarketOptions":{"shape":"InstanceMarketOptionsRequest"}
+        "InstanceMarketOptions":{"shape":"InstanceMarketOptionsRequest"},
+        "CreditSpecification":{"shape":"CreditSpecificationRequest"}
       }
     },
     "RunScheduledInstancesRequest":{
@@ -16929,6 +17047,22 @@
         "available"
       ]
     },
+    "SuccessfulInstanceCreditSpecificationItem":{
+      "type":"structure",
+      "members":{
+        "InstanceId":{
+          "shape":"String",
+          "locationName":"instanceId"
+        }
+      }
+    },
+    "SuccessfulInstanceCreditSpecificationSet":{
+      "type":"list",
+      "member":{
+        "shape":"SuccessfulInstanceCreditSpecificationItem",
+        "locationName":"item"
+      }
+    },
     "SummaryStatus":{
       "type":"string",
       "enum":[
@@ -17205,6 +17339,48 @@
           "shape":"InstanceMonitoringList",
           "locationName":"instancesSet"
         }
+      }
+    },
+    "UnsuccessfulInstanceCreditSpecificationErrorCode":{
+      "type":"string",
+      "enum":[
+        "InvalidInstanceID.Malformed",
+        "InvalidInstanceID.NotFound",
+        "IncorrectInstanceState",
+        "InstanceCreditSpecification.NotSupported"
+      ]
+    },
+    "UnsuccessfulInstanceCreditSpecificationItem":{
+      "type":"structure",
+      "members":{
+        "InstanceId":{
+          "shape":"String",
+          "locationName":"instanceId"
+        },
+        "Error":{
+          "shape":"UnsuccessfulInstanceCreditSpecificationItemError",
+          "locationName":"error"
+        }
+      }
+    },
+    "UnsuccessfulInstanceCreditSpecificationItemError":{
+      "type":"structure",
+      "members":{
+        "Code":{
+          "shape":"UnsuccessfulInstanceCreditSpecificationErrorCode",
+          "locationName":"code"
+        },
+        "Message":{
+          "shape":"String",
+          "locationName":"message"
+        }
+      }
+    },
+    "UnsuccessfulInstanceCreditSpecificationSet":{
+      "type":"list",
+      "member":{
+        "shape":"UnsuccessfulInstanceCreditSpecificationItem",
+        "locationName":"item"
       }
     },
     "UnsuccessfulItem":{
