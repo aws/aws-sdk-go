@@ -193,33 +193,6 @@ type SageMakerAPI interface {
 	UpdateNotebookInstance(*sagemaker.UpdateNotebookInstanceInput) (*sagemaker.UpdateNotebookInstanceOutput, error)
 	UpdateNotebookInstanceWithContext(aws.Context, *sagemaker.UpdateNotebookInstanceInput, ...request.Option) (*sagemaker.UpdateNotebookInstanceOutput, error)
 	UpdateNotebookInstanceRequest(*sagemaker.UpdateNotebookInstanceInput) (*request.Request, *sagemaker.UpdateNotebookInstanceOutput)
-
-	WaitUntilEndpoint_Created(*sagemaker.DescribeEndpointInput) error
-	WaitUntilEndpoint_CreatedWithContext(aws.Context, *sagemaker.DescribeEndpointInput, ...request.WaiterOption) error
-
-	WaitUntilEndpoint_Deleted(*sagemaker.DescribeEndpointInput) error
-	WaitUntilEndpoint_DeletedWithContext(aws.Context, *sagemaker.DescribeEndpointInput, ...request.WaiterOption) error
-
-	WaitUntilEndpoint_Updated(*sagemaker.DescribeEndpointInput) error
-	WaitUntilEndpoint_UpdatedWithContext(aws.Context, *sagemaker.DescribeEndpointInput, ...request.WaiterOption) error
-
-	WaitUntilNotebookInstance_Deleted(*sagemaker.DescribeNotebookInstanceInput) error
-	WaitUntilNotebookInstance_DeletedWithContext(aws.Context, *sagemaker.DescribeNotebookInstanceInput, ...request.WaiterOption) error
-
-	WaitUntilNotebookInstance_Running(*sagemaker.DescribeNotebookInstanceInput) error
-	WaitUntilNotebookInstance_RunningWithContext(aws.Context, *sagemaker.DescribeNotebookInstanceInput, ...request.WaiterOption) error
-
-	WaitUntilNotebookInstance_Stopped(*sagemaker.DescribeNotebookInstanceInput) error
-	WaitUntilNotebookInstance_StoppedWithContext(aws.Context, *sagemaker.DescribeNotebookInstanceInput, ...request.WaiterOption) error
-
-	WaitUntilTrainingJob_Created(*sagemaker.DescribeTrainingJobInput) error
-	WaitUntilTrainingJob_CreatedWithContext(aws.Context, *sagemaker.DescribeTrainingJobInput, ...request.WaiterOption) error
-
-	WaitUntilTrainingJob_Deleted(*sagemaker.DescribeTrainingJobInput) error
-	WaitUntilTrainingJob_DeletedWithContext(aws.Context, *sagemaker.DescribeTrainingJobInput, ...request.WaiterOption) error
-
-	WaitUntilTrainingJob_Stopped(*sagemaker.DescribeTrainingJobInput) error
-	WaitUntilTrainingJob_StoppedWithContext(aws.Context, *sagemaker.DescribeTrainingJobInput, ...request.WaiterOption) error
 }
 
 var _ SageMakerAPI = (*sagemaker.SageMaker)(nil)

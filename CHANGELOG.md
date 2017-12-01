@@ -1,3 +1,9 @@
+Release v1.12.39 (2017-12-01)
+===
+
+### Service Client Updates
+* `service/SageMaker`: Updates service waiters
+
 Release v1.12.38 (2017-11-30)
 ===
 
