@@ -647,12 +647,36 @@ func (c *InputService4ProtocolTest) InputService4TestCaseOperation1WithContext(c
 type InputService4TestShapeInputService4TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 
-	ListArg []*string `type:"list"`
+	ListBools []*bool `type:"list"`
+
+	ListFloats []*float64 `type:"list"`
+
+	ListIntegers []*int64 `type:"list"`
+
+	ListStrings []*string `type:"list"`
 }
 
-// SetListArg sets the ListArg field's value.
-func (s *InputService4TestShapeInputService4TestCaseOperation1Input) SetListArg(v []*string) *InputService4TestShapeInputService4TestCaseOperation1Input {
-	s.ListArg = v
+// SetListBools sets the ListBools field's value.
+func (s *InputService4TestShapeInputService4TestCaseOperation1Input) SetListBools(v []*bool) *InputService4TestShapeInputService4TestCaseOperation1Input {
+	s.ListBools = v
+	return s
+}
+
+// SetListFloats sets the ListFloats field's value.
+func (s *InputService4TestShapeInputService4TestCaseOperation1Input) SetListFloats(v []*float64) *InputService4TestShapeInputService4TestCaseOperation1Input {
+	s.ListFloats = v
+	return s
+}
+
+// SetListIntegers sets the ListIntegers field's value.
+func (s *InputService4TestShapeInputService4TestCaseOperation1Input) SetListIntegers(v []*int64) *InputService4TestShapeInputService4TestCaseOperation1Input {
+	s.ListIntegers = v
+	return s
+}
+
+// SetListStrings sets the ListStrings field's value.
+func (s *InputService4TestShapeInputService4TestCaseOperation1Input) SetListStrings(v []*string) *InputService4TestShapeInputService4TestCaseOperation1Input {
+	s.ListStrings = v
 	return s
 }
 
@@ -1791,7 +1815,22 @@ func TestInputService3ProtocolTestNestedStructureMembersCase1(t *testing.T) {
 func TestInputService4ProtocolTestListTypesCase1(t *testing.T) {
 	svc := NewInputService4ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService4TestShapeInputService4TestCaseOperation1Input{
-		ListArg: []*string{
+		ListBools: []*bool{
+			aws.Bool(true),
+			aws.Bool(false),
+			aws.Bool(false),
+		},
+		ListFloats: []*float64{
+			aws.Float64(1.1),
+			aws.Float64(2.718),
+			aws.Float64(3.14),
+		},
+		ListIntegers: []*int64{
+			aws.Int64(0),
+			aws.Int64(1),
+			aws.Int64(2),
+		},
+		ListStrings: []*string{
 			aws.String("foo"),
 			aws.String("bar"),
 			aws.String("baz"),
@@ -1811,7 +1850,7 @@ func TestInputService4ProtocolTestListTypesCase1(t *testing.T) {
 		t.Errorf("expect body not to be nil")
 	}
 	body, _ := ioutil.ReadAll(r.Body)
-	awstesting.AssertQuery(t, `Action=OperationName&ListArg.1=foo&ListArg.2=bar&ListArg.3=baz&Version=2014-01-01`, util.Trim(string(body)))
+	awstesting.AssertQuery(t, `Action=OperationName&ListBools.1=true&ListBools.2=false&ListBools.3=false&ListFloats.1=1.1&ListFloats.2=2.718&ListFloats.3=3.14&ListIntegers.1=0&ListIntegers.2=1&ListIntegers.3=2&ListStrings.1=foo&ListStrings.2=bar&ListStrings.3=baz&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
