@@ -1737,7 +1737,7 @@
       },
       "EnumList":{
         "type":"list",
-				"member": {"shape": "EnumType"}
+        "member": {"shape": "EnumType"}
       }
     },
     "cases": [
@@ -1753,11 +1753,11 @@
           "name": "OperationName"
         },
         "params": {
-					"HeaderEnum": "baz",
+          "HeaderEnum": "baz",
           "FooEnum": "foo",
           "URIFooEnum": "bar",
-					"ListEnums": ["foo", "", "bar"],
-					"URIListEnums": ["0", "", "1"]
+          "ListEnums": ["foo", "", "bar"],
+          "URIListEnums": ["0", "", "1"]
         },
         "serialized": {
           "uri": "/Enum/bar?ListEnums=0&ListEnums=&ListEnums=1",

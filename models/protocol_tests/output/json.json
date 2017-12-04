@@ -392,7 +392,7 @@
       },
       "JSONEnumList":{
         "type":"list",
-				"member": {"shape": "JSONEnumType"}
+        "member": {"shape": "JSONEnumType"}
       }
     },
     "cases": [
@@ -405,7 +405,7 @@
         },
         "result": {
           "FooEnum": "foo",
-					"ListEnums": ["foo", "bar"]
+          "ListEnums": ["foo", "bar"]
         },
         "response": {
           "status_code": 200,

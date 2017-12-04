@@ -477,7 +477,7 @@
       },
       "EC2EnumList":{
         "type":"list",
-				"member": {"shape": "EC2EnumType"}
+        "member": {"shape": "EC2EnumType"}
       }
     },
     "cases": [
@@ -490,7 +490,7 @@
         },
         "result": {
           "FooEnum": "foo",
-					"ListEnums": ["foo", "bar"]
+          "ListEnums": ["foo", "bar"]
         },
         "response": {
           "status_code": 200,
