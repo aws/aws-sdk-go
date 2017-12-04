@@ -305,7 +305,7 @@ documentation for the errors that could be returned.
   // will leak connections.
   defer result.Body.Close()
 
-  fmt.Println("Object Size:", aws.StringValue(result.ContentLength))
+  fmt.Println("Object Size:", aws.Int64Value(result.ContentLength))
 ```
 
 ### API Request Pagination and Resource Waiters
