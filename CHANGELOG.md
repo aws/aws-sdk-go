@@ -1,3 +1,12 @@
+Release v1.12.40 (2017-12-04)
+===
+
+### Service Client Updates
+* `service/budgets`: Updates service API and documentation
+  * Add additional costTypes to support finer control for different charges included in a cost budget.
+* `service/ecs`: Updates service documentation
+  * Documentation updates for ecs
+
 Release v1.12.39 (2017-12-01)
 ===
 
