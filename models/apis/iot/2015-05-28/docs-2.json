@@ -37,7 +37,7 @@
     "DeprecateThingType": "<p>Deprecates a thing type. You can not associate new things with deprecated thing type.</p>",
     "DescribeAuthorizer": "<p>Describes an authorizer.</p>",
     "DescribeCACertificate": "<p>Describes a registered CA certificate.</p>",
-    "DescribeCertificate": "<p>Gets information about the specified certificate. You may specify the certificate using either its ID or PEM.</p>",
+    "DescribeCertificate": "<p>Gets information about the specified certificate.</p>",
     "DescribeDefaultAuthorizer": "<p>Describes the default authorizer.</p>",
     "DescribeEndpoint": "<p>Returns a unique endpoint specific to the AWS account making the call.</p>",
     "DescribeEventConfigurations": "<p>Describes event configurations.</p>",
@@ -126,7 +126,9 @@
     "Action": {
       "base": "<p>Describes the actions associated with a rule.</p>",
       "refs": {
-        "ActionList$member": null
+        "ActionList$member": null,
+        "TopicRule$errorAction": "<p>The action to perform when an error occurs.</p>",
+        "TopicRulePayload$errorAction": "<p>The action to take when an error occurs.</p>"
       }
     },
     "ActionList": {
