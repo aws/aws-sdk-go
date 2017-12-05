@@ -33,7 +33,7 @@ const opText = "TranslateText"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/Text
+// See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/Text
 func (c *Translate) TextRequest(input *TextInput) (req *request.Request, output *TextOutput) {
 	op := &request.Operation{
 		Name:       opText,
@@ -96,7 +96,7 @@ func (c *Translate) TextRequest(input *TextInput) (req *request.Request, output 
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   Amazon Translate is unavailable. Retry your request later.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/Text
+// See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/Text
 func (c *Translate) Text(input *TextInput) (*TextOutput, error) {
 	req, out := c.TextRequest(input)
 	return out, req.Send()
@@ -118,7 +118,7 @@ func (c *Translate) TextWithContext(ctx aws.Context, input *TextInput, opts ...r
 	return out, req.Send()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/TextRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/TextRequest
 type TextInput struct {
 	_ struct{} `type:"structure"`
 
@@ -196,7 +196,7 @@ func (s *TextInput) SetText(v string) *TextInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/TextResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/TextResponse
 type TextOutput struct {
 	_ struct{} `type:"structure"`
 

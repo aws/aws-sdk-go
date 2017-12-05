@@ -38,7 +38,7 @@ const opAbortDocumentVersionUpload = "AbortDocumentVersionUpload"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/AbortDocumentVersionUpload
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/AbortDocumentVersionUpload
 func (c *WorkDocs) AbortDocumentVersionUploadRequest(input *AbortDocumentVersionUploadInput) (req *request.Request, output *AbortDocumentVersionUploadOutput) {
 	op := &request.Operation{
 		Name:       opAbortDocumentVersionUpload,
@@ -91,7 +91,7 @@ func (c *WorkDocs) AbortDocumentVersionUploadRequest(input *AbortDocumentVersion
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/AbortDocumentVersionUpload
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/AbortDocumentVersionUpload
 func (c *WorkDocs) AbortDocumentVersionUpload(input *AbortDocumentVersionUploadInput) (*AbortDocumentVersionUploadOutput, error) {
 	req, out := c.AbortDocumentVersionUploadRequest(input)
 	return out, req.Send()
@@ -138,7 +138,7 @@ const opActivateUser = "ActivateUser"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/ActivateUser
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/ActivateUser
 func (c *WorkDocs) ActivateUserRequest(input *ActivateUserInput) (req *request.Request, output *ActivateUserOutput) {
 	op := &request.Operation{
 		Name:       opActivateUser,
@@ -184,7 +184,7 @@ func (c *WorkDocs) ActivateUserRequest(input *ActivateUserInput) (req *request.R
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/ActivateUser
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/ActivateUser
 func (c *WorkDocs) ActivateUser(input *ActivateUserInput) (*ActivateUserOutput, error) {
 	req, out := c.ActivateUserRequest(input)
 	return out, req.Send()
@@ -231,7 +231,7 @@ const opAddResourcePermissions = "AddResourcePermissions"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/AddResourcePermissions
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/AddResourcePermissions
 func (c *WorkDocs) AddResourcePermissionsRequest(input *AddResourcePermissionsInput) (req *request.Request, output *AddResourcePermissionsOutput) {
 	op := &request.Operation{
 		Name:       opAddResourcePermissions,
@@ -275,7 +275,7 @@ func (c *WorkDocs) AddResourcePermissionsRequest(input *AddResourcePermissionsIn
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/AddResourcePermissions
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/AddResourcePermissions
 func (c *WorkDocs) AddResourcePermissions(input *AddResourcePermissionsInput) (*AddResourcePermissionsOutput, error) {
 	req, out := c.AddResourcePermissionsRequest(input)
 	return out, req.Send()
@@ -322,7 +322,7 @@ const opCreateComment = "CreateComment"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateComment
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateComment
 func (c *WorkDocs) CreateCommentRequest(input *CreateCommentInput) (req *request.Request, output *CreateCommentOutput) {
 	op := &request.Operation{
 		Name:       opCreateComment,
@@ -375,7 +375,7 @@ func (c *WorkDocs) CreateCommentRequest(input *CreateCommentInput) (req *request
 //   This exception is thrown when the document is locked for comments and user
 //   tries to create or delete a comment on that document.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateComment
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateComment
 func (c *WorkDocs) CreateComment(input *CreateCommentInput) (*CreateCommentOutput, error) {
 	req, out := c.CreateCommentRequest(input)
 	return out, req.Send()
@@ -422,7 +422,7 @@ const opCreateCustomMetadata = "CreateCustomMetadata"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateCustomMetadata
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateCustomMetadata
 func (c *WorkDocs) CreateCustomMetadataRequest(input *CreateCustomMetadataInput) (req *request.Request, output *CreateCustomMetadataOutput) {
 	op := &request.Operation{
 		Name:       opCreateCustomMetadata,
@@ -476,7 +476,7 @@ func (c *WorkDocs) CreateCustomMetadataRequest(input *CreateCustomMetadataInput)
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateCustomMetadata
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateCustomMetadata
 func (c *WorkDocs) CreateCustomMetadata(input *CreateCustomMetadataInput) (*CreateCustomMetadataOutput, error) {
 	req, out := c.CreateCustomMetadataRequest(input)
 	return out, req.Send()
@@ -523,7 +523,7 @@ const opCreateFolder = "CreateFolder"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateFolder
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateFolder
 func (c *WorkDocs) CreateFolderRequest(input *CreateFolderInput) (req *request.Request, output *CreateFolderOutput) {
 	op := &request.Operation{
 		Name:       opCreateFolder,
@@ -578,7 +578,7 @@ func (c *WorkDocs) CreateFolderRequest(input *CreateFolderInput) (req *request.R
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateFolder
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateFolder
 func (c *WorkDocs) CreateFolder(input *CreateFolderInput) (*CreateFolderOutput, error) {
 	req, out := c.CreateFolderRequest(input)
 	return out, req.Send()
@@ -625,7 +625,7 @@ const opCreateLabels = "CreateLabels"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateLabels
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateLabels
 func (c *WorkDocs) CreateLabelsRequest(input *CreateLabelsInput) (req *request.Request, output *CreateLabelsOutput) {
 	op := &request.Operation{
 		Name:       opCreateLabels,
@@ -674,7 +674,7 @@ func (c *WorkDocs) CreateLabelsRequest(input *CreateLabelsInput) (req *request.R
 //   * ErrCodeTooManyLabelsException "TooManyLabelsException"
 //   The limit has been reached on the number of labels for the specified resource.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateLabels
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateLabels
 func (c *WorkDocs) CreateLabels(input *CreateLabelsInput) (*CreateLabelsOutput, error) {
 	req, out := c.CreateLabelsRequest(input)
 	return out, req.Send()
@@ -721,7 +721,7 @@ const opCreateNotificationSubscription = "CreateNotificationSubscription"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateNotificationSubscription
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateNotificationSubscription
 func (c *WorkDocs) CreateNotificationSubscriptionRequest(input *CreateNotificationSubscriptionInput) (req *request.Request, output *CreateNotificationSubscriptionOutput) {
 	op := &request.Operation{
 		Name:       opCreateNotificationSubscription,
@@ -764,7 +764,7 @@ func (c *WorkDocs) CreateNotificationSubscriptionRequest(input *CreateNotificati
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateNotificationSubscription
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateNotificationSubscription
 func (c *WorkDocs) CreateNotificationSubscription(input *CreateNotificationSubscriptionInput) (*CreateNotificationSubscriptionOutput, error) {
 	req, out := c.CreateNotificationSubscriptionRequest(input)
 	return out, req.Send()
@@ -811,7 +811,7 @@ const opCreateUser = "CreateUser"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateUser
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateUser
 func (c *WorkDocs) CreateUserRequest(input *CreateUserInput) (req *request.Request, output *CreateUserOutput) {
 	op := &request.Operation{
 		Name:       opCreateUser,
@@ -858,7 +858,7 @@ func (c *WorkDocs) CreateUserRequest(input *CreateUserInput) (req *request.Reque
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateUser
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateUser
 func (c *WorkDocs) CreateUser(input *CreateUserInput) (*CreateUserOutput, error) {
 	req, out := c.CreateUserRequest(input)
 	return out, req.Send()
@@ -905,7 +905,7 @@ const opDeactivateUser = "DeactivateUser"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeactivateUser
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeactivateUser
 func (c *WorkDocs) DeactivateUserRequest(input *DeactivateUserInput) (req *request.Request, output *DeactivateUserOutput) {
 	op := &request.Operation{
 		Name:       opDeactivateUser,
@@ -954,7 +954,7 @@ func (c *WorkDocs) DeactivateUserRequest(input *DeactivateUserInput) (req *reque
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeactivateUser
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeactivateUser
 func (c *WorkDocs) DeactivateUser(input *DeactivateUserInput) (*DeactivateUserOutput, error) {
 	req, out := c.DeactivateUserRequest(input)
 	return out, req.Send()
@@ -1001,7 +1001,7 @@ const opDeleteComment = "DeleteComment"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteComment
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteComment
 func (c *WorkDocs) DeleteCommentRequest(input *DeleteCommentInput) (req *request.Request, output *DeleteCommentOutput) {
 	op := &request.Operation{
 		Name:       opDeleteComment,
@@ -1056,7 +1056,7 @@ func (c *WorkDocs) DeleteCommentRequest(input *DeleteCommentInput) (req *request
 //   This exception is thrown when the document is locked for comments and user
 //   tries to create or delete a comment on that document.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteComment
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteComment
 func (c *WorkDocs) DeleteComment(input *DeleteCommentInput) (*DeleteCommentOutput, error) {
 	req, out := c.DeleteCommentRequest(input)
 	return out, req.Send()
@@ -1103,7 +1103,7 @@ const opDeleteCustomMetadata = "DeleteCustomMetadata"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteCustomMetadata
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteCustomMetadata
 func (c *WorkDocs) DeleteCustomMetadataRequest(input *DeleteCustomMetadataInput) (req *request.Request, output *DeleteCustomMetadataOutput) {
 	op := &request.Operation{
 		Name:       opDeleteCustomMetadata,
@@ -1152,7 +1152,7 @@ func (c *WorkDocs) DeleteCustomMetadataRequest(input *DeleteCustomMetadataInput)
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteCustomMetadata
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteCustomMetadata
 func (c *WorkDocs) DeleteCustomMetadata(input *DeleteCustomMetadataInput) (*DeleteCustomMetadataOutput, error) {
 	req, out := c.DeleteCustomMetadataRequest(input)
 	return out, req.Send()
@@ -1199,7 +1199,7 @@ const opDeleteDocument = "DeleteDocument"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteDocument
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteDocument
 func (c *WorkDocs) DeleteDocumentRequest(input *DeleteDocumentInput) (req *request.Request, output *DeleteDocumentOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDocument,
@@ -1253,7 +1253,7 @@ func (c *WorkDocs) DeleteDocumentRequest(input *DeleteDocumentInput) (req *reque
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteDocument
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteDocument
 func (c *WorkDocs) DeleteDocument(input *DeleteDocumentInput) (*DeleteDocumentOutput, error) {
 	req, out := c.DeleteDocumentRequest(input)
 	return out, req.Send()
@@ -1300,7 +1300,7 @@ const opDeleteFolder = "DeleteFolder"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteFolder
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteFolder
 func (c *WorkDocs) DeleteFolderRequest(input *DeleteFolderInput) (req *request.Request, output *DeleteFolderOutput) {
 	op := &request.Operation{
 		Name:       opDeleteFolder,
@@ -1354,7 +1354,7 @@ func (c *WorkDocs) DeleteFolderRequest(input *DeleteFolderInput) (req *request.R
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteFolder
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteFolder
 func (c *WorkDocs) DeleteFolder(input *DeleteFolderInput) (*DeleteFolderOutput, error) {
 	req, out := c.DeleteFolderRequest(input)
 	return out, req.Send()
@@ -1401,7 +1401,7 @@ const opDeleteFolderContents = "DeleteFolderContents"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteFolderContents
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteFolderContents
 func (c *WorkDocs) DeleteFolderContentsRequest(input *DeleteFolderContentsInput) (req *request.Request, output *DeleteFolderContentsOutput) {
 	op := &request.Operation{
 		Name:       opDeleteFolderContents,
@@ -1449,7 +1449,7 @@ func (c *WorkDocs) DeleteFolderContentsRequest(input *DeleteFolderContentsInput)
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteFolderContents
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteFolderContents
 func (c *WorkDocs) DeleteFolderContents(input *DeleteFolderContentsInput) (*DeleteFolderContentsOutput, error) {
 	req, out := c.DeleteFolderContentsRequest(input)
 	return out, req.Send()
@@ -1496,7 +1496,7 @@ const opDeleteLabels = "DeleteLabels"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteLabels
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteLabels
 func (c *WorkDocs) DeleteLabelsRequest(input *DeleteLabelsInput) (req *request.Request, output *DeleteLabelsOutput) {
 	op := &request.Operation{
 		Name:       opDeleteLabels,
@@ -1542,7 +1542,7 @@ func (c *WorkDocs) DeleteLabelsRequest(input *DeleteLabelsInput) (req *request.R
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteLabels
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteLabels
 func (c *WorkDocs) DeleteLabels(input *DeleteLabelsInput) (*DeleteLabelsOutput, error) {
 	req, out := c.DeleteLabelsRequest(input)
 	return out, req.Send()
@@ -1589,7 +1589,7 @@ const opDeleteNotificationSubscription = "DeleteNotificationSubscription"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteNotificationSubscription
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteNotificationSubscription
 func (c *WorkDocs) DeleteNotificationSubscriptionRequest(input *DeleteNotificationSubscriptionInput) (req *request.Request, output *DeleteNotificationSubscriptionOutput) {
 	op := &request.Operation{
 		Name:       opDeleteNotificationSubscription,
@@ -1632,7 +1632,7 @@ func (c *WorkDocs) DeleteNotificationSubscriptionRequest(input *DeleteNotificati
 //   * ErrCodeProhibitedStateException "ProhibitedStateException"
 //   The specified document version is not in the INITIALIZED state.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteNotificationSubscription
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteNotificationSubscription
 func (c *WorkDocs) DeleteNotificationSubscription(input *DeleteNotificationSubscriptionInput) (*DeleteNotificationSubscriptionOutput, error) {
 	req, out := c.DeleteNotificationSubscriptionRequest(input)
 	return out, req.Send()
@@ -1679,7 +1679,7 @@ const opDeleteUser = "DeleteUser"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteUser
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteUser
 func (c *WorkDocs) DeleteUserRequest(input *DeleteUserInput) (req *request.Request, output *DeleteUserOutput) {
 	op := &request.Operation{
 		Name:       opDeleteUser,
@@ -1727,7 +1727,7 @@ func (c *WorkDocs) DeleteUserRequest(input *DeleteUserInput) (req *request.Reque
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteUser
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteUser
 func (c *WorkDocs) DeleteUser(input *DeleteUserInput) (*DeleteUserOutput, error) {
 	req, out := c.DeleteUserRequest(input)
 	return out, req.Send()
@@ -1774,7 +1774,7 @@ const opDescribeActivities = "DescribeActivities"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeActivities
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeActivities
 func (c *WorkDocs) DescribeActivitiesRequest(input *DescribeActivitiesInput) (req *request.Request, output *DescribeActivitiesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeActivities,
@@ -1820,7 +1820,7 @@ func (c *WorkDocs) DescribeActivitiesRequest(input *DescribeActivitiesInput) (re
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeActivities
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeActivities
 func (c *WorkDocs) DescribeActivities(input *DescribeActivitiesInput) (*DescribeActivitiesOutput, error) {
 	req, out := c.DescribeActivitiesRequest(input)
 	return out, req.Send()
@@ -1867,7 +1867,7 @@ const opDescribeComments = "DescribeComments"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeComments
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeComments
 func (c *WorkDocs) DescribeCommentsRequest(input *DescribeCommentsInput) (req *request.Request, output *DescribeCommentsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeComments,
@@ -1916,7 +1916,7 @@ func (c *WorkDocs) DescribeCommentsRequest(input *DescribeCommentsInput) (req *r
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeComments
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeComments
 func (c *WorkDocs) DescribeComments(input *DescribeCommentsInput) (*DescribeCommentsOutput, error) {
 	req, out := c.DescribeCommentsRequest(input)
 	return out, req.Send()
@@ -1963,7 +1963,7 @@ const opDescribeDocumentVersions = "DescribeDocumentVersions"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeDocumentVersions
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeDocumentVersions
 func (c *WorkDocs) DescribeDocumentVersionsRequest(input *DescribeDocumentVersionsInput) (req *request.Request, output *DescribeDocumentVersionsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDocumentVersions,
@@ -2023,7 +2023,7 @@ func (c *WorkDocs) DescribeDocumentVersionsRequest(input *DescribeDocumentVersio
 //   * ErrCodeProhibitedStateException "ProhibitedStateException"
 //   The specified document version is not in the INITIALIZED state.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeDocumentVersions
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeDocumentVersions
 func (c *WorkDocs) DescribeDocumentVersions(input *DescribeDocumentVersionsInput) (*DescribeDocumentVersionsOutput, error) {
 	req, out := c.DescribeDocumentVersionsRequest(input)
 	return out, req.Send()
@@ -2120,7 +2120,7 @@ const opDescribeFolderContents = "DescribeFolderContents"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeFolderContents
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeFolderContents
 func (c *WorkDocs) DescribeFolderContentsRequest(input *DescribeFolderContentsInput) (req *request.Request, output *DescribeFolderContentsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeFolderContents,
@@ -2181,7 +2181,7 @@ func (c *WorkDocs) DescribeFolderContentsRequest(input *DescribeFolderContentsIn
 //   * ErrCodeProhibitedStateException "ProhibitedStateException"
 //   The specified document version is not in the INITIALIZED state.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeFolderContents
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeFolderContents
 func (c *WorkDocs) DescribeFolderContents(input *DescribeFolderContentsInput) (*DescribeFolderContentsOutput, error) {
 	req, out := c.DescribeFolderContentsRequest(input)
 	return out, req.Send()
@@ -2278,7 +2278,7 @@ const opDescribeGroups = "DescribeGroups"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeGroups
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeGroups
 func (c *WorkDocs) DescribeGroupsRequest(input *DescribeGroupsInput) (req *request.Request, output *DescribeGroupsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeGroups,
@@ -2321,7 +2321,7 @@ func (c *WorkDocs) DescribeGroupsRequest(input *DescribeGroupsInput) (req *reque
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeGroups
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeGroups
 func (c *WorkDocs) DescribeGroups(input *DescribeGroupsInput) (*DescribeGroupsOutput, error) {
 	req, out := c.DescribeGroupsRequest(input)
 	return out, req.Send()
@@ -2368,7 +2368,7 @@ const opDescribeNotificationSubscriptions = "DescribeNotificationSubscriptions"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeNotificationSubscriptions
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeNotificationSubscriptions
 func (c *WorkDocs) DescribeNotificationSubscriptionsRequest(input *DescribeNotificationSubscriptionsInput) (req *request.Request, output *DescribeNotificationSubscriptionsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeNotificationSubscriptions,
@@ -2406,7 +2406,7 @@ func (c *WorkDocs) DescribeNotificationSubscriptionsRequest(input *DescribeNotif
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeNotificationSubscriptions
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeNotificationSubscriptions
 func (c *WorkDocs) DescribeNotificationSubscriptions(input *DescribeNotificationSubscriptionsInput) (*DescribeNotificationSubscriptionsOutput, error) {
 	req, out := c.DescribeNotificationSubscriptionsRequest(input)
 	return out, req.Send()
@@ -2453,7 +2453,7 @@ const opDescribeResourcePermissions = "DescribeResourcePermissions"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeResourcePermissions
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeResourcePermissions
 func (c *WorkDocs) DescribeResourcePermissionsRequest(input *DescribeResourcePermissionsInput) (req *request.Request, output *DescribeResourcePermissionsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeResourcePermissions,
@@ -2496,7 +2496,7 @@ func (c *WorkDocs) DescribeResourcePermissionsRequest(input *DescribeResourcePer
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeResourcePermissions
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeResourcePermissions
 func (c *WorkDocs) DescribeResourcePermissions(input *DescribeResourcePermissionsInput) (*DescribeResourcePermissionsOutput, error) {
 	req, out := c.DescribeResourcePermissionsRequest(input)
 	return out, req.Send()
@@ -2543,7 +2543,7 @@ const opDescribeRootFolders = "DescribeRootFolders"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeRootFolders
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeRootFolders
 func (c *WorkDocs) DescribeRootFoldersRequest(input *DescribeRootFoldersInput) (req *request.Request, output *DescribeRootFoldersOutput) {
 	op := &request.Operation{
 		Name:       opDescribeRootFolders,
@@ -2592,7 +2592,7 @@ func (c *WorkDocs) DescribeRootFoldersRequest(input *DescribeRootFoldersInput) (
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeRootFolders
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeRootFolders
 func (c *WorkDocs) DescribeRootFolders(input *DescribeRootFoldersInput) (*DescribeRootFoldersOutput, error) {
 	req, out := c.DescribeRootFoldersRequest(input)
 	return out, req.Send()
@@ -2639,7 +2639,7 @@ const opDescribeUsers = "DescribeUsers"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeUsers
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeUsers
 func (c *WorkDocs) DescribeUsersRequest(input *DescribeUsersInput) (req *request.Request, output *DescribeUsersOutput) {
 	op := &request.Operation{
 		Name:       opDescribeUsers,
@@ -2696,7 +2696,7 @@ func (c *WorkDocs) DescribeUsersRequest(input *DescribeUsersInput) (req *request
 //   * ErrCodeInvalidArgumentException "InvalidArgumentException"
 //   The pagination marker or limit fields are not valid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeUsers
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeUsers
 func (c *WorkDocs) DescribeUsers(input *DescribeUsersInput) (*DescribeUsersOutput, error) {
 	req, out := c.DescribeUsersRequest(input)
 	return out, req.Send()
@@ -2793,7 +2793,7 @@ const opGetCurrentUser = "GetCurrentUser"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetCurrentUser
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetCurrentUser
 func (c *WorkDocs) GetCurrentUserRequest(input *GetCurrentUserInput) (req *request.Request, output *GetCurrentUserOutput) {
 	op := &request.Operation{
 		Name:       opGetCurrentUser,
@@ -2840,7 +2840,7 @@ func (c *WorkDocs) GetCurrentUserRequest(input *GetCurrentUserInput) (req *reque
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetCurrentUser
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetCurrentUser
 func (c *WorkDocs) GetCurrentUser(input *GetCurrentUserInput) (*GetCurrentUserOutput, error) {
 	req, out := c.GetCurrentUserRequest(input)
 	return out, req.Send()
@@ -2887,7 +2887,7 @@ const opGetDocument = "GetDocument"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocument
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocument
 func (c *WorkDocs) GetDocumentRequest(input *GetDocumentInput) (req *request.Request, output *GetDocumentOutput) {
 	op := &request.Operation{
 		Name:       opGetDocument,
@@ -2939,7 +2939,7 @@ func (c *WorkDocs) GetDocumentRequest(input *GetDocumentInput) (req *request.Req
 //   * ErrCodeInvalidPasswordException "InvalidPasswordException"
 //   The password is invalid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocument
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocument
 func (c *WorkDocs) GetDocument(input *GetDocumentInput) (*GetDocumentOutput, error) {
 	req, out := c.GetDocumentRequest(input)
 	return out, req.Send()
@@ -2986,7 +2986,7 @@ const opGetDocumentPath = "GetDocumentPath"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocumentPath
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocumentPath
 func (c *WorkDocs) GetDocumentPathRequest(input *GetDocumentPathInput) (req *request.Request, output *GetDocumentPathOutput) {
 	op := &request.Operation{
 		Name:       opGetDocumentPath,
@@ -3038,7 +3038,7 @@ func (c *WorkDocs) GetDocumentPathRequest(input *GetDocumentPathInput) (req *req
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocumentPath
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocumentPath
 func (c *WorkDocs) GetDocumentPath(input *GetDocumentPathInput) (*GetDocumentPathOutput, error) {
 	req, out := c.GetDocumentPathRequest(input)
 	return out, req.Send()
@@ -3085,7 +3085,7 @@ const opGetDocumentVersion = "GetDocumentVersion"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocumentVersion
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocumentVersion
 func (c *WorkDocs) GetDocumentVersionRequest(input *GetDocumentVersionInput) (req *request.Request, output *GetDocumentVersionOutput) {
 	op := &request.Operation{
 		Name:       opGetDocumentVersion,
@@ -3137,7 +3137,7 @@ func (c *WorkDocs) GetDocumentVersionRequest(input *GetDocumentVersionInput) (re
 //   * ErrCodeInvalidPasswordException "InvalidPasswordException"
 //   The password is invalid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocumentVersion
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocumentVersion
 func (c *WorkDocs) GetDocumentVersion(input *GetDocumentVersionInput) (*GetDocumentVersionOutput, error) {
 	req, out := c.GetDocumentVersionRequest(input)
 	return out, req.Send()
@@ -3184,7 +3184,7 @@ const opGetFolder = "GetFolder"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetFolder
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetFolder
 func (c *WorkDocs) GetFolderRequest(input *GetFolderInput) (req *request.Request, output *GetFolderOutput) {
 	op := &request.Operation{
 		Name:       opGetFolder,
@@ -3236,7 +3236,7 @@ func (c *WorkDocs) GetFolderRequest(input *GetFolderInput) (req *request.Request
 //   * ErrCodeProhibitedStateException "ProhibitedStateException"
 //   The specified document version is not in the INITIALIZED state.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetFolder
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetFolder
 func (c *WorkDocs) GetFolder(input *GetFolderInput) (*GetFolderOutput, error) {
 	req, out := c.GetFolderRequest(input)
 	return out, req.Send()
@@ -3283,7 +3283,7 @@ const opGetFolderPath = "GetFolderPath"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetFolderPath
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetFolderPath
 func (c *WorkDocs) GetFolderPathRequest(input *GetFolderPathInput) (req *request.Request, output *GetFolderPathOutput) {
 	op := &request.Operation{
 		Name:       opGetFolderPath,
@@ -3335,7 +3335,7 @@ func (c *WorkDocs) GetFolderPathRequest(input *GetFolderPathInput) (req *request
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetFolderPath
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetFolderPath
 func (c *WorkDocs) GetFolderPath(input *GetFolderPathInput) (*GetFolderPathOutput, error) {
 	req, out := c.GetFolderPathRequest(input)
 	return out, req.Send()
@@ -3382,7 +3382,7 @@ const opInitiateDocumentVersionUpload = "InitiateDocumentVersionUpload"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/InitiateDocumentVersionUpload
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/InitiateDocumentVersionUpload
 func (c *WorkDocs) InitiateDocumentVersionUploadRequest(input *InitiateDocumentVersionUploadInput) (req *request.Request, output *InitiateDocumentVersionUploadOutput) {
 	op := &request.Operation{
 		Name:       opInitiateDocumentVersionUpload,
@@ -3454,7 +3454,7 @@ func (c *WorkDocs) InitiateDocumentVersionUploadRequest(input *InitiateDocumentV
 //   * ErrCodeResourceAlreadyCheckedOutException "ResourceAlreadyCheckedOutException"
 //   The resource is already checked out.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/InitiateDocumentVersionUpload
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/InitiateDocumentVersionUpload
 func (c *WorkDocs) InitiateDocumentVersionUpload(input *InitiateDocumentVersionUploadInput) (*InitiateDocumentVersionUploadOutput, error) {
 	req, out := c.InitiateDocumentVersionUploadRequest(input)
 	return out, req.Send()
@@ -3501,7 +3501,7 @@ const opRemoveAllResourcePermissions = "RemoveAllResourcePermissions"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/RemoveAllResourcePermissions
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/RemoveAllResourcePermissions
 func (c *WorkDocs) RemoveAllResourcePermissionsRequest(input *RemoveAllResourcePermissionsInput) (req *request.Request, output *RemoveAllResourcePermissionsOutput) {
 	op := &request.Operation{
 		Name:       opRemoveAllResourcePermissions,
@@ -3546,7 +3546,7 @@ func (c *WorkDocs) RemoveAllResourcePermissionsRequest(input *RemoveAllResourceP
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/RemoveAllResourcePermissions
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/RemoveAllResourcePermissions
 func (c *WorkDocs) RemoveAllResourcePermissions(input *RemoveAllResourcePermissionsInput) (*RemoveAllResourcePermissionsOutput, error) {
 	req, out := c.RemoveAllResourcePermissionsRequest(input)
 	return out, req.Send()
@@ -3593,7 +3593,7 @@ const opRemoveResourcePermission = "RemoveResourcePermission"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/RemoveResourcePermission
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/RemoveResourcePermission
 func (c *WorkDocs) RemoveResourcePermissionRequest(input *RemoveResourcePermissionInput) (req *request.Request, output *RemoveResourcePermissionOutput) {
 	op := &request.Operation{
 		Name:       opRemoveResourcePermission,
@@ -3638,7 +3638,7 @@ func (c *WorkDocs) RemoveResourcePermissionRequest(input *RemoveResourcePermissi
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/RemoveResourcePermission
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/RemoveResourcePermission
 func (c *WorkDocs) RemoveResourcePermission(input *RemoveResourcePermissionInput) (*RemoveResourcePermissionOutput, error) {
 	req, out := c.RemoveResourcePermissionRequest(input)
 	return out, req.Send()
@@ -3685,7 +3685,7 @@ const opUpdateDocument = "UpdateDocument"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateDocument
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateDocument
 func (c *WorkDocs) UpdateDocumentRequest(input *UpdateDocumentInput) (req *request.Request, output *UpdateDocumentOutput) {
 	op := &request.Operation{
 		Name:       opUpdateDocument,
@@ -3746,7 +3746,7 @@ func (c *WorkDocs) UpdateDocumentRequest(input *UpdateDocumentInput) (req *reque
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateDocument
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateDocument
 func (c *WorkDocs) UpdateDocument(input *UpdateDocumentInput) (*UpdateDocumentOutput, error) {
 	req, out := c.UpdateDocumentRequest(input)
 	return out, req.Send()
@@ -3793,7 +3793,7 @@ const opUpdateDocumentVersion = "UpdateDocumentVersion"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateDocumentVersion
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateDocumentVersion
 func (c *WorkDocs) UpdateDocumentVersionRequest(input *UpdateDocumentVersionInput) (req *request.Request, output *UpdateDocumentVersionOutput) {
 	op := &request.Operation{
 		Name:       opUpdateDocumentVersion,
@@ -3854,7 +3854,7 @@ func (c *WorkDocs) UpdateDocumentVersionRequest(input *UpdateDocumentVersionInpu
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateDocumentVersion
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateDocumentVersion
 func (c *WorkDocs) UpdateDocumentVersion(input *UpdateDocumentVersionInput) (*UpdateDocumentVersionOutput, error) {
 	req, out := c.UpdateDocumentVersionRequest(input)
 	return out, req.Send()
@@ -3901,7 +3901,7 @@ const opUpdateFolder = "UpdateFolder"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateFolder
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateFolder
 func (c *WorkDocs) UpdateFolderRequest(input *UpdateFolderInput) (req *request.Request, output *UpdateFolderOutput) {
 	op := &request.Operation{
 		Name:       opUpdateFolder,
@@ -3962,7 +3962,7 @@ func (c *WorkDocs) UpdateFolderRequest(input *UpdateFolderInput) (req *request.R
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   One or more of the dependencies is unavailable.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateFolder
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateFolder
 func (c *WorkDocs) UpdateFolder(input *UpdateFolderInput) (*UpdateFolderOutput, error) {
 	req, out := c.UpdateFolderRequest(input)
 	return out, req.Send()
@@ -4009,7 +4009,7 @@ const opUpdateUser = "UpdateUser"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateUser
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateUser
 func (c *WorkDocs) UpdateUserRequest(input *UpdateUserInput) (req *request.Request, output *UpdateUserOutput) {
 	op := &request.Operation{
 		Name:       opUpdateUser,
@@ -4065,7 +4065,7 @@ func (c *WorkDocs) UpdateUserRequest(input *UpdateUserInput) (req *request.Reque
 //   * ErrCodeInvalidArgumentException "InvalidArgumentException"
 //   The pagination marker or limit fields are not valid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateUser
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateUser
 func (c *WorkDocs) UpdateUser(input *UpdateUserInput) (*UpdateUserOutput, error) {
 	req, out := c.UpdateUserRequest(input)
 	return out, req.Send()
@@ -4087,7 +4087,7 @@ func (c *WorkDocs) UpdateUserWithContext(ctx aws.Context, input *UpdateUserInput
 	return out, req.Send()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/AbortDocumentVersionUploadRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/AbortDocumentVersionUploadRequest
 type AbortDocumentVersionUploadInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4159,7 +4159,7 @@ func (s *AbortDocumentVersionUploadInput) SetVersionId(v string) *AbortDocumentV
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/AbortDocumentVersionUploadOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/AbortDocumentVersionUploadOutput
 type AbortDocumentVersionUploadOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4174,7 +4174,7 @@ func (s AbortDocumentVersionUploadOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/ActivateUserRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/ActivateUserRequest
 type ActivateUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4229,7 +4229,7 @@ func (s *ActivateUserInput) SetUserId(v string) *ActivateUserInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/ActivateUserResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/ActivateUserResponse
 type ActivateUserOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4254,7 +4254,7 @@ func (s *ActivateUserOutput) SetUser(v *User) *ActivateUserOutput {
 }
 
 // Describes the activity information.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/Activity
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/Activity
 type Activity struct {
 	_ struct{} `type:"structure"`
 
@@ -4345,7 +4345,7 @@ func (s *Activity) SetType(v string) *Activity {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/AddResourcePermissionsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/AddResourcePermissionsRequest
 type AddResourcePermissionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4433,7 +4433,7 @@ func (s *AddResourcePermissionsInput) SetResourceId(v string) *AddResourcePermis
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/AddResourcePermissionsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/AddResourcePermissionsResponse
 type AddResourcePermissionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4458,7 +4458,7 @@ func (s *AddResourcePermissionsOutput) SetShareResults(v []*ShareResult) *AddRes
 }
 
 // Describes a comment.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/Comment
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/Comment
 type Comment struct {
 	_ struct{} `type:"structure"`
 
@@ -4560,7 +4560,7 @@ func (s *Comment) SetVisibility(v string) *Comment {
 }
 
 // Describes the metadata of a comment.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CommentMetadata
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CommentMetadata
 type CommentMetadata struct {
 	_ struct{} `type:"structure"`
 
@@ -4620,7 +4620,7 @@ func (s *CommentMetadata) SetRecipientId(v string) *CommentMetadata {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateCommentRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateCommentRequest
 type CreateCommentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4754,7 +4754,7 @@ func (s *CreateCommentInput) SetVisibility(v string) *CreateCommentInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateCommentResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateCommentResponse
 type CreateCommentOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4778,7 +4778,7 @@ func (s *CreateCommentOutput) SetComment(v *Comment) *CreateCommentOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateCustomMetadataRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateCustomMetadataRequest
 type CreateCustomMetadataInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4863,7 +4863,7 @@ func (s *CreateCustomMetadataInput) SetVersionId(v string) *CreateCustomMetadata
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateCustomMetadataResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateCustomMetadataResponse
 type CreateCustomMetadataOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4878,7 +4878,7 @@ func (s CreateCustomMetadataOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateFolderRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateFolderRequest
 type CreateFolderInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4945,7 +4945,7 @@ func (s *CreateFolderInput) SetParentFolderId(v string) *CreateFolderInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateFolderResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateFolderResponse
 type CreateFolderOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4969,7 +4969,7 @@ func (s *CreateFolderOutput) SetMetadata(v *FolderMetadata) *CreateFolderOutput 
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateLabelsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateLabelsRequest
 type CreateLabelsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5038,7 +5038,7 @@ func (s *CreateLabelsInput) SetResourceId(v string) *CreateLabelsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateLabelsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateLabelsResponse
 type CreateLabelsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5053,7 +5053,7 @@ func (s CreateLabelsOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateNotificationSubscriptionRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateNotificationSubscriptionRequest
 type CreateNotificationSubscriptionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5142,7 +5142,7 @@ func (s *CreateNotificationSubscriptionInput) SetSubscriptionType(v string) *Cre
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateNotificationSubscriptionResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateNotificationSubscriptionResponse
 type CreateNotificationSubscriptionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5166,7 +5166,7 @@ func (s *CreateNotificationSubscriptionOutput) SetSubscription(v *Subscription) 
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateUserRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateUserRequest
 type CreateUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5317,7 +5317,7 @@ func (s *CreateUserInput) SetUsername(v string) *CreateUserInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateUserResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateUserResponse
 type CreateUserOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5341,7 +5341,7 @@ func (s *CreateUserOutput) SetUser(v *User) *CreateUserOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeactivateUserRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeactivateUserRequest
 type DeactivateUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5396,7 +5396,7 @@ func (s *DeactivateUserInput) SetUserId(v string) *DeactivateUserInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeactivateUserOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeactivateUserOutput
 type DeactivateUserOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5411,7 +5411,7 @@ func (s DeactivateUserOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteCommentRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteCommentRequest
 type DeleteCommentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5500,7 +5500,7 @@ func (s *DeleteCommentInput) SetVersionId(v string) *DeleteCommentInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteCommentOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteCommentOutput
 type DeleteCommentOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5515,7 +5515,7 @@ func (s DeleteCommentOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteCustomMetadataRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteCustomMetadataRequest
 type DeleteCustomMetadataInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5602,7 +5602,7 @@ func (s *DeleteCustomMetadataInput) SetVersionId(v string) *DeleteCustomMetadata
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteCustomMetadataResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteCustomMetadataResponse
 type DeleteCustomMetadataOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5617,7 +5617,7 @@ func (s DeleteCustomMetadataOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteDocumentRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteDocumentRequest
 type DeleteDocumentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5672,7 +5672,7 @@ func (s *DeleteDocumentInput) SetDocumentId(v string) *DeleteDocumentInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteDocumentOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteDocumentOutput
 type DeleteDocumentOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5687,7 +5687,7 @@ func (s DeleteDocumentOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteFolderContentsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteFolderContentsRequest
 type DeleteFolderContentsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5742,7 +5742,7 @@ func (s *DeleteFolderContentsInput) SetFolderId(v string) *DeleteFolderContentsI
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteFolderContentsOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteFolderContentsOutput
 type DeleteFolderContentsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5757,7 +5757,7 @@ func (s DeleteFolderContentsOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteFolderRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteFolderRequest
 type DeleteFolderInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5812,7 +5812,7 @@ func (s *DeleteFolderInput) SetFolderId(v string) *DeleteFolderInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteFolderOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteFolderOutput
 type DeleteFolderOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5827,7 +5827,7 @@ func (s DeleteFolderOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteLabelsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteLabelsRequest
 type DeleteLabelsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5900,7 +5900,7 @@ func (s *DeleteLabelsInput) SetResourceId(v string) *DeleteLabelsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteLabelsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteLabelsResponse
 type DeleteLabelsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5915,7 +5915,7 @@ func (s DeleteLabelsOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteNotificationSubscriptionRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteNotificationSubscriptionRequest
 type DeleteNotificationSubscriptionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5974,7 +5974,7 @@ func (s *DeleteNotificationSubscriptionInput) SetSubscriptionId(v string) *Delet
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteNotificationSubscriptionOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteNotificationSubscriptionOutput
 type DeleteNotificationSubscriptionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5989,7 +5989,7 @@ func (s DeleteNotificationSubscriptionOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteUserRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteUserRequest
 type DeleteUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6044,7 +6044,7 @@ func (s *DeleteUserInput) SetUserId(v string) *DeleteUserInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteUserOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteUserOutput
 type DeleteUserOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6059,7 +6059,7 @@ func (s DeleteUserOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeActivitiesRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeActivitiesRequest
 type DescribeActivitiesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6168,7 +6168,7 @@ func (s *DescribeActivitiesInput) SetUserId(v string) *DescribeActivitiesInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeActivitiesResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeActivitiesResponse
 type DescribeActivitiesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6201,7 +6201,7 @@ func (s *DescribeActivitiesOutput) SetUserActivities(v []*Activity) *DescribeAct
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeCommentsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeCommentsRequest
 type DescribeCommentsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6298,7 +6298,7 @@ func (s *DescribeCommentsInput) SetVersionId(v string) *DescribeCommentsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeCommentsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeCommentsResponse
 type DescribeCommentsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6332,7 +6332,7 @@ func (s *DescribeCommentsOutput) SetMarker(v string) *DescribeCommentsOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeDocumentVersionsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeDocumentVersionsRequest
 type DescribeDocumentVersionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6438,7 +6438,7 @@ func (s *DescribeDocumentVersionsInput) SetMarker(v string) *DescribeDocumentVer
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeDocumentVersionsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeDocumentVersionsResponse
 type DescribeDocumentVersionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6472,7 +6472,7 @@ func (s *DescribeDocumentVersionsOutput) SetMarker(v string) *DescribeDocumentVe
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeFolderContentsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeFolderContentsRequest
 type DescribeFolderContentsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6591,7 +6591,7 @@ func (s *DescribeFolderContentsInput) SetType(v string) *DescribeFolderContentsI
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeFolderContentsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeFolderContentsResponse
 type DescribeFolderContentsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6634,7 +6634,7 @@ func (s *DescribeFolderContentsOutput) SetMarker(v string) *DescribeFolderConten
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeGroupsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeGroupsRequest
 type DescribeGroupsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6726,7 +6726,7 @@ func (s *DescribeGroupsInput) SetSearchQuery(v string) *DescribeGroupsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeGroupsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeGroupsResponse
 type DescribeGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6760,7 +6760,7 @@ func (s *DescribeGroupsOutput) SetMarker(v string) *DescribeGroupsOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeNotificationSubscriptionsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeNotificationSubscriptionsRequest
 type DescribeNotificationSubscriptionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6827,7 +6827,7 @@ func (s *DescribeNotificationSubscriptionsInput) SetOrganizationId(v string) *De
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeNotificationSubscriptionsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeNotificationSubscriptionsResponse
 type DescribeNotificationSubscriptionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6861,7 +6861,7 @@ func (s *DescribeNotificationSubscriptionsOutput) SetSubscriptions(v []*Subscrip
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeResourcePermissionsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeResourcePermissionsRequest
 type DescribeResourcePermissionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6953,7 +6953,7 @@ func (s *DescribeResourcePermissionsInput) SetResourceId(v string) *DescribeReso
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeResourcePermissionsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeResourcePermissionsResponse
 type DescribeResourcePermissionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6987,7 +6987,7 @@ func (s *DescribeResourcePermissionsOutput) SetPrincipals(v []*Principal) *Descr
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeRootFoldersRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeRootFoldersRequest
 type DescribeRootFoldersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7055,7 +7055,7 @@ func (s *DescribeRootFoldersInput) SetMarker(v string) *DescribeRootFoldersInput
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeRootFoldersResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeRootFoldersResponse
 type DescribeRootFoldersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7088,7 +7088,7 @@ func (s *DescribeRootFoldersOutput) SetMarker(v string) *DescribeRootFoldersOutp
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeUsersRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeUsersRequest
 type DescribeUsersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7227,7 +7227,7 @@ func (s *DescribeUsersInput) SetUserIds(v string) *DescribeUsersInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeUsersResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeUsersResponse
 type DescribeUsersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7271,7 +7271,7 @@ func (s *DescribeUsersOutput) SetUsers(v []*User) *DescribeUsersOutput {
 }
 
 // Describes the document.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DocumentMetadata
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DocumentMetadata
 type DocumentMetadata struct {
 	_ struct{} `type:"structure"`
 
@@ -7359,7 +7359,7 @@ func (s *DocumentMetadata) SetResourceState(v string) *DocumentMetadata {
 }
 
 // Describes a version of a document.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DocumentVersionMetadata
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DocumentVersionMetadata
 type DocumentVersionMetadata struct {
 	_ struct{} `type:"structure"`
 
@@ -7492,7 +7492,7 @@ func (s *DocumentVersionMetadata) SetThumbnail(v map[string]*string) *DocumentVe
 }
 
 // Describes a folder.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/FolderMetadata
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/FolderMetadata
 type FolderMetadata struct {
 	_ struct{} `type:"structure"`
 
@@ -7606,7 +7606,7 @@ func (s *FolderMetadata) SetSize(v int64) *FolderMetadata {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetCurrentUserRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetCurrentUserRequest
 type GetCurrentUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7649,7 +7649,7 @@ func (s *GetCurrentUserInput) SetAuthenticationToken(v string) *GetCurrentUserIn
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetCurrentUserResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetCurrentUserResponse
 type GetCurrentUserOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7673,7 +7673,7 @@ func (s *GetCurrentUserOutput) SetUser(v *User) *GetCurrentUserOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocumentRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocumentRequest
 type GetDocumentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7737,7 +7737,7 @@ func (s *GetDocumentInput) SetIncludeCustomMetadata(v bool) *GetDocumentInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocumentResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocumentResponse
 type GetDocumentOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7770,7 +7770,7 @@ func (s *GetDocumentOutput) SetMetadata(v *DocumentMetadata) *GetDocumentOutput 
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocumentPathRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocumentPathRequest
 type GetDocumentPathInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7862,7 +7862,7 @@ func (s *GetDocumentPathInput) SetMarker(v string) *GetDocumentPathInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocumentPathResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocumentPathResponse
 type GetDocumentPathOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7886,7 +7886,7 @@ func (s *GetDocumentPathOutput) SetPath(v *ResourcePath) *GetDocumentPathOutput 
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocumentVersionRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocumentVersionRequest
 type GetDocumentVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7980,7 +7980,7 @@ func (s *GetDocumentVersionInput) SetVersionId(v string) *GetDocumentVersionInpu
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocumentVersionResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetDocumentVersionResponse
 type GetDocumentVersionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8013,7 +8013,7 @@ func (s *GetDocumentVersionOutput) SetMetadata(v *DocumentVersionMetadata) *GetD
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetFolderRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetFolderRequest
 type GetFolderInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8077,7 +8077,7 @@ func (s *GetFolderInput) SetIncludeCustomMetadata(v bool) *GetFolderInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetFolderResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetFolderResponse
 type GetFolderOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8110,7 +8110,7 @@ func (s *GetFolderOutput) SetMetadata(v *FolderMetadata) *GetFolderOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetFolderPathRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetFolderPathRequest
 type GetFolderPathInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8202,7 +8202,7 @@ func (s *GetFolderPathInput) SetMarker(v string) *GetFolderPathInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetFolderPathResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetFolderPathResponse
 type GetFolderPathOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8227,7 +8227,7 @@ func (s *GetFolderPathOutput) SetPath(v *ResourcePath) *GetFolderPathOutput {
 }
 
 // Describes the metadata of a user group.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GroupMetadata
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GroupMetadata
 type GroupMetadata struct {
 	_ struct{} `type:"structure"`
 
@@ -8260,7 +8260,7 @@ func (s *GroupMetadata) SetName(v string) *GroupMetadata {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/InitiateDocumentVersionUploadRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/InitiateDocumentVersionUploadRequest
 type InitiateDocumentVersionUploadInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8378,7 +8378,7 @@ func (s *InitiateDocumentVersionUploadInput) SetParentFolderId(v string) *Initia
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/InitiateDocumentVersionUploadResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/InitiateDocumentVersionUploadResponse
 type InitiateDocumentVersionUploadOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8412,7 +8412,7 @@ func (s *InitiateDocumentVersionUploadOutput) SetUploadMetadata(v *UploadMetadat
 }
 
 // Set of options which defines notification preferences of given action.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/NotificationOptions
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/NotificationOptions
 type NotificationOptions struct {
 	_ struct{} `type:"structure"`
 
@@ -8446,7 +8446,7 @@ func (s *NotificationOptions) SetSendEmail(v bool) *NotificationOptions {
 }
 
 // Describes the users or user groups.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/Participants
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/Participants
 type Participants struct {
 	_ struct{} `type:"structure"`
 
@@ -8480,7 +8480,7 @@ func (s *Participants) SetUsers(v []*UserMetadata) *Participants {
 }
 
 // Describes the permissions.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/PermissionInfo
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/PermissionInfo
 type PermissionInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -8514,7 +8514,7 @@ func (s *PermissionInfo) SetType(v string) *PermissionInfo {
 }
 
 // Describes a resource.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/Principal
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/Principal
 type Principal struct {
 	_ struct{} `type:"structure"`
 
@@ -8556,7 +8556,7 @@ func (s *Principal) SetType(v string) *Principal {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/RemoveAllResourcePermissionsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/RemoveAllResourcePermissionsRequest
 type RemoveAllResourcePermissionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8611,7 +8611,7 @@ func (s *RemoveAllResourcePermissionsInput) SetResourceId(v string) *RemoveAllRe
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/RemoveAllResourcePermissionsOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/RemoveAllResourcePermissionsOutput
 type RemoveAllResourcePermissionsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8626,7 +8626,7 @@ func (s RemoveAllResourcePermissionsOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/RemoveResourcePermissionRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/RemoveResourcePermissionRequest
 type RemoveResourcePermissionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8707,7 +8707,7 @@ func (s *RemoveResourcePermissionInput) SetResourceId(v string) *RemoveResourceP
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/RemoveResourcePermissionOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/RemoveResourcePermissionOutput
 type RemoveResourcePermissionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8723,7 +8723,7 @@ func (s RemoveResourcePermissionOutput) GoString() string {
 }
 
 // Describes the metadata of a resource.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/ResourceMetadata
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/ResourceMetadata
 type ResourceMetadata struct {
 	_ struct{} `type:"structure"`
 
@@ -8803,7 +8803,7 @@ func (s *ResourceMetadata) SetVersionId(v string) *ResourceMetadata {
 }
 
 // Describes the path information of a resource.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/ResourcePath
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/ResourcePath
 type ResourcePath struct {
 	_ struct{} `type:"structure"`
 
@@ -8828,7 +8828,7 @@ func (s *ResourcePath) SetComponents(v []*ResourcePathComponent) *ResourcePath {
 }
 
 // Describes the resource path.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/ResourcePathComponent
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/ResourcePathComponent
 type ResourcePathComponent struct {
 	_ struct{} `type:"structure"`
 
@@ -8862,7 +8862,7 @@ func (s *ResourcePathComponent) SetName(v string) *ResourcePathComponent {
 }
 
 // Describes the recipient type and ID, if available.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/SharePrincipal
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/SharePrincipal
 type SharePrincipal struct {
 	_ struct{} `type:"structure"`
 
@@ -8933,7 +8933,7 @@ func (s *SharePrincipal) SetType(v string) *SharePrincipal {
 }
 
 // Describes the share results of a resource.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/ShareResult
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/ShareResult
 type ShareResult struct {
 	_ struct{} `type:"structure"`
 
@@ -8994,7 +8994,7 @@ func (s *ShareResult) SetStatusMessage(v string) *ShareResult {
 }
 
 // Describes the storage for a user.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/StorageRuleType
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/StorageRuleType
 type StorageRuleType struct {
 	_ struct{} `type:"structure"`
 
@@ -9028,7 +9028,7 @@ func (s *StorageRuleType) SetStorageType(v string) *StorageRuleType {
 }
 
 // Describes a subscription.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/Subscription
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/Subscription
 type Subscription struct {
 	_ struct{} `type:"structure"`
 
@@ -9070,7 +9070,7 @@ func (s *Subscription) SetSubscriptionId(v string) *Subscription {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateDocumentRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateDocumentRequest
 type UpdateDocumentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9158,7 +9158,7 @@ func (s *UpdateDocumentInput) SetResourceState(v string) *UpdateDocumentInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateDocumentOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateDocumentOutput
 type UpdateDocumentOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -9173,7 +9173,7 @@ func (s UpdateDocumentOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateDocumentVersionRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateDocumentVersionRequest
 type UpdateDocumentVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9254,7 +9254,7 @@ func (s *UpdateDocumentVersionInput) SetVersionStatus(v string) *UpdateDocumentV
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateDocumentVersionOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateDocumentVersionOutput
 type UpdateDocumentVersionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -9269,7 +9269,7 @@ func (s UpdateDocumentVersionOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateFolderRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateFolderRequest
 type UpdateFolderInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9358,7 +9358,7 @@ func (s *UpdateFolderInput) SetResourceState(v string) *UpdateFolderInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateFolderOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateFolderOutput
 type UpdateFolderOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -9373,7 +9373,7 @@ func (s UpdateFolderOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateUserRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateUserRequest
 type UpdateUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9500,7 +9500,7 @@ func (s *UpdateUserInput) SetUserId(v string) *UpdateUserInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateUserResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UpdateUserResponse
 type UpdateUserOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9525,7 +9525,7 @@ func (s *UpdateUserOutput) SetUser(v *User) *UpdateUserOutput {
 }
 
 // Describes the upload.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UploadMetadata
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UploadMetadata
 type UploadMetadata struct {
 	_ struct{} `type:"structure"`
 
@@ -9559,7 +9559,7 @@ func (s *UploadMetadata) SetUploadUrl(v string) *UploadMetadata {
 }
 
 // Describes a user.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/User
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/User
 type User struct {
 	_ struct{} `type:"structure"`
 
@@ -9710,7 +9710,7 @@ func (s *User) SetUsername(v string) *User {
 }
 
 // Describes the metadata of the user.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UserMetadata
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UserMetadata
 type UserMetadata struct {
 	_ struct{} `type:"structure"`
 
@@ -9771,7 +9771,7 @@ func (s *UserMetadata) SetUsername(v string) *UserMetadata {
 }
 
 // Describes the storage for a user.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UserStorageMetadata
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/UserStorageMetadata
 type UserStorageMetadata struct {
 	_ struct{} `type:"structure"`
 
