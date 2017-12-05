@@ -5551,7 +5551,8 @@
         "createdAt":{"shape":"CreatedAtDate"},
         "actions":{"shape":"ActionList"},
         "ruleDisabled":{"shape":"IsDisabled"},
-        "awsIotSqlVersion":{"shape":"AwsIotSqlVersion"}
+        "awsIotSqlVersion":{"shape":"AwsIotSqlVersion"},
+        "errorAction":{"shape":"Action"}
       }
     },
     "TopicRuleList":{
@@ -5579,7 +5580,8 @@
         "description":{"shape":"Description"},
         "actions":{"shape":"ActionList"},
         "ruleDisabled":{"shape":"IsDisabled"},
-        "awsIotSqlVersion":{"shape":"AwsIotSqlVersion"}
+        "awsIotSqlVersion":{"shape":"AwsIotSqlVersion"},
+        "errorAction":{"shape":"Action"}
       }
     },
     "TransferAlreadyCompletedException":{
