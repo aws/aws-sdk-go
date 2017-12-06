@@ -116,6 +116,7 @@ func (a *API) StructName() string {
 	for _, prefix := range stripServiceNamePrefixes {
 		if strings.HasPrefix(name, prefix) {
 			name = name[len(prefix):]
+			break
 		}
 	}
 
