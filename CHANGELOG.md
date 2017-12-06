@@ -1,3 +1,14 @@
+Release v1.12.42 (2017-12-06)
+===
+
+### Service Client Updates
+* `service/clouddirectory`: Updates service API and documentation
+  * Amazon Cloud Directory makes it easier for you to apply schema changes across your directories with in-place schema upgrades. Your directories now remain available while backward-compatible schema changes are being applied, such as the addition of new fields. You also can view the history of your schema changes in Cloud Directory by using both major and minor version identifiers, which can help you track and audit schema versions across directories.
+* `service/elasticbeanstalk`: Updates service documentation
+  * Documentation updates for AWS Elastic Beanstalk.
+* `service/sagemaker`: Adds new service
+  * Initial waiters for common SageMaker workflows.
+
 Release v1.12.41 (2017-12-05)
 ===
 

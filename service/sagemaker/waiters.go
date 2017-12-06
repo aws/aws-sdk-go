@@ -9,15 +9,15 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 )
 
-// WaitUntilEndpoint_Created uses the SageMaker API operation
+// WaitUntilEndpointDeleted uses the SageMaker API operation
 // DescribeEndpoint to wait for a condition to be met before returning.
 // If the condition is not met within the max attempt window, an error will
 // be returned.
-func (c *SageMaker) WaitUntilEndpoint_Created(input *DescribeEndpointInput) error {
-	return c.WaitUntilEndpoint_CreatedWithContext(aws.BackgroundContext(), input)
+func (c *SageMaker) WaitUntilEndpointDeleted(input *DescribeEndpointInput) error {
+	return c.WaitUntilEndpointDeletedWithContext(aws.BackgroundContext(), input)
 }
 
-// WaitUntilEndpoint_CreatedWithContext is an extended version of WaitUntilEndpoint_Created.
+// WaitUntilEndpointDeletedWithContext is an extended version of WaitUntilEndpointDeleted.
 // With the support for passing in a context and options to configure the
 // Waiter and the underlying request options.
 //
@@ -25,11 +25,62 @@ func (c *SageMaker) WaitUntilEndpoint_Created(input *DescribeEndpointInput) erro
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *SageMaker) WaitUntilEndpoint_CreatedWithContext(ctx aws.Context, input *DescribeEndpointInput, opts ...request.WaiterOption) error {
+func (c *SageMaker) WaitUntilEndpointDeletedWithContext(ctx aws.Context, input *DescribeEndpointInput, opts ...request.WaiterOption) error {
 	w := request.Waiter{
-		Name:        "WaitUntilEndpoint_Created",
+		Name:        "WaitUntilEndpointDeleted",
+		MaxAttempts: 60,
+		Delay:       request.ConstantWaiterDelay(30 * time.Second),
+		Acceptors: []request.WaiterAcceptor{
+			{
+				State:    request.SuccessWaiterState,
+				Matcher:  request.ErrorWaiterMatch,
+				Expected: "ValidationException",
+			},
+			{
+				State:   request.FailureWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "EndpointStatus",
+				Expected: "Failed",
+			},
+		},
+		Logger: c.Config.Logger,
+		NewRequest: func(opts []request.Option) (*request.Request, error) {
+			var inCpy *DescribeEndpointInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeEndpointRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+	w.ApplyOptions(opts...)
+
+	return w.WaitWithContext(ctx)
+}
+
+// WaitUntilEndpointInService uses the SageMaker API operation
+// DescribeEndpoint to wait for a condition to be met before returning.
+// If the condition is not met within the max attempt window, an error will
+// be returned.
+func (c *SageMaker) WaitUntilEndpointInService(input *DescribeEndpointInput) error {
+	return c.WaitUntilEndpointInServiceWithContext(aws.BackgroundContext(), input)
+}
+
+// WaitUntilEndpointInServiceWithContext is an extended version of WaitUntilEndpointInService.
+// With the support for passing in a context and options to configure the
+// Waiter and the underlying request options.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) WaitUntilEndpointInServiceWithContext(ctx aws.Context, input *DescribeEndpointInput, opts ...request.WaiterOption) error {
+	w := request.Waiter{
+		Name:        "WaitUntilEndpointInService",
 		MaxAttempts: 120,
-		Delay:       request.ConstantWaiterDelay(120 * time.Second),
+		Delay:       request.ConstantWaiterDelay(30 * time.Second),
 		Acceptors: []request.WaiterAcceptor{
 			{
 				State:   request.SuccessWaiterState,
@@ -37,19 +88,9 @@ func (c *SageMaker) WaitUntilEndpoint_CreatedWithContext(ctx aws.Context, input 
 				Expected: "InService",
 			},
 			{
-				State:   request.RetryWaiterState,
-				Matcher: request.PathWaiterMatch, Argument: "EndpointStatus",
-				Expected: "Creating",
-			},
-			{
 				State:   request.FailureWaiterState,
 				Matcher: request.PathWaiterMatch, Argument: "EndpointStatus",
 				Expected: "Failed",
-			},
-			{
-				State:    request.RetryWaiterState,
-				Matcher:  request.ErrorWaiterMatch,
-				Expected: "ThrottlingException",
 			},
 			{
 				State:    request.FailureWaiterState,
@@ -75,147 +116,15 @@ func (c *SageMaker) WaitUntilEndpoint_CreatedWithContext(ctx aws.Context, input 
 	return w.WaitWithContext(ctx)
 }
 
-// WaitUntilEndpoint_Deleted uses the SageMaker API operation
-// DescribeEndpoint to wait for a condition to be met before returning.
-// If the condition is not met within the max attempt window, an error will
-// be returned.
-func (c *SageMaker) WaitUntilEndpoint_Deleted(input *DescribeEndpointInput) error {
-	return c.WaitUntilEndpoint_DeletedWithContext(aws.BackgroundContext(), input)
-}
-
-// WaitUntilEndpoint_DeletedWithContext is an extended version of WaitUntilEndpoint_Deleted.
-// With the support for passing in a context and options to configure the
-// Waiter and the underlying request options.
-//
-// The context must be non-nil and will be used for request cancellation. If
-// the context is nil a panic will occur. In the future the SDK may create
-// sub-contexts for http.Requests. See https://golang.org/pkg/context/
-// for more information on using Contexts.
-func (c *SageMaker) WaitUntilEndpoint_DeletedWithContext(ctx aws.Context, input *DescribeEndpointInput, opts ...request.WaiterOption) error {
-	w := request.Waiter{
-		Name:        "WaitUntilEndpoint_Deleted",
-		MaxAttempts: 120,
-		Delay:       request.ConstantWaiterDelay(120 * time.Second),
-		Acceptors: []request.WaiterAcceptor{
-			{
-				State:    request.SuccessWaiterState,
-				Matcher:  request.ErrorWaiterMatch,
-				Expected: "ValidationException",
-			},
-			{
-				State:   request.RetryWaiterState,
-				Matcher: request.PathWaiterMatch, Argument: "EndpointStatus",
-				Expected: "Deleting",
-			},
-			{
-				State:   request.FailureWaiterState,
-				Matcher: request.PathWaiterMatch, Argument: "EndpointStatus",
-				Expected: "Failed",
-			},
-			{
-				State:    request.RetryWaiterState,
-				Matcher:  request.ErrorWaiterMatch,
-				Expected: "ThrottlingException",
-			},
-		},
-		Logger: c.Config.Logger,
-		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy *DescribeEndpointInput
-			if input != nil {
-				tmp := *input
-				inCpy = &tmp
-			}
-			req, _ := c.DescribeEndpointRequest(inCpy)
-			req.SetContext(ctx)
-			req.ApplyOptions(opts...)
-			return req, nil
-		},
-	}
-	w.ApplyOptions(opts...)
-
-	return w.WaitWithContext(ctx)
-}
-
-// WaitUntilEndpoint_Updated uses the SageMaker API operation
-// DescribeEndpoint to wait for a condition to be met before returning.
-// If the condition is not met within the max attempt window, an error will
-// be returned.
-func (c *SageMaker) WaitUntilEndpoint_Updated(input *DescribeEndpointInput) error {
-	return c.WaitUntilEndpoint_UpdatedWithContext(aws.BackgroundContext(), input)
-}
-
-// WaitUntilEndpoint_UpdatedWithContext is an extended version of WaitUntilEndpoint_Updated.
-// With the support for passing in a context and options to configure the
-// Waiter and the underlying request options.
-//
-// The context must be non-nil and will be used for request cancellation. If
-// the context is nil a panic will occur. In the future the SDK may create
-// sub-contexts for http.Requests. See https://golang.org/pkg/context/
-// for more information on using Contexts.
-func (c *SageMaker) WaitUntilEndpoint_UpdatedWithContext(ctx aws.Context, input *DescribeEndpointInput, opts ...request.WaiterOption) error {
-	w := request.Waiter{
-		Name:        "WaitUntilEndpoint_Updated",
-		MaxAttempts: 120,
-		Delay:       request.ConstantWaiterDelay(120 * time.Second),
-		Acceptors: []request.WaiterAcceptor{
-			{
-				State:   request.SuccessWaiterState,
-				Matcher: request.PathWaiterMatch, Argument: "EndpointName",
-				Expected: "200",
-			},
-			{
-				State:   request.RetryWaiterState,
-				Matcher: request.PathWaiterMatch, Argument: "EndpointStatus",
-				Expected: "Updating",
-			},
-			{
-				State:   request.RetryWaiterState,
-				Matcher: request.PathWaiterMatch, Argument: "EndpointStatus",
-				Expected: "RollingBack",
-			},
-			{
-				State:   request.FailureWaiterState,
-				Matcher: request.PathWaiterMatch, Argument: "EndpointStatus",
-				Expected: "Failed",
-			},
-			{
-				State:    request.RetryWaiterState,
-				Matcher:  request.ErrorWaiterMatch,
-				Expected: "ThrottlingException",
-			},
-			{
-				State:    request.RetryWaiterState,
-				Matcher:  request.ErrorWaiterMatch,
-				Expected: "ValidationException",
-			},
-		},
-		Logger: c.Config.Logger,
-		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy *DescribeEndpointInput
-			if input != nil {
-				tmp := *input
-				inCpy = &tmp
-			}
-			req, _ := c.DescribeEndpointRequest(inCpy)
-			req.SetContext(ctx)
-			req.ApplyOptions(opts...)
-			return req, nil
-		},
-	}
-	w.ApplyOptions(opts...)
-
-	return w.WaitWithContext(ctx)
-}
-
-// WaitUntilNotebookInstance_Deleted uses the SageMaker API operation
+// WaitUntilNotebookInstanceDeleted uses the SageMaker API operation
 // DescribeNotebookInstance to wait for a condition to be met before returning.
 // If the condition is not met within the max attempt window, an error will
 // be returned.
-func (c *SageMaker) WaitUntilNotebookInstance_Deleted(input *DescribeNotebookInstanceInput) error {
-	return c.WaitUntilNotebookInstance_DeletedWithContext(aws.BackgroundContext(), input)
+func (c *SageMaker) WaitUntilNotebookInstanceDeleted(input *DescribeNotebookInstanceInput) error {
+	return c.WaitUntilNotebookInstanceDeletedWithContext(aws.BackgroundContext(), input)
 }
 
-// WaitUntilNotebookInstance_DeletedWithContext is an extended version of WaitUntilNotebookInstance_Deleted.
+// WaitUntilNotebookInstanceDeletedWithContext is an extended version of WaitUntilNotebookInstanceDeleted.
 // With the support for passing in a context and options to configure the
 // Waiter and the underlying request options.
 //
@@ -223,26 +132,16 @@ func (c *SageMaker) WaitUntilNotebookInstance_Deleted(input *DescribeNotebookIns
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *SageMaker) WaitUntilNotebookInstance_DeletedWithContext(ctx aws.Context, input *DescribeNotebookInstanceInput, opts ...request.WaiterOption) error {
+func (c *SageMaker) WaitUntilNotebookInstanceDeletedWithContext(ctx aws.Context, input *DescribeNotebookInstanceInput, opts ...request.WaiterOption) error {
 	w := request.Waiter{
-		Name:        "WaitUntilNotebookInstance_Deleted",
-		MaxAttempts: 120,
-		Delay:       request.ConstantWaiterDelay(120 * time.Second),
+		Name:        "WaitUntilNotebookInstanceDeleted",
+		MaxAttempts: 60,
+		Delay:       request.ConstantWaiterDelay(30 * time.Second),
 		Acceptors: []request.WaiterAcceptor{
 			{
 				State:    request.SuccessWaiterState,
 				Matcher:  request.ErrorWaiterMatch,
 				Expected: "ValidationException",
-			},
-			{
-				State:   request.RetryWaiterState,
-				Matcher: request.PathWaiterMatch, Argument: "NotebookInstanceStatus",
-				Expected: "Deleting",
-			},
-			{
-				State:    request.RetryWaiterState,
-				Matcher:  request.ErrorWaiterMatch,
-				Expected: "ThrottlingException",
 			},
 			{
 				State:   request.FailureWaiterState,
@@ -268,15 +167,15 @@ func (c *SageMaker) WaitUntilNotebookInstance_DeletedWithContext(ctx aws.Context
 	return w.WaitWithContext(ctx)
 }
 
-// WaitUntilNotebookInstance_Running uses the SageMaker API operation
+// WaitUntilNotebookInstanceInService uses the SageMaker API operation
 // DescribeNotebookInstance to wait for a condition to be met before returning.
 // If the condition is not met within the max attempt window, an error will
 // be returned.
-func (c *SageMaker) WaitUntilNotebookInstance_Running(input *DescribeNotebookInstanceInput) error {
-	return c.WaitUntilNotebookInstance_RunningWithContext(aws.BackgroundContext(), input)
+func (c *SageMaker) WaitUntilNotebookInstanceInService(input *DescribeNotebookInstanceInput) error {
+	return c.WaitUntilNotebookInstanceInServiceWithContext(aws.BackgroundContext(), input)
 }
 
-// WaitUntilNotebookInstance_RunningWithContext is an extended version of WaitUntilNotebookInstance_Running.
+// WaitUntilNotebookInstanceInServiceWithContext is an extended version of WaitUntilNotebookInstanceInService.
 // With the support for passing in a context and options to configure the
 // Waiter and the underlying request options.
 //
@@ -284,11 +183,11 @@ func (c *SageMaker) WaitUntilNotebookInstance_Running(input *DescribeNotebookIns
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *SageMaker) WaitUntilNotebookInstance_RunningWithContext(ctx aws.Context, input *DescribeNotebookInstanceInput, opts ...request.WaiterOption) error {
+func (c *SageMaker) WaitUntilNotebookInstanceInServiceWithContext(ctx aws.Context, input *DescribeNotebookInstanceInput, opts ...request.WaiterOption) error {
 	w := request.Waiter{
-		Name:        "WaitUntilNotebookInstance_Running",
-		MaxAttempts: 120,
-		Delay:       request.ConstantWaiterDelay(120 * time.Second),
+		Name:        "WaitUntilNotebookInstanceInService",
+		MaxAttempts: 60,
+		Delay:       request.ConstantWaiterDelay(30 * time.Second),
 		Acceptors: []request.WaiterAcceptor{
 			{
 				State:   request.SuccessWaiterState,
@@ -296,24 +195,9 @@ func (c *SageMaker) WaitUntilNotebookInstance_RunningWithContext(ctx aws.Context
 				Expected: "InService",
 			},
 			{
-				State:    request.RetryWaiterState,
-				Matcher:  request.ErrorWaiterMatch,
-				Expected: "ThrottlingException",
-			},
-			{
 				State:   request.FailureWaiterState,
 				Matcher: request.PathWaiterMatch, Argument: "NotebookInstanceStatus",
 				Expected: "Failed",
-			},
-			{
-				State:   request.FailureWaiterState,
-				Matcher: request.PathWaiterMatch, Argument: "NotebookInstanceStatus",
-				Expected: "Stopped",
-			},
-			{
-				State:   request.FailureWaiterState,
-				Matcher: request.PathWaiterMatch, Argument: "NotebookInstanceStatus",
-				Expected: "Stopping",
 			},
 		},
 		Logger: c.Config.Logger,
@@ -334,15 +218,15 @@ func (c *SageMaker) WaitUntilNotebookInstance_RunningWithContext(ctx aws.Context
 	return w.WaitWithContext(ctx)
 }
 
-// WaitUntilNotebookInstance_Stopped uses the SageMaker API operation
+// WaitUntilNotebookInstanceStopped uses the SageMaker API operation
 // DescribeNotebookInstance to wait for a condition to be met before returning.
 // If the condition is not met within the max attempt window, an error will
 // be returned.
-func (c *SageMaker) WaitUntilNotebookInstance_Stopped(input *DescribeNotebookInstanceInput) error {
-	return c.WaitUntilNotebookInstance_StoppedWithContext(aws.BackgroundContext(), input)
+func (c *SageMaker) WaitUntilNotebookInstanceStopped(input *DescribeNotebookInstanceInput) error {
+	return c.WaitUntilNotebookInstanceStoppedWithContext(aws.BackgroundContext(), input)
 }
 
-// WaitUntilNotebookInstance_StoppedWithContext is an extended version of WaitUntilNotebookInstance_Stopped.
+// WaitUntilNotebookInstanceStoppedWithContext is an extended version of WaitUntilNotebookInstanceStopped.
 // With the support for passing in a context and options to configure the
 // Waiter and the underlying request options.
 //
@@ -350,26 +234,16 @@ func (c *SageMaker) WaitUntilNotebookInstance_Stopped(input *DescribeNotebookIns
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *SageMaker) WaitUntilNotebookInstance_StoppedWithContext(ctx aws.Context, input *DescribeNotebookInstanceInput, opts ...request.WaiterOption) error {
+func (c *SageMaker) WaitUntilNotebookInstanceStoppedWithContext(ctx aws.Context, input *DescribeNotebookInstanceInput, opts ...request.WaiterOption) error {
 	w := request.Waiter{
-		Name:        "WaitUntilNotebookInstance_Stopped",
-		MaxAttempts: 120,
-		Delay:       request.ConstantWaiterDelay(120 * time.Second),
+		Name:        "WaitUntilNotebookInstanceStopped",
+		MaxAttempts: 60,
+		Delay:       request.ConstantWaiterDelay(30 * time.Second),
 		Acceptors: []request.WaiterAcceptor{
 			{
 				State:   request.SuccessWaiterState,
 				Matcher: request.PathWaiterMatch, Argument: "NotebookInstanceStatus",
 				Expected: "Stopped",
-			},
-			{
-				State:   request.RetryWaiterState,
-				Matcher: request.PathWaiterMatch, Argument: "NotebookInstanceStatus",
-				Expected: "Stopping",
-			},
-			{
-				State:    request.RetryWaiterState,
-				Matcher:  request.ErrorWaiterMatch,
-				Expected: "ThrottlingException",
 			},
 			{
 				State:   request.FailureWaiterState,
@@ -395,15 +269,15 @@ func (c *SageMaker) WaitUntilNotebookInstance_StoppedWithContext(ctx aws.Context
 	return w.WaitWithContext(ctx)
 }
 
-// WaitUntilTrainingJob_Created uses the SageMaker API operation
+// WaitUntilTrainingJobCompletedOrStopped uses the SageMaker API operation
 // DescribeTrainingJob to wait for a condition to be met before returning.
 // If the condition is not met within the max attempt window, an error will
 // be returned.
-func (c *SageMaker) WaitUntilTrainingJob_Created(input *DescribeTrainingJobInput) error {
-	return c.WaitUntilTrainingJob_CreatedWithContext(aws.BackgroundContext(), input)
+func (c *SageMaker) WaitUntilTrainingJobCompletedOrStopped(input *DescribeTrainingJobInput) error {
+	return c.WaitUntilTrainingJobCompletedOrStoppedWithContext(aws.BackgroundContext(), input)
 }
 
-// WaitUntilTrainingJob_CreatedWithContext is an extended version of WaitUntilTrainingJob_Created.
+// WaitUntilTrainingJobCompletedOrStoppedWithContext is an extended version of WaitUntilTrainingJobCompletedOrStopped.
 // With the support for passing in a context and options to configure the
 // Waiter and the underlying request options.
 //
@@ -411,152 +285,10 @@ func (c *SageMaker) WaitUntilTrainingJob_Created(input *DescribeTrainingJobInput
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *SageMaker) WaitUntilTrainingJob_CreatedWithContext(ctx aws.Context, input *DescribeTrainingJobInput, opts ...request.WaiterOption) error {
+func (c *SageMaker) WaitUntilTrainingJobCompletedOrStoppedWithContext(ctx aws.Context, input *DescribeTrainingJobInput, opts ...request.WaiterOption) error {
 	w := request.Waiter{
-		Name:        "WaitUntilTrainingJob_Created",
-		MaxAttempts: 120,
-		Delay:       request.ConstantWaiterDelay(120 * time.Second),
-		Acceptors: []request.WaiterAcceptor{
-			{
-				State:   request.SuccessWaiterState,
-				Matcher: request.PathWaiterMatch, Argument: "TrainingJobStatus",
-				Expected: "Created",
-			},
-			{
-				State:   request.SuccessWaiterState,
-				Matcher: request.PathWaiterMatch, Argument: "TrainingJobStatus",
-				Expected: "Completed",
-			},
-			{
-				State:   request.RetryWaiterState,
-				Matcher: request.PathWaiterMatch, Argument: "TrainingJobStatus",
-				Expected: "InProgress",
-			},
-			{
-				State:   request.FailureWaiterState,
-				Matcher: request.PathWaiterMatch, Argument: "TrainingJobStatus",
-				Expected: "Failed",
-			},
-			{
-				State:   request.FailureWaiterState,
-				Matcher: request.PathWaiterMatch, Argument: "TrainingJobStatus",
-				Expected: "Stopping",
-			},
-			{
-				State:   request.FailureWaiterState,
-				Matcher: request.PathWaiterMatch, Argument: "TrainingJobStatus",
-				Expected: "Stopped",
-			},
-			{
-				State:   request.FailureWaiterState,
-				Matcher: request.PathWaiterMatch, Argument: "TrainingJobStatus",
-				Expected: "Deleting",
-			},
-			{
-				State:    request.FailureWaiterState,
-				Matcher:  request.ErrorWaiterMatch,
-				Expected: "ValidationException",
-			},
-			{
-				State:    request.RetryWaiterState,
-				Matcher:  request.ErrorWaiterMatch,
-				Expected: "ThrottlingException",
-			},
-		},
-		Logger: c.Config.Logger,
-		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy *DescribeTrainingJobInput
-			if input != nil {
-				tmp := *input
-				inCpy = &tmp
-			}
-			req, _ := c.DescribeTrainingJobRequest(inCpy)
-			req.SetContext(ctx)
-			req.ApplyOptions(opts...)
-			return req, nil
-		},
-	}
-	w.ApplyOptions(opts...)
-
-	return w.WaitWithContext(ctx)
-}
-
-// WaitUntilTrainingJob_Deleted uses the SageMaker API operation
-// DescribeTrainingJob to wait for a condition to be met before returning.
-// If the condition is not met within the max attempt window, an error will
-// be returned.
-func (c *SageMaker) WaitUntilTrainingJob_Deleted(input *DescribeTrainingJobInput) error {
-	return c.WaitUntilTrainingJob_DeletedWithContext(aws.BackgroundContext(), input)
-}
-
-// WaitUntilTrainingJob_DeletedWithContext is an extended version of WaitUntilTrainingJob_Deleted.
-// With the support for passing in a context and options to configure the
-// Waiter and the underlying request options.
-//
-// The context must be non-nil and will be used for request cancellation. If
-// the context is nil a panic will occur. In the future the SDK may create
-// sub-contexts for http.Requests. See https://golang.org/pkg/context/
-// for more information on using Contexts.
-func (c *SageMaker) WaitUntilTrainingJob_DeletedWithContext(ctx aws.Context, input *DescribeTrainingJobInput, opts ...request.WaiterOption) error {
-	w := request.Waiter{
-		Name:        "WaitUntilTrainingJob_Deleted",
-		MaxAttempts: 120,
-		Delay:       request.ConstantWaiterDelay(120 * time.Second),
-		Acceptors: []request.WaiterAcceptor{
-			{
-				State:    request.SuccessWaiterState,
-				Matcher:  request.ErrorWaiterMatch,
-				Expected: "ValidationException",
-			},
-			{
-				State:   request.RetryWaiterState,
-				Matcher: request.PathWaiterMatch, Argument: "TrainingJobStatus",
-				Expected: "Deleting",
-			},
-			{
-				State:    request.RetryWaiterState,
-				Matcher:  request.ErrorWaiterMatch,
-				Expected: "ThrottlingException",
-			},
-		},
-		Logger: c.Config.Logger,
-		NewRequest: func(opts []request.Option) (*request.Request, error) {
-			var inCpy *DescribeTrainingJobInput
-			if input != nil {
-				tmp := *input
-				inCpy = &tmp
-			}
-			req, _ := c.DescribeTrainingJobRequest(inCpy)
-			req.SetContext(ctx)
-			req.ApplyOptions(opts...)
-			return req, nil
-		},
-	}
-	w.ApplyOptions(opts...)
-
-	return w.WaitWithContext(ctx)
-}
-
-// WaitUntilTrainingJob_Stopped uses the SageMaker API operation
-// DescribeTrainingJob to wait for a condition to be met before returning.
-// If the condition is not met within the max attempt window, an error will
-// be returned.
-func (c *SageMaker) WaitUntilTrainingJob_Stopped(input *DescribeTrainingJobInput) error {
-	return c.WaitUntilTrainingJob_StoppedWithContext(aws.BackgroundContext(), input)
-}
-
-// WaitUntilTrainingJob_StoppedWithContext is an extended version of WaitUntilTrainingJob_Stopped.
-// With the support for passing in a context and options to configure the
-// Waiter and the underlying request options.
-//
-// The context must be non-nil and will be used for request cancellation. If
-// the context is nil a panic will occur. In the future the SDK may create
-// sub-contexts for http.Requests. See https://golang.org/pkg/context/
-// for more information on using Contexts.
-func (c *SageMaker) WaitUntilTrainingJob_StoppedWithContext(ctx aws.Context, input *DescribeTrainingJobInput, opts ...request.WaiterOption) error {
-	w := request.Waiter{
-		Name:        "WaitUntilTrainingJob_Stopped",
-		MaxAttempts: 120,
+		Name:        "WaitUntilTrainingJobCompletedOrStopped",
+		MaxAttempts: 180,
 		Delay:       request.ConstantWaiterDelay(120 * time.Second),
 		Acceptors: []request.WaiterAcceptor{
 			{
@@ -565,24 +297,9 @@ func (c *SageMaker) WaitUntilTrainingJob_StoppedWithContext(ctx aws.Context, inp
 				Expected: "Completed",
 			},
 			{
-				State:   request.RetryWaiterState,
-				Matcher: request.PathWaiterMatch, Argument: "TrainingJobStatus",
-				Expected: "Stopping",
-			},
-			{
 				State:   request.SuccessWaiterState,
 				Matcher: request.PathWaiterMatch, Argument: "TrainingJobStatus",
 				Expected: "Stopped",
-			},
-			{
-				State:    request.RetryWaiterState,
-				Matcher:  request.ErrorWaiterMatch,
-				Expected: "ThrottlingException",
-			},
-			{
-				State:    request.FailureWaiterState,
-				Matcher:  request.ErrorWaiterMatch,
-				Expected: "ValidationException",
 			},
 			{
 				State:   request.FailureWaiterState,
@@ -590,9 +307,9 @@ func (c *SageMaker) WaitUntilTrainingJob_StoppedWithContext(ctx aws.Context, inp
 				Expected: "Failed",
 			},
 			{
-				State:   request.FailureWaiterState,
-				Matcher: request.PathWaiterMatch, Argument: "TrainingJobStatus",
-				Expected: "Deleting",
+				State:    request.FailureWaiterState,
+				Matcher:  request.ErrorWaiterMatch,
+				Expected: "ValidationException",
 			},
 		},
 		Logger: c.Config.Logger,
