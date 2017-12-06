@@ -193,6 +193,24 @@ type SageMakerAPI interface {
 	UpdateNotebookInstance(*sagemaker.UpdateNotebookInstanceInput) (*sagemaker.UpdateNotebookInstanceOutput, error)
 	UpdateNotebookInstanceWithContext(aws.Context, *sagemaker.UpdateNotebookInstanceInput, ...request.Option) (*sagemaker.UpdateNotebookInstanceOutput, error)
 	UpdateNotebookInstanceRequest(*sagemaker.UpdateNotebookInstanceInput) (*request.Request, *sagemaker.UpdateNotebookInstanceOutput)
+
+	WaitUntilEndpointDeleted(*sagemaker.DescribeEndpointInput) error
+	WaitUntilEndpointDeletedWithContext(aws.Context, *sagemaker.DescribeEndpointInput, ...request.WaiterOption) error
+
+	WaitUntilEndpointInService(*sagemaker.DescribeEndpointInput) error
+	WaitUntilEndpointInServiceWithContext(aws.Context, *sagemaker.DescribeEndpointInput, ...request.WaiterOption) error
+
+	WaitUntilNotebookInstanceDeleted(*sagemaker.DescribeNotebookInstanceInput) error
+	WaitUntilNotebookInstanceDeletedWithContext(aws.Context, *sagemaker.DescribeNotebookInstanceInput, ...request.WaiterOption) error
+
+	WaitUntilNotebookInstanceInService(*sagemaker.DescribeNotebookInstanceInput) error
+	WaitUntilNotebookInstanceInServiceWithContext(aws.Context, *sagemaker.DescribeNotebookInstanceInput, ...request.WaiterOption) error
+
+	WaitUntilNotebookInstanceStopped(*sagemaker.DescribeNotebookInstanceInput) error
+	WaitUntilNotebookInstanceStoppedWithContext(aws.Context, *sagemaker.DescribeNotebookInstanceInput, ...request.WaiterOption) error
+
+	WaitUntilTrainingJobCompletedOrStopped(*sagemaker.DescribeTrainingJobInput) error
+	WaitUntilTrainingJobCompletedOrStoppedWithContext(aws.Context, *sagemaker.DescribeTrainingJobInput, ...request.WaiterOption) error
 }
 
 var _ SageMakerAPI = (*sagemaker.SageMaker)(nil)
