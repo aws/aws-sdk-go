@@ -1,3 +1,15 @@
+Release v1.12.43 (2017-12-07)
+===
+
+### Service Client Updates
+* `service/email`: Updates service API, documentation, and paginators
+  * Customers can customize the emails that Amazon SES sends when verifying new identities. This feature is helpful for developers whose applications send email through Amazon SES on behalf of their customers.
+* `service/es`: Updates service API and documentation
+  * Added support for encryption of data at rest on Amazon Elasticsearch Service using AWS KMS
+
+### SDK Bugs
+* `models/apis` Fixes removes colliding sagemaker models folders ([#1686](https://github.com/aws/aws-sdk-go/pull/1686))
+  * Fixes Release v1.12.42's SageMaker vs sagemaker model folders.
 Release v1.12.42 (2017-12-06)
 ===
 

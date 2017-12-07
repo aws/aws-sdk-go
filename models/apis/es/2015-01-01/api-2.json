@@ -288,6 +288,7 @@
         "AccessPolicies":{"shape":"PolicyDocument"},
         "SnapshotOptions":{"shape":"SnapshotOptions"},
         "VPCOptions":{"shape":"VPCOptions"},
+        "EncryptionAtRestOptions":{"shape":"EncryptionAtRestOptions"},
         "AdvancedOptions":{"shape":"AdvancedOptions"},
         "LogPublishingOptions":{"shape":"LogPublishingOptions"}
       }
@@ -523,6 +524,7 @@
         "AccessPolicies":{"shape":"AccessPoliciesStatus"},
         "SnapshotOptions":{"shape":"SnapshotOptionsStatus"},
         "VPCOptions":{"shape":"VPCDerivedInfoStatus"},
+        "EncryptionAtRestOptions":{"shape":"EncryptionAtRestOptionsStatus"},
         "AdvancedOptions":{"shape":"AdvancedOptionsStatus"},
         "LogPublishingOptions":{"shape":"LogPublishingOptionsStatus"}
       }
@@ -550,6 +552,7 @@
         "AccessPolicies":{"shape":"PolicyDocument"},
         "SnapshotOptions":{"shape":"SnapshotOptions"},
         "VPCOptions":{"shape":"VPCDerivedInfo"},
+        "EncryptionAtRestOptions":{"shape":"EncryptionAtRestOptions"},
         "AdvancedOptions":{"shape":"AdvancedOptions"},
         "LogPublishingOptions":{"shape":"LogPublishingOptions"}
       }
@@ -578,6 +581,24 @@
       }
     },
     "ElasticsearchVersionString":{"type":"string"},
+    "EncryptionAtRestOptions":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Boolean"},
+        "KmsKeyId":{"shape":"KmsKeyId"}
+      }
+    },
+    "EncryptionAtRestOptionsStatus":{
+      "type":"structure",
+      "required":[
+        "Options",
+        "Status"
+      ],
+      "members":{
+        "Options":{"shape":"EncryptionAtRestOptions"},
+        "Status":{"shape":"OptionStatus"}
+      }
+    },
     "EndpointsMap":{
       "type":"map",
       "key":{"shape":"String"},
@@ -612,6 +633,11 @@
       },
       "error":{"httpStatusCode":409},
       "exception":true
+    },
+    "KmsKeyId":{
+      "type":"string",
+      "max":500,
+      "min":1
     },
     "LimitExceededException":{
       "type":"structure",
