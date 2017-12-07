@@ -33,7 +33,7 @@ const opDescribeJobExecution = "DescribeJobExecution"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/DescribeJobExecution
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/DescribeJobExecution
 func (c *IoTJobsDataPlane) DescribeJobExecutionRequest(input *DescribeJobExecutionInput) (req *request.Request, output *DescribeJobExecutionOutput) {
 	op := &request.Operation{
 		Name:       opDescribeJobExecution,
@@ -82,7 +82,7 @@ func (c *IoTJobsDataPlane) DescribeJobExecutionRequest(input *DescribeJobExecuti
 //   * ErrCodeTerminalStateException "TerminalStateException"
 //   The job is in a terminal state.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/DescribeJobExecution
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/DescribeJobExecution
 func (c *IoTJobsDataPlane) DescribeJobExecution(input *DescribeJobExecutionInput) (*DescribeJobExecutionOutput, error) {
 	req, out := c.DescribeJobExecutionRequest(input)
 	return out, req.Send()
@@ -129,7 +129,7 @@ const opGetPendingJobExecutions = "GetPendingJobExecutions"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/GetPendingJobExecutions
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/GetPendingJobExecutions
 func (c *IoTJobsDataPlane) GetPendingJobExecutionsRequest(input *GetPendingJobExecutionsInput) (req *request.Request, output *GetPendingJobExecutionsOutput) {
 	op := &request.Operation{
 		Name:       opGetPendingJobExecutions,
@@ -175,7 +175,7 @@ func (c *IoTJobsDataPlane) GetPendingJobExecutionsRequest(input *GetPendingJobEx
 //   * ErrCodeCertificateValidationException "CertificateValidationException"
 //   The certificate is invalid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/GetPendingJobExecutions
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/GetPendingJobExecutions
 func (c *IoTJobsDataPlane) GetPendingJobExecutions(input *GetPendingJobExecutionsInput) (*GetPendingJobExecutionsOutput, error) {
 	req, out := c.GetPendingJobExecutionsRequest(input)
 	return out, req.Send()
@@ -222,7 +222,7 @@ const opStartNextPendingJobExecution = "StartNextPendingJobExecution"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/StartNextPendingJobExecution
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/StartNextPendingJobExecution
 func (c *IoTJobsDataPlane) StartNextPendingJobExecutionRequest(input *StartNextPendingJobExecutionInput) (req *request.Request, output *StartNextPendingJobExecutionOutput) {
 	op := &request.Operation{
 		Name:       opStartNextPendingJobExecution,
@@ -269,7 +269,7 @@ func (c *IoTJobsDataPlane) StartNextPendingJobExecutionRequest(input *StartNextP
 //   * ErrCodeCertificateValidationException "CertificateValidationException"
 //   The certificate is invalid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/StartNextPendingJobExecution
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/StartNextPendingJobExecution
 func (c *IoTJobsDataPlane) StartNextPendingJobExecution(input *StartNextPendingJobExecutionInput) (*StartNextPendingJobExecutionOutput, error) {
 	req, out := c.StartNextPendingJobExecutionRequest(input)
 	return out, req.Send()
@@ -316,7 +316,7 @@ const opUpdateJobExecution = "UpdateJobExecution"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/UpdateJobExecution
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/UpdateJobExecution
 func (c *IoTJobsDataPlane) UpdateJobExecutionRequest(input *UpdateJobExecutionInput) (req *request.Request, output *UpdateJobExecutionOutput) {
 	op := &request.Operation{
 		Name:       opUpdateJobExecution,
@@ -368,7 +368,7 @@ func (c *IoTJobsDataPlane) UpdateJobExecutionRequest(input *UpdateJobExecutionIn
 //   change a request in state SUCCESS to state IN_PROGRESS). In this case, the
 //   body of the error message also contains the executionState field.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/UpdateJobExecution
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/UpdateJobExecution
 func (c *IoTJobsDataPlane) UpdateJobExecution(input *UpdateJobExecutionInput) (*UpdateJobExecutionOutput, error) {
 	req, out := c.UpdateJobExecutionRequest(input)
 	return out, req.Send()
@@ -390,7 +390,7 @@ func (c *IoTJobsDataPlane) UpdateJobExecutionWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/DescribeJobExecutionRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/DescribeJobExecutionRequest
 type DescribeJobExecutionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -466,7 +466,7 @@ func (s *DescribeJobExecutionInput) SetThingName(v string) *DescribeJobExecution
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/DescribeJobExecutionResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/DescribeJobExecutionResponse
 type DescribeJobExecutionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -490,7 +490,7 @@ func (s *DescribeJobExecutionOutput) SetExecution(v *JobExecution) *DescribeJobE
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/GetPendingJobExecutionsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/GetPendingJobExecutionsRequest
 type GetPendingJobExecutionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -532,7 +532,7 @@ func (s *GetPendingJobExecutionsInput) SetThingName(v string) *GetPendingJobExec
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/GetPendingJobExecutionsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/GetPendingJobExecutionsResponse
 type GetPendingJobExecutionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -566,7 +566,7 @@ func (s *GetPendingJobExecutionsOutput) SetQueuedJobs(v []*JobExecutionSummary) 
 }
 
 // Contains data about a job execution.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/JobExecution
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/JobExecution
 type JobExecution struct {
 	_ struct{} `type:"structure"`
 
@@ -676,7 +676,7 @@ func (s *JobExecution) SetVersionNumber(v int64) *JobExecution {
 }
 
 // Contains data about the state of a job execution.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/JobExecutionState
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/JobExecutionState
 type JobExecutionState struct {
 	_ struct{} `type:"structure"`
 
@@ -721,7 +721,7 @@ func (s *JobExecutionState) SetVersionNumber(v int64) *JobExecutionState {
 }
 
 // Contains a subset of information about a job execution.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/JobExecutionSummary
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/JobExecutionSummary
 type JobExecutionSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -792,7 +792,7 @@ func (s *JobExecutionSummary) SetVersionNumber(v int64) *JobExecutionSummary {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/StartNextPendingJobExecutionRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/StartNextPendingJobExecutionRequest
 type StartNextPendingJobExecutionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -844,7 +844,7 @@ func (s *StartNextPendingJobExecutionInput) SetThingName(v string) *StartNextPen
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/StartNextPendingJobExecutionResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/StartNextPendingJobExecutionResponse
 type StartNextPendingJobExecutionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -868,7 +868,7 @@ func (s *StartNextPendingJobExecutionOutput) SetExecution(v *JobExecution) *Star
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/UpdateJobExecutionRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/UpdateJobExecutionRequest
 type UpdateJobExecutionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -997,7 +997,7 @@ func (s *UpdateJobExecutionInput) SetThingName(v string) *UpdateJobExecutionInpu
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/UpdateJobExecutionResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/UpdateJobExecutionResponse
 type UpdateJobExecutionOutput struct {
 	_ struct{} `type:"structure"`
 

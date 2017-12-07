@@ -35,7 +35,7 @@ const opAssociateDeviceWithRoom = "AssociateDeviceWithRoom"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateDeviceWithRoom
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateDeviceWithRoom
 func (c *AlexaForBusiness) AssociateDeviceWithRoomRequest(input *AssociateDeviceWithRoomInput) (req *request.Request, output *AssociateDeviceWithRoomOutput) {
 	op := &request.Operation{
 		Name:       opAssociateDeviceWithRoom,
@@ -71,7 +71,7 @@ func (c *AlexaForBusiness) AssociateDeviceWithRoomRequest(input *AssociateDevice
 //   You are performing an action that would put you beyond your account's limits.
 //   HTTP Status Code: 400
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateDeviceWithRoom
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateDeviceWithRoom
 func (c *AlexaForBusiness) AssociateDeviceWithRoom(input *AssociateDeviceWithRoomInput) (*AssociateDeviceWithRoomOutput, error) {
 	req, out := c.AssociateDeviceWithRoomRequest(input)
 	return out, req.Send()
@@ -118,7 +118,7 @@ const opAssociateSkillGroupWithRoom = "AssociateSkillGroupWithRoom"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateSkillGroupWithRoom
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateSkillGroupWithRoom
 func (c *AlexaForBusiness) AssociateSkillGroupWithRoomRequest(input *AssociateSkillGroupWithRoomInput) (req *request.Request, output *AssociateSkillGroupWithRoomOutput) {
 	op := &request.Operation{
 		Name:       opAssociateSkillGroupWithRoom,
@@ -146,7 +146,7 @@ func (c *AlexaForBusiness) AssociateSkillGroupWithRoomRequest(input *AssociateSk
 //
 // See the AWS API reference guide for Alexa For Business's
 // API operation AssociateSkillGroupWithRoom for usage and error information.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateSkillGroupWithRoom
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateSkillGroupWithRoom
 func (c *AlexaForBusiness) AssociateSkillGroupWithRoom(input *AssociateSkillGroupWithRoomInput) (*AssociateSkillGroupWithRoomOutput, error) {
 	req, out := c.AssociateSkillGroupWithRoomRequest(input)
 	return out, req.Send()
@@ -193,7 +193,7 @@ const opCreateProfile = "CreateProfile"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateProfile
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateProfile
 func (c *AlexaForBusiness) CreateProfileRequest(input *CreateProfileInput) (req *request.Request, output *CreateProfileOutput) {
 	op := &request.Operation{
 		Name:       opCreateProfile,
@@ -229,7 +229,7 @@ func (c *AlexaForBusiness) CreateProfileRequest(input *CreateProfileInput) (req 
 //   * ErrCodeAlreadyExistsException "AlreadyExistsException"
 //   The resource being created already exists. HTTP Status Code: 400
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateProfile
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateProfile
 func (c *AlexaForBusiness) CreateProfile(input *CreateProfileInput) (*CreateProfileOutput, error) {
 	req, out := c.CreateProfileRequest(input)
 	return out, req.Send()
@@ -276,7 +276,7 @@ const opCreateRoom = "CreateRoom"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateRoom
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateRoom
 func (c *AlexaForBusiness) CreateRoomRequest(input *CreateRoomInput) (req *request.Request, output *CreateRoomOutput) {
 	op := &request.Operation{
 		Name:       opCreateRoom,
@@ -312,7 +312,7 @@ func (c *AlexaForBusiness) CreateRoomRequest(input *CreateRoomInput) (req *reque
 //   You are performing an action that would put you beyond your account's limits.
 //   HTTP Status Code: 400
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateRoom
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateRoom
 func (c *AlexaForBusiness) CreateRoom(input *CreateRoomInput) (*CreateRoomOutput, error) {
 	req, out := c.CreateRoomRequest(input)
 	return out, req.Send()
@@ -359,7 +359,7 @@ const opCreateSkillGroup = "CreateSkillGroup"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateSkillGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateSkillGroup
 func (c *AlexaForBusiness) CreateSkillGroupRequest(input *CreateSkillGroupInput) (req *request.Request, output *CreateSkillGroupOutput) {
 	op := &request.Operation{
 		Name:       opCreateSkillGroup,
@@ -395,7 +395,7 @@ func (c *AlexaForBusiness) CreateSkillGroupRequest(input *CreateSkillGroupInput)
 //   You are performing an action that would put you beyond your account's limits.
 //   HTTP Status Code: 400
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateSkillGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateSkillGroup
 func (c *AlexaForBusiness) CreateSkillGroup(input *CreateSkillGroupInput) (*CreateSkillGroupOutput, error) {
 	req, out := c.CreateSkillGroupRequest(input)
 	return out, req.Send()
@@ -442,7 +442,7 @@ const opCreateUser = "CreateUser"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateUser
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateUser
 func (c *AlexaForBusiness) CreateUserRequest(input *CreateUserInput) (req *request.Request, output *CreateUserOutput) {
 	op := &request.Operation{
 		Name:       opCreateUser,
@@ -478,7 +478,7 @@ func (c *AlexaForBusiness) CreateUserRequest(input *CreateUserInput) (req *reque
 //   You are performing an action that would put you beyond your account's limits.
 //   HTTP Status Code: 400
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateUser
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateUser
 func (c *AlexaForBusiness) CreateUser(input *CreateUserInput) (*CreateUserOutput, error) {
 	req, out := c.CreateUserRequest(input)
 	return out, req.Send()
@@ -525,7 +525,7 @@ const opDeleteProfile = "DeleteProfile"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteProfile
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteProfile
 func (c *AlexaForBusiness) DeleteProfileRequest(input *DeleteProfileInput) (req *request.Request, output *DeleteProfileOutput) {
 	op := &request.Operation{
 		Name:       opDeleteProfile,
@@ -557,7 +557,7 @@ func (c *AlexaForBusiness) DeleteProfileRequest(input *DeleteProfileInput) (req 
 //   * ErrCodeNotFoundException "NotFoundException"
 //   The resource is not found. HTTP Status Code: 400
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteProfile
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteProfile
 func (c *AlexaForBusiness) DeleteProfile(input *DeleteProfileInput) (*DeleteProfileOutput, error) {
 	req, out := c.DeleteProfileRequest(input)
 	return out, req.Send()
@@ -604,7 +604,7 @@ const opDeleteRoom = "DeleteRoom"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteRoom
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteRoom
 func (c *AlexaForBusiness) DeleteRoomRequest(input *DeleteRoomInput) (req *request.Request, output *DeleteRoomOutput) {
 	op := &request.Operation{
 		Name:       opDeleteRoom,
@@ -636,7 +636,7 @@ func (c *AlexaForBusiness) DeleteRoomRequest(input *DeleteRoomInput) (req *reque
 //   * ErrCodeNotFoundException "NotFoundException"
 //   The resource is not found. HTTP Status Code: 400
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteRoom
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteRoom
 func (c *AlexaForBusiness) DeleteRoom(input *DeleteRoomInput) (*DeleteRoomOutput, error) {
 	req, out := c.DeleteRoomRequest(input)
 	return out, req.Send()
@@ -683,7 +683,7 @@ const opDeleteRoomSkillParameter = "DeleteRoomSkillParameter"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteRoomSkillParameter
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteRoomSkillParameter
 func (c *AlexaForBusiness) DeleteRoomSkillParameterRequest(input *DeleteRoomSkillParameterInput) (req *request.Request, output *DeleteRoomSkillParameterOutput) {
 	op := &request.Operation{
 		Name:       opDeleteRoomSkillParameter,
@@ -710,7 +710,7 @@ func (c *AlexaForBusiness) DeleteRoomSkillParameterRequest(input *DeleteRoomSkil
 //
 // See the AWS API reference guide for Alexa For Business's
 // API operation DeleteRoomSkillParameter for usage and error information.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteRoomSkillParameter
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteRoomSkillParameter
 func (c *AlexaForBusiness) DeleteRoomSkillParameter(input *DeleteRoomSkillParameterInput) (*DeleteRoomSkillParameterOutput, error) {
 	req, out := c.DeleteRoomSkillParameterRequest(input)
 	return out, req.Send()
@@ -757,7 +757,7 @@ const opDeleteSkillGroup = "DeleteSkillGroup"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteSkillGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteSkillGroup
 func (c *AlexaForBusiness) DeleteSkillGroupRequest(input *DeleteSkillGroupInput) (req *request.Request, output *DeleteSkillGroupOutput) {
 	op := &request.Operation{
 		Name:       opDeleteSkillGroup,
@@ -789,7 +789,7 @@ func (c *AlexaForBusiness) DeleteSkillGroupRequest(input *DeleteSkillGroupInput)
 //   * ErrCodeNotFoundException "NotFoundException"
 //   The resource is not found. HTTP Status Code: 400
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteSkillGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteSkillGroup
 func (c *AlexaForBusiness) DeleteSkillGroup(input *DeleteSkillGroupInput) (*DeleteSkillGroupOutput, error) {
 	req, out := c.DeleteSkillGroupRequest(input)
 	return out, req.Send()
@@ -836,7 +836,7 @@ const opDeleteUser = "DeleteUser"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteUser
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteUser
 func (c *AlexaForBusiness) DeleteUserRequest(input *DeleteUserInput) (req *request.Request, output *DeleteUserOutput) {
 	op := &request.Operation{
 		Name:       opDeleteUser,
@@ -868,7 +868,7 @@ func (c *AlexaForBusiness) DeleteUserRequest(input *DeleteUserInput) (req *reque
 //   * ErrCodeNotFoundException "NotFoundException"
 //   The resource is not found. HTTP Status Code: 400
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteUser
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteUser
 func (c *AlexaForBusiness) DeleteUser(input *DeleteUserInput) (*DeleteUserOutput, error) {
 	req, out := c.DeleteUserRequest(input)
 	return out, req.Send()
@@ -915,7 +915,7 @@ const opDisassociateDeviceFromRoom = "DisassociateDeviceFromRoom"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateDeviceFromRoom
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateDeviceFromRoom
 func (c *AlexaForBusiness) DisassociateDeviceFromRoomRequest(input *DisassociateDeviceFromRoomInput) (req *request.Request, output *DisassociateDeviceFromRoomOutput) {
 	op := &request.Operation{
 		Name:       opDisassociateDeviceFromRoom,
@@ -944,7 +944,7 @@ func (c *AlexaForBusiness) DisassociateDeviceFromRoomRequest(input *Disassociate
 //
 // See the AWS API reference guide for Alexa For Business's
 // API operation DisassociateDeviceFromRoom for usage and error information.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateDeviceFromRoom
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateDeviceFromRoom
 func (c *AlexaForBusiness) DisassociateDeviceFromRoom(input *DisassociateDeviceFromRoomInput) (*DisassociateDeviceFromRoomOutput, error) {
 	req, out := c.DisassociateDeviceFromRoomRequest(input)
 	return out, req.Send()
@@ -991,7 +991,7 @@ const opDisassociateSkillGroupFromRoom = "DisassociateSkillGroupFromRoom"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateSkillGroupFromRoom
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateSkillGroupFromRoom
 func (c *AlexaForBusiness) DisassociateSkillGroupFromRoomRequest(input *DisassociateSkillGroupFromRoomInput) (req *request.Request, output *DisassociateSkillGroupFromRoomOutput) {
 	op := &request.Operation{
 		Name:       opDisassociateSkillGroupFromRoom,
@@ -1019,7 +1019,7 @@ func (c *AlexaForBusiness) DisassociateSkillGroupFromRoomRequest(input *Disassoc
 //
 // See the AWS API reference guide for Alexa For Business's
 // API operation DisassociateSkillGroupFromRoom for usage and error information.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateSkillGroupFromRoom
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateSkillGroupFromRoom
 func (c *AlexaForBusiness) DisassociateSkillGroupFromRoom(input *DisassociateSkillGroupFromRoomInput) (*DisassociateSkillGroupFromRoomOutput, error) {
 	req, out := c.DisassociateSkillGroupFromRoomRequest(input)
 	return out, req.Send()
@@ -1066,7 +1066,7 @@ const opGetDevice = "GetDevice"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetDevice
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetDevice
 func (c *AlexaForBusiness) GetDeviceRequest(input *GetDeviceInput) (req *request.Request, output *GetDeviceOutput) {
 	op := &request.Operation{
 		Name:       opGetDevice,
@@ -1098,7 +1098,7 @@ func (c *AlexaForBusiness) GetDeviceRequest(input *GetDeviceInput) (req *request
 //   * ErrCodeNotFoundException "NotFoundException"
 //   The resource is not found. HTTP Status Code: 400
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetDevice
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetDevice
 func (c *AlexaForBusiness) GetDevice(input *GetDeviceInput) (*GetDeviceOutput, error) {
 	req, out := c.GetDeviceRequest(input)
 	return out, req.Send()
@@ -1145,7 +1145,7 @@ const opGetProfile = "GetProfile"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetProfile
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetProfile
 func (c *AlexaForBusiness) GetProfileRequest(input *GetProfileInput) (req *request.Request, output *GetProfileOutput) {
 	op := &request.Operation{
 		Name:       opGetProfile,
@@ -1177,7 +1177,7 @@ func (c *AlexaForBusiness) GetProfileRequest(input *GetProfileInput) (req *reque
 //   * ErrCodeNotFoundException "NotFoundException"
 //   The resource is not found. HTTP Status Code: 400
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetProfile
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetProfile
 func (c *AlexaForBusiness) GetProfile(input *GetProfileInput) (*GetProfileOutput, error) {
 	req, out := c.GetProfileRequest(input)
 	return out, req.Send()
@@ -1224,7 +1224,7 @@ const opGetRoom = "GetRoom"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetRoom
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetRoom
 func (c *AlexaForBusiness) GetRoomRequest(input *GetRoomInput) (req *request.Request, output *GetRoomOutput) {
 	op := &request.Operation{
 		Name:       opGetRoom,
@@ -1256,7 +1256,7 @@ func (c *AlexaForBusiness) GetRoomRequest(input *GetRoomInput) (req *request.Req
 //   * ErrCodeNotFoundException "NotFoundException"
 //   The resource is not found. HTTP Status Code: 400
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetRoom
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetRoom
 func (c *AlexaForBusiness) GetRoom(input *GetRoomInput) (*GetRoomOutput, error) {
 	req, out := c.GetRoomRequest(input)
 	return out, req.Send()
@@ -1303,7 +1303,7 @@ const opGetRoomSkillParameter = "GetRoomSkillParameter"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetRoomSkillParameter
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetRoomSkillParameter
 func (c *AlexaForBusiness) GetRoomSkillParameterRequest(input *GetRoomSkillParameterInput) (req *request.Request, output *GetRoomSkillParameterOutput) {
 	op := &request.Operation{
 		Name:       opGetRoomSkillParameter,
@@ -1335,7 +1335,7 @@ func (c *AlexaForBusiness) GetRoomSkillParameterRequest(input *GetRoomSkillParam
 //   * ErrCodeNotFoundException "NotFoundException"
 //   The resource is not found. HTTP Status Code: 400
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetRoomSkillParameter
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetRoomSkillParameter
 func (c *AlexaForBusiness) GetRoomSkillParameter(input *GetRoomSkillParameterInput) (*GetRoomSkillParameterOutput, error) {
 	req, out := c.GetRoomSkillParameterRequest(input)
 	return out, req.Send()
@@ -1382,7 +1382,7 @@ const opGetSkillGroup = "GetSkillGroup"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetSkillGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetSkillGroup
 func (c *AlexaForBusiness) GetSkillGroupRequest(input *GetSkillGroupInput) (req *request.Request, output *GetSkillGroupOutput) {
 	op := &request.Operation{
 		Name:       opGetSkillGroup,
@@ -1414,7 +1414,7 @@ func (c *AlexaForBusiness) GetSkillGroupRequest(input *GetSkillGroupInput) (req 
 //   * ErrCodeNotFoundException "NotFoundException"
 //   The resource is not found. HTTP Status Code: 400
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetSkillGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetSkillGroup
 func (c *AlexaForBusiness) GetSkillGroup(input *GetSkillGroupInput) (*GetSkillGroupOutput, error) {
 	req, out := c.GetSkillGroupRequest(input)
 	return out, req.Send()
@@ -1461,7 +1461,7 @@ const opListSkills = "ListSkills"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ListSkills
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ListSkills
 func (c *AlexaForBusiness) ListSkillsRequest(input *ListSkillsInput) (req *request.Request, output *ListSkillsOutput) {
 	op := &request.Operation{
 		Name:       opListSkills,
@@ -1494,7 +1494,7 @@ func (c *AlexaForBusiness) ListSkillsRequest(input *ListSkillsInput) (req *reque
 //
 // See the AWS API reference guide for Alexa For Business's
 // API operation ListSkills for usage and error information.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ListSkills
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ListSkills
 func (c *AlexaForBusiness) ListSkills(input *ListSkillsInput) (*ListSkillsOutput, error) {
 	req, out := c.ListSkillsRequest(input)
 	return out, req.Send()
@@ -1591,7 +1591,7 @@ const opListTags = "ListTags"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ListTags
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ListTags
 func (c *AlexaForBusiness) ListTagsRequest(input *ListTagsInput) (req *request.Request, output *ListTagsOutput) {
 	op := &request.Operation{
 		Name:       opListTags,
@@ -1629,7 +1629,7 @@ func (c *AlexaForBusiness) ListTagsRequest(input *ListTagsInput) (req *request.R
 //   * ErrCodeNotFoundException "NotFoundException"
 //   The resource is not found. HTTP Status Code: 400
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ListTags
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ListTags
 func (c *AlexaForBusiness) ListTags(input *ListTagsInput) (*ListTagsOutput, error) {
 	req, out := c.ListTagsRequest(input)
 	return out, req.Send()
@@ -1726,7 +1726,7 @@ const opPutRoomSkillParameter = "PutRoomSkillParameter"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/PutRoomSkillParameter
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/PutRoomSkillParameter
 func (c *AlexaForBusiness) PutRoomSkillParameterRequest(input *PutRoomSkillParameterInput) (req *request.Request, output *PutRoomSkillParameterOutput) {
 	op := &request.Operation{
 		Name:       opPutRoomSkillParameter,
@@ -1754,7 +1754,7 @@ func (c *AlexaForBusiness) PutRoomSkillParameterRequest(input *PutRoomSkillParam
 //
 // See the AWS API reference guide for Alexa For Business's
 // API operation PutRoomSkillParameter for usage and error information.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/PutRoomSkillParameter
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/PutRoomSkillParameter
 func (c *AlexaForBusiness) PutRoomSkillParameter(input *PutRoomSkillParameterInput) (*PutRoomSkillParameterOutput, error) {
 	req, out := c.PutRoomSkillParameterRequest(input)
 	return out, req.Send()
@@ -1801,7 +1801,7 @@ const opResolveRoom = "ResolveRoom"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ResolveRoom
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ResolveRoom
 func (c *AlexaForBusiness) ResolveRoomRequest(input *ResolveRoomInput) (req *request.Request, output *ResolveRoomOutput) {
 	op := &request.Operation{
 		Name:       opResolveRoom,
@@ -1834,7 +1834,7 @@ func (c *AlexaForBusiness) ResolveRoomRequest(input *ResolveRoomInput) (req *req
 //   * ErrCodeNotFoundException "NotFoundException"
 //   The resource is not found. HTTP Status Code: 400
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ResolveRoom
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ResolveRoom
 func (c *AlexaForBusiness) ResolveRoom(input *ResolveRoomInput) (*ResolveRoomOutput, error) {
 	req, out := c.ResolveRoomRequest(input)
 	return out, req.Send()
@@ -1881,7 +1881,7 @@ const opRevokeInvitation = "RevokeInvitation"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/RevokeInvitation
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/RevokeInvitation
 func (c *AlexaForBusiness) RevokeInvitationRequest(input *RevokeInvitationInput) (req *request.Request, output *RevokeInvitationOutput) {
 	op := &request.Operation{
 		Name:       opRevokeInvitation,
@@ -1913,7 +1913,7 @@ func (c *AlexaForBusiness) RevokeInvitationRequest(input *RevokeInvitationInput)
 //   * ErrCodeNotFoundException "NotFoundException"
 //   The resource is not found. HTTP Status Code: 400
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/RevokeInvitation
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/RevokeInvitation
 func (c *AlexaForBusiness) RevokeInvitation(input *RevokeInvitationInput) (*RevokeInvitationOutput, error) {
 	req, out := c.RevokeInvitationRequest(input)
 	return out, req.Send()
@@ -1960,7 +1960,7 @@ const opSearchDevices = "SearchDevices"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchDevices
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchDevices
 func (c *AlexaForBusiness) SearchDevicesRequest(input *SearchDevicesInput) (req *request.Request, output *SearchDevicesOutput) {
 	op := &request.Operation{
 		Name:       opSearchDevices,
@@ -1993,7 +1993,7 @@ func (c *AlexaForBusiness) SearchDevicesRequest(input *SearchDevicesInput) (req 
 //
 // See the AWS API reference guide for Alexa For Business's
 // API operation SearchDevices for usage and error information.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchDevices
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchDevices
 func (c *AlexaForBusiness) SearchDevices(input *SearchDevicesInput) (*SearchDevicesOutput, error) {
 	req, out := c.SearchDevicesRequest(input)
 	return out, req.Send()
@@ -2090,7 +2090,7 @@ const opSearchProfiles = "SearchProfiles"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchProfiles
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchProfiles
 func (c *AlexaForBusiness) SearchProfilesRequest(input *SearchProfilesInput) (req *request.Request, output *SearchProfilesOutput) {
 	op := &request.Operation{
 		Name:       opSearchProfiles,
@@ -2123,7 +2123,7 @@ func (c *AlexaForBusiness) SearchProfilesRequest(input *SearchProfilesInput) (re
 //
 // See the AWS API reference guide for Alexa For Business's
 // API operation SearchProfiles for usage and error information.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchProfiles
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchProfiles
 func (c *AlexaForBusiness) SearchProfiles(input *SearchProfilesInput) (*SearchProfilesOutput, error) {
 	req, out := c.SearchProfilesRequest(input)
 	return out, req.Send()
@@ -2220,7 +2220,7 @@ const opSearchRooms = "SearchRooms"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchRooms
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchRooms
 func (c *AlexaForBusiness) SearchRoomsRequest(input *SearchRoomsInput) (req *request.Request, output *SearchRoomsOutput) {
 	op := &request.Operation{
 		Name:       opSearchRooms,
@@ -2253,7 +2253,7 @@ func (c *AlexaForBusiness) SearchRoomsRequest(input *SearchRoomsInput) (req *req
 //
 // See the AWS API reference guide for Alexa For Business's
 // API operation SearchRooms for usage and error information.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchRooms
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchRooms
 func (c *AlexaForBusiness) SearchRooms(input *SearchRoomsInput) (*SearchRoomsOutput, error) {
 	req, out := c.SearchRoomsRequest(input)
 	return out, req.Send()
@@ -2350,7 +2350,7 @@ const opSearchSkillGroups = "SearchSkillGroups"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchSkillGroups
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchSkillGroups
 func (c *AlexaForBusiness) SearchSkillGroupsRequest(input *SearchSkillGroupsInput) (req *request.Request, output *SearchSkillGroupsOutput) {
 	op := &request.Operation{
 		Name:       opSearchSkillGroups,
@@ -2384,7 +2384,7 @@ func (c *AlexaForBusiness) SearchSkillGroupsRequest(input *SearchSkillGroupsInpu
 //
 // See the AWS API reference guide for Alexa For Business's
 // API operation SearchSkillGroups for usage and error information.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchSkillGroups
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchSkillGroups
 func (c *AlexaForBusiness) SearchSkillGroups(input *SearchSkillGroupsInput) (*SearchSkillGroupsOutput, error) {
 	req, out := c.SearchSkillGroupsRequest(input)
 	return out, req.Send()
@@ -2481,7 +2481,7 @@ const opSearchUsers = "SearchUsers"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchUsers
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchUsers
 func (c *AlexaForBusiness) SearchUsersRequest(input *SearchUsersInput) (req *request.Request, output *SearchUsersOutput) {
 	op := &request.Operation{
 		Name:       opSearchUsers,
@@ -2514,7 +2514,7 @@ func (c *AlexaForBusiness) SearchUsersRequest(input *SearchUsersInput) (req *req
 //
 // See the AWS API reference guide for Alexa For Business's
 // API operation SearchUsers for usage and error information.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchUsers
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchUsers
 func (c *AlexaForBusiness) SearchUsers(input *SearchUsersInput) (*SearchUsersOutput, error) {
 	req, out := c.SearchUsersRequest(input)
 	return out, req.Send()
@@ -2611,7 +2611,7 @@ const opSendInvitation = "SendInvitation"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SendInvitation
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SendInvitation
 func (c *AlexaForBusiness) SendInvitationRequest(input *SendInvitationInput) (req *request.Request, output *SendInvitationOutput) {
 	op := &request.Operation{
 		Name:       opSendInvitation,
@@ -2648,7 +2648,7 @@ func (c *AlexaForBusiness) SendInvitationRequest(input *SendInvitationInput) (re
 //   The attempt to update a user is invalid due to the user's current status.
 //   HTTP Status Code: 400
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SendInvitation
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SendInvitation
 func (c *AlexaForBusiness) SendInvitation(input *SendInvitationInput) (*SendInvitationOutput, error) {
 	req, out := c.SendInvitationRequest(input)
 	return out, req.Send()
@@ -2695,7 +2695,7 @@ const opStartDeviceSync = "StartDeviceSync"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/StartDeviceSync
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/StartDeviceSync
 func (c *AlexaForBusiness) StartDeviceSyncRequest(input *StartDeviceSyncInput) (req *request.Request, output *StartDeviceSyncOutput) {
 	op := &request.Operation{
 		Name:       opStartDeviceSync,
@@ -2723,7 +2723,7 @@ func (c *AlexaForBusiness) StartDeviceSyncRequest(input *StartDeviceSyncInput) (
 //
 // See the AWS API reference guide for Alexa For Business's
 // API operation StartDeviceSync for usage and error information.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/StartDeviceSync
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/StartDeviceSync
 func (c *AlexaForBusiness) StartDeviceSync(input *StartDeviceSyncInput) (*StartDeviceSyncOutput, error) {
 	req, out := c.StartDeviceSyncRequest(input)
 	return out, req.Send()
@@ -2770,7 +2770,7 @@ const opTagResource = "TagResource"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/TagResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/TagResource
 func (c *AlexaForBusiness) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
 	op := &request.Operation{
 		Name:       opTagResource,
@@ -2802,7 +2802,7 @@ func (c *AlexaForBusiness) TagResourceRequest(input *TagResourceInput) (req *req
 //   * ErrCodeNotFoundException "NotFoundException"
 //   The resource is not found. HTTP Status Code: 400
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/TagResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/TagResource
 func (c *AlexaForBusiness) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
 	req, out := c.TagResourceRequest(input)
 	return out, req.Send()
@@ -2849,7 +2849,7 @@ const opUntagResource = "UntagResource"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UntagResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UntagResource
 func (c *AlexaForBusiness) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
 	op := &request.Operation{
 		Name:       opUntagResource,
@@ -2881,7 +2881,7 @@ func (c *AlexaForBusiness) UntagResourceRequest(input *UntagResourceInput) (req 
 //   * ErrCodeNotFoundException "NotFoundException"
 //   The resource is not found. HTTP Status Code: 400
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UntagResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UntagResource
 func (c *AlexaForBusiness) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
 	return out, req.Send()
@@ -2928,7 +2928,7 @@ const opUpdateDevice = "UpdateDevice"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateDevice
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateDevice
 func (c *AlexaForBusiness) UpdateDeviceRequest(input *UpdateDeviceInput) (req *request.Request, output *UpdateDeviceOutput) {
 	op := &request.Operation{
 		Name:       opUpdateDevice,
@@ -2960,7 +2960,7 @@ func (c *AlexaForBusiness) UpdateDeviceRequest(input *UpdateDeviceInput) (req *r
 //   * ErrCodeNotFoundException "NotFoundException"
 //   The resource is not found. HTTP Status Code: 400
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateDevice
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateDevice
 func (c *AlexaForBusiness) UpdateDevice(input *UpdateDeviceInput) (*UpdateDeviceOutput, error) {
 	req, out := c.UpdateDeviceRequest(input)
 	return out, req.Send()
@@ -3007,7 +3007,7 @@ const opUpdateProfile = "UpdateProfile"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateProfile
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateProfile
 func (c *AlexaForBusiness) UpdateProfileRequest(input *UpdateProfileInput) (req *request.Request, output *UpdateProfileOutput) {
 	op := &request.Operation{
 		Name:       opUpdateProfile,
@@ -3042,7 +3042,7 @@ func (c *AlexaForBusiness) UpdateProfileRequest(input *UpdateProfileInput) (req 
 //   * ErrCodeNameInUseException "NameInUseException"
 //   The name sent in the request is already in use. HTTP Status Code: 400
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateProfile
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateProfile
 func (c *AlexaForBusiness) UpdateProfile(input *UpdateProfileInput) (*UpdateProfileOutput, error) {
 	req, out := c.UpdateProfileRequest(input)
 	return out, req.Send()
@@ -3089,7 +3089,7 @@ const opUpdateRoom = "UpdateRoom"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateRoom
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateRoom
 func (c *AlexaForBusiness) UpdateRoomRequest(input *UpdateRoomInput) (req *request.Request, output *UpdateRoomOutput) {
 	op := &request.Operation{
 		Name:       opUpdateRoom,
@@ -3124,7 +3124,7 @@ func (c *AlexaForBusiness) UpdateRoomRequest(input *UpdateRoomInput) (req *reque
 //   * ErrCodeNameInUseException "NameInUseException"
 //   The name sent in the request is already in use. HTTP Status Code: 400
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateRoom
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateRoom
 func (c *AlexaForBusiness) UpdateRoom(input *UpdateRoomInput) (*UpdateRoomOutput, error) {
 	req, out := c.UpdateRoomRequest(input)
 	return out, req.Send()
@@ -3171,7 +3171,7 @@ const opUpdateSkillGroup = "UpdateSkillGroup"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateSkillGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateSkillGroup
 func (c *AlexaForBusiness) UpdateSkillGroupRequest(input *UpdateSkillGroupInput) (req *request.Request, output *UpdateSkillGroupOutput) {
 	op := &request.Operation{
 		Name:       opUpdateSkillGroup,
@@ -3206,7 +3206,7 @@ func (c *AlexaForBusiness) UpdateSkillGroupRequest(input *UpdateSkillGroupInput)
 //   * ErrCodeNameInUseException "NameInUseException"
 //   The name sent in the request is already in use. HTTP Status Code: 400
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateSkillGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateSkillGroup
 func (c *AlexaForBusiness) UpdateSkillGroup(input *UpdateSkillGroupInput) (*UpdateSkillGroupOutput, error) {
 	req, out := c.UpdateSkillGroupRequest(input)
 	return out, req.Send()
@@ -3228,7 +3228,7 @@ func (c *AlexaForBusiness) UpdateSkillGroupWithContext(ctx aws.Context, input *U
 	return out, req.Send()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateDeviceWithRoomRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateDeviceWithRoomRequest
 type AssociateDeviceWithRoomInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3261,7 +3261,7 @@ func (s *AssociateDeviceWithRoomInput) SetRoomArn(v string) *AssociateDeviceWith
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateDeviceWithRoomResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateDeviceWithRoomResponse
 type AssociateDeviceWithRoomOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3276,7 +3276,7 @@ func (s AssociateDeviceWithRoomOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateSkillGroupWithRoomRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateSkillGroupWithRoomRequest
 type AssociateSkillGroupWithRoomInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3309,7 +3309,7 @@ func (s *AssociateSkillGroupWithRoomInput) SetSkillGroupArn(v string) *Associate
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateSkillGroupWithRoomResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateSkillGroupWithRoomResponse
 type AssociateSkillGroupWithRoomOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3324,7 +3324,7 @@ func (s AssociateSkillGroupWithRoomOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateProfileRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateProfileRequest
 type CreateProfileInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3481,7 +3481,7 @@ func (s *CreateProfileInput) SetWakeWord(v string) *CreateProfileInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateProfileResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateProfileResponse
 type CreateProfileOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3505,7 +3505,7 @@ func (s *CreateProfileOutput) SetProfileArn(v string) *CreateProfileOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateRoomRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateRoomRequest
 type CreateRoomInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3608,7 +3608,7 @@ func (s *CreateRoomInput) SetTags(v []*Tag) *CreateRoomInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateRoomResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateRoomResponse
 type CreateRoomOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3632,7 +3632,7 @@ func (s *CreateRoomOutput) SetRoomArn(v string) *CreateRoomOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateSkillGroupRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateSkillGroupRequest
 type CreateSkillGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3698,7 +3698,7 @@ func (s *CreateSkillGroupInput) SetSkillGroupName(v string) *CreateSkillGroupInp
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateSkillGroupResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateSkillGroupResponse
 type CreateSkillGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3722,7 +3722,7 @@ func (s *CreateSkillGroupOutput) SetSkillGroupArn(v string) *CreateSkillGroupOut
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateUserRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateUserRequest
 type CreateUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3825,7 +3825,7 @@ func (s *CreateUserInput) SetUserId(v string) *CreateUserInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateUserResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateUserResponse
 type CreateUserOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3849,7 +3849,7 @@ func (s *CreateUserOutput) SetUserArn(v string) *CreateUserOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteProfileRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteProfileRequest
 type DeleteProfileInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3873,7 +3873,7 @@ func (s *DeleteProfileInput) SetProfileArn(v string) *DeleteProfileInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteProfileResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteProfileResponse
 type DeleteProfileOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3888,7 +3888,7 @@ func (s DeleteProfileOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteRoomRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteRoomRequest
 type DeleteRoomInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3912,7 +3912,7 @@ func (s *DeleteRoomInput) SetRoomArn(v string) *DeleteRoomInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteRoomResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteRoomResponse
 type DeleteRoomOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3927,7 +3927,7 @@ func (s DeleteRoomOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteRoomSkillParameterRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteRoomSkillParameterRequest
 type DeleteRoomSkillParameterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3992,7 +3992,7 @@ func (s *DeleteRoomSkillParameterInput) SetSkillId(v string) *DeleteRoomSkillPar
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteRoomSkillParameterResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteRoomSkillParameterResponse
 type DeleteRoomSkillParameterOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4007,7 +4007,7 @@ func (s DeleteRoomSkillParameterOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteSkillGroupRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteSkillGroupRequest
 type DeleteSkillGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4031,7 +4031,7 @@ func (s *DeleteSkillGroupInput) SetSkillGroupArn(v string) *DeleteSkillGroupInpu
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteSkillGroupResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteSkillGroupResponse
 type DeleteSkillGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4046,7 +4046,7 @@ func (s DeleteSkillGroupOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteUserRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteUserRequest
 type DeleteUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4094,7 +4094,7 @@ func (s *DeleteUserInput) SetUserArn(v string) *DeleteUserInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteUserResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteUserResponse
 type DeleteUserOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4110,7 +4110,7 @@ func (s DeleteUserOutput) GoString() string {
 }
 
 // A device with attributes.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/Device
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/Device
 type Device struct {
 	_ struct{} `type:"structure"`
 
@@ -4198,7 +4198,7 @@ func (s *Device) SetSoftwareVersion(v string) *Device {
 }
 
 // Device attributes.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeviceData
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeviceData
 type DeviceData struct {
 	_ struct{} `type:"structure"`
 
@@ -4294,7 +4294,7 @@ func (s *DeviceData) SetSoftwareVersion(v string) *DeviceData {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateDeviceFromRoomRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateDeviceFromRoomRequest
 type DisassociateDeviceFromRoomInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4318,7 +4318,7 @@ func (s *DisassociateDeviceFromRoomInput) SetDeviceArn(v string) *DisassociateDe
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateDeviceFromRoomResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateDeviceFromRoomResponse
 type DisassociateDeviceFromRoomOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4333,7 +4333,7 @@ func (s DisassociateDeviceFromRoomOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateSkillGroupFromRoomRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateSkillGroupFromRoomRequest
 type DisassociateSkillGroupFromRoomInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4366,7 +4366,7 @@ func (s *DisassociateSkillGroupFromRoomInput) SetSkillGroupArn(v string) *Disass
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateSkillGroupFromRoomResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateSkillGroupFromRoomResponse
 type DisassociateSkillGroupFromRoomOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4383,7 +4383,7 @@ func (s DisassociateSkillGroupFromRoomOutput) GoString() string {
 
 // A filter name and value pair that is used to return a more specific list
 // of results. Filters can be used to match a set of resources by various criteria.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/Filter
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/Filter
 type Filter struct {
 	_ struct{} `type:"structure"`
 
@@ -4439,7 +4439,7 @@ func (s *Filter) SetValues(v []*string) *Filter {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetDeviceRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetDeviceRequest
 type GetDeviceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4463,7 +4463,7 @@ func (s *GetDeviceInput) SetDeviceArn(v string) *GetDeviceInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetDeviceResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetDeviceResponse
 type GetDeviceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4487,7 +4487,7 @@ func (s *GetDeviceOutput) SetDevice(v *Device) *GetDeviceOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetProfileRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetProfileRequest
 type GetProfileInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4511,7 +4511,7 @@ func (s *GetProfileInput) SetProfileArn(v string) *GetProfileInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetProfileResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetProfileResponse
 type GetProfileOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4535,7 +4535,7 @@ func (s *GetProfileOutput) SetProfile(v *Profile) *GetProfileOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetRoomRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetRoomRequest
 type GetRoomInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4559,7 +4559,7 @@ func (s *GetRoomInput) SetRoomArn(v string) *GetRoomInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetRoomResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetRoomResponse
 type GetRoomOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4583,7 +4583,7 @@ func (s *GetRoomOutput) SetRoom(v *Room) *GetRoomOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetRoomSkillParameterRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetRoomSkillParameterRequest
 type GetRoomSkillParameterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4649,7 +4649,7 @@ func (s *GetRoomSkillParameterInput) SetSkillId(v string) *GetRoomSkillParameter
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetRoomSkillParameterResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetRoomSkillParameterResponse
 type GetRoomSkillParameterOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4673,7 +4673,7 @@ func (s *GetRoomSkillParameterOutput) SetRoomSkillParameter(v *RoomSkillParamete
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetSkillGroupRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetSkillGroupRequest
 type GetSkillGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4697,7 +4697,7 @@ func (s *GetSkillGroupInput) SetSkillGroupArn(v string) *GetSkillGroupInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetSkillGroupResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetSkillGroupResponse
 type GetSkillGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4721,7 +4721,7 @@ func (s *GetSkillGroupOutput) SetSkillGroup(v *SkillGroup) *GetSkillGroupOutput 
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ListSkillsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ListSkillsRequest
 type ListSkillsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4784,7 +4784,7 @@ func (s *ListSkillsInput) SetSkillGroupArn(v string) *ListSkillsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ListSkillsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ListSkillsResponse
 type ListSkillsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4817,7 +4817,7 @@ func (s *ListSkillsOutput) SetSkillSummaries(v []*SkillSummary) *ListSkillsOutpu
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ListTagsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ListTagsRequest
 type ListTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4884,7 +4884,7 @@ func (s *ListTagsInput) SetNextToken(v string) *ListTagsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ListTagsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ListTagsResponse
 type ListTagsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4918,7 +4918,7 @@ func (s *ListTagsOutput) SetTags(v []*Tag) *ListTagsOutput {
 }
 
 // A room profile with attributes.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/Profile
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/Profile
 type Profile struct {
 	_ struct{} `type:"structure"`
 
@@ -5024,7 +5024,7 @@ func (s *Profile) SetWakeWord(v string) *Profile {
 }
 
 // The data of a room profile.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ProfileData
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ProfileData
 type ProfileData struct {
 	_ struct{} `type:"structure"`
 
@@ -5102,7 +5102,7 @@ func (s *ProfileData) SetWakeWord(v string) *ProfileData {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/PutRoomSkillParameterRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/PutRoomSkillParameterRequest
 type PutRoomSkillParameterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5169,7 +5169,7 @@ func (s *PutRoomSkillParameterInput) SetSkillId(v string) *PutRoomSkillParameter
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/PutRoomSkillParameterResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/PutRoomSkillParameterResponse
 type PutRoomSkillParameterOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5184,7 +5184,7 @@ func (s PutRoomSkillParameterOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ResolveRoomRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ResolveRoomRequest
 type ResolveRoomInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5237,7 +5237,7 @@ func (s *ResolveRoomInput) SetUserId(v string) *ResolveRoomInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ResolveRoomResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ResolveRoomResponse
 type ResolveRoomOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5279,7 +5279,7 @@ func (s *ResolveRoomOutput) SetRoomSkillParameters(v []*RoomSkillParameter) *Res
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/RevokeInvitationRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/RevokeInvitationRequest
 type RevokeInvitationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5312,7 +5312,7 @@ func (s *RevokeInvitationInput) SetUserArn(v string) *RevokeInvitationInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/RevokeInvitationResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/RevokeInvitationResponse
 type RevokeInvitationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5328,7 +5328,7 @@ func (s RevokeInvitationOutput) GoString() string {
 }
 
 // A room with attributes.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/Room
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/Room
 type Room struct {
 	_ struct{} `type:"structure"`
 
@@ -5389,7 +5389,7 @@ func (s *Room) SetRoomName(v string) *Room {
 }
 
 // The data of a room.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/RoomData
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/RoomData
 type RoomData struct {
 	_ struct{} `type:"structure"`
 
@@ -5459,7 +5459,7 @@ func (s *RoomData) SetRoomName(v string) *RoomData {
 }
 
 // A skill parameter associated with a room.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/RoomSkillParameter
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/RoomSkillParameter
 type RoomSkillParameter struct {
 	_ struct{} `type:"structure"`
 
@@ -5519,7 +5519,7 @@ func (s *RoomSkillParameter) SetParameterValue(v string) *RoomSkillParameter {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchDevicesRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchDevicesRequest
 type SearchDevicesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5613,7 +5613,7 @@ func (s *SearchDevicesInput) SetSortCriteria(v []*Sort) *SearchDevicesInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchDevicesResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchDevicesResponse
 type SearchDevicesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5655,7 +5655,7 @@ func (s *SearchDevicesOutput) SetTotalCount(v int64) *SearchDevicesOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchProfilesRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchProfilesRequest
 type SearchProfilesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5748,7 +5748,7 @@ func (s *SearchProfilesInput) SetSortCriteria(v []*Sort) *SearchProfilesInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchProfilesResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchProfilesResponse
 type SearchProfilesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5790,7 +5790,7 @@ func (s *SearchProfilesOutput) SetTotalCount(v int64) *SearchProfilesOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchRoomsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchRoomsRequest
 type SearchRoomsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5883,7 +5883,7 @@ func (s *SearchRoomsInput) SetSortCriteria(v []*Sort) *SearchRoomsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchRoomsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchRoomsResponse
 type SearchRoomsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5925,7 +5925,7 @@ func (s *SearchRoomsOutput) SetTotalCount(v int64) *SearchRoomsOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchSkillGroupsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchSkillGroupsRequest
 type SearchSkillGroupsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6019,7 +6019,7 @@ func (s *SearchSkillGroupsInput) SetSortCriteria(v []*Sort) *SearchSkillGroupsIn
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchSkillGroupsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchSkillGroupsResponse
 type SearchSkillGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6061,7 +6061,7 @@ func (s *SearchSkillGroupsOutput) SetTotalCount(v int64) *SearchSkillGroupsOutpu
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchUsersRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchUsersRequest
 type SearchUsersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6155,7 +6155,7 @@ func (s *SearchUsersInput) SetSortCriteria(v []*Sort) *SearchUsersInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchUsersResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchUsersResponse
 type SearchUsersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6197,7 +6197,7 @@ func (s *SearchUsersOutput) SetUsers(v []*UserData) *SearchUsersOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SendInvitationRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SendInvitationRequest
 type SendInvitationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6221,7 +6221,7 @@ func (s *SendInvitationInput) SetUserArn(v string) *SendInvitationInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SendInvitationResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SendInvitationResponse
 type SendInvitationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6237,7 +6237,7 @@ func (s SendInvitationOutput) GoString() string {
 }
 
 // A skill group with attributes.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SkillGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SkillGroup
 type SkillGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -6280,7 +6280,7 @@ func (s *SkillGroup) SetSkillGroupName(v string) *SkillGroup {
 }
 
 // The attributes of a skill group.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SkillGroupData
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SkillGroupData
 type SkillGroupData struct {
 	_ struct{} `type:"structure"`
 
@@ -6323,7 +6323,7 @@ func (s *SkillGroupData) SetSkillGroupName(v string) *SkillGroupData {
 }
 
 // The summary of skills.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SkillSummary
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SkillSummary
 type SkillSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -6366,7 +6366,7 @@ func (s *SkillSummary) SetSupportsLinking(v bool) *SkillSummary {
 }
 
 // An object representing a sort criteria.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/Sort
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/Sort
 type Sort struct {
 	_ struct{} `type:"structure"`
 
@@ -6422,7 +6422,7 @@ func (s *Sort) SetValue(v string) *Sort {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/StartDeviceSyncRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/StartDeviceSyncRequest
 type StartDeviceSyncInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6479,7 +6479,7 @@ func (s *StartDeviceSyncInput) SetRoomArn(v string) *StartDeviceSyncInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/StartDeviceSyncResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/StartDeviceSyncResponse
 type StartDeviceSyncOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6495,7 +6495,7 @@ func (s StartDeviceSyncOutput) GoString() string {
 }
 
 // A key-value pair that can be associated with a resource.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/Tag
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/Tag
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -6541,7 +6541,7 @@ func (s *Tag) SetValue(v string) *Tag {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/TagResourceRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/TagResourceRequest
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6605,7 +6605,7 @@ func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/TagResourceResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/TagResourceResponse
 type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6620,7 +6620,7 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UntagResourceRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UntagResourceRequest
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6674,7 +6674,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UntagResourceResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UntagResourceResponse
 type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6689,7 +6689,7 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateDeviceRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateDeviceRequest
 type UpdateDeviceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6735,7 +6735,7 @@ func (s *UpdateDeviceInput) SetDeviceName(v string) *UpdateDeviceInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateDeviceResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateDeviceResponse
 type UpdateDeviceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6750,7 +6750,7 @@ func (s UpdateDeviceOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateProfileRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateProfileRequest
 type UpdateProfileInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6874,7 +6874,7 @@ func (s *UpdateProfileInput) SetWakeWord(v string) *UpdateProfileInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateProfileResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateProfileResponse
 type UpdateProfileOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6889,7 +6889,7 @@ func (s UpdateProfileOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateRoomRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateRoomRequest
 type UpdateRoomInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6965,7 +6965,7 @@ func (s *UpdateRoomInput) SetRoomName(v string) *UpdateRoomInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateRoomResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateRoomResponse
 type UpdateRoomOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6980,7 +6980,7 @@ func (s UpdateRoomOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateSkillGroupRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateSkillGroupRequest
 type UpdateSkillGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7038,7 +7038,7 @@ func (s *UpdateSkillGroupInput) SetSkillGroupName(v string) *UpdateSkillGroupInp
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateSkillGroupResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateSkillGroupResponse
 type UpdateSkillGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -7054,7 +7054,7 @@ func (s UpdateSkillGroupOutput) GoString() string {
 }
 
 // Information related to a user.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UserData
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UserData
 type UserData struct {
 	_ struct{} `type:"structure"`
 

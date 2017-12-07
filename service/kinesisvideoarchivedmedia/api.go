@@ -36,7 +36,7 @@ const opGetMediaForFragmentList = "GetMediaForFragmentList"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/GetMediaForFragmentList
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/GetMediaForFragmentList
 func (c *KinesisVideoArchivedMedia) GetMediaForFragmentListRequest(input *GetMediaForFragmentListInput) (req *request.Request, output *GetMediaForFragmentListOutput) {
 	op := &request.Operation{
 		Name:       opGetMediaForFragmentList,
@@ -93,7 +93,7 @@ func (c *KinesisVideoArchivedMedia) GetMediaForFragmentListRequest(input *GetMed
 //   Status Code: 403, The caller is not authorized to perform an operation on
 //   the given stream, or the token has expired.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/GetMediaForFragmentList
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/GetMediaForFragmentList
 func (c *KinesisVideoArchivedMedia) GetMediaForFragmentList(input *GetMediaForFragmentListInput) (*GetMediaForFragmentListOutput, error) {
 	req, out := c.GetMediaForFragmentListRequest(input)
 	return out, req.Send()
@@ -140,7 +140,7 @@ const opListFragments = "ListFragments"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/ListFragments
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/ListFragments
 func (c *KinesisVideoArchivedMedia) ListFragmentsRequest(input *ListFragmentsInput) (req *request.Request, output *ListFragmentsOutput) {
 	op := &request.Operation{
 		Name:       opListFragments,
@@ -185,7 +185,7 @@ func (c *KinesisVideoArchivedMedia) ListFragmentsRequest(input *ListFragmentsInp
 //   Status Code: 403, The caller is not authorized to perform an operation on
 //   the given stream, or the token has expired.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/ListFragments
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/ListFragments
 func (c *KinesisVideoArchivedMedia) ListFragments(input *ListFragmentsInput) (*ListFragmentsOutput, error) {
 	req, out := c.ListFragmentsRequest(input)
 	return out, req.Send()
@@ -208,7 +208,7 @@ func (c *KinesisVideoArchivedMedia) ListFragmentsWithContext(ctx aws.Context, in
 }
 
 // Represents a segment of video or other time-delimited data.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/Fragment
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/Fragment
 type Fragment struct {
 	_ struct{} `type:"structure"`
 
@@ -270,7 +270,7 @@ func (s *Fragment) SetServerTimestamp(v time.Time) *Fragment {
 }
 
 // Describes the time stamp range and time stamp origin of a range of fragments.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/FragmentSelector
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/FragmentSelector
 type FragmentSelector struct {
 	_ struct{} `type:"structure"`
 
@@ -328,7 +328,7 @@ func (s *FragmentSelector) SetTimestampRange(v *TimestampRange) *FragmentSelecto
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/GetMediaForFragmentListInput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/GetMediaForFragmentListInput
 type GetMediaForFragmentListInput struct {
 	_ struct{} `type:"structure"`
 
@@ -385,7 +385,7 @@ func (s *GetMediaForFragmentListInput) SetStreamName(v string) *GetMediaForFragm
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/GetMediaForFragmentListOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/GetMediaForFragmentListOutput
 type GetMediaForFragmentListOutput struct {
 	_ struct{} `type:"structure" payload:"Payload"`
 
@@ -438,7 +438,7 @@ func (s *GetMediaForFragmentListOutput) SetPayload(v io.ReadCloser) *GetMediaFor
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/ListFragmentsInput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/ListFragmentsInput
 type ListFragmentsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -522,7 +522,7 @@ func (s *ListFragmentsInput) SetStreamName(v string) *ListFragmentsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/ListFragmentsOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/ListFragmentsOutput
 type ListFragmentsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -558,7 +558,7 @@ func (s *ListFragmentsOutput) SetNextToken(v string) *ListFragmentsOutput {
 }
 
 // The range of time stamps for which to return fragments.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/TimestampRange
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/TimestampRange
 type TimestampRange struct {
 	_ struct{} `type:"structure"`
 
