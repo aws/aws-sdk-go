@@ -329,7 +329,7 @@ func walkMap(m map[string]interface{}) string {
 		str += fmt.Sprintf("%q:", k)
 		switch v.(type) {
 		case bool:
-			str += fmt.Sprintf("%b,\n", v.(bool))
+			str += fmt.Sprintf("%t,\n", v.(bool))
 		case string:
 			str += fmt.Sprintf("%q,\n", v.(string))
 		case int:
