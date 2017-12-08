@@ -2367,7 +2367,7 @@ type BillingRecord struct {
 	_ struct{} `type:"structure"`
 
 	// The date that the operation was billed, in Unix format.
-	BillDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	BillDate *time.Time `type:"timestamp"`
 
 	// The name of the domain that the billing record applies to. If the domain
 	// name contains characters other than a-z, 0-9, and - (hyphen), such as an
@@ -3056,7 +3056,7 @@ type DomainSummary struct {
 	DomainName *string `type:"string" required:"true"`
 
 	// Expiration date of the domain in Coordinated Universal Time (UTC).
-	Expiry *time.Time `type:"timestamp" timestampFormat:"unix"`
+	Expiry *time.Time `type:"timestamp"`
 
 	// Indicates whether a domain is locked from unauthorized transfer to another
 	// party.
@@ -3441,7 +3441,7 @@ type GetDomainDetailOutput struct {
 
 	// The date when the domain was created as found in the response to a WHOIS
 	// query. The date format is Unix time.
-	CreationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationDate *time.Time `type:"timestamp"`
 
 	// Reserved for future use.
 	DnsSec *string `type:"string"`
@@ -3453,7 +3453,7 @@ type GetDomainDetailOutput struct {
 
 	// The date when the registration for the domain is set to expire. The date
 	// format is Unix time.
-	ExpirationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ExpirationDate *time.Time `type:"timestamp"`
 
 	// The name of the domain.
 	//
@@ -3514,7 +3514,7 @@ type GetDomainDetailOutput struct {
 
 	// The last updated date of the domain as found in the response to a WHOIS query.
 	// The date format is Unix time.
-	UpdatedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	UpdatedDate *time.Time `type:"timestamp"`
 
 	// The fully qualified name of the WHOIS server that can answer the WHOIS query
 	// for the domain.
@@ -3816,7 +3816,7 @@ type GetOperationDetailOutput struct {
 	Status *string `type:"string" enum:"OperationStatus"`
 
 	// The date when the request was submitted.
-	SubmittedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	SubmittedDate *time.Time `type:"timestamp"`
 
 	// The type of operation that was requested.
 	Type *string `type:"string" enum:"OperationType"`
@@ -4169,7 +4169,7 @@ type OperationSummary struct {
 	// The date when the request was submitted.
 	//
 	// SubmittedDate is a required field
-	SubmittedDate *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	SubmittedDate *time.Time `type:"timestamp" required:"true"`
 
 	// Type of the action requested.
 	//
@@ -5341,7 +5341,7 @@ type ViewBillingInput struct {
 
 	// The end date and time for the time period for which you want a list of billing
 	// records. Specify the date in Unix time format.
-	End *time.Time `type:"timestamp" timestampFormat:"unix"`
+	End *time.Time `type:"timestamp"`
 
 	// For an initial request for a list of billing records, omit this element.
 	// If the number of billing records that are associated with the current AWS
@@ -5361,7 +5361,7 @@ type ViewBillingInput struct {
 
 	// The beginning date and time for the time period for which you want a list
 	// of billing records. Specify the date in Unix time format.
-	Start *time.Time `type:"timestamp" timestampFormat:"unix"`
+	Start *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation

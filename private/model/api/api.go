@@ -14,6 +14,8 @@ import (
 	"strings"
 	"text/template"
 	"unicode"
+
+	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
 // An API defines a service API's definition. and logic to serialize the definition.
@@ -69,12 +71,14 @@ type Metadata struct {
 	Protocol            string
 	UID                 string
 	EndpointsID         string
+	TimestampFormat     string
 
 	NoResolveEndpoint bool
 }
 
 var serviceAliases map[string]string
 
+// Bootstrap sets up the API's customizations and server alias definitions.
 func Bootstrap() error {
 	b, err := ioutil.ReadFile(filepath.Join("..", "models", "customizations", "service-aliases.json"))
 	if err != nil {
@@ -82,6 +86,18 @@ func Bootstrap() error {
 	}
 
 	return json.Unmarshal(b, &serviceAliases)
+}
+
+// GetTimestampFormat returns the modeld API's default timestamp format.
+func (a *API) GetTimestampFormat() string {
+	format := a.Metadata.TimestampFormat
+
+	if len(format) > 0 && !protocol.IsKnownTimestampFormat(format) {
+		panic(fmt.Sprintf("Unknown timestampFormat %s, in api metadata",
+			format))
+	}
+
+	return format
 }
 
 // PackageName name of the API package
@@ -791,6 +807,8 @@ const (
 )
 `))
 
+// APIErrorsGoCode returns a string of Go code for the errors modeled by the
+// API model.
 func (a *API) APIErrorsGoCode() string {
 	var buf bytes.Buffer
 	err := tplAPIErrors.Execute(&buf, a)

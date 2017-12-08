@@ -3484,9 +3484,9 @@ type InputService17TestShapeInputService17TestCaseOperation1Output struct {
 type InputService17TestShapeInputService17TestCaseOperation2Input struct {
 	_ struct{} `type:"structure"`
 
-	TimeArg *time.Time `type:"timestamp" timestampFormat:"unix"`
+	TimeArg *time.Time `type:"timestamp"`
 
-	TimeArgInHeader *time.Time `location:"header" locationName:"x-amz-timearg" type:"timestamp" timestampFormat:"rfc822"`
+	TimeArgInHeader *time.Time `location:"header" locationName:"x-amz-timearg" type:"timestamp"`
 }
 
 // SetTimeArg sets the TimeArg field's value.
@@ -3638,7 +3638,7 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation1WithContext
 type InputService18TestShapeInputService18TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 
-	TimeArg *time.Time `locationName:"timestamp_location" type:"timestamp" timestampFormat:"unix"`
+	TimeArg *time.Time `locationName:"timestamp_location" type:"timestamp"`
 }
 
 // SetTimeArg sets the TimeArg field's value.

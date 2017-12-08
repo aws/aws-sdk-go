@@ -3234,7 +3234,7 @@ func (s *CreateImageBuilderStreamingURLInput) SetValidity(v int64) *CreateImageB
 type CreateImageBuilderStreamingURLOutput struct {
 	_ struct{} `type:"structure"`
 
-	Expires *time.Time `type:"timestamp" timestampFormat:"unix"`
+	Expires *time.Time `type:"timestamp"`
 
 	StreamingURL *string `min:"1" type:"string"`
 }
@@ -3479,7 +3479,7 @@ type CreateStreamingURLOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The elapsed time, in seconds after the Unix epoch, when this URL expires.
-	Expires *time.Time `type:"timestamp" timestampFormat:"unix"`
+	Expires *time.Time `type:"timestamp"`
 
 	// The URL to start the AppStream 2.0 streaming session.
 	StreamingURL *string `min:"1" type:"string"`
@@ -4324,7 +4324,7 @@ type DirectoryConfig struct {
 	_ struct{} `type:"structure"`
 
 	// The time the directory configuration was created.
-	CreatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedTime *time.Time `type:"timestamp"`
 
 	// The fully qualified name of the directory (for example, corp.example.com).
 	//
@@ -4554,7 +4554,7 @@ type Fleet struct {
 	ComputeCapacityStatus *ComputeCapacityStatus `type:"structure" required:"true"`
 
 	// The time the fleet was created.
-	CreatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedTime *time.Time `type:"timestamp"`
 
 	// The description displayed to end users.
 	Description *string `min:"1" type:"string"`
@@ -4762,7 +4762,7 @@ type Image struct {
 	BaseImageArn *string `type:"string"`
 
 	// The time the image was created.
-	CreatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedTime *time.Time `type:"timestamp"`
 
 	// The description displayed to end users.
 	Description *string `min:"1" type:"string"`
@@ -4783,7 +4783,7 @@ type Image struct {
 
 	// The release date of the public base image. For private images, this date
 	// is the release date of the base image from which the image was created.
-	PublicBaseImageReleasedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	PublicBaseImageReleasedDate *time.Time `type:"timestamp"`
 
 	// The image starts in the PENDING state. If image creation succeeds, the state
 	// is AVAILABLE. If image creation fails, the state is FAILED.
@@ -4890,7 +4890,7 @@ type ImageBuilder struct {
 
 	Arn *string `type:"string"`
 
-	CreatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedTime *time.Time `type:"timestamp"`
 
 	Description *string `min:"1" type:"string"`
 
@@ -5265,7 +5265,7 @@ type ResourceError struct {
 
 	ErrorMessage *string `min:"1" type:"string"`
 
-	ErrorTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ErrorTimestamp *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -5449,7 +5449,7 @@ type Stack struct {
 	Arn *string `type:"string"`
 
 	// The time the stack was created.
-	CreatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedTime *time.Time `type:"timestamp"`
 
 	// The description displayed to end users.
 	Description *string `min:"1" type:"string"`

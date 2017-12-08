@@ -4336,7 +4336,7 @@ type DescribeEndpointConfigOutput struct {
 	// A timestamp that shows when the endpoint configuration was created.
 	//
 	// CreationTime is a required field
-	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	CreationTime *time.Time `type:"timestamp" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the endpoint configuration.
 	//
@@ -4435,7 +4435,7 @@ type DescribeEndpointOutput struct {
 	// A timestamp that shows when the endpoint was created.
 	//
 	// CreationTime is a required field
-	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	CreationTime *time.Time `type:"timestamp" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the endpoint.
 	//
@@ -4463,7 +4463,7 @@ type DescribeEndpointOutput struct {
 	// A timestamp that shows when the endpoint was last modified.
 	//
 	// LastModifiedTime is a required field
-	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
 
 	// An array of ProductionVariant objects, one for each model hosted behind this
 	// endpoint.
@@ -4574,7 +4574,7 @@ type DescribeModelOutput struct {
 	// A timestamp that shows when the model was created.
 	//
 	// CreationTime is a required field
-	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	CreationTime *time.Time `type:"timestamp" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the IAM role that you specified for the
 	// model.
@@ -4696,7 +4696,7 @@ type DescribeNotebookInstanceOutput struct {
 
 	// A timestamp. Use this parameter to return the time when the notebook instance
 	// was created
-	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationTime *time.Time `type:"timestamp"`
 
 	// If staus is failed, the reason it failed.
 	FailureReason *string `type:"string"`
@@ -4710,7 +4710,7 @@ type DescribeNotebookInstanceOutput struct {
 
 	// A timestamp. Use this parameter to retrieve the time when the notebook instance
 	// was last modified.
-	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModifiedTime *time.Time `type:"timestamp"`
 
 	// Network interface IDs that Amazon SageMaker created at the time of creating
 	// the instance.
@@ -4881,7 +4881,7 @@ type DescribeTrainingJobOutput struct {
 	// A timestamp that indicates when the training job was created.
 	//
 	// CreationTime is a required field
-	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	CreationTime *time.Time `type:"timestamp" required:"true"`
 
 	// If the training job failed, the reason it failed.
 	FailureReason *string `type:"string"`
@@ -4895,7 +4895,7 @@ type DescribeTrainingJobOutput struct {
 	InputDataConfig []*Channel `min:"1" type:"list" required:"true"`
 
 	// A timestamp that indicates when the status of the training job was last modified.
-	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModifiedTime *time.Time `type:"timestamp"`
 
 	// Information about the Amazon S3 location that is configured for storing model
 	// artifacts.
@@ -4929,7 +4929,7 @@ type DescribeTrainingJobOutput struct {
 	StoppingCondition *StoppingCondition `type:"structure" required:"true"`
 
 	// A timestamp that indicates when model training ended.
-	TrainingEndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	TrainingEndTime *time.Time `type:"timestamp"`
 
 	// The Amazon Resource Name (ARN) of the training job.
 	//
@@ -4964,7 +4964,7 @@ type DescribeTrainingJobOutput struct {
 	TrainingJobStatus *string `type:"string" required:"true" enum:"TrainingJobStatus"`
 
 	// A timestamp that indicates when training started.
-	TrainingStartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	TrainingStartTime *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -5148,7 +5148,7 @@ type EndpointConfigSummary struct {
 	// A timestamp that shows when the endpoint configuration was created.
 	//
 	// CreationTime is a required field
-	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	CreationTime *time.Time `type:"timestamp" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the endpoint configuration.
 	//
@@ -5197,7 +5197,7 @@ type EndpointSummary struct {
 	// A timestamp that shows when the endpoint was created.
 	//
 	// CreationTime is a required field
-	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	CreationTime *time.Time `type:"timestamp" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the endpoint.
 	//
@@ -5217,7 +5217,7 @@ type EndpointSummary struct {
 	// A timestamp that shows when the endpoint was last modified.
 	//
 	// LastModifiedTime is a required field
-	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
 }
 
 // String returns the string representation
@@ -5266,11 +5266,11 @@ type ListEndpointConfigsInput struct {
 
 	// A filter that returns only endpoint configurations created after the specified
 	// time (timestamp).
-	CreationTimeAfter *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationTimeAfter *time.Time `type:"timestamp"`
 
 	// A filter that returns only endpoint configurations created before the specified
 	// time (timestamp).
-	CreationTimeBefore *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationTimeBefore *time.Time `type:"timestamp"`
 
 	// The maximum number of training jobs to return in the response.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -5398,19 +5398,19 @@ type ListEndpointsInput struct {
 
 	// A filter that returns only endpoints that were created after the specified
 	// time (timestamp).
-	CreationTimeAfter *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationTimeAfter *time.Time `type:"timestamp"`
 
 	// A filter that returns only endpoints that were created before the specified
 	// time (timestamp).
-	CreationTimeBefore *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationTimeBefore *time.Time `type:"timestamp"`
 
 	// A filter that returns only endpoints that were modified after the specified
 	// timestamp.
-	LastModifiedTimeAfter *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModifiedTimeAfter *time.Time `type:"timestamp"`
 
 	// A filter that returns only endpoints that were modified before the specified
 	// timestamp.
-	LastModifiedTimeBefore *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModifiedTimeBefore *time.Time `type:"timestamp"`
 
 	// The maximum number of endpoints to return in the response.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -5558,10 +5558,10 @@ type ListModelsInput struct {
 	_ struct{} `type:"structure"`
 
 	// A filter that returns only models created after the specified time (timestamp).
-	CreationTimeAfter *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationTimeAfter *time.Time `type:"timestamp"`
 
 	// A filter that returns only models created before the specified time (timestamp).
-	CreationTimeBefore *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationTimeBefore *time.Time `type:"timestamp"`
 
 	// The maximum number of models to return in the response.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -5689,19 +5689,19 @@ type ListNotebookInstancesInput struct {
 
 	// A filter that returns only notebook instances that were created after the
 	// specified time (timestamp).
-	CreationTimeAfter *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationTimeAfter *time.Time `type:"timestamp"`
 
 	// A filter that returns only notebook instances that were created before the
 	// specified time (timestamp).
-	CreationTimeBefore *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationTimeBefore *time.Time `type:"timestamp"`
 
 	// A filter that returns only notebook instances that were modified after the
 	// specified time (timestamp).
-	LastModifiedTimeAfter *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModifiedTimeAfter *time.Time `type:"timestamp"`
 
 	// A filter that returns only notebook instances that were modified before the
 	// specified time (timestamp).
-	LastModifiedTimeBefore *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModifiedTimeBefore *time.Time `type:"timestamp"`
 
 	// The maximum number of notebook instances to return.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -5948,19 +5948,19 @@ type ListTrainingJobsInput struct {
 	_ struct{} `type:"structure"`
 
 	// A filter that only training jobs created after the specified time (timestamp).
-	CreationTimeAfter *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationTimeAfter *time.Time `type:"timestamp"`
 
 	// A filter that returns only training jobs created before the specified time
 	// (timestamp).
-	CreationTimeBefore *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationTimeBefore *time.Time `type:"timestamp"`
 
 	// A filter that returns only training jobs modified after the specified time
 	// (timestamp).
-	LastModifiedTimeAfter *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModifiedTimeAfter *time.Time `type:"timestamp"`
 
 	// A filter that returns only training jobs modified before the specified time
 	// (timestamp).
-	LastModifiedTimeBefore *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModifiedTimeBefore *time.Time `type:"timestamp"`
 
 	// The maximum number of training jobs to return in the response.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -6140,7 +6140,7 @@ type ModelSummary struct {
 	// A timestamp that indicates when the model was created.
 	//
 	// CreationTime is a required field
-	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	CreationTime *time.Time `type:"timestamp" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the model.
 	//
@@ -6187,13 +6187,13 @@ type NotebookInstanceSummary struct {
 	_ struct{} `type:"structure"`
 
 	// A timestamp that shows when the notebook instance was created.
-	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationTime *time.Time `type:"timestamp"`
 
 	// The type of ML compute instance that the notebook instance is running on.
 	InstanceType *string `type:"string" enum:"InstanceType"`
 
 	// A timestamp that shows when the notebook instance was last modified.
-	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModifiedTime *time.Time `type:"timestamp"`
 
 	// The Amazon Resource Name (ARN) of the notebook instance.
 	//
@@ -6979,15 +6979,15 @@ type TrainingJobSummary struct {
 	// A timestamp that shows when the training job was created.
 	//
 	// CreationTime is a required field
-	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	CreationTime *time.Time `type:"timestamp" required:"true"`
 
 	// Timestamp when the training job was last modified.
-	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModifiedTime *time.Time `type:"timestamp"`
 
 	// A timestamp that shows when the training job ended. This field is set only
 	// if the training job has one of the terminal statuses (Completed, Failed,
 	// or Stopped).
-	TrainingEndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	TrainingEndTime *time.Time `type:"timestamp"`
 
 	// The Amazon Resource Name (ARN) of the training job.
 	//

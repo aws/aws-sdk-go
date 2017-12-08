@@ -1815,7 +1815,7 @@ type Dataset struct {
 	_ struct{} `type:"structure"`
 
 	// Date on which the dataset was created.
-	CreationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationDate *time.Time `type:"timestamp"`
 
 	// Total size in bytes of the records in this dataset.
 	DataStorage *int64 `type:"long"`
@@ -1832,7 +1832,7 @@ type Dataset struct {
 	LastModifiedBy *string `type:"string"`
 
 	// Date when the dataset was last modified.
-	LastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModifiedDate *time.Time `type:"timestamp"`
 
 	// Number of records in this dataset.
 	NumRecords *int64 `type:"long"`
@@ -2316,10 +2316,10 @@ type GetBulkPublishDetailsOutput struct {
 
 	// If BulkPublishStatus is SUCCEEDED, the time the last bulk publish operation
 	// completed.
-	BulkPublishCompleteTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	BulkPublishCompleteTime *time.Time `type:"timestamp"`
 
 	// The date/time at which the last bulk publish was initiated.
-	BulkPublishStartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	BulkPublishStartTime *time.Time `type:"timestamp"`
 
 	// Status of the last bulk publish operation, valid values are: NOT_STARTED
 	// - No bulk publish has been requested for this identity pool
@@ -2552,7 +2552,7 @@ type IdentityPoolUsage struct {
 	IdentityPoolId *string `min:"1" type:"string"`
 
 	// Date on which the identity pool was last modified.
-	LastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModifiedDate *time.Time `type:"timestamp"`
 
 	// Number of sync sessions for the identity pool.
 	SyncSessionsCount *int64 `type:"long"`
@@ -2612,7 +2612,7 @@ type IdentityUsage struct {
 	IdentityPoolId *string `min:"1" type:"string"`
 
 	// Date on which the identity was last modified.
-	LastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModifiedDate *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -3130,7 +3130,7 @@ type Record struct {
 	_ struct{} `type:"structure"`
 
 	// The last modified date of the client device.
-	DeviceLastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	DeviceLastModifiedDate *time.Time `type:"timestamp"`
 
 	// The key for the record.
 	Key *string `min:"1" type:"string"`
@@ -3139,7 +3139,7 @@ type Record struct {
 	LastModifiedBy *string `type:"string"`
 
 	// The date on which the record was last modified.
-	LastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModifiedDate *time.Time `type:"timestamp"`
 
 	// The server sync count for this record.
 	SyncCount *int64 `type:"long"`
@@ -3200,7 +3200,7 @@ type RecordPatch struct {
 	_ struct{} `type:"structure"`
 
 	// The last modified date of the client device.
-	DeviceLastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	DeviceLastModifiedDate *time.Time `type:"timestamp"`
 
 	// The key associated with the record patch.
 	//

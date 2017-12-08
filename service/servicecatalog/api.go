@@ -9621,7 +9621,7 @@ type PortfolioDetail struct {
 	ARN *string `min:"1" type:"string"`
 
 	// The UTC timestamp of the creation time.
-	CreatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedTime *time.Time `type:"timestamp"`
 
 	// The description of the portfolio.
 	Description *string `type:"string"`
@@ -9757,7 +9757,7 @@ type ProductViewDetail struct {
 	_ struct{} `type:"structure"`
 
 	// The UTC timestamp of the creation time.
-	CreatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedTime *time.Time `type:"timestamp"`
 
 	// The ARN of the product.
 	ProductARN *string `min:"1" type:"string"`
@@ -10137,7 +10137,7 @@ type ProvisionedProductDetail struct {
 	Arn *string `min:"1" type:"string"`
 
 	// The UTC timestamp of the creation time.
-	CreatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedTime *time.Time `type:"timestamp"`
 
 	// The identifier of the provisioned product.
 	Id *string `type:"string"`
@@ -10249,7 +10249,7 @@ type ProvisioningArtifact struct {
 	_ struct{} `type:"structure"`
 
 	// The UTC timestamp of the creation time.
-	CreatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedTime *time.Time `type:"timestamp"`
 
 	// The description of the provisioning artifact.
 	Description *string `type:"string"`
@@ -10305,7 +10305,7 @@ type ProvisioningArtifactDetail struct {
 	Active *bool `type:"boolean"`
 
 	// The UTC timestamp of the creation time.
-	CreatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedTime *time.Time `type:"timestamp"`
 
 	// The description of the provisioning artifact.
 	Description *string `type:"string"`
@@ -10533,7 +10533,7 @@ type ProvisioningArtifactSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The UTC timestamp of the creation time.
-	CreatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedTime *time.Time `type:"timestamp"`
 
 	// The description of the provisioning artifact.
 	Description *string `type:"string"`
@@ -10642,7 +10642,7 @@ type RecordDetail struct {
 	_ struct{} `type:"structure"`
 
 	// The UTC timestamp of the creation time.
-	CreatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedTime *time.Time `type:"timestamp"`
 
 	// The path identifier.
 	PathId *string `min:"1" type:"string"`
@@ -10697,7 +10697,7 @@ type RecordDetail struct {
 	Status *string `type:"string" enum:"RecordStatus"`
 
 	// The time when the record was last updated.
-	UpdatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	UpdatedTime *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -10982,7 +10982,7 @@ type ResourceDetail struct {
 	ARN *string `type:"string"`
 
 	// The creation time of the resource.
-	CreatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedTime *time.Time `type:"timestamp"`
 
 	// The description of the resource.
 	Description *string `type:"string"`

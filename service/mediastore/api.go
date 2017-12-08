@@ -640,7 +640,7 @@ type Container struct {
 	ARN *string `min:"1" type:"string"`
 
 	// Unix timestamp.
-	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationTime *time.Time `type:"timestamp"`
 
 	// The DNS endpoint of the container. Use from 1 to 255 characters. Use this
 	// endpoint to identify this container when sending requests to the data plane.

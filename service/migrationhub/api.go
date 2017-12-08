@@ -2195,7 +2195,7 @@ type DescribeApplicationStateOutput struct {
 	ApplicationStatus *string `type:"string" enum:"ApplicationStatus"`
 
 	// The timestamp when the application status was last updated.
-	LastUpdatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastUpdatedTime *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -3072,7 +3072,7 @@ type MigrationTask struct {
 	Task *Task `type:"structure"`
 
 	// The timestamp when the task was gathered.
-	UpdateDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	UpdateDateTime *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -3137,7 +3137,7 @@ type MigrationTaskSummary struct {
 	StatusDetail *string `type:"string"`
 
 	// The timestamp when the task was gathered.
-	UpdateDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	UpdateDateTime *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -3300,7 +3300,7 @@ type NotifyMigrationTaskStateInput struct {
 	// The timestamp when the task was gathered.
 	//
 	// UpdateDateTime is a required field
-	UpdateDateTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	UpdateDateTime *time.Time `type:"timestamp" required:"true"`
 }
 
 // String returns the string representation

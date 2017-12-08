@@ -3588,7 +3588,7 @@ type GetShardIteratorInput struct {
 	// iterator returned is for the next (later) record. If the time stamp is older
 	// than the current trim horizon, the iterator returned is for the oldest untrimmed
 	// data record (TRIM_HORIZON).
-	Timestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	Timestamp *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -4524,7 +4524,7 @@ type Record struct {
 	_ struct{} `type:"structure"`
 
 	// The approximate time that the record was inserted into the stream.
-	ApproximateArrivalTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ApproximateArrivalTimestamp *time.Time `type:"timestamp"`
 
 	// The data blob. The data in the blob is both opaque and immutable to Kinesis
 	// Streams, which does not inspect, interpret, or change the data in the blob
@@ -5132,7 +5132,7 @@ type StreamDescription struct {
 	// The approximate time that the stream was created.
 	//
 	// StreamCreationTimestamp is a required field
-	StreamCreationTimestamp *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	StreamCreationTimestamp *time.Time `type:"timestamp" required:"true"`
 
 	// The name of the stream being described.
 	//
@@ -5281,7 +5281,7 @@ type StreamDescriptionSummary struct {
 	// The approximate time that the stream was created.
 	//
 	// StreamCreationTimestamp is a required field
-	StreamCreationTimestamp *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	StreamCreationTimestamp *time.Time `type:"timestamp" required:"true"`
 
 	// The name of the stream being described.
 	//

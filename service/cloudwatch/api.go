@@ -1588,7 +1588,7 @@ type AlarmHistoryItem struct {
 	HistorySummary *string `min:"1" type:"string"`
 
 	// The time stamp for the alarm history item.
-	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	Timestamp *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -1645,7 +1645,7 @@ type DashboardEntry struct {
 	// The time stamp of when the dashboard was last modified, either by an API
 	// call or through the console. This number is expressed as the number of milliseconds
 	// since Jan 1, 1970 00:00:00 UTC.
-	LastModified *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	LastModified *time.Time `type:"timestamp"`
 
 	// The size of the dashboard, in bytes.
 	Size *int64 `type:"long"`
@@ -1744,7 +1744,7 @@ type Datapoint struct {
 	Sum *float64 `type:"double"`
 
 	// The time stamp used for the data point.
-	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	Timestamp *time.Time `type:"timestamp"`
 
 	// The standard unit for the data point.
 	Unit *string `type:"string" enum:"StandardUnit"`
@@ -1909,7 +1909,7 @@ type DescribeAlarmHistoryInput struct {
 	AlarmName *string `min:"1" type:"string"`
 
 	// The ending date to retrieve alarm history.
-	EndDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	EndDate *time.Time `type:"timestamp"`
 
 	// The type of alarm histories to retrieve.
 	HistoryItemType *string `type:"string" enum:"HistoryItemType"`
@@ -1922,7 +1922,7 @@ type DescribeAlarmHistoryInput struct {
 	NextToken *string `type:"string"`
 
 	// The starting date to retrieve alarm history.
-	StartDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	StartDate *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -2599,7 +2599,7 @@ type GetMetricStatisticsInput struct {
 	// time stamp. The time stamp must be in ISO 8601 UTC format (for example, 2016-10-10T23:00:00Z).
 	//
 	// EndTime is a required field
-	EndTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	EndTime *time.Time `type:"timestamp" required:"true"`
 
 	// The percentile statistics. Specify values between p0.0 and p100. When calling
 	// GetMetricStatistics, you must specify either Statistics or ExtendedStatistics,
@@ -2665,7 +2665,7 @@ type GetMetricStatisticsInput struct {
 	// you receive data timestamped between 15:02:15 and 15:07:15.
 	//
 	// StartTime is a required field
-	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	StartTime *time.Time `type:"timestamp" required:"true"`
 
 	// The metric statistics, other than percentile. For percentile statistics,
 	// use ExtendedStatistics. When calling GetMetricStatistics, you must specify
@@ -3065,7 +3065,7 @@ type MetricAlarm struct {
 	AlarmArn *string `min:"1" type:"string"`
 
 	// The time stamp of the last update to the alarm configuration.
-	AlarmConfigurationUpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	AlarmConfigurationUpdatedTimestamp *time.Time `type:"timestamp"`
 
 	// The description of the alarm.
 	AlarmDescription *string `type:"string"`
@@ -3118,7 +3118,7 @@ type MetricAlarm struct {
 	StateReasonData *string `type:"string"`
 
 	// The time stamp of the last update to the alarm state.
-	StateUpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	StateUpdatedTimestamp *time.Time `type:"timestamp"`
 
 	// The state value for the alarm.
 	StateValue *string `type:"string" enum:"StateValue"`
@@ -3322,7 +3322,7 @@ type MetricDatum struct {
 
 	// The time the metric data was received, expressed as the number of milliseconds
 	// since Jan 1, 1970 00:00:00 UTC.
-	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	Timestamp *time.Time `type:"timestamp"`
 
 	// The unit of the metric.
 	Unit *string `type:"string" enum:"StandardUnit"`

@@ -3582,7 +3582,7 @@ type Namespace struct {
 
 	// The date that the namespace was created, in Unix date/time format and Coordinated
 	// Universal Time (UTC).
-	CreateDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreateDate *time.Time `type:"timestamp"`
 
 	// An optional parameter that you can use to resolve concurrent creation requests.
 	// CreatorRequestId helps to determine if a specific client owns the namespace.
@@ -3835,7 +3835,7 @@ type Operation struct {
 
 	// The date and time that the request was submitted, in Unix date/time format
 	// and Coordinated Universal Time (UTC).
-	CreateDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreateDate *time.Time `type:"timestamp"`
 
 	// The code associated with ErrorMessage.
 	ErrorCode *string `type:"string"`
@@ -3872,7 +3872,7 @@ type Operation struct {
 
 	// The date and time that the value of Status changed to the current value,
 	// in Unix date/time format and Coordinated Universal Time (UTC).
-	UpdateDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	UpdateDate *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -4211,7 +4211,7 @@ type Service struct {
 
 	// The date and time that the service was created, in Unix format and Coordinated
 	// Universal Time (UTC).
-	CreateDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreateDate *time.Time `type:"timestamp"`
 
 	// An optional parameter that you can use to resolve concurrent creation requests.
 	// CreatorRequestId helps to determine if a specific client owns the namespace.

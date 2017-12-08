@@ -268,7 +268,7 @@ type OutputService1TestShapeOutputService1TestCaseOperation2Output struct {
 
 	Str *string `type:"string"`
 
-	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	Timestamp *time.Time `type:"timestamp"`
 
 	TrueBool *bool `type:"boolean"`
 }
@@ -1807,7 +1807,7 @@ type OutputService11TestShapeOutputService11TestCaseOperation1Output struct {
 
 	Str *string `location:"header" locationName:"x-str" type:"string"`
 
-	Timestamp *time.Time `location:"header" locationName:"x-timestamp" type:"timestamp" timestampFormat:"iso8601"`
+	Timestamp *time.Time `location:"header" locationName:"x-timestamp" type:"timestamp"`
 
 	TrueBool *bool `location:"header" locationName:"x-true-bool" type:"boolean"`
 }

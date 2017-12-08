@@ -6648,7 +6648,7 @@ type CachediSCSIVolume struct {
 
 	// The date the volume was created. Volumes created prior to March 28, 2017
 	// don’t have this time stamp.
-	CreatedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `type:"timestamp"`
 
 	// If the cached volume was created from a snapshot, this field contains the
 	// snapshot ID used, e.g. snap-78e22663. Otherwise, this field is not included.
@@ -12267,7 +12267,7 @@ type StorediSCSIVolume struct {
 
 	// The date the volume was created. Volumes created prior to March 28, 2017
 	// don’t have this time stamp.
-	CreatedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `type:"timestamp"`
 
 	// Indicates if when the stored volume was created, existing data on the underlying
 	// local disk was preserved.
@@ -12466,7 +12466,7 @@ type Tape struct {
 	TapeBarcode *string `min:"7" type:"string"`
 
 	// The date the virtual tape was created.
-	TapeCreatedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	TapeCreatedDate *time.Time `type:"timestamp"`
 
 	// The size, in bytes, of the virtual tape capacity.
 	TapeSizeInBytes *int64 `type:"long"`
@@ -12551,7 +12551,7 @@ type TapeArchive struct {
 	//
 	// The string format of the completion time is in the ISO8601 extended YYYY-MM-DD'T'HH:MM:SS'Z'
 	// format.
-	CompletionTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CompletionTime *time.Time `type:"timestamp"`
 
 	// The Amazon Resource Name (ARN) of the tape gateway that the virtual tape
 	// is being retrieved to.
@@ -12565,7 +12565,7 @@ type TapeArchive struct {
 	// The barcode that identifies the archived virtual tape.
 	TapeBarcode *string `min:"7" type:"string"`
 
-	TapeCreatedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	TapeCreatedDate *time.Time `type:"timestamp"`
 
 	// The size, in bytes, of the archived virtual tape.
 	TapeSizeInBytes *int64 `type:"long"`
@@ -12712,7 +12712,7 @@ type TapeRecoveryPointInfo struct {
 	//
 	// The string format of the tape recovery point time is in the ISO8601 extended
 	// YYYY-MM-DD'T'HH:MM:SS'Z' format.
-	TapeRecoveryPointTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	TapeRecoveryPointTime *time.Time `type:"timestamp"`
 
 	// The size, in bytes, of the virtual tapes to recover.
 	TapeSizeInBytes *int64 `type:"long"`

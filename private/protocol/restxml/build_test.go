@@ -1839,7 +1839,7 @@ type InputService10TestShapeStructureShape struct {
 	// B is automatically base64 encoded/decoded by the SDK.
 	B []byte `locationName:"b" type:"blob"`
 
-	T *time.Time `locationName:"t" type:"timestamp" timestampFormat:"iso8601"`
+	T *time.Time `locationName:"t" type:"timestamp"`
 }
 
 // SetB sets the B field's value.
@@ -4668,7 +4668,7 @@ func (c *InputService23ProtocolTest) InputService23TestCaseOperation1WithContext
 type InputService23TestShapeInputService23TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 
-	TimeArgInHeader *time.Time `location:"header" locationName:"x-amz-timearg" type:"timestamp" timestampFormat:"rfc822"`
+	TimeArgInHeader *time.Time `location:"header" locationName:"x-amz-timearg" type:"timestamp"`
 }
 
 // SetTimeArgInHeader sets the TimeArgInHeader field's value.

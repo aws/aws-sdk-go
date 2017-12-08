@@ -2209,14 +2209,14 @@ type ApplicationDetail struct {
 	CloudWatchLoggingOptionDescriptions []*CloudWatchLoggingOptionDescription `type:"list"`
 
 	// Timestamp when the application version was created.
-	CreateTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreateTimestamp *time.Time `type:"timestamp" defaultTimestampFormat:"unixTimestamp"`
 
 	// Describes the application input configuration. For more information, see
 	// Configuring Application Input (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-input.html).
 	InputDescriptions []*InputDescription `type:"list"`
 
 	// Timestamp when the application was last updated.
-	LastUpdateTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastUpdateTimestamp *time.Time `type:"timestamp" defaultTimestampFormat:"unixTimestamp"`
 
 	// Describes the application output configuration. For more information, see
 	// Configuring Application Output (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-output.html).
@@ -3015,7 +3015,7 @@ type DeleteApplicationInput struct {
 	// You can use the DescribeApplication operation to get this value.
 	//
 	// CreateTimestamp is a required field
-	CreateTimestamp *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	CreateTimestamp *time.Time `type:"timestamp" defaultTimestampFormat:"unixTimestamp" required:"true"`
 }
 
 // String returns the string representation
