@@ -4005,19 +4005,14 @@ type ContainerDefinition struct {
 	// (https://docs.docker.com/engine/reference/builder/#cmd).
 	Command []*string `locationName:"command" type:"list"`
 
-	// The number of cpu units reserved for the container. If your containers will
-	// be part of a task using the Fargate launch type, this field is optional and
-	// the only requirement is that the total amount of CPU reserved for all containers
-	// within a task be lower than the task cpu value.
-	//
-	// For containers that will be part of a task using the EC2 launch type, a container
-	// instance has 1,024 cpu units for every CPU core. This parameter specifies
-	// the minimum amount of CPU to reserve for a container, and containers share
-	// unallocated CPU units with other containers on the instance with the same
-	// ratio as their allocated amount. This parameter maps to CpuShares in the
-	// Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/#create-a-container)
+	// The number of cpu units reserved for the container. This parameter maps to
+	// CpuShares in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/#create-a-container)
 	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/)
 	// and the --cpu-shares option to docker run (https://docs.docker.com/engine/reference/run/).
+	//
+	// This field is optional for tasks using the Fargate launch type, and the only
+	// requirement is that the total amount of CPU reserved for all containers within
+	// a task be lower than the task-level cpu value.
 	//
 	// You can determine the number of CPU units that are available per EC2 instance
 	// type by multiplying the vCPUs listed for that instance type on the Amazon
@@ -4033,13 +4028,24 @@ type ContainerDefinition struct {
 	// higher CPU usage if the other container was not using it, but if both tasks
 	// were 100% active all of the time, they would be limited to 512 CPU units.
 	//
-	// The Docker daemon on the container instance uses the CPU value to calculate
-	// the relative CPU share ratios for running containers. For more information,
-	// see CPU share constraint (https://docs.docker.com/engine/reference/run/#cpu-share-constraint)
+	// Linux containers share unallocated CPU units with other containers on the
+	// container instance with the same ratio as their allocated amount. For example,
+	// if you run a single-container task on a single-core instance type with 512
+	// CPU units specified for that container, and that is the only task running
+	// on the container instance, that container could use the full 1,024 CPU unit
+	// share at any given time. However, if you launched another copy of the same
+	// task on that container instance, each task would be guaranteed a minimum
+	// of 512 CPU units when needed, and each container could float to higher CPU
+	// usage if the other container was not using it, but if both tasks were 100%
+	// active all of the time, they would be limited to 512 CPU units.
+	//
+	// On Linux container instances, the Docker daemon on the container instance
+	// uses the CPU value to calculate the relative CPU share ratios for running
+	// containers. For more information, see CPU share constraint (https://docs.docker.com/engine/reference/run/#cpu-share-constraint)
 	// in the Docker documentation. The minimum valid CPU share value that the Linux
-	// kernel allows is 2; however, the CPU parameter is not required, and you can
-	// use CPU values below 2 in your container definitions. For CPU values below
-	// 2 (including null), the behavior varies based on your Amazon ECS container
+	// kernel will allow is 2; however, the CPU parameter is not required, and you
+	// can use CPU values below 2 in your container definitions. For CPU values
+	// below 2 (including null), the behavior varies based on your Amazon ECS container
 	// agent version:
 	//
 	//    * Agent versions less than or equal to 1.1.0: Null and zero CPU values
@@ -4049,23 +4055,33 @@ type ContainerDefinition struct {
 	//
 	//    * Agent versions greater than or equal to 1.2.0: Null, zero, and CPU values
 	//    of 1 are passed to Docker as 2.
+	//
+	// On Windows container instances, the CPU limit is enforced as an absolute
+	// limit, or a quota. Windows containers only have access to the specified amount
+	// of CPU that is described in the task definition.
 	Cpu *int64 `locationName:"cpu" type:"integer"`
 
 	// When this parameter is true, networking is disabled within the container.
 	// This parameter maps to NetworkDisabled in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/#create-a-container)
 	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/).
+	//
+	// This parameter is not supported for Windows containers.
 	DisableNetworking *bool `locationName:"disableNetworking" type:"boolean"`
 
 	// A list of DNS search domains that are presented to the container. This parameter
 	// maps to DnsSearch in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/#create-a-container)
 	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/)
 	// and the --dns-search option to docker run (https://docs.docker.com/engine/reference/run/).
+	//
+	// This parameter is not supported for Windows containers.
 	DnsSearchDomains []*string `locationName:"dnsSearchDomains" type:"list"`
 
 	// A list of DNS servers that are presented to the container. This parameter
 	// maps to Dns in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/#create-a-container)
 	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/)
 	// and the --dns option to docker run (https://docs.docker.com/engine/reference/run/).
+	//
+	// This parameter is not supported for Windows containers.
 	DnsServers []*string `locationName:"dnsServers" type:"list"`
 
 	// A key/value map of labels to add to the container. This parameter maps to
@@ -4092,6 +4108,8 @@ type ContainerDefinition struct {
 	// options. For more information, see Amazon ECS Container Agent Configuration
 	// (http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-config.html)
 	// in the Amazon Elastic Container Service Developer Guide.
+	//
+	// This parameter is not supported for Windows containers.
 	DockerSecurityOptions []*string `locationName:"dockerSecurityOptions" type:"list"`
 
 	// Early versions of the Amazon ECS container agent do not properly handle entryPoint
@@ -4135,6 +4153,8 @@ type ContainerDefinition struct {
 	// to ExtraHosts in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/#create-a-container)
 	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/)
 	// and the --add-host option to docker run (https://docs.docker.com/engine/reference/run/).
+	//
+	// This parameter is not supported for Windows containers.
 	ExtraHosts []*HostEntry `locationName:"extraHosts" type:"list"`
 
 	// The hostname to use for your container. This parameter maps to Hostname in
@@ -4170,16 +4190,17 @@ type ContainerDefinition struct {
 	Image *string `locationName:"image" type:"string"`
 
 	// The link parameter allows containers to communicate with each other without
-	// the need for port mappings, using the name parameter and optionally, an alias
-	// for the link. This construct is analogous to name:alias in Docker links.
-	// This field is not valid for containers in tasks using the Fargate launch
-	// type. Up to 255 letters (uppercase and lowercase), numbers, hyphens, and
-	// underscores are allowed for each name and alias. For more information on
-	// linking Docker containers, see https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/
+	// the need for port mappings. Only supported if the network mode of a task
+	// definition is set to bridge. The name:internalName construct is analogous
+	// to name:alias in Docker links. Up to 255 letters (uppercase and lowercase),
+	// numbers, hyphens, and underscores are allowed. For more information about
+	// linking Docker containers, go to https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/
 	// (https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/).
 	// This parameter maps to Links in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/#create-a-container)
 	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/)
-	// and the --link option to docker run (https://docs.docker.com/engine/reference/run/).
+	// and the --link option to docker run (https://docs.docker.com/engine/reference/commandline/run/).
+	//
+	// This parameter is not supported for Windows containers.
 	//
 	// Containers that are collocated on a single container instance may be able
 	// to communicate with each other without requiring links or host port mappings.
@@ -4188,8 +4209,10 @@ type ContainerDefinition struct {
 	Links []*string `locationName:"links" type:"list"`
 
 	// Linux-specific modifications that are applied to the container, such as Linux
-	// KernelCapabilities. This field is not valid for containers in tasks using
-	// the Fargate launch type.
+	// KernelCapabilities.
+	//
+	// This parameter is not supported for Windows containers or tasks using the
+	// Fargate launch type.
 	LinuxParameters *LinuxParameters `locationName:"linuxParameters" type:"structure"`
 
 	// The log configuration specification for the container.
@@ -4273,11 +4296,13 @@ type ContainerDefinition struct {
 
 	// The mount points for data volumes in your container.
 	//
-	// If using the Fargate launch type, the sourceVolume parameter is not supported.
-	//
 	// This parameter maps to Volumes in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/#create-a-container)
 	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/)
 	// and the --volume option to docker run (https://docs.docker.com/engine/reference/run/).
+	//
+	// Windows containers can mount whole directories on the same drive as $env:ProgramData.
+	// Windows containers cannot mount directories on a different drive, and mount
+	// point cannot be across drives.
 	MountPoints []*MountPoint `locationName:"mountPoints" type:"list"`
 
 	// The name of a container. If you are linking multiple containers together
@@ -4292,9 +4317,13 @@ type ContainerDefinition struct {
 	// The list of port mappings for the container. Port mappings allow containers
 	// to access ports on the host container instance to send or receive traffic.
 	//
-	// If using containers in a task with the Fargate, exposed ports should be specified
-	// using containerPort. The hostPort can be left blank or it must be the same
+	// For task definitions that use the awsvpc network mode, you should only specify
+	// the containerPort. The hostPort can be left blank or it must be the same
 	// value as the containerPort.
+	//
+	// Port mappings on Windows use the NetNAT gateway address rather than localhost.
+	// There is no loopback for port mappings on Windows, so you cannot access a
+	// container's mapped port from the host itself.
 	//
 	// This parameter maps to PortBindings in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/#create-a-container)
 	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/)
@@ -4315,6 +4344,9 @@ type ContainerDefinition struct {
 	// to Privileged in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/#create-a-container)
 	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/)
 	// and the --privileged option to docker run (https://docs.docker.com/engine/reference/run/).
+	//
+	// This parameter is not supported for Windows containers or tasks using the
+	// Fargate launch type.
 	Privileged *bool `locationName:"privileged" type:"boolean"`
 
 	// When this parameter is true, the container is given read-only access to its
@@ -4322,6 +4354,8 @@ type ContainerDefinition struct {
 	// (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/#create-a-container)
 	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/)
 	// and the --read-only option to docker run.
+	//
+	// This parameter is not supported for Windows containers.
 	ReadonlyRootFilesystem *bool `locationName:"readonlyRootFilesystem" type:"boolean"`
 
 	// A list of ulimits to set in the container. This parameter maps to Ulimits
@@ -4333,12 +4367,16 @@ type ContainerDefinition struct {
 	// instance. To check the Docker Remote API version on your container instance,
 	// log in to your container instance and run the following command: sudo docker
 	// version | grep "Server API version"
+	//
+	// This parameter is not supported for Windows containers.
 	Ulimits []*Ulimit `locationName:"ulimits" type:"list"`
 
 	// The user name to use inside the container. This parameter maps to User in
 	// the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/#create-a-container)
 	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/)
 	// and the --user option to docker run (https://docs.docker.com/engine/reference/run/).
+	//
+	// This parameter is not supported for Windows containers.
 	User *string `locationName:"user" type:"string"`
 
 	// Data volumes to mount from another container. This parameter maps to VolumesFrom
@@ -6347,7 +6385,8 @@ type HostVolumeProperties struct {
 	// on the host container instance, the Docker daemon creates it. If the location
 	// does exist, the contents of the source path folder are exported.
 	//
-	// If you are using the Fargate launch type, the host parameter is not supported.
+	// If you are using the Fargate launch type, the sourcePath parameter is not
+	// supported.
 	SourcePath *string `locationName:"sourcePath" type:"string"`
 }
 
@@ -7507,8 +7546,7 @@ type MountPoint struct {
 	// value is false.
 	ReadOnly *bool `locationName:"readOnly" type:"boolean"`
 
-	// The name of the volume to mount. If using the Fargate launch type, the sourceVolume
-	// parameter is not supported.
+	// The name of the volume to mount.
 	SourceVolume *string `locationName:"sourceVolume" type:"string"`
 }
 
@@ -8156,6 +8194,10 @@ type RegisterTaskDefinitionInput struct {
 	//
 	// If the network mode is host, you can't run multiple instantiations of the
 	// same task on a single container instance when port mappings are used.
+	//
+	// Docker for Windows uses different network modes than Docker for Linux. When
+	// you register a task definition with Windows containers, you must not specify
+	// a network mode.
 	//
 	// For more information, see Network settings (https://docs.docker.com/engine/reference/run/#network-settings)
 	// in the Docker run reference.
@@ -9688,8 +9730,17 @@ type TaskDefinition struct {
 	// (http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-networking.html)
 	// in the Amazon Elastic Container Service Developer Guide.
 	//
+	// Currently, only the Amazon ECS-optimized AMI, other Amazon Linux variants
+	// with the ecs-init package, or AWS Fargate infrastructure support the awsvpc
+	// network mode.
+	//
 	// If the network mode is host, you can't run multiple instantiations of the
 	// same task on a single container instance when port mappings are used.
+	//
+	// Docker for Windows uses different network modes than Docker for Linux. When
+	// you register a task definition with Windows containers, you must not specify
+	// a network mode. If you use the console to register a task definition with
+	// Windows containers, you must choose the <default> network mode object.
 	//
 	// For more information, see Network settings (https://docs.docker.com/engine/reference/run/#network-settings)
 	// in the Docker run reference.
@@ -9721,6 +9772,12 @@ type TaskDefinition struct {
 
 	// The ARN of the IAM role that containers in this task can assume. All containers
 	// in this task are granted the permissions that are specified in this role.
+	//
+	// IAM roles for tasks on Windows require that the -EnableTaskIAMRole option
+	// is set when you launch the Amazon ECS-optimized Windows AMI. Your containers
+	// must also run some configuration code in order to take advantage of the feature.
+	// For more information, see Windows IAM Roles for Tasks (http://docs.aws.amazon.com/AmazonECS/latest/developerguide/windows_task_IAM_roles.html)
+	// in the Amazon Elastic Container Service Developer Guide.
 	TaskRoleArn *string `locationName:"taskRoleArn" type:"string"`
 
 	// The list of volumes in a task.
@@ -10368,7 +10425,10 @@ type Volume struct {
 	// but the data is not guaranteed to persist after the containers associated
 	// with it stop running.
 	//
-	// If you are using the Fargate launch type, the host parameter is not supported.
+	// Windows containers can mount whole directories on the same drive as $env:ProgramData.
+	// Windows containers cannot mount directories on a different drive, and mount
+	// point cannot be across drives. For example, you can mount C:\my\path:C:\my\path
+	// and D:\:D:\, but not D:\my\path:C:\my\path or D:\:C:\my\path.
 	Host *HostVolumeProperties `locationName:"host" type:"structure"`
 
 	// The name of the volume. Up to 255 letters (uppercase and lowercase), numbers,

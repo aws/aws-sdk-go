@@ -328,6 +328,11 @@ func (c *AppStream) CreateImageBuilderRequest(input *CreateImageBuilderInput) (r
 
 // CreateImageBuilder API operation for Amazon AppStream.
 //
+// Creates an image builder.
+//
+// The initial state of the builder is PENDING. When it is ready, the state
+// is RUNNING.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -425,6 +430,8 @@ func (c *AppStream) CreateImageBuilderStreamingURLRequest(input *CreateImageBuil
 }
 
 // CreateImageBuilderStreamingURL API operation for Amazon AppStream.
+//
+// Creates a URL to start an image builder streaming session.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -601,9 +608,6 @@ func (c *AppStream) CreateStreamingURLRequest(input *CreateStreamingURLInput) (r
 // CreateStreamingURL API operation for Amazon AppStream.
 //
 // Creates a URL to start a streaming session for the specified user.
-//
-// By default, the URL is valid only for one minute from the time that it is
-// generated.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -858,6 +862,10 @@ func (c *AppStream) DeleteImageRequest(input *DeleteImageInput) (req *request.Re
 
 // DeleteImage API operation for Amazon AppStream.
 //
+// Deletes the specified image. You cannot delete an image that is currently
+// in use. After you delete an image, you cannot provision new capacity using
+// the image.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -943,6 +951,8 @@ func (c *AppStream) DeleteImageBuilderRequest(input *DeleteImageBuilderInput) (r
 }
 
 // DeleteImageBuilder API operation for Amazon AppStream.
+//
+// Deletes the specified image builder and releases the capacity.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1270,6 +1280,8 @@ func (c *AppStream) DescribeImageBuildersRequest(input *DescribeImageBuildersInp
 }
 
 // DescribeImageBuilders API operation for Amazon AppStream.
+//
+// Describes the specified image builders or all image builders in the account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1983,6 +1995,8 @@ func (c *AppStream) StartImageBuilderRequest(input *StartImageBuilderInput) (req
 
 // StartImageBuilder API operation for Amazon AppStream.
 //
+// Starts the specified image builder.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1999,6 +2013,9 @@ func (c *AppStream) StartImageBuilderRequest(input *StartImageBuilderInput) (req
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
 //   An API error occurred. Wait a few minutes and try again.
+//
+//   * ErrCodeIncompatibleImageException "IncompatibleImageException"
+//   The image does not support storage connectors.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/StartImageBuilder
 func (c *AppStream) StartImageBuilder(input *StartImageBuilderInput) (*StartImageBuilderOutput, error) {
@@ -2147,6 +2164,8 @@ func (c *AppStream) StopImageBuilderRequest(input *StopImageBuilderInput) (req *
 }
 
 // StopImageBuilder API operation for Amazon AppStream.
+//
+// Stops the specified image builder.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2479,7 +2498,7 @@ func (c *AppStream) UpdateStackWithContext(ctx aws.Context, input *UpdateStackIn
 type Application struct {
 	_ struct{} `type:"structure"`
 
-	// The application name displayed to end users.
+	// The application name for display.
 	DisplayName *string `min:"1" type:"string"`
 
 	// If there is a problem, the application can be disabled after image creation.
@@ -2827,7 +2846,7 @@ type CreateFleetInput struct {
 	// ComputeCapacity is a required field
 	ComputeCapacity *ComputeCapacity `type:"structure" required:"true"`
 
-	// The description displayed to end users.
+	// The description for display.
 	Description *string `type:"string"`
 
 	// The time after disconnection when a session is considered to have ended,
@@ -2836,18 +2855,27 @@ type CreateFleetInput struct {
 	// 60 and 57600.
 	DisconnectTimeoutInSeconds *int64 `type:"integer"`
 
-	// The fleet name displayed to end users.
+	// The fleet name for display.
 	DisplayName *string `type:"string"`
 
-	// The information needed for streaming instances to join a domain.
+	// The information needed to join a Microsoft Active Directory domain.
 	DomainJoinInfo *DomainJoinInfo `type:"structure"`
 
 	// Enables or disables default internet access for the fleet.
 	EnableDefaultInternetAccess *bool `type:"boolean"`
 
+	// The fleet type.
+	//
+	// ALWAYS_ONProvides users with instant-on access to their apps. You are charged
+	// for all running instances in your fleet, even if no users are streaming apps.
+	//
+	// ON_DEMANDProvide users with access to applications after they connect, which
+	// takes one to two minutes. You are charged for instance streaming when users
+	// are connected and a small hourly fee for instances that are not streaming
+	// apps.
 	FleetType *string `type:"string" enum:"FleetType"`
 
-	// The name of the image used by the fleet.
+	// The name of the image used to create the fleet.
 	//
 	// ImageName is a required field
 	ImageName *string `min:"1" type:"string" required:"true"`
@@ -3054,25 +3082,38 @@ func (s *CreateFleetOutput) SetFleet(v *Fleet) *CreateFleetOutput {
 type CreateImageBuilderInput struct {
 	_ struct{} `type:"structure"`
 
+	// The version of the AppStream 2.0 agent to use for this image builder. To
+	// use the latest version of the AppStream 2.0 agent, specify [LATEST].
+	AppstreamAgentVersion *string `min:"1" type:"string"`
+
+	// The description for display.
 	Description *string `type:"string"`
 
+	// The image builder name for display.
 	DisplayName *string `type:"string"`
 
-	// Contains the information needed for streaming instances to join a domain.
+	// The information needed to join a Microsoft Active Directory domain.
 	DomainJoinInfo *DomainJoinInfo `type:"structure"`
 
+	// Enables or disables default internet access for the image builder.
 	EnableDefaultInternetAccess *bool `type:"boolean"`
 
+	// The name of the image used to create the builder.
+	//
 	// ImageName is a required field
 	ImageName *string `min:"1" type:"string" required:"true"`
 
+	// The instance type to use when launching the image builder.
+	//
 	// InstanceType is a required field
 	InstanceType *string `min:"1" type:"string" required:"true"`
 
+	// A unique name for the image builder.
+	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
-	// Describes VPC configuration information.
+	// The VPC configuration for the image builder. You can specify only one subnet.
 	VpcConfig *VpcConfig `type:"structure"`
 }
 
@@ -3089,6 +3130,9 @@ func (s CreateImageBuilderInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateImageBuilderInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateImageBuilderInput"}
+	if s.AppstreamAgentVersion != nil && len(*s.AppstreamAgentVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AppstreamAgentVersion", 1))
+	}
 	if s.ImageName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ImageName"))
 	}
@@ -3109,6 +3153,12 @@ func (s *CreateImageBuilderInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAppstreamAgentVersion sets the AppstreamAgentVersion field's value.
+func (s *CreateImageBuilderInput) SetAppstreamAgentVersion(v string) *CreateImageBuilderInput {
+	s.AppstreamAgentVersion = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -3163,6 +3213,7 @@ func (s *CreateImageBuilderInput) SetVpcConfig(v *VpcConfig) *CreateImageBuilder
 type CreateImageBuilderOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Information about the image builder.
 	ImageBuilder *ImageBuilder `type:"structure"`
 }
 
@@ -3186,9 +3237,13 @@ func (s *CreateImageBuilderOutput) SetImageBuilder(v *ImageBuilder) *CreateImage
 type CreateImageBuilderStreamingURLInput struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the image builder.
+	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// The time that the streaming URL will be valid, in seconds. Specify a value
+	// between 1 and 604800 seconds. The default is 3600 seconds.
 	Validity *int64 `type:"long"`
 }
 
@@ -3234,8 +3289,10 @@ func (s *CreateImageBuilderStreamingURLInput) SetValidity(v int64) *CreateImageB
 type CreateImageBuilderStreamingURLOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The elapsed time, in seconds after the Unix epoch, when this URL expires.
 	Expires *time.Time `type:"timestamp" timestampFormat:"unix"`
 
+	// The URL to start the AppStream 2.0 streaming session.
 	StreamingURL *string `min:"1" type:"string"`
 }
 
@@ -3265,10 +3322,10 @@ func (s *CreateImageBuilderStreamingURLOutput) SetStreamingURL(v string) *Create
 type CreateStackInput struct {
 	_ struct{} `type:"structure"`
 
-	// The description displayed to end users.
+	// The description for display.
 	Description *string `type:"string"`
 
-	// The stack name displayed to end users.
+	// The stack name for display.
 	DisplayName *string `type:"string"`
 
 	// The name of the stack.
@@ -3368,7 +3425,8 @@ func (s *CreateStackOutput) SetStack(v *Stack) *CreateStackOutput {
 type CreateStreamingURLInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the application that must be launched after the session starts.
+	// The name of the application to launch after the session starts. This is the
+	// name that you specified as Name in the Image Assistant.
 	ApplicationId *string `min:"1" type:"string"`
 
 	// The name of the fleet.
@@ -3376,7 +3434,8 @@ type CreateStreamingURLInput struct {
 	// FleetName is a required field
 	FleetName *string `min:"1" type:"string" required:"true"`
 
-	// The session context of the streaming URL.
+	// The session context. For more information, see Session Context (http://docs.aws.amazon.com/appstream2/latest/developerguide/managing-stacks-fleets.html#managing-stacks-fleets-parameters)
+	// in the Amazon AppStream 2.0 Developer Guide.
 	SessionContext *string `min:"1" type:"string"`
 
 	// The name of the stack.
@@ -3390,7 +3449,7 @@ type CreateStreamingURLInput struct {
 	UserId *string `min:"2" type:"string" required:"true"`
 
 	// The time that the streaming URL will be valid, in seconds. Specify a value
-	// between 1 and 604800 seconds.
+	// between 1 and 604800 seconds. The default is 60 seconds.
 	Validity *int64 `type:"long"`
 }
 
@@ -3622,6 +3681,8 @@ func (s DeleteFleetOutput) GoString() string {
 type DeleteImageBuilderInput struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the image builder.
+	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 }
@@ -3659,6 +3720,7 @@ func (s *DeleteImageBuilderInput) SetName(v string) *DeleteImageBuilderInput {
 type DeleteImageBuilderOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Information about the image builder.
 	ImageBuilder *ImageBuilder `type:"structure"`
 }
 
@@ -3682,6 +3744,8 @@ func (s *DeleteImageBuilderOutput) SetImageBuilder(v *ImageBuilder) *DeleteImage
 type DeleteImageInput struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the image.
+	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 }
@@ -3719,7 +3783,7 @@ func (s *DeleteImageInput) SetName(v string) *DeleteImageInput {
 type DeleteImageOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Describes an image.
+	// Information about the image.
 	Image *Image `type:"structure"`
 }
 
@@ -3971,10 +4035,14 @@ func (s *DescribeFleetsOutput) SetNextToken(v string) *DescribeFleetsOutput {
 type DescribeImageBuildersInput struct {
 	_ struct{} `type:"structure"`
 
+	// The maximum size of each page of results.
 	MaxResults *int64 `type:"integer"`
 
+	// The names of the image builders to describe.
 	Names []*string `type:"list"`
 
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If this value is null, it retrieves the first page.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -4023,8 +4091,11 @@ func (s *DescribeImageBuildersInput) SetNextToken(v string) *DescribeImageBuilde
 type DescribeImageBuildersOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Information about the image builders.
 	ImageBuilders []*ImageBuilder `type:"list"`
 
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If there are no more pages, this value is null.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -4447,7 +4518,7 @@ func (s DisassociateFleetOutput) GoString() string {
 	return s.String()
 }
 
-// Contains the information needed for streaming instances to join a domain.
+// Contains the information needed to join a Microsoft Active Directory domain.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DomainJoinInfo
 type DomainJoinInfo struct {
 	_ struct{} `type:"structure"`
@@ -4556,7 +4627,7 @@ type Fleet struct {
 	// The time the fleet was created.
 	CreatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	// The description displayed to end users.
+	// The description for display.
 	Description *string `min:"1" type:"string"`
 
 	// The time after disconnection when a session is considered to have ended,
@@ -4565,10 +4636,10 @@ type Fleet struct {
 	// 60 and 57600.
 	DisconnectTimeoutInSeconds *int64 `type:"integer"`
 
-	// The fleet name displayed to end users.
+	// The fleet name for display.
 	DisplayName *string `min:"1" type:"string"`
 
-	// The information needed for streaming instances to join a domain.
+	// The information needed to join a Microsoft Active Directory domain.
 	DomainJoinInfo *DomainJoinInfo `type:"structure"`
 
 	// Indicates whether default internet access is enabled for the fleet.
@@ -4577,9 +4648,18 @@ type Fleet struct {
 	// The fleet errors.
 	FleetErrors []*FleetError `type:"list"`
 
+	// The fleet type.
+	//
+	// ALWAYS_ONProvides users with instant-on access to their apps. You are charged
+	// for all running instances in your fleet, even if no users are streaming apps.
+	//
+	// ON_DEMANDProvide users with access to applications after they connect, which
+	// takes one to two minutes. You are charged for instance streaming when users
+	// are connected and a small hourly fee for instances that are not streaming
+	// apps.
 	FleetType *string `type:"string" enum:"FleetType"`
 
-	// The image used by the fleet.
+	// The name of the image used to create the fleet.
 	//
 	// ImageName is a required field
 	ImageName *string `min:"1" type:"string" required:"true"`
@@ -4755,6 +4835,10 @@ type Image struct {
 	// The applications associated with the image.
 	Applications []*Application `type:"list"`
 
+	// The version of the AppStream 2.0 agent to use for instances that are launched
+	// from this image.
+	AppstreamAgentVersion *string `min:"1" type:"string"`
+
 	// The ARN of the image.
 	Arn *string `type:"string"`
 
@@ -4764,10 +4848,10 @@ type Image struct {
 	// The time the image was created.
 	CreatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	// The description displayed to end users.
+	// The description for display.
 	Description *string `min:"1" type:"string"`
 
-	// The image name displayed to end users.
+	// The image name for display.
 	DisplayName *string `min:"1" type:"string"`
 
 	// Indicates whether an image builder can be launched from this image.
@@ -4809,6 +4893,12 @@ func (s Image) GoString() string {
 // SetApplications sets the Applications field's value.
 func (s *Image) SetApplications(v []*Application) *Image {
 	s.Applications = v
+	return s
+}
+
+// SetAppstreamAgentVersion sets the AppstreamAgentVersion field's value.
+func (s *Image) SetAppstreamAgentVersion(v string) *Image {
+	s.AppstreamAgentVersion = &v
 	return s
 }
 
@@ -4884,39 +4974,58 @@ func (s *Image) SetVisibility(v string) *Image {
 	return s
 }
 
+// Describes a streaming instance used for editing an image. New images are
+// created from a snapshot through an image builder.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ImageBuilder
 type ImageBuilder struct {
 	_ struct{} `type:"structure"`
 
+	// The version of the AppStream 2.0 agent that is currently being used by this
+	// image builder.
+	AppstreamAgentVersion *string `min:"1" type:"string"`
+
+	// The ARN for the image builder.
 	Arn *string `type:"string"`
 
+	// The time stamp when the image builder was created.
 	CreatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
+	// The description for display.
 	Description *string `min:"1" type:"string"`
 
+	// The image builder name for display.
 	DisplayName *string `min:"1" type:"string"`
 
-	// Contains the information needed for streaming instances to join a domain.
+	// The information needed to join a Microsoft Active Directory domain.
 	DomainJoinInfo *DomainJoinInfo `type:"structure"`
 
+	// Enables or disables default internet access for the image builder.
 	EnableDefaultInternetAccess *bool `type:"boolean"`
 
+	// The ARN of the image from which this builder was created.
 	ImageArn *string `type:"string"`
 
+	// The image builder errors.
 	ImageBuilderErrors []*ResourceError `type:"list"`
 
+	// The instance type for the image builder.
 	InstanceType *string `min:"1" type:"string"`
 
+	// The name of the image builder.
+	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// The operating system platform of the image builder.
 	Platform *string `type:"string" enum:"PlatformType"`
 
+	// The state of the image builder.
 	State *string `type:"string" enum:"ImageBuilderState"`
 
+	// The reason why the last state change occurred.
 	StateChangeReason *ImageBuilderStateChangeReason `type:"structure"`
 
-	// Describes VPC configuration information.
+	// The VPC configuration of the image builder.
 	VpcConfig *VpcConfig `type:"structure"`
 }
 
@@ -4928,6 +5037,12 @@ func (s ImageBuilder) String() string {
 // GoString returns the string representation
 func (s ImageBuilder) GoString() string {
 	return s.String()
+}
+
+// SetAppstreamAgentVersion sets the AppstreamAgentVersion field's value.
+func (s *ImageBuilder) SetAppstreamAgentVersion(v string) *ImageBuilder {
+	s.AppstreamAgentVersion = &v
+	return s
 }
 
 // SetArn sets the Arn field's value.
@@ -5014,12 +5129,15 @@ func (s *ImageBuilder) SetVpcConfig(v *VpcConfig) *ImageBuilder {
 	return s
 }
 
+// Describes the reason why the last image builder state change occurred.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ImageBuilderStateChangeReason
 type ImageBuilderStateChangeReason struct {
 	_ struct{} `type:"structure"`
 
+	// The state change reason code.
 	Code *string `type:"string" enum:"ImageBuilderStateChangeReasonCode"`
 
+	// The state change reason message.
 	Message *string `min:"1" type:"string"`
 }
 
@@ -5045,7 +5163,7 @@ func (s *ImageBuilderStateChangeReason) SetMessage(v string) *ImageBuilderStateC
 	return s
 }
 
-// Describes the reason why the last state change occurred.
+// Describes the reason why the last image state change occurred.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ImageStateChangeReason
 type ImageStateChangeReason struct {
 	_ struct{} `type:"structure"`
@@ -5257,14 +5375,18 @@ func (s *ListAssociatedStacksOutput) SetNextToken(v string) *ListAssociatedStack
 	return s
 }
 
+// Describes a resource error.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ResourceError
 type ResourceError struct {
 	_ struct{} `type:"structure"`
 
+	// The error code.
 	ErrorCode *string `type:"string" enum:"FleetErrorCode"`
 
+	// The error message.
 	ErrorMessage *string `min:"1" type:"string"`
 
+	// The time the error occurred.
 	ErrorTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
 }
 
@@ -5451,10 +5573,10 @@ type Stack struct {
 	// The time the stack was created.
 	CreatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	// The description displayed to end users.
+	// The description for display.
 	Description *string `min:"1" type:"string"`
 
-	// The stack name displayed to end users.
+	// The stack name for display.
 	DisplayName *string `min:"1" type:"string"`
 
 	// The name of the stack.
@@ -5616,6 +5738,12 @@ func (s StartFleetOutput) GoString() string {
 type StartImageBuilderInput struct {
 	_ struct{} `type:"structure"`
 
+	// The version of the AppStream 2.0 agent to use for this image builder. To
+	// use the latest version of the AppStream 2.0 agent, specify [LATEST].
+	AppstreamAgentVersion *string `min:"1" type:"string"`
+
+	// The name of the image builder.
+	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 }
@@ -5633,6 +5761,9 @@ func (s StartImageBuilderInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StartImageBuilderInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartImageBuilderInput"}
+	if s.AppstreamAgentVersion != nil && len(*s.AppstreamAgentVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AppstreamAgentVersion", 1))
+	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
@@ -5646,6 +5777,12 @@ func (s *StartImageBuilderInput) Validate() error {
 	return nil
 }
 
+// SetAppstreamAgentVersion sets the AppstreamAgentVersion field's value.
+func (s *StartImageBuilderInput) SetAppstreamAgentVersion(v string) *StartImageBuilderInput {
+	s.AppstreamAgentVersion = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *StartImageBuilderInput) SetName(v string) *StartImageBuilderInput {
 	s.Name = &v
@@ -5656,6 +5793,7 @@ func (s *StartImageBuilderInput) SetName(v string) *StartImageBuilderInput {
 type StartImageBuilderOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Information about the image builder.
 	ImageBuilder *ImageBuilder `type:"structure"`
 }
 
@@ -5736,6 +5874,8 @@ func (s StopFleetOutput) GoString() string {
 type StopImageBuilderInput struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the image builder.
+	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 }
@@ -5776,6 +5916,7 @@ func (s *StopImageBuilderInput) SetName(v string) *StopImageBuilderInput {
 type StopImageBuilderOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Information about the image builder.
 	ImageBuilder *ImageBuilder `type:"structure"`
 }
 
@@ -5947,7 +6088,7 @@ type UpdateFleetInput struct {
 	// Deletes the VPC association for the specified fleet.
 	DeleteVpcConfig *bool `deprecated:"true" type:"boolean"`
 
-	// The description displayed to end users.
+	// The description for display.
 	Description *string `type:"string"`
 
 	// The time after disconnection when a session is considered to have ended,
@@ -5956,16 +6097,16 @@ type UpdateFleetInput struct {
 	// 60 and 57600.
 	DisconnectTimeoutInSeconds *int64 `type:"integer"`
 
-	// The fleet name displayed to end users.
+	// The fleet name for display.
 	DisplayName *string `type:"string"`
 
-	// The information needed for streaming instances to join a domain.
+	// The information needed to join a Microsoft Active Directory domain.
 	DomainJoinInfo *DomainJoinInfo `type:"structure"`
 
 	// Enables or disables default internet access for the fleet.
 	EnableDefaultInternetAccess *bool `type:"boolean"`
 
-	// The name of the image used by the fleet.
+	// The name of the image used to create the fleet.
 	ImageName *string `min:"1" type:"string"`
 
 	// The instance type to use when launching fleet instances. The following instance
@@ -6171,10 +6312,10 @@ type UpdateStackInput struct {
 	// Deletes the storage connectors currently enabled for the stack.
 	DeleteStorageConnectors *bool `type:"boolean"`
 
-	// The description displayed to end users.
+	// The description for display.
 	Description *string `type:"string"`
 
-	// The stack name displayed to end users.
+	// The stack name for display.
 	DisplayName *string `type:"string"`
 
 	// The name of the stack.
@@ -6438,6 +6579,9 @@ const (
 const (
 	// ImageBuilderStatePending is a ImageBuilderState enum value
 	ImageBuilderStatePending = "PENDING"
+
+	// ImageBuilderStateUpdatingAgent is a ImageBuilderState enum value
+	ImageBuilderStateUpdatingAgent = "UPDATING_AGENT"
 
 	// ImageBuilderStateRunning is a ImageBuilderState enum value
 	ImageBuilderStateRunning = "RUNNING"
