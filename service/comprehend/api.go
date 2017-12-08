@@ -2665,12 +2665,12 @@ type TopicsDetectionJobFilter struct {
 	// Filters the list of jobs based on the time that the job was submitted for
 	// processing. Only returns jobs submitted after the specified time. Jobs are
 	// returned in ascending order, oldest to newest.
-	SubmitTimeAfter *time.Time `type:"timestamp" timestampFormat:"unix"`
+	SubmitTimeAfter *time.Time `type:"timestamp"`
 
 	// Filters the list of jobs based on the time that the job was submitted for
 	// processing. Only returns jobs submitted before the specified time. Jobs are
 	// returned in descending order, newest to oldest.
-	SubmitTimeBefore *time.Time `type:"timestamp" timestampFormat:"unix"`
+	SubmitTimeBefore *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -2726,7 +2726,7 @@ type TopicsDetectionJobProperties struct {
 	_ struct{} `type:"structure"`
 
 	// The time that the topic detection job was completed.
-	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	EndTime *time.Time `type:"timestamp"`
 
 	// The input data configuration supplied when you created the topic detection
 	// job.
@@ -2754,7 +2754,7 @@ type TopicsDetectionJobProperties struct {
 	OutputDataConfig *OutputDataConfig `type:"structure"`
 
 	// The time that the topic detection job was submitted for processing.
-	SubmitTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	SubmitTime *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation

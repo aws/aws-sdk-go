@@ -4072,14 +4072,14 @@ type BotAliasMetadata struct {
 	Checksum *string `locationName:"checksum" type:"string"`
 
 	// The date that the bot alias was created.
-	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp"`
 
 	// A description of the bot alias.
 	Description *string `locationName:"description" type:"string"`
 
 	// The date that the bot alias was updated. When you create a resource, the
 	// creation date and last updated date are the same.
-	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp" timestampFormat:"unix"`
+	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp"`
 
 	// The name of the bot alias.
 	Name *string `locationName:"name" min:"1" type:"string"`
@@ -4158,7 +4158,7 @@ type BotChannelAssociation struct {
 
 	// The date that the association between the Amazon Lex bot and the channel
 	// was created.
-	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp"`
 
 	// A text description of the association you are creating.
 	Description *string `locationName:"description" type:"string"`
@@ -4229,14 +4229,14 @@ type BotMetadata struct {
 	_ struct{} `type:"structure"`
 
 	// The date that the bot was created.
-	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp"`
 
 	// A description of the bot.
 	Description *string `locationName:"description" type:"string"`
 
 	// The date that the bot was updated. When you create a bot, the creation date
 	// and last updated date are the same.
-	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp" timestampFormat:"unix"`
+	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp"`
 
 	// The name of the bot.
 	Name *string `locationName:"name" min:"2" type:"string"`
@@ -4550,7 +4550,7 @@ type CreateBotVersionOutput struct {
 	ClarificationPrompt *Prompt `locationName:"clarificationPrompt" type:"structure"`
 
 	// The date when the bot version was created.
-	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp"`
 
 	// A description of the bot.
 	Description *string `locationName:"description" type:"string"`
@@ -4567,7 +4567,7 @@ type CreateBotVersionOutput struct {
 	Intents []*Intent `locationName:"intents" type:"list"`
 
 	// The date when the $LATEST version of this bot was updated.
-	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp" timestampFormat:"unix"`
+	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp"`
 
 	// Specifies the target locale for the bot.
 	Locale *string `locationName:"locale" type:"string" enum:"Locale"`
@@ -4761,7 +4761,7 @@ type CreateIntentVersionOutput struct {
 	ConfirmationPrompt *Prompt `locationName:"confirmationPrompt" type:"structure"`
 
 	// The date that the intent was created.
-	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp"`
 
 	// A description of the intent.
 	Description *string `locationName:"description" type:"string"`
@@ -4777,7 +4777,7 @@ type CreateIntentVersionOutput struct {
 	FulfillmentActivity *FulfillmentActivity `locationName:"fulfillmentActivity" type:"structure"`
 
 	// The date that the intent was updated.
-	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp" timestampFormat:"unix"`
+	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp"`
 
 	// The name of the intent.
 	Name *string `locationName:"name" min:"1" type:"string"`
@@ -4964,7 +4964,7 @@ type CreateSlotTypeVersionOutput struct {
 	Checksum *string `locationName:"checksum" type:"string"`
 
 	// The date that the slot type was created.
-	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp"`
 
 	// A description of the slot type.
 	Description *string `locationName:"description" type:"string"`
@@ -4975,7 +4975,7 @@ type CreateSlotTypeVersionOutput struct {
 
 	// The date that the slot type was updated. When you create a resource, the
 	// creation date and last update date are the same.
-	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp" timestampFormat:"unix"`
+	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp"`
 
 	// The name of the slot type.
 	Name *string `locationName:"name" min:"1" type:"string"`
@@ -5960,14 +5960,14 @@ type GetBotAliasOutput struct {
 	Checksum *string `locationName:"checksum" type:"string"`
 
 	// The date that the bot alias was created.
-	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp"`
 
 	// A description of the bot alias.
 	Description *string `locationName:"description" type:"string"`
 
 	// The date that the bot alias was updated. When you create a resource, the
 	// creation date and the last updated date are the same.
-	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp" timestampFormat:"unix"`
+	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp"`
 
 	// The name of the bot alias.
 	Name *string `locationName:"name" min:"1" type:"string"`
@@ -6236,7 +6236,7 @@ type GetBotChannelAssociationOutput struct {
 	BotName *string `locationName:"botName" min:"2" type:"string"`
 
 	// The date that the association between the bot and the channel was created.
-	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp"`
 
 	// A description of the association between the bot and the channel.
 	Description *string `locationName:"description" type:"string"`
@@ -6535,7 +6535,7 @@ type GetBotOutput struct {
 	ClarificationPrompt *Prompt `locationName:"clarificationPrompt" type:"structure"`
 
 	// The date that the bot was created.
-	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp"`
 
 	// A description of the bot.
 	Description *string `locationName:"description" type:"string"`
@@ -6552,7 +6552,7 @@ type GetBotOutput struct {
 
 	// The date that the bot was updated. When you create a resource, the creation
 	// date and last updated date are the same.
-	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp" timestampFormat:"unix"`
+	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp"`
 
 	// The target locale for the bot.
 	Locale *string `locationName:"locale" type:"string" enum:"Locale"`
@@ -7421,7 +7421,7 @@ type GetIntentOutput struct {
 	ConfirmationPrompt *Prompt `locationName:"confirmationPrompt" type:"structure"`
 
 	// The date that the intent was created.
-	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp"`
 
 	// A description of the intent.
 	Description *string `locationName:"description" type:"string"`
@@ -7439,7 +7439,7 @@ type GetIntentOutput struct {
 
 	// The date that the intent was updated. When you create a resource, the creation
 	// date and the last updated date are the same.
-	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp" timestampFormat:"unix"`
+	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp"`
 
 	// The name of the intent.
 	Name *string `locationName:"name" min:"1" type:"string"`
@@ -7829,7 +7829,7 @@ type GetSlotTypeOutput struct {
 	Checksum *string `locationName:"checksum" type:"string"`
 
 	// The date that the slot type was created.
-	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp"`
 
 	// A description of the slot type.
 	Description *string `locationName:"description" type:"string"`
@@ -7840,7 +7840,7 @@ type GetSlotTypeOutput struct {
 
 	// The date that the slot type was updated. When you create a resource, the
 	// creation date and last update date are the same.
-	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp" timestampFormat:"unix"`
+	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp"`
 
 	// The name of the slot type.
 	Name *string `locationName:"name" min:"1" type:"string"`
@@ -8290,14 +8290,14 @@ type IntentMetadata struct {
 	_ struct{} `type:"structure"`
 
 	// The date that the intent was created.
-	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp"`
 
 	// A description of the intent.
 	Description *string `locationName:"description" type:"string"`
 
 	// The date that the intent was updated. When you create an intent, the creation
 	// date and last updated date are the same.
-	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp" timestampFormat:"unix"`
+	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp"`
 
 	// The name of the intent.
 	Name *string `locationName:"name" min:"1" type:"string"`
@@ -8608,14 +8608,14 @@ type PutBotAliasOutput struct {
 	Checksum *string `locationName:"checksum" type:"string"`
 
 	// The date that the bot alias was created.
-	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp"`
 
 	// A description of the alias.
 	Description *string `locationName:"description" type:"string"`
 
 	// The date that the bot alias was updated. When you create a resource, the
 	// creation date and the last updated date are the same.
-	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp" timestampFormat:"unix"`
+	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp"`
 
 	// The name of the alias.
 	Name *string `locationName:"name" min:"1" type:"string"`
@@ -8958,7 +8958,7 @@ type PutBotOutput struct {
 	ClarificationPrompt *Prompt `locationName:"clarificationPrompt" type:"structure"`
 
 	// The date that the bot was created.
-	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp"`
 
 	// A description of the bot.
 	Description *string `locationName:"description" type:"string"`
@@ -8976,7 +8976,7 @@ type PutBotOutput struct {
 
 	// The date that the bot was updated. When you create a resource, the creation
 	// date and last updated date are the same.
-	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp" timestampFormat:"unix"`
+	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp"`
 
 	// The target locale for the bot.
 	Locale *string `locationName:"locale" type:"string" enum:"Locale"`
@@ -9376,7 +9376,7 @@ type PutIntentOutput struct {
 	ConfirmationPrompt *Prompt `locationName:"confirmationPrompt" type:"structure"`
 
 	// The date that the intent was created.
-	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp"`
 
 	// A description of the intent.
 	Description *string `locationName:"description" type:"string"`
@@ -9396,7 +9396,7 @@ type PutIntentOutput struct {
 
 	// The date that the intent was updated. When you create a resource, the creation
 	// date and last update dates are the same.
-	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp" timestampFormat:"unix"`
+	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp"`
 
 	// The name of the intent.
 	Name *string `locationName:"name" min:"1" type:"string"`
@@ -9652,7 +9652,7 @@ type PutSlotTypeOutput struct {
 	Checksum *string `locationName:"checksum" type:"string"`
 
 	// The date that the slot type was created.
-	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp"`
 
 	// A description of the slot type.
 	Description *string `locationName:"description" type:"string"`
@@ -9663,7 +9663,7 @@ type PutSlotTypeOutput struct {
 
 	// The date that the slot type was updated. When you create a slot type, the
 	// creation date and last update date are the same.
-	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp" timestampFormat:"unix"`
+	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp"`
 
 	// The name of the slot type.
 	Name *string `locationName:"name" min:"1" type:"string"`
@@ -9924,14 +9924,14 @@ type SlotTypeMetadata struct {
 	_ struct{} `type:"structure"`
 
 	// The date that the slot type was created.
-	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp"`
 
 	// A description of the slot type.
 	Description *string `locationName:"description" type:"string"`
 
 	// The date that the slot type was updated. When you create a resource, the
 	// creation date and last updated date are the same.
-	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp" timestampFormat:"unix"`
+	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp"`
 
 	// The name of the slot type.
 	Name *string `locationName:"name" min:"1" type:"string"`
@@ -10061,10 +10061,10 @@ type UtteranceData struct {
 	DistinctUsers *int64 `locationName:"distinctUsers" type:"integer"`
 
 	// The date that the utterance was first recorded.
-	FirstUtteredDate *time.Time `locationName:"firstUtteredDate" type:"timestamp" timestampFormat:"unix"`
+	FirstUtteredDate *time.Time `locationName:"firstUtteredDate" type:"timestamp"`
 
 	// The date that the utterance was last recorded.
-	LastUtteredDate *time.Time `locationName:"lastUtteredDate" type:"timestamp" timestampFormat:"unix"`
+	LastUtteredDate *time.Time `locationName:"lastUtteredDate" type:"timestamp"`
 
 	// The text that was entered by the user or the text representation of an audio
 	// clip.

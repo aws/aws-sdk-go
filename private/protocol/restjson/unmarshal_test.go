@@ -515,7 +515,7 @@ const opOutputService3TestCaseOperation1 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation1Request(input *OutputService3TestShapeOutputService3TestCaseOperation1Input) (req *request.Request, output *OutputService3TestShapeOutputService3TestCaseOperation1Output) {
+func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation1Request(input *OutputService3TestShapeOutputService3TestCaseOperation1Input) (req *request.Request, output *OutputService3TestShapeOutputService3TestCaseOperation3Output) {
 	op := &request.Operation{
 		Name:     opOutputService3TestCaseOperation1,
 		HTTPPath: "/",
@@ -525,7 +525,7 @@ func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation1Request(inp
 		input = &OutputService3TestShapeOutputService3TestCaseOperation1Input{}
 	}
 
-	output = &OutputService3TestShapeOutputService3TestCaseOperation1Output{}
+	output = &OutputService3TestShapeOutputService3TestCaseOperation3Output{}
 	req = c.newRequest(op, input, output)
 	return
 }
@@ -538,7 +538,7 @@ func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation1Request(inp
 //
 // See the AWS API reference guide for 's
 // API operation OutputService3TestCaseOperation1 for usage and error information.
-func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation1(input *OutputService3TestShapeOutputService3TestCaseOperation1Input) (*OutputService3TestShapeOutputService3TestCaseOperation1Output, error) {
+func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation1(input *OutputService3TestShapeOutputService3TestCaseOperation1Input) (*OutputService3TestShapeOutputService3TestCaseOperation3Output, error) {
 	req, out := c.OutputService3TestCaseOperation1Request(input)
 	return out, req.Send()
 }
@@ -552,8 +552,144 @@ func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation1(input *Out
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation1WithContext(ctx aws.Context, input *OutputService3TestShapeOutputService3TestCaseOperation1Input, opts ...request.Option) (*OutputService3TestShapeOutputService3TestCaseOperation1Output, error) {
+func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation1WithContext(ctx aws.Context, input *OutputService3TestShapeOutputService3TestCaseOperation1Input, opts ...request.Option) (*OutputService3TestShapeOutputService3TestCaseOperation3Output, error) {
 	req, out := c.OutputService3TestCaseOperation1Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opOutputService3TestCaseOperation2 = "OperationName"
+
+// OutputService3TestCaseOperation2Request generates a "aws/request.Request" representing the
+// client's request for the OutputService3TestCaseOperation2 operation. The "output" return
+// value will be populated with the request's response once the request complets
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See OutputService3TestCaseOperation2 for more information on using the OutputService3TestCaseOperation2
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the OutputService3TestCaseOperation2Request method.
+//    req, resp := client.OutputService3TestCaseOperation2Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation2Request(input *OutputService3TestShapeOutputService3TestCaseOperation2Input) (req *request.Request, output *OutputService3TestShapeOutputService3TestCaseOperation3Output) {
+	op := &request.Operation{
+		Name:     opOutputService3TestCaseOperation2,
+		HTTPPath: "/",
+	}
+
+	if input == nil {
+		input = &OutputService3TestShapeOutputService3TestCaseOperation2Input{}
+	}
+
+	output = &OutputService3TestShapeOutputService3TestCaseOperation3Output{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// OutputService3TestCaseOperation2 API operation for .
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for 's
+// API operation OutputService3TestCaseOperation2 for usage and error information.
+func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation2(input *OutputService3TestShapeOutputService3TestCaseOperation2Input) (*OutputService3TestShapeOutputService3TestCaseOperation3Output, error) {
+	req, out := c.OutputService3TestCaseOperation2Request(input)
+	return out, req.Send()
+}
+
+// OutputService3TestCaseOperation2WithContext is the same as OutputService3TestCaseOperation2 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See OutputService3TestCaseOperation2 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation2WithContext(ctx aws.Context, input *OutputService3TestShapeOutputService3TestCaseOperation2Input, opts ...request.Option) (*OutputService3TestShapeOutputService3TestCaseOperation3Output, error) {
+	req, out := c.OutputService3TestCaseOperation2Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opOutputService3TestCaseOperation3 = "OperationName"
+
+// OutputService3TestCaseOperation3Request generates a "aws/request.Request" representing the
+// client's request for the OutputService3TestCaseOperation3 operation. The "output" return
+// value will be populated with the request's response once the request complets
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See OutputService3TestCaseOperation3 for more information on using the OutputService3TestCaseOperation3
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the OutputService3TestCaseOperation3Request method.
+//    req, resp := client.OutputService3TestCaseOperation3Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation3Request(input *OutputService3TestShapeOutputService3TestCaseOperation3Input) (req *request.Request, output *OutputService3TestShapeOutputService3TestCaseOperation3Output) {
+	op := &request.Operation{
+		Name:     opOutputService3TestCaseOperation3,
+		HTTPPath: "/",
+	}
+
+	if input == nil {
+		input = &OutputService3TestShapeOutputService3TestCaseOperation3Input{}
+	}
+
+	output = &OutputService3TestShapeOutputService3TestCaseOperation3Output{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// OutputService3TestCaseOperation3 API operation for .
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for 's
+// API operation OutputService3TestCaseOperation3 for usage and error information.
+func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation3(input *OutputService3TestShapeOutputService3TestCaseOperation3Input) (*OutputService3TestShapeOutputService3TestCaseOperation3Output, error) {
+	req, out := c.OutputService3TestCaseOperation3Request(input)
+	return out, req.Send()
+}
+
+// OutputService3TestCaseOperation3WithContext is the same as OutputService3TestCaseOperation3 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See OutputService3TestCaseOperation3 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation3WithContext(ctx aws.Context, input *OutputService3TestShapeOutputService3TestCaseOperation3Input, opts ...request.Option) (*OutputService3TestShapeOutputService3TestCaseOperation3Output, error) {
+	req, out := c.OutputService3TestCaseOperation3Request(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -563,30 +699,54 @@ type OutputService3TestShapeOutputService3TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 }
 
-type OutputService3TestShapeOutputService3TestCaseOperation1Output struct {
+type OutputService3TestShapeOutputService3TestCaseOperation2Input struct {
+	_ struct{} `type:"structure"`
+}
+
+type OutputService3TestShapeOutputService3TestCaseOperation3Input struct {
+	_ struct{} `type:"structure"`
+}
+
+type OutputService3TestShapeOutputService3TestCaseOperation3Output struct {
 	_ struct{} `type:"structure"`
 
 	StructMember *OutputService3TestShapeTimeContainer `type:"structure"`
 
-	TimeMember *time.Time `type:"timestamp" timestampFormat:"unix"`
+	TimeHeader *time.Time `location:"header" locationName:"X-TimeHeader" type:"timestamp"`
+
+	TimeMember *time.Time `type:"timestamp"`
+
+	TimeMemberString *time.Time `type:"timestamp"`
 }
 
 // SetStructMember sets the StructMember field's value.
-func (s *OutputService3TestShapeOutputService3TestCaseOperation1Output) SetStructMember(v *OutputService3TestShapeTimeContainer) *OutputService3TestShapeOutputService3TestCaseOperation1Output {
+func (s *OutputService3TestShapeOutputService3TestCaseOperation3Output) SetStructMember(v *OutputService3TestShapeTimeContainer) *OutputService3TestShapeOutputService3TestCaseOperation3Output {
 	s.StructMember = v
 	return s
 }
 
+// SetTimeHeader sets the TimeHeader field's value.
+func (s *OutputService3TestShapeOutputService3TestCaseOperation3Output) SetTimeHeader(v time.Time) *OutputService3TestShapeOutputService3TestCaseOperation3Output {
+	s.TimeHeader = &v
+	return s
+}
+
 // SetTimeMember sets the TimeMember field's value.
-func (s *OutputService3TestShapeOutputService3TestCaseOperation1Output) SetTimeMember(v time.Time) *OutputService3TestShapeOutputService3TestCaseOperation1Output {
+func (s *OutputService3TestShapeOutputService3TestCaseOperation3Output) SetTimeMember(v time.Time) *OutputService3TestShapeOutputService3TestCaseOperation3Output {
 	s.TimeMember = &v
+	return s
+}
+
+// SetTimeMemberString sets the TimeMemberString field's value.
+func (s *OutputService3TestShapeOutputService3TestCaseOperation3Output) SetTimeMemberString(v time.Time) *OutputService3TestShapeOutputService3TestCaseOperation3Output {
+	s.TimeMemberString = &v
 	return s
 }
 
 type OutputService3TestShapeTimeContainer struct {
 	_ struct{} `type:"structure"`
 
-	Foo *time.Time `locationName:"foo" type:"timestamp" timestampFormat:"unix"`
+	Foo *time.Time `locationName:"foo" type:"timestamp"`
 }
 
 // SetFoo sets the Foo field's value.
@@ -2446,6 +2606,59 @@ func TestOutputService3ProtocolTestTimestampMembersCase1(t *testing.T) {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 	if e, a := time.Unix(1.398796238e+09, 0).UTC().String(), out.TimeMember.String(); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+
+}
+
+func TestOutputService3ProtocolTestTimestampMembersCase2(t *testing.T) {
+	svc := NewOutputService3ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
+
+	buf := bytes.NewReader([]byte(""))
+	req, out := svc.OutputService3TestCaseOperation2Request(nil)
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
+	req.HTTPResponse.Header.Set("X-TimeHeader", "Tue, 29 Apr 2014 18:30:38 GMT")
+
+	// unmarshal response
+	restjson.UnmarshalMeta(req)
+	restjson.Unmarshal(req)
+	if req.Error != nil {
+		t.Errorf("expect not error, got %v", req.Error)
+	}
+
+	// assert response
+	if out == nil {
+		t.Errorf("expect not to be nil")
+	}
+	if e, a := time.Unix(1.398796238e+09, 0).UTC().String(), out.TimeHeader.String(); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+
+}
+
+func TestOutputService3ProtocolTestTimestampMembersCase3(t *testing.T) {
+	svc := NewOutputService3ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
+
+	buf := bytes.NewReader([]byte("{\"TimeMemberString\": \"2015-01-25T08:00:00Z\"}"))
+	req, out := svc.OutputService3TestCaseOperation3Request(nil)
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
+
+	// unmarshal response
+	restjson.UnmarshalMeta(req)
+	restjson.Unmarshal(req)
+	if req.Error != nil {
+		t.Errorf("expect not error, got %v", req.Error)
+	}
+
+	// assert response
+	if out == nil {
+		t.Errorf("expect not to be nil")
+	}
+	if e, a := time.Unix(1.4221728e+09, 0).UTC().String(), out.TimeMemberString.String(); e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 

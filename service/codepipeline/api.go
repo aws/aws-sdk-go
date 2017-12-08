@@ -2952,7 +2952,7 @@ type ActionExecution struct {
 	ExternalExecutionUrl *string `locationName:"externalExecutionUrl" min:"1" type:"string"`
 
 	// The last status change of the action.
-	LastStatusChange *time.Time `locationName:"lastStatusChange" type:"timestamp" timestampFormat:"unix"`
+	LastStatusChange *time.Time `locationName:"lastStatusChange" type:"timestamp"`
 
 	// The ARN of the user who last changed the pipeline.
 	LastUpdatedBy *string `locationName:"lastUpdatedBy" type:"string"`
@@ -3047,7 +3047,7 @@ type ActionRevision struct {
 	// in timestamp format.
 	//
 	// Created is a required field
-	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"unix" required:"true"`
+	Created *time.Time `locationName:"created" type:"timestamp" required:"true"`
 
 	// The unique identifier of the change that set the state to this revision,
 	// for example a deployment ID or timestamp.
@@ -3616,7 +3616,7 @@ type ArtifactRevision struct {
 
 	// The date and time when the most recent revision of the artifact was created,
 	// in timestamp format.
-	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"unix"`
+	Created *time.Time `locationName:"created" type:"timestamp"`
 
 	// The name of an artifact. This name might be system-generated, such as "MyApp",
 	// or might be defined by the user when an action is created.
@@ -4083,7 +4083,7 @@ type CurrentRevision struct {
 
 	// The date and time when the most recent revision of the artifact was created,
 	// in timestamp format.
-	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"unix"`
+	Created *time.Time `locationName:"created" type:"timestamp"`
 
 	// The revision ID of the current version of an artifact.
 	//
@@ -5018,7 +5018,7 @@ type GetPipelineStateOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The date and time the pipeline was created, in timestamp format.
-	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"unix"`
+	Created *time.Time `locationName:"created" type:"timestamp"`
 
 	// The name of the pipeline for which you want to get the state.
 	PipelineName *string `locationName:"pipelineName" min:"1" type:"string"`
@@ -5033,7 +5033,7 @@ type GetPipelineStateOutput struct {
 	StageStates []*StageState `locationName:"stageStates" type:"list"`
 
 	// The date and time the pipeline was last updated, in timestamp format.
-	Updated *time.Time `locationName:"updated" type:"timestamp" timestampFormat:"unix"`
+	Updated *time.Time `locationName:"updated" type:"timestamp"`
 }
 
 // String returns the string representation
@@ -5961,13 +5961,13 @@ type PipelineExecutionSummary struct {
 
 	// The date and time of the last change to the pipeline execution, in timestamp
 	// format.
-	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp" timestampFormat:"unix"`
+	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp"`
 
 	// The ID of the pipeline execution.
 	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string"`
 
 	// The date and time when the pipeline execution began, in timestamp format.
-	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"unix"`
+	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 
 	// The status of the pipeline execution.
 	//
@@ -6023,13 +6023,13 @@ type PipelineMetadata struct {
 	_ struct{} `type:"structure"`
 
 	// The date and time the pipeline was created, in timestamp format.
-	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"unix"`
+	Created *time.Time `locationName:"created" type:"timestamp"`
 
 	// The Amazon Resource Name (ARN) of the pipeline.
 	PipelineArn *string `locationName:"pipelineArn" type:"string"`
 
 	// The date and time the pipeline was last updated, in timestamp format.
-	Updated *time.Time `locationName:"updated" type:"timestamp" timestampFormat:"unix"`
+	Updated *time.Time `locationName:"updated" type:"timestamp"`
 }
 
 // String returns the string representation
@@ -6066,13 +6066,13 @@ type PipelineSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The date and time the pipeline was created, in timestamp format.
-	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"unix"`
+	Created *time.Time `locationName:"created" type:"timestamp"`
 
 	// The name of the pipeline.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
 	// The date and time of the last update to the pipeline, in timestamp format.
-	Updated *time.Time `locationName:"updated" type:"timestamp" timestampFormat:"unix"`
+	Updated *time.Time `locationName:"updated" type:"timestamp"`
 
 	// The version number of the pipeline.
 	Version *int64 `locationName:"version" min:"1" type:"integer"`
@@ -6538,7 +6538,7 @@ type PutApprovalResultOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The timestamp showing when the approval or rejection was submitted.
-	ApprovedAt *time.Time `locationName:"approvedAt" type:"timestamp" timestampFormat:"unix"`
+	ApprovedAt *time.Time `locationName:"approvedAt" type:"timestamp"`
 }
 
 // String returns the string representation
@@ -7567,7 +7567,7 @@ type TransitionState struct {
 	Enabled *bool `locationName:"enabled" type:"boolean"`
 
 	// The timestamp when the transition state was last changed.
-	LastChangedAt *time.Time `locationName:"lastChangedAt" type:"timestamp" timestampFormat:"unix"`
+	LastChangedAt *time.Time `locationName:"lastChangedAt" type:"timestamp"`
 
 	// The ID of the user who last changed the transition state.
 	LastChangedBy *string `locationName:"lastChangedBy" type:"string"`

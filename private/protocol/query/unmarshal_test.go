@@ -192,7 +192,7 @@ type OutputService1TestShapeOutputService1TestCaseOperation1Output struct {
 
 	Str *string `type:"string"`
 
-	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	Timestamp *time.Time `type:"timestamp"`
 
 	TrueBool *bool `type:"boolean"`
 }

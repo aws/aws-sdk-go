@@ -9494,7 +9494,7 @@ type Activation struct {
 	ActivationId *string `type:"string"`
 
 	// The date the activation was created.
-	CreatedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `type:"timestamp"`
 
 	// A name for the managed instance when it is created.
 	DefaultInstanceName *string `type:"string"`
@@ -9503,7 +9503,7 @@ type Activation struct {
 	Description *string `type:"string"`
 
 	// The date when this activation can no longer be used to register managed instances.
-	ExpirationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ExpirationDate *time.Time `type:"timestamp"`
 
 	// Whether or not the activation is expired.
 	Expired *bool `type:"boolean"`
@@ -9705,7 +9705,7 @@ type Association struct {
 	InstanceId *string `type:"string"`
 
 	// The date on which the association was last run.
-	LastExecutionDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastExecutionDate *time.Time `type:"timestamp"`
 
 	// The name of the Systems Manager document.
 	Name *string `type:"string"`
@@ -9805,7 +9805,7 @@ type AssociationDescription struct {
 	AssociationVersion *string `type:"string"`
 
 	// The date when the association was made.
-	Date *time.Time `type:"timestamp" timestampFormat:"unix"`
+	Date *time.Time `type:"timestamp"`
 
 	// The document version.
 	DocumentVersion *string `type:"string"`
@@ -9814,13 +9814,13 @@ type AssociationDescription struct {
 	InstanceId *string `type:"string"`
 
 	// The date on which the association was last run.
-	LastExecutionDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastExecutionDate *time.Time `type:"timestamp"`
 
 	// The last date on which the association was successfully run.
-	LastSuccessfulExecutionDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastSuccessfulExecutionDate *time.Time `type:"timestamp"`
 
 	// The date when the association was last updated.
-	LastUpdateAssociationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastUpdateAssociationDate *time.Time `type:"timestamp"`
 
 	// The name of the Systems Manager document.
 	Name *string `type:"string"`
@@ -10063,7 +10063,7 @@ type AssociationStatus struct {
 	// The date when the status changed.
 	//
 	// Date is a required field
-	Date *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	Date *time.Time `type:"timestamp" required:"true"`
 
 	// The reason for the status.
 	//
@@ -10148,7 +10148,7 @@ type AssociationVersionInfo struct {
 	AssociationVersion *string `type:"string"`
 
 	// The date the association version was created.
-	CreatedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `type:"timestamp"`
 
 	// The version of a Systems Manager document used when the association version
 	// was created.
@@ -10271,10 +10271,10 @@ type AutomationExecution struct {
 	ExecutedBy *string `type:"string"`
 
 	// The time the execution finished.
-	ExecutionEndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ExecutionEndTime *time.Time `type:"timestamp"`
 
 	// The time the execution started.
-	ExecutionStartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ExecutionStartTime *time.Time `type:"timestamp"`
 
 	// A message describing why an execution has failed, if the status is set to
 	// Failed.
@@ -10553,10 +10553,10 @@ type AutomationExecutionMetadata struct {
 
 	// The time the execution finished. This is not populated if the execution is
 	// still in progress.
-	ExecutionEndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ExecutionEndTime *time.Time `type:"timestamp"`
 
 	// The time the execution started.>
-	ExecutionStartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ExecutionStartTime *time.Time `type:"timestamp"`
 
 	// The list of execution outputs as defined in the Automation document.
 	FailureMessage *string `type:"string"`
@@ -10818,7 +10818,7 @@ type Command struct {
 	// If this time is reached and the command has not already started executing,
 	// it will not execute. Calculated based on the ExpiresAfter user input provided
 	// as part of the SendCommand API.
-	ExpiresAfter *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ExpiresAfter *time.Time `type:"timestamp"`
 
 	// The instance IDs against which this command was requested.
 	InstanceIds []*string `type:"list"`
@@ -10857,7 +10857,7 @@ type Command struct {
 	Parameters map[string][]*string `type:"map"`
 
 	// The date and time the command was requested.
-	RequestedDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	RequestedDateTime *time.Time `type:"timestamp"`
 
 	// The IAM service role that Run Command uses to act on your behalf when sending
 	// notifications about command status changes.
@@ -11131,7 +11131,7 @@ type CommandInvocation struct {
 	NotificationConfig *NotificationConfig `type:"structure"`
 
 	// The time and date the request was sent to this instance.
-	RequestedDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	RequestedDateTime *time.Time `type:"timestamp"`
 
 	// The IAM service role that Run Command uses to act on your behalf when sending
 	// notifications about command status changes on a per instance basis.
@@ -11347,10 +11347,10 @@ type CommandPlugin struct {
 
 	// The time the plugin stopped executing. Could stop prematurely if, for example,
 	// a cancel command was sent.
-	ResponseFinishDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ResponseFinishDateTime *time.Time `type:"timestamp"`
 
 	// The time the plugin started executing.
-	ResponseStartDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ResponseStartDateTime *time.Time `type:"timestamp"`
 
 	// The URL for the complete text written by the plugin to stderr. If execution
 	// is not yet complete, then this string is empty.
@@ -11505,7 +11505,7 @@ type ComplianceExecutionSummary struct {
 	// format: yyyy-MM-dd'T'HH:mm:ss'Z'.
 	//
 	// ExecutionTime is a required field
-	ExecutionTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	ExecutionTime *time.Time `type:"timestamp" required:"true"`
 
 	// The type of execution. For example, Command is a valid execution type.
 	ExecutionType *string `type:"string"`
@@ -11899,7 +11899,7 @@ type CreateActivationInput struct {
 
 	// The date by which this activation request should expire. The default value
 	// is 24 hours.
-	ExpirationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ExpirationDate *time.Time `type:"timestamp"`
 
 	// The Amazon Identity and Access Management (IAM) role that you want to assign
 	// to the managed instance.
@@ -16362,7 +16362,7 @@ type DocumentDescription struct {
 	_ struct{} `type:"structure"`
 
 	// The date when the document was created.
-	CreatedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `type:"timestamp"`
 
 	// The default version.
 	DefaultVersion *string `type:"string"`
@@ -16830,7 +16830,7 @@ type DocumentVersionInfo struct {
 	_ struct{} `type:"structure"`
 
 	// The date the document was created.
-	CreatedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `type:"timestamp"`
 
 	// The document format, either JSON or YAML.
 	DocumentFormat *string `type:"string" enum:"DocumentFormat"`
@@ -17969,10 +17969,10 @@ type GetMaintenanceWindowExecutionOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The time the Maintenance Window finished executing.
-	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	EndTime *time.Time `type:"timestamp"`
 
 	// The time the Maintenance Window started executing.
-	StartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	StartTime *time.Time `type:"timestamp"`
 
 	// The status of the Maintenance Window execution.
 	Status *string `type:"string" enum:"MaintenanceWindowExecutionStatus"`
@@ -18175,7 +18175,7 @@ type GetMaintenanceWindowExecutionTaskInvocationOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The time that the task finished executing on the target.
-	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	EndTime *time.Time `type:"timestamp"`
 
 	// The execution ID.
 	ExecutionId *string `type:"string"`
@@ -18191,7 +18191,7 @@ type GetMaintenanceWindowExecutionTaskInvocationOutput struct {
 	Parameters *string `type:"string"`
 
 	// The time that the task started executing on the target.
-	StartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	StartTime *time.Time `type:"timestamp"`
 
 	// The task status for an invocation.
 	Status *string `type:"string" enum:"MaintenanceWindowExecutionStatus"`
@@ -18301,7 +18301,7 @@ type GetMaintenanceWindowExecutionTaskOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The time the task execution completed.
-	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	EndTime *time.Time `type:"timestamp"`
 
 	// The defined maximum number of task executions that could be run in parallel.
 	MaxConcurrency *string `min:"1" type:"string"`
@@ -18317,7 +18317,7 @@ type GetMaintenanceWindowExecutionTaskOutput struct {
 	ServiceRole *string `type:"string"`
 
 	// The time the task execution started.
-	StartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	StartTime *time.Time `type:"timestamp"`
 
 	// The status of the task.
 	Status *string `type:"string" enum:"MaintenanceWindowExecutionStatus"`
@@ -18486,7 +18486,7 @@ type GetMaintenanceWindowOutput struct {
 	AllowUnassociatedTargets *bool `type:"boolean"`
 
 	// The date the Maintenance Window was created.
-	CreatedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `type:"timestamp"`
 
 	// The number of hours before the end of the Maintenance Window that Systems
 	// Manager stops scheduling new tasks for execution.
@@ -18502,7 +18502,7 @@ type GetMaintenanceWindowOutput struct {
 	Enabled *bool `type:"boolean"`
 
 	// The date the Maintenance Window was last modified.
-	ModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ModifiedDate *time.Time `type:"timestamp"`
 
 	// The name of the Maintenance Window.
 	Name *string `min:"3" type:"string"`
@@ -19353,7 +19353,7 @@ type GetPatchBaselineOutput struct {
 	BaselineId *string `min:"20" type:"string"`
 
 	// The date the patch baseline was created.
-	CreatedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `type:"timestamp"`
 
 	// A description of the patch baseline.
 	Description *string `min:"1" type:"string"`
@@ -19362,7 +19362,7 @@ type GetPatchBaselineOutput struct {
 	GlobalFilters *PatchFilterGroup `type:"structure"`
 
 	// The date the patch baseline was last modified.
-	ModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ModifiedDate *time.Time `type:"timestamp"`
 
 	// The name of the patch baseline.
 	Name *string `min:"3" type:"string"`
@@ -19634,7 +19634,7 @@ type InstanceAssociationStatusInfo struct {
 	ErrorCode *string `type:"string"`
 
 	// The date the instance association executed.
-	ExecutionDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ExecutionDate *time.Time `type:"timestamp"`
 
 	// Summary information about association execution.
 	ExecutionSummary *string `min:"1" type:"string"`
@@ -19769,13 +19769,13 @@ type InstanceInformation struct {
 	IsLatestVersion *bool `type:"boolean"`
 
 	// The date the association was last executed.
-	LastAssociationExecutionDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastAssociationExecutionDate *time.Time `type:"timestamp"`
 
 	// The date and time when agent last pinged Systems Manager service.
-	LastPingDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastPingDateTime *time.Time `type:"timestamp"`
 
 	// The last date the association was successfully run.
-	LastSuccessfulAssociationExecutionDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastSuccessfulAssociationExecutionDate *time.Time `type:"timestamp"`
 
 	// The name of the managed instance.
 	Name *string `type:"string"`
@@ -19793,7 +19793,7 @@ type InstanceInformation struct {
 	PlatformVersion *string `type:"string"`
 
 	// The date the server or VM was registered with AWS as a managed instance.
-	RegistrationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	RegistrationDate *time.Time `type:"timestamp"`
 
 	// The type of instance. Instances are either EC2 instances or managed instances.
 	ResourceType *string `type:"string" enum:"ResourceType"`
@@ -20090,12 +20090,12 @@ type InstancePatchState struct {
 	// The time the most recent patching operation completed on the instance.
 	//
 	// OperationEndTime is a required field
-	OperationEndTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	OperationEndTime *time.Time `type:"timestamp" required:"true"`
 
 	// The time the most recent patching operation was started on the instance.
 	//
 	// OperationStartTime is a required field
-	OperationStartTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	OperationStartTime *time.Time `type:"timestamp" required:"true"`
 
 	// Placeholder information, this field will always be empty in the current release
 	// of the service.
@@ -22197,10 +22197,10 @@ type MaintenanceWindowExecution struct {
 	_ struct{} `type:"structure"`
 
 	// The time the execution finished.
-	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	EndTime *time.Time `type:"timestamp"`
 
 	// The time the execution started.
-	StartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	StartTime *time.Time `type:"timestamp"`
 
 	// The status of the execution.
 	Status *string `type:"string" enum:"MaintenanceWindowExecutionStatus"`
@@ -22268,10 +22268,10 @@ type MaintenanceWindowExecutionTaskIdentity struct {
 	_ struct{} `type:"structure"`
 
 	// The time the task execution finished.
-	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	EndTime *time.Time `type:"timestamp"`
 
 	// The time the task execution started.
-	StartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	StartTime *time.Time `type:"timestamp"`
 
 	// The status of the task execution.
 	Status *string `type:"string" enum:"MaintenanceWindowExecutionStatus"`
@@ -22358,7 +22358,7 @@ type MaintenanceWindowExecutionTaskInvocationIdentity struct {
 	_ struct{} `type:"structure"`
 
 	// The time the invocation finished.
-	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	EndTime *time.Time `type:"timestamp"`
 
 	// The ID of the action performed in the service that actually handled the task
 	// invocation. If the task type is RUN_COMMAND, this value is the command ID.
@@ -22376,7 +22376,7 @@ type MaintenanceWindowExecutionTaskInvocationIdentity struct {
 	Parameters *string `type:"string"`
 
 	// The time the invocation started.
-	StartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	StartTime *time.Time `type:"timestamp"`
 
 	// The status of the task invocation.
 	Status *string `type:"string" enum:"MaintenanceWindowExecutionStatus"`
@@ -23402,7 +23402,7 @@ type ParameterHistory struct {
 	KeyId *string `min:"1" type:"string"`
 
 	// Date the parameter was last changed or updated.
-	LastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModifiedDate *time.Time `type:"timestamp"`
 
 	// Amazon Resource Name (ARN) of the AWS user who last changed the parameter.
 	LastModifiedUser *string `type:"string"`
@@ -23502,7 +23502,7 @@ type ParameterMetadata struct {
 	KeyId *string `min:"1" type:"string"`
 
 	// Date the parameter was last changed or updated.
-	LastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModifiedDate *time.Time `type:"timestamp"`
 
 	// Amazon Resource Name (ARN) of the AWS user who last changed the parameter.
 	LastModifiedUser *string `type:"string"`
@@ -23738,7 +23738,7 @@ type Patch struct {
 	ProductFamily *string `type:"string"`
 
 	// The date the patch was released.
-	ReleaseDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ReleaseDate *time.Time `type:"timestamp"`
 
 	// The title of the patch.
 	Title *string `type:"string"`
@@ -23914,7 +23914,7 @@ type PatchComplianceData struct {
 	// operating systems provide this level of information.
 	//
 	// InstalledTime is a required field
-	InstalledTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	InstalledTime *time.Time `type:"timestamp" required:"true"`
 
 	// The operating system-specific ID of the patch.
 	//
@@ -24300,7 +24300,7 @@ type PatchStatus struct {
 	_ struct{} `type:"structure"`
 
 	// The date the patch was approved (or will be approved if the status is PENDING_APPROVAL).
-	ApprovalDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ApprovalDate *time.Time `type:"timestamp"`
 
 	// The compliance severity level for a patch.
 	ComplianceLevel *string `type:"string" enum:"PatchComplianceLevel"`
@@ -25506,16 +25506,16 @@ type ResourceDataSyncItem struct {
 	LastStatus *string `type:"string" enum:"LastResourceDataSyncStatus"`
 
 	// The last time the sync operations returned a status of SUCCESSFUL (UTC).
-	LastSuccessfulSyncTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastSuccessfulSyncTime *time.Time `type:"timestamp"`
 
 	// The last time the configuration attempted to sync (UTC).
-	LastSyncTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastSyncTime *time.Time `type:"timestamp"`
 
 	// Configuration information for the target Amazon S3 bucket.
 	S3Destination *ResourceDataSyncS3Destination `type:"structure"`
 
 	// The date and time the configuration was created (UTC).
-	SyncCreatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	SyncCreatedTime *time.Time `type:"timestamp"`
 
 	// The name of the Resource Data Sync.
 	SyncName *string `min:"1" type:"string"`
@@ -26396,11 +26396,11 @@ type StepExecution struct {
 
 	// If a step has finished execution, this contains the time the execution ended.
 	// If the step has not yet concluded, this field is not populated.
-	ExecutionEndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ExecutionEndTime *time.Time `type:"timestamp"`
 
 	// If a step has begun execution, this contains the time the step started. If
 	// the step is in Pending status, this field is not populated.
-	ExecutionStartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ExecutionStartTime *time.Time `type:"timestamp"`
 
 	// Information about the Automation failure.
 	FailureDetails *FailureDetails `type:"structure"`
@@ -28202,7 +28202,7 @@ type UpdatePatchBaselineOutput struct {
 	BaselineId *string `min:"20" type:"string"`
 
 	// The date when the patch baseline was created.
-	CreatedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedDate *time.Time `type:"timestamp"`
 
 	// A description of the Patch Baseline.
 	Description *string `min:"1" type:"string"`
@@ -28211,7 +28211,7 @@ type UpdatePatchBaselineOutput struct {
 	GlobalFilters *PatchFilterGroup `type:"structure"`
 
 	// The date when the patch baseline was last modified.
-	ModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ModifiedDate *time.Time `type:"timestamp"`
 
 	// The name of the patch baseline.
 	Name *string `min:"3" type:"string"`

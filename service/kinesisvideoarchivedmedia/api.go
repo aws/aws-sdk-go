@@ -223,10 +223,10 @@ type Fragment struct {
 	FragmentSizeInBytes *int64 `type:"long"`
 
 	// The time stamp from the producer corresponding to the fragment.
-	ProducerTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ProducerTimestamp *time.Time `type:"timestamp"`
 
 	// The time stamp from the AWS server corresponding to the fragment.
-	ServerTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ServerTimestamp *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -565,12 +565,12 @@ type TimestampRange struct {
 	// The ending time stamp in the range of time stamps for which to return fragments.
 	//
 	// EndTimestamp is a required field
-	EndTimestamp *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	EndTimestamp *time.Time `type:"timestamp" required:"true"`
 
 	// The starting time stamp in the range of time stamps for which to return fragments.
 	//
 	// StartTimestamp is a required field
-	StartTimestamp *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	StartTimestamp *time.Time `type:"timestamp" required:"true"`
 }
 
 // String returns the string representation

@@ -13648,7 +13648,7 @@ type Directory struct {
 	_ struct{} `type:"structure"`
 
 	// The date and time when the directory was created.
-	CreationDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationDateTime *time.Time `type:"timestamp"`
 
 	// The Amazon Resource Name (ARN) that is associated with the directory. For
 	// more information, see arns.
@@ -17654,7 +17654,7 @@ type TypedAttributeValue struct {
 	BooleanValue *bool `type:"boolean"`
 
 	// A date and time value.
-	DatetimeValue *time.Time `type:"timestamp" timestampFormat:"unix"`
+	DatetimeValue *time.Time `type:"timestamp"`
 
 	// A number data value.
 	NumberValue *string `type:"string"`

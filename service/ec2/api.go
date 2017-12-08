@@ -24810,7 +24810,7 @@ type BundleTask struct {
 	Progress *string `locationName:"progress" type:"string"`
 
 	// The time this task started.
-	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
+	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 
 	// The state of the task.
 	State *string `locationName:"state" type:"string" enum:"BundleTaskState"`
@@ -24819,7 +24819,7 @@ type BundleTask struct {
 	Storage *Storage `locationName:"storage" type:"structure"`
 
 	// The time of the most recent update for the task.
-	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" timestampFormat:"iso8601"`
+	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp"`
 }
 
 // String returns the string representation
@@ -25827,13 +25827,13 @@ type ClientData struct {
 	Comment *string `type:"string"`
 
 	// The time that the disk upload ends.
-	UploadEnd *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	UploadEnd *time.Time `type:"timestamp"`
 
 	// The size of the uploaded disk image, in GiB.
 	UploadSize *float64 `type:"double"`
 
 	// The time that the disk upload starts.
-	UploadStart *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	UploadStart *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -39510,7 +39510,7 @@ type DescribeSpotFleetRequestHistoryInput struct {
 	// The starting date and time for the events, in UTC format (for example, YYYY-MM-DDTHH:MM:SSZ).
 	//
 	// StartTime is a required field
-	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" required:"true"`
 }
 
 // String returns the string representation
@@ -39591,7 +39591,7 @@ type DescribeSpotFleetRequestHistoryOutput struct {
 	// If nextToken indicates that there are more results, this value is not present.
 	//
 	// LastEvaluatedTime is a required field
-	LastEvaluatedTime *time.Time `locationName:"lastEvaluatedTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	LastEvaluatedTime *time.Time `locationName:"lastEvaluatedTime" type:"timestamp" required:"true"`
 
 	// The token required to retrieve the next set of results. This value is null
 	// when there are no more results to return.
@@ -39605,7 +39605,7 @@ type DescribeSpotFleetRequestHistoryOutput struct {
 	// The starting date and time for the events, in UTC format (for example, YYYY-MM-DDTHH:MM:SSZ).
 	//
 	// StartTime is a required field
-	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" required:"true"`
 }
 
 // String returns the string representation
@@ -39938,7 +39938,7 @@ type DescribeSpotPriceHistoryInput struct {
 
 	// The date and time, up to the current date, from which to stop retrieving
 	// the price history data, in UTC format (for example, YYYY-MM-DDTHH:MM:SSZ).
-	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
+	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
 
 	// One or more filters.
 	//
@@ -39975,7 +39975,7 @@ type DescribeSpotPriceHistoryInput struct {
 
 	// The date and time, up to the past 90 days, from which to start retrieving
 	// the price history data, in UTC format (for example, YYYY-MM-DDTHH:MM:SSZ).
-	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
+	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 }
 
 // String returns the string representation
@@ -43761,7 +43761,7 @@ type EbsInstanceBlockDevice struct {
 	_ struct{} `type:"structure"`
 
 	// The time stamp when the attachment initiated.
-	AttachTime *time.Time `locationName:"attachTime" type:"timestamp" timestampFormat:"iso8601"`
+	AttachTime *time.Time `locationName:"attachTime" type:"timestamp"`
 
 	// Indicates whether the volume is deleted on instance termination.
 	DeleteOnTermination *bool `locationName:"deleteOnTermination" type:"boolean"`
@@ -44735,7 +44735,7 @@ type FlowLog struct {
 	_ struct{} `type:"structure"`
 
 	// The date and time the flow log was created.
-	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601"`
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
 	// Information about the error that occurred. Rate limited indicates that CloudWatch
 	// logs throttling has been applied for one or more network interfaces, or that
@@ -44837,7 +44837,7 @@ type FpgaImage struct {
 	_ struct{} `type:"structure"`
 
 	// The date and time the AFI was created.
-	CreateTime *time.Time `locationName:"createTime" type:"timestamp" timestampFormat:"iso8601"`
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp"`
 
 	// The description of the AFI.
 	Description *string `locationName:"description" type:"string"`
@@ -44876,7 +44876,7 @@ type FpgaImage struct {
 	Tags []*Tag `locationName:"tags" locationNameList:"item" type:"list"`
 
 	// The time of the most recent update to the AFI.
-	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" timestampFormat:"iso8601"`
+	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp"`
 }
 
 // String returns the string representation
@@ -45142,7 +45142,7 @@ type GetConsoleOutputOutput struct {
 	Output *string `locationName:"output" type:"string"`
 
 	// The time the output was last updated.
-	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" timestampFormat:"iso8601"`
+	Timestamp *time.Time `locationName:"timestamp" type:"timestamp"`
 }
 
 // String returns the string representation
@@ -45516,7 +45516,7 @@ type GetPasswordDataOutput struct {
 	PasswordData *string `locationName:"passwordData" type:"string"`
 
 	// The time the data was last updated.
-	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" timestampFormat:"iso8601"`
+	Timestamp *time.Time `locationName:"timestamp" type:"timestamp"`
 }
 
 // String returns the string representation
@@ -45631,7 +45631,7 @@ type GetReservedInstancesExchangeQuoteOutput struct {
 	IsValidExchange *bool `locationName:"isValidExchange" type:"boolean"`
 
 	// The new end date of the reservation term.
-	OutputReservedInstancesWillExpireAt *time.Time `locationName:"outputReservedInstancesWillExpireAt" type:"timestamp" timestampFormat:"iso8601"`
+	OutputReservedInstancesWillExpireAt *time.Time `locationName:"outputReservedInstancesWillExpireAt" type:"timestamp"`
 
 	// The total true upfront charge for the exchange.
 	PaymentDue *string `locationName:"paymentDue" type:"string"`
@@ -45777,7 +45777,7 @@ type HistoryRecord struct {
 	// The date and time of the event, in UTC format (for example, YYYY-MM-DDTHH:MM:SSZ).
 	//
 	// Timestamp is a required field
-	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" required:"true"`
 }
 
 // String returns the string representation
@@ -46090,7 +46090,7 @@ type HostReservation struct {
 	Duration *int64 `locationName:"duration" type:"integer"`
 
 	// The date and time that the reservation ends.
-	End *time.Time `locationName:"end" type:"timestamp" timestampFormat:"iso8601"`
+	End *time.Time `locationName:"end" type:"timestamp"`
 
 	// The IDs of the Dedicated Hosts associated with the reservation.
 	HostIdSet []*string `locationName:"hostIdSet" locationNameList:"item" type:"list"`
@@ -46114,7 +46114,7 @@ type HostReservation struct {
 	PaymentOption *string `locationName:"paymentOption" type:"string" enum:"PaymentOption"`
 
 	// The date and time that the reservation started.
-	Start *time.Time `locationName:"start" type:"timestamp" timestampFormat:"iso8601"`
+	Start *time.Time `locationName:"start" type:"timestamp"`
 
 	// The state of the reservation.
 	State *string `locationName:"state" type:"string" enum:"ReservationState"`
@@ -46263,7 +46263,7 @@ type IamInstanceProfileAssociation struct {
 	State *string `locationName:"state" type:"string" enum:"IamInstanceProfileAssociationState"`
 
 	// The time the IAM instance profile was associated with the instance.
-	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" timestampFormat:"iso8601"`
+	Timestamp *time.Time `locationName:"timestamp" type:"timestamp"`
 }
 
 // String returns the string representation
@@ -46382,7 +46382,7 @@ type IdFormat struct {
 	// The date in UTC at which you are permanently switched over to using longer
 	// IDs. If a deadline is not yet available for this resource type, this field
 	// is not returned.
-	Deadline *time.Time `locationName:"deadline" type:"timestamp" timestampFormat:"iso8601"`
+	Deadline *time.Time `locationName:"deadline" type:"timestamp"`
 
 	// The type of resource.
 	Resource *string `locationName:"resource" type:"string"`
@@ -47977,7 +47977,7 @@ type Instance struct {
 	KeyName *string `locationName:"keyName" type:"string"`
 
 	// The time the instance was launched.
-	LaunchTime *time.Time `locationName:"launchTime" type:"timestamp" timestampFormat:"iso8601"`
+	LaunchTime *time.Time `locationName:"launchTime" type:"timestamp"`
 
 	// The monitoring for the instance.
 	Monitoring *Monitoring `locationName:"monitoring" type:"structure"`
@@ -48897,7 +48897,7 @@ type InstanceNetworkInterfaceAttachment struct {
 	_ struct{} `type:"structure"`
 
 	// The time stamp when the attachment initiated.
-	AttachTime *time.Time `locationName:"attachTime" type:"timestamp" timestampFormat:"iso8601"`
+	AttachTime *time.Time `locationName:"attachTime" type:"timestamp"`
 
 	// The ID of the network interface attachment.
 	AttachmentId *string `locationName:"attachmentId" type:"string"`
@@ -49346,7 +49346,7 @@ type InstanceStatusDetails struct {
 
 	// The time when a status check failed. For an instance that was launched and
 	// impaired, this is the time when the instance was launched.
-	ImpairedSince *time.Time `locationName:"impairedSince" type:"timestamp" timestampFormat:"iso8601"`
+	ImpairedSince *time.Time `locationName:"impairedSince" type:"timestamp"`
 
 	// The type of instance status.
 	Name *string `locationName:"name" type:"string" enum:"StatusName"`
@@ -49399,10 +49399,10 @@ type InstanceStatusEvent struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The latest scheduled end time for the event.
-	NotAfter *time.Time `locationName:"notAfter" type:"timestamp" timestampFormat:"iso8601"`
+	NotAfter *time.Time `locationName:"notAfter" type:"timestamp"`
 
 	// The earliest scheduled start time for the event.
-	NotBefore *time.Time `locationName:"notBefore" type:"timestamp" timestampFormat:"iso8601"`
+	NotBefore *time.Time `locationName:"notBefore" type:"timestamp"`
 }
 
 // String returns the string representation
@@ -50021,7 +50021,7 @@ type LaunchTemplate struct {
 	_ struct{} `type:"structure"`
 
 	// The time launch template was created.
-	CreateTime *time.Time `locationName:"createTime" type:"timestamp" timestampFormat:"iso8601"`
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp"`
 
 	// The principal that created the launch template.
 	CreatedBy *string `locationName:"createdBy" type:"string"`
@@ -51107,7 +51107,7 @@ type LaunchTemplateSpotMarketOptions struct {
 	// active until all instances launch, the request is canceled, or this date
 	// is reached. If the request is persistent, it remains active until it is canceled
 	// or this date and time is reached.
-	ValidUntil *time.Time `locationName:"validUntil" type:"timestamp" timestampFormat:"iso8601"`
+	ValidUntil *time.Time `locationName:"validUntil" type:"timestamp"`
 }
 
 // String returns the string representation
@@ -51174,7 +51174,7 @@ type LaunchTemplateSpotMarketOptionsRequest struct {
 	// is reached. If the request is persistent, it remains active until it is canceled
 	// or this date and time is reached. The default end date is 7 days from the
 	// current date.
-	ValidUntil *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	ValidUntil *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -51292,7 +51292,7 @@ type LaunchTemplateVersion struct {
 	_ struct{} `type:"structure"`
 
 	// The time the version was created.
-	CreateTime *time.Time `locationName:"createTime" type:"timestamp" timestampFormat:"iso8601"`
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp"`
 
 	// The principal that created the version.
 	CreatedBy *string `locationName:"createdBy" type:"string"`
@@ -54283,10 +54283,10 @@ type NatGateway struct {
 	_ struct{} `type:"structure"`
 
 	// The date and time the NAT gateway was created.
-	CreateTime *time.Time `locationName:"createTime" type:"timestamp" timestampFormat:"iso8601"`
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp"`
 
 	// The date and time the NAT gateway was deleted, if applicable.
-	DeleteTime *time.Time `locationName:"deleteTime" type:"timestamp" timestampFormat:"iso8601"`
+	DeleteTime *time.Time `locationName:"deleteTime" type:"timestamp"`
 
 	// If the NAT gateway could not be created, specifies the error code for the
 	// failure. (InsufficientFreeAddressesInSubnet | Gateway.NotAttached | InvalidAllocationID.NotFound
@@ -54953,7 +54953,7 @@ type NetworkInterfaceAttachment struct {
 	_ struct{} `type:"structure"`
 
 	// The timestamp indicating when the attachment initiated.
-	AttachTime *time.Time `locationName:"attachTime" type:"timestamp" timestampFormat:"iso8601"`
+	AttachTime *time.Time `locationName:"attachTime" type:"timestamp"`
 
 	// The ID of the network interface attachment.
 	AttachmentId *string `locationName:"attachmentId" type:"string"`
@@ -55912,7 +55912,7 @@ type ProvisionedBandwidth struct {
 	// Reserved. If you need to sustain traffic greater than the documented limits
 	// (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html),
 	// contact us through the Support Center (https://console.aws.amazon.com/support/home?).
-	ProvisionTime *time.Time `locationName:"provisionTime" type:"timestamp" timestampFormat:"iso8601"`
+	ProvisionTime *time.Time `locationName:"provisionTime" type:"timestamp"`
 
 	// Reserved. If you need to sustain traffic greater than the documented limits
 	// (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html),
@@ -55922,7 +55922,7 @@ type ProvisionedBandwidth struct {
 	// Reserved. If you need to sustain traffic greater than the documented limits
 	// (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html),
 	// contact us through the Support Center (https://console.aws.amazon.com/support/home?).
-	RequestTime *time.Time `locationName:"requestTime" type:"timestamp" timestampFormat:"iso8601"`
+	RequestTime *time.Time `locationName:"requestTime" type:"timestamp"`
 
 	// Reserved. If you need to sustain traffic greater than the documented limits
 	// (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html),
@@ -57695,7 +57695,7 @@ type ReportInstanceStatusInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The time at which the reported instance health state ended.
-	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
+	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
 
 	// One or more instances.
 	//
@@ -57729,7 +57729,7 @@ type ReportInstanceStatusInput struct {
 	ReasonCodes []*string `locationName:"reasonCode" locationNameList:"item" type:"list" required:"true"`
 
 	// The time at which the reported instance health state began.
-	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
+	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 
 	// The status of all instances listed.
 	//
@@ -58257,14 +58257,14 @@ type RequestSpotInstancesInput struct {
 	// launch, the request expires, or the request is canceled. If the request is
 	// persistent, the request becomes active at this date and time and remains
 	// active until it expires or is canceled.
-	ValidFrom *time.Time `locationName:"validFrom" type:"timestamp" timestampFormat:"iso8601"`
+	ValidFrom *time.Time `locationName:"validFrom" type:"timestamp"`
 
 	// The end date of the request. If this is a one-time request, the request remains
 	// active until all instances launch, the request is canceled, or this date
 	// is reached. If the request is persistent, it remains active until it is canceled
 	// or this date is reached. The default end date is 7 days from the current
 	// date.
-	ValidUntil *time.Time `locationName:"validUntil" type:"timestamp" timestampFormat:"iso8601"`
+	ValidUntil *time.Time `locationName:"validUntil" type:"timestamp"`
 }
 
 // String returns the string representation
@@ -58782,7 +58782,7 @@ type ReservedInstances struct {
 	Duration *int64 `locationName:"duration" type:"long"`
 
 	// The time when the Reserved Instance expires.
-	End *time.Time `locationName:"end" type:"timestamp" timestampFormat:"iso8601"`
+	End *time.Time `locationName:"end" type:"timestamp"`
 
 	// The purchase price of the Reserved Instance.
 	FixedPrice *float64 `locationName:"fixedPrice" type:"float"`
@@ -58815,7 +58815,7 @@ type ReservedInstances struct {
 	Scope *string `locationName:"scope" type:"string" enum:"scope"`
 
 	// The date and time the Reserved Instance started.
-	Start *time.Time `locationName:"start" type:"timestamp" timestampFormat:"iso8601"`
+	Start *time.Time `locationName:"start" type:"timestamp"`
 
 	// The state of the Reserved Instance purchase.
 	State *string `locationName:"state" type:"string" enum:"ReservedInstanceState"`
@@ -59043,7 +59043,7 @@ type ReservedInstancesListing struct {
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
 	// The time the listing was created.
-	CreateDate *time.Time `locationName:"createDate" type:"timestamp" timestampFormat:"iso8601"`
+	CreateDate *time.Time `locationName:"createDate" type:"timestamp"`
 
 	// The number of instances in this state.
 	InstanceCounts []*InstanceCount `locationName:"instanceCounts" locationNameList:"item" type:"list"`
@@ -59068,7 +59068,7 @@ type ReservedInstancesListing struct {
 	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 
 	// The last modified timestamp of the listing.
-	UpdateDate *time.Time `locationName:"updateDate" type:"timestamp" timestampFormat:"iso8601"`
+	UpdateDate *time.Time `locationName:"updateDate" type:"timestamp"`
 }
 
 // String returns the string representation
@@ -59151,10 +59151,10 @@ type ReservedInstancesModification struct {
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
 	// The time when the modification request was created.
-	CreateDate *time.Time `locationName:"createDate" type:"timestamp" timestampFormat:"iso8601"`
+	CreateDate *time.Time `locationName:"createDate" type:"timestamp"`
 
 	// The time for the modification to become effective.
-	EffectiveDate *time.Time `locationName:"effectiveDate" type:"timestamp" timestampFormat:"iso8601"`
+	EffectiveDate *time.Time `locationName:"effectiveDate" type:"timestamp"`
 
 	// Contains target configurations along with their corresponding new Reserved
 	// Instance IDs.
@@ -59173,7 +59173,7 @@ type ReservedInstancesModification struct {
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
 	// The time when the modification request was last updated.
-	UpdateDate *time.Time `locationName:"updateDate" type:"timestamp" timestampFormat:"iso8601"`
+	UpdateDate *time.Time `locationName:"updateDate" type:"timestamp"`
 }
 
 // String returns the string representation
@@ -61351,7 +61351,7 @@ type ScheduledInstance struct {
 	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
 
 	// The date when the Scheduled Instance was purchased.
-	CreateDate *time.Time `locationName:"createDate" type:"timestamp" timestampFormat:"iso8601"`
+	CreateDate *time.Time `locationName:"createDate" type:"timestamp"`
 
 	// The hourly price for a single instance.
 	HourlyPrice *string `locationName:"hourlyPrice" type:"string"`
@@ -61366,13 +61366,13 @@ type ScheduledInstance struct {
 	NetworkPlatform *string `locationName:"networkPlatform" type:"string"`
 
 	// The time for the next schedule to start.
-	NextSlotStartTime *time.Time `locationName:"nextSlotStartTime" type:"timestamp" timestampFormat:"iso8601"`
+	NextSlotStartTime *time.Time `locationName:"nextSlotStartTime" type:"timestamp"`
 
 	// The platform (Linux/UNIX or Windows).
 	Platform *string `locationName:"platform" type:"string"`
 
 	// The time that the previous schedule ended or will end.
-	PreviousSlotEndTime *time.Time `locationName:"previousSlotEndTime" type:"timestamp" timestampFormat:"iso8601"`
+	PreviousSlotEndTime *time.Time `locationName:"previousSlotEndTime" type:"timestamp"`
 
 	// The schedule recurrence.
 	Recurrence *ScheduledInstanceRecurrence `locationName:"recurrence" type:"structure"`
@@ -61384,10 +61384,10 @@ type ScheduledInstance struct {
 	SlotDurationInHours *int64 `locationName:"slotDurationInHours" type:"integer"`
 
 	// The end date for the Scheduled Instance.
-	TermEndDate *time.Time `locationName:"termEndDate" type:"timestamp" timestampFormat:"iso8601"`
+	TermEndDate *time.Time `locationName:"termEndDate" type:"timestamp"`
 
 	// The start date for the Scheduled Instance.
-	TermStartDate *time.Time `locationName:"termStartDate" type:"timestamp" timestampFormat:"iso8601"`
+	TermStartDate *time.Time `locationName:"termStartDate" type:"timestamp"`
 
 	// The total number of hours for a single instance for the entire term.
 	TotalScheduledInstanceHours *int64 `locationName:"totalScheduledInstanceHours" type:"integer"`
@@ -61505,7 +61505,7 @@ type ScheduledInstanceAvailability struct {
 	AvailableInstanceCount *int64 `locationName:"availableInstanceCount" type:"integer"`
 
 	// The time period for the first schedule to start.
-	FirstSlotStartTime *time.Time `locationName:"firstSlotStartTime" type:"timestamp" timestampFormat:"iso8601"`
+	FirstSlotStartTime *time.Time `locationName:"firstSlotStartTime" type:"timestamp"`
 
 	// The hourly price for a single instance.
 	HourlyPrice *string `locationName:"hourlyPrice" type:"string"`
@@ -62751,14 +62751,14 @@ type SlotDateTimeRangeRequest struct {
 	// The earliest date and time, in UTC, for the Scheduled Instance to start.
 	//
 	// EarliestTime is a required field
-	EarliestTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	EarliestTime *time.Time `type:"timestamp" required:"true"`
 
 	// The latest date and time, in UTC, for the Scheduled Instance to start. This
 	// value must be later than or equal to the earliest date and at most three
 	// months in the future.
 	//
 	// LatestTime is a required field
-	LatestTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	LatestTime *time.Time `type:"timestamp" required:"true"`
 }
 
 // String returns the string representation
@@ -62805,10 +62805,10 @@ type SlotStartTimeRangeRequest struct {
 	_ struct{} `type:"structure"`
 
 	// The earliest date and time, in UTC, for the Scheduled Instance to start.
-	EarliestTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	EarliestTime *time.Time `type:"timestamp"`
 
 	// The latest date and time, in UTC, for the Scheduled Instance to start.
-	LatestTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	LatestTime *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -62873,7 +62873,7 @@ type Snapshot struct {
 	SnapshotId *string `locationName:"snapshotId" type:"string"`
 
 	// The time stamp when the snapshot was initiated.
-	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
+	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 
 	// The snapshot state.
 	State *string `locationName:"status" type:"string" enum:"SnapshotState"`
@@ -63574,7 +63574,7 @@ type SpotFleetRequestConfig struct {
 	// The creation date and time of the request.
 	//
 	// CreateTime is a required field
-	CreateTime *time.Time `locationName:"createTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
 
 	// The configuration of the Spot Fleet request.
 	//
@@ -63712,12 +63712,12 @@ type SpotFleetRequestConfigData struct {
 
 	// The start date and time of the request, in UTC format (for example, YYYY-MM-DDTHH:MM:SSZ).
 	// The default is to start fulfilling the request immediately.
-	ValidFrom *time.Time `locationName:"validFrom" type:"timestamp" timestampFormat:"iso8601"`
+	ValidFrom *time.Time `locationName:"validFrom" type:"timestamp"`
 
 	// The end date and time of the request, in UTC format (for example, YYYY-MM-DDTHH:MM:SSZ).
 	// At this point, no new Spot Instance requests are placed or able to fulfill
 	// the request. The default end date is 7 days from the current date.
-	ValidUntil *time.Time `locationName:"validUntil" type:"timestamp" timestampFormat:"iso8601"`
+	ValidUntil *time.Time `locationName:"validUntil" type:"timestamp"`
 }
 
 // String returns the string representation
@@ -63921,7 +63921,7 @@ type SpotInstanceRequest struct {
 
 	// The date and time when the Spot Instance request was created, in UTC format
 	// (for example, YYYY-MM-DDTHH:MM:SSZ).
-	CreateTime *time.Time `locationName:"createTime" type:"timestamp" timestampFormat:"iso8601"`
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp"`
 
 	// The fault codes for the Spot Instance request, if any.
 	Fault *SpotInstanceStateFault `locationName:"fault" type:"structure"`
@@ -63969,14 +63969,14 @@ type SpotInstanceRequest struct {
 
 	// The start date of the request, in UTC format (for example, YYYY-MM-DDTHH:MM:SSZ).
 	// The request becomes active at this date and time.
-	ValidFrom *time.Time `locationName:"validFrom" type:"timestamp" timestampFormat:"iso8601"`
+	ValidFrom *time.Time `locationName:"validFrom" type:"timestamp"`
 
 	// The end date of the request, in UTC format (for example, YYYY-MM-DDTHH:MM:SSZ).
 	// If this is a one-time request, it remains active until all instances launch,
 	// the request is canceled, or this date is reached. If the request is persistent,
 	// it remains active until it is canceled or this date is reached. The default
 	// end date is 7 days from the current date.
-	ValidUntil *time.Time `locationName:"validUntil" type:"timestamp" timestampFormat:"iso8601"`
+	ValidUntil *time.Time `locationName:"validUntil" type:"timestamp"`
 }
 
 // String returns the string representation
@@ -64151,7 +64151,7 @@ type SpotInstanceStatus struct {
 
 	// The date and time of the most recent status update, in UTC format (for example,
 	// YYYY-MM-DDTHH:MM:SSZ).
-	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" timestampFormat:"iso8601"`
+	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp"`
 }
 
 // String returns the string representation
@@ -64207,7 +64207,7 @@ type SpotMarketOptions struct {
 	// is reached. If the request is persistent, it remains active until it is canceled
 	// or this date and time is reached. The default end date is 7 days from the
 	// current date.
-	ValidUntil *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	ValidUntil *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -64317,7 +64317,7 @@ type SpotPrice struct {
 	SpotPrice *string `locationName:"spotPrice" type:"string"`
 
 	// The date and time the request was created, in UTC format (for example, YYYY-MM-DDTHH:MM:SSZ).
-	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" timestampFormat:"iso8601"`
+	Timestamp *time.Time `locationName:"timestamp" type:"timestamp"`
 }
 
 // String returns the string representation
@@ -66217,7 +66217,7 @@ type VgwTelemetry struct {
 	AcceptedRouteCount *int64 `locationName:"acceptedRouteCount" type:"integer"`
 
 	// The date and time of the last change in status.
-	LastStatusChange *time.Time `locationName:"lastStatusChange" type:"timestamp" timestampFormat:"iso8601"`
+	LastStatusChange *time.Time `locationName:"lastStatusChange" type:"timestamp"`
 
 	// The Internet-routable IP address of the virtual private gateway's outside
 	// interface.
@@ -66282,7 +66282,7 @@ type Volume struct {
 	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
 
 	// The time stamp when volume creation was initiated.
-	CreateTime *time.Time `locationName:"createTime" type:"timestamp" timestampFormat:"iso8601"`
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp"`
 
 	// Indicates whether the volume will be encrypted.
 	Encrypted *bool `locationName:"encrypted" type:"boolean"`
@@ -66415,7 +66415,7 @@ type VolumeAttachment struct {
 	_ struct{} `type:"structure"`
 
 	// The time stamp when the attachment initiated.
-	AttachTime *time.Time `locationName:"attachTime" type:"timestamp" timestampFormat:"iso8601"`
+	AttachTime *time.Time `locationName:"attachTime" type:"timestamp"`
 
 	// Indicates whether the EBS volume is deleted on instance termination.
 	DeleteOnTermination *bool `locationName:"deleteOnTermination" type:"boolean"`
@@ -66527,7 +66527,7 @@ type VolumeModification struct {
 	_ struct{} `type:"structure"`
 
 	// Modification completion or failure time.
-	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
+	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
 
 	// Current state of modification. Modification state is null for unmodified
 	// volumes.
@@ -66546,7 +66546,7 @@ type VolumeModification struct {
 	Progress *int64 `locationName:"progress" type:"long"`
 
 	// Modification start time
-	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
+	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 
 	// Generic status message on modification progress or failure.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
@@ -66747,10 +66747,10 @@ type VolumeStatusEvent struct {
 	EventType *string `locationName:"eventType" type:"string"`
 
 	// The latest end time of the event.
-	NotAfter *time.Time `locationName:"notAfter" type:"timestamp" timestampFormat:"iso8601"`
+	NotAfter *time.Time `locationName:"notAfter" type:"timestamp"`
 
 	// The earliest start time of the event.
-	NotBefore *time.Time `locationName:"notBefore" type:"timestamp" timestampFormat:"iso8601"`
+	NotBefore *time.Time `locationName:"notBefore" type:"timestamp"`
 }
 
 // String returns the string representation
@@ -67146,7 +67146,7 @@ type VpcEndpoint struct {
 	_ struct{} `type:"structure"`
 
 	// The date and time the VPC endpoint was created.
-	CreationTimestamp *time.Time `locationName:"creationTimestamp" type:"timestamp" timestampFormat:"iso8601"`
+	CreationTimestamp *time.Time `locationName:"creationTimestamp" type:"timestamp"`
 
 	// (Interface endpoint) The DNS entries for the endpoint.
 	DnsEntries []*DnsEntry `locationName:"dnsEntrySet" locationNameList:"item" type:"list"`
@@ -67281,7 +67281,7 @@ type VpcEndpointConnection struct {
 	_ struct{} `type:"structure"`
 
 	// The date and time the VPC endpoint was created.
-	CreationTimestamp *time.Time `locationName:"creationTimestamp" type:"timestamp" timestampFormat:"iso8601"`
+	CreationTimestamp *time.Time `locationName:"creationTimestamp" type:"timestamp"`
 
 	// The ID of the service to which the endpoint is connected.
 	ServiceId *string `locationName:"serviceId" type:"string"`
@@ -67389,7 +67389,7 @@ type VpcPeeringConnection struct {
 	AccepterVpcInfo *VpcPeeringConnectionVpcInfo `locationName:"accepterVpcInfo" type:"structure"`
 
 	// The time that an unaccepted VPC peering connection will expire.
-	ExpirationTime *time.Time `locationName:"expirationTime" type:"timestamp" timestampFormat:"iso8601"`
+	ExpirationTime *time.Time `locationName:"expirationTime" type:"timestamp"`
 
 	// Information about the requester VPC. CIDR block information is only returned
 	// when describing an active VPC peering connection.

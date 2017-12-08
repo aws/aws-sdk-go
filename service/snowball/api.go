@@ -1961,7 +1961,7 @@ type ClusterListEntry struct {
 	ClusterState *string `type:"string" enum:"ClusterState"`
 
 	// The creation date for this cluster.
-	CreationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationDate *time.Time `type:"timestamp"`
 
 	// Defines an optional description of the cluster, for example Environmental
 	// Data Cluster-01.
@@ -2017,7 +2017,7 @@ type ClusterMetadata struct {
 	ClusterState *string `type:"string" enum:"ClusterState"`
 
 	// The creation date for this cluster.
-	CreationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationDate *time.Time `type:"timestamp"`
 
 	// The optional description of the cluster.
 	Description *string `min:"1" type:"string"`
@@ -3211,7 +3211,7 @@ type JobListEntry struct {
 	_ struct{} `type:"structure"`
 
 	// The creation date for this job.
-	CreationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationDate *time.Time `type:"timestamp"`
 
 	// The optional description of this specific job, for example Important Photos
 	// 2016-08-11.
@@ -3366,7 +3366,7 @@ type JobMetadata struct {
 	ClusterId *string `min:"1" type:"string"`
 
 	// The creation date for this job.
-	CreationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationDate *time.Time `type:"timestamp"`
 
 	// A value that defines the real-time status of a Snowball's data transfer while
 	// the appliance is at AWS. This data is only available while a job has a JobState

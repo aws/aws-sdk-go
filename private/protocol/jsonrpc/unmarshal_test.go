@@ -544,7 +544,7 @@ type OutputService3TestShapeOutputService3TestCaseOperation1Output struct {
 
 	StructMember *OutputService3TestShapeTimeContainer `type:"structure"`
 
-	TimeMember *time.Time `type:"timestamp" timestampFormat:"unix"`
+	TimeMember *time.Time `type:"timestamp"`
 }
 
 // SetStructMember sets the StructMember field's value.
@@ -562,7 +562,7 @@ func (s *OutputService3TestShapeOutputService3TestCaseOperation1Output) SetTimeM
 type OutputService3TestShapeTimeContainer struct {
 	_ struct{} `type:"structure"`
 
-	Foo *time.Time `locationName:"foo" type:"timestamp" timestampFormat:"unix"`
+	Foo *time.Time `locationName:"foo" type:"timestamp"`
 }
 
 // SetFoo sets the Foo field's value.

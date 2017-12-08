@@ -892,7 +892,7 @@ type AttackDetail struct {
 
 	// The time the attack ended, in Unix time in seconds. For more information
 	// see timestamp (http://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#parameter-types).
-	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	EndTime *time.Time `type:"timestamp"`
 
 	// List of mitigation actions taken for the attack.
 	Mitigations []*Mitigation `type:"list"`
@@ -902,7 +902,7 @@ type AttackDetail struct {
 
 	// The time the attack started, in Unix time in seconds. For more information
 	// see timestamp (http://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#parameter-types).
-	StartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	StartTime *time.Time `type:"timestamp"`
 
 	// If applicable, additional detail about the resource being attacked, for example,
 	// IP address or URL.
@@ -1044,14 +1044,14 @@ type AttackSummary struct {
 
 	// The end time of the attack, in Unix time in seconds. For more information
 	// see timestamp (http://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#parameter-types).
-	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	EndTime *time.Time `type:"timestamp"`
 
 	// The ARN (Amazon Resource Name) of the resource that was attacked.
 	ResourceArn *string `type:"string"`
 
 	// The start time of the attack, in Unix time in seconds. For more information
 	// see timestamp (http://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#parameter-types).
-	StartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	StartTime *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -1942,7 +1942,7 @@ type Subscription struct {
 
 	// The start time of the subscription, in Unix time in seconds. For more information
 	// see timestamp (http://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#parameter-types).
-	StartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	StartTime *time.Time `type:"timestamp"`
 
 	// The length, in seconds, of the AWS Shield Advanced subscription for the account.
 	TimeCommitmentInSeconds *int64 `type:"long"`
@@ -2083,11 +2083,11 @@ type TimeRange struct {
 
 	// The start time, in Unix time in seconds. For more information see timestamp
 	// (http://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#parameter-types).
-	FromInclusive *time.Time `type:"timestamp" timestampFormat:"unix"`
+	FromInclusive *time.Time `type:"timestamp"`
 
 	// The end time, in Unix time in seconds. For more information see timestamp
 	// (http://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#parameter-types).
-	ToExclusive *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ToExclusive *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation

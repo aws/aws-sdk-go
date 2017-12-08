@@ -837,7 +837,7 @@ type LexiconAttributes struct {
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
 	// Date lexicon was last modified (a timestamp value).
-	LastModified *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModified *time.Time `type:"timestamp"`
 
 	// Number of lexemes in the lexicon.
 	LexemesCount *int64 `type:"integer"`

@@ -5445,7 +5445,7 @@ type Distribution struct {
 	// The date and time the distribution was last modified.
 	//
 	// LastModifiedTime is a required field
-	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
 
 	// This response element indicates the current status of the distribution. When
 	// the status is Deployed, the distribution's information is fully propagated
@@ -6171,7 +6171,7 @@ type DistributionSummary struct {
 	// The date and time the distribution was last modified.
 	//
 	// LastModifiedTime is a required field
-	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
 
 	// A complex type that contains information about origins for this distribution.
 	//
@@ -7232,7 +7232,7 @@ type Invalidation struct {
 	// The date and time the invalidation request was first made.
 	//
 	// CreateTime is a required field
-	CreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	CreateTime *time.Time `type:"timestamp" required:"true"`
 
 	// The identifier for the invalidation request. For example: IDFDVBD632BHDS5.
 	//
@@ -7454,7 +7454,7 @@ type InvalidationSummary struct {
 	_ struct{} `type:"structure"`
 
 	// CreateTime is a required field
-	CreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	CreateTime *time.Time `type:"timestamp" required:"true"`
 
 	// The unique ID for an invalidation request.
 	//
@@ -9149,7 +9149,7 @@ type StreamingDistribution struct {
 	Id *string `type:"string" required:"true"`
 
 	// The date and time that the distribution was last modified.
-	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	LastModifiedTime *time.Time `type:"timestamp"`
 
 	// The current status of the RTMP distribution. When the status is Deployed,
 	// the distribution's information is propagated to all CloudFront edge locations.
@@ -9568,7 +9568,7 @@ type StreamingDistributionSummary struct {
 	// The date and time the distribution was last modified.
 	//
 	// LastModifiedTime is a required field
-	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
 
 	// PriceClass is a required field
 	PriceClass *string `type:"string" required:"true" enum:"PriceClass"`

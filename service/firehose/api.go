@@ -1200,7 +1200,7 @@ type DeliveryStreamDescription struct {
 	_ struct{} `type:"structure"`
 
 	// The date and time that the delivery stream was created.
-	CreateTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreateTimestamp *time.Time `type:"timestamp"`
 
 	// The Amazon Resource Name (ARN) of the delivery stream.
 	//
@@ -1238,7 +1238,7 @@ type DeliveryStreamDescription struct {
 	HasMoreDestinations *bool `type:"boolean" required:"true"`
 
 	// The date and time that the delivery stream was last updated.
-	LastUpdateTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastUpdateTimestamp *time.Time `type:"timestamp"`
 
 	// If the DeliveryStreamType parameter is KinesisStreamAsSource, a SourceDescription
 	// object describing the source Kinesis stream.
@@ -2624,7 +2624,7 @@ type KinesisStreamSourceDescription struct {
 
 	// Kinesis Firehose starts retrieving records from the Kinesis stream starting
 	// with this time stamp.
-	DeliveryStartTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	DeliveryStartTimestamp *time.Time `type:"timestamp"`
 
 	// The ARN of the source Kinesis stream.
 	KinesisStreamARN *string `min:"1" type:"string"`

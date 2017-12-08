@@ -1252,7 +1252,7 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation1WithContext(c
 type InputService8TestShapeInputService8TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 
-	TimeArg *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	TimeArg *time.Time `type:"timestamp"`
 }
 
 // SetTimeArg sets the TimeArg field's value.

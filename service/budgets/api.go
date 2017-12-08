@@ -2737,12 +2737,12 @@ type TimePeriod struct {
 	// A generic timestamp. In Java it is transformed to a Date object.
 	//
 	// End is a required field
-	End *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	End *time.Time `type:"timestamp" required:"true"`
 
 	// A generic timestamp. In Java it is transformed to a Date object.
 	//
 	// Start is a required field
-	Start *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	Start *time.Time `type:"timestamp" required:"true"`
 }
 
 // String returns the string representation

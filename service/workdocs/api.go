@@ -4281,7 +4281,7 @@ type Activity struct {
 	ResourceMetadata *ResourceMetadata `type:"structure"`
 
 	// The timestamp when the action was performed.
-	TimeStamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	TimeStamp *time.Time `type:"timestamp"`
 
 	// The activity type.
 	Type *string `type:"string" enum:"ActivityType"`
@@ -4471,7 +4471,7 @@ type Comment struct {
 	Contributor *User `type:"structure"`
 
 	// The time that the comment was created.
-	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedTimestamp *time.Time `type:"timestamp"`
 
 	// The ID of the parent comment.
 	ParentId *string `min:"1" type:"string"`
@@ -4574,7 +4574,7 @@ type CommentMetadata struct {
 	Contributor *User `type:"structure"`
 
 	// The timestamp that the comment was created.
-	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedTimestamp *time.Time `type:"timestamp"`
 
 	// The ID of the user being replied to.
 	RecipientId *string `min:"1" type:"string"`
@@ -6069,7 +6069,7 @@ type DescribeActivitiesInput struct {
 
 	// The timestamp that determines the end time of the activities. The response
 	// includes the activities performed before the specified timestamp.
-	EndTime *time.Time `location:"querystring" locationName:"endTime" type:"timestamp" timestampFormat:"unix"`
+	EndTime *time.Time `location:"querystring" locationName:"endTime" type:"timestamp"`
 
 	// The maximum number of items to return.
 	Limit *int64 `location:"querystring" locationName:"limit" min:"1" type:"integer"`
@@ -6083,7 +6083,7 @@ type DescribeActivitiesInput struct {
 
 	// The timestamp that determines the starting time of the activities. The response
 	// includes the activities performed after the specified timestamp.
-	StartTime *time.Time `location:"querystring" locationName:"startTime" type:"timestamp" timestampFormat:"unix"`
+	StartTime *time.Time `location:"querystring" locationName:"startTime" type:"timestamp"`
 
 	// The ID of the user who performed the action. The response includes activities
 	// pertaining to this user. This is an optional parameter and is only applicable
@@ -7276,7 +7276,7 @@ type DocumentMetadata struct {
 	_ struct{} `type:"structure"`
 
 	// The time when the document was created.
-	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedTimestamp *time.Time `type:"timestamp"`
 
 	// The ID of the creator.
 	CreatorId *string `min:"1" type:"string"`
@@ -7291,7 +7291,7 @@ type DocumentMetadata struct {
 	LatestVersionMetadata *DocumentVersionMetadata `type:"structure"`
 
 	// The time when the document was updated.
-	ModifiedTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ModifiedTimestamp *time.Time `type:"timestamp"`
 
 	// The ID of the parent folder.
 	ParentFolderId *string `min:"1" type:"string"`
@@ -7364,16 +7364,16 @@ type DocumentVersionMetadata struct {
 	_ struct{} `type:"structure"`
 
 	// The timestamp when the content of the document was originally created.
-	ContentCreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ContentCreatedTimestamp *time.Time `type:"timestamp"`
 
 	// The timestamp when the content of the document was modified.
-	ContentModifiedTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ContentModifiedTimestamp *time.Time `type:"timestamp"`
 
 	// The content type of the document.
 	ContentType *string `min:"1" type:"string"`
 
 	// The timestamp when the document was first uploaded.
-	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedTimestamp *time.Time `type:"timestamp"`
 
 	// The ID of the creator.
 	CreatorId *string `min:"1" type:"string"`
@@ -7382,7 +7382,7 @@ type DocumentVersionMetadata struct {
 	Id *string `min:"1" type:"string"`
 
 	// The timestamp when the document was last uploaded.
-	ModifiedTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ModifiedTimestamp *time.Time `type:"timestamp"`
 
 	// The name of the version.
 	Name *string `min:"1" type:"string"`
@@ -7497,7 +7497,7 @@ type FolderMetadata struct {
 	_ struct{} `type:"structure"`
 
 	// The time when the folder was created.
-	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedTimestamp *time.Time `type:"timestamp"`
 
 	// The ID of the creator.
 	CreatorId *string `min:"1" type:"string"`
@@ -7512,7 +7512,7 @@ type FolderMetadata struct {
 	LatestVersionSize *int64 `type:"long"`
 
 	// The time when the folder was updated.
-	ModifiedTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ModifiedTimestamp *time.Time `type:"timestamp"`
 
 	// The name of the folder.
 	Name *string `min:"1" type:"string"`
@@ -8269,10 +8269,10 @@ type InitiateDocumentVersionUploadInput struct {
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
 
 	// The timestamp when the content of the document was originally created.
-	ContentCreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ContentCreatedTimestamp *time.Time `type:"timestamp"`
 
 	// The timestamp when the content of the document was modified.
-	ContentModifiedTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ContentModifiedTimestamp *time.Time `type:"timestamp"`
 
 	// The content type of the document.
 	ContentType *string `min:"1" type:"string"`
@@ -9564,7 +9564,7 @@ type User struct {
 	_ struct{} `type:"structure"`
 
 	// The time when the user was created.
-	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedTimestamp *time.Time `type:"timestamp"`
 
 	// The email address of the user.
 	EmailAddress *string `min:"1" type:"string"`
@@ -9579,7 +9579,7 @@ type User struct {
 	Locale *string `type:"string" enum:"LocaleType"`
 
 	// The time when the user was modified.
-	ModifiedTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ModifiedTimestamp *time.Time `type:"timestamp"`
 
 	// The ID of the organization.
 	OrganizationId *string `min:"1" type:"string"`
