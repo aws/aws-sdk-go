@@ -166,12 +166,21 @@
       "OutputShape": {
         "type": "structure",
         "members": {
+          "TimeHeader": {
+            "shape": "TimeType",
+            "location": "header",
+            "locationName": "X-TimeHeader"
+          },
           "TimeMember": {
             "shape": "TimeType"
           },
           "StructMember": {
             "shape": "TimeContainer"
-          }
+          },
+		  "TimeMemberString": {
+			  "shape": "TimeType",
+			  "timeformatShape": "iso8601"
+		  }
         }
       },
       "TimeType": {
@@ -204,6 +213,38 @@
           "status_code": 200,
           "headers": {},
           "body": "{\"TimeMember\": 1398796238, \"StructMember\": {\"foo\": 1398796238}}"
+        }
+      },
+      {
+        "given": {
+          "output": {
+            "shape": "OutputShape"
+          },
+          "name": "OperationName"
+        },
+        "result": {
+          "TimeHeader": 1398796238
+        },
+        "response": {
+          "status_code": 200,
+          "headers": {"X-TimeHeader":"Tue, 29 Apr 2014 18:30:38 GMT"},
+          "body": ""
+        }
+      },
+      {
+        "given": {
+          "output": {
+            "shape": "OutputShape"
+          },
+          "name": "OperationName"
+        },
+        "result": {
+          "TimeMemberString": 1422172800
+        },
+        "response": {
+          "status_code": 200,
+          "headers": {},
+          "body": "{\"TimeMemberString\": \"2015-01-25T08:00:00Z\"}"
         }
       }
     ]
