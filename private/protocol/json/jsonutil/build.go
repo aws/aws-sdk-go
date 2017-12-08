@@ -216,7 +216,14 @@ func buildScalar(v reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) erro
 	default:
 		switch converted := value.Interface().(type) {
 		case time.Time:
-			buf.Write(strconv.AppendInt(scratch[:0], converted.UTC().Unix(), 10))
+			format := tag.Get("timestampFormat")
+			if len(format) == 0 {
+				format = tag.Get("defaultTimestampFormat")
+			}
+			if len(format) == 0 {
+				format = protocol.UnixTimeFormatName
+			}
+			buf.WriteString(protocol.FormatTime(format, converted))
 		case []byte:
 			if !value.IsNil() {
 				buf.WriteByte('"')

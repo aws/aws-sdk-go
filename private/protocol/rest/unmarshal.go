@@ -198,7 +198,13 @@ func unmarshalHeader(v reflect.Value, header string, tag reflect.StructTag) erro
 		}
 		v.Set(reflect.ValueOf(&f))
 	case *time.Time:
-		t, err := time.Parse(RFC822, header)
+		// REST ignores "defaultTimestampFormat" as that tag only
+		// applies to strucutred payload body values.
+		format := tag.Get("timestampFormat")
+		if len(format) == 0 {
+			format = protocol.RFC822TimeFormatName
+		}
+		t, err := protocol.ParseTime(format, header)
 		if err != nil {
 			return err
 		}

@@ -6,6 +6,8 @@ import (
 	"io/ioutil"
 	"path/filepath"
 	"strings"
+
+	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
 type service struct {
@@ -52,6 +54,9 @@ func (a *API) customizationPasses() {
 // s3Customizations customizes the API generation to replace values specific to S3.
 func s3Customizations(a *API) {
 	var strExpires *Shape
+
+	// S3 timestamp format is modeled incorrectly.
+	a.Metadata.TimestampFormat = protocol.ISO8601TimeFormatName
 
 	var keepContentMD5Ref = map[string]struct{}{
 		"PutObjectInput":  struct{}{},

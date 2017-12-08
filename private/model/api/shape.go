@@ -10,6 +10,8 @@ import (
 	"sort"
 	"strings"
 	"text/template"
+
+	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
 // A ShapeRef defines the usage of a shape within the API.
@@ -28,9 +30,10 @@ type ShapeRef struct {
 	Ignore           bool
 	XMLNamespace     XMLInfo
 	Payload          string
-	IdempotencyToken bool `json:"idempotencyToken"`
-	JSONValue        bool `json:"jsonvalue"`
-	Deprecated       bool `json:"deprecated"`
+	IdempotencyToken bool   `json:"idempotencyToken"`
+	JSONValue        bool   `json:"jsonvalue"`
+	Deprecated       bool   `json:"deprecated"`
+	TimestampFormat  string `json:"timestampFormat"`
 
 	OrigShapeName string `json:"-"`
 
@@ -68,7 +71,8 @@ type Shape struct {
 	Streaming        bool
 	Location         string
 	LocationName     string
-	IdempotencyToken bool `json:"idempotencyToken"`
+	IdempotencyToken bool   `json:"idempotencyToken"`
+	TimestampFormat  string `json:"timestampFormat"`
 	XMLNamespace     XMLInfo
 	Min              float64 // optional Minimum length (string, list) or value (number)
 	Max              float64 // optional Maximum length (string, list) or value (number)
@@ -88,6 +92,38 @@ type Shape struct {
 	// Error information that is set if the shape is an error shape.
 	IsError   bool
 	ErrorInfo ErrorInfo `json:"error"`
+}
+
+// GetTimestampFormat returns the timestamp format that is modeled for
+// this shape reference.
+func (ref ShapeRef) GetTimestampFormat() string {
+	format := ref.TimestampFormat
+
+	if len(format) == 0 {
+		format = ref.Shape.TimestampFormat
+	}
+
+	if len(format) > 0 && !protocol.IsKnownTimestampFormat(format) {
+		panic(fmt.Sprintf("Unknown timestampFormat %s, for %s",
+			format, ref.ShapeName))
+	}
+
+	return format
+}
+
+// GetLocation returns the location value for the shape reference.
+func (ref ShapeRef) GetLocation() string {
+	loc := ref.Location
+	if len(loc) == 0 {
+		loc = ref.Shape.Location
+	}
+
+	return loc
+}
+
+// GetLocation returns the location value for the shape.
+func (s Shape) GetLocation() string {
+	return s.Location
 }
 
 // ErrorCodeName will return the error shape's name formated for
@@ -371,18 +407,17 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 
 	// embed the timestamp type for easier lookups
 	if ref.Shape.Type == "timestamp" {
-		t := ShapeTag{Key: "timestampFormat"}
-		if ref.Location == "header" {
-			t.Val = "rfc822"
-		} else {
-			switch ref.API.Metadata.Protocol {
-			case "json", "rest-json":
-				t.Val = "unix"
-			case "rest-xml", "ec2", "query":
-				t.Val = "iso8601"
-			}
+		if format := ref.GetTimestampFormat(); len(format) > 0 {
+			tags = append(tags, ShapeTag{
+				Key: "timestampFormat",
+				Val: format,
+			})
+		} else if apiFormat := ref.API.GetTimestampFormat(); len(apiFormat) > 0 {
+			tags = append(tags, ShapeTag{
+				Key: "defaultTimestampFormat",
+				Val: apiFormat,
+			})
 		}
-		tags = append(tags, t)
 	}
 
 	if ref.Shape.Flattened || ref.Flattened {
