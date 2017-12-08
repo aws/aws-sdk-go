@@ -6,6 +6,7 @@
     "jsonVersion":"1.1",
     "protocol":"json",
     "serviceFullName":"Amazon AppStream",
+    "serviceId":"AppStream",
     "signatureVersion":"v4",
     "signingName":"appstream",
     "targetPrefix":"PhotonAdminProxyService",
@@ -333,7 +334,8 @@
       "errors":[
         {"shape":"ResourceNotAvailableException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"ConcurrentModificationException"}
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"IncompatibleImageException"}
       ]
     },
     "StopFleet":{
@@ -442,6 +444,11 @@
     "Applications":{
       "type":"list",
       "member":{"shape":"Application"}
+    },
+    "AppstreamAgentVersion":{
+      "type":"string",
+      "max":100,
+      "min":1
     },
     "Arn":{
       "type":"string",
@@ -560,7 +567,8 @@
         "DisplayName":{"shape":"DisplayName"},
         "VpcConfig":{"shape":"VpcConfig"},
         "EnableDefaultInternetAccess":{"shape":"BooleanObject"},
-        "DomainJoinInfo":{"shape":"DomainJoinInfo"}
+        "DomainJoinInfo":{"shape":"DomainJoinInfo"},
+        "AppstreamAgentVersion":{"shape":"AppstreamAgentVersion"}
       }
     },
     "CreateImageBuilderResult":{
@@ -959,7 +967,8 @@
         "StateChangeReason":{"shape":"ImageStateChangeReason"},
         "Applications":{"shape":"Applications"},
         "CreatedTime":{"shape":"Timestamp"},
-        "PublicBaseImageReleasedDate":{"shape":"Timestamp"}
+        "PublicBaseImageReleasedDate":{"shape":"Timestamp"},
+        "AppstreamAgentVersion":{"shape":"AppstreamAgentVersion"}
       }
     },
     "ImageBuilder":{
@@ -979,7 +988,8 @@
         "CreatedTime":{"shape":"Timestamp"},
         "EnableDefaultInternetAccess":{"shape":"BooleanObject"},
         "DomainJoinInfo":{"shape":"DomainJoinInfo"},
-        "ImageBuilderErrors":{"shape":"ResourceErrors"}
+        "ImageBuilderErrors":{"shape":"ResourceErrors"},
+        "AppstreamAgentVersion":{"shape":"AppstreamAgentVersion"}
       }
     },
     "ImageBuilderList":{
@@ -990,6 +1000,7 @@
       "type":"string",
       "enum":[
         "PENDING",
+        "UPDATING_AGENT",
         "RUNNING",
         "STOPPING",
         "STOPPED",
@@ -1269,7 +1280,8 @@
       "type":"structure",
       "required":["Name"],
       "members":{
-        "Name":{"shape":"String"}
+        "Name":{"shape":"String"},
+        "AppstreamAgentVersion":{"shape":"AppstreamAgentVersion"}
       }
     },
     "StartImageBuilderResult":{
