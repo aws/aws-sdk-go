@@ -3336,7 +3336,9 @@ type CreateModelInput struct {
 	// assume to access model artifacts and docker image for deployment on ML compute
 	// instances. Deploying on ML compute instances is part of model hosting. For
 	// more information, see Amazon SageMaker Roles (http://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html).
-	ExecutionRoleArn *string `min:"20" type:"string"`
+	//
+	// ExecutionRoleArn is a required field
+	ExecutionRoleArn *string `min:"20" type:"string" required:"true"`
 
 	// The name of the new model.
 	//
@@ -3372,6 +3374,9 @@ func (s CreateModelInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateModelInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateModelInput"}
+	if s.ExecutionRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExecutionRoleArn"))
+	}
 	if s.ExecutionRoleArn != nil && len(*s.ExecutionRoleArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("ExecutionRoleArn", 20))
 	}

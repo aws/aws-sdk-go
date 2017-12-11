@@ -1295,7 +1295,7 @@ func (c *LexModelBuildingService) DeleteUtterancesRequest(input *DeleteUtterance
 //
 // Amazon Lex stores the utterances that users send to your bot unless the childDirected
 // field in the bot is set to true. Utterances are stored for 15 days for use
-// with the GetUtterancesView operation, and then stored indefinately for use
+// with the GetUtterancesView operation, and then stored indefinitely for use
 // in improving the ability of your bot to respond to user input.
 //
 // Use the DeleteStoredUtterances operation to manually delete stored utterances
@@ -3898,9 +3898,11 @@ func (c *LexModelBuildingService) PutIntentRequest(input *PutIntentInput) (req *
 //    asking "Do you want to order a drink with your pizza?"
 //
 // If you specify an existing intent name to update the intent, Amazon Lex replaces
-// the values in the $LATEST version of the slot type with the values in the
-// request. Amazon Lex removes fields that you don't provide in the request.
-// If you don't specify the required fields, Amazon Lex throws an exception.
+// the values in the $LATEST version of the intent with the values in the request.
+// Amazon Lex removes fields that you don't provide in the request. If you don't
+// specify the required fields, Amazon Lex throws an exception. When you update
+// the $LATEST version of an intent, the status field of any bot that uses the
+// $LATEST version of the intent is set to NOT_BUILT.
 //
 // For more information, see how-it-works.
 //
@@ -4006,7 +4008,9 @@ func (c *LexModelBuildingService) PutSlotTypeRequest(input *PutSlotTypeInput) (r
 // If you specify the name of an existing slot type, the fields in the request
 // replace the existing values in the $LATEST version of the slot type. Amazon
 // Lex removes the fields that you don't provide in the request. If you don't
-// specify required fields, Amazon Lex throws an exception.
+// specify required fields, Amazon Lex throws an exception. When you update
+// the $LATEST version of a slot type, if a bot uses the $LATEST version of
+// an intent that contains the slot type, the bot's status field is set to NOT_BUILT.
 //
 // This operation requires permissions for the lex:PutSlotType action.
 //
@@ -4163,8 +4167,22 @@ type BotChannelAssociation struct {
 	// A text description of the association you are creating.
 	Description *string `locationName:"description" type:"string"`
 
+	// If status is FAILED, Amazon Lex provides the reason that it failed to create
+	// the association.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
 	// The name of the association between the bot and the channel.
 	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The status of the bot channel.
+	//
+	//    * CREATED - The channel has been created and is ready for use.
+	//
+	//    * IN_PROGRESS - Channel creation is in progress.
+	//
+	//    * FAILED - There was an error creating the channel. For information about
+	//    the reason for the failure, see the failureReason field.
+	Status *string `locationName:"status" type:"string" enum:"ChannelStatus"`
 
 	// Specifies the type of association by indicating the type of channel being
 	// established between the Amazon Lex bot and the external messaging platform.
@@ -4211,9 +4229,21 @@ func (s *BotChannelAssociation) SetDescription(v string) *BotChannelAssociation 
 	return s
 }
 
+// SetFailureReason sets the FailureReason field's value.
+func (s *BotChannelAssociation) SetFailureReason(v string) *BotChannelAssociation {
+	s.FailureReason = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *BotChannelAssociation) SetName(v string) *BotChannelAssociation {
 	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *BotChannelAssociation) SetStatus(v string) *BotChannelAssociation {
+	s.Status = &v
 	return s
 }
 
@@ -6241,8 +6271,22 @@ type GetBotChannelAssociationOutput struct {
 	// A description of the association between the bot and the channel.
 	Description *string `locationName:"description" type:"string"`
 
+	// If status is FAILED, Amazon Lex provides the reason that it failed to create
+	// the association.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
 	// The name of the association between the bot and the channel.
 	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The status of the bot channel.
+	//
+	//    * CREATED - The channel has been created and is ready for use.
+	//
+	//    * IN_PROGRESS - Channel creation is in progress.
+	//
+	//    * FAILED - There was an error creating the channel. For information about
+	//    the reason for the failure, see the failureReason field.
+	Status *string `locationName:"status" type:"string" enum:"ChannelStatus"`
 
 	// The type of the messaging platform.
 	Type *string `locationName:"type" type:"string" enum:"ChannelType"`
@@ -6288,9 +6332,21 @@ func (s *GetBotChannelAssociationOutput) SetDescription(v string) *GetBotChannel
 	return s
 }
 
+// SetFailureReason sets the FailureReason field's value.
+func (s *GetBotChannelAssociationOutput) SetFailureReason(v string) *GetBotChannelAssociationOutput {
+	s.FailureReason = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *GetBotChannelAssociationOutput) SetName(v string) *GetBotChannelAssociationOutput {
 	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetBotChannelAssociationOutput) SetStatus(v string) *GetBotChannelAssociationOutput {
+	s.Status = &v
 	return s
 }
 
@@ -10146,6 +10202,17 @@ func (s *UtteranceList) SetUtterances(v []*UtteranceData) *UtteranceList {
 	s.Utterances = v
 	return s
 }
+
+const (
+	// ChannelStatusInProgress is a ChannelStatus enum value
+	ChannelStatusInProgress = "IN_PROGRESS"
+
+	// ChannelStatusCreated is a ChannelStatus enum value
+	ChannelStatusCreated = "CREATED"
+
+	// ChannelStatusFailed is a ChannelStatus enum value
+	ChannelStatusFailed = "FAILED"
+)
 
 const (
 	// ChannelTypeFacebook is a ChannelType enum value

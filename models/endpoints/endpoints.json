@@ -1676,7 +1676,8 @@
           "protocols" : [ "http", "https" ]
         },
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "autoscaling" : {
@@ -1684,22 +1685,26 @@
           "protocols" : [ "http", "https" ]
         },
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "cloudformation" : {
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "cloudtrail" : {
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "codedeploy" : {
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "cognito-identity" : {
@@ -1709,12 +1714,14 @@
       },
       "config" : {
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "directconnect" : {
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "dynamodb" : {
@@ -1722,7 +1729,8 @@
           "protocols" : [ "http", "https" ]
         },
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "ec2" : {
@@ -1730,7 +1738,8 @@
           "protocols" : [ "http", "https" ]
         },
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "ecr" : {
@@ -1745,12 +1754,14 @@
       },
       "elasticache" : {
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "elasticbeanstalk" : {
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "elasticloadbalancing" : {
@@ -1758,7 +1769,8 @@
           "protocols" : [ "https" ]
         },
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "elasticmapreduce" : {
@@ -1766,13 +1778,19 @@
           "protocols" : [ "http", "https" ]
         },
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
-      "es" : { },
+      "es" : {
+        "endpoints" : {
+          "cn-northwest-1" : { }
+        }
+      },
       "events" : {
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "glacier" : {
@@ -1780,7 +1798,8 @@
           "protocols" : [ "http", "https" ]
         },
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "iam" : {
@@ -1807,7 +1826,8 @@
       },
       "kinesis" : {
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "lambda" : {
@@ -1817,7 +1837,8 @@
       },
       "logs" : {
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "monitoring" : {
@@ -1825,17 +1846,20 @@
           "protocols" : [ "http", "https" ]
         },
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "rds" : {
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "redshift" : {
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "s3" : {
@@ -1844,7 +1868,8 @@
           "signatureVersions" : [ "s3v4" ]
         },
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "snowball" : {
@@ -1857,7 +1882,8 @@
           "protocols" : [ "http", "https" ]
         },
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "sqs" : {
@@ -1866,12 +1892,14 @@
           "sslCommonName" : "{region}.queue.{dnsSuffix}"
         },
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "ssm" : {
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "storagegateway" : {
@@ -1887,17 +1915,20 @@
           "protocols" : [ "http", "https" ]
         },
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "sts" : {
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "swf" : {
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "tagging" : {
