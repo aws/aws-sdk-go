@@ -4989,6 +4989,7 @@
         "UserPoolTags":{"shape":"UserPoolTagsType"},
         "SmsConfigurationFailure":{"shape":"StringType"},
         "EmailConfigurationFailure":{"shape":"StringType"},
+        "Domain":{"shape":"DomainType"},
         "AdminCreateUserConfig":{"shape":"AdminCreateUserConfigType"},
         "UserPoolAddOns":{"shape":"UserPoolAddOnsType"}
       }

@@ -1189,7 +1189,8 @@
         "CreateUserPoolDomainRequest$Domain": "<p>The domain string.</p>",
         "DeleteUserPoolDomainRequest$Domain": "<p>The domain string.</p>",
         "DescribeUserPoolDomainRequest$Domain": "<p>The domain string.</p>",
-        "DomainDescriptionType$Domain": "<p>The domain string.</p>"
+        "DomainDescriptionType$Domain": "<p>The domain string.</p>",
+        "UserPoolType$Domain": "<p>Holds the domain prefix if the user pool has a domain associated with it.</p>"
       }
     },
     "DomainVersionType": {
@@ -2404,7 +2405,7 @@
       "base": null,
       "refs": {
         "AdminDisableProviderForUserRequest$UserPoolId": "<p>The user pool ID for the user pool.</p>",
-        "AdminGetUserResponse$PreferredMfaSetting": null,
+        "AdminGetUserResponse$PreferredMfaSetting": "<p>The user's preferred MFA setting.</p>",
         "AdminLinkProviderForUserRequest$UserPoolId": "<p>The user pool ID for the user pool.</p>",
         "AnalyticsConfigurationType$ExternalId": "<p>The external ID.</p>",
         "AnalyticsMetadataType$AnalyticsEndpointId": "<p>The endpoint ID.</p>",
@@ -2433,7 +2434,7 @@
         "EventContextDataType$City": "<p>The user's city.</p>",
         "EventContextDataType$Country": "<p>The user's country.</p>",
         "EventFeedbackType$Provider": "<p>The provider.</p>",
-        "GetUserResponse$PreferredMfaSetting": null,
+        "GetUserResponse$PreferredMfaSetting": "<p>The user's preferred MFA setting.</p>",
         "HttpHeader$headerName": "<p>The header name</p>",
         "HttpHeader$headerValue": "<p>The header value.</p>",
         "ListOfStringTypes$member": null,
@@ -2675,8 +2676,8 @@
     "UserMFASettingListType": {
       "base": null,
       "refs": {
-        "AdminGetUserResponse$UserMFASettingList": null,
-        "GetUserResponse$UserMFASettingList": null
+        "AdminGetUserResponse$UserMFASettingList": "<p>The list of the user's MFA settings.</p>",
+        "GetUserResponse$UserMFASettingList": "<p>The list of the user's MFA settings.</p>"
       }
     },
     "UserNotConfirmedException": {

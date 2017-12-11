@@ -1,3 +1,13 @@
+Release v1.12.45 (2017-12-11)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service API and documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/lex-models`: Updates service API and documentation
+* `service/sagemaker`: Updates service API
+  * CreateModel API Update:  The request parameter 'ExecutionRoleArn' has changed from optional to required.
+
 Release v1.12.44 (2017-12-08)
 ===
 
