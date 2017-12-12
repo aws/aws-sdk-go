@@ -1,3 +1,10 @@
+Release v1.12.46 (2017-12-12)
+===
+
+### Service Client Updates
+* `service/workmail`: Adds new service
+  * Today, Amazon WorkMail released an administrative SDK and enabled AWS CloudTrail integration. With the administrative SDK, you can natively integrate WorkMail with your existing services. The SDK enables programmatic user, resource, and group management through API calls. This means your existing IT tools and workflows can now automate WorkMail management, and third party applications can streamline WorkMail migrations and account actions.
+
 Release v1.12.45 (2017-12-11)
 ===
 
