@@ -151,8 +151,8 @@ func localHTTPCredProvider(cfg aws.Config, handlers request.Handlers, u string) 
 		host := aws.URLHostname(parsed)
 		if len(host) == 0 {
 			errMsg = "unable to parse host from local HTTP cred provider URL"
-		} else if isLoopback, err := isLoopbackHost(host); err != nil {
-			errMsg = fmt.Sprintf("failed to resolve host %q, %v", host, err)
+		} else if isLoopback, loopbackErr := isLoopbackHost(host); loopbackErr != nil {
+			errMsg = fmt.Sprintf("failed to resolve host %q, %v", host, loopbackErr)
 		} else if !isLoopback {
 			errMsg = fmt.Sprintf("invalid endpoint host, %q, only loopback hosts are allowed.", host)
 		}
