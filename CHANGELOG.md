@@ -1,3 +1,13 @@
+Release v1.12.47 (2017-12-14)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API and documentation
+  * Adds support for Cognito Authorizer scopes at the API method level.
+* `service/email`: Updates service documentation
+  * Added information about the maximum number of transactions per second for the SendCustomVerificationEmail operation.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.12.46 (2017-12-12)
 ===
 
