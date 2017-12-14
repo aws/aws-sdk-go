@@ -4128,7 +4128,8 @@
         "requestParameters":{"shape":"MapOfStringToBoolean"},
         "requestModels":{"shape":"MapOfStringToString"},
         "methodResponses":{"shape":"MapOfMethodResponse"},
-        "methodIntegration":{"shape":"Integration"}
+        "methodIntegration":{"shape":"Integration"},
+        "authorizationScopes":{"shape":"ListOfString"}
       }
     },
     "MethodResponse":{
@@ -4346,7 +4347,8 @@
         "operationName":{"shape":"String"},
         "requestParameters":{"shape":"MapOfStringToBoolean"},
         "requestModels":{"shape":"MapOfStringToString"},
-        "requestValidatorId":{"shape":"String"}
+        "requestValidatorId":{"shape":"String"},
+        "authorizationScopes":{"shape":"ListOfString"}
       }
     },
     "PutMethodResponseRequest":{
