@@ -121,24 +121,24 @@ func RemoteCredProvider(cfg aws.Config, handlers request.Handlers) credentials.P
 
 var lookupHostFn = net.LookupHost
 
-func isLoopbackHost(host string) bool {
+func isLoopbackHost(host string) (bool, error) {
 	ip := net.ParseIP(host)
 	if ip != nil {
-		return ip.IsLoopback()
+		return ip.IsLoopback(), nil
 	}
 
 	// Host is not an ip, perform lookup
 	addrs, err := lookupHostFn(host)
 	if err != nil {
-		return false
+		return false, err
 	}
 	for _, addr := range addrs {
 		if !net.ParseIP(addr).IsLoopback() {
-			return false
+			return false, nil
 		}
 	}
 
-	return true
+	return true, nil
 }
 
 func localHTTPCredProvider(cfg aws.Config, handlers request.Handlers, u string) credentials.Provider {
@@ -147,8 +147,15 @@ func localHTTPCredProvider(cfg aws.Config, handlers request.Handlers, u string) 
 	parsed, err := url.Parse(u)
 	if err != nil {
 		errMsg = fmt.Sprintf("invalid URL, %v", err)
-	} else if host := aws.URLHostname(parsed); len(host) == 0 || !isLoopbackHost(host) {
-		errMsg = fmt.Sprintf("invalid endpoint host, %q, only loopback hosts are allowed.", host)
+	} else {
+		host := aws.URLHostname(parsed)
+		if len(host) == 0 {
+			errMsg = "unable to parse host from local HTTP cred provider URL"
+		} else if isLoopback, err := isLoopbackHost(host); err != nil {
+			errMsg = fmt.Sprintf("failed to resolve host %q, %v", host, err)
+		} else if !isLoopback {
+			errMsg = fmt.Sprintf("invalid endpoint host, %q, only loopback hosts are allowed.", host)
+		}
 	}
 
 	if len(errMsg) > 0 {

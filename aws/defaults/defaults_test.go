@@ -53,7 +53,6 @@ func TestHTTPCredProvider(t *testing.T) {
 
 	for i, c := range cases {
 		u := fmt.Sprintf("http://%s/abc/123", c.Host)
-		fmt.Println(u)
 		os.Setenv(httpProviderEnvVar, u)
 
 		provider := RemoteCredProvider(aws.Config{}, request.Handlers{})
