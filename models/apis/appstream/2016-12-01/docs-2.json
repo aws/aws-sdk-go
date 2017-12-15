@@ -24,10 +24,13 @@
     "ExpireSession": "<p>Stops the specified streaming session.</p>",
     "ListAssociatedFleets": "<p>Lists the fleets associated with the specified stack.</p>",
     "ListAssociatedStacks": "<p>Lists the stacks associated with the specified fleet.</p>",
+    "ListTagsForResource": "<p>Lists the tags for the specified AppStream 2.0 resource. You can tag AppStream 2.0 image builders, images, fleets, and stacks.</p> <p>For more information about tags, see <a href=\"http://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic\">Tagging Your Resources</a> in the <i>Amazon AppStream 2.0 Developer Guide</i>.</p>",
     "StartFleet": "<p>Starts the specified fleet.</p>",
     "StartImageBuilder": "<p>Starts the specified image builder.</p>",
     "StopFleet": "<p>Stops the specified fleet.</p>",
     "StopImageBuilder": "<p>Stops the specified image builder.</p>",
+    "TagResource": "<p>Adds or overwrites one or more tags for the specified AppStream 2.0 resource. You can tag AppStream 2.0 image builders, images, fleets, and stacks.</p> <p>Each tag consists of a key and an optional value. If a resource already has a tag with the same key, this operation updates its value.</p> <p>To list the current tags for your resources, use <a>ListTagsForResource</a>. To disassociate tags from your resources, use <a>UntagResource</a>.</p> <p>For more information about tags, see <a href=\"http://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic\">Tagging Your Resources</a> in the <i>Amazon AppStream 2.0 Developer Guide</i>.</p>",
+    "UntagResource": "<p>Disassociates the specified tags from the specified AppStream 2.0 resource.</p> <p>To list the current tags for your resources, use <a>ListTagsForResource</a>.</p> <p>For more information about tags, see <a href=\"http://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic\">Tagging Your Resources</a> in the <i>Amazon AppStream 2.0 Developer Guide</i>.</p>",
     "UpdateDirectoryConfig": "<p>Updates the specified directory configuration.</p>",
     "UpdateFleet": "<p>Updates the specified fleet.</p> <p>If the fleet is in the <code>STOPPED</code> state, you can update any attribute except the fleet name. If the fleet is in the <code>RUNNING</code> state, you can update the <code>DisplayName</code> and <code>ComputeCapacity</code> attributes. If the fleet is in the <code>STARTING</code> or <code>STOPPING</code> state, you can't update it.</p>",
     "UpdateStack": "<p>Updates the specified stack.</p>"
@@ -60,10 +63,10 @@
     "AppstreamAgentVersion": {
       "base": null,
       "refs": {
-        "CreateImageBuilderRequest$AppstreamAgentVersion": "<p>The version of the AppStream 2.0 agent to use for this image builder. To use the latest version of the AppStream 2.0 agent, specify [LATEST].</p>",
-        "Image$AppstreamAgentVersion": "<p>The version of the AppStream 2.0 agent to use for instances that are launched from this image.</p>",
-        "ImageBuilder$AppstreamAgentVersion": "<p>The version of the AppStream 2.0 agent that is currently being used by this image builder.</p>",
-        "StartImageBuilderRequest$AppstreamAgentVersion": "<p>The version of the AppStream 2.0 agent to use for this image builder. To use the latest version of the AppStream 2.0 agent, specify [LATEST].</p>"
+        "CreateImageBuilderRequest$AppstreamAgentVersion": "<p>The version of the AppStream 2.0 agent to use for this image builder. To use the latest version of the AppStream 2.0 agent, specify [LATEST]. </p>",
+        "Image$AppstreamAgentVersion": "<p>The version of the AppStream 2.0 agent to use for instances that are launched from this image. </p>",
+        "ImageBuilder$AppstreamAgentVersion": "<p>The version of the AppStream 2.0 agent that is currently being used by this image builder. </p>",
+        "StartImageBuilderRequest$AppstreamAgentVersion": "<p>The version of the AppStream 2.0 agent to use for this image builder. To use the latest version of the AppStream 2.0 agent, specify [LATEST]. </p>"
       }
     },
     "Arn": {
@@ -74,7 +77,10 @@
         "Image$BaseImageArn": "<p>The ARN of the image from which this image was created.</p>",
         "ImageBuilder$Arn": "<p>The ARN for the image builder.</p>",
         "ImageBuilder$ImageArn": "<p>The ARN of the image from which this builder was created.</p>",
-        "Stack$Arn": "<p>The ARN of the stack.</p>"
+        "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "Stack$Arn": "<p>The ARN of the stack.</p>",
+        "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>"
       }
     },
     "AssociateFleetRequest": {
@@ -579,6 +585,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Long": {
       "base": null,
       "refs": {
@@ -896,6 +912,42 @@
         "VpcConfig$SubnetIds": "<p>The subnets to which a network interface is established from the fleet instance.</p>"
       }
     },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "TagKeyList$member": null,
+        "Tags$key": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": "<p>The tag keys for the tags to disassociate.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tags$value": null
+      }
+    },
+    "Tags": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceResponse$Tags": "<p>The information about the tags.</p>",
+        "TagResourceRequest$Tags": "<p>The tags to associate. A tag is a key-value pair (the value is optional). For example, <code>Environment=Test</code>, or, if you do not specify a value, <code>Environment=</code>. </p> <p>If you do not specify a value, we set the value to an empty string.</p>"
+      }
+    },
     "Timestamp": {
       "base": null,
       "refs": {
@@ -908,6 +960,16 @@
         "ImageBuilder$CreatedTime": "<p>The time stamp when the image builder was created.</p>",
         "ResourceError$ErrorTimestamp": "<p>The time the error occurred.</p>",
         "Stack$CreatedTime": "<p>The time the stack was created.</p>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateDirectoryConfigRequest": {

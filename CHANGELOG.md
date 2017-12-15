@@ -1,3 +1,10 @@
+Release v1.12.48 (2017-12-15)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API and documentation
+  * This API update is to enable customers to add tags to their Amazon AppStream 2.0 resources
+
 Release v1.12.47 (2017-12-14)
 ===
 
