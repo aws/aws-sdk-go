@@ -3,7 +3,7 @@
   "service": "<p>An AWS Elemental MediaStore asset is an object, similar to an object in the Amazon S3 service. Objects are the fundamental entities that are stored in AWS Elemental MediaStore.</p>",
   "operations": {
     "DeleteObject": "<p>Deletes an object at the specified path.</p>",
-    "DescribeObject": "<p>Gets the header for an object at the specified path.</p>",
+    "DescribeObject": "<p>Gets the headers for an object at the specified path.</p>",
     "GetObject": "<p>Downloads the object at the specified path.</p>",
     "ListItems": "<p>Provides a list of metadata entries about folders and objects in the specified folder.</p>",
     "PutObject": "<p>Uploads an object to the specified path. Object sizes are limited to 10 MB.</p>"
@@ -160,8 +160,8 @@
     "PayloadBlob": {
       "base": null,
       "refs": {
-        "GetObjectResponse$Body": "<p>The path to the file outside of the container. The file name can include or omit an extension. </p> <p>Example 1: If the file is stored on a remote server that has been mounted to the workstation on which the REST API command is being run, the path could be the absolute path <code> \\mount\\assets\\mlaw.avi</code> or the relative path <code>..\\..\\mount\\assets\\movies\\premium\\mlaw.avi</code>.</p> <p>Example 2: If the file is stored on a remote server that is not mounted, the path could be <code>https:\\\\192.0.2.15\\movies\\premium\\mlaw.avi</code>.</p>",
-        "PutObjectRequest$Body": "<p>The path to the file outside of the container. The file name can include or omit an extension. </p> <p>Example 1: If the file is stored on a remote server that has been mounted to the workstation on which the REST API command is being run, the path could be the absolute path <code> \\mount\\assets\\mlaw.avi</code> or the relative path <code>..\\..\\mount\\assets\\movies\\premium\\mlaw.avi</code>.</p> <p>Example 2: If the file is stored on a remote server that is not mounted, the path could be <code>https:\\\\192.0.2.15\\movies\\premium\\mlaw.avi</code>.</p>"
+        "GetObjectResponse$Body": "<p>The bytes of the object. </p>",
+        "PutObjectRequest$Body": "<p>The bytes to be stored. </p>"
       }
     },
     "PutObjectRequest": {

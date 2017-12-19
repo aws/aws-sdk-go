@@ -392,6 +392,10 @@ type APIGatewayAPI interface {
 	GetStagesWithContext(aws.Context, *apigateway.GetStagesInput, ...request.Option) (*apigateway.GetStagesOutput, error)
 	GetStagesRequest(*apigateway.GetStagesInput) (*request.Request, *apigateway.GetStagesOutput)
 
+	GetTags(*apigateway.GetTagsInput) (*apigateway.GetTagsOutput, error)
+	GetTagsWithContext(aws.Context, *apigateway.GetTagsInput, ...request.Option) (*apigateway.GetTagsOutput, error)
+	GetTagsRequest(*apigateway.GetTagsInput) (*request.Request, *apigateway.GetTagsOutput)
+
 	GetUsage(*apigateway.GetUsageInput) (*apigateway.Usage, error)
 	GetUsageWithContext(aws.Context, *apigateway.GetUsageInput, ...request.Option) (*apigateway.Usage, error)
 	GetUsageRequest(*apigateway.GetUsageInput) (*request.Request, *apigateway.Usage)
@@ -468,6 +472,10 @@ type APIGatewayAPI interface {
 	PutRestApiWithContext(aws.Context, *apigateway.PutRestApiInput, ...request.Option) (*apigateway.RestApi, error)
 	PutRestApiRequest(*apigateway.PutRestApiInput) (*request.Request, *apigateway.RestApi)
 
+	TagResource(*apigateway.TagResourceInput) (*apigateway.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *apigateway.TagResourceInput, ...request.Option) (*apigateway.TagResourceOutput, error)
+	TagResourceRequest(*apigateway.TagResourceInput) (*request.Request, *apigateway.TagResourceOutput)
+
 	TestInvokeAuthorizer(*apigateway.TestInvokeAuthorizerInput) (*apigateway.TestInvokeAuthorizerOutput, error)
 	TestInvokeAuthorizerWithContext(aws.Context, *apigateway.TestInvokeAuthorizerInput, ...request.Option) (*apigateway.TestInvokeAuthorizerOutput, error)
 	TestInvokeAuthorizerRequest(*apigateway.TestInvokeAuthorizerInput) (*request.Request, *apigateway.TestInvokeAuthorizerOutput)
@@ -475,6 +483,10 @@ type APIGatewayAPI interface {
 	TestInvokeMethod(*apigateway.TestInvokeMethodInput) (*apigateway.TestInvokeMethodOutput, error)
 	TestInvokeMethodWithContext(aws.Context, *apigateway.TestInvokeMethodInput, ...request.Option) (*apigateway.TestInvokeMethodOutput, error)
 	TestInvokeMethodRequest(*apigateway.TestInvokeMethodInput) (*request.Request, *apigateway.TestInvokeMethodOutput)
+
+	UntagResource(*apigateway.UntagResourceInput) (*apigateway.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *apigateway.UntagResourceInput, ...request.Option) (*apigateway.UntagResourceOutput, error)
+	UntagResourceRequest(*apigateway.UntagResourceInput) (*request.Request, *apigateway.UntagResourceOutput)
 
 	UpdateAccount(*apigateway.UpdateAccountInput) (*apigateway.Account, error)
 	UpdateAccountWithContext(aws.Context, *apigateway.UpdateAccountInput, ...request.Option) (*apigateway.Account, error)
