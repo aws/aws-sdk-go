@@ -1,3 +1,14 @@
+Release v1.12.50 (2017-12-19)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API and documentation
+  * API Gateway now adds support for calling API with compressed payloads using one of the supported content codings, tagging an API stage for cost allocation, and returning API keys from a custom authorizer for use with a usage plan.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/mediastore-data`: Updates service documentation
+* `service/route53`: Updates service API and documentation
+  * Route 53 added support for a new China (Ningxia) region, cn-northwest-1. You can now specify cn-northwest-1 as the region for latency-based or geoproximity routing. Route 53 also added support for a new EU (Paris) region, eu-west-3. You can now associate VPCs in eu-west-3 with private hosted zones and create alias records that route traffic to resources in eu-west-3.
+
 Release v1.12.49 (2017-12-19)
 ===
 
