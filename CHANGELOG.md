@@ -1,3 +1,11 @@
+Release v1.12.49 (2017-12-19)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/monitoring`: Updates service documentation
+  * Documentation updates for monitoring
+
 Release v1.12.48 (2017-12-15)
 ===
 
