@@ -15,9 +15,11 @@
     "CreateCertificateFromCsr": "<p>Creates an X.509 certificate using the specified certificate signing request.</p> <p> <b>Note:</b> The CSR must include a public key that is either an RSA key with a length of at least 2048 bits or an ECC key from NIST P-256 or NIST P-384 curves. </p> <p> <b>Note:</b> Reusing the same certificate signing request (CSR) results in a distinct certificate.</p> <p>You can create multiple certificates in a batch by creating a directory, copying multiple .csr files into that directory, and then specifying that directory on the command line. The following commands show how to create a batch of certificates given a batch of CSRs.</p> <p>Assuming a set of CSRs are located inside of the directory my-csr-directory:</p> <p>On Linux and OS X, the command is:</p> <p>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{}</p> <p>This command lists all of the CSRs in my-csr-directory and pipes each CSR file name to the aws iot create-certificate-from-csr AWS CLI command to create a certificate for the corresponding CSR.</p> <p>The aws iot create-certificate-from-csr part of the command can also be run in parallel to speed up the certificate creation process:</p> <p>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{}</p> <p>On Windows PowerShell, the command to create certificates for all CSRs in my-csr-directory is:</p> <p>&gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/$_}</p> <p>On a Windows command prompt, the command to create certificates for all CSRs in my-csr-directory is:</p> <p>&gt; forfiles /p my-csr-directory /c \"cmd /c aws iot create-certificate-from-csr --certificate-signing-request file://@path\"</p>",
     "CreateJob": "<p>Creates a job.</p>",
     "CreateKeysAndCertificate": "<p>Creates a 2048-bit RSA key pair and issues an X.509 certificate using the issued public key.</p> <p> <b>Note</b> This is the only time AWS IoT issues the private key for this certificate, so it is important to keep it in a secure location.</p>",
+    "CreateOTAUpdate": "<p>Creates an AWS IoT OTAUpdate on a target group of things or groups.</p>",
     "CreatePolicy": "<p>Creates an AWS IoT policy.</p> <p>The created policy is the default version for the policy. This operation creates a policy version with a version identifier of <b>1</b> and sets <b>1</b> as the policy's default version.</p>",
     "CreatePolicyVersion": "<p>Creates a new version of the specified AWS IoT policy. To update a policy, create a new policy version. A managed policy can have up to five versions. If the policy has five versions, you must use <a>DeletePolicyVersion</a> to delete an existing version before you create a new one.</p> <p>Optionally, you can set the new version as the policy's default version. The default version is the operative version (that is, the version that is in effect for the certificates to which the policy is attached).</p>",
     "CreateRoleAlias": "<p>Creates a role alias.</p>",
+    "CreateStream": "<p>Creates a stream for delivering one or more large files in chunks over MQTT. A stream transports data bytes in chunks or blocks packaged as MQTT messages from a source like S3. You can have one or more files associated with a stream. The total size of a file associated with the stream cannot exceed more than 2 MB. The stream will be created with version 0. If a stream is created with the same streamID as a stream that existed and was deleted within last 90 days, we will resurrect that old stream by incrementing the version by 1.</p>",
     "CreateThing": "<p>Creates a thing record in the thing registry.</p>",
     "CreateThingGroup": "<p>Create a thing group.</p>",
     "CreateThingType": "<p>Creates a new thing type.</p>",
@@ -25,10 +27,12 @@
     "DeleteAuthorizer": "<p>Deletes an authorizer.</p>",
     "DeleteCACertificate": "<p>Deletes a registered CA certificate.</p>",
     "DeleteCertificate": "<p>Deletes the specified certificate.</p> <p>A certificate cannot be deleted if it has a policy attached to it or if its status is set to ACTIVE. To delete a certificate, first use the <a>DetachPrincipalPolicy</a> API to detach all policies. Next, use the <a>UpdateCertificate</a> API to set the certificate to the INACTIVE status.</p>",
+    "DeleteOTAUpdate": "<p>Delete an OTA update.</p>",
     "DeletePolicy": "<p>Deletes the specified policy.</p> <p>A policy cannot be deleted if it has non-default versions or it is attached to any certificate.</p> <p>To delete a policy, use the DeletePolicyVersion API to delete all non-default versions of the policy; use the DetachPrincipalPolicy API to detach the policy from any certificate; and then use the DeletePolicy API to delete the policy.</p> <p>When a policy is deleted using DeletePolicy, its default version is deleted with it.</p>",
     "DeletePolicyVersion": "<p>Deletes the specified version of the specified policy. You cannot delete the default version of a policy using this API. To delete the default version of a policy, use <a>DeletePolicy</a>. To find out which version of a policy is marked as the default version, use ListPolicyVersions.</p>",
     "DeleteRegistrationCode": "<p>Deletes a CA certificate registration code.</p>",
     "DeleteRoleAlias": "<p>Deletes a role alias</p>",
+    "DeleteStream": "<p>Deletes a stream.</p>",
     "DeleteThing": "<p>Deletes the specified thing.</p>",
     "DeleteThingGroup": "<p>Deletes a thing group.</p>",
     "DeleteThingType": "<p>Deletes the specified thing type . You cannot delete a thing type if it has things associated with it. To delete a thing type, first mark it as deprecated by calling <a>DeprecateThingType</a>, then remove any associated things by calling <a>UpdateThing</a> to change the thing type on any associated thing, and finally use <a>DeleteThingType</a> to delete the thing type.</p>",
@@ -45,6 +49,7 @@
     "DescribeJob": "<p>Describes a job.</p>",
     "DescribeJobExecution": "<p>Describes a job execution.</p>",
     "DescribeRoleAlias": "<p>Describes a role alias.</p>",
+    "DescribeStream": "<p>Gets information about a stream.</p>",
     "DescribeThing": "<p>Gets information about the specified thing.</p>",
     "DescribeThingGroup": "<p>Describe a thing group.</p>",
     "DescribeThingRegistrationTask": "<p>Describes a bulk thing provisioning task.</p>",
@@ -58,6 +63,7 @@
     "GetIndexingConfiguration": "<p>Gets the search configuration.</p>",
     "GetJobDocument": "<p>Gets a job document.</p>",
     "GetLoggingOptions": "<p>Gets the logging options.</p>",
+    "GetOTAUpdate": "<p>Gets an OTA update.</p>",
     "GetPolicy": "<p>Gets information about the specified policy with the policy document of the default version.</p>",
     "GetPolicyVersion": "<p>Gets information about the specified policy version.</p>",
     "GetRegistrationCode": "<p>Gets a registration code used to register a CA certificate with AWS IoT.</p>",
@@ -72,6 +78,7 @@
     "ListJobExecutionsForJob": "<p>Lists the job executions for a job.</p>",
     "ListJobExecutionsForThing": "<p>Lists the job executions for the specified thing.</p>",
     "ListJobs": "<p>Lists jobs.</p>",
+    "ListOTAUpdates": "<p>Lists OTA updates.</p>",
     "ListOutgoingCertificates": "<p>Lists certificates that are being transferred but not yet accepted.</p>",
     "ListPolicies": "<p>Lists your policies.</p>",
     "ListPolicyPrincipals": "<p>Lists the principals associated with the specified policy.</p> <p> <b>Note:</b> This API is deprecated. Please use <a>ListTargetsForPolicy</a> instead.</p>",
@@ -79,6 +86,7 @@
     "ListPrincipalPolicies": "<p>Lists the policies attached to the specified principal. If you use an Cognito identity, the ID must be in <a href=\"http://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetCredentialsForIdentity.html#API_GetCredentialsForIdentity_RequestSyntax\">AmazonCognito Identity format</a>.</p> <p> <b>Note:</b> This API is deprecated. Please use <a>ListAttachedPolicies</a> instead.</p>",
     "ListPrincipalThings": "<p>Lists the things associated with the specified principal.</p>",
     "ListRoleAliases": "<p>Lists the role aliases registered in your account.</p>",
+    "ListStreams": "<p>Lists all of the streams in your AWS account.</p>",
     "ListTargetsForPolicy": "<p>List targets for the specified policy.</p>",
     "ListThingGroups": "<p>List the thing groups in your account.</p>",
     "ListThingGroupsForThing": "<p>List the thing groups to which the specified thing belongs.</p>",
@@ -113,6 +121,7 @@
     "UpdateEventConfigurations": "<p>Updates the event configurations.</p>",
     "UpdateIndexingConfiguration": "<p>Updates the search configuration.</p>",
     "UpdateRoleAlias": "<p>Updates a role alias.</p>",
+    "UpdateStream": "<p>Updates an existing stream. The stream version will be incremented by one.</p>",
     "UpdateThing": "<p>Updates the data for a thing.</p>",
     "UpdateThingGroup": "<p>Update a thing group.</p>",
     "UpdateThingGroupsForThing": "<p>Updates the groups to which the thing belongs.</p>"
@@ -154,6 +163,13 @@
       "refs": {
       }
     },
+    "AdditionalParameterMap": {
+      "base": null,
+      "refs": {
+        "CreateOTAUpdateRequest$additionalParameters": "<p>A list of additional OTA update parameters which are name-value pairs.</p>",
+        "OTAUpdateInfo$additionalParameters": "<p>A collection of name/value pairs</p>"
+      }
+    },
     "AlarmName": {
       "base": null,
       "refs": {
@@ -183,7 +199,8 @@
         "ListPoliciesRequest$ascendingOrder": "<p>Specifies the order for results. If true, the results are returned in ascending creation order.</p>",
         "ListPolicyPrincipalsRequest$ascendingOrder": "<p>Specifies the order for results. If true, the results are returned in ascending creation order.</p>",
         "ListPrincipalPoliciesRequest$ascendingOrder": "<p>Specifies the order for results. If true, results are returned in ascending creation order.</p>",
-        "ListRoleAliasesRequest$ascendingOrder": "<p>Return the list of role aliases in ascending alphabetical order.</p>"
+        "ListRoleAliasesRequest$ascendingOrder": "<p>Return the list of role aliases in ascending alphabetical order.</p>",
+        "ListStreamsRequest$ascendingOrder": "<p>Set to true to return the list of streams in ascending order.</p>"
       }
     },
     "AssociateTargetsWithJobRequest": {
@@ -246,6 +263,12 @@
         "DescribeThingResponse$attributes": "<p>The thing attributes.</p>",
         "ThingAttribute$attributes": "<p>A list of thing attributes which are name-value pairs.</p>",
         "ThingDocument$attributes": "<p>The attributes.</p>"
+      }
+    },
+    "AttributesMap": {
+      "base": null,
+      "refs": {
+        "OTAUpdateFile$attributes": "<p>A list of name/attribute pairs.</p>"
       }
     },
     "AuthDecision": {
@@ -380,6 +403,20 @@
         "SqsAction$roleArn": "<p>The ARN of the IAM role that grants access.</p>"
       }
     },
+    "AwsIotJobArn": {
+      "base": null,
+      "refs": {
+        "CreateOTAUpdateResponse$awsIotJobArn": "<p>The AWS IoT job ARN associated with the OTA update.</p>",
+        "OTAUpdateInfo$awsIotJobArn": "<p>The AWS IoT job ARN associated with the OTA update.</p>"
+      }
+    },
+    "AwsIotJobId": {
+      "base": null,
+      "refs": {
+        "CreateOTAUpdateResponse$awsIotJobId": "<p>The AWS IoT job ID associated with the OTA update.</p>",
+        "OTAUpdateInfo$awsIotJobId": "<p>The AWS IoT job ID associated with the OTA update.</p>"
+      }
+    },
     "AwsIotSqlVersion": {
       "base": null,
       "refs": {
@@ -510,6 +547,12 @@
         "UpdateCertificateRequest$certificateId": "<p>The ID of the certificate.</p>"
       }
     },
+    "CertificateName": {
+      "base": null,
+      "refs": {
+        "CodeSigningCertificateChain$certificateName": "<p>The name of the certificate.</p>"
+      }
+    },
     "CertificatePem": {
       "base": "<p>The PEM of a certificate.</p>",
       "refs": {
@@ -585,6 +628,30 @@
         "Action$cloudwatchMetric": "<p>Capture a CloudWatch metric.</p>"
       }
     },
+    "Code": {
+      "base": null,
+      "refs": {
+        "ErrorInfo$code": "<p>The error code.</p>"
+      }
+    },
+    "CodeSigning": {
+      "base": "<p>Describes the method to use when code signing a file.</p>",
+      "refs": {
+        "OTAUpdateFile$codeSigning": "<p>The code signing method of the file.</p>"
+      }
+    },
+    "CodeSigningCertificateChain": {
+      "base": "<p>Describes the certificate chain being used when code signing a file.</p>",
+      "refs": {
+        "CustomCodeSigning$certificateChain": "<p>The certificate chain.</p>"
+      }
+    },
+    "CodeSigningSignature": {
+      "base": "<p>Describes the signature for a file.</p>",
+      "refs": {
+        "CustomCodeSigning$signature": "<p>The signature for the file.</p>"
+      }
+    },
     "CognitoIdentityPoolId": {
       "base": null,
       "refs": {
@@ -658,6 +725,16 @@
       "refs": {
       }
     },
+    "CreateOTAUpdateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateOTAUpdateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreatePolicyRequest": {
       "base": "<p>The input for the CreatePolicy operation.</p>",
       "refs": {
@@ -684,6 +761,16 @@
       }
     },
     "CreateRoleAliasResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateStreamRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateStreamResponse": {
       "base": null,
       "refs": {
       }
@@ -747,6 +834,12 @@
         "UpdateRoleAliasRequest$credentialDurationSeconds": "<p>The number of seconds the credential will be valid.</p>"
       }
     },
+    "CustomCodeSigning": {
+      "base": "<p>Describes a custom method used to code sign a file.</p>",
+      "refs": {
+        "CodeSigning$customCodeSigning": "<p>A custom method for code signing a file.</p>"
+      }
+    },
     "DateType": {
       "base": null,
       "refs": {
@@ -769,11 +862,16 @@
         "JobSummary$createdAt": "<p>The time, in milliseconds since the epoch, when the job was created.</p>",
         "JobSummary$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the job was last updated.</p>",
         "JobSummary$completedAt": "<p>The time, in milliseconds since the epoch, when the job completed.</p>",
+        "OTAUpdateInfo$creationDate": "<p>The date when the OTA update was created.</p>",
+        "OTAUpdateInfo$lastModifiedDate": "<p>The date when the OTA update was last updated.</p>",
+        "OTAUpdateSummary$creationDate": "<p>The date when the OTA update was created.</p>",
         "OutgoingCertificate$transferDate": "<p>The date the transfer was initiated.</p>",
         "OutgoingCertificate$creationDate": "<p>The certificate creation date.</p>",
         "PolicyVersion$createDate": "<p>The date and time the policy was created.</p>",
         "RoleAliasDescription$creationDate": "<p>The UNIX timestamp of when the role alias was created.</p>",
         "RoleAliasDescription$lastModifiedDate": "<p>The UNIX timestamp of when the role alias was last modified.</p>",
+        "StreamInfo$createdAt": "<p>The date when the stream was created.</p>",
+        "StreamInfo$lastUpdatedAt": "<p>The date when the stream was last updated.</p>",
         "TransferData$transferDate": "<p>The date the transfer took place.</p>",
         "TransferData$acceptDate": "<p>The date the transfer was accepted.</p>",
         "TransferData$rejectDate": "<p>The date the transfer was rejected.</p>"
@@ -809,6 +907,16 @@
       "refs": {
       }
     },
+    "DeleteOTAUpdateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteOTAUpdateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeletePolicyRequest": {
       "base": "<p>The input for the DeletePolicy operation.</p>",
       "refs": {
@@ -835,6 +943,16 @@
       }
     },
     "DeleteRoleAliasResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteStreamRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteStreamResponse": {
       "base": null,
       "refs": {
       }
@@ -1003,6 +1121,16 @@
       }
     },
     "DescribeRoleAliasResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeStreamRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeStreamResponse": {
       "base": null,
       "refs": {
       }
@@ -1194,6 +1322,12 @@
         "DescribeEndpointRequest$endpointType": "<p>The endpoint type.</p>"
       }
     },
+    "ErrorInfo": {
+      "base": "<p>Error information.</p>",
+      "refs": {
+        "OTAUpdateInfo$errorInfo": "<p>Error information associated with the OTA update.</p>"
+      }
+    },
     "ErrorMessage": {
       "base": null,
       "refs": {
@@ -1237,6 +1371,19 @@
       "base": null,
       "refs": {
         "JobProcessDetails$numberOfFailedThings": "<p>The number of things that failed executing the job.</p>"
+      }
+    },
+    "FileId": {
+      "base": null,
+      "refs": {
+        "Stream$fileId": "<p>The ID of a file associated with a stream.</p>",
+        "StreamFile$fileId": "<p>The file ID.</p>"
+      }
+    },
+    "FileName": {
+      "base": null,
+      "refs": {
+        "OTAUpdateFile$fileName": "<p>The name of the file.</p>"
       }
     },
     "FirehoseAction": {
@@ -1315,6 +1462,16 @@
       "refs": {
       }
     },
+    "GetOTAUpdateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetOTAUpdateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetPolicyRequest": {
       "base": "<p>The input for the GetPolicy operation.</p>",
       "refs": {
@@ -1371,6 +1528,12 @@
         "ThingGroupNameAndArnList$member": null
       }
     },
+    "HashAlgorithm": {
+      "base": null,
+      "refs": {
+        "CustomCodeSigning$hashAlgorithm": "<p>The hash algorithm used to code sign the file.</p>"
+      }
+    },
     "HashKeyField": {
       "base": null,
       "refs": {
@@ -1425,6 +1588,12 @@
       "base": null,
       "refs": {
         "DescribeIndexResponse$indexStatus": "<p>The index status.</p>"
+      }
+    },
+    "InlineDocument": {
+      "base": null,
+      "refs": {
+        "CodeSigningCertificateChain$inlineDocument": "<p>A base64 encoded binary representation of the code signing certificate chain.</p>"
       }
     },
     "InternalException": {
@@ -1643,6 +1812,8 @@
     "Key": {
       "base": null,
       "refs": {
+        "AdditionalParameterMap$key": null,
+        "AttributesMap$key": null,
         "S3Action$key": "<p>The object key.</p>"
       }
     },
@@ -1786,6 +1957,16 @@
       "refs": {
       }
     },
+    "ListOTAUpdatesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListOTAUpdatesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListOutgoingCertificatesRequest": {
       "base": "<p>The input to the ListOutgoingCertificates operation.</p>",
       "refs": {
@@ -1852,6 +2033,16 @@
       }
     },
     "ListRoleAliasesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListStreamsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListStreamsResponse": {
       "base": null,
       "refs": {
       }
@@ -2055,6 +2246,13 @@
         "JobExecutionsRolloutConfig$maximumPerMinute": "<p>The maximum number of things that will be notified of a pending job, per minute. This parameter allows you to create a staged rollout.</p>"
       }
     },
+    "MaxResults": {
+      "base": null,
+      "refs": {
+        "ListOTAUpdatesRequest$maxResults": "<p>The maximum number of results to return at one time.</p>",
+        "ListStreamsRequest$maxResults": "<p>The maximum number of results to return at a time.</p>"
+      }
+    },
     "Message": {
       "base": null,
       "refs": {
@@ -2124,8 +2322,12 @@
         "ListJobExecutionsForThingResponse$nextToken": "<p>The token for the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListJobsRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
         "ListJobsResponse$nextToken": "<p>The token for the next set of results, or <b>null</b> if there are no additional results.</p>",
+        "ListOTAUpdatesRequest$nextToken": "<p>A token used to retreive the next set of results.</p>",
+        "ListOTAUpdatesResponse$nextToken": "<p>A token to use to get the next set of results.</p>",
         "ListPrincipalThingsRequest$nextToken": "<p>The token used to get the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListPrincipalThingsResponse$nextToken": "<p>The token used to get the next set of results, or <b>null</b> if there are no additional results.</p>",
+        "ListStreamsRequest$nextToken": "<p>A token used to get the next set of results.</p>",
+        "ListStreamsResponse$nextToken": "<p>A token used to get the next set of results.</p>",
         "ListThingGroupsForThingRequest$nextToken": "<p>The token used to get the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListThingGroupsForThingResponse$nextToken": "<p>The token used to get the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListThingGroupsRequest$nextToken": "<p>The token used to get the next set of results, or <b>null</b> if there are no additional results.</p>",
@@ -2151,6 +2353,83 @@
     "NotConfiguredException": {
       "base": "<p>The resource is not configured.</p>",
       "refs": {
+      }
+    },
+    "OTAUpdateArn": {
+      "base": null,
+      "refs": {
+        "CreateOTAUpdateResponse$otaUpdateArn": "<p>The OTA update ARN.</p>",
+        "OTAUpdateInfo$otaUpdateArn": "<p>The OTA update ARN.</p>",
+        "OTAUpdateSummary$otaUpdateArn": "<p>The OTA update ARN.</p>"
+      }
+    },
+    "OTAUpdateDescription": {
+      "base": null,
+      "refs": {
+        "CreateOTAUpdateRequest$description": "<p>The description of the OTA update.</p>",
+        "OTAUpdateInfo$description": "<p>A description of the OTA update.</p>"
+      }
+    },
+    "OTAUpdateErrorMessage": {
+      "base": null,
+      "refs": {
+        "ErrorInfo$message": "<p>The error message.</p>"
+      }
+    },
+    "OTAUpdateFile": {
+      "base": "<p>Describes a file to be associated with an OTA update.</p>",
+      "refs": {
+        "OTAUpdateFiles$member": null
+      }
+    },
+    "OTAUpdateFileVersion": {
+      "base": null,
+      "refs": {
+        "OTAUpdateFile$fileVersion": "<p>The file version.</p>"
+      }
+    },
+    "OTAUpdateFiles": {
+      "base": null,
+      "refs": {
+        "CreateOTAUpdateRequest$files": "<p>The files to be streamed by the OTA update.</p>",
+        "OTAUpdateInfo$otaUpdateFiles": "<p>A list of files associated with the OTA update.</p>"
+      }
+    },
+    "OTAUpdateId": {
+      "base": null,
+      "refs": {
+        "CreateOTAUpdateRequest$otaUpdateId": "<p>The ID of the OTA update to be created.</p>",
+        "CreateOTAUpdateResponse$otaUpdateId": "<p>The OTA update ID.</p>",
+        "DeleteOTAUpdateRequest$otaUpdateId": "<p>The OTA update ID to delete.</p>",
+        "GetOTAUpdateRequest$otaUpdateId": "<p>The OTA update ID.</p>",
+        "OTAUpdateInfo$otaUpdateId": "<p>The OTA update ID.</p>",
+        "OTAUpdateSummary$otaUpdateId": "<p>The OTA update ID.</p>"
+      }
+    },
+    "OTAUpdateInfo": {
+      "base": "<p>Information about an OTA update.</p>",
+      "refs": {
+        "GetOTAUpdateResponse$otaUpdateInfo": "<p>The OTA update info.</p>"
+      }
+    },
+    "OTAUpdateStatus": {
+      "base": null,
+      "refs": {
+        "CreateOTAUpdateResponse$otaUpdateStatus": "<p>The OTA update status.</p>",
+        "ListOTAUpdatesRequest$otaUpdateStatus": "<p>The OTA update job status.</p>",
+        "OTAUpdateInfo$otaUpdateStatus": "<p>The status of the OTA update.</p>"
+      }
+    },
+    "OTAUpdateSummary": {
+      "base": "<p>An OTA update summary.</p>",
+      "refs": {
+        "OTAUpdatesSummary$member": null
+      }
+    },
+    "OTAUpdatesSummary": {
+      "base": null,
+      "refs": {
+        "ListOTAUpdatesResponse$otaUpdates": "<p>A list of OTA update jobs.</p>"
       }
     },
     "OptionalVersion": {
@@ -2697,13 +2976,17 @@
     "RoleArn": {
       "base": null,
       "refs": {
+        "CreateOTAUpdateRequest$roleArn": "<p>The IAM role that allows access to the AWS IoT Jobs service.</p>",
         "CreateRoleAliasRequest$roleArn": "<p>The role ARN.</p>",
+        "CreateStreamRequest$roleArn": "<p>An IAM role that allows the IoT service principal assumes to access your S3 files.</p>",
         "DescribeThingRegistrationTaskResponse$roleArn": "<p>The role ARN that grants access to the input file bucket.</p>",
         "PresignedUrlConfig$roleArn": "<p>The ARN of an IAM role that grants grants permission to download files from the S3 bucket where the job data/updates are stored. The role must also grant permission for IoT to download the files.</p>",
         "RegistrationConfig$roleArn": "<p>The ARN of the role.</p>",
         "RoleAliasDescription$roleArn": "<p>The role ARN.</p>",
         "StartThingRegistrationTaskRequest$roleArn": "<p>The IAM role ARN that grants permission the input file.</p>",
-        "UpdateRoleAliasRequest$roleArn": "<p>The role ARN.</p>"
+        "StreamInfo$roleArn": "<p>An IAM role AWS IoT assumes to access your S3 files.</p>",
+        "UpdateRoleAliasRequest$roleArn": "<p>The role ARN.</p>",
+        "UpdateStreamRequest$roleArn": "<p>An IAM role that allows the IoT service principal assumes to access your S3 files.</p>"
       }
     },
     "RuleArn": {
@@ -2732,6 +3015,12 @@
         "Action$s3": "<p>Write to an Amazon S3 bucket.</p>"
       }
     },
+    "S3Bucket": {
+      "base": null,
+      "refs": {
+        "S3Location$bucket": "<p>The S3 bucket that contains the file to stream.</p>"
+      }
+    },
     "S3FileUrl": {
       "base": null,
       "refs": {
@@ -2742,6 +3031,24 @@
       "base": null,
       "refs": {
         "ListThingRegistrationTaskReportsResponse$resourceLinks": "<p>Links to the task resources.</p>"
+      }
+    },
+    "S3Key": {
+      "base": null,
+      "refs": {
+        "S3Location$key": "<p>The name of the file within the S3 bucket to stream.</p>"
+      }
+    },
+    "S3Location": {
+      "base": "<p>The location in S3 the contains the files to stream.</p>",
+      "refs": {
+        "StreamFile$s3Location": "<p>The location of the file in S3.</p>"
+      }
+    },
+    "S3Version": {
+      "base": null,
+      "refs": {
+        "S3Location$version": "<p>The file version.</p>"
       }
     },
     "SQL": {
@@ -2848,6 +3155,24 @@
       "refs": {
       }
     },
+    "Signature": {
+      "base": null,
+      "refs": {
+        "CodeSigningSignature$inlineDocument": "<p>A base64 encoded binary representation of the code signing signature.</p>"
+      }
+    },
+    "SignatureAlgorithm": {
+      "base": null,
+      "refs": {
+        "CustomCodeSigning$signatureAlgorithm": "<p>The signature algorithm used to code sign the file.</p>"
+      }
+    },
+    "SigningJobId": {
+      "base": null,
+      "refs": {
+        "CodeSigning$awsSignerJobId": "<p>The ID of the AWSSignerJob which was created to sign the file.</p>"
+      }
+    },
     "SkyfallMaxResults": {
       "base": null,
       "refs": {
@@ -2910,10 +3235,93 @@
       "refs": {
       }
     },
+    "Stream": {
+      "base": "<p>Describes a group of files that can be streamed.</p>",
+      "refs": {
+        "CodeSigningCertificateChain$stream": "<p>A stream of the certificate chain files.</p>",
+        "CodeSigningSignature$stream": "<p>A stream of the code signing signature.</p>",
+        "OTAUpdateFile$fileSource": "<p>The source of the file.</p>"
+      }
+    },
+    "StreamArn": {
+      "base": null,
+      "refs": {
+        "CreateStreamResponse$streamArn": "<p>The stream ARN.</p>",
+        "StreamInfo$streamArn": "<p>The stream ARN.</p>",
+        "StreamSummary$streamArn": "<p>The stream ARN.</p>",
+        "UpdateStreamResponse$streamArn": "<p>The stream ARN.</p>"
+      }
+    },
+    "StreamDescription": {
+      "base": null,
+      "refs": {
+        "CreateStreamRequest$description": "<p>A description of the stream.</p>",
+        "CreateStreamResponse$description": "<p>A description of the stream.</p>",
+        "StreamInfo$description": "<p>The description of the stream.</p>",
+        "StreamSummary$description": "<p>A description of the stream.</p>",
+        "UpdateStreamRequest$description": "<p>The description of the stream.</p>",
+        "UpdateStreamResponse$description": "<p>A description of the stream.</p>"
+      }
+    },
+    "StreamFile": {
+      "base": "<p>Represents a file to stream.</p>",
+      "refs": {
+        "StreamFiles$member": null
+      }
+    },
+    "StreamFiles": {
+      "base": null,
+      "refs": {
+        "CreateStreamRequest$files": "<p>The files to stream.</p>",
+        "StreamInfo$files": "<p>The files to stream.</p>",
+        "UpdateStreamRequest$files": "<p>The files associated with the stream.</p>"
+      }
+    },
+    "StreamId": {
+      "base": null,
+      "refs": {
+        "CreateStreamRequest$streamId": "<p>The stream ID.</p>",
+        "CreateStreamResponse$streamId": "<p>The stream ID.</p>",
+        "DeleteStreamRequest$streamId": "<p>The stream ID.</p>",
+        "DescribeStreamRequest$streamId": "<p>The stream ID.</p>",
+        "Stream$streamId": "<p>The stream ID.</p>",
+        "StreamInfo$streamId": "<p>The stream ID.</p>",
+        "StreamSummary$streamId": "<p>The stream ID.</p>",
+        "UpdateStreamRequest$streamId": "<p>The stream ID.</p>",
+        "UpdateStreamResponse$streamId": "<p>The stream ID.</p>"
+      }
+    },
+    "StreamInfo": {
+      "base": "<p>Information about a stream.</p>",
+      "refs": {
+        "DescribeStreamResponse$streamInfo": "<p>Information about the stream.</p>"
+      }
+    },
     "StreamName": {
       "base": null,
       "refs": {
         "KinesisAction$streamName": "<p>The name of the Amazon Kinesis stream.</p>"
+      }
+    },
+    "StreamSummary": {
+      "base": "<p>A summary of a stream.</p>",
+      "refs": {
+        "StreamsSummary$member": null
+      }
+    },
+    "StreamVersion": {
+      "base": null,
+      "refs": {
+        "CreateStreamResponse$streamVersion": "<p>The version of the stream.</p>",
+        "StreamInfo$streamVersion": "<p>The stream version.</p>",
+        "StreamSummary$streamVersion": "<p>The stream version.</p>",
+        "UpdateStreamResponse$streamVersion": "<p>The stream version.</p>"
+      }
+    },
+    "StreamsSummary": {
+      "base": null,
+      "refs": {
+        "ListStreamsResponse$streams": "<p>A list of streams.</p>"
       }
     },
     "SucceededThings": {
@@ -2929,6 +3337,12 @@
         "PutItemInput$tableName": "<p>The table where the message data will be written</p>"
       }
     },
+    "Target": {
+      "base": null,
+      "refs": {
+        "Targets$member": null
+      }
+    },
     "TargetArn": {
       "base": null,
       "refs": {
@@ -2939,9 +3353,18 @@
       "base": null,
       "refs": {
         "CreateJobRequest$targetSelection": "<p>Specifies whether the job will continue to run (CONTINUOUS), or will be complete after all those things specified as targets have completed the job (SNAPSHOT). If continuous, the job may also be run on a thing when a change is detected in a target. For example, a job will run on a thing when the thing is added to a target group, even after the job was completed by all things originally in the group.</p>",
+        "CreateOTAUpdateRequest$targetSelection": "<p>Specifies whether the update will continue to run (CONTINUOUS), or will be complete after all the things specified as targets have completed the update (SNAPSHOT). If continuous, the update may also be run on a thing when a change is detected in a target. For example, an update will run on a thing when the thing is added to a target group, even after the update was completed by all things originally in the group. Valid values: CONTINUOUS | SNAPSHOT.</p>",
         "Job$targetSelection": "<p>Specifies whether the job will continue to run (CONTINUOUS), or will be complete after all those things specified as targets have completed the job (SNAPSHOT). If continuous, the job may also be run on a thing when a change is detected in a target. For example, a job will run on a device when the thing representing the device is added to a target group, even after the job was completed by all things originally in the group. </p>",
         "JobSummary$targetSelection": "<p>Specifies whether the job will continue to run (CONTINUOUS), or will be complete after all those things specified as targets have completed the job (SNAPSHOT). If continuous, the job may also be run on a thing when a change is detected in a target. For example, a job will run on a thing when the thing is added to a target group, even after the job was completed by all things originally in the group.</p>",
-        "ListJobsRequest$targetSelection": "<p>Specifies whether the job will continue to run (CONTINUOUS), or will be complete after all those things specified as targets have completed the job (SNAPSHOT). If continuous, the job may also be run on a thing when a change is detected in a target. For example, a job will run on a thing when the thing is added to a target group, even after the job was completed by all things originally in the group. </p>"
+        "ListJobsRequest$targetSelection": "<p>Specifies whether the job will continue to run (CONTINUOUS), or will be complete after all those things specified as targets have completed the job (SNAPSHOT). If continuous, the job may also be run on a thing when a change is detected in a target. For example, a job will run on a thing when the thing is added to a target group, even after the job was completed by all things originally in the group. </p>",
+        "OTAUpdateInfo$targetSelection": "<p>Specifies whether the OTA update will continue to run (CONTINUOUS), or will be complete after all those things specified as targets have completed the OTA update (SNAPSHOT). If continuous, the OTA update may also be run on a thing when a change is detected in a target. For example, an OTA update will run on a thing when the thing is added to a target group, even after the OTA update was completed by all things originally in the group. </p>"
+      }
+    },
+    "Targets": {
+      "base": null,
+      "refs": {
+        "CreateOTAUpdateRequest$targets": "<p>The targeted devices to receive OTA updates.</p>",
+        "OTAUpdateInfo$targets": "<p>The targets of the OTA update.</p>"
       }
     },
     "TaskId": {
@@ -3377,6 +3800,16 @@
       "refs": {
       }
     },
+    "UpdateStreamRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateStreamResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateThingGroupRequest": {
       "base": null,
       "refs": {
@@ -3416,6 +3849,8 @@
     "Value": {
       "base": null,
       "refs": {
+        "AdditionalParameterMap$value": null,
+        "AttributesMap$value": null,
         "Parameters$value": null
       }
     },
