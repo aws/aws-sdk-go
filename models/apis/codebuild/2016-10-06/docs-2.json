@@ -253,6 +253,12 @@
         "StartBuildInput$environmentVariablesOverride": "<p>A set of environment variables that overrides, for this build only, the latest ones already defined in the build project.</p>"
       }
     },
+    "ImageVersions": {
+      "base": null,
+      "refs": {
+        "EnvironmentImage$versions": "<p>A list of environment image versions.</p>"
+      }
+    },
     "InvalidInputException": {
       "base": "<p>The input value that was provided is not valid.</p>",
       "refs": {
@@ -556,6 +562,7 @@
         "EnvironmentImage$name": "<p>The name of the Docker image.</p>",
         "EnvironmentImage$description": "<p>The description of the Docker image.</p>",
         "EnvironmentVariable$value": "<p>The value of the environment variable.</p> <important> <p>We strongly discourage using environment variables to store sensitive values, especially AWS secret key IDs and secret access keys. Environment variables can be displayed in plain text using tools such as the AWS CodeBuild console and the AWS Command Line Interface (AWS CLI).</p> </important>",
+        "ImageVersions$member": null,
         "ListBuildsForProjectInput$nextToken": "<p>During a previous call, if there are more than 100 items in the list, only the first 100 items are returned, along with a unique string called a <i>next token</i>. To get the next batch of items in the list, call this operation again, adding the next token to the call. To get all of the items in the list, keep calling this operation with each subsequent next token that is returned, until no more next tokens are returned.</p>",
         "ListBuildsForProjectOutput$nextToken": "<p>If there are more than 100 items in the list, only the first 100 items are returned, along with a unique string called a <i>next token</i>. To get the next batch of items in the list, call this operation again, adding the next token to the call.</p>",
         "ListBuildsInput$nextToken": "<p>During a previous call, if there are more than 100 items in the list, only the first 100 items are returned, along with a unique string called a <i>next token</i>. To get the next batch of items in the list, call this operation again, adding the next token to the call. To get all of the items in the list, keep calling this operation with each subsequent next token that is returned, until no more next tokens are returned.</p>",
@@ -636,11 +643,11 @@
       }
     },
     "VpcConfig": {
-      "base": "<p>If your AWS CodeBuild project accesses resources in an Amazon VPC, you provide this parameter that identifies the VPC ID and the list of security group IDs and subnet IDs. The security groups and subnets must belong to the same VPC. You must provide at least one security group and one subnet ID.</p>",
+      "base": "<p>Information about the VPC configuration that AWS CodeBuild will access.</p>",
       "refs": {
         "Build$vpcConfig": "<p>If your AWS CodeBuild project accesses resources in an Amazon VPC, you provide this parameter that identifies the VPC ID and the list of security group IDs and subnet IDs. The security groups and subnets must belong to the same VPC. You must provide at least one security group and one subnet ID.</p>",
         "CreateProjectInput$vpcConfig": "<p>VpcConfig enables AWS CodeBuild to access resources in an Amazon VPC.</p>",
-        "Project$vpcConfig": "<p>If your AWS CodeBuild project accesses resources in an Amazon VPC, you provide this parameter that identifies the VPC ID and the list of security group IDs and subnet IDs. The security groups and subnets must belong to the same VPC. You must provide at least one security group and one subnet ID.</p>",
+        "Project$vpcConfig": "<p>Information about the VPC configuration that AWS CodeBuild will access.</p>",
         "UpdateProjectInput$vpcConfig": "<p>VpcConfig enables AWS CodeBuild to access resources in an Amazon VPC.</p>"
       }
     },

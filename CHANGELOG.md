@@ -1,3 +1,15 @@
+Release v1.12.52 (2017-12-21)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * Adding support allowing AWS CodeBuild customers to select specific curated image versions.
+* `service/ec2`: Updates service API and documentation
+  * Elastic IP tagging enables you to add key and value metadata to your Elastic IPs so that you can search, filter, and organize them according to your organization's needs.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/kinesisanalytics`: Updates service API and documentation
+  * Kinesis Analytics now supports AWS Lambda functions as output.
+
 Release v1.12.51 (2017-12-21)
 ===
 
