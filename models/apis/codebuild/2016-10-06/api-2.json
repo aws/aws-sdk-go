@@ -442,7 +442,8 @@
       "type":"structure",
       "members":{
         "name":{"shape":"String"},
-        "description":{"shape":"String"}
+        "description":{"shape":"String"},
+        "versions":{"shape":"ImageVersions"}
       }
     },
     "EnvironmentImages":{
@@ -497,6 +498,10 @@
     "EnvironmentVariables":{
       "type":"list",
       "member":{"shape":"EnvironmentVariable"}
+    },
+    "ImageVersions":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "InvalidInputException":{
       "type":"structure",
