@@ -1,3 +1,12 @@
+Release v1.12.51 (2017-12-21)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/iot`: Updates service API and documentation
+  * This release adds support for code signed Over-the-air update functionality for Amazon FreeRTOS. Users can now create and schedule Over-the-air updates to their Amazon FreeRTOS devices using these new APIs.
+
 Release v1.12.50 (2017-12-19)
 ===
 
