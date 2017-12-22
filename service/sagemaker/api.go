@@ -349,9 +349,8 @@ func (c *SageMaker) CreateModelRequest(input *CreateModelInput) (req *request.Re
 // Amazon SageMaker then deploys all of the containers that you defined for
 // the model in the hosting environment.
 //
-// In the CreateModel request, you must define at least one container with the
-// PrimaryContainer parameter. You can optionally specify additional containers
-// with the SupplementalContainers parameter.
+// In the CreateModel request, you must define a container with the PrimaryContainer
+// parameter.
 //
 // In the request, you also provide an IAM role that Amazon SageMaker can assume
 // to access model artifacts and docker image for deployment on ML compute hosting
@@ -2303,8 +2302,8 @@ func (c *SageMaker) StartNotebookInstanceRequest(input *StartNotebookInstanceInp
 // Launches an ML compute instance with the latest version of the libraries
 // and attaches your ML storage volume. After configuring the notebook instance,
 // Amazon SageMaker sets the notebook instance status to InService. A notebook
-// instance's status must be InService (is this same as "Running" in the console?)
-// before you can connect to your Jupyter notebook.
+// instance's status must be InService before you can connect to your Jupyter
+// notebook.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3352,9 +3351,6 @@ type CreateModelInput struct {
 	// PrimaryContainer is a required field
 	PrimaryContainer *ContainerDefinition `type:"structure" required:"true"`
 
-	// The additional optional containers to deploy.
-	SupplementalContainers []*ContainerDefinition `type:"list"`
-
 	// An array of key-value pairs. For more information, see Using Cost Allocation
 	// Tags (http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what)
 	// in the AWS Billing and Cost Management User Guide.
@@ -3391,16 +3387,6 @@ func (s *CreateModelInput) Validate() error {
 			invalidParams.AddNested("PrimaryContainer", err.(request.ErrInvalidParams))
 		}
 	}
-	if s.SupplementalContainers != nil {
-		for i, v := range s.SupplementalContainers {
-			if v == nil {
-				continue
-			}
-			if err := v.Validate(); err != nil {
-				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SupplementalContainers", i), err.(request.ErrInvalidParams))
-			}
-		}
-	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
 			if v == nil {
@@ -3433,12 +3419,6 @@ func (s *CreateModelInput) SetModelName(v string) *CreateModelInput {
 // SetPrimaryContainer sets the PrimaryContainer field's value.
 func (s *CreateModelInput) SetPrimaryContainer(v *ContainerDefinition) *CreateModelInput {
 	s.PrimaryContainer = v
-	return s
-}
-
-// SetSupplementalContainers sets the SupplementalContainers field's value.
-func (s *CreateModelInput) SetSupplementalContainers(v []*ContainerDefinition) *CreateModelInput {
-	s.SupplementalContainers = v
 	return s
 }
 
@@ -4602,12 +4582,6 @@ type DescribeModelOutput struct {
 	//
 	// PrimaryContainer is a required field
 	PrimaryContainer *ContainerDefinition `type:"structure" required:"true"`
-
-	// The description of additional optional containers that you defined when creating
-	// the model.
-	//
-	// SupplementalContainers is a required field
-	SupplementalContainers []*ContainerDefinition `type:"list" required:"true"`
 }
 
 // String returns the string representation
@@ -4647,12 +4621,6 @@ func (s *DescribeModelOutput) SetModelName(v string) *DescribeModelOutput {
 // SetPrimaryContainer sets the PrimaryContainer field's value.
 func (s *DescribeModelOutput) SetPrimaryContainer(v *ContainerDefinition) *DescribeModelOutput {
 	s.PrimaryContainer = v
-	return s
-}
-
-// SetSupplementalContainers sets the SupplementalContainers field's value.
-func (s *DescribeModelOutput) SetSupplementalContainers(v []*ContainerDefinition) *DescribeModelOutput {
-	s.SupplementalContainers = v
 	return s
 }
 

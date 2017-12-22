@@ -2541,7 +2541,7 @@
         },
         "Tags":{
           "shape":"TagList",
-          "locationName":"tags"
+          "locationName":"tagSet"
         }
       }
     },
