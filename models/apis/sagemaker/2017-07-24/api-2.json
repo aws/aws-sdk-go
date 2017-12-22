@@ -372,11 +372,6 @@
         "Environment":{"shape":"EnvironmentMap"}
       }
     },
-    "ContainerDefinitionList":{
-      "type":"list",
-      "member":{"shape":"ContainerDefinition"},
-      "max":5
-    },
     "ContainerHostname":{
       "type":"string",
       "max":63,
@@ -434,7 +429,6 @@
       "members":{
         "ModelName":{"shape":"ModelName"},
         "PrimaryContainer":{"shape":"ContainerDefinition"},
-        "SupplementalContainers":{"shape":"ContainerDefinitionList"},
         "ExecutionRoleArn":{"shape":"RoleArn"},
         "Tags":{"shape":"TagList"}
       }
@@ -627,7 +621,6 @@
       "required":[
         "ModelName",
         "PrimaryContainer",
-        "SupplementalContainers",
         "ExecutionRoleArn",
         "CreationTime",
         "ModelArn"
@@ -635,7 +628,6 @@
       "members":{
         "ModelName":{"shape":"ModelName"},
         "PrimaryContainer":{"shape":"ContainerDefinition"},
-        "SupplementalContainers":{"shape":"ContainerDefinitionList"},
         "ExecutionRoleArn":{"shape":"RoleArn"},
         "CreationTime":{"shape":"Timestamp"},
         "ModelArn":{"shape":"ModelArn"}
