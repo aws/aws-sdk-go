@@ -353,7 +353,39 @@ func newSession(opts Options, envCfg envConfig, cfgs ...*aws.Config) (*Session, 
 		}
 	}
 
+	// Setup HTTP client with min version for SSL/TLS if enabled
+	if envCfg.TLSMinVersion != 0 {
+		if err := setSslTlsMinVersion(s, envCfg.TLSMinVersion); err != nil {
+			return nil, err
+		}
+	}
+
 	return s, nil
+}
+
+func setSslTlsMinVersion(s *Session, version uint16) error {
+	var t *http.Transport
+	switch v := s.Config.HTTPClient.Transport.(type) {
+	case *http.Transport:
+		t = v
+	default:
+		if s.Config.HTTPClient.Transport != nil {
+			return awserr.New("LoadCustomCABundleError",
+				"unable to load custom CA bundle, HTTPClient's transport unsupported type", nil)
+		}
+	}
+	if t == nil {
+		t = &http.Transport{}
+	}
+
+	if t.TLSClientConfig == nil {
+		t.TLSClientConfig = &tls.Config{}
+	}
+	t.TLSClientConfig.MinVersion = version
+
+	s.Config.HTTPClient.Transport = t
+
+	return nil
 }
 
 func loadCustomCABundle(s *Session, bundle io.Reader) error {

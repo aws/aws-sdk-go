@@ -3,6 +3,7 @@ package session
 import (
 	"os"
 	"strconv"
+	"crypto/tls"
 
 	"github.com/aws/aws-sdk-go/aws/credentials"
 )
@@ -95,6 +96,8 @@ type envConfig struct {
 	//
 	//  AWS_CA_BUNDLE=$HOME/my_custom_ca_bundle
 	CustomCABundle string
+
+	TLSMinVersion uint16
 }
 
 var (
@@ -177,6 +180,14 @@ func envConfigLoad(enableSharedConfig bool) envConfig {
 	setFromEnvVal(&cfg.SharedConfigFile, sharedConfigFileEnvKey)
 
 	cfg.CustomCABundle = os.Getenv("AWS_CA_BUNDLE")
+
+	ver, err := strconv.ParseUint(os.Getenv("AWS_SSL_TLS_MIN_VERSION"),0,16)
+	if err == nil {
+		switch uver := uint16(ver); uver {
+		case tls.VersionSSL30, tls.VersionTLS10, tls.VersionTLS11, tls.VersionTLS12:
+			cfg.TLSMinVersion = uver
+		}
+	}
 
 	return cfg
 }
