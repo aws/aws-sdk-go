@@ -355,7 +355,7 @@ func newSession(opts Options, envCfg envConfig, cfgs ...*aws.Config) (*Session, 
 
 	// Setup HTTP client with min version for SSL/TLS if enabled
 	if envCfg.TLSMinVersion != 0 {
-		if err := setSslTlsMinVersion(s, envCfg.TLSMinVersion); err != nil {
+		if err := setSslTLSMinVersion(s, envCfg.TLSMinVersion); err != nil {
 			return nil, err
 		}
 	}
@@ -363,7 +363,7 @@ func newSession(opts Options, envCfg envConfig, cfgs ...*aws.Config) (*Session, 
 	return s, nil
 }
 
-func setSslTlsMinVersion(s *Session, version uint16) error {
+func setSslTLSMinVersion(s *Session, version uint16) error {
 	var t *http.Transport
 	switch v := s.Config.HTTPClient.Transport.(type) {
 	case *http.Transport:
