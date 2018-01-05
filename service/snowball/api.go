@@ -2233,7 +2233,7 @@ func (s *CreateAddressOutput) SetAddressId(v string) *CreateAddressOutput {
 type CreateClusterInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID for the address that you want the cluster shipped to.>
+	// The ID for the address that you want the cluster shipped to.
 	//
 	// AddressId is a required field
 	AddressId *string `min:"40" type:"string" required:"true"`
@@ -4113,12 +4113,12 @@ func (s *Shipment) SetTrackingNumber(v string) *Shipment {
 type ShippingDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The Status and TrackingNumber values for a Snowball being delivered to the
-	// address that you specified for a particular job.
-	InboundShipment *Shipment `type:"structure"`
-
 	// The Status and TrackingNumber values for a Snowball being returned to AWS
 	// for a particular job.
+	InboundShipment *Shipment `type:"structure"`
+
+	// The Status and TrackingNumber values for a Snowball being delivered to the
+	// address that you specified for a particular job.
 	OutboundShipment *Shipment `type:"structure"`
 
 	// The shipping speed for a particular job. This speed doesn't dictate how soon

@@ -1,3 +1,14 @@
+Release v1.12.56 (2018-01-05)
+===
+
+### Service Client Updates
+* `service/inspector`: Updates service API, documentation, and examples
+  * Added 2 new attributes to the DescribeAssessmentTemplate response, indicating the total number of assessment runs and last assessment run ARN (if present.)
+* `service/snowball`: Updates service documentation
+  * Documentation updates for snowball
+* `service/ssm`: Updates service documentation
+  * Documentation updates for ssm
+
 Release v1.12.55 (2018-01-02)
 ===
 

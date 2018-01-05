@@ -665,6 +665,7 @@
       "max":300,
       "min":1
     },
+    "ArnCount":{"type":"integer"},
     "AssessmentRulesPackageArnList":{
       "type":"list",
       "member":{"shape":"Arn"},
@@ -901,6 +902,7 @@
         "durationInSeconds",
         "rulesPackageArns",
         "userAttributesForFindings",
+        "assessmentRunCount",
         "createdAt"
       ],
       "members":{
@@ -910,6 +912,8 @@
         "durationInSeconds":{"shape":"AssessmentRunDuration"},
         "rulesPackageArns":{"shape":"AssessmentTemplateRulesPackageArnList"},
         "userAttributesForFindings":{"shape":"UserAttributeList"},
+        "lastAssessmentRunArn":{"shape":"Arn"},
+        "assessmentRunCount":{"shape":"ArnCount"},
         "createdAt":{"shape":"Timestamp"}
       }
     },
