@@ -33,7 +33,7 @@ const opCreateGroup = "CreateGroup"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/CreateGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/CreateGroup
 func (c *ResourceGroups) CreateGroupRequest(input *CreateGroupInput) (req *request.Request, output *CreateGroupOutput) {
 	op := &request.Operation{
 		Name:       opCreateGroup,
@@ -78,7 +78,7 @@ func (c *ResourceGroups) CreateGroupRequest(input *CreateGroupInput) (req *reque
 //   * ErrCodeInternalServerErrorException "InternalServerErrorException"
 //   An internal error occurred while processing the request.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/CreateGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/CreateGroup
 func (c *ResourceGroups) CreateGroup(input *CreateGroupInput) (*CreateGroupOutput, error) {
 	req, out := c.CreateGroupRequest(input)
 	return out, req.Send()
@@ -125,7 +125,7 @@ const opDeleteGroup = "DeleteGroup"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/DeleteGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/DeleteGroup
 func (c *ResourceGroups) DeleteGroupRequest(input *DeleteGroupInput) (req *request.Request, output *DeleteGroupOutput) {
 	op := &request.Operation{
 		Name:       opDeleteGroup,
@@ -174,7 +174,7 @@ func (c *ResourceGroups) DeleteGroupRequest(input *DeleteGroupInput) (req *reque
 //   * ErrCodeInternalServerErrorException "InternalServerErrorException"
 //   An internal error occurred while processing the request.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/DeleteGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/DeleteGroup
 func (c *ResourceGroups) DeleteGroup(input *DeleteGroupInput) (*DeleteGroupOutput, error) {
 	req, out := c.DeleteGroupRequest(input)
 	return out, req.Send()
@@ -221,7 +221,7 @@ const opGetGroup = "GetGroup"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroup
 func (c *ResourceGroups) GetGroupRequest(input *GetGroupInput) (req *request.Request, output *GetGroupOutput) {
 	op := &request.Operation{
 		Name:       opGetGroup,
@@ -269,7 +269,7 @@ func (c *ResourceGroups) GetGroupRequest(input *GetGroupInput) (req *request.Req
 //   * ErrCodeInternalServerErrorException "InternalServerErrorException"
 //   An internal error occurred while processing the request.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroup
 func (c *ResourceGroups) GetGroup(input *GetGroupInput) (*GetGroupOutput, error) {
 	req, out := c.GetGroupRequest(input)
 	return out, req.Send()
@@ -316,7 +316,7 @@ const opGetGroupQuery = "GetGroupQuery"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroupQuery
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroupQuery
 func (c *ResourceGroups) GetGroupQueryRequest(input *GetGroupQueryInput) (req *request.Request, output *GetGroupQueryOutput) {
 	op := &request.Operation{
 		Name:       opGetGroupQuery,
@@ -364,7 +364,7 @@ func (c *ResourceGroups) GetGroupQueryRequest(input *GetGroupQueryInput) (req *r
 //   * ErrCodeInternalServerErrorException "InternalServerErrorException"
 //   An internal error occurred while processing the request.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroupQuery
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroupQuery
 func (c *ResourceGroups) GetGroupQuery(input *GetGroupQueryInput) (*GetGroupQueryOutput, error) {
 	req, out := c.GetGroupQueryRequest(input)
 	return out, req.Send()
@@ -411,7 +411,7 @@ const opGetTags = "GetTags"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetTags
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetTags
 func (c *ResourceGroups) GetTagsRequest(input *GetTagsInput) (req *request.Request, output *GetTagsOutput) {
 	op := &request.Operation{
 		Name:       opGetTags,
@@ -460,7 +460,7 @@ func (c *ResourceGroups) GetTagsRequest(input *GetTagsInput) (req *request.Reque
 //   * ErrCodeInternalServerErrorException "InternalServerErrorException"
 //   An internal error occurred while processing the request.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetTags
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetTags
 func (c *ResourceGroups) GetTags(input *GetTagsInput) (*GetTagsOutput, error) {
 	req, out := c.GetTagsRequest(input)
 	return out, req.Send()
@@ -507,7 +507,7 @@ const opListGroupResources = "ListGroupResources"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroupResources
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroupResources
 func (c *ResourceGroups) ListGroupResourcesRequest(input *ListGroupResourcesInput) (req *request.Request, output *ListGroupResourcesOutput) {
 	op := &request.Operation{
 		Name:       opListGroupResources,
@@ -566,7 +566,7 @@ func (c *ResourceGroups) ListGroupResourcesRequest(input *ListGroupResourcesInpu
 //   * ErrCodeInternalServerErrorException "InternalServerErrorException"
 //   An internal error occurred while processing the request.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroupResources
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroupResources
 func (c *ResourceGroups) ListGroupResources(input *ListGroupResourcesInput) (*ListGroupResourcesOutput, error) {
 	req, out := c.ListGroupResourcesRequest(input)
 	return out, req.Send()
@@ -663,7 +663,7 @@ const opListGroups = "ListGroups"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroups
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroups
 func (c *ResourceGroups) ListGroupsRequest(input *ListGroupsInput) (req *request.Request, output *ListGroupsOutput) {
 	op := &request.Operation{
 		Name:       opListGroups,
@@ -714,7 +714,7 @@ func (c *ResourceGroups) ListGroupsRequest(input *ListGroupsInput) (req *request
 //   * ErrCodeInternalServerErrorException "InternalServerErrorException"
 //   An internal error occurred while processing the request.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroups
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroups
 func (c *ResourceGroups) ListGroups(input *ListGroupsInput) (*ListGroupsOutput, error) {
 	req, out := c.ListGroupsRequest(input)
 	return out, req.Send()
@@ -811,7 +811,7 @@ const opSearchResources = "SearchResources"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/SearchResources
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/SearchResources
 func (c *ResourceGroups) SearchResourcesRequest(input *SearchResourcesInput) (req *request.Request, output *SearchResourcesOutput) {
 	op := &request.Operation{
 		Name:       opSearchResources,
@@ -868,7 +868,7 @@ func (c *ResourceGroups) SearchResourcesRequest(input *SearchResourcesInput) (re
 //   * ErrCodeInternalServerErrorException "InternalServerErrorException"
 //   An internal error occurred while processing the request.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/SearchResources
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/SearchResources
 func (c *ResourceGroups) SearchResources(input *SearchResourcesInput) (*SearchResourcesOutput, error) {
 	req, out := c.SearchResourcesRequest(input)
 	return out, req.Send()
@@ -965,7 +965,7 @@ const opTag = "Tag"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/Tag
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/Tag
 func (c *ResourceGroups) TagRequest(input *TagInput) (req *request.Request, output *TagOutput) {
 	op := &request.Operation{
 		Name:       opTag,
@@ -1014,7 +1014,7 @@ func (c *ResourceGroups) TagRequest(input *TagInput) (req *request.Request, outp
 //   * ErrCodeInternalServerErrorException "InternalServerErrorException"
 //   An internal error occurred while processing the request.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/Tag
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/Tag
 func (c *ResourceGroups) Tag(input *TagInput) (*TagOutput, error) {
 	req, out := c.TagRequest(input)
 	return out, req.Send()
@@ -1061,7 +1061,7 @@ const opUntag = "Untag"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/Untag
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/Untag
 func (c *ResourceGroups) UntagRequest(input *UntagInput) (req *request.Request, output *UntagOutput) {
 	op := &request.Operation{
 		Name:       opUntag,
@@ -1109,7 +1109,7 @@ func (c *ResourceGroups) UntagRequest(input *UntagInput) (req *request.Request, 
 //   * ErrCodeInternalServerErrorException "InternalServerErrorException"
 //   An internal error occurred while processing the request.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/Untag
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/Untag
 func (c *ResourceGroups) Untag(input *UntagInput) (*UntagOutput, error) {
 	req, out := c.UntagRequest(input)
 	return out, req.Send()
@@ -1156,7 +1156,7 @@ const opUpdateGroup = "UpdateGroup"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroup
 func (c *ResourceGroups) UpdateGroupRequest(input *UpdateGroupInput) (req *request.Request, output *UpdateGroupOutput) {
 	op := &request.Operation{
 		Name:       opUpdateGroup,
@@ -1205,7 +1205,7 @@ func (c *ResourceGroups) UpdateGroupRequest(input *UpdateGroupInput) (req *reque
 //   * ErrCodeInternalServerErrorException "InternalServerErrorException"
 //   An internal error occurred while processing the request.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroup
 func (c *ResourceGroups) UpdateGroup(input *UpdateGroupInput) (*UpdateGroupOutput, error) {
 	req, out := c.UpdateGroupRequest(input)
 	return out, req.Send()
@@ -1252,7 +1252,7 @@ const opUpdateGroupQuery = "UpdateGroupQuery"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroupQuery
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroupQuery
 func (c *ResourceGroups) UpdateGroupQueryRequest(input *UpdateGroupQueryInput) (req *request.Request, output *UpdateGroupQueryOutput) {
 	op := &request.Operation{
 		Name:       opUpdateGroupQuery,
@@ -1300,7 +1300,7 @@ func (c *ResourceGroups) UpdateGroupQueryRequest(input *UpdateGroupQueryInput) (
 //   * ErrCodeInternalServerErrorException "InternalServerErrorException"
 //   An internal error occurred while processing the request.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroupQuery
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroupQuery
 func (c *ResourceGroups) UpdateGroupQuery(input *UpdateGroupQueryInput) (*UpdateGroupQueryOutput, error) {
 	req, out := c.UpdateGroupQueryRequest(input)
 	return out, req.Send()
@@ -1322,7 +1322,7 @@ func (c *ResourceGroups) UpdateGroupQueryWithContext(ctx aws.Context, input *Upd
 	return out, req.Send()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/CreateGroupInput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/CreateGroupInput
 type CreateGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1410,7 +1410,7 @@ func (s *CreateGroupInput) SetTags(v map[string]*string) *CreateGroupInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/CreateGroupOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/CreateGroupOutput
 type CreateGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1452,7 +1452,7 @@ func (s *CreateGroupOutput) SetTags(v map[string]*string) *CreateGroupOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/DeleteGroupInput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/DeleteGroupInput
 type DeleteGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1494,7 +1494,7 @@ func (s *DeleteGroupInput) SetGroupName(v string) *DeleteGroupInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/DeleteGroupOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/DeleteGroupOutput
 type DeleteGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1518,7 +1518,7 @@ func (s *DeleteGroupOutput) SetGroup(v *Group) *DeleteGroupOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroupInput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroupInput
 type GetGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1560,7 +1560,7 @@ func (s *GetGroupInput) SetGroupName(v string) *GetGroupInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroupOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroupOutput
 type GetGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1584,7 +1584,7 @@ func (s *GetGroupOutput) SetGroup(v *Group) *GetGroupOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroupQueryInput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroupQueryInput
 type GetGroupQueryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1626,7 +1626,7 @@ func (s *GetGroupQueryInput) SetGroupName(v string) *GetGroupQueryInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroupQueryOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroupQueryOutput
 type GetGroupQueryOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1650,7 +1650,7 @@ func (s *GetGroupQueryOutput) SetGroupQuery(v *GroupQuery) *GetGroupQueryOutput 
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetTagsInput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetTagsInput
 type GetTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1690,7 +1690,7 @@ func (s *GetTagsInput) SetArn(v string) *GetTagsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetTagsOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetTagsOutput
 type GetTagsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1724,7 +1724,7 @@ func (s *GetTagsOutput) SetTags(v map[string]*string) *GetTagsOutput {
 }
 
 // A resource group.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/Group
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/Group
 type Group struct {
 	_ struct{} `type:"structure"`
 
@@ -1772,7 +1772,7 @@ func (s *Group) SetName(v string) *Group {
 
 // The underlying resource query of a resource group. Resources that match query
 // results are part of the group.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GroupQuery
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GroupQuery
 type GroupQuery struct {
 	_ struct{} `type:"structure"`
 
@@ -1811,7 +1811,7 @@ func (s *GroupQuery) SetResourceQuery(v *ResourceQuery) *GroupQuery {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroupResourcesInput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroupResourcesInput
 type ListGroupResourcesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1877,7 +1877,7 @@ func (s *ListGroupResourcesInput) SetNextToken(v string) *ListGroupResourcesInpu
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroupResourcesOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroupResourcesOutput
 type ListGroupResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1912,7 +1912,7 @@ func (s *ListGroupResourcesOutput) SetResourceIdentifiers(v []*ResourceIdentifie
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroupsInput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroupsInput
 type ListGroupsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1961,7 +1961,7 @@ func (s *ListGroupsInput) SetNextToken(v string) *ListGroupsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroupsOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroupsOutput
 type ListGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1996,7 +1996,7 @@ func (s *ListGroupsOutput) SetNextToken(v string) *ListGroupsOutput {
 }
 
 // The ARN of a resource, and its resource type.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ResourceIdentifier
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ResourceIdentifier
 type ResourceIdentifier struct {
 	_ struct{} `type:"structure"`
 
@@ -2030,7 +2030,7 @@ func (s *ResourceIdentifier) SetResourceType(v string) *ResourceIdentifier {
 }
 
 // The query that is used to define a resource group or a search for resources.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ResourceQuery
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ResourceQuery
 type ResourceQuery struct {
 	_ struct{} `type:"structure"`
 
@@ -2090,7 +2090,7 @@ func (s *ResourceQuery) SetType(v string) *ResourceQuery {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/SearchResourcesInput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/SearchResourcesInput
 type SearchResourcesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2159,7 +2159,7 @@ func (s *SearchResourcesInput) SetResourceQuery(v *ResourceQuery) *SearchResourc
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/SearchResourcesOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/SearchResourcesOutput
 type SearchResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2194,7 +2194,7 @@ func (s *SearchResourcesOutput) SetResourceIdentifiers(v []*ResourceIdentifier) 
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/TagInput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/TagInput
 type TagInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2249,7 +2249,7 @@ func (s *TagInput) SetTags(v map[string]*string) *TagInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/TagOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/TagOutput
 type TagOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2282,7 +2282,7 @@ func (s *TagOutput) SetTags(v map[string]*string) *TagOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UntagInput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UntagInput
 type UntagInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2335,7 +2335,7 @@ func (s *UntagInput) SetKeys(v []*string) *UntagInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UntagOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UntagOutput
 type UntagOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2368,7 +2368,7 @@ func (s *UntagOutput) SetKeys(v []*string) *UntagOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroupInput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroupInput
 type UpdateGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2421,7 +2421,7 @@ func (s *UpdateGroupInput) SetGroupName(v string) *UpdateGroupInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroupOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroupOutput
 type UpdateGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2445,7 +2445,7 @@ func (s *UpdateGroupOutput) SetGroup(v *Group) *UpdateGroupOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroupQueryInput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroupQueryInput
 type UpdateGroupQueryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2507,7 +2507,7 @@ func (s *UpdateGroupQueryInput) SetResourceQuery(v *ResourceQuery) *UpdateGroupQ
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroupQueryOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroupQueryOutput
 type UpdateGroupQueryOutput struct {
 	_ struct{} `type:"structure"`
 

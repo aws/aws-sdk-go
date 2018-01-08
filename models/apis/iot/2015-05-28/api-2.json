@@ -227,6 +227,24 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "CreateOTAUpdate":{
+      "name":"CreateOTAUpdate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/otaUpdates/{otaUpdateId}"
+      },
+      "input":{"shape":"CreateOTAUpdateRequest"},
+      "output":{"shape":"CreateOTAUpdateResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "CreatePolicy":{
       "name":"CreatePolicy",
       "http":{
@@ -276,6 +294,24 @@
         {"shape":"ResourceAlreadyExistsException"},
         {"shape":"InvalidRequestException"},
         {"shape":"LimitExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "CreateStream":{
+      "name":"CreateStream",
+      "http":{
+        "method":"POST",
+        "requestUri":"/streams/{streamId}"
+      },
+      "input":{"shape":"CreateStreamRequest"},
+      "output":{"shape":"CreateStreamResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceAlreadyExistsException"},
         {"shape":"ThrottlingException"},
         {"shape":"UnauthorizedException"},
         {"shape":"ServiceUnavailableException"},
@@ -401,6 +437,23 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DeleteOTAUpdate":{
+      "name":"DeleteOTAUpdate",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/otaUpdates/{otaUpdateId}"
+      },
+      "input":{"shape":"DeleteOTAUpdateRequest"},
+      "output":{"shape":"DeleteOTAUpdateResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "DeletePolicy":{
       "name":"DeletePolicy",
       "http":{
@@ -467,6 +520,24 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"InternalFailureException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DeleteStream":{
+      "name":"DeleteStream",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/streams/{streamId}"
+      },
+      "input":{"shape":"DeleteStreamRequest"},
+      "output":{"shape":"DeleteStreamResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"DeleteConflictException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"}
       ]
     },
     "DeleteThing":{
@@ -723,6 +794,23 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DescribeStream":{
+      "name":"DescribeStream",
+      "http":{
+        "method":"GET",
+        "requestUri":"/streams/{streamId}"
+      },
+      "input":{"shape":"DescribeStreamRequest"},
+      "output":{"shape":"DescribeStreamResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "DescribeThing":{
       "name":"DescribeThing",
       "http":{
@@ -927,6 +1015,23 @@
         {"shape":"InternalException"},
         {"shape":"InvalidRequestException"},
         {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "GetOTAUpdate":{
+      "name":"GetOTAUpdate",
+      "http":{
+        "method":"GET",
+        "requestUri":"/otaUpdates/{otaUpdateId}"
+      },
+      "input":{"shape":"GetOTAUpdateRequest"},
+      "output":{"shape":"GetOTAUpdateResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "GetPolicy":{
@@ -1151,6 +1256,22 @@
         {"shape":"ServiceUnavailableException"}
       ]
     },
+    "ListOTAUpdates":{
+      "name":"ListOTAUpdates",
+      "http":{
+        "method":"GET",
+        "requestUri":"/otaUpdates"
+      },
+      "input":{"shape":"ListOTAUpdatesRequest"},
+      "output":{"shape":"ListOTAUpdatesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "ListOutgoingCertificates":{
       "name":"ListOutgoingCertificates",
       "http":{
@@ -1261,6 +1382,22 @@
       },
       "input":{"shape":"ListRoleAliasesRequest"},
       "output":{"shape":"ListRoleAliasesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "ListStreams":{
+      "name":"ListStreams",
+      "http":{
+        "method":"GET",
+        "requestUri":"/streams"
+      },
+      "input":{"shape":"ListStreamsRequest"},
+      "output":{"shape":"ListStreamsResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"ThrottlingException"},
@@ -1818,6 +1955,23 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "UpdateStream":{
+      "name":"UpdateStream",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/streams/{streamId}"
+      },
+      "input":{"shape":"UpdateStreamRequest"},
+      "output":{"shape":"UpdateStreamResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "UpdateThing":{
       "name":"UpdateThing",
       "http":{
@@ -1932,6 +2086,11 @@
       "members":{
       }
     },
+    "AdditionalParameterMap":{
+      "type":"map",
+      "key":{"shape":"Key"},
+      "value":{"shape":"Value"}
+    },
     "AlarmName":{"type":"string"},
     "AllowAutoRegistration":{"type":"boolean"},
     "Allowed":{
@@ -2045,6 +2204,11 @@
       "key":{"shape":"AttributeName"},
       "value":{"shape":"AttributeValue"}
     },
+    "AttributesMap":{
+      "type":"map",
+      "key":{"shape":"Key"},
+      "value":{"shape":"Value"}
+    },
     "AuthDecision":{
       "type":"string",
       "enum":[
@@ -2131,6 +2295,8 @@
       "pattern":"[0-9]{12}"
     },
     "AwsArn":{"type":"string"},
+    "AwsIotJobArn":{"type":"string"},
+    "AwsIotJobId":{"type":"string"},
     "AwsIotSqlVersion":{"type":"string"},
     "Boolean":{"type":"boolean"},
     "BucketName":{"type":"string"},
@@ -2250,6 +2416,7 @@
       "min":64,
       "pattern":"(0x)?[a-fA-F0-9]+"
     },
+    "CertificateName":{"type":"string"},
     "CertificatePem":{
       "type":"string",
       "max":65536,
@@ -2332,6 +2499,29 @@
         "metricValue":{"shape":"MetricValue"},
         "metricUnit":{"shape":"MetricUnit"},
         "metricTimestamp":{"shape":"MetricTimestamp"}
+      }
+    },
+    "Code":{"type":"string"},
+    "CodeSigning":{
+      "type":"structure",
+      "members":{
+        "awsSignerJobId":{"shape":"SigningJobId"},
+        "customCodeSigning":{"shape":"CustomCodeSigning"}
+      }
+    },
+    "CodeSigningCertificateChain":{
+      "type":"structure",
+      "members":{
+        "stream":{"shape":"Stream"},
+        "certificateName":{"shape":"CertificateName"},
+        "inlineDocument":{"shape":"InlineDocument"}
+      }
+    },
+    "CodeSigningSignature":{
+      "type":"structure",
+      "members":{
+        "stream":{"shape":"Stream"},
+        "inlineDocument":{"shape":"Signature"}
       }
     },
     "CognitoIdentityPoolId":{"type":"string"},
@@ -2451,6 +2641,38 @@
         "keyPair":{"shape":"KeyPair"}
       }
     },
+    "CreateOTAUpdateRequest":{
+      "type":"structure",
+      "required":[
+        "otaUpdateId",
+        "targets",
+        "files",
+        "roleArn"
+      ],
+      "members":{
+        "otaUpdateId":{
+          "shape":"OTAUpdateId",
+          "location":"uri",
+          "locationName":"otaUpdateId"
+        },
+        "description":{"shape":"OTAUpdateDescription"},
+        "targets":{"shape":"Targets"},
+        "targetSelection":{"shape":"TargetSelection"},
+        "files":{"shape":"OTAUpdateFiles"},
+        "roleArn":{"shape":"RoleArn"},
+        "additionalParameters":{"shape":"AdditionalParameterMap"}
+      }
+    },
+    "CreateOTAUpdateResponse":{
+      "type":"structure",
+      "members":{
+        "otaUpdateId":{"shape":"OTAUpdateId"},
+        "awsIotJobId":{"shape":"AwsIotJobId"},
+        "otaUpdateArn":{"shape":"OTAUpdateArn"},
+        "awsIotJobArn":{"shape":"AwsIotJobArn"},
+        "otaUpdateStatus":{"shape":"OTAUpdateStatus"}
+      }
+    },
     "CreatePolicyRequest":{
       "type":"structure",
       "required":[
@@ -2525,6 +2747,33 @@
       "members":{
         "roleAlias":{"shape":"RoleAlias"},
         "roleAliasArn":{"shape":"RoleAliasArn"}
+      }
+    },
+    "CreateStreamRequest":{
+      "type":"structure",
+      "required":[
+        "streamId",
+        "files",
+        "roleArn"
+      ],
+      "members":{
+        "streamId":{
+          "shape":"StreamId",
+          "location":"uri",
+          "locationName":"streamId"
+        },
+        "description":{"shape":"StreamDescription"},
+        "files":{"shape":"StreamFiles"},
+        "roleArn":{"shape":"RoleArn"}
+      }
+    },
+    "CreateStreamResponse":{
+      "type":"structure",
+      "members":{
+        "streamId":{"shape":"StreamId"},
+        "streamArn":{"shape":"StreamArn"},
+        "description":{"shape":"StreamDescription"},
+        "streamVersion":{"shape":"StreamVersion"}
       }
     },
     "CreateThingGroupRequest":{
@@ -2612,6 +2861,15 @@
       "max":3600,
       "min":900
     },
+    "CustomCodeSigning":{
+      "type":"structure",
+      "members":{
+        "signature":{"shape":"CodeSigningSignature"},
+        "certificateChain":{"shape":"CodeSigningCertificateChain"},
+        "hashAlgorithm":{"shape":"HashAlgorithm"},
+        "signatureAlgorithm":{"shape":"SignatureAlgorithm"}
+      }
+    },
     "DateType":{"type":"timestamp"},
     "DeleteAuthorizerRequest":{
       "type":"structure",
@@ -2669,6 +2927,22 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
+    "DeleteOTAUpdateRequest":{
+      "type":"structure",
+      "required":["otaUpdateId"],
+      "members":{
+        "otaUpdateId":{
+          "shape":"OTAUpdateId",
+          "location":"uri",
+          "locationName":"otaUpdateId"
+        }
+      }
+    },
+    "DeleteOTAUpdateResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeletePolicyRequest":{
       "type":"structure",
       "required":["policyName"],
@@ -2721,6 +2995,22 @@
       }
     },
     "DeleteRoleAliasResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteStreamRequest":{
+      "type":"structure",
+      "required":["streamId"],
+      "members":{
+        "streamId":{
+          "shape":"StreamId",
+          "location":"uri",
+          "locationName":"streamId"
+        }
+      }
+    },
+    "DeleteStreamResponse":{
       "type":"structure",
       "members":{
       }
@@ -3015,6 +3305,23 @@
         "roleAliasDescription":{"shape":"RoleAliasDescription"}
       }
     },
+    "DescribeStreamRequest":{
+      "type":"structure",
+      "required":["streamId"],
+      "members":{
+        "streamId":{
+          "shape":"StreamId",
+          "location":"uri",
+          "locationName":"streamId"
+        }
+      }
+    },
+    "DescribeStreamResponse":{
+      "type":"structure",
+      "members":{
+        "streamInfo":{"shape":"StreamInfo"}
+      }
+    },
     "DescribeThingGroupRequest":{
       "type":"structure",
       "required":["thingGroupName"],
@@ -3283,6 +3590,13 @@
     "Enabled":{"type":"boolean"},
     "EndpointAddress":{"type":"string"},
     "EndpointType":{"type":"string"},
+    "ErrorInfo":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"Code"},
+        "message":{"shape":"OTAUpdateErrorMessage"}
+      }
+    },
     "ErrorMessage":{
       "type":"string",
       "max":2048
@@ -3318,6 +3632,12 @@
       }
     },
     "FailedThings":{"type":"integer"},
+    "FileId":{
+      "type":"integer",
+      "max":255,
+      "min":0
+    },
+    "FileName":{"type":"string"},
     "FirehoseAction":{
       "type":"structure",
       "required":[
@@ -3398,6 +3718,23 @@
       "members":{
         "roleArn":{"shape":"AwsArn"},
         "logLevel":{"shape":"LogLevel"}
+      }
+    },
+    "GetOTAUpdateRequest":{
+      "type":"structure",
+      "required":["otaUpdateId"],
+      "members":{
+        "otaUpdateId":{
+          "shape":"OTAUpdateId",
+          "location":"uri",
+          "locationName":"otaUpdateId"
+        }
+      }
+    },
+    "GetOTAUpdateResponse":{
+      "type":"structure",
+      "members":{
+        "otaUpdateInfo":{"shape":"OTAUpdateInfo"}
       }
     },
     "GetPolicyRequest":{
@@ -3498,6 +3835,7 @@
         "groupArn":{"shape":"ThingGroupArn"}
       }
     },
+    "HashAlgorithm":{"type":"string"},
     "HashKeyField":{"type":"string"},
     "HashKeyValue":{"type":"string"},
     "ImplicitDeny":{
@@ -3534,6 +3872,7 @@
         "REBUILDING"
       ]
     },
+    "InlineDocument":{"type":"string"},
     "InternalException":{
       "type":"structure",
       "members":{
@@ -4071,6 +4410,33 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "ListOTAUpdatesRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "otaUpdateStatus":{
+          "shape":"OTAUpdateStatus",
+          "location":"querystring",
+          "locationName":"otaUpdateStatus"
+        }
+      }
+    },
+    "ListOTAUpdatesResponse":{
+      "type":"structure",
+      "members":{
+        "otaUpdates":{"shape":"OTAUpdatesSummary"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "ListOutgoingCertificatesRequest":{
       "type":"structure",
       "members":{
@@ -4261,6 +4627,33 @@
       "members":{
         "roleAliases":{"shape":"RoleAliases"},
         "nextMarker":{"shape":"Marker"}
+      }
+    },
+    "ListStreamsRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "ascendingOrder":{
+          "shape":"AscendingOrder",
+          "location":"querystring",
+          "locationName":"isAscendingOrder"
+        }
+      }
+    },
+    "ListStreamsResponse":{
+      "type":"structure",
+      "members":{
+        "streams":{"shape":"StreamsSummary"},
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListTargetsForPolicyRequest":{
@@ -4655,6 +5048,11 @@
       "max":1000,
       "min":1
     },
+    "MaxResults":{
+      "type":"integer",
+      "max":250,
+      "min":1
+    },
     "Message":{
       "type":"string",
       "max":128
@@ -4684,6 +5082,75 @@
       },
       "error":{"httpStatusCode":404},
       "exception":true
+    },
+    "OTAUpdateArn":{"type":"string"},
+    "OTAUpdateDescription":{
+      "type":"string",
+      "max":2028,
+      "pattern":"[^\\p{C}]+"
+    },
+    "OTAUpdateErrorMessage":{"type":"string"},
+    "OTAUpdateFile":{
+      "type":"structure",
+      "members":{
+        "fileName":{"shape":"FileName"},
+        "fileVersion":{"shape":"OTAUpdateFileVersion"},
+        "fileSource":{"shape":"Stream"},
+        "codeSigning":{"shape":"CodeSigning"},
+        "attributes":{"shape":"AttributesMap"}
+      }
+    },
+    "OTAUpdateFileVersion":{"type":"string"},
+    "OTAUpdateFiles":{
+      "type":"list",
+      "member":{"shape":"OTAUpdateFile"},
+      "max":10,
+      "min":1
+    },
+    "OTAUpdateId":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_-]+"
+    },
+    "OTAUpdateInfo":{
+      "type":"structure",
+      "members":{
+        "otaUpdateId":{"shape":"OTAUpdateId"},
+        "otaUpdateArn":{"shape":"OTAUpdateArn"},
+        "creationDate":{"shape":"DateType"},
+        "lastModifiedDate":{"shape":"DateType"},
+        "description":{"shape":"OTAUpdateDescription"},
+        "targets":{"shape":"Targets"},
+        "targetSelection":{"shape":"TargetSelection"},
+        "otaUpdateFiles":{"shape":"OTAUpdateFiles"},
+        "otaUpdateStatus":{"shape":"OTAUpdateStatus"},
+        "awsIotJobId":{"shape":"AwsIotJobId"},
+        "awsIotJobArn":{"shape":"AwsIotJobArn"},
+        "errorInfo":{"shape":"ErrorInfo"},
+        "additionalParameters":{"shape":"AdditionalParameterMap"}
+      }
+    },
+    "OTAUpdateStatus":{
+      "type":"string",
+      "enum":[
+        "CREATE_PENDING",
+        "CREATE_IN_PROGRESS",
+        "CREATE_COMPLETE",
+        "CREATE_FAILED"
+      ]
+    },
+    "OTAUpdateSummary":{
+      "type":"structure",
+      "members":{
+        "otaUpdateId":{"shape":"OTAUpdateId"},
+        "otaUpdateArn":{"shape":"OTAUpdateArn"},
+        "creationDate":{"shape":"DateType"}
+      }
+    },
+    "OTAUpdatesSummary":{
+      "type":"list",
+      "member":{"shape":"OTAUpdateSummary"}
     },
     "OptionalVersion":{"type":"long"},
     "OutgoingCertificate":{
@@ -5095,6 +5562,10 @@
         "cannedAcl":{"shape":"CannedAccessControlList"}
       }
     },
+    "S3Bucket":{
+      "type":"string",
+      "min":1
+    },
     "S3FileUrl":{
       "type":"string",
       "max":65535
@@ -5103,6 +5574,23 @@
       "type":"list",
       "member":{"shape":"S3FileUrl"}
     },
+    "S3Key":{
+      "type":"string",
+      "min":1
+    },
+    "S3Location":{
+      "type":"structure",
+      "required":[
+        "bucket",
+        "key"
+      ],
+      "members":{
+        "bucket":{"shape":"S3Bucket"},
+        "key":{"shape":"S3Key"},
+        "version":{"shape":"S3Version"}
+      }
+    },
+    "S3Version":{"type":"string"},
     "SQL":{"type":"string"},
     "SalesforceAction":{
       "type":"structure",
@@ -5219,6 +5707,9 @@
         "disableAllLogs":{"shape":"DisableAllLogs"}
       }
     },
+    "Signature":{"type":"blob"},
+    "SignatureAlgorithm":{"type":"string"},
+    "SigningJobId":{"type":"string"},
     "SkyfallMaxResults":{
       "type":"integer",
       "max":250,
@@ -5305,9 +5796,73 @@
       "members":{
       }
     },
+    "Stream":{
+      "type":"structure",
+      "members":{
+        "streamId":{"shape":"StreamId"},
+        "fileId":{"shape":"FileId"}
+      }
+    },
+    "StreamArn":{"type":"string"},
+    "StreamDescription":{
+      "type":"string",
+      "max":2028,
+      "pattern":"[^\\p{C}]+"
+    },
+    "StreamFile":{
+      "type":"structure",
+      "members":{
+        "fileId":{"shape":"FileId"},
+        "s3Location":{"shape":"S3Location"}
+      }
+    },
+    "StreamFiles":{
+      "type":"list",
+      "member":{"shape":"StreamFile"},
+      "max":10,
+      "min":1
+    },
+    "StreamId":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_-]+"
+    },
+    "StreamInfo":{
+      "type":"structure",
+      "members":{
+        "streamId":{"shape":"StreamId"},
+        "streamArn":{"shape":"StreamArn"},
+        "streamVersion":{"shape":"StreamVersion"},
+        "description":{"shape":"StreamDescription"},
+        "files":{"shape":"StreamFiles"},
+        "createdAt":{"shape":"DateType"},
+        "lastUpdatedAt":{"shape":"DateType"},
+        "roleArn":{"shape":"RoleArn"}
+      }
+    },
     "StreamName":{"type":"string"},
+    "StreamSummary":{
+      "type":"structure",
+      "members":{
+        "streamId":{"shape":"StreamId"},
+        "streamArn":{"shape":"StreamArn"},
+        "streamVersion":{"shape":"StreamVersion"},
+        "description":{"shape":"StreamDescription"}
+      }
+    },
+    "StreamVersion":{
+      "type":"integer",
+      "max":65535,
+      "min":0
+    },
+    "StreamsSummary":{
+      "type":"list",
+      "member":{"shape":"StreamSummary"}
+    },
     "SucceededThings":{"type":"integer"},
     "TableName":{"type":"string"},
+    "Target":{"type":"string"},
     "TargetArn":{"type":"string"},
     "TargetSelection":{
       "type":"string",
@@ -5315,6 +5870,11 @@
         "CONTINUOUS",
         "SNAPSHOT"
       ]
+    },
+    "Targets":{
+      "type":"list",
+      "member":{"shape":"Target"},
+      "min":1
     },
     "TaskId":{
       "type":"string",
@@ -5551,7 +6111,8 @@
         "createdAt":{"shape":"CreatedAtDate"},
         "actions":{"shape":"ActionList"},
         "ruleDisabled":{"shape":"IsDisabled"},
-        "awsIotSqlVersion":{"shape":"AwsIotSqlVersion"}
+        "awsIotSqlVersion":{"shape":"AwsIotSqlVersion"},
+        "errorAction":{"shape":"Action"}
       }
     },
     "TopicRuleList":{
@@ -5579,7 +6140,8 @@
         "description":{"shape":"Description"},
         "actions":{"shape":"ActionList"},
         "ruleDisabled":{"shape":"IsDisabled"},
-        "awsIotSqlVersion":{"shape":"AwsIotSqlVersion"}
+        "awsIotSqlVersion":{"shape":"AwsIotSqlVersion"},
+        "errorAction":{"shape":"Action"}
       }
     },
     "TransferAlreadyCompletedException":{
@@ -5747,6 +6309,29 @@
       "members":{
         "roleAlias":{"shape":"RoleAlias"},
         "roleAliasArn":{"shape":"RoleAliasArn"}
+      }
+    },
+    "UpdateStreamRequest":{
+      "type":"structure",
+      "required":["streamId"],
+      "members":{
+        "streamId":{
+          "shape":"StreamId",
+          "location":"uri",
+          "locationName":"streamId"
+        },
+        "description":{"shape":"StreamDescription"},
+        "files":{"shape":"StreamFiles"},
+        "roleArn":{"shape":"RoleArn"}
+      }
+    },
+    "UpdateStreamResponse":{
+      "type":"structure",
+      "members":{
+        "streamId":{"shape":"StreamId"},
+        "streamArn":{"shape":"StreamArn"},
+        "description":{"shape":"StreamDescription"},
+        "streamVersion":{"shape":"StreamVersion"}
       }
     },
     "UpdateThingGroupRequest":{

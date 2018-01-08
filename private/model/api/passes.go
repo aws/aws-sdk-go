@@ -244,6 +244,50 @@ func (a *API) renameExportable() {
 	}
 }
 
+// renameCollidingFields will rename any fields that uses an SDK or Golang
+// specific name.
+func (a *API) renameCollidingFields() {
+	for _, v := range a.Shapes {
+		namesWithSet := map[string]struct{}{}
+		for k, field := range v.MemberRefs {
+			if strings.HasPrefix(k, "Set") {
+				namesWithSet[k] = struct{}{}
+			}
+
+			if collides(k) {
+				renameCollidingField(k, v, field)
+			}
+		}
+
+		// checks if any field names collide with setters.
+		for name := range namesWithSet {
+			if field, ok := v.MemberRefs["Set"+name]; ok {
+				renameCollidingField(name, v, field)
+			}
+		}
+	}
+
+}
+
+func renameCollidingField(name string, v *Shape, field *ShapeRef) {
+	newName := name + "_"
+	fmt.Printf("Shape %s's field %q renamed to %q\n", v.ShapeName, name, newName)
+	delete(v.MemberRefs, name)
+	v.MemberRefs[newName] = field
+}
+
+// collides will return true if it is a name used by the SDK or Golang.
+func collides(name string) bool {
+	switch name {
+	case "String",
+		"GoString",
+		"Validate":
+		return true
+	default:
+		return false
+	}
+}
+
 // createInputOutputShapes creates toplevel input/output shapes if they
 // have not been defined in the API. This normalizes all APIs to always
 // have an input and output structure in the signature.

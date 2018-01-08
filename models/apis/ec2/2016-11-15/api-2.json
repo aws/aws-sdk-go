@@ -2538,6 +2538,10 @@
         "PrivateIpAddress":{
           "shape":"String",
           "locationName":"privateIpAddress"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },

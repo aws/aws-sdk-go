@@ -36,7 +36,7 @@ const opGetMedia = "GetMedia"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-media-2017-09-30/GetMedia
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-media-2017-09-30/GetMedia
 func (c *KinesisVideoMedia) GetMediaRequest(input *GetMediaInput) (req *request.Request, output *GetMediaOutput) {
 	op := &request.Operation{
 		Name:       opGetMedia,
@@ -107,7 +107,7 @@ func (c *KinesisVideoMedia) GetMediaRequest(input *GetMediaInput) (req *request.
 //   * ErrCodeInvalidArgumentException "InvalidArgumentException"
 //   The value for this input parameter is invalid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-media-2017-09-30/GetMedia
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-media-2017-09-30/GetMedia
 func (c *KinesisVideoMedia) GetMedia(input *GetMediaInput) (*GetMediaOutput, error) {
 	req, out := c.GetMediaRequest(input)
 	return out, req.Send()
@@ -129,7 +129,7 @@ func (c *KinesisVideoMedia) GetMediaWithContext(ctx aws.Context, input *GetMedia
 	return out, req.Send()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-media-2017-09-30/GetMediaInput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-media-2017-09-30/GetMediaInput
 type GetMediaInput struct {
 	_ struct{} `type:"structure"`
 
@@ -199,7 +199,7 @@ func (s *GetMediaInput) SetStreamName(v string) *GetMediaInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-media-2017-09-30/GetMediaOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-media-2017-09-30/GetMediaOutput
 type GetMediaOutput struct {
 	_ struct{} `type:"structure" payload:"Payload"`
 
@@ -291,7 +291,7 @@ func (s *GetMediaOutput) SetPayload(v io.ReadCloser) *GetMediaOutput {
 //    tag (AWS_KINESISVIDEO_CONTINUATION_TOKEN). If your previous GetMedia request
 //    terminated, you can use this tag value in your next GetMedia request.
 //    The API then starts returning chunks starting where the last API ended.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-media-2017-09-30/StartSelector
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-media-2017-09-30/StartSelector
 type StartSelector struct {
 	_ struct{} `type:"structure"`
 

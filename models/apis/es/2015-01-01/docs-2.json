@@ -79,6 +79,7 @@
         "ElasticsearchDomainStatus$Created": "<p>The domain creation status. <code>True</code> if the creation of an Elasticsearch domain is complete. <code>False</code> if domain creation is still in progress.</p>",
         "ElasticsearchDomainStatus$Deleted": "<p>The domain deletion status. <code>True</code> if a delete request has been received for the domain but resource cleanup is still in progress. <code>False</code> if the domain has not been deleted. Once domain deletion is complete, the status of the domain is no longer returned.</p>",
         "ElasticsearchDomainStatus$Processing": "<p>The status of the Elasticsearch domain configuration. <code>True</code> if Amazon Elasticsearch Service is processing configuration changes. <code>False</code> if the configuration is active.</p>",
+        "EncryptionAtRestOptions$Enabled": "<p>Specifies the option to enable Encryption At Rest.</p>",
         "LogPublishingOption$Enabled": "<p> Specifies whether given log publishing option is enabled or not.</p>",
         "OptionStatus$PendingDeletion": "<p>Indicates whether the Elasticsearch domain is being deleted.</p>"
       }
@@ -283,6 +284,20 @@
         "ListElasticsearchInstanceTypesRequest$ElasticsearchVersion": "<p>Version of Elasticsearch for which list of supported elasticsearch instance types are needed. </p>"
       }
     },
+    "EncryptionAtRestOptions": {
+      "base": "<p>Specifies the Encryption At Rest Options.</p>",
+      "refs": {
+        "CreateElasticsearchDomainRequest$EncryptionAtRestOptions": "<p>Specifies the Encryption At Rest Options.</p>",
+        "ElasticsearchDomainStatus$EncryptionAtRestOptions": "<p> Specifies the status of the <code>EncryptionAtRestOptions</code>.</p>",
+        "EncryptionAtRestOptionsStatus$Options": "<p> Specifies the Encryption At Rest options for the specified Elasticsearch domain.</p>"
+      }
+    },
+    "EncryptionAtRestOptionsStatus": {
+      "base": "<p> Status of the Encryption At Rest options for the specified Elasticsearch domain.</p>",
+      "refs": {
+        "ElasticsearchDomainConfig$EncryptionAtRestOptions": "<p>Specifies the <code>EncryptionAtRestOptions</code> for the Elasticsearch domain.</p>"
+      }
+    },
     "EndpointsMap": {
       "base": null,
       "refs": {
@@ -331,6 +346,12 @@
     "InvalidTypeException": {
       "base": "<p>An exception for trying to create or access sub-resource that is either invalid or not supported. Gives http status code of 409.</p>",
       "refs": {
+      }
+    },
+    "KmsKeyId": {
+      "base": null,
+      "refs": {
+        "EncryptionAtRestOptions$KmsKeyId": "<p> Specifies the KMS Key ID for Encryption At Rest options.</p>"
       }
     },
     "LimitExceededException": {
@@ -474,6 +495,7 @@
         "EBSOptionsStatus$Status": "<p> Specifies the status of the EBS options for the specified Elasticsearch domain.</p>",
         "ElasticsearchClusterConfigStatus$Status": "<p> Specifies the status of the configuration for the specified Elasticsearch domain.</p>",
         "ElasticsearchVersionStatus$Status": "<p> Specifies the status of the Elasticsearch version options for the specified Elasticsearch domain.</p>",
+        "EncryptionAtRestOptionsStatus$Status": "<p> Specifies the status of the Encryption At Rest options for the specified Elasticsearch domain.</p>",
         "LogPublishingOptionsStatus$Status": "<p>The status of the log publishing options for the Elasticsearch domain. See <code>OptionStatus</code> for the status information that's included. </p>",
         "SnapshotOptionsStatus$Status": "<p>Specifies the status of a daily automated snapshot.</p>",
         "VPCDerivedInfoStatus$Status": "<p> Specifies the status of the VPC options for the specified Elasticsearch domain.</p>"

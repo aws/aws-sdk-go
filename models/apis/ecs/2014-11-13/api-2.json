@@ -804,7 +804,8 @@
         "deploymentConfiguration":{"shape":"DeploymentConfiguration"},
         "placementConstraints":{"shape":"PlacementConstraints"},
         "placementStrategy":{"shape":"PlacementStrategies"},
-        "networkConfiguration":{"shape":"NetworkConfiguration"}
+        "networkConfiguration":{"shape":"NetworkConfiguration"},
+        "healthCheckGracePeriodSeconds":{"shape":"BoxedInteger"}
       }
     },
     "CreateServiceResponse":{
@@ -1519,7 +1520,8 @@
         "createdAt":{"shape":"Timestamp"},
         "placementConstraints":{"shape":"PlacementConstraints"},
         "placementStrategy":{"shape":"PlacementStrategies"},
-        "networkConfiguration":{"shape":"NetworkConfiguration"}
+        "networkConfiguration":{"shape":"NetworkConfiguration"},
+        "healthCheckGracePeriodSeconds":{"shape":"BoxedInteger"}
       }
     },
     "ServiceEvent":{
@@ -1846,7 +1848,8 @@
         "deploymentConfiguration":{"shape":"DeploymentConfiguration"},
         "networkConfiguration":{"shape":"NetworkConfiguration"},
         "platformVersion":{"shape":"String"},
-        "forceNewDeployment":{"shape":"Boolean"}
+        "forceNewDeployment":{"shape":"Boolean"},
+        "healthCheckGracePeriodSeconds":{"shape":"BoxedInteger"}
       }
     },
     "UpdateServiceResponse":{

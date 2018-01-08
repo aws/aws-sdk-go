@@ -79,6 +79,7 @@
     "GetSdkTypes": null,
     "GetStage": "<p>Gets information about a <a>Stage</a> resource.</p>",
     "GetStages": "<p>Gets information about one or more <a>Stage</a> resources.</p>",
+    "GetTags": "<p>Gets the Tags collection for a given resource.</p>",
     "GetUsage": "<p>Gets the usage data of a usage plan in a specified time interval.</p>",
     "GetUsagePlan": "<p>Gets a usage plan of a given plan identifier.</p>",
     "GetUsagePlanKey": "<p>Gets a usage plan key of a given key identifier.</p>",
@@ -95,8 +96,10 @@
     "PutMethod": "<p>Add a method to an existing <a>Resource</a> resource.</p>",
     "PutMethodResponse": "<p>Adds a <a>MethodResponse</a> to an existing <a>Method</a> resource.</p>",
     "PutRestApi": "<p>A feature of the API Gateway control service for updating an existing API with an input of external API definitions. The update can take the form of merging the supplied definition into the existing API or overwriting the existing API.</p>",
+    "TagResource": "<p>Adds or updates Tags on a gievn resource.</p>",
     "TestInvokeAuthorizer": "<p>Simulate the execution of an <a>Authorizer</a> in your <a>RestApi</a> with headers, parameters, and an incoming request body.</p> <div class=\"seeAlso\"> <a href=\"http://docs.aws.amazon.com/apigateway/latest/developerguide/use-custom-authorizer.html\">Enable custom authorizers</a> </div>",
     "TestInvokeMethod": "<p>Simulate the execution of a <a>Method</a> in your <a>RestApi</a> with headers, parameters, and an incoming request body.</p>",
+    "UntagResource": "<p>Removes Tags from a given resource.</p>",
     "UpdateAccount": "<p>Changes information about the current <a>Account</a> resource.</p>",
     "UpdateApiKey": "<p>Changes information about an <a>ApiKey</a> resource.</p>",
     "UpdateAuthorizer": "<p>Updates an existing <a>Authorizer</a> resource.</p> <div class=\"seeAlso\"><a href=\"http://docs.aws.amazon.com/cli/latest/reference/apigateway/update-authorizer.html\">AWS CLI</a></div>",
@@ -141,6 +144,13 @@
     "ApiKeyIds": {
       "base": "<p>The identifier of an <a>ApiKey</a> used in a <a>UsagePlan</a>.</p>",
       "refs": {
+      }
+    },
+    "ApiKeySourceType": {
+      "base": null,
+      "refs": {
+        "CreateRestApiRequest$apiKeySource": "<p>The source of the API key for metring requests according to a usage plan. Valid values are <ul><li><code>HEADER</code> to read the API key from the <code>X-API-Key</code> header of a request. </li><li><code>AUTHORIZER</code> to read the API key from the <code>UsageIdentifierKey</code> from a custom authorizer.</li></ul> </p>",
+        "RestApi$apiKeySource": "<p>The source of the API key for metring requests according to a usage plan. Valid values are <ul><li><code>HEADER</code> to read the API key from the <code>X-API-Key</code> header of a request. </li><li><code>AUTHORIZER</code> to read the API key from the <code>UsageIdentifierKey</code> from a custom authorizer.</li></ul> </p>"
       }
     },
     "ApiKeys": {
@@ -275,8 +285,8 @@
     "ConnectionType": {
       "base": null,
       "refs": {
-        "Integration$connectionType": "<p>The type of the network connection to the integration endpoint. The valid value is <code>INTERNET</code> for connections through the public routable internet or <code>VPC_LINK</code> for private connections between API Gateway and an network load balancer in a VPC. The default value is <code>INTERNET</code>.</p>",
-        "PutIntegrationRequest$connectionType": "<p>The type of the network connection to the integration endpoint. The valid value is <code>INTERNET</code> for connections through the public routable internet or <code>VPC_LINK</code> for private connections between API Gateway and an network load balancer in a VPC. The default value is <code>INTERNET</code>.</p>"
+        "Integration$connectionType": "<p>The type of the network connection to the integration endpoint. The valid value is <code>INTERNET</code> for connections through the public routable internet or <code>VPC_LINK</code> for private connections between API Gateway and a network load balancer in a VPC. The default value is <code>INTERNET</code>.</p>",
+        "PutIntegrationRequest$connectionType": "<p>The type of the network connection to the integration endpoint. The valid value is <code>INTERNET</code> for connections through the public routable internet or <code>VPC_LINK</code> for private connections between API Gateway and a network load balancer in a VPC. The default value is <code>INTERNET</code>.</p>"
       }
     },
     "ContentHandlingStrategy": {
@@ -583,7 +593,7 @@
       }
     },
     "GatewayResponse": {
-      "base": "<p>A gateway response of a given response type and status code, with optional response parameters and mapping templates.</p> <div class=\"remarks\"> For more information about valid gateway response types, see <a href=\"http://docs.aws.amazon.com/apigateway/latest/developerguide/supported-gateway-response-types.html\">Gateway Response Types Supported by API Gateway</a> <div class=\"example\"> <h4>Example: Get a Gateway Response of a given response type</h4> <h5>Request</h5> <p>This example shows how to get a gateway response of the <code>MISSING_AUTHNETICATION_TOKEN</code> type.</p> <pre><code>GET /restapis/o81lxisefl/gatewayresponses/MISSING_AUTHENTICATION_TOKEN HTTP/1.1 Host: beta-apigateway.us-east-1.amazonaws.com Content-Type: application/json X-Amz-Date: 20170503T202516Z Authorization: AWS4-HMAC-SHA256 Credential={access-key-id}/20170503/us-east-1/apigateway/aws4_request, SignedHeaders=content-type;host;x-amz-date, Signature=1b52460e3159c1a26cff29093855d50ea141c1c5b937528fecaf60f51129697a Cache-Control: no-cache Postman-Token: 3b2a1ce9-c848-2e26-2e2f-9c2caefbed45 </code></pre> <p>The response type is specified as a URL path.</p> <h5>Response</h5> <p>The successful operation returns the <code>200 OK</code> status code and a payload similar to the following:</p> <pre><code>{ \"_links\": { \"curies\": { \"href\": \"http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-gatewayresponse-{rel}.html\", \"name\": \"gatewayresponse\", \"templated\": true }, \"self\": { \"href\": \"/restapis/o81lxisefl/gatewayresponses/MISSING_AUTHENTICATION_TOKEN\" }, \"gatewayresponse:delete\": { \"href\": \"/restapis/o81lxisefl/gatewayresponses/MISSING_AUTHENTICATION_TOKEN\" }, \"gatewayresponse:put\": { \"href\": \"/restapis/o81lxisefl/gatewayresponses/{response_type}\", \"templated\": true }, \"gatewayresponse:update\": { \"href\": \"/restapis/o81lxisefl/gatewayresponses/MISSING_AUTHENTICATION_TOKEN\" } }, \"defaultResponse\": false, \"responseParameters\": { \"gatewayresponse.header.x-request-path\": \"method.request.path.petId\", \"gatewayresponse.header.Access-Control-Allow-Origin\": \"&apos;a.b.c&apos;\", \"gatewayresponse.header.x-request-query\": \"method.request.querystring.q\", \"gatewayresponse.header.x-request-header\": \"method.request.header.Accept\" }, \"responseTemplates\": { \"application/json\": \"{\\n \\\"message\\\": $context.error.messageString,\\n \\\"type\\\": \\\"$context.error.responseType\\\",\\n \\\"stage\\\": \\\"$context.stage\\\",\\n \\\"resourcePath\\\": \\\"$context.resourcePath\\\",\\n \\\"stageVariables.a\\\": \\\"$stageVariables.a\\\",\\n \\\"statusCode\\\": \\\"&apos;404&apos;\\\"\\n}\" }, \"responseType\": \"MISSING_AUTHENTICATION_TOKEN\", \"statusCode\": \"404\" }</code></pre> <p></p> </div> </div> <div class=\"seeAlso\"> <a href=\"http://docs.aws.amazon.com/apigateway/latest/developerguide/customize-gateway-responses.html\">Customize Gateway Responses</a> </div>",
+      "base": "<p>A gateway response of a given response type and status code, with optional response parameters and mapping templates.</p> <div class=\"remarks\"> For more information about valid gateway response types, see <a href=\"http://docs.aws.amazon.com/apigateway/latest/developerguide/supported-gateway-response-types.html\">Gateway Response Types Supported by API Gateway</a> <div class=\"example\"> <h4>Example: Get a Gateway Response of a given response type</h4> <h5>Request</h5> <p>This example shows how to get a gateway response of the <code>MISSING_AUTHENTICATION_TOKEN</code> type.</p> <pre><code>GET /restapis/o81lxisefl/gatewayresponses/MISSING_AUTHENTICATION_TOKEN HTTP/1.1 Host: beta-apigateway.us-east-1.amazonaws.com Content-Type: application/json X-Amz-Date: 20170503T202516Z Authorization: AWS4-HMAC-SHA256 Credential={access-key-id}/20170503/us-east-1/apigateway/aws4_request, SignedHeaders=content-type;host;x-amz-date, Signature=1b52460e3159c1a26cff29093855d50ea141c1c5b937528fecaf60f51129697a Cache-Control: no-cache Postman-Token: 3b2a1ce9-c848-2e26-2e2f-9c2caefbed45 </code></pre> <p>The response type is specified as a URL path.</p> <h5>Response</h5> <p>The successful operation returns the <code>200 OK</code> status code and a payload similar to the following:</p> <pre><code>{ \"_links\": { \"curies\": { \"href\": \"http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-gatewayresponse-{rel}.html\", \"name\": \"gatewayresponse\", \"templated\": true }, \"self\": { \"href\": \"/restapis/o81lxisefl/gatewayresponses/MISSING_AUTHENTICATION_TOKEN\" }, \"gatewayresponse:delete\": { \"href\": \"/restapis/o81lxisefl/gatewayresponses/MISSING_AUTHENTICATION_TOKEN\" }, \"gatewayresponse:put\": { \"href\": \"/restapis/o81lxisefl/gatewayresponses/{response_type}\", \"templated\": true }, \"gatewayresponse:update\": { \"href\": \"/restapis/o81lxisefl/gatewayresponses/MISSING_AUTHENTICATION_TOKEN\" } }, \"defaultResponse\": false, \"responseParameters\": { \"gatewayresponse.header.x-request-path\": \"method.request.path.petId\", \"gatewayresponse.header.Access-Control-Allow-Origin\": \"&apos;a.b.c&apos;\", \"gatewayresponse.header.x-request-query\": \"method.request.querystring.q\", \"gatewayresponse.header.x-request-header\": \"method.request.header.Accept\" }, \"responseTemplates\": { \"application/json\": \"{\\n \\\"message\\\": $context.error.messageString,\\n \\\"type\\\": \\\"$context.error.responseType\\\",\\n \\\"stage\\\": \\\"$context.stage\\\",\\n \\\"resourcePath\\\": \\\"$context.resourcePath\\\",\\n \\\"stageVariables.a\\\": \\\"$stageVariables.a\\\",\\n \\\"statusCode\\\": \\\"&apos;404&apos;\\\"\\n}\" }, \"responseType\": \"MISSING_AUTHENTICATION_TOKEN\", \"statusCode\": \"404\" }</code></pre> <p></p> </div> </div> <div class=\"seeAlso\"> <a href=\"http://docs.aws.amazon.com/apigateway/latest/developerguide/customize-gateway-responses.html\">Customize Gateway Responses</a> </div>",
       "refs": {
         "ListOfGatewayResponse$member": null
       }
@@ -795,6 +805,11 @@
     },
     "GetStagesRequest": {
       "base": "<p>Requests API Gateway to get information about one or more <a>Stage</a> resources.</p>",
+      "refs": {
+      }
+    },
+    "GetTagsRequest": {
+      "base": "<p>Gets the Tags collection for a given resource.</p>",
       "refs": {
       }
     },
@@ -1057,9 +1072,12 @@
         "GetResourcesRequest$embed": "<p>A query parameter used to retrieve the specified resources embedded in the returned <a>Resources</a> resource in the response. This <code>embed</code> parameter value is a list of comma-separated strings. Currently, the request supports only retrieval of the embedded <a>Method</a> resources this way. The query parameter value must be a single-valued list and contain the <code>\"methods\"</code> string. For example, <code>GET /restapis/{restapi_id}/resources?embed=methods</code>.</p>",
         "Integration$cacheKeyParameters": "<p>Specifies the integration's cache key parameters.</p>",
         "MapOfStringToList$value": null,
+        "Method$authorizationScopes": "<p>A list of authorization scopes configured on the method. The scopes are used with a <code>COGNITO_USER_POOL</code> authorizer to authorize the method invocation. The authorization works by matching the method scopes against the scopes parsed from the access token in the incoming request. The method invocation is authorized if any method scopes matches a claimed scope in the access token. Otherwise, the invocation is not authorized. When the method scope is configured, the client must provide an access token instead of an identity token for authorization purposes.</p>",
         "PutIntegrationRequest$cacheKeyParameters": "<p>Specifies a put integration input's cache key parameters.</p>",
+        "PutMethodRequest$authorizationScopes": "<p>A list of authorization scopes configured on the method. The scopes are used with a <code>COGNITO_USER_POOL</code> authorizer to authorize the method invocation. The authorization works by matching the method scopes against the scopes parsed from the access token in the incoming request. The method invocation is authorized if any method scopes matches a claimed scope in the access token. Otherwise, the invocation is not authorized. When the method scope is configured, the client must provide an access token instead of an identity token for authorization purposes.</p>",
         "RestApi$warnings": "<p>The warning messages reported when <code>failonwarnings</code> is turned on during API import.</p>",
         "RestApi$binaryMediaTypes": "<p>The list of binary media types supported by the <a>RestApi</a>. By default, the <a>RestApi</a> supports only UTF-8-encoded text payloads.</p>",
+        "UntagResourceRequest$tagKeys": "<p>The Tag keys to delete.</p>",
         "VpcLink$targetArns": "<p>The ARNs of network load balancers of the VPC targeted by the VPC link. The network load balancers must be owned by the same AWS account of the API owner.</p>"
       }
     },
@@ -1166,6 +1184,7 @@
         "CanarySettings$stageVariableOverrides": "<p>Stage variables overridden for a canary release deployment, including new stage variables introduced in the canary. These stage variables are represented as a string-to-string map between stage variable names and their values.</p>",
         "CreateDeploymentRequest$variables": "<p>A map that defines the stage variables for the <a>Stage</a> resource that is associated with the new deployment. Variable names can have alphanumeric and underscore characters, and the values must match <code>[A-Za-z0-9-._~:/?#&amp;=,]+</code>.</p>",
         "CreateStageRequest$variables": "<p>A map that defines the stage variables for the new <a>Stage</a> resource. Variable names can have alphanumeric and underscore characters, and the values must match <code>[A-Za-z0-9-._~:/?#&amp;=,]+</code>.</p>",
+        "CreateStageRequest$tags": "<p>Key/Value map of strings. Valid character set is [a-zA-Z+-=._:/]. Tag key can be up to 128 characters and must not start with \"aws:\". Tag value can be up to 256 characters.</p>",
         "DeploymentCanarySettings$stageVariableOverrides": "<p>A stage variable overrides used for the canary release deployment. They can override existing stage variables or add new stage variables for the canary release deployment. These stage variables are represented as a string-to-string map between stage variable names and their values.</p>",
         "GatewayResponse$responseParameters": "<p>Response parameters (paths, query strings and headers) of the <a>GatewayResponse</a> as a string-to-string map of key-value pairs.</p>",
         "GatewayResponse$responseTemplates": "<p>Response templates of the <a>GatewayResponse</a> as a string-to-string map of key-value pairs.</p>",
@@ -1188,6 +1207,9 @@
         "PutMethodResponseRequest$responseModels": "<p>Specifies the <a>Model</a> resources used for the response's content type. Response models are represented as a key/value map, with a content type as the key and a <a>Model</a> name as the value.</p>",
         "PutRestApiRequest$parameters": "<p>Custom header parameters as part of the request. For example, to exclude <a>DocumentationParts</a> from an imported API, set <code>ignore=documentation</code> as a <code>parameters</code> value, as in the AWS CLI command of <code>aws apigateway import-rest-api --parameters ignore=documentation --body 'file:///path/to/imported-api-body.json</code>.</p>",
         "Stage$variables": "<p>A map that defines the stage variables for a <a>Stage</a> resource. Variable names can have alphanumeric and underscore characters, and the values must match <code>[A-Za-z0-9-._~:/?#&amp;=,]+</code>.</p>",
+        "Stage$tags": "<p>A collection of Tags associated with a given resource.</p>",
+        "TagResourceRequest$tags": "<p>[Required] Key/Value map of strings. Valid character set is [a-zA-Z+-=._:/]. Tag key can be up to 128 characters and must not start with \"aws:\". Tag value can be up to 256 characters.</p>",
+        "Tags$tags": "<p>A collection of Tags associated with a given resource.</p>",
         "TestInvokeAuthorizerRequest$stageVariables": "<p>A key-value map of stage variables to simulate an invocation on a deployed <a>Stage</a>.</p>",
         "TestInvokeAuthorizerRequest$additionalContext": "<p>[Optional] A key-value map of additional context variables.</p>",
         "TestInvokeAuthorizerResponse$claims": "<p>The <a href=\"http://openid.net/specs/openid-connect-core-1_0.html#StandardClaims\">open identity claims</a>, with any supported custom attributes, returned from the Cognito Your User Pool configured for the API.</p>",
@@ -1249,6 +1271,7 @@
       "refs": {
         "Authorizer$authorizerResultTtlInSeconds": "<p>The TTL in seconds of cached authorizer results. If it equals 0, authorization caching is disabled. If it is greater than 0, API Gateway will cache authorizer responses. If this field is not set, the default value is 300. The maximum value is 3600, or 1 hour.</p>",
         "CreateAuthorizerRequest$authorizerResultTtlInSeconds": "<p>The TTL in seconds of cached authorizer results. If it equals 0, authorization caching is disabled. If it is greater than 0, API Gateway will cache authorizer responses. If this field is not set, the default value is 300. The maximum value is 3600, or 1 hour.</p>",
+        "CreateRestApiRequest$minimumCompressionSize": "<p>A nullable integer used to enable (non-negative between 0 and 10485760 (10M) bytes, inclusive) or disable (null) compression on an API. When compression is enabled, compression or decompression are not applied on the payload if the payload size is smaller than this value. Setting it to zero allows compression for any payload size.</p>",
         "GetApiKeysRequest$limit": "<p>The maximum number of returned results per page.</p>",
         "GetAuthorizersRequest$limit": "<p>The maximum number of returned results per page.</p>",
         "GetBasePathMappingsRequest$limit": "<p>The maximum number of returned results per page. The value is 25 by default and could be between 1 - 500.</p>",
@@ -1263,11 +1286,13 @@
         "GetResourcesRequest$limit": "<p>The maximum number of returned results per page. The value is 25 by default and could be between 1 - 500.</p>",
         "GetRestApisRequest$limit": "<p>The maximum number of returned results per page. The value is 25 by default and could be between 1 - 500.</p>",
         "GetSdkTypesRequest$limit": "<p>The maximum number of returned results per page.</p>",
+        "GetTagsRequest$limit": "<p>(Not currently supported) The maximum number of returned results per page.</p>",
         "GetUsagePlanKeysRequest$limit": "<p>The maximum number of returned results per page.</p>",
         "GetUsagePlansRequest$limit": "<p>The maximum number of returned results per page.</p>",
         "GetUsageRequest$limit": "<p>The maximum number of returned results per page.</p>",
         "GetVpcLinksRequest$limit": "<p>The maximum number of returned results per page.</p>",
-        "PutIntegrationRequest$timeoutInMillis": "<p>Custom timeout between 50 and 29,000 milliseconds. The default value is 29,000 milliseconds or 29 seconds.</p>"
+        "PutIntegrationRequest$timeoutInMillis": "<p>Custom timeout between 50 and 29,000 milliseconds. The default value is 29,000 milliseconds or 29 seconds.</p>",
+        "RestApi$minimumCompressionSize": "<p>A nullable integer used to enable (non-negative between 0 and 10485760 (10M) bytes, inclusive) or disable (null) compression on an API. When compression is enabled, compression or decompression are not applied on the payload if the payload size is smaller than this value. Setting it to zero allows compression for any payload size.</p>"
       }
     },
     "Op": {
@@ -1674,6 +1699,8 @@
         "GetStageRequest$stageName": "<p>The name of the <a>Stage</a> resource to get information about.</p>",
         "GetStagesRequest$restApiId": "<p>The string identifier of the associated <a>RestApi</a>.</p>",
         "GetStagesRequest$deploymentId": "<p>The stages' deployment identifiers.</p>",
+        "GetTagsRequest$resourceArn": "<p>[Required] The ARN of a resource that can be tagged. At present, <a>Stage</a> is the only taggable resource.</p>",
+        "GetTagsRequest$position": "<p>(Not currently supported) The current pagination position in the paged result set.</p>",
         "GetUsagePlanKeyRequest$usagePlanId": "<p>The Id of the <a>UsagePlan</a> resource representing the usage plan containing the to-be-retrieved <a>UsagePlanKey</a> resource representing a plan customer.</p>",
         "GetUsagePlanKeyRequest$keyId": "<p>The key Id of the to-be-retrieved <a>UsagePlanKey</a> resource representing a plan customer.</p>",
         "GetUsagePlanKeysRequest$usagePlanId": "<p>The Id of the <a>UsagePlan</a> resource representing the usage plan containing the to-be-retrieved <a>UsagePlanKey</a> resource representing a plan customer.</p>",
@@ -1787,6 +1814,7 @@
         "Stage$documentationVersion": "<p>The version of the associated API documentation.</p>",
         "StageKey$restApiId": "<p>The string identifier of the associated <a>RestApi</a>.</p>",
         "StageKey$stageName": "<p>The stage name associated with the stage key.</p>",
+        "TagResourceRequest$resourceArn": "<p>[Required] The ARN of a resource that can be tagged. At present, <a>Stage</a> is the only taggable resource.</p>",
         "Template$value": "<p>The Apache <a href=\"http://velocity.apache.org/engine/devel/vtl-reference-guide.html\" target=\"_blank\">Velocity Template Language (VTL)</a> template content used for the template resource.</p>",
         "TestInvokeAuthorizerRequest$restApiId": "<p>The string identifier of the associated <a>RestApi</a>.</p>",
         "TestInvokeAuthorizerRequest$authorizerId": "<p>Specifies a test invoke authorizer request's <a>Authorizer</a> ID.</p>",
@@ -1806,6 +1834,7 @@
         "TooManyRequestsException$retryAfterSeconds": null,
         "TooManyRequestsException$message": null,
         "UnauthorizedException$message": null,
+        "UntagResourceRequest$resourceArn": "<p>[Required] The ARN of a resource that can be tagged. At present, <a>Stage</a> is the only taggable resource.</p>",
         "UpdateApiKeyRequest$apiKey": "<p>The identifier of the <a>ApiKey</a> resource to be updated.</p>",
         "UpdateAuthorizerRequest$restApiId": "<p>The string identifier of the associated <a>RestApi</a>.</p>",
         "UpdateAuthorizerRequest$authorizerId": "<p>The identifier of the <a>Authorizer</a> resource.</p>",
@@ -1864,6 +1893,16 @@
         "VpcLink$description": "<p>The description of the VPC link.</p>",
         "VpcLink$statusMessage": "<p>A description about the VPC link status.</p>",
         "VpcLinks$position": null
+      }
+    },
+    "TagResourceRequest": {
+      "base": "<p>Adds or updates Tags on a gievn resource.</p>",
+      "refs": {
+      }
+    },
+    "Tags": {
+      "base": "<p>A collection of Tags associated with a given resource.</p>",
+      "refs": {
       }
     },
     "Template": {
@@ -1927,6 +1966,11 @@
     },
     "UnauthorizedException": {
       "base": "<p>The request is denied because the caller has insufficient permissions.</p>",
+      "refs": {
+      }
+    },
+    "UntagResourceRequest": {
+      "base": "<p>Removes Tags from a given resource.</p>",
       "refs": {
       }
     },
@@ -2068,7 +2112,7 @@
       }
     },
     "VpcLink": {
-      "base": "<p>A API Gateway VPC link for a <a>RestApi</a> to access resources in an Amazon Virtual Private Cloud (VPC).</p> <div class=\"remarks\"> <p><p>To enable access to a resource in an Amazon Virtual Private Cloud through Amazon API Gateway, you, as an API developer, create a <a>VpcLink</a> resource targeted for one or more network load balancers of the VPC and then integrate an API method with a private integration that uses the <a>VpcLink</a>. The private integraiton has an integration type of <code>HTTP</code> or <code>HTTP_PROXY</code> and has a connection type of <code>VPC_LINK</code>. The integration uses the <code>connectionId</code> property to identify the <a>VpcLink</a> used.</p> </p> </div>",
+      "base": "<p>A API Gateway VPC link for a <a>RestApi</a> to access resources in an Amazon Virtual Private Cloud (VPC).</p> <div class=\"remarks\"> <p><p>To enable access to a resource in an Amazon Virtual Private Cloud through Amazon API Gateway, you, as an API developer, create a <a>VpcLink</a> resource targeted for one or more network load balancers of the VPC and then integrate an API method with a private integration that uses the <a>VpcLink</a>. The private integration has an integration type of <code>HTTP</code> or <code>HTTP_PROXY</code> and has a connection type of <code>VPC_LINK</code>. The integration uses the <code>connectionId</code> property to identify the <a>VpcLink</a> used.</p> </p> </div>",
       "refs": {
         "ListOfVpcLink$member": null
       }

@@ -33,7 +33,7 @@ const opCreateApp = "CreateApp"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateApp
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateApp
 func (c *Pinpoint) CreateAppRequest(input *CreateAppInput) (req *request.Request, output *CreateAppOutput) {
 	op := &request.Operation{
 		Name:       opCreateApp,
@@ -74,7 +74,7 @@ func (c *Pinpoint) CreateAppRequest(input *CreateAppInput) (req *request.Request
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateApp
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateApp
 func (c *Pinpoint) CreateApp(input *CreateAppInput) (*CreateAppOutput, error) {
 	req, out := c.CreateAppRequest(input)
 	return out, req.Send()
@@ -121,7 +121,7 @@ const opCreateCampaign = "CreateCampaign"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateCampaign
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateCampaign
 func (c *Pinpoint) CreateCampaignRequest(input *CreateCampaignInput) (req *request.Request, output *CreateCampaignOutput) {
 	op := &request.Operation{
 		Name:       opCreateCampaign,
@@ -162,7 +162,7 @@ func (c *Pinpoint) CreateCampaignRequest(input *CreateCampaignInput) (req *reque
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateCampaign
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateCampaign
 func (c *Pinpoint) CreateCampaign(input *CreateCampaignInput) (*CreateCampaignOutput, error) {
 	req, out := c.CreateCampaignRequest(input)
 	return out, req.Send()
@@ -209,7 +209,7 @@ const opCreateImportJob = "CreateImportJob"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateImportJob
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateImportJob
 func (c *Pinpoint) CreateImportJobRequest(input *CreateImportJobInput) (req *request.Request, output *CreateImportJobOutput) {
 	op := &request.Operation{
 		Name:       opCreateImportJob,
@@ -250,7 +250,7 @@ func (c *Pinpoint) CreateImportJobRequest(input *CreateImportJobInput) (req *req
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateImportJob
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateImportJob
 func (c *Pinpoint) CreateImportJob(input *CreateImportJobInput) (*CreateImportJobOutput, error) {
 	req, out := c.CreateImportJobRequest(input)
 	return out, req.Send()
@@ -297,7 +297,7 @@ const opCreateSegment = "CreateSegment"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateSegment
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateSegment
 func (c *Pinpoint) CreateSegmentRequest(input *CreateSegmentInput) (req *request.Request, output *CreateSegmentOutput) {
 	op := &request.Operation{
 		Name:       opCreateSegment,
@@ -338,7 +338,7 @@ func (c *Pinpoint) CreateSegmentRequest(input *CreateSegmentInput) (req *request
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateSegment
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateSegment
 func (c *Pinpoint) CreateSegment(input *CreateSegmentInput) (*CreateSegmentOutput, error) {
 	req, out := c.CreateSegmentRequest(input)
 	return out, req.Send()
@@ -385,7 +385,7 @@ const opDeleteAdmChannel = "DeleteAdmChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteAdmChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteAdmChannel
 func (c *Pinpoint) DeleteAdmChannelRequest(input *DeleteAdmChannelInput) (req *request.Request, output *DeleteAdmChannelOutput) {
 	op := &request.Operation{
 		Name:       opDeleteAdmChannel,
@@ -426,7 +426,7 @@ func (c *Pinpoint) DeleteAdmChannelRequest(input *DeleteAdmChannelInput) (req *r
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteAdmChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteAdmChannel
 func (c *Pinpoint) DeleteAdmChannel(input *DeleteAdmChannelInput) (*DeleteAdmChannelOutput, error) {
 	req, out := c.DeleteAdmChannelRequest(input)
 	return out, req.Send()
@@ -473,7 +473,7 @@ const opDeleteApnsChannel = "DeleteApnsChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsChannel
 func (c *Pinpoint) DeleteApnsChannelRequest(input *DeleteApnsChannelInput) (req *request.Request, output *DeleteApnsChannelOutput) {
 	op := &request.Operation{
 		Name:       opDeleteApnsChannel,
@@ -514,7 +514,7 @@ func (c *Pinpoint) DeleteApnsChannelRequest(input *DeleteApnsChannelInput) (req 
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsChannel
 func (c *Pinpoint) DeleteApnsChannel(input *DeleteApnsChannelInput) (*DeleteApnsChannelOutput, error) {
 	req, out := c.DeleteApnsChannelRequest(input)
 	return out, req.Send()
@@ -561,7 +561,7 @@ const opDeleteApnsSandboxChannel = "DeleteApnsSandboxChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsSandboxChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsSandboxChannel
 func (c *Pinpoint) DeleteApnsSandboxChannelRequest(input *DeleteApnsSandboxChannelInput) (req *request.Request, output *DeleteApnsSandboxChannelOutput) {
 	op := &request.Operation{
 		Name:       opDeleteApnsSandboxChannel,
@@ -602,7 +602,7 @@ func (c *Pinpoint) DeleteApnsSandboxChannelRequest(input *DeleteApnsSandboxChann
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsSandboxChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsSandboxChannel
 func (c *Pinpoint) DeleteApnsSandboxChannel(input *DeleteApnsSandboxChannelInput) (*DeleteApnsSandboxChannelOutput, error) {
 	req, out := c.DeleteApnsSandboxChannelRequest(input)
 	return out, req.Send()
@@ -649,7 +649,7 @@ const opDeleteApnsVoipChannel = "DeleteApnsVoipChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipChannel
 func (c *Pinpoint) DeleteApnsVoipChannelRequest(input *DeleteApnsVoipChannelInput) (req *request.Request, output *DeleteApnsVoipChannelOutput) {
 	op := &request.Operation{
 		Name:       opDeleteApnsVoipChannel,
@@ -690,7 +690,7 @@ func (c *Pinpoint) DeleteApnsVoipChannelRequest(input *DeleteApnsVoipChannelInpu
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipChannel
 func (c *Pinpoint) DeleteApnsVoipChannel(input *DeleteApnsVoipChannelInput) (*DeleteApnsVoipChannelOutput, error) {
 	req, out := c.DeleteApnsVoipChannelRequest(input)
 	return out, req.Send()
@@ -737,7 +737,7 @@ const opDeleteApnsVoipSandboxChannel = "DeleteApnsVoipSandboxChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipSandboxChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipSandboxChannel
 func (c *Pinpoint) DeleteApnsVoipSandboxChannelRequest(input *DeleteApnsVoipSandboxChannelInput) (req *request.Request, output *DeleteApnsVoipSandboxChannelOutput) {
 	op := &request.Operation{
 		Name:       opDeleteApnsVoipSandboxChannel,
@@ -778,7 +778,7 @@ func (c *Pinpoint) DeleteApnsVoipSandboxChannelRequest(input *DeleteApnsVoipSand
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipSandboxChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipSandboxChannel
 func (c *Pinpoint) DeleteApnsVoipSandboxChannel(input *DeleteApnsVoipSandboxChannelInput) (*DeleteApnsVoipSandboxChannelOutput, error) {
 	req, out := c.DeleteApnsVoipSandboxChannelRequest(input)
 	return out, req.Send()
@@ -825,7 +825,7 @@ const opDeleteApp = "DeleteApp"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApp
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApp
 func (c *Pinpoint) DeleteAppRequest(input *DeleteAppInput) (req *request.Request, output *DeleteAppOutput) {
 	op := &request.Operation{
 		Name:       opDeleteApp,
@@ -866,7 +866,7 @@ func (c *Pinpoint) DeleteAppRequest(input *DeleteAppInput) (req *request.Request
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApp
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApp
 func (c *Pinpoint) DeleteApp(input *DeleteAppInput) (*DeleteAppOutput, error) {
 	req, out := c.DeleteAppRequest(input)
 	return out, req.Send()
@@ -913,7 +913,7 @@ const opDeleteBaiduChannel = "DeleteBaiduChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteBaiduChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteBaiduChannel
 func (c *Pinpoint) DeleteBaiduChannelRequest(input *DeleteBaiduChannelInput) (req *request.Request, output *DeleteBaiduChannelOutput) {
 	op := &request.Operation{
 		Name:       opDeleteBaiduChannel,
@@ -954,7 +954,7 @@ func (c *Pinpoint) DeleteBaiduChannelRequest(input *DeleteBaiduChannelInput) (re
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteBaiduChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteBaiduChannel
 func (c *Pinpoint) DeleteBaiduChannel(input *DeleteBaiduChannelInput) (*DeleteBaiduChannelOutput, error) {
 	req, out := c.DeleteBaiduChannelRequest(input)
 	return out, req.Send()
@@ -1001,7 +1001,7 @@ const opDeleteCampaign = "DeleteCampaign"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteCampaign
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteCampaign
 func (c *Pinpoint) DeleteCampaignRequest(input *DeleteCampaignInput) (req *request.Request, output *DeleteCampaignOutput) {
 	op := &request.Operation{
 		Name:       opDeleteCampaign,
@@ -1042,7 +1042,7 @@ func (c *Pinpoint) DeleteCampaignRequest(input *DeleteCampaignInput) (req *reque
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteCampaign
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteCampaign
 func (c *Pinpoint) DeleteCampaign(input *DeleteCampaignInput) (*DeleteCampaignOutput, error) {
 	req, out := c.DeleteCampaignRequest(input)
 	return out, req.Send()
@@ -1089,7 +1089,7 @@ const opDeleteEmailChannel = "DeleteEmailChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteEmailChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteEmailChannel
 func (c *Pinpoint) DeleteEmailChannelRequest(input *DeleteEmailChannelInput) (req *request.Request, output *DeleteEmailChannelOutput) {
 	op := &request.Operation{
 		Name:       opDeleteEmailChannel,
@@ -1130,7 +1130,7 @@ func (c *Pinpoint) DeleteEmailChannelRequest(input *DeleteEmailChannelInput) (re
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteEmailChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteEmailChannel
 func (c *Pinpoint) DeleteEmailChannel(input *DeleteEmailChannelInput) (*DeleteEmailChannelOutput, error) {
 	req, out := c.DeleteEmailChannelRequest(input)
 	return out, req.Send()
@@ -1177,7 +1177,7 @@ const opDeleteEventStream = "DeleteEventStream"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteEventStream
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteEventStream
 func (c *Pinpoint) DeleteEventStreamRequest(input *DeleteEventStreamInput) (req *request.Request, output *DeleteEventStreamOutput) {
 	op := &request.Operation{
 		Name:       opDeleteEventStream,
@@ -1218,7 +1218,7 @@ func (c *Pinpoint) DeleteEventStreamRequest(input *DeleteEventStreamInput) (req 
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteEventStream
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteEventStream
 func (c *Pinpoint) DeleteEventStream(input *DeleteEventStreamInput) (*DeleteEventStreamOutput, error) {
 	req, out := c.DeleteEventStreamRequest(input)
 	return out, req.Send()
@@ -1265,7 +1265,7 @@ const opDeleteGcmChannel = "DeleteGcmChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteGcmChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteGcmChannel
 func (c *Pinpoint) DeleteGcmChannelRequest(input *DeleteGcmChannelInput) (req *request.Request, output *DeleteGcmChannelOutput) {
 	op := &request.Operation{
 		Name:       opDeleteGcmChannel,
@@ -1306,7 +1306,7 @@ func (c *Pinpoint) DeleteGcmChannelRequest(input *DeleteGcmChannelInput) (req *r
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteGcmChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteGcmChannel
 func (c *Pinpoint) DeleteGcmChannel(input *DeleteGcmChannelInput) (*DeleteGcmChannelOutput, error) {
 	req, out := c.DeleteGcmChannelRequest(input)
 	return out, req.Send()
@@ -1353,7 +1353,7 @@ const opDeleteSegment = "DeleteSegment"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteSegment
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteSegment
 func (c *Pinpoint) DeleteSegmentRequest(input *DeleteSegmentInput) (req *request.Request, output *DeleteSegmentOutput) {
 	op := &request.Operation{
 		Name:       opDeleteSegment,
@@ -1394,7 +1394,7 @@ func (c *Pinpoint) DeleteSegmentRequest(input *DeleteSegmentInput) (req *request
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteSegment
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteSegment
 func (c *Pinpoint) DeleteSegment(input *DeleteSegmentInput) (*DeleteSegmentOutput, error) {
 	req, out := c.DeleteSegmentRequest(input)
 	return out, req.Send()
@@ -1441,7 +1441,7 @@ const opDeleteSmsChannel = "DeleteSmsChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteSmsChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteSmsChannel
 func (c *Pinpoint) DeleteSmsChannelRequest(input *DeleteSmsChannelInput) (req *request.Request, output *DeleteSmsChannelOutput) {
 	op := &request.Operation{
 		Name:       opDeleteSmsChannel,
@@ -1482,7 +1482,7 @@ func (c *Pinpoint) DeleteSmsChannelRequest(input *DeleteSmsChannelInput) (req *r
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteSmsChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteSmsChannel
 func (c *Pinpoint) DeleteSmsChannel(input *DeleteSmsChannelInput) (*DeleteSmsChannelOutput, error) {
 	req, out := c.DeleteSmsChannelRequest(input)
 	return out, req.Send()
@@ -1529,7 +1529,7 @@ const opGetAdmChannel = "GetAdmChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetAdmChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetAdmChannel
 func (c *Pinpoint) GetAdmChannelRequest(input *GetAdmChannelInput) (req *request.Request, output *GetAdmChannelOutput) {
 	op := &request.Operation{
 		Name:       opGetAdmChannel,
@@ -1570,7 +1570,7 @@ func (c *Pinpoint) GetAdmChannelRequest(input *GetAdmChannelInput) (req *request
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetAdmChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetAdmChannel
 func (c *Pinpoint) GetAdmChannel(input *GetAdmChannelInput) (*GetAdmChannelOutput, error) {
 	req, out := c.GetAdmChannelRequest(input)
 	return out, req.Send()
@@ -1617,7 +1617,7 @@ const opGetApnsChannel = "GetApnsChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsChannel
 func (c *Pinpoint) GetApnsChannelRequest(input *GetApnsChannelInput) (req *request.Request, output *GetApnsChannelOutput) {
 	op := &request.Operation{
 		Name:       opGetApnsChannel,
@@ -1658,7 +1658,7 @@ func (c *Pinpoint) GetApnsChannelRequest(input *GetApnsChannelInput) (req *reque
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsChannel
 func (c *Pinpoint) GetApnsChannel(input *GetApnsChannelInput) (*GetApnsChannelOutput, error) {
 	req, out := c.GetApnsChannelRequest(input)
 	return out, req.Send()
@@ -1705,7 +1705,7 @@ const opGetApnsSandboxChannel = "GetApnsSandboxChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsSandboxChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsSandboxChannel
 func (c *Pinpoint) GetApnsSandboxChannelRequest(input *GetApnsSandboxChannelInput) (req *request.Request, output *GetApnsSandboxChannelOutput) {
 	op := &request.Operation{
 		Name:       opGetApnsSandboxChannel,
@@ -1746,7 +1746,7 @@ func (c *Pinpoint) GetApnsSandboxChannelRequest(input *GetApnsSandboxChannelInpu
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsSandboxChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsSandboxChannel
 func (c *Pinpoint) GetApnsSandboxChannel(input *GetApnsSandboxChannelInput) (*GetApnsSandboxChannelOutput, error) {
 	req, out := c.GetApnsSandboxChannelRequest(input)
 	return out, req.Send()
@@ -1793,7 +1793,7 @@ const opGetApnsVoipChannel = "GetApnsVoipChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipChannel
 func (c *Pinpoint) GetApnsVoipChannelRequest(input *GetApnsVoipChannelInput) (req *request.Request, output *GetApnsVoipChannelOutput) {
 	op := &request.Operation{
 		Name:       opGetApnsVoipChannel,
@@ -1834,7 +1834,7 @@ func (c *Pinpoint) GetApnsVoipChannelRequest(input *GetApnsVoipChannelInput) (re
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipChannel
 func (c *Pinpoint) GetApnsVoipChannel(input *GetApnsVoipChannelInput) (*GetApnsVoipChannelOutput, error) {
 	req, out := c.GetApnsVoipChannelRequest(input)
 	return out, req.Send()
@@ -1881,7 +1881,7 @@ const opGetApnsVoipSandboxChannel = "GetApnsVoipSandboxChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipSandboxChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipSandboxChannel
 func (c *Pinpoint) GetApnsVoipSandboxChannelRequest(input *GetApnsVoipSandboxChannelInput) (req *request.Request, output *GetApnsVoipSandboxChannelOutput) {
 	op := &request.Operation{
 		Name:       opGetApnsVoipSandboxChannel,
@@ -1922,7 +1922,7 @@ func (c *Pinpoint) GetApnsVoipSandboxChannelRequest(input *GetApnsVoipSandboxCha
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipSandboxChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipSandboxChannel
 func (c *Pinpoint) GetApnsVoipSandboxChannel(input *GetApnsVoipSandboxChannelInput) (*GetApnsVoipSandboxChannelOutput, error) {
 	req, out := c.GetApnsVoipSandboxChannelRequest(input)
 	return out, req.Send()
@@ -1969,7 +1969,7 @@ const opGetApp = "GetApp"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApp
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApp
 func (c *Pinpoint) GetAppRequest(input *GetAppInput) (req *request.Request, output *GetAppOutput) {
 	op := &request.Operation{
 		Name:       opGetApp,
@@ -2010,7 +2010,7 @@ func (c *Pinpoint) GetAppRequest(input *GetAppInput) (req *request.Request, outp
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApp
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApp
 func (c *Pinpoint) GetApp(input *GetAppInput) (*GetAppOutput, error) {
 	req, out := c.GetAppRequest(input)
 	return out, req.Send()
@@ -2057,7 +2057,7 @@ const opGetApplicationSettings = "GetApplicationSettings"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApplicationSettings
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApplicationSettings
 func (c *Pinpoint) GetApplicationSettingsRequest(input *GetApplicationSettingsInput) (req *request.Request, output *GetApplicationSettingsOutput) {
 	op := &request.Operation{
 		Name:       opGetApplicationSettings,
@@ -2098,7 +2098,7 @@ func (c *Pinpoint) GetApplicationSettingsRequest(input *GetApplicationSettingsIn
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApplicationSettings
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApplicationSettings
 func (c *Pinpoint) GetApplicationSettings(input *GetApplicationSettingsInput) (*GetApplicationSettingsOutput, error) {
 	req, out := c.GetApplicationSettingsRequest(input)
 	return out, req.Send()
@@ -2145,7 +2145,7 @@ const opGetApps = "GetApps"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApps
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApps
 func (c *Pinpoint) GetAppsRequest(input *GetAppsInput) (req *request.Request, output *GetAppsOutput) {
 	op := &request.Operation{
 		Name:       opGetApps,
@@ -2186,7 +2186,7 @@ func (c *Pinpoint) GetAppsRequest(input *GetAppsInput) (req *request.Request, ou
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApps
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApps
 func (c *Pinpoint) GetApps(input *GetAppsInput) (*GetAppsOutput, error) {
 	req, out := c.GetAppsRequest(input)
 	return out, req.Send()
@@ -2233,7 +2233,7 @@ const opGetBaiduChannel = "GetBaiduChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetBaiduChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetBaiduChannel
 func (c *Pinpoint) GetBaiduChannelRequest(input *GetBaiduChannelInput) (req *request.Request, output *GetBaiduChannelOutput) {
 	op := &request.Operation{
 		Name:       opGetBaiduChannel,
@@ -2274,7 +2274,7 @@ func (c *Pinpoint) GetBaiduChannelRequest(input *GetBaiduChannelInput) (req *req
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetBaiduChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetBaiduChannel
 func (c *Pinpoint) GetBaiduChannel(input *GetBaiduChannelInput) (*GetBaiduChannelOutput, error) {
 	req, out := c.GetBaiduChannelRequest(input)
 	return out, req.Send()
@@ -2321,7 +2321,7 @@ const opGetCampaign = "GetCampaign"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaign
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaign
 func (c *Pinpoint) GetCampaignRequest(input *GetCampaignInput) (req *request.Request, output *GetCampaignOutput) {
 	op := &request.Operation{
 		Name:       opGetCampaign,
@@ -2362,7 +2362,7 @@ func (c *Pinpoint) GetCampaignRequest(input *GetCampaignInput) (req *request.Req
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaign
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaign
 func (c *Pinpoint) GetCampaign(input *GetCampaignInput) (*GetCampaignOutput, error) {
 	req, out := c.GetCampaignRequest(input)
 	return out, req.Send()
@@ -2409,7 +2409,7 @@ const opGetCampaignActivities = "GetCampaignActivities"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignActivities
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignActivities
 func (c *Pinpoint) GetCampaignActivitiesRequest(input *GetCampaignActivitiesInput) (req *request.Request, output *GetCampaignActivitiesOutput) {
 	op := &request.Operation{
 		Name:       opGetCampaignActivities,
@@ -2450,7 +2450,7 @@ func (c *Pinpoint) GetCampaignActivitiesRequest(input *GetCampaignActivitiesInpu
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignActivities
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignActivities
 func (c *Pinpoint) GetCampaignActivities(input *GetCampaignActivitiesInput) (*GetCampaignActivitiesOutput, error) {
 	req, out := c.GetCampaignActivitiesRequest(input)
 	return out, req.Send()
@@ -2497,7 +2497,7 @@ const opGetCampaignVersion = "GetCampaignVersion"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignVersion
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignVersion
 func (c *Pinpoint) GetCampaignVersionRequest(input *GetCampaignVersionInput) (req *request.Request, output *GetCampaignVersionOutput) {
 	op := &request.Operation{
 		Name:       opGetCampaignVersion,
@@ -2538,7 +2538,7 @@ func (c *Pinpoint) GetCampaignVersionRequest(input *GetCampaignVersionInput) (re
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignVersion
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignVersion
 func (c *Pinpoint) GetCampaignVersion(input *GetCampaignVersionInput) (*GetCampaignVersionOutput, error) {
 	req, out := c.GetCampaignVersionRequest(input)
 	return out, req.Send()
@@ -2585,7 +2585,7 @@ const opGetCampaignVersions = "GetCampaignVersions"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignVersions
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignVersions
 func (c *Pinpoint) GetCampaignVersionsRequest(input *GetCampaignVersionsInput) (req *request.Request, output *GetCampaignVersionsOutput) {
 	op := &request.Operation{
 		Name:       opGetCampaignVersions,
@@ -2626,7 +2626,7 @@ func (c *Pinpoint) GetCampaignVersionsRequest(input *GetCampaignVersionsInput) (
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignVersions
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignVersions
 func (c *Pinpoint) GetCampaignVersions(input *GetCampaignVersionsInput) (*GetCampaignVersionsOutput, error) {
 	req, out := c.GetCampaignVersionsRequest(input)
 	return out, req.Send()
@@ -2673,7 +2673,7 @@ const opGetCampaigns = "GetCampaigns"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaigns
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaigns
 func (c *Pinpoint) GetCampaignsRequest(input *GetCampaignsInput) (req *request.Request, output *GetCampaignsOutput) {
 	op := &request.Operation{
 		Name:       opGetCampaigns,
@@ -2714,7 +2714,7 @@ func (c *Pinpoint) GetCampaignsRequest(input *GetCampaignsInput) (req *request.R
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaigns
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaigns
 func (c *Pinpoint) GetCampaigns(input *GetCampaignsInput) (*GetCampaignsOutput, error) {
 	req, out := c.GetCampaignsRequest(input)
 	return out, req.Send()
@@ -2761,7 +2761,7 @@ const opGetEmailChannel = "GetEmailChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEmailChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEmailChannel
 func (c *Pinpoint) GetEmailChannelRequest(input *GetEmailChannelInput) (req *request.Request, output *GetEmailChannelOutput) {
 	op := &request.Operation{
 		Name:       opGetEmailChannel,
@@ -2802,7 +2802,7 @@ func (c *Pinpoint) GetEmailChannelRequest(input *GetEmailChannelInput) (req *req
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEmailChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEmailChannel
 func (c *Pinpoint) GetEmailChannel(input *GetEmailChannelInput) (*GetEmailChannelOutput, error) {
 	req, out := c.GetEmailChannelRequest(input)
 	return out, req.Send()
@@ -2849,7 +2849,7 @@ const opGetEndpoint = "GetEndpoint"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEndpoint
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEndpoint
 func (c *Pinpoint) GetEndpointRequest(input *GetEndpointInput) (req *request.Request, output *GetEndpointOutput) {
 	op := &request.Operation{
 		Name:       opGetEndpoint,
@@ -2890,7 +2890,7 @@ func (c *Pinpoint) GetEndpointRequest(input *GetEndpointInput) (req *request.Req
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEndpoint
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEndpoint
 func (c *Pinpoint) GetEndpoint(input *GetEndpointInput) (*GetEndpointOutput, error) {
 	req, out := c.GetEndpointRequest(input)
 	return out, req.Send()
@@ -2937,7 +2937,7 @@ const opGetEventStream = "GetEventStream"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEventStream
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEventStream
 func (c *Pinpoint) GetEventStreamRequest(input *GetEventStreamInput) (req *request.Request, output *GetEventStreamOutput) {
 	op := &request.Operation{
 		Name:       opGetEventStream,
@@ -2978,7 +2978,7 @@ func (c *Pinpoint) GetEventStreamRequest(input *GetEventStreamInput) (req *reque
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEventStream
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEventStream
 func (c *Pinpoint) GetEventStream(input *GetEventStreamInput) (*GetEventStreamOutput, error) {
 	req, out := c.GetEventStreamRequest(input)
 	return out, req.Send()
@@ -3025,7 +3025,7 @@ const opGetGcmChannel = "GetGcmChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetGcmChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetGcmChannel
 func (c *Pinpoint) GetGcmChannelRequest(input *GetGcmChannelInput) (req *request.Request, output *GetGcmChannelOutput) {
 	op := &request.Operation{
 		Name:       opGetGcmChannel,
@@ -3066,7 +3066,7 @@ func (c *Pinpoint) GetGcmChannelRequest(input *GetGcmChannelInput) (req *request
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetGcmChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetGcmChannel
 func (c *Pinpoint) GetGcmChannel(input *GetGcmChannelInput) (*GetGcmChannelOutput, error) {
 	req, out := c.GetGcmChannelRequest(input)
 	return out, req.Send()
@@ -3113,7 +3113,7 @@ const opGetImportJob = "GetImportJob"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetImportJob
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetImportJob
 func (c *Pinpoint) GetImportJobRequest(input *GetImportJobInput) (req *request.Request, output *GetImportJobOutput) {
 	op := &request.Operation{
 		Name:       opGetImportJob,
@@ -3154,7 +3154,7 @@ func (c *Pinpoint) GetImportJobRequest(input *GetImportJobInput) (req *request.R
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetImportJob
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetImportJob
 func (c *Pinpoint) GetImportJob(input *GetImportJobInput) (*GetImportJobOutput, error) {
 	req, out := c.GetImportJobRequest(input)
 	return out, req.Send()
@@ -3201,7 +3201,7 @@ const opGetImportJobs = "GetImportJobs"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetImportJobs
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetImportJobs
 func (c *Pinpoint) GetImportJobsRequest(input *GetImportJobsInput) (req *request.Request, output *GetImportJobsOutput) {
 	op := &request.Operation{
 		Name:       opGetImportJobs,
@@ -3242,7 +3242,7 @@ func (c *Pinpoint) GetImportJobsRequest(input *GetImportJobsInput) (req *request
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetImportJobs
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetImportJobs
 func (c *Pinpoint) GetImportJobs(input *GetImportJobsInput) (*GetImportJobsOutput, error) {
 	req, out := c.GetImportJobsRequest(input)
 	return out, req.Send()
@@ -3289,7 +3289,7 @@ const opGetSegment = "GetSegment"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegment
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegment
 func (c *Pinpoint) GetSegmentRequest(input *GetSegmentInput) (req *request.Request, output *GetSegmentOutput) {
 	op := &request.Operation{
 		Name:       opGetSegment,
@@ -3330,7 +3330,7 @@ func (c *Pinpoint) GetSegmentRequest(input *GetSegmentInput) (req *request.Reque
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegment
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegment
 func (c *Pinpoint) GetSegment(input *GetSegmentInput) (*GetSegmentOutput, error) {
 	req, out := c.GetSegmentRequest(input)
 	return out, req.Send()
@@ -3377,7 +3377,7 @@ const opGetSegmentImportJobs = "GetSegmentImportJobs"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentImportJobs
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentImportJobs
 func (c *Pinpoint) GetSegmentImportJobsRequest(input *GetSegmentImportJobsInput) (req *request.Request, output *GetSegmentImportJobsOutput) {
 	op := &request.Operation{
 		Name:       opGetSegmentImportJobs,
@@ -3418,7 +3418,7 @@ func (c *Pinpoint) GetSegmentImportJobsRequest(input *GetSegmentImportJobsInput)
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentImportJobs
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentImportJobs
 func (c *Pinpoint) GetSegmentImportJobs(input *GetSegmentImportJobsInput) (*GetSegmentImportJobsOutput, error) {
 	req, out := c.GetSegmentImportJobsRequest(input)
 	return out, req.Send()
@@ -3465,7 +3465,7 @@ const opGetSegmentVersion = "GetSegmentVersion"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentVersion
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentVersion
 func (c *Pinpoint) GetSegmentVersionRequest(input *GetSegmentVersionInput) (req *request.Request, output *GetSegmentVersionOutput) {
 	op := &request.Operation{
 		Name:       opGetSegmentVersion,
@@ -3506,7 +3506,7 @@ func (c *Pinpoint) GetSegmentVersionRequest(input *GetSegmentVersionInput) (req 
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentVersion
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentVersion
 func (c *Pinpoint) GetSegmentVersion(input *GetSegmentVersionInput) (*GetSegmentVersionOutput, error) {
 	req, out := c.GetSegmentVersionRequest(input)
 	return out, req.Send()
@@ -3553,7 +3553,7 @@ const opGetSegmentVersions = "GetSegmentVersions"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentVersions
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentVersions
 func (c *Pinpoint) GetSegmentVersionsRequest(input *GetSegmentVersionsInput) (req *request.Request, output *GetSegmentVersionsOutput) {
 	op := &request.Operation{
 		Name:       opGetSegmentVersions,
@@ -3594,7 +3594,7 @@ func (c *Pinpoint) GetSegmentVersionsRequest(input *GetSegmentVersionsInput) (re
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentVersions
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentVersions
 func (c *Pinpoint) GetSegmentVersions(input *GetSegmentVersionsInput) (*GetSegmentVersionsOutput, error) {
 	req, out := c.GetSegmentVersionsRequest(input)
 	return out, req.Send()
@@ -3641,7 +3641,7 @@ const opGetSegments = "GetSegments"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegments
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegments
 func (c *Pinpoint) GetSegmentsRequest(input *GetSegmentsInput) (req *request.Request, output *GetSegmentsOutput) {
 	op := &request.Operation{
 		Name:       opGetSegments,
@@ -3682,7 +3682,7 @@ func (c *Pinpoint) GetSegmentsRequest(input *GetSegmentsInput) (req *request.Req
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegments
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegments
 func (c *Pinpoint) GetSegments(input *GetSegmentsInput) (*GetSegmentsOutput, error) {
 	req, out := c.GetSegmentsRequest(input)
 	return out, req.Send()
@@ -3729,7 +3729,7 @@ const opGetSmsChannel = "GetSmsChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSmsChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSmsChannel
 func (c *Pinpoint) GetSmsChannelRequest(input *GetSmsChannelInput) (req *request.Request, output *GetSmsChannelOutput) {
 	op := &request.Operation{
 		Name:       opGetSmsChannel,
@@ -3770,7 +3770,7 @@ func (c *Pinpoint) GetSmsChannelRequest(input *GetSmsChannelInput) (req *request
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSmsChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSmsChannel
 func (c *Pinpoint) GetSmsChannel(input *GetSmsChannelInput) (*GetSmsChannelOutput, error) {
 	req, out := c.GetSmsChannelRequest(input)
 	return out, req.Send()
@@ -3817,7 +3817,7 @@ const opPutEventStream = "PutEventStream"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/PutEventStream
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/PutEventStream
 func (c *Pinpoint) PutEventStreamRequest(input *PutEventStreamInput) (req *request.Request, output *PutEventStreamOutput) {
 	op := &request.Operation{
 		Name:       opPutEventStream,
@@ -3858,7 +3858,7 @@ func (c *Pinpoint) PutEventStreamRequest(input *PutEventStreamInput) (req *reque
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/PutEventStream
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/PutEventStream
 func (c *Pinpoint) PutEventStream(input *PutEventStreamInput) (*PutEventStreamOutput, error) {
 	req, out := c.PutEventStreamRequest(input)
 	return out, req.Send()
@@ -3905,7 +3905,7 @@ const opSendMessages = "SendMessages"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendMessages
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendMessages
 func (c *Pinpoint) SendMessagesRequest(input *SendMessagesInput) (req *request.Request, output *SendMessagesOutput) {
 	op := &request.Operation{
 		Name:       opSendMessages,
@@ -3946,7 +3946,7 @@ func (c *Pinpoint) SendMessagesRequest(input *SendMessagesInput) (req *request.R
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendMessages
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendMessages
 func (c *Pinpoint) SendMessages(input *SendMessagesInput) (*SendMessagesOutput, error) {
 	req, out := c.SendMessagesRequest(input)
 	return out, req.Send()
@@ -3993,7 +3993,7 @@ const opSendUsersMessages = "SendUsersMessages"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendUsersMessages
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendUsersMessages
 func (c *Pinpoint) SendUsersMessagesRequest(input *SendUsersMessagesInput) (req *request.Request, output *SendUsersMessagesOutput) {
 	op := &request.Operation{
 		Name:       opSendUsersMessages,
@@ -4034,7 +4034,7 @@ func (c *Pinpoint) SendUsersMessagesRequest(input *SendUsersMessagesInput) (req 
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendUsersMessages
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendUsersMessages
 func (c *Pinpoint) SendUsersMessages(input *SendUsersMessagesInput) (*SendUsersMessagesOutput, error) {
 	req, out := c.SendUsersMessagesRequest(input)
 	return out, req.Send()
@@ -4081,7 +4081,7 @@ const opUpdateAdmChannel = "UpdateAdmChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateAdmChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateAdmChannel
 func (c *Pinpoint) UpdateAdmChannelRequest(input *UpdateAdmChannelInput) (req *request.Request, output *UpdateAdmChannelOutput) {
 	op := &request.Operation{
 		Name:       opUpdateAdmChannel,
@@ -4122,7 +4122,7 @@ func (c *Pinpoint) UpdateAdmChannelRequest(input *UpdateAdmChannelInput) (req *r
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateAdmChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateAdmChannel
 func (c *Pinpoint) UpdateAdmChannel(input *UpdateAdmChannelInput) (*UpdateAdmChannelOutput, error) {
 	req, out := c.UpdateAdmChannelRequest(input)
 	return out, req.Send()
@@ -4169,7 +4169,7 @@ const opUpdateApnsChannel = "UpdateApnsChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsChannel
 func (c *Pinpoint) UpdateApnsChannelRequest(input *UpdateApnsChannelInput) (req *request.Request, output *UpdateApnsChannelOutput) {
 	op := &request.Operation{
 		Name:       opUpdateApnsChannel,
@@ -4210,7 +4210,7 @@ func (c *Pinpoint) UpdateApnsChannelRequest(input *UpdateApnsChannelInput) (req 
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsChannel
 func (c *Pinpoint) UpdateApnsChannel(input *UpdateApnsChannelInput) (*UpdateApnsChannelOutput, error) {
 	req, out := c.UpdateApnsChannelRequest(input)
 	return out, req.Send()
@@ -4257,7 +4257,7 @@ const opUpdateApnsSandboxChannel = "UpdateApnsSandboxChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsSandboxChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsSandboxChannel
 func (c *Pinpoint) UpdateApnsSandboxChannelRequest(input *UpdateApnsSandboxChannelInput) (req *request.Request, output *UpdateApnsSandboxChannelOutput) {
 	op := &request.Operation{
 		Name:       opUpdateApnsSandboxChannel,
@@ -4298,7 +4298,7 @@ func (c *Pinpoint) UpdateApnsSandboxChannelRequest(input *UpdateApnsSandboxChann
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsSandboxChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsSandboxChannel
 func (c *Pinpoint) UpdateApnsSandboxChannel(input *UpdateApnsSandboxChannelInput) (*UpdateApnsSandboxChannelOutput, error) {
 	req, out := c.UpdateApnsSandboxChannelRequest(input)
 	return out, req.Send()
@@ -4345,7 +4345,7 @@ const opUpdateApnsVoipChannel = "UpdateApnsVoipChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipChannel
 func (c *Pinpoint) UpdateApnsVoipChannelRequest(input *UpdateApnsVoipChannelInput) (req *request.Request, output *UpdateApnsVoipChannelOutput) {
 	op := &request.Operation{
 		Name:       opUpdateApnsVoipChannel,
@@ -4386,7 +4386,7 @@ func (c *Pinpoint) UpdateApnsVoipChannelRequest(input *UpdateApnsVoipChannelInpu
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipChannel
 func (c *Pinpoint) UpdateApnsVoipChannel(input *UpdateApnsVoipChannelInput) (*UpdateApnsVoipChannelOutput, error) {
 	req, out := c.UpdateApnsVoipChannelRequest(input)
 	return out, req.Send()
@@ -4433,7 +4433,7 @@ const opUpdateApnsVoipSandboxChannel = "UpdateApnsVoipSandboxChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipSandboxChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipSandboxChannel
 func (c *Pinpoint) UpdateApnsVoipSandboxChannelRequest(input *UpdateApnsVoipSandboxChannelInput) (req *request.Request, output *UpdateApnsVoipSandboxChannelOutput) {
 	op := &request.Operation{
 		Name:       opUpdateApnsVoipSandboxChannel,
@@ -4474,7 +4474,7 @@ func (c *Pinpoint) UpdateApnsVoipSandboxChannelRequest(input *UpdateApnsVoipSand
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipSandboxChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipSandboxChannel
 func (c *Pinpoint) UpdateApnsVoipSandboxChannel(input *UpdateApnsVoipSandboxChannelInput) (*UpdateApnsVoipSandboxChannelOutput, error) {
 	req, out := c.UpdateApnsVoipSandboxChannelRequest(input)
 	return out, req.Send()
@@ -4521,7 +4521,7 @@ const opUpdateApplicationSettings = "UpdateApplicationSettings"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApplicationSettings
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApplicationSettings
 func (c *Pinpoint) UpdateApplicationSettingsRequest(input *UpdateApplicationSettingsInput) (req *request.Request, output *UpdateApplicationSettingsOutput) {
 	op := &request.Operation{
 		Name:       opUpdateApplicationSettings,
@@ -4562,7 +4562,7 @@ func (c *Pinpoint) UpdateApplicationSettingsRequest(input *UpdateApplicationSett
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApplicationSettings
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApplicationSettings
 func (c *Pinpoint) UpdateApplicationSettings(input *UpdateApplicationSettingsInput) (*UpdateApplicationSettingsOutput, error) {
 	req, out := c.UpdateApplicationSettingsRequest(input)
 	return out, req.Send()
@@ -4609,7 +4609,7 @@ const opUpdateBaiduChannel = "UpdateBaiduChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateBaiduChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateBaiduChannel
 func (c *Pinpoint) UpdateBaiduChannelRequest(input *UpdateBaiduChannelInput) (req *request.Request, output *UpdateBaiduChannelOutput) {
 	op := &request.Operation{
 		Name:       opUpdateBaiduChannel,
@@ -4650,7 +4650,7 @@ func (c *Pinpoint) UpdateBaiduChannelRequest(input *UpdateBaiduChannelInput) (re
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateBaiduChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateBaiduChannel
 func (c *Pinpoint) UpdateBaiduChannel(input *UpdateBaiduChannelInput) (*UpdateBaiduChannelOutput, error) {
 	req, out := c.UpdateBaiduChannelRequest(input)
 	return out, req.Send()
@@ -4697,7 +4697,7 @@ const opUpdateCampaign = "UpdateCampaign"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateCampaign
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateCampaign
 func (c *Pinpoint) UpdateCampaignRequest(input *UpdateCampaignInput) (req *request.Request, output *UpdateCampaignOutput) {
 	op := &request.Operation{
 		Name:       opUpdateCampaign,
@@ -4738,7 +4738,7 @@ func (c *Pinpoint) UpdateCampaignRequest(input *UpdateCampaignInput) (req *reque
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateCampaign
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateCampaign
 func (c *Pinpoint) UpdateCampaign(input *UpdateCampaignInput) (*UpdateCampaignOutput, error) {
 	req, out := c.UpdateCampaignRequest(input)
 	return out, req.Send()
@@ -4785,7 +4785,7 @@ const opUpdateEmailChannel = "UpdateEmailChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEmailChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEmailChannel
 func (c *Pinpoint) UpdateEmailChannelRequest(input *UpdateEmailChannelInput) (req *request.Request, output *UpdateEmailChannelOutput) {
 	op := &request.Operation{
 		Name:       opUpdateEmailChannel,
@@ -4826,7 +4826,7 @@ func (c *Pinpoint) UpdateEmailChannelRequest(input *UpdateEmailChannelInput) (re
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEmailChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEmailChannel
 func (c *Pinpoint) UpdateEmailChannel(input *UpdateEmailChannelInput) (*UpdateEmailChannelOutput, error) {
 	req, out := c.UpdateEmailChannelRequest(input)
 	return out, req.Send()
@@ -4873,7 +4873,7 @@ const opUpdateEndpoint = "UpdateEndpoint"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEndpoint
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEndpoint
 func (c *Pinpoint) UpdateEndpointRequest(input *UpdateEndpointInput) (req *request.Request, output *UpdateEndpointOutput) {
 	op := &request.Operation{
 		Name:       opUpdateEndpoint,
@@ -4914,7 +4914,7 @@ func (c *Pinpoint) UpdateEndpointRequest(input *UpdateEndpointInput) (req *reque
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEndpoint
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEndpoint
 func (c *Pinpoint) UpdateEndpoint(input *UpdateEndpointInput) (*UpdateEndpointOutput, error) {
 	req, out := c.UpdateEndpointRequest(input)
 	return out, req.Send()
@@ -4961,7 +4961,7 @@ const opUpdateEndpointsBatch = "UpdateEndpointsBatch"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEndpointsBatch
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEndpointsBatch
 func (c *Pinpoint) UpdateEndpointsBatchRequest(input *UpdateEndpointsBatchInput) (req *request.Request, output *UpdateEndpointsBatchOutput) {
 	op := &request.Operation{
 		Name:       opUpdateEndpointsBatch,
@@ -5002,7 +5002,7 @@ func (c *Pinpoint) UpdateEndpointsBatchRequest(input *UpdateEndpointsBatchInput)
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEndpointsBatch
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEndpointsBatch
 func (c *Pinpoint) UpdateEndpointsBatch(input *UpdateEndpointsBatchInput) (*UpdateEndpointsBatchOutput, error) {
 	req, out := c.UpdateEndpointsBatchRequest(input)
 	return out, req.Send()
@@ -5049,7 +5049,7 @@ const opUpdateGcmChannel = "UpdateGcmChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateGcmChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateGcmChannel
 func (c *Pinpoint) UpdateGcmChannelRequest(input *UpdateGcmChannelInput) (req *request.Request, output *UpdateGcmChannelOutput) {
 	op := &request.Operation{
 		Name:       opUpdateGcmChannel,
@@ -5090,7 +5090,7 @@ func (c *Pinpoint) UpdateGcmChannelRequest(input *UpdateGcmChannelInput) (req *r
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateGcmChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateGcmChannel
 func (c *Pinpoint) UpdateGcmChannel(input *UpdateGcmChannelInput) (*UpdateGcmChannelOutput, error) {
 	req, out := c.UpdateGcmChannelRequest(input)
 	return out, req.Send()
@@ -5137,7 +5137,7 @@ const opUpdateSegment = "UpdateSegment"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateSegment
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateSegment
 func (c *Pinpoint) UpdateSegmentRequest(input *UpdateSegmentInput) (req *request.Request, output *UpdateSegmentOutput) {
 	op := &request.Operation{
 		Name:       opUpdateSegment,
@@ -5178,7 +5178,7 @@ func (c *Pinpoint) UpdateSegmentRequest(input *UpdateSegmentInput) (req *request
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateSegment
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateSegment
 func (c *Pinpoint) UpdateSegment(input *UpdateSegmentInput) (*UpdateSegmentOutput, error) {
 	req, out := c.UpdateSegmentRequest(input)
 	return out, req.Send()
@@ -5225,7 +5225,7 @@ const opUpdateSmsChannel = "UpdateSmsChannel"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateSmsChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateSmsChannel
 func (c *Pinpoint) UpdateSmsChannelRequest(input *UpdateSmsChannelInput) (req *request.Request, output *UpdateSmsChannelOutput) {
 	op := &request.Operation{
 		Name:       opUpdateSmsChannel,
@@ -5266,7 +5266,7 @@ func (c *Pinpoint) UpdateSmsChannelRequest(input *UpdateSmsChannelInput) (req *r
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateSmsChannel
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateSmsChannel
 func (c *Pinpoint) UpdateSmsChannel(input *UpdateSmsChannelInput) (*UpdateSmsChannelOutput, error) {
 	req, out := c.UpdateSmsChannelRequest(input)
 	return out, req.Send()
@@ -5289,7 +5289,7 @@ func (c *Pinpoint) UpdateSmsChannelWithContext(ctx aws.Context, input *UpdateSms
 }
 
 // Amazon Device Messaging channel definition.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ADMChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ADMChannelRequest
 type ADMChannelRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -5332,7 +5332,7 @@ func (s *ADMChannelRequest) SetEnabled(v bool) *ADMChannelRequest {
 }
 
 // Amazon Device Messaging channel definition.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ADMChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ADMChannelResponse
 type ADMChannelResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -5438,7 +5438,7 @@ func (s *ADMChannelResponse) SetVersion(v int64) *ADMChannelResponse {
 }
 
 // ADM Message.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ADMMessage
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ADMMessage
 type ADMMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -5614,7 +5614,7 @@ func (s *ADMMessage) SetUrl(v string) *ADMMessage {
 }
 
 // Apple Push Notification Service channel definition.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSChannelRequest
 type APNSChannelRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -5702,7 +5702,7 @@ func (s *APNSChannelRequest) SetTokenKeyId(v string) *APNSChannelRequest {
 }
 
 // Apple Distribution Push Notification Service channel definition.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSChannelResponse
 type APNSChannelResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -5826,7 +5826,7 @@ func (s *APNSChannelResponse) SetVersion(v int64) *APNSChannelResponse {
 }
 
 // APNS Message.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSMessage
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSMessage
 type APNSMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -6017,7 +6017,7 @@ func (s *APNSMessage) SetUrl(v string) *APNSMessage {
 }
 
 // Apple Development Push Notification Service channel definition.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSSandboxChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSSandboxChannelRequest
 type APNSSandboxChannelRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -6105,7 +6105,7 @@ func (s *APNSSandboxChannelRequest) SetTokenKeyId(v string) *APNSSandboxChannelR
 }
 
 // Apple Development Push Notification Service channel definition.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSSandboxChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSSandboxChannelResponse
 type APNSSandboxChannelResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -6229,7 +6229,7 @@ func (s *APNSSandboxChannelResponse) SetVersion(v int64) *APNSSandboxChannelResp
 }
 
 // Apple VOIP Push Notification Service channel definition.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSVoipChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSVoipChannelRequest
 type APNSVoipChannelRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -6317,7 +6317,7 @@ func (s *APNSVoipChannelRequest) SetTokenKeyId(v string) *APNSVoipChannelRequest
 }
 
 // Apple VOIP Push Notification Service channel definition.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSVoipChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSVoipChannelResponse
 type APNSVoipChannelResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -6441,7 +6441,7 @@ func (s *APNSVoipChannelResponse) SetVersion(v int64) *APNSVoipChannelResponse {
 }
 
 // Apple VOIP Developer Push Notification Service channel definition.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSVoipSandboxChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSVoipSandboxChannelRequest
 type APNSVoipSandboxChannelRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -6529,7 +6529,7 @@ func (s *APNSVoipSandboxChannelRequest) SetTokenKeyId(v string) *APNSVoipSandbox
 }
 
 // Apple VOIP Developer Push Notification Service channel definition.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSVoipSandboxChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSVoipSandboxChannelResponse
 type APNSVoipSandboxChannelResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -6653,7 +6653,7 @@ func (s *APNSVoipSandboxChannelResponse) SetVersion(v int64) *APNSVoipSandboxCha
 }
 
 // Activities for campaign.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ActivitiesResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ActivitiesResponse
 type ActivitiesResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -6678,7 +6678,7 @@ func (s *ActivitiesResponse) SetItem(v []*ActivityResponse) *ActivitiesResponse 
 }
 
 // Activity definition
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ActivityResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ActivityResponse
 type ActivityResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -6814,7 +6814,7 @@ func (s *ActivityResponse) SetTreatmentId(v string) *ActivityResponse {
 }
 
 // Address configuration.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/AddressConfiguration
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/AddressConfiguration
 type AddressConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -6883,7 +6883,7 @@ func (s *AddressConfiguration) SetTitleOverride(v string) *AddressConfiguration 
 }
 
 // Application Response.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ApplicationResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ApplicationResponse
 type ApplicationResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -6917,7 +6917,7 @@ func (s *ApplicationResponse) SetName(v string) *ApplicationResponse {
 }
 
 // Application settings.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ApplicationSettingsResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ApplicationSettingsResource
 type ApplicationSettingsResource struct {
 	_ struct{} `type:"structure"`
 
@@ -6973,7 +6973,7 @@ func (s *ApplicationSettingsResource) SetQuietTime(v *QuietTime) *ApplicationSet
 }
 
 // Get Applications Result.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ApplicationsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ApplicationsResponse
 type ApplicationsResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -7008,7 +7008,7 @@ func (s *ApplicationsResponse) SetNextToken(v string) *ApplicationsResponse {
 }
 
 // Custom attibute dimension
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/AttributeDimension
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/AttributeDimension
 type AttributeDimension struct {
 	_ struct{} `type:"structure"`
 
@@ -7043,7 +7043,7 @@ func (s *AttributeDimension) SetValues(v []*string) *AttributeDimension {
 }
 
 // Baidu Cloud Push credentials
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/BaiduChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/BaiduChannelRequest
 type BaiduChannelRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -7086,7 +7086,7 @@ func (s *BaiduChannelRequest) SetSecretKey(v string) *BaiduChannelRequest {
 }
 
 // Baidu Cloud Messaging channel definition
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/BaiduChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/BaiduChannelResponse
 type BaiduChannelResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -7201,7 +7201,7 @@ func (s *BaiduChannelResponse) SetVersion(v int64) *BaiduChannelResponse {
 }
 
 // Baidu Message.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/BaiduMessage
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/BaiduMessage
 type BaiduMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -7346,7 +7346,7 @@ func (s *BaiduMessage) SetUrl(v string) *BaiduMessage {
 }
 
 // The email message configuration.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CampaignEmailMessage
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CampaignEmailMessage
 type CampaignEmailMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -7400,7 +7400,7 @@ func (s *CampaignEmailMessage) SetTitle(v string) *CampaignEmailMessage {
 
 // Campaign Limits are used to limit the number of messages that can be sent
 // to a user.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CampaignLimits
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CampaignLimits
 type CampaignLimits struct {
 	_ struct{} `type:"structure"`
 
@@ -7454,7 +7454,7 @@ func (s *CampaignLimits) SetTotal(v int64) *CampaignLimits {
 }
 
 // Campaign definition
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CampaignResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CampaignResponse
 type CampaignResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -7645,7 +7645,7 @@ func (s *CampaignResponse) SetVersion(v int64) *CampaignResponse {
 }
 
 // SMS message configuration.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CampaignSmsMessage
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CampaignSmsMessage
 type CampaignSmsMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -7688,7 +7688,7 @@ func (s *CampaignSmsMessage) SetSenderId(v string) *CampaignSmsMessage {
 }
 
 // State of the Campaign
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CampaignState
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CampaignState
 type CampaignState struct {
 	_ struct{} `type:"structure"`
 
@@ -7715,7 +7715,7 @@ func (s *CampaignState) SetCampaignStatus(v string) *CampaignState {
 }
 
 // List of available campaigns.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CampaignsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CampaignsResponse
 type CampaignsResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -7749,7 +7749,7 @@ func (s *CampaignsResponse) SetNextToken(v string) *CampaignsResponse {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateAppRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateAppRequest
 type CreateAppInput struct {
 	_ struct{} `type:"structure" payload:"CreateApplicationRequest"`
 
@@ -7788,7 +7788,7 @@ func (s *CreateAppInput) SetCreateApplicationRequest(v *CreateApplicationRequest
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateAppResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateAppResponse
 type CreateAppOutput struct {
 	_ struct{} `type:"structure" payload:"ApplicationResponse"`
 
@@ -7815,7 +7815,7 @@ func (s *CreateAppOutput) SetApplicationResponse(v *ApplicationResponse) *Create
 }
 
 // Application Request.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateApplicationRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateApplicationRequest
 type CreateApplicationRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -7839,7 +7839,7 @@ func (s *CreateApplicationRequest) SetName(v string) *CreateApplicationRequest {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateCampaignRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateCampaignRequest
 type CreateCampaignInput struct {
 	_ struct{} `type:"structure" payload:"WriteCampaignRequest"`
 
@@ -7890,7 +7890,7 @@ func (s *CreateCampaignInput) SetWriteCampaignRequest(v *WriteCampaignRequest) *
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateCampaignResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateCampaignResponse
 type CreateCampaignOutput struct {
 	_ struct{} `type:"structure" payload:"CampaignResponse"`
 
@@ -7916,7 +7916,7 @@ func (s *CreateCampaignOutput) SetCampaignResponse(v *CampaignResponse) *CreateC
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateImportJobRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateImportJobRequest
 type CreateImportJobInput struct {
 	_ struct{} `type:"structure" payload:"ImportJobRequest"`
 
@@ -7965,7 +7965,7 @@ func (s *CreateImportJobInput) SetImportJobRequest(v *ImportJobRequest) *CreateI
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateImportJobResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateImportJobResponse
 type CreateImportJobOutput struct {
 	_ struct{} `type:"structure" payload:"ImportJobResponse"`
 
@@ -7989,7 +7989,7 @@ func (s *CreateImportJobOutput) SetImportJobResponse(v *ImportJobResponse) *Crea
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateSegmentRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateSegmentRequest
 type CreateSegmentInput struct {
 	_ struct{} `type:"structure" payload:"WriteSegmentRequest"`
 
@@ -8040,7 +8040,7 @@ func (s *CreateSegmentInput) SetWriteSegmentRequest(v *WriteSegmentRequest) *Cre
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateSegmentResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateSegmentResponse
 type CreateSegmentOutput struct {
 	_ struct{} `type:"structure" payload:"SegmentResponse"`
 
@@ -8067,7 +8067,7 @@ func (s *CreateSegmentOutput) SetSegmentResponse(v *SegmentResponse) *CreateSegm
 }
 
 // Default Message across push notification, email, and sms.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DefaultMessage
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DefaultMessage
 type DefaultMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -8100,7 +8100,7 @@ func (s *DefaultMessage) SetSubstitutions(v map[string][]*string) *DefaultMessag
 }
 
 // Default Push Notification Message.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DefaultPushNotificationMessage
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DefaultPushNotificationMessage
 type DefaultPushNotificationMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -8184,7 +8184,7 @@ func (s *DefaultPushNotificationMessage) SetUrl(v string) *DefaultPushNotificati
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteAdmChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteAdmChannelRequest
 type DeleteAdmChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8221,7 +8221,7 @@ func (s *DeleteAdmChannelInput) SetApplicationId(v string) *DeleteAdmChannelInpu
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteAdmChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteAdmChannelResponse
 type DeleteAdmChannelOutput struct {
 	_ struct{} `type:"structure" payload:"ADMChannelResponse"`
 
@@ -8247,7 +8247,7 @@ func (s *DeleteAdmChannelOutput) SetADMChannelResponse(v *ADMChannelResponse) *D
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsChannelRequest
 type DeleteApnsChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8284,7 +8284,7 @@ func (s *DeleteApnsChannelInput) SetApplicationId(v string) *DeleteApnsChannelIn
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsChannelResponse
 type DeleteApnsChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSChannelResponse"`
 
@@ -8310,7 +8310,7 @@ func (s *DeleteApnsChannelOutput) SetAPNSChannelResponse(v *APNSChannelResponse)
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsSandboxChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsSandboxChannelRequest
 type DeleteApnsSandboxChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8347,7 +8347,7 @@ func (s *DeleteApnsSandboxChannelInput) SetApplicationId(v string) *DeleteApnsSa
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsSandboxChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsSandboxChannelResponse
 type DeleteApnsSandboxChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSSandboxChannelResponse"`
 
@@ -8373,7 +8373,7 @@ func (s *DeleteApnsSandboxChannelOutput) SetAPNSSandboxChannelResponse(v *APNSSa
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipChannelRequest
 type DeleteApnsVoipChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8410,7 +8410,7 @@ func (s *DeleteApnsVoipChannelInput) SetApplicationId(v string) *DeleteApnsVoipC
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipChannelResponse
 type DeleteApnsVoipChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSVoipChannelResponse"`
 
@@ -8436,7 +8436,7 @@ func (s *DeleteApnsVoipChannelOutput) SetAPNSVoipChannelResponse(v *APNSVoipChan
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipSandboxChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipSandboxChannelRequest
 type DeleteApnsVoipSandboxChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8473,7 +8473,7 @@ func (s *DeleteApnsVoipSandboxChannelInput) SetApplicationId(v string) *DeleteAp
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipSandboxChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipSandboxChannelResponse
 type DeleteApnsVoipSandboxChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSVoipSandboxChannelResponse"`
 
@@ -8499,7 +8499,7 @@ func (s *DeleteApnsVoipSandboxChannelOutput) SetAPNSVoipSandboxChannelResponse(v
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteAppRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteAppRequest
 type DeleteAppInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8536,7 +8536,7 @@ func (s *DeleteAppInput) SetApplicationId(v string) *DeleteAppInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteAppResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteAppResponse
 type DeleteAppOutput struct {
 	_ struct{} `type:"structure" payload:"ApplicationResponse"`
 
@@ -8562,7 +8562,7 @@ func (s *DeleteAppOutput) SetApplicationResponse(v *ApplicationResponse) *Delete
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteBaiduChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteBaiduChannelRequest
 type DeleteBaiduChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8599,7 +8599,7 @@ func (s *DeleteBaiduChannelInput) SetApplicationId(v string) *DeleteBaiduChannel
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteBaiduChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteBaiduChannelResponse
 type DeleteBaiduChannelOutput struct {
 	_ struct{} `type:"structure" payload:"BaiduChannelResponse"`
 
@@ -8625,7 +8625,7 @@ func (s *DeleteBaiduChannelOutput) SetBaiduChannelResponse(v *BaiduChannelRespon
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteCampaignRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteCampaignRequest
 type DeleteCampaignInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8674,7 +8674,7 @@ func (s *DeleteCampaignInput) SetCampaignId(v string) *DeleteCampaignInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteCampaignResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteCampaignResponse
 type DeleteCampaignOutput struct {
 	_ struct{} `type:"structure" payload:"CampaignResponse"`
 
@@ -8700,7 +8700,7 @@ func (s *DeleteCampaignOutput) SetCampaignResponse(v *CampaignResponse) *DeleteC
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteEmailChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteEmailChannelRequest
 type DeleteEmailChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8737,7 +8737,7 @@ func (s *DeleteEmailChannelInput) SetApplicationId(v string) *DeleteEmailChannel
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteEmailChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteEmailChannelResponse
 type DeleteEmailChannelOutput struct {
 	_ struct{} `type:"structure" payload:"EmailChannelResponse"`
 
@@ -8763,7 +8763,7 @@ func (s *DeleteEmailChannelOutput) SetEmailChannelResponse(v *EmailChannelRespon
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteEventStreamRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteEventStreamRequest
 type DeleteEventStreamInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8802,7 +8802,7 @@ func (s *DeleteEventStreamInput) SetApplicationId(v string) *DeleteEventStreamIn
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteEventStreamResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteEventStreamResponse
 type DeleteEventStreamOutput struct {
 	_ struct{} `type:"structure" payload:"EventStream"`
 
@@ -8828,7 +8828,7 @@ func (s *DeleteEventStreamOutput) SetEventStream(v *EventStream) *DeleteEventStr
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteGcmChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteGcmChannelRequest
 type DeleteGcmChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8865,7 +8865,7 @@ func (s *DeleteGcmChannelInput) SetApplicationId(v string) *DeleteGcmChannelInpu
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteGcmChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteGcmChannelResponse
 type DeleteGcmChannelOutput struct {
 	_ struct{} `type:"structure" payload:"GCMChannelResponse"`
 
@@ -8891,7 +8891,7 @@ func (s *DeleteGcmChannelOutput) SetGCMChannelResponse(v *GCMChannelResponse) *D
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteSegmentRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteSegmentRequest
 type DeleteSegmentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8940,7 +8940,7 @@ func (s *DeleteSegmentInput) SetSegmentId(v string) *DeleteSegmentInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteSegmentResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteSegmentResponse
 type DeleteSegmentOutput struct {
 	_ struct{} `type:"structure" payload:"SegmentResponse"`
 
@@ -8966,7 +8966,7 @@ func (s *DeleteSegmentOutput) SetSegmentResponse(v *SegmentResponse) *DeleteSegm
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteSmsChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteSmsChannelRequest
 type DeleteSmsChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9003,7 +9003,7 @@ func (s *DeleteSmsChannelInput) SetApplicationId(v string) *DeleteSmsChannelInpu
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteSmsChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteSmsChannelResponse
 type DeleteSmsChannelOutput struct {
 	_ struct{} `type:"structure" payload:"SMSChannelResponse"`
 
@@ -9030,7 +9030,7 @@ func (s *DeleteSmsChannelOutput) SetSMSChannelResponse(v *SMSChannelResponse) *D
 }
 
 // The message configuration.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DirectMessageConfiguration
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DirectMessageConfiguration
 type DirectMessageConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -9110,7 +9110,7 @@ func (s *DirectMessageConfiguration) SetSMSMessage(v *SMSMessage) *DirectMessage
 }
 
 // Email Channel Request
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EmailChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EmailChannelRequest
 type EmailChannelRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -9163,7 +9163,7 @@ func (s *EmailChannelRequest) SetRoleArn(v string) *EmailChannelRequest {
 }
 
 // Email Channel Response.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EmailChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EmailChannelResponse
 type EmailChannelResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -9297,7 +9297,7 @@ func (s *EmailChannelResponse) SetVersion(v int64) *EmailChannelResponse {
 }
 
 // Endpoint update request
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointBatchItem
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointBatchItem
 type EndpointBatchItem struct {
 	_ struct{} `type:"structure"`
 
@@ -9423,7 +9423,7 @@ func (s *EndpointBatchItem) SetUser(v *EndpointUser) *EndpointBatchItem {
 }
 
 // Endpoint batch update request.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointBatchRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointBatchRequest
 type EndpointBatchRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -9448,7 +9448,7 @@ func (s *EndpointBatchRequest) SetItem(v []*EndpointBatchItem) *EndpointBatchReq
 }
 
 // Endpoint demographic data
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointDemographic
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointDemographic
 type EndpointDemographic struct {
 	_ struct{} `type:"structure"`
 
@@ -9537,7 +9537,7 @@ func (s *EndpointDemographic) SetTimezone(v string) *EndpointDemographic {
 }
 
 // Endpoint location data
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointLocation
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointLocation
 type EndpointLocation struct {
 	_ struct{} `type:"structure"`
 
@@ -9610,7 +9610,7 @@ func (s *EndpointLocation) SetRegion(v string) *EndpointLocation {
 }
 
 // The result from sending a message to an endpoint.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointMessageResult
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointMessageResult
 type EndpointMessageResult struct {
 	_ struct{} `type:"structure"`
 
@@ -9671,7 +9671,7 @@ func (s *EndpointMessageResult) SetUpdatedToken(v string) *EndpointMessageResult
 }
 
 // Endpoint update request
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointRequest
 type EndpointRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -9788,7 +9788,7 @@ func (s *EndpointRequest) SetUser(v *EndpointUser) *EndpointRequest {
 }
 
 // Endpoint response
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointResponse
 type EndpointResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -9946,7 +9946,7 @@ func (s *EndpointResponse) SetUser(v *EndpointUser) *EndpointResponse {
 }
 
 // Endpoint send configuration.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointSendConfiguration
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointSendConfiguration
 type EndpointSendConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -10006,7 +10006,7 @@ func (s *EndpointSendConfiguration) SetTitleOverride(v string) *EndpointSendConf
 }
 
 // Endpoint user specific custom userAttributes
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointUser
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointUser
 type EndpointUser struct {
 	_ struct{} `type:"structure"`
 
@@ -10039,7 +10039,7 @@ func (s *EndpointUser) SetUserId(v string) *EndpointUser {
 }
 
 // Model for an event publishing subscription export.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EventStream
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EventStream
 type EventStream struct {
 	_ struct{} `type:"structure"`
 
@@ -10113,7 +10113,7 @@ func (s *EventStream) SetRoleArn(v string) *EventStream {
 }
 
 // Google Cloud Messaging credentials
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GCMChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GCMChannelRequest
 type GCMChannelRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -10147,7 +10147,7 @@ func (s *GCMChannelRequest) SetEnabled(v bool) *GCMChannelRequest {
 }
 
 // Google Cloud Messaging channel definition
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GCMChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GCMChannelResponse
 type GCMChannelResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -10262,7 +10262,7 @@ func (s *GCMChannelResponse) SetVersion(v int64) *GCMChannelResponse {
 }
 
 // GCM Message.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GCMMessage
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GCMMessage
 type GCMMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -10448,7 +10448,7 @@ func (s *GCMMessage) SetUrl(v string) *GCMMessage {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetAdmChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetAdmChannelRequest
 type GetAdmChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10485,7 +10485,7 @@ func (s *GetAdmChannelInput) SetApplicationId(v string) *GetAdmChannelInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetAdmChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetAdmChannelResponse
 type GetAdmChannelOutput struct {
 	_ struct{} `type:"structure" payload:"ADMChannelResponse"`
 
@@ -10511,7 +10511,7 @@ func (s *GetAdmChannelOutput) SetADMChannelResponse(v *ADMChannelResponse) *GetA
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsChannelRequest
 type GetApnsChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10548,7 +10548,7 @@ func (s *GetApnsChannelInput) SetApplicationId(v string) *GetApnsChannelInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsChannelResponse
 type GetApnsChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSChannelResponse"`
 
@@ -10574,7 +10574,7 @@ func (s *GetApnsChannelOutput) SetAPNSChannelResponse(v *APNSChannelResponse) *G
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsSandboxChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsSandboxChannelRequest
 type GetApnsSandboxChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10611,7 +10611,7 @@ func (s *GetApnsSandboxChannelInput) SetApplicationId(v string) *GetApnsSandboxC
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsSandboxChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsSandboxChannelResponse
 type GetApnsSandboxChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSSandboxChannelResponse"`
 
@@ -10637,7 +10637,7 @@ func (s *GetApnsSandboxChannelOutput) SetAPNSSandboxChannelResponse(v *APNSSandb
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipChannelRequest
 type GetApnsVoipChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10674,7 +10674,7 @@ func (s *GetApnsVoipChannelInput) SetApplicationId(v string) *GetApnsVoipChannel
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipChannelResponse
 type GetApnsVoipChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSVoipChannelResponse"`
 
@@ -10700,7 +10700,7 @@ func (s *GetApnsVoipChannelOutput) SetAPNSVoipChannelResponse(v *APNSVoipChannel
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipSandboxChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipSandboxChannelRequest
 type GetApnsVoipSandboxChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10737,7 +10737,7 @@ func (s *GetApnsVoipSandboxChannelInput) SetApplicationId(v string) *GetApnsVoip
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipSandboxChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipSandboxChannelResponse
 type GetApnsVoipSandboxChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSVoipSandboxChannelResponse"`
 
@@ -10763,7 +10763,7 @@ func (s *GetApnsVoipSandboxChannelOutput) SetAPNSVoipSandboxChannelResponse(v *A
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetAppRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetAppRequest
 type GetAppInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10800,7 +10800,7 @@ func (s *GetAppInput) SetApplicationId(v string) *GetAppInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetAppResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetAppResponse
 type GetAppOutput struct {
 	_ struct{} `type:"structure" payload:"ApplicationResponse"`
 
@@ -10826,7 +10826,7 @@ func (s *GetAppOutput) SetApplicationResponse(v *ApplicationResponse) *GetAppOut
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApplicationSettingsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApplicationSettingsRequest
 type GetApplicationSettingsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10863,7 +10863,7 @@ func (s *GetApplicationSettingsInput) SetApplicationId(v string) *GetApplication
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApplicationSettingsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApplicationSettingsResponse
 type GetApplicationSettingsOutput struct {
 	_ struct{} `type:"structure" payload:"ApplicationSettingsResource"`
 
@@ -10889,7 +10889,7 @@ func (s *GetApplicationSettingsOutput) SetApplicationSettingsResource(v *Applica
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetAppsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetAppsRequest
 type GetAppsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10920,7 +10920,7 @@ func (s *GetAppsInput) SetToken(v string) *GetAppsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetAppsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetAppsResponse
 type GetAppsOutput struct {
 	_ struct{} `type:"structure" payload:"ApplicationsResponse"`
 
@@ -10946,7 +10946,7 @@ func (s *GetAppsOutput) SetApplicationsResponse(v *ApplicationsResponse) *GetApp
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetBaiduChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetBaiduChannelRequest
 type GetBaiduChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10983,7 +10983,7 @@ func (s *GetBaiduChannelInput) SetApplicationId(v string) *GetBaiduChannelInput 
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetBaiduChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetBaiduChannelResponse
 type GetBaiduChannelOutput struct {
 	_ struct{} `type:"structure" payload:"BaiduChannelResponse"`
 
@@ -11009,7 +11009,7 @@ func (s *GetBaiduChannelOutput) SetBaiduChannelResponse(v *BaiduChannelResponse)
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignActivitiesRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignActivitiesRequest
 type GetCampaignActivitiesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11074,7 +11074,7 @@ func (s *GetCampaignActivitiesInput) SetToken(v string) *GetCampaignActivitiesIn
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignActivitiesResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignActivitiesResponse
 type GetCampaignActivitiesOutput struct {
 	_ struct{} `type:"structure" payload:"ActivitiesResponse"`
 
@@ -11100,7 +11100,7 @@ func (s *GetCampaignActivitiesOutput) SetActivitiesResponse(v *ActivitiesRespons
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignRequest
 type GetCampaignInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11149,7 +11149,7 @@ func (s *GetCampaignInput) SetCampaignId(v string) *GetCampaignInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignResponse
 type GetCampaignOutput struct {
 	_ struct{} `type:"structure" payload:"CampaignResponse"`
 
@@ -11175,7 +11175,7 @@ func (s *GetCampaignOutput) SetCampaignResponse(v *CampaignResponse) *GetCampaig
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignVersionRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignVersionRequest
 type GetCampaignVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11236,7 +11236,7 @@ func (s *GetCampaignVersionInput) SetVersion(v string) *GetCampaignVersionInput 
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignVersionResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignVersionResponse
 type GetCampaignVersionOutput struct {
 	_ struct{} `type:"structure" payload:"CampaignResponse"`
 
@@ -11262,7 +11262,7 @@ func (s *GetCampaignVersionOutput) SetCampaignResponse(v *CampaignResponse) *Get
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignVersionsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignVersionsRequest
 type GetCampaignVersionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11327,7 +11327,7 @@ func (s *GetCampaignVersionsInput) SetToken(v string) *GetCampaignVersionsInput 
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignVersionsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignVersionsResponse
 type GetCampaignVersionsOutput struct {
 	_ struct{} `type:"structure" payload:"CampaignsResponse"`
 
@@ -11353,7 +11353,7 @@ func (s *GetCampaignVersionsOutput) SetCampaignsResponse(v *CampaignsResponse) *
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignsRequest
 type GetCampaignsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11406,7 +11406,7 @@ func (s *GetCampaignsInput) SetToken(v string) *GetCampaignsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignsResponse
 type GetCampaignsOutput struct {
 	_ struct{} `type:"structure" payload:"CampaignsResponse"`
 
@@ -11432,7 +11432,7 @@ func (s *GetCampaignsOutput) SetCampaignsResponse(v *CampaignsResponse) *GetCamp
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEmailChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEmailChannelRequest
 type GetEmailChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11469,7 +11469,7 @@ func (s *GetEmailChannelInput) SetApplicationId(v string) *GetEmailChannelInput 
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEmailChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEmailChannelResponse
 type GetEmailChannelOutput struct {
 	_ struct{} `type:"structure" payload:"EmailChannelResponse"`
 
@@ -11495,7 +11495,7 @@ func (s *GetEmailChannelOutput) SetEmailChannelResponse(v *EmailChannelResponse)
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEndpointRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEndpointRequest
 type GetEndpointInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11544,7 +11544,7 @@ func (s *GetEndpointInput) SetEndpointId(v string) *GetEndpointInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEndpointResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEndpointResponse
 type GetEndpointOutput struct {
 	_ struct{} `type:"structure" payload:"EndpointResponse"`
 
@@ -11570,7 +11570,7 @@ func (s *GetEndpointOutput) SetEndpointResponse(v *EndpointResponse) *GetEndpoin
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEventStreamRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEventStreamRequest
 type GetEventStreamInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11609,7 +11609,7 @@ func (s *GetEventStreamInput) SetApplicationId(v string) *GetEventStreamInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEventStreamResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEventStreamResponse
 type GetEventStreamOutput struct {
 	_ struct{} `type:"structure" payload:"EventStream"`
 
@@ -11635,7 +11635,7 @@ func (s *GetEventStreamOutput) SetEventStream(v *EventStream) *GetEventStreamOut
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetGcmChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetGcmChannelRequest
 type GetGcmChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11672,7 +11672,7 @@ func (s *GetGcmChannelInput) SetApplicationId(v string) *GetGcmChannelInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetGcmChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetGcmChannelResponse
 type GetGcmChannelOutput struct {
 	_ struct{} `type:"structure" payload:"GCMChannelResponse"`
 
@@ -11698,7 +11698,7 @@ func (s *GetGcmChannelOutput) SetGCMChannelResponse(v *GCMChannelResponse) *GetG
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetImportJobRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetImportJobRequest
 type GetImportJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11747,7 +11747,7 @@ func (s *GetImportJobInput) SetJobId(v string) *GetImportJobInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetImportJobResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetImportJobResponse
 type GetImportJobOutput struct {
 	_ struct{} `type:"structure" payload:"ImportJobResponse"`
 
@@ -11771,7 +11771,7 @@ func (s *GetImportJobOutput) SetImportJobResponse(v *ImportJobResponse) *GetImpo
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetImportJobsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetImportJobsRequest
 type GetImportJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11824,7 +11824,7 @@ func (s *GetImportJobsInput) SetToken(v string) *GetImportJobsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetImportJobsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetImportJobsResponse
 type GetImportJobsOutput struct {
 	_ struct{} `type:"structure" payload:"ImportJobsResponse"`
 
@@ -11850,7 +11850,7 @@ func (s *GetImportJobsOutput) SetImportJobsResponse(v *ImportJobsResponse) *GetI
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentImportJobsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentImportJobsRequest
 type GetSegmentImportJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11915,7 +11915,7 @@ func (s *GetSegmentImportJobsInput) SetToken(v string) *GetSegmentImportJobsInpu
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentImportJobsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentImportJobsResponse
 type GetSegmentImportJobsOutput struct {
 	_ struct{} `type:"structure" payload:"ImportJobsResponse"`
 
@@ -11941,7 +11941,7 @@ func (s *GetSegmentImportJobsOutput) SetImportJobsResponse(v *ImportJobsResponse
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentRequest
 type GetSegmentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11990,7 +11990,7 @@ func (s *GetSegmentInput) SetSegmentId(v string) *GetSegmentInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentResponse
 type GetSegmentOutput struct {
 	_ struct{} `type:"structure" payload:"SegmentResponse"`
 
@@ -12016,7 +12016,7 @@ func (s *GetSegmentOutput) SetSegmentResponse(v *SegmentResponse) *GetSegmentOut
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentVersionRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentVersionRequest
 type GetSegmentVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12077,7 +12077,7 @@ func (s *GetSegmentVersionInput) SetVersion(v string) *GetSegmentVersionInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentVersionResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentVersionResponse
 type GetSegmentVersionOutput struct {
 	_ struct{} `type:"structure" payload:"SegmentResponse"`
 
@@ -12103,7 +12103,7 @@ func (s *GetSegmentVersionOutput) SetSegmentResponse(v *SegmentResponse) *GetSeg
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentVersionsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentVersionsRequest
 type GetSegmentVersionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12168,7 +12168,7 @@ func (s *GetSegmentVersionsInput) SetToken(v string) *GetSegmentVersionsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentVersionsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentVersionsResponse
 type GetSegmentVersionsOutput struct {
 	_ struct{} `type:"structure" payload:"SegmentsResponse"`
 
@@ -12194,7 +12194,7 @@ func (s *GetSegmentVersionsOutput) SetSegmentsResponse(v *SegmentsResponse) *Get
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentsRequest
 type GetSegmentsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12247,7 +12247,7 @@ func (s *GetSegmentsInput) SetToken(v string) *GetSegmentsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentsResponse
 type GetSegmentsOutput struct {
 	_ struct{} `type:"structure" payload:"SegmentsResponse"`
 
@@ -12273,7 +12273,7 @@ func (s *GetSegmentsOutput) SetSegmentsResponse(v *SegmentsResponse) *GetSegment
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSmsChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSmsChannelRequest
 type GetSmsChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12310,7 +12310,7 @@ func (s *GetSmsChannelInput) SetApplicationId(v string) *GetSmsChannelInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSmsChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSmsChannelResponse
 type GetSmsChannelOutput struct {
 	_ struct{} `type:"structure" payload:"SMSChannelResponse"`
 
@@ -12336,7 +12336,7 @@ func (s *GetSmsChannelOutput) SetSMSChannelResponse(v *SMSChannelResponse) *GetS
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ImportJobRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ImportJobRequest
 type ImportJobRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -12432,7 +12432,7 @@ func (s *ImportJobRequest) SetSegmentName(v string) *ImportJobRequest {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ImportJobResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ImportJobResource
 type ImportJobResource struct {
 	_ struct{} `type:"structure"`
 
@@ -12528,7 +12528,7 @@ func (s *ImportJobResource) SetSegmentName(v string) *ImportJobResource {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ImportJobResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ImportJobResponse
 type ImportJobResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -12665,7 +12665,7 @@ func (s *ImportJobResponse) SetType(v string) *ImportJobResponse {
 }
 
 // Import job list.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ImportJobsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ImportJobsResponse
 type ImportJobsResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -12699,7 +12699,7 @@ func (s *ImportJobsResponse) SetNextToken(v string) *ImportJobsResponse {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/Message
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/Message
 type Message struct {
 	_ struct{} `type:"structure"`
 
@@ -12824,7 +12824,7 @@ func (s *Message) SetUrl(v string) *Message {
 }
 
 // Simple message object.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/MessageBody
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/MessageBody
 type MessageBody struct {
 	_ struct{} `type:"structure"`
 
@@ -12858,7 +12858,7 @@ func (s *MessageBody) SetRequestID(v string) *MessageBody {
 }
 
 // Message configuration for a campaign.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/MessageConfiguration
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/MessageConfiguration
 type MessageConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -12941,7 +12941,7 @@ func (s *MessageConfiguration) SetSMSMessage(v *CampaignSmsMessage) *MessageConf
 }
 
 // Send message request.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/MessageRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/MessageRequest
 type MessageRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -12994,7 +12994,7 @@ func (s *MessageRequest) SetMessageConfiguration(v *DirectMessageConfiguration) 
 }
 
 // Send message response.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/MessageResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/MessageResponse
 type MessageResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -13049,7 +13049,7 @@ func (s *MessageResponse) SetResult(v map[string]*MessageResult) *MessageRespons
 }
 
 // The result from sending a message to an address.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/MessageResult
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/MessageResult
 type MessageResult struct {
 	_ struct{} `type:"structure"`
 
@@ -13100,7 +13100,7 @@ func (s *MessageResult) SetUpdatedToken(v string) *MessageResult {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/PutEventStreamRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/PutEventStreamRequest
 type PutEventStreamInput struct {
 	_ struct{} `type:"structure" payload:"WriteEventStream"`
 
@@ -13153,7 +13153,7 @@ func (s *PutEventStreamInput) SetWriteEventStream(v *WriteEventStream) *PutEvent
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/PutEventStreamResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/PutEventStreamResponse
 type PutEventStreamOutput struct {
 	_ struct{} `type:"structure" payload:"EventStream"`
 
@@ -13180,7 +13180,7 @@ func (s *PutEventStreamOutput) SetEventStream(v *EventStream) *PutEventStreamOut
 }
 
 // Quiet Time
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/QuietTime
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/QuietTime
 type QuietTime struct {
 	_ struct{} `type:"structure"`
 
@@ -13214,7 +13214,7 @@ func (s *QuietTime) SetStart(v string) *QuietTime {
 }
 
 // Define how a segment based on recency of use.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/RecencyDimension
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/RecencyDimension
 type RecencyDimension struct {
 	_ struct{} `type:"structure"`
 
@@ -13251,7 +13251,7 @@ func (s *RecencyDimension) SetRecencyType(v string) *RecencyDimension {
 }
 
 // SMS Channel Request
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SMSChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SMSChannelRequest
 type SMSChannelRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -13294,7 +13294,7 @@ func (s *SMSChannelRequest) SetShortCode(v string) *SMSChannelRequest {
 }
 
 // SMS Channel Response.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SMSChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SMSChannelResponse
 type SMSChannelResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -13418,7 +13418,7 @@ func (s *SMSChannelResponse) SetVersion(v int64) *SMSChannelResponse {
 }
 
 // SMS Message.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SMSMessage
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SMSMessage
 type SMSMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -13469,7 +13469,7 @@ func (s *SMSMessage) SetSubstitutions(v map[string][]*string) *SMSMessage {
 }
 
 // Shcedule that defines when a campaign is run.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/Schedule
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/Schedule
 type Schedule struct {
 	_ struct{} `type:"structure"`
 
@@ -13542,7 +13542,7 @@ func (s *Schedule) SetTimezone(v string) *Schedule {
 }
 
 // Segment behavior dimensions
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SegmentBehaviors
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SegmentBehaviors
 type SegmentBehaviors struct {
 	_ struct{} `type:"structure"`
 
@@ -13567,7 +13567,7 @@ func (s *SegmentBehaviors) SetRecency(v *RecencyDimension) *SegmentBehaviors {
 }
 
 // Segment demographic dimensions
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SegmentDemographics
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SegmentDemographics
 type SegmentDemographics struct {
 	_ struct{} `type:"structure"`
 
@@ -13637,7 +13637,7 @@ func (s *SegmentDemographics) SetPlatform(v *SetDimension) *SegmentDemographics 
 }
 
 // Segment dimensions
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SegmentDimensions
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SegmentDimensions
 type SegmentDimensions struct {
 	_ struct{} `type:"structure"`
 
@@ -13698,7 +13698,7 @@ func (s *SegmentDimensions) SetUserAttributes(v map[string]*AttributeDimension) 
 }
 
 // Segment import definition.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SegmentImportResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SegmentImportResource
 type SegmentImportResource struct {
 	_ struct{} `type:"structure"`
 
@@ -13771,7 +13771,7 @@ func (s *SegmentImportResource) SetSize(v int64) *SegmentImportResource {
 }
 
 // Segment location dimensions
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SegmentLocation
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SegmentLocation
 type SegmentLocation struct {
 	_ struct{} `type:"structure"`
 
@@ -13796,7 +13796,7 @@ func (s *SegmentLocation) SetCountry(v *SetDimension) *SegmentLocation {
 }
 
 // Segment definition.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SegmentResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SegmentResponse
 type SegmentResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -13899,7 +13899,7 @@ func (s *SegmentResponse) SetVersion(v int64) *SegmentResponse {
 }
 
 // Segments in your account.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SegmentsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SegmentsResponse
 type SegmentsResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -13933,7 +13933,7 @@ func (s *SegmentsResponse) SetNextToken(v string) *SegmentsResponse {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendMessagesRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendMessagesRequest
 type SendMessagesInput struct {
 	_ struct{} `type:"structure" payload:"MessageRequest"`
 
@@ -13984,7 +13984,7 @@ func (s *SendMessagesInput) SetMessageRequest(v *MessageRequest) *SendMessagesIn
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendMessagesResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendMessagesResponse
 type SendMessagesOutput struct {
 	_ struct{} `type:"structure" payload:"MessageResponse"`
 
@@ -14011,7 +14011,7 @@ func (s *SendMessagesOutput) SetMessageResponse(v *MessageResponse) *SendMessage
 }
 
 // Send message request.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendUsersMessageRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendUsersMessageRequest
 type SendUsersMessageRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -14054,7 +14054,7 @@ func (s *SendUsersMessageRequest) SetUsers(v map[string]*EndpointSendConfigurati
 }
 
 // User send message response.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendUsersMessageResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendUsersMessageResponse
 type SendUsersMessageResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -14096,7 +14096,7 @@ func (s *SendUsersMessageResponse) SetResult(v map[string]map[string]*EndpointMe
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendUsersMessagesRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendUsersMessagesRequest
 type SendUsersMessagesInput struct {
 	_ struct{} `type:"structure" payload:"SendUsersMessageRequest"`
 
@@ -14147,7 +14147,7 @@ func (s *SendUsersMessagesInput) SetSendUsersMessageRequest(v *SendUsersMessageR
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendUsersMessagesResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendUsersMessagesResponse
 type SendUsersMessagesOutput struct {
 	_ struct{} `type:"structure" payload:"SendUsersMessageResponse"`
 
@@ -14174,7 +14174,7 @@ func (s *SendUsersMessagesOutput) SetSendUsersMessageResponse(v *SendUsersMessag
 }
 
 // Dimension specification of a segment.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SetDimension
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SetDimension
 type SetDimension struct {
 	_ struct{} `type:"structure"`
 
@@ -14209,7 +14209,7 @@ func (s *SetDimension) SetValues(v []*string) *SetDimension {
 }
 
 // Treatment resource
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/TreatmentResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/TreatmentResource
 type TreatmentResource struct {
 	_ struct{} `type:"structure"`
 
@@ -14287,7 +14287,7 @@ func (s *TreatmentResource) SetTreatmentName(v string) *TreatmentResource {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateAdmChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateAdmChannelRequest
 type UpdateAdmChannelInput struct {
 	_ struct{} `type:"structure" payload:"ADMChannelRequest"`
 
@@ -14338,7 +14338,7 @@ func (s *UpdateAdmChannelInput) SetApplicationId(v string) *UpdateAdmChannelInpu
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateAdmChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateAdmChannelResponse
 type UpdateAdmChannelOutput struct {
 	_ struct{} `type:"structure" payload:"ADMChannelResponse"`
 
@@ -14364,7 +14364,7 @@ func (s *UpdateAdmChannelOutput) SetADMChannelResponse(v *ADMChannelResponse) *U
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsChannelRequest
 type UpdateApnsChannelInput struct {
 	_ struct{} `type:"structure" payload:"APNSChannelRequest"`
 
@@ -14415,7 +14415,7 @@ func (s *UpdateApnsChannelInput) SetApplicationId(v string) *UpdateApnsChannelIn
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsChannelResponse
 type UpdateApnsChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSChannelResponse"`
 
@@ -14441,7 +14441,7 @@ func (s *UpdateApnsChannelOutput) SetAPNSChannelResponse(v *APNSChannelResponse)
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsSandboxChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsSandboxChannelRequest
 type UpdateApnsSandboxChannelInput struct {
 	_ struct{} `type:"structure" payload:"APNSSandboxChannelRequest"`
 
@@ -14492,7 +14492,7 @@ func (s *UpdateApnsSandboxChannelInput) SetApplicationId(v string) *UpdateApnsSa
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsSandboxChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsSandboxChannelResponse
 type UpdateApnsSandboxChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSSandboxChannelResponse"`
 
@@ -14518,7 +14518,7 @@ func (s *UpdateApnsSandboxChannelOutput) SetAPNSSandboxChannelResponse(v *APNSSa
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipChannelRequest
 type UpdateApnsVoipChannelInput struct {
 	_ struct{} `type:"structure" payload:"APNSVoipChannelRequest"`
 
@@ -14569,7 +14569,7 @@ func (s *UpdateApnsVoipChannelInput) SetApplicationId(v string) *UpdateApnsVoipC
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipChannelResponse
 type UpdateApnsVoipChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSVoipChannelResponse"`
 
@@ -14595,7 +14595,7 @@ func (s *UpdateApnsVoipChannelOutput) SetAPNSVoipChannelResponse(v *APNSVoipChan
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipSandboxChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipSandboxChannelRequest
 type UpdateApnsVoipSandboxChannelInput struct {
 	_ struct{} `type:"structure" payload:"APNSVoipSandboxChannelRequest"`
 
@@ -14646,7 +14646,7 @@ func (s *UpdateApnsVoipSandboxChannelInput) SetApplicationId(v string) *UpdateAp
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipSandboxChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipSandboxChannelResponse
 type UpdateApnsVoipSandboxChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSVoipSandboxChannelResponse"`
 
@@ -14672,7 +14672,7 @@ func (s *UpdateApnsVoipSandboxChannelOutput) SetAPNSVoipSandboxChannelResponse(v
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApplicationSettingsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApplicationSettingsRequest
 type UpdateApplicationSettingsInput struct {
 	_ struct{} `type:"structure" payload:"WriteApplicationSettingsRequest"`
 
@@ -14723,7 +14723,7 @@ func (s *UpdateApplicationSettingsInput) SetWriteApplicationSettingsRequest(v *W
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApplicationSettingsResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApplicationSettingsResponse
 type UpdateApplicationSettingsOutput struct {
 	_ struct{} `type:"structure" payload:"ApplicationSettingsResource"`
 
@@ -14749,7 +14749,7 @@ func (s *UpdateApplicationSettingsOutput) SetApplicationSettingsResource(v *Appl
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateBaiduChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateBaiduChannelRequest
 type UpdateBaiduChannelInput struct {
 	_ struct{} `type:"structure" payload:"BaiduChannelRequest"`
 
@@ -14800,7 +14800,7 @@ func (s *UpdateBaiduChannelInput) SetBaiduChannelRequest(v *BaiduChannelRequest)
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateBaiduChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateBaiduChannelResponse
 type UpdateBaiduChannelOutput struct {
 	_ struct{} `type:"structure" payload:"BaiduChannelResponse"`
 
@@ -14826,7 +14826,7 @@ func (s *UpdateBaiduChannelOutput) SetBaiduChannelResponse(v *BaiduChannelRespon
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateCampaignRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateCampaignRequest
 type UpdateCampaignInput struct {
 	_ struct{} `type:"structure" payload:"WriteCampaignRequest"`
 
@@ -14889,7 +14889,7 @@ func (s *UpdateCampaignInput) SetWriteCampaignRequest(v *WriteCampaignRequest) *
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateCampaignResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateCampaignResponse
 type UpdateCampaignOutput struct {
 	_ struct{} `type:"structure" payload:"CampaignResponse"`
 
@@ -14915,7 +14915,7 @@ func (s *UpdateCampaignOutput) SetCampaignResponse(v *CampaignResponse) *UpdateC
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEmailChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEmailChannelRequest
 type UpdateEmailChannelInput struct {
 	_ struct{} `type:"structure" payload:"EmailChannelRequest"`
 
@@ -14966,7 +14966,7 @@ func (s *UpdateEmailChannelInput) SetEmailChannelRequest(v *EmailChannelRequest)
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEmailChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEmailChannelResponse
 type UpdateEmailChannelOutput struct {
 	_ struct{} `type:"structure" payload:"EmailChannelResponse"`
 
@@ -14992,7 +14992,7 @@ func (s *UpdateEmailChannelOutput) SetEmailChannelResponse(v *EmailChannelRespon
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEndpointRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEndpointRequest
 type UpdateEndpointInput struct {
 	_ struct{} `type:"structure" payload:"EndpointRequest"`
 
@@ -15055,7 +15055,7 @@ func (s *UpdateEndpointInput) SetEndpointRequest(v *EndpointRequest) *UpdateEndp
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEndpointResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEndpointResponse
 type UpdateEndpointOutput struct {
 	_ struct{} `type:"structure" payload:"MessageBody"`
 
@@ -15081,7 +15081,7 @@ func (s *UpdateEndpointOutput) SetMessageBody(v *MessageBody) *UpdateEndpointOut
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEndpointsBatchRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEndpointsBatchRequest
 type UpdateEndpointsBatchInput struct {
 	_ struct{} `type:"structure" payload:"EndpointBatchRequest"`
 
@@ -15132,7 +15132,7 @@ func (s *UpdateEndpointsBatchInput) SetEndpointBatchRequest(v *EndpointBatchRequ
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEndpointsBatchResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEndpointsBatchResponse
 type UpdateEndpointsBatchOutput struct {
 	_ struct{} `type:"structure" payload:"MessageBody"`
 
@@ -15158,7 +15158,7 @@ func (s *UpdateEndpointsBatchOutput) SetMessageBody(v *MessageBody) *UpdateEndpo
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateGcmChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateGcmChannelRequest
 type UpdateGcmChannelInput struct {
 	_ struct{} `type:"structure" payload:"GCMChannelRequest"`
 
@@ -15209,7 +15209,7 @@ func (s *UpdateGcmChannelInput) SetGCMChannelRequest(v *GCMChannelRequest) *Upda
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateGcmChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateGcmChannelResponse
 type UpdateGcmChannelOutput struct {
 	_ struct{} `type:"structure" payload:"GCMChannelResponse"`
 
@@ -15235,7 +15235,7 @@ func (s *UpdateGcmChannelOutput) SetGCMChannelResponse(v *GCMChannelResponse) *U
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateSegmentRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateSegmentRequest
 type UpdateSegmentInput struct {
 	_ struct{} `type:"structure" payload:"WriteSegmentRequest"`
 
@@ -15298,7 +15298,7 @@ func (s *UpdateSegmentInput) SetWriteSegmentRequest(v *WriteSegmentRequest) *Upd
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateSegmentResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateSegmentResponse
 type UpdateSegmentOutput struct {
 	_ struct{} `type:"structure" payload:"SegmentResponse"`
 
@@ -15324,7 +15324,7 @@ func (s *UpdateSegmentOutput) SetSegmentResponse(v *SegmentResponse) *UpdateSegm
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateSmsChannelRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateSmsChannelRequest
 type UpdateSmsChannelInput struct {
 	_ struct{} `type:"structure" payload:"SMSChannelRequest"`
 
@@ -15375,7 +15375,7 @@ func (s *UpdateSmsChannelInput) SetSMSChannelRequest(v *SMSChannelRequest) *Upda
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateSmsChannelResponse
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateSmsChannelResponse
 type UpdateSmsChannelOutput struct {
 	_ struct{} `type:"structure" payload:"SMSChannelResponse"`
 
@@ -15402,7 +15402,7 @@ func (s *UpdateSmsChannelOutput) SetSMSChannelResponse(v *SMSChannelResponse) *U
 }
 
 // Creating application setting request
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/WriteApplicationSettingsRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/WriteApplicationSettingsRequest
 type WriteApplicationSettingsRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -15440,7 +15440,7 @@ func (s *WriteApplicationSettingsRequest) SetQuietTime(v *QuietTime) *WriteAppli
 }
 
 // Used to create a campaign.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/WriteCampaignRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/WriteCampaignRequest
 type WriteCampaignRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -15566,7 +15566,7 @@ func (s *WriteCampaignRequest) SetTreatmentName(v string) *WriteCampaignRequest 
 }
 
 // Request to save an EventStream.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/WriteEventStream
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/WriteEventStream
 type WriteEventStream struct {
 	_ struct{} `type:"structure"`
 
@@ -15603,7 +15603,7 @@ func (s *WriteEventStream) SetRoleArn(v string) *WriteEventStream {
 }
 
 // Segment definition.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/WriteSegmentRequest
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/WriteSegmentRequest
 type WriteSegmentRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -15637,7 +15637,7 @@ func (s *WriteSegmentRequest) SetName(v string) *WriteSegmentRequest {
 }
 
 // Used to create a campaign treatment.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/WriteTreatmentResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/WriteTreatmentResource
 type WriteTreatmentResource struct {
 	_ struct{} `type:"structure"`
 

@@ -33,7 +33,7 @@ const opInvokeEndpoint = "InvokeEndpoint"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/runtime.sagemaker-2017-05-13/InvokeEndpoint
+// See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.sagemaker-2017-05-13/InvokeEndpoint
 func (c *SageMakerRuntime) InvokeEndpointRequest(input *InvokeEndpointInput) (req *request.Request, output *InvokeEndpointOutput) {
 	op := &request.Operation{
 		Name:       opInvokeEndpoint,
@@ -82,7 +82,7 @@ func (c *SageMakerRuntime) InvokeEndpointRequest(input *InvokeEndpointInput) (re
 //   * ErrCodeModelError "ModelError"
 //   Model (owned by the customer in the container) returned an error 500.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/runtime.sagemaker-2017-05-13/InvokeEndpoint
+// See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.sagemaker-2017-05-13/InvokeEndpoint
 func (c *SageMakerRuntime) InvokeEndpoint(input *InvokeEndpointInput) (*InvokeEndpointOutput, error) {
 	req, out := c.InvokeEndpointRequest(input)
 	return out, req.Send()
@@ -104,7 +104,7 @@ func (c *SageMakerRuntime) InvokeEndpointWithContext(ctx aws.Context, input *Inv
 	return out, req.Send()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/runtime.sagemaker-2017-05-13/InvokeEndpointInput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.sagemaker-2017-05-13/InvokeEndpointInput
 type InvokeEndpointInput struct {
 	_ struct{} `type:"structure" payload:"Body"`
 
@@ -178,7 +178,7 @@ func (s *InvokeEndpointInput) SetEndpointName(v string) *InvokeEndpointInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/runtime.sagemaker-2017-05-13/InvokeEndpointOutput
+// See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.sagemaker-2017-05-13/InvokeEndpointOutput
 type InvokeEndpointOutput struct {
 	_ struct{} `type:"structure" payload:"Body"`
 
