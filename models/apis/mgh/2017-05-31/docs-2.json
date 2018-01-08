@@ -63,7 +63,7 @@
       "base": null,
       "refs": {
         "DisassociateDiscoveredResourceRequest$ConfigurationId": "<p>ConfigurationId of the ADS resource to be disassociated.</p>",
-        "DiscoveredResource$ConfigurationId": "<p>The configurationId in ADS that uniquely identifies the on-premise resource.</p>"
+        "DiscoveredResource$ConfigurationId": "<p>The configurationId in ADS that uniquely identifies the on-premises resource.</p>"
       }
     },
     "CreateProgressUpdateStreamRequest": {
