@@ -1,3 +1,10 @@
+Release v1.12.59 (2018-01-09)
+===
+
+### Service Client Updates
+* `service/kms`: Updates service documentation
+  * Documentation updates for AWS KMS
+
 Release v1.12.58 (2018-01-09)
 ===
 
