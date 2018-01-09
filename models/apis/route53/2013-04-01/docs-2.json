@@ -546,6 +546,7 @@
         "TooManyHostedZones$message": "<p>Descriptive message for the error response.</p>",
         "TooManyTrafficPolicies$message": "<p>Descriptive message for the error response.</p>",
         "TooManyTrafficPolicyInstances$message": "<p>Descriptive message for the error response.</p>",
+        "TooManyTrafficPolicyVersionsForCurrentPolicy$message": "<p>Descriptive message for the error response.</p>",
         "TooManyVPCAssociationAuthorizations$message": "<p>Descriptive message for the error response.</p>",
         "TrafficPolicyAlreadyExists$message": "<p>Descriptive message for the error response.</p>",
         "TrafficPolicyInUse$message": "<p>Descriptive message for the error response.</p>",
@@ -1820,6 +1821,11 @@
     },
     "TooManyTrafficPolicyInstances": {
       "base": "<p>This traffic policy instance can't be created because the current account has reached the limit on the number of traffic policy instances.</p> <p>For information about default limits, see <a href=\"http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html\">Limits</a> in the <i>Amazon Route 53 Developer Guide</i>.</p> <p>For information about how to get the current limit for an account, see <a>GetAccountLimit</a>.</p> <p>To request a higher limit, <a href=\"http://aws.amazon.com/route53-request\">create a case</a> with the AWS Support Center.</p>",
+      "refs": {
+      }
+    },
+    "TooManyTrafficPolicyVersionsForCurrentPolicy": {
+      "base": "<p>This traffic policy version can't be created because you've reached the limit of 1000 on the number of versions that you can create for the current traffic policy.</p> <p>To create more traffic policy versions, you can use <a>GetTrafficPolicy</a> to get the traffic policy document for a specified traffic policy version, and then use <a>CreateTrafficPolicy</a> to create a new traffic policy using the traffic policy document.</p>",
       "refs": {
       }
     },

@@ -220,6 +220,7 @@
       "errors":[
         {"shape":"NoSuchTrafficPolicy"},
         {"shape":"InvalidInput"},
+        {"shape":"TooManyTrafficPolicyVersionsForCurrentPolicy"},
         {"shape":"ConcurrentModification"},
         {"shape":"InvalidTrafficPolicyDocument"}
       ]
@@ -3428,6 +3429,14 @@
       "exception":true
     },
     "TooManyTrafficPolicyInstances":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "TooManyTrafficPolicyVersionsForCurrentPolicy":{
       "type":"structure",
       "members":{
         "message":{"shape":"ErrorMessage"}
