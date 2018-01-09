@@ -50,9 +50,8 @@
 //
 // Your AWS account must be granted access to Application Discovery Service,
 // a process called whitelisting. This is true for AWS partners and customers
-// alike. To request access, sign up for AWS Application Discovery Service here
-// (http://aws.amazon.com/application-discovery/preview/). We send you information
-// about how to get started.
+// alike. To request access,  sign up for AWS Application Discovery Service
+// (http://aws.amazon.com/application-discovery/how-to-start/).
 //
 // This API reference provides descriptions, syntax, and usage examples for
 // each of the actions and data types for Application Discovery Service. The
