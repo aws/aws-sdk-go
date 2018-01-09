@@ -1,3 +1,10 @@
+Release v1.12.58 (2018-01-09)
+===
+
+### Service Client Updates
+* `service/ds`: Updates service API and documentation
+  * On October 24 we introduced AWS Directory Service for Microsoft Active Directory (Standard Edition), also known as AWS Microsoft AD (Standard Edition), which is a managed Microsoft Active Directory (AD) that is optimized for small and midsize businesses (SMBs). With this SDK release, you can now create an AWS Microsoft AD directory using API. This enables you to run typical SMB workloads using a cost-effective, highly available, and managed Microsoft AD in the AWS Cloud.
+
 Release v1.12.57 (2018-01-08)
 ===
 
