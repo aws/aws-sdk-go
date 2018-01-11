@@ -2047,6 +2047,7 @@
         "DBInstanceClass":{"shape":"String"},
         "AvailabilityZone":{"shape":"String"},
         "Port":{"shape":"IntegerOptional"},
+        "MultiAZ":{"shape":"BooleanOptional"},
         "AutoMinorVersionUpgrade":{"shape":"BooleanOptional"},
         "Iops":{"shape":"IntegerOptional"},
         "OptionGroupName":{"shape":"String"},
