@@ -97,7 +97,8 @@
         {"shape":"DuplicateTagKeysException"},
         {"shape":"ResourceInUseException"},
         {"shape":"AllocationIdNotFoundException"},
-        {"shape":"AvailabilityZoneNotSupportedException"}
+        {"shape":"AvailabilityZoneNotSupportedException"},
+        {"shape":"OperationNotPermittedException"}
       ]
     },
     "CreateRule":{
