@@ -192,7 +192,8 @@
         {"shape":"AlreadyExistsException"},
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"},
-        {"shape":"ResourceNumberLimitExceededException"}
+        {"shape":"ResourceNumberLimitExceededException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "CreatePartition":{
@@ -254,9 +255,11 @@
       "errors":[
         {"shape":"AlreadyExistsException"},
         {"shape":"InvalidInputException"},
+        {"shape":"IdempotentParameterMismatchException"},
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"},
-        {"shape":"ResourceNumberLimitExceededException"}
+        {"shape":"ResourceNumberLimitExceededException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "CreateUserDefinedFunction":{
@@ -401,7 +404,8 @@
       "errors":[
         {"shape":"InvalidInputException"},
         {"shape":"InternalServiceException"},
-        {"shape":"OperationTimeoutException"}
+        {"shape":"OperationTimeoutException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "DeleteUserDefinedFunction":{
@@ -951,7 +955,8 @@
         {"shape":"InvalidInputException"},
         {"shape":"InternalServiceException"},
         {"shape":"EntityNotFoundException"},
-        {"shape":"OperationTimeoutException"}
+        {"shape":"OperationTimeoutException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "UpdateClassifier":{
@@ -1058,7 +1063,8 @@
         {"shape":"InvalidInputException"},
         {"shape":"EntityNotFoundException"},
         {"shape":"InternalServiceException"},
-        {"shape":"OperationTimeoutException"}
+        {"shape":"OperationTimeoutException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "UpdatePartition":{
@@ -1104,7 +1110,8 @@
         {"shape":"InvalidInputException"},
         {"shape":"InternalServiceException"},
         {"shape":"EntityNotFoundException"},
-        {"shape":"OperationTimeoutException"}
+        {"shape":"OperationTimeoutException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "UpdateUserDefinedFunction":{
@@ -1786,13 +1793,15 @@
       "type":"structure",
       "members":{
         "DagNodes":{"shape":"DagNodes"},
-        "DagEdges":{"shape":"DagEdges"}
+        "DagEdges":{"shape":"DagEdges"},
+        "Language":{"shape":"Language"}
       }
     },
     "CreateScriptResponse":{
       "type":"structure",
       "members":{
-        "PythonScript":{"shape":"PythonScript"}
+        "PythonScript":{"shape":"PythonScript"},
+        "ScalaCode":{"shape":"ScalaCode"}
       }
     },
     "CreateTableRequest":{
@@ -2467,13 +2476,15 @@
         "Mapping":{"shape":"MappingList"},
         "Source":{"shape":"CatalogEntry"},
         "Sinks":{"shape":"CatalogEntries"},
-        "Location":{"shape":"Location"}
+        "Location":{"shape":"Location"},
+        "Language":{"shape":"Language"}
       }
     },
     "GetPlanResponse":{
       "type":"structure",
       "members":{
-        "PythonScript":{"shape":"PythonScript"}
+        "PythonScript":{"shape":"PythonScript"},
+        "ScalaCode":{"shape":"ScalaCode"}
       }
     },
     "GetTableRequest":{
@@ -2778,6 +2789,13 @@
       "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
     },
+    "Language":{
+      "type":"string",
+      "enum":[
+        "PYTHON",
+        "SCALA"
+      ]
+    },
     "LastCrawlInfo":{
       "type":"structure",
       "members":{
@@ -2828,7 +2846,10 @@
     },
     "Logical":{
       "type":"string",
-      "enum":["AND"]
+      "enum":[
+        "AND",
+        "ANY"
+      ]
     },
     "LogicalOperator":{
       "type":"string",
@@ -3083,6 +3104,7 @@
       "type":"list",
       "member":{"shape":"S3Target"}
     },
+    "ScalaCode":{"type":"string"},
     "Schedule":{
       "type":"structure",
       "members":{

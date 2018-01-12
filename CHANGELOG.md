@@ -1,3 +1,10 @@
+Release v1.12.61 (2018-01-12)
+===
+
+### Service Client Updates
+* `service/glue`: Updates service API and documentation
+  * Support is added to generate ETL scripts in Scala which can now be run by  AWS Glue ETL jobs. In addition, the trigger API now supports firing when any conditions are met (in addition to all conditions). Also, jobs can be triggered based on a "failed" or "stopped" job run (in addition to a "succeeded" job run).
+
 Release v1.12.60 (2018-01-11)
 ===
 
