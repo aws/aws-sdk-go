@@ -4,7 +4,7 @@ This example highlights how you can define a custom retry strategy for the SDK t
 
 ## Usage
 
-This example will attempt to make an Amazon CloudWatch Logs  PutLogEvents DescribeLogGroups API call. This example expects to retrieve credentials from the `~/.aws/credentials` file.
+This example will attempt to make an Amazon CloudWatch Logs PutLogEvents DescribeLogGroups API call. This example expects to retrieve credentials from the `~/.aws/credentials` file.
 
 ```sh
 go run ./custom_retryer.go
