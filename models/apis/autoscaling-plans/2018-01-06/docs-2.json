@@ -1,0 +1,371 @@
+{
+  "version": "2.0",
+  "service": null,
+  "operations": {
+    "CreateScalingPlan": null,
+    "DeleteScalingPlan": null,
+    "DescribeScalingPlanResources": null,
+    "DescribeScalingPlans": null
+  },
+  "shapes": {
+    "ApplicationSource": {
+      "base": null,
+      "refs": {
+        "ApplicationSources$member": null,
+        "CreateScalingPlanRequest$ApplicationSource": null,
+        "ScalingPlan$ApplicationSource": null
+      }
+    },
+    "ApplicationSources": {
+      "base": null,
+      "refs": {
+        "DescribeScalingPlansRequest$ApplicationSources": null
+      }
+    },
+    "ConcurrentUpdateException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Cooldown": {
+      "base": null,
+      "refs": {
+        "TargetTrackingConfiguration$ScaleOutCooldown": null,
+        "TargetTrackingConfiguration$ScaleInCooldown": null,
+        "TargetTrackingConfiguration$EstimatedInstanceWarmup": null
+      }
+    },
+    "CreateScalingPlanRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateScalingPlanResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CustomizedScalingMetricSpecification": {
+      "base": null,
+      "refs": {
+        "TargetTrackingConfiguration$CustomizedScalingMetricSpecification": null
+      }
+    },
+    "DeleteScalingPlanRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteScalingPlanResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeScalingPlanResourcesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeScalingPlanResourcesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeScalingPlansRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeScalingPlansResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisableScaleIn": {
+      "base": null,
+      "refs": {
+        "TargetTrackingConfiguration$DisableScaleIn": null
+      }
+    },
+    "ErrorMessage": {
+      "base": null,
+      "refs": {
+        "ConcurrentUpdateException$Message": null,
+        "InternalServiceException$Message": null,
+        "InvalidNextTokenException$Message": null,
+        "LimitExceededException$Message": null,
+        "ObjectNotFoundException$Message": null,
+        "ValidationException$Message": null
+      }
+    },
+    "InternalServiceException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "InvalidNextTokenException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "LimitExceededException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "MaxResults": {
+      "base": null,
+      "refs": {
+        "DescribeScalingPlanResourcesRequest$MaxResults": null,
+        "DescribeScalingPlansRequest$MaxResults": null
+      }
+    },
+    "MetricDimension": {
+      "base": null,
+      "refs": {
+        "MetricDimensions$member": null
+      }
+    },
+    "MetricDimensionName": {
+      "base": null,
+      "refs": {
+        "MetricDimension$Name": null
+      }
+    },
+    "MetricDimensionValue": {
+      "base": null,
+      "refs": {
+        "MetricDimension$Value": null
+      }
+    },
+    "MetricDimensions": {
+      "base": null,
+      "refs": {
+        "CustomizedScalingMetricSpecification$Dimensions": null
+      }
+    },
+    "MetricName": {
+      "base": null,
+      "refs": {
+        "CustomizedScalingMetricSpecification$MetricName": null
+      }
+    },
+    "MetricNamespace": {
+      "base": null,
+      "refs": {
+        "CustomizedScalingMetricSpecification$Namespace": null
+      }
+    },
+    "MetricScale": {
+      "base": null,
+      "refs": {
+        "TargetTrackingConfiguration$TargetValue": null
+      }
+    },
+    "MetricStatistic": {
+      "base": null,
+      "refs": {
+        "CustomizedScalingMetricSpecification$Statistic": null
+      }
+    },
+    "MetricUnit": {
+      "base": null,
+      "refs": {
+        "CustomizedScalingMetricSpecification$Unit": null
+      }
+    },
+    "NextToken": {
+      "base": null,
+      "refs": {
+        "DescribeScalingPlanResourcesRequest$NextToken": null,
+        "DescribeScalingPlanResourcesResponse$NextToken": null,
+        "DescribeScalingPlansRequest$NextToken": null,
+        "DescribeScalingPlansResponse$NextToken": null
+      }
+    },
+    "ObjectNotFoundException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PolicyName": {
+      "base": null,
+      "refs": {
+        "ScalingPolicy$PolicyName": null
+      }
+    },
+    "PolicyType": {
+      "base": null,
+      "refs": {
+        "ScalingPolicy$PolicyType": null
+      }
+    },
+    "PredefinedScalingMetricSpecification": {
+      "base": null,
+      "refs": {
+        "TargetTrackingConfiguration$PredefinedScalingMetricSpecification": null
+      }
+    },
+    "ResourceCapacity": {
+      "base": null,
+      "refs": {
+        "ScalingInstruction$MinCapacity": null,
+        "ScalingInstruction$MaxCapacity": null
+      }
+    },
+    "ResourceIdMaxLen1600": {
+      "base": null,
+      "refs": {
+        "ScalingInstruction$ResourceId": null,
+        "ScalingPlanResource$ResourceId": null
+      }
+    },
+    "ResourceLabel": {
+      "base": null,
+      "refs": {
+        "PredefinedScalingMetricSpecification$ResourceLabel": null
+      }
+    },
+    "ScalableDimension": {
+      "base": null,
+      "refs": {
+        "ScalingInstruction$ScalableDimension": null,
+        "ScalingPlanResource$ScalableDimension": null
+      }
+    },
+    "ScalingInstruction": {
+      "base": null,
+      "refs": {
+        "ScalingInstructions$member": null
+      }
+    },
+    "ScalingInstructions": {
+      "base": null,
+      "refs": {
+        "CreateScalingPlanRequest$ScalingInstructions": null,
+        "ScalingPlan$ScalingInstructions": null
+      }
+    },
+    "ScalingMetricType": {
+      "base": null,
+      "refs": {
+        "PredefinedScalingMetricSpecification$PredefinedScalingMetricType": null
+      }
+    },
+    "ScalingPlan": {
+      "base": null,
+      "refs": {
+        "ScalingPlans$member": null
+      }
+    },
+    "ScalingPlanName": {
+      "base": null,
+      "refs": {
+        "CreateScalingPlanRequest$ScalingPlanName": null,
+        "DeleteScalingPlanRequest$ScalingPlanName": null,
+        "DescribeScalingPlanResourcesRequest$ScalingPlanName": null,
+        "ScalingPlan$ScalingPlanName": null,
+        "ScalingPlanNames$member": null,
+        "ScalingPlanResource$ScalingPlanName": null
+      }
+    },
+    "ScalingPlanNames": {
+      "base": null,
+      "refs": {
+        "DescribeScalingPlansRequest$ScalingPlanNames": null
+      }
+    },
+    "ScalingPlanResource": {
+      "base": null,
+      "refs": {
+        "ScalingPlanResources$member": null
+      }
+    },
+    "ScalingPlanResources": {
+      "base": null,
+      "refs": {
+        "DescribeScalingPlanResourcesResponse$ScalingPlanResources": null
+      }
+    },
+    "ScalingPlanStatusCode": {
+      "base": null,
+      "refs": {
+        "ScalingPlan$StatusCode": null
+      }
+    },
+    "ScalingPlanVersion": {
+      "base": null,
+      "refs": {
+        "CreateScalingPlanResponse$ScalingPlanVersion": null,
+        "DeleteScalingPlanRequest$ScalingPlanVersion": null,
+        "DescribeScalingPlanResourcesRequest$ScalingPlanVersion": null,
+        "DescribeScalingPlansRequest$ScalingPlanVersion": null,
+        "ScalingPlan$ScalingPlanVersion": null,
+        "ScalingPlanResource$ScalingPlanVersion": null
+      }
+    },
+    "ScalingPlans": {
+      "base": null,
+      "refs": {
+        "DescribeScalingPlansResponse$ScalingPlans": null
+      }
+    },
+    "ScalingPolicies": {
+      "base": null,
+      "refs": {
+        "ScalingPlanResource$ScalingPolicies": null
+      }
+    },
+    "ScalingPolicy": {
+      "base": null,
+      "refs": {
+        "ScalingPolicies$member": null
+      }
+    },
+    "ScalingStatusCode": {
+      "base": null,
+      "refs": {
+        "ScalingPlanResource$ScalingStatusCode": null
+      }
+    },
+    "ServiceNamespace": {
+      "base": null,
+      "refs": {
+        "ScalingInstruction$ServiceNamespace": null,
+        "ScalingPlanResource$ServiceNamespace": null
+      }
+    },
+    "TargetTrackingConfiguration": {
+      "base": null,
+      "refs": {
+        "ScalingPolicy$TargetTrackingConfiguration": null,
+        "TargetTrackingConfigurations$member": null
+      }
+    },
+    "TargetTrackingConfigurations": {
+      "base": null,
+      "refs": {
+        "ScalingInstruction$TargetTrackingConfigurations": null
+      }
+    },
+    "TimestampType": {
+      "base": null,
+      "refs": {
+        "ScalingPlan$CreationTime": null
+      }
+    },
+    "ValidationException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "XmlString": {
+      "base": null,
+      "refs": {
+        "ApplicationSource$CloudFormationStackARN": null,
+        "ScalingPlan$StatusMessage": null,
+        "ScalingPlanResource$ScalingStatusMessage": null
+      }
+    }
+  }
+}

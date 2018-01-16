@@ -216,6 +216,7 @@
         "DBClusterMember$IsClusterWriter": "<p>Value that is <code>true</code> if the cluster member is the primary instance for the DB cluster and <code>false</code> otherwise.</p>",
         "DBClusterSnapshot$StorageEncrypted": "<p>Specifies whether the DB cluster snapshot is encrypted.</p>",
         "DBClusterSnapshot$IAMDatabaseAuthenticationEnabled": "<p>True if mapping of AWS Identity and Access Management (IAM) accounts to database accounts is enabled, and otherwise false.</p>",
+        "DBEngineVersion$SupportsLogExportsToCloudwatchLogs": "<p>A value that indicates whether the engine version supports exporting the log types specified by ExportableLogTypes to CloudWatch Logs.</p>",
         "DBInstance$MultiAZ": "<p>Specifies if the DB instance is a Multi-AZ deployment.</p>",
         "DBInstance$AutoMinorVersionUpgrade": "<p>Indicates that minor version patches are applied automatically.</p>",
         "DBInstance$PubliclyAccessible": "<p>Specifies the accessibility options for the DB instance. A value of true specifies an Internet-facing instance with a publicly resolvable DNS name, which resolves to a public IP address. A value of false specifies an internal instance with a DNS name that resolves to a private IP address.</p> <p>Default: The default behavior varies depending on whether a VPC has been requested or not. The following list shows the default behavior in each case.</p> <ul> <li> <p> <b>Default VPC:</b>true</p> </li> <li> <p> <b>VPC:</b>false</p> </li> </ul> <p>If no DB subnet group has been specified as part of the request and the PubliclyAccessible value has not been set, the DB instance is publicly accessible. If a specific DB subnet group has been specified as part of the request and the PubliclyAccessible value has not been set, the DB instance is private.</p>",
@@ -283,7 +284,7 @@
         "CreateDBInstanceMessage$CopyTagsToSnapshot": "<p>True to copy all tags from the DB instance to snapshots of the DB instance, and otherwise false. The default is false.</p>",
         "CreateDBInstanceMessage$EnableIAMDatabaseAuthentication": "<p>True to enable mapping of AWS Identity and Access Management (IAM) accounts to database accounts, and otherwise false. </p> <p>You can enable IAM database authentication for the following database engines:</p> <p> <b>Amazon Aurora</b> </p> <p>Not applicable. Mapping AWS IAM accounts to database accounts is managed by the DB cluster. For more information, see <a>CreateDBCluster</a>.</p> <p> <b>MySQL</b> </p> <ul> <li> <p>For MySQL 5.6, minor version 5.6.34 or higher</p> </li> <li> <p>For MySQL 5.7, minor version 5.7.16 or higher</p> </li> </ul> <p>Default: <code>false</code> </p>",
         "CreateDBInstanceMessage$EnablePerformanceInsights": "<p>True to enable Performance Insights for the DB instance, and otherwise false. </p>",
-        "CreateDBInstanceReadReplicaMessage$MultiAZ": "<p>Specifies whether the read replica is in a Multi-AZ deployment. </p>",
+        "CreateDBInstanceReadReplicaMessage$MultiAZ": "<p>Specifies whether the read replica is in a Multi-AZ deployment. </p> <p>You can create a Read Replica as a Multi-AZ DB instance. RDS creates a standby of your replica in another Availability Zone for failover support for the replica. Creating your Read Replica as a Multi-AZ DB instance is independent of whether the source database is a Multi-AZ DB instance. </p> <note> <p>Currently PostgreSQL Read Replicas can only be created as single-AZ DB instances.</p> </note>",
         "CreateDBInstanceReadReplicaMessage$AutoMinorVersionUpgrade": "<p>Indicates that minor engine upgrades are applied automatically to the Read Replica during the maintenance window.</p> <p>Default: Inherits from the source DB instance</p>",
         "CreateDBInstanceReadReplicaMessage$PubliclyAccessible": "<p>Specifies the accessibility options for the DB instance. A value of true specifies an Internet-facing instance with a publicly resolvable DNS name, which resolves to a public IP address. A value of false specifies an internal instance with a DNS name that resolves to a private IP address.</p> <p>Default: The default behavior varies depending on whether a VPC has been requested or not. The following list shows the default behavior in each case.</p> <ul> <li> <p> <b>Default VPC:</b>true</p> </li> <li> <p> <b>VPC:</b>false</p> </li> </ul> <p>If no DB subnet group has been specified as part of the request and the PubliclyAccessible value has not been set, the DB instance is publicly accessible. If a specific DB subnet group has been specified as part of the request and the PubliclyAccessible value has not been set, the DB instance is private.</p>",
         "CreateDBInstanceReadReplicaMessage$CopyTagsToSnapshot": "<p>True to copy all tags from the Read Replica to snapshots of the Read Replica, and otherwise false. The default is false.</p>",
@@ -357,6 +358,12 @@
       "refs": {
         "DBEngineVersion$DefaultCharacterSet": "<p> The default character set for new instances of this engine version, if the <code>CharacterSetName</code> parameter of the CreateDBInstance API is not specified. </p>",
         "SupportedCharacterSetsList$member": null
+      }
+    },
+    "CloudwatchLogsExportConfiguration": {
+      "base": "<p>The configuration setting for the log types to be enabled for export to CloudWatch Logs for a specific DB instance or DB cluster.</p>",
+      "refs": {
+        "ModifyDBInstanceMessage$CloudwatchLogsExportConfiguration": "<p>The configuration setting for the log types to be enabled for export to CloudWatch Logs for a specific DB instance or DB cluster.</p>"
       }
     },
     "CopyDBClusterParameterGroupMessage": {
@@ -1686,6 +1693,22 @@
       "refs": {
       }
     },
+    "LogTypeList": {
+      "base": null,
+      "refs": {
+        "CloudwatchLogsExportConfiguration$EnableLogTypes": "<p>The list of log types to enable.</p>",
+        "CloudwatchLogsExportConfiguration$DisableLogTypes": "<p>The list of log types to disable.</p>",
+        "CreateDBInstanceMessage$EnableCloudwatchLogsExports": "<p>The list of log types that need to be enabled for exporting to CloudWatch Logs.</p>",
+        "CreateDBInstanceReadReplicaMessage$EnableCloudwatchLogsExports": "<p>The list of logs that the new DB instance is to export to CloudWatch Logs.</p>",
+        "DBEngineVersion$ExportableLogTypes": "<p>The types of logs that the database engine has available for export to CloudWatch Logs.</p>",
+        "DBInstance$EnabledCloudwatchLogsExports": "<p>A list of log types that this DB instance is configured to export to CloudWatch Logs.</p>",
+        "PendingCloudwatchLogsExports$LogTypesToEnable": "<p>Log types that are in the process of being deactivated. After they are deactivated, these log types aren't exported to CloudWatch Logs.</p>",
+        "PendingCloudwatchLogsExports$LogTypesToDisable": "<p>Log types that are in the process of being enabled. After they are enabled, these log types are exported to CloudWatch Logs.</p>",
+        "RestoreDBInstanceFromDBSnapshotMessage$EnableCloudwatchLogsExports": "<p>The list of logs that the restored DB instance is to export to CloudWatch Logs.</p>",
+        "RestoreDBInstanceFromS3Message$EnableCloudwatchLogsExports": "<p>The list of logs that the restored DB instance is to export to CloudWatch Logs.</p>",
+        "RestoreDBInstanceToPointInTimeMessage$EnableCloudwatchLogsExports": "<p>The list of logs that the restored DB instance is to export to CloudWatch Logs.</p>"
+      }
+    },
     "Long": {
       "base": null,
       "refs": {
@@ -1969,6 +1992,12 @@
         "ModifyDBParameterGroupMessage$Parameters": "<p>An array of parameter names, values, and the apply method for the parameter update. At least one parameter name, value, and apply method must be supplied; subsequent arguments are optional. A maximum of 20 parameters can be modified in a single request.</p> <p>Valid Values (for the application method): <code>immediate | pending-reboot</code> </p> <note> <p>You can use the immediate value with dynamic parameters only. You can use the pending-reboot value for both dynamic and static parameters, and changes are applied when you reboot the DB instance without failover.</p> </note>",
         "ResetDBClusterParameterGroupMessage$Parameters": "<p>A list of parameter names in the DB cluster parameter group to reset to the default values. You can't use this parameter if the <code>ResetAllParameters</code> parameter is set to <code>true</code>.</p>",
         "ResetDBParameterGroupMessage$Parameters": "<p>To reset the entire DB parameter group, specify the <code>DBParameterGroup</code> name and <code>ResetAllParameters</code> parameters. To reset specific parameters, provide a list of the following: <code>ParameterName</code> and <code>ApplyMethod</code>. A maximum of 20 parameters can be modified in a single request.</p> <p> <b>MySQL</b> </p> <p>Valid Values (for Apply method): <code>immediate</code> | <code>pending-reboot</code> </p> <p>You can use the immediate value with dynamic parameters only. You can use the <code>pending-reboot</code> value for both dynamic and static parameters, and changes are applied when DB instance reboots.</p> <p> <b>MariaDB</b> </p> <p>Valid Values (for Apply method): <code>immediate</code> | <code>pending-reboot</code> </p> <p>You can use the immediate value with dynamic parameters only. You can use the <code>pending-reboot</code> value for both dynamic and static parameters, and changes are applied when DB instance reboots.</p> <p> <b>Oracle</b> </p> <p>Valid Values (for Apply method): <code>pending-reboot</code> </p>"
+      }
+    },
+    "PendingCloudwatchLogsExports": {
+      "base": "<p>A list of the log types whose configuration is still pending. In other words, these log types are in the process of being activated or deactivated.</p>",
+      "refs": {
+        "PendingModifiedValues$PendingCloudwatchLogsExports": null
       }
     },
     "PendingMaintenanceAction": {
@@ -2727,6 +2756,7 @@
         "IPRange$CIDRIP": "<p>Specifies the IP range.</p>",
         "KeyList$member": null,
         "ListTagsForResourceMessage$ResourceName": "<p>The Amazon RDS resource with tags to be listed. This value is an Amazon Resource Name (ARN). For information about creating an ARN, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing\"> Constructing an RDS Amazon Resource Name (ARN)</a>.</p>",
+        "LogTypeList$member": null,
         "ModifyDBClusterMessage$DBClusterIdentifier": "<p>The DB cluster identifier for the cluster being modified. This parameter is not case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing DBCluster.</p> </li> </ul>",
         "ModifyDBClusterMessage$NewDBClusterIdentifier": "<p>The new DB cluster identifier for the DB cluster when renaming a DB cluster. This value is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 letters, numbers, or hyphens</p> </li> <li> <p>The first character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> </ul> <p>Example: <code>my-cluster2</code> </p>",
         "ModifyDBClusterMessage$DBClusterParameterGroupName": "<p>The name of the DB cluster parameter group to use for the DB cluster.</p>",
@@ -2932,7 +2962,7 @@
         "RestoreDBInstanceFromS3Message$S3Prefix": "<p>The prefix of your Amazon S3 bucket. </p>",
         "RestoreDBInstanceFromS3Message$S3IngestionRoleArn": "<p>An AWS Identity and Access Management (IAM) role to allow Amazon RDS to access your Amazon S3 bucket. </p>",
         "RestoreDBInstanceFromS3Message$PerformanceInsightsKMSKeyId": "<p>The AWS KMS key identifier for encryption of Performance Insights data. The KMS key ID is the Amazon Resource Name (ARN), the KMS key identifier, or the KMS key alias for the KMS encryption key. </p>",
-        "RestoreDBInstanceToPointInTimeMessage$SourceDBInstanceIdentifier": "<p>The identifier of the source DB instance from which to restore.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing DBInstance.</p> </li> </ul>",
+        "RestoreDBInstanceToPointInTimeMessage$SourceDBInstanceIdentifier": "<p>The identifier of the source DB instance from which to restore.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing DB instance.</p> </li> </ul>",
         "RestoreDBInstanceToPointInTimeMessage$TargetDBInstanceIdentifier": "<p>The name of the new DB instance to be created.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 letters, numbers, or hyphens</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> </ul>",
         "RestoreDBInstanceToPointInTimeMessage$DBInstanceClass": "<p>The compute and memory capacity of the Amazon RDS DB instance, for example, <code>db.m4.large</code>. Not all DB instance classes are available in all AWS Regions, or for all database engines. For the full list of DB instance classes, and availability for your engine, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html\">DB Instance Class</a> in the Amazon RDS User Guide. </p> <p>Default: The same DBInstanceClass as the original DB instance.</p>",
         "RestoreDBInstanceToPointInTimeMessage$AvailabilityZone": "<p>The EC2 Availability Zone that the DB instance is created in.</p> <p>Default: A random, system-chosen Availability Zone.</p> <p>Constraint: You can't specify the AvailabilityZone parameter if the MultiAZ parameter is set to true.</p> <p>Example: <code>us-east-1a</code> </p>",
