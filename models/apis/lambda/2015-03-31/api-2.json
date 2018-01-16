@@ -5,6 +5,7 @@
     "endpointPrefix":"lambda",
     "protocol":"rest-json",
     "serviceFullName":"AWS Lambda",
+    "serviceId":"Lambda",
     "signatureVersion":"v4",
     "uid":"lambda-2015-03-31"
   },
@@ -1523,7 +1524,9 @@
         "python2.7",
         "python3.6",
         "dotnetcore1.0",
-        "nodejs4.3-edge"
+        "dotnetcore2.0",
+        "nodejs4.3-edge",
+        "go1.x"
       ]
     },
     "S3Bucket":{

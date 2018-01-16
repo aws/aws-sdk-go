@@ -1,3 +1,11 @@
+Release v1.12.62 (2018-01-15)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/lambda`: Updates service API and documentation
+  * Support for creating Lambda Functions using 'dotnetcore2.0' and 'go1.x'.
+
 Release v1.12.61 (2018-01-12)
 ===
 
