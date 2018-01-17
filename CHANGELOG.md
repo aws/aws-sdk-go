@@ -1,3 +1,11 @@
+Release v1.12.64 (2018-01-17)
+===
+
+### Service Client Updates
+* `service/autoscaling-plans`: Updates service documentation
+* `service/ec2`: Updates service documentation
+  * Documentation updates for EC2
+
 Release v1.12.63 (2018-01-17)
 ===
 
