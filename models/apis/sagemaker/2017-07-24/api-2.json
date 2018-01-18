@@ -390,7 +390,8 @@
       "members":{
         "EndpointConfigName":{"shape":"EndpointConfigName"},
         "ProductionVariants":{"shape":"ProductionVariantList"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "KmsKeyId":{"shape":"KmsKeyId"}
       }
     },
     "CreateEndpointConfigOutput":{
@@ -578,6 +579,7 @@
         "EndpointConfigName":{"shape":"EndpointConfigName"},
         "EndpointConfigArn":{"shape":"EndpointConfigArn"},
         "ProductionVariants":{"shape":"ProductionVariantList"},
+        "KmsKeyId":{"shape":"KmsKeyId"},
         "CreationTime":{"shape":"Timestamp"}
       }
     },
@@ -1211,7 +1213,8 @@
       "members":{
         "InstanceType":{"shape":"TrainingInstanceType"},
         "InstanceCount":{"shape":"TrainingInstanceCount"},
-        "VolumeSizeInGB":{"shape":"VolumeSizeInGB"}
+        "VolumeSizeInGB":{"shape":"VolumeSizeInGB"},
+        "VolumeKmsKeyId":{"shape":"KmsKeyId"}
       }
     },
     "ResourceInUse":{
