@@ -1,3 +1,10 @@
+Release v1.12.65 (2018-01-18)
+===
+
+### Service Client Updates
+* `service/sagemaker`: Updates service API and documentation
+  * CreateTrainingJob and CreateEndpointConfig now supports KMS Key for volume encryption.
+
 Release v1.12.64 (2018-01-17)
 ===
 
