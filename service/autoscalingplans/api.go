@@ -55,6 +55,13 @@ func (c *AutoScalingPlans) CreateScalingPlanRequest(input *CreateScalingPlanInpu
 
 // CreateScalingPlan API operation for AWS Auto Scaling Plans.
 //
+// Creates a scaling plan.
+//
+// A scaling plan contains a set of instructions used to configure dynamic scaling
+// for the scalable resources in your application. AWS Auto Scaling creates
+// target tracking scaling policies based on the scaling instructions in your
+// scaling plan.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -64,12 +71,18 @@ func (c *AutoScalingPlans) CreateScalingPlanRequest(input *CreateScalingPlanInpu
 //
 // Returned Error Codes:
 //   * ErrCodeValidationException "ValidationException"
+//   An exception was thrown for a validation issue. Review the parameters provided.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
+//   Your account exceeded a limit. This exception is thrown when a per-account
+//   resource limit is exceeded.
 //
 //   * ErrCodeConcurrentUpdateException "ConcurrentUpdateException"
+//   Concurrent updates caused an exception, for example, if you request an update
+//   to a scaling plan that already has a pending update.
 //
 //   * ErrCodeInternalServiceException "InternalServiceException"
+//   The service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/CreateScalingPlan
 func (c *AutoScalingPlans) CreateScalingPlan(input *CreateScalingPlanInput) (*CreateScalingPlanOutput, error) {
@@ -137,6 +150,8 @@ func (c *AutoScalingPlans) DeleteScalingPlanRequest(input *DeleteScalingPlanInpu
 
 // DeleteScalingPlan API operation for AWS Auto Scaling Plans.
 //
+// Deletes the specified scaling plan.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -146,12 +161,17 @@ func (c *AutoScalingPlans) DeleteScalingPlanRequest(input *DeleteScalingPlanInpu
 //
 // Returned Error Codes:
 //   * ErrCodeValidationException "ValidationException"
+//   An exception was thrown for a validation issue. Review the parameters provided.
 //
 //   * ErrCodeObjectNotFoundException "ObjectNotFoundException"
+//   The specified object could not be found.
 //
 //   * ErrCodeConcurrentUpdateException "ConcurrentUpdateException"
+//   Concurrent updates caused an exception, for example, if you request an update
+//   to a scaling plan that already has a pending update.
 //
 //   * ErrCodeInternalServiceException "InternalServiceException"
+//   The service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/DeleteScalingPlan
 func (c *AutoScalingPlans) DeleteScalingPlan(input *DeleteScalingPlanInput) (*DeleteScalingPlanOutput, error) {
@@ -219,6 +239,8 @@ func (c *AutoScalingPlans) DescribeScalingPlanResourcesRequest(input *DescribeSc
 
 // DescribeScalingPlanResources API operation for AWS Auto Scaling Plans.
 //
+// Describes the scalable resources in the specified scaling plan.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -228,12 +250,17 @@ func (c *AutoScalingPlans) DescribeScalingPlanResourcesRequest(input *DescribeSc
 //
 // Returned Error Codes:
 //   * ErrCodeValidationException "ValidationException"
+//   An exception was thrown for a validation issue. Review the parameters provided.
 //
 //   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   The token provided is not valid.
 //
 //   * ErrCodeConcurrentUpdateException "ConcurrentUpdateException"
+//   Concurrent updates caused an exception, for example, if you request an update
+//   to a scaling plan that already has a pending update.
 //
 //   * ErrCodeInternalServiceException "InternalServiceException"
+//   The service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/DescribeScalingPlanResources
 func (c *AutoScalingPlans) DescribeScalingPlanResources(input *DescribeScalingPlanResourcesInput) (*DescribeScalingPlanResourcesOutput, error) {
@@ -301,6 +328,8 @@ func (c *AutoScalingPlans) DescribeScalingPlansRequest(input *DescribeScalingPla
 
 // DescribeScalingPlans API operation for AWS Auto Scaling Plans.
 //
+// Describes the specified scaling plans or all of your scaling plans.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -310,12 +339,17 @@ func (c *AutoScalingPlans) DescribeScalingPlansRequest(input *DescribeScalingPla
 //
 // Returned Error Codes:
 //   * ErrCodeValidationException "ValidationException"
+//   An exception was thrown for a validation issue. Review the parameters provided.
 //
 //   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   The token provided is not valid.
 //
 //   * ErrCodeConcurrentUpdateException "ConcurrentUpdateException"
+//   Concurrent updates caused an exception, for example, if you request an update
+//   to a scaling plan that already has a pending update.
 //
 //   * ErrCodeInternalServiceException "InternalServiceException"
+//   The service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/DescribeScalingPlans
 func (c *AutoScalingPlans) DescribeScalingPlans(input *DescribeScalingPlansInput) (*DescribeScalingPlansOutput, error) {
@@ -339,10 +373,12 @@ func (c *AutoScalingPlans) DescribeScalingPlansWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+// Represents an application source.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/ApplicationSource
 type ApplicationSource struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of a CloudFormation stack.
 	CloudFormationStackARN *string `type:"string"`
 }
 
@@ -366,12 +402,18 @@ func (s *ApplicationSource) SetCloudFormationStackARN(v string) *ApplicationSour
 type CreateScalingPlanInput struct {
 	_ struct{} `type:"structure"`
 
+	// The source for the application.
+	//
 	// ApplicationSource is a required field
 	ApplicationSource *ApplicationSource `type:"structure" required:"true"`
 
+	// The scaling instructions.
+	//
 	// ScalingInstructions is a required field
 	ScalingInstructions []*ScalingInstruction `type:"list" required:"true"`
 
+	// The name of the scaling plan.
+	//
 	// ScalingPlanName is a required field
 	ScalingPlanName *string `min:"1" type:"string" required:"true"`
 }
@@ -440,6 +482,8 @@ func (s *CreateScalingPlanInput) SetScalingPlanName(v string) *CreateScalingPlan
 type CreateScalingPlanOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The version of the scaling plan. This value is always 1.
+	//
 	// ScalingPlanVersion is a required field
 	ScalingPlanVersion *int64 `type:"long" required:"true"`
 }
@@ -460,21 +504,30 @@ func (s *CreateScalingPlanOutput) SetScalingPlanVersion(v int64) *CreateScalingP
 	return s
 }
 
+// Represents a customized metric for a target tracking policy.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/CustomizedScalingMetricSpecification
 type CustomizedScalingMetricSpecification struct {
 	_ struct{} `type:"structure"`
 
+	// The dimensions of the metric.
 	Dimensions []*MetricDimension `type:"list"`
 
+	// The name of the metric.
+	//
 	// MetricName is a required field
 	MetricName *string `type:"string" required:"true"`
 
+	// The namespace of the metric.
+	//
 	// Namespace is a required field
 	Namespace *string `type:"string" required:"true"`
 
+	// The statistic of the metric.
+	//
 	// Statistic is a required field
 	Statistic *string `type:"string" required:"true" enum:"MetricStatistic"`
 
+	// The unit of the metric.
 	Unit *string `type:"string"`
 }
 
@@ -551,9 +604,13 @@ func (s *CustomizedScalingMetricSpecification) SetUnit(v string) *CustomizedScal
 type DeleteScalingPlanInput struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the scaling plan.
+	//
 	// ScalingPlanName is a required field
 	ScalingPlanName *string `min:"1" type:"string" required:"true"`
 
+	// The version of the scaling plan.
+	//
 	// ScalingPlanVersion is a required field
 	ScalingPlanVersion *int64 `type:"long" required:"true"`
 }
@@ -618,13 +675,20 @@ func (s DeleteScalingPlanOutput) GoString() string {
 type DescribeScalingPlanResourcesInput struct {
 	_ struct{} `type:"structure"`
 
+	// The maximum number of scalable resources to return. This value can be between
+	// 1 and 50. The default value is 50.
 	MaxResults *int64 `type:"integer"`
 
+	// The token for the next set of results.
 	NextToken *string `type:"string"`
 
+	// The name of the scaling plan.
+	//
 	// ScalingPlanName is a required field
 	ScalingPlanName *string `min:"1" type:"string" required:"true"`
 
+	// The version of the scaling plan.
+	//
 	// ScalingPlanVersion is a required field
 	ScalingPlanVersion *int64 `type:"long" required:"true"`
 }
@@ -686,8 +750,11 @@ func (s *DescribeScalingPlanResourcesInput) SetScalingPlanVersion(v int64) *Desc
 type DescribeScalingPlanResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The token required to get the next set of results. This value is null if
+	// there are no more results to return.
 	NextToken *string `type:"string"`
 
+	// Information about the scalable resources.
 	ScalingPlanResources []*ScalingPlanResource `type:"list"`
 }
 
@@ -717,14 +784,23 @@ func (s *DescribeScalingPlanResourcesOutput) SetScalingPlanResources(v []*Scalin
 type DescribeScalingPlansInput struct {
 	_ struct{} `type:"structure"`
 
+	// The sources for the applications (up to 10). If you specify scaling plan
+	// names, you cannot specify application sources.
 	ApplicationSources []*ApplicationSource `type:"list"`
 
+	// The maximum number of scalable resources to return. This value can be between
+	// 1 and 50. The default value is 50.
 	MaxResults *int64 `type:"integer"`
 
+	// The token for the next set of results.
 	NextToken *string `type:"string"`
 
+	// The names of the scaling plans (up to 10). If you specify application sources,
+	// you cannot specify scaling plan names.
 	ScalingPlanNames []*string `type:"list"`
 
+	// The version of the scaling plan. If you specify a scaling plan version, you
+	// must also specify a scaling plan name.
 	ScalingPlanVersion *int64 `type:"long"`
 }
 
@@ -772,8 +848,11 @@ func (s *DescribeScalingPlansInput) SetScalingPlanVersion(v int64) *DescribeScal
 type DescribeScalingPlansOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The token required to get the next set of results. This value is null if
+	// there are no more results to return.
 	NextToken *string `type:"string"`
 
+	// Information about the scaling plans.
 	ScalingPlans []*ScalingPlan `type:"list"`
 }
 
@@ -799,13 +878,18 @@ func (s *DescribeScalingPlansOutput) SetScalingPlans(v []*ScalingPlan) *Describe
 	return s
 }
 
+// Represents a dimension for a customized metric.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/MetricDimension
 type MetricDimension struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the dimension.
+	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
+	// The value of the dimension.
+	//
 	// Value is a required field
 	Value *string `type:"string" required:"true"`
 }
@@ -848,13 +932,30 @@ func (s *MetricDimension) SetValue(v string) *MetricDimension {
 	return s
 }
 
+// Represents a predefined metric for a target tracking policy.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/PredefinedScalingMetricSpecification
 type PredefinedScalingMetricSpecification struct {
 	_ struct{} `type:"structure"`
 
+	// The metric type. The ALBRequestCountPerTarget metric type applies only to
+	// Auto Scaling groups, Sport Fleet requests, and ECS services.
+	//
 	// PredefinedScalingMetricType is a required field
 	PredefinedScalingMetricType *string `type:"string" required:"true" enum:"ScalingMetricType"`
 
+	// Identifies the resource associated with the metric type. You can't specify
+	// a resource label unless the metric type is ALBRequestCountPerTarget and there
+	// is a target group attached to the Auto Scaling group, Spot Fleet request,
+	// or ECS service.
+	//
+	// The format is app/<load-balancer-name>/<load-balancer-id>/targetgroup/<target-group-name>/<target-group-id>,
+	// where:
+	//
+	//    * app/<load-balancer-name>/<load-balancer-id> is the final portion of
+	//    the load balancer ARN
+	//
+	//    * targetgroup/<target-group-name>/<target-group-id> is the final portion
+	//    of the target group ARN.
 	ResourceLabel *string `min:"1" type:"string"`
 }
 
@@ -896,25 +997,80 @@ func (s *PredefinedScalingMetricSpecification) SetResourceLabel(v string) *Prede
 	return s
 }
 
+// Specifies the scaling configuration for a scalable resource.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/ScalingInstruction
 type ScalingInstruction struct {
 	_ struct{} `type:"structure"`
 
+	// The maximum value to scale to in response to a scale out event.
+	//
 	// MaxCapacity is a required field
 	MaxCapacity *int64 `type:"integer" required:"true"`
 
+	// The minimum value to scale to in response to a scale in event.
+	//
 	// MinCapacity is a required field
 	MinCapacity *int64 `type:"integer" required:"true"`
 
+	// The ID of the resource. This string consists of the resource type and unique
+	// identifier.
+	//
+	//    * Auto Scaling group - The resource type is autoScalingGroup and the unique
+	//    identifier is the name of the Auto Scaling group. Example: autoScalingGroup/my-asg.
+	//
+	//    * ECS service - The resource type is service and the unique identifier
+	//    is the cluster name and service name. Example: service/default/sample-webapp.
+	//
+	//    * Spot fleet request - The resource type is spot-fleet-request and the
+	//    unique identifier is the Spot fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//
+	//    * DynamoDB table - The resource type is table and the unique identifier
+	//    is the resource ID. Example: table/my-table.
+	//
+	//    * DynamoDB global secondary index - The resource type is index and the
+	//    unique identifier is the resource ID. Example: table/my-table/index/my-table-index.
+	//
+	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:my-db-cluster.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
+	// The scalable dimension associated with the resource.
+	//
+	//    * autoscaling:autoScalingGroup:DesiredCapacity - The desired capacity
+	//    of an Auto Scaling group.
+	//
+	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    fleet request.
+	//
+	//    * dynamodb:table:ReadCapacityUnits - The provisioned read capacity for
+	//    a DynamoDB table.
+	//
+	//    * dynamodb:table:WriteCapacityUnits - The provisioned write capacity for
+	//    a DynamoDB table.
+	//
+	//    * dynamodb:index:ReadCapacityUnits - The provisioned read capacity for
+	//    a DynamoDB global secondary index.
+	//
+	//    * dynamodb:index:WriteCapacityUnits - The provisioned write capacity for
+	//    a DynamoDB global secondary index.
+	//
+	//    * rds:cluster:ReadReplicaCount - The count of Aurora Replicas in an Aurora
+	//    DB cluster. Available for Aurora MySQL-compatible edition.
+	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
+	// The namespace of the AWS service.
+	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
 
+	// The target tracking scaling policies (up to 10).
+	//
 	// TargetTrackingConfigurations is a required field
 	TargetTrackingConfigurations []*TargetTrackingConfiguration `type:"list" required:"true"`
 }
@@ -1006,27 +1162,53 @@ func (s *ScalingInstruction) SetTargetTrackingConfigurations(v []*TargetTracking
 	return s
 }
 
+// Represents a scaling plan.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/ScalingPlan
 type ScalingPlan struct {
 	_ struct{} `type:"structure"`
 
+	// The application source.
+	//
 	// ApplicationSource is a required field
 	ApplicationSource *ApplicationSource `type:"structure" required:"true"`
 
+	// The Unix timestamp when the scaling plan was created.
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
+	// The scaling instructions.
+	//
 	// ScalingInstructions is a required field
 	ScalingInstructions []*ScalingInstruction `type:"list" required:"true"`
 
+	// The name of the scaling plan.
+	//
 	// ScalingPlanName is a required field
 	ScalingPlanName *string `min:"1" type:"string" required:"true"`
 
+	// The version of the scaling plan.
+	//
 	// ScalingPlanVersion is a required field
 	ScalingPlanVersion *int64 `type:"long" required:"true"`
 
+	// The status of the scaling plan.
+	//
+	//    * Active - The scaling plan is active.
+	//
+	//    * ActiveWithProblems - The scaling plan is active, but the scaling configuration
+	//    for one or more resources could not be applied.
+	//
+	//    * CreationInProgress - The scaling plan is being created.
+	//
+	//    * CreationFailed - The scaling plan could not be created.
+	//
+	//    * DeletionInProgress - The scaling plan is being deleted.
+	//
+	//    * DeletionFailed - The scaling plan could not be deleted.
+	//
 	// StatusCode is a required field
 	StatusCode *string `type:"string" required:"true" enum:"ScalingPlanStatusCode"`
 
+	// A simple message about the current status of the scaling plan.
 	StatusMessage *string `type:"string"`
 }
 
@@ -1082,29 +1264,96 @@ func (s *ScalingPlan) SetStatusMessage(v string) *ScalingPlan {
 	return s
 }
 
+// Represents a scalable resource.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/ScalingPlanResource
 type ScalingPlanResource struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the resource. This string consists of the resource type and unique
+	// identifier.
+	//
+	//    * Auto Scaling group - The resource type is autoScalingGroup and the unique
+	//    identifier is the name of the Auto Scaling group. Example: autoScalingGroup/my-asg.
+	//
+	//    * ECS service - The resource type is service and the unique identifier
+	//    is the cluster name and service name. Example: service/default/sample-webapp.
+	//
+	//    * Spot fleet request - The resource type is spot-fleet-request and the
+	//    unique identifier is the Spot fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//
+	//    * DynamoDB table - The resource type is table and the unique identifier
+	//    is the resource ID. Example: table/my-table.
+	//
+	//    * DynamoDB global secondary index - The resource type is index and the
+	//    unique identifier is the resource ID. Example: table/my-table/index/my-table-index.
+	//
+	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:my-db-cluster.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
+	// The scalable dimension for the resource.
+	//
+	//    * autoscaling:autoScalingGroup:DesiredCapacity - The desired capacity
+	//    of an Auto Scaling group.
+	//
+	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    fleet request.
+	//
+	//    * dynamodb:table:ReadCapacityUnits - The provisioned read capacity for
+	//    a DynamoDB table.
+	//
+	//    * dynamodb:table:WriteCapacityUnits - The provisioned write capacity for
+	//    a DynamoDB table.
+	//
+	//    * dynamodb:index:ReadCapacityUnits - The provisioned read capacity for
+	//    a DynamoDB global secondary index.
+	//
+	//    * dynamodb:index:WriteCapacityUnits - The provisioned write capacity for
+	//    a DynamoDB global secondary index.
+	//
+	//    * rds:cluster:ReadReplicaCount - The count of Aurora Replicas in an Aurora
+	//    DB cluster. Available for Aurora MySQL-compatible edition.
+	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
+	// The name of the scaling plan.
+	//
 	// ScalingPlanName is a required field
 	ScalingPlanName *string `min:"1" type:"string" required:"true"`
 
+	// The version of the scaling plan.
+	//
 	// ScalingPlanVersion is a required field
 	ScalingPlanVersion *int64 `type:"long" required:"true"`
 
+	// The scaling policies.
 	ScalingPolicies []*ScalingPolicy `type:"list"`
 
+	// The scaling status of the resource.
+	//
+	//    * Active - The scaling configuration is active.
+	//
+	//    * Inactive - The scaling configuration is not active because the scaling
+	//    plan is being created or the scaling configuration could not be applied.
+	//    Check the status message for more information.
+	//
+	//    * PartiallyActive - The scaling configuration is partially active because
+	//    the scaling plan is being created or deleted or the scaling configuration
+	//    could not be fully applied. Check the status message for more information.
+	//
 	// ScalingStatusCode is a required field
 	ScalingStatusCode *string `type:"string" required:"true" enum:"ScalingStatusCode"`
 
+	// A simple message about the current scaling status of the resource.
 	ScalingStatusMessage *string `type:"string"`
 
+	// The namespace of the AWS service.
+	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
 }
@@ -1167,16 +1416,22 @@ func (s *ScalingPlanResource) SetServiceNamespace(v string) *ScalingPlanResource
 	return s
 }
 
+// Represents a scaling policy.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/ScalingPolicy
 type ScalingPolicy struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the scaling policy.
+	//
 	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
+	// The type of scaling policy.
+	//
 	// PolicyType is a required field
 	PolicyType *string `type:"string" required:"true" enum:"PolicyType"`
 
+	// The target tracking scaling policy.
 	TargetTrackingConfiguration *TargetTrackingConfiguration `type:"structure"`
 }
 
@@ -1208,22 +1463,53 @@ func (s *ScalingPolicy) SetTargetTrackingConfiguration(v *TargetTrackingConfigur
 	return s
 }
 
+// Represents a target tracking scaling policy.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/TargetTrackingConfiguration
 type TargetTrackingConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// A customized metric.
 	CustomizedScalingMetricSpecification *CustomizedScalingMetricSpecification `type:"structure"`
 
+	// Indicates whether scale in by the target tracking policy is disabled. If
+	// the value is true, scale in is disabled and the target tracking policy won't
+	// remove capacity from the scalable resource. Otherwise, scale in is enabled
+	// and the target tracking policy can remove capacity from the scalable resource.
+	// The default value is false.
 	DisableScaleIn *bool `type:"boolean"`
 
+	// The estimated time, in seconds, until a newly launched instance can contribute
+	// to the CloudWatch metrics. This value is used only if the resource is an
+	// Auto Scaling group.
 	EstimatedInstanceWarmup *int64 `type:"integer"`
 
+	// A predefined metric.
 	PredefinedScalingMetricSpecification *PredefinedScalingMetricSpecification `type:"structure"`
 
+	// The amount of time, in seconds, after a scale in activity completes before
+	// another scale in activity can start. This value is not used if the scalable
+	// resource is an Auto Scaling group.
+	//
+	// The cooldown period is used to block subsequent scale in requests until it
+	// has expired. The intention is to scale in conservatively to protect your
+	// application's availability. However, if another alarm triggers a scale out
+	// policy during the cooldown period after a scale-in, AWS Auto Scaling scales
+	// out your scalable target immediately.
 	ScaleInCooldown *int64 `type:"integer"`
 
+	// The amount of time, in seconds, after a scale out activity completes before
+	// another scale out activity can start. This value is not used if the scalable
+	// resource is an Auto Scaling group.
+	//
+	// While the cooldown period is in effect, the capacity that has been added
+	// by the previous scale out event that initiated the cooldown is calculated
+	// as part of the desired capacity for the next scale out. The intention is
+	// to continuously (but not excessively) scale out.
 	ScaleOutCooldown *int64 `type:"integer"`
 
+	// The target value for the metric. The range is 8.515920e-109 to 1.174271e+108
+	// (Base 10) or 2e-360 to 2e360 (Base 2).
+	//
 	// TargetValue is a required field
 	TargetValue *float64 `type:"double" required:"true"`
 }
