@@ -1,3 +1,10 @@
+Release v1.12.67 (2018-01-22)
+===
+
+### Service Client Updates
+* `service/budgets`: Updates service API and documentation
+  * Add additional costTypes: IncludeDiscount, UseAmortized,  to support finer control for different charges included in a cost budget.
+
 Release v1.12.66 (2018-01-19)
 ===
 
