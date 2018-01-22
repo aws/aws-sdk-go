@@ -321,7 +321,9 @@
         "CostTypes$IncludeUpfront": "A boolean value whether to include upfront costs in the cost budget.",
         "CostTypes$IncludeRecurring": "A boolean value whether to include recurring costs in the cost budget.",
         "CostTypes$IncludeOtherSubscription": "A boolean value whether to include other subscription costs in the cost budget.",
-        "CostTypes$IncludeSupport": "A boolean value whether to include support costs in the cost budget."
+        "CostTypes$IncludeSupport": "A boolean value whether to include support costs in the cost budget.",
+        "CostTypes$IncludeDiscount": "A boolean value whether to include discounts in the cost budget.",
+        "CostTypes$UseAmortized": "A boolean value whether to include amortized costs in the cost budget."
       }
     },
     "NumericValue": {
