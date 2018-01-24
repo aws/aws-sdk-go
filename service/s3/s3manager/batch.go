@@ -60,7 +60,15 @@ func newError(err error, bucket, key *string) Error {
 }
 
 func (err *Error) Error() string {
-	return fmt.Sprintf("failed to upload %q to %q:\n%s", err.Key, err.Bucket, err.OrigErr.Error())
+	origErr := ""
+	if err.OrigErr != nil {
+		origErr = ":\n" + err.OrigErr.Error()
+	}
+	return fmt.Sprintf("failed to upload %q to %q%s",
+		aws.StringValue(err.Key),
+		aws.StringValue(err.Bucket),
+		origErr,
+	)
 }
 
 // NewBatchError will return a BatchError that satisfies the awserr.Error interface.
