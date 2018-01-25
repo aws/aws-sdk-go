@@ -84,9 +84,30 @@ func decodeV3Endpoints(modelDef modelDefinition, opts DecodeModelOptions) (Resol
 		custAddEC2Metadata(p)
 		custAddS3DualStack(p)
 		custRmIotDataService(p)
+
+		custFixCloudHSMv2SigningName(p)
 	}
 
 	return ps, nil
+}
+
+func custFixCloudHSMv2SigningName(p *partition) {
+	// Workaround for aws/aws-sdk-go#1745 until the endpoint model can be
+	// fixed upstream. TODO remove this once the endpoints model is updated.
+
+	s, ok := p.Services["cloudhsmv2"]
+	if !ok {
+		return
+	}
+
+	if len(s.Defaults.CredentialScope.Service) != 0 {
+		// If the value is already set don't override
+		return
+	}
+
+	s.Defaults.CredentialScope.Service = "cloudhsm"
+
+	p.Services["cloudhsmv2"] = s
 }
 
 func custAddS3DualStack(p *partition) {
