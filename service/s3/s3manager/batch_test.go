@@ -334,8 +334,8 @@ func TestNilOrigError(t *testing.T) {
 
 	err = Error{
 		OrigErr: errors.New("foo"),
-		Bucket: aws.String("bucket"),
-		Key:    aws.String("key"),
+		Bucket:  aws.String("bucket"),
+		Key:     aws.String("key"),
 	}
 	errStr = err.Error()
 	const expected2 = "failed to upload \"key\" to \"bucket\":\nfoo"

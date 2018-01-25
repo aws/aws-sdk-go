@@ -1,3 +1,20 @@
+Release v1.12.68 (2018-01-25)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API and documentation
+* `service/codebuild`: Updates service API and documentation
+  * Adding support for Shallow Clone and GitHub Enterprise in AWS CodeBuild.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/guardduty`: Adds new service
+  * Added the missing AccessKeyDetails object to the resource shape.
+* `service/lambda`: Updates service API and documentation
+  * AWS Lambda now supports Revision ID on your function versions and aliases, to track and apply conditional updates when you are updating your function version or alias resources.
+
+### SDK Bugs
+* `service/s3/s3manager`: Fix check for nil OrigErr in Error() [#1749](https://github.com/aws/aws-sdk-go/issues/1749)
+    * S3 Manager's `Error` type did not check for nil of `OrigErr` when calling `Error()`
+    * Fixes [#1748](https://github.com/aws/aws-sdk-go/issues/1748)
 Release v1.12.67 (2018-01-22)
 ===
 

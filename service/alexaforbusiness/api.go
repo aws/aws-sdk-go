@@ -4123,8 +4123,12 @@ type Device struct {
 	// The serial number of a device.
 	DeviceSerialNumber *string `type:"string"`
 
-	// The status of a device.
+	// The status of a device. If the status is not READY, check the DeviceStatusInfo
+	// for details.
 	DeviceStatus *string `type:"string" enum:"DeviceStatus"`
+
+	// Detailed information about a device's status.
+	DeviceStatusInfo *DeviceStatusInfo `type:"structure"`
 
 	// The type of a device.
 	DeviceType *string `type:"string"`
@@ -4173,6 +4177,12 @@ func (s *Device) SetDeviceStatus(v string) *Device {
 	return s
 }
 
+// SetDeviceStatusInfo sets the DeviceStatusInfo field's value.
+func (s *Device) SetDeviceStatusInfo(v *DeviceStatusInfo) *Device {
+	s.DeviceStatusInfo = v
+	return s
+}
+
 // SetDeviceType sets the DeviceType field's value.
 func (s *Device) SetDeviceType(v string) *Device {
 	s.DeviceType = &v
@@ -4213,6 +4223,9 @@ type DeviceData struct {
 
 	// The status of a device.
 	DeviceStatus *string `type:"string" enum:"DeviceStatus"`
+
+	// Detailed information about a device's status.
+	DeviceStatusInfo *DeviceStatusInfo `type:"structure"`
 
 	// The type of a device.
 	DeviceType *string `type:"string"`
@@ -4264,6 +4277,12 @@ func (s *DeviceData) SetDeviceStatus(v string) *DeviceData {
 	return s
 }
 
+// SetDeviceStatusInfo sets the DeviceStatusInfo field's value.
+func (s *DeviceData) SetDeviceStatusInfo(v *DeviceStatusInfo) *DeviceData {
+	s.DeviceStatusInfo = v
+	return s
+}
+
 // SetDeviceType sets the DeviceType field's value.
 func (s *DeviceData) SetDeviceType(v string) *DeviceData {
 	s.DeviceType = &v
@@ -4291,6 +4310,56 @@ func (s *DeviceData) SetRoomName(v string) *DeviceData {
 // SetSoftwareVersion sets the SoftwareVersion field's value.
 func (s *DeviceData) SetSoftwareVersion(v string) *DeviceData {
 	s.SoftwareVersion = &v
+	return s
+}
+
+// Details of a device’s status.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeviceStatusDetail
+type DeviceStatusDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The device status detail code.
+	Code *string `type:"string" enum:"DeviceStatusDetailCode"`
+}
+
+// String returns the string representation
+func (s DeviceStatusDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeviceStatusDetail) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *DeviceStatusDetail) SetCode(v string) *DeviceStatusDetail {
+	s.Code = &v
+	return s
+}
+
+// Detailed information about a device's status.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeviceStatusInfo
+type DeviceStatusInfo struct {
+	_ struct{} `type:"structure"`
+
+	// One or more device status detail descriptions.
+	DeviceStatusDetails []*DeviceStatusDetail `type:"list"`
+}
+
+// String returns the string representation
+func (s DeviceStatusInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeviceStatusInfo) GoString() string {
+	return s.String()
+}
+
+// SetDeviceStatusDetails sets the DeviceStatusDetails field's value.
+func (s *DeviceStatusInfo) SetDeviceStatusDetails(v []*DeviceStatusDetail) *DeviceStatusInfo {
+	s.DeviceStatusDetails = v
 	return s
 }
 
@@ -5524,8 +5593,8 @@ type SearchDevicesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The filters to use to list a specified set of devices. Supported filter keys
-	// are DeviceName, DeviceStatus, RoomName, DeviceType, DeviceSerialNumber, and
-	// UnassociatedOnly.
+	// are DeviceName, DeviceStatus, DeviceStatusDetailCode, RoomName, DeviceType,
+	// DeviceSerialNumber, and UnassociatedOnly.
 	Filters []*Filter `type:"list"`
 
 	// The maximum number of results to include in the response. If more results
@@ -7132,6 +7201,14 @@ const (
 
 	// DeviceStatusWasOffline is a DeviceStatus enum value
 	DeviceStatusWasOffline = "WAS_OFFLINE"
+)
+
+const (
+	// DeviceStatusDetailCodeDeviceSoftwareUpdateNeeded is a DeviceStatusDetailCode enum value
+	DeviceStatusDetailCodeDeviceSoftwareUpdateNeeded = "DEVICE_SOFTWARE_UPDATE_NEEDED"
+
+	// DeviceStatusDetailCodeDeviceWasOffline is a DeviceStatusDetailCode enum value
+	DeviceStatusDetailCodeDeviceWasOffline = "DEVICE_WAS_OFFLINE"
 )
 
 const (

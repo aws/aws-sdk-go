@@ -180,6 +180,22 @@
           "us-west-2" : { }
         }
       },
+      "autoscaling-plans" : {
+        "defaults" : {
+          "credentialScope" : {
+            "service" : "autoscaling-plans"
+          },
+          "hostname" : "autoscaling.{region}.amazonaws.com",
+          "protocols" : [ "http", "https" ]
+        },
+        "endpoints" : {
+          "ap-southeast-1" : { },
+          "eu-west-1" : { },
+          "us-east-1" : { },
+          "us-east-2" : { },
+          "us-west-2" : { }
+        }
+      },
       "batch" : {
         "endpoints" : {
           "ap-northeast-1" : { },
@@ -2081,6 +2097,11 @@
         }
       },
       "ec2" : {
+        "endpoints" : {
+          "us-gov-west-1" : { }
+        }
+      },
+      "ecs" : {
         "endpoints" : {
           "us-gov-west-1" : { }
         }
