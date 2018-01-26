@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"os"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
@@ -101,11 +102,13 @@ func custFixCloudHSMv2SigningName(p *partition) {
 	}
 
 	if len(s.Defaults.CredentialScope.Service) != 0 {
+		fmt.Fprintf(os.Stderr, "cloudhsmv2 signing name already set, ignoring override.\n")
 		// If the value is already set don't override
 		return
 	}
 
 	s.Defaults.CredentialScope.Service = "cloudhsm"
+	fmt.Fprintf(os.Stderr, "cloudhsmv2 signing name not set, overriding.\n")
 
 	p.Services["cloudhsmv2"] = s
 }
