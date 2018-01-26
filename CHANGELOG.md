@@ -1,3 +1,10 @@
+Release v1.12.69 (2018-01-26)
+===
+
+### SDK Bugs
+* `models/api`: Fix colliding names [#1754](https://github.com/aws/aws-sdk-go/pull/1754) [#1756](https://github.com/aws/aws-sdk-go/pull/1756)
+    * SDK had duplicate folders that were causing errors in some builds.
+    * Fixes [#1753](https://github.com/aws/aws-sdk-go/issues/1753)
 Release v1.12.68 (2018-01-25)
 ===
 
