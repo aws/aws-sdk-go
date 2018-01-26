@@ -1,3 +1,13 @@
+Release v1.12.70 (2018-01-26)
+===
+
+### Service Client Updates
+* `service/devicefarm`: Updates service API and documentation
+  * Add InteractionMode in CreateRemoteAccessSession for DirectDeviceAccess feature.
+* `service/medialive`: Updates service API and documentation
+  * Add InputSpecification to CreateChannel (specification of input attributes is used for channel sizing and affects pricing);  add NotFoundException to DeleteInputSecurityGroups.
+* `service/mturk-requester`: Updates service documentation
+
 Release v1.12.69 (2018-01-26)
 ===
 
