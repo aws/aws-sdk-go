@@ -894,7 +894,7 @@
     "HlsMode": {
       "base": null,
       "refs": {
-        "HlsGroupSettings$Mode": "If set to \"vod\", keeps and indexes all segments starting with the first segment.  If set to \"live\" segments will age out and only the last keepSegments number of segments will be retained."
+        "HlsGroupSettings$Mode": "If \"vod\", all segments are indexed and kept permanently in the destination and manifest. If \"live\", only the number segments specified in keepSegments and indexNSegments are kept; newer segments replace older segments, which may prevent players from rewinding all the way to the beginning of the event.\n\nVOD mode uses HLS EXT-X-PLAYLIST-TYPE of EVENT while the channel is running, converting it to a \"VOD\" type manifest on completion of the stream."
       }
     },
     "HlsOutputSelection": {
@@ -976,6 +976,12 @@
         "ListOfInputChannelLevel$member": null
       }
     },
+    "InputCodec": {
+      "base": "codec in increasing order of complexity",
+      "refs": {
+        "InputSpecification$Codec": "Input codec"
+      }
+    },
     "InputDeblockFilter": {
       "base": null,
       "refs": {
@@ -989,13 +995,13 @@
       }
     },
     "InputDestination": {
-      "base": "Settings for a PUSH type input",
+      "base": "The settings for a PUSH type input.",
       "refs": {
         "ListOfInputDestination$member": null
       }
     },
     "InputDestinationRequest": {
-      "base": "Endpoint settings for a PUSH type input",
+      "base": "Endpoint settings for a PUSH type input.",
       "refs": {
         "ListOfInputDestinationRequest$member": null
       }
@@ -1049,6 +1055,18 @@
         "InputLossBehavior$InputLossImageType": "Indicates whether to substitute a solid color or a slate into the output after input loss exceeds blackFrameMsec."
       }
     },
+    "InputMaximumBitrate": {
+      "base": "Maximum input bitrate in megabits per second. Bitrates up to 50 Mbps are supported currently.",
+      "refs": {
+        "InputSpecification$MaximumBitrate": "Maximum input bitrate, categorized coarsely"
+      }
+    },
+    "InputResolution": {
+      "base": "Input resolution based on lines of vertical resolution in the input; SD is less than 720 lines, HD is 720 to 1080 lines, UHD is greater than 1080 lines\n",
+      "refs": {
+        "InputSpecification$Resolution": "Input resolution, categorized coarsely"
+      }
+    },
     "InputSecurityGroup": {
       "base": "An Input Security Group",
       "refs": {
@@ -1068,7 +1086,7 @@
       }
     },
     "InputSource": {
-      "base": "Settings for a PULL type input",
+      "base": "The settings for a PULL type input.",
       "refs": {
         "ListOfInputSource$member": null
       }
@@ -1080,9 +1098,17 @@
       }
     },
     "InputSourceRequest": {
-      "base": "Settings for for a PULL type input",
+      "base": "Settings for for a PULL type input.",
       "refs": {
         "ListOfInputSourceRequest$member": null
+      }
+    },
+    "InputSpecification": {
+      "base": null,
+      "refs": {
+        "Channel$InputSpecification": null,
+        "ChannelSummary$InputSpecification": null,
+        "CreateChannel$InputSpecification": "Specification of input for this channel (max. bitrate, resolution, codec, etc.)"
       }
     },
     "InputState": {
@@ -1229,13 +1255,13 @@
     "ListOfInputDestination": {
       "base": null,
       "refs": {
-        "Input$Destinations": "List of destinations of input (PULL-type)"
+        "Input$Destinations": "A list of the destinations of the input (PUSH-type)."
       }
     },
     "ListOfInputDestinationRequest": {
       "base": null,
       "refs": {
-        "CreateInput$Destinations": "settings required for PUSH-type inputs; one per redundancy group.\nOnly one of sources and destinations can be specified.\nNote: there are currently no settings required for PUSH-type inputs\n"
+        "CreateInput$Destinations": "Destination settings for PUSH type inputs."
       }
     },
     "ListOfInputSecurityGroup": {
@@ -1247,13 +1273,13 @@
     "ListOfInputSource": {
       "base": null,
       "refs": {
-        "Input$Sources": "List of sources of input (PULL-type)"
+        "Input$Sources": "A list of the sources of the input (PULL-type)."
       }
     },
     "ListOfInputSourceRequest": {
       "base": null,
       "refs": {
-        "CreateInput$Sources": "settings required for PULL-type inputs; one per redundancy group\nOnly one of sources and destinations can be specified\n"
+        "CreateInput$Sources": "The source URLs for a PULL-type input. Every PULL type input needs\nexactly two source URLs for redundancy.\nOnly specify sources for PULL type Inputs. Leave Destinations empty.\n"
       }
     },
     "ListOfInputWhitelistRule": {
@@ -1310,8 +1336,8 @@
       "base": null,
       "refs": {
         "CreateInput$InputSecurityGroups": "A list of security groups referenced by IDs to attach to the input.",
-        "Input$AttachedChannels": "List of channel IDs that that input is attached to (currently an input can only be attached to one channel)",
-        "Input$SecurityGroups": "List of IDs for all the security groups attached to the input.",
+        "Input$AttachedChannels": "A list of channel IDs that that input is attached to (currently an input can only be attached to one channel).",
+        "Input$SecurityGroups": "A list of IDs for all the security groups attached to the input.",
         "Output$AudioDescriptionNames": "The names of the AudioDescriptions used as audio sources for this output.",
         "Output$CaptionDescriptionNames": "The names of the CaptionDescriptions used as caption sources for this output."
       }
@@ -1918,8 +1944,8 @@
         "HlsBasicPutSettings$FilecacheDuration": "Size in seconds of file cache for streaming outputs.",
         "HlsBasicPutSettings$NumRetries": "Number of retry attempts that will be made before the Live Event is put into an error state.",
         "HlsBasicPutSettings$RestartDelay": "If a streaming output fails, number of seconds to wait until a restart is initiated. A value of 0 means never restart.",
-        "HlsGroupSettings$IndexNSegments": "Number of segments to keep in the playlist (.m3u8) file. mode must be \"vod\" for this setting to have an effect, and this number should be less than or equal to keepSegments.",
-        "HlsGroupSettings$KeepSegments": "Number of segments to retain in the destination directory. mode must be \"live\" for this setting to have an effect.",
+        "HlsGroupSettings$IndexNSegments": "If mode is \"live\", the number of segments to retain in the manifest (.m3u8) file. This number must be less than or equal to keepSegments. If mode is \"vod\", this parameter has no effect.",
+        "HlsGroupSettings$KeepSegments": "If mode is \"live\", the number of TS segments to retain in the destination directory. If mode is \"vod\", this parameter has no effect.",
         "HlsGroupSettings$MinSegmentLength": "When set, minimumSegmentLength is enforced by looking ahead and back within the specified range for a nearby avail and extending the segment size if needed.",
         "HlsGroupSettings$ProgramDateTimePeriod": "Period of insertion of EXT-X-PROGRAM-DATE-TIME entry, in seconds.",
         "HlsGroupSettings$SegmentLength": "Length of MPEG-2 Transport Stream segments to create (in seconds). Note that segments will end on the next keyframe after this number of seconds, so actual segment length may be longer.",
@@ -2017,7 +2043,7 @@
         "CreateChannel$Reserved": "Reserved for future use.",
         "CreateChannel$RoleArn": "An optional Amazon Resource Name (ARN) of the role to assume when running the Channel.",
         "CreateInput$Name": "Name of the input.",
-        "CreateInput$RequestId": "Unique identifier of the request to ensure the request is handled\nexactly once in case of retries\n",
+        "CreateInput$RequestId": "Unique identifier of the request to ensure the request is handled\nexactly once in case of retries.\n",
         "DvbNitSettings$NetworkName": "The network name text placed in the networkNameDescriptor inside the Network Information Table. Maximum length is 256 characters.",
         "DvbSdtSettings$ServiceName": "The service name placed in the serviceDescriptor in the Service Description Table. Maximum length is 256 characters.",
         "DvbSdtSettings$ServiceProviderName": "The service provider name placed in the serviceDescriptor in the Service Description Table. Maximum length is 256 characters.",
@@ -2031,12 +2057,12 @@
         "HlsGroupSettings$KeyFormatVersions": "Either a single positive integer version value or a slash delimited list of version values (1/2/3).",
         "HlsOutputSettings$NameModifier": "String concatenated to the end of the destination filename. Accepts \\\"Format Identifiers\\\":#formatIdentifierParameters.",
         "HlsOutputSettings$SegmentModifier": "String concatenated to end of segment filenames.",
-        "Input$Arn": "Unique ARN of input (generated, immutable)",
-        "Input$Id": "generated ID of input (unique for user account, immutable)",
-        "Input$Name": "user-assigned name (mutable)",
+        "Input$Arn": "The Unique ARN of the input (generated, immutable).",
+        "Input$Id": "The generated ID of the input (unique for user account, immutable).",
+        "Input$Name": "The user-assigned name (This is a mutable value).",
         "InputAttachment$InputId": "The ID of the input",
-        "InputDestination$Ip": "system-generated static IP address of endpoint.\nRemains fixed for the lifetime of the input\n",
-        "InputDestination$Port": "port for input",
+        "InputDestination$Ip": "The system-generated static IP address of endpoint.\nIt remains fixed for the lifetime of the input.\n",
+        "InputDestination$Port": "The port number for the input.",
         "InputDestination$Url": "This represents the endpoint that the customer stream will be\npushed to.\n",
         "InputDestinationRequest$StreamName": "A unique name for the location the RTMP stream is being pushed\nto.\n",
         "InputLocation$PasswordParam": "key used to extract the password from EC2 Parameter store",
@@ -2045,12 +2071,12 @@
         "InputLossBehavior$InputLossImageColor": "When input loss image type is \"color\" this field specifies the color to use. Value: 6 hex characters representing the values of RGB.",
         "InputSecurityGroup$Arn": "Unique ARN of Input Security Group",
         "InputSecurityGroup$Id": "The Id of the Input Security Group",
-        "InputSource$PasswordParam": "key used to extract the password from EC2 Parameter store",
+        "InputSource$PasswordParam": "The key used to extract the password from EC2 Parameter store.",
         "InputSource$Url": "This represents the customer's source URL where stream is\npulled from.\n",
-        "InputSource$Username": "username for input source",
-        "InputSourceRequest$PasswordParam": "key used to extract the password from EC2 Parameter store",
+        "InputSource$Username": "The username for the input source.",
+        "InputSourceRequest$PasswordParam": "The key used to extract the password from EC2 Parameter store.",
         "InputSourceRequest$Url": "This represents the customer's source URL where stream is\npulled from.\n",
-        "InputSourceRequest$Username": "username for input source",
+        "InputSourceRequest$Username": "The username for the input source.",
         "InputWhitelistRule$Cidr": "The IPv4 CIDR that's whitelisted.",
         "InputWhitelistRuleCidr$Cidr": "The IPv4 CIDR to whitelist",
         "InternalServiceError$Message": null,
@@ -2064,7 +2090,7 @@
         "M2tsSettings$AudioPids": "Packet Identifier (PID) of the elementary audio stream(s) in the transport stream. Multiple values are accepted, and can be entered in ranges and/or by comma separation. Can be entered as decimal or hexadecimal values. Each PID specified must be in the range of 32 (or 0x20)..8182 (or 0x1ff6).",
         "M2tsSettings$DvbSubPids": "Packet Identifier (PID) for input source DVB Subtitle data to this output. Multiple values are accepted, and can be entered in ranges and/or by comma separation. Can be entered as decimal or hexadecimal values.  Each PID specified must be in the range of 32 (or 0x20)..8182 (or 0x1ff6).",
         "M2tsSettings$DvbTeletextPid": "Packet Identifier (PID) for input source DVB Teletext data to this output. Can be entered as a decimal or hexadecimal value.  Valid values are 32 (or 0x20)..8182 (or 0x1ff6).",
-        "M2tsSettings$EcmPid": "Packet Identifier (PID) for ECM in the transport stream. Only enabled when Simulcrypt is enabled. Can be entered as a decimal or hexadecimal value.  Valid values are 32 (or 0x20)..8182 (or 0x1ff6).",
+        "M2tsSettings$EcmPid": "This field is unused and deprecated.",
         "M2tsSettings$EtvPlatformPid": "Packet Identifier (PID) for input source ETV Platform data to this output. Can be entered as a decimal or hexadecimal value.  Valid values are 32 (or 0x20)..8182 (or 0x1ff6).",
         "M2tsSettings$EtvSignalPid": "Packet Identifier (PID) for input source ETV Signal data to this output. Can be entered as a decimal or hexadecimal value.  Valid values are 32 (or 0x20)..8182 (or 0x1ff6).",
         "M2tsSettings$KlvDataPids": "Packet Identifier (PID) for input source KLV data to this output. Multiple values are accepted, and can be entered in ranges and/or by comma separation. Can be entered as decimal or hexadecimal values.  Each PID specified must be in the range of 32 (or 0x20)..8182 (or 0x1ff6).",
@@ -2075,7 +2101,7 @@
         "M2tsSettings$TimedMetadataPid": "Packet Identifier (PID) of the timed metadata stream in the transport stream. Can be entered as a decimal or hexadecimal value.  Valid values are 32 (or 0x20)..8182 (or 0x1ff6).",
         "M2tsSettings$VideoPid": "Packet Identifier (PID) of the elementary video stream in the transport stream. Can be entered as a decimal or hexadecimal value.  Valid values are 32 (or 0x20)..8182 (or 0x1ff6).",
         "M3u8Settings$AudioPids": "Packet Identifier (PID) of the elementary audio stream(s) in the transport stream. Multiple values are accepted, and can be entered in ranges and/or by comma separation. Can be entered as decimal or hexadecimal values.",
-        "M3u8Settings$EcmPid": "ThePlatform-protected transport streams using 'microsoft' as Target Client include an ECM stream. This ECM stream contains the size, IV, and PTS of every sample in the transport stream.  This stream PID is specified here. This PID has no effect on non ThePlatform-protected streams.",
+        "M3u8Settings$EcmPid": "This parameter is unused and deprecated.",
         "M3u8Settings$PcrPid": "Packet Identifier (PID) of the Program Clock Reference (PCR) in the transport stream. When no value is given, the encoder will assign the same value as the Video PID. Can be entered as a decimal or hexadecimal value.",
         "M3u8Settings$PmtPid": "Packet Identifier (PID) for the Program Map Table (PMT) in the transport stream. Can be entered as a decimal or hexadecimal value.",
         "M3u8Settings$Scte35Pid": "Packet Identifier (PID) of the SCTE-35 stream in the transport stream. Can be entered as a decimal or hexadecimal value.",
