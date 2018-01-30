@@ -5289,7 +5289,6 @@ func (c *Pinpoint) UpdateSmsChannelWithContext(ctx aws.Context, input *UpdateSms
 }
 
 // Amazon Device Messaging channel definition.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ADMChannelRequest
 type ADMChannelRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -5332,7 +5331,6 @@ func (s *ADMChannelRequest) SetEnabled(v bool) *ADMChannelRequest {
 }
 
 // Amazon Device Messaging channel definition.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ADMChannelResponse
 type ADMChannelResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -5438,7 +5436,6 @@ func (s *ADMChannelResponse) SetVersion(v int64) *ADMChannelResponse {
 }
 
 // ADM Message.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ADMMessage
 type ADMMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -5614,7 +5611,6 @@ func (s *ADMMessage) SetUrl(v string) *ADMMessage {
 }
 
 // Apple Push Notification Service channel definition.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSChannelRequest
 type APNSChannelRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -5702,7 +5698,6 @@ func (s *APNSChannelRequest) SetTokenKeyId(v string) *APNSChannelRequest {
 }
 
 // Apple Distribution Push Notification Service channel definition.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSChannelResponse
 type APNSChannelResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -5826,7 +5821,6 @@ func (s *APNSChannelResponse) SetVersion(v int64) *APNSChannelResponse {
 }
 
 // APNS Message.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSMessage
 type APNSMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -6017,7 +6011,6 @@ func (s *APNSMessage) SetUrl(v string) *APNSMessage {
 }
 
 // Apple Development Push Notification Service channel definition.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSSandboxChannelRequest
 type APNSSandboxChannelRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -6105,7 +6098,6 @@ func (s *APNSSandboxChannelRequest) SetTokenKeyId(v string) *APNSSandboxChannelR
 }
 
 // Apple Development Push Notification Service channel definition.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSSandboxChannelResponse
 type APNSSandboxChannelResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -6229,7 +6221,6 @@ func (s *APNSSandboxChannelResponse) SetVersion(v int64) *APNSSandboxChannelResp
 }
 
 // Apple VOIP Push Notification Service channel definition.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSVoipChannelRequest
 type APNSVoipChannelRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -6317,7 +6308,6 @@ func (s *APNSVoipChannelRequest) SetTokenKeyId(v string) *APNSVoipChannelRequest
 }
 
 // Apple VOIP Push Notification Service channel definition.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSVoipChannelResponse
 type APNSVoipChannelResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -6441,7 +6431,6 @@ func (s *APNSVoipChannelResponse) SetVersion(v int64) *APNSVoipChannelResponse {
 }
 
 // Apple VOIP Developer Push Notification Service channel definition.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSVoipSandboxChannelRequest
 type APNSVoipSandboxChannelRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -6529,7 +6518,6 @@ func (s *APNSVoipSandboxChannelRequest) SetTokenKeyId(v string) *APNSVoipSandbox
 }
 
 // Apple VOIP Developer Push Notification Service channel definition.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/APNSVoipSandboxChannelResponse
 type APNSVoipSandboxChannelResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -6653,7 +6641,6 @@ func (s *APNSVoipSandboxChannelResponse) SetVersion(v int64) *APNSVoipSandboxCha
 }
 
 // Activities for campaign.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ActivitiesResponse
 type ActivitiesResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -6678,7 +6665,6 @@ func (s *ActivitiesResponse) SetItem(v []*ActivityResponse) *ActivitiesResponse 
 }
 
 // Activity definition
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ActivityResponse
 type ActivityResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -6814,7 +6800,6 @@ func (s *ActivityResponse) SetTreatmentId(v string) *ActivityResponse {
 }
 
 // Address configuration.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/AddressConfiguration
 type AddressConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -6883,7 +6868,6 @@ func (s *AddressConfiguration) SetTitleOverride(v string) *AddressConfiguration 
 }
 
 // Application Response.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ApplicationResponse
 type ApplicationResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -6917,7 +6901,6 @@ func (s *ApplicationResponse) SetName(v string) *ApplicationResponse {
 }
 
 // Application settings.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ApplicationSettingsResource
 type ApplicationSettingsResource struct {
 	_ struct{} `type:"structure"`
 
@@ -6973,7 +6956,6 @@ func (s *ApplicationSettingsResource) SetQuietTime(v *QuietTime) *ApplicationSet
 }
 
 // Get Applications Result.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ApplicationsResponse
 type ApplicationsResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -7008,7 +6990,6 @@ func (s *ApplicationsResponse) SetNextToken(v string) *ApplicationsResponse {
 }
 
 // Custom attibute dimension
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/AttributeDimension
 type AttributeDimension struct {
 	_ struct{} `type:"structure"`
 
@@ -7043,7 +7024,6 @@ func (s *AttributeDimension) SetValues(v []*string) *AttributeDimension {
 }
 
 // Baidu Cloud Push credentials
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/BaiduChannelRequest
 type BaiduChannelRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -7086,7 +7066,6 @@ func (s *BaiduChannelRequest) SetSecretKey(v string) *BaiduChannelRequest {
 }
 
 // Baidu Cloud Messaging channel definition
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/BaiduChannelResponse
 type BaiduChannelResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -7201,7 +7180,6 @@ func (s *BaiduChannelResponse) SetVersion(v int64) *BaiduChannelResponse {
 }
 
 // Baidu Message.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/BaiduMessage
 type BaiduMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -7346,7 +7324,6 @@ func (s *BaiduMessage) SetUrl(v string) *BaiduMessage {
 }
 
 // The email message configuration.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CampaignEmailMessage
 type CampaignEmailMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -7400,7 +7377,6 @@ func (s *CampaignEmailMessage) SetTitle(v string) *CampaignEmailMessage {
 
 // Campaign Limits are used to limit the number of messages that can be sent
 // to a user.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CampaignLimits
 type CampaignLimits struct {
 	_ struct{} `type:"structure"`
 
@@ -7454,7 +7430,6 @@ func (s *CampaignLimits) SetTotal(v int64) *CampaignLimits {
 }
 
 // Campaign definition
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CampaignResponse
 type CampaignResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -7645,7 +7620,6 @@ func (s *CampaignResponse) SetVersion(v int64) *CampaignResponse {
 }
 
 // SMS message configuration.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CampaignSmsMessage
 type CampaignSmsMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -7688,7 +7662,6 @@ func (s *CampaignSmsMessage) SetSenderId(v string) *CampaignSmsMessage {
 }
 
 // State of the Campaign
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CampaignState
 type CampaignState struct {
 	_ struct{} `type:"structure"`
 
@@ -7715,7 +7688,6 @@ func (s *CampaignState) SetCampaignStatus(v string) *CampaignState {
 }
 
 // List of available campaigns.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CampaignsResponse
 type CampaignsResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -7749,7 +7721,6 @@ func (s *CampaignsResponse) SetNextToken(v string) *CampaignsResponse {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateAppRequest
 type CreateAppInput struct {
 	_ struct{} `type:"structure" payload:"CreateApplicationRequest"`
 
@@ -7788,7 +7759,6 @@ func (s *CreateAppInput) SetCreateApplicationRequest(v *CreateApplicationRequest
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateAppResponse
 type CreateAppOutput struct {
 	_ struct{} `type:"structure" payload:"ApplicationResponse"`
 
@@ -7815,7 +7785,6 @@ func (s *CreateAppOutput) SetApplicationResponse(v *ApplicationResponse) *Create
 }
 
 // Application Request.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateApplicationRequest
 type CreateApplicationRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -7839,7 +7808,6 @@ func (s *CreateApplicationRequest) SetName(v string) *CreateApplicationRequest {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateCampaignRequest
 type CreateCampaignInput struct {
 	_ struct{} `type:"structure" payload:"WriteCampaignRequest"`
 
@@ -7890,7 +7858,6 @@ func (s *CreateCampaignInput) SetWriteCampaignRequest(v *WriteCampaignRequest) *
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateCampaignResponse
 type CreateCampaignOutput struct {
 	_ struct{} `type:"structure" payload:"CampaignResponse"`
 
@@ -7916,7 +7883,6 @@ func (s *CreateCampaignOutput) SetCampaignResponse(v *CampaignResponse) *CreateC
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateImportJobRequest
 type CreateImportJobInput struct {
 	_ struct{} `type:"structure" payload:"ImportJobRequest"`
 
@@ -7965,7 +7931,6 @@ func (s *CreateImportJobInput) SetImportJobRequest(v *ImportJobRequest) *CreateI
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateImportJobResponse
 type CreateImportJobOutput struct {
 	_ struct{} `type:"structure" payload:"ImportJobResponse"`
 
@@ -7989,7 +7954,6 @@ func (s *CreateImportJobOutput) SetImportJobResponse(v *ImportJobResponse) *Crea
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateSegmentRequest
 type CreateSegmentInput struct {
 	_ struct{} `type:"structure" payload:"WriteSegmentRequest"`
 
@@ -8040,7 +8004,6 @@ func (s *CreateSegmentInput) SetWriteSegmentRequest(v *WriteSegmentRequest) *Cre
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateSegmentResponse
 type CreateSegmentOutput struct {
 	_ struct{} `type:"structure" payload:"SegmentResponse"`
 
@@ -8067,7 +8030,6 @@ func (s *CreateSegmentOutput) SetSegmentResponse(v *SegmentResponse) *CreateSegm
 }
 
 // Default Message across push notification, email, and sms.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DefaultMessage
 type DefaultMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -8100,7 +8062,6 @@ func (s *DefaultMessage) SetSubstitutions(v map[string][]*string) *DefaultMessag
 }
 
 // Default Push Notification Message.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DefaultPushNotificationMessage
 type DefaultPushNotificationMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -8184,7 +8145,6 @@ func (s *DefaultPushNotificationMessage) SetUrl(v string) *DefaultPushNotificati
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteAdmChannelRequest
 type DeleteAdmChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8221,7 +8181,6 @@ func (s *DeleteAdmChannelInput) SetApplicationId(v string) *DeleteAdmChannelInpu
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteAdmChannelResponse
 type DeleteAdmChannelOutput struct {
 	_ struct{} `type:"structure" payload:"ADMChannelResponse"`
 
@@ -8247,7 +8206,6 @@ func (s *DeleteAdmChannelOutput) SetADMChannelResponse(v *ADMChannelResponse) *D
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsChannelRequest
 type DeleteApnsChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8284,7 +8242,6 @@ func (s *DeleteApnsChannelInput) SetApplicationId(v string) *DeleteApnsChannelIn
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsChannelResponse
 type DeleteApnsChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSChannelResponse"`
 
@@ -8310,7 +8267,6 @@ func (s *DeleteApnsChannelOutput) SetAPNSChannelResponse(v *APNSChannelResponse)
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsSandboxChannelRequest
 type DeleteApnsSandboxChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8347,7 +8303,6 @@ func (s *DeleteApnsSandboxChannelInput) SetApplicationId(v string) *DeleteApnsSa
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsSandboxChannelResponse
 type DeleteApnsSandboxChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSSandboxChannelResponse"`
 
@@ -8373,7 +8328,6 @@ func (s *DeleteApnsSandboxChannelOutput) SetAPNSSandboxChannelResponse(v *APNSSa
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipChannelRequest
 type DeleteApnsVoipChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8410,7 +8364,6 @@ func (s *DeleteApnsVoipChannelInput) SetApplicationId(v string) *DeleteApnsVoipC
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipChannelResponse
 type DeleteApnsVoipChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSVoipChannelResponse"`
 
@@ -8436,7 +8389,6 @@ func (s *DeleteApnsVoipChannelOutput) SetAPNSVoipChannelResponse(v *APNSVoipChan
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipSandboxChannelRequest
 type DeleteApnsVoipSandboxChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8473,7 +8425,6 @@ func (s *DeleteApnsVoipSandboxChannelInput) SetApplicationId(v string) *DeleteAp
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteApnsVoipSandboxChannelResponse
 type DeleteApnsVoipSandboxChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSVoipSandboxChannelResponse"`
 
@@ -8499,7 +8450,6 @@ func (s *DeleteApnsVoipSandboxChannelOutput) SetAPNSVoipSandboxChannelResponse(v
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteAppRequest
 type DeleteAppInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8536,7 +8486,6 @@ func (s *DeleteAppInput) SetApplicationId(v string) *DeleteAppInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteAppResponse
 type DeleteAppOutput struct {
 	_ struct{} `type:"structure" payload:"ApplicationResponse"`
 
@@ -8562,7 +8511,6 @@ func (s *DeleteAppOutput) SetApplicationResponse(v *ApplicationResponse) *Delete
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteBaiduChannelRequest
 type DeleteBaiduChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8599,7 +8547,6 @@ func (s *DeleteBaiduChannelInput) SetApplicationId(v string) *DeleteBaiduChannel
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteBaiduChannelResponse
 type DeleteBaiduChannelOutput struct {
 	_ struct{} `type:"structure" payload:"BaiduChannelResponse"`
 
@@ -8625,7 +8572,6 @@ func (s *DeleteBaiduChannelOutput) SetBaiduChannelResponse(v *BaiduChannelRespon
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteCampaignRequest
 type DeleteCampaignInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8674,7 +8620,6 @@ func (s *DeleteCampaignInput) SetCampaignId(v string) *DeleteCampaignInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteCampaignResponse
 type DeleteCampaignOutput struct {
 	_ struct{} `type:"structure" payload:"CampaignResponse"`
 
@@ -8700,7 +8645,6 @@ func (s *DeleteCampaignOutput) SetCampaignResponse(v *CampaignResponse) *DeleteC
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteEmailChannelRequest
 type DeleteEmailChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8737,7 +8681,6 @@ func (s *DeleteEmailChannelInput) SetApplicationId(v string) *DeleteEmailChannel
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteEmailChannelResponse
 type DeleteEmailChannelOutput struct {
 	_ struct{} `type:"structure" payload:"EmailChannelResponse"`
 
@@ -8763,7 +8706,6 @@ func (s *DeleteEmailChannelOutput) SetEmailChannelResponse(v *EmailChannelRespon
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteEventStreamRequest
 type DeleteEventStreamInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8802,7 +8744,6 @@ func (s *DeleteEventStreamInput) SetApplicationId(v string) *DeleteEventStreamIn
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteEventStreamResponse
 type DeleteEventStreamOutput struct {
 	_ struct{} `type:"structure" payload:"EventStream"`
 
@@ -8828,7 +8769,6 @@ func (s *DeleteEventStreamOutput) SetEventStream(v *EventStream) *DeleteEventStr
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteGcmChannelRequest
 type DeleteGcmChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8865,7 +8805,6 @@ func (s *DeleteGcmChannelInput) SetApplicationId(v string) *DeleteGcmChannelInpu
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteGcmChannelResponse
 type DeleteGcmChannelOutput struct {
 	_ struct{} `type:"structure" payload:"GCMChannelResponse"`
 
@@ -8891,7 +8830,6 @@ func (s *DeleteGcmChannelOutput) SetGCMChannelResponse(v *GCMChannelResponse) *D
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteSegmentRequest
 type DeleteSegmentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8940,7 +8878,6 @@ func (s *DeleteSegmentInput) SetSegmentId(v string) *DeleteSegmentInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteSegmentResponse
 type DeleteSegmentOutput struct {
 	_ struct{} `type:"structure" payload:"SegmentResponse"`
 
@@ -8966,7 +8903,6 @@ func (s *DeleteSegmentOutput) SetSegmentResponse(v *SegmentResponse) *DeleteSegm
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteSmsChannelRequest
 type DeleteSmsChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9003,7 +8939,6 @@ func (s *DeleteSmsChannelInput) SetApplicationId(v string) *DeleteSmsChannelInpu
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteSmsChannelResponse
 type DeleteSmsChannelOutput struct {
 	_ struct{} `type:"structure" payload:"SMSChannelResponse"`
 
@@ -9030,7 +8965,6 @@ func (s *DeleteSmsChannelOutput) SetSMSChannelResponse(v *SMSChannelResponse) *D
 }
 
 // The message configuration.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DirectMessageConfiguration
 type DirectMessageConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -9110,7 +9044,6 @@ func (s *DirectMessageConfiguration) SetSMSMessage(v *SMSMessage) *DirectMessage
 }
 
 // Email Channel Request
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EmailChannelRequest
 type EmailChannelRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -9163,7 +9096,6 @@ func (s *EmailChannelRequest) SetRoleArn(v string) *EmailChannelRequest {
 }
 
 // Email Channel Response.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EmailChannelResponse
 type EmailChannelResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -9297,7 +9229,6 @@ func (s *EmailChannelResponse) SetVersion(v int64) *EmailChannelResponse {
 }
 
 // Endpoint update request
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointBatchItem
 type EndpointBatchItem struct {
 	_ struct{} `type:"structure"`
 
@@ -9423,7 +9354,6 @@ func (s *EndpointBatchItem) SetUser(v *EndpointUser) *EndpointBatchItem {
 }
 
 // Endpoint batch update request.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointBatchRequest
 type EndpointBatchRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -9448,7 +9378,6 @@ func (s *EndpointBatchRequest) SetItem(v []*EndpointBatchItem) *EndpointBatchReq
 }
 
 // Endpoint demographic data
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointDemographic
 type EndpointDemographic struct {
 	_ struct{} `type:"structure"`
 
@@ -9537,7 +9466,6 @@ func (s *EndpointDemographic) SetTimezone(v string) *EndpointDemographic {
 }
 
 // Endpoint location data
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointLocation
 type EndpointLocation struct {
 	_ struct{} `type:"structure"`
 
@@ -9610,7 +9538,6 @@ func (s *EndpointLocation) SetRegion(v string) *EndpointLocation {
 }
 
 // The result from sending a message to an endpoint.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointMessageResult
 type EndpointMessageResult struct {
 	_ struct{} `type:"structure"`
 
@@ -9671,7 +9598,6 @@ func (s *EndpointMessageResult) SetUpdatedToken(v string) *EndpointMessageResult
 }
 
 // Endpoint update request
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointRequest
 type EndpointRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -9788,7 +9714,6 @@ func (s *EndpointRequest) SetUser(v *EndpointUser) *EndpointRequest {
 }
 
 // Endpoint response
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointResponse
 type EndpointResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -9946,7 +9871,6 @@ func (s *EndpointResponse) SetUser(v *EndpointUser) *EndpointResponse {
 }
 
 // Endpoint send configuration.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointSendConfiguration
 type EndpointSendConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -10006,7 +9930,6 @@ func (s *EndpointSendConfiguration) SetTitleOverride(v string) *EndpointSendConf
 }
 
 // Endpoint user specific custom userAttributes
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EndpointUser
 type EndpointUser struct {
 	_ struct{} `type:"structure"`
 
@@ -10039,7 +9962,6 @@ func (s *EndpointUser) SetUserId(v string) *EndpointUser {
 }
 
 // Model for an event publishing subscription export.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/EventStream
 type EventStream struct {
 	_ struct{} `type:"structure"`
 
@@ -10113,7 +10035,6 @@ func (s *EventStream) SetRoleArn(v string) *EventStream {
 }
 
 // Google Cloud Messaging credentials
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GCMChannelRequest
 type GCMChannelRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -10147,7 +10068,6 @@ func (s *GCMChannelRequest) SetEnabled(v bool) *GCMChannelRequest {
 }
 
 // Google Cloud Messaging channel definition
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GCMChannelResponse
 type GCMChannelResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -10262,7 +10182,6 @@ func (s *GCMChannelResponse) SetVersion(v int64) *GCMChannelResponse {
 }
 
 // GCM Message.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GCMMessage
 type GCMMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -10448,7 +10367,6 @@ func (s *GCMMessage) SetUrl(v string) *GCMMessage {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetAdmChannelRequest
 type GetAdmChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10485,7 +10403,6 @@ func (s *GetAdmChannelInput) SetApplicationId(v string) *GetAdmChannelInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetAdmChannelResponse
 type GetAdmChannelOutput struct {
 	_ struct{} `type:"structure" payload:"ADMChannelResponse"`
 
@@ -10511,7 +10428,6 @@ func (s *GetAdmChannelOutput) SetADMChannelResponse(v *ADMChannelResponse) *GetA
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsChannelRequest
 type GetApnsChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10548,7 +10464,6 @@ func (s *GetApnsChannelInput) SetApplicationId(v string) *GetApnsChannelInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsChannelResponse
 type GetApnsChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSChannelResponse"`
 
@@ -10574,7 +10489,6 @@ func (s *GetApnsChannelOutput) SetAPNSChannelResponse(v *APNSChannelResponse) *G
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsSandboxChannelRequest
 type GetApnsSandboxChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10611,7 +10525,6 @@ func (s *GetApnsSandboxChannelInput) SetApplicationId(v string) *GetApnsSandboxC
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsSandboxChannelResponse
 type GetApnsSandboxChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSSandboxChannelResponse"`
 
@@ -10637,7 +10550,6 @@ func (s *GetApnsSandboxChannelOutput) SetAPNSSandboxChannelResponse(v *APNSSandb
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipChannelRequest
 type GetApnsVoipChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10674,7 +10586,6 @@ func (s *GetApnsVoipChannelInput) SetApplicationId(v string) *GetApnsVoipChannel
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipChannelResponse
 type GetApnsVoipChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSVoipChannelResponse"`
 
@@ -10700,7 +10611,6 @@ func (s *GetApnsVoipChannelOutput) SetAPNSVoipChannelResponse(v *APNSVoipChannel
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipSandboxChannelRequest
 type GetApnsVoipSandboxChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10737,7 +10647,6 @@ func (s *GetApnsVoipSandboxChannelInput) SetApplicationId(v string) *GetApnsVoip
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApnsVoipSandboxChannelResponse
 type GetApnsVoipSandboxChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSVoipSandboxChannelResponse"`
 
@@ -10763,7 +10672,6 @@ func (s *GetApnsVoipSandboxChannelOutput) SetAPNSVoipSandboxChannelResponse(v *A
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetAppRequest
 type GetAppInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10800,7 +10708,6 @@ func (s *GetAppInput) SetApplicationId(v string) *GetAppInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetAppResponse
 type GetAppOutput struct {
 	_ struct{} `type:"structure" payload:"ApplicationResponse"`
 
@@ -10826,7 +10733,6 @@ func (s *GetAppOutput) SetApplicationResponse(v *ApplicationResponse) *GetAppOut
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApplicationSettingsRequest
 type GetApplicationSettingsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10863,7 +10769,6 @@ func (s *GetApplicationSettingsInput) SetApplicationId(v string) *GetApplication
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetApplicationSettingsResponse
 type GetApplicationSettingsOutput struct {
 	_ struct{} `type:"structure" payload:"ApplicationSettingsResource"`
 
@@ -10889,7 +10794,6 @@ func (s *GetApplicationSettingsOutput) SetApplicationSettingsResource(v *Applica
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetAppsRequest
 type GetAppsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10920,7 +10824,6 @@ func (s *GetAppsInput) SetToken(v string) *GetAppsInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetAppsResponse
 type GetAppsOutput struct {
 	_ struct{} `type:"structure" payload:"ApplicationsResponse"`
 
@@ -10946,7 +10849,6 @@ func (s *GetAppsOutput) SetApplicationsResponse(v *ApplicationsResponse) *GetApp
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetBaiduChannelRequest
 type GetBaiduChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10983,7 +10885,6 @@ func (s *GetBaiduChannelInput) SetApplicationId(v string) *GetBaiduChannelInput 
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetBaiduChannelResponse
 type GetBaiduChannelOutput struct {
 	_ struct{} `type:"structure" payload:"BaiduChannelResponse"`
 
@@ -11009,7 +10910,6 @@ func (s *GetBaiduChannelOutput) SetBaiduChannelResponse(v *BaiduChannelResponse)
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignActivitiesRequest
 type GetCampaignActivitiesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11074,7 +10974,6 @@ func (s *GetCampaignActivitiesInput) SetToken(v string) *GetCampaignActivitiesIn
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignActivitiesResponse
 type GetCampaignActivitiesOutput struct {
 	_ struct{} `type:"structure" payload:"ActivitiesResponse"`
 
@@ -11100,7 +10999,6 @@ func (s *GetCampaignActivitiesOutput) SetActivitiesResponse(v *ActivitiesRespons
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignRequest
 type GetCampaignInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11149,7 +11047,6 @@ func (s *GetCampaignInput) SetCampaignId(v string) *GetCampaignInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignResponse
 type GetCampaignOutput struct {
 	_ struct{} `type:"structure" payload:"CampaignResponse"`
 
@@ -11175,7 +11072,6 @@ func (s *GetCampaignOutput) SetCampaignResponse(v *CampaignResponse) *GetCampaig
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignVersionRequest
 type GetCampaignVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11236,7 +11132,6 @@ func (s *GetCampaignVersionInput) SetVersion(v string) *GetCampaignVersionInput 
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignVersionResponse
 type GetCampaignVersionOutput struct {
 	_ struct{} `type:"structure" payload:"CampaignResponse"`
 
@@ -11262,7 +11157,6 @@ func (s *GetCampaignVersionOutput) SetCampaignResponse(v *CampaignResponse) *Get
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignVersionsRequest
 type GetCampaignVersionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11327,7 +11221,6 @@ func (s *GetCampaignVersionsInput) SetToken(v string) *GetCampaignVersionsInput 
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignVersionsResponse
 type GetCampaignVersionsOutput struct {
 	_ struct{} `type:"structure" payload:"CampaignsResponse"`
 
@@ -11353,7 +11246,6 @@ func (s *GetCampaignVersionsOutput) SetCampaignsResponse(v *CampaignsResponse) *
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignsRequest
 type GetCampaignsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11406,7 +11298,6 @@ func (s *GetCampaignsInput) SetToken(v string) *GetCampaignsInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetCampaignsResponse
 type GetCampaignsOutput struct {
 	_ struct{} `type:"structure" payload:"CampaignsResponse"`
 
@@ -11432,7 +11323,6 @@ func (s *GetCampaignsOutput) SetCampaignsResponse(v *CampaignsResponse) *GetCamp
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEmailChannelRequest
 type GetEmailChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11469,7 +11359,6 @@ func (s *GetEmailChannelInput) SetApplicationId(v string) *GetEmailChannelInput 
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEmailChannelResponse
 type GetEmailChannelOutput struct {
 	_ struct{} `type:"structure" payload:"EmailChannelResponse"`
 
@@ -11495,7 +11384,6 @@ func (s *GetEmailChannelOutput) SetEmailChannelResponse(v *EmailChannelResponse)
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEndpointRequest
 type GetEndpointInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11544,7 +11432,6 @@ func (s *GetEndpointInput) SetEndpointId(v string) *GetEndpointInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEndpointResponse
 type GetEndpointOutput struct {
 	_ struct{} `type:"structure" payload:"EndpointResponse"`
 
@@ -11570,7 +11457,6 @@ func (s *GetEndpointOutput) SetEndpointResponse(v *EndpointResponse) *GetEndpoin
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEventStreamRequest
 type GetEventStreamInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11609,7 +11495,6 @@ func (s *GetEventStreamInput) SetApplicationId(v string) *GetEventStreamInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetEventStreamResponse
 type GetEventStreamOutput struct {
 	_ struct{} `type:"structure" payload:"EventStream"`
 
@@ -11635,7 +11520,6 @@ func (s *GetEventStreamOutput) SetEventStream(v *EventStream) *GetEventStreamOut
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetGcmChannelRequest
 type GetGcmChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11672,7 +11556,6 @@ func (s *GetGcmChannelInput) SetApplicationId(v string) *GetGcmChannelInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetGcmChannelResponse
 type GetGcmChannelOutput struct {
 	_ struct{} `type:"structure" payload:"GCMChannelResponse"`
 
@@ -11698,7 +11581,6 @@ func (s *GetGcmChannelOutput) SetGCMChannelResponse(v *GCMChannelResponse) *GetG
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetImportJobRequest
 type GetImportJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11747,7 +11629,6 @@ func (s *GetImportJobInput) SetJobId(v string) *GetImportJobInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetImportJobResponse
 type GetImportJobOutput struct {
 	_ struct{} `type:"structure" payload:"ImportJobResponse"`
 
@@ -11771,7 +11652,6 @@ func (s *GetImportJobOutput) SetImportJobResponse(v *ImportJobResponse) *GetImpo
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetImportJobsRequest
 type GetImportJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11824,7 +11704,6 @@ func (s *GetImportJobsInput) SetToken(v string) *GetImportJobsInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetImportJobsResponse
 type GetImportJobsOutput struct {
 	_ struct{} `type:"structure" payload:"ImportJobsResponse"`
 
@@ -11850,7 +11729,6 @@ func (s *GetImportJobsOutput) SetImportJobsResponse(v *ImportJobsResponse) *GetI
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentImportJobsRequest
 type GetSegmentImportJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11915,7 +11793,6 @@ func (s *GetSegmentImportJobsInput) SetToken(v string) *GetSegmentImportJobsInpu
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentImportJobsResponse
 type GetSegmentImportJobsOutput struct {
 	_ struct{} `type:"structure" payload:"ImportJobsResponse"`
 
@@ -11941,7 +11818,6 @@ func (s *GetSegmentImportJobsOutput) SetImportJobsResponse(v *ImportJobsResponse
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentRequest
 type GetSegmentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11990,7 +11866,6 @@ func (s *GetSegmentInput) SetSegmentId(v string) *GetSegmentInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentResponse
 type GetSegmentOutput struct {
 	_ struct{} `type:"structure" payload:"SegmentResponse"`
 
@@ -12016,7 +11891,6 @@ func (s *GetSegmentOutput) SetSegmentResponse(v *SegmentResponse) *GetSegmentOut
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentVersionRequest
 type GetSegmentVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12077,7 +11951,6 @@ func (s *GetSegmentVersionInput) SetVersion(v string) *GetSegmentVersionInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentVersionResponse
 type GetSegmentVersionOutput struct {
 	_ struct{} `type:"structure" payload:"SegmentResponse"`
 
@@ -12103,7 +11976,6 @@ func (s *GetSegmentVersionOutput) SetSegmentResponse(v *SegmentResponse) *GetSeg
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentVersionsRequest
 type GetSegmentVersionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12168,7 +12040,6 @@ func (s *GetSegmentVersionsInput) SetToken(v string) *GetSegmentVersionsInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentVersionsResponse
 type GetSegmentVersionsOutput struct {
 	_ struct{} `type:"structure" payload:"SegmentsResponse"`
 
@@ -12194,7 +12065,6 @@ func (s *GetSegmentVersionsOutput) SetSegmentsResponse(v *SegmentsResponse) *Get
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentsRequest
 type GetSegmentsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12247,7 +12117,6 @@ func (s *GetSegmentsInput) SetToken(v string) *GetSegmentsInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSegmentsResponse
 type GetSegmentsOutput struct {
 	_ struct{} `type:"structure" payload:"SegmentsResponse"`
 
@@ -12273,7 +12142,6 @@ func (s *GetSegmentsOutput) SetSegmentsResponse(v *SegmentsResponse) *GetSegment
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSmsChannelRequest
 type GetSmsChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12310,7 +12178,6 @@ func (s *GetSmsChannelInput) SetApplicationId(v string) *GetSmsChannelInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetSmsChannelResponse
 type GetSmsChannelOutput struct {
 	_ struct{} `type:"structure" payload:"SMSChannelResponse"`
 
@@ -12336,7 +12203,6 @@ func (s *GetSmsChannelOutput) SetSMSChannelResponse(v *SMSChannelResponse) *GetS
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ImportJobRequest
 type ImportJobRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -12432,7 +12298,6 @@ func (s *ImportJobRequest) SetSegmentName(v string) *ImportJobRequest {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ImportJobResource
 type ImportJobResource struct {
 	_ struct{} `type:"structure"`
 
@@ -12528,7 +12393,6 @@ func (s *ImportJobResource) SetSegmentName(v string) *ImportJobResource {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ImportJobResponse
 type ImportJobResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -12665,7 +12529,6 @@ func (s *ImportJobResponse) SetType(v string) *ImportJobResponse {
 }
 
 // Import job list.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/ImportJobsResponse
 type ImportJobsResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -12699,7 +12562,6 @@ func (s *ImportJobsResponse) SetNextToken(v string) *ImportJobsResponse {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/Message
 type Message struct {
 	_ struct{} `type:"structure"`
 
@@ -12824,7 +12686,6 @@ func (s *Message) SetUrl(v string) *Message {
 }
 
 // Simple message object.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/MessageBody
 type MessageBody struct {
 	_ struct{} `type:"structure"`
 
@@ -12858,7 +12719,6 @@ func (s *MessageBody) SetRequestID(v string) *MessageBody {
 }
 
 // Message configuration for a campaign.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/MessageConfiguration
 type MessageConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -12941,7 +12801,6 @@ func (s *MessageConfiguration) SetSMSMessage(v *CampaignSmsMessage) *MessageConf
 }
 
 // Send message request.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/MessageRequest
 type MessageRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -12994,7 +12853,6 @@ func (s *MessageRequest) SetMessageConfiguration(v *DirectMessageConfiguration) 
 }
 
 // Send message response.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/MessageResponse
 type MessageResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -13049,7 +12907,6 @@ func (s *MessageResponse) SetResult(v map[string]*MessageResult) *MessageRespons
 }
 
 // The result from sending a message to an address.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/MessageResult
 type MessageResult struct {
 	_ struct{} `type:"structure"`
 
@@ -13100,7 +12957,6 @@ func (s *MessageResult) SetUpdatedToken(v string) *MessageResult {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/PutEventStreamRequest
 type PutEventStreamInput struct {
 	_ struct{} `type:"structure" payload:"WriteEventStream"`
 
@@ -13153,7 +13009,6 @@ func (s *PutEventStreamInput) SetWriteEventStream(v *WriteEventStream) *PutEvent
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/PutEventStreamResponse
 type PutEventStreamOutput struct {
 	_ struct{} `type:"structure" payload:"EventStream"`
 
@@ -13180,7 +13035,6 @@ func (s *PutEventStreamOutput) SetEventStream(v *EventStream) *PutEventStreamOut
 }
 
 // Quiet Time
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/QuietTime
 type QuietTime struct {
 	_ struct{} `type:"structure"`
 
@@ -13214,7 +13068,6 @@ func (s *QuietTime) SetStart(v string) *QuietTime {
 }
 
 // Define how a segment based on recency of use.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/RecencyDimension
 type RecencyDimension struct {
 	_ struct{} `type:"structure"`
 
@@ -13251,7 +13104,6 @@ func (s *RecencyDimension) SetRecencyType(v string) *RecencyDimension {
 }
 
 // SMS Channel Request
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SMSChannelRequest
 type SMSChannelRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -13294,7 +13146,6 @@ func (s *SMSChannelRequest) SetShortCode(v string) *SMSChannelRequest {
 }
 
 // SMS Channel Response.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SMSChannelResponse
 type SMSChannelResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -13418,7 +13269,6 @@ func (s *SMSChannelResponse) SetVersion(v int64) *SMSChannelResponse {
 }
 
 // SMS Message.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SMSMessage
 type SMSMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -13469,7 +13319,6 @@ func (s *SMSMessage) SetSubstitutions(v map[string][]*string) *SMSMessage {
 }
 
 // Shcedule that defines when a campaign is run.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/Schedule
 type Schedule struct {
 	_ struct{} `type:"structure"`
 
@@ -13542,7 +13391,6 @@ func (s *Schedule) SetTimezone(v string) *Schedule {
 }
 
 // Segment behavior dimensions
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SegmentBehaviors
 type SegmentBehaviors struct {
 	_ struct{} `type:"structure"`
 
@@ -13567,7 +13415,6 @@ func (s *SegmentBehaviors) SetRecency(v *RecencyDimension) *SegmentBehaviors {
 }
 
 // Segment demographic dimensions
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SegmentDemographics
 type SegmentDemographics struct {
 	_ struct{} `type:"structure"`
 
@@ -13637,7 +13484,6 @@ func (s *SegmentDemographics) SetPlatform(v *SetDimension) *SegmentDemographics 
 }
 
 // Segment dimensions
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SegmentDimensions
 type SegmentDimensions struct {
 	_ struct{} `type:"structure"`
 
@@ -13698,7 +13544,6 @@ func (s *SegmentDimensions) SetUserAttributes(v map[string]*AttributeDimension) 
 }
 
 // Segment import definition.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SegmentImportResource
 type SegmentImportResource struct {
 	_ struct{} `type:"structure"`
 
@@ -13771,7 +13616,6 @@ func (s *SegmentImportResource) SetSize(v int64) *SegmentImportResource {
 }
 
 // Segment location dimensions
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SegmentLocation
 type SegmentLocation struct {
 	_ struct{} `type:"structure"`
 
@@ -13796,7 +13640,6 @@ func (s *SegmentLocation) SetCountry(v *SetDimension) *SegmentLocation {
 }
 
 // Segment definition.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SegmentResponse
 type SegmentResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -13899,7 +13742,6 @@ func (s *SegmentResponse) SetVersion(v int64) *SegmentResponse {
 }
 
 // Segments in your account.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SegmentsResponse
 type SegmentsResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -13933,7 +13775,6 @@ func (s *SegmentsResponse) SetNextToken(v string) *SegmentsResponse {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendMessagesRequest
 type SendMessagesInput struct {
 	_ struct{} `type:"structure" payload:"MessageRequest"`
 
@@ -13984,7 +13825,6 @@ func (s *SendMessagesInput) SetMessageRequest(v *MessageRequest) *SendMessagesIn
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendMessagesResponse
 type SendMessagesOutput struct {
 	_ struct{} `type:"structure" payload:"MessageResponse"`
 
@@ -14011,7 +13851,6 @@ func (s *SendMessagesOutput) SetMessageResponse(v *MessageResponse) *SendMessage
 }
 
 // Send message request.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendUsersMessageRequest
 type SendUsersMessageRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -14054,7 +13893,6 @@ func (s *SendUsersMessageRequest) SetUsers(v map[string]*EndpointSendConfigurati
 }
 
 // User send message response.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendUsersMessageResponse
 type SendUsersMessageResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -14096,7 +13934,6 @@ func (s *SendUsersMessageResponse) SetResult(v map[string]map[string]*EndpointMe
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendUsersMessagesRequest
 type SendUsersMessagesInput struct {
 	_ struct{} `type:"structure" payload:"SendUsersMessageRequest"`
 
@@ -14147,7 +13984,6 @@ func (s *SendUsersMessagesInput) SetSendUsersMessageRequest(v *SendUsersMessageR
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendUsersMessagesResponse
 type SendUsersMessagesOutput struct {
 	_ struct{} `type:"structure" payload:"SendUsersMessageResponse"`
 
@@ -14174,7 +14010,6 @@ func (s *SendUsersMessagesOutput) SetSendUsersMessageResponse(v *SendUsersMessag
 }
 
 // Dimension specification of a segment.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SetDimension
 type SetDimension struct {
 	_ struct{} `type:"structure"`
 
@@ -14209,7 +14044,6 @@ func (s *SetDimension) SetValues(v []*string) *SetDimension {
 }
 
 // Treatment resource
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/TreatmentResource
 type TreatmentResource struct {
 	_ struct{} `type:"structure"`
 
@@ -14287,7 +14121,6 @@ func (s *TreatmentResource) SetTreatmentName(v string) *TreatmentResource {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateAdmChannelRequest
 type UpdateAdmChannelInput struct {
 	_ struct{} `type:"structure" payload:"ADMChannelRequest"`
 
@@ -14338,7 +14171,6 @@ func (s *UpdateAdmChannelInput) SetApplicationId(v string) *UpdateAdmChannelInpu
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateAdmChannelResponse
 type UpdateAdmChannelOutput struct {
 	_ struct{} `type:"structure" payload:"ADMChannelResponse"`
 
@@ -14364,7 +14196,6 @@ func (s *UpdateAdmChannelOutput) SetADMChannelResponse(v *ADMChannelResponse) *U
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsChannelRequest
 type UpdateApnsChannelInput struct {
 	_ struct{} `type:"structure" payload:"APNSChannelRequest"`
 
@@ -14415,7 +14246,6 @@ func (s *UpdateApnsChannelInput) SetApplicationId(v string) *UpdateApnsChannelIn
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsChannelResponse
 type UpdateApnsChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSChannelResponse"`
 
@@ -14441,7 +14271,6 @@ func (s *UpdateApnsChannelOutput) SetAPNSChannelResponse(v *APNSChannelResponse)
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsSandboxChannelRequest
 type UpdateApnsSandboxChannelInput struct {
 	_ struct{} `type:"structure" payload:"APNSSandboxChannelRequest"`
 
@@ -14492,7 +14321,6 @@ func (s *UpdateApnsSandboxChannelInput) SetApplicationId(v string) *UpdateApnsSa
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsSandboxChannelResponse
 type UpdateApnsSandboxChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSSandboxChannelResponse"`
 
@@ -14518,7 +14346,6 @@ func (s *UpdateApnsSandboxChannelOutput) SetAPNSSandboxChannelResponse(v *APNSSa
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipChannelRequest
 type UpdateApnsVoipChannelInput struct {
 	_ struct{} `type:"structure" payload:"APNSVoipChannelRequest"`
 
@@ -14569,7 +14396,6 @@ func (s *UpdateApnsVoipChannelInput) SetApplicationId(v string) *UpdateApnsVoipC
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipChannelResponse
 type UpdateApnsVoipChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSVoipChannelResponse"`
 
@@ -14595,7 +14421,6 @@ func (s *UpdateApnsVoipChannelOutput) SetAPNSVoipChannelResponse(v *APNSVoipChan
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipSandboxChannelRequest
 type UpdateApnsVoipSandboxChannelInput struct {
 	_ struct{} `type:"structure" payload:"APNSVoipSandboxChannelRequest"`
 
@@ -14646,7 +14471,6 @@ func (s *UpdateApnsVoipSandboxChannelInput) SetApplicationId(v string) *UpdateAp
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApnsVoipSandboxChannelResponse
 type UpdateApnsVoipSandboxChannelOutput struct {
 	_ struct{} `type:"structure" payload:"APNSVoipSandboxChannelResponse"`
 
@@ -14672,7 +14496,6 @@ func (s *UpdateApnsVoipSandboxChannelOutput) SetAPNSVoipSandboxChannelResponse(v
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApplicationSettingsRequest
 type UpdateApplicationSettingsInput struct {
 	_ struct{} `type:"structure" payload:"WriteApplicationSettingsRequest"`
 
@@ -14723,7 +14546,6 @@ func (s *UpdateApplicationSettingsInput) SetWriteApplicationSettingsRequest(v *W
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateApplicationSettingsResponse
 type UpdateApplicationSettingsOutput struct {
 	_ struct{} `type:"structure" payload:"ApplicationSettingsResource"`
 
@@ -14749,7 +14571,6 @@ func (s *UpdateApplicationSettingsOutput) SetApplicationSettingsResource(v *Appl
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateBaiduChannelRequest
 type UpdateBaiduChannelInput struct {
 	_ struct{} `type:"structure" payload:"BaiduChannelRequest"`
 
@@ -14800,7 +14621,6 @@ func (s *UpdateBaiduChannelInput) SetBaiduChannelRequest(v *BaiduChannelRequest)
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateBaiduChannelResponse
 type UpdateBaiduChannelOutput struct {
 	_ struct{} `type:"structure" payload:"BaiduChannelResponse"`
 
@@ -14826,7 +14646,6 @@ func (s *UpdateBaiduChannelOutput) SetBaiduChannelResponse(v *BaiduChannelRespon
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateCampaignRequest
 type UpdateCampaignInput struct {
 	_ struct{} `type:"structure" payload:"WriteCampaignRequest"`
 
@@ -14889,7 +14708,6 @@ func (s *UpdateCampaignInput) SetWriteCampaignRequest(v *WriteCampaignRequest) *
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateCampaignResponse
 type UpdateCampaignOutput struct {
 	_ struct{} `type:"structure" payload:"CampaignResponse"`
 
@@ -14915,7 +14733,6 @@ func (s *UpdateCampaignOutput) SetCampaignResponse(v *CampaignResponse) *UpdateC
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEmailChannelRequest
 type UpdateEmailChannelInput struct {
 	_ struct{} `type:"structure" payload:"EmailChannelRequest"`
 
@@ -14966,7 +14783,6 @@ func (s *UpdateEmailChannelInput) SetEmailChannelRequest(v *EmailChannelRequest)
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEmailChannelResponse
 type UpdateEmailChannelOutput struct {
 	_ struct{} `type:"structure" payload:"EmailChannelResponse"`
 
@@ -14992,7 +14808,6 @@ func (s *UpdateEmailChannelOutput) SetEmailChannelResponse(v *EmailChannelRespon
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEndpointRequest
 type UpdateEndpointInput struct {
 	_ struct{} `type:"structure" payload:"EndpointRequest"`
 
@@ -15055,7 +14870,6 @@ func (s *UpdateEndpointInput) SetEndpointRequest(v *EndpointRequest) *UpdateEndp
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEndpointResponse
 type UpdateEndpointOutput struct {
 	_ struct{} `type:"structure" payload:"MessageBody"`
 
@@ -15081,7 +14895,6 @@ func (s *UpdateEndpointOutput) SetMessageBody(v *MessageBody) *UpdateEndpointOut
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEndpointsBatchRequest
 type UpdateEndpointsBatchInput struct {
 	_ struct{} `type:"structure" payload:"EndpointBatchRequest"`
 
@@ -15132,7 +14945,6 @@ func (s *UpdateEndpointsBatchInput) SetEndpointBatchRequest(v *EndpointBatchRequ
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateEndpointsBatchResponse
 type UpdateEndpointsBatchOutput struct {
 	_ struct{} `type:"structure" payload:"MessageBody"`
 
@@ -15158,7 +14970,6 @@ func (s *UpdateEndpointsBatchOutput) SetMessageBody(v *MessageBody) *UpdateEndpo
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateGcmChannelRequest
 type UpdateGcmChannelInput struct {
 	_ struct{} `type:"structure" payload:"GCMChannelRequest"`
 
@@ -15209,7 +15020,6 @@ func (s *UpdateGcmChannelInput) SetGCMChannelRequest(v *GCMChannelRequest) *Upda
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateGcmChannelResponse
 type UpdateGcmChannelOutput struct {
 	_ struct{} `type:"structure" payload:"GCMChannelResponse"`
 
@@ -15235,7 +15045,6 @@ func (s *UpdateGcmChannelOutput) SetGCMChannelResponse(v *GCMChannelResponse) *U
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateSegmentRequest
 type UpdateSegmentInput struct {
 	_ struct{} `type:"structure" payload:"WriteSegmentRequest"`
 
@@ -15298,7 +15107,6 @@ func (s *UpdateSegmentInput) SetWriteSegmentRequest(v *WriteSegmentRequest) *Upd
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateSegmentResponse
 type UpdateSegmentOutput struct {
 	_ struct{} `type:"structure" payload:"SegmentResponse"`
 
@@ -15324,7 +15132,6 @@ func (s *UpdateSegmentOutput) SetSegmentResponse(v *SegmentResponse) *UpdateSegm
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateSmsChannelRequest
 type UpdateSmsChannelInput struct {
 	_ struct{} `type:"structure" payload:"SMSChannelRequest"`
 
@@ -15375,7 +15182,6 @@ func (s *UpdateSmsChannelInput) SetSMSChannelRequest(v *SMSChannelRequest) *Upda
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateSmsChannelResponse
 type UpdateSmsChannelOutput struct {
 	_ struct{} `type:"structure" payload:"SMSChannelResponse"`
 
@@ -15402,7 +15208,6 @@ func (s *UpdateSmsChannelOutput) SetSMSChannelResponse(v *SMSChannelResponse) *U
 }
 
 // Creating application setting request
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/WriteApplicationSettingsRequest
 type WriteApplicationSettingsRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -15440,7 +15245,6 @@ func (s *WriteApplicationSettingsRequest) SetQuietTime(v *QuietTime) *WriteAppli
 }
 
 // Used to create a campaign.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/WriteCampaignRequest
 type WriteCampaignRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -15566,7 +15370,6 @@ func (s *WriteCampaignRequest) SetTreatmentName(v string) *WriteCampaignRequest 
 }
 
 // Request to save an EventStream.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/WriteEventStream
 type WriteEventStream struct {
 	_ struct{} `type:"structure"`
 
@@ -15603,7 +15406,6 @@ func (s *WriteEventStream) SetRoleArn(v string) *WriteEventStream {
 }
 
 // Segment definition.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/WriteSegmentRequest
 type WriteSegmentRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -15637,7 +15439,6 @@ func (s *WriteSegmentRequest) SetName(v string) *WriteSegmentRequest {
 }
 
 // Used to create a campaign treatment.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/WriteTreatmentResource
 type WriteTreatmentResource struct {
 	_ struct{} `type:"structure"`
 

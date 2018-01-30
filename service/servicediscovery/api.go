@@ -1806,7 +1806,6 @@ func (c *ServiceDiscovery) UpdateServiceWithContext(ctx aws.Context, input *Upda
 	return out, req.Send()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/CreatePrivateDnsNamespaceRequest
 type CreatePrivateDnsNamespaceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1880,7 +1879,6 @@ func (s *CreatePrivateDnsNamespaceInput) SetVpc(v string) *CreatePrivateDnsNames
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/CreatePrivateDnsNamespaceResponse
 type CreatePrivateDnsNamespaceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1905,7 +1903,6 @@ func (s *CreatePrivateDnsNamespaceOutput) SetOperationId(v string) *CreatePrivat
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/CreatePublicDnsNamespaceRequest
 type CreatePublicDnsNamespaceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1963,7 +1960,6 @@ func (s *CreatePublicDnsNamespaceInput) SetName(v string) *CreatePublicDnsNamesp
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/CreatePublicDnsNamespaceResponse
 type CreatePublicDnsNamespaceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1988,7 +1984,6 @@ func (s *CreatePublicDnsNamespaceOutput) SetOperationId(v string) *CreatePublicD
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/CreateServiceRequest
 type CreateServiceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2096,7 +2091,6 @@ func (s *CreateServiceInput) SetName(v string) *CreateServiceInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/CreateServiceResponse
 type CreateServiceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2120,7 +2114,6 @@ func (s *CreateServiceOutput) SetService(v *Service) *CreateServiceOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/DeleteNamespaceRequest
 type DeleteNamespaceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2159,7 +2152,6 @@ func (s *DeleteNamespaceInput) SetId(v string) *DeleteNamespaceInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/DeleteNamespaceResponse
 type DeleteNamespaceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2184,7 +2176,6 @@ func (s *DeleteNamespaceOutput) SetOperationId(v string) *DeleteNamespaceOutput 
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/DeleteServiceRequest
 type DeleteServiceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2223,7 +2214,6 @@ func (s *DeleteServiceInput) SetId(v string) *DeleteServiceInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/DeleteServiceResponse
 type DeleteServiceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2238,7 +2228,6 @@ func (s DeleteServiceOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/DeregisterInstanceRequest
 type DeregisterInstanceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2291,7 +2280,6 @@ func (s *DeregisterInstanceInput) SetServiceId(v string) *DeregisterInstanceInpu
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/DeregisterInstanceResponse
 type DeregisterInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2318,7 +2306,6 @@ func (s *DeregisterInstanceOutput) SetOperationId(v string) *DeregisterInstanceO
 
 // A complex type that contains information about the resource record sets that
 // you want Amazon Route 53 to create when you register an instance.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/DnsConfig
 type DnsConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -2384,7 +2371,6 @@ func (s *DnsConfig) SetNamespaceId(v string) *DnsConfig {
 
 // A complex type that contains information about changes to the resource record
 // sets that Amazon Route 53 creates when you register an instance.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/DnsConfigChange
 type DnsConfigChange struct {
 	_ struct{} `type:"structure"`
 
@@ -2436,7 +2422,6 @@ func (s *DnsConfigChange) SetDnsRecords(v []*DnsRecord) *DnsConfigChange {
 
 // A complex type that contains the ID for the hosted zone that Amazon Route
 // 53 creates when you create a namespace.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/DnsProperties
 type DnsProperties struct {
 	_ struct{} `type:"structure"`
 
@@ -2463,7 +2448,6 @@ func (s *DnsProperties) SetHostedZoneId(v string) *DnsProperties {
 
 // A complex type that contains information about the resource record sets that
 // you want Amazon Route 53 to create when you register an instance.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/DnsRecord
 type DnsRecord struct {
 	_ struct{} `type:"structure"`
 
@@ -2533,7 +2517,6 @@ func (s *DnsRecord) SetType(v string) *DnsRecord {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/GetInstanceRequest
 type GetInstanceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2586,7 +2569,6 @@ func (s *GetInstanceInput) SetServiceId(v string) *GetInstanceInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/GetInstanceResponse
 type GetInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2610,7 +2592,6 @@ func (s *GetInstanceOutput) SetInstance(v *Instance) *GetInstanceOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/GetInstancesHealthStatusRequest
 type GetInstancesHealthStatusInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2693,7 +2674,6 @@ func (s *GetInstancesHealthStatusInput) SetServiceId(v string) *GetInstancesHeal
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/GetInstancesHealthStatusResponse
 type GetInstancesHealthStatusOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2729,7 +2709,6 @@ func (s *GetInstancesHealthStatusOutput) SetStatus(v map[string]*string) *GetIns
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/GetNamespaceRequest
 type GetNamespaceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2768,7 +2747,6 @@ func (s *GetNamespaceInput) SetId(v string) *GetNamespaceInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/GetNamespaceResponse
 type GetNamespaceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2792,7 +2770,6 @@ func (s *GetNamespaceOutput) SetNamespace(v *Namespace) *GetNamespaceOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/GetOperationRequest
 type GetOperationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2831,7 +2808,6 @@ func (s *GetOperationInput) SetOperationId(v string) *GetOperationInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/GetOperationResponse
 type GetOperationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2855,7 +2831,6 @@ func (s *GetOperationOutput) SetOperation(v *Operation) *GetOperationOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/GetServiceRequest
 type GetServiceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2894,7 +2869,6 @@ func (s *GetServiceInput) SetId(v string) *GetServiceInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/GetServiceResponse
 type GetServiceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2935,7 +2909,6 @@ func (s *GetServiceOutput) SetService(v *Service) *GetServiceOutput {
 //
 // For information about the charges for health checks, see Amazon Route 53
 // Pricing (http://aws.amazon.com/route53/pricing).
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/HealthCheckConfig
 type HealthCheckConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -3022,7 +2995,6 @@ func (s *HealthCheckConfig) SetType(v string) *HealthCheckConfig {
 
 // A complex type that contains information about an instance that Amazon Route
 // 53 creates when you submit a RegisterInstance request.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/Instance
 type Instance struct {
 	_ struct{} `type:"structure"`
 
@@ -3092,7 +3064,6 @@ func (s *Instance) SetId(v string) *Instance {
 
 // A complex type that contains information about the instances that you created
 // by using a specified service.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/InstanceSummary
 type InstanceSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -3135,7 +3106,6 @@ func (s *InstanceSummary) SetId(v string) *InstanceSummary {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/ListInstancesRequest
 type ListInstancesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3201,7 +3171,6 @@ func (s *ListInstancesInput) SetServiceId(v string) *ListInstancesInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/ListInstancesResponse
 type ListInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3237,7 +3206,6 @@ func (s *ListInstancesOutput) SetNextToken(v string) *ListInstancesOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/ListNamespacesRequest
 type ListNamespacesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3312,7 +3280,6 @@ func (s *ListNamespacesInput) SetNextToken(v string) *ListNamespacesInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/ListNamespacesResponse
 type ListNamespacesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3348,7 +3315,6 @@ func (s *ListNamespacesOutput) SetNextToken(v string) *ListNamespacesOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/ListOperationsRequest
 type ListOperationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3424,7 +3390,6 @@ func (s *ListOperationsInput) SetNextToken(v string) *ListOperationsInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/ListOperationsResponse
 type ListOperationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3459,7 +3424,6 @@ func (s *ListOperationsOutput) SetOperations(v []*OperationSummary) *ListOperati
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/ListServicesRequest
 type ListServicesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3534,7 +3498,6 @@ func (s *ListServicesInput) SetNextToken(v string) *ListServicesInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/ListServicesResponse
 type ListServicesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3572,7 +3535,6 @@ func (s *ListServicesOutput) SetServices(v []*ServiceSummary) *ListServicesOutpu
 }
 
 // A complex type that contains information about a specified namespace.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/Namespace
 type Namespace struct {
 	_ struct{} `type:"structure"`
 
@@ -3674,7 +3636,6 @@ func (s *Namespace) SetType(v string) *Namespace {
 
 // A complex type that identifies the namespaces that you want to list. You
 // can choose to list public or private namespaces.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/NamespaceFilter
 type NamespaceFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -3749,7 +3710,6 @@ func (s *NamespaceFilter) SetValues(v []*string) *NamespaceFilter {
 
 // A complex type that contains information that is specific to the namespace
 // type.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/NamespaceProperties
 type NamespaceProperties struct {
 	_ struct{} `type:"structure"`
 
@@ -3775,7 +3735,6 @@ func (s *NamespaceProperties) SetDnsProperties(v *DnsProperties) *NamespacePrope
 }
 
 // A complex type that contains information about a namespace.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/NamespaceSummary
 type NamespaceSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -3829,7 +3788,6 @@ func (s *NamespaceSummary) SetType(v string) *NamespaceSummary {
 }
 
 // A complex type that contains information about a specified operation.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/Operation
 type Operation struct {
 	_ struct{} `type:"structure"`
 
@@ -3934,7 +3892,6 @@ func (s *Operation) SetUpdateDate(v time.Time) *Operation {
 }
 
 // A complex type that lets you select the operations that you want to list.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/OperationFilter
 type OperationFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -4036,7 +3993,6 @@ func (s *OperationFilter) SetValues(v []*string) *OperationFilter {
 
 // A complex type that contains information about an operation that matches
 // the criteria that you specified in a ListOperations request.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/OperationSummary
 type OperationSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -4078,7 +4034,6 @@ func (s *OperationSummary) SetStatus(v string) *OperationSummary {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/RegisterInstanceRequest
 type RegisterInstanceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4175,7 +4130,6 @@ func (s *RegisterInstanceInput) SetServiceId(v string) *RegisterInstanceInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/RegisterInstanceResponse
 type RegisterInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4201,7 +4155,6 @@ func (s *RegisterInstanceOutput) SetOperationId(v string) *RegisterInstanceOutpu
 }
 
 // A complex type that contains information about the specified service.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/Service
 type Service struct {
 	_ struct{} `type:"structure"`
 
@@ -4320,7 +4273,6 @@ func (s *Service) SetName(v string) *Service {
 }
 
 // A complex type that contains changes to an existing service.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/ServiceChange
 type ServiceChange struct {
 	_ struct{} `type:"structure"`
 
@@ -4406,7 +4358,6 @@ func (s *ServiceChange) SetHealthCheckConfig(v *HealthCheckConfig) *ServiceChang
 
 // A complex type that lets you specify the namespaces that you want to list
 // services for.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/ServiceFilter
 type ServiceFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -4477,7 +4428,6 @@ func (s *ServiceFilter) SetValues(v []*string) *ServiceFilter {
 }
 
 // A complex type that contains information about a specified service.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/ServiceSummary
 type ServiceSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -4540,7 +4490,6 @@ func (s *ServiceSummary) SetName(v string) *ServiceSummary {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/UpdateServiceRequest
 type UpdateServiceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4598,7 +4547,6 @@ func (s *UpdateServiceInput) SetService(v *ServiceChange) *UpdateServiceInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/UpdateServiceResponse
 type UpdateServiceOutput struct {
 	_ struct{} `type:"structure"`
 

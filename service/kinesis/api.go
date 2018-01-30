@@ -2784,7 +2784,6 @@ func (c *Kinesis) UpdateShardCountWithContext(ctx aws.Context, input *UpdateShar
 }
 
 // Represents the input for AddTagsToStream.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/AddTagsToStreamInput
 type AddTagsToStreamInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2843,7 +2842,6 @@ func (s *AddTagsToStreamInput) SetTags(v map[string]*string) *AddTagsToStreamInp
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/AddTagsToStreamOutput
 type AddTagsToStreamOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2859,7 +2857,6 @@ func (s AddTagsToStreamOutput) GoString() string {
 }
 
 // Represents the input for CreateStream.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/CreateStreamInput
 type CreateStreamInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2926,7 +2923,6 @@ func (s *CreateStreamInput) SetStreamName(v string) *CreateStreamInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/CreateStreamOutput
 type CreateStreamOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2942,7 +2938,6 @@ func (s CreateStreamOutput) GoString() string {
 }
 
 // Represents the input for DecreaseStreamRetentionPeriod.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/DecreaseStreamRetentionPeriodInput
 type DecreaseStreamRetentionPeriodInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3002,7 +2997,6 @@ func (s *DecreaseStreamRetentionPeriodInput) SetStreamName(v string) *DecreaseSt
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/DecreaseStreamRetentionPeriodOutput
 type DecreaseStreamRetentionPeriodOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3018,7 +3012,6 @@ func (s DecreaseStreamRetentionPeriodOutput) GoString() string {
 }
 
 // Represents the input for DeleteStream.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/DeleteStreamInput
 type DeleteStreamInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3060,7 +3053,6 @@ func (s *DeleteStreamInput) SetStreamName(v string) *DeleteStreamInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/DeleteStreamOutput
 type DeleteStreamOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3075,7 +3067,6 @@ func (s DeleteStreamOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/DescribeLimitsInput
 type DescribeLimitsInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3090,7 +3081,6 @@ func (s DescribeLimitsInput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/DescribeLimitsOutput
 type DescribeLimitsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3128,7 +3118,6 @@ func (s *DescribeLimitsOutput) SetShardLimit(v int64) *DescribeLimitsOutput {
 }
 
 // Represents the input for DescribeStream.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/DescribeStreamInput
 type DescribeStreamInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3196,7 +3185,6 @@ func (s *DescribeStreamInput) SetStreamName(v string) *DescribeStreamInput {
 }
 
 // Represents the output for DescribeStream.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/DescribeStreamOutput
 type DescribeStreamOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3224,7 +3212,6 @@ func (s *DescribeStreamOutput) SetStreamDescription(v *StreamDescription) *Descr
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/DescribeStreamSummaryInput
 type DescribeStreamSummaryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3266,7 +3253,6 @@ func (s *DescribeStreamSummaryInput) SetStreamName(v string) *DescribeStreamSumm
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/DescribeStreamSummaryOutput
 type DescribeStreamSummaryOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3293,7 +3279,6 @@ func (s *DescribeStreamSummaryOutput) SetStreamDescriptionSummary(v *StreamDescr
 }
 
 // Represents the input for DisableEnhancedMonitoring.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/DisableEnhancedMonitoringInput
 type DisableEnhancedMonitoringInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3376,7 +3361,6 @@ func (s *DisableEnhancedMonitoringInput) SetStreamName(v string) *DisableEnhance
 }
 
 // Represents the input for EnableEnhancedMonitoring.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/EnableEnhancedMonitoringInput
 type EnableEnhancedMonitoringInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3459,7 +3443,6 @@ func (s *EnableEnhancedMonitoringInput) SetStreamName(v string) *EnableEnhancedM
 }
 
 // Represents enhanced metrics types.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/EnhancedMetrics
 type EnhancedMetrics struct {
 	_ struct{} `type:"structure"`
 
@@ -3507,7 +3490,6 @@ func (s *EnhancedMetrics) SetShardLevelMetrics(v []*string) *EnhancedMetrics {
 }
 
 // Represents the output for EnableEnhancedMonitoring and DisableEnhancedMonitoring.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/EnhancedMonitoringOutput
 type EnhancedMonitoringOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3552,7 +3534,6 @@ func (s *EnhancedMonitoringOutput) SetStreamName(v string) *EnhancedMonitoringOu
 }
 
 // Represents the input for GetRecords.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/GetRecordsInput
 type GetRecordsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3610,7 +3591,6 @@ func (s *GetRecordsInput) SetShardIterator(v string) *GetRecordsInput {
 }
 
 // Represents the output for GetRecords.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/GetRecordsOutput
 type GetRecordsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3660,7 +3640,6 @@ func (s *GetRecordsOutput) SetRecords(v []*Record) *GetRecordsOutput {
 }
 
 // Represents the input for GetShardIterator.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/GetShardIteratorInput
 type GetShardIteratorInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3777,7 +3756,6 @@ func (s *GetShardIteratorInput) SetTimestamp(v time.Time) *GetShardIteratorInput
 }
 
 // Represents the output for GetShardIterator.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/GetShardIteratorOutput
 type GetShardIteratorOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3805,7 +3783,6 @@ func (s *GetShardIteratorOutput) SetShardIterator(v string) *GetShardIteratorOut
 
 // The range of possible hash key values for the shard, which is a set of ordered
 // contiguous positive integers.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/HashKeyRange
 type HashKeyRange struct {
 	_ struct{} `type:"structure"`
 
@@ -3843,7 +3820,6 @@ func (s *HashKeyRange) SetStartingHashKey(v string) *HashKeyRange {
 }
 
 // Represents the input for IncreaseStreamRetentionPeriod.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/IncreaseStreamRetentionPeriodInput
 type IncreaseStreamRetentionPeriodInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3903,7 +3879,6 @@ func (s *IncreaseStreamRetentionPeriodInput) SetStreamName(v string) *IncreaseSt
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/IncreaseStreamRetentionPeriodOutput
 type IncreaseStreamRetentionPeriodOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3918,7 +3893,6 @@ func (s IncreaseStreamRetentionPeriodOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/ListShardsInput
 type ListShardsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4037,7 +4011,6 @@ func (s *ListShardsInput) SetStreamName(v string) *ListShardsInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/ListShardsOutput
 type ListShardsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4084,7 +4057,6 @@ func (s *ListShardsOutput) SetShards(v []*Shard) *ListShardsOutput {
 }
 
 // Represents the input for ListStreams.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/ListStreamsInput
 type ListStreamsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4134,7 +4106,6 @@ func (s *ListStreamsInput) SetLimit(v int64) *ListStreamsInput {
 }
 
 // Represents the output for ListStreams.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/ListStreamsOutput
 type ListStreamsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4173,7 +4144,6 @@ func (s *ListStreamsOutput) SetStreamNames(v []*string) *ListStreamsOutput {
 }
 
 // Represents the input for ListTagsForStream.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/ListTagsForStreamInput
 type ListTagsForStreamInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4243,7 +4213,6 @@ func (s *ListTagsForStreamInput) SetStreamName(v string) *ListTagsForStreamInput
 }
 
 // Represents the output for ListTagsForStream.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/ListTagsForStreamOutput
 type ListTagsForStreamOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4283,7 +4252,6 @@ func (s *ListTagsForStreamOutput) SetTags(v []*Tag) *ListTagsForStreamOutput {
 }
 
 // Represents the input for MergeShards.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/MergeShardsInput
 type MergeShardsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4359,7 +4327,6 @@ func (s *MergeShardsInput) SetStreamName(v string) *MergeShardsInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/MergeShardsOutput
 type MergeShardsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4375,7 +4342,6 @@ func (s MergeShardsOutput) GoString() string {
 }
 
 // Represents the input for PutRecord.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/PutRecordInput
 type PutRecordInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4484,7 +4450,6 @@ func (s *PutRecordInput) SetStreamName(v string) *PutRecordInput {
 }
 
 // Represents the output for PutRecord.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/PutRecordOutput
 type PutRecordOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4540,7 +4505,6 @@ func (s *PutRecordOutput) SetShardId(v string) *PutRecordOutput {
 }
 
 // A PutRecords request.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/PutRecordsInput
 type PutRecordsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4610,7 +4574,6 @@ func (s *PutRecordsInput) SetStreamName(v string) *PutRecordsInput {
 }
 
 // PutRecords results.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/PutRecordsOutput
 type PutRecordsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4665,7 +4628,6 @@ func (s *PutRecordsOutput) SetRecords(v []*PutRecordsResultEntry) *PutRecordsOut
 }
 
 // Represents the output for PutRecords.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/PutRecordsRequestEntry
 type PutRecordsRequestEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -4747,7 +4709,6 @@ func (s *PutRecordsRequestEntry) SetPartitionKey(v string) *PutRecordsRequestEnt
 // A record that is successfully added to a stream includes SequenceNumber and
 // ShardId in the result. A record that fails to be added to the stream includes
 // ErrorCode and ErrorMessage in the result.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/PutRecordsResultEntry
 type PutRecordsResultEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -4804,7 +4765,6 @@ func (s *PutRecordsResultEntry) SetShardId(v string) *PutRecordsResultEntry {
 
 // The unit of data of the Kinesis data stream, which is composed of a sequence
 // number, a partition key, and a data blob.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/Record
 type Record struct {
 	_ struct{} `type:"structure"`
 
@@ -4883,7 +4843,6 @@ func (s *Record) SetSequenceNumber(v string) *Record {
 }
 
 // Represents the input for RemoveTagsFromStream.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/RemoveTagsFromStreamInput
 type RemoveTagsFromStreamInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4942,7 +4901,6 @@ func (s *RemoveTagsFromStreamInput) SetTagKeys(v []*string) *RemoveTagsFromStrea
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/RemoveTagsFromStreamOutput
 type RemoveTagsFromStreamOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4958,7 +4916,6 @@ func (s RemoveTagsFromStreamOutput) GoString() string {
 }
 
 // The range of possible sequence numbers for the shard.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/SequenceNumberRange
 type SequenceNumberRange struct {
 	_ struct{} `type:"structure"`
 
@@ -4995,7 +4952,6 @@ func (s *SequenceNumberRange) SetStartingSequenceNumber(v string) *SequenceNumbe
 }
 
 // A uniquely identified group of data records in a Kinesis data stream.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/Shard
 type Shard struct {
 	_ struct{} `type:"structure"`
 
@@ -5063,7 +5019,6 @@ func (s *Shard) SetShardId(v string) *Shard {
 }
 
 // Represents the input for SplitShard.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/SplitShardInput
 type SplitShardInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5142,7 +5097,6 @@ func (s *SplitShardInput) SetStreamName(v string) *SplitShardInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/SplitShardOutput
 type SplitShardOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5157,7 +5111,6 @@ func (s SplitShardOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/StartStreamEncryptionInput
 type StartStreamEncryptionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5244,7 +5197,6 @@ func (s *StartStreamEncryptionInput) SetStreamName(v string) *StartStreamEncrypt
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/StartStreamEncryptionOutput
 type StartStreamEncryptionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5259,7 +5211,6 @@ func (s StartStreamEncryptionOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/StopStreamEncryptionInput
 type StopStreamEncryptionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5346,7 +5297,6 @@ func (s *StopStreamEncryptionInput) SetStreamName(v string) *StopStreamEncryptio
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/StopStreamEncryptionOutput
 type StopStreamEncryptionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5362,7 +5312,6 @@ func (s StopStreamEncryptionOutput) GoString() string {
 }
 
 // Represents the output for DescribeStream.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/StreamDescription
 type StreamDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -5518,7 +5467,6 @@ func (s *StreamDescription) SetStreamStatus(v string) *StreamDescription {
 }
 
 // Represents the output for DescribeStreamSummary
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/StreamDescriptionSummary
 type StreamDescriptionSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -5661,7 +5609,6 @@ func (s *StreamDescriptionSummary) SetStreamStatus(v string) *StreamDescriptionS
 }
 
 // Metadata assigned to the stream, consisting of a key-value pair.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/Tag
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -5699,7 +5646,6 @@ func (s *Tag) SetValue(v string) *Tag {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/UpdateShardCountInput
 type UpdateShardCountInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5772,7 +5718,6 @@ func (s *UpdateShardCountInput) SetTargetShardCount(v int64) *UpdateShardCountIn
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/UpdateShardCountOutput
 type UpdateShardCountOutput struct {
 	_ struct{} `type:"structure"`
 

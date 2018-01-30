@@ -1043,7 +1043,6 @@ func (c *ACM) ResendValidationEmailWithContext(ctx aws.Context, input *ResendVal
 	return out, req.Send()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/AddTagsToCertificateRequest
 type AddTagsToCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1118,7 +1117,6 @@ func (s *AddTagsToCertificateInput) SetTags(v []*Tag) *AddTagsToCertificateInput
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/AddTagsToCertificateOutput
 type AddTagsToCertificateOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1135,7 +1133,6 @@ func (s AddTagsToCertificateOutput) GoString() string {
 
 // Contains metadata about an ACM certificate. This structure is returned in
 // the response to a DescribeCertificate request.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/CertificateDetail
 type CertificateDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -1390,7 +1387,6 @@ func (s *CertificateDetail) SetType(v string) *CertificateDetail {
 }
 
 // This structure is returned in the response object of ListCertificates action.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/CertificateSummary
 type CertificateSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -1429,7 +1425,6 @@ func (s *CertificateSummary) SetDomainName(v string) *CertificateSummary {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/DeleteCertificateRequest
 type DeleteCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1477,7 +1472,6 @@ func (s *DeleteCertificateInput) SetCertificateArn(v string) *DeleteCertificateI
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/DeleteCertificateOutput
 type DeleteCertificateOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1492,7 +1486,6 @@ func (s DeleteCertificateOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/DescribeCertificateRequest
 type DescribeCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1540,7 +1533,6 @@ func (s *DescribeCertificateInput) SetCertificateArn(v string) *DescribeCertific
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/DescribeCertificateResponse
 type DescribeCertificateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1565,7 +1557,6 @@ func (s *DescribeCertificateOutput) SetCertificate(v *CertificateDetail) *Descri
 }
 
 // Contains information about the validation of each domain name in the certificate.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/DomainValidation
 type DomainValidation struct {
 	_ struct{} `type:"structure"`
 
@@ -1647,7 +1638,6 @@ func (s *DomainValidation) SetValidationStatus(v string) *DomainValidation {
 
 // Contains information about the domain names that you want ACM to use to send
 // you emails that enable you to validate domain ownership.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/DomainValidationOption
 type DomainValidationOption struct {
 	_ struct{} `type:"structure"`
 
@@ -1724,7 +1714,6 @@ func (s *DomainValidationOption) SetValidationDomain(v string) *DomainValidation
 // The Extended Key Usage X.509 v3 extension defines one or more purposes for
 // which the public key can be used. This is in addition to or in place of the
 // basic purposes specified by the Key Usage extension.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/ExtendedKeyUsage
 type ExtendedKeyUsage struct {
 	_ struct{} `type:"structure"`
 
@@ -1779,7 +1768,6 @@ func (s *ExtendedKeyUsage) SetOID(v string) *ExtendedKeyUsage {
 
 // This structure can be used in the ListCertificates action to filter the output
 // of the certificate list.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/Filters
 type Filters struct {
 	_ struct{} `type:"structure"`
 
@@ -1821,7 +1809,6 @@ func (s *Filters) SetKeyUsage(v []*string) *Filters {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/GetCertificateRequest
 type GetCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1868,7 +1855,6 @@ func (s *GetCertificateInput) SetCertificateArn(v string) *GetCertificateInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/GetCertificateResponse
 type GetCertificateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1903,7 +1889,6 @@ func (s *GetCertificateOutput) SetCertificateChain(v string) *GetCertificateOutp
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/ImportCertificateRequest
 type ImportCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1994,7 +1979,6 @@ func (s *ImportCertificateInput) SetPrivateKey(v []byte) *ImportCertificateInput
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/ImportCertificateResponse
 type ImportCertificateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2021,7 +2005,6 @@ func (s *ImportCertificateOutput) SetCertificateArn(v string) *ImportCertificate
 
 // The Key Usage X.509 v3 extension defines the purpose of the public key contained
 // in the certificate.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/KeyUsage
 type KeyUsage struct {
 	_ struct{} `type:"structure"`
 
@@ -2045,7 +2028,6 @@ func (s *KeyUsage) SetName(v string) *KeyUsage {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/ListCertificatesRequest
 type ListCertificatesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2117,7 +2099,6 @@ func (s *ListCertificatesInput) SetNextToken(v string) *ListCertificatesInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/ListCertificatesResponse
 type ListCertificatesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2151,7 +2132,6 @@ func (s *ListCertificatesOutput) SetNextToken(v string) *ListCertificatesOutput 
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/ListTagsForCertificateRequest
 type ListTagsForCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2199,7 +2179,6 @@ func (s *ListTagsForCertificateInput) SetCertificateArn(v string) *ListTagsForCe
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/ListTagsForCertificateResponse
 type ListTagsForCertificateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2223,7 +2202,6 @@ func (s *ListTagsForCertificateOutput) SetTags(v []*Tag) *ListTagsForCertificate
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/RemoveTagsFromCertificateRequest
 type RemoveTagsFromCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2298,7 +2276,6 @@ func (s *RemoveTagsFromCertificateInput) SetTags(v []*Tag) *RemoveTagsFromCertif
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/RemoveTagsFromCertificateOutput
 type RemoveTagsFromCertificateOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2316,7 +2293,6 @@ func (s RemoveTagsFromCertificateOutput) GoString() string {
 // Contains information about the status of ACM's managed renewal (http://docs.aws.amazon.com/acm/latest/userguide/acm-renewal.html)
 // for the certificate. This structure exists only when the certificate type
 // is AMAZON_ISSUED.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/RenewalSummary
 type RenewalSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -2358,7 +2334,6 @@ func (s *RenewalSummary) SetRenewalStatus(v string) *RenewalSummary {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/RequestCertificateRequest
 type RequestCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2489,7 +2464,6 @@ func (s *RequestCertificateInput) SetValidationMethod(v string) *RequestCertific
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/RequestCertificateResponse
 type RequestCertificateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2516,7 +2490,6 @@ func (s *RequestCertificateOutput) SetCertificateArn(v string) *RequestCertifica
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/ResendValidationEmailRequest
 type ResendValidationEmailInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2614,7 +2587,6 @@ func (s *ResendValidationEmailInput) SetValidationDomain(v string) *ResendValida
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/ResendValidationEmailOutput
 type ResendValidationEmailOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2631,7 +2603,6 @@ func (s ResendValidationEmailOutput) GoString() string {
 
 // Contains a DNS record value that you can use to can use to validate ownership
 // or control of a domain. This is used by the DescribeCertificate action.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/ResourceRecord
 type ResourceRecord struct {
 	_ struct{} `type:"structure"`
 
@@ -2682,7 +2653,6 @@ func (s *ResourceRecord) SetValue(v string) *ResourceRecord {
 }
 
 // A key-value pair that identifies or specifies metadata about an ACM resource.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/Tag
 type Tag struct {
 	_ struct{} `type:"structure"`
 

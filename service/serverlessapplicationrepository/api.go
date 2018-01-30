@@ -841,7 +841,6 @@ func (c *ServerlessApplicationRepository) UpdateApplicationWithContext(ctx aws.C
 }
 
 // Policy statement applied to the application.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/ApplicationPolicyStatement
 type ApplicationPolicyStatement struct {
 	_ struct{} `type:"structure"`
 
@@ -886,7 +885,6 @@ func (s *ApplicationPolicyStatement) SetStatementId(v string) *ApplicationPolicy
 }
 
 // Summary of details about the application.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/ApplicationSummary
 type ApplicationSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -966,7 +964,6 @@ func (s *ApplicationSummary) SetSpdxLicenseId(v string) *ApplicationSummary {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/CreateApplicationResponse
 type CreateApplicationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1062,7 +1059,6 @@ func (s *CreateApplicationOutput) SetVersion(v *Version) *CreateApplicationOutpu
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/CreateApplicationRequest
 type CreateApplicationRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -1181,7 +1177,6 @@ func (s *CreateApplicationRequest) SetTemplateUrl(v string) *CreateApplicationRe
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/CreateApplicationVersionResponse
 type CreateApplicationVersionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1244,7 +1239,6 @@ func (s *CreateApplicationVersionOutput) SetTemplateUrl(v string) *CreateApplica
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/CreateApplicationVersionRequest
 type CreateApplicationVersionRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -1317,7 +1311,6 @@ func (s *CreateApplicationVersionRequest) SetTemplateUrl(v string) *CreateApplic
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/CreateCloudFormationChangeSetResponse
 type CreateCloudFormationChangeSetOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1364,7 +1357,6 @@ func (s *CreateCloudFormationChangeSetOutput) SetStackId(v string) *CreateCloudF
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/CreateCloudFormationChangeSetRequest
 type CreateCloudFormationChangeSetRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -1425,7 +1417,6 @@ func (s *CreateCloudFormationChangeSetRequest) SetStackName(v string) *CreateClo
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/GetApplicationRequest
 type GetApplicationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1470,7 +1461,6 @@ func (s *GetApplicationInput) SetSemanticVersion(v string) *GetApplicationInput 
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/GetApplicationResponse
 type GetApplicationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1566,7 +1556,6 @@ func (s *GetApplicationOutput) SetVersion(v *Version) *GetApplicationOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/GetApplicationPolicyRequest
 type GetApplicationPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1603,7 +1592,6 @@ func (s *GetApplicationPolicyInput) SetApplicationId(v string) *GetApplicationPo
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/GetApplicationPolicyResponse
 type GetApplicationPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1626,7 +1614,6 @@ func (s *GetApplicationPolicyOutput) SetStatements(v []*ApplicationPolicyStateme
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/ListApplicationVersionsRequest
 type ListApplicationVersionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1682,7 +1669,6 @@ func (s *ListApplicationVersionsInput) SetNextToken(v string) *ListApplicationVe
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/ListApplicationVersionsResponse
 type ListApplicationVersionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1713,7 +1699,6 @@ func (s *ListApplicationVersionsOutput) SetVersions(v []*VersionSummary) *ListAp
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/ListApplicationsRequest
 type ListApplicationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1757,7 +1742,6 @@ func (s *ListApplicationsInput) SetNextToken(v string) *ListApplicationsInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/ListApplicationsResponse
 type ListApplicationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1789,7 +1773,6 @@ func (s *ListApplicationsOutput) SetNextToken(v string) *ListApplicationsOutput 
 }
 
 // Parameters supported by the application.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/ParameterDefinition
 type ParameterDefinition struct {
 	_ struct{} `type:"structure"`
 
@@ -1951,7 +1934,6 @@ func (s *ParameterDefinition) SetType(v string) *ParameterDefinition {
 }
 
 // Parameter value of the application.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/ParameterValue
 type ParameterValue struct {
 	_ struct{} `type:"structure"`
 
@@ -1986,7 +1968,6 @@ func (s *ParameterValue) SetValue(v string) *ParameterValue {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/PutApplicationPolicyRequest
 type PutApplicationPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2031,7 +2012,6 @@ func (s *PutApplicationPolicyInput) SetStatements(v []*ApplicationPolicyStatemen
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/PutApplicationPolicyResponse
 type PutApplicationPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2054,7 +2034,6 @@ func (s *PutApplicationPolicyOutput) SetStatements(v []*ApplicationPolicyStateme
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/UpdateApplicationResponse
 type UpdateApplicationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2150,7 +2129,6 @@ func (s *UpdateApplicationOutput) SetVersion(v *Version) *UpdateApplicationOutpu
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/UpdateApplicationRequest
 type UpdateApplicationRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -2228,7 +2206,6 @@ func (s *UpdateApplicationRequest) SetReadmeUrl(v string) *UpdateApplicationRequ
 }
 
 // Application version details.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/Version
 type Version struct {
 	_ struct{} `type:"structure"`
 
@@ -2298,7 +2275,6 @@ func (s *Version) SetTemplateUrl(v string) *Version {
 }
 
 // Application version summary.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/serverlessrepo-2017-09-08/VersionSummary
 type VersionSummary struct {
 	_ struct{} `type:"structure"`
 

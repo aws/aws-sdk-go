@@ -337,7 +337,6 @@ func (c *CostExplorer) GetTagsWithContext(ctx aws.Context, input *GetTagsInput, 
 }
 
 // The time period that you want the usage and costs for.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/DateInterval
 type DateInterval struct {
 	_ struct{} `type:"structure"`
 
@@ -396,7 +395,6 @@ func (s *DateInterval) SetStart(v string) *DateInterval {
 
 // The metadata that you can use to filter and group your results. You can use
 // GetDimensionValues to find specific values.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/DimensionValues
 type DimensionValues struct {
 	_ struct{} `type:"structure"`
 
@@ -433,7 +431,6 @@ func (s *DimensionValues) SetValues(v []*string) *DimensionValues {
 
 // The metadata of a specific type that you can use to filter and group your
 // results. You can use GetDimensionValues to find specific values.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/DimensionValuesWithAttributes
 type DimensionValuesWithAttributes struct {
 	_ struct{} `type:"structure"`
 
@@ -498,7 +495,6 @@ func (s *DimensionValuesWithAttributes) SetValue(v string) *DimensionValuesWithA
 //
 //  { "And": [ ... ], "DimensionValues": { "Dimension": "UsageType", "Values":
 //    [ "DataTransfer" ] } }
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/Expression
 type Expression struct {
 	_ struct{} `type:"structure"`
 
@@ -558,7 +554,6 @@ func (s *Expression) SetTags(v *TagValues) *Expression {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetCostAndUsageRequest
 type GetCostAndUsageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -667,7 +662,6 @@ func (s *GetCostAndUsageInput) SetTimePeriod(v *DateInterval) *GetCostAndUsageIn
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetCostAndUsageResponse
 type GetCostAndUsageOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -711,7 +705,6 @@ func (s *GetCostAndUsageOutput) SetResultsByTime(v []*ResultByTime) *GetCostAndU
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetDimensionValuesRequest
 type GetDimensionValuesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -855,7 +848,6 @@ func (s *GetDimensionValuesInput) SetTimePeriod(v *DateInterval) *GetDimensionVa
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetDimensionValuesResponse
 type GetDimensionValuesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -964,7 +956,6 @@ func (s *GetDimensionValuesOutput) SetTotalSize(v int64) *GetDimensionValuesOutp
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetReservationUtilizationRequest
 type GetReservationUtilizationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1056,7 +1047,6 @@ func (s *GetReservationUtilizationInput) SetTimePeriod(v *DateInterval) *GetRese
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetReservationUtilizationResponse
 type GetReservationUtilizationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1102,7 +1092,6 @@ func (s *GetReservationUtilizationOutput) SetUtilizationsByTime(v []*Utilization
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetTagsRequest
 type GetTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1178,7 +1167,6 @@ func (s *GetTagsInput) SetTimePeriod(v *DateInterval) *GetTagsInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetTagsResponse
 type GetTagsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1238,7 +1226,6 @@ func (s *GetTagsOutput) SetTotalSize(v int64) *GetTagsOutput {
 }
 
 // One level of grouped data within the results.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/Group
 type Group struct {
 	_ struct{} `type:"structure"`
 
@@ -1273,7 +1260,6 @@ func (s *Group) SetMetrics(v map[string]*MetricValue) *Group {
 
 // Represents a group when you specify a group by criteria, or in the response
 // to a query with a specific grouping.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GroupDefinition
 type GroupDefinition struct {
 	_ struct{} `type:"structure"`
 
@@ -1307,7 +1293,6 @@ func (s *GroupDefinition) SetType(v string) *GroupDefinition {
 }
 
 // The aggregated value for a metric.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/MetricValue
 type MetricValue struct {
 	_ struct{} `type:"structure"`
 
@@ -1341,7 +1326,6 @@ func (s *MetricValue) SetUnit(v string) *MetricValue {
 }
 
 // The aggregated numbers for your RI usage.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/ReservationAggregates
 type ReservationAggregates struct {
 	_ struct{} `type:"structure"`
 
@@ -1393,7 +1377,6 @@ func (s *ReservationAggregates) SetUtilizationPercentage(v string) *ReservationA
 }
 
 // A group of RIs that share a set of attributes.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/ReservationUtilizationGroup
 type ReservationUtilizationGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -1445,7 +1428,6 @@ func (s *ReservationUtilizationGroup) SetValue(v string) *ReservationUtilization
 }
 
 // The result that is associated with a time period.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/ResultByTime
 type ResultByTime struct {
 	_ struct{} `type:"structure"`
 
@@ -1497,7 +1479,6 @@ func (s *ResultByTime) SetTotal(v map[string]*MetricValue) *ResultByTime {
 }
 
 // The values that are available for a tag.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/TagValues
 type TagValues struct {
 	_ struct{} `type:"structure"`
 
@@ -1531,7 +1512,6 @@ func (s *TagValues) SetValues(v []*string) *TagValues {
 }
 
 // The amount of utilization, in hours.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/UtilizationByTime
 type UtilizationByTime struct {
 	_ struct{} `type:"structure"`
 
