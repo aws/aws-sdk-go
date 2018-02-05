@@ -2924,6 +2924,80 @@ func (c *OpsWorks) DescribeMyUserProfileWithContext(ctx aws.Context, input *Desc
 	return out, req.Send()
 }
 
+const opDescribeOperatingSystems = "DescribeOperatingSystems"
+
+// DescribeOperatingSystemsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeOperatingSystems operation. The "output" return
+// value will be populated with the request's response once the request complets
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeOperatingSystems for more information on using the DescribeOperatingSystems
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeOperatingSystemsRequest method.
+//    req, resp := client.DescribeOperatingSystemsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworks-2013-02-18/DescribeOperatingSystems
+func (c *OpsWorks) DescribeOperatingSystemsRequest(input *DescribeOperatingSystemsInput) (req *request.Request, output *DescribeOperatingSystemsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeOperatingSystems,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeOperatingSystemsInput{}
+	}
+
+	output = &DescribeOperatingSystemsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeOperatingSystems API operation for AWS OpsWorks.
+//
+// Describes the operating systems that are supported by AWS OpsWorks Stacks.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS OpsWorks's
+// API operation DescribeOperatingSystems for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworks-2013-02-18/DescribeOperatingSystems
+func (c *OpsWorks) DescribeOperatingSystems(input *DescribeOperatingSystemsInput) (*DescribeOperatingSystemsOutput, error) {
+	req, out := c.DescribeOperatingSystemsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeOperatingSystemsWithContext is the same as DescribeOperatingSystems with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeOperatingSystems for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpsWorks) DescribeOperatingSystemsWithContext(ctx aws.Context, input *DescribeOperatingSystemsInput, opts ...request.Option) (*DescribeOperatingSystemsOutput, error) {
+	req, out := c.DescribeOperatingSystemsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribePermissions = "DescribePermissions"
 
 // DescribePermissionsRequest generates a "aws/request.Request" representing the
@@ -7301,8 +7375,8 @@ type CloneStackInput struct {
 	// The stack's operating system, which must be set to one of the following.
 	//
 	//    * A supported Linux operating system: An Amazon Linux version, such as
-	//    Amazon Linux 2017.03, Amazon Linux 2016.09, Amazon Linux 2016.03, Amazon
-	//    Linux 2015.09, or Amazon Linux 2015.03.
+	//    Amazon Linux 2017.09, Amazon Linux 2017.03, Amazon Linux 2016.09, Amazon
+	//    Linux 2016.03, Amazon Linux 2015.09, or Amazon Linux 2015.03.
 	//
 	//    * A supported Ubuntu operating system, such as Ubuntu 16.04 LTS, Ubuntu
 	//    14.04 LTS, or Ubuntu 12.04 LTS.
@@ -8385,8 +8459,8 @@ type CreateInstanceInput struct {
 	// The instance's operating system, which must be set to one of the following.
 	//
 	//    * A supported Linux operating system: An Amazon Linux version, such as
-	//    Amazon Linux 2017.03, Amazon Linux 2016.09, Amazon Linux 2016.03, Amazon
-	//    Linux 2015.09, or Amazon Linux 2015.03.
+	//    Amazon Linux 2017.09, Amazon Linux 2017.03, Amazon Linux 2016.09, Amazon
+	//    Linux 2016.03, Amazon Linux 2015.09, or Amazon Linux 2015.03.
 	//
 	//    * A supported Ubuntu operating system, such as Ubuntu 16.04 LTS, Ubuntu
 	//    14.04 LTS, or Ubuntu 12.04 LTS.
@@ -8951,8 +9025,8 @@ type CreateStackInput struct {
 	// You can specify one of the following.
 	//
 	//    * A supported Linux operating system: An Amazon Linux version, such as
-	//    Amazon Linux 2017.03, Amazon Linux 2016.09, Amazon Linux 2016.03, Amazon
-	//    Linux 2015.09, or Amazon Linux 2015.03.
+	//    Amazon Linux 2017.09, Amazon Linux 2017.03, Amazon Linux 2016.09, Amazon
+	//    Linux 2016.03, Amazon Linux 2015.09, or Amazon Linux 2015.03.
 	//
 	//    * A supported Ubuntu operating system, such as Ubuntu 16.04 LTS, Ubuntu
 	//    14.04 LTS, or Ubuntu 12.04 LTS.
@@ -9382,7 +9456,7 @@ type DataSource struct {
 	DatabaseName *string `type:"string"`
 
 	// The data source's type, AutoSelectOpsworksMysqlInstance, OpsworksMysqlInstance,
-	// or RdsDbInstance.
+	// RdsDbInstance, or None.
 	Type *string `type:"string"`
 }
 
@@ -10410,17 +10484,17 @@ func (s *DescribeCommandsOutput) SetCommands(v []*Command) *DescribeCommandsOutp
 type DescribeDeploymentsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The app ID. If you include this parameter, DescribeDeployments returns a
-	// description of the commands associated with the specified app.
+	// The app ID. If you include this parameter, the command returns a description
+	// of the commands associated with the specified app.
 	AppId *string `type:"string"`
 
 	// An array of deployment IDs to be described. If you include this parameter,
-	// DescribeDeployments returns a description of the specified deployments. Otherwise,
+	// the command returns a description of the specified deployments. Otherwise,
 	// it returns a description of every deployment.
 	DeploymentIds []*string `type:"list"`
 
-	// The stack ID. If you include this parameter, DescribeDeployments returns
-	// a description of the commands associated with the specified stack.
+	// The stack ID. If you include this parameter, the command returns a description
+	// of the commands associated with the specified stack.
 	StackId *string `type:"string"`
 }
 
@@ -10938,6 +11012,45 @@ func (s DescribeMyUserProfileOutput) GoString() string {
 // SetUserProfile sets the UserProfile field's value.
 func (s *DescribeMyUserProfileOutput) SetUserProfile(v *SelfUserProfile) *DescribeMyUserProfileOutput {
 	s.UserProfile = v
+	return s
+}
+
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworks-2013-02-18/DescribeOperatingSystemsInput
+type DescribeOperatingSystemsInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeOperatingSystemsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeOperatingSystemsInput) GoString() string {
+	return s.String()
+}
+
+// The response to a DescribeOperatingSystems request.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworks-2013-02-18/DescribeOperatingSystemsResponse
+type DescribeOperatingSystemsOutput struct {
+	_ struct{} `type:"structure"`
+
+	OperatingSystems []*OperatingSystem `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeOperatingSystemsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeOperatingSystemsOutput) GoString() string {
+	return s.String()
+}
+
+// SetOperatingSystems sets the OperatingSystems field's value.
+func (s *DescribeOperatingSystemsOutput) SetOperatingSystems(v []*OperatingSystem) *DescribeOperatingSystemsOutput {
+	s.OperatingSystems = v
 	return s
 }
 
@@ -11750,7 +11863,13 @@ type EbsBlockDevice struct {
 	VolumeSize *int64 `type:"integer"`
 
 	// The volume type. gp2 for General Purpose (SSD) volumes, io1 for Provisioned
-	// IOPS (SSD) volumes, and standard for Magnetic volumes.
+	// IOPS (SSD) volumes, st1 for Throughput Optimized hard disk drives (HDD),
+	// sc1 for Cold HDD,and standard for Magnetic volumes.
+	//
+	// If you specify the io1 volume type, you must also specify a value for the
+	// Iops attribute. The maximum ratio of provisioned IOPS to requested volume
+	// size (in GiB) is 50:1. AWS uses the default volume size (in GiB) specified
+	// in the AMI attributes to set IOPS to 50 x (volume size).
 	VolumeType *string `type:"string" enum:"VolumeType"`
 }
 
@@ -12738,6 +12857,8 @@ type InstancesCount struct {
 	// The number of instances with start_failed status.
 	StartFailed *int64 `type:"integer"`
 
+	StopFailed *int64 `type:"integer"`
+
 	// The number of instances with stopped status.
 	Stopped *int64 `type:"integer"`
 
@@ -12845,6 +12966,12 @@ func (s *InstancesCount) SetShuttingDown(v int64) *InstancesCount {
 // SetStartFailed sets the StartFailed field's value.
 func (s *InstancesCount) SetStartFailed(v int64) *InstancesCount {
 	s.StartFailed = &v
+	return s
+}
+
+// SetStopFailed sets the StopFailed field's value.
+func (s *InstancesCount) SetStopFailed(v int64) *InstancesCount {
+	s.StopFailed = &v
 	return s
 }
 
@@ -13302,6 +13429,124 @@ func (s *LoadBasedAutoScalingConfiguration) SetLayerId(v string) *LoadBasedAutoS
 // SetUpScaling sets the UpScaling field's value.
 func (s *LoadBasedAutoScalingConfiguration) SetUpScaling(v *AutoScalingThresholds) *LoadBasedAutoScalingConfiguration {
 	s.UpScaling = v
+	return s
+}
+
+// Describes supported operating systems in AWS OpsWorks Stacks.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworks-2013-02-18/OperatingSystem
+type OperatingSystem struct {
+	_ struct{} `type:"structure"`
+
+	// Supported configuration manager name and versions for an AWS OpsWorks Stacks
+	// operating system.
+	ConfigurationManagers []*OperatingSystemConfigurationManager `type:"list"`
+
+	// The ID of a supported operating system, such as Amazon Linux 2017.09.
+	Id *string `type:"string"`
+
+	// The name of the operating system, such as Amazon Linux 2017.09.
+	Name *string `type:"string"`
+
+	// A short name for the operating system manufacturer.
+	ReportedName *string `type:"string"`
+
+	// The version of the operating system, including the release and edition, if
+	// applicable.
+	ReportedVersion *string `type:"string"`
+
+	// Indicates that an operating system is not supported for new instances.
+	Supported *bool `type:"boolean"`
+
+	// The type of a supported operating system, either Linux or Windows.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s OperatingSystem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OperatingSystem) GoString() string {
+	return s.String()
+}
+
+// SetConfigurationManagers sets the ConfigurationManagers field's value.
+func (s *OperatingSystem) SetConfigurationManagers(v []*OperatingSystemConfigurationManager) *OperatingSystem {
+	s.ConfigurationManagers = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *OperatingSystem) SetId(v string) *OperatingSystem {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *OperatingSystem) SetName(v string) *OperatingSystem {
+	s.Name = &v
+	return s
+}
+
+// SetReportedName sets the ReportedName field's value.
+func (s *OperatingSystem) SetReportedName(v string) *OperatingSystem {
+	s.ReportedName = &v
+	return s
+}
+
+// SetReportedVersion sets the ReportedVersion field's value.
+func (s *OperatingSystem) SetReportedVersion(v string) *OperatingSystem {
+	s.ReportedVersion = &v
+	return s
+}
+
+// SetSupported sets the Supported field's value.
+func (s *OperatingSystem) SetSupported(v bool) *OperatingSystem {
+	s.Supported = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *OperatingSystem) SetType(v string) *OperatingSystem {
+	s.Type = &v
+	return s
+}
+
+// A block that contains information about the configuration manager (Chef)
+// and the versions of the configuration manager that are supported for an operating
+// system.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworks-2013-02-18/OperatingSystemConfigurationManager
+type OperatingSystemConfigurationManager struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the configuration manager, which is Chef.
+	Name *string `type:"string"`
+
+	// The versions of the configuration manager that are supported by an operating
+	// system.
+	Version *string `type:"string"`
+}
+
+// String returns the string representation
+func (s OperatingSystemConfigurationManager) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OperatingSystemConfigurationManager) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *OperatingSystemConfigurationManager) SetName(v string) *OperatingSystemConfigurationManager {
+	s.Name = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *OperatingSystemConfigurationManager) SetVersion(v string) *OperatingSystemConfigurationManager {
+	s.Version = &v
 	return s
 }
 
@@ -15263,6 +15508,8 @@ func (s StartStackOutput) GoString() string {
 type StopInstanceInput struct {
 	_ struct{} `type:"structure"`
 
+	Force *bool `type:"boolean"`
+
 	// The instance ID.
 	//
 	// InstanceId is a required field
@@ -15290,6 +15537,12 @@ func (s *StopInstanceInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetForce sets the Force field's value.
+func (s *StopInstanceInput) SetForce(v bool) *StopInstanceInput {
+	s.Force = &v
+	return s
 }
 
 // SetInstanceId sets the InstanceId field's value.
@@ -16024,8 +16277,8 @@ type UpdateInstanceInput struct {
 	// You cannot update an instance that is using a custom AMI.
 	//
 	//    * A supported Linux operating system: An Amazon Linux version, such as
-	//    Amazon Linux 2017.03, Amazon Linux 2016.09, Amazon Linux 2016.03, Amazon
-	//    Linux 2015.09, or Amazon Linux 2015.03.
+	//    Amazon Linux 2017.09, Amazon Linux 2017.03, Amazon Linux 2016.09, Amazon
+	//    Linux 2016.03, Amazon Linux 2015.09, or Amazon Linux 2015.03.
 	//
 	//    * A supported Ubuntu operating system, such as Ubuntu 16.04 LTS, Ubuntu
 	//    14.04 LTS, or Ubuntu 12.04 LTS.
@@ -16574,8 +16827,8 @@ type UpdateStackInput struct {
 	// The stack's operating system, which must be set to one of the following:
 	//
 	//    * A supported Linux operating system: An Amazon Linux version, such as
-	//    Amazon Linux 2017.03, Amazon Linux 2016.09, Amazon Linux 2016.03, Amazon
-	//    Linux 2015.09, or Amazon Linux 2015.03.
+	//    Amazon Linux 2017.09, Amazon Linux 2017.03, Amazon Linux 2016.09, Amazon
+	//    Linux 2016.03, Amazon Linux 2015.09, or Amazon Linux 2015.03.
 	//
 	//    * A supported Ubuntu operating system, such as Ubuntu 16.04 LTS, Ubuntu
 	//    14.04 LTS, or Ubuntu 12.04 LTS.
@@ -17069,6 +17322,8 @@ type Volume struct {
 	// The Amazon EC2 volume ID.
 	Ec2VolumeId *string `type:"string"`
 
+	Encrypted *bool `type:"boolean"`
+
 	// The instance ID.
 	InstanceId *string `type:"string"`
 
@@ -17126,6 +17381,12 @@ func (s *Volume) SetDevice(v string) *Volume {
 // SetEc2VolumeId sets the Ec2VolumeId field's value.
 func (s *Volume) SetEc2VolumeId(v string) *Volume {
 	s.Ec2VolumeId = &v
+	return s
+}
+
+// SetEncrypted sets the Encrypted field's value.
+func (s *Volume) SetEncrypted(v bool) *Volume {
+	s.Encrypted = &v
 	return s
 }
 
@@ -17194,6 +17455,10 @@ func (s *Volume) SetVolumeType(v string) *Volume {
 type VolumeConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies whether an Amazon EBS volume is encrypted. For more information,
+	// see Amazon EBS Encryption (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html).
+	Encrypted *bool `type:"boolean"`
+
 	// For PIOPS volumes, the IOPS per disk.
 	Iops *int64 `type:"integer"`
 
@@ -17215,13 +17480,17 @@ type VolumeConfiguration struct {
 	// Size is a required field
 	Size *int64 `type:"integer" required:"true"`
 
-	// The volume type:
+	// The volume type. For more information, see  Amazon EBS Volume Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html).
 	//
 	//    * standard - Magnetic
 	//
 	//    * io1 - Provisioned IOPS (SSD)
 	//
 	//    * gp2 - General Purpose (SSD)
+	//
+	//    * st1 - Throughput Optimized hard disk drive (HDD)
+	//
+	//    * sc1 - Cold HDD
 	VolumeType *string `type:"string"`
 }
 
@@ -17252,6 +17521,12 @@ func (s *VolumeConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEncrypted sets the Encrypted field's value.
+func (s *VolumeConfiguration) SetEncrypted(v bool) *VolumeConfiguration {
+	s.Encrypted = &v
+	return s
 }
 
 // SetIops sets the Iops field's value.

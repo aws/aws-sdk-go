@@ -1,10 +1,10 @@
 {
   "version": "2.0",
-  "service": "<fullname>AWS Cloud9</fullname> <p>AWS Cloud9 is a collection of tools that you can use to code, build, run, test, debug, and release software in the cloud.</p> <p>In the background, these tools are available through development environments running on Amazon Elastic Compute Cloud (Amazon EC2) instances (known as <i>Amazon EC2 environments</i>), your own servers (known as <i>SSH environments</i>), or a combination. This enables you to create and switch between multiple environments, with each environment set up for a specific development project.</p> <p>For more information about AWS Cloud9, see the <i>AWS Cloud9 User Guide</i>.</p> <p>AWS Cloud9 supports these operations:</p> <ul> <li> <p> <code>CreateEnvironmentEC2</code>: Creates an AWS Cloud9 development environment, launches an Amazon EC2 instance, and then hosts the environment on the instance.</p> </li> <li> <p> <code>CreateEnvironmentMembership</code>: Adds an environment member to an environment.</p> </li> <li> <p> <code>DeleteEnvironment</code>: Deletes an environment. If the environment is hosted on an Amazon EC2 instance, also terminates the instance.</p> </li> <li> <p> <code>DeleteEnvironmentMembership</code>: Deletes an environment member from an environment.</p> </li> <li> <p> <code>DescribeEnvironmentMemberships</code>: Gets information about environment members for an environment.</p> </li> <li> <p> <code>DescribeEnvironments</code>: Gets information about environments.</p> </li> <li> <p> <code>DescribeEnvironmentStatus</code>: Gets status information for an environment.</p> </li> <li> <p> <code>ListEnvironments</code>: Gets a list of environment identifiers.</p> </li> <li> <p> <code>UpdateEnvironment</code>: Changes the settings of an existing environment.</p> </li> <li> <p> <code>UpdateEnvironmentMembership</code>: Changes the settings of an existing environment member for an environment.</p> </li> </ul>",
+  "service": "<fullname>AWS Cloud9</fullname> <p>AWS Cloud9 is a collection of tools that you can use to code, build, run, test, debug, and release software in the cloud.</p> <p>For more information about AWS Cloud9, see the <a href=\"https://docs.aws.amazon.com/cloud9/latest/user-guide\">AWS Cloud9 User Guide</a>.</p> <p>AWS Cloud9 supports these operations:</p> <ul> <li> <p> <code>CreateEnvironmentEC2</code>: Creates an AWS Cloud9 development environment, launches an Amazon EC2 instance, and then connects from the instance to the environment.</p> </li> <li> <p> <code>CreateEnvironmentMembership</code>: Adds an environment member to an environment.</p> </li> <li> <p> <code>DeleteEnvironment</code>: Deletes an environment. If an Amazon EC2 instance is connected to the environment, also terminates the instance.</p> </li> <li> <p> <code>DeleteEnvironmentMembership</code>: Deletes an environment member from an environment.</p> </li> <li> <p> <code>DescribeEnvironmentMemberships</code>: Gets information about environment members for an environment.</p> </li> <li> <p> <code>DescribeEnvironments</code>: Gets information about environments.</p> </li> <li> <p> <code>DescribeEnvironmentStatus</code>: Gets status information for an environment.</p> </li> <li> <p> <code>ListEnvironments</code>: Gets a list of environment identifiers.</p> </li> <li> <p> <code>UpdateEnvironment</code>: Changes the settings of an existing environment.</p> </li> <li> <p> <code>UpdateEnvironmentMembership</code>: Changes the settings of an existing environment member for an environment.</p> </li> </ul>",
   "operations": {
-    "CreateEnvironmentEC2": "<p>Creates an AWS Cloud9 development environment, launches an Amazon Elastic Compute Cloud (Amazon EC2) instance, and then hosts the environment on the instance.</p>",
+    "CreateEnvironmentEC2": "<p>Creates an AWS Cloud9 development environment, launches an Amazon Elastic Compute Cloud (Amazon EC2) instance, and then connects from the instance to the environment.</p>",
     "CreateEnvironmentMembership": "<p>Adds an environment member to an AWS Cloud9 development environment.</p>",
-    "DeleteEnvironment": "<p>Deletes an AWS Cloud9 development environment. If the environment is hosted on an Amazon Elastic Compute Cloud (Amazon EC2) instance, also terminates the instance.</p>",
+    "DeleteEnvironment": "<p>Deletes an AWS Cloud9 development environment. If an Amazon EC2 instance is connected to the environment, also terminates the instance.</p>",
     "DeleteEnvironmentMembership": "<p>Deletes an environment member from an AWS Cloud9 development environment.</p>",
     "DescribeEnvironmentMemberships": "<p>Gets information about environment members for an AWS Cloud9 development environment.</p>",
     "DescribeEnvironmentStatus": "<p>Gets status information for an AWS Cloud9 development environment.</p>",
@@ -28,7 +28,7 @@
     "BoundedEnvironmentIdList": {
       "base": null,
       "refs": {
-        "DescribeEnvironmentsRequest$environmentIds": "<p>The IDs of invidividual environments to get information about.</p>"
+        "DescribeEnvironmentsRequest$environmentIds": "<p>The IDs of individual environments to get information about.</p>"
       }
     },
     "ClientRequestToken": {
@@ -174,7 +174,7 @@
       "refs": {
         "CreateEnvironmentEC2Request$name": "<p>The name of the environment to create.</p> <p>This name is visible to other AWS IAM users in the same AWS account.</p>",
         "Environment$name": "<p>The name of the environment.</p>",
-        "UpdateEnvironmentRequest$name": "<p>Any replacement name for the environment.</p>"
+        "UpdateEnvironmentRequest$name": "<p>A replacement name for the environment.</p>"
       }
     },
     "EnvironmentStatus": {
@@ -186,7 +186,7 @@
     "EnvironmentType": {
       "base": null,
       "refs": {
-        "Environment$type": "<p>The type of environment. Valid values include the following:</p> <ul> <li> <p> <code>ec2</code>: An environment hosted on an Amazon Elastic Compute Cloud (Amazon EC2) instance.</p> </li> <li> <p> <code>ssh</code>: An environment hosted on your own server.</p> </li> </ul>"
+        "Environment$type": "<p>The type of environment. Valid values include the following:</p> <ul> <li> <p> <code>ec2</code>: An Amazon Elastic Compute Cloud (Amazon EC2) instance connects to the environment.</p> </li> <li> <p> <code>ssh</code>: Your own server connects to the environment.</p> </li> </ul>"
       }
     },
     "ForbiddenException": {
@@ -197,7 +197,7 @@
     "InstanceType": {
       "base": null,
       "refs": {
-        "CreateEnvironmentEC2Request$instanceType": "<p>The type of instance to host the environment on (for example, <code>t2.micro</code>).</p>"
+        "CreateEnvironmentEC2Request$instanceType": "<p>The type of instance to connect to the environment (for example, <code>t2.micro</code>).</p>"
       }
     },
     "InternalServerErrorException": {
