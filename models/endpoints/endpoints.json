@@ -1503,7 +1503,9 @@
       "states" : {
         "endpoints" : {
           "ap-northeast-1" : { },
+          "ap-southeast-1" : { },
           "ap-southeast-2" : { },
+          "ca-central-1" : { },
           "eu-central-1" : { },
           "eu-west-1" : { },
           "eu-west-2" : { },
@@ -1676,6 +1678,8 @@
       "waf-regional" : {
         "endpoints" : {
           "ap-northeast-1" : { },
+          "ap-southeast-2" : { },
+          "eu-central-1" : { },
           "eu-west-1" : { },
           "us-east-1" : { },
           "us-west-1" : { },
@@ -1950,6 +1954,11 @@
         "endpoints" : {
           "cn-north-1" : { },
           "cn-northwest-1" : { }
+        }
+      },
+      "sms" : {
+        "endpoints" : {
+          "cn-north-1" : { }
         }
       },
       "snowball" : {

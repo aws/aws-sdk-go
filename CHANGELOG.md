@@ -1,3 +1,17 @@
+Release v1.12.71 (2018-02-05)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service documentation
+  * Documentation updates for acm
+* `service/cloud9`: Updates service documentation and examples
+  * API usage examples for AWS Cloud9.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/kinesis`: Updates service API and documentation
+  * Using ListShards a Kinesis Data Streams customer or client can get information about shards in a data stream (including meta-data for each shard) without obtaining data stream level information.
+* `service/opsworks`: Updates service API, documentation, and waiters
+  * AWS OpsWorks Stacks supports EBS encryption and HDD volume types. Also, a new DescribeOperatingSystems API is available, which lists all operating systems supported by OpsWorks Stacks.
+
 Release v1.12.70 (2018-01-26)
 ===
 
