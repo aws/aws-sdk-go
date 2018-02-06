@@ -5070,7 +5070,6 @@ func (c *ServiceCatalog) UpdateTagOptionWithContext(ctx aws.Context, input *Upda
 	return out, req.Send()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AcceptPortfolioShareInput
 type AcceptPortfolioShareInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5127,7 +5126,6 @@ func (s *AcceptPortfolioShareInput) SetPortfolioId(v string) *AcceptPortfolioSha
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AcceptPortfolioShareOutput
 type AcceptPortfolioShareOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5143,7 +5141,6 @@ func (s AcceptPortfolioShareOutput) GoString() string {
 }
 
 // The access level to use to filter results.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AccessLevelFilter
 type AccessLevelFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -5182,7 +5179,6 @@ func (s *AccessLevelFilter) SetValue(v string) *AccessLevelFilter {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociatePrincipalWithPortfolioInput
 type AssociatePrincipalWithPortfolioInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5270,7 +5266,6 @@ func (s *AssociatePrincipalWithPortfolioInput) SetPrincipalType(v string) *Assoc
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociatePrincipalWithPortfolioOutput
 type AssociatePrincipalWithPortfolioOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5285,7 +5280,6 @@ func (s AssociatePrincipalWithPortfolioOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociateProductWithPortfolioInput
 type AssociateProductWithPortfolioInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5371,7 +5365,6 @@ func (s *AssociateProductWithPortfolioInput) SetSourcePortfolioId(v string) *Ass
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociateProductWithPortfolioOutput
 type AssociateProductWithPortfolioOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5386,7 +5379,6 @@ func (s AssociateProductWithPortfolioOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociateTagOptionWithResourceInput
 type AssociateTagOptionWithResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5442,7 +5434,6 @@ func (s *AssociateTagOptionWithResourceInput) SetTagOptionId(v string) *Associat
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociateTagOptionWithResourceOutput
 type AssociateTagOptionWithResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5458,7 +5449,6 @@ func (s AssociateTagOptionWithResourceOutput) GoString() string {
 }
 
 // Information about a constraint.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ConstraintDetail
 type ConstraintDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -5516,7 +5506,6 @@ func (s *ConstraintDetail) SetType(v string) *ConstraintDetail {
 }
 
 // Summary information about a constraint.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ConstraintSummary
 type ConstraintSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -5555,7 +5544,6 @@ func (s *ConstraintSummary) SetType(v string) *ConstraintSummary {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CopyProductInput
 type CopyProductInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5672,7 +5660,6 @@ func (s *CopyProductInput) SetTargetProductName(v string) *CopyProductInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CopyProductOutput
 type CopyProductOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5696,7 +5683,6 @@ func (s *CopyProductOutput) SetCopyProductToken(v string) *CopyProductOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateConstraintInput
 type CreateConstraintInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5847,7 +5833,6 @@ func (s *CreateConstraintInput) SetType(v string) *CreateConstraintInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateConstraintOutput
 type CreateConstraintOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5889,7 +5874,6 @@ func (s *CreateConstraintOutput) SetStatus(v string) *CreateConstraintOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreatePortfolioInput
 type CreatePortfolioInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6010,7 +5994,6 @@ func (s *CreatePortfolioInput) SetTags(v []*Tag) *CreatePortfolioInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreatePortfolioOutput
 type CreatePortfolioOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6043,7 +6026,6 @@ func (s *CreatePortfolioOutput) SetTags(v []*Tag) *CreatePortfolioOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreatePortfolioShareInput
 type CreatePortfolioShareInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6114,7 +6096,6 @@ func (s *CreatePortfolioShareInput) SetPortfolioId(v string) *CreatePortfolioSha
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreatePortfolioShareOutput
 type CreatePortfolioShareOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6129,7 +6110,6 @@ func (s CreatePortfolioShareOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateProductInput
 type CreateProductInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6313,7 +6293,6 @@ func (s *CreateProductInput) SetTags(v []*Tag) *CreateProductInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateProductOutput
 type CreateProductOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6355,7 +6334,6 @@ func (s *CreateProductOutput) SetTags(v []*Tag) *CreateProductOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateProvisioningArtifactInput
 type CreateProvisioningArtifactInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6450,7 +6428,6 @@ func (s *CreateProvisioningArtifactInput) SetProductId(v string) *CreateProvisio
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateProvisioningArtifactOutput
 type CreateProvisioningArtifactOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6492,7 +6469,6 @@ func (s *CreateProvisioningArtifactOutput) SetStatus(v string) *CreateProvisioni
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateTagOptionInput
 type CreateTagOptionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6551,7 +6527,6 @@ func (s *CreateTagOptionInput) SetValue(v string) *CreateTagOptionInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateTagOptionOutput
 type CreateTagOptionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6575,7 +6550,6 @@ func (s *CreateTagOptionOutput) SetTagOptionDetail(v *TagOptionDetail) *CreateTa
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteConstraintInput
 type DeleteConstraintInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6632,7 +6606,6 @@ func (s *DeleteConstraintInput) SetId(v string) *DeleteConstraintInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteConstraintOutput
 type DeleteConstraintOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6647,7 +6620,6 @@ func (s DeleteConstraintOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeletePortfolioInput
 type DeletePortfolioInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6704,7 +6676,6 @@ func (s *DeletePortfolioInput) SetId(v string) *DeletePortfolioInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeletePortfolioOutput
 type DeletePortfolioOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6719,7 +6690,6 @@ func (s DeletePortfolioOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeletePortfolioShareInput
 type DeletePortfolioShareInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6790,7 +6760,6 @@ func (s *DeletePortfolioShareInput) SetPortfolioId(v string) *DeletePortfolioSha
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeletePortfolioShareOutput
 type DeletePortfolioShareOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6805,7 +6774,6 @@ func (s DeletePortfolioShareOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteProductInput
 type DeleteProductInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6862,7 +6830,6 @@ func (s *DeleteProductInput) SetId(v string) *DeleteProductInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteProductOutput
 type DeleteProductOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6877,7 +6844,6 @@ func (s DeleteProductOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteProvisioningArtifactInput
 type DeleteProvisioningArtifactInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6951,7 +6917,6 @@ func (s *DeleteProvisioningArtifactInput) SetProvisioningArtifactId(v string) *D
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteProvisioningArtifactOutput
 type DeleteProvisioningArtifactOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6966,7 +6931,6 @@ func (s DeleteProvisioningArtifactOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeConstraintInput
 type DescribeConstraintInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7023,7 +6987,6 @@ func (s *DescribeConstraintInput) SetId(v string) *DescribeConstraintInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeConstraintOutput
 type DescribeConstraintOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7065,7 +7028,6 @@ func (s *DescribeConstraintOutput) SetStatus(v string) *DescribeConstraintOutput
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeCopyProductStatusInput
 type DescribeCopyProductStatusInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7122,7 +7084,6 @@ func (s *DescribeCopyProductStatusInput) SetCopyProductToken(v string) *Describe
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeCopyProductStatusOutput
 type DescribeCopyProductStatusOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7164,7 +7125,6 @@ func (s *DescribeCopyProductStatusOutput) SetTargetProductId(v string) *Describe
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribePortfolioInput
 type DescribePortfolioInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7221,7 +7181,6 @@ func (s *DescribePortfolioInput) SetId(v string) *DescribePortfolioInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribePortfolioOutput
 type DescribePortfolioOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7263,7 +7222,6 @@ func (s *DescribePortfolioOutput) SetTags(v []*Tag) *DescribePortfolioOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProductAsAdminInput
 type DescribeProductAsAdminInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7320,7 +7278,6 @@ func (s *DescribeProductAsAdminInput) SetId(v string) *DescribeProductAsAdminInp
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProductAsAdminOutput
 type DescribeProductAsAdminOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7372,7 +7329,6 @@ func (s *DescribeProductAsAdminOutput) SetTags(v []*Tag) *DescribeProductAsAdmin
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProductInput
 type DescribeProductInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7429,7 +7385,6 @@ func (s *DescribeProductInput) SetId(v string) *DescribeProductInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProductOutput
 type DescribeProductOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7462,7 +7417,6 @@ func (s *DescribeProductOutput) SetProvisioningArtifacts(v []*ProvisioningArtifa
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProductViewInput
 type DescribeProductViewInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7519,7 +7473,6 @@ func (s *DescribeProductViewInput) SetId(v string) *DescribeProductViewInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProductViewOutput
 type DescribeProductViewOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7552,7 +7505,6 @@ func (s *DescribeProductViewOutput) SetProvisioningArtifacts(v []*ProvisioningAr
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisionedProductInput
 type DescribeProvisionedProductInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7609,7 +7561,6 @@ func (s *DescribeProvisionedProductInput) SetId(v string) *DescribeProvisionedPr
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisionedProductOutput
 type DescribeProvisionedProductOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7633,7 +7584,6 @@ func (s *DescribeProvisionedProductOutput) SetProvisionedProductDetail(v *Provis
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisioningArtifactInput
 type DescribeProvisioningArtifactInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7716,7 +7666,6 @@ func (s *DescribeProvisioningArtifactInput) SetVerbose(v bool) *DescribeProvisio
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisioningArtifactOutput
 type DescribeProvisioningArtifactOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7758,7 +7707,6 @@ func (s *DescribeProvisioningArtifactOutput) SetStatus(v string) *DescribeProvis
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisioningParametersInput
 type DescribeProvisioningParametersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7846,7 +7794,6 @@ func (s *DescribeProvisioningParametersInput) SetProvisioningArtifactId(v string
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisioningParametersOutput
 type DescribeProvisioningParametersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7898,7 +7845,6 @@ func (s *DescribeProvisioningParametersOutput) SetUsageInstructions(v []*UsageIn
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeRecordInput
 type DescribeRecordInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7975,7 +7921,6 @@ func (s *DescribeRecordInput) SetPageToken(v string) *DescribeRecordInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeRecordOutput
 type DescribeRecordOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8020,7 +7965,6 @@ func (s *DescribeRecordOutput) SetRecordOutputs(v []*RecordOutput) *DescribeReco
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeTagOptionInput
 type DescribeTagOptionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8062,7 +8006,6 @@ func (s *DescribeTagOptionInput) SetId(v string) *DescribeTagOptionInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeTagOptionOutput
 type DescribeTagOptionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8086,7 +8029,6 @@ func (s *DescribeTagOptionOutput) SetTagOptionDetail(v *TagOptionDetail) *Descri
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociatePrincipalFromPortfolioInput
 type DisassociatePrincipalFromPortfolioInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8160,7 +8102,6 @@ func (s *DisassociatePrincipalFromPortfolioInput) SetPrincipalARN(v string) *Dis
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociatePrincipalFromPortfolioOutput
 type DisassociatePrincipalFromPortfolioOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8175,7 +8116,6 @@ func (s DisassociatePrincipalFromPortfolioOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociateProductFromPortfolioInput
 type DisassociateProductFromPortfolioInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8249,7 +8189,6 @@ func (s *DisassociateProductFromPortfolioInput) SetProductId(v string) *Disassoc
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociateProductFromPortfolioOutput
 type DisassociateProductFromPortfolioOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8264,7 +8203,6 @@ func (s DisassociateProductFromPortfolioOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociateTagOptionFromResourceInput
 type DisassociateTagOptionFromResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8320,7 +8258,6 @@ func (s *DisassociateTagOptionFromResourceInput) SetTagOptionId(v string) *Disas
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociateTagOptionFromResourceOutput
 type DisassociateTagOptionFromResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8336,7 +8273,6 @@ func (s DisassociateTagOptionFromResourceOutput) GoString() string {
 }
 
 // Summary information about a product path for a user.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/LaunchPathSummary
 type LaunchPathSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -8387,7 +8323,6 @@ func (s *LaunchPathSummary) SetTags(v []*Tag) *LaunchPathSummary {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListAcceptedPortfolioSharesInput
 type ListAcceptedPortfolioSharesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8436,7 +8371,6 @@ func (s *ListAcceptedPortfolioSharesInput) SetPageToken(v string) *ListAcceptedP
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListAcceptedPortfolioSharesOutput
 type ListAcceptedPortfolioSharesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8470,7 +8404,6 @@ func (s *ListAcceptedPortfolioSharesOutput) SetPortfolioDetails(v []*PortfolioDe
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListConstraintsForPortfolioInput
 type ListConstraintsForPortfolioInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8558,7 +8491,6 @@ func (s *ListConstraintsForPortfolioInput) SetProductId(v string) *ListConstrain
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListConstraintsForPortfolioOutput
 type ListConstraintsForPortfolioOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8592,7 +8524,6 @@ func (s *ListConstraintsForPortfolioOutput) SetNextPageToken(v string) *ListCons
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListLaunchPathsInput
 type ListLaunchPathsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8668,7 +8599,6 @@ func (s *ListLaunchPathsInput) SetProductId(v string) *ListLaunchPathsInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListLaunchPathsOutput
 type ListLaunchPathsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8702,7 +8632,6 @@ func (s *ListLaunchPathsOutput) SetNextPageToken(v string) *ListLaunchPathsOutpu
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPortfolioAccessInput
 type ListPortfolioAccessInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8759,7 +8688,6 @@ func (s *ListPortfolioAccessInput) SetPortfolioId(v string) *ListPortfolioAccess
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPortfolioAccessOutput
 type ListPortfolioAccessOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8793,7 +8721,6 @@ func (s *ListPortfolioAccessOutput) SetNextPageToken(v string) *ListPortfolioAcc
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPortfoliosForProductInput
 type ListPortfoliosForProductInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8869,7 +8796,6 @@ func (s *ListPortfoliosForProductInput) SetProductId(v string) *ListPortfoliosFo
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPortfoliosForProductOutput
 type ListPortfoliosForProductOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8903,7 +8829,6 @@ func (s *ListPortfoliosForProductOutput) SetPortfolioDetails(v []*PortfolioDetai
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPortfoliosInput
 type ListPortfoliosInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8952,7 +8877,6 @@ func (s *ListPortfoliosInput) SetPageToken(v string) *ListPortfoliosInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPortfoliosOutput
 type ListPortfoliosOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8986,7 +8910,6 @@ func (s *ListPortfoliosOutput) SetPortfolioDetails(v []*PortfolioDetail) *ListPo
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPrincipalsForPortfolioInput
 type ListPrincipalsForPortfolioInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9062,7 +8985,6 @@ func (s *ListPrincipalsForPortfolioInput) SetPortfolioId(v string) *ListPrincipa
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPrincipalsForPortfolioOutput
 type ListPrincipalsForPortfolioOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9096,7 +9018,6 @@ func (s *ListPrincipalsForPortfolioOutput) SetPrincipals(v []*Principal) *ListPr
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListProvisioningArtifactsInput
 type ListProvisioningArtifactsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9153,7 +9074,6 @@ func (s *ListProvisioningArtifactsInput) SetProductId(v string) *ListProvisionin
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListProvisioningArtifactsOutput
 type ListProvisioningArtifactsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9187,7 +9107,6 @@ func (s *ListProvisioningArtifactsOutput) SetProvisioningArtifactDetails(v []*Pr
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListRecordHistoryInput
 type ListRecordHistoryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9254,7 +9173,6 @@ func (s *ListRecordHistoryInput) SetSearchFilter(v *ListRecordHistorySearchFilte
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListRecordHistoryOutput
 type ListRecordHistoryOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9289,7 +9207,6 @@ func (s *ListRecordHistoryOutput) SetRecordDetails(v []*RecordDetail) *ListRecor
 }
 
 // The search filter to use when listing history records.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListRecordHistorySearchFilter
 type ListRecordHistorySearchFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -9327,7 +9244,6 @@ func (s *ListRecordHistorySearchFilter) SetValue(v string) *ListRecordHistorySea
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListResourcesForTagOptionInput
 type ListResourcesForTagOptionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9401,7 +9317,6 @@ func (s *ListResourcesForTagOptionInput) SetTagOptionId(v string) *ListResources
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListResourcesForTagOptionOutput
 type ListResourcesForTagOptionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9436,7 +9351,6 @@ func (s *ListResourcesForTagOptionOutput) SetResourceDetails(v []*ResourceDetail
 }
 
 // Filters to use when listing TagOptions.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListTagOptionsFilters
 type ListTagOptionsFilters struct {
 	_ struct{} `type:"structure"`
 
@@ -9494,7 +9408,6 @@ func (s *ListTagOptionsFilters) SetValue(v string) *ListTagOptionsFilters {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListTagOptionsInput
 type ListTagOptionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9553,7 +9466,6 @@ func (s *ListTagOptionsInput) SetPageToken(v string) *ListTagOptionsInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListTagOptionsOutput
 type ListTagOptionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9588,7 +9500,6 @@ func (s *ListTagOptionsOutput) SetTagOptionDetails(v []*TagOptionDetail) *ListTa
 }
 
 // The constraints that the administrator has put on the parameter.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ParameterConstraints
 type ParameterConstraints struct {
 	_ struct{} `type:"structure"`
 
@@ -9613,7 +9524,6 @@ func (s *ParameterConstraints) SetAllowedValues(v []*string) *ParameterConstrain
 }
 
 // Information about a portfolio.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/PortfolioDetail
 type PortfolioDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -9683,7 +9593,6 @@ func (s *PortfolioDetail) SetProviderName(v string) *PortfolioDetail {
 }
 
 // Information about a principal.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/Principal
 type Principal struct {
 	_ struct{} `type:"structure"`
 
@@ -9718,7 +9627,6 @@ func (s *Principal) SetPrincipalType(v string) *Principal {
 
 // A single product view aggregation value/count pair, containing metadata about
 // each product to which the calling user has access.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProductViewAggregationValue
 type ProductViewAggregationValue struct {
 	_ struct{} `type:"structure"`
 
@@ -9752,7 +9660,6 @@ func (s *ProductViewAggregationValue) SetValue(v string) *ProductViewAggregation
 }
 
 // Information about a product view.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProductViewDetail
 type ProductViewDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -9811,7 +9718,6 @@ func (s *ProductViewDetail) SetStatus(v string) *ProductViewDetail {
 }
 
 // Summary information about a product view.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProductViewSummary
 type ProductViewSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -9932,7 +9838,6 @@ func (s *ProductViewSummary) SetType(v string) *ProductViewSummary {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProvisionProductInput
 type ProvisionProductInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10104,7 +10009,6 @@ func (s *ProvisionProductInput) SetTags(v []*Tag) *ProvisionProductInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProvisionProductOutput
 type ProvisionProductOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10129,7 +10033,6 @@ func (s *ProvisionProductOutput) SetRecordDetail(v *RecordDetail) *ProvisionProd
 }
 
 // Information about a provisioned product.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProvisionedProductDetail
 type ProvisionedProductDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -10244,7 +10147,6 @@ func (s *ProvisionedProductDetail) SetType(v string) *ProvisionedProductDetail {
 
 // Information about a provisioning artifact. A provisioning artifact is also
 // known as a product version.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProvisioningArtifact
 type ProvisioningArtifact struct {
 	_ struct{} `type:"structure"`
 
@@ -10297,7 +10199,6 @@ func (s *ProvisioningArtifact) SetName(v string) *ProvisioningArtifact {
 
 // Information about a provisioning artifact (also known as a version) for a
 // product.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProvisioningArtifactDetail
 type ProvisioningArtifactDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -10373,7 +10274,6 @@ func (s *ProvisioningArtifactDetail) SetType(v string) *ProvisioningArtifactDeta
 }
 
 // Information about a parameter used to provision a product.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProvisioningArtifactParameter
 type ProvisioningArtifactParameter struct {
 	_ struct{} `type:"structure"`
 
@@ -10446,7 +10346,6 @@ func (s *ProvisioningArtifactParameter) SetParameterType(v string) *Provisioning
 
 // Information about a provisioning artifact (also known as a version) for a
 // product.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProvisioningArtifactProperties
 type ProvisioningArtifactProperties struct {
 	_ struct{} `type:"structure"`
 
@@ -10528,7 +10427,6 @@ func (s *ProvisioningArtifactProperties) SetType(v string) *ProvisioningArtifact
 
 // Summary information about a provisioning artifact (also known as a version)
 // for a product.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProvisioningArtifactSummary
 type ProvisioningArtifactSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -10590,7 +10488,6 @@ func (s *ProvisioningArtifactSummary) SetProvisioningArtifactMetadata(v map[stri
 }
 
 // Information about a parameter used to provision a product.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProvisioningParameter
 type ProvisioningParameter struct {
 	_ struct{} `type:"structure"`
 
@@ -10637,7 +10534,6 @@ func (s *ProvisioningParameter) SetValue(v string) *ProvisioningParameter {
 }
 
 // Information about a request operation.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/RecordDetail
 type RecordDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -10789,7 +10685,6 @@ func (s *RecordDetail) SetUpdatedTime(v time.Time) *RecordDetail {
 }
 
 // The error code and description resulting from an operation.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/RecordError
 type RecordError struct {
 	_ struct{} `type:"structure"`
 
@@ -10825,7 +10720,6 @@ func (s *RecordError) SetDescription(v string) *RecordError {
 // The output for the product created as the result of a request. For example,
 // the output for a CloudFormation-backed product that creates an S3 bucket
 // would include the S3 bucket URL.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/RecordOutput
 type RecordOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10868,7 +10762,6 @@ func (s *RecordOutput) SetOutputValue(v string) *RecordOutput {
 }
 
 // A tag associated with the record, stored as a key-value pair.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/RecordTag
 type RecordTag struct {
 	_ struct{} `type:"structure"`
 
@@ -10901,7 +10794,6 @@ func (s *RecordTag) SetValue(v string) *RecordTag {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/RejectPortfolioShareInput
 type RejectPortfolioShareInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10958,7 +10850,6 @@ func (s *RejectPortfolioShareInput) SetPortfolioId(v string) *RejectPortfolioSha
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/RejectPortfolioShareOutput
 type RejectPortfolioShareOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -10974,7 +10865,6 @@ func (s RejectPortfolioShareOutput) GoString() string {
 }
 
 // Information about a resource.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ResourceDetail
 type ResourceDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -11034,7 +10924,6 @@ func (s *ResourceDetail) SetName(v string) *ResourceDetail {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ScanProvisionedProductsInput
 type ScanProvisionedProductsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11092,7 +10981,6 @@ func (s *ScanProvisionedProductsInput) SetPageToken(v string) *ScanProvisionedPr
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ScanProvisionedProductsOutput
 type ScanProvisionedProductsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11126,7 +11014,6 @@ func (s *ScanProvisionedProductsOutput) SetProvisionedProducts(v []*ProvisionedP
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/SearchProductsAsAdminInput
 type SearchProductsAsAdminInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11234,7 +11121,6 @@ func (s *SearchProductsAsAdminInput) SetSortOrder(v string) *SearchProductsAsAdm
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/SearchProductsAsAdminOutput
 type SearchProductsAsAdminOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11268,7 +11154,6 @@ func (s *SearchProductsAsAdminOutput) SetProductViewDetails(v []*ProductViewDeta
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/SearchProductsInput
 type SearchProductsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11345,7 +11230,6 @@ func (s *SearchProductsInput) SetSortOrder(v string) *SearchProductsInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/SearchProductsOutput
 type SearchProductsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11390,7 +11274,6 @@ func (s *SearchProductsOutput) SetProductViewSummaries(v []*ProductViewSummary) 
 
 // Information about a tag. A tag is a key-value pair. Tags are entirely discretionary
 // and are propagated to the resources created when provisioning a product.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/Tag
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -11450,7 +11333,6 @@ func (s *Tag) SetValue(v string) *Tag {
 }
 
 // Information about a TagOption.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/TagOptionDetail
 type TagOptionDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -11502,7 +11384,6 @@ func (s *TagOptionDetail) SetValue(v string) *TagOptionDetail {
 }
 
 // Summary information about a TagOption.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/TagOptionSummary
 type TagOptionSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -11535,7 +11416,6 @@ func (s *TagOptionSummary) SetValues(v []*string) *TagOptionSummary {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/TerminateProvisionedProductInput
 type TerminateProvisionedProductInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11631,7 +11511,6 @@ func (s *TerminateProvisionedProductInput) SetTerminateToken(v string) *Terminat
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/TerminateProvisionedProductOutput
 type TerminateProvisionedProductOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11655,7 +11534,6 @@ func (s *TerminateProvisionedProductOutput) SetRecordDetail(v *RecordDetail) *Te
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateConstraintInput
 type UpdateConstraintInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11721,7 +11599,6 @@ func (s *UpdateConstraintInput) SetId(v string) *UpdateConstraintInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateConstraintOutput
 type UpdateConstraintOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11763,7 +11640,6 @@ func (s *UpdateConstraintOutput) SetStatus(v string) *UpdateConstraintOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdatePortfolioInput
 type UpdatePortfolioInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11881,7 +11757,6 @@ func (s *UpdatePortfolioInput) SetRemoveTags(v []*string) *UpdatePortfolioInput 
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdatePortfolioOutput
 type UpdatePortfolioOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11914,7 +11789,6 @@ func (s *UpdatePortfolioOutput) SetTags(v []*Tag) *UpdatePortfolioOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProductInput
 type UpdateProductInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12062,7 +11936,6 @@ func (s *UpdateProductInput) SetSupportUrl(v string) *UpdateProductInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProductOutput
 type UpdateProductOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12095,7 +11968,6 @@ func (s *UpdateProductOutput) SetTags(v []*Tag) *UpdateProductOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProvisionedProductInput
 type UpdateProvisionedProductInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12234,7 +12106,6 @@ func (s *UpdateProvisionedProductInput) SetUpdateToken(v string) *UpdateProvisio
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProvisionedProductOutput
 type UpdateProvisionedProductOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12258,7 +12129,6 @@ func (s *UpdateProvisionedProductOutput) SetRecordDetail(v *RecordDetail) *Updat
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProvisioningArtifactInput
 type UpdateProvisioningArtifactInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12359,7 +12229,6 @@ func (s *UpdateProvisioningArtifactInput) SetProvisioningArtifactId(v string) *U
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProvisioningArtifactOutput
 type UpdateProvisioningArtifactOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12402,7 +12271,6 @@ func (s *UpdateProvisioningArtifactOutput) SetStatus(v string) *UpdateProvisioni
 }
 
 // The parameter key-value pair used to update a provisioned product.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProvisioningParameter
 type UpdateProvisioningParameter struct {
 	_ struct{} `type:"structure"`
 
@@ -12457,7 +12325,6 @@ func (s *UpdateProvisioningParameter) SetValue(v string) *UpdateProvisioningPara
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateTagOptionInput
 type UpdateTagOptionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12520,7 +12387,6 @@ func (s *UpdateTagOptionInput) SetValue(v string) *UpdateTagOptionInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateTagOptionOutput
 type UpdateTagOptionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12545,7 +12411,6 @@ func (s *UpdateTagOptionOutput) SetTagOptionDetail(v *TagOptionDetail) *UpdateTa
 }
 
 // Additional information provided by the administrator.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UsageInstruction
 type UsageInstruction struct {
 	_ struct{} `type:"structure"`
 

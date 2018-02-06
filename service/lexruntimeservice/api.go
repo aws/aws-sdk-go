@@ -351,7 +351,6 @@ func (c *LexRuntimeService) PostTextWithContext(ctx aws.Context, input *PostText
 
 // Represents an option to be shown on the client platform (Facebook, Slack,
 // etc.)
-// See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex-2016-11-28/Button
 type Button struct {
 	_ struct{} `type:"structure"`
 
@@ -392,7 +391,6 @@ func (s *Button) SetValue(v string) *Button {
 
 // Represents an option rendered to the user when a prompt is shown. It could
 // be an image, a button, a link, or text.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex-2016-11-28/GenericAttachment
 type GenericAttachment struct {
 	_ struct{} `type:"structure"`
 
@@ -452,7 +450,6 @@ func (s *GenericAttachment) SetTitle(v string) *GenericAttachment {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex-2016-11-28/PostContentRequest
 type PostContentInput struct {
 	_ struct{} `type:"structure" payload:"InputStream"`
 
@@ -664,7 +661,6 @@ func (s *PostContentInput) SetUserId(v string) *PostContentInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex-2016-11-28/PostContentResponse
 type PostContentOutput struct {
 	_ struct{} `type:"structure" payload:"AudioStream"`
 
@@ -833,7 +829,6 @@ func (s *PostContentOutput) SetSlots(v aws.JSONValue) *PostContentOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex-2016-11-28/PostTextRequest
 type PostTextInput struct {
 	_ struct{} `type:"structure"`
 
@@ -967,7 +962,6 @@ func (s *PostTextInput) SetUserId(v string) *PostTextInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex-2016-11-28/PostTextResponse
 type PostTextOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1113,7 +1107,6 @@ func (s *PostTextOutput) SetSlots(v map[string]*string) *PostTextOutput {
 // the session attributes and slot values that are available, and then returns
 // it. The response card can also come from a Lambda function ( dialogCodeHook
 // and fulfillmentActivity on an intent).
-// See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex-2016-11-28/ResponseCard
 type ResponseCard struct {
 	_ struct{} `type:"structure"`
 

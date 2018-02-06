@@ -1097,7 +1097,6 @@ func (c *Cloud9) UpdateEnvironmentMembershipWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/CreateEnvironmentEC2Request
 type CreateEnvironmentEC2Input struct {
 	_ struct{} `type:"structure"`
 
@@ -1214,7 +1213,6 @@ func (s *CreateEnvironmentEC2Input) SetSubnetId(v string) *CreateEnvironmentEC2I
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/CreateEnvironmentEC2Result
 type CreateEnvironmentEC2Output struct {
 	_ struct{} `type:"structure"`
 
@@ -1238,7 +1236,6 @@ func (s *CreateEnvironmentEC2Output) SetEnvironmentId(v string) *CreateEnvironme
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/CreateEnvironmentMembershipRequest
 type CreateEnvironmentMembershipInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1311,7 +1308,6 @@ func (s *CreateEnvironmentMembershipInput) SetUserArn(v string) *CreateEnvironme
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/CreateEnvironmentMembershipResult
 type CreateEnvironmentMembershipOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1335,7 +1331,6 @@ func (s *CreateEnvironmentMembershipOutput) SetMembership(v *EnvironmentMember) 
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/DeleteEnvironmentRequest
 type DeleteEnvironmentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1374,7 +1369,6 @@ func (s *DeleteEnvironmentInput) SetEnvironmentId(v string) *DeleteEnvironmentIn
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/DeleteEnvironmentMembershipRequest
 type DeleteEnvironmentMembershipInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1428,7 +1422,6 @@ func (s *DeleteEnvironmentMembershipInput) SetUserArn(v string) *DeleteEnvironme
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/DeleteEnvironmentMembershipResult
 type DeleteEnvironmentMembershipOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1443,7 +1436,6 @@ func (s DeleteEnvironmentMembershipOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/DeleteEnvironmentResult
 type DeleteEnvironmentOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1458,7 +1450,6 @@ func (s DeleteEnvironmentOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/DescribeEnvironmentMembershipsRequest
 type DescribeEnvironmentMembershipsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1534,7 +1525,6 @@ func (s *DescribeEnvironmentMembershipsInput) SetUserArn(v string) *DescribeEnvi
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/DescribeEnvironmentMembershipsResult
 type DescribeEnvironmentMembershipsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1570,7 +1560,6 @@ func (s *DescribeEnvironmentMembershipsOutput) SetNextToken(v string) *DescribeE
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/DescribeEnvironmentStatusRequest
 type DescribeEnvironmentStatusInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1609,7 +1598,6 @@ func (s *DescribeEnvironmentStatusInput) SetEnvironmentId(v string) *DescribeEnv
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/DescribeEnvironmentStatusResult
 type DescribeEnvironmentStatusOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1656,7 +1644,6 @@ func (s *DescribeEnvironmentStatusOutput) SetStatus(v string) *DescribeEnvironme
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/DescribeEnvironmentsRequest
 type DescribeEnvironmentsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1698,7 +1685,6 @@ func (s *DescribeEnvironmentsInput) SetEnvironmentIds(v []*string) *DescribeEnvi
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/DescribeEnvironmentsResult
 type DescribeEnvironmentsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1723,7 +1709,6 @@ func (s *DescribeEnvironmentsOutput) SetEnvironments(v []*Environment) *Describe
 }
 
 // Information about an AWS Cloud9 development environment.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/Environment
 type Environment struct {
 	_ struct{} `type:"structure"`
 
@@ -1798,7 +1783,6 @@ func (s *Environment) SetType(v string) *Environment {
 }
 
 // Information about an environment member for an AWS Cloud9 development environment.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/EnvironmentMember
 type EnvironmentMember struct {
 	_ struct{} `type:"structure"`
 
@@ -1867,7 +1851,6 @@ func (s *EnvironmentMember) SetUserId(v string) *EnvironmentMember {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/ListEnvironmentsRequest
 type ListEnvironmentsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1905,7 +1888,6 @@ func (s *ListEnvironmentsInput) SetNextToken(v string) *ListEnvironmentsInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/ListEnvironmentsResult
 type ListEnvironmentsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1941,7 +1923,6 @@ func (s *ListEnvironmentsOutput) SetNextToken(v string) *ListEnvironmentsOutput 
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/UpdateEnvironmentRequest
 type UpdateEnvironmentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2001,7 +1982,6 @@ func (s *UpdateEnvironmentInput) SetName(v string) *UpdateEnvironmentInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/UpdateEnvironmentMembershipRequest
 type UpdateEnvironmentMembershipInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2075,7 +2055,6 @@ func (s *UpdateEnvironmentMembershipInput) SetUserArn(v string) *UpdateEnvironme
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/UpdateEnvironmentMembershipResult
 type UpdateEnvironmentMembershipOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2099,7 +2078,6 @@ func (s *UpdateEnvironmentMembershipOutput) SetMembership(v *EnvironmentMember) 
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/UpdateEnvironmentResult
 type UpdateEnvironmentOutput struct {
 	_ struct{} `type:"structure"`
 }

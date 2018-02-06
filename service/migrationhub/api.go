@@ -1750,7 +1750,6 @@ func (c *MigrationHub) PutResourceAttributesWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/AssociateCreatedArtifactRequest
 type AssociateCreatedArtifactInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1839,7 +1838,6 @@ func (s *AssociateCreatedArtifactInput) SetProgressUpdateStream(v string) *Assoc
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/AssociateCreatedArtifactResult
 type AssociateCreatedArtifactOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1854,7 +1852,6 @@ func (s AssociateCreatedArtifactOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/AssociateDiscoveredResourceRequest
 type AssociateDiscoveredResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1942,7 +1939,6 @@ func (s *AssociateDiscoveredResourceInput) SetProgressUpdateStream(v string) *As
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/AssociateDiscoveredResourceResult
 type AssociateDiscoveredResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1957,7 +1953,6 @@ func (s AssociateDiscoveredResourceOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/CreateProgressUpdateStreamRequest
 type CreateProgressUpdateStreamInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2009,7 +2004,6 @@ func (s *CreateProgressUpdateStreamInput) SetProgressUpdateStreamName(v string) 
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/CreateProgressUpdateStreamResult
 type CreateProgressUpdateStreamOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2026,7 +2020,6 @@ func (s CreateProgressUpdateStreamOutput) GoString() string {
 
 // An ARN of the AWS cloud resource target receiving the migration (e.g., AMI,
 // EC2 instance, RDS instance, etc.).
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/CreatedArtifact
 type CreatedArtifact struct {
 	_ struct{} `type:"structure"`
 
@@ -2078,7 +2071,6 @@ func (s *CreatedArtifact) SetName(v string) *CreatedArtifact {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/DeleteProgressUpdateStreamRequest
 type DeleteProgressUpdateStreamInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2130,7 +2122,6 @@ func (s *DeleteProgressUpdateStreamInput) SetProgressUpdateStreamName(v string) 
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/DeleteProgressUpdateStreamResult
 type DeleteProgressUpdateStreamOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2145,7 +2136,6 @@ func (s DeleteProgressUpdateStreamOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/DescribeApplicationStateRequest
 type DescribeApplicationStateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2187,7 +2177,6 @@ func (s *DescribeApplicationStateInput) SetApplicationId(v string) *DescribeAppl
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/DescribeApplicationStateResult
 type DescribeApplicationStateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2220,7 +2209,6 @@ func (s *DescribeApplicationStateOutput) SetLastUpdatedTime(v time.Time) *Descri
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/DescribeMigrationTaskRequest
 type DescribeMigrationTaskInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2279,7 +2267,6 @@ func (s *DescribeMigrationTaskInput) SetProgressUpdateStream(v string) *Describe
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/DescribeMigrationTaskResult
 type DescribeMigrationTaskOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2303,7 +2290,6 @@ func (s *DescribeMigrationTaskOutput) SetMigrationTask(v *MigrationTask) *Descri
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/DisassociateCreatedArtifactRequest
 type DisassociateCreatedArtifactInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2391,7 +2377,6 @@ func (s *DisassociateCreatedArtifactInput) SetProgressUpdateStream(v string) *Di
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/DisassociateCreatedArtifactResult
 type DisassociateCreatedArtifactOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2406,7 +2391,6 @@ func (s DisassociateCreatedArtifactOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/DisassociateDiscoveredResourceRequest
 type DisassociateDiscoveredResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2492,7 +2476,6 @@ func (s *DisassociateDiscoveredResourceInput) SetProgressUpdateStream(v string) 
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/DisassociateDiscoveredResourceResult
 type DisassociateDiscoveredResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2508,7 +2491,6 @@ func (s DisassociateDiscoveredResourceOutput) GoString() string {
 }
 
 // Object representing the on-premises resource being migrated.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/DiscoveredResource
 type DiscoveredResource struct {
 	_ struct{} `type:"structure"`
 
@@ -2560,7 +2542,6 @@ func (s *DiscoveredResource) SetDescription(v string) *DiscoveredResource {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ImportMigrationTaskRequest
 type ImportMigrationTaskInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2629,7 +2610,6 @@ func (s *ImportMigrationTaskInput) SetProgressUpdateStream(v string) *ImportMigr
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ImportMigrationTaskResult
 type ImportMigrationTaskOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2644,7 +2624,6 @@ func (s ImportMigrationTaskOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ListCreatedArtifactsRequest
 type ListCreatedArtifactsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2726,7 +2705,6 @@ func (s *ListCreatedArtifactsInput) SetProgressUpdateStream(v string) *ListCreat
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ListCreatedArtifactsResult
 type ListCreatedArtifactsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2761,7 +2739,6 @@ func (s *ListCreatedArtifactsOutput) SetNextToken(v string) *ListCreatedArtifact
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ListDiscoveredResourcesRequest
 type ListDiscoveredResourcesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2843,7 +2820,6 @@ func (s *ListDiscoveredResourcesInput) SetProgressUpdateStream(v string) *ListDi
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ListDiscoveredResourcesResult
 type ListDiscoveredResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2877,7 +2853,6 @@ func (s *ListDiscoveredResourcesOutput) SetNextToken(v string) *ListDiscoveredRe
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ListMigrationTasksRequest
 type ListMigrationTasksInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2937,7 +2912,6 @@ func (s *ListMigrationTasksInput) SetResourceName(v string) *ListMigrationTasksI
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ListMigrationTasksResult
 type ListMigrationTasksOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2972,7 +2946,6 @@ func (s *ListMigrationTasksOutput) SetNextToken(v string) *ListMigrationTasksOut
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ListProgressUpdateStreamsRequest
 type ListProgressUpdateStreamsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3020,7 +2993,6 @@ func (s *ListProgressUpdateStreamsInput) SetNextToken(v string) *ListProgressUpd
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ListProgressUpdateStreamsResult
 type ListProgressUpdateStreamsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3056,7 +3028,6 @@ func (s *ListProgressUpdateStreamsOutput) SetProgressUpdateStreamSummaryList(v [
 }
 
 // Represents a migration task in a migration tool.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/MigrationTask
 type MigrationTask struct {
 	_ struct{} `type:"structure"`
 
@@ -3117,7 +3088,6 @@ func (s *MigrationTask) SetUpdateDateTime(v time.Time) *MigrationTask {
 
 // MigrationTaskSummary includes MigrationTaskName, ProgressPercent, ProgressUpdateStream,
 // Status, and UpdateDateTime for each task.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/MigrationTaskSummary
 type MigrationTaskSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -3186,7 +3156,6 @@ func (s *MigrationTaskSummary) SetUpdateDateTime(v time.Time) *MigrationTaskSumm
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/NotifyApplicationStateRequest
 type NotifyApplicationStateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3252,7 +3221,6 @@ func (s *NotifyApplicationStateInput) SetStatus(v string) *NotifyApplicationStat
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/NotifyApplicationStateResult
 type NotifyApplicationStateOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3267,7 +3235,6 @@ func (s NotifyApplicationStateOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/NotifyMigrationTaskStateRequest
 type NotifyMigrationTaskStateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3385,7 +3352,6 @@ func (s *NotifyMigrationTaskStateInput) SetUpdateDateTime(v time.Time) *NotifyMi
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/NotifyMigrationTaskStateResult
 type NotifyMigrationTaskStateOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3402,7 +3368,6 @@ func (s NotifyMigrationTaskStateOutput) GoString() string {
 
 // Summary of the AWS resource used for access control that is implicitly linked
 // to your AWS account.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ProgressUpdateStreamSummary
 type ProgressUpdateStreamSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -3426,7 +3391,6 @@ func (s *ProgressUpdateStreamSummary) SetProgressUpdateStreamName(v string) *Pro
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/PutResourceAttributesRequest
 type PutResourceAttributesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3524,7 +3488,6 @@ func (s *PutResourceAttributesInput) SetResourceAttributeList(v []*ResourceAttri
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/PutResourceAttributesResult
 type PutResourceAttributesOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3540,7 +3503,6 @@ func (s PutResourceAttributesOutput) GoString() string {
 }
 
 // Attribute associated with a resource.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ResourceAttribute
 type ResourceAttribute struct {
 	_ struct{} `type:"structure"`
 
@@ -3597,7 +3559,6 @@ func (s *ResourceAttribute) SetValue(v string) *ResourceAttribute {
 }
 
 // Task object encapsulating task information.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/Task
 type Task struct {
 	_ struct{} `type:"structure"`
 

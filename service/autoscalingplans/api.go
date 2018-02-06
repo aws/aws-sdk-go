@@ -374,7 +374,6 @@ func (c *AutoScalingPlans) DescribeScalingPlansWithContext(ctx aws.Context, inpu
 }
 
 // Represents an application source.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/ApplicationSource
 type ApplicationSource struct {
 	_ struct{} `type:"structure"`
 
@@ -398,7 +397,6 @@ func (s *ApplicationSource) SetCloudFormationStackARN(v string) *ApplicationSour
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/CreateScalingPlanRequest
 type CreateScalingPlanInput struct {
 	_ struct{} `type:"structure"`
 
@@ -478,7 +476,6 @@ func (s *CreateScalingPlanInput) SetScalingPlanName(v string) *CreateScalingPlan
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/CreateScalingPlanResponse
 type CreateScalingPlanOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -505,7 +502,6 @@ func (s *CreateScalingPlanOutput) SetScalingPlanVersion(v int64) *CreateScalingP
 }
 
 // Represents a customized metric for a target tracking policy.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/CustomizedScalingMetricSpecification
 type CustomizedScalingMetricSpecification struct {
 	_ struct{} `type:"structure"`
 
@@ -600,7 +596,6 @@ func (s *CustomizedScalingMetricSpecification) SetUnit(v string) *CustomizedScal
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/DeleteScalingPlanRequest
 type DeleteScalingPlanInput struct {
 	_ struct{} `type:"structure"`
 
@@ -656,7 +651,6 @@ func (s *DeleteScalingPlanInput) SetScalingPlanVersion(v int64) *DeleteScalingPl
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/DeleteScalingPlanResponse
 type DeleteScalingPlanOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -671,7 +665,6 @@ func (s DeleteScalingPlanOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/DescribeScalingPlanResourcesRequest
 type DescribeScalingPlanResourcesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -746,7 +739,6 @@ func (s *DescribeScalingPlanResourcesInput) SetScalingPlanVersion(v int64) *Desc
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/DescribeScalingPlanResourcesResponse
 type DescribeScalingPlanResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -780,7 +772,6 @@ func (s *DescribeScalingPlanResourcesOutput) SetScalingPlanResources(v []*Scalin
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/DescribeScalingPlansRequest
 type DescribeScalingPlansInput struct {
 	_ struct{} `type:"structure"`
 
@@ -844,7 +835,6 @@ func (s *DescribeScalingPlansInput) SetScalingPlanVersion(v int64) *DescribeScal
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/DescribeScalingPlansResponse
 type DescribeScalingPlansOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -879,7 +869,6 @@ func (s *DescribeScalingPlansOutput) SetScalingPlans(v []*ScalingPlan) *Describe
 }
 
 // Represents a dimension for a customized metric.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/MetricDimension
 type MetricDimension struct {
 	_ struct{} `type:"structure"`
 
@@ -933,7 +922,6 @@ func (s *MetricDimension) SetValue(v string) *MetricDimension {
 }
 
 // Represents a predefined metric for a target tracking policy.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/PredefinedScalingMetricSpecification
 type PredefinedScalingMetricSpecification struct {
 	_ struct{} `type:"structure"`
 
@@ -998,7 +986,6 @@ func (s *PredefinedScalingMetricSpecification) SetResourceLabel(v string) *Prede
 }
 
 // Specifies the scaling configuration for a scalable resource.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/ScalingInstruction
 type ScalingInstruction struct {
 	_ struct{} `type:"structure"`
 
@@ -1163,7 +1150,6 @@ func (s *ScalingInstruction) SetTargetTrackingConfigurations(v []*TargetTracking
 }
 
 // Represents a scaling plan.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/ScalingPlan
 type ScalingPlan struct {
 	_ struct{} `type:"structure"`
 
@@ -1265,7 +1251,6 @@ func (s *ScalingPlan) SetStatusMessage(v string) *ScalingPlan {
 }
 
 // Represents a scalable resource.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/ScalingPlanResource
 type ScalingPlanResource struct {
 	_ struct{} `type:"structure"`
 
@@ -1417,7 +1402,6 @@ func (s *ScalingPlanResource) SetServiceNamespace(v string) *ScalingPlanResource
 }
 
 // Represents a scaling policy.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/ScalingPolicy
 type ScalingPolicy struct {
 	_ struct{} `type:"structure"`
 
@@ -1464,7 +1448,6 @@ func (s *ScalingPolicy) SetTargetTrackingConfiguration(v *TargetTrackingConfigur
 }
 
 // Represents a target tracking scaling policy.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-plans-2018-01-06/TargetTrackingConfiguration
 type TargetTrackingConfiguration struct {
 	_ struct{} `type:"structure"`
 

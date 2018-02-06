@@ -3228,7 +3228,6 @@ func (c *AlexaForBusiness) UpdateSkillGroupWithContext(ctx aws.Context, input *U
 	return out, req.Send()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateDeviceWithRoomRequest
 type AssociateDeviceWithRoomInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3261,7 +3260,6 @@ func (s *AssociateDeviceWithRoomInput) SetRoomArn(v string) *AssociateDeviceWith
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateDeviceWithRoomResponse
 type AssociateDeviceWithRoomOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3276,7 +3274,6 @@ func (s AssociateDeviceWithRoomOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateSkillGroupWithRoomRequest
 type AssociateSkillGroupWithRoomInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3309,7 +3306,6 @@ func (s *AssociateSkillGroupWithRoomInput) SetSkillGroupArn(v string) *Associate
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateSkillGroupWithRoomResponse
 type AssociateSkillGroupWithRoomOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3324,7 +3320,6 @@ func (s AssociateSkillGroupWithRoomOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateProfileRequest
 type CreateProfileInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3481,7 +3476,6 @@ func (s *CreateProfileInput) SetWakeWord(v string) *CreateProfileInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateProfileResponse
 type CreateProfileOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3505,7 +3499,6 @@ func (s *CreateProfileOutput) SetProfileArn(v string) *CreateProfileOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateRoomRequest
 type CreateRoomInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3608,7 +3601,6 @@ func (s *CreateRoomInput) SetTags(v []*Tag) *CreateRoomInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateRoomResponse
 type CreateRoomOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3632,7 +3624,6 @@ func (s *CreateRoomOutput) SetRoomArn(v string) *CreateRoomOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateSkillGroupRequest
 type CreateSkillGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3698,7 +3689,6 @@ func (s *CreateSkillGroupInput) SetSkillGroupName(v string) *CreateSkillGroupInp
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateSkillGroupResponse
 type CreateSkillGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3722,7 +3712,6 @@ func (s *CreateSkillGroupOutput) SetSkillGroupArn(v string) *CreateSkillGroupOut
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateUserRequest
 type CreateUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3825,7 +3814,6 @@ func (s *CreateUserInput) SetUserId(v string) *CreateUserInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateUserResponse
 type CreateUserOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3849,7 +3837,6 @@ func (s *CreateUserOutput) SetUserArn(v string) *CreateUserOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteProfileRequest
 type DeleteProfileInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3873,7 +3860,6 @@ func (s *DeleteProfileInput) SetProfileArn(v string) *DeleteProfileInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteProfileResponse
 type DeleteProfileOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3888,7 +3874,6 @@ func (s DeleteProfileOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteRoomRequest
 type DeleteRoomInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3912,7 +3897,6 @@ func (s *DeleteRoomInput) SetRoomArn(v string) *DeleteRoomInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteRoomResponse
 type DeleteRoomOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3927,7 +3911,6 @@ func (s DeleteRoomOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteRoomSkillParameterRequest
 type DeleteRoomSkillParameterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3992,7 +3975,6 @@ func (s *DeleteRoomSkillParameterInput) SetSkillId(v string) *DeleteRoomSkillPar
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteRoomSkillParameterResponse
 type DeleteRoomSkillParameterOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4007,7 +3989,6 @@ func (s DeleteRoomSkillParameterOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteSkillGroupRequest
 type DeleteSkillGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4031,7 +4012,6 @@ func (s *DeleteSkillGroupInput) SetSkillGroupArn(v string) *DeleteSkillGroupInpu
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteSkillGroupResponse
 type DeleteSkillGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4046,7 +4026,6 @@ func (s DeleteSkillGroupOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteUserRequest
 type DeleteUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4094,7 +4073,6 @@ func (s *DeleteUserInput) SetUserArn(v string) *DeleteUserInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteUserResponse
 type DeleteUserOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4110,7 +4088,6 @@ func (s DeleteUserOutput) GoString() string {
 }
 
 // A device with attributes.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/Device
 type Device struct {
 	_ struct{} `type:"structure"`
 
@@ -4208,7 +4185,6 @@ func (s *Device) SetSoftwareVersion(v string) *Device {
 }
 
 // Device attributes.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeviceData
 type DeviceData struct {
 	_ struct{} `type:"structure"`
 
@@ -4314,7 +4290,6 @@ func (s *DeviceData) SetSoftwareVersion(v string) *DeviceData {
 }
 
 // Details of a device’s status.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeviceStatusDetail
 type DeviceStatusDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -4339,7 +4314,6 @@ func (s *DeviceStatusDetail) SetCode(v string) *DeviceStatusDetail {
 }
 
 // Detailed information about a device's status.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeviceStatusInfo
 type DeviceStatusInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -4363,7 +4337,6 @@ func (s *DeviceStatusInfo) SetDeviceStatusDetails(v []*DeviceStatusDetail) *Devi
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateDeviceFromRoomRequest
 type DisassociateDeviceFromRoomInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4387,7 +4360,6 @@ func (s *DisassociateDeviceFromRoomInput) SetDeviceArn(v string) *DisassociateDe
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateDeviceFromRoomResponse
 type DisassociateDeviceFromRoomOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4402,7 +4374,6 @@ func (s DisassociateDeviceFromRoomOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateSkillGroupFromRoomRequest
 type DisassociateSkillGroupFromRoomInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4435,7 +4406,6 @@ func (s *DisassociateSkillGroupFromRoomInput) SetSkillGroupArn(v string) *Disass
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateSkillGroupFromRoomResponse
 type DisassociateSkillGroupFromRoomOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4452,7 +4422,6 @@ func (s DisassociateSkillGroupFromRoomOutput) GoString() string {
 
 // A filter name and value pair that is used to return a more specific list
 // of results. Filters can be used to match a set of resources by various criteria.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/Filter
 type Filter struct {
 	_ struct{} `type:"structure"`
 
@@ -4508,7 +4477,6 @@ func (s *Filter) SetValues(v []*string) *Filter {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetDeviceRequest
 type GetDeviceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4532,7 +4500,6 @@ func (s *GetDeviceInput) SetDeviceArn(v string) *GetDeviceInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetDeviceResponse
 type GetDeviceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4556,7 +4523,6 @@ func (s *GetDeviceOutput) SetDevice(v *Device) *GetDeviceOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetProfileRequest
 type GetProfileInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4580,7 +4546,6 @@ func (s *GetProfileInput) SetProfileArn(v string) *GetProfileInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetProfileResponse
 type GetProfileOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4604,7 +4569,6 @@ func (s *GetProfileOutput) SetProfile(v *Profile) *GetProfileOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetRoomRequest
 type GetRoomInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4628,7 +4592,6 @@ func (s *GetRoomInput) SetRoomArn(v string) *GetRoomInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetRoomResponse
 type GetRoomOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4652,7 +4615,6 @@ func (s *GetRoomOutput) SetRoom(v *Room) *GetRoomOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetRoomSkillParameterRequest
 type GetRoomSkillParameterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4718,7 +4680,6 @@ func (s *GetRoomSkillParameterInput) SetSkillId(v string) *GetRoomSkillParameter
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetRoomSkillParameterResponse
 type GetRoomSkillParameterOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4742,7 +4703,6 @@ func (s *GetRoomSkillParameterOutput) SetRoomSkillParameter(v *RoomSkillParamete
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetSkillGroupRequest
 type GetSkillGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4766,7 +4726,6 @@ func (s *GetSkillGroupInput) SetSkillGroupArn(v string) *GetSkillGroupInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetSkillGroupResponse
 type GetSkillGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4790,7 +4749,6 @@ func (s *GetSkillGroupOutput) SetSkillGroup(v *SkillGroup) *GetSkillGroupOutput 
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ListSkillsRequest
 type ListSkillsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4853,7 +4811,6 @@ func (s *ListSkillsInput) SetSkillGroupArn(v string) *ListSkillsInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ListSkillsResponse
 type ListSkillsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4886,7 +4843,6 @@ func (s *ListSkillsOutput) SetSkillSummaries(v []*SkillSummary) *ListSkillsOutpu
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ListTagsRequest
 type ListTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4953,7 +4909,6 @@ func (s *ListTagsInput) SetNextToken(v string) *ListTagsInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ListTagsResponse
 type ListTagsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4987,7 +4942,6 @@ func (s *ListTagsOutput) SetTags(v []*Tag) *ListTagsOutput {
 }
 
 // A room profile with attributes.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/Profile
 type Profile struct {
 	_ struct{} `type:"structure"`
 
@@ -5093,7 +5047,6 @@ func (s *Profile) SetWakeWord(v string) *Profile {
 }
 
 // The data of a room profile.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ProfileData
 type ProfileData struct {
 	_ struct{} `type:"structure"`
 
@@ -5171,7 +5124,6 @@ func (s *ProfileData) SetWakeWord(v string) *ProfileData {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/PutRoomSkillParameterRequest
 type PutRoomSkillParameterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5238,7 +5190,6 @@ func (s *PutRoomSkillParameterInput) SetSkillId(v string) *PutRoomSkillParameter
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/PutRoomSkillParameterResponse
 type PutRoomSkillParameterOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5253,7 +5204,6 @@ func (s PutRoomSkillParameterOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ResolveRoomRequest
 type ResolveRoomInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5306,7 +5256,6 @@ func (s *ResolveRoomInput) SetUserId(v string) *ResolveRoomInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ResolveRoomResponse
 type ResolveRoomOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5348,7 +5297,6 @@ func (s *ResolveRoomOutput) SetRoomSkillParameters(v []*RoomSkillParameter) *Res
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/RevokeInvitationRequest
 type RevokeInvitationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5381,7 +5329,6 @@ func (s *RevokeInvitationInput) SetUserArn(v string) *RevokeInvitationInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/RevokeInvitationResponse
 type RevokeInvitationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5397,7 +5344,6 @@ func (s RevokeInvitationOutput) GoString() string {
 }
 
 // A room with attributes.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/Room
 type Room struct {
 	_ struct{} `type:"structure"`
 
@@ -5458,7 +5404,6 @@ func (s *Room) SetRoomName(v string) *Room {
 }
 
 // The data of a room.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/RoomData
 type RoomData struct {
 	_ struct{} `type:"structure"`
 
@@ -5528,7 +5473,6 @@ func (s *RoomData) SetRoomName(v string) *RoomData {
 }
 
 // A skill parameter associated with a room.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/RoomSkillParameter
 type RoomSkillParameter struct {
 	_ struct{} `type:"structure"`
 
@@ -5588,7 +5532,6 @@ func (s *RoomSkillParameter) SetParameterValue(v string) *RoomSkillParameter {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchDevicesRequest
 type SearchDevicesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5682,7 +5625,6 @@ func (s *SearchDevicesInput) SetSortCriteria(v []*Sort) *SearchDevicesInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchDevicesResponse
 type SearchDevicesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5724,7 +5666,6 @@ func (s *SearchDevicesOutput) SetTotalCount(v int64) *SearchDevicesOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchProfilesRequest
 type SearchProfilesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5817,7 +5758,6 @@ func (s *SearchProfilesInput) SetSortCriteria(v []*Sort) *SearchProfilesInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchProfilesResponse
 type SearchProfilesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5859,7 +5799,6 @@ func (s *SearchProfilesOutput) SetTotalCount(v int64) *SearchProfilesOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchRoomsRequest
 type SearchRoomsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5952,7 +5891,6 @@ func (s *SearchRoomsInput) SetSortCriteria(v []*Sort) *SearchRoomsInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchRoomsResponse
 type SearchRoomsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5994,7 +5932,6 @@ func (s *SearchRoomsOutput) SetTotalCount(v int64) *SearchRoomsOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchSkillGroupsRequest
 type SearchSkillGroupsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6088,7 +6025,6 @@ func (s *SearchSkillGroupsInput) SetSortCriteria(v []*Sort) *SearchSkillGroupsIn
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchSkillGroupsResponse
 type SearchSkillGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6130,7 +6066,6 @@ func (s *SearchSkillGroupsOutput) SetTotalCount(v int64) *SearchSkillGroupsOutpu
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchUsersRequest
 type SearchUsersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6224,7 +6159,6 @@ func (s *SearchUsersInput) SetSortCriteria(v []*Sort) *SearchUsersInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchUsersResponse
 type SearchUsersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6266,7 +6200,6 @@ func (s *SearchUsersOutput) SetUsers(v []*UserData) *SearchUsersOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SendInvitationRequest
 type SendInvitationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6290,7 +6223,6 @@ func (s *SendInvitationInput) SetUserArn(v string) *SendInvitationInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SendInvitationResponse
 type SendInvitationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6306,7 +6238,6 @@ func (s SendInvitationOutput) GoString() string {
 }
 
 // A skill group with attributes.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SkillGroup
 type SkillGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -6349,7 +6280,6 @@ func (s *SkillGroup) SetSkillGroupName(v string) *SkillGroup {
 }
 
 // The attributes of a skill group.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SkillGroupData
 type SkillGroupData struct {
 	_ struct{} `type:"structure"`
 
@@ -6392,7 +6322,6 @@ func (s *SkillGroupData) SetSkillGroupName(v string) *SkillGroupData {
 }
 
 // The summary of skills.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SkillSummary
 type SkillSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -6435,7 +6364,6 @@ func (s *SkillSummary) SetSupportsLinking(v bool) *SkillSummary {
 }
 
 // An object representing a sort criteria.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/Sort
 type Sort struct {
 	_ struct{} `type:"structure"`
 
@@ -6491,7 +6419,6 @@ func (s *Sort) SetValue(v string) *Sort {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/StartDeviceSyncRequest
 type StartDeviceSyncInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6548,7 +6475,6 @@ func (s *StartDeviceSyncInput) SetRoomArn(v string) *StartDeviceSyncInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/StartDeviceSyncResponse
 type StartDeviceSyncOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6564,7 +6490,6 @@ func (s StartDeviceSyncOutput) GoString() string {
 }
 
 // A key-value pair that can be associated with a resource.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/Tag
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -6610,7 +6535,6 @@ func (s *Tag) SetValue(v string) *Tag {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/TagResourceRequest
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6674,7 +6598,6 @@ func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/TagResourceResponse
 type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6689,7 +6612,6 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UntagResourceRequest
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6743,7 +6665,6 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UntagResourceResponse
 type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6758,7 +6679,6 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateDeviceRequest
 type UpdateDeviceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6804,7 +6724,6 @@ func (s *UpdateDeviceInput) SetDeviceName(v string) *UpdateDeviceInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateDeviceResponse
 type UpdateDeviceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6819,7 +6738,6 @@ func (s UpdateDeviceOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateProfileRequest
 type UpdateProfileInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6943,7 +6861,6 @@ func (s *UpdateProfileInput) SetWakeWord(v string) *UpdateProfileInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateProfileResponse
 type UpdateProfileOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6958,7 +6875,6 @@ func (s UpdateProfileOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateRoomRequest
 type UpdateRoomInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7034,7 +6950,6 @@ func (s *UpdateRoomInput) SetRoomName(v string) *UpdateRoomInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateRoomResponse
 type UpdateRoomOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -7049,7 +6964,6 @@ func (s UpdateRoomOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateSkillGroupRequest
 type UpdateSkillGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7107,7 +7021,6 @@ func (s *UpdateSkillGroupInput) SetSkillGroupName(v string) *UpdateSkillGroupInp
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateSkillGroupResponse
 type UpdateSkillGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -7123,7 +7036,6 @@ func (s UpdateSkillGroupOutput) GoString() string {
 }
 
 // Information related to a user.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UserData
 type UserData struct {
 	_ struct{} `type:"structure"`
 

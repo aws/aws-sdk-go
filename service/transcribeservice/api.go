@@ -347,7 +347,6 @@ func (c *TranscribeService) StartTranscriptionJobWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/GetTranscriptionJobRequest
 type GetTranscriptionJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -389,7 +388,6 @@ func (s *GetTranscriptionJobInput) SetTranscriptionJobName(v string) *GetTranscr
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/GetTranscriptionJobResponse
 type GetTranscriptionJobOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -413,7 +411,6 @@ func (s *GetTranscriptionJobOutput) SetTranscriptionJob(v *TranscriptionJob) *Ge
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/ListTranscriptionJobsRequest
 type ListTranscriptionJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -474,7 +471,6 @@ func (s *ListTranscriptionJobsInput) SetStatus(v string) *ListTranscriptionJobsI
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/ListTranscriptionJobsResponse
 type ListTranscriptionJobsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -521,7 +517,6 @@ func (s *ListTranscriptionJobsOutput) SetTranscriptionJobSummaries(v []*Transcri
 }
 
 // Describes the input media file in a transcription request.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/Media
 type Media struct {
 	_ struct{} `type:"structure"`
 
@@ -566,7 +561,6 @@ func (s *Media) SetMediaFileUri(v string) *Media {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/StartTranscriptionJobRequest
 type StartTranscriptionJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -667,7 +661,6 @@ func (s *StartTranscriptionJobInput) SetTranscriptionJobName(v string) *StartTra
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/StartTranscriptionJobResponse
 type StartTranscriptionJobOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -692,7 +685,6 @@ func (s *StartTranscriptionJobOutput) SetTranscriptionJob(v *TranscriptionJob) *
 }
 
 // Describes the output of a transcription job.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/Transcript
 type Transcript struct {
 	_ struct{} `type:"structure"`
 
@@ -727,7 +719,6 @@ func (s *Transcript) SetTranscriptFileUri(v string) *Transcript {
 
 // Describes an asynchronous transcription job that was created with the StartTranscriptionJob
 // operation.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/TranscriptionJob
 type TranscriptionJob struct {
 	_ struct{} `type:"structure"`
 
@@ -834,7 +825,6 @@ func (s *TranscriptionJob) SetTranscriptionJobStatus(v string) *TranscriptionJob
 }
 
 // Provides a summary of information about a transcription job.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/TranscriptionJobSummary
 type TranscriptionJobSummary struct {
 	_ struct{} `type:"structure"`
 
