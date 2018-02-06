@@ -181,8 +181,11 @@ func TestAfterRetryWithUnseekableBody(t *testing.T) {
 
 	corehandlers.AfterRetryHandler.Fn(req)
 
-	if req.Error != nil {
-		t.Fatalf("expect no error, got %v", req.Error)
+	if req.Error == nil {
+		t.Fatalf("expect error, got none")
+	}
+	if e, a := "some error", req.Error.Error(); !strings.Contains(a, e) {
+		t.Errorf("expect %q error in %q", e, a)
 	}
 	if *req.Retryable {
 		t.Errorf("expect request not to be retryable")
