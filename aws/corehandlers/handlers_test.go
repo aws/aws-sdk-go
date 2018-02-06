@@ -167,6 +167,31 @@ func TestAfterRetryWithContext(t *testing.T) {
 	}
 }
 
+func TestAfterRetryWithUnseekableBody(t *testing.T) {
+	c := awstesting.NewClient()
+
+	req := c.NewRequest(&request.Operation{Name: "Operation"}, nil, nil)
+	req.SetReaderBody(aws.ReadSeekCloser(bytes.NewBuffer([]byte("hello"))))
+
+	req.Error = fmt.Errorf("some error")
+	req.Retryable = aws.Bool(true)
+	req.HTTPResponse = &http.Response{
+		StatusCode: 500,
+	}
+
+	corehandlers.AfterRetryHandler.Fn(req)
+
+	if req.Error != nil {
+		t.Fatalf("expect no error, got %v", req.Error)
+	}
+	if *req.Retryable {
+		t.Errorf("expect request not to be retryable")
+	}
+	if e, a := 0, req.RetryCount; e != a {
+		t.Errorf("expect retry count to be %d, got %d", e, a)
+	}
+}
+
 func TestSendWithContextCanceled(t *testing.T) {
 	c := awstesting.NewClient(&aws.Config{
 		SleepDelay: func(dur time.Duration) {

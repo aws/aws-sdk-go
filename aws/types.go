@@ -22,6 +22,22 @@ type ReaderSeekerCloser struct {
 	r io.Reader
 }
 
+// IsReaderSeekable returns if the underlying reader type can be seeked. A
+// io.Reader might not actually be seekable if it is the ReaderSeekerCloser
+// type.
+func IsReaderSeekable(r io.Reader) bool {
+	switch v := r.(type) {
+	case ReaderSeekerCloser:
+		return v.IsSeeker()
+	case *ReaderSeekerCloser:
+		return v.IsSeeker()
+	case io.ReadSeeker:
+		return true
+	default:
+		return false
+	}
+}
+
 // Read reads from the reader up to size of p. The number of bytes read, and
 // error if it occurred will be returned.
 //
