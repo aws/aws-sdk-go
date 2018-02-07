@@ -1433,7 +1433,8 @@
       "type":"structure",
       "members":{
         "GrokClassifier":{"shape":"GrokClassifier"},
-        "XMLClassifier":{"shape":"XMLClassifier"}
+        "XMLClassifier":{"shape":"XMLClassifier"},
+        "JsonClassifier":{"shape":"JsonClassifier"}
       }
     },
     "ClassifierList":{
@@ -1713,7 +1714,8 @@
       "type":"structure",
       "members":{
         "GrokClassifier":{"shape":"CreateGrokClassifierRequest"},
-        "XMLClassifier":{"shape":"CreateXMLClassifierRequest"}
+        "XMLClassifier":{"shape":"CreateXMLClassifierRequest"},
+        "JsonClassifier":{"shape":"CreateJsonClassifierRequest"}
       }
     },
     "CreateClassifierResponse":{
@@ -1848,6 +1850,17 @@
       "type":"structure",
       "members":{
         "Name":{"shape":"NameString"}
+      }
+    },
+    "CreateJsonClassifierRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "JsonPath"
+      ],
+      "members":{
+        "Name":{"shape":"NameString"},
+        "JsonPath":{"shape":"JsonPath"}
       }
     },
     "CreatePartitionRequest":{
@@ -2900,6 +2913,21 @@
         "AllocatedCapacity":{"shape":"IntegerValue"}
       }
     },
+    "JsonClassifier":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "JsonPath"
+      ],
+      "members":{
+        "Name":{"shape":"NameString"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastUpdated":{"shape":"Timestamp"},
+        "Version":{"shape":"VersionId"},
+        "JsonPath":{"shape":"JsonPath"}
+      }
+    },
+    "JsonPath":{"type":"string"},
     "JsonValue":{"type":"string"},
     "KeyString":{
       "type":"string",
@@ -3569,7 +3597,8 @@
       "type":"structure",
       "members":{
         "GrokClassifier":{"shape":"UpdateGrokClassifierRequest"},
-        "XMLClassifier":{"shape":"UpdateXMLClassifierRequest"}
+        "XMLClassifier":{"shape":"UpdateXMLClassifierRequest"},
+        "JsonClassifier":{"shape":"UpdateJsonClassifierRequest"}
       }
     },
     "UpdateClassifierResponse":{
@@ -3685,6 +3714,14 @@
       "type":"structure",
       "members":{
         "JobName":{"shape":"NameString"}
+      }
+    },
+    "UpdateJsonClassifierRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"NameString"},
+        "JsonPath":{"shape":"JsonPath"}
       }
     },
     "UpdatePartitionRequest":{

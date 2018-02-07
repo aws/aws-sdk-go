@@ -668,8 +668,9 @@ func (c *Glue) CreateClassifierRequest(input *CreateClassifierInput) (req *reque
 
 // CreateClassifier API operation for AWS Glue.
 //
-// Creates a classifier in the user's account. This may be either a GrokClassifier
-// or an XMLClassifier.
+// Creates a classifier in the user's account. This may be a GrokClassifier,
+// an XMLClassifier, or abbrev JsonClassifier, depending on which field of the
+// request is present.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6659,7 +6660,8 @@ func (c *Glue) UpdateClassifierRequest(input *UpdateClassifierInput) (req *reque
 
 // UpdateClassifier API operation for AWS Glue.
 //
-// Modifies an existing classifier (either a GrokClassifier or an XMLClassifier).
+// Modifies an existing classifier (a GrokClassifier, XMLClassifier, or JsonClassifier,
+// depending on which field is present).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8581,13 +8583,16 @@ func (s *CatalogImportStatus) SetImportedBy(v string) *CatalogImportStatus {
 // file is in a format it can handle, and if it is, the classifier creates a
 // schema in the form of a StructType object that matches that data format.
 //
-// A classifier can be either a grok classifier or an XML classifier, specified
-// in one or the other field of the Classifier object.
+// A classifier can be a grok classifier, an XML classifier, or a JSON classifier,
+// asspecified in one of the fields in the Classifier object.
 type Classifier struct {
 	_ struct{} `type:"structure"`
 
 	// A GrokClassifier object.
 	GrokClassifier *GrokClassifier `type:"structure"`
+
+	// A JsonClassifier object.
+	JsonClassifier *JsonClassifier `type:"structure"`
 
 	// An XMLClassifier object.
 	XMLClassifier *XMLClassifier `type:"structure"`
@@ -8606,6 +8611,12 @@ func (s Classifier) GoString() string {
 // SetGrokClassifier sets the GrokClassifier field's value.
 func (s *Classifier) SetGrokClassifier(v *GrokClassifier) *Classifier {
 	s.GrokClassifier = v
+	return s
+}
+
+// SetJsonClassifier sets the JsonClassifier field's value.
+func (s *Classifier) SetJsonClassifier(v *JsonClassifier) *Classifier {
+	s.JsonClassifier = v
 	return s
 }
 
@@ -9477,6 +9488,9 @@ type CreateClassifierInput struct {
 	// A GrokClassifier object specifying the classifier to create.
 	GrokClassifier *CreateGrokClassifierRequest `type:"structure"`
 
+	// A JsonClassifier object specifying the classifier to create.
+	JsonClassifier *CreateJsonClassifierRequest `type:"structure"`
+
 	// An XMLClassifier object specifying the classifier to create.
 	XMLClassifier *CreateXMLClassifierRequest `type:"structure"`
 }
@@ -9499,6 +9513,11 @@ func (s *CreateClassifierInput) Validate() error {
 			invalidParams.AddNested("GrokClassifier", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.JsonClassifier != nil {
+		if err := s.JsonClassifier.Validate(); err != nil {
+			invalidParams.AddNested("JsonClassifier", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.XMLClassifier != nil {
 		if err := s.XMLClassifier.Validate(); err != nil {
 			invalidParams.AddNested("XMLClassifier", err.(request.ErrInvalidParams))
@@ -9514,6 +9533,12 @@ func (s *CreateClassifierInput) Validate() error {
 // SetGrokClassifier sets the GrokClassifier field's value.
 func (s *CreateClassifierInput) SetGrokClassifier(v *CreateGrokClassifierRequest) *CreateClassifierInput {
 	s.GrokClassifier = v
+	return s
+}
+
+// SetJsonClassifier sets the JsonClassifier field's value.
+func (s *CreateClassifierInput) SetJsonClassifier(v *CreateJsonClassifierRequest) *CreateClassifierInput {
+	s.JsonClassifier = v
 	return s
 }
 
@@ -10353,6 +10378,64 @@ func (s CreateJobOutput) GoString() string {
 
 // SetName sets the Name field's value.
 func (s *CreateJobOutput) SetName(v string) *CreateJobOutput {
+	s.Name = &v
+	return s
+}
+
+// Specifies a JSON classifier for CreateClassifier to create.
+type CreateJsonClassifierRequest struct {
+	_ struct{} `type:"structure"`
+
+	// A JsonPath string defining the JSON data for the classifier to classify.
+	// AWS Glue supports a subset of JsonPath, as described in Writing JsonPath
+	// Custom Classifiers (https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json).
+	//
+	// JsonPath is a required field
+	JsonPath *string `type:"string" required:"true"`
+
+	// The name of the classifier.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateJsonClassifierRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateJsonClassifierRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateJsonClassifierRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateJsonClassifierRequest"}
+	if s.JsonPath == nil {
+		invalidParams.Add(request.NewErrParamRequired("JsonPath"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJsonPath sets the JsonPath field's value.
+func (s *CreateJsonClassifierRequest) SetJsonPath(v string) *CreateJsonClassifierRequest {
+	s.JsonPath = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateJsonClassifierRequest) SetName(v string) *CreateJsonClassifierRequest {
 	s.Name = &v
 	return s
 }
@@ -15492,6 +15575,72 @@ func (s *JobUpdate) SetRole(v string) *JobUpdate {
 	return s
 }
 
+// A classifier for JSON content.
+type JsonClassifier struct {
+	_ struct{} `type:"structure"`
+
+	// The time this classifier was registered.
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// A JsonPath string defining the JSON data for the classifier to classify.
+	// AWS Glue supports a subset of JsonPath, as described in Writing JsonPath
+	// Custom Classifiers (https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json).
+	//
+	// JsonPath is a required field
+	JsonPath *string `type:"string" required:"true"`
+
+	// The time this classifier was last updated.
+	LastUpdated *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The name of the classifier.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The version of this classifier.
+	Version *int64 `type:"long"`
+}
+
+// String returns the string representation
+func (s JsonClassifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s JsonClassifier) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *JsonClassifier) SetCreationTime(v time.Time) *JsonClassifier {
+	s.CreationTime = &v
+	return s
+}
+
+// SetJsonPath sets the JsonPath field's value.
+func (s *JsonClassifier) SetJsonPath(v string) *JsonClassifier {
+	s.JsonPath = &v
+	return s
+}
+
+// SetLastUpdated sets the LastUpdated field's value.
+func (s *JsonClassifier) SetLastUpdated(v time.Time) *JsonClassifier {
+	s.LastUpdated = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *JsonClassifier) SetName(v string) *JsonClassifier {
+	s.Name = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *JsonClassifier) SetVersion(v int64) *JsonClassifier {
+	s.Version = &v
+	return s
+}
+
 // Status and error information about the most recent crawl.
 type LastCrawlInfo struct {
 	_ struct{} `type:"structure"`
@@ -17745,6 +17894,9 @@ type UpdateClassifierInput struct {
 	// A GrokClassifier object with updated fields.
 	GrokClassifier *UpdateGrokClassifierRequest `type:"structure"`
 
+	// A JsonClassifier object with updated fields.
+	JsonClassifier *UpdateJsonClassifierRequest `type:"structure"`
+
 	// An XMLClassifier object with updated fields.
 	XMLClassifier *UpdateXMLClassifierRequest `type:"structure"`
 }
@@ -17767,6 +17919,11 @@ func (s *UpdateClassifierInput) Validate() error {
 			invalidParams.AddNested("GrokClassifier", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.JsonClassifier != nil {
+		if err := s.JsonClassifier.Validate(); err != nil {
+			invalidParams.AddNested("JsonClassifier", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.XMLClassifier != nil {
 		if err := s.XMLClassifier.Validate(); err != nil {
 			invalidParams.AddNested("XMLClassifier", err.(request.ErrInvalidParams))
@@ -17782,6 +17939,12 @@ func (s *UpdateClassifierInput) Validate() error {
 // SetGrokClassifier sets the GrokClassifier field's value.
 func (s *UpdateClassifierInput) SetGrokClassifier(v *UpdateGrokClassifierRequest) *UpdateClassifierInput {
 	s.GrokClassifier = v
+	return s
+}
+
+// SetJsonClassifier sets the JsonClassifier field's value.
+func (s *UpdateClassifierInput) SetJsonClassifier(v *UpdateJsonClassifierRequest) *UpdateClassifierInput {
+	s.JsonClassifier = v
 	return s
 }
 
@@ -17908,7 +18071,7 @@ type UpdateCrawlerInput struct {
 	// table, rather than detect this information separately for each partition.
 	// Use the following JSON string to specify that behavior:
 	//
-	// Example:  '{ "Version": 1.0, "CrawlerOutput": { "Partitions": { "AddOrUpdateBehavior":
+	// Example: '{ "Version": 1.0, "CrawlerOutput": { "Partitions": { "AddOrUpdateBehavior":
 	// "InheritFromTable" } } }'
 	Configuration *string `type:"string"`
 
@@ -18427,6 +18590,59 @@ func (s UpdateJobOutput) GoString() string {
 // SetJobName sets the JobName field's value.
 func (s *UpdateJobOutput) SetJobName(v string) *UpdateJobOutput {
 	s.JobName = &v
+	return s
+}
+
+// Specifies a JSON classifier to be updated.
+type UpdateJsonClassifierRequest struct {
+	_ struct{} `type:"structure"`
+
+	// A JsonPath string defining the JSON data for the classifier to classify.
+	// AWS Glue supports a subset of JsonPath, as described in Writing JsonPath
+	// Custom Classifiers (https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json).
+	JsonPath *string `type:"string"`
+
+	// The name of the classifier.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateJsonClassifierRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateJsonClassifierRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateJsonClassifierRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateJsonClassifierRequest"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJsonPath sets the JsonPath field's value.
+func (s *UpdateJsonClassifierRequest) SetJsonPath(v string) *UpdateJsonClassifierRequest {
+	s.JsonPath = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateJsonClassifierRequest) SetName(v string) *UpdateJsonClassifierRequest {
+	s.Name = &v
 	return s
 }
 
