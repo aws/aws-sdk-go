@@ -12461,6 +12461,15 @@ type CreateDocumentInput struct {
 
 	// A name for the Systems Manager document.
 	//
+	// Do not use the following to begin the names of documents you create. They
+	// are reserved by AWS for use as document prefixes:
+	//
+	// aws
+	//
+	// amazon
+	//
+	// amzn
+	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
@@ -12729,6 +12738,11 @@ type CreatePatchBaselineInput struct {
 	// HIGH, MEDIUM, LOW, INFORMATIONAL, UNSPECIFIED. The default value is UNSPECIFIED.
 	ApprovedPatchesComplianceLevel *string `type:"string" enum:"PatchComplianceLevel"`
 
+	// Indicates whether the list of approved patches includes non-security updates
+	// that should be applied to the instances. The default value is 'false'. Applies
+	// to Linux instances only.
+	ApprovedPatchesEnableNonSecurity *bool `type:"boolean"`
+
 	// User-provided idempotency token.
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -12749,6 +12763,10 @@ type CreatePatchBaselineInput struct {
 
 	// A list of explicitly rejected patches for the baseline.
 	RejectedPatches []*string `type:"list"`
+
+	// Information about the patches to use to update the instances, including target
+	// operating systems and source repositories. Applies to Linux instances only.
+	Sources []*PatchSource `type:"list"`
 }
 
 // String returns the string representation
@@ -12786,6 +12804,16 @@ func (s *CreatePatchBaselineInput) Validate() error {
 			invalidParams.AddNested("GlobalFilters", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Sources != nil {
+		for i, v := range s.Sources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Sources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -12808,6 +12836,12 @@ func (s *CreatePatchBaselineInput) SetApprovedPatches(v []*string) *CreatePatchB
 // SetApprovedPatchesComplianceLevel sets the ApprovedPatchesComplianceLevel field's value.
 func (s *CreatePatchBaselineInput) SetApprovedPatchesComplianceLevel(v string) *CreatePatchBaselineInput {
 	s.ApprovedPatchesComplianceLevel = &v
+	return s
+}
+
+// SetApprovedPatchesEnableNonSecurity sets the ApprovedPatchesEnableNonSecurity field's value.
+func (s *CreatePatchBaselineInput) SetApprovedPatchesEnableNonSecurity(v bool) *CreatePatchBaselineInput {
+	s.ApprovedPatchesEnableNonSecurity = &v
 	return s
 }
 
@@ -12844,6 +12878,12 @@ func (s *CreatePatchBaselineInput) SetOperatingSystem(v string) *CreatePatchBase
 // SetRejectedPatches sets the RejectedPatches field's value.
 func (s *CreatePatchBaselineInput) SetRejectedPatches(v []*string) *CreatePatchBaselineInput {
 	s.RejectedPatches = v
+	return s
+}
+
+// SetSources sets the Sources field's value.
+func (s *CreatePatchBaselineInput) SetSources(v []*PatchSource) *CreatePatchBaselineInput {
+	s.Sources = v
 	return s
 }
 
@@ -19311,6 +19351,11 @@ type GetPatchBaselineOutput struct {
 	// patch baseline.
 	ApprovedPatchesComplianceLevel *string `type:"string" enum:"PatchComplianceLevel"`
 
+	// Indicates whether the list of approved patches includes non-security updates
+	// that should be applied to the instances. The default value is 'false'. Applies
+	// to Linux instances only.
+	ApprovedPatchesEnableNonSecurity *bool `type:"boolean"`
+
 	// The ID of the retrieved patch baseline.
 	BaselineId *string `min:"20" type:"string"`
 
@@ -19337,6 +19382,10 @@ type GetPatchBaselineOutput struct {
 
 	// A list of explicitly rejected patches for the baseline.
 	RejectedPatches []*string `type:"list"`
+
+	// Information about the patches to use to update the instances, including target
+	// operating systems and source repositories. Applies to Linux instances only.
+	Sources []*PatchSource `type:"list"`
 }
 
 // String returns the string representation
@@ -19364,6 +19413,12 @@ func (s *GetPatchBaselineOutput) SetApprovedPatches(v []*string) *GetPatchBaseli
 // SetApprovedPatchesComplianceLevel sets the ApprovedPatchesComplianceLevel field's value.
 func (s *GetPatchBaselineOutput) SetApprovedPatchesComplianceLevel(v string) *GetPatchBaselineOutput {
 	s.ApprovedPatchesComplianceLevel = &v
+	return s
+}
+
+// SetApprovedPatchesEnableNonSecurity sets the ApprovedPatchesEnableNonSecurity field's value.
+func (s *GetPatchBaselineOutput) SetApprovedPatchesEnableNonSecurity(v bool) *GetPatchBaselineOutput {
+	s.ApprovedPatchesEnableNonSecurity = &v
 	return s
 }
 
@@ -19418,6 +19473,12 @@ func (s *GetPatchBaselineOutput) SetPatchGroups(v []*string) *GetPatchBaselineOu
 // SetRejectedPatches sets the RejectedPatches field's value.
 func (s *GetPatchBaselineOutput) SetRejectedPatches(v []*string) *GetPatchBaselineOutput {
 	s.RejectedPatches = v
+	return s
+}
+
+// SetSources sets the Sources field's value.
+func (s *GetPatchBaselineOutput) SetSources(v []*PatchSource) *GetPatchBaselineOutput {
+	s.Sources = v
 	return s
 }
 
@@ -24107,6 +24168,64 @@ func (s *PatchComplianceData) SetTitle(v string) *PatchComplianceData {
 //    * Medium
 //
 //    * Low
+//
+// SUSE Linux Enterprise Server (SUSE) Operating Systems
+//
+// The supported keys for SUSE operating systems are PRODUCT, CLASSIFICATION,
+// and SEVERITY. See the following lists for valid values for each of these
+// keys.
+//
+// Supported key:PRODUCT
+//
+// Supported values:
+//
+//    * Suse12.0
+//
+//    * Suse12.1
+//
+//    * Suse12.2
+//
+//    * Suse12.3
+//
+//    * Suse12.4
+//
+//    * Suse12.5
+//
+//    * Suse12.6
+//
+//    * Suse12.7
+//
+//    * Suse12.8
+//
+//    * Suse12.9
+//
+// Supported key:CLASSIFICATION
+//
+// Supported values:
+//
+//    * Security
+//
+//    * Recommended
+//
+//    * Optional
+//
+//    * Feature
+//
+//    * Document
+//
+//    * Yast
+//
+// Supported key:SEVERITY
+//
+// Supported values:
+//
+//    * Critical
+//
+//    * Important
+//
+//    * Moderate
+//
+//    * Low
 type PatchFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -24311,6 +24430,11 @@ type PatchRule struct {
 	// High, Medium, Low, and Informational.
 	ComplianceLevel *string `type:"string" enum:"PatchComplianceLevel"`
 
+	// For instances identified by the approval rule filters, enables a patch baseline
+	// to apply non-security updates available in the specified repository. The
+	// default value is 'false'. Applies to Linux instances only.
+	EnableNonSecurity *bool `type:"boolean"`
+
 	// The patch filter group that defines the criteria for the rule.
 	//
 	// PatchFilterGroup is a required field
@@ -24357,6 +24481,12 @@ func (s *PatchRule) SetApproveAfterDays(v int64) *PatchRule {
 // SetComplianceLevel sets the ComplianceLevel field's value.
 func (s *PatchRule) SetComplianceLevel(v string) *PatchRule {
 	s.ComplianceLevel = &v
+	return s
+}
+
+// SetEnableNonSecurity sets the EnableNonSecurity field's value.
+func (s *PatchRule) SetEnableNonSecurity(v bool) *PatchRule {
+	s.EnableNonSecurity = &v
 	return s
 }
 
@@ -24412,6 +24542,90 @@ func (s *PatchRuleGroup) Validate() error {
 // SetPatchRules sets the PatchRules field's value.
 func (s *PatchRuleGroup) SetPatchRules(v []*PatchRule) *PatchRuleGroup {
 	s.PatchRules = v
+	return s
+}
+
+// Information about the patches to use to update the instances, including target
+// operating systems and source repository. Applies to Linux instances only.
+type PatchSource struct {
+	_ struct{} `type:"structure"`
+
+	// The value of the yum repo configuration. For example:
+	//
+	// cachedir=/var/cache/yum/$basesearch
+	//
+	// $releasever
+	//
+	// keepcache=0
+	//
+	// debualevel=2
+	//
+	// Configuration is a required field
+	Configuration *string `min:"1" type:"string" required:"true"`
+
+	// The name specified to identify the patch source.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The specific operating system versions a patch repository applies to, such
+	// as "Ubuntu16.04", "AmazonLinux2016.09", "RedhatEnterpriseLinux7.2" or "Suse12.7".
+	// For lists of supported product values, see PatchFilter.
+	//
+	// Products is a required field
+	Products []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s PatchSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PatchSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PatchSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PatchSource"}
+	if s.Configuration == nil {
+		invalidParams.Add(request.NewErrParamRequired("Configuration"))
+	}
+	if s.Configuration != nil && len(*s.Configuration) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Configuration", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Products == nil {
+		invalidParams.Add(request.NewErrParamRequired("Products"))
+	}
+	if s.Products != nil && len(s.Products) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Products", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *PatchSource) SetConfiguration(v string) *PatchSource {
+	s.Configuration = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PatchSource) SetName(v string) *PatchSource {
+	s.Name = &v
+	return s
+}
+
+// SetProducts sets the Products field's value.
+func (s *PatchSource) SetProducts(v []*string) *PatchSource {
+	s.Products = v
 	return s
 }
 
@@ -24706,6 +24920,10 @@ type PutParameterInput struct {
 	// The fully qualified name of the parameter that you want to add to the system.
 	// The fully qualified name includes the complete hierarchy of the parameter
 	// path and name. For example: /Dev/DBServer/MySQL/db-string13
+	//
+	// For information about parameter name requirements and restrictions, see About
+	// Creating Systems Manager Parameters (http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-su-create.html#sysman-paramstore-su-create-about)
+	// in the AWS Systems Manager User Guide.
 	//
 	// The maximum length constraint listed below includes capacity for additional
 	// system attributes that are not part of the name. The maximum length for the
@@ -28143,6 +28361,11 @@ type UpdatePatchBaselineInput struct {
 	// Assigns a new compliance severity level to an existing patch baseline.
 	ApprovedPatchesComplianceLevel *string `type:"string" enum:"PatchComplianceLevel"`
 
+	// Indicates whether the list of approved patches includes non-security updates
+	// that should be applied to the instances. The default value is 'false'. Applies
+	// to Linux instances only.
+	ApprovedPatchesEnableNonSecurity *bool `type:"boolean"`
+
 	// The ID of the patch baseline to update.
 	//
 	// BaselineId is a required field
@@ -28159,6 +28382,15 @@ type UpdatePatchBaselineInput struct {
 
 	// A list of explicitly rejected patches for the baseline.
 	RejectedPatches []*string `type:"list"`
+
+	// If True, then all fields that are required by the CreatePatchBaseline action
+	// are also required for this API request. Optional fields that are not specified
+	// are set to null.
+	Replace *bool `type:"boolean"`
+
+	// Information about the patches to use to update the instances, including target
+	// operating systems and source repositories. Applies to Linux instances only.
+	Sources []*PatchSource `type:"list"`
 }
 
 // String returns the string representation
@@ -28196,6 +28428,16 @@ func (s *UpdatePatchBaselineInput) Validate() error {
 			invalidParams.AddNested("GlobalFilters", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Sources != nil {
+		for i, v := range s.Sources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Sources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -28218,6 +28460,12 @@ func (s *UpdatePatchBaselineInput) SetApprovedPatches(v []*string) *UpdatePatchB
 // SetApprovedPatchesComplianceLevel sets the ApprovedPatchesComplianceLevel field's value.
 func (s *UpdatePatchBaselineInput) SetApprovedPatchesComplianceLevel(v string) *UpdatePatchBaselineInput {
 	s.ApprovedPatchesComplianceLevel = &v
+	return s
+}
+
+// SetApprovedPatchesEnableNonSecurity sets the ApprovedPatchesEnableNonSecurity field's value.
+func (s *UpdatePatchBaselineInput) SetApprovedPatchesEnableNonSecurity(v bool) *UpdatePatchBaselineInput {
+	s.ApprovedPatchesEnableNonSecurity = &v
 	return s
 }
 
@@ -28251,6 +28499,18 @@ func (s *UpdatePatchBaselineInput) SetRejectedPatches(v []*string) *UpdatePatchB
 	return s
 }
 
+// SetReplace sets the Replace field's value.
+func (s *UpdatePatchBaselineInput) SetReplace(v bool) *UpdatePatchBaselineInput {
+	s.Replace = &v
+	return s
+}
+
+// SetSources sets the Sources field's value.
+func (s *UpdatePatchBaselineInput) SetSources(v []*PatchSource) *UpdatePatchBaselineInput {
+	s.Sources = v
+	return s
+}
+
 type UpdatePatchBaselineOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -28263,6 +28523,11 @@ type UpdatePatchBaselineOutput struct {
 	// The compliance severity level assigned to the patch baseline after the update
 	// completed.
 	ApprovedPatchesComplianceLevel *string `type:"string" enum:"PatchComplianceLevel"`
+
+	// Indicates whether the list of approved patches includes non-security updates
+	// that should be applied to the instances. The default value is 'false'. Applies
+	// to Linux instances only.
+	ApprovedPatchesEnableNonSecurity *bool `type:"boolean"`
 
 	// The ID of the deleted patch baseline.
 	BaselineId *string `min:"20" type:"string"`
@@ -28287,6 +28552,10 @@ type UpdatePatchBaselineOutput struct {
 
 	// A list of explicitly rejected patches for the baseline.
 	RejectedPatches []*string `type:"list"`
+
+	// Information about the patches to use to update the instances, including target
+	// operating systems and source repositories. Applies to Linux instances only.
+	Sources []*PatchSource `type:"list"`
 }
 
 // String returns the string representation
@@ -28314,6 +28583,12 @@ func (s *UpdatePatchBaselineOutput) SetApprovedPatches(v []*string) *UpdatePatch
 // SetApprovedPatchesComplianceLevel sets the ApprovedPatchesComplianceLevel field's value.
 func (s *UpdatePatchBaselineOutput) SetApprovedPatchesComplianceLevel(v string) *UpdatePatchBaselineOutput {
 	s.ApprovedPatchesComplianceLevel = &v
+	return s
+}
+
+// SetApprovedPatchesEnableNonSecurity sets the ApprovedPatchesEnableNonSecurity field's value.
+func (s *UpdatePatchBaselineOutput) SetApprovedPatchesEnableNonSecurity(v bool) *UpdatePatchBaselineOutput {
+	s.ApprovedPatchesEnableNonSecurity = &v
 	return s
 }
 
@@ -28362,6 +28637,12 @@ func (s *UpdatePatchBaselineOutput) SetOperatingSystem(v string) *UpdatePatchBas
 // SetRejectedPatches sets the RejectedPatches field's value.
 func (s *UpdatePatchBaselineOutput) SetRejectedPatches(v []*string) *UpdatePatchBaselineOutput {
 	s.RejectedPatches = v
+	return s
+}
+
+// SetSources sets the Sources field's value.
+func (s *UpdatePatchBaselineOutput) SetSources(v []*PatchSource) *UpdatePatchBaselineOutput {
+	s.Sources = v
 	return s
 }
 
@@ -28832,6 +29113,9 @@ const (
 
 	// OperatingSystemRedhatEnterpriseLinux is a OperatingSystem enum value
 	OperatingSystemRedhatEnterpriseLinux = "REDHAT_ENTERPRISE_LINUX"
+
+	// OperatingSystemSuse is a OperatingSystem enum value
+	OperatingSystemSuse = "SUSE"
 )
 
 const (

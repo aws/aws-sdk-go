@@ -9,7 +9,7 @@
     "BatchDeleteTableVersion": "<p>Deletes a specified batch of versions of a table.</p>",
     "BatchGetPartition": "<p>Retrieves partitions in a batch request.</p>",
     "BatchStopJobRun": "<p>Stops one or more job runs for a specified Job.</p>",
-    "CreateClassifier": "<p>Creates a classifier in the user's account. This may be either a <code>GrokClassifier</code> or an <code>XMLClassifier</code>. </p>",
+    "CreateClassifier": "<p>Creates a classifier in the user's account. This may be a <code>GrokClassifier</code>, an <code>XMLClassifier</code>, or abbrev <code>JsonClassifier</code>, depending on which field of the request is present.</p>",
     "CreateConnection": "<p>Creates a connection definition in the Data Catalog.</p>",
     "CreateCrawler": "<p>Creates a new crawler with specified targets, role, configuration, and optional schedule. At least one crawl target must be specified, in either the <i>s3Targets</i> or the <i>jdbcTargets</i> field.</p>",
     "CreateDatabase": "<p>Creates a new database in a Data Catalog.</p>",
@@ -69,7 +69,7 @@
     "StopCrawler": "<p>If the specified crawler is running, stops the crawl.</p>",
     "StopCrawlerSchedule": "<p>Sets the schedule state of the specified crawler to <code>NOT_SCHEDULED</code>, but does not stop the crawler if it is already running.</p>",
     "StopTrigger": "<p>Stops a specified trigger.</p>",
-    "UpdateClassifier": "<p>Modifies an existing classifier (either a <code>GrokClassifier</code> or an <code>XMLClassifier</code>).</p>",
+    "UpdateClassifier": "<p>Modifies an existing classifier (a <code>GrokClassifier</code>, <code>XMLClassifier</code>, or <code>JsonClassifier</code>, depending on which field is present).</p>",
     "UpdateConnection": "<p>Updates a connection definition in the Data Catalog.</p>",
     "UpdateCrawler": "<p>Updates a crawler. If a crawler is running, you must stop it using <code>StopCrawler</code> before updating it.</p>",
     "UpdateCrawlerSchedule": "<p>Updates the schedule of a crawler using a <code>cron</code> expression. </p>",
@@ -340,7 +340,7 @@
       }
     },
     "Classifier": {
-      "base": "<p>Classifiers are written in Python and triggered during a crawl task. You can write your own classifiers to best categorize your data sources and specify the appropriate schemas to use for them. A classifier checks whether a given file is in a format it can handle, and if it is, the classifier creates a schema in the form of a <code>StructType</code> object that matches that data format.</p> <p>A classifier can be either a <code>grok</code> classifier or an XML classifier, specified in one or the other field of the <code>Classifier</code> object.</p>",
+      "base": "<p>Classifiers are written in Python and triggered during a crawl task. You can write your own classifiers to best categorize your data sources and specify the appropriate schemas to use for them. A classifier checks whether a given file is in a format it can handle, and if it is, the classifier creates a schema in the form of a <code>StructType</code> object that matches that data format.</p> <p>A classifier can be a <code>grok</code> classifier, an XML classifier, or a JSON classifier, asspecified in one of the fields in the <code>Classifier</code> object.</p>",
       "refs": {
         "ClassifierList$member": null,
         "GetClassifierResponse$Classifier": "<p>The requested classifier.</p>"
@@ -542,7 +542,7 @@
       "refs": {
         "Crawler$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a Crawler's behavior.</p> <p>You can use this field to force partitions to inherit metadata such as classification, input format, output format, serde information, and schema from their parent table, rather than detect this information separately for each partition. Use the following JSON string to specify that behavior:</p> <p>Example: <code>'{ \"Version\": 1.0, \"CrawlerOutput\": { \"Partitions\": { \"AddOrUpdateBehavior\": \"InheritFromTable\" } } }'</code> </p>",
         "CreateCrawlerRequest$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a Crawler's behavior.</p> <p>You can use this field to force partitions to inherit metadata such as classification, input format, output format, serde information, and schema from their parent table, rather than detect this information separately for each partition. Use the following JSON string to specify that behavior:</p> <p>Example: <code>'{ \"Version\": 1.0, \"CrawlerOutput\": { \"Partitions\": { \"AddOrUpdateBehavior\": \"InheritFromTable\" } } }'</code> </p>",
-        "UpdateCrawlerRequest$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a Crawler's behavior.</p> <p>You can use this field to force partitions to inherit metadata such as classification, input format, output format, serde information, and schema from their parent table, rather than detect this information separately for each partition. Use the following JSON string to specify that behavior:</p> <p>Example:  <code>'{ \"Version\": 1.0, \"CrawlerOutput\": { \"Partitions\": { \"AddOrUpdateBehavior\": \"InheritFromTable\" } } }'</code> </p>"
+        "UpdateCrawlerRequest$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a Crawler's behavior.</p> <p>You can use this field to force partitions to inherit metadata such as classification, input format, output format, serde information, and schema from their parent table, rather than detect this information separately for each partition. Use the following JSON string to specify that behavior:</p> <p>Example: <code>'{ \"Version\": 1.0, \"CrawlerOutput\": { \"Partitions\": { \"AddOrUpdateBehavior\": \"InheritFromTable\" } } }'</code> </p>"
       }
     },
     "CrawlerList": {
@@ -662,6 +662,12 @@
     "CreateJobResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "CreateJsonClassifierRequest": {
+      "base": "<p>Specifies a JSON classifier for <code>CreateClassifier</code> to create.</p>",
+      "refs": {
+        "CreateClassifierRequest$JsonClassifier": "<p>A <code>JsonClassifier</code> object specifying the classifier to create.</p>"
       }
     },
     "CreatePartitionRequest": {
@@ -1524,6 +1530,20 @@
         "UpdateJobRequest$JobUpdate": "<p>Specifies the values with which to update the job.</p>"
       }
     },
+    "JsonClassifier": {
+      "base": "<p>A classifier for <code>JSON</code> content.</p>",
+      "refs": {
+        "Classifier$JsonClassifier": "<p>A <code>JsonClassifier</code> object.</p>"
+      }
+    },
+    "JsonPath": {
+      "base": null,
+      "refs": {
+        "CreateJsonClassifierRequest$JsonPath": "<p>A <code>JsonPath</code> string defining the JSON data for the classifier to classify. AWS Glue supports a subset of JsonPath, as described in <a href=\"https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json\">Writing JsonPath Custom Classifiers</a>.</p>",
+        "JsonClassifier$JsonPath": "<p>A <code>JsonPath</code> string defining the JSON data for the classifier to classify. AWS Glue supports a subset of JsonPath, as described in <a href=\"https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json\">Writing JsonPath Custom Classifiers</a>.</p>",
+        "UpdateJsonClassifierRequest$JsonPath": "<p>A <code>JsonPath</code> string defining the JSON data for the classifier to classify. AWS Glue supports a subset of JsonPath, as described in <a href=\"https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json\">Writing JsonPath Custom Classifiers</a>.</p>"
+      }
+    },
     "JsonValue": {
       "base": null,
       "refs": {
@@ -1702,6 +1722,7 @@
         "CreateGrokClassifierRequest$Name": "<p>The name of the new classifier.</p>",
         "CreateJobRequest$Name": "<p>The name you assign to this job. It must be unique in your account.</p>",
         "CreateJobResponse$Name": "<p>The unique name that was provided.</p>",
+        "CreateJsonClassifierRequest$Name": "<p>The name of the classifier.</p>",
         "CreatePartitionRequest$DatabaseName": "<p>The name of the metadata database in which the partition is to be created.</p>",
         "CreatePartitionRequest$TableName": "<p>The name of the metadata table in which the partition is to be created.</p>",
         "CreateTableRequest$DatabaseName": "<p>The catalog database in which to create the new table. For Hive compatibility, this name is entirely lowercase.</p>",
@@ -1758,6 +1779,7 @@
         "Job$Name": "<p>The name you assign to this job.</p>",
         "JobRun$TriggerName": "<p>The name of the trigger that started this job run.</p>",
         "JobRun$JobName": "<p>The name of the job being run.</p>",
+        "JsonClassifier$Name": "<p>The name of the classifier.</p>",
         "MatchCriteria$member": null,
         "NameStringList$member": null,
         "Order$Column": "<p>The name of the column.</p>",
@@ -1795,6 +1817,7 @@
         "UpdateGrokClassifierRequest$Name": "<p>The name of the <code>GrokClassifier</code>.</p>",
         "UpdateJobRequest$JobName": "<p>Name of the job definition to update.</p>",
         "UpdateJobResponse$JobName": "<p>Returns the name of the updated job.</p>",
+        "UpdateJsonClassifierRequest$Name": "<p>The name of the classifier.</p>",
         "UpdatePartitionRequest$DatabaseName": "<p>The name of the catalog database in which the table in question resides.</p>",
         "UpdatePartitionRequest$TableName": "<p>The name of the table where the partition to be updated is located.</p>",
         "UpdateTableRequest$DatabaseName": "<p>The name of the catalog database in which the table resides. For Hive compatibility, this name is entirely lowercase.</p>",
@@ -2338,6 +2361,8 @@
         "Database$CreateTime": "<p>The time at which the metadata database was created in the catalog.</p>",
         "GrokClassifier$CreationTime": "<p>The time this classifier was registered.</p>",
         "GrokClassifier$LastUpdated": "<p>The time this classifier was last updated.</p>",
+        "JsonClassifier$CreationTime": "<p>The time this classifier was registered.</p>",
+        "JsonClassifier$LastUpdated": "<p>The time this classifier was last updated.</p>",
         "LastCrawlInfo$StartTime": "<p>The time at which the crawl started.</p>",
         "Partition$CreationTime": "<p>The time at which the partition was created.</p>",
         "Partition$LastAccessTime": "<p>The last time at which the partition was accessed.</p>",
@@ -2520,6 +2545,12 @@
       "refs": {
       }
     },
+    "UpdateJsonClassifierRequest": {
+      "base": "<p>Specifies a JSON classifier to be updated.</p>",
+      "refs": {
+        "UpdateClassifierRequest$JsonClassifier": "<p>A <code>JsonClassifier</code> object with updated fields.</p>"
+      }
+    },
     "UpdatePartitionRequest": {
       "base": null,
       "refs": {
@@ -2623,6 +2654,7 @@
       "refs": {
         "Crawler$Version": "<p>The version of the crawler.</p>",
         "GrokClassifier$Version": "<p>The version of this classifier.</p>",
+        "JsonClassifier$Version": "<p>The version of this classifier.</p>",
         "XMLClassifier$Version": "<p>The version of this classifier.</p>"
       }
     },

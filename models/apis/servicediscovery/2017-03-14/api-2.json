@@ -213,7 +213,10 @@
         "requestUri":"/"
       },
       "input":{"shape":"ListServicesRequest"},
-      "output":{"shape":"ListServicesResponse"}
+      "output":{"shape":"ListServicesResponse"},
+      "errors":[
+        {"shape":"InvalidInput"}
+      ]
     },
     "RegisterInstance":{
       "name":"RegisterInstance",
@@ -378,6 +381,7 @@
       ],
       "members":{
         "NamespaceId":{"shape":"ResourceId"},
+        "RoutingPolicy":{"shape":"RoutingPolicy"},
         "DnsRecords":{"shape":"DnsRecordList"}
       }
     },
@@ -514,6 +518,7 @@
     },
     "HealthCheckConfig":{
       "type":"structure",
+      "required":["Type"],
       "members":{
         "Type":{"shape":"HealthCheckType"},
         "ResourcePath":{"shape":"ResourcePath"},
@@ -834,7 +839,8 @@
       "enum":[
         "SRV",
         "A",
-        "AAAA"
+        "AAAA",
+        "CNAME"
       ]
     },
     "RegisterInstanceRequest":{
@@ -886,6 +892,13 @@
     "ResourcePath":{
       "type":"string",
       "max":255
+    },
+    "RoutingPolicy":{
+      "type":"string",
+      "enum":[
+        "MULTIVALUE",
+        "WEIGHTED"
+      ]
     },
     "Service":{
       "type":"structure",
