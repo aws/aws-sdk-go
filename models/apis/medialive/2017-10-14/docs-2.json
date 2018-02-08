@@ -15,7 +15,8 @@
     "ListInputSecurityGroups": "Produces a list of Input Security Groups for an account",
     "ListInputs": "Produces list of inputs that have been created",
     "StartChannel": "Starts an existing channel",
-    "StopChannel": "Stops a running channel"
+    "StopChannel": "Stops a running channel",
+    "UpdateChannel": "Updates a channel."
   },
   "shapes": {
     "AacCodingMode": {
@@ -361,7 +362,8 @@
     "Channel": {
       "base": null,
       "refs": {
-        "CreateChannelResultModel$Channel": null
+        "CreateChannelResultModel$Channel": null,
+        "UpdateChannelResultModel$Channel": null
       }
     },
     "ChannelConfigurationValidationError": {
@@ -619,7 +621,8 @@
       "base": null,
       "refs": {
         "Channel$EncoderSettings": null,
-        "CreateChannel$EncoderSettings": null
+        "CreateChannel$EncoderSettings": null,
+        "UpdateChannel$EncoderSettings": "The encoder settings for this channel."
       }
     },
     "FecOutputIncludeFec": {
@@ -1108,7 +1111,8 @@
       "refs": {
         "Channel$InputSpecification": null,
         "ChannelSummary$InputSpecification": null,
-        "CreateChannel$InputSpecification": "Specification of input for this channel (max. bitrate, resolution, codec, etc.)"
+        "CreateChannel$InputSpecification": "Specification of input for this channel (max. bitrate, resolution, codec, etc.)",
+        "UpdateChannel$InputSpecification": "Specification of input for this channel (max. bitrate, resolution, codec, etc.)"
       }
     },
     "InputState": {
@@ -1305,7 +1309,8 @@
       "refs": {
         "Channel$Destinations": "A list of destinations of the channel. For UDP outputs, there is one\ndestination per output. For other types (HLS, for example), there is\none destination per packager.\n",
         "ChannelSummary$Destinations": "A list of destinations of the channel. For UDP outputs, there is one\ndestination per output. For other types (HLS, for example), there is\none destination per packager.\n",
-        "CreateChannel$Destinations": null
+        "CreateChannel$Destinations": null,
+        "UpdateChannel$Destinations": "A list of output destinations for this channel."
       }
     },
     "ListOfOutputDestinationSettings": {
@@ -1791,6 +1796,16 @@
       "refs": {
       }
     },
+    "UpdateChannel": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateChannelResultModel": {
+      "base": "The updated channel's description.",
+      "refs": {
+      }
+    },
     "ValidationError": {
       "base": null,
       "refs": {
@@ -1899,7 +1914,7 @@
         "BurnInDestinationSettings$ShadowYOffset": "Specifies the vertical offset of the shadow relative to the captions in pixels. A value of -2 would result in a shadow offset 2 pixels above the text.  All burn-in and DVB-Sub font settings must match.",
         "BurnInDestinationSettings$XPosition": "Specifies the horizontal position of the caption relative to the left side of the output in pixels. A value of 10 would result in the captions starting 10 pixels from the left of the output. If no explicit xPosition is provided, the horizontal caption position will be determined by the alignment parameter.  All burn-in and DVB-Sub font settings must match.",
         "BurnInDestinationSettings$YPosition": "Specifies the vertical position of the caption relative to the top of the output in pixels. A value of 10 would result in the captions starting 10 pixels from the top of the output. If no explicit yPosition is provided, the caption will be positioned towards the bottom of the output.  All burn-in and DVB-Sub font settings must match.",
-        "CaptionLanguageMapping$CaptionChannel": "Channel to insert closed captions.  Each channel mapping must have a unique channel number (maximum of 4)",
+        "CaptionLanguageMapping$CaptionChannel": "The closed caption channel being described by this CaptionLanguageMapping.  Each channel mapping must have a unique channel number (maximum of 4)",
         "Channel$PipelinesRunningCount": "The number of currently healthy pipelines.",
         "ChannelSummary$PipelinesRunningCount": "The number of currently healthy pipelines.",
         "DvbNitSettings$NetworkId": "The numeric value placed in the Network Information Table (NIT).",
@@ -2040,7 +2055,7 @@
         "ChannelSummary$RoleArn": "The Amazon Resource Name (ARN) of the role assumed when running the Channel.",
         "CreateChannel$Name": "Name of channel.",
         "CreateChannel$RequestId": "Unique request ID to be specified. This is needed to prevent retries from\ncreating multiple resources.\n",
-        "CreateChannel$Reserved": "Reserved for future use.",
+        "CreateChannel$Reserved": "Deprecated field that's only usable by whitelisted customers.",
         "CreateChannel$RoleArn": "An optional Amazon Resource Name (ARN) of the role to assume when running the Channel.",
         "CreateInput$Name": "Name of the input.",
         "CreateInput$RequestId": "Unique identifier of the request to ensure the request is handled\nexactly once in case of retries.\n",
@@ -2123,6 +2138,8 @@
         "StandardHlsSettings$AudioRenditionSets": "List all the audio groups that are used with the video output stream. Input all the audio GROUP-IDs that are associated to the video, separate by ','.",
         "StaticKeySettings$StaticKeyValue": "Static key value as a 32 character hexadecimal string.",
         "TeletextSourceSettings$PageNumber": "Specifies the teletext page number within the data stream from which to extract captions. Range of 0x100 (256) to 0x8FF (2303). Unused for passthrough. Should be specified as a hexadecimal string with no \"0x\" prefix.",
+        "UpdateChannel$Name": "The name of the channel.",
+        "UpdateChannel$RoleArn": "An optional Amazon Resource Name (ARN) of the role to assume when running the Channel. If you do not specify this on an update call but the role was previously set that role will be removed.",
         "ValidationError$ElementPath": null,
         "ValidationError$ErrorMessage": null,
         "VideoDescription$Name": "The name of this VideoDescription. Outputs will use this name to uniquely identify this Description.  Description names should be unique within this Live Event."

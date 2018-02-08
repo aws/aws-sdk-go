@@ -529,6 +529,43 @@
           "shape": "ConflictException"
         }
       ]
+    },
+    "UpdateChannel": {
+      "name": "UpdateChannel",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/prod/channels/{channelId}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateChannelRequest"
+      },
+      "output": {
+        "shape": "UpdateChannelResponse"
+      },
+      "errors": [
+        {
+          "shape": "UnprocessableEntityException"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
     }
   },
   "shapes": {
@@ -1530,7 +1567,8 @@
         },
         "Reserved": {
           "shape": "__string",
-          "locationName": "reserved"
+          "locationName": "reserved",
+          "deprecated": true
         },
         "RoleArn": {
           "shape": "__string",
@@ -1568,7 +1606,8 @@
         },
         "Reserved": {
           "shape": "__string",
-          "locationName": "reserved"
+          "locationName": "reserved",
+          "deprecated": true
         },
         "RoleArn": {
           "shape": "__string",
@@ -5162,6 +5201,82 @@
       "exception": true,
       "error": {
         "httpStatusCode": 422
+      }
+    },
+    "UpdateChannel": {
+      "type": "structure",
+      "members": {
+        "Destinations": {
+          "shape": "ListOfOutputDestination",
+          "locationName": "destinations"
+        },
+        "EncoderSettings": {
+          "shape": "EncoderSettings",
+          "locationName": "encoderSettings"
+        },
+        "InputSpecification": {
+          "shape": "InputSpecification",
+          "locationName": "inputSpecification"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "RoleArn": {
+          "shape": "__string",
+          "locationName": "roleArn"
+        }
+      }
+    },
+    "UpdateChannelRequest": {
+      "type": "structure",
+      "members": {
+        "ChannelId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "channelId"
+        },
+        "Destinations": {
+          "shape": "ListOfOutputDestination",
+          "locationName": "destinations"
+        },
+        "EncoderSettings": {
+          "shape": "EncoderSettings",
+          "locationName": "encoderSettings"
+        },
+        "InputSpecification": {
+          "shape": "InputSpecification",
+          "locationName": "inputSpecification"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "RoleArn": {
+          "shape": "__string",
+          "locationName": "roleArn"
+        }
+      },
+      "required": [
+        "ChannelId"
+      ]
+    },
+    "UpdateChannelResponse": {
+      "type": "structure",
+      "members": {
+        "Channel": {
+          "shape": "Channel",
+          "locationName": "channel"
+        }
+      }
+    },
+    "UpdateChannelResultModel": {
+      "type": "structure",
+      "members": {
+        "Channel": {
+          "shape": "Channel",
+          "locationName": "channel"
+        }
       }
     },
     "ValidationError": {

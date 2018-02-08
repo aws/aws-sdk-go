@@ -1,3 +1,24 @@
+Release v1.12.73 (2018-02-08)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API and documentation
+  * Adds support for allowing customers to provide a redirect URL for a stack. Users will be redirected to the link provided by the admin at the end of their streaming session.
+* `service/budgets`: Updates service API and documentation
+  * Making budgetLimit and timePeriod optional, and updating budgets docs.
+* `service/dms`: Updates service API, documentation, and paginators
+  * This release includes the addition of two new APIs: describe replication instance task logs and reboot instance. The first allows user to see how much storage each log for a task on a given instance is occupying. The second gives users the option to reboot the application software on the instance and force a fail over for MAZ instances to test robustness of their integration with our service.
+* `service/ds`: Updates service API
+  * Updated the regex of some input parameters to support longer EC2 identifiers.
+* `service/dynamodb`: Updates service API and documentation
+  * Amazon DynamoDB now supports server-side encryption using a default service key (alias/aws/dynamodb) from the AWS Key Management Service (KMS). AWS KMS is a service that combines secure, highly available hardware and software to provide a key management system scaled for the cloud. AWS KMS is used via the AWS Management Console or APIs to centrally create encryption keys, define the policies that control how keys can be used, and audit key usage to prove they are being used correctly. For more information, see the Amazon DynamoDB Developer Guide.
+* `service/gamelift`: Updates service API and documentation
+  * Amazon GameLift FlexMatch added the StartMatchBackfill API.  This API allows developers to add new players to an existing game session using the same matchmaking rules and player data that were used to initially create the session.
+* `service/medialive`: Updates service API and documentation
+  * AWS Elemental MediaLive has added support for updating channel settings for idle channels. You can now update channel name, channel outputs and output destinations, encoder settings, user role ARN, and input specifications. Channel settings can be updated in the console or with API calls. Please note that running channels need to be stopped before they can be updated. We've also deprecated the 'Reserved' field.
+* `service/mediastore`: Updates service API and documentation
+  * AWS Elemental MediaStore now supports per-container CORS configuration.
+
 Release v1.12.72 (2018-02-07)
 ===
 
