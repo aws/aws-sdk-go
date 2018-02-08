@@ -1123,7 +1123,9 @@ func (c *AppStream) DescribeDirectoryConfigsRequest(input *DescribeDirectoryConf
 
 // DescribeDirectoryConfigs API operation for Amazon AppStream.
 //
-// Describes the specified directory configurations.
+// Describes the specified directory configurations. Note that although the
+// response syntax in this topic includes the account password, this password
+// is not returned in the actual response.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1910,7 +1912,7 @@ func (c *AppStream) ListTagsForResourceRequest(input *ListTagsForResourceInput) 
 // Lists the tags for the specified AppStream 2.0 resource. You can tag AppStream
 // 2.0 image builders, images, fleets, and stacks.
 //
-// For more information about tags, see Tagging Your Resources (http://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic)
+// For more information about tags, see Tagging Your Resources (http://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html)
 // in the Amazon AppStream 2.0 Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2342,7 +2344,7 @@ func (c *AppStream) TagResourceRequest(input *TagResourceInput) (req *request.Re
 // To list the current tags for your resources, use ListTagsForResource. To
 // disassociate tags from your resources, use UntagResource.
 //
-// For more information about tags, see Tagging Your Resources (http://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic)
+// For more information about tags, see Tagging Your Resources (http://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html)
 // in the Amazon AppStream 2.0 Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2429,7 +2431,7 @@ func (c *AppStream) UntagResourceRequest(input *UntagResourceInput) (req *reques
 //
 // To list the current tags for your resources, use ListTagsForResource.
 //
-// For more information about tags, see Tagging Your Resources (http://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic)
+// For more information about tags, see Tagging Your Resources (http://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html)
 // in the Amazon AppStream 2.0 Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3578,6 +3580,9 @@ type CreateStackInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// The URL the user is redirected to after the streaming session ends.
+	RedirectURL *string `type:"string"`
+
 	// The storage connectors to enable.
 	StorageConnectors []*StorageConnector `type:"list"`
 }
@@ -3633,6 +3638,12 @@ func (s *CreateStackInput) SetDisplayName(v string) *CreateStackInput {
 // SetName sets the Name field's value.
 func (s *CreateStackInput) SetName(v string) *CreateStackInput {
 	s.Name = &v
+	return s
+}
+
+// SetRedirectURL sets the RedirectURL field's value.
+func (s *CreateStackInput) SetRedirectURL(v string) *CreateStackInput {
+	s.RedirectURL = &v
 	return s
 }
 
@@ -4150,7 +4161,9 @@ func (s *DescribeDirectoryConfigsInput) SetNextToken(v string) *DescribeDirector
 type DescribeDirectoryConfigsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the directory configurations.
+	// Information about the directory configurations. Note that although the response
+	// syntax in this topic includes the account password, this password is not
+	// returned in the actual response.
 	DirectoryConfigs []*DirectoryConfig `type:"list"`
 
 	// The pagination token to use to retrieve the next page of results for this
@@ -5845,6 +5858,9 @@ type Stack struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// The URL the user is redirected to after the streaming session ends.
+	RedirectURL *string `type:"string"`
+
 	// The errors for the stack.
 	StackErrors []*StackError `type:"list"`
 
@@ -5889,6 +5905,12 @@ func (s *Stack) SetDisplayName(v string) *Stack {
 // SetName sets the Name field's value.
 func (s *Stack) SetName(v string) *Stack {
 	s.Name = &v
+	return s
+}
+
+// SetRedirectURL sets the RedirectURL field's value.
+func (s *Stack) SetRedirectURL(v string) *Stack {
+	s.RedirectURL = &v
 	return s
 }
 
@@ -6696,8 +6718,11 @@ func (s *UpdateFleetOutput) SetFleet(v *Fleet) *UpdateFleetOutput {
 type UpdateStackInput struct {
 	_ struct{} `type:"structure"`
 
+	// The stack attributes to delete.
+	AttributesToDelete []*string `type:"list"`
+
 	// Deletes the storage connectors currently enabled for the stack.
-	DeleteStorageConnectors *bool `type:"boolean"`
+	DeleteStorageConnectors *bool `deprecated:"true" type:"boolean"`
 
 	// The description for display.
 	Description *string `type:"string"`
@@ -6709,6 +6734,9 @@ type UpdateStackInput struct {
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
+
+	// The URL the user is redirected to after the streaming session ends.
+	RedirectURL *string `type:"string"`
 
 	// The storage connectors to enable.
 	StorageConnectors []*StorageConnector `type:"list"`
@@ -6750,6 +6778,12 @@ func (s *UpdateStackInput) Validate() error {
 	return nil
 }
 
+// SetAttributesToDelete sets the AttributesToDelete field's value.
+func (s *UpdateStackInput) SetAttributesToDelete(v []*string) *UpdateStackInput {
+	s.AttributesToDelete = v
+	return s
+}
+
 // SetDeleteStorageConnectors sets the DeleteStorageConnectors field's value.
 func (s *UpdateStackInput) SetDeleteStorageConnectors(v bool) *UpdateStackInput {
 	s.DeleteStorageConnectors = &v
@@ -6771,6 +6805,12 @@ func (s *UpdateStackInput) SetDisplayName(v string) *UpdateStackInput {
 // SetName sets the Name field's value.
 func (s *UpdateStackInput) SetName(v string) *UpdateStackInput {
 	s.Name = &v
+	return s
+}
+
+// SetRedirectURL sets the RedirectURL field's value.
+func (s *UpdateStackInput) SetRedirectURL(v string) *UpdateStackInput {
+	s.RedirectURL = &v
 	return s
 }
 
@@ -7035,6 +7075,14 @@ const (
 
 	// SessionStateExpired is a SessionState enum value
 	SessionStateExpired = "EXPIRED"
+)
+
+const (
+	// StackAttributeStorageConnectors is a StackAttribute enum value
+	StackAttributeStorageConnectors = "STORAGE_CONNECTORS"
+
+	// StackAttributeRedirectUrl is a StackAttribute enum value
+	StackAttributeRedirectUrl = "REDIRECT_URL"
 )
 
 const (

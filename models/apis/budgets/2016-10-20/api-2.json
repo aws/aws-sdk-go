@@ -218,9 +218,7 @@
       "type":"structure",
       "required":[
         "BudgetName",
-        "BudgetLimit",
         "TimeUnit",
-        "TimePeriod",
         "BudgetType"
       ],
       "members":{
@@ -637,10 +635,6 @@
     },
     "TimePeriod":{
       "type":"structure",
-      "required":[
-        "Start",
-        "End"
-      ],
       "members":{
         "Start":{"shape":"GenericTimestamp"},
         "End":{"shape":"GenericTimestamp"}

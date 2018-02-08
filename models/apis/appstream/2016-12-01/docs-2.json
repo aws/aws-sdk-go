@@ -14,7 +14,7 @@
     "DeleteImage": "<p>Deletes the specified image. You cannot delete an image that is currently in use. After you delete an image, you cannot provision new capacity using the image.</p>",
     "DeleteImageBuilder": "<p>Deletes the specified image builder and releases the capacity.</p>",
     "DeleteStack": "<p>Deletes the specified stack. After this operation completes, the environment can no longer be activated and any reservations made for the stack are released.</p>",
-    "DescribeDirectoryConfigs": "<p>Describes the specified directory configurations.</p>",
+    "DescribeDirectoryConfigs": "<p>Describes the specified directory configurations. Note that although the response syntax in this topic includes the account password, this password is not returned in the actual response. </p>",
     "DescribeFleets": "<p>Describes the specified fleets or all fleets in the account.</p>",
     "DescribeImageBuilders": "<p>Describes the specified image builders or all image builders in the account.</p>",
     "DescribeImages": "<p>Describes the specified images or all images in the account.</p>",
@@ -24,13 +24,13 @@
     "ExpireSession": "<p>Stops the specified streaming session.</p>",
     "ListAssociatedFleets": "<p>Lists the fleets associated with the specified stack.</p>",
     "ListAssociatedStacks": "<p>Lists the stacks associated with the specified fleet.</p>",
-    "ListTagsForResource": "<p>Lists the tags for the specified AppStream 2.0 resource. You can tag AppStream 2.0 image builders, images, fleets, and stacks.</p> <p>For more information about tags, see <a href=\"http://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic\">Tagging Your Resources</a> in the <i>Amazon AppStream 2.0 Developer Guide</i>.</p>",
+    "ListTagsForResource": "<p>Lists the tags for the specified AppStream 2.0 resource. You can tag AppStream 2.0 image builders, images, fleets, and stacks.</p> <p>For more information about tags, see <a href=\"http://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html\">Tagging Your Resources</a> in the <i>Amazon AppStream 2.0 Developer Guide</i>.</p>",
     "StartFleet": "<p>Starts the specified fleet.</p>",
     "StartImageBuilder": "<p>Starts the specified image builder.</p>",
     "StopFleet": "<p>Stops the specified fleet.</p>",
     "StopImageBuilder": "<p>Stops the specified image builder.</p>",
-    "TagResource": "<p>Adds or overwrites one or more tags for the specified AppStream 2.0 resource. You can tag AppStream 2.0 image builders, images, fleets, and stacks.</p> <p>Each tag consists of a key and an optional value. If a resource already has a tag with the same key, this operation updates its value.</p> <p>To list the current tags for your resources, use <a>ListTagsForResource</a>. To disassociate tags from your resources, use <a>UntagResource</a>.</p> <p>For more information about tags, see <a href=\"http://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic\">Tagging Your Resources</a> in the <i>Amazon AppStream 2.0 Developer Guide</i>.</p>",
-    "UntagResource": "<p>Disassociates the specified tags from the specified AppStream 2.0 resource.</p> <p>To list the current tags for your resources, use <a>ListTagsForResource</a>.</p> <p>For more information about tags, see <a href=\"http://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic\">Tagging Your Resources</a> in the <i>Amazon AppStream 2.0 Developer Guide</i>.</p>",
+    "TagResource": "<p>Adds or overwrites one or more tags for the specified AppStream 2.0 resource. You can tag AppStream 2.0 image builders, images, fleets, and stacks.</p> <p>Each tag consists of a key and an optional value. If a resource already has a tag with the same key, this operation updates its value.</p> <p>To list the current tags for your resources, use <a>ListTagsForResource</a>. To disassociate tags from your resources, use <a>UntagResource</a>.</p> <p>For more information about tags, see <a href=\"http://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html\">Tagging Your Resources</a> in the <i>Amazon AppStream 2.0 Developer Guide</i>.</p>",
+    "UntagResource": "<p>Disassociates the specified tags from the specified AppStream 2.0 resource.</p> <p>To list the current tags for your resources, use <a>ListTagsForResource</a>.</p> <p>For more information about tags, see <a href=\"http://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html\">Tagging Your Resources</a> in the <i>Amazon AppStream 2.0 Developer Guide</i>.</p>",
     "UpdateDirectoryConfig": "<p>Updates the specified directory configuration.</p>",
     "UpdateFleet": "<p>Updates the specified fleet.</p> <p>If the fleet is in the <code>STOPPED</code> state, you can update any attribute except the fleet name. If the fleet is in the <code>RUNNING</code> state, you can update the <code>DisplayName</code> and <code>ComputeCapacity</code> attributes. If the fleet is in the <code>STARTING</code> or <code>STOPPING</code> state, you can't update it.</p>",
     "UpdateStack": "<p>Updates the specified stack.</p>"
@@ -328,7 +328,7 @@
     "DirectoryConfigList": {
       "base": null,
       "refs": {
-        "DescribeDirectoryConfigsResult$DirectoryConfigs": "<p>Information about the directory configurations.</p>"
+        "DescribeDirectoryConfigsResult$DirectoryConfigs": "<p>Information about the directory configurations. Note that although the response syntax in this topic includes the account password, this password is not returned in the actual response. </p>"
       }
     },
     "DirectoryName": {
@@ -644,6 +644,14 @@
         "ImageBuilder$Platform": "<p>The operating system platform of the image builder.</p>"
       }
     },
+    "RedirectURL": {
+      "base": null,
+      "refs": {
+        "CreateStackRequest$RedirectURL": "<p>The URL the user is redirected to after the streaming session ends.</p>",
+        "Stack$RedirectURL": "<p>The URL the user is redirected to after the streaming session ends.</p>",
+        "UpdateStackRequest$RedirectURL": "<p>The URL the user is redirected to after the streaming session ends.</p>"
+      }
+    },
     "ResourceAlreadyExistsException": {
       "base": "<p>The specified resource already exists.</p>",
       "refs": {
@@ -720,6 +728,18 @@
         "CreateStackResult$Stack": "<p>Information about the stack.</p>",
         "StackList$member": null,
         "UpdateStackResult$Stack": "<p>Information about the stack.</p>"
+      }
+    },
+    "StackAttribute": {
+      "base": null,
+      "refs": {
+        "StackAttributes$member": null
+      }
+    },
+    "StackAttributes": {
+      "base": null,
+      "refs": {
+        "UpdateStackRequest$AttributesToDelete": "<p>The stack attributes to delete.</p>"
       }
     },
     "StackError": {

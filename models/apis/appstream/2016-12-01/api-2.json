@@ -636,7 +636,8 @@
         "Name":{"shape":"String"},
         "Description":{"shape":"Description"},
         "DisplayName":{"shape":"DisplayName"},
-        "StorageConnectors":{"shape":"StorageConnectorList"}
+        "StorageConnectors":{"shape":"StorageConnectorList"},
+        "RedirectURL":{"shape":"RedirectURL"}
       }
     },
     "CreateStackResult":{
@@ -1189,6 +1190,10 @@
       "type":"string",
       "enum":["WINDOWS"]
     },
+    "RedirectURL":{
+      "type":"string",
+      "max":1000
+    },
     "ResourceAlreadyExistsException":{
       "type":"structure",
       "members":{
@@ -1289,8 +1294,20 @@
         "DisplayName":{"shape":"String"},
         "CreatedTime":{"shape":"Timestamp"},
         "StorageConnectors":{"shape":"StorageConnectorList"},
+        "RedirectURL":{"shape":"RedirectURL"},
         "StackErrors":{"shape":"StackErrors"}
       }
+    },
+    "StackAttribute":{
+      "type":"string",
+      "enum":[
+        "STORAGE_CONNECTORS",
+        "REDIRECT_URL"
+      ]
+    },
+    "StackAttributes":{
+      "type":"list",
+      "member":{"shape":"StackAttribute"}
     },
     "StackError":{
       "type":"structure",
@@ -1508,7 +1525,12 @@
         "Description":{"shape":"Description"},
         "Name":{"shape":"String"},
         "StorageConnectors":{"shape":"StorageConnectorList"},
-        "DeleteStorageConnectors":{"shape":"Boolean"}
+        "DeleteStorageConnectors":{
+          "shape":"Boolean",
+          "deprecated":true
+        },
+        "RedirectURL":{"shape":"RedirectURL"},
+        "AttributesToDelete":{"shape":"StackAttributes"}
       }
     },
     "UpdateStackResult":{
