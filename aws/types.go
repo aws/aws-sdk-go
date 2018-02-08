@@ -72,6 +72,20 @@ func (r ReaderSeekerCloser) IsSeeker() bool {
 	return ok
 }
 
+// HasLen returns the length of the underlying reader if the value implements
+// the Len() int method.
+func (r ReaderSeekerCloser) HasLen() (int, bool) {
+	type lenner interface {
+		Len() int
+	}
+
+	if lr, ok := r.r.(lenner); ok {
+		return lr.Len(), true
+	}
+
+	return 0, false
+}
+
 // Close closes the ReaderSeekerCloser.
 //
 // If the ReaderSeekerCloser is not an io.Closer nothing will be done.

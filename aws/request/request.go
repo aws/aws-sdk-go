@@ -224,6 +224,9 @@ func (r *Request) SetContext(ctx aws.Context) {
 
 // WillRetry returns if the request's can be retried.
 func (r *Request) WillRetry() bool {
+	if !aws.IsReaderSeekable(r.Body) && r.HTTPRequest.Body != NoBody {
+		return false
+	}
 	return r.Error != nil && aws.BoolValue(r.Retryable) && r.RetryCount < r.MaxRetries()
 }
 
@@ -411,7 +414,8 @@ func (r *Request) getNextRequestBody() (io.ReadCloser, error) {
 		// Transfer-Encoding: chunked bodies for these methods.
 		//
 		// This would only happen if a aws.ReaderSeekerCloser was used with
-		// a io.Reader that was not also an io.Seeker.
+		// a io.Reader that was not also an io.Seeker, or did not implement
+		// Len() method.
 		switch r.Operation.HTTPMethod {
 		case "GET", "HEAD", "DELETE":
 			body = NoBody
@@ -429,13 +433,20 @@ func (r *Request) getNextRequestBody() (io.ReadCloser, error) {
 // If no error occurs the length of the body will be returned.
 func computeBodyLength(r io.ReadSeeker) (int64, error) {
 	seekable := true
+
 	// Determine if the seeker is actually seekable. ReaderSeekerCloser
 	// hides the fact that a io.Readers might not actually be seekable.
 	switch v := r.(type) {
 	case aws.ReaderSeekerCloser:
 		seekable = v.IsSeeker()
+		if l, ok := v.HasLen(); ok {
+			return int64(l), nil
+		}
 	case *aws.ReaderSeekerCloser:
 		seekable = v.IsSeeker()
+		if l, ok := v.HasLen(); ok {
+			return int64(l), nil
+		}
 	}
 	if !seekable {
 		return -1, nil
