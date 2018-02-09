@@ -6,6 +6,7 @@
     "jsonVersion":"1.1",
     "protocol":"rest-json",
     "serviceFullName":"Amazon Lex Model Building Service",
+    "serviceId":"Lex Model Building Service",
     "signatureVersion":"v4",
     "signingName":"lex",
     "uid":"lex-models-2017-04-19"
@@ -711,7 +712,8 @@
       "enum":[
         "Facebook",
         "Slack",
-        "Twilio-Sms"
+        "Twilio-Sms",
+        "Kik"
       ]
     },
     "CodeHook":{
@@ -742,7 +744,8 @@
       "type":"string",
       "enum":[
         "PlainText",
-        "SSML"
+        "SSML",
+        "CustomPayload"
       ]
     },
     "Count":{"type":"integer"},
@@ -1628,6 +1631,12 @@
         "utterances":{"shape":"ListsOfUtterances"}
       }
     },
+    "GroupNumber":{
+      "type":"integer",
+      "box":true,
+      "max":5,
+      "min":1
+    },
     "Intent":{
       "type":"structure",
       "required":[
@@ -1727,13 +1736,14 @@
       ],
       "members":{
         "contentType":{"shape":"ContentType"},
-        "content":{"shape":"ContentString"}
+        "content":{"shape":"ContentString"},
+        "groupNumber":{"shape":"GroupNumber"}
       }
     },
     "MessageList":{
       "type":"list",
       "member":{"shape":"Message"},
-      "max":5,
+      "max":15,
       "min":1
     },
     "MessageVersion":{

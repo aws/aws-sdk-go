@@ -1,3 +1,12 @@
+Release v1.12.74 (2018-02-09)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Users can now better understand the longer ID opt-in status of their account using the two new APIs DescribeAggregateIdFormat and DescribePrincipalIdFormat
+* `service/lex-models`: Updates service API and documentation
+* `service/runtime.lex`: Updates service API and documentation
+
 Release v1.12.73 (2018-02-08)
 ===
 
