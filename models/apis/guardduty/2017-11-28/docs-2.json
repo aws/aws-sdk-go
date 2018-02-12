@@ -515,6 +515,12 @@
       "base" : "ListMembers response object.",
       "refs" : { }
     },
+    "ListOfPortProbeDetail" : {
+      "base" : null,
+      "refs" : {
+        "PortProbeAction$PortProbeDetails" : "A list of port probe details objects."
+      }
+    },
     "ListThreatIntelSetsResponse" : {
       "base" : "ListThreatIntelSets response object.",
       "refs" : { }
@@ -522,7 +528,8 @@
     "LocalPortDetails" : {
       "base" : "Local port information of the connection.",
       "refs" : {
-        "NetworkConnectionAction$LocalPortDetails" : "Local port information of the connection."
+        "NetworkConnectionAction$LocalPortDetails" : "Local port information of the connection.",
+        "PortProbeDetail$LocalPortDetails" : "Local port information of the connection."
       }
     },
     "Location" : {
@@ -645,6 +652,18 @@
         "RemoteIpDetails$Organization" : "ISP Organization information of the remote IP address."
       }
     },
+    "PortProbeAction" : {
+      "base" : "Information about the PORT_PROBE action described in this finding.",
+      "refs" : {
+        "Action$PortProbeAction" : "Information about the PORT_PROBE action described in this finding."
+      }
+    },
+    "PortProbeDetail" : {
+      "base" : "Details about the port probe finding.",
+      "refs" : {
+        "ListOfPortProbeDetail$member" : null
+      }
+    },
     "PrivateDnsName" : {
       "base" : "Private DNS name of the EC2 instance.",
       "refs" : {
@@ -687,7 +706,8 @@
       "base" : "Remote IP information of the connection.",
       "refs" : {
         "AwsApiCallAction$RemoteIpDetails" : "Remote IP information of the connection.",
-        "NetworkConnectionAction$RemoteIpDetails" : "Remote IP information of the connection."
+        "NetworkConnectionAction$RemoteIpDetails" : "Remote IP information of the connection.",
+        "PortProbeDetail$RemoteIpDetails" : "Remote IP information of the connection."
       }
     },
     "RemotePortDetails" : {
@@ -839,6 +859,7 @@
       "base" : null,
       "refs" : {
         "NetworkConnectionAction$Blocked" : "Network connection blocked information.",
+        "PortProbeAction$Blocked" : "Port probe blocked information.",
         "Service$Archived" : "Indicates whether this finding is archived."
       }
     },
