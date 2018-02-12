@@ -1002,6 +1002,15 @@
           "us-west-2" : { }
         }
       },
+      "kinesisvideo" : {
+        "endpoints" : {
+          "ap-northeast-1" : { },
+          "eu-central-1" : { },
+          "eu-west-1" : { },
+          "us-east-1" : { },
+          "us-west-2" : { }
+        }
+      },
       "kms" : {
         "endpoints" : {
           "ap-northeast-1" : { },
@@ -2107,6 +2116,11 @@
         }
       },
       "ec2" : {
+        "endpoints" : {
+          "us-gov-west-1" : { }
+        }
+      },
+      "ecr" : {
         "endpoints" : {
           "us-gov-west-1" : { }
         }

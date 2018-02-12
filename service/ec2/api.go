@@ -8272,7 +8272,7 @@ func (c *EC2) DescribeAccountAttributesRequest(input *DescribeAccountAttributesI
 //
 //    * default-vpc: The ID of the default VPC for your account, or none.
 //
-//    * max-instances: The maximum number of On-Demand instances that you can
+//    * max-instances: The maximum number of On-Demand Instances that you can
 //    run.
 //
 //    * vpc-max-security-groups-per-interface: The maximum number of security
@@ -24367,7 +24367,7 @@ func (s *AttributeBooleanValue) SetValue(v bool) *AttributeBooleanValue {
 type AttributeValue struct {
 	_ struct{} `type:"structure"`
 
-	// The attribute value. Note that the value is case-sensitive.
+	// The attribute value. The value is case-sensitive.
 	Value *string `locationName:"value" type:"string"`
 }
 
@@ -26412,14 +26412,34 @@ type CopyImageInput struct {
 	// in the Amazon Elastic Compute Cloud User Guide.
 	Encrypted *bool `locationName:"encrypted" type:"boolean"`
 
-	// The full ARN of the AWS Key Management Service (AWS KMS) CMK to use when
-	// encrypting the snapshots of an image during a copy operation. This parameter
-	// is only required if you want to use a non-default CMK; if this parameter
-	// is not specified, the default CMK for EBS is used. The ARN contains the arn:aws:kms
-	// namespace, followed by the region of the CMK, the AWS account ID of the CMK
-	// owner, the key namespace, and then the CMK ID. For example, arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.
+	// An identifier for the AWS Key Management Service (AWS KMS) customer master
+	// key (CMK) to use when creating the encrypted volume. This parameter is only
+	// required if you want to use a non-default CMK; if this parameter is not specified,
+	// the default CMK for EBS is used. If a KmsKeyId is specified, the Encrypted
+	// flag must also be set.
+	//
+	// The CMK identifier may be provided in any of the following formats:
+	//
+	//    * Key ID
+	//
+	//    * Key alias
+	//
+	//    * ARN using key ID. The ID ARN contains the arn:aws:kms namespace, followed
+	//    by the region of the CMK, the AWS account ID of the CMK owner, the key
+	//    namespace, and then the CMK ID. For example, arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.
+	//
+	//
+	//    * ARN using key alias. The alias ARN contains the arn:aws:kms namespace,
+	//    followed by the region of the CMK, the AWS account ID of the CMK owner,
+	//    the alias namespace, and then the CMK alias. For example, arn:aws:kms:us-east-1:012345678910:alias/ExampleAlias.
+	//
+	//
+	// AWS parses KmsKeyId asynchronously, meaning that the action you call may
+	// appear to complete even though you provided an invalid identifier. This action
+	// will eventually report failure.
+	//
 	// The specified CMK must exist in the region that the snapshot is being copied
-	// to. If a KmsKeyId is specified, the Encrypted flag must also be set.
+	// to.
 	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
 
 	// The name of the new AMI in the destination region.
@@ -26571,14 +26591,31 @@ type CopySnapshotInput struct {
 	// the Amazon Elastic Compute Cloud User Guide.
 	Encrypted *bool `locationName:"encrypted" type:"boolean"`
 
-	// The full ARN of the AWS Key Management Service (AWS KMS) CMK to use when
-	// creating the snapshot copy. This parameter is only required if you want to
-	// use a non-default CMK; if this parameter is not specified, the default CMK
-	// for EBS is used. The ARN contains the arn:aws:kms namespace, followed by
-	// the region of the CMK, the AWS account ID of the CMK owner, the key namespace,
-	// and then the CMK ID. For example, arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.
-	// The specified CMK must exist in the region that the snapshot is being copied
-	// to. If a KmsKeyId is specified, the Encrypted flag must also be set.
+	// An identifier for the AWS Key Management Service (AWS KMS) customer master
+	// key (CMK) to use when creating the encrypted volume. This parameter is only
+	// required if you want to use a non-default CMK; if this parameter is not specified,
+	// the default CMK for EBS is used. If a KmsKeyId is specified, the Encrypted
+	// flag must also be set.
+	//
+	// The CMK identifier may be provided in any of the following formats:
+	//
+	//    * Key ID
+	//
+	//    * Key alias
+	//
+	//    * ARN using key ID. The ID ARN contains the arn:aws:kms namespace, followed
+	//    by the region of the CMK, the AWS account ID of the CMK owner, the key
+	//    namespace, and then the CMK ID. For example, arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.
+	//
+	//
+	//    * ARN using key alias. The alias ARN contains the arn:aws:kms namespace,
+	//    followed by the region of the CMK, the AWS account ID of the CMK owner,
+	//    the alias namespace, and then the CMK alias. For example, arn:aws:kms:us-east-1:012345678910:alias/ExampleAlias.
+	//
+	//
+	// AWS parses KmsKeyId asynchronously, meaning that the action you call may
+	// appear to complete even though you provided an invalid identifier. The action
+	// will eventually fail.
 	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
 
 	// The pre-signed URL that facilitates copying an encrypted snapshot. This parameter
@@ -29492,13 +29529,31 @@ type CreateVolumeInput struct {
 	// Constraint: Range is 100 to 20000 for Provisioned IOPS SSD volumes
 	Iops *int64 `type:"integer"`
 
-	// The full ARN of the AWS Key Management Service (AWS KMS) customer master
+	// An identifier for the AWS Key Management Service (AWS KMS) customer master
 	// key (CMK) to use when creating the encrypted volume. This parameter is only
 	// required if you want to use a non-default CMK; if this parameter is not specified,
-	// the default CMK for EBS is used. The ARN contains the arn:aws:kms namespace,
-	// followed by the region of the CMK, the AWS account ID of the CMK owner, the
-	// key namespace, and then the CMK ID. For example, arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.
-	// If a KmsKeyId is specified, the Encrypted flag must also be set.
+	// the default CMK for EBS is used. If a KmsKeyId is specified, the Encrypted
+	// flag must also be set.
+	//
+	// The CMK identifier may be provided in any of the following formats:
+	//
+	//    * Key ID
+	//
+	//    * Key alias
+	//
+	//    * ARN using key ID. The ID ARN contains the arn:aws:kms namespace, followed
+	//    by the region of the CMK, the AWS account ID of the CMK owner, the key
+	//    namespace, and then the CMK ID. For example, arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.
+	//
+	//
+	//    * ARN using key alias. The alias ARN contains the arn:aws:kms namespace,
+	//    followed by the region of the CMK, the AWS account ID of the CMK owner,
+	//    the alias namespace, and then the CMK alias. For example, arn:aws:kms:us-east-1:012345678910:alias/ExampleAlias.
+	//
+	//
+	// AWS parses KmsKeyId asynchronously, meaning that the action you call may
+	// appear to complete even though you provided an invalid identifier. The action
+	// will eventually fail.
 	KmsKeyId *string `type:"string"`
 
 	// The size of the volume, in GiBs.
@@ -33233,9 +33288,9 @@ type DescribeAggregateIdFormatOutput struct {
 	// Information about each resource's ID format.
 	Statuses []*IdFormat `locationName:"statusSet" locationNameList:"item" type:"list"`
 
-	// Indicates whether all resrouces types in the region are configured to use
-	// longer IDs. This value will only be true if all users are configured to use
-	// longer IDs for all resources types in the region.
+	// Indicates whether all resource types in the region are configured to use
+	// longer IDs. This value is only true if all users are configured to use longer
+	// IDs for all resources types in the region.
 	UseLongIdsAggregated *bool `locationName:"useLongIdsAggregated" type:"boolean"`
 }
 
@@ -43660,7 +43715,8 @@ type EbsBlockDevice struct {
 	// it is not used in requests to create gp2, st1, sc1, or standard volumes.
 	Iops *int64 `locationName:"iops" type:"integer"`
 
-	// ID for a user-managed CMK under which the EBS volume is encrypted.
+	// Identifier (key ID, key alias, ID ARN, or alias ARN) for a user-managed CMK
+	// under which the EBS volume is encrypted.
 	//
 	// Note: This parameter is only supported on BlockDeviceMapping objects called
 	// by RunInstances (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html),
@@ -47128,7 +47184,7 @@ type ImportInstanceLaunchSpecification struct {
 	InstanceInitiatedShutdownBehavior *string `locationName:"instanceInitiatedShutdownBehavior" type:"string" enum:"ShutdownBehavior"`
 
 	// The instance type. For more information about the instance types that you
-	// can import, see Instance Types (http://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-image-import.html#vmimport-instance-types)
+	// can import, see Instance Types (http://docs.aws.amazon.com/vm-import/latest/userguide/vmie_prereqs.html#vmimport-instance-types)
 	// in the VM Import/Export User Guide.
 	InstanceType *string `locationName:"instanceType" type:"string" enum:"InstanceType"`
 
@@ -68619,6 +68675,9 @@ const (
 const (
 	// NetworkInterfaceStatusAvailable is a NetworkInterfaceStatus enum value
 	NetworkInterfaceStatusAvailable = "available"
+
+	// NetworkInterfaceStatusAssociated is a NetworkInterfaceStatus enum value
+	NetworkInterfaceStatusAssociated = "associated"
 
 	// NetworkInterfaceStatusAttaching is a NetworkInterfaceStatus enum value
 	NetworkInterfaceStatusAttaching = "attaching"

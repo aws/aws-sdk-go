@@ -1,3 +1,18 @@
+Release v1.12.75 (2018-02-12)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Network interfaces now supply the following additional status of "associated" to better distinguish the current status.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/guardduty`: Updates service API and documentation
+  * Added PortProbeAction information to the Action section of the port probe-type finding.
+* `service/kms`: Updates service API
+  * This release of AWS Key Management Service includes support for InvalidArnException in the RetireGrant API.
+* `service/rds`: Updates service documentation
+  * Aurora MySQL now supports MySQL 5.7.
+
 Release v1.12.74 (2018-02-09)
 ===
 

@@ -13248,6 +13248,7 @@
       "type":"string",
       "enum":[
         "available",
+        "associated",
         "attaching",
         "in-use",
         "detaching"

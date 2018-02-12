@@ -806,6 +806,10 @@
         "NetworkConnectionAction" : {
           "shape" : "NetworkConnectionAction",
           "locationName" : "networkConnectionAction"
+        },
+        "PortProbeAction" : {
+          "shape" : "PortProbeAction",
+          "locationName" : "portProbeAction"
         }
       }
     },
@@ -1966,6 +1970,12 @@
         }
       }
     },
+    "ListOfPortProbeDetail" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "PortProbeDetail"
+      }
+    },
     "ListThreatIntelSetsRequest" : {
       "type" : "structure",
       "members" : {
@@ -2215,6 +2225,32 @@
         "Org" : {
           "shape" : "__string",
           "locationName" : "org"
+        }
+      }
+    },
+    "PortProbeAction" : {
+      "type" : "structure",
+      "members" : {
+        "Blocked" : {
+          "shape" : "__boolean",
+          "locationName" : "blocked"
+        },
+        "PortProbeDetails" : {
+          "shape" : "ListOfPortProbeDetail",
+          "locationName" : "portProbeDetails"
+        }
+      }
+    },
+    "PortProbeDetail" : {
+      "type" : "structure",
+      "members" : {
+        "LocalPortDetails" : {
+          "shape" : "LocalPortDetails",
+          "locationName" : "localPortDetails"
+        },
+        "RemoteIpDetails" : {
+          "shape" : "RemoteIpDetails",
+          "locationName" : "remoteIpDetails"
         }
       }
     },
