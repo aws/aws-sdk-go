@@ -1,3 +1,13 @@
+Release v1.12.76 (2018-02-13)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/glacier`: Updates service documentation
+  * Documentation updates for glacier
+* `service/route53`: Updates service API
+  * Added support for creating Private Hosted Zones and metric-based healthchecks in the ap-northeast-3 region for whitelisted customers.
+
 Release v1.12.75 (2018-02-12)
 ===
 
