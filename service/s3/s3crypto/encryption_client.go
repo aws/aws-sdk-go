@@ -71,12 +71,11 @@ func (c *EncryptionClient) PutObjectRequest(input *s3.PutObjectInput) (*request.
 	req, out := c.S3Client.PutObjectRequest(input)
 
 	// Get Size of file
-	n, err := input.Body.Seek(0, 2)
+	n, err := aws.SeekerLen(input.Body)
 	if err != nil {
 		req.Error = err
 		return req, out
 	}
-	input.Body.Seek(0, 0)
 
 	dst, err := getWriterStore(req, c.TempFolderPath, n >= c.MinFileSize)
 	if err != nil {

@@ -487,10 +487,7 @@ func (u *uploader) initSize() {
 
 	switch r := u.in.Body.(type) {
 	case io.Seeker:
-		pos, _ := r.Seek(0, 1)
-		defer r.Seek(pos, 0)
-
-		n, err := r.Seek(0, 2)
+		n, err := aws.SeekerLen(r)
 		if err != nil {
 			return
 		}
