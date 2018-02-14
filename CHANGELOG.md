@@ -1,3 +1,11 @@
+Release v1.12.77 (2018-02-14)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/lex-models`: Updates service API and documentation
+
 Release v1.12.76 (2018-02-13)
 ===
 
