@@ -1,3 +1,13 @@
+Release v1.12.78 (2018-02-15)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/gamelift`: Updates service API and documentation
+  * Updates to allow Fleets to run on On-Demand or Spot instances.
+* `service/mediaconvert`: Updates service API and documentation
+  * Nielsen ID3 tags can now be inserted into transport stream (TS) and HLS outputs. For more information on Nielsen configuration you can go to https://docs.aws.amazon.com/mediaconvert/latest/apireference/jobs.html#jobs-nielsenconfiguration
+
 Release v1.12.77 (2018-02-14)
 ===
 

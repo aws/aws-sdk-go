@@ -1179,7 +1179,8 @@
         "ResourceCreationLimitPolicy":{"shape":"ResourceCreationLimitPolicy"},
         "MetricGroups":{"shape":"MetricGroupList"},
         "PeerVpcAwsAccountId":{"shape":"NonZeroAndMaxString"},
-        "PeerVpcId":{"shape":"NonZeroAndMaxString"}
+        "PeerVpcId":{"shape":"NonZeroAndMaxString"},
+        "FleetType":{"shape":"FleetType"}
       }
     },
     "CreateFleetOutput":{
@@ -1869,7 +1870,8 @@
         "FLEET_CREATION_VALIDATING_RUNTIME_CONFIG",
         "FLEET_VPC_PEERING_SUCCEEDED",
         "FLEET_VPC_PEERING_FAILED",
-        "FLEET_VPC_PEERING_DELETED"
+        "FLEET_VPC_PEERING_DELETED",
+        "INSTANCE_INTERRUPTED"
       ]
     },
     "EventList":{
@@ -1881,6 +1883,8 @@
       "members":{
         "FleetId":{"shape":"FleetId"},
         "FleetArn":{"shape":"ArnStringModel"},
+        "FleetType":{"shape":"FleetType"},
+        "InstanceType":{"shape":"EC2InstanceType"},
         "Description":{"shape":"NonZeroAndMaxString"},
         "Name":{"shape":"NonZeroAndMaxString"},
         "CreationTime":{"shape":"Timestamp"},
@@ -1942,6 +1946,13 @@
         "TERMINATED"
       ]
     },
+    "FleetType":{
+      "type":"string",
+      "enum":[
+        "ON_DEMAND",
+        "SPOT"
+      ]
+    },
     "FleetUtilization":{
       "type":"structure",
       "members":{
@@ -1993,6 +2004,7 @@
         "CurrentPlayerSessionCount":{"shape":"WholeNumber"},
         "MaximumPlayerSessionCount":{"shape":"WholeNumber"},
         "Status":{"shape":"GameSessionStatus"},
+        "StatusReason":{"shape":"GameSessionStatusReason"},
         "GameProperties":{"shape":"GamePropertyList"},
         "IpAddress":{"shape":"IpAddress"},
         "Port":{"shape":"PortNumber"},
@@ -2117,6 +2129,10 @@
         "TERMINATING",
         "ERROR"
       ]
+    },
+    "GameSessionStatusReason":{
+      "type":"string",
+      "enum":["INTERRUPTED"]
     },
     "GetGameSessionLogUrlInput":{
       "type":"structure",
