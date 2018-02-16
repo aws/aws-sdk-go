@@ -1,3 +1,10 @@
+Release v1.12.79 (2018-02-16)
+===
+
+### Service Client Updates
+* `service/rds`: Updates service API and documentation
+  * Updates RDS API to indicate whether a DBEngine supports read replicas.
+
 Release v1.12.78 (2018-02-15)
 ===
 

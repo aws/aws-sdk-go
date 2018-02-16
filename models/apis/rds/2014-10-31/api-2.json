@@ -2517,7 +2517,8 @@
         "ValidUpgradeTarget":{"shape":"ValidUpgradeTargetList"},
         "SupportedTimezones":{"shape":"SupportedTimezonesList"},
         "ExportableLogTypes":{"shape":"LogTypeList"},
-        "SupportsLogExportsToCloudwatchLogs":{"shape":"Boolean"}
+        "SupportsLogExportsToCloudwatchLogs":{"shape":"Boolean"},
+        "SupportsReadReplica":{"shape":"Boolean"}
       }
     },
     "DBEngineVersionList":{
