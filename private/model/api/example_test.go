@@ -1,4 +1,4 @@
-// +build 1.6,codegen
+// +build codegen
 
 package api
 
@@ -32,11 +32,70 @@ func buildAPI() *API {
 		Shape:     intShape,
 	}
 
+	nestedComplexShape := &Shape{
+		API:       a,
+		ShapeName: "NestedComplexShape",
+		MemberRefs: map[string]*ShapeRef{
+			"NestedField": stringShapeRef,
+		},
+		Type: "structure",
+	}
+
+	nestedComplexShapeRef := &ShapeRef{
+		API:       a,
+		ShapeName: "NestedComplexShape",
+		Shape:     nestedComplexShape,
+	}
+
+	nestedListShape := &Shape{
+		API:       a,
+		ShapeName: "NestedListShape",
+		MemberRef: *nestedComplexShapeRef,
+		Type:      "list",
+	}
+
+	nestedListShapeRef := &ShapeRef{
+		API:       a,
+		ShapeName: "NestedListShape",
+		Shape:     nestedListShape,
+	}
+
+	complexShape := &Shape{
+		API:       a,
+		ShapeName: "ComplexShape",
+		MemberRefs: map[string]*ShapeRef{
+			"Field": stringShapeRef,
+			"List":  nestedListShapeRef,
+		},
+		Type: "structure",
+	}
+
+	complexShapeRef := &ShapeRef{
+		API:       a,
+		ShapeName: "ComplexShape",
+		Shape:     complexShape,
+	}
+
+	listShape := &Shape{
+		API:       a,
+		ShapeName: "ListShape",
+		MemberRef: *complexShapeRef,
+		Type:      "list",
+	}
+
+	listShapeRef := &ShapeRef{
+		API:       a,
+		ShapeName: "ListShape",
+		Shape:     listShape,
+	}
+
 	input := &Shape{
 		API:       a,
 		ShapeName: "FooInput",
 		MemberRefs: map[string]*ShapeRef{
-			"BarShape": stringShapeRef,
+			"BarShape":     stringShapeRef,
+			"ComplexField": complexShapeRef,
+			"ListField":    listShapeRef,
 		},
 		Type: "structure",
 	}
@@ -44,7 +103,9 @@ func buildAPI() *API {
 		API:       a,
 		ShapeName: "FooOutput",
 		MemberRefs: map[string]*ShapeRef{
-			"BazShape": intShapeRef,
+			"BazShape":     intShapeRef,
+			"ComplexField": complexShapeRef,
+			"ListField":    listShapeRef,
 		},
 		Type: "structure",
 	}
@@ -91,7 +152,20 @@ func TestExampleGeneration(t *testing.T) {
     "Foo": [
       {
         "input": {
-          "BarShape": "Hello world"
+          "BarShape": "Hello world",
+					"ComplexField": {
+						"Field": "bar",
+						"List": [
+							{
+								"NestedField": "qux"
+							}
+						]
+					},
+					"ListField": [
+						{
+							"Field": "baz"
+						}
+					]
         },
         "output": {
           "BazShape": 1
@@ -149,6 +223,9 @@ func ExampleFooService_Foo_shared00() {
 	svc := fooservice.New(session.New())
 	input := &fooservice.FooInput{
 		BarShape: aws.String("Hello world"),
+		ComplexShape: &fooservice.ComplexShape {
+			"Field": aws.String("bar"),
+		},
 	}
 
 	result, err := svc.Foo(input)
