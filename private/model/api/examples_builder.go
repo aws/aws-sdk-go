@@ -12,7 +12,7 @@ import (
 
 type examplesBuilder interface {
 	BuildShape(*ShapeRef, map[string]interface{}, bool) string
-	BuildList(string, string, *ShapeRef, []interface{}) string
+	BuildList(string, string, *ShapeRef, []interface{}, bool) string
 	BuildComplex(string, string, *ShapeRef, map[string]interface{}) string
 	Imports(*API) string
 }
@@ -55,7 +55,7 @@ func (builder defaultExamplesBuilder) BuildShape(ref *ShapeRef, shapes map[strin
 		case map[string]interface{}:
 			ret += builder.BuildComplex(name, memName, passRef, v)
 		case []interface{}:
-			ret += builder.BuildList(name, memName, passRef, v)
+			ret += builder.BuildList(name, memName, passRef, v, false)
 		default:
 			ret += builder.BuildScalar(name, memName, passRef, v, ref.Shape.Payload == name)
 		}
@@ -65,7 +65,7 @@ func (builder defaultExamplesBuilder) BuildShape(ref *ShapeRef, shapes map[strin
 
 // BuildList will construct a list shape based off the service's definition
 // of that list.
-func (builder defaultExamplesBuilder) BuildList(name, memName string, ref *ShapeRef, v []interface{}) string {
+func (builder defaultExamplesBuilder) BuildList(name, memName string, ref *ShapeRef, v []interface{}, nested bool) string {
 	ret := ""
 
 	if len(v) == 0 || ref == nil {
@@ -97,12 +97,14 @@ func (builder defaultExamplesBuilder) BuildList(name, memName string, ref *Shape
 		isComplex = true
 	}
 
-	ret += fmt.Sprintf("%s: %s {\n", memName, builder.GoType(ref, false))
+	if !nested {
+		ret += fmt.Sprintf("%s: %s {\n", memName, builder.GoType(ref, false))
+	}
 	for _, elem := range v {
 		if isComplex {
 			ret += fmt.Sprintf("{\n%s\n},\n", builder.BuildShape(passRef, elem.(map[string]interface{}), passRef.Shape.Type == "map"))
 		} else if isList {
-			panic("Does not support nested listos!")
+			ret += fmt.Sprintf("%s\n", builder.BuildList("", "", passRef, elem.([]interface{}), nested))
 		} else {
 			switch passRef.Shape.Type {
 			case "integer", "int64", "long":

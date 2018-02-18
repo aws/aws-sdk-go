@@ -1,4 +1,4 @@
-// +build codegen
+// +build 1.6,codegen
 
 package api
 
@@ -195,7 +195,7 @@ func TestExampleGeneration(t *testing.T) {
 	expected := `
 import (
 	"fmt"
-	"bytes"
+	"strings"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -205,7 +205,7 @@ import (
 )
 
 var _ time.Duration
-var _ bytes.Buffer
+var _ strings.Reader
 var _ aws.Config
 
 func parseTime(layout, value string) *time.Time {
@@ -223,8 +223,18 @@ func ExampleFooService_Foo_shared00() {
 	svc := fooservice.New(session.New())
 	input := &fooservice.FooInput{
 		BarShape: aws.String("Hello world"),
-		ComplexShape: &fooservice.ComplexShape {
-			"Field": aws.String("bar"),
+		ComplexField: &fooservice.ComplexShape{
+			Field: aws.String("bar"),
+			List: []*fooservice.NestedComplexShape{
+				{
+					NestedField: aws.String("qux"),
+				},
+			},
+		},
+		ListField: []*fooservice.ComplexShape{
+			{
+				Field: aws.String("baz"),
+			},
 		},
 	}
 
