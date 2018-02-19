@@ -89,6 +89,19 @@ func buildAPI() *API {
 		Shape:     listShape,
 	}
 
+	listsShape := &Shape{
+		API:       a,
+		ShapeName: "ListsShape",
+		MemberRef: *listShapeRef,
+		Type:      "list",
+	}
+
+	listsShapeRef := &ShapeRef{
+		API:       a,
+		ShapeName: "ListsShape",
+		Shape:     listsShape,
+	}
+
 	input := &Shape{
 		API:       a,
 		ShapeName: "FooInput",
@@ -96,6 +109,7 @@ func buildAPI() *API {
 			"BarShape":     stringShapeRef,
 			"ComplexField": complexShapeRef,
 			"ListField":    listShapeRef,
+			"ListsField":   listsShapeRef,
 		},
 		Type: "structure",
 	}
@@ -106,6 +120,7 @@ func buildAPI() *API {
 			"BazShape":     intShapeRef,
 			"ComplexField": complexShapeRef,
 			"ListField":    listShapeRef,
+			"ListsField":   listsShapeRef,
 		},
 		Type: "structure",
 	}
@@ -165,6 +180,13 @@ func TestExampleGeneration(t *testing.T) {
 						{
 							"Field": "baz"
 						}
+					],
+					"ListsField": [
+						[
+							{
+								"Field": "baz"
+							}
+						]
 					]
         },
         "output": {
@@ -234,6 +256,13 @@ func ExampleFooService_Foo_shared00() {
 		ListField: []*fooservice.ComplexShape{
 			{
 				Field: aws.String("baz"),
+			},
+		},
+		ListsField: [][]*fooservice.ComplexShape{
+			{
+				{
+					Field: aws.String("baz"),
+				},
 			},
 		},
 	}

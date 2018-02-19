@@ -12,7 +12,7 @@ import (
 
 type examplesBuilder interface {
 	BuildShape(*ShapeRef, map[string]interface{}, bool) string
-	BuildList(string, string, *ShapeRef, []interface{}, bool) string
+	BuildList(string, string, *ShapeRef, []interface{}) string
 	BuildComplex(string, string, *ShapeRef, map[string]interface{}) string
 	Imports(*API) string
 }
@@ -55,7 +55,7 @@ func (builder defaultExamplesBuilder) BuildShape(ref *ShapeRef, shapes map[strin
 		case map[string]interface{}:
 			ret += builder.BuildComplex(name, memName, passRef, v)
 		case []interface{}:
-			ret += builder.BuildList(name, memName, passRef, v, false)
+			ret += builder.BuildList(name, memName, passRef, v)
 		default:
 			ret += builder.BuildScalar(name, memName, passRef, v, ref.Shape.Payload == name)
 		}
@@ -65,17 +65,29 @@ func (builder defaultExamplesBuilder) BuildShape(ref *ShapeRef, shapes map[strin
 
 // BuildList will construct a list shape based off the service's definition
 // of that list.
-func (builder defaultExamplesBuilder) BuildList(name, memName string, ref *ShapeRef, v []interface{}, nested bool) string {
+func (builder defaultExamplesBuilder) BuildList(name, memName string, ref *ShapeRef, v []interface{}) string {
 	ret := ""
 
 	if len(v) == 0 || ref == nil {
 		return ""
 	}
 
+	passRef := &ref.Shape.MemberRef
+	ret += fmt.Sprintf("%s: %s {\n", memName, builder.GoType(ref, false))
+	ret += builder.buildListElements(passRef, v)
+	ret += "},\n"
+	return ret
+}
+
+func (builder defaultExamplesBuilder) buildListElements(ref *ShapeRef, v []interface{}) string {
+	if len(v) == 0 || ref == nil {
+		return ""
+	}
+
+	ret := ""
 	format := ""
 	isComplex := false
 	isList := false
-	passRef := &ref.Shape.MemberRef
 
 	// get format for atomic type. If it is not an atomic type,
 	// get the element.
@@ -85,7 +97,7 @@ func (builder defaultExamplesBuilder) BuildList(name, memName string, ref *Shape
 	case bool:
 		format = "%t"
 	case float64:
-		switch passRef.Shape.Type {
+		switch ref.Shape.Type {
 		case "integer", "int64", "long":
 			format = "%d"
 		default:
@@ -97,23 +109,19 @@ func (builder defaultExamplesBuilder) BuildList(name, memName string, ref *Shape
 		isComplex = true
 	}
 
-	if !nested {
-		ret += fmt.Sprintf("%s: %s {\n", memName, builder.GoType(ref, false))
-	}
 	for _, elem := range v {
 		if isComplex {
-			ret += fmt.Sprintf("{\n%s\n},\n", builder.BuildShape(passRef, elem.(map[string]interface{}), passRef.Shape.Type == "map"))
+			ret += fmt.Sprintf("{\n%s\n},\n", builder.BuildShape(ref, elem.(map[string]interface{}), ref.Shape.Type == "map"))
 		} else if isList {
-			ret += fmt.Sprintf("%s\n", builder.BuildList("", "", passRef, elem.([]interface{}), nested))
+			ret += fmt.Sprintf("{\n%s\n},\n", builder.buildListElements(&ref.Shape.MemberRef, elem.([]interface{})))
 		} else {
-			switch passRef.Shape.Type {
+			switch ref.Shape.Type {
 			case "integer", "int64", "long":
 				elem = int(elem.(float64))
 			}
-			ret += fmt.Sprintf("%s,\n", getValue(passRef.Shape.Type, fmt.Sprintf(format, elem)))
+			ret += fmt.Sprintf("%s,\n", getValue(ref.Shape.Type, fmt.Sprintf(format, elem)))
 		}
 	}
-	ret += "},\n"
 	return ret
 }
 
