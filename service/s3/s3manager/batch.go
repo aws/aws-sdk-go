@@ -320,7 +320,7 @@ func (d *BatchDelete) Delete(ctx aws.Context, iter BatchDeleteIterator) error {
 		}
 
 		if len(input.Delete.Objects) == d.BatchSize || !parity {
-			if err := deleteBatch(d, input, objects); err != nil {
+			if err := deleteBatch(ctx, d, input, objects); err != nil {
 				errs = append(errs, err...)
 			}
 
@@ -339,7 +339,7 @@ func (d *BatchDelete) Delete(ctx aws.Context, iter BatchDeleteIterator) error {
 	}
 
 	if input != nil && len(input.Delete.Objects) > 0 {
-		if err := deleteBatch(d, input, objects); err != nil {
+		if err := deleteBatch(ctx, d, input, objects); err != nil {
 			errs = append(errs, err...)
 		}
 	}
@@ -360,10 +360,10 @@ func initDeleteObjectsInput(o *s3.DeleteObjectInput) *s3.DeleteObjectsInput {
 }
 
 // deleteBatch will delete a batch of items in the objects parameters.
-func deleteBatch(d *BatchDelete, input *s3.DeleteObjectsInput, objects []BatchDeleteObject) []Error {
+func deleteBatch(ctx aws.Context, d *BatchDelete, input *s3.DeleteObjectsInput, objects []BatchDeleteObject) []Error {
 	errs := []Error{}
 
-	if result, err := d.Client.DeleteObjects(input); err != nil {
+	if result, err := d.Client.DeleteObjectsWithContext(ctx, input); err != nil {
 		for i := 0; i < len(input.Delete.Objects); i++ {
 			errs = append(errs, newError(err, input.Bucket, input.Delete.Objects[i].Key))
 		}
