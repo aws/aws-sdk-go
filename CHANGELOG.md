@@ -1,3 +1,14 @@
+Release v1.13.1 (2018-02-20)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * Amazon EC2 Auto Scaling support for service-linked roles
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/waf`: Updates service API and documentation
+  * The new PermissionPolicy APIs in AWS WAF Regional allow customers to attach resource-based policies to their entities.
+* `service/waf-regional`: Updates service API and documentation
+
 Release v1.13.0 (2018-02-19)
 ===
 
