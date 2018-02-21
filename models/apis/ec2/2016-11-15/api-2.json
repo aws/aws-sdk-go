@@ -4635,6 +4635,10 @@
       "members":{
         "Description":{"shape":"String"},
         "VolumeId":{"shape":"String"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        },
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"

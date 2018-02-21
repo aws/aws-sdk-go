@@ -1,3 +1,14 @@
+Release v1.13.2 (2018-02-21)
+===
+
+### Service Client Updates
+* `service/codecommit`: Updates service API and documentation
+  * This release adds an API for adding a file directly to an AWS CodeCommit repository without requiring a Git client.
+* `service/ec2`: Updates service API and documentation
+  * Adds support for tagging an EBS snapshot as part of the API call that creates the EBS snapshot
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/serverlessrepo`: Updates service API, documentation, and paginators
+
 Release v1.13.1 (2018-02-20)
 ===
 
