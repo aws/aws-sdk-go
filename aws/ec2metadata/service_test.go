@@ -15,14 +15,18 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/awstesting"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestClientOverrideDefaultHTTPClientTimeout(t *testing.T) {
 	svc := ec2metadata.New(unit.Session)
 
-	assert.NotEqual(t, http.DefaultClient, svc.Config.HTTPClient)
-	assert.Equal(t, 5*time.Second, svc.Config.HTTPClient.Timeout)
+	if e, a := http.DefaultClient, svc.Config.HTTPClient; e == a {
+		t.Errorf("expect %v, not to equal %v", e, a)
+	}
+
+	if e, a := 5*time.Second, svc.Config.HTTPClient.Timeout; e != a {
+		t.Errorf("expect %v to be %v", e, a)
+	}
 }
 
 func TestClientNotOverrideDefaultHTTPClientTimeout(t *testing.T) {
@@ -33,18 +37,25 @@ func TestClientNotOverrideDefaultHTTPClientTimeout(t *testing.T) {
 
 	svc := ec2metadata.New(unit.Session)
 
-	assert.Equal(t, http.DefaultClient, svc.Config.HTTPClient)
+	if e, a := http.DefaultClient, svc.Config.HTTPClient; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
-	tr, ok := svc.Config.HTTPClient.Transport.(*http.Transport)
-	assert.True(t, ok)
-	assert.NotNil(t, tr)
-	assert.Nil(t, tr.Dial)
+	tr := svc.Config.HTTPClient.Transport.(*http.Transport)
+	if tr == nil {
+		t.Fatalf("expect transport not to be nil")
+	}
+	if tr.Dial != nil {
+		t.Errorf("expect dial to be nil, was not")
+	}
 }
 
 func TestClientDisableOverrideDefaultHTTPClientTimeout(t *testing.T) {
 	svc := ec2metadata.New(unit.Session, aws.NewConfig().WithEC2MetadataDisableTimeoutOverride(true))
 
-	assert.Equal(t, http.DefaultClient, svc.Config.HTTPClient)
+	if e, a := http.DefaultClient, svc.Config.HTTPClient; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 }
 
 func TestClientOverrideDefaultHTTPClientTimeoutRace(t *testing.T) {
@@ -99,7 +110,9 @@ func runEC2MetadataClients(t *testing.T, cfg *aws.Config, atOnce int) {
 		go func() {
 			svc := ec2metadata.New(unit.Session, cfg)
 			_, err := svc.Region()
-			assert.NoError(t, err)
+			if err != nil {
+				t.Fatalf("expect no error, got %v", err)
+			}
 			wg.Done()
 		}()
 	}
