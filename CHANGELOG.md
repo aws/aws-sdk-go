@@ -1,3 +1,11 @@
+Release v1.13.3 (2018-02-22)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.13.2 (2018-02-21)
 ===
 
