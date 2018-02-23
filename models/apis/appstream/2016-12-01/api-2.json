@@ -29,6 +29,22 @@
         {"shape":"OperationNotPermittedException"}
       ]
     },
+    "CopyImage":{
+      "name":"CopyImage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CopyImageRequest"},
+      "output":{"shape":"CopyImageResponse"},
+      "errors":[
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceNotAvailableException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"IncompatibleImageException"}
+      ]
+    },
     "CreateDirectoryConfig":{
       "name":"CreateDirectoryConfig",
       "http":{
@@ -540,6 +556,26 @@
         "Message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "CopyImageRequest":{
+      "type":"structure",
+      "required":[
+        "SourceImageName",
+        "DestinationImageName",
+        "DestinationRegion"
+      ],
+      "members":{
+        "SourceImageName":{"shape":"Name"},
+        "DestinationImageName":{"shape":"Name"},
+        "DestinationRegion":{"shape":"RegionName"},
+        "DestinationImageDescription":{"shape":"Description"}
+      }
+    },
+    "CopyImageResponse":{
+      "type":"structure",
+      "members":{
+        "DestinationImageName":{"shape":"Name"}
+      }
     },
     "CreateDirectoryConfigRequest":{
       "type":"structure",
@@ -1072,6 +1108,7 @@
         "PENDING",
         "AVAILABLE",
         "FAILED",
+        "COPYING",
         "DELETING"
       ]
     },
@@ -1086,7 +1123,8 @@
       "type":"string",
       "enum":[
         "INTERNAL_ERROR",
-        "IMAGE_BUILDER_NOT_AVAILABLE"
+        "IMAGE_BUILDER_NOT_AVAILABLE",
+        "IMAGE_COPY_FAILURE"
       ]
     },
     "IncompatibleImageException":{
@@ -1193,6 +1231,11 @@
     "RedirectURL":{
       "type":"string",
       "max":1000
+    },
+    "RegionName":{
+      "type":"string",
+      "max":32,
+      "min":1
     },
     "ResourceAlreadyExistsException":{
       "type":"structure",

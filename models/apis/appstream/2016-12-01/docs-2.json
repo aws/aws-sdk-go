@@ -3,6 +3,7 @@
   "service": "<fullname>Amazon AppStream 2.0</fullname> <p>You can use Amazon AppStream 2.0 to stream desktop applications to any device running a web browser, without rewriting them.</p>",
   "operations": {
     "AssociateFleet": "<p>Associates the specified fleet with the specified stack.</p>",
+    "CopyImage": "<p>Copies the image within the same region or to a new region within the same AWS account. Note that any tags you added to the image will not be copied.</p>",
     "CreateDirectoryConfig": "<p>Creates a directory configuration.</p>",
     "CreateFleet": "<p>Creates a fleet.</p>",
     "CreateImageBuilder": "<p>Creates an image builder.</p> <p>The initial state of the builder is <code>PENDING</code>. When it is ready, the state is <code>RUNNING</code>.</p>",
@@ -134,6 +135,16 @@
     },
     "ConcurrentModificationException": {
       "base": "<p>An API error occurred. Wait a few minutes and try again.</p>",
+      "refs": {
+      }
+    },
+    "CopyImageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CopyImageResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -310,6 +321,7 @@
     "Description": {
       "base": null,
       "refs": {
+        "CopyImageRequest$DestinationImageDescription": "<p>The description that the image will have when it is copied to the destination.</p>",
         "CreateFleetRequest$Description": "<p>The description for display.</p>",
         "CreateImageBuilderRequest$Description": "<p>The description for display.</p>",
         "CreateStackRequest$Description": "<p>The description for display.</p>",
@@ -611,6 +623,9 @@
     "Name": {
       "base": null,
       "refs": {
+        "CopyImageRequest$SourceImageName": "<p>The name of the image to copy.</p>",
+        "CopyImageRequest$DestinationImageName": "<p>The name that the image will have when it is copied to the destination.</p>",
+        "CopyImageResponse$DestinationImageName": "<p>The name of the destination image.</p>",
         "CreateFleetRequest$Name": "<p>A unique name for the fleet.</p>",
         "CreateImageBuilderRequest$Name": "<p>A unique name for the image builder.</p>",
         "DeleteImageBuilderRequest$Name": "<p>The name of the image builder.</p>",
@@ -650,6 +665,12 @@
         "CreateStackRequest$RedirectURL": "<p>The URL the user is redirected to after the streaming session ends.</p>",
         "Stack$RedirectURL": "<p>The URL the user is redirected to after the streaming session ends.</p>",
         "UpdateStackRequest$RedirectURL": "<p>The URL the user is redirected to after the streaming session ends.</p>"
+      }
+    },
+    "RegionName": {
+      "base": null,
+      "refs": {
+        "CopyImageRequest$DestinationRegion": "<p>The destination region to which the image will be copied. This parameter is required, even if you are copying an image within the same region.</p>"
       }
     },
     "ResourceAlreadyExistsException": {
@@ -862,8 +883,8 @@
         "DescribeFleetsResult$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
         "DescribeImageBuildersRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
         "DescribeImageBuildersResult$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
-        "DescribeSessionsRequest$StackName": "<p>The name of the stack.</p>",
-        "DescribeSessionsRequest$FleetName": "<p>The name of the fleet.</p>",
+        "DescribeSessionsRequest$StackName": "<p>The name of the stack. This value is case-sensitive.</p>",
+        "DescribeSessionsRequest$FleetName": "<p>The name of the fleet. This value is case-sensitive.</p>",
         "DescribeSessionsRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
         "DescribeSessionsResult$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
         "DescribeStacksRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
