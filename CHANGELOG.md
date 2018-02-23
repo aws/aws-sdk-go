@@ -1,3 +1,11 @@
+Release v1.13.4 (2018-02-23)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API and documentation
+  * This API update is to enable customers to copy their Amazon AppStream 2.0 images within and between AWS Regions
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.13.3 (2018-02-22)
 ===
 
