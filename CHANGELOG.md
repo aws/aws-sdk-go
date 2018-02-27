@@ -1,3 +1,12 @@
+Release v1.13.5 (2018-02-26)
+===
+
+### Service Client Updates
+* `service/route53`: Updates service API
+  * Added support for creating LBR rules using ap-northeast-3 region.
+* `service/sts`: Updates service API and documentation
+  * Increased SAMLAssertion parameter size from 50000 to 100000 for AWS Security Token Service AssumeRoleWithSAML API to allow customers to pass bigger SAML assertions
+
 Release v1.13.4 (2018-02-23)
 ===
 
