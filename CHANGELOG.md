@@ -1,3 +1,10 @@
+Release v1.13.6 (2018-02-27)
+===
+
+### Service Client Updates
+* `service/ecr`: Updates service documentation
+  * Documentation updates for Amazon ECR.
+
 Release v1.13.5 (2018-02-26)
 ===
 
