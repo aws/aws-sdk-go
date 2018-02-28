@@ -1,3 +1,10 @@
+Release v1.13.7 (2018-02-28)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API and documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.13.6 (2018-02-27)
 ===
 

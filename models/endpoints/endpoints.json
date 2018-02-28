@@ -1219,6 +1219,7 @@
           "ap-south-1" : { },
           "ap-southeast-1" : { },
           "ap-southeast-2" : { },
+          "ca-central-1" : { },
           "eu-central-1" : { },
           "eu-west-1" : { },
           "eu-west-2" : { },
@@ -2292,6 +2293,10 @@
           "us-gov-west-1" : {
             "hostname" : "s3.us-gov-west-1.amazonaws.com",
             "protocols" : [ "http", "https" ]
+          },
+          "us-gov-west-1-dualstack" : {
+            "hostname" : "s3.dualstack.us-gov-west-1.amazonaws.com",
+            "signatureVersions" : [ "s3", "s3v4" ]
           }
         }
       },
