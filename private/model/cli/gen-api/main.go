@@ -209,6 +209,10 @@ func writeServiceFiles(g *generateInfo, filename string) {
 	Must(writeWaitersFile(g))
 	Must(writeAPIErrorsFile(g))
 	Must(writeExamplesFile(g))
+
+	if g.API.HasEventStream {
+		Must(writeEventStreamTestFile(g))
+	}
 }
 
 // Must will panic if the error passed in is not nil.
@@ -312,4 +316,15 @@ func writeAPIErrorsFile(g *generateInfo) error {
 		g.API.PackageName(),
 		g.API.APIErrorsGoCode(),
 	)
+}
+
+// writeEventStreamTestFile writes out the service API EventStream tests.
+func writeEventStreamTestFile(g *generateInfo) error {
+	return nil
+	//	return writeGoFile(filepath.Join(g.PackageDir, "eventstream_test.go"),
+	//		codeLayout,
+	//		"",
+	//		g.API.PackageName(),
+	//		g.API.EventStreamTestGoCode(),
+	//	)
 }

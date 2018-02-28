@@ -62,7 +62,7 @@ func decodeHeaders(r io.Reader) (Headers, error) {
 				// fail to decode header name means no more headers.
 				break
 			}
-			return nil, fmt.Errorf("failed to decode header name, %v", err)
+			return nil, err
 		}
 
 		value, err := decodeHeaderValue(r)
@@ -70,7 +70,7 @@ func decodeHeaders(r io.Reader) (Headers, error) {
 			if err == io.EOF {
 				break
 			}
-			return nil, fmt.Errorf("failed to decode header value, %v", err)
+			return nil, err
 		}
 
 		hs.Set(name, value)
@@ -101,7 +101,7 @@ func decodeHeaderValue(r io.Reader) (Value, error) {
 
 	typ, err := decodeUint8(r)
 	if err != nil && err != io.EOF {
-		return nil, fmt.Errorf("failed to decode header value type, %v", err)
+		return nil, err
 	}
 	raw.Type = valueType(typ)
 

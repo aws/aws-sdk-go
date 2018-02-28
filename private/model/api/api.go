@@ -54,6 +54,8 @@ type API struct {
 	path        string
 
 	BaseCrosslinkURL string
+
+	HasEventStream bool `json:"-"`
 }
 
 // A Metadata is the metadata about an API's definition.
@@ -528,6 +530,9 @@ func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
 	svc.Handlers.Unmarshal.PushBackNamed({{ .ProtocolPackage }}.UnmarshalHandler)
 	svc.Handlers.UnmarshalMeta.PushBackNamed({{ .ProtocolPackage }}.UnmarshalMetaHandler)
 	svc.Handlers.UnmarshalError.PushBackNamed({{ .ProtocolPackage }}.UnmarshalErrorHandler)
+	{{ if .HasEventStream }}
+	svc.Handlers.UnmarshalStream.PushBackNamed({{ .ProtocolPackage }}.UnmarshalHandler)
+	{{ end }}
 
 	{{ if .UseInitMethods }}// Run custom client initialization if present
 	if initClient != nil {
@@ -850,4 +855,24 @@ func (a *API) removeShapeRef(ref *ShapeRef) {
 	if len(ref.Shape.refs) == 0 {
 		a.removeShape(ref.Shape)
 	}
+}
+
+// EventStreamTestGoCode will return the Go code for testing a service's API
+// operations which use EventStream APIs.
+func (a *API) EventStreamTestGoCode() string {
+	var buf bytes.Buffer
+
+	a.resetImports()
+	a.imports = map[string]bool{
+		"testing":                                                true,
+		"github.com/aws/aws-sdk-go/aws":                          true,
+		"github.com/aws/aws-sdk-go/aws/request":                  true,
+		"github.com/aws/aws-sdk-go/private/protocol/eventstream": true,
+	}
+
+	if err := eventStreamTestTmpl.Execute(&buf, a); err != nil {
+		panic("failed to generate event stream tests, " + err.Error())
+	}
+
+	return buf.String()
 }

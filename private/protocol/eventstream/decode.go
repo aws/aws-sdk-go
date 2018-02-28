@@ -9,13 +9,14 @@ import (
 	"hash"
 	"hash/crc32"
 	"io"
-	"log"
+
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 // Decoder provides decoding of an Event Stream messages.
 type Decoder struct {
 	r      io.Reader
-	logger *log.Logger
+	logger aws.Logger
 }
 
 // NewDecoder initializes and returns a Decoder for decoding event
@@ -44,28 +45,28 @@ func (d *Decoder) Decode(payloadBuf []byte) (m Message, err error) {
 
 	prelude, err := decodePrelude(hashReader, crc)
 	if err != nil {
-		return Message{}, fmt.Errorf("failed to decode message prelude, %v", err)
+		return Message{}, err
 	}
 
 	if prelude.HeadersLen > 0 {
 		lr := io.LimitReader(hashReader, int64(prelude.HeadersLen))
 		m.Headers, err = decodeHeaders(lr)
 		if err != nil {
-			return Message{}, fmt.Errorf("failed to decode message header, %v", err)
+			return Message{}, err
 		}
 	}
 
 	if payloadLen := prelude.PayloadLen(); payloadLen > 0 {
 		buf, err := decodePayload(payloadBuf, io.LimitReader(hashReader, int64(payloadLen)))
 		if err != nil {
-			return Message{}, fmt.Errorf("failed to decode message payload, %v", err)
+			return Message{}, err
 		}
 		m.Payload = buf
 	}
 
 	msgCRC := crc.Sum32()
 	if err := validateCRC(reader, msgCRC); err != nil {
-		return Message{}, fmt.Errorf("message checksum failed, %v", err)
+		return Message{}, err
 	}
 
 	return m, nil
@@ -73,13 +74,13 @@ func (d *Decoder) Decode(payloadBuf []byte) (m Message, err error) {
 
 // UseLogger specifies the Logger that that the decoder should use to log the
 // message decode to.
-func (d *Decoder) UseLogger(logger *log.Logger) {
+func (d *Decoder) UseLogger(logger aws.Logger) {
 	d.logger = logger
 }
 
-func logMessageDecode(logger *log.Logger, msgBuf *bytes.Buffer, msg Message, decodeErr error) {
+func logMessageDecode(logger aws.Logger, msgBuf *bytes.Buffer, msg Message, decodeErr error) {
 	w := bytes.NewBuffer(nil)
-	defer func() { logger.Println(w.String()) }()
+	defer func() { logger.Log(w.String()) }()
 
 	fmt.Fprintf(w, "Raw message:\n%s\n",
 		hex.Dump(msgBuf.Bytes()))
@@ -191,7 +192,7 @@ func validateCRC(r io.Reader, expect uint32) error {
 	}
 
 	if msgCRC != expect {
-		return fmt.Errorf("message checksum mismatch")
+		return ChecksumError{}
 	}
 
 	return nil

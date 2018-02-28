@@ -3,7 +3,6 @@ package eventstream
 import (
 	"bytes"
 	"encoding/binary"
-	"fmt"
 	"hash"
 	"hash/crc32"
 	"io"
@@ -42,27 +41,23 @@ func (e *Encoder) Encode(msg Message) error {
 	payloadLen := uint32(len(msg.Payload))
 
 	if err := encodePrelude(hashWriter, crc, headersLen, payloadLen); err != nil {
-		return fmt.Errorf("failed to encode message prelude, %v", err)
+		return err
 	}
 
 	if headersLen > 0 {
 		if _, err := io.Copy(hashWriter, e.headersBuf); err != nil {
-			return fmt.Errorf("failed to write message header, %v", err)
+			return err
 		}
 	}
 
 	if payloadLen > 0 {
 		if _, err := hashWriter.Write(msg.Payload); err != nil {
-			return fmt.Errorf("failed to write message payload, %v", err)
+			return err
 		}
 	}
 
 	msgCRC := crc.Sum32()
-	if err := binary.Write(e.w, binary.BigEndian, msgCRC); err != nil {
-		return fmt.Errorf("failed to write message CRC, %v", err)
-	}
-
-	return nil
+	return binary.Write(e.w, binary.BigEndian, msgCRC)
 }
 
 func encodePrelude(w io.Writer, crc hash.Hash32, headersLen, payloadLen uint32) error {
@@ -79,13 +74,13 @@ func encodePrelude(w io.Writer, crc hash.Hash32, headersLen, payloadLen uint32) 
 		p.HeadersLen,
 	)
 	if err != nil {
-		return fmt.Errorf("failed to marshal message prelude, %v", err)
+		return err
 	}
 
 	p.PreludeCRC = crc.Sum32()
 	err = binary.Write(w, binary.BigEndian, p.PreludeCRC)
 	if err != nil {
-		return fmt.Errorf("failed to marshal message prelude CRC, %v", err)
+		return err
 	}
 
 	return nil
@@ -98,11 +93,11 @@ func encodeHeaders(w io.Writer, headers Headers) error {
 		}
 		copy(hn.Name[:hn.Len], h.Name)
 		if err := hn.encode(w); err != nil {
-			return fmt.Errorf("failed to marshal header name, %v", err)
+			return err
 		}
 
 		if err := h.Value.encode(w); err != nil {
-			return fmt.Errorf("failed to marshal header value, %v", err)
+			return err
 		}
 	}
 

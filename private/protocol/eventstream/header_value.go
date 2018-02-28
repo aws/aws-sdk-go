@@ -77,7 +77,11 @@ func (r rawValue) encodeFixedSlice(w io.Writer, v []byte) error {
 
 func (r rawValue) encodeBytes(w io.Writer, v []byte) error {
 	if len(v) > maxHeaderValueLen {
-		return fmt.Errorf("invalid header value length, %v, %v", len(v), v)
+		return LengthError{
+			Part: "header value",
+			Want: maxHeaderValueLen, Have: len(v),
+			Value: v,
+		}
 	}
 	r.Len = uint16(len(v))
 
@@ -95,7 +99,11 @@ func (r rawValue) encodeBytes(w io.Writer, v []byte) error {
 
 func (r rawValue) encodeString(w io.Writer, v string) error {
 	if len(v) > maxHeaderValueLen {
-		return fmt.Errorf("invalid header value length, %v, %v", len(v), maxHeaderValueLen)
+		return LengthError{
+			Part: "header value",
+			Want: maxHeaderValueLen, Have: len(v),
+			Value: v,
+		}
 	}
 	r.Len = uint16(len(v))
 

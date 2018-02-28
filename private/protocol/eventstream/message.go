@@ -3,7 +3,6 @@ package eventstream
 import (
 	"bytes"
 	"encoding/binary"
-	"fmt"
 	"hash/crc32"
 )
 
@@ -70,13 +69,25 @@ func (p messagePrelude) PayloadLen() uint32 {
 
 func (p messagePrelude) ValidateLens() error {
 	if p.Length == 0 || p.Length > maxMsgLen {
-		return fmt.Errorf("message length invalid")
+		return LengthError{
+			Part: "message prelude",
+			Want: maxMsgLen,
+			Have: int(p.Length),
+		}
 	}
 	if p.HeadersLen > maxHeadersLen {
-		return fmt.Errorf("message headers length invalid")
+		return LengthError{
+			Part: "message headers",
+			Want: maxHeadersLen,
+			Have: int(p.HeadersLen),
+		}
 	}
-	if p.PayloadLen() > maxPayloadLen {
-		return fmt.Errorf("message payload length invalid")
+	if payloadLen := p.PayloadLen(); payloadLen > maxPayloadLen {
+		return LengthError{
+			Part: "message payload",
+			Want: maxPayloadLen,
+			Have: int(payloadLen),
+		}
 	}
 
 	return nil
