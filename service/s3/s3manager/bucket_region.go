@@ -17,8 +17,8 @@ import (
 // A "NotFound" error code will be returned if the bucket does not exist in the
 // AWS partition the regionHint belongs to. If the regionHint parameter is an
 // empty string GetBucketRegion will fallback to the ConfigProvider's region
-// config. If no region is specified, hint or ConfigProvider, an error will
-// be returned.
+// config. If the regionHint is empty, and the ConfigProvider does not have a
+// region value, an error will be returned..
 //
 // For example to get the region of a bucket which exists in "eu-central-1"
 // you could provide a region hint of "us-west-2".
