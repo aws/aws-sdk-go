@@ -55,13 +55,12 @@ func (c *StorageGateway) ActivateGatewayRequest(input *ActivateGatewayInput) (re
 
 // ActivateGateway API operation for AWS Storage Gateway.
 //
-// Activates the gateway you previously deployed on your host. For more information,
-// see  Activate the AWS Storage Gateway (http://docs.aws.amazon.com/storagegateway/latest/userguide/GettingStartedActivateGateway-common.html).
-// In the activation process, you specify information such as the region you
-// want to use for storing snapshots or tapes, the time zone for scheduled snapshots
-// the gateway snapshot schedule window, an activation key, and a name for your
-// gateway. The activation process also associates your gateway with your account;
-// for more information, see UpdateGatewayInformation.
+// Activates the gateway you previously deployed on your host. In the activation
+// process, you specify information such as the region you want to use for storing
+// snapshots or tapes, the time zone for scheduled snapshots the gateway snapshot
+// schedule window, an activation key, and a name for your gateway. The activation
+// process also associates your gateway with your account; for more information,
+// see UpdateGatewayInformation.
 //
 // You must turn on the gateway VM before you can activate your gateway.
 //
@@ -4561,17 +4560,20 @@ func (c *StorageGateway) NotifyWhenUploadedRequest(input *NotifyWhenUploadedInpu
 
 // NotifyWhenUploaded API operation for AWS Storage Gateway.
 //
-// Sends you notification when all file data written to the NFS file share has
-// been uploaded to Amazon S3.
+// Sends you notification through CloudWatch Events when all files written to
+// your NFS file share have been uploaded to Amazon S3.
 //
 // AWS Storage Gateway can send a notification through Amazon CloudWatch Events
 // when all files written to your file share up to that point in time have been
 // uploaded to Amazon S3. These files include files written to the NFS file
 // share up to the time that you make a request for notification. When the upload
 // is done, Storage Gateway sends you notification through an Amazon CloudWatch
-// event. You can configure CloudWatch Events to sent the notification through
-// event targets such as email, SNS or a Lambda function. text or Lambda functions.
-// This operation is only supported in the file gateway type.
+// Event. You can configure CloudWatch Events to send the notification through
+// event targets such as Amazon SNS or AWS Lambda function. This operation is
+// only supported in the file gateway type.
+//
+// For more information, see Getting File Upload Notification in the Storage
+// Gateway User Guide (https://docs.aws.amazon.com/storagegateway/latest/userguide/monitoring-file-gateway.html#get-upload-notification).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4833,8 +4835,7 @@ func (c *StorageGateway) ResetCacheRequest(input *ResetCacheInput) (req *request
 // in the gateway. For example, an error can occur when a disk is corrupted
 // or removed from the gateway. When a cache is reset, the gateway loses its
 // cache storage. At this point you can reconfigure the disks as cache disks.
-// This operation is only supported in the cached volume, tape and file gateway
-// types.
+// This operation is only supported in the cached volume and tape types.
 //
 // If the cache disk you are resetting contains data that has not been uploaded
 // to Amazon S3 yet, that data can be lost. After you reset cache disks, there
@@ -6117,6 +6118,9 @@ type ActivateGatewayInput struct {
 	// defaults -- the arguments you pass to the ActivateGateway API call determine
 	// the actual configuration of your gateway.
 	//
+	// For more information, see https://docs.aws.amazon.com/storagegateway/latest/userguide/get-activation-key.html
+	// in the Storage Gateway User Guide.
+	//
 	// ActivationKey is a required field
 	ActivationKey *string `min:"1" type:"string" required:"true"`
 
@@ -6132,8 +6136,8 @@ type ActivateGatewayInput struct {
 	// in the Amazon Web Services Glossary.
 	//
 	// Valid Values: "us-east-1", "us-east-2", "us-west-1", "us-west-2", "ca-central-1",
-	// "eu-west-1", "eu-central-1", "eu-west-2", "ap-northeast-1", "ap-northeast-2",
-	// "ap-southeast-1", "ap-southeast-2", "ap-south-1", "sa-east-1"
+	// "eu-west-1", "eu-central-1", "eu-west-2", "eu-west-3", "ap-northeast-1",
+	// "ap-northeast-2", "ap-southeast-1", "ap-southeast-2", "ap-south-1", "sa-east-1"
 	//
 	// GatewayRegion is a required field
 	GatewayRegion *string `min:"1" type:"string" required:"true"`
@@ -7147,8 +7151,9 @@ type CreateNFSFileShareInput struct {
 	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
-	// Enables guessing of the MIME type for uploaded objects based on file extensions:
-	// "true" to enable MIME type guessing, and otherwise "false".
+	// Enables guessing of the MIME type for uploaded objects based on file extensions.
+	// Set this value to true to enable MIME type guessing, and otherwise to false.
+	// The default value is true.
 	GuessMIMETypeEnabled *bool `type:"boolean"`
 
 	// True to use Amazon S3 server side encryption with your own AWS KMS key, or
@@ -7167,9 +7172,18 @@ type CreateNFSFileShareInput struct {
 	// File share default values. Optional.
 	NFSFileShareDefaults *NFSFileShareDefaults `type:"structure"`
 
-	// Sets the write status of a file share: "true" if the write status is read-only,
-	// and otherwise "false".
+	// Sets the access control list permission for objects in the Amazon S3 bucket
+	// that a file gateway puts objects into. The default value is "private".
+	ObjectACL *string `type:"string" enum:"ObjectACL"`
+
+	// Sets the write status of a file share. This value is true if the write status
+	// is read-only, and otherwise false.
 	ReadOnly *bool `type:"boolean"`
+
+	// Sets who pays the cost of the request and the data download from the Amazon
+	// S3 bucket. Set this value to true if you want the requester to pay instead
+	// of the bucket owner, and otherwise to false.
+	RequesterPays *bool `type:"boolean"`
 
 	// The ARN of the AWS Identity and Access Management (IAM) role that a file
 	// gateway assumes when it accesses the underlying storage.
@@ -7302,9 +7316,21 @@ func (s *CreateNFSFileShareInput) SetNFSFileShareDefaults(v *NFSFileShareDefault
 	return s
 }
 
+// SetObjectACL sets the ObjectACL field's value.
+func (s *CreateNFSFileShareInput) SetObjectACL(v string) *CreateNFSFileShareInput {
+	s.ObjectACL = &v
+	return s
+}
+
 // SetReadOnly sets the ReadOnly field's value.
 func (s *CreateNFSFileShareInput) SetReadOnly(v bool) *CreateNFSFileShareInput {
 	s.ReadOnly = &v
+	return s
+}
+
+// SetRequesterPays sets the RequesterPays field's value.
+func (s *CreateNFSFileShareInput) SetRequesterPays(v bool) *CreateNFSFileShareInput {
+	s.RequesterPays = &v
 	return s
 }
 
@@ -11271,8 +11297,9 @@ type NFSFileShareInfo struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string"`
 
-	// Enables guessing of the MIME type for uploaded objects based on file extensions:
-	// "true" to enable MIME type guessing, and otherwise "false".
+	// Enables guessing of the MIME type for uploaded objects based on file extensions.
+	// Set this value to true to enable MIME type guessing, and otherwise to false.
+	// The default value is true.
 	GuessMIMETypeEnabled *bool `type:"boolean"`
 
 	// True to use Amazon S3 server side encryption with your own KMS key, or false
@@ -11292,12 +11319,21 @@ type NFSFileShareInfo struct {
 	// This operation is only supported in the file gateway type.
 	NFSFileShareDefaults *NFSFileShareDefaults `type:"structure"`
 
+	// Sets the access control list permission for objects in the S3 bucket that
+	// a file gateway puts objects into. The default value is "private".
+	ObjectACL *string `type:"string" enum:"ObjectACL"`
+
 	// The file share path used by the NFS client to identify the mount point.
 	Path *string `type:"string"`
 
-	// A value that indicates whether the write status of a file share is read-only:
-	// "true" if write status is read-only, and otherwise "false".
+	// Sets the write status of a file share. This value is true if the write status
+	// is read-only, and otherwise false.
 	ReadOnly *bool `type:"boolean"`
+
+	// Sets who pays the cost of the request and the data download from the Amazon
+	// S3 bucket. Set this value to true if you want the requester to pay instead
+	// of the bucket owner, and otherwise to false.
+	RequesterPays *bool `type:"boolean"`
 
 	// The ARN of the IAM role that file gateway assumes when it accesses the underlying
 	// storage.
@@ -11389,6 +11425,12 @@ func (s *NFSFileShareInfo) SetNFSFileShareDefaults(v *NFSFileShareDefaults) *NFS
 	return s
 }
 
+// SetObjectACL sets the ObjectACL field's value.
+func (s *NFSFileShareInfo) SetObjectACL(v string) *NFSFileShareInfo {
+	s.ObjectACL = &v
+	return s
+}
+
 // SetPath sets the Path field's value.
 func (s *NFSFileShareInfo) SetPath(v string) *NFSFileShareInfo {
 	s.Path = &v
@@ -11398,6 +11440,12 @@ func (s *NFSFileShareInfo) SetPath(v string) *NFSFileShareInfo {
 // SetReadOnly sets the ReadOnly field's value.
 func (s *NFSFileShareInfo) SetReadOnly(v bool) *NFSFileShareInfo {
 	s.ReadOnly = &v
+	return s
+}
+
+// SetRequesterPays sets the RequesterPays field's value.
+func (s *NFSFileShareInfo) SetRequesterPays(v bool) *NFSFileShareInfo {
+	s.RequesterPays = &v
 	return s
 }
 
@@ -13171,8 +13219,9 @@ type UpdateNFSFileShareInput struct {
 	// FileShareARN is a required field
 	FileShareARN *string `min:"50" type:"string" required:"true"`
 
-	// Enables guessing of the MIME type for uploaded objects based on file extensions:
-	// "true" to enable MIME type guessing, and otherwise "false".
+	// Enables guessing of the MIME type for uploaded objects based on file extensions.
+	// Set this value to true to enable MIME type guessing, and otherwise to false.
+	// The default value is true.
 	GuessMIMETypeEnabled *bool `type:"boolean"`
 
 	// True to use Amazon S3 server side encryption with your own AWS KMS key, or
@@ -13186,9 +13235,18 @@ type UpdateNFSFileShareInput struct {
 	// The default values for the file share. Optional.
 	NFSFileShareDefaults *NFSFileShareDefaults `type:"structure"`
 
-	// Sets the write status of a file share: "true" if the write status is read-only,
-	// otherwise "false".
+	// Sets the access control list permission for objects in the S3 bucket that
+	// a file gateway puts objects into. The default value is "private".
+	ObjectACL *string `type:"string" enum:"ObjectACL"`
+
+	// Sets the write status of a file share. This value is true if the write status
+	// is read-only, and otherwise false.
 	ReadOnly *bool `type:"boolean"`
+
+	// Sets who pays the cost of the request and the data download from the Amazon
+	// S3 bucket. Set this value to true if you want the requester to pay instead
+	// of the bucket owner, and otherwise to false.
+	RequesterPays *bool `type:"boolean"`
 
 	// The user mapped to anonymous user. Valid options are the following:
 	//
@@ -13285,9 +13343,21 @@ func (s *UpdateNFSFileShareInput) SetNFSFileShareDefaults(v *NFSFileShareDefault
 	return s
 }
 
+// SetObjectACL sets the ObjectACL field's value.
+func (s *UpdateNFSFileShareInput) SetObjectACL(v string) *UpdateNFSFileShareInput {
+	s.ObjectACL = &v
+	return s
+}
+
 // SetReadOnly sets the ReadOnly field's value.
 func (s *UpdateNFSFileShareInput) SetReadOnly(v bool) *UpdateNFSFileShareInput {
 	s.ReadOnly = &v
+	return s
+}
+
+// SetRequesterPays sets the RequesterPays field's value.
+func (s *UpdateNFSFileShareInput) SetRequesterPays(v bool) *UpdateNFSFileShareInput {
+	s.RequesterPays = &v
 	return s
 }
 
@@ -13958,4 +14028,29 @@ const (
 
 	// ErrorCodeVolumeNotReady is a ErrorCode enum value
 	ErrorCodeVolumeNotReady = "VolumeNotReady"
+)
+
+// Sets the access control list permission for objects in the S3 bucket that
+// a file gateway puts objects into. The default value is "private".
+const (
+	// ObjectACLPrivate is a ObjectACL enum value
+	ObjectACLPrivate = "private"
+
+	// ObjectACLPublicRead is a ObjectACL enum value
+	ObjectACLPublicRead = "public-read"
+
+	// ObjectACLPublicReadWrite is a ObjectACL enum value
+	ObjectACLPublicReadWrite = "public-read-write"
+
+	// ObjectACLAuthenticatedRead is a ObjectACL enum value
+	ObjectACLAuthenticatedRead = "authenticated-read"
+
+	// ObjectACLBucketOwnerRead is a ObjectACL enum value
+	ObjectACLBucketOwnerRead = "bucket-owner-read"
+
+	// ObjectACLBucketOwnerFullControl is a ObjectACL enum value
+	ObjectACLBucketOwnerFullControl = "bucket-owner-full-control"
+
+	// ObjectACLAwsExecRead is a ObjectACL enum value
+	ObjectACLAwsExecRead = "aws-exec-read"
 )

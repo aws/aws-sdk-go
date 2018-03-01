@@ -11,7 +11,7 @@
     "CreatePortfolio": "<p>Creates a portfolio.</p>",
     "CreatePortfolioShare": "<p>Shares the specified portfolio with the specified account.</p>",
     "CreateProduct": "<p>Creates a product.</p>",
-    "CreateProvisionedProductPlan": "<p>Creates a plan. A plan includes the list of resources that will be created (when provisioning a new product) or modified (when updating a provisioned product) when the plan is executed.</p> <p>You can create one plan per provisioned product. To create a plan for an existing provisioned product, it's status must be AVAILBLE or TAINTED.</p> <p>To view the resource changes in the change set, use <a>DescribeProvisionedProductPlan</a>. To create or modify the provisioned product, use <a>ExecuteProvisionedProductPlan</a>.</p>",
+    "CreateProvisionedProductPlan": "<p>Creates a plan. A plan includes the list of resources to be created (when provisioning a new product) or modified (when updating a provisioned product) when the plan is executed.</p> <p>You can create one plan per provisioned product. To create a plan for an existing provisioned product, the product status must be AVAILBLE or TAINTED.</p> <p>To view the resource changes in the change set, use <a>DescribeProvisionedProductPlan</a>. To create or modify the provisioned product, use <a>ExecuteProvisionedProductPlan</a>.</p>",
     "CreateProvisioningArtifact": "<p>Creates a provisioning artifact (also known as a version) for the specified product.</p> <p>You cannot create a provisioning artifact for a product that was shared with you.</p>",
     "CreateTagOption": "<p>Creates a TagOption.</p>",
     "DeleteConstraint": "<p>Deletes the specified constraint.</p>",
@@ -20,6 +20,7 @@
     "DeleteProduct": "<p>Deletes the specified product.</p> <p>You cannot delete a product if it was shared with you or is associated with a portfolio.</p>",
     "DeleteProvisionedProductPlan": "<p>Deletes the specified plan.</p>",
     "DeleteProvisioningArtifact": "<p>Deletes the specified provisioning artifact (also known as a version) for the specified product.</p> <p>You cannot delete a provisioning artifact associated with a product that was shared with you. You cannot delete the last provisioning artifact for a product, because a product must have at least one provisioning artifact.</p>",
+    "DeleteTagOption": "<p>Deletes the specified TagOption.</p> <p>You cannot delete a TagOption if it is associated with a product or portfolio.</p>",
     "DescribeConstraint": "<p>Gets information about the specified constraint.</p>",
     "DescribeCopyProductStatus": "<p>Gets the status of the specified copy product operation.</p>",
     "DescribePortfolio": "<p>Gets information about the specified portfolio.</p>",
@@ -43,7 +44,7 @@
     "ListPortfolios": "<p>Lists all portfolios in the catalog.</p>",
     "ListPortfoliosForProduct": "<p>Lists all portfolios that the specified product is associated with.</p>",
     "ListPrincipalsForPortfolio": "<p>Lists all principal ARNs associated with the specified portfolio.</p>",
-    "ListProvisionedProductPlans": "<p>Lists the plans for the specified provisioned product or all plans the user has access to.</p>",
+    "ListProvisionedProductPlans": "<p>Lists the plans for the specified provisioned product or all plans to which the user has access.</p>",
     "ListProvisioningArtifacts": "<p>Lists all provisioning artifacts (also known as versions) for the specified product.</p>",
     "ListRecordHistory": "<p>Lists the specified requests or all performed requests.</p>",
     "ListResourcesForTagOption": "<p>Lists the resources associated with the specified TagOption.</p>",
@@ -494,6 +495,16 @@
       "refs": {
       }
     },
+    "DeleteTagOptionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteTagOptionOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeConstraintInput": {
       "base": null,
       "refs": {
@@ -671,7 +682,7 @@
     "EvaluationType": {
       "base": null,
       "refs": {
-        "ResourceChangeDetail$Evaluation": "<p>For static evaluations, the value the resource attribute will change and the new value is known. For dynamic evaluations, the value might change, and any new value will be determined when the plan is updated.</p>"
+        "ResourceChangeDetail$Evaluation": "<p>For static evaluations, the value of the resource attribute will change and the new value is known. For dynamic evaluations, the value might change, and any new value will be determined when the plan is updated.</p>"
       }
     },
     "ExecuteProvisionedProductPlanInput": {
@@ -1740,7 +1751,7 @@
     "RequiresRecreation": {
       "base": null,
       "refs": {
-        "ResourceTargetDefinition$RequiresRecreation": "<p>If the attribute is <code>Properties</code>, indicates whether a change to this property causes the resource to be recreated.</p>"
+        "ResourceTargetDefinition$RequiresRecreation": "<p>If the attribute is <code>Properties</code>, indicates whether a change to this property causes the resource to be re-created.</p>"
       }
     },
     "ResourceARN": {
@@ -1753,7 +1764,7 @@
     "ResourceAttribute": {
       "base": null,
       "refs": {
-        "ResourceTargetDefinition$Attribute": "<p>The attribute that will change.</p>",
+        "ResourceTargetDefinition$Attribute": "<p>The attribute to be changed.</p>",
         "Scope$member": null
       }
     },
@@ -1778,7 +1789,7 @@
     "ResourceChanges": {
       "base": null,
       "refs": {
-        "DescribeProvisionedProductPlanOutput$ResourceChanges": "<p>Information about the resources changes that will occur when the plan is executed.</p>"
+        "DescribeProvisionedProductPlanOutput$ResourceChanges": "<p>Information about the resource changes that will occur when the plan is executed.</p>"
       }
     },
     "ResourceDetail": {
@@ -1843,7 +1854,7 @@
     "ResourceTargetDefinition": {
       "base": "<p>Information about a change to a resource attribute.</p>",
       "refs": {
-        "ResourceChangeDetail$Target": "<p>Information about the resource attribute that will be modified.</p>"
+        "ResourceChangeDetail$Target": "<p>Information about the resource attribute to be modified.</p>"
       }
     },
     "ResourceType": {
@@ -2040,6 +2051,7 @@
       "base": null,
       "refs": {
         "AssociateTagOptionWithResourceInput$TagOptionId": "<p>The TagOption identifier.</p>",
+        "DeleteTagOptionInput$Id": "<p>The TagOption identifier.</p>",
         "DescribeTagOptionInput$Id": "<p>The TagOption identifier.</p>",
         "DisassociateTagOptionFromResourceInput$TagOptionId": "<p>The TagOption identifier.</p>",
         "ListResourcesForTagOptionInput$TagOptionId": "<p>The TagOption identifier.</p>",

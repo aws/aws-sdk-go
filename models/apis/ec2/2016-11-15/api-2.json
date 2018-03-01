@@ -12308,6 +12308,7 @@
           "shape":"Affinity",
           "locationName":"affinity"
         },
+        "GroupName":{"shape":"String"},
         "HostId":{
           "shape":"String",
           "locationName":"hostId"

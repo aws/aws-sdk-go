@@ -265,6 +265,20 @@
         {"shape":"InvalidParametersException"}
       ]
     },
+    "DeleteTagOption":{
+      "name":"DeleteTagOption",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteTagOptionInput"},
+      "output":{"shape":"DeleteTagOptionOutput"},
+      "errors":[
+        {"shape":"TagOptionNotMigratedException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "DescribeConstraint":{
       "name":"DescribeConstraint",
       "http":{
@@ -1264,6 +1278,18 @@
       }
     },
     "DeleteProvisioningArtifactOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteTagOptionInput":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{"shape":"TagOptionId"}
+      }
+    },
+    "DeleteTagOptionOutput":{
       "type":"structure",
       "members":{
       }
