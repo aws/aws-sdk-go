@@ -1,3 +1,11 @@
+Release v1.13.9 (2018-03-06)
+===
+
+### Service Client Updates
+* `service/ecs`: Updates service documentation
+  * Documentation updates for Amazon ECS
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.13.8 (2018-03-01)
 ===
 
