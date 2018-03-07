@@ -2485,10 +2485,6 @@
           "us-gov-west-1" : {
             "hostname" : "s3.us-gov-west-1.amazonaws.com",
             "protocols" : [ "http", "https" ]
-          },
-          "us-gov-west-1-dualstack" : {
-            "hostname" : "s3.dualstack.us-gov-west-1.amazonaws.com",
-            "signatureVersions" : [ "s3", "s3v4" ]
           }
         }
       },

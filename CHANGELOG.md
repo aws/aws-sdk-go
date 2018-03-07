@@ -1,3 +1,11 @@
+Release v1.13.10 (2018-03-07)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/medialive`: Updates service API and documentation
+  * Updates API to model required traits and minimum/maximum constraints.
+
 Release v1.13.9 (2018-03-06)
 ===
 
