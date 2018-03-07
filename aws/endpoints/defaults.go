@@ -2878,10 +2878,6 @@ var awsusgovPartition = partition{
 					Hostname:  "s3.us-gov-west-1.amazonaws.com",
 					Protocols: []string{"http", "https"},
 				},
-				"us-gov-west-1-dualstack": endpoint{
-					Hostname:          "s3.dualstack.us-gov-west-1.amazonaws.com",
-					SignatureVersions: []string{"s3", "s3v4"},
-				},
 			},
 		},
 		"sms": service{
