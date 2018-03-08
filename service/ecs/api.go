@@ -2728,7 +2728,7 @@ func (c *ECS) RunTaskRequest(input *RunTaskInput) (req *request.Request, output 
 //   You do not have authorization to perform the requested action.
 //
 //   * ErrCodeBlockedException "BlockedException"
-//   Your AWS account has been blocked. Contact AWS Customer Support (http://aws.amazon.com/contact-us/)
+//   Your AWS account has been blocked. Contact AWS Support (http://aws.amazon.com/contact-us/)
 //   for more information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/RunTask
@@ -3580,7 +3580,7 @@ type Attachment struct {
 	// ATTACHED, DETACHING, DETACHED, and DELETED.
 	Status *string `locationName:"status" type:"string"`
 
-	// The type of the attachment, such as an ElasticNetworkInterface.
+	// The type of the attachment, such as ElasticNetworkInterface.
 	Type *string `locationName:"type" type:"string"`
 }
 
@@ -3750,8 +3750,7 @@ func (s *Attribute) SetValue(v string) *Attribute {
 type AwsVpcConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether or not the task's elastic network interface receives a
-	// public IP address.
+	// Whether the task's elastic network interface receives a public IP address.
 	AssignPublicIp *string `locationName:"assignPublicIp" type:"string" enum:"AssignPublicIp"`
 
 	// The security groups associated with the task or service. If you do not specify
@@ -3928,6 +3927,10 @@ type Container struct {
 	// The exit code returned from the container.
 	ExitCode *int64 `locationName:"exitCode" type:"integer"`
 
+	// The health status of the container. If health checks are not configured for
+	// this container in its task definition, then it reports health status as UNKNOWN.
+	HealthStatus *string `locationName:"healthStatus" type:"string" enum:"HealthStatus"`
+
 	// The last known status of the container.
 	LastStatus *string `locationName:"lastStatus" type:"string"`
 
@@ -3967,6 +3970,12 @@ func (s *Container) SetContainerArn(v string) *Container {
 // SetExitCode sets the ExitCode field's value.
 func (s *Container) SetExitCode(v int64) *Container {
 	s.ExitCode = &v
+	return s
+}
+
+// SetHealthStatus sets the HealthStatus field's value.
+func (s *Container) SetHealthStatus(v string) *Container {
+	s.HealthStatus = &v
 	return s
 }
 
@@ -4057,9 +4066,9 @@ type ContainerDefinition struct {
 	// uses the CPU value to calculate the relative CPU share ratios for running
 	// containers. For more information, see CPU share constraint (https://docs.docker.com/engine/reference/run/#cpu-share-constraint)
 	// in the Docker documentation. The minimum valid CPU share value that the Linux
-	// kernel will allow is 2; however, the CPU parameter is not required, and you
-	// can use CPU values below 2 in your container definitions. For CPU values
-	// below 2 (including null), the behavior varies based on your Amazon ECS container
+	// kernel allows is 2; however, the CPU parameter is not required, and you can
+	// use CPU values below 2 in your container definitions. For CPU values below
+	// 2 (including null), the behavior varies based on your Amazon ECS container
 	// agent version:
 	//
 	//    * Agent versions less than or equal to 1.1.0: Null and zero CPU values
@@ -4171,6 +4180,12 @@ type ContainerDefinition struct {
 	// This parameter is not supported for Windows containers.
 	ExtraHosts []*HostEntry `locationName:"extraHosts" type:"list"`
 
+	// The health check command and associated configuration parameters for the
+	// container. This parameter maps to HealthCheck in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/)
+	// and the HEALTHCHECK parameter of docker run (https://docs.docker.com/engine/reference/run/).
+	HealthCheck *HealthCheck `locationName:"healthCheck" type:"structure"`
+
 	// The hostname to use for your container. This parameter maps to Hostname in
 	// the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/#create-a-container)
 	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/)
@@ -4272,13 +4287,12 @@ type ContainerDefinition struct {
 	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/)
 	// and the --memory option to docker run (https://docs.docker.com/engine/reference/run/).
 	//
-	// If your containers will be part of a task using the Fargate launch type,
-	// this field is optional and the only requirement is that the total amount
-	// of memory reserved for all containers within a task be lower than the task
-	// memory value.
+	// If your containers are part of a task using the Fargate launch type, this
+	// field is optional and the only requirement is that the total amount of memory
+	// reserved for all containers within a task be lower than the task memory value.
 	//
-	// For containers that will be part of a task using the EC2 launch type, you
-	// must specify a non-zero integer for one or both of memory or memoryReservation
+	// For containers that are part of a task using the EC2 launch type, you must
+	// specify a non-zero integer for one or both of memory or memoryReservation
 	// in container definitions. If you specify both, memory must be greater than
 	// memoryReservation. If you specify memoryReservation, then that value is subtracted
 	// from the available memory resources for the container instance on which the
@@ -4436,6 +4450,11 @@ func (s *ContainerDefinition) Validate() error {
 			}
 		}
 	}
+	if s.HealthCheck != nil {
+		if err := s.HealthCheck.Validate(); err != nil {
+			invalidParams.AddNested("HealthCheck", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.LinuxParameters != nil {
 		if err := s.LinuxParameters.Validate(); err != nil {
 			invalidParams.AddNested("LinuxParameters", err.(request.ErrInvalidParams))
@@ -4526,6 +4545,12 @@ func (s *ContainerDefinition) SetEssential(v bool) *ContainerDefinition {
 // SetExtraHosts sets the ExtraHosts field's value.
 func (s *ContainerDefinition) SetExtraHosts(v []*HostEntry) *ContainerDefinition {
 	s.ExtraHosts = v
+	return s
+}
+
+// SetHealthCheck sets the HealthCheck field's value.
+func (s *ContainerDefinition) SetHealthCheck(v *HealthCheck) *ContainerDefinition {
+	s.HealthCheck = v
 	return s
 }
 
@@ -5010,11 +5035,11 @@ type CreateServiceInput struct {
 	// ignore unhealthy Elastic Load Balancing target health checks after a task
 	// has first started. This is only valid if your service is configured to use
 	// a load balancer. If your service's tasks take a while to start and respond
-	// to ELB health checks, you can specify a health check grace period of up to
-	// 1,800 seconds during which the ECS service scheduler will ignore ELB health
-	// check status. This grace period can prevent the ECS service scheduler from
-	// marking tasks as unhealthy and stopping them before they have time to come
-	// up.
+	// to Elastic Load Balancing health checks, you can specify a health check grace
+	// period of up to 1,800 seconds during which the ECS service scheduler ignores
+	// health check status. This grace period can prevent the ECS service scheduler
+	// from marking tasks as unhealthy and stopping them before they have time to
+	// come up.
 	HealthCheckGracePeriodSeconds *int64 `locationName:"healthCheckGracePeriodSeconds" type:"integer"`
 
 	// The launch type on which to run your service.
@@ -6319,6 +6344,105 @@ func (s *Failure) SetArn(v string) *Failure {
 // SetReason sets the Reason field's value.
 func (s *Failure) SetReason(v string) *Failure {
 	s.Reason = &v
+	return s
+}
+
+// An object representing a container health check. Health check parameters
+// that are specified in a container definition override any Docker health checks
+// that exist in the container image (such as those specified in a parent image
+// or from the image's Dockerfile).
+type HealthCheck struct {
+	_ struct{} `type:"structure"`
+
+	// A string array representing the command that the container runs to determine
+	// if it is healthy. The string array must start with CMD to execute the command
+	// arguments directly, or CMD-SHELL to run the command with the container's
+	// default shell. For example:
+	//
+	// [ "CMD-SHELL", "curl -f http://localhost/ || exit 1" ]
+	//
+	// An exit code of 0 indicates success, and non-zero exit code indicates failure.
+	// For more information, see HealthCheck in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.27/).
+	//
+	// Command is a required field
+	Command []*string `locationName:"command" type:"list" required:"true"`
+
+	// The time period in seconds between each health check execution. You may specify
+	// between 5 and 300 seconds. The default value is 30 seconds.
+	Interval *int64 `locationName:"interval" type:"integer"`
+
+	// The number of times to retry a failed health check before the container is
+	// considered unhealthy. You may specify between 1 and 10 retries. The default
+	// value is 3 retries.
+	Retries *int64 `locationName:"retries" type:"integer"`
+
+	// The optional grace period within which to provide containers time to bootstrap
+	// before failed health checks count towards the maximum number of retries.
+	// You may specify between 0 and 300 seconds. The startPeriod is disabled by
+	// default.
+	//
+	// If a health check succeeds within the startPeriod, then the container is
+	// considered healthy and any subsequent failures count toward the maximum number
+	// of retries.
+	StartPeriod *int64 `locationName:"startPeriod" type:"integer"`
+
+	// The time period in seconds to wait for a health check to succeed before it
+	// is considered a failure. You may specify between 2 and 60 seconds. The default
+	// value is 5 seconds.
+	Timeout *int64 `locationName:"timeout" type:"integer"`
+}
+
+// String returns the string representation
+func (s HealthCheck) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HealthCheck) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HealthCheck) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HealthCheck"}
+	if s.Command == nil {
+		invalidParams.Add(request.NewErrParamRequired("Command"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCommand sets the Command field's value.
+func (s *HealthCheck) SetCommand(v []*string) *HealthCheck {
+	s.Command = v
+	return s
+}
+
+// SetInterval sets the Interval field's value.
+func (s *HealthCheck) SetInterval(v int64) *HealthCheck {
+	s.Interval = &v
+	return s
+}
+
+// SetRetries sets the Retries field's value.
+func (s *HealthCheck) SetRetries(v int64) *HealthCheck {
+	s.Retries = &v
+	return s
+}
+
+// SetStartPeriod sets the StartPeriod field's value.
+func (s *HealthCheck) SetStartPeriod(v int64) *HealthCheck {
+	s.StartPeriod = &v
+	return s
+}
+
+// SetTimeout sets the Timeout field's value.
+func (s *HealthCheck) SetTimeout(v int64) *HealthCheck {
+	s.Timeout = &v
 	return s
 }
 
@@ -7823,7 +7947,7 @@ type PortMapping struct {
 	// The port number on the container instance to reserve for your container.
 	//
 	// If using containers in a task with the awsvpc or host network mode, the hostPort
-	// can either be left blank or needs to be the same value as the containerPort.
+	// can either be left blank or set to the same value as the containerPort.
 	//
 	// If using containers in a task with the bridge network mode, you can specify
 	// a non-reserved host port for your container port mapping, or you can omit
@@ -8118,20 +8242,20 @@ type RegisterTaskDefinitionInput struct {
 	// one of the following values, which determines your range of supported values
 	// for the memory parameter:
 	//
-	//    * 256 (.25 vCPU) - Available memory values: 512 (0.5GB), 1024 (1GB), 2048
-	//    (2GB)
+	//    * 256 (.25 vCPU) - Available memory values: 512 (0.5 GB), 1024 (1 GB),
+	//    2048 (2 GB)
 	//
-	//    * 512 (.5 vCPU) - Available memory values: 1024 (1GB), 2048 (2GB), 3072
-	//    (3GB), 4096 (4GB)
+	//    * 512 (.5 vCPU) - Available memory values: 1024 (1 GB), 2048 (2 GB), 3072
+	//    (3 GB), 4096 (4 GB)
 	//
-	//    * 1024 (1 vCPU) - Available memory values: 2048 (2GB), 3072 (3GB), 4096
-	//    (4GB), 5120 (5GB), 6144 (6GB), 7168 (7GB), 8192 (8GB)
+	//    * 1024 (1 vCPU) - Available memory values: 2048 (2 GB), 3072 (3 GB), 4096
+	//    (4 GB), 5120 (5 GB), 6144 (6 GB), 7168 (7 GB), 8192 (8 GB)
 	//
-	//    * 2048 (2 vCPU) - Available memory values: Between 4096 (4GB) and 16384
-	//    (16GB) in increments of 1024 (1GB)
+	//    * 2048 (2 vCPU) - Available memory values: Between 4096 (4 GB) and 16384
+	//    (16 GB) in increments of 1024 (1 GB)
 	//
-	//    * 4096 (4 vCPU) - Available memory values: Between 8192 (8GB) and 30720
-	//    (30GB) in increments of 1024 (1GB)
+	//    * 4096 (4 vCPU) - Available memory values: Between 8192 (8 GB) and 30720
+	//    (30 GB) in increments of 1024 (1 GB)
 	Cpu *string `locationName:"cpu" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the task execution role that the Amazon
@@ -8160,20 +8284,20 @@ type RegisterTaskDefinitionInput struct {
 	// one of the following values, which determines your range of supported values
 	// for the cpu parameter:
 	//
-	//    * 512 (0.5GB), 1024 (1GB), 2048 (2GB) - Available cpu values: 256 (.25
+	//    * 512 (0.5 GB), 1024 (1 GB), 2048 (2 GB) - Available cpu values: 256 (.25
 	//    vCPU)
 	//
-	//    * 1024 (1GB), 2048 (2GB), 3072 (3GB), 4096 (4GB) - Available cpu values:
+	//    * 1024 (1 GB), 2048 (2 GB), 3072 (3 GB), 4096 (4 GB) - Available cpu values:
 	//    512 (.5 vCPU)
 	//
-	//    * 2048 (2GB), 3072 (3GB), 4096 (4GB), 5120 (5GB), 6144 (6GB), 7168 (7GB),
-	//    8192 (8GB) - Available cpu values: 1024 (1 vCPU)
+	//    * 2048 (2 GB), 3072 (3 GB), 4096 (4 GB), 5120 (5 GB), 6144 (6 GB), 7168
+	//    (7 GB), 8192 (8 GB) - Available cpu values: 1024 (1 vCPU)
 	//
-	//    * Between 4096 (4GB) and 16384 (16GB) in increments of 1024 (1GB) - Available
-	//    cpu values: 2048 (2 vCPU)
+	//    * Between 4096 (4 GB) and 16384 (16 GB) in increments of 1024 (1 GB) -
+	//    Available cpu values: 2048 (2 vCPU)
 	//
-	//    * Between 8192 (8GB) and 30720 (30GB) in increments of 1024 (1GB) - Available
-	//    cpu values: 4096 (4 vCPU)
+	//    * Between 8192 (8 GB) and 30720 (30 GB) in increments of 1024 (1 GB) -
+	//    Available cpu values: 4096 (4 vCPU)
 	Memory *string `locationName:"memory" type:"string"`
 
 	// The Docker networking mode to use for the containers in the task. The valid
@@ -9230,7 +9354,7 @@ type SubmitTaskStateChangeInput struct {
 	// Any containers associated with the state change request.
 	Containers []*ContainerStateChange `locationName:"containers" type:"list"`
 
-	// The Unix timestamp for when the task execution stopped.
+	// The Unix time stamp for when the task execution stopped.
 	ExecutionStoppedAt *time.Time `locationName:"executionStoppedAt" type:"timestamp" timestampFormat:"unix"`
 
 	// The Unix time stamp for when the container image pull began.
@@ -9381,8 +9505,8 @@ type Task struct {
 
 	// The number of CPU units used by the task. It can be expressed as an integer
 	// using CPU units, for example 1024, or as a string using vCPUs, for example
-	// 1 vCPU or 1 vcpu, in a task definition but will be converted to an integer
-	// indicating the CPU units when the task definition is registered.
+	// 1 vCPU or 1 vcpu, in a task definition but is converted to an integer indicating
+	// the CPU units when the task definition is registered.
 	//
 	// If using the EC2 launch type, this field is optional. Supported values are
 	// between 128 CPU units (0.125 vCPUs) and 10240 CPU units (10 vCPUs).
@@ -9391,20 +9515,20 @@ type Task struct {
 	// one of the following values, which determines your range of supported values
 	// for the memory parameter:
 	//
-	//    * 256 (.25 vCPU) - Available memory values: 512 (0.5GB), 1024 (1GB), 2048
-	//    (2GB)
+	//    * 256 (.25 vCPU) - Available memory values: 512 (0.5 GB), 1024 (1 GB),
+	//    2048 (2 GB)
 	//
-	//    * 512 (.5 vCPU) - Available memory values: 1024 (1GB), 2048 (2GB), 3072
-	//    (3GB), 4096 (4GB)
+	//    * 512 (.5 vCPU) - Available memory values: 1024 (1 GB), 2048 (2 GB), 3072
+	//    (3 GB), 4096 (4 GB)
 	//
-	//    * 1024 (1 vCPU) - Available memory values: 2048 (2GB), 3072 (3GB), 4096
-	//    (4GB), 5120 (5GB), 6144 (6GB), 7168 (7GB), 8192 (8GB)
+	//    * 1024 (1 vCPU) - Available memory values: 2048 (2 GB), 3072 (3 GB), 4096
+	//    (4 GB), 5120 (5 GB), 6144 (6 GB), 7168 (7 GB), 8192 (8 GB)
 	//
-	//    * 2048 (2 vCPU) - Available memory values: Between 4096 (4GB) and 16384
-	//    (16GB) in increments of 1024 (1GB)
+	//    * 2048 (2 vCPU) - Available memory values: Between 4096 (4 GB) and 16384
+	//    (16 GB) in increments of 1024 (1 GB)
 	//
-	//    * 4096 (4 vCPU) - Available memory values: Between 8192 (8GB) and 30720
-	//    (30GB) in increments of 1024 (1GB)
+	//    * 4096 (4 vCPU) - Available memory values: Between 8192 (8 GB) and 30720
+	//    (30 GB) in increments of 1024 (1 GB)
 	Cpu *string `locationName:"cpu" type:"string"`
 
 	// The Unix time stamp for when the task was created (the task entered the PENDING
@@ -9414,11 +9538,24 @@ type Task struct {
 	// The desired status of the task.
 	DesiredStatus *string `locationName:"desiredStatus" type:"string"`
 
-	// The Unix timestamp for when the task execution stopped.
+	// The Unix time stamp for when the task execution stopped.
 	ExecutionStoppedAt *time.Time `locationName:"executionStoppedAt" type:"timestamp" timestampFormat:"unix"`
 
 	// The name of the task group associated with the task.
 	Group *string `locationName:"group" type:"string"`
+
+	// The health status for the task, which is determined by the health of the
+	// essential containers in the task. If all essential containers in the task
+	// are reporting as HEALTHY, then the task status also reports as HEALTHY. If
+	// any essential containers in the task are reporting as UNHEALTHY or UNKNOWN,
+	// then the task status also reports as UNHEALTHY or UNKNOWN, accordingly.
+	//
+	// The Amazon ECS container agent does not monitor or report on Docker health
+	// checks that are embedded in a container image (such as those specified in
+	// a parent image or from the image's Dockerfile) and not specified in the container
+	// definition. Health check parameters that are specified in a container definition
+	// override any Docker health checks that exist in the container image.
+	HealthStatus *string `locationName:"healthStatus" type:"string" enum:"HealthStatus"`
 
 	// The last known status of the task.
 	LastStatus *string `locationName:"lastStatus" type:"string"`
@@ -9428,7 +9565,7 @@ type Task struct {
 
 	// The amount of memory (in MiB) used by the task. It can be expressed as an
 	// integer using MiB, for example 1024, or as a string using GB, for example
-	// 1GB or 1 GB, in a task definition but will be converted to an integer indicating
+	// 1GB or 1 GB, in a task definition but is converted to an integer indicating
 	// the MiB when the task definition is registered.
 	//
 	// If using the EC2 launch type, this field is optional.
@@ -9437,20 +9574,20 @@ type Task struct {
 	// one of the following values, which determines your range of supported values
 	// for the cpu parameter:
 	//
-	//    * 512 (0.5GB), 1024 (1GB), 2048 (2GB) - Available cpu values: 256 (.25
+	//    * 512 (0.5 GB), 1024 (1 GB), 2048 (2 GB) - Available cpu values: 256 (.25
 	//    vCPU)
 	//
-	//    * 1024 (1GB), 2048 (2GB), 3072 (3GB), 4096 (4GB) - Available cpu values:
+	//    * 1024 (1 GB), 2048 (2 GB), 3072 (3 GB), 4096 (4 GB) - Available cpu values:
 	//    512 (.5 vCPU)
 	//
-	//    * 2048 (2GB), 3072 (3GB), 4096 (4GB), 5120 (5GB), 6144 (6GB), 7168 (7GB),
-	//    8192 (8GB) - Available cpu values: 1024 (1 vCPU)
+	//    * 2048 (2 GB), 3072 (3 GB), 4096 (4 GB), 5120 (5 GB), 6144 (6 GB), 7168
+	//    (7 GB), 8192 (8 GB) - Available cpu values: 1024 (1 vCPU)
 	//
-	//    * Between 4096 (4GB) and 16384 (16GB) in increments of 1024 (1GB) - Available
-	//    cpu values: 2048 (2 vCPU)
+	//    * Between 4096 (4 GB) and 16384 (16 GB) in increments of 1024 (1 GB) -
+	//    Available cpu values: 2048 (2 vCPU)
 	//
-	//    * Between 8192 (8GB) and 30720 (30GB) in increments of 1024 (1GB) - Available
-	//    cpu values: 4096 (4 vCPU)
+	//    * Between 8192 (8 GB) and 30720 (30 GB) in increments of 1024 (1 GB) -
+	//    Available cpu values: 4096 (4 vCPU)
 	Memory *string `locationName:"memory" type:"string"`
 
 	// One or more container overrides.
@@ -9483,8 +9620,8 @@ type Task struct {
 	// The reason the task was stopped.
 	StoppedReason *string `locationName:"stoppedReason" type:"string"`
 
-	// The Unix time stamp for when the task will stop (the task transitioned from
-	// the RUNNING state to the STOPPED state).
+	// The Unix time stamp for when the task will stop (transitions from the RUNNING
+	// state to STOPPED).
 	StoppingAt *time.Time `locationName:"stoppingAt" type:"timestamp" timestampFormat:"unix"`
 
 	// The Amazon Resource Name (ARN) of the task.
@@ -9575,6 +9712,12 @@ func (s *Task) SetExecutionStoppedAt(v time.Time) *Task {
 // SetGroup sets the Group field's value.
 func (s *Task) SetGroup(v string) *Task {
 	s.Group = &v
+	return s
+}
+
+// SetHealthStatus sets the HealthStatus field's value.
+func (s *Task) SetHealthStatus(v string) *Task {
+	s.HealthStatus = &v
 	return s
 }
 
@@ -9688,20 +9831,20 @@ type TaskDefinition struct {
 	// type, this field is required and you must use one of the following values,
 	// which determines your range of valid values for the memory parameter:
 	//
-	//    * 256 (.25 vCPU) - Available memory values: 512 (0.5GB), 1024 (1GB), 2048
-	//    (2GB)
+	//    * 256 (.25 vCPU) - Available memory values: 512 (0.5 GB), 1024 (1 GB),
+	//    2048 (2 GB)
 	//
-	//    * 512 (.5 vCPU) - Available memory values: 1024 (1GB), 2048 (2GB), 3072
-	//    (3GB), 4096 (4GB)
+	//    * 512 (.5 vCPU) - Available memory values: 1024 (1 GB), 2048 (2 GB), 3072
+	//    (3 GB), 4096 (4 GB)
 	//
-	//    * 1024 (1 vCPU) - Available memory values: 2048 (2GB), 3072 (3GB), 4096
-	//    (4GB), 5120 (5GB), 6144 (6GB), 7168 (7GB), 8192 (8GB)
+	//    * 1024 (1 vCPU) - Available memory values: 2048 (2 GB), 3072 (3 GB), 4096
+	//    (4 GB), 5120 (5 GB), 6144 (6 GB), 7168 (7 GB), 8192 (8 GB)
 	//
-	//    * 2048 (2 vCPU) - Available memory values: Between 4096 (4GB) and 16384
-	//    (16GB) in increments of 1024 (1GB)
+	//    * 2048 (2 vCPU) - Available memory values: Between 4096 (4 GB) and 16384
+	//    (16 GB) in increments of 1024 (1 GB)
 	//
-	//    * 4096 (4 vCPU) - Available memory values: Between 8192 (8GB) and 30720
-	//    (30GB) in increments of 1024 (1GB)
+	//    * 4096 (4 vCPU) - Available memory values: Between 8192 (8 GB) and 30720
+	//    (30 GB) in increments of 1024 (1 GB)
 	Cpu *string `locationName:"cpu" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the task execution role that the Amazon
@@ -9716,20 +9859,20 @@ type TaskDefinition struct {
 	// type, this field is required and you must use one of the following values,
 	// which determines your range of valid values for the cpu parameter:
 	//
-	//    * 512 (0.5GB), 1024 (1GB), 2048 (2GB) - Available cpu values: 256 (.25
+	//    * 512 (0.5 GB), 1024 (1 GB), 2048 (2 GB) - Available cpu values: 256 (.25
 	//    vCPU)
 	//
-	//    * 1024 (1GB), 2048 (2GB), 3072 (3GB), 4096 (4GB) - Available cpu values:
+	//    * 1024 (1 GB), 2048 (2 GB), 3072 (3 GB), 4096 (4 GB) - Available cpu values:
 	//    512 (.5 vCPU)
 	//
-	//    * 2048 (2GB), 3072 (3GB), 4096 (4GB), 5120 (5GB), 6144 (6GB), 7168 (7GB),
-	//    8192 (8GB) - Available cpu values: 1024 (1 vCPU)
+	//    * 2048 (2 GB), 3072 (3 GB), 4096 (4 GB), 5120 (5 GB), 6144 (6 GB), 7168
+	//    (7 GB), 8192 (8 GB) - Available cpu values: 1024 (1 vCPU)
 	//
-	//    * Between 4096 (4GB) and 16384 (16GB) in increments of 1024 (1GB) - Available
-	//    cpu values: 2048 (2 vCPU)
+	//    * Between 4096 (4 GB) and 16384 (16 GB) in increments of 1024 (1 GB) -
+	//    Available cpu values: 2048 (2 vCPU)
 	//
-	//    * Between 8192 (8GB) and 30720 (30GB) in increments of 1024 (1GB) - Available
-	//    cpu values: 4096 (4 vCPU)
+	//    * Between 8192 (8 GB) and 30720 (30 GB) in increments of 1024 (1 GB) -
+	//    Available cpu values: 4096 (4 vCPU)
 	Memory *string `locationName:"memory" type:"string"`
 
 	// The Docker networking mode to use for the containers in the task. The valid
@@ -9916,8 +10059,8 @@ func (s *TaskDefinition) SetVolumes(v []*Volume) *TaskDefinition {
 
 // An object representing a constraint on task placement in the task definition.
 //
-// If you are using the Fargate launch type, task placement contraints are not
-// supported.
+// If you are using the Fargate launch type, task placement constraints are
+// not supported.
 //
 // For more information, see Task Placement Constraints (http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-constraints.html)
 // in the Amazon Elastic Container Service Developer Guide.
@@ -10253,24 +10396,24 @@ type UpdateServiceInput struct {
 	// service.
 	DesiredCount *int64 `locationName:"desiredCount" type:"integer"`
 
-	// Whether or not to force a new deployment of the service. By default, --no-force-new-deployment
-	// is assumed unless specified otherwise.
+	// Whether to force a new deployment of the service. By default, --no-force-new-deployment
+	// is assumed unless otherwise specified.
 	ForceNewDeployment *bool `locationName:"forceNewDeployment" type:"boolean"`
 
 	// The period of time, in seconds, that the Amazon ECS service scheduler should
 	// ignore unhealthy Elastic Load Balancing target health checks after a task
 	// has first started. This is only valid if your service is configured to use
 	// a load balancer. If your service's tasks take a while to start and respond
-	// to ELB health checks, you can specify a health check grace period of up to
-	// 1,800 seconds during which the ECS service scheduler will ignore ELB health
-	// check status. This grace period can prevent the ECS service scheduler from
-	// marking tasks as unhealthy and stopping them before they have time to come
-	// up.
+	// to Elastic Load Balancing health checks, you can specify a health check grace
+	// period of up to 1,800 seconds during which the ECS service scheduler ignores
+	// the Elastic Load Balancing health check status. This grace period can prevent
+	// the ECS service scheduler from marking tasks as unhealthy and stopping them
+	// before they have time to come up.
 	HealthCheckGracePeriodSeconds *int64 `locationName:"healthCheckGracePeriodSeconds" type:"integer"`
 
 	// The network configuration for the service. This parameter is required for
-	// task definitions that use the awsvpc network mode to receive their own Elastic
-	// Network Interface, and it is not supported for other network modes. For more
+	// task definitions that use the awsvpc network mode to receive their own elastic
+	// network interface, and it is not supported for other network modes. For more
 	// information, see Task Networking (http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-networking.html)
 	// in the Amazon Elastic Container Service Developer Guide.
 	//
@@ -10602,6 +10745,17 @@ const (
 
 	// DeviceCgroupPermissionMknod is a DeviceCgroupPermission enum value
 	DeviceCgroupPermissionMknod = "mknod"
+)
+
+const (
+	// HealthStatusHealthy is a HealthStatus enum value
+	HealthStatusHealthy = "HEALTHY"
+
+	// HealthStatusUnhealthy is a HealthStatus enum value
+	HealthStatusUnhealthy = "UNHEALTHY"
+
+	// HealthStatusUnknown is a HealthStatus enum value
+	HealthStatusUnknown = "UNKNOWN"
 )
 
 const (
