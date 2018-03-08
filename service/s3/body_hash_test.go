@@ -217,6 +217,9 @@ func TestUseMD5ValidationReader(t *testing.T) {
 				if reader.payload == nil {
 					return fmt.Errorf("expect payload not to be nil")
 				}
+				if e, a := int64(len(bodyWithSum)-md5.Size), reader.payloadLen; e != a {
+					return fmt.Errorf("expect %v payload len, got %v", e, a)
+				}
 				if reader.hash == nil {
 					return fmt.Errorf("expect hash not to be nil")
 				}
@@ -252,6 +255,9 @@ func TestUseMD5ValidationReader(t *testing.T) {
 				}
 				if reader.payload == nil {
 					return fmt.Errorf("expect payload not to be nil")
+				}
+				if e, a := int64(len(emptyBodySum)-md5.Size), reader.payloadLen; e != a {
+					return fmt.Errorf("expect %v payload len, got %v", e, a)
 				}
 				if reader.hash == nil {
 					return fmt.Errorf("expect hash not to be nil")

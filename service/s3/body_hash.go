@@ -162,7 +162,7 @@ func useMD5ValidationReader(r *request.Request) {
 	}
 
 	// Wrap and swap the response body reader with the validation reader.
-	*bodyReader = newMD5ValidationReader(*bodyReader, contentLen)
+	*bodyReader = newMD5ValidationReader(*bodyReader, contentLen-md5.Size)
 }
 
 type md5ValidationReader struct {
