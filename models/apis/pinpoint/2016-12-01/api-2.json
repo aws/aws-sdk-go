@@ -64,6 +64,33 @@
         "shape" : "TooManyRequestsException"
       } ]
     },
+      "CreateExportJob" : {
+      "name" : "CreateExportJob",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/v1/apps/{application-id}/jobs/export",
+        "responseCode" : 202
+      },
+      "input" : {
+        "shape" : "CreateExportJobRequest"
+      },
+      "output" : {
+        "shape" : "CreateExportJobResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      }, {
+        "shape" : "ForbiddenException"
+      }, {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "MethodNotAllowedException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
     "CreateImportJob" : {
       "name" : "CreateImportJob",
       "http" : {
@@ -928,6 +955,60 @@
         "shape" : "TooManyRequestsException"
       } ]
     },
+    "GetExportJob" : {
+      "name" : "GetExportJob",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/v1/apps/{application-id}/jobs/export/{job-id}",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "GetExportJobRequest"
+      },
+      "output" : {
+        "shape" : "GetExportJobResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      }, {
+        "shape" : "ForbiddenException"
+      }, {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "MethodNotAllowedException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
+    "GetExportJobs" : {
+      "name" : "GetExportJobs",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/v1/apps/{application-id}/jobs/export",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "GetExportJobsRequest"
+      },
+      "output" : {
+        "shape" : "GetExportJobsResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      }, {
+        "shape" : "ForbiddenException"
+      }, {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "MethodNotAllowedException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
     "GetGcmChannel" : {
       "name" : "GetGcmChannel",
       "http" : {
@@ -1021,6 +1102,33 @@
       },
       "output" : {
         "shape" : "GetSegmentResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      }, {
+        "shape" : "ForbiddenException"
+      }, {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "MethodNotAllowedException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
+    "GetSegmentExportJobs" : {
+      "name" : "GetSegmentExportJobs",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/v1/apps/{application-id}/segments/{segment-id}/jobs/export",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "GetSegmentExportJobsRequest"
+      },
+      "output" : {
+        "shape" : "GetSegmentExportJobsResponse"
       },
       "errors" : [ {
         "shape" : "BadRequestException"
@@ -2166,6 +2274,9 @@
         "ApplicationId" : {
           "shape" : "__string"
         },
+        "CampaignHook" : {
+          "shape" : "CampaignHook"
+        },
         "LastModifiedDate" : {
           "shape" : "__string"
         },
@@ -2331,6 +2442,20 @@
         }
       }
     },
+    "CampaignHook" : {
+      "type" : "structure",
+      "members" : {
+        "LambdaFunctionName" : {
+          "shape" : "__string"
+        },
+        "Mode" : {
+          "shape" : "Mode"
+        },
+        "WebUrl" : {
+          "shape" : "__string"
+        }
+      }
+    },
     "CampaignLimits" : {
       "type" : "structure",
       "members" : {
@@ -2368,6 +2493,9 @@
         },
         "HoldoutPercent" : {
           "shape" : "__integer"
+        },
+        "Hook" : {
+          "shape" : "CampaignHook"
         },
         "Id" : {
           "shape" : "__string"
@@ -2449,7 +2577,7 @@
     },
     "ChannelType" : {
       "type" : "string",
-      "enum" : [ "GCM", "APNS", "APNS_SANDBOX", "APNS_VOIP", "APNS_VOIP_SANDBOX", "ADM", "SMS", "EMAIL", "BAIDU"]
+      "enum" : [ "GCM", "APNS", "APNS_SANDBOX", "APNS_VOIP", "APNS_VOIP_SANDBOX", "ADM", "SMS", "EMAIL", "BAIDU", "CUSTOM" ]
     },
     "CreateAppRequest" : {
       "type" : "structure",
@@ -2503,6 +2631,31 @@
       },
       "required" : [ "CampaignResponse" ],
       "payload" : "CampaignResponse"
+    },
+    "CreateExportJobRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ApplicationId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "application-id"
+        },
+        "ExportJobRequest" : {
+          "shape" : "ExportJobRequest"
+        }
+      },
+      "required" : [ "ApplicationId", "ExportJobRequest" ],
+      "payload" : "ExportJobRequest"
+    },
+    "CreateExportJobResponse" : {
+      "type" : "structure",
+      "members" : {
+        "ExportJobResponse" : {
+          "shape" : "ExportJobResponse"
+        }
+      },
+      "required" : [ "ExportJobResponse" ],
+      "payload" : "ExportJobResponse"
     },
     "CreateImportJobRequest" : {
       "type" : "structure",
@@ -3236,6 +3389,93 @@
         }
       }
     },
+    "ExportJobRequest" : {
+      "type" : "structure",
+      "members" : {
+        "RoleArn" : {
+          "shape" : "__string"
+        },
+        "S3UrlPrefix" : {
+          "shape" : "__string"
+        },
+        "SegmentId" : {
+          "shape" : "__string"
+        }
+      },
+      "required" : [ ]
+    },
+    "ExportJobResource" : {
+      "type" : "structure",
+      "members" : {
+        "RoleArn" : {
+          "shape" : "__string"
+        },
+        "S3UrlPrefix" : {
+          "shape" : "__string"
+        },
+        "SegmentId" : {
+          "shape" : "__string"
+        }
+      },
+      "required" : [ ]
+    },
+    "ExportJobResponse" : {
+      "type" : "structure",
+      "members" : {
+        "ApplicationId" : {
+          "shape" : "__string"
+        },
+        "CompletedPieces" : {
+          "shape" : "__integer"
+        },
+        "CompletionDate" : {
+          "shape" : "__string"
+        },
+        "CreationDate" : {
+          "shape" : "__string"
+        },
+        "Definition" : {
+          "shape" : "ExportJobResource"
+        },
+        "FailedPieces" : {
+          "shape" : "__integer"
+        },
+        "Failures" : {
+          "shape" : "ListOf__string"
+        },
+        "Id" : {
+          "shape" : "__string"
+        },
+        "JobStatus" : {
+          "shape" : "JobStatus"
+        },
+        "TotalFailures" : {
+          "shape" : "__integer"
+        },
+        "TotalPieces" : {
+          "shape" : "__integer"
+        },
+        "TotalProcessed" : {
+          "shape" : "__integer"
+        },
+        "Type" : {
+          "shape" : "__string"
+        }
+      },
+      "required" : [ ]
+    },
+    "ExportJobsResponse" : {
+      "type" : "structure",
+      "members" : {
+        "Item" : {
+          "shape" : "ListOfExportJobResponse"
+        },
+        "NextToken" : {
+          "shape" : "__string"
+        }
+      },
+      "required" : [ ]
+    },
     "ForbiddenException" : {
       "type" : "structure",
       "members" : {
@@ -3785,6 +4025,63 @@
       "required" : [ "EventStream" ],
       "payload" : "EventStream"
     },
+    "GetExportJobRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ApplicationId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "application-id"
+        },
+        "JobId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "job-id"
+        }
+      },
+      "required" : [ "ApplicationId", "JobId" ]
+    },
+    "GetExportJobResponse" : {
+      "type" : "structure",
+      "members" : {
+        "ExportJobResponse" : {
+          "shape" : "ExportJobResponse"
+        }
+      },
+      "required" : [ "ExportJobResponse" ],
+      "payload" : "ExportJobResponse"
+    },
+    "GetExportJobsRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ApplicationId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "application-id"
+        },
+        "PageSize" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "page-size"
+        },
+        "Token" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "token"
+        }
+      },
+      "required" : [ "ApplicationId" ]
+    },
+    "GetExportJobsResponse" : {
+      "type" : "structure",
+      "members" : {
+        "ExportJobsResponse" : {
+          "shape" : "ExportJobsResponse"
+        }
+      },
+      "required" : [ "ExportJobsResponse" ],
+      "payload" : "ExportJobsResponse"
+    },
     "GetGcmChannelRequest" : {
       "type" : "structure",
       "members" : {
@@ -3862,6 +4159,42 @@
       },
       "required" : [ "ImportJobsResponse" ],
       "payload" : "ImportJobsResponse"
+    },
+    "GetSegmentExportJobsRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ApplicationId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "application-id"
+        },
+        "PageSize" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "page-size"
+        },
+        "SegmentId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "segment-id"
+        },
+        "Token" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "token"
+        }
+      },
+      "required" : [ "SegmentId", "ApplicationId" ]
+    },
+    "GetSegmentExportJobsResponse" : {
+      "type" : "structure",
+      "members" : {
+        "ExportJobsResponse" : {
+          "shape" : "ExportJobsResponse"
+        }
+      },
+      "required" : [ "ExportJobsResponse" ],
+      "payload" : "ExportJobsResponse"
     },
     "GetSegmentImportJobsRequest" : {
       "type" : "structure",
@@ -4200,6 +4533,12 @@
         "shape" : "EndpointBatchItem"
       }
     },
+    "ListOfExportJobResponse" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "ExportJobResponse"
+      }
+    },
     "ListOfImportJobResponse" : {
       "type" : "list",
       "member" : {
@@ -4464,6 +4803,10 @@
       "error" : {
         "httpStatusCode" : 405
       }
+    },
+    "Mode" : {
+      "type" : "string",
+      "enum" : [ "DELIVERY", "FILTER" ]
     },
     "NotFoundException" : {
       "type" : "structure",
@@ -5253,6 +5596,9 @@
     "WriteApplicationSettingsRequest" : {
       "type" : "structure",
       "members" : {
+        "CampaignHook" : {
+          "shape" : "CampaignHook"
+        },
         "Limits" : {
           "shape" : "CampaignLimits"
         },
@@ -5272,6 +5618,9 @@
         },
         "HoldoutPercent" : {
           "shape" : "__integer"
+        },
+        "Hook" : {
+          "shape" : "CampaignHook"
         },
         "IsPaused" : {
           "shape" : "__boolean"

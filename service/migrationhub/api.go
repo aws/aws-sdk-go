@@ -78,16 +78,15 @@ func (c *MigrationHub) AssociateCreatedArtifactRequest(input *AssociateCreatedAr
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   Exception raised when the account making the call is not whitelisted or there
-//   are other authentication errors.
+//   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
 //   Exception raised when there is an internal, configuration, or dependency
 //   error encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
-//   Exception raised when the service encounters throttled communication with
-//   upstream dependencies or is overloaded with requests.
+//   Exception raised when there is an internal, configuration, or dependency
+//   error encountered.
 //
 //   * ErrCodeDryRunOperation "DryRunOperation"
 //   Exception raised to indicate a successfully authorized action when the DryRun
@@ -184,16 +183,15 @@ func (c *MigrationHub) AssociateDiscoveredResourceRequest(input *AssociateDiscov
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   Exception raised when the account making the call is not whitelisted or there
-//   are other authentication errors.
+//   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
 //   Exception raised when there is an internal, configuration, or dependency
 //   error encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
-//   Exception raised when the service encounters throttled communication with
-//   upstream dependencies or is overloaded with requests.
+//   Exception raised when there is an internal, configuration, or dependency
+//   error encountered.
 //
 //   * ErrCodeDryRunOperation "DryRunOperation"
 //   Exception raised to indicate a successfully authorized action when the DryRun
@@ -209,8 +207,8 @@ func (c *MigrationHub) AssociateDiscoveredResourceRequest(input *AssociateDiscov
 //
 //   * ErrCodePolicyErrorException "PolicyErrorException"
 //   Exception raised when there are problems accessing ADS (Application Discovery
-//   Service); most likely due to a misconfigured policy or the ADSCaller role
-//   is missing or not configured correctly.
+//   Service); most likely due to a misconfigured policy or the migrationhub-discovery
+//   role is missing or not configured correctly.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   Exception raised when the request references a resource (ADS configuration,
@@ -298,16 +296,15 @@ func (c *MigrationHub) CreateProgressUpdateStreamRequest(input *CreateProgressUp
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   Exception raised when the account making the call is not whitelisted or there
-//   are other authentication errors.
+//   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
 //   Exception raised when there is an internal, configuration, or dependency
 //   error encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
-//   Exception raised when the service encounters throttled communication with
-//   upstream dependencies or is overloaded with requests.
+//   Exception raised when there is an internal, configuration, or dependency
+//   error encountered.
 //
 //   * ErrCodeDryRunOperation "DryRunOperation"
 //   Exception raised to indicate a successfully authorized action when the DryRun
@@ -394,9 +391,9 @@ func (c *MigrationHub) DeleteProgressUpdateStreamRequest(input *DeleteProgressUp
 //    * The only parameter needed for DeleteProgressUpdateStream is the stream
 //    name (same as a CreateProgressUpdateStream call).
 //
-//    * The call will return, and a background process will asynchronously be
-//    doing the actual delete of the stream and all of its resources (tasks,
-//    associated resources, resource attributes, created artifacts).
+//    * The call will return, and a background process will asynchronously delete
+//    the stream and all of its resources (tasks, associated resources, resource
+//    attributes, created artifacts).
 //
 //    * If the stream takes time to be deleted, it might still show up on a
 //    ListProgressUpdateStreams call.
@@ -420,16 +417,15 @@ func (c *MigrationHub) DeleteProgressUpdateStreamRequest(input *DeleteProgressUp
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   Exception raised when the account making the call is not whitelisted or there
-//   are other authentication errors.
+//   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
 //   Exception raised when there is an internal, configuration, or dependency
 //   error encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
-//   Exception raised when the service encounters throttled communication with
-//   upstream dependencies or is overloaded with requests.
+//   Exception raised when there is an internal, configuration, or dependency
+//   error encountered.
 //
 //   * ErrCodeDryRunOperation "DryRunOperation"
 //   Exception raised to indicate a successfully authorized action when the DryRun
@@ -525,16 +521,15 @@ func (c *MigrationHub) DescribeApplicationStateRequest(input *DescribeApplicatio
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   Exception raised when the account making the call is not whitelisted or there
-//   are other authentication errors.
+//   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
 //   Exception raised when there is an internal, configuration, or dependency
 //   error encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
-//   Exception raised when the service encounters throttled communication with
-//   upstream dependencies or is overloaded with requests.
+//   Exception raised when there is an internal, configuration, or dependency
+//   error encountered.
 //
 //   * ErrCodeInvalidInputException "InvalidInputException"
 //   Exception raised when the provided input violates a policy constraint or
@@ -542,8 +537,8 @@ func (c *MigrationHub) DescribeApplicationStateRequest(input *DescribeApplicatio
 //
 //   * ErrCodePolicyErrorException "PolicyErrorException"
 //   Exception raised when there are problems accessing ADS (Application Discovery
-//   Service); most likely due to a misconfigured policy or the ADSCaller role
-//   is missing or not configured correctly.
+//   Service); most likely due to a misconfigured policy or the migrationhub-discovery
+//   role is missing or not configured correctly.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   Exception raised when the request references a resource (ADS configuration,
@@ -627,16 +622,15 @@ func (c *MigrationHub) DescribeMigrationTaskRequest(input *DescribeMigrationTask
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   Exception raised when the account making the call is not whitelisted or there
-//   are other authentication errors.
+//   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
 //   Exception raised when there is an internal, configuration, or dependency
 //   error encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
-//   Exception raised when the service encounters throttled communication with
-//   upstream dependencies or is overloaded with requests.
+//   Exception raised when there is an internal, configuration, or dependency
+//   error encountered.
 //
 //   * ErrCodeInvalidInputException "InvalidInputException"
 //   Exception raised when the provided input violates a policy constraint or
@@ -736,16 +730,15 @@ func (c *MigrationHub) DisassociateCreatedArtifactRequest(input *DisassociateCre
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   Exception raised when the account making the call is not whitelisted or there
-//   are other authentication errors.
+//   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
 //   Exception raised when there is an internal, configuration, or dependency
 //   error encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
-//   Exception raised when the service encounters throttled communication with
-//   upstream dependencies or is overloaded with requests.
+//   Exception raised when there is an internal, configuration, or dependency
+//   error encountered.
 //
 //   * ErrCodeDryRunOperation "DryRunOperation"
 //   Exception raised to indicate a successfully authorized action when the DryRun
@@ -842,16 +835,15 @@ func (c *MigrationHub) DisassociateDiscoveredResourceRequest(input *Disassociate
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   Exception raised when the account making the call is not whitelisted or there
-//   are other authentication errors.
+//   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
 //   Exception raised when there is an internal, configuration, or dependency
 //   error encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
-//   Exception raised when the service encounters throttled communication with
-//   upstream dependencies or is overloaded with requests.
+//   Exception raised when there is an internal, configuration, or dependency
+//   error encountered.
 //
 //   * ErrCodeDryRunOperation "DryRunOperation"
 //   Exception raised to indicate a successfully authorized action when the DryRun
@@ -952,16 +944,15 @@ func (c *MigrationHub) ImportMigrationTaskRequest(input *ImportMigrationTaskInpu
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   Exception raised when the account making the call is not whitelisted or there
-//   are other authentication errors.
+//   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
 //   Exception raised when there is an internal, configuration, or dependency
 //   error encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
-//   Exception raised when the service encounters throttled communication with
-//   upstream dependencies or is overloaded with requests.
+//   Exception raised when there is an internal, configuration, or dependency
+//   error encountered.
 //
 //   * ErrCodeDryRunOperation "DryRunOperation"
 //   Exception raised to indicate a successfully authorized action when the DryRun
@@ -1065,16 +1056,15 @@ func (c *MigrationHub) ListCreatedArtifactsRequest(input *ListCreatedArtifactsIn
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   Exception raised when the account making the call is not whitelisted or there
-//   are other authentication errors.
+//   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
 //   Exception raised when there is an internal, configuration, or dependency
 //   error encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
-//   Exception raised when the service encounters throttled communication with
-//   upstream dependencies or is overloaded with requests.
+//   Exception raised when there is an internal, configuration, or dependency
+//   error encountered.
 //
 //   * ErrCodeInvalidInputException "InvalidInputException"
 //   Exception raised when the provided input violates a policy constraint or
@@ -1162,16 +1152,15 @@ func (c *MigrationHub) ListDiscoveredResourcesRequest(input *ListDiscoveredResou
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   Exception raised when the account making the call is not whitelisted or there
-//   are other authentication errors.
+//   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
 //   Exception raised when there is an internal, configuration, or dependency
 //   error encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
-//   Exception raised when the service encounters throttled communication with
-//   upstream dependencies or is overloaded with requests.
+//   Exception raised when there is an internal, configuration, or dependency
+//   error encountered.
 //
 //   * ErrCodeInvalidInputException "InvalidInputException"
 //   Exception raised when the provided input violates a policy constraint or
@@ -1267,16 +1256,15 @@ func (c *MigrationHub) ListMigrationTasksRequest(input *ListMigrationTasksInput)
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   Exception raised when the account making the call is not whitelisted or there
-//   are other authentication errors.
+//   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
 //   Exception raised when there is an internal, configuration, or dependency
 //   error encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
-//   Exception raised when the service encounters throttled communication with
-//   upstream dependencies or is overloaded with requests.
+//   Exception raised when there is an internal, configuration, or dependency
+//   error encountered.
 //
 //   * ErrCodeInvalidInputException "InvalidInputException"
 //   Exception raised when the provided input violates a policy constraint or
@@ -1284,8 +1272,8 @@ func (c *MigrationHub) ListMigrationTasksRequest(input *ListMigrationTasksInput)
 //
 //   * ErrCodePolicyErrorException "PolicyErrorException"
 //   Exception raised when there are problems accessing ADS (Application Discovery
-//   Service); most likely due to a misconfigured policy or the ADSCaller role
-//   is missing or not configured correctly.
+//   Service); most likely due to a misconfigured policy or the migrationhub-discovery
+//   role is missing or not configured correctly.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   Exception raised when the request references a resource (ADS configuration,
@@ -1370,16 +1358,15 @@ func (c *MigrationHub) ListProgressUpdateStreamsRequest(input *ListProgressUpdat
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   Exception raised when the account making the call is not whitelisted or there
-//   are other authentication errors.
+//   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
 //   Exception raised when there is an internal, configuration, or dependency
 //   error encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
-//   Exception raised when the service encounters throttled communication with
-//   upstream dependencies or is overloaded with requests.
+//   Exception raised when there is an internal, configuration, or dependency
+//   error encountered.
 //
 //   * ErrCodeInvalidInputException "InvalidInputException"
 //   Exception raised when the provided input violates a policy constraint or
@@ -1464,16 +1451,15 @@ func (c *MigrationHub) NotifyApplicationStateRequest(input *NotifyApplicationSta
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   Exception raised when the account making the call is not whitelisted or there
-//   are other authentication errors.
+//   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
 //   Exception raised when there is an internal, configuration, or dependency
 //   error encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
-//   Exception raised when the service encounters throttled communication with
-//   upstream dependencies or is overloaded with requests.
+//   Exception raised when there is an internal, configuration, or dependency
+//   error encountered.
 //
 //   * ErrCodeDryRunOperation "DryRunOperation"
 //   Exception raised to indicate a successfully authorized action when the DryRun
@@ -1489,8 +1475,8 @@ func (c *MigrationHub) NotifyApplicationStateRequest(input *NotifyApplicationSta
 //
 //   * ErrCodePolicyErrorException "PolicyErrorException"
 //   Exception raised when there are problems accessing ADS (Application Discovery
-//   Service); most likely due to a misconfigured policy or the ADSCaller role
-//   is missing or not configured correctly.
+//   Service); most likely due to a misconfigured policy or the migrationhub-discovery
+//   role is missing or not configured correctly.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   Exception raised when the request references a resource (ADS configuration,
@@ -1583,16 +1569,15 @@ func (c *MigrationHub) NotifyMigrationTaskStateRequest(input *NotifyMigrationTas
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   Exception raised when the account making the call is not whitelisted or there
-//   are other authentication errors.
+//   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
 //   Exception raised when there is an internal, configuration, or dependency
 //   error encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
-//   Exception raised when the service encounters throttled communication with
-//   upstream dependencies or is overloaded with requests.
+//   Exception raised when there is an internal, configuration, or dependency
+//   error encountered.
 //
 //   * ErrCodeDryRunOperation "DryRunOperation"
 //   Exception raised to indicate a successfully authorized action when the DryRun
@@ -1687,9 +1672,12 @@ func (c *MigrationHub) PutResourceAttributesRequest(input *PutResourceAttributes
 // to call it with both the IP and MAC addresses to prevent overiding the MAC
 // address.
 //
+// Note the instructions regarding the special use case of the ResourceAttributeList
+// parameter when specifying any "VM" related value.
+//
 // Because this is an asynchronous call, it will always return 200, whether
 // an association occurs or not. To confirm if an association was found based
-// on the provided details, call ListAssociatedResource.
+// on the provided details, call ListDiscoveredResources.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1700,16 +1688,15 @@ func (c *MigrationHub) PutResourceAttributesRequest(input *PutResourceAttributes
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   Exception raised when the account making the call is not whitelisted or there
-//   are other authentication errors.
+//   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
 //   Exception raised when there is an internal, configuration, or dependency
 //   error encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
-//   Exception raised when the service encounters throttled communication with
-//   upstream dependencies or is overloaded with requests.
+//   Exception raised when there is an internal, configuration, or dependency
+//   error encountered.
 //
 //   * ErrCodeDryRunOperation "DryRunOperation"
 //   Exception raised to indicate a successfully authorized action when the DryRun
@@ -2494,7 +2481,7 @@ func (s DisassociateDiscoveredResourceOutput) GoString() string {
 type DiscoveredResource struct {
 	_ struct{} `type:"structure"`
 
-	// The configurationId in ADS that uniquely identifies the on-premises resource.
+	// The configurationId in ADS that uniquely identifies the on-premise resource.
 	//
 	// ConfigurationId is a required field
 	ConfigurationId *string `min:"1" type:"string" required:"true"`
@@ -3412,6 +3399,18 @@ type PutResourceAttributesInput struct {
 	// used to map the task to a resource in the Application Discovery Service (ADS)'s
 	// repository.
 	//
+	// In the ResourceAttribute object array, the Type field is reserved for the
+	// following values: IPV4_ADDRESS | IPV6_ADDRESS | MAC_ADDRESS | FQDN | VM_MANAGER_ID
+	// | VM_MANAGED_OBJECT_REFERENCE | VM_NAME | VM_PATH | BIOS_ID | MOTHERBOARD_SERIAL_NUMBER,
+	// and the identifying value can be a string up to 256 characters.
+	//
+	// If any "VM" related value is used for a ResourceAttribute object, it is required
+	// that VM_MANAGER_ID, as a minimum, is always used. If it is not used, the
+	// server will not be associated in the Application Discovery Service (ADS)'s
+	// repository using any of the other "VM" related values, and you will experience
+	// data loss. See the Example section below for a use case of specifying "VM"
+	// related values.
+	//
 	// ResourceAttributeList is a required field
 	ResourceAttributeList []*ResourceAttribute `min:"1" type:"list" required:"true"`
 }
@@ -3503,6 +3502,20 @@ func (s PutResourceAttributesOutput) GoString() string {
 }
 
 // Attribute associated with a resource.
+//
+// Note the corresponding format required per type listed below:
+//
+// IPV4x.x.x.x
+//
+// where x is an integer in the range [0,255]
+//
+// IPV6y : y : y : y : y : y : y : y
+//
+// where y is a hexadecimal between 0 and FFFF. [0, FFFF]
+//
+// MAC_ADDRESS^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$
+//
+// FQDN^[^<>{}\\\\/?,=\\p{Cntrl}]{1,256}$
 type ResourceAttribute struct {
 	_ struct{} `type:"structure"`
 
@@ -3658,9 +3671,6 @@ const (
 
 	// ResourceAttributeTypeMotherboardSerialNumber is a ResourceAttributeType enum value
 	ResourceAttributeTypeMotherboardSerialNumber = "MOTHERBOARD_SERIAL_NUMBER"
-
-	// ResourceAttributeTypeLabel is a ResourceAttributeType enum value
-	ResourceAttributeTypeLabel = "LABEL"
 )
 
 const (

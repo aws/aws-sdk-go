@@ -1,3 +1,15 @@
+Release v1.13.11 (2018-03-08)
+===
+
+### Service Client Updates
+* `service/AWSMigrationHub`: Updates service API and documentation
+* `service/ecs`: Updates service API and documentation
+  * Amazon Elastic Container Service (ECS) now supports container health checks. Customers can now specify a docker container health check command and parameters in their task definition. ECS will monitor, report and take scheduling action based on the health status.
+* `service/pinpoint`: Updates service API and documentation
+  * With this release, you can export endpoints from your Amazon Pinpoint projects. You can export a) all of the endpoints assigned to a project or b) the subset of endpoints assigned to a segment.
+* `service/rds`: Updates service documentation
+  * Documentation updates for RDS
+
 Release v1.13.10 (2018-03-07)
 ===
 
