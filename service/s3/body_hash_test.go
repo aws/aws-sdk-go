@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
-	"math/rand"
 	"net/http"
 	"strings"
 	"testing"
@@ -181,14 +180,7 @@ func TestComputeBodyHases(t *testing.T) {
 }
 
 func BenchmarkComputeBodyHashes(b *testing.B) {
-	rnd := rand.New(rand.NewSource(1))
-	buf := make([]byte, 2*1024)
-	_, err := rnd.Read(buf)
-	if err != nil {
-		b.Fatalf("unable to get randome bytes")
-	}
-
-	body := bytes.NewReader(buf)
+	body := bytes.NewReader(make([]byte, 2*1024))
 	req := &request.Request{
 		HTTPRequest: &http.Request{
 			Header: http.Header{},
