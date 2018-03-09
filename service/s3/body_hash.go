@@ -49,7 +49,14 @@ func contentMD5(r *request.Request) {
 	r.HTTPRequest.Header.Set(contentMD5Header, v)
 }
 
+// computeBodyHashes will add Content MD5 and Content Sha256 hashes to the
+// request. If the body is not seekable or S3DisableContentMD5Validation set
+// this handler will be ignored.
 func computeBodyHashes(r *request.Request) {
+	if aws.BoolValue(r.Config.S3DisableContentMD5Validation) {
+		return
+	}
+
 	if r.Error != nil || !aws.IsReaderSeekable(r.Body) {
 		return
 	}
@@ -126,7 +133,12 @@ func copySeekableBody(dst io.Writer, src io.ReadSeeker) (int64, error) {
 	return n, nil
 }
 
+// Adds the x-amz-te: append_md5 header to the request. This requests the service
+// responds with a trailing MD5 checksum.
 func askForTxEncodingAppendMD5(r *request.Request) {
+	if aws.BoolValue(r.Config.S3DisableContentMD5Validation) {
+		return
+	}
 	r.HTTPRequest.Header.Set(amzTeHeader, appendMD5TxEncoding)
 }
 
