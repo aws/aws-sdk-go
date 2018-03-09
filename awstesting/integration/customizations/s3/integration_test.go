@@ -64,7 +64,7 @@ func TestPresignedGetPut(t *testing.T) {
 	var putresp *http.Response
 	putresp, err = http.DefaultClient.Do(puthttpreq)
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Errorf("expect put with presign url no error, got %v", err)
 	}
 	if e, a := 200, putresp.StatusCode; e != a {
 		t.Errorf("expect %v, got %v", e, a)

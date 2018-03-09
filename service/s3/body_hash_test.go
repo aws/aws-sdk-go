@@ -10,6 +10,7 @@ import (
 	"net/http"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -34,6 +35,7 @@ func TestComputeBodyHases(t *testing.T) {
 		ExpectSHA256      string
 		Error             string
 		DisableContentMD5 bool
+		Presigned         bool
 	}{
 		{
 			Req: &request.Request{
@@ -134,10 +136,26 @@ func TestComputeBodyHases(t *testing.T) {
 			ExpectSHA256:      "",
 			DisableContentMD5: true,
 		},
+		{
+			// Disabled ContentMD5 validation
+			Req: &request.Request{
+				HTTPRequest: &http.Request{
+					Header: http.Header{},
+				},
+				Body: bytes.NewReader(bodyContent),
+			},
+			ExpectMD5:    "",
+			ExpectSHA256: "",
+			Presigned:    true,
+		},
 	}
 
 	for i, c := range cases {
 		c.Req.Config.S3DisableContentMD5Validation = aws.Bool(c.DisableContentMD5)
+
+		if c.Presigned {
+			c.Req.ExpireTime = 10 * time.Minute
+		}
 		computeBodyHashes(c.Req)
 
 		if e, a := c.ExpectMD5, c.Req.HTTPRequest.Header.Get(contentMD5Header); e != a {
@@ -193,9 +211,11 @@ func BenchmarkComputeBodyHashes(b *testing.B) {
 func TestAskForTxEncodingAppendMD5(t *testing.T) {
 	cases := []struct {
 		DisableContentMD5 bool
+		Presigned         bool
 	}{
 		{DisableContentMD5: true},
 		{DisableContentMD5: false},
+		{Presigned: true},
 	}
 
 	for i, c := range cases {
@@ -207,11 +227,17 @@ func TestAskForTxEncodingAppendMD5(t *testing.T) {
 				S3DisableContentMD5Validation: aws.Bool(c.DisableContentMD5),
 			},
 		}
+		if c.Presigned {
+			req.ExpireTime = 10 * time.Minute
+		}
 
 		askForTxEncodingAppendMD5(req)
 
 		v := req.HTTPRequest.Header.Get(amzTeHeader)
-		if e, a := c.DisableContentMD5, len(v) == 0; e != a {
+
+		expectHeader := !(c.DisableContentMD5 || c.Presigned)
+
+		if e, a := expectHeader, len(v) != 0; e != a {
 			t.Errorf("%d, expect %t disable content MD5, got %t, %s", i, e, a, v)
 		}
 	}

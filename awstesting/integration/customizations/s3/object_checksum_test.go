@@ -70,6 +70,10 @@ func TestContentMD5Validate(t *testing.T) {
 		}
 		defer getOut.Body.Close()
 
+		if e, a := "append-md5", getReq.HTTPResponse.Header.Get("X-Amz-Transfer-Encoding"); e != a {
+			t.Fatalf("%d, expect response tx encoding header %v, got %v", i, e, a)
+		}
+
 		var readBody bytes.Buffer
 		_, err := io.Copy(&readBody, getOut.Body)
 		if err != nil {

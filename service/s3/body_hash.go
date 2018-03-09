@@ -56,7 +56,9 @@ func computeBodyHashes(r *request.Request) {
 	if aws.BoolValue(r.Config.S3DisableContentMD5Validation) {
 		return
 	}
-
+	if r.ExpireTime != 0 {
+		return
+	}
 	if r.Error != nil || !aws.IsReaderSeekable(r.Body) {
 		return
 	}
@@ -135,8 +137,14 @@ func copySeekableBody(dst io.Writer, src io.ReadSeeker) (int64, error) {
 
 // Adds the x-amz-te: append_md5 header to the request. This requests the service
 // responds with a trailing MD5 checksum.
+//
+// Will not ask for append MD5 if disabled, the request is presigned or,
+// or the API operation does not support content MD5 validation.
 func askForTxEncodingAppendMD5(r *request.Request) {
 	if aws.BoolValue(r.Config.S3DisableContentMD5Validation) {
+		return
+	}
+	if r.ExpireTime != 0 {
 		return
 	}
 	r.HTTPRequest.Header.Set(amzTeHeader, appendMD5TxEncoding)
@@ -157,6 +165,9 @@ func useMD5ValidationReader(r *request.Request) {
 	case *GetObjectOutput:
 		bodyReader = &tv.Body
 		contentLen = aws.Int64Value(tv.ContentLength)
+		// Update ContentLength hiden the trailing MD5 checksum.
+		tv.ContentLength = aws.Int64(contentLen - md5.Size)
+		tv.ContentRange = aws.String(r.HTTPResponse.Header.Get("X-Amz-Content-Range"))
 	default:
 		r.Error = awserr.New("ChecksumValidationError",
 			fmt.Sprintf("%s: %s header received on unsupported API, %s",
