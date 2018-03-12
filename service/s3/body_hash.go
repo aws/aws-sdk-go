@@ -66,6 +66,8 @@ func computeBodyHashes(r *request.Request) {
 	var md5Hash, sha256Hash hash.Hash
 	hashers := make([]io.Writer, 0, 2)
 
+	// Determine upfront which hashes can be set without overriding user
+	// provide header data.
 	if v := r.HTTPRequest.Header.Get(contentMD5Header); len(v) == 0 {
 		md5Hash = md5.New()
 		hashers = append(hashers, md5Hash)
@@ -76,6 +78,8 @@ func computeBodyHashes(r *request.Request) {
 		hashers = append(hashers, sha256Hash)
 	}
 
+	// Create the destination writer based on the hashes that are not already
+	// provided by the user.
 	var dst io.Writer
 	switch len(hashers) {
 	case 0:
@@ -91,6 +95,8 @@ func computeBodyHashes(r *request.Request) {
 		return
 	}
 
+	// For the hashes created, set the associated headers that the user did not
+	// already provide.
 	if md5Hash != nil {
 		sum := make([]byte, md5.Size)
 		encoded := make([]byte, md5Base64EncLen)
