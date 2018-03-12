@@ -56,7 +56,7 @@ func computeBodyHashes(r *request.Request) {
 	if aws.BoolValue(r.Config.S3DisableContentMD5Validation) {
 		return
 	}
-	if r.ExpireTime != 0 {
+	if r.IsPresigned() {
 		return
 	}
 	if r.Error != nil || !aws.IsReaderSeekable(r.Body) {
@@ -144,7 +144,7 @@ func askForTxEncodingAppendMD5(r *request.Request) {
 	if aws.BoolValue(r.Config.S3DisableContentMD5Validation) {
 		return
 	}
-	if r.ExpireTime != 0 {
+	if r.IsPresigned() {
 		return
 	}
 	r.HTTPRequest.Header.Set(amzTeHeader, appendMD5TxEncoding)

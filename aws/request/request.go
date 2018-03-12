@@ -297,6 +297,11 @@ func (r *Request) PresignRequest(expire time.Duration) (string, http.Header, err
 	return getPresignedURL(r, expire)
 }
 
+// IsPresigned returns true if the request represents a presigned API url.
+func (r *Request) IsPresigned() bool {
+	return r.ExpireTime != 0
+}
+
 func getPresignedURL(r *Request, expire time.Duration) (string, http.Header, error) {
 	if expire <= 0 {
 		return "", nil, awserr.New(
