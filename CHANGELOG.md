@@ -1,3 +1,16 @@
+Release v1.13.12 (2018-03-12)
+===
+
+### Service Client Updates
+* `service/cloudhsmv2`: Updates service API
+  * CreateCluster can now take both 8 and 17 character Subnet IDs. DeleteHsm can now take both 8 and 17 character ENI IDs.
+* `service/discovery`: Updates service API and documentation
+  * Documentation updates for discovery
+* `service/iot`: Updates service API and documentation
+  * We added new fields to the response of the following APIs. (1) describe-certificate: added new generationId, customerVersion fields (2) describe-ca-certificate: added new generationId, customerVersion and lastModifiedDate fields (3) get-policy: added generationId, creationDate and lastModifiedDate fields
+* `service/redshift`: Updates service API and documentation
+  * DescribeClusterSnapshotsMessage with ClusterExists flag returns snapshots of existing clusters. Else both existing and deleted cluster snapshots are returned
+
 Release v1.13.11 (2018-03-08)
 ===
 
