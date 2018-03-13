@@ -1,3 +1,10 @@
+Release v1.13.13 (2018-03-13)
+===
+
+### Service Client Updates
+* `service/servicediscovery`: Updates service API and documentation
+  * This release adds support for custom health checks, which let you check the health of resources that aren't accessible over the internet. For example, you can use a custom health check when the instance is in an Amazon VPC.
+
 Release v1.13.12 (2018-03-12)
 ===
 
