@@ -1,3 +1,10 @@
+Release v1.13.14 (2018-03-14)
+===
+
+### Service Client Updates
+* `service/lightsail`: Updates service API and documentation
+  * Updates to existing Lightsail documentation
+
 Release v1.13.13 (2018-03-13)
 ===
 
