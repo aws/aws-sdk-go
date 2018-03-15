@@ -1240,6 +1240,94 @@ func (c *Pinpoint) DeleteEmailChannelWithContext(ctx aws.Context, input *DeleteE
 	return out, req.Send()
 }
 
+const opDeleteEndpoint = "DeleteEndpoint"
+
+// DeleteEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEndpoint operation. The "output" return
+// value will be populated with the request's response once the request complets
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteEndpoint for more information on using the DeleteEndpoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteEndpointRequest method.
+//    req, resp := client.DeleteEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteEndpoint
+func (c *Pinpoint) DeleteEndpointRequest(input *DeleteEndpointInput) (req *request.Request, output *DeleteEndpointOutput) {
+	op := &request.Operation{
+		Name:       opDeleteEndpoint,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v1/apps/{application-id}/endpoints/{endpoint-id}",
+	}
+
+	if input == nil {
+		input = &DeleteEndpointInput{}
+	}
+
+	output = &DeleteEndpointOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteEndpoint API operation for Amazon Pinpoint.
+//
+// Deletes an endpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint's
+// API operation DeleteEndpoint for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//
+//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//
+//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteEndpoint
+func (c *Pinpoint) DeleteEndpoint(input *DeleteEndpointInput) (*DeleteEndpointOutput, error) {
+	req, out := c.DeleteEndpointRequest(input)
+	return out, req.Send()
+}
+
+// DeleteEndpointWithContext is the same as DeleteEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) DeleteEndpointWithContext(ctx aws.Context, input *DeleteEndpointInput, opts ...request.Option) (*DeleteEndpointOutput, error) {
+	req, out := c.DeleteEndpointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteEventStream = "DeleteEventStream"
 
 // DeleteEventStreamRequest generates a "aws/request.Request" representing the
@@ -9226,6 +9314,79 @@ func (s *DeleteEmailChannelOutput) SetEmailChannelResponse(v *EmailChannelRespon
 	return s
 }
 
+type DeleteEndpointInput struct {
+	_ struct{} `type:"structure"`
+
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
+
+	// EndpointId is a required field
+	EndpointId *string `location:"uri" locationName:"endpoint-id" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteEndpointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteEndpointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEndpointInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+	if s.EndpointId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *DeleteEndpointInput) SetApplicationId(v string) *DeleteEndpointInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetEndpointId sets the EndpointId field's value.
+func (s *DeleteEndpointInput) SetEndpointId(v string) *DeleteEndpointInput {
+	s.EndpointId = &v
+	return s
+}
+
+type DeleteEndpointOutput struct {
+	_ struct{} `type:"structure" payload:"EndpointResponse"`
+
+	// Endpoint response
+	//
+	// EndpointResponse is a required field
+	EndpointResponse *EndpointResponse `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteEndpointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteEndpointOutput) GoString() string {
+	return s.String()
+}
+
+// SetEndpointResponse sets the EndpointResponse field's value.
+func (s *DeleteEndpointOutput) SetEndpointResponse(v *EndpointResponse) *DeleteEndpointOutput {
+	s.EndpointResponse = v
+	return s
+}
+
 type DeleteEventStreamInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14326,7 +14487,14 @@ type SMSMessage struct {
 	// Is this a transaction priority message or lower priority.
 	MessageType *string `type:"string" enum:"MessageType"`
 
-	// Sender ID of sent message.
+	// The phone number that the SMS message originates from. Specify one of the
+	// dedicated long codes or short codes that you requested from AWS Support and
+	// that is assigned to your account. If this attribute is not specified, Amazon
+	// Pinpoint randomly assigns a long code.
+	OriginationNumber *string `type:"string"`
+
+	// The sender ID that is shown as the message sender on the recipient's device.
+	// Support for sender IDs varies by country or region.
 	SenderId *string `type:"string"`
 
 	Substitutions map[string][]*string `type:"map"`
@@ -14351,6 +14519,12 @@ func (s *SMSMessage) SetBody(v string) *SMSMessage {
 // SetMessageType sets the MessageType field's value.
 func (s *SMSMessage) SetMessageType(v string) *SMSMessage {
 	s.MessageType = &v
+	return s
+}
+
+// SetOriginationNumber sets the OriginationNumber field's value.
+func (s *SMSMessage) SetOriginationNumber(v string) *SMSMessage {
+	s.OriginationNumber = &v
 	return s
 }
 
