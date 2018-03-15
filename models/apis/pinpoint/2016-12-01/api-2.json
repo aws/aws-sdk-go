@@ -388,6 +388,33 @@
         "shape" : "TooManyRequestsException"
       } ]
     },
+    "DeleteEndpoint" : {
+      "name" : "DeleteEndpoint",
+      "http" : {
+        "method" : "DELETE",
+        "requestUri" : "/v1/apps/{application-id}/endpoints/{endpoint-id}",
+        "responseCode" : 202
+      },
+      "input" : {
+        "shape" : "DeleteEndpointRequest"
+      },
+      "output" : {
+        "shape" : "DeleteEndpointResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      }, {
+        "shape" : "ForbiddenException"
+      }, {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "MethodNotAllowedException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
     "DeleteEventStream" : {
       "name" : "DeleteEventStream",
       "http" : {
@@ -2938,6 +2965,32 @@
       "required" : [ "EmailChannelResponse" ],
       "payload" : "EmailChannelResponse"
     },
+    "DeleteEndpointRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ApplicationId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "application-id"
+        },
+        "EndpointId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "endpoint-id"
+        }
+      },
+      "required" : [ "ApplicationId", "EndpointId" ]
+    },
+    "DeleteEndpointResponse" : {
+      "type" : "structure",
+      "members" : {
+        "EndpointResponse" : {
+          "shape" : "EndpointResponse"
+        }
+      },
+      "required" : [ "EndpointResponse" ],
+      "payload" : "EndpointResponse"
+    },
     "DeleteEventStreamRequest" : {
       "type" : "structure",
       "members" : {
@@ -4937,6 +4990,9 @@
         },
         "MessageType" : {
           "shape" : "MessageType"
+        },
+        "OriginationNumber" : {
+          "shape" : "__string"
         },
         "SenderId" : {
           "shape" : "__string"

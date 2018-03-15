@@ -1,3 +1,14 @@
+Release v1.13.15 (2018-03-15)
+===
+
+### Service Client Updates
+* `service/organizations`: Updates service API and documentation
+  * This release adds additional reason codes to improve clarity to exceptions that can occur.
+* `service/pinpoint`: Updates service API and documentation
+  * With this release, you can delete endpoints from your Amazon Pinpoint projects. Customers can now specify one of their leased dedicated long or short codes to send text messages.
+* `service/sagemaker`: Updates service API, documentation, and paginators
+  * This release provides support for ml.p3.xlarge instance types for notebook instances.  Lifecycle configuration is now available to customize your notebook instances on start; the configuration can be reused between multiple notebooks.  If a notebook instance is attached to a VPC you can now opt out of internet access that by default is provided by SageMaker.
+
 Release v1.13.14 (2018-03-14)
 ===
 
