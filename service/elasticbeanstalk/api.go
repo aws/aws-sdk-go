@@ -1344,6 +1344,84 @@ func (c *ElasticBeanstalk) DeletePlatformVersionWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opDescribeAccountAttributes = "DescribeAccountAttributes"
+
+// DescribeAccountAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAccountAttributes operation. The "output" return
+// value will be populated with the request's response once the request complets
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAccountAttributes for more information on using the DescribeAccountAttributes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeAccountAttributesRequest method.
+//    req, resp := client.DescribeAccountAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeAccountAttributes
+func (c *ElasticBeanstalk) DescribeAccountAttributesRequest(input *DescribeAccountAttributesInput) (req *request.Request, output *DescribeAccountAttributesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAccountAttributes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeAccountAttributesInput{}
+	}
+
+	output = &DescribeAccountAttributesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeAccountAttributes API operation for AWS Elastic Beanstalk.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation DescribeAccountAttributes for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
+//   The specified account does not have sufficient privileges for one of more
+//   AWS services.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeAccountAttributes
+func (c *ElasticBeanstalk) DescribeAccountAttributes(input *DescribeAccountAttributesInput) (*DescribeAccountAttributesOutput, error) {
+	req, out := c.DescribeAccountAttributesRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAccountAttributesWithContext is the same as DescribeAccountAttributes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAccountAttributes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ElasticBeanstalk) DescribeAccountAttributesWithContext(ctx aws.Context, input *DescribeAccountAttributesInput, opts ...request.Option) (*DescribeAccountAttributesOutput, error) {
+	req, out := c.DescribeAccountAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeApplicationVersions = "DescribeApplicationVersions"
 
 // DescribeApplicationVersionsRequest generates a "aws/request.Request" representing the
@@ -6192,6 +6270,42 @@ func (s *Deployment) SetVersionLabel(v string) *Deployment {
 	return s
 }
 
+type DescribeAccountAttributesInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAccountAttributesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAccountAttributesInput) GoString() string {
+	return s.String()
+}
+
+type DescribeAccountAttributesOutput struct {
+	_ struct{} `type:"structure"`
+
+	ResourceQuotas *ResourceQuotas `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAccountAttributesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAccountAttributesOutput) GoString() string {
+	return s.String()
+}
+
+// SetResourceQuotas sets the ResourceQuotas field's value.
+func (s *DescribeAccountAttributesOutput) SetResourceQuotas(v *ResourceQuotas) *DescribeAccountAttributesOutput {
+	s.ResourceQuotas = v
+	return s
+}
+
 // Request to describe application versions.
 type DescribeApplicationVersionsInput struct {
 	_ struct{} `type:"structure"`
@@ -9525,6 +9639,82 @@ func (s RequestEnvironmentInfoOutput) String() string {
 // GoString returns the string representation
 func (s RequestEnvironmentInfoOutput) GoString() string {
 	return s.String()
+}
+
+type ResourceQuota struct {
+	_ struct{} `type:"structure"`
+
+	Maximum *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s ResourceQuota) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceQuota) GoString() string {
+	return s.String()
+}
+
+// SetMaximum sets the Maximum field's value.
+func (s *ResourceQuota) SetMaximum(v int64) *ResourceQuota {
+	s.Maximum = &v
+	return s
+}
+
+type ResourceQuotas struct {
+	_ struct{} `type:"structure"`
+
+	ApplicationQuota *ResourceQuota `type:"structure"`
+
+	ApplicationVersionQuota *ResourceQuota `type:"structure"`
+
+	ConfigurationTemplateQuota *ResourceQuota `type:"structure"`
+
+	CustomPlatformQuota *ResourceQuota `type:"structure"`
+
+	EnvironmentQuota *ResourceQuota `type:"structure"`
+}
+
+// String returns the string representation
+func (s ResourceQuotas) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceQuotas) GoString() string {
+	return s.String()
+}
+
+// SetApplicationQuota sets the ApplicationQuota field's value.
+func (s *ResourceQuotas) SetApplicationQuota(v *ResourceQuota) *ResourceQuotas {
+	s.ApplicationQuota = v
+	return s
+}
+
+// SetApplicationVersionQuota sets the ApplicationVersionQuota field's value.
+func (s *ResourceQuotas) SetApplicationVersionQuota(v *ResourceQuota) *ResourceQuotas {
+	s.ApplicationVersionQuota = v
+	return s
+}
+
+// SetConfigurationTemplateQuota sets the ConfigurationTemplateQuota field's value.
+func (s *ResourceQuotas) SetConfigurationTemplateQuota(v *ResourceQuota) *ResourceQuotas {
+	s.ConfigurationTemplateQuota = v
+	return s
+}
+
+// SetCustomPlatformQuota sets the CustomPlatformQuota field's value.
+func (s *ResourceQuotas) SetCustomPlatformQuota(v *ResourceQuota) *ResourceQuotas {
+	s.CustomPlatformQuota = v
+	return s
+}
+
+// SetEnvironmentQuota sets the EnvironmentQuota field's value.
+func (s *ResourceQuotas) SetEnvironmentQuota(v *ResourceQuota) *ResourceQuotas {
+	s.EnvironmentQuota = v
+	return s
 }
 
 type RestartAppServerInput struct {
