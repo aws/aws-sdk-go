@@ -1,3 +1,21 @@
+Release v1.13.17 (2018-03-20)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/config`: Updates service API and documentation
+* `service/ecs`: Updates service API and documentation
+  * Amazon ECS users can now mount a temporary volume in memory in containers and specify the shared memory that a container can use through the use of docker's 'tmpfs' and 'shm-size' features respectively. These fields can be specified under linuxParameters in ContainerDefinition in the Task Definition Template.
+* `service/elasticbeanstalk`: Updates service documentation
+  * Documentation updates for the new Elastic Beanstalk API DescribeAccountAttributes.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/events`: Updates service API and documentation
+  * Added SQS FIFO queue target support
+* `service/glue`: Updates service API and documentation
+  * API Updates for DevEndpoint: PublicKey is now optional for CreateDevEndpoint. The new DevEndpoint field PrivateAddress will be populated for DevEndpoints associated with a VPC.
+* `service/medialive`: Updates service API and documentation
+  * AWS Elemental MediaLive has added support for updating Inputs and Input Security Groups. You can update Input Security Groups at any time and it will update all channels using that Input Security Group. Inputs can be updated as long as they are not attached to a currently running channel.
+
 Release v1.13.16 (2018-03-16)
 ===
 

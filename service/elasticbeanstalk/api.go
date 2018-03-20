@@ -71,7 +71,7 @@ func (c *ElasticBeanstalk) AbortEnvironmentUpdateRequest(input *AbortEnvironment
 //
 // Returned Error Codes:
 //   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one of more
+//   The specified account does not have sufficient privileges for one or more
 //   AWS services.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/AbortEnvironmentUpdate
@@ -318,7 +318,7 @@ func (c *ElasticBeanstalk) ComposeEnvironmentsRequest(input *ComposeEnvironments
 //   The specified account has reached its limit of environments.
 //
 //   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one of more
+//   The specified account does not have sufficient privileges for one or more
 //   AWS services.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ComposeEnvironments
@@ -500,7 +500,7 @@ func (c *ElasticBeanstalk) CreateApplicationVersionRequest(input *CreateApplicat
 //   The specified account has reached its limit of application versions.
 //
 //   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one of more
+//   The specified account does not have sufficient privileges for one or more
 //   AWS services.
 //
 //   * ErrCodeS3LocationNotInServiceRegionException "S3LocationNotInServiceRegionException"
@@ -603,7 +603,7 @@ func (c *ElasticBeanstalk) CreateConfigurationTemplateRequest(input *CreateConfi
 //
 // Returned Error Codes:
 //   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one of more
+//   The specified account does not have sufficient privileges for one or more
 //   AWS services.
 //
 //   * ErrCodeTooManyBucketsException "TooManyBucketsException"
@@ -693,7 +693,7 @@ func (c *ElasticBeanstalk) CreateEnvironmentRequest(input *CreateEnvironmentInpu
 //   The specified account has reached its limit of environments.
 //
 //   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one of more
+//   The specified account does not have sufficient privileges for one or more
 //   AWS services.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreateEnvironment
@@ -773,7 +773,7 @@ func (c *ElasticBeanstalk) CreatePlatformVersionRequest(input *CreatePlatformVer
 //
 // Returned Error Codes:
 //   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one of more
+//   The specified account does not have sufficient privileges for one or more
 //   AWS services.
 //
 //   * ErrCodeServiceException "ServiceException"
@@ -870,7 +870,7 @@ func (c *ElasticBeanstalk) CreateStorageLocationRequest(input *CreateStorageLoca
 //   The specified account does not have a subscription to Amazon S3.
 //
 //   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one of more
+//   The specified account does not have sufficient privileges for one or more
 //   AWS services.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreateStorageLocation
@@ -1045,7 +1045,7 @@ func (c *ElasticBeanstalk) DeleteApplicationVersionRequest(input *DeleteApplicat
 //   version. The application version was deleted successfully.
 //
 //   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one of more
+//   The specified account does not have sufficient privileges for one or more
 //   AWS services.
 //
 //   * ErrCodeOperationInProgressException "OperationInProgressFailure"
@@ -1312,7 +1312,7 @@ func (c *ElasticBeanstalk) DeletePlatformVersionRequest(input *DeletePlatformVer
 //   effects an element in this activity is already in progress.
 //
 //   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one of more
+//   The specified account does not have sufficient privileges for one or more
 //   AWS services.
 //
 //   * ErrCodeServiceException "ServiceException"
@@ -1388,6 +1388,11 @@ func (c *ElasticBeanstalk) DescribeAccountAttributesRequest(input *DescribeAccou
 
 // DescribeAccountAttributes API operation for AWS Elastic Beanstalk.
 //
+// Returns attributes related to AWS Elastic Beanstalk that are associated with
+// the calling AWS account.
+//
+// The result currently has one set of attributes—resource quotas.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1397,7 +1402,7 @@ func (c *ElasticBeanstalk) DescribeAccountAttributesRequest(input *DescribeAccou
 //
 // Returned Error Codes:
 //   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one of more
+//   The specified account does not have sufficient privileges for one or more
 //   AWS services.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeAccountAttributes
@@ -2042,7 +2047,7 @@ func (c *ElasticBeanstalk) DescribeEnvironmentResourcesRequest(input *DescribeEn
 //
 // Returned Error Codes:
 //   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one of more
+//   The specified account does not have sufficient privileges for one or more
 //   AWS services.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEnvironmentResources
@@ -2412,7 +2417,7 @@ func (c *ElasticBeanstalk) DescribePlatformVersionRequest(input *DescribePlatfor
 //
 // Returned Error Codes:
 //   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one of more
+//   The specified account does not have sufficient privileges for one or more
 //   AWS services.
 //
 //   * ErrCodeServiceException "ServiceException"
@@ -2570,7 +2575,7 @@ func (c *ElasticBeanstalk) ListPlatformVersionsRequest(input *ListPlatformVersio
 //
 // Returned Error Codes:
 //   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one of more
+//   The specified account does not have sufficient privileges for one or more
 //   AWS services.
 //
 //   * ErrCodeServiceException "ServiceException"
@@ -2658,7 +2663,7 @@ func (c *ElasticBeanstalk) ListTagsForResourceRequest(input *ListTagsForResource
 //
 // Returned Error Codes:
 //   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one of more
+//   The specified account does not have sufficient privileges for one or more
 //   AWS services.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
@@ -2748,7 +2753,7 @@ func (c *ElasticBeanstalk) RebuildEnvironmentRequest(input *RebuildEnvironmentIn
 //
 // Returned Error Codes:
 //   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one of more
+//   The specified account does not have sufficient privileges for one or more
 //   AWS services.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/RebuildEnvironment
@@ -3149,7 +3154,7 @@ func (c *ElasticBeanstalk) TerminateEnvironmentRequest(input *TerminateEnvironme
 //
 // Returned Error Codes:
 //   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one of more
+//   The specified account does not have sufficient privileges for one or more
 //   AWS services.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/TerminateEnvironment
@@ -3306,7 +3311,7 @@ func (c *ElasticBeanstalk) UpdateApplicationResourceLifecycleRequest(input *Upda
 //
 // Returned Error Codes:
 //   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one of more
+//   The specified account does not have sufficient privileges for one or more
 //   AWS services.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/UpdateApplicationResourceLifecycle
@@ -3471,7 +3476,7 @@ func (c *ElasticBeanstalk) UpdateConfigurationTemplateRequest(input *UpdateConfi
 //
 // Returned Error Codes:
 //   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one of more
+//   The specified account does not have sufficient privileges for one or more
 //   AWS services.
 //
 //   * ErrCodeTooManyBucketsException "TooManyBucketsException"
@@ -3564,7 +3569,7 @@ func (c *ElasticBeanstalk) UpdateEnvironmentRequest(input *UpdateEnvironmentInpu
 //
 // Returned Error Codes:
 //   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one of more
+//   The specified account does not have sufficient privileges for one or more
 //   AWS services.
 //
 //   * ErrCodeTooManyBucketsException "TooManyBucketsException"
@@ -3667,7 +3672,7 @@ func (c *ElasticBeanstalk) UpdateTagsForResourceRequest(input *UpdateTagsForReso
 //
 // Returned Error Codes:
 //   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one of more
+//   The specified account does not have sufficient privileges for one or more
 //   AWS services.
 //
 //   * ErrCodeOperationInProgressException "OperationInProgressFailure"
@@ -3769,7 +3774,7 @@ func (c *ElasticBeanstalk) ValidateConfigurationSettingsRequest(input *ValidateC
 //
 // Returned Error Codes:
 //   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one of more
+//   The specified account does not have sufficient privileges for one or more
 //   AWS services.
 //
 //   * ErrCodeTooManyBucketsException "TooManyBucketsException"
@@ -6287,6 +6292,7 @@ func (s DescribeAccountAttributesInput) GoString() string {
 type DescribeAccountAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The Elastic Beanstalk resource quotas associated with the calling AWS account.
 	ResourceQuotas *ResourceQuotas `type:"structure"`
 }
 
@@ -9641,9 +9647,13 @@ func (s RequestEnvironmentInfoOutput) GoString() string {
 	return s.String()
 }
 
+// The AWS Elastic Beanstalk quota information for a single resource type in
+// an AWS account. It reflects the resource's limits for this account.
 type ResourceQuota struct {
 	_ struct{} `type:"structure"`
 
+	// The maximum number of instances of this Elastic Beanstalk resource type that
+	// an AWS account can use.
 	Maximum *int64 `type:"integer"`
 }
 
@@ -9663,17 +9673,24 @@ func (s *ResourceQuota) SetMaximum(v int64) *ResourceQuota {
 	return s
 }
 
+// A set of per-resource AWS Elastic Beanstalk quotas associated with an AWS
+// account. They reflect Elastic Beanstalk resource limits for this account.
 type ResourceQuotas struct {
 	_ struct{} `type:"structure"`
 
+	// The quota for applications in the AWS account.
 	ApplicationQuota *ResourceQuota `type:"structure"`
 
+	// The quota for application versions in the AWS account.
 	ApplicationVersionQuota *ResourceQuota `type:"structure"`
 
+	// The quota for configuration templates in the AWS account.
 	ConfigurationTemplateQuota *ResourceQuota `type:"structure"`
 
+	// The quota for custom platforms in the AWS account.
 	CustomPlatformQuota *ResourceQuota `type:"structure"`
 
+	// The quota for environments in the AWS account.
 	EnvironmentQuota *ResourceQuota `type:"structure"`
 }
 

@@ -12,6 +12,19 @@
     "uid":"config-2014-11-12"
   },
   "operations":{
+    "BatchGetResourceConfig":{
+      "name":"BatchGetResourceConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetResourceConfigRequest"},
+      "output":{"shape":"BatchGetResourceConfigResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"NoAvailableConfigurationRecorderException"}
+      ]
+    },
     "DeleteConfigRule":{
       "name":"DeleteConfigRule",
       "http":{
@@ -373,10 +386,47 @@
     "AllSupported":{"type":"boolean"},
     "AvailabilityZone":{"type":"string"},
     "AwsRegion":{"type":"string"},
+    "BaseConfigurationItem":{
+      "type":"structure",
+      "members":{
+        "version":{"shape":"Version"},
+        "accountId":{"shape":"AccountId"},
+        "configurationItemCaptureTime":{"shape":"ConfigurationItemCaptureTime"},
+        "configurationItemStatus":{"shape":"ConfigurationItemStatus"},
+        "configurationStateId":{"shape":"ConfigurationStateId"},
+        "arn":{"shape":"ARN"},
+        "resourceType":{"shape":"ResourceType"},
+        "resourceId":{"shape":"ResourceId"},
+        "resourceName":{"shape":"ResourceName"},
+        "awsRegion":{"shape":"AwsRegion"},
+        "availabilityZone":{"shape":"AvailabilityZone"},
+        "resourceCreationTime":{"shape":"ResourceCreationTime"},
+        "configuration":{"shape":"Configuration"},
+        "supplementaryConfiguration":{"shape":"SupplementaryConfiguration"}
+      }
+    },
+    "BaseConfigurationItems":{
+      "type":"list",
+      "member":{"shape":"BaseConfigurationItem"}
+    },
     "BaseResourceId":{
       "type":"string",
       "max":768,
       "min":1
+    },
+    "BatchGetResourceConfigRequest":{
+      "type":"structure",
+      "required":["resourceKeys"],
+      "members":{
+        "resourceKeys":{"shape":"ResourceKeys"}
+      }
+    },
+    "BatchGetResourceConfigResponse":{
+      "type":"structure",
+      "members":{
+        "baseConfigurationItems":{"shape":"BaseConfigurationItems"},
+        "unprocessedResourceKeys":{"shape":"ResourceKeys"}
+      }
     },
     "Boolean":{"type":"boolean"},
     "ChannelName":{
@@ -1298,6 +1348,23 @@
       "members":{
       },
       "exception":true
+    },
+    "ResourceKey":{
+      "type":"structure",
+      "required":[
+        "resourceType",
+        "resourceId"
+      ],
+      "members":{
+        "resourceType":{"shape":"ResourceType"},
+        "resourceId":{"shape":"ResourceId"}
+      }
+    },
+    "ResourceKeys":{
+      "type":"list",
+      "member":{"shape":"ResourceKey"},
+      "max":100,
+      "min":1
     },
     "ResourceName":{"type":"string"},
     "ResourceNotDiscoveredException":{
