@@ -16,7 +16,9 @@
     "ListInputs": "Produces list of inputs that have been created",
     "StartChannel": "Starts an existing channel",
     "StopChannel": "Stops a running channel",
-    "UpdateChannel": "Updates a channel."
+    "UpdateChannel": "Updates a channel.",
+    "UpdateInput": "Updates an input.",
+    "UpdateInputSecurityGroup": "Update an Input Security Group's Whilelists."
   },
   "shapes": {
     "AacCodingMode": {
@@ -974,6 +976,7 @@
       "base": null,
       "refs": {
         "CreateInputResultModel$Input": null,
+        "UpdateInputResultModel$Input": null,
         "__listOfInput$member": null
       }
     },
@@ -1084,7 +1087,14 @@
       "base": "An Input Security Group",
       "refs": {
         "CreateInputSecurityGroupResultModel$SecurityGroup": null,
+        "UpdateInputSecurityGroupResultModel$SecurityGroup": null,
         "__listOfInputSecurityGroup$member": null
+      }
+    },
+    "InputSecurityGroupState": {
+      "base": null,
+      "refs": {
+        "InputSecurityGroup$State": "The current state of the Input Security Group."
       }
     },
     "InputSecurityGroupWhitelistRequest": {
@@ -1650,6 +1660,21 @@
       "refs": {
       }
     },
+    "UpdateInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateInputResultModel": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateInputSecurityGroupResultModel": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ValidationError": {
       "base": null,
       "refs": {
@@ -2130,7 +2155,8 @@
       "refs": {
         "Channel$InputAttachments": "List of input attachments for channel.",
         "ChannelSummary$InputAttachments": "List of input attachments for channel.",
-        "CreateChannel$InputAttachments": "List of input attachments for channel."
+        "CreateChannel$InputAttachments": "List of input attachments for channel.",
+        "UpdateChannel$InputAttachments": null
       }
     },
     "__listOfInputChannelLevel": {
@@ -2148,7 +2174,8 @@
     "__listOfInputDestinationRequest": {
       "base": null,
       "refs": {
-        "CreateInput$Destinations": "Destination settings for PUSH type inputs."
+        "CreateInput$Destinations": "Destination settings for PUSH type inputs.",
+        "UpdateInput$Destinations": "Destination settings for PUSH type inputs."
       }
     },
     "__listOfInputSecurityGroup": {
@@ -2166,7 +2193,8 @@
     "__listOfInputSourceRequest": {
       "base": null,
       "refs": {
-        "CreateInput$Sources": "The source URLs for a PULL-type input. Every PULL type input needs\nexactly two source URLs for redundancy.\nOnly specify sources for PULL type Inputs. Leave Destinations empty.\n"
+        "CreateInput$Sources": "The source URLs for a PULL-type input. Every PULL type input needs\nexactly two source URLs for redundancy.\nOnly specify sources for PULL type Inputs. Leave Destinations empty.\n",
+        "UpdateInput$Sources": "The source URLs for a PULL-type input. Every PULL type input needs\nexactly two source URLs for redundancy.\nOnly specify sources for PULL type Inputs. Leave Destinations empty.\n"
       }
     },
     "__listOfInputWhitelistRule": {
@@ -2226,8 +2254,10 @@
         "CreateInput$InputSecurityGroups": "A list of security groups referenced by IDs to attach to the input.",
         "Input$AttachedChannels": "A list of channel IDs that that input is attached to (currently an input can only be attached to one channel).",
         "Input$SecurityGroups": "A list of IDs for all the security groups attached to the input.",
+        "InputSecurityGroup$Inputs": "The list of inputs currently using this Input Security Group.",
         "Output$AudioDescriptionNames": "The names of the AudioDescriptions used as audio sources for this output.",
-        "Output$CaptionDescriptionNames": "The names of the CaptionDescriptions used as caption sources for this output."
+        "Output$CaptionDescriptionNames": "The names of the CaptionDescriptions used as caption sources for this output.",
+        "UpdateInput$InputSecurityGroups": "A list of security groups referenced by IDs to attach to the input."
       }
     },
     "__string": {
@@ -2295,7 +2325,7 @@
         "InputSourceRequest$Url": "This represents the customer's source URL where stream is\npulled from.\n",
         "InputSourceRequest$Username": "The username for the input source.",
         "InputWhitelistRule$Cidr": "The IPv4 CIDR that's whitelisted.",
-        "InputWhitelistRuleCidr$Cidr": "The IPv4 CIDR to whitelist",
+        "InputWhitelistRuleCidr$Cidr": "The IPv4 CIDR to whitelist.",
         "InternalServiceError$Message": null,
         "InvalidRequest$Message": null,
         "LimitExceeded$Message": null,
@@ -2338,6 +2368,7 @@
         "TeletextSourceSettings$PageNumber": "Specifies the teletext page number within the data stream from which to extract captions. Range of 0x100 (256) to 0x8FF (2303). Unused for passthrough. Should be specified as a hexadecimal string with no \"0x\" prefix.",
         "UpdateChannel$Name": "The name of the channel.",
         "UpdateChannel$RoleArn": "An optional Amazon Resource Name (ARN) of the role to assume when running the Channel. If you do not specify this on an update call but the role was previously set that role will be removed.",
+        "UpdateInput$Name": "Name of the input.",
         "ValidationError$ElementPath": null,
         "ValidationError$ErrorMessage": null,
         "VideoDescription$Name": "The name of this VideoDescription. Outputs will use this name to uniquely identify this Description.  Description names should be unique within this Live Event.",
