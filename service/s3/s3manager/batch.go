@@ -64,7 +64,7 @@ func (err *Error) Error() string {
 	if err.OrigErr != nil {
 		origErr = ":\n" + err.OrigErr.Error()
 	}
-	return fmt.Sprintf("failed to upload %q to %q%s",
+	return fmt.Sprintf("failed to perform batch operation on %q to %q%s",
 		aws.StringValue(err.Key),
 		aws.StringValue(err.Bucket),
 		origErr,

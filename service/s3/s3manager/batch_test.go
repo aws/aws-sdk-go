@@ -327,7 +327,7 @@ func TestNilOrigError(t *testing.T) {
 		Key:    aws.String("key"),
 	}
 	errStr := err.Error()
-	const expected1 = `failed to upload "key" to "bucket"`
+	const expected1 = `failed to perform batch operation on "key" to "bucket"`
 	if errStr != expected1 {
 		t.Errorf("Expected %s, but received %s", expected1, errStr)
 	}
@@ -338,7 +338,7 @@ func TestNilOrigError(t *testing.T) {
 		Key:     aws.String("key"),
 	}
 	errStr = err.Error()
-	const expected2 = "failed to upload \"key\" to \"bucket\":\nfoo"
+	const expected2 = "failed to perform batch operation on \"key\" to \"bucket\":\nfoo"
 	if errStr != expected2 {
 		t.Errorf("Expected %s, but received %s", expected2, errStr)
 	}
