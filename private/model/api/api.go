@@ -490,7 +490,7 @@ func New(p client.ConfigProvider, cfgs ...*aws.Config) *{{ .StructName }} {
 	{{- end }}
 
 	{{- if .Metadata.SigningName }}
-		if c.SigningNameDerived {
+		if c.SigningNameDerived || len(c.SigningName) == 0{
 			c.SigningName = "{{ .Metadata.SigningName }}"
 		}
 	{{- end }}
