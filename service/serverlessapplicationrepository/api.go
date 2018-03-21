@@ -1174,7 +1174,7 @@ type ApplicationSummary struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// A valid identifier from https://spdx.org/licenses/.
+	// A valid identifier from https://spdx.org/licenses/ (https://spdx.org/licenses/).
 	SpdxLicenseId *string `locationName:"spdxLicenseId" type:"string"`
 }
 
@@ -2649,7 +2649,7 @@ type Version struct {
 
 	// The semantic version of the application:
 	//
-	// https://semver.org/
+	// https://semver.org/ (https://semver.org/)
 	//
 	// SemanticVersion is a required field
 	SemanticVersion *string `locationName:"semanticVersion" type:"string" required:"true"`
@@ -2725,7 +2725,7 @@ type VersionSummary struct {
 
 	// The semantic version of the application:
 	//
-	// https://semver.org/
+	// https://semver.org/ (https://semver.org/)
 	//
 	// SemanticVersion is a required field
 	SemanticVersion *string `locationName:"semanticVersion" type:"string" required:"true"`
