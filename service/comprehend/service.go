@@ -45,7 +45,7 @@ const (
 //     svc := comprehend.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *Comprehend {
 	c := p.ClientConfig(EndpointsID, cfgs...)
-	if c.SigningNameDerived {
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
 		c.SigningName = "comprehend"
 	}
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)

@@ -45,7 +45,7 @@ const (
 //     svc := costexplorer.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *CostExplorer {
 	c := p.ClientConfig(EndpointsID, cfgs...)
-	if c.SigningNameDerived {
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
 		c.SigningName = "ce"
 	}
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)

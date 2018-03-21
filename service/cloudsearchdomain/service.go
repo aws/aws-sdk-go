@@ -50,7 +50,7 @@ func New(p client.ConfigProvider, cfgs ...*aws.Config) *CloudSearchDomain {
 	} else {
 		c = p.ClientConfig(EndpointsID, cfgs...)
 	}
-	if c.SigningNameDerived {
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
 		c.SigningName = "cloudsearch"
 	}
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)

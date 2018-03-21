@@ -45,7 +45,7 @@ const (
 //     svc := dynamodbstreams.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *DynamoDBStreams {
 	c := p.ClientConfig(EndpointsID, cfgs...)
-	if c.SigningNameDerived {
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
 		c.SigningName = "dynamodb"
 	}
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
