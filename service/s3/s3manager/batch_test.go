@@ -329,7 +329,7 @@ func TestBatchDeleteError(t *testing.T) {
 			},
 			s3.DeleteObjectsOutput{
 				Errors: []*s3.Error{
-					&s3.Error{
+					{
 						Code:    aws.String("foo code"),
 						Message: aws.String("foo error"),
 					},
@@ -350,7 +350,7 @@ func TestBatchDeleteError(t *testing.T) {
 			},
 			s3.DeleteObjectsOutput{
 				Errors: []*s3.Error{
-					&s3.Error{},
+					{},
 				},
 			},
 			1,
