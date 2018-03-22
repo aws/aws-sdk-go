@@ -488,16 +488,17 @@ func New(p client.ConfigProvider, cfgs ...*aws.Config) *{{ .StructName }} {
 	{{- else -}}
 		c := p.ClientConfig({{ EndpointsIDValue . }}, cfgs...)
 	{{- end }}
+
+	{{- if .Metadata.SigningName }}
+		if c.SigningNameDerived || len(c.SigningName) == 0{
+			c.SigningName = "{{ .Metadata.SigningName }}"
+		}
+	{{- end }}
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
 // newClient creates, initializes and returns a new service client instance.
 func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *{{ .StructName }} {
-	{{- if .Metadata.SigningName }}
-		if len(signingName) == 0 {
-			signingName = "{{ .Metadata.SigningName }}"
-		}
-	{{- end }}
     svc := &{{ .StructName }}{
     	Client: client.New(
     		cfg,
