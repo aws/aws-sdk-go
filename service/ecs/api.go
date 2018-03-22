@@ -5129,6 +5129,10 @@ type CreateServiceInput struct {
 	// ServiceName is a required field
 	ServiceName *string `locationName:"serviceName" type:"string" required:"true"`
 
+	// The details of the service discovery registries you want to assign to this
+	// service. For more information, see Service Discovery (http://docs.aws.amazon.com/AmazonECS/latest/developerguideservice-discovery.html).
+	ServiceRegistries []*ServiceRegistry `locationName:"serviceRegistries" type:"list"`
+
 	// The family and revision (family:revision) or full ARN of the task definition
 	// to run in your service. If a revision is not specified, the latest ACTIVE
 	// revision is used.
@@ -5246,6 +5250,12 @@ func (s *CreateServiceInput) SetRole(v string) *CreateServiceInput {
 // SetServiceName sets the ServiceName field's value.
 func (s *CreateServiceInput) SetServiceName(v string) *CreateServiceInput {
 	s.ServiceName = &v
+	return s
+}
+
+// SetServiceRegistries sets the ServiceRegistries field's value.
+func (s *CreateServiceInput) SetServiceRegistries(v []*ServiceRegistry) *CreateServiceInput {
+	s.ServiceRegistries = v
 	return s
 }
 
@@ -8861,6 +8871,8 @@ type Service struct {
 	// within a region or across multiple regions.
 	ServiceName *string `locationName:"serviceName" type:"string"`
 
+	ServiceRegistries []*ServiceRegistry `locationName:"serviceRegistries" type:"list"`
+
 	// The status of the service. The valid values are ACTIVE, DRAINING, or INACTIVE.
 	Status *string `locationName:"status" type:"string"`
 
@@ -8988,6 +9000,12 @@ func (s *Service) SetServiceName(v string) *Service {
 	return s
 }
 
+// SetServiceRegistries sets the ServiceRegistries field's value.
+func (s *Service) SetServiceRegistries(v []*ServiceRegistry) *Service {
+	s.ServiceRegistries = v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *Service) SetStatus(v string) *Service {
 	s.Status = &v
@@ -9039,6 +9057,41 @@ func (s *ServiceEvent) SetId(v string) *ServiceEvent {
 // SetMessage sets the Message field's value.
 func (s *ServiceEvent) SetMessage(v string) *ServiceEvent {
 	s.Message = &v
+	return s
+}
+
+// Details of the service registry.
+type ServiceRegistry struct {
+	_ struct{} `type:"structure"`
+
+	// The port value used if your Service Discovery service specified an SRV record.
+	Port *int64 `locationName:"port" type:"integer"`
+
+	// The Amazon Resource Name (ARN) of the Service Registry. The currently supported
+	// service registry is Amazon Route 53 Auto Naming Service. For more information,
+	// see Service (https://docs.aws.amazon.com/Route53/latest/APIReference/API_autonaming_Service.html).
+	RegistryArn *string `locationName:"registryArn" type:"string"`
+}
+
+// String returns the string representation
+func (s ServiceRegistry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceRegistry) GoString() string {
+	return s.String()
+}
+
+// SetPort sets the Port field's value.
+func (s *ServiceRegistry) SetPort(v int64) *ServiceRegistry {
+	s.Port = &v
+	return s
+}
+
+// SetRegistryArn sets the RegistryArn field's value.
+func (s *ServiceRegistry) SetRegistryArn(v string) *ServiceRegistry {
+	s.RegistryArn = &v
 	return s
 }
 

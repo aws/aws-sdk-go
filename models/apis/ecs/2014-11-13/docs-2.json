@@ -171,6 +171,7 @@
         "PortMapping$hostPort": "<p>The port number on the container instance to reserve for your container.</p> <p>If using containers in a task with the <code>awsvpc</code> or <code>host</code> network mode, the <code>hostPort</code> can either be left blank or set to the same value as the <code>containerPort</code>.</p> <p>If using containers in a task with the <code>bridge</code> network mode, you can specify a non-reserved host port for your container port mapping, or you can omit the <code>hostPort</code> (or set it to <code>0</code>) while specifying a <code>containerPort</code> and your container automatically receives a port in the ephemeral port range for your container instance operating system and Docker version.</p> <p>The default ephemeral port range for Docker version 1.6.0 and later is listed on the instance under <code>/proc/sys/net/ipv4/ip_local_port_range</code>; if this kernel parameter is unavailable, the default ephemeral port range from 49153 through 65535 is used. You should not attempt to specify a host port in the ephemeral port range as these are reserved for automatic assignment. In general, ports below 32768 are outside of the ephemeral port range.</p> <note> <p>The default ephemeral port range from 49153 through 65535 is always used for Docker versions before 1.6.0.</p> </note> <p>The default reserved ports are 22 for SSH, the Docker ports 2375 and 2376, and the Amazon ECS container agent ports 51678 and 51679. Any host port that was previously specified in a running task is also reserved while the task is running (after a task stops, the host port is released). The current reserved ports are displayed in the <code>remainingResources</code> of <a>DescribeContainerInstances</a> output, and a container instance may have up to 100 reserved ports at a time, including the default reserved ports (automatically assigned ports do not count toward the 100 reserved ports limit).</p>",
         "RunTaskRequest$count": "<p>The number of instantiations of the specified task to place on your cluster. You can specify up to 10 tasks per call.</p>",
         "Service$healthCheckGracePeriodSeconds": "<p>The period of time, in seconds, that the Amazon ECS service scheduler ignores unhealthy Elastic Load Balancing target health checks after a task has first started.</p>",
+        "ServiceRegistry$port": "<p>The port value used if your Service Discovery service specified an SRV record.</p>",
         "SubmitContainerStateChangeRequest$exitCode": "<p>The exit code returned for the state change request.</p>",
         "UpdateServiceRequest$desiredCount": "<p>The number of instantiations of the task to place and keep running in your service.</p>",
         "UpdateServiceRequest$healthCheckGracePeriodSeconds": "<p>The period of time, in seconds, that the Amazon ECS service scheduler should ignore unhealthy Elastic Load Balancing target health checks after a task has first started. This is only valid if your service is configured to use a load balancer. If your service's tasks take a while to start and respond to Elastic Load Balancing health checks, you can specify a health check grace period of up to 1,800 seconds during which the ECS service scheduler ignores the Elastic Load Balancing health check status. This grace period can prevent the ECS service scheduler from marking tasks as unhealthy and stopping them before they have time to come up.</p>"
@@ -960,6 +961,19 @@
       "refs": {
       }
     },
+    "ServiceRegistries": {
+      "base": null,
+      "refs": {
+        "CreateServiceRequest$serviceRegistries": "<p>The details of the service discovery registries you want to assign to this service. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonECS/latest/developerguideservice-discovery.html\">Service Discovery</a>.</p>",
+        "Service$serviceRegistries": "<p/>"
+      }
+    },
+    "ServiceRegistry": {
+      "base": "<p>Details of the service registry.</p>",
+      "refs": {
+        "ServiceRegistries$member": null
+      }
+    },
     "Services": {
       "base": null,
       "refs": {
@@ -1134,6 +1148,7 @@
         "Service$roleArn": "<p>The ARN of the IAM role associated with the service that allows the Amazon ECS container agent to register container instances with an Elastic Load Balancing load balancer.</p>",
         "ServiceEvent$id": "<p>The ID string of the event.</p>",
         "ServiceEvent$message": "<p>The event message.</p>",
+        "ServiceRegistry$registryArn": "<p>The Amazon Resource Name (ARN) of the Service Registry. The currently supported service registry is Amazon Route 53 Auto Naming Service. For more information, see <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_autonaming_Service.html\">Service</a>.</p>",
         "StartTaskRequest$cluster": "<p>The short name or full Amazon Resource Name (ARN) of the cluster on which to start your task. If you do not specify a cluster, the default cluster is assumed.</p>",
         "StartTaskRequest$taskDefinition": "<p>The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full ARN of the task definition to start. If a <code>revision</code> is not specified, the latest <code>ACTIVE</code> revision is used.</p>",
         "StartTaskRequest$startedBy": "<p>An optional tag specified when a task is started. For example if you automatically trigger a task to run a batch process job, you could apply a unique identifier for that job to your task with the <code>startedBy</code> parameter. You can then identify which tasks belong to that job by filtering the results of a <a>ListTasks</a> call with the <code>startedBy</code> value. Up to 36 letters (uppercase and lowercase), numbers, hyphens, and underscores are allowed.</p> <p>If a task is started by an Amazon ECS service, then the <code>startedBy</code> parameter contains the deployment ID of the service that starts it.</p>",
