@@ -1,3 +1,10 @@
+Release v1.13.20 (2018-03-23)
+===
+
+### Service Client Updates
+* `service/rds`: Updates service documentation
+  * Documentation updates for RDS
+
 Release v1.13.19 (2018-03-22)
 ===
 
