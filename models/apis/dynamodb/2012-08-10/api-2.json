@@ -321,6 +321,24 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "RestoreTableToPointInTime":{
+      "name":"RestoreTableToPointInTime",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RestoreTableToPointInTimeInput"},
+      "output":{"shape":"RestoreTableToPointInTimeOutput"},
+      "errors":[
+        {"shape":"TableAlreadyExistsException"},
+        {"shape":"TableNotFoundException"},
+        {"shape":"TableInUseException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidRestoreTimeException"},
+        {"shape":"PointInTimeRecoveryUnavailableException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "Scan":{
       "name":"Scan",
       "http":{
@@ -361,6 +379,20 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerError"},
         {"shape":"ResourceInUseException"}
+      ]
+    },
+    "UpdateContinuousBackups":{
+      "name":"UpdateContinuousBackups",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateContinuousBackupsInput"},
+      "output":{"shape":"UpdateContinuousBackupsOutput"},
+      "errors":[
+        {"shape":"TableNotFoundException"},
+        {"shape":"ContinuousBackupsUnavailableException"},
+        {"shape":"InternalServerError"}
       ]
     },
     "UpdateGlobalTable":{
@@ -706,7 +738,8 @@
       "type":"structure",
       "required":["ContinuousBackupsStatus"],
       "members":{
-        "ContinuousBackupsStatus":{"shape":"ContinuousBackupsStatus"}
+        "ContinuousBackupsStatus":{"shape":"ContinuousBackupsStatus"},
+        "PointInTimeRecoveryDescription":{"shape":"PointInTimeRecoveryDescription"}
       }
     },
     "ContinuousBackupsStatus":{
@@ -1144,6 +1177,13 @@
       "exception":true,
       "fault":true
     },
+    "InvalidRestoreTimeException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
     "ItemCollectionKeyAttributeMap":{
       "type":"map",
       "key":{"shape":"AttributeName"},
@@ -1387,6 +1427,35 @@
       "type":"list",
       "member":{"shape":"NumberAttributeValue"}
     },
+    "PointInTimeRecoveryDescription":{
+      "type":"structure",
+      "members":{
+        "PointInTimeRecoveryStatus":{"shape":"PointInTimeRecoveryStatus"},
+        "EarliestRestorableDateTime":{"shape":"Date"},
+        "LatestRestorableDateTime":{"shape":"Date"}
+      }
+    },
+    "PointInTimeRecoverySpecification":{
+      "type":"structure",
+      "required":["PointInTimeRecoveryEnabled"],
+      "members":{
+        "PointInTimeRecoveryEnabled":{"shape":"BooleanObject"}
+      }
+    },
+    "PointInTimeRecoveryStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "PointInTimeRecoveryUnavailableException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
     "PositiveIntegerObject":{
       "type":"integer",
       "min":1
@@ -1576,7 +1645,6 @@
       },
       "exception":true
     },
-    "RestoreDateTime":{"type":"timestamp"},
     "RestoreInProgress":{"type":"boolean"},
     "RestoreSummary":{
       "type":"structure",
@@ -1587,7 +1655,7 @@
       "members":{
         "SourceBackupArn":{"shape":"BackupArn"},
         "SourceTableArn":{"shape":"TableArn"},
-        "RestoreDateTime":{"shape":"RestoreDateTime"},
+        "RestoreDateTime":{"shape":"Date"},
         "RestoreInProgress":{"shape":"RestoreInProgress"}
       }
     },
@@ -1603,6 +1671,25 @@
       }
     },
     "RestoreTableFromBackupOutput":{
+      "type":"structure",
+      "members":{
+        "TableDescription":{"shape":"TableDescription"}
+      }
+    },
+    "RestoreTableToPointInTimeInput":{
+      "type":"structure",
+      "required":[
+        "SourceTableName",
+        "TargetTableName"
+      ],
+      "members":{
+        "SourceTableName":{"shape":"TableName"},
+        "TargetTableName":{"shape":"TableName"},
+        "UseLatestRestorableTime":{"shape":"BooleanObject"},
+        "RestoreDateTime":{"shape":"Date"}
+      }
+    },
+    "RestoreTableToPointInTimeOutput":{
       "type":"structure",
       "members":{
         "TableDescription":{"shape":"TableDescription"}
@@ -1930,6 +2017,23 @@
       "members":{
         "ResourceArn":{"shape":"ResourceArnString"},
         "TagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "UpdateContinuousBackupsInput":{
+      "type":"structure",
+      "required":[
+        "TableName",
+        "PointInTimeRecoverySpecification"
+      ],
+      "members":{
+        "TableName":{"shape":"TableName"},
+        "PointInTimeRecoverySpecification":{"shape":"PointInTimeRecoverySpecification"}
+      }
+    },
+    "UpdateContinuousBackupsOutput":{
+      "type":"structure",
+      "members":{
+        "ContinuousBackupsDescription":{"shape":"ContinuousBackupsDescription"}
       }
     },
     "UpdateExpression":{"type":"string"},
