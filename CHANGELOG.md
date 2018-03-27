@@ -1,3 +1,11 @@
+Release v1.13.22 (2018-03-27)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service API and documentation
+  * AWS Certificate Manager has added support for customers to disable Certificate Transparency logging on a per-certificate basis.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.13.21 (2018-03-26)
 ===
 

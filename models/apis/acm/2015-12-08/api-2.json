@@ -140,6 +140,21 @@
         {"shape":"InvalidArnException"},
         {"shape":"InvalidDomainValidationOptionsException"}
       ]
+    },
+    "UpdateCertificateOptions":{
+      "name":"UpdateCertificateOptions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateCertificateOptionsRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidArnException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidStateException"},
+        {"shape":"InvalidArnException"}
+      ]
     }
   },
   "shapes":{
@@ -207,7 +222,14 @@
         "Type":{"shape":"CertificateType"},
         "RenewalSummary":{"shape":"RenewalSummary"},
         "KeyUsages":{"shape":"KeyUsageList"},
-        "ExtendedKeyUsages":{"shape":"ExtendedKeyUsageList"}
+        "ExtendedKeyUsages":{"shape":"ExtendedKeyUsageList"},
+        "Options":{"shape":"CertificateOptions"}
+      }
+    },
+    "CertificateOptions":{
+      "type":"structure",
+      "members":{
+        "CertificateTransparencyLoggingPreference":{"shape":"CertificateTransparencyLoggingPreference"}
       }
     },
     "CertificateStatus":{
@@ -236,6 +258,13 @@
     "CertificateSummaryList":{
       "type":"list",
       "member":{"shape":"CertificateSummary"}
+    },
+    "CertificateTransparencyLoggingPreference":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "CertificateType":{
       "type":"string",
@@ -582,7 +611,8 @@
         "ValidationMethod":{"shape":"ValidationMethod"},
         "SubjectAlternativeNames":{"shape":"DomainList"},
         "IdempotencyToken":{"shape":"IdempotencyToken"},
-        "DomainValidationOptions":{"shape":"DomainValidationOptionList"}
+        "DomainValidationOptions":{"shape":"DomainValidationOptionList"},
+        "Options":{"shape":"CertificateOptions"}
       }
     },
     "RequestCertificateResponse":{
@@ -687,6 +717,17 @@
         "message":{"shape":"String"}
       },
       "exception":true
+    },
+    "UpdateCertificateOptionsRequest":{
+      "type":"structure",
+      "required":[
+        "CertificateArn",
+        "Options"
+      ],
+      "members":{
+        "CertificateArn":{"shape":"Arn"},
+        "Options":{"shape":"CertificateOptions"}
+      }
     },
     "ValidationEmailList":{
       "type":"list",
