@@ -2511,10 +2511,8 @@ func (c *MTurk) ListQualificationTypesRequest(input *ListQualificationTypesInput
 
 // ListQualificationTypes API operation for Amazon Mechanical Turk.
 //
-// The ListQualificationRequests operation retrieves requests for Qualifications
-// of a particular Qualification type. The owner of the Qualification type calls
-// this operation to poll for pending requests, and accepts them using the AcceptQualification
-// operation.
+// The ListQualificationTypes operation returns a list of Qualification types,
+// filtered by an optional search term.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4655,8 +4653,11 @@ type CreateHITInput struct {
 	// becomes unavailable.
 	MaxAssignments *int64 `type:"integer"`
 
-	// A condition that a Worker's Qualifications must meet before the Worker is
-	// allowed to accept and complete the HIT.
+	// Conditions that a Worker's Qualifications must meet in order to accept the
+	// HIT. A HIT can have between zero and ten Qualification requirements. All
+	// requirements must be met in order for a Worker to accept the HIT. Additionally,
+	// other actions can be restricted using the ActionsGuarded field on each QualificationRequirement
+	// structure.
 	QualificationRequirements []*QualificationRequirement `type:"list"`
 
 	// The data the person completing the HIT uses to produce the results.
@@ -4927,8 +4928,11 @@ type CreateHITTypeInput struct {
 	// These words are used in searches to find HITs.
 	Keywords *string `type:"string"`
 
-	// A condition that a Worker's Qualifications must meet before the Worker is
-	// allowed to accept and complete the HIT.
+	// Conditions that a Worker's Qualifications must meet in order to accept the
+	// HIT. A HIT can have between zero and ten Qualification requirements. All
+	// requirements must be met in order for a Worker to accept the HIT. Additionally,
+	// other actions can be restricted using the ActionsGuarded field on each QualificationRequirement
+	// structure.
 	QualificationRequirements []*QualificationRequirement `type:"list"`
 
 	// The amount of money the Requester will pay a Worker for successfully completing
@@ -6253,10 +6257,11 @@ type HIT struct {
 	// accepted by Workers, but have not yet been submitted, returned, or abandoned.
 	NumberOfAssignmentsPending *int64 `type:"integer"`
 
-	// A condition that a Worker's Qualifications must meet in order to accept the
+	// Conditions that a Worker's Qualifications must meet in order to accept the
 	// HIT. A HIT can have between zero and ten Qualification requirements. All
-	// requirements must be met by a Worker's Qualifications for the Worker to accept
-	// the HIT.
+	// requirements must be met in order for a Worker to accept the HIT. Additionally,
+	// other actions can be restricted using the ActionsGuarded field on each QualificationRequirement
+	// structure.
 	QualificationRequirements []*QualificationRequirement `type:"list"`
 
 	// The data the Worker completing the HIT uses produce the results. This is
@@ -8154,9 +8159,28 @@ func (s *QualificationRequest) SetWorkerId(v string) *QualificationRequest {
 // The QualificationRequirement data structure describes a Qualification that
 // a Worker must have before the Worker is allowed to accept a HIT. A requirement
 // may optionally state that a Worker must have the Qualification in order to
-// preview the HIT.
+// preview the HIT, or see the HIT in search results.
 type QualificationRequirement struct {
 	_ struct{} `type:"structure"`
+
+	// Setting this attribute prevents Workers whose Qualifications do not meet
+	// this QualificationRequirement from taking the specified action. Valid arguments
+	// include "Accept" (Worker cannot accept the HIT, but can preview the HIT and
+	// see it in their search results), "PreviewAndAccept" (Worker cannot accept
+	// or preview the HIT, but can see the HIT in their search results), and "DiscoverPreviewAndAccept"
+	// (Worker cannot accept, preview, or see the HIT in their search results).
+	// It's possible for you to create a HIT with multiple QualificationRequirements
+	// (which can have different values for the ActionGuarded attribute). In this
+	// case, the Worker is only permitted to perform an action when they have met
+	// all QualificationRequirements guarding the action. The actions in the order
+	// of least restrictive to most restrictive are Discover, Preview and Accept.
+	// For example, if a Worker meets all QualificationRequirements that are set
+	// to DiscoverPreviewAndAccept, but do not meet all requirements that are set
+	// with PreviewAndAccept, then the Worker will be able to Discover, i.e. see
+	// the HIT in their search result, but will not be able to Preview or Accept
+	// the HIT. ActionsGuarded should not be used in combination with the RequiredToPreview
+	// field.
+	ActionsGuarded *string `type:"string" enum:"HITAccessActions"`
 
 	// The kind of comparison to make against a Qualification's value. You can compare
 	// a Qualification's value to an IntegerValue to see if it is LessThan, LessThanOrEqualTo,
@@ -8193,15 +8217,17 @@ type QualificationRequirement struct {
 	// QualificationTypeId is a required field
 	QualificationTypeId *string `type:"string" required:"true"`
 
-	// If true, the question data for the HIT will not be shown when a Worker whose
+	// DEPRECATED: Use the ActionsGuarded field instead. If RequiredToPreview is
+	// true, the question data for the HIT will not be shown when a Worker whose
 	// Qualifications do not meet this requirement tries to preview the HIT. That
 	// is, a Worker's Qualifications must meet all of the requirements for which
 	// RequiredToPreview is true in order to preview the HIT. If a Worker meets
 	// all of the requirements where RequiredToPreview is true (or if there are
 	// no such requirements), but does not meet all of the requirements for the
 	// HIT, the Worker will be allowed to preview the HIT's question data, but will
-	// not be allowed to accept and complete the HIT. The default is false.
-	RequiredToPreview *bool `type:"boolean"`
+	// not be allowed to accept and complete the HIT. The default is false. This
+	// should not be used in combination with the ActionsGuarded field.
+	RequiredToPreview *bool `deprecated:"true" type:"boolean"`
 }
 
 // String returns the string representation
@@ -8238,6 +8264,12 @@ func (s *QualificationRequirement) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetActionsGuarded sets the ActionsGuarded field's value.
+func (s *QualificationRequirement) SetActionsGuarded(v string) *QualificationRequirement {
+	s.ActionsGuarded = &v
+	return s
 }
 
 // SetComparator sets the Comparator field's value.
@@ -9569,6 +9601,17 @@ const (
 
 	// EventTypePing is a EventType enum value
 	EventTypePing = "Ping"
+)
+
+const (
+	// HITAccessActionsAccept is a HITAccessActions enum value
+	HITAccessActionsAccept = "Accept"
+
+	// HITAccessActionsPreviewAndAccept is a HITAccessActions enum value
+	HITAccessActionsPreviewAndAccept = "PreviewAndAccept"
+
+	// HITAccessActionsDiscoverPreviewAndAccept is a HITAccessActions enum value
+	HITAccessActionsDiscoverPreviewAndAccept = "DiscoverPreviewAndAccept"
 )
 
 const (

@@ -1,3 +1,14 @@
+Release v1.13.23 (2018-03-28)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/iam`: Updates service API and documentation
+  * Add support for Longer Role Sessions. Four APIs manage max session duration: GetRole, ListRoles, CreateRole, and the new API UpdateRole. The max session duration integer attribute is measured in seconds.
+* `service/mturk-requester`: Updates service API and documentation
+* `service/sts`: Updates service API and documentation
+  * Change utilizes the Max Session Duration attribute introduced for IAM Roles and allows STS customers to request session duration up to the Max Session Duration of 12 hours from AssumeRole based APIs.
+
 Release v1.13.22 (2018-03-27)
 ===
 
