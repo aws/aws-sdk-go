@@ -5314,7 +5314,8 @@
         "AMAZON_LINUX",
         "UBUNTU",
         "REDHAT_ENTERPRISE_LINUX",
-        "SUSE"
+        "SUSE",
+        "CENTOS"
       ]
     },
     "OwnerInformation":{
