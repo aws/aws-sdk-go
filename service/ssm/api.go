@@ -29128,6 +29128,9 @@ const (
 
 	// OperatingSystemSuse is a OperatingSystem enum value
 	OperatingSystemSuse = "SUSE"
+
+	// OperatingSystemCentos is a OperatingSystem enum value
+	OperatingSystemCentos = "CENTOS"
 )
 
 const (

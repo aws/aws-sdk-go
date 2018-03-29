@@ -1,3 +1,16 @@
+Release v1.13.24 (2018-03-29)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API, documentation, and paginators
+* `service/cloudformation`: Updates service API and documentation
+  * Enabling resource level permission control for StackSets APIs. Adding support for customers to use customized AdministrationRole to create security boundaries between different users.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/greengrass`: Updates service API and documentation
+  * Greengrass APIs now support creating Machine Learning resource types and configuring binary data as the input payload for Greengrass Lambda functions.
+* `service/ssm`: Updates service API
+  * This Patch Manager release supports creating patch baselines for CentOS.
+
 Release v1.13.23 (2018-03-28)
 ===
 
