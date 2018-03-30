@@ -883,17 +883,20 @@ func (c *ACM) RequestCertificateRequest(input *RequestCertificateInput) (req *re
 // Requests an ACM certificate for use with other AWS services. To request an
 // ACM certificate, you must specify the fully qualified domain name (FQDN)
 // for your site in the DomainName parameter. You can also specify additional
-// FQDNs in the SubjectAlternativeNames parameter if users can reach your site
-// by using other names.
+// FQDNs in the SubjectAlternativeNames parameter.
 //
-// For each domain name you specify, email is sent to the domain owner to request
+// Each domain name that you specify must be validated to verify that you own
+// or control the domain. You can use DNS validation (http://docs.aws.amazon.com/acm/latest/userguide/gs-acm-validate-dns.html)
+// or email validation (http://docs.aws.amazon.com/acm/latest/userguide/gs-acm-validate-email.html).
+// We recommend that you use DNS validation.
+//
+// If you choose email validation, email is sent to the domain owner to request
 // approval to issue the certificate. Email is sent to three registered contact
 // addresses in the WHOIS database and to five common system administration
 // addresses formed from the DomainName you enter or the optional ValidationDomain
-// parameter. For more information, see Validate Domain Ownership (http://docs.aws.amazon.com/acm/latest/userguide/gs-acm-validate.html).
+// parameter. For more information, see Validate with Email (http://docs.aws.amazon.com/acm/latest/userguide/gs-acm-validate-email.html).
 //
 // After receiving approval from the domain owner, the ACM certificate is issued.
-// For more information, see the AWS Certificate Manager User Guide (http://docs.aws.amazon.com/acm/latest/userguide/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1081,7 +1084,7 @@ func (c *ACM) UpdateCertificateOptionsRequest(input *UpdateCertificateOptionsInp
 // Updates a certificate. Currently, you can use this function to specify whether
 // to opt in to or out of recording your certificate in a certificate transparency
 // log. For more information, see  Opting Out of Certificate Transparency Logging
-// (acm/latest/userguide/acm-bestpractices.html#best-practices-transparency).
+// (http://docs.aws.amazon.com/acm/latest/userguide/acm-bestpractices.html#best-practices-transparency).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1284,7 +1287,7 @@ type CertificateDetail struct {
 	// Value that specifies whether to add the certificate to a transparency log.
 	// Certificate transparency makes it possible to detect SSL certificates that
 	// have been mistakenly or maliciously issued. A browser might respond to certificate
-	// that has not been logged by showing an error message. The logs are cryptographicaly
+	// that has not been logged by showing an error message. The logs are cryptographically
 	// secure.
 	Options *CertificateOptions `type:"structure"`
 
@@ -1491,7 +1494,7 @@ func (s *CertificateDetail) SetType(v string) *CertificateDetail {
 // be recorded in a log. Certificates that are not logged typically generate
 // a browser error. Transparency makes it possible for you to detect SSL/TLS
 // certificates that have been mistakenly or maliciously issued for your domain.
-// For general information, see ACM Concepts (acm/latest/userguide/acm-concepts.html).
+// For general information, see Certificate Transparency Logging (http://docs.aws.amazon.com/acm/latest/userguide/acm-concepts.html#concept-transparency).
 type CertificateOptions struct {
 	_ struct{} `type:"structure"`
 
@@ -2495,8 +2498,8 @@ type RequestCertificateInput struct {
 	// to a certificate transparency log. Certificate transparency makes it possible
 	// to detect SSL/TLS certificates that have been mistakenly or maliciously issued.
 	// Certificates that have not been logged typically produce an error message
-	// in a browser. For more information, see  Opting Out of Certificate Transparency
-	// Logging (acm/latest/userguide/acm-bestpractices.html#best-practices-transparency).
+	// in a browser. For more information, see Opting Out of Certificate Transparency
+	// Logging (http://docs.aws.amazon.com/acm/latest/userguide/acm-bestpractices.html#best-practices-transparency).
 	Options *CertificateOptions `type:"structure"`
 
 	// Additional FQDNs to be included in the Subject Alternative Name extension
@@ -2523,7 +2526,10 @@ type RequestCertificateInput struct {
 	//    the total length of the DNS name (63+1+63+1+63+1+62) exceeds 253 octets.
 	SubjectAlternativeNames []*string `min:"1" type:"list"`
 
-	// The method you want to use to validate your domain.
+	// The method you want to use to validate that you own or control domain. You
+	// can validate with DNS (http://docs.aws.amazon.com/acm/latest/userguide/gs-acm-validate-dns.html)
+	// or validate with email (http://docs.aws.amazon.com/acm/latest/userguide/gs-acm-validate-email.html).
+	// We recommend that you use DNS validation.
 	ValidationMethod *string `type:"string" enum:"ValidationMethod"`
 }
 
