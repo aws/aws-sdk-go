@@ -1,3 +1,12 @@
+Release v1.13.25 (2018-03-30)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service API and documentation
+  * Documentation updates for acm
+* `service/connect`: Adds new service
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.13.24 (2018-03-29)
 ===
 

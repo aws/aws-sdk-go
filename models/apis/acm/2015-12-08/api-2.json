@@ -7,6 +7,7 @@
     "protocol":"json",
     "serviceAbbreviation":"ACM",
     "serviceFullName":"AWS Certificate Manager",
+    "serviceId":"ACM",
     "signatureVersion":"v4",
     "targetPrefix":"CertificateManager",
     "uid":"acm-2015-12-08"
