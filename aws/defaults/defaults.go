@@ -95,6 +95,7 @@ func CredChain(cfg *aws.Config, handlers request.Handlers) *credentials.Credenti
 		Providers: []credentials.Provider{
 			&credentials.EnvProvider{},
 			&credentials.SharedCredentialsProvider{Filename: "", Profile: ""},
+			&credentials.ProcessProvider{Filename: "", Profile: ""},
 			RemoteCredProvider(*cfg, handlers),
 		},
 	})

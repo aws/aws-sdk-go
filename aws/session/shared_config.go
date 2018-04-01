@@ -25,6 +25,9 @@ const (
 	// Additional Config fields
 	regionKey = `region`
 
+	// External Credential Process
+	credentialProcessKey = `credential_process`
+
 	// DefaultSharedConfigProfile is the default profile to be used when
 	// loading configuration from the config files if another profile name
 	// is not provided.
@@ -54,6 +57,9 @@ type sharedConfig struct {
 
 	AssumeRole       assumeRoleConfig
 	AssumeRoleSource *sharedConfig
+
+	// An external process to request credentials
+	CredentialProcess string
 
 	// Region is the region the SDK should use for looking up AWS service endpoints
 	// and signing requests.
@@ -203,6 +209,11 @@ func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile) e
 			MFASerial:       section.Key(mfaSerialKey).String(),
 			RoleSessionName: section.Key(roleSessionNameKey).String(),
 		}
+	}
+
+	credentialProcess := section.Key(credentialProcessKey).String()
+	if len(credentialProcess) > 0 {
+		cfg.CredentialProcess = credentialProcess
 	}
 
 	// Region
