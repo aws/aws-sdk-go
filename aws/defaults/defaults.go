@@ -93,7 +93,12 @@ func Handlers() request.Handlers {
 func CredChain(cfg *aws.Config, handlers request.Handlers) *credentials.Credentials {
 	return credentials.NewCredentials(&credentials.ChainProvider{
 		VerboseErrors: aws.BoolValue(cfg.CredentialsChainVerboseErrors),
-		Providers:     CredProviders(cfg, handlers),
+		Providers: []credentials.Provider{
+			&credentials.EnvProvider{},
+			&credentials.SharedCredentialsProvider{Filename: "", Profile: ""},
+			&credentials.ProcessProvider{Filename: "", Profile: ""},
+			RemoteCredProvider(*cfg, handlers),
+		},
 	})
 }
 

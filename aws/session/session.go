@@ -534,6 +534,11 @@ func mergeConfigSrcs(cfg, userCfg *aws.Config, envCfg envConfig, sharedCfg share
 			cfg.Credentials = credentials.NewStaticCredentialsFromCreds(
 				sharedCfg.Creds,
 			)
+		} else if envCfg.EnableSharedConfig && len(sharedCfg.CredentialProcess) > 0 {
+			cfg.Credentials = credentials.NewProcessProvider(
+				envCfg.SharedConfigFile,
+				envCfg.Profile,
+			)
 		} else {
 			// Fallback to default credentials provider, include mock errors
 			// for the credential chain so user can identify why credentials
