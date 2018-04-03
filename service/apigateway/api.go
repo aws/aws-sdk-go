@@ -16,7 +16,7 @@ const opCreateApiKey = "CreateApiKey"
 
 // CreateApiKeyRequest generates a "aws/request.Request" representing the
 // client's request for the CreateApiKey operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -112,7 +112,7 @@ const opCreateAuthorizer = "CreateAuthorizer"
 
 // CreateAuthorizerRequest generates a "aws/request.Request" representing the
 // client's request for the CreateAuthorizer operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -204,7 +204,7 @@ const opCreateBasePathMapping = "CreateBasePathMapping"
 
 // CreateBasePathMappingRequest generates a "aws/request.Request" representing the
 // client's request for the CreateBasePathMapping operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -295,7 +295,7 @@ const opCreateDeployment = "CreateDeployment"
 
 // CreateDeploymentRequest generates a "aws/request.Request" representing the
 // client's request for the CreateDeployment operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -394,7 +394,7 @@ const opCreateDocumentationPart = "CreateDocumentationPart"
 
 // CreateDocumentationPartRequest generates a "aws/request.Request" representing the
 // client's request for the CreateDocumentationPart operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -486,7 +486,7 @@ const opCreateDocumentationVersion = "CreateDocumentationVersion"
 
 // CreateDocumentationVersionRequest generates a "aws/request.Request" representing the
 // client's request for the CreateDocumentationVersion operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -578,7 +578,7 @@ const opCreateDomainName = "CreateDomainName"
 
 // CreateDomainNameRequest generates a "aws/request.Request" representing the
 // client's request for the CreateDomainName operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -666,7 +666,7 @@ const opCreateModel = "CreateModel"
 
 // CreateModelRequest generates a "aws/request.Request" representing the
 // client's request for the CreateModel operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -760,7 +760,7 @@ const opCreateRequestValidator = "CreateRequestValidator"
 
 // CreateRequestValidatorRequest generates a "aws/request.Request" representing the
 // client's request for the CreateRequestValidator operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -850,7 +850,7 @@ const opCreateResource = "CreateResource"
 
 // CreateResourceRequest generates a "aws/request.Request" representing the
 // client's request for the CreateResource operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -944,7 +944,7 @@ const opCreateRestApi = "CreateRestApi"
 
 // CreateRestApiRequest generates a "aws/request.Request" representing the
 // client's request for the CreateRestApi operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1031,7 +1031,7 @@ const opCreateStage = "CreateStage"
 
 // CreateStageRequest generates a "aws/request.Request" representing the
 // client's request for the CreateStage operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1126,7 +1126,7 @@ const opCreateUsagePlan = "CreateUsagePlan"
 
 // CreateUsagePlanRequest generates a "aws/request.Request" representing the
 // client's request for the CreateUsagePlan operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1221,7 +1221,7 @@ const opCreateUsagePlanKey = "CreateUsagePlanKey"
 
 // CreateUsagePlanKeyRequest generates a "aws/request.Request" representing the
 // client's request for the CreateUsagePlanKey operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1312,7 +1312,7 @@ const opCreateVpcLink = "CreateVpcLink"
 
 // CreateVpcLinkRequest generates a "aws/request.Request" representing the
 // client's request for the CreateVpcLink operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1399,7 +1399,7 @@ const opDeleteApiKey = "DeleteApiKey"
 
 // DeleteApiKeyRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteApiKey operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1484,7 +1484,7 @@ const opDeleteAuthorizer = "DeleteAuthorizer"
 
 // DeleteAuthorizerRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteAuthorizer operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1579,7 +1579,7 @@ const opDeleteBasePathMapping = "DeleteBasePathMapping"
 
 // DeleteBasePathMappingRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteBasePathMapping operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1672,7 +1672,7 @@ const opDeleteClientCertificate = "DeleteClientCertificate"
 
 // DeleteClientCertificateRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteClientCertificate operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1761,7 +1761,7 @@ const opDeleteDeployment = "DeleteDeployment"
 
 // DeleteDeploymentRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteDeployment operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1851,7 +1851,7 @@ const opDeleteDocumentationPart = "DeleteDocumentationPart"
 
 // DeleteDocumentationPartRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteDocumentationPart operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1942,7 +1942,7 @@ const opDeleteDocumentationVersion = "DeleteDocumentationVersion"
 
 // DeleteDocumentationVersionRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteDocumentationVersion operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2033,7 +2033,7 @@ const opDeleteDomainName = "DeleteDomainName"
 
 // DeleteDomainNameRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteDomainName operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2118,7 +2118,7 @@ const opDeleteGatewayResponse = "DeleteGatewayResponse"
 
 // DeleteGatewayResponseRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteGatewayResponse operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2212,7 +2212,7 @@ const opDeleteIntegration = "DeleteIntegration"
 
 // DeleteIntegrationRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteIntegration operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2301,7 +2301,7 @@ const opDeleteIntegrationResponse = "DeleteIntegrationResponse"
 
 // DeleteIntegrationResponseRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteIntegrationResponse operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2394,7 +2394,7 @@ const opDeleteMethod = "DeleteMethod"
 
 // DeleteMethodRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteMethod operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2483,7 +2483,7 @@ const opDeleteMethodResponse = "DeleteMethodResponse"
 
 // DeleteMethodResponseRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteMethodResponse operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2576,7 +2576,7 @@ const opDeleteModel = "DeleteModel"
 
 // DeleteModelRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteModel operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2669,7 +2669,7 @@ const opDeleteRequestValidator = "DeleteRequestValidator"
 
 // DeleteRequestValidatorRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteRequestValidator operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2762,7 +2762,7 @@ const opDeleteResource = "DeleteResource"
 
 // DeleteResourceRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteResource operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2855,7 +2855,7 @@ const opDeleteRestApi = "DeleteRestApi"
 
 // DeleteRestApiRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteRestApi operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2944,7 +2944,7 @@ const opDeleteStage = "DeleteStage"
 
 // DeleteStageRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteStage operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3033,7 +3033,7 @@ const opDeleteUsagePlan = "DeleteUsagePlan"
 
 // DeleteUsagePlanRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteUsagePlan operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3122,7 +3122,7 @@ const opDeleteUsagePlanKey = "DeleteUsagePlanKey"
 
 // DeleteUsagePlanKeyRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteUsagePlanKey operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3216,7 +3216,7 @@ const opDeleteVpcLink = "DeleteVpcLink"
 
 // DeleteVpcLinkRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteVpcLink operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3305,7 +3305,7 @@ const opFlushStageAuthorizersCache = "FlushStageAuthorizersCache"
 
 // FlushStageAuthorizersCacheRequest generates a "aws/request.Request" representing the
 // client's request for the FlushStageAuthorizersCache operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3394,7 +3394,7 @@ const opFlushStageCache = "FlushStageCache"
 
 // FlushStageCacheRequest generates a "aws/request.Request" representing the
 // client's request for the FlushStageCache operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3483,7 +3483,7 @@ const opGenerateClientCertificate = "GenerateClientCertificate"
 
 // GenerateClientCertificateRequest generates a "aws/request.Request" representing the
 // client's request for the GenerateClientCertificate operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3566,7 +3566,7 @@ const opGetAccount = "GetAccount"
 
 // GetAccountRequest generates a "aws/request.Request" representing the
 // client's request for the GetAccount operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3649,7 +3649,7 @@ const opGetApiKey = "GetApiKey"
 
 // GetApiKeyRequest generates a "aws/request.Request" representing the
 // client's request for the GetApiKey operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3732,7 +3732,7 @@ const opGetApiKeys = "GetApiKeys"
 
 // GetApiKeysRequest generates a "aws/request.Request" representing the
 // client's request for the GetApiKeys operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3872,7 +3872,7 @@ const opGetAuthorizer = "GetAuthorizer"
 
 // GetAuthorizerRequest generates a "aws/request.Request" representing the
 // client's request for the GetAuthorizer operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3957,7 +3957,7 @@ const opGetAuthorizers = "GetAuthorizers"
 
 // GetAuthorizersRequest generates a "aws/request.Request" representing the
 // client's request for the GetAuthorizers operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -4046,7 +4046,7 @@ const opGetBasePathMapping = "GetBasePathMapping"
 
 // GetBasePathMappingRequest generates a "aws/request.Request" representing the
 // client's request for the GetBasePathMapping operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -4129,7 +4129,7 @@ const opGetBasePathMappings = "GetBasePathMappings"
 
 // GetBasePathMappingsRequest generates a "aws/request.Request" representing the
 // client's request for the GetBasePathMappings operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -4268,7 +4268,7 @@ const opGetClientCertificate = "GetClientCertificate"
 
 // GetClientCertificateRequest generates a "aws/request.Request" representing the
 // client's request for the GetClientCertificate operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -4351,7 +4351,7 @@ const opGetClientCertificates = "GetClientCertificates"
 
 // GetClientCertificatesRequest generates a "aws/request.Request" representing the
 // client's request for the GetClientCertificates operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -4491,7 +4491,7 @@ const opGetDeployment = "GetDeployment"
 
 // GetDeploymentRequest generates a "aws/request.Request" representing the
 // client's request for the GetDeployment operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -4578,7 +4578,7 @@ const opGetDeployments = "GetDeployments"
 
 // GetDeploymentsRequest generates a "aws/request.Request" representing the
 // client's request for the GetDeployments operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -4722,7 +4722,7 @@ const opGetDocumentationPart = "GetDocumentationPart"
 
 // GetDocumentationPartRequest generates a "aws/request.Request" representing the
 // client's request for the GetDocumentationPart operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -4803,7 +4803,7 @@ const opGetDocumentationParts = "GetDocumentationParts"
 
 // GetDocumentationPartsRequest generates a "aws/request.Request" representing the
 // client's request for the GetDocumentationParts operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -4888,7 +4888,7 @@ const opGetDocumentationVersion = "GetDocumentationVersion"
 
 // GetDocumentationVersionRequest generates a "aws/request.Request" representing the
 // client's request for the GetDocumentationVersion operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -4969,7 +4969,7 @@ const opGetDocumentationVersions = "GetDocumentationVersions"
 
 // GetDocumentationVersionsRequest generates a "aws/request.Request" representing the
 // client's request for the GetDocumentationVersions operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -5054,7 +5054,7 @@ const opGetDomainName = "GetDomainName"
 
 // GetDomainNameRequest generates a "aws/request.Request" representing the
 // client's request for the GetDomainName operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -5142,7 +5142,7 @@ const opGetDomainNames = "GetDomainNames"
 
 // GetDomainNamesRequest generates a "aws/request.Request" representing the
 // client's request for the GetDomainNames operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -5282,7 +5282,7 @@ const opGetExport = "GetExport"
 
 // GetExportRequest generates a "aws/request.Request" representing the
 // client's request for the GetExport operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -5373,7 +5373,7 @@ const opGetGatewayResponse = "GetGatewayResponse"
 
 // GetGatewayResponseRequest generates a "aws/request.Request" representing the
 // client's request for the GetGatewayResponse operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -5456,7 +5456,7 @@ const opGetGatewayResponses = "GetGatewayResponses"
 
 // GetGatewayResponsesRequest generates a "aws/request.Request" representing the
 // client's request for the GetGatewayResponses operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -5546,7 +5546,7 @@ const opGetIntegration = "GetIntegration"
 
 // GetIntegrationRequest generates a "aws/request.Request" representing the
 // client's request for the GetIntegration operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -5629,7 +5629,7 @@ const opGetIntegrationResponse = "GetIntegrationResponse"
 
 // GetIntegrationResponseRequest generates a "aws/request.Request" representing the
 // client's request for the GetIntegrationResponse operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -5712,7 +5712,7 @@ const opGetMethod = "GetMethod"
 
 // GetMethodRequest generates a "aws/request.Request" representing the
 // client's request for the GetMethod operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -5795,7 +5795,7 @@ const opGetMethodResponse = "GetMethodResponse"
 
 // GetMethodResponseRequest generates a "aws/request.Request" representing the
 // client's request for the GetMethodResponse operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -5878,7 +5878,7 @@ const opGetModel = "GetModel"
 
 // GetModelRequest generates a "aws/request.Request" representing the
 // client's request for the GetModel operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -5961,7 +5961,7 @@ const opGetModelTemplate = "GetModelTemplate"
 
 // GetModelTemplateRequest generates a "aws/request.Request" representing the
 // client's request for the GetModelTemplate operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -6049,7 +6049,7 @@ const opGetModels = "GetModels"
 
 // GetModelsRequest generates a "aws/request.Request" representing the
 // client's request for the GetModels operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -6192,7 +6192,7 @@ const opGetRequestValidator = "GetRequestValidator"
 
 // GetRequestValidatorRequest generates a "aws/request.Request" representing the
 // client's request for the GetRequestValidator operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -6275,7 +6275,7 @@ const opGetRequestValidators = "GetRequestValidators"
 
 // GetRequestValidatorsRequest generates a "aws/request.Request" representing the
 // client's request for the GetRequestValidators operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -6362,7 +6362,7 @@ const opGetResource = "GetResource"
 
 // GetResourceRequest generates a "aws/request.Request" representing the
 // client's request for the GetResource operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -6445,7 +6445,7 @@ const opGetResources = "GetResources"
 
 // GetResourcesRequest generates a "aws/request.Request" representing the
 // client's request for the GetResources operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -6588,7 +6588,7 @@ const opGetRestApi = "GetRestApi"
 
 // GetRestApiRequest generates a "aws/request.Request" representing the
 // client's request for the GetRestApi operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -6671,7 +6671,7 @@ const opGetRestApis = "GetRestApis"
 
 // GetRestApisRequest generates a "aws/request.Request" representing the
 // client's request for the GetRestApis operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -6811,7 +6811,7 @@ const opGetSdk = "GetSdk"
 
 // GetSdkRequest generates a "aws/request.Request" representing the
 // client's request for the GetSdk operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -6902,7 +6902,7 @@ const opGetSdkType = "GetSdkType"
 
 // GetSdkTypeRequest generates a "aws/request.Request" representing the
 // client's request for the GetSdkType operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -6983,7 +6983,7 @@ const opGetSdkTypes = "GetSdkTypes"
 
 // GetSdkTypesRequest generates a "aws/request.Request" representing the
 // client's request for the GetSdkTypes operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -7061,7 +7061,7 @@ const opGetStage = "GetStage"
 
 // GetStageRequest generates a "aws/request.Request" representing the
 // client's request for the GetStage operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -7144,7 +7144,7 @@ const opGetStages = "GetStages"
 
 // GetStagesRequest generates a "aws/request.Request" representing the
 // client's request for the GetStages operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -7227,7 +7227,7 @@ const opGetTags = "GetTags"
 
 // GetTagsRequest generates a "aws/request.Request" representing the
 // client's request for the GetTags operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -7317,7 +7317,7 @@ const opGetUsage = "GetUsage"
 
 // GetUsageRequest generates a "aws/request.Request" representing the
 // client's request for the GetUsage operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -7460,7 +7460,7 @@ const opGetUsagePlan = "GetUsagePlan"
 
 // GetUsagePlanRequest generates a "aws/request.Request" representing the
 // client's request for the GetUsagePlan operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -7547,7 +7547,7 @@ const opGetUsagePlanKey = "GetUsagePlanKey"
 
 // GetUsagePlanKeyRequest generates a "aws/request.Request" representing the
 // client's request for the GetUsagePlanKey operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -7634,7 +7634,7 @@ const opGetUsagePlanKeys = "GetUsagePlanKeys"
 
 // GetUsagePlanKeysRequest generates a "aws/request.Request" representing the
 // client's request for the GetUsagePlanKeys operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -7778,7 +7778,7 @@ const opGetUsagePlans = "GetUsagePlans"
 
 // GetUsagePlansRequest generates a "aws/request.Request" representing the
 // client's request for the GetUsagePlans operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -7925,7 +7925,7 @@ const opGetVpcLink = "GetVpcLink"
 
 // GetVpcLinkRequest generates a "aws/request.Request" representing the
 // client's request for the GetVpcLink operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -8008,7 +8008,7 @@ const opGetVpcLinks = "GetVpcLinks"
 
 // GetVpcLinksRequest generates a "aws/request.Request" representing the
 // client's request for the GetVpcLinks operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -8148,7 +8148,7 @@ const opImportApiKeys = "ImportApiKeys"
 
 // ImportApiKeysRequest generates a "aws/request.Request" representing the
 // client's request for the ImportApiKeys operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -8242,7 +8242,7 @@ const opImportDocumentationParts = "ImportDocumentationParts"
 
 // ImportDocumentationPartsRequest generates a "aws/request.Request" representing the
 // client's request for the ImportDocumentationParts operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -8330,7 +8330,7 @@ const opImportRestApi = "ImportRestApi"
 
 // ImportRestApiRequest generates a "aws/request.Request" representing the
 // client's request for the ImportRestApi operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -8422,7 +8422,7 @@ const opPutGatewayResponse = "PutGatewayResponse"
 
 // PutGatewayResponseRequest generates a "aws/request.Request" representing the
 // client's request for the PutGatewayResponse operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -8513,7 +8513,7 @@ const opPutIntegration = "PutIntegration"
 
 // PutIntegrationRequest generates a "aws/request.Request" representing the
 // client's request for the PutIntegration operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -8604,7 +8604,7 @@ const opPutIntegrationResponse = "PutIntegrationResponse"
 
 // PutIntegrationResponseRequest generates a "aws/request.Request" representing the
 // client's request for the PutIntegrationResponse operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -8698,7 +8698,7 @@ const opPutMethod = "PutMethod"
 
 // PutMethodRequest generates a "aws/request.Request" representing the
 // client's request for the PutMethod operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -8792,7 +8792,7 @@ const opPutMethodResponse = "PutMethodResponse"
 
 // PutMethodResponseRequest generates a "aws/request.Request" representing the
 // client's request for the PutMethodResponse operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -8886,7 +8886,7 @@ const opPutRestApi = "PutRestApi"
 
 // PutRestApiRequest generates a "aws/request.Request" representing the
 // client's request for the PutRestApi operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -8983,7 +8983,7 @@ const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
 // client's request for the TagResource operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -9079,7 +9079,7 @@ const opTestInvokeAuthorizer = "TestInvokeAuthorizer"
 
 // TestInvokeAuthorizerRequest generates a "aws/request.Request" representing the
 // client's request for the TestInvokeAuthorizer operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -9169,7 +9169,7 @@ const opTestInvokeMethod = "TestInvokeMethod"
 
 // TestInvokeMethodRequest generates a "aws/request.Request" representing the
 // client's request for the TestInvokeMethod operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -9257,7 +9257,7 @@ const opUntagResource = "UntagResource"
 
 // UntagResourceRequest generates a "aws/request.Request" representing the
 // client's request for the UntagResource operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -9350,7 +9350,7 @@ const opUpdateAccount = "UpdateAccount"
 
 // UpdateAccountRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateAccount operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -9437,7 +9437,7 @@ const opUpdateApiKey = "UpdateApiKey"
 
 // UpdateApiKeyRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateApiKey operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -9528,7 +9528,7 @@ const opUpdateAuthorizer = "UpdateAuthorizer"
 
 // UpdateAuthorizerRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateAuthorizer operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -9617,7 +9617,7 @@ const opUpdateBasePathMapping = "UpdateBasePathMapping"
 
 // UpdateBasePathMappingRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateBasePathMapping operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -9708,7 +9708,7 @@ const opUpdateClientCertificate = "UpdateClientCertificate"
 
 // UpdateClientCertificateRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateClientCertificate operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -9795,7 +9795,7 @@ const opUpdateDeployment = "UpdateDeployment"
 
 // UpdateDeploymentRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateDeployment operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -9886,7 +9886,7 @@ const opUpdateDocumentationPart = "UpdateDocumentationPart"
 
 // UpdateDocumentationPartRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateDocumentationPart operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -9978,7 +9978,7 @@ const opUpdateDocumentationVersion = "UpdateDocumentationVersion"
 
 // UpdateDocumentationVersionRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateDocumentationVersion operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -10067,7 +10067,7 @@ const opUpdateDomainName = "UpdateDomainName"
 
 // UpdateDomainNameRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateDomainName operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -10158,7 +10158,7 @@ const opUpdateGatewayResponse = "UpdateGatewayResponse"
 
 // UpdateGatewayResponseRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateGatewayResponse operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -10245,7 +10245,7 @@ const opUpdateIntegration = "UpdateIntegration"
 
 // UpdateIntegrationRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateIntegration operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -10336,7 +10336,7 @@ const opUpdateIntegrationResponse = "UpdateIntegrationResponse"
 
 // UpdateIntegrationResponseRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateIntegrationResponse operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -10427,7 +10427,7 @@ const opUpdateMethod = "UpdateMethod"
 
 // UpdateMethodRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateMethod operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -10518,7 +10518,7 @@ const opUpdateMethodResponse = "UpdateMethodResponse"
 
 // UpdateMethodResponseRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateMethodResponse operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -10612,7 +10612,7 @@ const opUpdateModel = "UpdateModel"
 
 // UpdateModelRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateModel operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -10703,7 +10703,7 @@ const opUpdateRequestValidator = "UpdateRequestValidator"
 
 // UpdateRequestValidatorRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateRequestValidator operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -10790,7 +10790,7 @@ const opUpdateResource = "UpdateResource"
 
 // UpdateResourceRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateResource operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -10881,7 +10881,7 @@ const opUpdateRestApi = "UpdateRestApi"
 
 // UpdateRestApiRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateRestApi operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -10972,7 +10972,7 @@ const opUpdateStage = "UpdateStage"
 
 // UpdateStageRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateStage operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -11063,7 +11063,7 @@ const opUpdateUsage = "UpdateUsage"
 
 // UpdateUsageRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateUsage operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -11151,7 +11151,7 @@ const opUpdateUsagePlan = "UpdateUsagePlan"
 
 // UpdateUsagePlanRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateUsagePlan operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -11242,7 +11242,7 @@ const opUpdateVpcLink = "UpdateVpcLink"
 
 // UpdateVpcLinkRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateVpcLink operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.

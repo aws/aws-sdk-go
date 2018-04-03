@@ -17,7 +17,7 @@ const opAddTags = "AddTags"
 
 // AddTagsRequest generates a "aws/request.Request" representing the
 // client's request for the AddTags operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -98,7 +98,7 @@ const opCreateEndpoint = "CreateEndpoint"
 
 // CreateEndpointRequest generates a "aws/request.Request" representing the
 // client's request for the CreateEndpoint operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -197,7 +197,7 @@ const opCreateEndpointConfig = "CreateEndpointConfig"
 
 // CreateEndpointConfigRequest generates a "aws/request.Request" representing the
 // client's request for the CreateEndpointConfig operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -295,7 +295,7 @@ const opCreateModel = "CreateModel"
 
 // CreateModelRequest generates a "aws/request.Request" representing the
 // client's request for the CreateModel operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -396,7 +396,7 @@ const opCreateNotebookInstance = "CreateNotebookInstance"
 
 // CreateNotebookInstanceRequest generates a "aws/request.Request" representing the
 // client's request for the CreateNotebookInstance operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -512,7 +512,7 @@ const opCreateNotebookInstanceLifecycleConfig = "CreateNotebookInstanceLifecycle
 
 // CreateNotebookInstanceLifecycleConfigRequest generates a "aws/request.Request" representing the
 // client's request for the CreateNotebookInstanceLifecycleConfig operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -596,7 +596,7 @@ const opCreatePresignedNotebookInstanceUrl = "CreatePresignedNotebookInstanceUrl
 
 // CreatePresignedNotebookInstanceUrlRequest generates a "aws/request.Request" representing the
 // client's request for the CreatePresignedNotebookInstanceUrl operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -674,7 +674,7 @@ const opCreateTrainingJob = "CreateTrainingJob"
 
 // CreateTrainingJobRequest generates a "aws/request.Request" representing the
 // client's request for the CreateTrainingJob operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -792,7 +792,7 @@ const opDeleteEndpoint = "DeleteEndpoint"
 
 // DeleteEndpointRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteEndpoint operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -869,7 +869,7 @@ const opDeleteEndpointConfig = "DeleteEndpointConfig"
 
 // DeleteEndpointConfigRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteEndpointConfig operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -947,7 +947,7 @@ const opDeleteModel = "DeleteModel"
 
 // DeleteModelRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteModel operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1026,7 +1026,7 @@ const opDeleteNotebookInstance = "DeleteNotebookInstance"
 
 // DeleteNotebookInstanceRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteNotebookInstance operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1107,7 +1107,7 @@ const opDeleteNotebookInstanceLifecycleConfig = "DeleteNotebookInstanceLifecycle
 
 // DeleteNotebookInstanceLifecycleConfigRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteNotebookInstanceLifecycleConfig operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1183,7 +1183,7 @@ const opDeleteTags = "DeleteTags"
 
 // DeleteTagsRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteTags operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1259,7 +1259,7 @@ const opDescribeEndpoint = "DescribeEndpoint"
 
 // DescribeEndpointRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeEndpoint operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1333,7 +1333,7 @@ const opDescribeEndpointConfig = "DescribeEndpointConfig"
 
 // DescribeEndpointConfigRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeEndpointConfig operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1408,7 +1408,7 @@ const opDescribeModel = "DescribeModel"
 
 // DescribeModelRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeModel operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1482,7 +1482,7 @@ const opDescribeNotebookInstance = "DescribeNotebookInstance"
 
 // DescribeNotebookInstanceRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeNotebookInstance operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1556,7 +1556,7 @@ const opDescribeNotebookInstanceLifecycleConfig = "DescribeNotebookInstanceLifec
 
 // DescribeNotebookInstanceLifecycleConfigRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeNotebookInstanceLifecycleConfig operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1632,7 +1632,7 @@ const opDescribeTrainingJob = "DescribeTrainingJob"
 
 // DescribeTrainingJobRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeTrainingJob operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1711,7 +1711,7 @@ const opListEndpointConfigs = "ListEndpointConfigs"
 
 // ListEndpointConfigsRequest generates a "aws/request.Request" representing the
 // client's request for the ListEndpointConfigs operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1841,7 +1841,7 @@ const opListEndpoints = "ListEndpoints"
 
 // ListEndpointsRequest generates a "aws/request.Request" representing the
 // client's request for the ListEndpoints operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1971,7 +1971,7 @@ const opListModels = "ListModels"
 
 // ListModelsRequest generates a "aws/request.Request" representing the
 // client's request for the ListModels operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2102,7 +2102,7 @@ const opListNotebookInstanceLifecycleConfigs = "ListNotebookInstanceLifecycleCon
 
 // ListNotebookInstanceLifecycleConfigsRequest generates a "aws/request.Request" representing the
 // client's request for the ListNotebookInstanceLifecycleConfigs operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2232,7 +2232,7 @@ const opListNotebookInstances = "ListNotebookInstances"
 
 // ListNotebookInstancesRequest generates a "aws/request.Request" representing the
 // client's request for the ListNotebookInstances operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2363,7 +2363,7 @@ const opListTags = "ListTags"
 
 // ListTagsRequest generates a "aws/request.Request" representing the
 // client's request for the ListTags operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2493,7 +2493,7 @@ const opListTrainingJobs = "ListTrainingJobs"
 
 // ListTrainingJobsRequest generates a "aws/request.Request" representing the
 // client's request for the ListTrainingJobs operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2623,7 +2623,7 @@ const opStartNotebookInstance = "StartNotebookInstance"
 
 // StartNotebookInstanceRequest generates a "aws/request.Request" representing the
 // client's request for the StartNotebookInstance operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2709,7 +2709,7 @@ const opStopNotebookInstance = "StopNotebookInstance"
 
 // StopNotebookInstanceRequest generates a "aws/request.Request" representing the
 // client's request for the StopNotebookInstance operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2792,7 +2792,7 @@ const opStopTrainingJob = "StopTrainingJob"
 
 // StopTrainingJobRequest generates a "aws/request.Request" representing the
 // client's request for the StopTrainingJob operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2885,7 +2885,7 @@ const opUpdateEndpoint = "UpdateEndpoint"
 
 // UpdateEndpointRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateEndpoint operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2972,7 +2972,7 @@ const opUpdateEndpointWeightsAndCapacities = "UpdateEndpointWeightsAndCapacities
 
 // UpdateEndpointWeightsAndCapacitiesRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateEndpointWeightsAndCapacities operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3057,7 +3057,7 @@ const opUpdateNotebookInstance = "UpdateNotebookInstance"
 
 // UpdateNotebookInstanceRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateNotebookInstance operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3140,7 +3140,7 @@ const opUpdateNotebookInstanceLifecycleConfig = "UpdateNotebookInstanceLifecycle
 
 // UpdateNotebookInstanceLifecycleConfigRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateNotebookInstanceLifecycleConfig operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.

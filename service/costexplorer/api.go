@@ -12,7 +12,7 @@ const opGetCostAndUsage = "GetCostAndUsage"
 
 // GetCostAndUsageRequest generates a "aws/request.Request" representing the
 // client's request for the GetCostAndUsage operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -106,7 +106,7 @@ const opGetDimensionValues = "GetDimensionValues"
 
 // GetDimensionValuesRequest generates a "aws/request.Request" representing the
 // client's request for the GetDimensionValues operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -192,7 +192,7 @@ const opGetReservationCoverage = "GetReservationCoverage"
 
 // GetReservationCoverageRequest generates a "aws/request.Request" representing the
 // client's request for the GetReservationCoverage operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -296,7 +296,7 @@ const opGetReservationPurchaseRecommendation = "GetReservationPurchaseRecommenda
 
 // GetReservationPurchaseRecommendationRequest generates a "aws/request.Request" representing the
 // client's request for the GetReservationPurchaseRecommendation operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -398,7 +398,7 @@ const opGetReservationUtilization = "GetReservationUtilization"
 
 // GetReservationUtilizationRequest generates a "aws/request.Request" representing the
 // client's request for the GetReservationUtilization operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -487,7 +487,7 @@ const opGetTags = "GetTags"
 
 // GetTagsRequest generates a "aws/request.Request" representing the
 // client's request for the GetTags operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.

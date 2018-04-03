@@ -15,7 +15,7 @@ const opCreateScalingPlan = "CreateScalingPlan"
 
 // CreateScalingPlanRequest generates a "aws/request.Request" representing the
 // client's request for the CreateScalingPlan operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -110,7 +110,7 @@ const opDeleteScalingPlan = "DeleteScalingPlan"
 
 // DeleteScalingPlanRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteScalingPlan operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -199,7 +199,7 @@ const opDescribeScalingPlanResources = "DescribeScalingPlanResources"
 
 // DescribeScalingPlanResourcesRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeScalingPlanResources operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -288,7 +288,7 @@ const opDescribeScalingPlans = "DescribeScalingPlans"
 
 // DescribeScalingPlansRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeScalingPlans operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.

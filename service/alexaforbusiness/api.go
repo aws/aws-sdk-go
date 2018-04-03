@@ -14,7 +14,7 @@ const opAssociateContactWithAddressBook = "AssociateContactWithAddressBook"
 
 // AssociateContactWithAddressBookRequest generates a "aws/request.Request" representing the
 // client's request for the AssociateContactWithAddressBook operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -88,7 +88,7 @@ const opAssociateDeviceWithRoom = "AssociateDeviceWithRoom"
 
 // AssociateDeviceWithRoomRequest generates a "aws/request.Request" representing the
 // client's request for the AssociateDeviceWithRoom operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -171,7 +171,7 @@ const opAssociateSkillGroupWithRoom = "AssociateSkillGroupWithRoom"
 
 // AssociateSkillGroupWithRoomRequest generates a "aws/request.Request" representing the
 // client's request for the AssociateSkillGroupWithRoom operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -246,7 +246,7 @@ const opCreateAddressBook = "CreateAddressBook"
 
 // CreateAddressBookRequest generates a "aws/request.Request" representing the
 // client's request for the CreateAddressBook operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -329,7 +329,7 @@ const opCreateContact = "CreateContact"
 
 // CreateContactRequest generates a "aws/request.Request" representing the
 // client's request for the CreateContact operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -412,7 +412,7 @@ const opCreateProfile = "CreateProfile"
 
 // CreateProfileRequest generates a "aws/request.Request" representing the
 // client's request for the CreateProfile operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -495,7 +495,7 @@ const opCreateRoom = "CreateRoom"
 
 // CreateRoomRequest generates a "aws/request.Request" representing the
 // client's request for the CreateRoom operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -578,7 +578,7 @@ const opCreateSkillGroup = "CreateSkillGroup"
 
 // CreateSkillGroupRequest generates a "aws/request.Request" representing the
 // client's request for the CreateSkillGroup operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -661,7 +661,7 @@ const opCreateUser = "CreateUser"
 
 // CreateUserRequest generates a "aws/request.Request" representing the
 // client's request for the CreateUser operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -744,7 +744,7 @@ const opDeleteAddressBook = "DeleteAddressBook"
 
 // DeleteAddressBookRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteAddressBook operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -823,7 +823,7 @@ const opDeleteContact = "DeleteContact"
 
 // DeleteContactRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteContact operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -902,7 +902,7 @@ const opDeleteProfile = "DeleteProfile"
 
 // DeleteProfileRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteProfile operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -981,7 +981,7 @@ const opDeleteRoom = "DeleteRoom"
 
 // DeleteRoomRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteRoom operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1060,7 +1060,7 @@ const opDeleteRoomSkillParameter = "DeleteRoomSkillParameter"
 
 // DeleteRoomSkillParameterRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteRoomSkillParameter operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1134,7 +1134,7 @@ const opDeleteSkillGroup = "DeleteSkillGroup"
 
 // DeleteSkillGroupRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteSkillGroup operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1213,7 +1213,7 @@ const opDeleteUser = "DeleteUser"
 
 // DeleteUserRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteUser operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1292,7 +1292,7 @@ const opDisassociateContactFromAddressBook = "DisassociateContactFromAddressBook
 
 // DisassociateContactFromAddressBookRequest generates a "aws/request.Request" representing the
 // client's request for the DisassociateContactFromAddressBook operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1366,7 +1366,7 @@ const opDisassociateDeviceFromRoom = "DisassociateDeviceFromRoom"
 
 // DisassociateDeviceFromRoomRequest generates a "aws/request.Request" representing the
 // client's request for the DisassociateDeviceFromRoom operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1442,7 +1442,7 @@ const opDisassociateSkillGroupFromRoom = "DisassociateSkillGroupFromRoom"
 
 // DisassociateSkillGroupFromRoomRequest generates a "aws/request.Request" representing the
 // client's request for the DisassociateSkillGroupFromRoom operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1517,7 +1517,7 @@ const opGetAddressBook = "GetAddressBook"
 
 // GetAddressBookRequest generates a "aws/request.Request" representing the
 // client's request for the GetAddressBook operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1596,7 +1596,7 @@ const opGetContact = "GetContact"
 
 // GetContactRequest generates a "aws/request.Request" representing the
 // client's request for the GetContact operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1675,7 +1675,7 @@ const opGetDevice = "GetDevice"
 
 // GetDeviceRequest generates a "aws/request.Request" representing the
 // client's request for the GetDevice operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1754,7 +1754,7 @@ const opGetProfile = "GetProfile"
 
 // GetProfileRequest generates a "aws/request.Request" representing the
 // client's request for the GetProfile operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1833,7 +1833,7 @@ const opGetRoom = "GetRoom"
 
 // GetRoomRequest generates a "aws/request.Request" representing the
 // client's request for the GetRoom operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1912,7 +1912,7 @@ const opGetRoomSkillParameter = "GetRoomSkillParameter"
 
 // GetRoomSkillParameterRequest generates a "aws/request.Request" representing the
 // client's request for the GetRoomSkillParameter operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1991,7 +1991,7 @@ const opGetSkillGroup = "GetSkillGroup"
 
 // GetSkillGroupRequest generates a "aws/request.Request" representing the
 // client's request for the GetSkillGroup operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2070,7 +2070,7 @@ const opListSkills = "ListSkills"
 
 // ListSkillsRequest generates a "aws/request.Request" representing the
 // client's request for the ListSkills operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2200,7 +2200,7 @@ const opListTags = "ListTags"
 
 // ListTagsRequest generates a "aws/request.Request" representing the
 // client's request for the ListTags operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2335,7 +2335,7 @@ const opPutRoomSkillParameter = "PutRoomSkillParameter"
 
 // PutRoomSkillParameterRequest generates a "aws/request.Request" representing the
 // client's request for the PutRoomSkillParameter operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2410,7 +2410,7 @@ const opResolveRoom = "ResolveRoom"
 
 // ResolveRoomRequest generates a "aws/request.Request" representing the
 // client's request for the ResolveRoom operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2490,7 +2490,7 @@ const opRevokeInvitation = "RevokeInvitation"
 
 // RevokeInvitationRequest generates a "aws/request.Request" representing the
 // client's request for the RevokeInvitation operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2569,7 +2569,7 @@ const opSearchAddressBooks = "SearchAddressBooks"
 
 // SearchAddressBooksRequest generates a "aws/request.Request" representing the
 // client's request for the SearchAddressBooks operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2700,7 +2700,7 @@ const opSearchContacts = "SearchContacts"
 
 // SearchContactsRequest generates a "aws/request.Request" representing the
 // client's request for the SearchContacts operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2830,7 +2830,7 @@ const opSearchDevices = "SearchDevices"
 
 // SearchDevicesRequest generates a "aws/request.Request" representing the
 // client's request for the SearchDevices operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2960,7 +2960,7 @@ const opSearchProfiles = "SearchProfiles"
 
 // SearchProfilesRequest generates a "aws/request.Request" representing the
 // client's request for the SearchProfiles operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3090,7 +3090,7 @@ const opSearchRooms = "SearchRooms"
 
 // SearchRoomsRequest generates a "aws/request.Request" representing the
 // client's request for the SearchRooms operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3220,7 +3220,7 @@ const opSearchSkillGroups = "SearchSkillGroups"
 
 // SearchSkillGroupsRequest generates a "aws/request.Request" representing the
 // client's request for the SearchSkillGroups operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3351,7 +3351,7 @@ const opSearchUsers = "SearchUsers"
 
 // SearchUsersRequest generates a "aws/request.Request" representing the
 // client's request for the SearchUsers operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3481,7 +3481,7 @@ const opSendInvitation = "SendInvitation"
 
 // SendInvitationRequest generates a "aws/request.Request" representing the
 // client's request for the SendInvitation operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3565,7 +3565,7 @@ const opStartDeviceSync = "StartDeviceSync"
 
 // StartDeviceSyncRequest generates a "aws/request.Request" representing the
 // client's request for the StartDeviceSync operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3640,7 +3640,7 @@ const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
 // client's request for the TagResource operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3719,7 +3719,7 @@ const opUntagResource = "UntagResource"
 
 // UntagResourceRequest generates a "aws/request.Request" representing the
 // client's request for the UntagResource operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3798,7 +3798,7 @@ const opUpdateAddressBook = "UpdateAddressBook"
 
 // UpdateAddressBookRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateAddressBook operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3880,7 +3880,7 @@ const opUpdateContact = "UpdateContact"
 
 // UpdateContactRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateContact operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3959,7 +3959,7 @@ const opUpdateDevice = "UpdateDevice"
 
 // UpdateDeviceRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateDevice operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -4038,7 +4038,7 @@ const opUpdateProfile = "UpdateProfile"
 
 // UpdateProfileRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateProfile operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -4120,7 +4120,7 @@ const opUpdateRoom = "UpdateRoom"
 
 // UpdateRoomRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateRoom operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -4202,7 +4202,7 @@ const opUpdateSkillGroup = "UpdateSkillGroup"
 
 // UpdateSkillGroupRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateSkillGroup operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.

@@ -64,6 +64,10 @@ type DeviceFarmAPI interface {
 	CreateDevicePoolWithContext(aws.Context, *devicefarm.CreateDevicePoolInput, ...request.Option) (*devicefarm.CreateDevicePoolOutput, error)
 	CreateDevicePoolRequest(*devicefarm.CreateDevicePoolInput) (*request.Request, *devicefarm.CreateDevicePoolOutput)
 
+	CreateInstanceProfile(*devicefarm.CreateInstanceProfileInput) (*devicefarm.CreateInstanceProfileOutput, error)
+	CreateInstanceProfileWithContext(aws.Context, *devicefarm.CreateInstanceProfileInput, ...request.Option) (*devicefarm.CreateInstanceProfileOutput, error)
+	CreateInstanceProfileRequest(*devicefarm.CreateInstanceProfileInput) (*request.Request, *devicefarm.CreateInstanceProfileOutput)
+
 	CreateNetworkProfile(*devicefarm.CreateNetworkProfileInput) (*devicefarm.CreateNetworkProfileOutput, error)
 	CreateNetworkProfileWithContext(aws.Context, *devicefarm.CreateNetworkProfileInput, ...request.Option) (*devicefarm.CreateNetworkProfileOutput, error)
 	CreateNetworkProfileRequest(*devicefarm.CreateNetworkProfileInput) (*request.Request, *devicefarm.CreateNetworkProfileOutput)
@@ -83,6 +87,10 @@ type DeviceFarmAPI interface {
 	DeleteDevicePool(*devicefarm.DeleteDevicePoolInput) (*devicefarm.DeleteDevicePoolOutput, error)
 	DeleteDevicePoolWithContext(aws.Context, *devicefarm.DeleteDevicePoolInput, ...request.Option) (*devicefarm.DeleteDevicePoolOutput, error)
 	DeleteDevicePoolRequest(*devicefarm.DeleteDevicePoolInput) (*request.Request, *devicefarm.DeleteDevicePoolOutput)
+
+	DeleteInstanceProfile(*devicefarm.DeleteInstanceProfileInput) (*devicefarm.DeleteInstanceProfileOutput, error)
+	DeleteInstanceProfileWithContext(aws.Context, *devicefarm.DeleteInstanceProfileInput, ...request.Option) (*devicefarm.DeleteInstanceProfileOutput, error)
+	DeleteInstanceProfileRequest(*devicefarm.DeleteInstanceProfileInput) (*request.Request, *devicefarm.DeleteInstanceProfileOutput)
 
 	DeleteNetworkProfile(*devicefarm.DeleteNetworkProfileInput) (*devicefarm.DeleteNetworkProfileOutput, error)
 	DeleteNetworkProfileWithContext(aws.Context, *devicefarm.DeleteNetworkProfileInput, ...request.Option) (*devicefarm.DeleteNetworkProfileOutput, error)
@@ -112,6 +120,10 @@ type DeviceFarmAPI interface {
 	GetDeviceWithContext(aws.Context, *devicefarm.GetDeviceInput, ...request.Option) (*devicefarm.GetDeviceOutput, error)
 	GetDeviceRequest(*devicefarm.GetDeviceInput) (*request.Request, *devicefarm.GetDeviceOutput)
 
+	GetDeviceInstance(*devicefarm.GetDeviceInstanceInput) (*devicefarm.GetDeviceInstanceOutput, error)
+	GetDeviceInstanceWithContext(aws.Context, *devicefarm.GetDeviceInstanceInput, ...request.Option) (*devicefarm.GetDeviceInstanceOutput, error)
+	GetDeviceInstanceRequest(*devicefarm.GetDeviceInstanceInput) (*request.Request, *devicefarm.GetDeviceInstanceOutput)
+
 	GetDevicePool(*devicefarm.GetDevicePoolInput) (*devicefarm.GetDevicePoolOutput, error)
 	GetDevicePoolWithContext(aws.Context, *devicefarm.GetDevicePoolInput, ...request.Option) (*devicefarm.GetDevicePoolOutput, error)
 	GetDevicePoolRequest(*devicefarm.GetDevicePoolInput) (*request.Request, *devicefarm.GetDevicePoolOutput)
@@ -119,6 +131,10 @@ type DeviceFarmAPI interface {
 	GetDevicePoolCompatibility(*devicefarm.GetDevicePoolCompatibilityInput) (*devicefarm.GetDevicePoolCompatibilityOutput, error)
 	GetDevicePoolCompatibilityWithContext(aws.Context, *devicefarm.GetDevicePoolCompatibilityInput, ...request.Option) (*devicefarm.GetDevicePoolCompatibilityOutput, error)
 	GetDevicePoolCompatibilityRequest(*devicefarm.GetDevicePoolCompatibilityInput) (*request.Request, *devicefarm.GetDevicePoolCompatibilityOutput)
+
+	GetInstanceProfile(*devicefarm.GetInstanceProfileInput) (*devicefarm.GetInstanceProfileOutput, error)
+	GetInstanceProfileWithContext(aws.Context, *devicefarm.GetInstanceProfileInput, ...request.Option) (*devicefarm.GetInstanceProfileOutput, error)
+	GetInstanceProfileRequest(*devicefarm.GetInstanceProfileInput) (*request.Request, *devicefarm.GetInstanceProfileOutput)
 
 	GetJob(*devicefarm.GetJobInput) (*devicefarm.GetJobOutput, error)
 	GetJobWithContext(aws.Context, *devicefarm.GetJobInput, ...request.Option) (*devicefarm.GetJobOutput, error)
@@ -170,6 +186,10 @@ type DeviceFarmAPI interface {
 	ListArtifactsPages(*devicefarm.ListArtifactsInput, func(*devicefarm.ListArtifactsOutput, bool) bool) error
 	ListArtifactsPagesWithContext(aws.Context, *devicefarm.ListArtifactsInput, func(*devicefarm.ListArtifactsOutput, bool) bool, ...request.Option) error
 
+	ListDeviceInstances(*devicefarm.ListDeviceInstancesInput) (*devicefarm.ListDeviceInstancesOutput, error)
+	ListDeviceInstancesWithContext(aws.Context, *devicefarm.ListDeviceInstancesInput, ...request.Option) (*devicefarm.ListDeviceInstancesOutput, error)
+	ListDeviceInstancesRequest(*devicefarm.ListDeviceInstancesInput) (*request.Request, *devicefarm.ListDeviceInstancesOutput)
+
 	ListDevicePools(*devicefarm.ListDevicePoolsInput) (*devicefarm.ListDevicePoolsOutput, error)
 	ListDevicePoolsWithContext(aws.Context, *devicefarm.ListDevicePoolsInput, ...request.Option) (*devicefarm.ListDevicePoolsOutput, error)
 	ListDevicePoolsRequest(*devicefarm.ListDevicePoolsInput) (*request.Request, *devicefarm.ListDevicePoolsOutput)
@@ -183,6 +203,10 @@ type DeviceFarmAPI interface {
 
 	ListDevicesPages(*devicefarm.ListDevicesInput, func(*devicefarm.ListDevicesOutput, bool) bool) error
 	ListDevicesPagesWithContext(aws.Context, *devicefarm.ListDevicesInput, func(*devicefarm.ListDevicesOutput, bool) bool, ...request.Option) error
+
+	ListInstanceProfiles(*devicefarm.ListInstanceProfilesInput) (*devicefarm.ListInstanceProfilesOutput, error)
+	ListInstanceProfilesWithContext(aws.Context, *devicefarm.ListInstanceProfilesInput, ...request.Option) (*devicefarm.ListInstanceProfilesOutput, error)
+	ListInstanceProfilesRequest(*devicefarm.ListInstanceProfilesInput) (*request.Request, *devicefarm.ListInstanceProfilesOutput)
 
 	ListJobs(*devicefarm.ListJobsInput) (*devicefarm.ListJobsOutput, error)
 	ListJobsWithContext(aws.Context, *devicefarm.ListJobsInput, ...request.Option) (*devicefarm.ListJobsOutput, error)
@@ -286,9 +310,17 @@ type DeviceFarmAPI interface {
 	StopRunWithContext(aws.Context, *devicefarm.StopRunInput, ...request.Option) (*devicefarm.StopRunOutput, error)
 	StopRunRequest(*devicefarm.StopRunInput) (*request.Request, *devicefarm.StopRunOutput)
 
+	UpdateDeviceInstance(*devicefarm.UpdateDeviceInstanceInput) (*devicefarm.UpdateDeviceInstanceOutput, error)
+	UpdateDeviceInstanceWithContext(aws.Context, *devicefarm.UpdateDeviceInstanceInput, ...request.Option) (*devicefarm.UpdateDeviceInstanceOutput, error)
+	UpdateDeviceInstanceRequest(*devicefarm.UpdateDeviceInstanceInput) (*request.Request, *devicefarm.UpdateDeviceInstanceOutput)
+
 	UpdateDevicePool(*devicefarm.UpdateDevicePoolInput) (*devicefarm.UpdateDevicePoolOutput, error)
 	UpdateDevicePoolWithContext(aws.Context, *devicefarm.UpdateDevicePoolInput, ...request.Option) (*devicefarm.UpdateDevicePoolOutput, error)
 	UpdateDevicePoolRequest(*devicefarm.UpdateDevicePoolInput) (*request.Request, *devicefarm.UpdateDevicePoolOutput)
+
+	UpdateInstanceProfile(*devicefarm.UpdateInstanceProfileInput) (*devicefarm.UpdateInstanceProfileOutput, error)
+	UpdateInstanceProfileWithContext(aws.Context, *devicefarm.UpdateInstanceProfileInput, ...request.Option) (*devicefarm.UpdateInstanceProfileOutput, error)
+	UpdateInstanceProfileRequest(*devicefarm.UpdateInstanceProfileInput) (*request.Request, *devicefarm.UpdateInstanceProfileOutput)
 
 	UpdateNetworkProfile(*devicefarm.UpdateNetworkProfileInput) (*devicefarm.UpdateNetworkProfileOutput, error)
 	UpdateNetworkProfileWithContext(aws.Context, *devicefarm.UpdateNetworkProfileInput, ...request.Option) (*devicefarm.UpdateNetworkProfileOutput, error)
