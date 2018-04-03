@@ -14,7 +14,7 @@ const opGetTranscriptionJob = "GetTranscriptionJob"
 
 // GetTranscriptionJobRequest generates a "aws/request.Request" representing the
 // client's request for the GetTranscriptionJob operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -111,7 +111,7 @@ const opListTranscriptionJobs = "ListTranscriptionJobs"
 
 // ListTranscriptionJobsRequest generates a "aws/request.Request" representing the
 // client's request for the ListTranscriptionJobs operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -257,7 +257,7 @@ const opStartTranscriptionJob = "StartTranscriptionJob"
 
 // StartTranscriptionJobRequest generates a "aws/request.Request" representing the
 // client's request for the StartTranscriptionJob operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
