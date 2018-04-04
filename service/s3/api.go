@@ -6807,6 +6807,9 @@ func (s *BucketLifecycleConfiguration) SetRules(v []*LifecycleRule) *BucketLifec
 type BucketLoggingStatus struct {
 	_ struct{} `type:"structure"`
 
+	// Container for logging information. Presence of this element indicates that
+	// logging is enabled. Parameters TargetBucket and TargetPrefix are required
+	// in this case.
 	LoggingEnabled *LoggingEnabled `type:"structure"`
 }
 
@@ -10720,6 +10723,9 @@ func (s *GetBucketLoggingInput) getBucket() (v string) {
 type GetBucketLoggingOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Container for logging information. Presence of this element indicates that
+	// logging is enabled. Parameters TargetBucket and TargetPrefix are required
+	// in this case.
 	LoggingEnabled *LoggingEnabled `type:"structure"`
 }
 
@@ -12865,6 +12871,13 @@ type InputSerialization struct {
 
 	// Describes the serialization of a CSV-encoded object.
 	CSV *CSVInput `type:"structure"`
+
+	// Specifies object's compression format. Valid values: NONE, GZIP. Default
+	// Value: NONE.
+	CompressionType *string `type:"string" enum:"CompressionType"`
+
+	// Specifies JSON as object's input serialization format.
+	JSON *JSONInput `type:"structure"`
 }
 
 // String returns the string representation
@@ -12880,6 +12893,18 @@ func (s InputSerialization) GoString() string {
 // SetCSV sets the CSV field's value.
 func (s *InputSerialization) SetCSV(v *CSVInput) *InputSerialization {
 	s.CSV = v
+	return s
+}
+
+// SetCompressionType sets the CompressionType field's value.
+func (s *InputSerialization) SetCompressionType(v string) *InputSerialization {
+	s.CompressionType = &v
+	return s
+}
+
+// SetJSON sets the JSON field's value.
+func (s *InputSerialization) SetJSON(v *JSONInput) *InputSerialization {
+	s.JSON = v
 	return s
 }
 
@@ -13270,6 +13295,52 @@ func (s *InventorySchedule) Validate() error {
 // SetFrequency sets the Frequency field's value.
 func (s *InventorySchedule) SetFrequency(v string) *InventorySchedule {
 	s.Frequency = &v
+	return s
+}
+
+type JSONInput struct {
+	_ struct{} `type:"structure"`
+
+	// The type of JSON. Valid values: Document, Lines.
+	Type *string `type:"string" enum:"JSONType"`
+}
+
+// String returns the string representation
+func (s JSONInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s JSONInput) GoString() string {
+	return s.String()
+}
+
+// SetType sets the Type field's value.
+func (s *JSONInput) SetType(v string) *JSONInput {
+	s.Type = &v
+	return s
+}
+
+type JSONOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The value used to separate individual records in the output.
+	RecordDelimiter *string `type:"string"`
+}
+
+// String returns the string representation
+func (s JSONOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s JSONOutput) GoString() string {
+	return s.String()
+}
+
+// SetRecordDelimiter sets the RecordDelimiter field's value.
+func (s *JSONOutput) SetRecordDelimiter(v string) *JSONOutput {
+	s.RecordDelimiter = &v
 	return s
 }
 
@@ -15397,6 +15468,9 @@ func (s *Location) SetUserMetadata(v []*MetadataEntry) *Location {
 	return s
 }
 
+// Container for logging information. Presence of this element indicates that
+// logging is enabled. Parameters TargetBucket and TargetPrefix are required
+// in this case.
 type LoggingEnabled struct {
 	_ struct{} `type:"structure"`
 
@@ -15406,13 +15480,17 @@ type LoggingEnabled struct {
 	// to deliver their logs to the same target bucket. In this case you should
 	// choose a different TargetPrefix for each source bucket so that the delivered
 	// log files can be distinguished by key.
-	TargetBucket *string `type:"string"`
+	//
+	// TargetBucket is a required field
+	TargetBucket *string `type:"string" required:"true"`
 
 	TargetGrants []*TargetGrant `locationNameList:"Grant" type:"list"`
 
 	// This element lets you specify a prefix for the keys that the log files will
 	// be stored under.
-	TargetPrefix *string `type:"string"`
+	//
+	// TargetPrefix is a required field
+	TargetPrefix *string `type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -15428,6 +15506,12 @@ func (s LoggingEnabled) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *LoggingEnabled) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "LoggingEnabled"}
+	if s.TargetBucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetBucket"))
+	}
+	if s.TargetPrefix == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetPrefix"))
+	}
 	if s.TargetGrants != nil {
 		for i, v := range s.TargetGrants {
 			if v == nil {
@@ -15762,10 +15846,11 @@ func (s *NoncurrentVersionExpiration) SetNoncurrentDays(v int64) *NoncurrentVers
 }
 
 // Container for the transition rule that describes when noncurrent objects
-// transition to the STANDARD_IA or GLACIER storage class. If your bucket is
-// versioning-enabled (or versioning is suspended), you can set this action
-// to request that Amazon S3 transition noncurrent object versions to the STANDARD_IA
-// or GLACIER storage class at a specific period in the object's lifetime.
+// transition to the STANDARD_IA, ONEZONE_IA or GLACIER storage class. If your
+// bucket is versioning-enabled (or versioning is suspended), you can set this
+// action to request that Amazon S3 transition noncurrent object versions to
+// the STANDARD_IA, ONEZONE_IA or GLACIER storage class at a specific period
+// in the object's lifetime.
 type NoncurrentVersionTransition struct {
 	_ struct{} `type:"structure"`
 
@@ -16187,6 +16272,9 @@ type OutputSerialization struct {
 
 	// Describes the serialization of CSV-encoded Select results.
 	CSV *CSVOutput `type:"structure"`
+
+	// Specifies JSON as request's output serialization format.
+	JSON *JSONOutput `type:"structure"`
 }
 
 // String returns the string representation
@@ -16202,6 +16290,12 @@ func (s OutputSerialization) GoString() string {
 // SetCSV sets the CSV field's value.
 func (s *OutputSerialization) SetCSV(v *CSVOutput) *OutputSerialization {
 	s.CSV = v
+	return s
+}
+
+// SetJSON sets the JSON field's value.
+func (s *OutputSerialization) SetJSON(v *JSONOutput) *OutputSerialization {
+	s.JSON = v
 	return s
 }
 
@@ -19148,10 +19242,11 @@ type Rule struct {
 	NoncurrentVersionExpiration *NoncurrentVersionExpiration `type:"structure"`
 
 	// Container for the transition rule that describes when noncurrent objects
-	// transition to the STANDARD_IA or GLACIER storage class. If your bucket is
-	// versioning-enabled (or versioning is suspended), you can set this action
-	// to request that Amazon S3 transition noncurrent object versions to the STANDARD_IA
-	// or GLACIER storage class at a specific period in the object's lifetime.
+	// transition to the STANDARD_IA, ONEZONE_IA or GLACIER storage class. If your
+	// bucket is versioning-enabled (or versioning is suspended), you can set this
+	// action to request that Amazon S3 transition noncurrent object versions to
+	// the STANDARD_IA, ONEZONE_IA or GLACIER storage class at a specific period
+	// in the object's lifetime.
 	NoncurrentVersionTransition *NoncurrentVersionTransition `type:"structure"`
 
 	// Prefix identifying one or more objects to which the rule applies.
@@ -20781,6 +20876,14 @@ const (
 	BucketVersioningStatusSuspended = "Suspended"
 )
 
+const (
+	// CompressionTypeNone is a CompressionType enum value
+	CompressionTypeNone = "NONE"
+
+	// CompressionTypeGzip is a CompressionType enum value
+	CompressionTypeGzip = "GZIP"
+)
+
 // Requests Amazon S3 to encode the object keys in the response and specifies
 // the encoding method to use. An object key may contain any Unicode character;
 // however, XML 1.0 parser cannot parse some characters, such as characters
@@ -20902,6 +21005,14 @@ const (
 )
 
 const (
+	// JSONTypeDocument is a JSONType enum value
+	JSONTypeDocument = "DOCUMENT"
+
+	// JSONTypeLines is a JSONType enum value
+	JSONTypeLines = "LINES"
+)
+
+const (
 	// MFADeleteEnabled is a MFADelete enum value
 	MFADeleteEnabled = "Enabled"
 
@@ -20957,6 +21068,12 @@ const (
 
 	// ObjectStorageClassGlacier is a ObjectStorageClass enum value
 	ObjectStorageClassGlacier = "GLACIER"
+
+	// ObjectStorageClassStandardIa is a ObjectStorageClass enum value
+	ObjectStorageClassStandardIa = "STANDARD_IA"
+
+	// ObjectStorageClassOnezoneIa is a ObjectStorageClass enum value
+	ObjectStorageClassOnezoneIa = "ONEZONE_IA"
 )
 
 const (
@@ -21078,6 +21195,9 @@ const (
 
 	// StorageClassStandardIa is a StorageClass enum value
 	StorageClassStandardIa = "STANDARD_IA"
+
+	// StorageClassOnezoneIa is a StorageClass enum value
+	StorageClassOnezoneIa = "ONEZONE_IA"
 )
 
 const (
@@ -21110,6 +21230,9 @@ const (
 
 	// TransitionStorageClassStandardIa is a TransitionStorageClass enum value
 	TransitionStorageClassStandardIa = "STANDARD_IA"
+
+	// TransitionStorageClassOnezoneIa is a TransitionStorageClass enum value
+	TransitionStorageClassOnezoneIa = "ONEZONE_IA"
 )
 
 const (

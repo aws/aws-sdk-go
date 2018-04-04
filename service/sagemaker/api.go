@@ -556,6 +556,18 @@ func (c *SageMaker) CreateNotebookInstanceLifecycleConfigRequest(input *CreateNo
 // instance. A lifecycle configuration is a collection of shell scripts that
 // run when you create or start a notebook instance.
 //
+// Each lifecycle configuration script has a limit of 16384 characters.
+//
+// The value of the $PATH environment variable that is available to both scripts
+// is /sbin:bin:/usr/sbin:/usr/bin.
+//
+// View CloudWatch Logs for notebook instance lifecycle configurations in log
+// group /aws/sagemaker/NotebookInstances in log stream [notebook-instance-name]/[LifecycleConfigHook].
+//
+// Lifecycle configuration scripts cannot run for longer than 5 minutes. If
+// a script runs for longer than 5 minutes, it fails and the notebook instance
+// is not created or started.
+//
 // For information about notebook instance lifestyle configurations, see notebook-lifecycle-config.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3308,13 +3320,13 @@ func (s *AddTagsOutput) SetTags(v []*Tag) *AddTagsOutput {
 //
 // For more information about algorithms provided by Amazon SageMaker, see Algorithms
 // (http://docs.aws.amazon.com/sagemaker/latest/dg/algos.html). For information
-// about using your own algorithms, see Bring Your Own Algorithms  (http://docs.aws.amazon.com/sagemaker/latest/dg/adv-topics-own-algo.html).
+// about using your own algorithms, see your-algorithms.
 type AlgorithmSpecification struct {
 	_ struct{} `type:"structure"`
 
 	// The registry path of the Docker image that contains the training algorithm.
-	// For information about using your own algorithms, see Docker Registry Paths
-	// for Algorithms Provided by Amazon SageMaker  (http://docs.aws.amazon.com/sagemaker/latest/dg/algos-docker-registry-paths.html).
+	// For information about docker registry paths for built-in algorithms, see
+	// sagemaker-algo-docker-registry-paths.
 	//
 	// TrainingImage is a required field
 	TrainingImage *string `type:"string" required:"true"`
@@ -4252,8 +4264,7 @@ type CreateTrainingJobInput struct {
 	// The registry path of the Docker image that contains the training algorithm
 	// and algorithm-specific metadata, including the input mode. For more information
 	// about algorithms provided by Amazon SageMaker, see Algorithms (http://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).
-	// For information about providing your own algorithms, see Bring Your Own Algorithms
-	//  (http://docs.aws.amazon.com/sagemaker/latest/dg/adv-topics-own-algo.html).
+	// For information about providing your own algorithms, see your-algorithms.
 	//
 	// AlgorithmSpecification is a required field
 	AlgorithmSpecification *AlgorithmSpecification `type:"structure" required:"true"`
@@ -5387,7 +5398,10 @@ type DescribeNotebookInstanceOutput struct {
 	// was created
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	// Describes whether the notebook instance has internet access.
+	// Describes whether Amazon SageMaker provides internet access to the notebook
+	// instance. If this value is set to Disabled, he notebook instance does not
+	// have internet access, and cannot connect to Amazon SageMaker training and
+	// endpoint services.
 	//
 	// For more information, see appendix-notebook-and-internet-access.
 	DirectInternetAccess *string `type:"string" enum:"DirectInternetAccess"`
@@ -7091,7 +7105,17 @@ func (s *NotebookInstanceLifecycleConfigSummary) SetNotebookInstanceLifecycleCon
 
 // Contains the notebook instance lifecycle configuration script.
 //
-// This script runs in the path /sbin:bin:/usr/sbin:/usr/bin.
+// Each lifecycle configuration script has a limit of 16384 characters.
+//
+// The value of the $PATH environment variable that is available to both scripts
+// is /sbin:bin:/usr/sbin:/usr/bin.
+//
+// View CloudWatch Logs for notebook instance lifecycle configurations in log
+// group /aws/sagemaker/NotebookInstances in log stream [notebook-instance-name]/[LifecycleConfigHook].
+//
+// Lifecycle configuration scripts cannot run for longer than 5 minutes. If
+// a script runs for longer than 5 minutes, it fails and the notebook instance
+// is not created or started.
 //
 // For information about notebook instance lifestyle configurations, see notebook-lifecycle-config.
 type NotebookInstanceLifecycleHook struct {
@@ -8405,14 +8429,47 @@ const (
 	// InstanceTypeMlT2Medium is a InstanceType enum value
 	InstanceTypeMlT2Medium = "ml.t2.medium"
 
+	// InstanceTypeMlT2Large is a InstanceType enum value
+	InstanceTypeMlT2Large = "ml.t2.large"
+
+	// InstanceTypeMlT2Xlarge is a InstanceType enum value
+	InstanceTypeMlT2Xlarge = "ml.t2.xlarge"
+
+	// InstanceTypeMlT22xlarge is a InstanceType enum value
+	InstanceTypeMlT22xlarge = "ml.t2.2xlarge"
+
 	// InstanceTypeMlM4Xlarge is a InstanceType enum value
 	InstanceTypeMlM4Xlarge = "ml.m4.xlarge"
+
+	// InstanceTypeMlM42xlarge is a InstanceType enum value
+	InstanceTypeMlM42xlarge = "ml.m4.2xlarge"
+
+	// InstanceTypeMlM44xlarge is a InstanceType enum value
+	InstanceTypeMlM44xlarge = "ml.m4.4xlarge"
+
+	// InstanceTypeMlM410xlarge is a InstanceType enum value
+	InstanceTypeMlM410xlarge = "ml.m4.10xlarge"
+
+	// InstanceTypeMlM416xlarge is a InstanceType enum value
+	InstanceTypeMlM416xlarge = "ml.m4.16xlarge"
 
 	// InstanceTypeMlP2Xlarge is a InstanceType enum value
 	InstanceTypeMlP2Xlarge = "ml.p2.xlarge"
 
+	// InstanceTypeMlP28xlarge is a InstanceType enum value
+	InstanceTypeMlP28xlarge = "ml.p2.8xlarge"
+
+	// InstanceTypeMlP216xlarge is a InstanceType enum value
+	InstanceTypeMlP216xlarge = "ml.p2.16xlarge"
+
 	// InstanceTypeMlP32xlarge is a InstanceType enum value
 	InstanceTypeMlP32xlarge = "ml.p3.2xlarge"
+
+	// InstanceTypeMlP38xlarge is a InstanceType enum value
+	InstanceTypeMlP38xlarge = "ml.p3.8xlarge"
+
+	// InstanceTypeMlP316xlarge is a InstanceType enum value
+	InstanceTypeMlP316xlarge = "ml.p3.16xlarge"
 )
 
 const (
@@ -8490,35 +8547,101 @@ const (
 )
 
 const (
-	// ProductionVariantInstanceTypeMlC42xlarge is a ProductionVariantInstanceType enum value
-	ProductionVariantInstanceTypeMlC42xlarge = "ml.c4.2xlarge"
+	// ProductionVariantInstanceTypeMlT2Medium is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlT2Medium = "ml.t2.medium"
 
-	// ProductionVariantInstanceTypeMlC48xlarge is a ProductionVariantInstanceType enum value
-	ProductionVariantInstanceTypeMlC48xlarge = "ml.c4.8xlarge"
+	// ProductionVariantInstanceTypeMlT2Large is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlT2Large = "ml.t2.large"
 
-	// ProductionVariantInstanceTypeMlC4Xlarge is a ProductionVariantInstanceType enum value
-	ProductionVariantInstanceTypeMlC4Xlarge = "ml.c4.xlarge"
+	// ProductionVariantInstanceTypeMlT2Xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlT2Xlarge = "ml.t2.xlarge"
 
-	// ProductionVariantInstanceTypeMlC52xlarge is a ProductionVariantInstanceType enum value
-	ProductionVariantInstanceTypeMlC52xlarge = "ml.c5.2xlarge"
-
-	// ProductionVariantInstanceTypeMlC59xlarge is a ProductionVariantInstanceType enum value
-	ProductionVariantInstanceTypeMlC59xlarge = "ml.c5.9xlarge"
-
-	// ProductionVariantInstanceTypeMlC5Xlarge is a ProductionVariantInstanceType enum value
-	ProductionVariantInstanceTypeMlC5Xlarge = "ml.c5.xlarge"
+	// ProductionVariantInstanceTypeMlT22xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlT22xlarge = "ml.t2.2xlarge"
 
 	// ProductionVariantInstanceTypeMlM4Xlarge is a ProductionVariantInstanceType enum value
 	ProductionVariantInstanceTypeMlM4Xlarge = "ml.m4.xlarge"
 
+	// ProductionVariantInstanceTypeMlM42xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM42xlarge = "ml.m4.2xlarge"
+
+	// ProductionVariantInstanceTypeMlM44xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM44xlarge = "ml.m4.4xlarge"
+
+	// ProductionVariantInstanceTypeMlM410xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM410xlarge = "ml.m4.10xlarge"
+
+	// ProductionVariantInstanceTypeMlM416xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM416xlarge = "ml.m4.16xlarge"
+
+	// ProductionVariantInstanceTypeMlM5Large is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM5Large = "ml.m5.large"
+
+	// ProductionVariantInstanceTypeMlM5Xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM5Xlarge = "ml.m5.xlarge"
+
+	// ProductionVariantInstanceTypeMlM52xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM52xlarge = "ml.m5.2xlarge"
+
+	// ProductionVariantInstanceTypeMlM54xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM54xlarge = "ml.m5.4xlarge"
+
+	// ProductionVariantInstanceTypeMlM512xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM512xlarge = "ml.m5.12xlarge"
+
+	// ProductionVariantInstanceTypeMlM524xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM524xlarge = "ml.m5.24xlarge"
+
+	// ProductionVariantInstanceTypeMlC4Large is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC4Large = "ml.c4.large"
+
+	// ProductionVariantInstanceTypeMlC4Xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC4Xlarge = "ml.c4.xlarge"
+
+	// ProductionVariantInstanceTypeMlC42xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC42xlarge = "ml.c4.2xlarge"
+
+	// ProductionVariantInstanceTypeMlC44xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC44xlarge = "ml.c4.4xlarge"
+
+	// ProductionVariantInstanceTypeMlC48xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC48xlarge = "ml.c4.8xlarge"
+
 	// ProductionVariantInstanceTypeMlP2Xlarge is a ProductionVariantInstanceType enum value
 	ProductionVariantInstanceTypeMlP2Xlarge = "ml.p2.xlarge"
+
+	// ProductionVariantInstanceTypeMlP28xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlP28xlarge = "ml.p2.8xlarge"
+
+	// ProductionVariantInstanceTypeMlP216xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlP216xlarge = "ml.p2.16xlarge"
 
 	// ProductionVariantInstanceTypeMlP32xlarge is a ProductionVariantInstanceType enum value
 	ProductionVariantInstanceTypeMlP32xlarge = "ml.p3.2xlarge"
 
-	// ProductionVariantInstanceTypeMlT2Medium is a ProductionVariantInstanceType enum value
-	ProductionVariantInstanceTypeMlT2Medium = "ml.t2.medium"
+	// ProductionVariantInstanceTypeMlP38xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlP38xlarge = "ml.p3.8xlarge"
+
+	// ProductionVariantInstanceTypeMlP316xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlP316xlarge = "ml.p3.16xlarge"
+
+	// ProductionVariantInstanceTypeMlC5Large is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC5Large = "ml.c5.large"
+
+	// ProductionVariantInstanceTypeMlC5Xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC5Xlarge = "ml.c5.xlarge"
+
+	// ProductionVariantInstanceTypeMlC52xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC52xlarge = "ml.c5.2xlarge"
+
+	// ProductionVariantInstanceTypeMlC54xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC54xlarge = "ml.c5.4xlarge"
+
+	// ProductionVariantInstanceTypeMlC59xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC59xlarge = "ml.c5.9xlarge"
+
+	// ProductionVariantInstanceTypeMlC518xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC518xlarge = "ml.c5.18xlarge"
 )
 
 const (
@@ -8605,17 +8728,44 @@ const (
 	// TrainingInstanceTypeMlM4Xlarge is a TrainingInstanceType enum value
 	TrainingInstanceTypeMlM4Xlarge = "ml.m4.xlarge"
 
+	// TrainingInstanceTypeMlM42xlarge is a TrainingInstanceType enum value
+	TrainingInstanceTypeMlM42xlarge = "ml.m4.2xlarge"
+
 	// TrainingInstanceTypeMlM44xlarge is a TrainingInstanceType enum value
 	TrainingInstanceTypeMlM44xlarge = "ml.m4.4xlarge"
 
 	// TrainingInstanceTypeMlM410xlarge is a TrainingInstanceType enum value
 	TrainingInstanceTypeMlM410xlarge = "ml.m4.10xlarge"
 
+	// TrainingInstanceTypeMlM416xlarge is a TrainingInstanceType enum value
+	TrainingInstanceTypeMlM416xlarge = "ml.m4.16xlarge"
+
+	// TrainingInstanceTypeMlM5Large is a TrainingInstanceType enum value
+	TrainingInstanceTypeMlM5Large = "ml.m5.large"
+
+	// TrainingInstanceTypeMlM5Xlarge is a TrainingInstanceType enum value
+	TrainingInstanceTypeMlM5Xlarge = "ml.m5.xlarge"
+
+	// TrainingInstanceTypeMlM52xlarge is a TrainingInstanceType enum value
+	TrainingInstanceTypeMlM52xlarge = "ml.m5.2xlarge"
+
+	// TrainingInstanceTypeMlM54xlarge is a TrainingInstanceType enum value
+	TrainingInstanceTypeMlM54xlarge = "ml.m5.4xlarge"
+
+	// TrainingInstanceTypeMlM512xlarge is a TrainingInstanceType enum value
+	TrainingInstanceTypeMlM512xlarge = "ml.m5.12xlarge"
+
+	// TrainingInstanceTypeMlM524xlarge is a TrainingInstanceType enum value
+	TrainingInstanceTypeMlM524xlarge = "ml.m5.24xlarge"
+
 	// TrainingInstanceTypeMlC4Xlarge is a TrainingInstanceType enum value
 	TrainingInstanceTypeMlC4Xlarge = "ml.c4.xlarge"
 
 	// TrainingInstanceTypeMlC42xlarge is a TrainingInstanceType enum value
 	TrainingInstanceTypeMlC42xlarge = "ml.c4.2xlarge"
+
+	// TrainingInstanceTypeMlC44xlarge is a TrainingInstanceType enum value
+	TrainingInstanceTypeMlC44xlarge = "ml.c4.4xlarge"
 
 	// TrainingInstanceTypeMlC48xlarge is a TrainingInstanceType enum value
 	TrainingInstanceTypeMlC48xlarge = "ml.c4.8xlarge"
