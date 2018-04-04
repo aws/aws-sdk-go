@@ -72,6 +72,10 @@ type ACMAPI interface {
 	DescribeCertificateWithContext(aws.Context, *acm.DescribeCertificateInput, ...request.Option) (*acm.DescribeCertificateOutput, error)
 	DescribeCertificateRequest(*acm.DescribeCertificateInput) (*request.Request, *acm.DescribeCertificateOutput)
 
+	ExportCertificate(*acm.ExportCertificateInput) (*acm.ExportCertificateOutput, error)
+	ExportCertificateWithContext(aws.Context, *acm.ExportCertificateInput, ...request.Option) (*acm.ExportCertificateOutput, error)
+	ExportCertificateRequest(*acm.ExportCertificateInput) (*request.Request, *acm.ExportCertificateOutput)
+
 	GetCertificate(*acm.GetCertificateInput) (*acm.GetCertificateOutput, error)
 	GetCertificateWithContext(aws.Context, *acm.GetCertificateInput, ...request.Option) (*acm.GetCertificateOutput, error)
 	GetCertificateRequest(*acm.GetCertificateInput) (*request.Request, *acm.GetCertificateOutput)
