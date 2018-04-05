@@ -1,3 +1,10 @@
+Release v1.13.29 (2018-04-05)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/ssm`: Updates service documentation
+
 Release v1.13.28 (2018-04-04)
 ===
 
