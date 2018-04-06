@@ -1,3 +1,10 @@
+Release v1.13.30 (2018-04-06)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API and documentation
+  * Support for Timeout in SubmitJob and RegisterJobDefinition
+
 Release v1.13.29 (2018-04-05)
 ===
 
