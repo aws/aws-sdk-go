@@ -57,7 +57,8 @@ func (c *CloudDirectory) AddFacetToObjectRequest(input *AddFacetToObjectInput) (
 
 // AddFacetToObject API operation for Amazon CloudDirectory.
 //
-// Adds a new Facet to an object.
+// Adds a new Facet to an object. An object can have more than one facet applied
+// on it.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -96,7 +97,7 @@ func (c *CloudDirectory) AddFacetToObjectRequest(input *AddFacetToObjectInput) (
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
@@ -328,7 +329,7 @@ func (c *CloudDirectory) AttachObjectRequest(input *AttachObjectInput) (req *req
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
@@ -456,10 +457,7 @@ func (c *CloudDirectory) AttachPolicyRequest(input *AttachPolicyInput) (req *req
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
-//
-//   * ErrCodeInvalidArnException "InvalidArnException"
-//   Indicates that the provided ARN value is not valid.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
@@ -572,7 +570,12 @@ func (c *CloudDirectory) AttachToIndexRequest(input *AttachToIndexInput) (req *r
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
+//   Operations are only permitted on enabled directories.
+//
+//   * ErrCodeInvalidAttachmentException "InvalidAttachmentException"
+//   Indicates that an attempt to attach an object with the same link name or
+//   to apply a schema with the same name has occurred. Rename the link or the
+//   schema and then try again.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
@@ -694,7 +697,7 @@ func (c *CloudDirectory) AttachTypedLinkRequest(input *AttachTypedLinkInput) (re
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
@@ -817,7 +820,7 @@ func (c *CloudDirectory) BatchReadRequest(input *BatchReadInput) (req *request.R
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
+//   Operations are only permitted on enabled directories.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/BatchRead
 func (c *CloudDirectory) BatchRead(input *BatchReadInput) (*BatchReadOutput, error) {
@@ -925,7 +928,7 @@ func (c *CloudDirectory) BatchWriteRequest(input *BatchWriteInput) (req *request
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeBatchWriteException "BatchWriteException"
 //   A BatchWrite exception has occurred.
@@ -1038,9 +1041,6 @@ func (c *CloudDirectory) CreateDirectoryRequest(input *CreateDirectoryInput) (re
 //   * ErrCodeDirectoryAlreadyExistsException "DirectoryAlreadyExistsException"
 //   Indicates that a Directory could not be created due to a naming conflict.
 //   Choose a different name and try again.
-//
-//   * ErrCodeInvalidArnException "InvalidArnException"
-//   Indicates that the provided ARN value is not valid.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
@@ -1269,7 +1269,7 @@ func (c *CloudDirectory) CreateIndexRequest(input *CreateIndexInput) (req *reque
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
@@ -1393,10 +1393,7 @@ func (c *CloudDirectory) CreateObjectRequest(input *CreateObjectInput) (req *req
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
-//
-//   * ErrCodeInvalidArnException "InvalidArnException"
-//   Indicates that the provided ARN value is not valid.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
@@ -1988,7 +1985,7 @@ func (c *CloudDirectory) DeleteObjectRequest(input *DeleteObjectInput) (req *req
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
@@ -2324,7 +2321,7 @@ func (c *CloudDirectory) DetachFromIndexRequest(input *DetachFromIndexInput) (re
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
@@ -2441,10 +2438,14 @@ func (c *CloudDirectory) DetachObjectRequest(input *DetachObjectInput) (req *req
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
+//
+//   * ErrCodeNotNodeException "NotNodeException"
+//   Occurs when any invalid operations are performed on an object that is not
+//   a node, such as calling ListObjectChildren for a leaf node object.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/DetachObject
 func (c *CloudDirectory) DetachObject(input *DetachObjectInput) (*DetachObjectOutput, error) {
@@ -2551,10 +2552,7 @@ func (c *CloudDirectory) DetachPolicyRequest(input *DetachPolicyInput) (req *req
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
-//
-//   * ErrCodeInvalidArnException "InvalidArnException"
-//   Indicates that the provided ARN value is not valid.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
@@ -2670,7 +2668,7 @@ func (c *CloudDirectory) DetachTypedLinkRequest(input *DetachTypedLinkInput) (re
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
@@ -3250,6 +3248,120 @@ func (c *CloudDirectory) GetFacetWithContext(ctx aws.Context, input *GetFacetInp
 	return out, req.Send()
 }
 
+const opGetObjectAttributes = "GetObjectAttributes"
+
+// GetObjectAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the GetObjectAttributes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetObjectAttributes for more information on using the GetObjectAttributes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetObjectAttributesRequest method.
+//    req, resp := client.GetObjectAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/GetObjectAttributes
+func (c *CloudDirectory) GetObjectAttributesRequest(input *GetObjectAttributesInput) (req *request.Request, output *GetObjectAttributesOutput) {
+	op := &request.Operation{
+		Name:       opGetObjectAttributes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/amazonclouddirectory/2017-01-11/object/attributes/get",
+	}
+
+	if input == nil {
+		input = &GetObjectAttributesInput{}
+	}
+
+	output = &GetObjectAttributesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetObjectAttributes API operation for Amazon CloudDirectory.
+//
+// Retrieves attributes within a facet that are associated with an object.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudDirectory's
+// API operation GetObjectAttributes for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInternalServiceException "InternalServiceException"
+//   Indicates a problem that must be resolved by Amazon Web Services. This might
+//   be a transient error in which case you can retry your request until it succeeds.
+//   Otherwise, go to the AWS Service Health Dashboard (http://status.aws.amazon.com/)
+//   site to see if there are any operational issues with the service.
+//
+//   * ErrCodeInvalidArnException "InvalidArnException"
+//   Indicates that the provided ARN value is not valid.
+//
+//   * ErrCodeRetryableConflictException "RetryableConflictException"
+//   Occurs when a conflict with a previous successful write is detected. For
+//   example, if a write operation occurs on an object and then an attempt is
+//   made to read the object using “SERIALIZABLE” consistency, this exception
+//   may result. This generally occurs when the previous write did not have time
+//   to propagate to the host serving the current request. A retry (with appropriate
+//   backoff logic) is the recommended response to this exception.
+//
+//   * ErrCodeValidationException "ValidationException"
+//   Indicates that your request is malformed in some manner. See the exception
+//   message.
+//
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   for more information.
+//
+//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   Access denied. Check your permissions.
+//
+//   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
+//   Operations are only permitted on enabled directories.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource could not be found.
+//
+//   * ErrCodeFacetValidationException "FacetValidationException"
+//   The Facet that you provided was not well formed or could not be validated
+//   with the schema.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/GetObjectAttributes
+func (c *CloudDirectory) GetObjectAttributes(input *GetObjectAttributesInput) (*GetObjectAttributesOutput, error) {
+	req, out := c.GetObjectAttributesRequest(input)
+	return out, req.Send()
+}
+
+// GetObjectAttributesWithContext is the same as GetObjectAttributes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetObjectAttributes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudDirectory) GetObjectAttributesWithContext(ctx aws.Context, input *GetObjectAttributesInput, opts ...request.Option) (*GetObjectAttributesOutput, error) {
+	req, out := c.GetObjectAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetObjectInformation = "GetObjectInformation"
 
 // GetObjectInformationRequest generates a "aws/request.Request" representing the
@@ -3333,7 +3445,7 @@ func (c *CloudDirectory) GetObjectInformationRequest(input *GetObjectInformation
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
@@ -3842,7 +3954,7 @@ func (c *CloudDirectory) ListAttachedIndicesRequest(input *ListAttachedIndicesIn
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
@@ -4668,7 +4780,7 @@ func (c *CloudDirectory) ListIncomingTypedLinksRequest(input *ListIncomingTypedL
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
@@ -4752,7 +4864,7 @@ func (c *CloudDirectory) ListIndexRequest(input *ListIndexInput) (req *request.R
 
 // ListIndex API operation for Amazon CloudDirectory.
 //
-// Lists objects and indexed values attached to the index.
+// Lists objects attached to the specified index.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4779,6 +4891,10 @@ func (c *CloudDirectory) ListIndexRequest(input *ListIndexInput) (req *request.R
 //   to propagate to the host serving the current request. A retry (with appropriate
 //   backoff logic) is the recommended response to this exception.
 //
+//   * ErrCodeFacetValidationException "FacetValidationException"
+//   The Facet that you provided was not well formed or could not be validated
+//   with the schema.
+//
 //   * ErrCodeValidationException "ValidationException"
 //   Indicates that your request is malformed in some manner. See the exception
 //   message.
@@ -4791,7 +4907,10 @@ func (c *CloudDirectory) ListIndexRequest(input *ListIndexInput) (req *request.R
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
+//   Operations are only permitted on enabled directories.
+//
+//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   Indicates that the NextToken value is not valid.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
@@ -4960,10 +5079,7 @@ func (c *CloudDirectory) ListObjectAttributesRequest(input *ListObjectAttributes
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
-//
-//   * ErrCodeInvalidArnException "InvalidArnException"
-//   Indicates that the provided ARN value is not valid.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
@@ -5137,10 +5253,7 @@ func (c *CloudDirectory) ListObjectChildrenRequest(input *ListObjectChildrenInpu
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
-//
-//   * ErrCodeInvalidArnException "InvalidArnException"
-//   Indicates that the provided ARN value is not valid.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
@@ -5323,7 +5436,7 @@ func (c *CloudDirectory) ListObjectParentPathsRequest(input *ListObjectParentPat
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
 //   Indicates that the NextToken value is not valid.
@@ -5493,10 +5606,7 @@ func (c *CloudDirectory) ListObjectParentsRequest(input *ListObjectParentsInput)
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
-//
-//   * ErrCodeInvalidArnException "InvalidArnException"
-//   Indicates that the provided ARN value is not valid.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
@@ -5668,7 +5778,7 @@ func (c *CloudDirectory) ListObjectPoliciesRequest(input *ListObjectPoliciesInpu
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
@@ -5833,7 +5943,7 @@ func (c *CloudDirectory) ListOutgoingTypedLinksRequest(input *ListOutgoingTypedL
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
@@ -5956,10 +6066,7 @@ func (c *CloudDirectory) ListPolicyAttachmentsRequest(input *ListPolicyAttachmen
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
-//
-//   * ErrCodeInvalidArnException "InvalidArnException"
-//   Indicates that the provided ARN value is not valid.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
 //   Indicates that the NextToken value is not valid.
@@ -6092,8 +6199,9 @@ func (c *CloudDirectory) ListPublishedSchemaArnsRequest(input *ListPublishedSche
 
 // ListPublishedSchemaArns API operation for Amazon CloudDirectory.
 //
-// Lists schema major versions for a published schema. If SchemaArn is provided,
-// lists the minor version.
+// Lists the major version families of each published schema. If a major version
+// ARN is provided as SchemaArn, the minor version revisions in that family
+// are listed instead.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6811,10 +6919,7 @@ func (c *CloudDirectory) LookupPolicyRequest(input *LookupPolicyInput) (req *req
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
-//
-//   * ErrCodeInvalidArnException "InvalidArnException"
-//   Indicates that the provided ARN value is not valid.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
 //   Indicates that the NextToken value is not valid.
@@ -7200,7 +7305,7 @@ func (c *CloudDirectory) RemoveFacetFromObjectRequest(input *RemoveFacetFromObje
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
@@ -7660,7 +7765,7 @@ func (c *CloudDirectory) UpdateObjectAttributesRequest(input *UpdateObjectAttrib
 //   Access denied. Check your permissions.
 //
 //   * ErrCodeDirectoryNotEnabledException "DirectoryNotEnabledException"
-//   An operation can only operate on a directory that is not enabled.
+//   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
@@ -8462,7 +8567,9 @@ type AttachPolicyInput struct {
 
 	// The Amazon Resource Name (ARN) that is associated with the Directory where
 	// both objects reside. For more information, see arns.
-	DirectoryArn *string `location:"header" locationName:"x-amz-data-partition" type:"string"`
+	//
+	// DirectoryArn is a required field
+	DirectoryArn *string `location:"header" locationName:"x-amz-data-partition" type:"string" required:"true"`
 
 	// The reference that identifies the object to which the policy will be attached.
 	//
@@ -8488,6 +8595,9 @@ func (s AttachPolicyInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AttachPolicyInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AttachPolicyInput"}
+	if s.DirectoryArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryArn"))
+	}
 	if s.ObjectReference == nil {
 		invalidParams.Add(request.NewErrParamRequired("ObjectReference"))
 	}
@@ -9530,14 +9640,10 @@ type BatchCreateObject struct {
 
 	// The batch reference name. See Batches (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_advanced.html#batches)
 	// for more information.
-	//
-	// BatchReferenceName is a required field
-	BatchReferenceName *string `type:"string" required:"true"`
+	BatchReferenceName *string `type:"string"`
 
 	// The name of the link.
-	//
-	// LinkName is a required field
-	LinkName *string `min:"1" type:"string" required:"true"`
+	LinkName *string `min:"1" type:"string"`
 
 	// An attribute map, which contains an attribute ARN as the key and attribute
 	// value as the map value.
@@ -9546,9 +9652,7 @@ type BatchCreateObject struct {
 	ObjectAttributeList []*AttributeKeyAndValue `type:"list" required:"true"`
 
 	// If specified, the parent reference to which this object will be attached.
-	//
-	// ParentReference is a required field
-	ParentReference *ObjectReference `type:"structure" required:"true"`
+	ParentReference *ObjectReference `type:"structure"`
 
 	// A list of FacetArns that will be associated with the object. For more information,
 	// see arns.
@@ -9570,20 +9674,11 @@ func (s BatchCreateObject) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *BatchCreateObject) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "BatchCreateObject"}
-	if s.BatchReferenceName == nil {
-		invalidParams.Add(request.NewErrParamRequired("BatchReferenceName"))
-	}
-	if s.LinkName == nil {
-		invalidParams.Add(request.NewErrParamRequired("LinkName"))
-	}
 	if s.LinkName != nil && len(*s.LinkName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("LinkName", 1))
 	}
 	if s.ObjectAttributeList == nil {
 		invalidParams.Add(request.NewErrParamRequired("ObjectAttributeList"))
-	}
-	if s.ParentReference == nil {
-		invalidParams.Add(request.NewErrParamRequired("ParentReference"))
 	}
 	if s.SchemaFacet == nil {
 		invalidParams.Add(request.NewErrParamRequired("SchemaFacet"))
@@ -9807,9 +9902,7 @@ type BatchDetachObject struct {
 
 	// The batch reference name. See Batches (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_advanced.html#batches)
 	// for more information.
-	//
-	// BatchReferenceName is a required field
-	BatchReferenceName *string `type:"string" required:"true"`
+	BatchReferenceName *string `type:"string"`
 
 	// The name of the link.
 	//
@@ -9835,9 +9928,6 @@ func (s BatchDetachObject) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *BatchDetachObject) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "BatchDetachObject"}
-	if s.BatchReferenceName == nil {
-		invalidParams.Add(request.NewErrParamRequired("BatchReferenceName"))
-	}
 	if s.LinkName == nil {
 		invalidParams.Add(request.NewErrParamRequired("LinkName"))
 	}
@@ -10023,6 +10113,105 @@ func (s BatchDetachTypedLinkResponse) String() string {
 // GoString returns the string representation
 func (s BatchDetachTypedLinkResponse) GoString() string {
 	return s.String()
+}
+
+// Retrieves attributes within a facet that are associated with an object inside
+// an BatchRead operation. For more information, see GetObjectAttributes and
+// BatchReadRequest$Operations.
+type BatchGetObjectAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// List of attribute names whose values will be retrieved.
+	//
+	// AttributeNames is a required field
+	AttributeNames []*string `type:"list" required:"true"`
+
+	// Reference that identifies the object whose attributes will be retrieved.
+	//
+	// ObjectReference is a required field
+	ObjectReference *ObjectReference `type:"structure" required:"true"`
+
+	// Identifier for the facet whose attributes will be retrieved. See SchemaFacet
+	// for details.
+	//
+	// SchemaFacet is a required field
+	SchemaFacet *SchemaFacet `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s BatchGetObjectAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchGetObjectAttributes) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetObjectAttributes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetObjectAttributes"}
+	if s.AttributeNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttributeNames"))
+	}
+	if s.ObjectReference == nil {
+		invalidParams.Add(request.NewErrParamRequired("ObjectReference"))
+	}
+	if s.SchemaFacet == nil {
+		invalidParams.Add(request.NewErrParamRequired("SchemaFacet"))
+	}
+	if s.SchemaFacet != nil {
+		if err := s.SchemaFacet.Validate(); err != nil {
+			invalidParams.AddNested("SchemaFacet", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributeNames sets the AttributeNames field's value.
+func (s *BatchGetObjectAttributes) SetAttributeNames(v []*string) *BatchGetObjectAttributes {
+	s.AttributeNames = v
+	return s
+}
+
+// SetObjectReference sets the ObjectReference field's value.
+func (s *BatchGetObjectAttributes) SetObjectReference(v *ObjectReference) *BatchGetObjectAttributes {
+	s.ObjectReference = v
+	return s
+}
+
+// SetSchemaFacet sets the SchemaFacet field's value.
+func (s *BatchGetObjectAttributes) SetSchemaFacet(v *SchemaFacet) *BatchGetObjectAttributes {
+	s.SchemaFacet = v
+	return s
+}
+
+// Represents the output of a GetObjectAttributes response operation.
+type BatchGetObjectAttributesResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The attribute values that are associated with an object.
+	Attributes []*AttributeKeyAndValue `type:"list"`
+}
+
+// String returns the string representation
+func (s BatchGetObjectAttributesResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchGetObjectAttributesResponse) GoString() string {
+	return s.String()
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *BatchGetObjectAttributesResponse) SetAttributes(v []*AttributeKeyAndValue) *BatchGetObjectAttributesResponse {
+	s.Attributes = v
+	return s
 }
 
 // Retrieves metadata about an object inside a BatchRead operation. For more
@@ -11265,6 +11454,9 @@ func (s *BatchReadInput) SetOperations(v []*BatchReadOperation) *BatchReadInput 
 type BatchReadOperation struct {
 	_ struct{} `type:"structure"`
 
+	// Retrieves attributes within a facet that are associated with an object.
+	GetObjectAttributes *BatchGetObjectAttributes `type:"structure"`
+
 	// Retrieves metadata about an object.
 	GetObjectInformation *BatchGetObjectInformation `type:"structure"`
 
@@ -11325,6 +11517,11 @@ func (s BatchReadOperation) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *BatchReadOperation) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "BatchReadOperation"}
+	if s.GetObjectAttributes != nil {
+		if err := s.GetObjectAttributes.Validate(); err != nil {
+			invalidParams.AddNested("GetObjectAttributes", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.GetObjectInformation != nil {
 		if err := s.GetObjectInformation.Validate(); err != nil {
 			invalidParams.AddNested("GetObjectInformation", err.(request.ErrInvalidParams))
@@ -11385,6 +11582,12 @@ func (s *BatchReadOperation) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetGetObjectAttributes sets the GetObjectAttributes field's value.
+func (s *BatchReadOperation) SetGetObjectAttributes(v *BatchGetObjectAttributes) *BatchReadOperation {
+	s.GetObjectAttributes = v
+	return s
 }
 
 // SetGetObjectInformation sets the GetObjectInformation field's value.
@@ -11513,6 +11716,9 @@ func (s *BatchReadOutput) SetResponses(v []*BatchReadOperationResponse) *BatchRe
 type BatchReadSuccessfulResponse struct {
 	_ struct{} `type:"structure"`
 
+	// Retrieves attributes within a facet that are associated with an object.
+	GetObjectAttributes *BatchGetObjectAttributesResponse `type:"structure"`
+
 	// Retrieves metadata about an object.
 	GetObjectInformation *BatchGetObjectInformationResponse `type:"structure"`
 
@@ -11568,6 +11774,12 @@ func (s BatchReadSuccessfulResponse) String() string {
 // GoString returns the string representation
 func (s BatchReadSuccessfulResponse) GoString() string {
 	return s.String()
+}
+
+// SetGetObjectAttributes sets the GetObjectAttributes field's value.
+func (s *BatchReadSuccessfulResponse) SetGetObjectAttributes(v *BatchGetObjectAttributesResponse) *BatchReadSuccessfulResponse {
+	s.GetObjectAttributes = v
+	return s
 }
 
 // SetGetObjectInformation sets the GetObjectInformation field's value.
@@ -13716,6 +13928,8 @@ func (s *EnableDirectoryOutput) SetDirectoryArn(v string) *EnableDirectoryOutput
 }
 
 // A structure that contains Name, ARN, Attributes, Rules, and ObjectTypes.
+// See Facets (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/whatarefacets.html)
+// for more information.
 type Facet struct {
 	_ struct{} `type:"structure"`
 
@@ -14212,6 +14426,125 @@ func (s GetFacetOutput) GoString() string {
 // SetFacet sets the Facet field's value.
 func (s *GetFacetOutput) SetFacet(v *Facet) *GetFacetOutput {
 	s.Facet = v
+	return s
+}
+
+type GetObjectAttributesInput struct {
+	_ struct{} `type:"structure"`
+
+	// List of attribute names whose values will be retrieved.
+	//
+	// AttributeNames is a required field
+	AttributeNames []*string `type:"list" required:"true"`
+
+	// The consistency level at which to retrieve the attributes on an object.
+	ConsistencyLevel *string `location:"header" locationName:"x-amz-consistency-level" type:"string" enum:"ConsistencyLevel"`
+
+	// The Amazon Resource Name (ARN) that is associated with the Directory where
+	// the object resides.
+	//
+	// DirectoryArn is a required field
+	DirectoryArn *string `location:"header" locationName:"x-amz-data-partition" type:"string" required:"true"`
+
+	// Reference that identifies the object whose attributes will be retrieved.
+	//
+	// ObjectReference is a required field
+	ObjectReference *ObjectReference `type:"structure" required:"true"`
+
+	// Identifier for the facet whose attributes will be retrieved. See SchemaFacet
+	// for details.
+	//
+	// SchemaFacet is a required field
+	SchemaFacet *SchemaFacet `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s GetObjectAttributesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetObjectAttributesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetObjectAttributesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetObjectAttributesInput"}
+	if s.AttributeNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttributeNames"))
+	}
+	if s.DirectoryArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryArn"))
+	}
+	if s.ObjectReference == nil {
+		invalidParams.Add(request.NewErrParamRequired("ObjectReference"))
+	}
+	if s.SchemaFacet == nil {
+		invalidParams.Add(request.NewErrParamRequired("SchemaFacet"))
+	}
+	if s.SchemaFacet != nil {
+		if err := s.SchemaFacet.Validate(); err != nil {
+			invalidParams.AddNested("SchemaFacet", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributeNames sets the AttributeNames field's value.
+func (s *GetObjectAttributesInput) SetAttributeNames(v []*string) *GetObjectAttributesInput {
+	s.AttributeNames = v
+	return s
+}
+
+// SetConsistencyLevel sets the ConsistencyLevel field's value.
+func (s *GetObjectAttributesInput) SetConsistencyLevel(v string) *GetObjectAttributesInput {
+	s.ConsistencyLevel = &v
+	return s
+}
+
+// SetDirectoryArn sets the DirectoryArn field's value.
+func (s *GetObjectAttributesInput) SetDirectoryArn(v string) *GetObjectAttributesInput {
+	s.DirectoryArn = &v
+	return s
+}
+
+// SetObjectReference sets the ObjectReference field's value.
+func (s *GetObjectAttributesInput) SetObjectReference(v *ObjectReference) *GetObjectAttributesInput {
+	s.ObjectReference = v
+	return s
+}
+
+// SetSchemaFacet sets the SchemaFacet field's value.
+func (s *GetObjectAttributesInput) SetSchemaFacet(v *SchemaFacet) *GetObjectAttributesInput {
+	s.SchemaFacet = v
+	return s
+}
+
+type GetObjectAttributesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The attributes that are associated with the object.
+	Attributes []*AttributeKeyAndValue `type:"list"`
+}
+
+// String returns the string representation
+func (s GetObjectAttributesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetObjectAttributesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *GetObjectAttributesOutput) SetAttributes(v []*AttributeKeyAndValue) *GetObjectAttributesOutput {
+	s.Attributes = v
 	return s
 }
 
@@ -17516,7 +17849,7 @@ func (s *TypedAttributeValue) SetStringValue(v string) *TypedAttributeValue {
 	return s
 }
 
-// A range of attribute values.
+// A range of attribute values. For more information, see Range Filters (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#rangefilters).
 type TypedAttributeValueRange struct {
 	_ struct{} `type:"structure"`
 
@@ -18772,6 +19105,9 @@ const (
 
 	// BatchWriteExceptionTypeNotIndexException is a BatchWriteExceptionType enum value
 	BatchWriteExceptionTypeNotIndexException = "NotIndexException"
+
+	// BatchWriteExceptionTypeNotNodeException is a BatchWriteExceptionType enum value
+	BatchWriteExceptionTypeNotNodeException = "NotNodeException"
 
 	// BatchWriteExceptionTypeIndexedAttributeMissingException is a BatchWriteExceptionType enum value
 	BatchWriteExceptionTypeIndexedAttributeMissingException = "IndexedAttributeMissingException"

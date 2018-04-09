@@ -1,3 +1,11 @@
+Release v1.13.31 (2018-04-09)
+===
+
+### Service Client Updates
+* `service/clouddirectory`: Updates service API and documentation
+  * Cloud Directory customers can fetch attributes within a facet on an object with the new GetObjectAttributes API and can fetch attributes from multiple facets or objects with the BatchGetObjectAttributes operation.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.13.30 (2018-04-06)
 ===
 
