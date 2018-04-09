@@ -2260,7 +2260,8 @@
       },
       "sms" : {
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "snowball" : {
