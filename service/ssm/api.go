@@ -99,6 +99,10 @@ func (c *SSM) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *requ
 //   The Targets parameter includes too many tags. Remove one or more tags and
 //   try the command again.
 //
+//   * ErrCodeTooManyUpdates "TooManyUpdates"
+//   There are concurrent updates for a resource that supports one update at a
+//   time.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/AddTagsToResource
 func (c *SSM) AddTagsToResource(input *AddTagsToResourceInput) (*AddTagsToResourceOutput, error) {
 	req, out := c.AddTagsToResourceRequest(input)
@@ -4557,9 +4561,6 @@ func (c *SSM) GetDefaultPatchBaselineRequest(input *GetDefaultPatchBaselineInput
 // creating multiple default patch baselines. For example, you can create a
 // default patch baseline for each operating system.
 //
-// If you do not specify an operating system value, the default patch baseline
-// for Windows is returned.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -8283,6 +8284,10 @@ func (c *SSM) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) 
 //   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
+//   * ErrCodeTooManyUpdates "TooManyUpdates"
+//   There are concurrent updates for a resource that supports one update at a
+//   time.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/RemoveTagsFromResource
 func (c *SSM) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*RemoveTagsFromResourceOutput, error) {
 	req, out := c.RemoveTagsFromResourceRequest(input)
@@ -9363,18 +9368,18 @@ func (c *SSM) UpdateMaintenanceWindowTaskRequest(input *UpdateMaintenanceWindowT
 // Modifies a task assigned to a Maintenance Window. You can't change the task
 // type, but you can change the following values:
 //
-//    * TaskARN. For example, you can change a RUN_COMMAND task from AWS-RunPowerShellScript
-//    to AWS-RunShellScript.
+// Task ARN. For example, you can change a RUN_COMMAND task from AWS-RunPowerShellScript
+// to AWS-RunShellScript.
 //
-//    * ServiceRoleArn
+// Service role ARN.
 //
-//    * TaskInvocationParameters
+// Task parameters.
 //
-//    * Priority
+// Task priority.
 //
-//    * MaxConcurrency
+// Task MaxConcurrency and MaxErrors.
 //
-//    * MaxErrors
+// Log location.
 //
 // If a parameter is null, then the corresponding field is not modified. Also,
 // if you set Replace to true, then all fields required by the RegisterTaskWithMaintenanceWindow
@@ -9711,28 +9716,15 @@ type AddTagsToResourceInput struct {
 
 	// The resource ID you want to tag.
 	//
-	// Use the ID of the resource. Here are some examples:
-	//
-	// ManagedInstance: mi-012345abcde
-	//
-	// MaintenanceWindow: mw-012345abcde
-	//
-	// PatchBaseline: pb-012345abcde
+	// For the ManagedInstance, MaintenanceWindow, and PatchBaseline values, use
+	// the ID of the resource, such as mw-01234361858c9b57b for a Maintenance Window.
 	//
 	// For the Document and Parameter values, use the name of the resource.
-	//
-	// The ManagedInstance type for this API action is only for on-premises managed
-	// instances. You must specify the the name of the managed instance in the following
-	// format: mi-ID_number. For example, mi-1a2b3c4d5e6f.
 	//
 	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
 	// Specifies the type of resource you are tagging.
-	//
-	// The ManagedInstance type for this API action is for on-premises managed instances.
-	// You must specify the the name of the managed instance in the following format:
-	// mi-ID_number. For example, mi-1a2b3c4d5e6f.
 	//
 	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true" enum:"ResourceTypeForTagging"`
@@ -9740,8 +9732,6 @@ type AddTagsToResourceInput struct {
 	// One or more tags. The value parameter is required, but if you don't want
 	// the tag to have a value, specify the parameter with no value, and we set
 	// the value to an empty string.
-	//
-	// Do not enter personally identifiable information in this field.
 	//
 	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
@@ -10939,7 +10929,7 @@ type Command struct {
 	ErrorCount *int64 `type:"integer"`
 
 	// If this time is reached and the command has not already started executing,
-	// it will not run. Calculated based on the ExpiresAfter user input provided
+	// it will not execute. Calculated based on the ExpiresAfter user input provided
 	// as part of the SendCommand API.
 	ExpiresAfter *time.Time `type:"timestamp" timestampFormat:"unix"`
 
@@ -11689,7 +11679,7 @@ type ComplianceItem struct {
 	ExecutionSummary *ComplianceExecutionSummary `type:"structure"`
 
 	// An ID for the compliance item. For example, if the compliance item is a Windows
-	// patch, the ID could be the number of the KB article; for example: KB4010320.
+	// patch, the ID could be the number of the KB article. Here's an example: KB4010320.
 	Id *string `min:"1" type:"string"`
 
 	// An ID for the resource. For a managed instance, this is the instance ID.
@@ -11707,8 +11697,8 @@ type ComplianceItem struct {
 	Status *string `type:"string" enum:"ComplianceStatus"`
 
 	// A title for the compliance item. For example, if the compliance item is a
-	// Windows patch, the title could be the title of the KB article for the patch;
-	// for example: Security Update for Active Directory Federation Services.
+	// Windows patch, the title could be the title of the KB article for the patch.
+	// Here's an example: Security Update for Active Directory Federation Services.
 	Title *string `type:"string"`
 }
 
@@ -11799,8 +11789,8 @@ type ComplianceItemEntry struct {
 	Status *string `type:"string" required:"true" enum:"ComplianceStatus"`
 
 	// The title of the compliance item. For example, if the compliance item is
-	// a Windows patch, the title could be the title of the KB article for the patch;
-	// for example: Security Update for Active Directory Federation Services.
+	// a Windows patch, the title could be the title of the KB article for the patch.
+	// Here's an example: Security Update for Active Directory Federation Services.
 	Title *string `type:"string"`
 }
 
@@ -12004,14 +11994,10 @@ type CreateActivationInput struct {
 
 	// The name of the registered, managed instance as it will appear in the Amazon
 	// EC2 console or when you use the AWS command line tools to list EC2 resources.
-	//
-	// Do not enter personally identifiable information in this field.
 	DefaultInstanceName *string `type:"string"`
 
-	// A user-defined description of the resource that you want to register with
+	// A userdefined description of the resource that you want to register with
 	// Amazon EC2.
-	//
-	// Do not enter personally identifiable information in this field.
 	Description *string `type:"string"`
 
 	// The date by which this activation request should expire. The default value
@@ -12752,16 +12738,12 @@ type CreatePatchBaselineInput struct {
 	ApprovalRules *PatchRuleGroup `type:"structure"`
 
 	// A list of explicitly approved patches for the baseline.
-	//
-	// For information about accepted formats for lists of approved patches and
-	// rejected patches, see Package Name Formats for Approved and Rejected Patch
-	// Lists (http://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html)
-	// in the AWS Systems Manager User Guide.
 	ApprovedPatches []*string `type:"list"`
 
 	// Defines the compliance level for approved patches. This means that if an
 	// approved patch is reported as missing, this is the severity of the compliance
-	// violation. The default value is UNSPECIFIED.
+	// violation. Valid compliance severity levels include the following: CRITICAL,
+	// HIGH, MEDIUM, LOW, INFORMATIONAL, UNSPECIFIED. The default value is UNSPECIFIED.
 	ApprovedPatchesComplianceLevel *string `type:"string" enum:"PatchComplianceLevel"`
 
 	// Indicates whether the list of approved patches includes non-security updates
@@ -12788,11 +12770,6 @@ type CreatePatchBaselineInput struct {
 	OperatingSystem *string `type:"string" enum:"OperatingSystem"`
 
 	// A list of explicitly rejected patches for the baseline.
-	//
-	// For information about accepted formats for lists of approved patches and
-	// rejected patches, see Package Name Formats for Approved and Rejected Patch
-	// Lists (http://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html)
-	// in the AWS Systems Manager User Guide.
 	RejectedPatches []*string `type:"list"`
 
 	// Information about the patches to use to update the instances, including target
@@ -17285,7 +17262,8 @@ type GetCommandInvocationOutput struct {
 	// If an Amazon S3 bucket was not specified, then this string is empty.
 	StandardOutputUrl *string `type:"string"`
 
-	// The status of this invocation plugin. This status can be different than StatusDetails.
+	// The status of the parent command for this invocation. This status can be
+	// different than StatusDetails.
 	Status *string `type:"string" enum:"CommandInvocationStatus"`
 
 	// A detailed status of the command execution for an invocation. StatusDetails
@@ -18380,14 +18358,8 @@ type GetMaintenanceWindowExecutionTaskOutput struct {
 	// was retrieved.
 	TaskExecutionId *string `min:"36" type:"string"`
 
-	// The parameters passed to the task when it was executed.
-	//
-	// TaskParameters has been deprecated. To specify parameters to pass to a task
-	// when it runs, instead use the Parameters option in the TaskInvocationParameters
-	// structure. For information about how Systems Manager handles these options
-	// for the supported Maintenance Window task types, see MaintenanceWindowTaskInvocationParameters.
-	//
-	// The map has the following format:
+	// The parameters passed to the task when it was executed. The map has the following
+	// format:
 	//
 	// Key: string, between 1 and 255 characters
 	//
@@ -18701,11 +18673,6 @@ type GetMaintenanceWindowTaskOutput struct {
 	Description *string `min:"1" type:"string"`
 
 	// The location in Amazon S3 where the task results are logged.
-	//
-	// LoggingInfo has been deprecated. To specify an S3 bucket to contain logs,
-	// instead use the OutputS3BucketName and OutputS3KeyPrefix options in the TaskInvocationParameters
-	// structure. For information about how Systems Manager handles these options
-	// for the supported Maintenance Window task types, see MaintenanceWindowTaskInvocationParameters.
 	LoggingInfo *LoggingInfo `type:"structure"`
 
 	// The maximum number of targets allowed to run this task in parallel.
@@ -18737,11 +18704,6 @@ type GetMaintenanceWindowTaskOutput struct {
 	TaskInvocationParameters *MaintenanceWindowTaskInvocationParameters `type:"structure"`
 
 	// The parameters to pass to the task when it executes.
-	//
-	// TaskParameters has been deprecated. To specify parameters to pass to a task
-	// when it runs, instead use the Parameters option in the TaskInvocationParameters
-	// structure. For information about how Systems Manager handles these options
-	// for the supported Maintenance Window task types, see MaintenanceWindowTaskInvocationParameters.
 	TaskParameters map[string]*MaintenanceWindowTaskParameterValueExpression `type:"map"`
 
 	// The type of task to execute.
@@ -20160,7 +20122,7 @@ type InstancePatchState struct {
 	// OperationStartTime is a required field
 	OperationStartTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
 
-	// Placeholder information. This field will always be empty in the current release
+	// Placeholder information, this field will always be empty in the current release
 	// of the service.
 	OwnerInformation *string `min:"1" type:"string"`
 
@@ -22107,11 +22069,6 @@ func (s *ListTagsForResourceOutput) SetTagList(v []*Tag) *ListTagsForResourceOut
 }
 
 // Information about an Amazon S3 bucket to write instance-level logs to.
-//
-// LoggingInfo has been deprecated. To specify an S3 bucket to contain logs,
-// instead use the OutputS3BucketName and OutputS3KeyPrefix options in the TaskInvocationParameters
-// structure. For information about how Systems Manager handles these options
-// for the supported Maintenance Window task types, see MaintenanceWindowTaskInvocationParameters.
 type LoggingInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -22187,22 +22144,6 @@ type MaintenanceWindowAutomationParameters struct {
 	DocumentVersion *string `type:"string"`
 
 	// The parameters for the AUTOMATION task.
-	//
-	// For information about specifying and updating task parameters, see RegisterTaskWithMaintenanceWindow
-	// and UpdateMaintenanceWindowTask.
-	//
-	// LoggingInfo has been deprecated. To specify an S3 bucket to contain logs,
-	// instead use the OutputS3BucketName and OutputS3KeyPrefix options in the TaskInvocationParameters
-	// structure. For information about how Systems Manager handles these options
-	// for the supported Maintenance Window task types, see MaintenanceWindowTaskInvocationParameters.
-	//
-	// TaskParameters has been deprecated. To specify parameters to pass to a task
-	// when it runs, instead use the Parameters option in the TaskInvocationParameters
-	// structure. For information about how Systems Manager handles these options
-	// for the supported Maintenance Window task types, see MaintenanceWindowTaskInvocationParameters.
-	//
-	// For AUTOMATION task types, Systems Manager ignores any values specified for
-	// these parameters.
 	Parameters map[string][]*string `min:"1" type:"map"`
 }
 
@@ -22645,22 +22586,6 @@ func (s *MaintenanceWindowIdentity) SetWindowId(v string) *MaintenanceWindowIden
 }
 
 // The parameters for a LAMBDA task type.
-//
-// For information about specifying and updating task parameters, see RegisterTaskWithMaintenanceWindow
-// and UpdateMaintenanceWindowTask.
-//
-// LoggingInfo has been deprecated. To specify an S3 bucket to contain logs,
-// instead use the OutputS3BucketName and OutputS3KeyPrefix options in the TaskInvocationParameters
-// structure. For information about how Systems Manager handles these options
-// for the supported Maintenance Window task types, see MaintenanceWindowTaskInvocationParameters.
-//
-// TaskParameters has been deprecated. To specify parameters to pass to a task
-// when it runs, instead use the Parameters option in the TaskInvocationParameters
-// structure. For information about how Systems Manager handles these options
-// for the supported Maintenance Window task types, see MaintenanceWindowTaskInvocationParameters.
-//
-// For Lambda tasks, Systems Manager ignores any values specified for TaskParameters
-// and LoggingInfo.
 type MaintenanceWindowLambdaParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -22726,22 +22651,6 @@ func (s *MaintenanceWindowLambdaParameters) SetQualifier(v string) *MaintenanceW
 }
 
 // The parameters for a RUN_COMMAND task type.
-//
-// For information about specifying and updating task parameters, see RegisterTaskWithMaintenanceWindow
-// and UpdateMaintenanceWindowTask.
-//
-// LoggingInfo has been deprecated. To specify an S3 bucket to contain logs,
-// instead use the OutputS3BucketName and OutputS3KeyPrefix options in the TaskInvocationParameters
-// structure. For information about how Systems Manager handles these options
-// for the supported Maintenance Window task types, see MaintenanceWindowTaskInvocationParameters.
-//
-// TaskParameters has been deprecated. To specify parameters to pass to a task
-// when it runs, instead use the Parameters option in the TaskInvocationParameters
-// structure. For information about how Systems Manager handles these options
-// for the supported Maintenance Window task types, see MaintenanceWindowTaskInvocationParameters.
-//
-// For Run Command tasks, Systems Manager uses specified values for TaskParameters
-// and LoggingInfo only if no values are specified for TaskInvocationParameters.
 type MaintenanceWindowRunCommandParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -22856,23 +22765,7 @@ func (s *MaintenanceWindowRunCommandParameters) SetTimeoutSeconds(v int64) *Main
 	return s
 }
 
-// The parameters for a STEP_FUNCTION task.
-//
-// For information about specifying and updating task parameters, see RegisterTaskWithMaintenanceWindow
-// and UpdateMaintenanceWindowTask.
-//
-// LoggingInfo has been deprecated. To specify an S3 bucket to contain logs,
-// instead use the OutputS3BucketName and OutputS3KeyPrefix options in the TaskInvocationParameters
-// structure. For information about how Systems Manager handles these options
-// for the supported Maintenance Window task types, see MaintenanceWindowTaskInvocationParameters.
-//
-// TaskParameters has been deprecated. To specify parameters to pass to a task
-// when it runs, instead use the Parameters option in the TaskInvocationParameters
-// structure. For information about how Systems Manager handles these options
-// for the supported Maintenance Window task types, see MaintenanceWindowTaskInvocationParameters.
-//
-// For Step Functions tasks, Systems Manager ignores any values specified for
-// TaskParameters and LoggingInfo.
+// The parameters for the STEP_FUNCTION execution.
 type MaintenanceWindowStepFunctionsParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -23006,11 +22899,6 @@ type MaintenanceWindowTask struct {
 	Description *string `min:"1" type:"string"`
 
 	// Information about an Amazon S3 bucket to write task-level logs to.
-	//
-	// LoggingInfo has been deprecated. To specify an S3 bucket to contain logs,
-	// instead use the OutputS3BucketName and OutputS3KeyPrefix options in the TaskInvocationParameters
-	// structure. For information about how Systems Manager handles these options
-	// for the supported Maintenance Window task types, see MaintenanceWindowTaskInvocationParameters.
 	LoggingInfo *LoggingInfo `type:"structure"`
 
 	// The maximum number of targets this task can be run for in parallel.
@@ -23041,11 +22929,6 @@ type MaintenanceWindowTask struct {
 	TaskArn *string `min:"1" type:"string"`
 
 	// The parameters that should be passed to the task when it is executed.
-	//
-	// TaskParameters has been deprecated. To specify parameters to pass to a task
-	// when it runs, instead use the Parameters option in the TaskInvocationParameters
-	// structure. For information about how Systems Manager handles these options
-	// for the supported Maintenance Window task types, see MaintenanceWindowTaskInvocationParameters.
 	TaskParameters map[string]*MaintenanceWindowTaskParameterValueExpression `type:"map"`
 
 	// The type of task. The type can be one of the following: RUN_COMMAND, AUTOMATION,
@@ -23151,7 +23034,7 @@ func (s *MaintenanceWindowTask) SetWindowTaskId(v string) *MaintenanceWindowTask
 type MaintenanceWindowTaskInvocationParameters struct {
 	_ struct{} `type:"structure"`
 
-	// The parameters for an AUTOMATION task type.
+	// The parameters for a AUTOMATION task type.
 	Automation *MaintenanceWindowAutomationParameters `type:"structure"`
 
 	// The parameters for a LAMBDA task type.
@@ -25038,8 +24921,6 @@ type PutParameterInput struct {
 	AllowedPattern *string `type:"string"`
 
 	// Information about the parameter that you want to add to the system.
-	//
-	// Do not enter personally identifiable information in this field.
 	Description *string `type:"string"`
 
 	// The KMS Key ID that you want to use to encrypt a parameter when you choose
@@ -25359,17 +25240,8 @@ type RegisterTargetWithMaintenanceWindowInput struct {
 	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true" enum:"MaintenanceWindowResourceType"`
 
-	// The targets (either instances or tags).
-	//
-	// Specify instances using the following format:
-	//
-	// Key=InstanceIds,Values=<instance-id-1>,<instance-id-2>
-	//
-	// Specify tags using either of the following formats:
-	//
-	// Key=tag:<tag-key>,Values=<tag-value-1>,<tag-value-2>
-	//
-	// Key=tag-key,Values=<tag-key-1>,<tag-key-2>
+	// The targets (either instances or tags). Instances are specified using Key=instanceids,Values=<instanceid1>,<instanceid2>.
+	// Tags are specified using Key=<tag name>,Values=<tag value>.
 	//
 	// Targets is a required field
 	Targets []*Target `type:"list" required:"true"`
@@ -25510,11 +25382,6 @@ type RegisterTaskWithMaintenanceWindowInput struct {
 
 	// A structure containing information about an Amazon S3 bucket to write instance-level
 	// logs to.
-	//
-	// LoggingInfo has been deprecated. To specify an S3 bucket to contain logs,
-	// instead use the OutputS3BucketName and OutputS3KeyPrefix options in the TaskInvocationParameters
-	// structure. For information about how Systems Manager handles these options
-	// for the supported Maintenance Window task types, see MaintenanceWindowTaskInvocationParameters.
 	LoggingInfo *LoggingInfo `type:"structure"`
 
 	// The maximum number of targets this task can be run for in parallel.
@@ -25540,15 +25407,8 @@ type RegisterTaskWithMaintenanceWindowInput struct {
 	// ServiceRoleArn is a required field
 	ServiceRoleArn *string `type:"string" required:"true"`
 
-	// The targets (either instances or Maintenance Window targets).
-	//
-	// Specify instances using the following format:
-	//
-	// Key=InstanceIds,Values=<instance-id-1>,<instance-id-2>
-	//
-	// Specify Maintenance Window targets using the following format:
-	//
-	// Key=<WindowTargetIds>,Values=<window-target-id-1>,<window-target-id-2>
+	// The targets (either instances or tags). Instances are specified using Key=instanceids,Values=<instanceid1>,<instanceid2>.
+	// Tags are specified using Key=<tag name>,Values=<tag value>.
 	//
 	// Targets is a required field
 	Targets []*Target `type:"list" required:"true"`
@@ -25563,11 +25423,6 @@ type RegisterTaskWithMaintenanceWindowInput struct {
 	TaskInvocationParameters *MaintenanceWindowTaskInvocationParameters `type:"structure"`
 
 	// The parameters that should be passed to the task when it is executed.
-	//
-	// TaskParameters has been deprecated. To specify parameters to pass to a task
-	// when it runs, instead use the Parameters option in the TaskInvocationParameters
-	// structure. For information about how Systems Manager handles these options
-	// for the supported Maintenance Window task types, see MaintenanceWindowTaskInvocationParameters.
 	TaskParameters map[string]*MaintenanceWindowTaskParameterValueExpression `type:"map"`
 
 	// The type of task being registered.
@@ -25575,7 +25430,7 @@ type RegisterTaskWithMaintenanceWindowInput struct {
 	// TaskType is a required field
 	TaskType *string `type:"string" required:"true" enum:"MaintenanceWindowTaskType"`
 
-	// The ID of the Maintenance Window the task should be added to.
+	// The id of the Maintenance Window the task should be added to.
 	//
 	// WindowId is a required field
 	WindowId *string `min:"20" type:"string" required:"true"`
@@ -25773,29 +25628,12 @@ func (s *RegisterTaskWithMaintenanceWindowOutput) SetWindowTaskId(v string) *Reg
 type RemoveTagsFromResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The resource ID for which you want to remove tags. Use the ID of the resource.
-	// Here are some examples:
-	//
-	// ManagedInstance: mi-012345abcde
-	//
-	// MaintenanceWindow: mw-012345abcde
-	//
-	// PatchBaseline: pb-012345abcde
-	//
-	// For the Document and Parameter values, use the name of the resource.
-	//
-	// The ManagedInstance type for this API action is only for on-premises managed
-	// instances. You must specify the the name of the managed instance in the following
-	// format: mi-ID_number. For example, mi-1a2b3c4d5e6f.
+	// The resource ID for which you want to remove tags.
 	//
 	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
 	// The type of resource of which you want to remove a tag.
-	//
-	// The ManagedInstance type for this API action is only for on-premises managed
-	// instances. You must specify the the name of the managed instance in the following
-	// format: mi-ID_number. For example, mi-1a2b3c4d5e6f.
 	//
 	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true" enum:"ResourceTypeForTagging"`
@@ -26450,7 +26288,7 @@ type SendCommandInput struct {
 	Targets []*Target `type:"list"`
 
 	// If this time is reached and the command has not already started executing,
-	// it will not run.
+	// it will not execute.
 	TimeoutSeconds *int64 `min:"30" type:"integer"`
 }
 
@@ -28127,11 +27965,6 @@ type UpdateMaintenanceWindowTaskInput struct {
 	Description *string `min:"1" type:"string"`
 
 	// The new logging location in Amazon S3 to specify.
-	//
-	// LoggingInfo has been deprecated. To specify an S3 bucket to contain logs,
-	// instead use the OutputS3BucketName and OutputS3KeyPrefix options in the TaskInvocationParameters
-	// structure. For information about how Systems Manager handles these options
-	// for the supported Maintenance Window task types, see MaintenanceWindowTaskInvocationParameters.
 	LoggingInfo *LoggingInfo `type:"structure"`
 
 	// The new MaxConcurrency value you want to specify. MaxConcurrency is the number
@@ -28170,14 +28003,7 @@ type UpdateMaintenanceWindowTaskInput struct {
 	// fields that match the task type. All other fields should be empty.
 	TaskInvocationParameters *MaintenanceWindowTaskInvocationParameters `type:"structure"`
 
-	// The parameters to modify.
-	//
-	// TaskParameters has been deprecated. To specify parameters to pass to a task
-	// when it runs, instead use the Parameters option in the TaskInvocationParameters
-	// structure. For information about how Systems Manager handles these options
-	// for the supported Maintenance Window task types, see MaintenanceWindowTaskInvocationParameters.
-	//
-	// The map has the following format:
+	// The parameters to modify. The map has the following format:
 	//
 	// Key: string, between 1 and 255 characters
 	//
@@ -28353,11 +28179,6 @@ type UpdateMaintenanceWindowTaskOutput struct {
 	Description *string `min:"1" type:"string"`
 
 	// The updated logging information in Amazon S3.
-	//
-	// LoggingInfo has been deprecated. To specify an S3 bucket to contain logs,
-	// instead use the OutputS3BucketName and OutputS3KeyPrefix options in the TaskInvocationParameters
-	// structure. For information about how Systems Manager handles these options
-	// for the supported Maintenance Window task types, see MaintenanceWindowTaskInvocationParameters.
 	LoggingInfo *LoggingInfo `type:"structure"`
 
 	// The updated MaxConcurrency value.
@@ -28385,11 +28206,6 @@ type UpdateMaintenanceWindowTaskOutput struct {
 	TaskInvocationParameters *MaintenanceWindowTaskInvocationParameters `type:"structure"`
 
 	// The updated parameter values.
-	//
-	// TaskParameters has been deprecated. To specify parameters to pass to a task
-	// when it runs, instead use the Parameters option in the TaskInvocationParameters
-	// structure. For information about how Systems Manager handles these options
-	// for the supported Maintenance Window task types, see MaintenanceWindowTaskInvocationParameters.
 	TaskParameters map[string]*MaintenanceWindowTaskParameterValueExpression `type:"map"`
 
 	// The ID of the Maintenance Window that was updated.
@@ -28560,11 +28376,6 @@ type UpdatePatchBaselineInput struct {
 	ApprovalRules *PatchRuleGroup `type:"structure"`
 
 	// A list of explicitly approved patches for the baseline.
-	//
-	// For information about accepted formats for lists of approved patches and
-	// rejected patches, see Package Name Formats for Approved and Rejected Patch
-	// Lists (http://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html)
-	// in the AWS Systems Manager User Guide.
 	ApprovedPatches []*string `type:"list"`
 
 	// Assigns a new compliance severity level to an existing patch baseline.
@@ -28590,11 +28401,6 @@ type UpdatePatchBaselineInput struct {
 	Name *string `min:"3" type:"string"`
 
 	// A list of explicitly rejected patches for the baseline.
-	//
-	// For information about accepted formats for lists of approved patches and
-	// rejected patches, see Package Name Formats for Approved and Rejected Patch
-	// Lists (http://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html)
-	// in the AWS Systems Manager User Guide.
 	RejectedPatches []*string `type:"list"`
 
 	// If True, then all fields that are required by the CreatePatchBaseline action

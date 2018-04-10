@@ -47,6 +47,7 @@ const (
 const (
 	A4bServiceID                          = "a4b"                          // A4b.
 	AcmServiceID                          = "acm"                          // Acm.
+	AcmPcaServiceID                       = "acm-pca"                      // AcmPca.
 	ApiPricingServiceID                   = "api.pricing"                  // ApiPricing.
 	ApigatewayServiceID                   = "apigateway"                   // Apigateway.
 	ApplicationAutoscalingServiceID       = "application-autoscaling"      // ApplicationAutoscaling.
@@ -99,6 +100,7 @@ const (
 	EsServiceID                           = "es"                           // Es.
 	EventsServiceID                       = "events"                       // Events.
 	FirehoseServiceID                     = "firehose"                     // Firehose.
+	FmsServiceID                          = "fms"                          // Fms.
 	GameliftServiceID                     = "gamelift"                     // Gamelift.
 	GlacierServiceID                      = "glacier"                      // Glacier.
 	GlueServiceID                         = "glue"                         // Glue.
@@ -286,6 +288,14 @@ var awsPartition = partition{
 				"us-east-2":      endpoint{},
 				"us-west-1":      endpoint{},
 				"us-west-2":      endpoint{},
+			},
+		},
+		"acm-pca": service{
+			Defaults: endpoint{
+				Protocols: []string{"https"},
+			},
+			Endpoints: endpoints{
+				"us-east-1": endpoint{},
 			},
 		},
 		"api.pricing": service{
@@ -1166,6 +1176,15 @@ var awsPartition = partition{
 				"us-east-2":      endpoint{},
 				"us-west-1":      endpoint{},
 				"us-west-2":      endpoint{},
+			},
+		},
+		"fms": service{
+			Defaults: endpoint{
+				Protocols: []string{"https"},
+			},
+			Endpoints: endpoints{
+				"us-east-1": endpoint{},
+				"us-west-2": endpoint{},
 			},
 		},
 		"gamelift": service{

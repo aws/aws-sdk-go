@@ -25,7 +25,8 @@
         {"shape":"InvalidResourceType"},
         {"shape":"InvalidResourceId"},
         {"shape":"InternalServerError"},
-        {"shape":"TooManyTagsError"}
+        {"shape":"TooManyTagsError"},
+        {"shape":"TooManyUpdates"}
       ]
     },
     "CancelCommand":{
@@ -1226,7 +1227,8 @@
       "errors":[
         {"shape":"InvalidResourceType"},
         {"shape":"InvalidResourceId"},
-        {"shape":"InternalServerError"}
+        {"shape":"InternalServerError"},
+        {"shape":"TooManyUpdates"}
       ]
     },
     "SendAutomationSignal":{
