@@ -81,6 +81,14 @@
           "us-west-2" : { }
         }
       },
+      "acm-pca" : {
+        "defaults" : {
+          "protocols" : [ "https" ]
+        },
+        "endpoints" : {
+          "us-east-1" : { }
+        }
+      },
       "api.pricing" : {
         "defaults" : {
           "credentialScope" : {
@@ -926,6 +934,15 @@
           "us-east-1" : { },
           "us-east-2" : { },
           "us-west-1" : { },
+          "us-west-2" : { }
+        }
+      },
+      "fms" : {
+        "defaults" : {
+          "protocols" : [ "https" ]
+        },
+        "endpoints" : {
+          "us-east-1" : { },
           "us-west-2" : { }
         }
       },

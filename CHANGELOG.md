@@ -1,3 +1,19 @@
+Release v1.13.32 (2018-04-10)
+===
+
+### Service Client Updates
+* `service/dms`: Updates service API and documentation
+  * Native Change Data Capture start point and task recovery support in Database Migration Service.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/glue`: Updates service API and documentation
+  * "AWS Glue now supports timeout values for ETL jobs. With this release, all new ETL jobs have a default timeout value of 48 hours. AWS Glue also now supports the ability to start a schedule or job events trigger when it is created."
+* `service/mediapackage`: Updates service API and documentation
+  * Adds a new OriginEndpoint package type CmafPackage in MediaPackage. Origin endpoints can now be configured to use the Common Media Application Format (CMAF) media streaming format. This version of CmafPackage only supports HTTP Live Streaming (HLS) manifests with fragmented MP4.
+* `service/ssm`: Updates service API and documentation
+  * Added TooManyUpdates exception for AddTagsToResource and RemoveTagsFromResource API
+* `service/workmail`: Updates service API, documentation, and paginators
+  * Amazon WorkMail adds the ability to grant users and groups with "Full Access", "Send As" and "Send on Behalf" permissions on a given mailbox.
+
 Release v1.13.31 (2018-04-09)
 ===
 
