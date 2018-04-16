@@ -1,4 +1,22 @@
 {
   "pagination": {
+    "DescribeJobDefinitions": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "jobDefinitions"
+    },
+    "DescribeJobQueues": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "jobQueues"
+    },
+    "ListJobs": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "jobSummaryList"
+    }
   }
 }

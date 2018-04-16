@@ -92,9 +92,15 @@ type BatchAPI interface {
 	DescribeJobDefinitionsWithContext(aws.Context, *batch.DescribeJobDefinitionsInput, ...request.Option) (*batch.DescribeJobDefinitionsOutput, error)
 	DescribeJobDefinitionsRequest(*batch.DescribeJobDefinitionsInput) (*request.Request, *batch.DescribeJobDefinitionsOutput)
 
+	DescribeJobDefinitionsPages(*batch.DescribeJobDefinitionsInput, func(*batch.DescribeJobDefinitionsOutput, bool) bool) error
+	DescribeJobDefinitionsPagesWithContext(aws.Context, *batch.DescribeJobDefinitionsInput, func(*batch.DescribeJobDefinitionsOutput, bool) bool, ...request.Option) error
+
 	DescribeJobQueues(*batch.DescribeJobQueuesInput) (*batch.DescribeJobQueuesOutput, error)
 	DescribeJobQueuesWithContext(aws.Context, *batch.DescribeJobQueuesInput, ...request.Option) (*batch.DescribeJobQueuesOutput, error)
 	DescribeJobQueuesRequest(*batch.DescribeJobQueuesInput) (*request.Request, *batch.DescribeJobQueuesOutput)
+
+	DescribeJobQueuesPages(*batch.DescribeJobQueuesInput, func(*batch.DescribeJobQueuesOutput, bool) bool) error
+	DescribeJobQueuesPagesWithContext(aws.Context, *batch.DescribeJobQueuesInput, func(*batch.DescribeJobQueuesOutput, bool) bool, ...request.Option) error
 
 	DescribeJobs(*batch.DescribeJobsInput) (*batch.DescribeJobsOutput, error)
 	DescribeJobsWithContext(aws.Context, *batch.DescribeJobsInput, ...request.Option) (*batch.DescribeJobsOutput, error)
@@ -103,6 +109,9 @@ type BatchAPI interface {
 	ListJobs(*batch.ListJobsInput) (*batch.ListJobsOutput, error)
 	ListJobsWithContext(aws.Context, *batch.ListJobsInput, ...request.Option) (*batch.ListJobsOutput, error)
 	ListJobsRequest(*batch.ListJobsInput) (*request.Request, *batch.ListJobsOutput)
+
+	ListJobsPages(*batch.ListJobsInput, func(*batch.ListJobsOutput, bool) bool) error
+	ListJobsPagesWithContext(aws.Context, *batch.ListJobsInput, func(*batch.ListJobsOutput, bool) bool, ...request.Option) error
 
 	RegisterJobDefinition(*batch.RegisterJobDefinitionInput) (*batch.RegisterJobDefinitionOutput, error)
 	RegisterJobDefinitionWithContext(aws.Context, *batch.RegisterJobDefinitionInput, ...request.Option) (*batch.RegisterJobDefinitionOutput, error)

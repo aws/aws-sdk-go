@@ -675,6 +675,12 @@ func (c *Batch) DescribeJobDefinitionsRequest(input *DescribeJobDefinitionsInput
 		Name:       opDescribeJobDefinitions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/v1/describejobdefinitions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -729,6 +735,56 @@ func (c *Batch) DescribeJobDefinitionsWithContext(ctx aws.Context, input *Descri
 	return out, req.Send()
 }
 
+// DescribeJobDefinitionsPages iterates over the pages of a DescribeJobDefinitions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeJobDefinitions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeJobDefinitions operation.
+//    pageNum := 0
+//    err := client.DescribeJobDefinitionsPages(params,
+//        func(page *DescribeJobDefinitionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Batch) DescribeJobDefinitionsPages(input *DescribeJobDefinitionsInput, fn func(*DescribeJobDefinitionsOutput, bool) bool) error {
+	return c.DescribeJobDefinitionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeJobDefinitionsPagesWithContext same as DescribeJobDefinitionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) DescribeJobDefinitionsPagesWithContext(ctx aws.Context, input *DescribeJobDefinitionsInput, fn func(*DescribeJobDefinitionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeJobDefinitionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeJobDefinitionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*DescribeJobDefinitionsOutput), !p.HasNextPage())
+	}
+	return p.Err()
+}
+
 const opDescribeJobQueues = "DescribeJobQueues"
 
 // DescribeJobQueuesRequest generates a "aws/request.Request" representing the
@@ -760,6 +816,12 @@ func (c *Batch) DescribeJobQueuesRequest(input *DescribeJobQueuesInput) (req *re
 		Name:       opDescribeJobQueues,
 		HTTPMethod: "POST",
 		HTTPPath:   "/v1/describejobqueues",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -811,6 +873,56 @@ func (c *Batch) DescribeJobQueuesWithContext(ctx aws.Context, input *DescribeJob
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeJobQueuesPages iterates over the pages of a DescribeJobQueues operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeJobQueues method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeJobQueues operation.
+//    pageNum := 0
+//    err := client.DescribeJobQueuesPages(params,
+//        func(page *DescribeJobQueuesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Batch) DescribeJobQueuesPages(input *DescribeJobQueuesInput, fn func(*DescribeJobQueuesOutput, bool) bool) error {
+	return c.DescribeJobQueuesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeJobQueuesPagesWithContext same as DescribeJobQueuesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) DescribeJobQueuesPagesWithContext(ctx aws.Context, input *DescribeJobQueuesInput, fn func(*DescribeJobQueuesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeJobQueuesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeJobQueuesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*DescribeJobQueuesOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opDescribeJobs = "DescribeJobs"
@@ -928,6 +1040,12 @@ func (c *Batch) ListJobsRequest(input *ListJobsInput) (req *request.Request, out
 		Name:       opListJobs,
 		HTTPMethod: "POST",
 		HTTPPath:   "/v1/listjobs",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -981,6 +1099,56 @@ func (c *Batch) ListJobsWithContext(ctx aws.Context, input *ListJobsInput, opts 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListJobsPages iterates over the pages of a ListJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListJobs operation.
+//    pageNum := 0
+//    err := client.ListJobsPages(params,
+//        func(page *ListJobsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Batch) ListJobsPages(input *ListJobsInput, fn func(*ListJobsOutput, bool) bool) error {
+	return c.ListJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListJobsPagesWithContext same as ListJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) ListJobsPagesWithContext(ctx aws.Context, input *ListJobsInput, fn func(*ListJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListJobsOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opRegisterJobDefinition = "RegisterJobDefinition"
