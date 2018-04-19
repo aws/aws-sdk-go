@@ -1351,7 +1351,8 @@
         "pipelineExecutionId":{"shape":"PipelineExecutionId"},
         "status":{"shape":"PipelineExecutionStatus"},
         "startTime":{"shape":"Timestamp"},
-        "lastUpdateTime":{"shape":"Timestamp"}
+        "lastUpdateTime":{"shape":"Timestamp"},
+        "sourceRevisions":{"shape":"SourceRevisionList"}
       }
     },
     "PipelineExecutionSummaryList":{
@@ -1596,6 +1597,20 @@
     "S3ObjectKey":{"type":"string"},
     "SecretAccessKey":{"type":"string"},
     "SessionToken":{"type":"string"},
+    "SourceRevision":{
+      "type":"structure",
+      "required":["actionName"],
+      "members":{
+        "actionName":{"shape":"ActionName"},
+        "revisionId":{"shape":"Revision"},
+        "revisionSummary":{"shape":"RevisionSummary"},
+        "revisionUrl":{"shape":"Url"}
+      }
+    },
+    "SourceRevisionList":{
+      "type":"list",
+      "member":{"shape":"SourceRevision"}
+    },
     "StageActionDeclarationList":{
       "type":"list",
       "member":{"shape":"ActionDeclaration"}

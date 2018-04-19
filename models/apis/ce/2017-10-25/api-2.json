@@ -26,7 +26,8 @@
         {"shape":"LimitExceededException"},
         {"shape":"BillExpirationException"},
         {"shape":"DataUnavailableException"},
-        {"shape":"InvalidNextTokenException"}
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"RequestChangedException"}
       ]
     },
     "GetDimensionValues":{
@@ -40,7 +41,9 @@
       "errors":[
         {"shape":"LimitExceededException"},
         {"shape":"BillExpirationException"},
-        {"shape":"InvalidNextTokenException"}
+        {"shape":"DataUnavailableException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"RequestChangedException"}
       ]
     },
     "GetReservationCoverage":{
@@ -96,7 +99,9 @@
       "errors":[
         {"shape":"LimitExceededException"},
         {"shape":"BillExpirationException"},
-        {"shape":"InvalidNextTokenException"}
+        {"shape":"DataUnavailableException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"RequestChangedException"}
       ]
     }
   },
@@ -427,7 +432,8 @@
     "InstanceDetails":{
       "type":"structure",
       "members":{
-        "EC2InstanceDetails":{"shape":"EC2InstanceDetails"}
+        "EC2InstanceDetails":{"shape":"EC2InstanceDetails"},
+        "RDSInstanceDetails":{"shape":"RDSInstanceDetails"}
       }
     },
     "InvalidNextTokenException":{
@@ -499,6 +505,26 @@
       ]
     },
     "PurchasedHours":{"type":"string"},
+    "RDSInstanceDetails":{
+      "type":"structure",
+      "members":{
+        "Family":{"shape":"GenericString"},
+        "InstanceType":{"shape":"GenericString"},
+        "Region":{"shape":"GenericString"},
+        "DatabaseEngine":{"shape":"GenericString"},
+        "DeploymentOption":{"shape":"GenericString"},
+        "LicenseModel":{"shape":"GenericString"},
+        "CurrentGeneration":{"shape":"GenericBoolean"},
+        "SizeFlexEligible":{"shape":"GenericBoolean"}
+      }
+    },
+    "RequestChangedException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
     "ReservationAggregates":{
       "type":"structure",
       "members":{

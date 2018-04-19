@@ -169,7 +169,8 @@
         "ActionDeclaration$name": "<p>The action declaration's name.</p>",
         "ActionState$actionName": "<p>The name of the action.</p>",
         "PutActionRevisionInput$actionName": "<p>The name of the action that will process the revision.</p>",
-        "PutApprovalResultInput$actionName": "<p>The name of the action for which approval is requested.</p>"
+        "PutApprovalResultInput$actionName": "<p>The name of the action for which approval is requested.</p>",
+        "SourceRevision$actionName": null
       }
     },
     "ActionNotFoundException": {
@@ -1050,7 +1051,8 @@
         "ActionRevision$revisionId": "<p>The system-generated unique ID that identifies the revision number of the action.</p>",
         "Artifact$revision": "<p>The artifact's revision ID. Depending on the type of object, this could be a commit ID (GitHub) or a revision ID (Amazon S3).</p>",
         "ArtifactRevision$revisionId": "<p>The revision ID of the artifact.</p>",
-        "CurrentRevision$revision": "<p>The revision ID of the current version of an artifact.</p>"
+        "CurrentRevision$revision": "<p>The revision ID of the current version of an artifact.</p>",
+        "SourceRevision$revisionId": null
       }
     },
     "RevisionChangeIdentifier": {
@@ -1065,7 +1067,8 @@
       "base": null,
       "refs": {
         "ArtifactRevision$revisionSummary": "<p>Summary information about the most recent revision of the artifact. For GitHub and AWS CodeCommit repositories, the commit message. For Amazon S3 buckets or actions, the user-provided content of a <code>codepipeline-artifact-revision-summary</code> key specified in the object metadata.</p>",
-        "CurrentRevision$revisionSummary": "<p>The summary of the most recent revision of the artifact.</p>"
+        "CurrentRevision$revisionSummary": "<p>The summary of the most recent revision of the artifact.</p>",
+        "SourceRevision$revisionSummary": null
       }
     },
     "RoleArn": {
@@ -1103,6 +1106,18 @@
       "base": null,
       "refs": {
         "AWSSessionCredentials$sessionToken": "<p>The token for the session.</p>"
+      }
+    },
+    "SourceRevision": {
+      "base": null,
+      "refs": {
+        "SourceRevisionList$member": null
+      }
+    },
+    "SourceRevisionList": {
+      "base": null,
+      "refs": {
+        "PipelineExecutionSummary$sourceRevisions": null
       }
     },
     "StageActionDeclarationList": {
@@ -1279,7 +1294,8 @@
         "ActionState$entityUrl": "<p>A URL link for more information about the state of the action, such as a deployment group details page.</p>",
         "ActionState$revisionUrl": "<p>A URL link for more information about the revision, such as a commit details page.</p>",
         "ActionTypeSettings$thirdPartyConfigurationUrl": "<p>The URL of a sign-up page where users can sign up for an external service and perform initial configuration of the action provided by that service.</p>",
-        "ArtifactRevision$revisionUrl": "<p>The commit ID for the artifact revision. For artifacts stored in GitHub or AWS CodeCommit repositories, the commit ID is linked to a commit details page.</p>"
+        "ArtifactRevision$revisionUrl": "<p>The commit ID for the artifact revision. For artifacts stored in GitHub or AWS CodeCommit repositories, the commit ID is linked to a commit details page.</p>",
+        "SourceRevision$revisionUrl": null
       }
     },
     "UrlTemplate": {

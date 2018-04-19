@@ -17910,6 +17910,12 @@ func (c *EC2) ModifyInstanceAttributeRequest(input *ModifyInstanceAttributeInput
 // Modifies the specified attribute of the specified instance. You can specify
 // only one attribute at a time.
 //
+// Note: Using this action to change the security groups associated with an
+// elastic network interface (ENI) attached to an instance in a VPC can result
+// in an error if the instance has more than one ENI. To change the security
+// groups associated with an ENI attached to an instance that has multiple ENIs,
+// we recommend that you use the ModifyNetworkInterfaceAttribute action.
+//
 // To modify some attributes, the instance must be stopped. For more information,
 // see Modifying Attributes of a Stopped Instance (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_ChangingAttributesWhileInstanceStopped.html)
 // in the Amazon Elastic Compute Cloud User Guide.
@@ -26628,9 +26634,9 @@ type CopySnapshotInput struct {
 	// will eventually fail.
 	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
 
-	// The pre-signed URL parameter is required when copying an encrypted snapshot
-	// with the Amazon EC2 Query API; it is available as an optional parameter in
-	// all other cases. For more information, see Query Requests (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html).
+	// When you copy an encrypted source snapshot using the Amazon EC2 Query API,
+	// you must supply a pre-signed URL. This parameter is optional for unencrypted
+	// snapshots. For more information, see Query Requests (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html).
 	//
 	// The PresignedUrl should use the snapshot source endpoint, the CopySnapshot
 	// action, and include the SourceRegion, SourceSnapshotId, and DestinationRegion
@@ -29542,11 +29548,11 @@ type CreateVolumeInput struct {
 	// in the Amazon Elastic Compute Cloud User Guide.
 	Encrypted *bool `locationName:"encrypted" type:"boolean"`
 
-	// Only valid for Provisioned IOPS SSD volumes. The number of I/O operations
-	// per second (IOPS) to provision for the volume, with a maximum ratio of 50
-	// IOPS/GiB.
+	// The number of I/O operations per second (IOPS) to provision for the volume,
+	// with a maximum ratio of 50 IOPS/GiB. Range is 100 to 32000 IOPS for volumes
+	// in most regions. For exceptions, see Amazon EBS Volume Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html).
 	//
-	// Constraint: Range is 100 to 20000 for Provisioned IOPS SSD volumes
+	// This parameter is valid only for Provisioned IOPS SSD (io1) volumes.
 	Iops *int64 `type:"integer"`
 
 	// An identifier for the AWS Key Management Service (AWS KMS) customer master
@@ -29596,7 +29602,10 @@ type CreateVolumeInput struct {
 	// IOPS SSD, st1 for Throughput Optimized HDD, sc1 for Cold HDD, or standard
 	// for Magnetic volumes.
 	//
-	// Default: standard
+	// Defaults: If no volume type is specified, the default is standard in us-east-1,
+	// eu-west-1, eu-central-1, us-west-2, us-west-1, sa-east-1, ap-northeast-1,
+	// ap-northeast-2, ap-southeast-1, ap-southeast-2, ap-south-1, us-gov-west-1,
+	// and cn-north-1. In all other regions, EBS defaults to gp2.
 	VolumeType *string `type:"string" enum:"VolumeType"`
 }
 
@@ -34699,21 +34708,21 @@ type DescribeHostsInput struct {
 
 	// One or more filters.
 	//
-	//    * instance-type - The instance type size that the Dedicated Host is configured
-	//    to support.
-	//
 	//    * auto-placement - Whether auto-placement is enabled or disabled (on |
 	//    off).
 	//
+	//    * availability-zone - The Availability Zone of the host.
+	//
+	//    * client-token - The idempotency token you provided when you allocated
+	//    the host.
+	//
 	//    * host-reservation-id - The ID of the reservation assigned to this host.
 	//
-	//    * client-token - The idempotency token you provided when you launched
-	//    the instance
+	//    * instance-type - The instance type size that the Dedicated Host is configured
+	//    to support.
 	//
-	//    * state- The allocation state of the Dedicated Host (available | under-assessment
+	//    * state - The allocation state of the Dedicated Host (available | under-assessment
 	//    | permanent-failure | released | released-permanent-failure).
-	//
-	//    * availability-zone - The Availability Zone of the host.
 	Filter []*Filter `locationName:"filter" locationNameList:"Filter" type:"list"`
 
 	// The IDs of the Dedicated Hosts. The IDs are used for targeted instance launches.
@@ -39924,7 +39933,9 @@ type DescribeSpotInstanceRequestsInput struct {
 	//    for General Purpose SSD, io1 for Provisioned IOPS SSD, st1 for Throughput
 	//    Optimized HDD, sc1for Cold HDD, or standard for Magnetic.
 	//
-	//    * launch.group-id - The security group for the instance.
+	//    * launch.group-id - The ID of the security group for the instance.
+	//
+	//    * launch.group-name - The name of the security group for the instance.
 	//
 	//    * launch.image-id - The ID of the AMI.
 	//
@@ -40806,8 +40817,7 @@ type DescribeVolumesInput struct {
 	//    * attachment.instance-id - The ID of the instance the volume is attached
 	//    to.
 	//
-	//    * attachment.status - The attachment state (attaching | attached | detaching
-	//    | detached).
+	//    * attachment.status - The attachment state (attaching | attached | detaching).
 	//
 	//    * availability-zone - The Availability Zone in which the volume was created.
 	//
@@ -44682,8 +44692,30 @@ func (s *ExportToS3TaskSpecification) SetS3Prefix(v string) *ExportToS3TaskSpeci
 }
 
 // A filter name and value pair that is used to return a more specific list
-// of results. Filters can be used to match a set of resources by various criteria,
-// such as tags, attributes, or IDs.
+// of results from a describe operation. Filters can be used to match a set
+// of resources by specific criteria, such as tags, attributes, or IDs. The
+// filters supported by a describe operation are documented with the describe
+// operation. For example:
+//
+//    * DescribeAvailabilityZones
+//
+//    * DescribeImages
+//
+//    * DescribeInstances
+//
+//    * DescribeKeyPairs
+//
+//    * DescribeSecurityGroups
+//
+//    * DescribeSnapshots
+//
+//    * DescribeSubnets
+//
+//    * DescribeTags
+//
+//    * DescribeVolumes
+//
+//    * DescribeVpcs
 type Filter struct {
 	_ struct{} `type:"structure"`
 
@@ -45839,6 +45871,9 @@ func (s *HistoryRecord) SetTimestamp(v time.Time) *HistoryRecord {
 type Host struct {
 	_ struct{} `type:"structure"`
 
+	// The time that the Dedicated Host was allocated.
+	AllocationTime *time.Time `locationName:"allocationTime" type:"timestamp" timestampFormat:"iso8601"`
+
 	// Whether auto-placement is on or off.
 	AutoPlacement *string `locationName:"autoPlacement" type:"string" enum:"AutoPlacement"`
 
@@ -45866,6 +45901,9 @@ type Host struct {
 	// The IDs and instance type that are currently running on the Dedicated Host.
 	Instances []*HostInstance `locationName:"instances" locationNameList:"item" type:"list"`
 
+	// The time that the Dedicated Host was released.
+	ReleaseTime *time.Time `locationName:"releaseTime" type:"timestamp" timestampFormat:"iso8601"`
+
 	// The Dedicated Host's state.
 	State *string `locationName:"state" type:"string" enum:"AllocationState"`
 }
@@ -45878,6 +45916,12 @@ func (s Host) String() string {
 // GoString returns the string representation
 func (s Host) GoString() string {
 	return s.String()
+}
+
+// SetAllocationTime sets the AllocationTime field's value.
+func (s *Host) SetAllocationTime(v time.Time) *Host {
+	s.AllocationTime = &v
+	return s
 }
 
 // SetAutoPlacement sets the AutoPlacement field's value.
@@ -45925,6 +45969,12 @@ func (s *Host) SetHostReservationId(v string) *Host {
 // SetInstances sets the Instances field's value.
 func (s *Host) SetInstances(v []*HostInstance) *Host {
 	s.Instances = v
+	return s
+}
+
+// SetReleaseTime sets the ReleaseTime field's value.
+func (s *Host) SetReleaseTime(v time.Time) *Host {
+	s.ReleaseTime = &v
 	return s
 }
 
@@ -66062,7 +66112,7 @@ type Volume struct {
 	// performance, I/O credits, and bursting, see Amazon EBS Volume Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	//
-	// Constraint: Range is 100-20000 IOPS for io1 volumes and 100-10000 IOPS for
+	// Constraint: Range is 100-32000 IOPS for io1 volumes and 100-10000 IOPS for
 	// gp2 volumes.
 	//
 	// Condition: This parameter is required for requests to create io1 volumes;

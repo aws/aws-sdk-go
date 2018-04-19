@@ -8,6 +8,7 @@
     "CreateProject": "<p>Creates a new project.</p>",
     "CreateRemoteAccessSession": "<p>Specifies and starts a remote access session.</p>",
     "CreateUpload": "<p>Uploads an app or test scripts.</p>",
+    "CreateVPCEConfiguration": "<p>Creates a configuration record in Device Farm for your Amazon Virtual Private Cloud (VPC) endpoint.</p>",
     "DeleteDevicePool": "<p>Deletes a device pool given the pool ARN. Does not allow deletion of curated pools owned by the system.</p>",
     "DeleteInstanceProfile": "<p>Deletes a profile that can be applied to one or more private device instances.</p>",
     "DeleteNetworkProfile": "<p>Deletes a network profile.</p>",
@@ -15,6 +16,7 @@
     "DeleteRemoteAccessSession": "<p>Deletes a completed remote access session and its results.</p>",
     "DeleteRun": "<p>Deletes the run, given the run ARN.</p> <p> <b>Note</b> Deleting this resource does not stop an in-progress run.</p>",
     "DeleteUpload": "<p>Deletes an upload given the upload ARN.</p>",
+    "DeleteVPCEConfiguration": "<p>Deletes a configuration for your Amazon Virtual Private Cloud (VPC) endpoint.</p>",
     "GetAccountSettings": "<p>Returns the number of unmetered iOS and/or unmetered Android devices that have been purchased by the account.</p>",
     "GetDevice": "<p>Gets information about a unique device type.</p>",
     "GetDeviceInstance": "<p>Returns information about a device instance belonging to a private device fleet.</p>",
@@ -30,6 +32,7 @@
     "GetSuite": "<p>Gets information about a suite.</p>",
     "GetTest": "<p>Gets information about a test.</p>",
     "GetUpload": "<p>Gets information about an upload.</p>",
+    "GetVPCEConfiguration": "<p>Returns information about the configuration settings for your Amazon Virtual Private Cloud (VPC) endpoint.</p>",
     "InstallToRemoteAccessSession": "<p>Installs an application to the device in a remote access session. For Android applications, the file must be in .apk format. For iOS applications, the file must be in .ipa format.</p>",
     "ListArtifacts": "<p>Gets information about artifacts.</p>",
     "ListDeviceInstances": "<p>Returns information about the private device instances associated with one or more AWS accounts.</p>",
@@ -49,6 +52,7 @@
     "ListTests": "<p>Gets information about tests in a given test suite.</p>",
     "ListUniqueProblems": "<p>Gets information about unique problems.</p>",
     "ListUploads": "<p>Gets information about uploads, given an AWS Device Farm project ARN.</p>",
+    "ListVPCEConfigurations": "<p>Returns information about all Amazon Virtual Private Cloud (VPC) endpoint configurations in the AWS account.</p>",
     "PurchaseOffering": "<p>Immediately purchases offerings for an AWS account. Offerings renew with the latest total purchased quantity for an offering, unless the renewal was overridden. The API returns a <code>NotEligible</code> error if the user is not permitted to invoke the operation. Please contact <a href=\"mailto:aws-devicefarm-support@amazon.com\">aws-devicefarm-support@amazon.com</a> if you believe that you should be able to invoke this operation.</p>",
     "RenewOffering": "<p>Explicitly sets the quantity of devices to renew for an offering, starting from the <code>effectiveDate</code> of the next period. The API returns a <code>NotEligible</code> error if the user is not permitted to invoke the operation. Please contact <a href=\"mailto:aws-devicefarm-support@amazon.com\">aws-devicefarm-support@amazon.com</a> if you believe that you should be able to invoke this operation.</p>",
     "ScheduleRun": "<p>Schedules a run.</p>",
@@ -58,7 +62,8 @@
     "UpdateDevicePool": "<p>Modifies the name, description, and rules in a device pool given the attributes and the pool ARN. Rule updates are all-or-nothing, meaning they can only be updated as a whole (or not at all).</p>",
     "UpdateInstanceProfile": "<p>Updates information about an existing private device instance profile.</p>",
     "UpdateNetworkProfile": "<p>Updates the network profile with specific settings.</p>",
-    "UpdateProject": "<p>Modifies the specified project name, given the project ARN and a new name.</p>"
+    "UpdateProject": "<p>Modifies the specified project name, given the project ARN and a new name.</p>",
+    "UpdateVPCEConfiguration": "<p>Updates information about an existing Amazon Virtual Private Cloud (VPC) endpoint configuration.</p>"
   },
   "shapes": {
     "AWSAccountNumber": {
@@ -98,6 +103,7 @@
         "DeleteRemoteAccessSessionRequest$arn": "<p>The Amazon Resource Name (ARN) of the sesssion for which you want to delete remote access.</p>",
         "DeleteRunRequest$arn": "<p>The Amazon Resource Name (ARN) for the run you wish to delete.</p>",
         "DeleteUploadRequest$arn": "<p>Represents the Amazon Resource Name (ARN) of the Device Farm upload you wish to delete.</p>",
+        "DeleteVPCEConfigurationRequest$arn": "<p>The Amazon Resource Name (ARN) of the VPC endpoint configuration you want to delete.</p>",
         "Device$arn": "<p>The device's ARN.</p>",
         "DeviceInstance$arn": "<p>The Amazon Resource Name (ARN) of the device instance.</p>",
         "DeviceInstance$deviceArn": "<p>The Amazon Resource Name (ARN) of the device.</p>",
@@ -116,6 +122,7 @@
         "GetSuiteRequest$arn": "<p>The suite's ARN.</p>",
         "GetTestRequest$arn": "<p>The test's ARN.</p>",
         "GetUploadRequest$arn": "<p>The upload's ARN.</p>",
+        "GetVPCEConfigurationRequest$arn": "<p>The Amazon Resource Name (ARN) of the VPC endpoint configuration you want to describe.</p>",
         "InstallToRemoteAccessSessionRequest$remoteAccessSessionArn": "<p>The Amazon Resource Name (ARN) of the remote access session about which you are requesting information.</p>",
         "InstallToRemoteAccessSessionRequest$appArn": "<p>The Amazon Resource Name (ARN) of the app about which you are requesting information.</p>",
         "InstanceProfile$arn": "<p>The Amazon Resource Name (ARN) of the instance profile.</p>",
@@ -160,12 +167,15 @@
         "UpdateInstanceProfileRequest$arn": "<p>The Amazon Resource Name (ARN) of the instance profile.</p>",
         "UpdateNetworkProfileRequest$arn": "<p>The Amazon Resource Name (ARN) of the project for which you want to update network profile settings.</p>",
         "UpdateProjectRequest$arn": "<p>The Amazon Resource Name (ARN) of the project whose name you wish to update.</p>",
-        "Upload$arn": "<p>The upload's ARN.</p>"
+        "UpdateVPCEConfigurationRequest$arn": "<p>The Amazon Resource Name (ARN) of the VPC endpoint configuration you want to update.</p>",
+        "Upload$arn": "<p>The upload's ARN.</p>",
+        "VPCEConfiguration$arn": "<p>The Amazon Resource Name (ARN) of the VPC endpoint configuration.</p>"
       }
     },
     "AmazonResourceNames": {
       "base": null,
       "refs": {
+        "ScheduleRunConfiguration$vpceConfigurationArns": "<p>An array of Amazon Resource Names (ARNs) for your VPC endpoint configurations.</p>",
         "ScheduleRunConfiguration$auxiliaryApps": "<p>A list of auxiliary apps for the run.</p>"
       }
     },
@@ -337,6 +347,16 @@
       "refs": {
       }
     },
+    "CreateVPCEConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateVPCEConfigurationResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CurrencyCode": {
       "base": null,
       "refs": {
@@ -441,6 +461,16 @@
     },
     "DeleteUploadResult": {
       "base": "<p>Represents the result of a delete upload request.</p>",
+      "refs": {
+      }
+    },
+    "DeleteVPCEConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteVPCEConfigurationResult": {
+      "base": null,
       "refs": {
       }
     },
@@ -753,6 +783,16 @@
       "refs": {
       }
     },
+    "GetVPCEConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVPCEConfigurationResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "HostAddress": {
       "base": null,
       "refs": {
@@ -827,6 +867,7 @@
         "Counters$skipped": "<p>The number of skipped entities.</p>",
         "ListDeviceInstancesRequest$maxResults": "<p>An integer specifying the maximum number of items you want to return in the API response.</p>",
         "ListInstanceProfilesRequest$maxResults": "<p>An integer specifying the maximum number of items you want to return in the API response.</p>",
+        "ListVPCEConfigurationsRequest$maxResults": "<p>An integer specifying the maximum number of items you want to return in the API response.</p>",
         "MaxSlotMap$value": null,
         "OfferingStatus$quantity": "<p>The number of available devices in the offering.</p>",
         "PurchaseOfferingRequest$quantity": "<p>The number of device slots you wish to purchase in an offering request.</p>",
@@ -845,6 +886,11 @@
       "refs": {
         "CreateRemoteAccessSessionRequest$interactionMode": "<p>The interaction mode of the remote access session. Valid values are:</p> <ul> <li> <p>INTERACTIVE: You can interact with the iOS device by viewing, touching, and rotating the screen. You <b>cannot</b> run XCUITest framework-based tests in this mode.</p> </li> <li> <p>NO_VIDEO: You are connected to the device but cannot interact with it or view the screen. This mode has the fastest test execution speed. You <b>can</b> run XCUITest framework-based tests in this mode.</p> </li> <li> <p>VIDEO_ONLY: You can view the screen but cannot touch or rotate it. You <b>can</b> run XCUITest framework-based tests and watch the screen in this mode.</p> </li> </ul>",
         "RemoteAccessSession$interactionMode": "<p>The interaction mode of the remote access session. Valid values are:</p> <ul> <li> <p>INTERACTIVE: You can interact with the iOS device by viewing, touching, and rotating the screen. You <b>cannot</b> run XCUITest framework-based tests in this mode.</p> </li> <li> <p>NO_VIDEO: You are connected to the device but cannot interact with it or view the screen. This mode has the fastest test execution speed. You <b>can</b> run XCUITest framework-based tests in this mode.</p> </li> <li> <p>VIDEO_ONLY: You can view the screen but cannot touch or rotate it. You <b>can</b> run XCUITest framework-based tests and watch the screen in this mode.</p> </li> </ul>"
+      }
+    },
+    "InvalidOperationException": {
+      "base": "<p>There was an error with the update request, or you do not have sufficient permissions to update this VPC endpoint configuration.</p>",
+      "refs": {
       }
     },
     "IosPaths": {
@@ -1063,6 +1109,16 @@
       "refs": {
       }
     },
+    "ListVPCEConfigurationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListVPCEConfigurationsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Location": {
       "base": "<p>Represents a latitude and longitude pair, expressed in geographic coordinate system degrees (for example 47.6204, -122.3491).</p> <p>Elevation is currently not supported.</p>",
       "refs": {
@@ -1112,6 +1168,7 @@
         "IdempotencyException$message": "<p>Any additional information about the exception.</p>",
         "IncompatibilityMessage$message": "<p>A message about the incompatibility.</p>",
         "InstanceProfile$description": "<p>The description of the instance profile.</p>",
+        "InvalidOperationException$message": null,
         "Job$message": "<p>A message about the job's result.</p>",
         "LimitExceededException$message": "<p>Any additional information about the exception.</p>",
         "NetworkProfile$description": "<p>The description of the network profile.</p>",
@@ -1339,7 +1396,9 @@
         "ListUniqueProblemsRequest$nextToken": "<p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>",
         "ListUniqueProblemsResult$nextToken": "<p>If the number of items that are returned is significantly large, this is an identifier that is also returned, which can be used in a subsequent call to this operation to return the next set of items in the list.</p>",
         "ListUploadsRequest$nextToken": "<p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>",
-        "ListUploadsResult$nextToken": "<p>If the number of items that are returned is significantly large, this is an identifier that is also returned, which can be used in a subsequent call to this operation to return the next set of items in the list.</p>"
+        "ListUploadsResult$nextToken": "<p>If the number of items that are returned is significantly large, this is an identifier that is also returned, which can be used in a subsequent call to this operation to return the next set of items in the list.</p>",
+        "ListVPCEConfigurationsRequest$nextToken": "<p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>",
+        "ListVPCEConfigurationsResult$nextToken": "<p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>"
       }
     },
     "PercentInteger": {
@@ -1518,6 +1577,7 @@
     "ScheduleRunConfiguration": {
       "base": "<p>Represents the settings for a run. Includes things like location, radio states, auxiliary apps, and network profiles.</p>",
       "refs": {
+        "GetDevicePoolCompatibilityRequest$configuration": "<p>An object containing information about the settings for a run.</p>",
         "ScheduleRunRequest$configuration": "<p>Information about the settings for the run to be scheduled.</p>"
       }
     },
@@ -1541,6 +1601,14 @@
     "ServiceAccountException": {
       "base": "<p>There was a problem with the service account.</p>",
       "refs": {
+      }
+    },
+    "ServiceDnsName": {
+      "base": null,
+      "refs": {
+        "CreateVPCEConfigurationRequest$serviceDnsName": "<p>The DNS name of the service running in your VPC that you want Device Farm to test.</p>",
+        "UpdateVPCEConfigurationRequest$serviceDnsName": "<p>The DNS (domain) name used to connect to your private service in your Amazon VPC. The DNS name must not already be in use on the Internet.</p>",
+        "VPCEConfiguration$serviceDnsName": "<p>The DNS name that maps to the private IP address of the service you want to access.</p>"
       }
     },
     "SkipAppResign": {
@@ -1742,6 +1810,16 @@
       "refs": {
       }
     },
+    "UpdateVPCEConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateVPCEConfigurationResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Upload": {
       "base": "<p>An app or a set of one or more tests to upload or that have been uploaded.</p>",
       "refs": {
@@ -1768,6 +1846,45 @@
       "base": null,
       "refs": {
         "ListUploadsResult$uploads": "<p>Information about the uploads.</p>"
+      }
+    },
+    "VPCEConfiguration": {
+      "base": "<p>Represents an Amazon Virtual Private Cloud (VPC) endpoint configuration.</p>",
+      "refs": {
+        "CreateVPCEConfigurationResult$vpceConfiguration": "<p>An object containing information about your VPC endpoint configuration.</p>",
+        "GetVPCEConfigurationResult$vpceConfiguration": "<p>An object containing information about your VPC endpoint configuration.</p>",
+        "UpdateVPCEConfigurationResult$vpceConfiguration": "<p>An object containing information about your VPC endpoint configuration.</p>",
+        "VPCEConfigurations$member": null
+      }
+    },
+    "VPCEConfigurationDescription": {
+      "base": null,
+      "refs": {
+        "CreateVPCEConfigurationRequest$vpceConfigurationDescription": "<p>An optional description, providing more details about your VPC endpoint configuration.</p>",
+        "UpdateVPCEConfigurationRequest$vpceConfigurationDescription": "<p>An optional description, providing more details about your VPC endpoint configuration.</p>",
+        "VPCEConfiguration$vpceConfigurationDescription": "<p>An optional description, providing more details about your VPC endpoint configuration.</p>"
+      }
+    },
+    "VPCEConfigurationName": {
+      "base": null,
+      "refs": {
+        "CreateVPCEConfigurationRequest$vpceConfigurationName": "<p>The friendly name you give to your VPC endpoint configuration, to manage your configurations more easily.</p>",
+        "UpdateVPCEConfigurationRequest$vpceConfigurationName": "<p>The friendly name you give to your VPC endpoint configuration, to manage your configurations more easily.</p>",
+        "VPCEConfiguration$vpceConfigurationName": "<p>The friendly name you give to your VPC endpoint configuration, to manage your configurations more easily.</p>"
+      }
+    },
+    "VPCEConfigurations": {
+      "base": null,
+      "refs": {
+        "ListVPCEConfigurationsResult$vpceConfigurations": "<p>An array of <code>VPCEConfiguration</code> objects containing information about your VPC endpoint configuration.</p>"
+      }
+    },
+    "VPCEServiceName": {
+      "base": null,
+      "refs": {
+        "CreateVPCEConfigurationRequest$vpceServiceName": "<p>The name of the VPC endpoint service running inside your AWS account that you want Device Farm to test.</p>",
+        "UpdateVPCEConfigurationRequest$vpceServiceName": "<p>The name of the VPC endpoint service running inside your AWS account that you want Device Farm to test.</p>",
+        "VPCEConfiguration$vpceServiceName": "<p>The name of the VPC endpoint service running inside your AWS account that you want Device Farm to test.</p>"
       }
     }
   }

@@ -84,6 +84,10 @@ type DeviceFarmAPI interface {
 	CreateUploadWithContext(aws.Context, *devicefarm.CreateUploadInput, ...request.Option) (*devicefarm.CreateUploadOutput, error)
 	CreateUploadRequest(*devicefarm.CreateUploadInput) (*request.Request, *devicefarm.CreateUploadOutput)
 
+	CreateVPCEConfiguration(*devicefarm.CreateVPCEConfigurationInput) (*devicefarm.CreateVPCEConfigurationOutput, error)
+	CreateVPCEConfigurationWithContext(aws.Context, *devicefarm.CreateVPCEConfigurationInput, ...request.Option) (*devicefarm.CreateVPCEConfigurationOutput, error)
+	CreateVPCEConfigurationRequest(*devicefarm.CreateVPCEConfigurationInput) (*request.Request, *devicefarm.CreateVPCEConfigurationOutput)
+
 	DeleteDevicePool(*devicefarm.DeleteDevicePoolInput) (*devicefarm.DeleteDevicePoolOutput, error)
 	DeleteDevicePoolWithContext(aws.Context, *devicefarm.DeleteDevicePoolInput, ...request.Option) (*devicefarm.DeleteDevicePoolOutput, error)
 	DeleteDevicePoolRequest(*devicefarm.DeleteDevicePoolInput) (*request.Request, *devicefarm.DeleteDevicePoolOutput)
@@ -111,6 +115,10 @@ type DeviceFarmAPI interface {
 	DeleteUpload(*devicefarm.DeleteUploadInput) (*devicefarm.DeleteUploadOutput, error)
 	DeleteUploadWithContext(aws.Context, *devicefarm.DeleteUploadInput, ...request.Option) (*devicefarm.DeleteUploadOutput, error)
 	DeleteUploadRequest(*devicefarm.DeleteUploadInput) (*request.Request, *devicefarm.DeleteUploadOutput)
+
+	DeleteVPCEConfiguration(*devicefarm.DeleteVPCEConfigurationInput) (*devicefarm.DeleteVPCEConfigurationOutput, error)
+	DeleteVPCEConfigurationWithContext(aws.Context, *devicefarm.DeleteVPCEConfigurationInput, ...request.Option) (*devicefarm.DeleteVPCEConfigurationOutput, error)
+	DeleteVPCEConfigurationRequest(*devicefarm.DeleteVPCEConfigurationInput) (*request.Request, *devicefarm.DeleteVPCEConfigurationOutput)
 
 	GetAccountSettings(*devicefarm.GetAccountSettingsInput) (*devicefarm.GetAccountSettingsOutput, error)
 	GetAccountSettingsWithContext(aws.Context, *devicefarm.GetAccountSettingsInput, ...request.Option) (*devicefarm.GetAccountSettingsOutput, error)
@@ -174,6 +182,10 @@ type DeviceFarmAPI interface {
 	GetUpload(*devicefarm.GetUploadInput) (*devicefarm.GetUploadOutput, error)
 	GetUploadWithContext(aws.Context, *devicefarm.GetUploadInput, ...request.Option) (*devicefarm.GetUploadOutput, error)
 	GetUploadRequest(*devicefarm.GetUploadInput) (*request.Request, *devicefarm.GetUploadOutput)
+
+	GetVPCEConfiguration(*devicefarm.GetVPCEConfigurationInput) (*devicefarm.GetVPCEConfigurationOutput, error)
+	GetVPCEConfigurationWithContext(aws.Context, *devicefarm.GetVPCEConfigurationInput, ...request.Option) (*devicefarm.GetVPCEConfigurationOutput, error)
+	GetVPCEConfigurationRequest(*devicefarm.GetVPCEConfigurationInput) (*request.Request, *devicefarm.GetVPCEConfigurationOutput)
 
 	InstallToRemoteAccessSession(*devicefarm.InstallToRemoteAccessSessionInput) (*devicefarm.InstallToRemoteAccessSessionOutput, error)
 	InstallToRemoteAccessSessionWithContext(aws.Context, *devicefarm.InstallToRemoteAccessSessionInput, ...request.Option) (*devicefarm.InstallToRemoteAccessSessionOutput, error)
@@ -290,6 +302,10 @@ type DeviceFarmAPI interface {
 	ListUploadsPages(*devicefarm.ListUploadsInput, func(*devicefarm.ListUploadsOutput, bool) bool) error
 	ListUploadsPagesWithContext(aws.Context, *devicefarm.ListUploadsInput, func(*devicefarm.ListUploadsOutput, bool) bool, ...request.Option) error
 
+	ListVPCEConfigurations(*devicefarm.ListVPCEConfigurationsInput) (*devicefarm.ListVPCEConfigurationsOutput, error)
+	ListVPCEConfigurationsWithContext(aws.Context, *devicefarm.ListVPCEConfigurationsInput, ...request.Option) (*devicefarm.ListVPCEConfigurationsOutput, error)
+	ListVPCEConfigurationsRequest(*devicefarm.ListVPCEConfigurationsInput) (*request.Request, *devicefarm.ListVPCEConfigurationsOutput)
+
 	PurchaseOffering(*devicefarm.PurchaseOfferingInput) (*devicefarm.PurchaseOfferingOutput, error)
 	PurchaseOfferingWithContext(aws.Context, *devicefarm.PurchaseOfferingInput, ...request.Option) (*devicefarm.PurchaseOfferingOutput, error)
 	PurchaseOfferingRequest(*devicefarm.PurchaseOfferingInput) (*request.Request, *devicefarm.PurchaseOfferingOutput)
@@ -329,6 +345,10 @@ type DeviceFarmAPI interface {
 	UpdateProject(*devicefarm.UpdateProjectInput) (*devicefarm.UpdateProjectOutput, error)
 	UpdateProjectWithContext(aws.Context, *devicefarm.UpdateProjectInput, ...request.Option) (*devicefarm.UpdateProjectOutput, error)
 	UpdateProjectRequest(*devicefarm.UpdateProjectInput) (*request.Request, *devicefarm.UpdateProjectOutput)
+
+	UpdateVPCEConfiguration(*devicefarm.UpdateVPCEConfigurationInput) (*devicefarm.UpdateVPCEConfigurationOutput, error)
+	UpdateVPCEConfigurationWithContext(aws.Context, *devicefarm.UpdateVPCEConfigurationInput, ...request.Option) (*devicefarm.UpdateVPCEConfigurationOutput, error)
+	UpdateVPCEConfigurationRequest(*devicefarm.UpdateVPCEConfigurationInput) (*request.Request, *devicefarm.UpdateVPCEConfigurationOutput)
 }
 
 var _ DeviceFarmAPI = (*devicefarm.DeviceFarm)(nil)

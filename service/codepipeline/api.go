@@ -5902,6 +5902,8 @@ type PipelineExecutionSummary struct {
 	// The ID of the pipeline execution.
 	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string"`
 
+	SourceRevisions []*SourceRevision `locationName:"sourceRevisions" type:"list"`
+
 	// The date and time when the pipeline execution began, in timestamp format.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"unix"`
 
@@ -5938,6 +5940,12 @@ func (s *PipelineExecutionSummary) SetLastUpdateTime(v time.Time) *PipelineExecu
 // SetPipelineExecutionId sets the PipelineExecutionId field's value.
 func (s *PipelineExecutionSummary) SetPipelineExecutionId(v string) *PipelineExecutionSummary {
 	s.PipelineExecutionId = &v
+	return s
+}
+
+// SetSourceRevisions sets the SourceRevisions field's value.
+func (s *PipelineExecutionSummary) SetSourceRevisions(v []*SourceRevision) *PipelineExecutionSummary {
+	s.SourceRevisions = v
 	return s
 }
 
@@ -7013,6 +7021,53 @@ func (s *S3ArtifactLocation) SetBucketName(v string) *S3ArtifactLocation {
 // SetObjectKey sets the ObjectKey field's value.
 func (s *S3ArtifactLocation) SetObjectKey(v string) *S3ArtifactLocation {
 	s.ObjectKey = &v
+	return s
+}
+
+type SourceRevision struct {
+	_ struct{} `type:"structure"`
+
+	// ActionName is a required field
+	ActionName *string `locationName:"actionName" min:"1" type:"string" required:"true"`
+
+	RevisionId *string `locationName:"revisionId" min:"1" type:"string"`
+
+	RevisionSummary *string `locationName:"revisionSummary" min:"1" type:"string"`
+
+	RevisionUrl *string `locationName:"revisionUrl" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s SourceRevision) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SourceRevision) GoString() string {
+	return s.String()
+}
+
+// SetActionName sets the ActionName field's value.
+func (s *SourceRevision) SetActionName(v string) *SourceRevision {
+	s.ActionName = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *SourceRevision) SetRevisionId(v string) *SourceRevision {
+	s.RevisionId = &v
+	return s
+}
+
+// SetRevisionSummary sets the RevisionSummary field's value.
+func (s *SourceRevision) SetRevisionSummary(v string) *SourceRevision {
+	s.RevisionSummary = &v
+	return s
+}
+
+// SetRevisionUrl sets the RevisionUrl field's value.
+func (s *SourceRevision) SetRevisionUrl(v string) *SourceRevision {
+	s.RevisionUrl = &v
 	return s
 }
 
