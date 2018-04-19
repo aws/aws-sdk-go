@@ -80,6 +80,10 @@ func (c *CostExplorer) GetCostAndUsageRequest(input *GetCostAndUsageInput) (req 
 //   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
 //   The pagination token is invalid. Try again without a pagination token.
 //
+//   * ErrCodeRequestChangedException "RequestChangedException"
+//   Your request parameters changed between pages. Try again with the old parameters
+//   or without a pagination token.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetCostAndUsage
 func (c *CostExplorer) GetCostAndUsage(input *GetCostAndUsageInput) (*GetCostAndUsageOutput, error) {
 	req, out := c.GetCostAndUsageRequest(input)
@@ -146,7 +150,7 @@ func (c *CostExplorer) GetDimensionValuesRequest(input *GetDimensionValuesInput)
 
 // GetDimensionValues API operation for AWS Cost Explorer Service.
 //
-// Retrieves all available filter values for a specific filter over a period
+// Retrieves all available filter values for a specified filter over a period
 // of time. You can search the dimension values for an arbitrary string.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -163,8 +167,15 @@ func (c *CostExplorer) GetDimensionValuesRequest(input *GetDimensionValuesInput)
 //   * ErrCodeBillExpirationException "BillExpirationException"
 //   The requested report expired. Update the date interval and try again.
 //
+//   * ErrCodeDataUnavailableException "DataUnavailableException"
+//   The requested data is unavailable.
+//
 //   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
 //   The pagination token is invalid. Try again without a pagination token.
+//
+//   * ErrCodeRequestChangedException "RequestChangedException"
+//   Your request parameters changed between pages. Try again with the old parameters
+//   or without a pagination token.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetDimensionValues
 func (c *CostExplorer) GetDimensionValues(input *GetDimensionValuesInput) (*GetDimensionValuesOutput, error) {
@@ -241,13 +252,25 @@ func (c *CostExplorer) GetReservationCoverageRequest(input *GetReservationCovera
 //
 //    * AZ
 //
+//    * CACHE_ENGINE
+//
+//    * DATABASE_ENGINE
+//
+//    * DEPLOYMENT_OPTION
+//
 //    * INSTANCE_TYPE
 //
 //    * LINKED_ACCOUNT
 //
+//    * OPERATING_SYSTEM
+//
 //    * PLATFORM
 //
 //    * REGION
+//
+//    * SERVICE
+//
+//    * TAG
 //
 //    * TENANCY
 //
@@ -438,11 +461,10 @@ func (c *CostExplorer) GetReservationUtilizationRequest(input *GetReservationUti
 
 // GetReservationUtilization API operation for AWS Cost Explorer Service.
 //
-// You can retrieve the reservation utilization for your account. Master accounts
-// in an organization in AWS Organizations have access to their associated member
-// accounts. You can filter data by dimensions in a time period. You can use
-// GetDimensionValues to determine the possible dimension values. Currently,
-// you can group only by SUBSCRIPTION_ID.
+// Retrieves the reservation utilization for your account. Master accounts in
+// an organization have access to member accounts. You can filter data by dimensions
+// in a time period. You can use GetDimensionValues to determine the possible
+// dimension values. Currently, you can group only by SUBSCRIPTION_ID.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -527,8 +549,8 @@ func (c *CostExplorer) GetTagsRequest(input *GetTagsInput) (req *request.Request
 
 // GetTags API operation for AWS Cost Explorer Service.
 //
-// You can query for available tag keys and tag values for a specified period.
-// You can search the tag values for an arbitrary string.
+// Queries for available tag keys and tag values for a specified period. You
+// can search the tag values for an arbitrary string.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -544,8 +566,15 @@ func (c *CostExplorer) GetTagsRequest(input *GetTagsInput) (req *request.Request
 //   * ErrCodeBillExpirationException "BillExpirationException"
 //   The requested report expired. Update the date interval and try again.
 //
+//   * ErrCodeDataUnavailableException "DataUnavailableException"
+//   The requested data is unavailable.
+//
 //   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
 //   The pagination token is invalid. Try again without a pagination token.
+//
+//   * ErrCodeRequestChangedException "RequestChangedException"
+//   Your request parameters changed between pages. Try again with the old parameters
+//   or without a pagination token.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetTags
 func (c *CostExplorer) GetTags(input *GetTagsInput) (*GetTagsOutput, error) {
@@ -1181,28 +1210,38 @@ type GetDimensionValuesInput struct {
 	// operation. If the context is set to COST_AND_USAGE the resulting dimension
 	// values can be used in the GetCostAndUsage operation.
 	//
-	// If you set the context to CostAndUsage, you can use the following dimensions
+	// If you set the context to COST_AND_USAGE, you can use the following dimensions
 	// for searching:
 	//
 	//    * AZ - The Availability Zone. An example is us-east-1a.
 	//
-	//    * INSTANCE_TYPE - The type of instance. An example is an EC2 m4.xlarge.
+	//    * DATABASE_ENGINE - The Amazon Relational Database Service database. Examples
+	//    are Aurora or MySQL.
+	//
+	//    * INSTANCE_TYPE - The type of EC2 instance. An example is m4.xlarge.
+	//
+	//    * LEGAL_ENTITY_NAME - The name of the organization that sells you AWS
+	//    services, such as Amazon Web Services.
 	//
 	//    * LINKED_ACCOUNT - The description in the attribute map that includes
 	//    the full name of the member account. The value field contains the AWS
 	//    ID of the member account.
 	//
+	//    * OPERATING_SYSTEM - The operating system. Examples are Windows or Linux.
+	//
 	//    * OPERATION - The action performed. Examples include RunInstance and CreateBucket.
+	//
+	//    * PLATFORM - The EC2 operating system. Examples are Windows or Linux.
 	//
 	//    * PURCHASE_TYPE - The reservation type of the purchase to which this usage
 	//    is related. Examples include On-Demand Instances and Standard Reserved
 	//    Instances.
 	//
-	//    * SERVICE - The AWS service such as DynamoDB.
+	//    * SERVICE - The AWS service such as Amazon DynamoDB.
 	//
 	//    * USAGE_TYPE - The type of usage. An example is DataTransfer-In-Bytes.
-	//    The response for the GetDimensionValues operation includes a unit attribute,
-	//    examples of which include GB and Hrs.
+	//    The response for the GetDimensionValues operation includes a unit attribute.
+	//    Examples include GB and Hrs.
 	//
 	//    * USAGE_TYPE_GROUP - The grouping of common usage types. An example is
 	//    EC2: CloudWatch – Alarms. The response for this operation includes a unit
@@ -1216,20 +1255,27 @@ type GetDimensionValuesInput struct {
 	//
 	//    * AZ - The Availability Zone. An example is us-east-1a.
 	//
-	//    * INSTANCE_TYPE - The type of instance. An example is an EC2 m4.xlarge.
+	//    * CACHE_ENGINE - The Amazon ElastiCache operating system. Examples are
+	//    Windows or Linux.
+	//
+	//    * DEPLOYMENT_OPTION - The scope of Amazon Relational Database Service
+	//    deployments. Valid values are SingleAZ and MultiAZ.
+	//
+	//    * INSTANCE_TYPE - The type of EC2 instance. An example is m4.xlarge.
 	//
 	//    * LINKED_ACCOUNT - The description in the attribute map that includes
 	//    the full name of the member account. The value field contains the AWS
 	//    ID of the member account.
 	//
-	//    * PLATFORM - The specific combination of operating system, license model,
-	//    and software on an instance. For example, a Windows instance with SQL
-	//    Server Web and no license, or a Red Hat Enterprise Linux instance.
+	//    * PLATFORM - The EC2 operating system. Examples are Windows or Linux.
 	//
 	//    * REGION - The AWS Region.
 	//
-	//    * SCOPE - The scope of a Reserved Instance (RI). Values are regional or
-	//    a single Availability Zone.
+	//    * SCOPE (Utilization only) - The scope of a Reserved Instance (RI). Values
+	//    are regional or a single Availability Zone.
+	//
+	//    * TAG (Coverage only) - The tags that are associated with a Reserved Instance
+	//    (RI).
 	//
 	//    * TENANCY - The tenancy of a resource. Examples are shared or dedicated.
 	Context *string `type:"string" enum:"Context"`
@@ -1324,28 +1370,38 @@ type GetDimensionValuesOutput struct {
 	// The filters that you used to filter your request. Some dimensions are available
 	// only for a specific context:
 	//
-	// If you set the context to CostAndUsage, you can use the following dimensions
+	// If you set the context to COST_AND_USAGE, you can use the following dimensions
 	// for searching:
 	//
 	//    * AZ - The Availability Zone. An example is us-east-1a.
 	//
-	//    * INSTANCE_TYPE - The type of instance. An example is an EC2 m4.xlarge.
+	//    * DATABASE_ENGINE - The Amazon Relational Database Service database. Examples
+	//    are Aurora or MySQL.
+	//
+	//    * INSTANCE_TYPE - The type of EC2 instance. An example is m4.xlarge.
+	//
+	//    * LEGAL_ENTITY_NAME - The name of the organization that sells you AWS
+	//    services, such as Amazon Web Services.
 	//
 	//    * LINKED_ACCOUNT - The description in the attribute map that includes
 	//    the full name of the member account. The value field contains the AWS
 	//    ID of the member account.
 	//
+	//    * OPERATING_SYSTEM - The operating system. Examples are Windows or Linux.
+	//
 	//    * OPERATION - The action performed. Examples include RunInstance and CreateBucket.
+	//
+	//    * PLATFORM - The EC2 operating system. Examples are Windows or Linux.
 	//
 	//    * PURCHASE_TYPE - The reservation type of the purchase to which this usage
 	//    is related. Examples include On-Demand Instances and Standard Reserved
 	//    Instances.
 	//
-	//    * SERVICE - The AWS service such as DynamoDB.
+	//    * SERVICE - The AWS service such as Amazon DynamoDB.
 	//
 	//    * USAGE_TYPE - The type of usage. An example is DataTransfer-In-Bytes.
-	//    The response for the GetDimensionValues operation includes a unit attribute,
-	//    examples of which include GB and Hrs.
+	//    The response for the GetDimensionValues operation includes a unit attribute.
+	//    Examples include GB and Hrs.
 	//
 	//    * USAGE_TYPE_GROUP - The grouping of common usage types. An example is
 	//    EC2: CloudWatch – Alarms. The response for this operation includes a unit
@@ -1359,20 +1415,27 @@ type GetDimensionValuesOutput struct {
 	//
 	//    * AZ - The Availability Zone. An example is us-east-1a.
 	//
-	//    * INSTANCE_TYPE - The type of instance. An example is an EC2 m4.xlarge.
+	//    * CACHE_ENGINE - The Amazon ElastiCache operating system. Examples are
+	//    Windows or Linux.
+	//
+	//    * DEPLOYMENT_OPTION - The scope of Amazon Relational Database Service
+	//    deployments. Valid values are SingleAZ and MultiAZ.
+	//
+	//    * INSTANCE_TYPE - The type of EC2 instance. An example is m4.xlarge.
 	//
 	//    * LINKED_ACCOUNT - The description in the attribute map that includes
 	//    the full name of the member account. The value field contains the AWS
 	//    ID of the member account.
 	//
-	//    * PLATFORM - The specific combination of operating system, license model,
-	//    and software on an instance. For example, a Windows instance with SQL
-	//    Server Web and no license, or a Red Hat Enterprise Linux instance.
+	//    * PLATFORM - The EC2 operating system. Examples are Windows or Linux.
 	//
 	//    * REGION - The AWS Region.
 	//
-	//    * SCOPE - The scope of a Reserved Instance (RI). Values are regional or
-	//    a single Availability Zone.
+	//    * SCOPE (Utilization only) - The scope of a Reserved Instance (RI). Values
+	//    are regional or a single Availability Zone.
+	//
+	//    * TAG (Coverage only) - The tags that are associated with a Reserved Instance
+	//    (RI).
 	//
 	//    * TENANCY - The tenancy of a resource. Examples are shared or dedicated.
 	//
@@ -1438,13 +1501,25 @@ type GetReservationCoverageInput struct {
 	//
 	//    * AZ
 	//
+	//    * CACHE_ENGINE
+	//
+	//    * DATABASE_ENGINE
+	//
+	//    * DEPLOYMENT_OPTION
+	//
 	//    * INSTANCE_TYPE
 	//
 	//    * LINKED_ACCOUNT
 	//
+	//    * OPERATING_SYSTEM
+	//
 	//    * PLATFORM
 	//
 	//    * REGION
+	//
+	//    * SERVICE
+	//
+	//    * TAG
 	//
 	//    * TENANCY
 	//
@@ -1458,20 +1533,30 @@ type GetReservationCoverageInput struct {
 	// MONTHLY and DAILY.
 	//
 	// If GroupBy is set, Granularity can't be set. If Granularity isn't set, the
-	// response object doesn't include the Granularity, either MONTHLY or DAILY.
+	// response object doesn't include Granularity, either MONTHLY or DAILY.
 	Granularity *string `type:"string" enum:"Granularity"`
 
 	// You can group the data by the following attributes:
 	//
 	//    * AZ
 	//
+	//    * CACHE_ENGINE
+	//
+	//    * DATABASE_ENGINE
+	//
+	//    * DEPLOYMENT_OPTION
+	//
 	//    * INSTANCE_TYPE
 	//
 	//    * LINKED_ACCOUNT
 	//
+	//    * OPERATING_SYSTEM
+	//
 	//    * PLATFORM
 	//
 	//    * REGION
+	//
+	//    * TAG
 	//
 	//    * TENANCY
 	GroupBy []*GroupDefinition `type:"list"`
@@ -1626,7 +1711,8 @@ type GetReservationPurchaseRecommendationInput struct {
 	// Service is a required field
 	Service *string `type:"string" required:"true"`
 
-	// The specific service, such as EC2, that you want recommendations for.
+	// The hardware specifications for the service instances that you want recommendations
+	// for, such as standard or convertible EC2 instances.
 	ServiceSpecification *ServiceSpecification `type:"structure"`
 
 	// The reservation term that you want recommendations for.
@@ -1755,16 +1841,41 @@ func (s *GetReservationPurchaseRecommendationOutput) SetRecommendations(v []*Res
 type GetReservationUtilizationInput struct {
 	_ struct{} `type:"structure"`
 
-	// Filters utilization data by using different dimensions. GetReservationUtilization
-	// uses the same Expression (http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
+	// Filters utilization data by dimensions. You can filter by the following dimensions:
+	//
+	//    * AZ
+	//
+	//    * CACHE_ENGINE
+	//
+	//    * DATABASE_ENGINE
+	//
+	//    * DEPLOYMENT_OPTION
+	//
+	//    * INSTANCE_TYPE
+	//
+	//    * LINKED_ACCOUNT
+	//
+	//    * OPERATING_SYSTEM
+	//
+	//    * PLATFORM
+	//
+	//    * REGION
+	//
+	//    * SERVICE
+	//
+	//    * SCOPE
+	//
+	//    * TENANCY
+	//
+	// GetReservationUtilization uses the same Expression (http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
 	// object as the other operations, but only AND is supported among each dimension,
-	// and nesting is supported to only one level deep. If there are multiple values
-	// for a dimension, they are OR'd together.
+	// and nesting is supported up to only one level deep. If there are multiple
+	// values for a dimension, they are OR'd together.
 	Filter *Expression `type:"structure"`
 
 	// If GroupBy is set, Granularity can't be set. If Granularity isn't set, the
-	// response object doesn't include the Granularity, either MONTHLY or DAILY.
-	// If both GroupBy and Granularity aren't set, GetReservationUtilization defaults
+	// response object doesn't include Granularity, either MONTHLY or DAILY. If
+	// both GroupBy and Granularity aren't set, GetReservationUtilization defaults
 	// to DAILY.
 	Granularity *string `type:"string" enum:"Granularity"`
 
@@ -1776,7 +1887,7 @@ type GetReservationUtilizationInput struct {
 	// size.
 	NextPageToken *string `type:"string"`
 
-	// Sets the start and end dates for retrieving reserve instance (RI) utilization.
+	// Sets the start and end dates for retrieving Reserved Instance (RI) utilization.
 	// The start date is inclusive, but the end date is exclusive. For example,
 	// if start is 2017-01-01 and end is 2017-05-01, then the cost and usage data
 	// is retrieved from 2017-01-01 up to and including 2017-04-30 but not including
@@ -2095,6 +2206,9 @@ type InstanceDetails struct {
 
 	// The EC2 instances that AWS recommends that you purchase.
 	EC2InstanceDetails *EC2InstanceDetails `type:"structure"`
+
+	// The RDS instances that AWS recommends that you purchase.
+	RDSInstanceDetails *RDSInstanceDetails `type:"structure"`
 }
 
 // String returns the string representation
@@ -2110,6 +2224,12 @@ func (s InstanceDetails) GoString() string {
 // SetEC2InstanceDetails sets the EC2InstanceDetails field's value.
 func (s *InstanceDetails) SetEC2InstanceDetails(v *EC2InstanceDetails) *InstanceDetails {
 	s.EC2InstanceDetails = v
+	return s
+}
+
+// SetRDSInstanceDetails sets the RDSInstanceDetails field's value.
+func (s *InstanceDetails) SetRDSInstanceDetails(v *RDSInstanceDetails) *InstanceDetails {
+	s.RDSInstanceDetails = v
 	return s
 }
 
@@ -2143,6 +2263,94 @@ func (s *MetricValue) SetAmount(v string) *MetricValue {
 // SetUnit sets the Unit field's value.
 func (s *MetricValue) SetUnit(v string) *MetricValue {
 	s.Unit = &v
+	return s
+}
+
+// Details about the RDS instances that AWS recommends that you purchase.
+type RDSInstanceDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Whether the recommendation is for a current generation instance.
+	CurrentGeneration *bool `type:"boolean"`
+
+	// The database engine that the recommended reservation supports.
+	DatabaseEngine *string `type:"string"`
+
+	// Whether the recommendation is for a reservation in a single availability
+	// zone or a reservation with a backup in a second availability zone.
+	DeploymentOption *string `type:"string"`
+
+	// The instance family of the recommended reservation.
+	Family *string `type:"string"`
+
+	// The type of instance that AWS recommends.
+	InstanceType *string `type:"string"`
+
+	// The license model that the recommended reservation supports.
+	LicenseModel *string `type:"string"`
+
+	// The AWS Region of the recommended reservation.
+	Region *string `type:"string"`
+
+	// Whether the recommended reservation is size flexible.
+	SizeFlexEligible *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s RDSInstanceDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RDSInstanceDetails) GoString() string {
+	return s.String()
+}
+
+// SetCurrentGeneration sets the CurrentGeneration field's value.
+func (s *RDSInstanceDetails) SetCurrentGeneration(v bool) *RDSInstanceDetails {
+	s.CurrentGeneration = &v
+	return s
+}
+
+// SetDatabaseEngine sets the DatabaseEngine field's value.
+func (s *RDSInstanceDetails) SetDatabaseEngine(v string) *RDSInstanceDetails {
+	s.DatabaseEngine = &v
+	return s
+}
+
+// SetDeploymentOption sets the DeploymentOption field's value.
+func (s *RDSInstanceDetails) SetDeploymentOption(v string) *RDSInstanceDetails {
+	s.DeploymentOption = &v
+	return s
+}
+
+// SetFamily sets the Family field's value.
+func (s *RDSInstanceDetails) SetFamily(v string) *RDSInstanceDetails {
+	s.Family = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *RDSInstanceDetails) SetInstanceType(v string) *RDSInstanceDetails {
+	s.InstanceType = &v
+	return s
+}
+
+// SetLicenseModel sets the LicenseModel field's value.
+func (s *RDSInstanceDetails) SetLicenseModel(v string) *RDSInstanceDetails {
+	s.LicenseModel = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *RDSInstanceDetails) SetRegion(v string) *RDSInstanceDetails {
+	s.Region = &v
+	return s
+}
+
+// SetSizeFlexEligible sets the SizeFlexEligible field's value.
+func (s *RDSInstanceDetails) SetSizeFlexEligible(v bool) *RDSInstanceDetails {
+	s.SizeFlexEligible = &v
 	return s
 }
 
@@ -2346,8 +2554,8 @@ type ReservationPurchaseRecommendationDetail struct {
 	// a month, as a percentage of your overall costs.
 	EstimatedMonthlySavingsPercentage *string `type:"string"`
 
-	// How much AWS estimates that you spent on Reserved Instances during the specified
-	// historical period.
+	// How much AWS estimates that you would have spent for all usage during the
+	// specified historical period if you had had a reservation.
 	EstimatedReservationCostForLookbackPeriod *string `type:"string"`
 
 	// Details about the instances that AWS recommends that you purchase.

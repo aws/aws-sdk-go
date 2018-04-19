@@ -1,3 +1,21 @@
+Release v1.13.33 (2018-04-19)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/codepipeline`: Updates service API and documentation
+  * Added new SourceRevision structure to Execution Summary with accompanying definitions as needed in the AWS CodePipeline API Guide.
+* `service/devicefarm`: Updates service API and documentation
+  * Adding support for VPCEndpoint feature. Allows customers to be able to access their private endpoints/services running in their VPC during test automation.
+* `service/ec2`: Updates service API and documentation
+  * Added support for customers to see the time at which a Dedicated Host was allocated or released.
+* `service/rds`: Updates service API and documentation
+  * The ModifyDBCluster operation now includes an EngineVersion parameter. You can use this to upgrade the engine for a clustered database.
+* `service/secretsmanager`: Updates service documentation and examples
+  * Documentation updates
+* `service/ssm`: Updates service API and documentation
+  * Added new APIs DeleteInventory and DescribeInventoryDeletions, for customers to delete their custom inventory data.
+
 Release v1.13.32 (2018-04-10)
 ===
 

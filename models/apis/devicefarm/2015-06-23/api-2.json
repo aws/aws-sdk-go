@@ -102,6 +102,20 @@
         {"shape":"ServiceAccountException"}
       ]
     },
+    "CreateVPCEConfiguration":{
+      "name":"CreateVPCEConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateVPCEConfigurationRequest"},
+      "output":{"shape":"CreateVPCEConfigurationResult"},
+      "errors":[
+        {"shape":"ArgumentException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
+      ]
+    },
     "DeleteDevicePool":{
       "name":"DeleteDevicePool",
       "http":{
@@ -205,6 +219,21 @@
         {"shape":"NotFoundException"},
         {"shape":"LimitExceededException"},
         {"shape":"ServiceAccountException"}
+      ]
+    },
+    "DeleteVPCEConfiguration":{
+      "name":"DeleteVPCEConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteVPCEConfigurationRequest"},
+      "output":{"shape":"DeleteVPCEConfigurationResult"},
+      "errors":[
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceAccountException"},
+        {"shape":"InvalidOperationException"}
       ]
     },
     "GetAccountSettings":{
@@ -430,6 +459,20 @@
         {"shape":"ArgumentException"},
         {"shape":"NotFoundException"},
         {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
+      ]
+    },
+    "GetVPCEConfiguration":{
+      "name":"GetVPCEConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetVPCEConfigurationRequest"},
+      "output":{"shape":"GetVPCEConfigurationResult"},
+      "errors":[
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
         {"shape":"ServiceAccountException"}
       ]
     },
@@ -721,6 +764,19 @@
         {"shape":"ServiceAccountException"}
       ]
     },
+    "ListVPCEConfigurations":{
+      "name":"ListVPCEConfigurations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListVPCEConfigurationsRequest"},
+      "output":{"shape":"ListVPCEConfigurationsResult"},
+      "errors":[
+        {"shape":"ArgumentException"},
+        {"shape":"ServiceAccountException"}
+      ]
+    },
     "PurchaseOffering":{
       "name":"PurchaseOffering",
       "http":{
@@ -872,6 +928,21 @@
         {"shape":"NotFoundException"},
         {"shape":"LimitExceededException"},
         {"shape":"ServiceAccountException"}
+      ]
+    },
+    "UpdateVPCEConfiguration":{
+      "name":"UpdateVPCEConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateVPCEConfigurationRequest"},
+      "output":{"shape":"UpdateVPCEConfigurationResult"},
+      "errors":[
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceAccountException"},
+        {"shape":"InvalidOperationException"}
       ]
     }
   },
@@ -1138,6 +1209,26 @@
         "upload":{"shape":"Upload"}
       }
     },
+    "CreateVPCEConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "vpceConfigurationName",
+        "vpceServiceName",
+        "serviceDnsName"
+      ],
+      "members":{
+        "vpceConfigurationName":{"shape":"VPCEConfigurationName"},
+        "vpceServiceName":{"shape":"VPCEServiceName"},
+        "serviceDnsName":{"shape":"ServiceDnsName"},
+        "vpceConfigurationDescription":{"shape":"VPCEConfigurationDescription"}
+      }
+    },
+    "CreateVPCEConfigurationResult":{
+      "type":"structure",
+      "members":{
+        "vpceConfiguration":{"shape":"VPCEConfiguration"}
+      }
+    },
     "CurrencyCode":{
       "type":"string",
       "enum":["USD"]
@@ -1235,6 +1326,18 @@
       "members":{
       }
     },
+    "DeleteVPCEConfigurationRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"AmazonResourceName"}
+      }
+    },
+    "DeleteVPCEConfigurationResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "Device":{
       "type":"structure",
       "members":{
@@ -1271,7 +1374,8 @@
         "REMOTE_DEBUG_ENABLED",
         "APPIUM_VERSION",
         "INSTANCE_ARN",
-        "INSTANCE_LABELS"
+        "INSTANCE_LABELS",
+        "FLEET_TYPE"
       ]
     },
     "DeviceFormFactor":{
@@ -1376,7 +1480,10 @@
     },
     "ExecutionResultCode":{
       "type":"string",
-      "enum":["PARSING_FAILED"]
+      "enum":[
+        "PARSING_FAILED",
+        "VPC_ENDPOINT_SETUP_FAILED"
+      ]
     },
     "ExecutionStatus":{
       "type":"string",
@@ -1428,7 +1535,8 @@
         "devicePoolArn":{"shape":"AmazonResourceName"},
         "appArn":{"shape":"AmazonResourceName"},
         "testType":{"shape":"TestType"},
-        "test":{"shape":"ScheduleRunTest"}
+        "test":{"shape":"ScheduleRunTest"},
+        "configuration":{"shape":"ScheduleRunConfiguration"}
       }
     },
     "GetDevicePoolCompatibilityResult":{
@@ -1595,6 +1703,19 @@
         "upload":{"shape":"Upload"}
       }
     },
+    "GetVPCEConfigurationRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"AmazonResourceName"}
+      }
+    },
+    "GetVPCEConfigurationResult":{
+      "type":"structure",
+      "members":{
+        "vpceConfiguration":{"shape":"VPCEConfiguration"}
+      }
+    },
     "HostAddress":{
       "type":"string",
       "max":1024
@@ -1672,6 +1793,13 @@
       ],
       "max":64,
       "min":0
+    },
+    "InvalidOperationException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"Message"}
+      },
+      "exception":true
     },
     "IosPaths":{
       "type":"list",
@@ -1970,6 +2098,20 @@
       "type":"structure",
       "members":{
         "uploads":{"shape":"Uploads"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListVPCEConfigurationsRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{"shape":"Integer"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListVPCEConfigurationsResult":{
+      "type":"structure",
+      "members":{
+        "vpceConfigurations":{"shape":"VPCEConfigurations"},
         "nextToken":{"shape":"PaginationToken"}
       }
     },
@@ -2372,6 +2514,7 @@
         "networkProfileArn":{"shape":"AmazonResourceName"},
         "locale":{"shape":"String"},
         "location":{"shape":"Location"},
+        "vpceConfigurationArns":{"shape":"AmazonResourceNames"},
         "customerArtifactPaths":{"shape":"CustomerArtifactPaths"},
         "radios":{"shape":"Radios"},
         "auxiliaryApps":{"shape":"AmazonResourceNames"},
@@ -2417,6 +2560,11 @@
         "message":{"shape":"Message"}
       },
       "exception":true
+    },
+    "ServiceDnsName":{
+      "type":"string",
+      "max":2048,
+      "min":0
     },
     "SkipAppResign":{"type":"boolean"},
     "SshPublicKey":{
@@ -2638,6 +2786,23 @@
         "project":{"shape":"Project"}
       }
     },
+    "UpdateVPCEConfigurationRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"AmazonResourceName"},
+        "vpceConfigurationName":{"shape":"VPCEConfigurationName"},
+        "vpceServiceName":{"shape":"VPCEServiceName"},
+        "serviceDnsName":{"shape":"ServiceDnsName"},
+        "vpceConfigurationDescription":{"shape":"VPCEConfigurationDescription"}
+      }
+    },
+    "UpdateVPCEConfigurationResult":{
+      "type":"structure",
+      "members":{
+        "vpceConfiguration":{"shape":"VPCEConfiguration"}
+      }
+    },
     "Upload":{
       "type":"structure",
       "members":{
@@ -2685,6 +2850,35 @@
     "Uploads":{
       "type":"list",
       "member":{"shape":"Upload"}
+    },
+    "VPCEConfiguration":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"AmazonResourceName"},
+        "vpceConfigurationName":{"shape":"VPCEConfigurationName"},
+        "vpceServiceName":{"shape":"VPCEServiceName"},
+        "serviceDnsName":{"shape":"ServiceDnsName"},
+        "vpceConfigurationDescription":{"shape":"VPCEConfigurationDescription"}
+      }
+    },
+    "VPCEConfigurationDescription":{
+      "type":"string",
+      "max":2048,
+      "min":0
+    },
+    "VPCEConfigurationName":{
+      "type":"string",
+      "max":1024,
+      "min":0
+    },
+    "VPCEConfigurations":{
+      "type":"list",
+      "member":{"shape":"VPCEConfiguration"}
+    },
+    "VPCEServiceName":{
+      "type":"string",
+      "max":2048,
+      "min":0
     }
   }
 }

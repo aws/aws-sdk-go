@@ -9320,6 +9320,14 @@
         "State":{
           "shape":"AllocationState",
           "locationName":"state"
+        },
+        "AllocationTime":{
+          "shape":"DateTime",
+          "locationName":"allocationTime"
+        },
+        "ReleaseTime":{
+          "shape":"DateTime",
+          "locationName":"releaseTime"
         }
       }
     },
