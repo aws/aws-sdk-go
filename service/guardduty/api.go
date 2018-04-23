@@ -6793,7 +6793,7 @@ type Organization struct {
 	_ struct{} `type:"structure"`
 
 	// Autonomous system number of the internet provider of the remote IP address.
-	Asn *string `locationName:"asn" type:"string"`
+	Asn *int64 `locationName:"asn" type:"integer"`
 
 	// Organization that registered this ASN.
 	AsnOrg *string `locationName:"asnOrg" type:"string"`
@@ -6816,8 +6816,8 @@ func (s Organization) GoString() string {
 }
 
 // SetAsn sets the Asn field's value.
-func (s *Organization) SetAsn(v string) *Organization {
-	s.Asn = &v
+func (s *Organization) SetAsn(v int64) *Organization {
+	s.Asn = v
 	return s
 }
 
