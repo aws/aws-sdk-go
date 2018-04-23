@@ -208,9 +208,9 @@ func (p Partition) Regions() map[string]Region {
 	rs := map[string]Region{}
 	for id, r := range p.p.Regions {
 		rs[id] = Region{
-			id: id,
+			id:   id,
 			desc: r.Description,
-			p:  p.p,
+			p:    p.p,
 		}
 	}
 
@@ -291,9 +291,9 @@ func (s Service) Regions() map[string]Region {
 	for id := range s.p.Services[s.id].Endpoints {
 		if r, ok := s.p.Regions[id]; ok {
 			rs[id] = Region{
-				id: id,
+				id:   id,
 				desc: r.Description,
-				p:  s.p,
+				p:    s.p,
 			}
 		}
 	}
