@@ -1,6 +1,9 @@
 ### SDK Features
 
 ### SDK Enhancements
+* `aws/endpoints`: Add Get Region description to endpoints package ([#1909](https://github.com/aws/aws-sdk-go/pull/1909))
+  * Adds exposing the description field of the endpoints Region struct.
+  * Fixes [#1194](https://github.com/aws/aws-sdk-go/issues/1194)
 
 ### SDK Bugs
 * Fix XML unmarshaler not correctly unmarshaling list of timestamp values ([#1894](https://github.com/aws/aws-sdk-go/pull/1894))
