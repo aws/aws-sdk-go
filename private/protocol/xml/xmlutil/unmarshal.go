@@ -9,8 +9,6 @@ import (
 	"strconv"
 	"strings"
 	"time"
-
-	"github.com/aws/aws-sdk-go/aws"
 )
 
 // UnmarshalXML deserializes an xml.Decoder into the container v. V
@@ -64,10 +62,7 @@ func parse(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 				t = "list"
 			}
 		case reflect.Map:
-			// cannot be a JSONValue map
-			if _, ok := r.Interface().(aws.JSONValue); !ok {
-				t = "map"
-			}
+			t = "map"
 		}
 	}
 
