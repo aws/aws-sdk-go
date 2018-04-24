@@ -86,6 +86,12 @@
         "ManagedActionHistoryItem$ActionType": "<p>The type of the managed action.</p>"
       }
     },
+    "ApplicationArn": {
+      "base": null,
+      "refs": {
+        "ApplicationDescription$ApplicationArn": "<p>The Amazon Resource Name (ARN) of the application.</p>"
+      }
+    },
     "ApplicationDescription": {
       "base": "<p>Describes the properties of an application.</p>",
       "refs": {
@@ -167,6 +173,12 @@
     "ApplicationResourceLifecycleDescriptionMessage": {
       "base": null,
       "refs": {
+      }
+    },
+    "ApplicationVersionArn": {
+      "base": null,
+      "refs": {
+        "ApplicationVersionDescription$ApplicationVersionArn": "<p>The Amazon Resource Name (ARN) of the application version.</p>"
       }
     },
     "ApplicationVersionDescription": {
@@ -711,7 +723,7 @@
     "EnvironmentArn": {
       "base": null,
       "refs": {
-        "EnvironmentDescription$EnvironmentArn": "<p>The environment's Amazon Resource Name (ARN), which can be used in other API reuqests that require an ARN.</p>"
+        "EnvironmentDescription$EnvironmentArn": "<p>The environment's Amazon Resource Name (ARN), which can be used in other API requests that require an ARN.</p>"
       }
     },
     "EnvironmentDescription": {
