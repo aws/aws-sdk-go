@@ -200,14 +200,14 @@ func (c *SecretsManager) CreateSecretRequest(input *CreateSecretInput) (req *req
 // versions of the secret. Versions without a staging label are considered deprecated
 // and are not included in the list.
 //
-// You provide the secret data to be encrypted by putting text in the SecretString
-// parameter or binary data in the SecretBinary parameter. If you include SecretString
-// or SecretBinary then Secrets Manager also creates an initial secret version
-// and, if you don't supply a staging label, automatically maps the new version's
-// ID to the staging label AWSCURRENT.
+// You provide the secret data to be encrypted by putting text in either the
+// SecretString parameter or binary data in the SecretBinary parameter, but
+// not both. If you include SecretString or SecretBinary then Secrets Manager
+// also creates an initial secret version and, if you don't supply a staging
+// label, automatically maps the new version's ID to the staging label AWSCURRENT.
 //
 // If you call an operation that needs to encrypt or decrypt the SecretString
-// and SecretBinary for a secret in the same account as the calling user and
+// or SecretBinary for a secret in the same account as the calling user and
 // that secret doesn't specify a KMS encryption key, Secrets Manager uses the
 // account's default AWS managed customer master key (CMK) with the alias aws/secretsmanager.
 // If this key doesn't already exist in your account then Secrets Manager creates
@@ -686,8 +686,8 @@ func (c *SecretsManager) GetSecretValueRequest(input *GetSecretValueInput) (req 
 
 // GetSecretValue API operation for AWS Secrets Manager.
 //
-// Retrieves the contents of the encrypted fields SecretString and SecretBinary
-// from the specified version of a secret.
+// Retrieves the contents of the encrypted fields SecretString or SecretBinary
+// from the specified version of a secret, whichever contains content.
 //
 // Minimum permissions
 //
@@ -1147,7 +1147,7 @@ func (c *SecretsManager) PutSecretValueRequest(input *PutSecretValueInput) (req 
 //    version that AWSCURRENT was removed from.
 //
 // If you call an operation that needs to encrypt or decrypt the SecretString
-// and SecretBinary for a secret in the same account as the calling user and
+// or SecretBinary for a secret in the same account as the calling user and
 // that secret doesn't specify a KMS encryption key, Secrets Manager uses the
 // account's default AWS managed customer master key (CMK) with the alias aws/secretsmanager.
 // If this key doesn't already exist in your account then Secrets Manager creates
@@ -1793,7 +1793,7 @@ func (c *SecretsManager) UpdateSecretRequest(input *UpdateSecretInput) (req *req
 //    modify an existing version, you can only create new ones.
 //
 // If you call an operation that needs to encrypt or decrypt the SecretString
-// and SecretBinary for a secret in the same account as the calling user and
+// or SecretBinary for a secret in the same account as the calling user and
 // that secret doesn't specify a KMS encryption key, Secrets Manager uses the
 // account's default AWS managed customer master key (CMK) with the alias aws/secretsmanager.
 // If this key doesn't already exist in your account then Secrets Manager creates
@@ -2150,7 +2150,7 @@ type CreateSecretInput struct {
 	Description *string `type:"string"`
 
 	// (Optional) Specifies the ARN or alias of the AWS KMS customer master key
-	// (CMK) to be used to encrypt the SecretString and SecretBinary values in the
+	// (CMK) to be used to encrypt the SecretString or SecretBinary values in the
 	// versions stored in this secret.
 	//
 	// If you don't specify this value, then Secrets Manager defaults to using the
@@ -2175,11 +2175,8 @@ type CreateSecretInput struct {
 	// we recommend that you store your binary data in a file and then use the appropriate
 	// technique for your tool to pass the contents of the file as a parameter.
 	//
-	// Either SecretString, SecretBinary, or both must have a value. They cannot
-	// both be empty.
-	//
-	// This SecretBinary value is stored separately from the SecretString, but the
-	// two parameters jointly share a maximum size limit.
+	// Either SecretString or SecretBinary must have a value, but not both. They
+	// cannot both be empty.
 	//
 	// This parameter is not available using the Secrets Manager console. It can
 	// be accessed only by using the AWS CLI or one of the AWS SDKs.
@@ -2190,11 +2187,8 @@ type CreateSecretInput struct {
 	// (Optional) Specifies text data that you want to encrypt and store in this
 	// new version of the secret.
 	//
-	// Either SecretString, SecretBinary, or both must have a value. They cannot
-	// both be empty.
-	//
-	// This string value is stored separately from the SecretBinary, but the two
-	// parameters jointly share a maximum size limit.
+	// Either SecretString or SecretBinary must have a value, but not both. They
+	// cannot both be empty.
 	//
 	// If you create a secret by using the Secrets Manager console then Secrets
 	// Manager puts the protected secret text in only the SecretString parameter.
@@ -2549,7 +2543,7 @@ type DescribeSecretOutput struct {
 	Description *string `type:"string"`
 
 	// The ARN or alias of the AWS KMS customer master key (CMK) that's used to
-	// encrypt the SecretString and SecretBinary fields in each version of the secret.
+	// encrypt the SecretString or SecretBinary fields in each version of the secret.
 	// If you don't provide a key, then Secrets Manager defaults to encrypting the
 	// secret fields with the default KMS CMK (the one named awssecretsmanager)
 	// for this account.
@@ -3288,8 +3282,8 @@ type PutSecretValueInput struct {
 	// new version of the secret. To use this parameter in the command-line tools,
 	// we recommend that you store your binary data in a file and then use the appropriate
 	// technique for your tool to pass the contents of the file as a parameter.
-	// Either SecretBinary or SecretString must have a value. They cannot both be
-	// empty.
+	// Either SecretBinary or SecretString must have a value, but not both. They
+	// cannot both be empty.
 	//
 	// This parameter is not accessible if the secret using the Secrets Manager
 	// console.
@@ -3306,7 +3300,7 @@ type PutSecretValueInput struct {
 
 	// (Optional) Specifies text data that you want to encrypt and store in this
 	// new version of the secret. Either SecretString or SecretBinary must have
-	// a value. They cannot both be empty.
+	// a value, but not both. They cannot both be empty.
 	//
 	// If you create this secret by using the Secrets Manager console then Secrets
 	// Manager puts the protected secret text in only the SecretString parameter.
@@ -4188,8 +4182,8 @@ type UpdateSecretInput struct {
 	// new version of the secret. To use this parameter in the command-line tools,
 	// we recommend that you store your binary data in a file and then use the appropriate
 	// technique for your tool to pass the contents of the file as a parameter.
-	// Either SecretBinary or SecretString must have a value. They cannot both be
-	// empty.
+	// Either SecretBinary or SecretString must have a value, but not both. They
+	// cannot both be empty.
 	//
 	// This parameter is not accessible using the Secrets Manager console.
 	//
@@ -4205,7 +4199,7 @@ type UpdateSecretInput struct {
 
 	// (Optional) Specifies text data that you want to encrypt and store in this
 	// new version of the secret. Either SecretBinary or SecretString must have
-	// a value. They cannot both be empty.
+	// a value, but not both. They cannot both be empty.
 	//
 	// If you create this secret by using the Secrets Manager console then Secrets
 	// Manager puts the protected secret text in only the SecretString parameter.

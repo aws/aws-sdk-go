@@ -26,7 +26,7 @@
 // We recommend that you use the AWS SDKs to make programmatic API calls to
 // Secrets Manager. However, you also can use the Secrets Manager HTTP Query
 // API to make direct calls to the Secrets Manager web service. To learn more
-// about the Secrets Manager HTTP Query API, see Making Query Requests (http://docs.aws.amazon.com/secretsmanager/latest/userguide/orgs_query-requests.html)
+// about the Secrets Manager HTTP Query API, see Making Query Requests (http://docs.aws.amazon.com/secretsmanager/latest/userguide/query-requests.html)
 // in the AWS Secrets Manager User Guide.
 //
 // Secrets Manager supports GET and POST requests for all actions. That is,

@@ -1,3 +1,12 @@
+Release v1.13.36 (2018-04-24)
+===
+
+### Service Client Updates
+* `service/elasticbeanstalk`: Updates service API and documentation
+  * Support tracking Elastic Beanstalk resources in AWS Config.
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for secretsmanager
+
 Release v1.13.35 (2018-04-23)
 ===
 
