@@ -1,3 +1,14 @@
+Release v1.13.37 (2018-04-25)
+===
+
+### Service Client Updates
+* `service/codedeploy`: Updates service API and documentation
+  * AWS CodeDeploy has a new exception that indicates when a GitHub token is not valid.
+* `service/rekognition`: Updates service documentation
+  * Documentation updates for Amazon Rekognition.
+* `service/xray`: Updates service API and documentation
+  * Added PutEncryptionConfig and GetEncryptionConfig APIs for managing data encryption settings. Use PutEncryptionConfig to configure X-Ray to use an AWS Key Management Service customer master key to encrypt trace data at rest.
+
 Release v1.13.36 (2018-04-24)
 ===
 
