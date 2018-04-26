@@ -224,7 +224,7 @@ func (c *SecretsManager) CreateSecretRequest(input *CreateSecretInput) (req *req
 // it by including it in the KMSKeyId. If you call an API that must encrypt
 // or decrypt SecretString or SecretBinary using credentials from a different
 // account then the KMS key policy must grant cross-account access to that other
-// account's user or role.
+// account's user or role for both the kms:GenerateDataKey and kms:Decrypt operations.
 //
 // Minimum permissions
 //
@@ -236,7 +236,7 @@ func (c *SecretsManager) CreateSecretRequest(input *CreateSecretInput) (req *req
 //    key to encrypt the secret. You do not need this permission to use the
 //    account's default AWS managed CMK for Secrets Manager.
 //
-//    * kms:Encrypt - needed only if you use a customer-created KMS key to encrypt
+//    * kms:Decrypt - needed only if you use a customer-created KMS key to encrypt
 //    the secret. You do not need this permission to use the account's default
 //    AWS managed CMK for Secrets Manager.
 //
@@ -1164,7 +1164,7 @@ func (c *SecretsManager) PutSecretValueRequest(input *PutSecretValueInput) (req 
 // it by including it in the KMSKeyId. If you call an API that must encrypt
 // or decrypt SecretString or SecretBinary using credentials from a different
 // account then the KMS key policy must grant cross-account access to that other
-// account's user or role.
+// account's user or role for both the kms:GenerateDataKey and kms:Decrypt operations.
 //
 // Minimum permissions
 //
@@ -1810,7 +1810,7 @@ func (c *SecretsManager) UpdateSecretRequest(input *UpdateSecretInput) (req *req
 // it by including it in the KMSKeyId. If you call an API that must encrypt
 // or decrypt SecretString or SecretBinary using credentials from a different
 // account then the KMS key policy must grant cross-account access to that other
-// account's user or role.
+// account's user or role for both the kms:GenerateDataKey and kms:Decrypt operations.
 //
 // Minimum permissions
 //
