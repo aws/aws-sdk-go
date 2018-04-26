@@ -1,3 +1,13 @@
+Release v1.13.38 (2018-04-26)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/glacier`: Updates service documentation
+  * Documentation updates for Glacier to fix a broken link
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for secretsmanager
+
 Release v1.13.37 (2018-04-25)
 ===
 
