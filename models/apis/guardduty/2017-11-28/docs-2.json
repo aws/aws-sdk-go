@@ -33,7 +33,7 @@
     "ListMembers" : "Lists details about all member accounts for the current GuardDuty master account.",
     "ListThreatIntelSets" : "Lists the ThreatIntelSets of the GuardDuty service specified by the detector ID.",
     "StartMonitoringMembers" : "Re-enables GuardDuty to monitor findings of the member accounts specified by the account IDs. A master GuardDuty account can run this command after disabling GuardDuty from monitoring these members' findings by running StopMonitoringMembers.",
-    "StopMonitoringMembers" : "Disables GuardDuty from monitoring findings of the member accounts specified by the account IDs. After running this command, a master GuardDuty account can run StartMonitoringMembers to re-enable GuardDuty to monitor these members' findings.",
+    "StopMonitoringMembers" : "Disables GuardDuty from monitoring findings of the member accounts specified by the account IDs. After running this command, a master GuardDuty account can run StartMonitoringMembers to re-enable GuardDuty to monitor these members’ findings.",
     "UnarchiveFindings" : "Unarchives Amazon GuardDuty findings specified by the list of finding IDs.",
     "UpdateDetector" : "Updates an Amazon GuardDuty detector specified by the detectorId.",
     "UpdateFindingsFeedback" : "Marks specified Amazon GuardDuty findings as useful or not useful.",
@@ -127,13 +127,13 @@
     "Condition" : {
       "base" : "Finding attribute (for example, accountId) for which conditions and values must be specified when querying findings.",
       "refs" : {
-        "MapOfCondition$member" : null
+        "__mapOfCondition$member" : null
       }
     },
     "CountBySeverityFindingStatistic" : {
       "base" : "The count of findings for the given severity.",
       "refs" : {
-        "MapOfCountBySeverityFindingStatistic$member" : null
+        "__mapOfCountBySeverityFindingStatistic$member" : null
       }
     },
     "Country" : {
@@ -515,12 +515,6 @@
       "base" : "ListMembers response object.",
       "refs" : { }
     },
-    "ListOfPortProbeDetail" : {
-      "base" : null,
-      "refs" : {
-        "PortProbeAction$PortProbeDetails" : "A list of port probe details objects."
-      }
-    },
     "ListThreatIntelSetsResponse" : {
       "base" : "ListThreatIntelSets response object.",
       "refs" : { }
@@ -541,18 +535,6 @@
         "GetThreatIntelSetResponse$Location" : "The URI of the file that contains the ThreatIntelSet. For example (https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key).",
         "UpdateIPSetRequest$Location" : "The updated URI of the file that contains the IPSet. For example (https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key).",
         "UpdateThreatIntelSetRequest$Location" : "The updated URI of the file that contains the ThreateIntelSet. For example (https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key)"
-      }
-    },
-    "MapOfCondition" : {
-      "base" : null,
-      "refs" : {
-        "FindingCriteria$Criterion" : "Represents a map of finding properties that match specified conditions and values when querying findings."
-      }
-    },
-    "MapOfCountBySeverityFindingStatistic" : {
-      "base" : null,
-      "refs" : {
-        "FindingStatistics$CountBySeverity" : "Represents a map of severity to count statistic for a set of findings"
       }
     },
     "Master" : {
@@ -588,9 +570,9 @@
       }
     },
     "Message" : {
-      "base" : "The invitation message that you want to send to the accounts that you're inviting to GuardDuty as members.",
+      "base" : "The invitation message that you want to send to the accounts that you’re inviting to GuardDuty as members.",
       "refs" : {
-        "InviteMembersRequest$Message" : "The invitation message that you want to send to the accounts that you're inviting to GuardDuty as members."
+        "InviteMembersRequest$Message" : "The invitation message that you want to send to the accounts that you’re inviting to GuardDuty as members."
       }
     },
     "Name" : {
@@ -661,7 +643,7 @@
     "PortProbeDetail" : {
       "base" : "Details about the port probe finding.",
       "refs" : {
-        "ListOfPortProbeDetail$member" : null
+        "__listOfPortProbeDetail$member" : null
       }
     },
     "PrivateDnsName" : {
@@ -858,6 +840,7 @@
     "__boolean" : {
       "base" : null,
       "refs" : {
+        "InviteMembersRequest$DisableEmailNotification" : "Indicates whether invite member email notification is disabled",
         "NetworkConnectionAction$Blocked" : "Network connection blocked information.",
         "PortProbeAction$Blocked" : "Port probe blocked information.",
         "Service$Archived" : "Indicates whether this finding is archived."
@@ -883,6 +866,24 @@
         "LocalPortDetails$Port" : "Port number of the local connection.",
         "RemotePortDetails$Port" : "Port number of the remote connection.",
         "Service$Count" : "Total count of the occurrences of this finding type."
+      }
+    },
+    "__listOfPortProbeDetail" : {
+      "base" : null,
+      "refs" : {
+        "PortProbeAction$PortProbeDetails" : "A list of port probe details objects."
+      }
+    },
+    "__mapOfCondition" : {
+      "base" : null,
+      "refs" : {
+        "FindingCriteria$Criterion" : "Represents a map of finding properties that match specified conditions and values when querying findings."
+      }
+    },
+    "__mapOfCountBySeverityFindingStatistic" : {
+      "base" : null,
+      "refs" : {
+        "FindingStatistics$CountBySeverity" : "Represents a map of severity to count statistic for a set of findings"
       }
     },
     "__string" : {

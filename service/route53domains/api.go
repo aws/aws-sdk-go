@@ -508,9 +508,9 @@ func (c *Route53Domains) EnableDomainAutoRenewRequest(input *EnableDomainAutoRen
 // The period during which you can renew a domain name varies by TLD. For a
 // list of TLDs and their renewal policies, see "Renewal, restoration, and deletion
 // times" (http://wiki.gandi.net/en/domains/renew#renewal_restoration_and_deletion_times)
-// on the website for our registrar partner, Gandi. Route 53 requires that you
-// renew before the end of the renewal period that is listed on the Gandi website
-// so we can complete processing before the deadline.
+// on the website for our registrar associate, Gandi. Amazon Route 53 requires
+// that you renew before the end of the renewal period that is listed on the
+// Gandi website so we can complete processing before the deadline.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1408,9 +1408,10 @@ func (c *Route53Domains) RegisterDomainRequest(input *RegisterDomainInput) (req 
 
 // RegisterDomain API operation for Amazon Route 53 Domains.
 //
-// This operation registers a domain. Domains are registered by the AWS registrar
-// partner, Gandi. For some top-level domains (TLDs), this operation requires
-// extra parameters.
+// This operation registers a domain. Domains are registered either by Amazon
+// Registrar (for .com, .net, and .org domains) or by our registrar associate,
+// Gandi (for all other domains). For some top-level domains (TLDs), this operation
+// requires extra parameters.
 //
 // When you register a domain, Amazon Route 53 does the following:
 //
@@ -1424,8 +1425,10 @@ func (c *Route53Domains) RegisterDomainRequest(input *RegisterDomainInput) (req 
 //    choose whether to renew the registration.
 //
 //    * Optionally enables privacy protection, so WHOIS queries return contact
-//    information for our registrar partner, Gandi, instead of the information
-//    you entered for registrant, admin, and tech contacts.
+//    information either for Amazon Registrar (for .com, .net, and .org domains)
+//    or for our registrar associate, Gandi (for all other TLDs). If you don't
+//    enable privacy protection, WHOIS queries return the information that you
+//    entered for the registrant, admin, and tech contacts.
 //
 //    * If registration is successful, returns an operation ID that you can
 //    use to track the progress and completion of the action. If the request
@@ -1806,8 +1809,9 @@ func (c *Route53Domains) TransferDomainRequest(input *TransferDomainInput) (req 
 // TransferDomain API operation for Amazon Route 53 Domains.
 //
 // This operation transfers a domain from another registrar to Amazon Route
-// 53. When the transfer is complete, the domain is registered with the AWS
-// registrar partner, Gandi.
+// 53. When the transfer is complete, the domain is registered either with Amazon
+// Registrar (for .com, .net, and .org domains) or with our registrar associate,
+// Gandi (for all other TLDs).
 //
 // For transfer requirements, a detailed procedure, and information about viewing
 // the status of a domain transfer, see Transferring Registration for a Domain
@@ -1926,9 +1930,9 @@ func (c *Route53Domains) UpdateDomainContactRequest(input *UpdateDomainContactIn
 
 // UpdateDomainContact API operation for Amazon Route 53 Domains.
 //
-// This operation updates the contact information for a particular domain. Information
-// for at least one contact (registrant, administrator, or technical) must be
-// supplied for update.
+// This operation updates the contact information for a particular domain. You
+// must specify information for at least one contact: registrant, administrator,
+// or technical.
 //
 // If the update is successful, this method returns an operation ID that you
 // can use to track the progress and completion of the action. If the request
@@ -2028,16 +2032,16 @@ func (c *Route53Domains) UpdateDomainContactPrivacyRequest(input *UpdateDomainCo
 // UpdateDomainContactPrivacy API operation for Amazon Route 53 Domains.
 //
 // This operation updates the specified domain contact's privacy setting. When
-// the privacy option is enabled, personal information such as postal or email
-// address is hidden from the results of a public WHOIS query. The privacy services
-// are provided by the AWS registrar, Gandi. For more information, see the Gandi
-// privacy features (http://www.gandi.net/domain/whois/?currency=USD&lang=en).
+// privacy protection is enabled, contact information such as email address
+// is replaced either with contact information for Amazon Registrar (for .com,
+// .net, and .org domains) or with contact information for our registrar associate,
+// Gandi.
 //
-// This operation only affects the privacy of the specified contact type (registrant,
-// administrator, or tech). Successful acceptance returns an operation ID that
-// you can use with GetOperationDetail to track the progress and completion
-// of the action. If the request is not completed successfully, the domain registrant
-// will be notified by email.
+// This operation affects only the contact information for the specified contact
+// type (registrant, administrator, or tech). If the request succeeds, Amazon
+// Route 53 returns an operation ID that you can use with GetOperationDetail
+// to track the progress and completion of the action. If the request doesn't
+// complete successfully, the domain registrant will be notified by email.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3083,6 +3087,8 @@ func (s *DomainSummary) SetTransferLock(v bool) *DomainSummary {
 	return s
 }
 
+// A complex type that contains information about whether the specified domain
+// can be transferred to Amazon Route 53.
 type DomainTransferability struct {
 	_ struct{} `type:"structure"`
 
@@ -3238,7 +3244,33 @@ func (s *EnableDomainTransferLockOutput) SetOperationId(v string) *EnableDomainT
 type ExtraParam struct {
 	_ struct{} `type:"structure"`
 
-	// Name of the additional parameter required by the top-level domain.
+	// Name of the additional parameter required by the top-level domain. Here are
+	// the top-level domains that require additional parameters and which parameters
+	// they require:
+	//
+	//    * .com.au and .net.au:AU_ID_NUMBER and AU_ID_TYPE
+	//
+	//    * .ca:BRAND_NUMBER, CA_LEGAL_TYPE, and CA_BUSINESS_ENTITY_TYPE
+	//
+	//    * .es:ES_IDENTIFICATION, ES_IDENTIFICATION_TYPE, and ES_LEGAL_FORM
+	//
+	//    * .fi:BIRTH_DATE_IN_YYYY_MM_DD, FI_BUSINESS_NUMBER, FI_ID_NUMBER, FI_NATIONALITY,
+	//    and FI_ORGANIZATION_TYPE
+	//
+	//    * .fr:BRAND_NUMBER, BIRTH_DEPARTMENT, BIRTH_DATE_IN_YYYY_MM_DD, BIRTH_COUNTRY,
+	//    and BIRTH_CITY
+	//
+	//    * .it:BIRTH_COUNTRY, IT_PIN, and IT_REGISTRANT_ENTITY_TYPE
+	//
+	//    * .ru:BIRTH_DATE_IN_YYYY_MM_DD and RU_PASSPORT_DATA
+	//
+	//    * .se:BIRTH_COUNTRY and SE_ID_NUMBER
+	//
+	//    * .sg:SG_ID_NUMBER
+	//
+	//    * .co.uk, .me.uk, and .org.uk:UK_CONTACT_TYPE and UK_COMPANY_NUMBER
+	//
+	// In addition, many TLDs require VAT_NUMBER.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true" enum:"ExtraParamName"`
@@ -3406,17 +3438,18 @@ type GetDomainDetailOutput struct {
 	// AdminContact is a required field
 	AdminContact *ContactDetail `type:"structure" required:"true"`
 
-	// Specifies whether contact information for the admin contact is concealed
-	// from WHOIS queries. If the value is true, WHOIS ("who is") queries will return
-	// contact information for our registrar partner, Gandi, instead of the contact
-	// information that you enter.
+	// Specifies whether contact information is concealed from WHOIS queries. If
+	// the value is true, WHOIS ("who is") queries return contact information either
+	// for Amazon Registrar (for .com, .net, and .org domains) or for our registrar
+	// associate, Gandi (for all other TLDs). If the value is false, WHOIS queries
+	// return the information that you entered for the admin contact.
 	AdminPrivacy *bool `type:"boolean"`
 
 	// Specifies whether the domain registration is set to renew automatically.
 	AutoRenew *bool `type:"boolean"`
 
 	// The date when the domain was created as found in the response to a WHOIS
-	// query. The date format is Unix time.
+	// query. The date and time is in Coordinated Universal time (UTC).
 	CreationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// Reserved for future use.
@@ -3428,7 +3461,7 @@ type GetDomainDetailOutput struct {
 	DomainName *string `type:"string" required:"true"`
 
 	// The date when the registration for the domain is set to expire. The date
-	// format is Unix time.
+	// and time is in Coordinated Universal time (UTC).
 	ExpirationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The name of the domain.
@@ -3441,14 +3474,18 @@ type GetDomainDetailOutput struct {
 	// RegistrantContact is a required field
 	RegistrantContact *ContactDetail `type:"structure" required:"true"`
 
-	// Specifies whether contact information for the registrant contact is concealed
-	// from WHOIS queries. If the value is true, WHOIS ("who is") queries will return
-	// contact information for our registrar partner, Gandi, instead of the contact
-	// information that you enter.
+	// Specifies whether contact information is concealed from WHOIS queries. If
+	// the value is true, WHOIS ("who is") queries return contact information either
+	// for Amazon Registrar (for .com, .net, and .org domains) or for our registrar
+	// associate, Gandi (for all other TLDs). If the value is false, WHOIS queries
+	// return the information that you entered for the registrant contact (domain
+	// owner).
 	RegistrantPrivacy *bool `type:"boolean"`
 
-	// Name of the registrar of the domain as identified in the registry. Amazon
-	// Route 53 domains are registered by registrar Gandi. The value is "GANDI SAS".
+	// Name of the registrar of the domain as identified in the registry. Domains
+	// with a .com, .net, or .org TLD are registered by Amazon Registrar. All other
+	// domains are registered by our registrar associate, Gandi. The value for domains
+	// that are registered by Gandi is "GANDI SAS".
 	RegistrarName *string `type:"string"`
 
 	// Web address of the registrar.
@@ -3482,14 +3519,15 @@ type GetDomainDetailOutput struct {
 	// TechContact is a required field
 	TechContact *ContactDetail `type:"structure" required:"true"`
 
-	// Specifies whether contact information for the tech contact is concealed from
-	// WHOIS queries. If the value is true, WHOIS ("who is") queries will return
-	// contact information for our registrar partner, Gandi, instead of the contact
-	// information that you enter.
+	// Specifies whether contact information is concealed from WHOIS queries. If
+	// the value is true, WHOIS ("who is") queries return contact information either
+	// for Amazon Registrar (for .com, .net, and .org domains) or for our registrar
+	// associate, Gandi (for all other TLDs). If the value is false, WHOIS queries
+	// return the information that you entered for the technical contact.
 	TechPrivacy *bool `type:"boolean"`
 
 	// The last updated date of the domain as found in the response to a WHOIS query.
-	// The date format is Unix time.
+	// The date and time is in Coordinated Universal time (UTC).
 	UpdatedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The fully qualified name of the WHOIS server that can answer the WHOIS query
@@ -3935,6 +3973,11 @@ type ListOperationsInput struct {
 	//
 	// Default: 20
 	MaxItems *int64 `type:"integer"`
+
+	// An optional parameter that lets you get information about all the operations
+	// that you submitted after a specified date and time. Specify the date and
+	// time in Coordinated Universal time (UTC).
+	SubmittedSince *time.Time `type:"timestamp" timestampFormat:"unix"`
 }
 
 // String returns the string representation
@@ -3956,6 +3999,12 @@ func (s *ListOperationsInput) SetMarker(v string) *ListOperationsInput {
 // SetMaxItems sets the MaxItems field's value.
 func (s *ListOperationsInput) SetMaxItems(v int64) *ListOperationsInput {
 	s.MaxItems = &v
+	return s
+}
+
+// SetSubmittedSince sets the SubmittedSince field's value.
+func (s *ListOperationsInput) SetSubmittedSince(v time.Time) *ListOperationsInput {
+	s.SubmittedSince = &v
 	return s
 }
 
@@ -4214,25 +4263,29 @@ type RegisterDomainInput struct {
 	IdnLangCode *string `type:"string"`
 
 	// Whether you want to conceal contact information from WHOIS queries. If you
-	// specify true, WHOIS ("who is") queries will return contact information for
-	// our registrar partner, Gandi, instead of the contact information that you
-	// enter.
+	// specify true, WHOIS ("who is") queries return contact information either
+	// for Amazon Registrar (for .com, .net, and .org domains) or for our registrar
+	// associate, Gandi (for all other TLDs). If you specify false, WHOIS queries
+	// return the information that you entered for the admin contact.
 	//
 	// Default: true
 	PrivacyProtectAdminContact *bool `type:"boolean"`
 
 	// Whether you want to conceal contact information from WHOIS queries. If you
-	// specify true, WHOIS ("who is") queries will return contact information for
-	// our registrar partner, Gandi, instead of the contact information that you
-	// enter.
+	// specify true, WHOIS ("who is") queries return contact information either
+	// for Amazon Registrar (for .com, .net, and .org domains) or for our registrar
+	// associate, Gandi (for all other TLDs). If you specify false, WHOIS queries
+	// return the information that you entered for the registrant contact (the domain
+	// owner).
 	//
 	// Default: true
 	PrivacyProtectRegistrantContact *bool `type:"boolean"`
 
 	// Whether you want to conceal contact information from WHOIS queries. If you
-	// specify true, WHOIS ("who is") queries will return contact information for
-	// our registrar partner, Gandi, instead of the contact information that you
-	// enter.
+	// specify true, WHOIS ("who is") queries return contact information either
+	// for Amazon Registrar (for .com, .net, and .org domains) or for our registrar
+	// associate, Gandi (for all other TLDs). If you specify false, WHOIS queries
+	// return the information that you entered for the technical contact.
 	//
 	// Default: true
 	PrivacyProtectTechContact *bool `type:"boolean"`
@@ -4705,25 +4758,29 @@ type TransferDomainInput struct {
 	Nameservers []*Nameserver `type:"list"`
 
 	// Whether you want to conceal contact information from WHOIS queries. If you
-	// specify true, WHOIS ("who is") queries will return contact information for
-	// our registrar partner, Gandi, instead of the contact information that you
-	// enter.
+	// specify true, WHOIS ("who is") queries return contact information either
+	// for Amazon Registrar (for .com, .net, and .org domains) or for our registrar
+	// associate, Gandi (for all other TLDs). If you specify false, WHOIS queries
+	// return the information that you entered for the admin contact.
 	//
 	// Default: true
 	PrivacyProtectAdminContact *bool `type:"boolean"`
 
 	// Whether you want to conceal contact information from WHOIS queries. If you
-	// specify true, WHOIS ("who is") queries will return contact information for
-	// our registrar partner, Gandi, instead of the contact information that you
-	// enter.
+	// specify true, WHOIS ("who is") queries return contact information either
+	// for Amazon Registrar (for .com, .net, and .org domains) or for our registrar
+	// associate, Gandi (for all other TLDs). If you specify false, WHOIS queries
+	// return the information that you entered for the registrant contact (domain
+	// owner).
 	//
 	// Default: true
 	PrivacyProtectRegistrantContact *bool `type:"boolean"`
 
 	// Whether you want to conceal contact information from WHOIS queries. If you
-	// specify true, WHOIS ("who is") queries will return contact information for
-	// our registrar partner, Gandi, instead of the contact information that you
-	// enter.
+	// specify true, WHOIS ("who is") queries return contact information either
+	// for Amazon Registrar (for .com, .net, and .org domains) or for our registrar
+	// associate, Gandi (for all other TLDs). If you specify false, WHOIS queries
+	// return the information that you entered for the technical contact.
 	//
 	// Default: true
 	PrivacyProtectTechContact *bool `type:"boolean"`
@@ -5014,9 +5071,10 @@ type UpdateDomainContactPrivacyInput struct {
 	_ struct{} `type:"structure"`
 
 	// Whether you want to conceal contact information from WHOIS queries. If you
-	// specify true, WHOIS ("who is") queries will return contact information for
-	// our registrar partner, Gandi, instead of the contact information that you
-	// enter.
+	// specify true, WHOIS ("who is") queries return contact information either
+	// for Amazon Registrar (for .com, .net, and .org domains) or for our registrar
+	// associate, Gandi (for all other TLDs). If you specify false, WHOIS queries
+	// return the information that you entered for the admin contact.
 	AdminPrivacy *bool `type:"boolean"`
 
 	// The name of the domain that you want to update the privacy setting for.
@@ -5025,15 +5083,18 @@ type UpdateDomainContactPrivacyInput struct {
 	DomainName *string `type:"string" required:"true"`
 
 	// Whether you want to conceal contact information from WHOIS queries. If you
-	// specify true, WHOIS ("who is") queries will return contact information for
-	// our registrar partner, Gandi, instead of the contact information that you
-	// enter.
+	// specify true, WHOIS ("who is") queries return contact information either
+	// for Amazon Registrar (for .com, .net, and .org domains) or for our registrar
+	// associate, Gandi (for all other TLDs). If you specify false, WHOIS queries
+	// return the information that you entered for the registrant contact (domain
+	// owner).
 	RegistrantPrivacy *bool `type:"boolean"`
 
 	// Whether you want to conceal contact information from WHOIS queries. If you
-	// specify true, WHOIS ("who is") queries will return contact information for
-	// our registrar partner, Gandi, instead of the contact information that you
-	// enter.
+	// specify true, WHOIS ("who is") queries return contact information either
+	// for Amazon Registrar (for .com, .net, and .org domains) or for our registrar
+	// associate, Gandi (for all other TLDs). If you specify false, WHOIS queries
+	// return the information that you entered for the technical contact.
 	TechPrivacy *bool `type:"boolean"`
 }
 
@@ -5284,7 +5345,7 @@ type ViewBillingInput struct {
 	_ struct{} `type:"structure"`
 
 	// The end date and time for the time period for which you want a list of billing
-	// records. Specify the date in Unix time format.
+	// records. Specify the date and time in Coordinated Universal time (UTC).
 	End *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// For an initial request for a list of billing records, omit this element.
@@ -5304,7 +5365,8 @@ type ViewBillingInput struct {
 	MaxItems *int64 `type:"integer"`
 
 	// The beginning date and time for the time period for which you want a list
-	// of billing records. Specify the date in Unix time format.
+	// of billing records. Specify the date and time in Coordinated Universal time
+	// (UTC).
 	Start *time.Time `type:"timestamp" timestampFormat:"unix"`
 }
 
