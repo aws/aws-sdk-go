@@ -173,6 +173,19 @@
         {"shape":"GlobalTableNotFoundException"}
       ]
     },
+    "DescribeGlobalTableSettings":{
+      "name":"DescribeGlobalTableSettings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeGlobalTableSettingsInput"},
+      "output":{"shape":"DescribeGlobalTableSettingsOutput"},
+      "errors":[
+        {"shape":"GlobalTableNotFoundException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "DescribeLimits":{
       "name":"DescribeLimits",
       "http":{
@@ -409,6 +422,23 @@
         {"shape":"ReplicaAlreadyExistsException"},
         {"shape":"ReplicaNotFoundException"},
         {"shape":"TableNotFoundException"}
+      ]
+    },
+    "UpdateGlobalTableSettings":{
+      "name":"UpdateGlobalTableSettings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateGlobalTableSettingsInput"},
+      "output":{"shape":"UpdateGlobalTableSettingsOutput"},
+      "errors":[
+        {"shape":"GlobalTableNotFoundException"},
+        {"shape":"ReplicaNotFoundException"},
+        {"shape":"IndexNotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"InternalServerError"}
       ]
     },
     "UpdateItem":{
@@ -951,6 +981,20 @@
         "GlobalTableDescription":{"shape":"GlobalTableDescription"}
       }
     },
+    "DescribeGlobalTableSettingsInput":{
+      "type":"structure",
+      "required":["GlobalTableName"],
+      "members":{
+        "GlobalTableName":{"shape":"TableName"}
+      }
+    },
+    "DescribeGlobalTableSettingsOutput":{
+      "type":"structure",
+      "members":{
+        "GlobalTableName":{"shape":"TableName"},
+        "ReplicaSettings":{"shape":"ReplicaSettingsDescriptionList"}
+      }
+    },
     "DescribeLimitsInput":{
       "type":"structure",
       "members":{
@@ -1133,6 +1177,20 @@
         "GlobalTableName":{"shape":"TableName"}
       }
     },
+    "GlobalTableGlobalSecondaryIndexSettingsUpdate":{
+      "type":"structure",
+      "required":["IndexName"],
+      "members":{
+        "IndexName":{"shape":"IndexName"},
+        "ProvisionedWriteCapacityUnits":{"shape":"PositiveLongObject"}
+      }
+    },
+    "GlobalTableGlobalSecondaryIndexSettingsUpdateList":{
+      "type":"list",
+      "member":{"shape":"GlobalTableGlobalSecondaryIndexSettingsUpdate"},
+      "max":20,
+      "min":1
+    },
     "GlobalTableList":{
       "type":"list",
       "member":{"shape":"GlobalTable"}
@@ -1158,6 +1216,13 @@
       "max":255,
       "min":3,
       "pattern":"[a-zA-Z0-9_.-]+"
+    },
+    "IndexNotFoundException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
     },
     "IndexStatus":{
       "type":"string",
@@ -1604,6 +1669,34 @@
       "type":"list",
       "member":{"shape":"ReplicaDescription"}
     },
+    "ReplicaGlobalSecondaryIndexSettingsDescription":{
+      "type":"structure",
+      "required":["IndexName"],
+      "members":{
+        "IndexName":{"shape":"IndexName"},
+        "IndexStatus":{"shape":"IndexStatus"},
+        "ProvisionedReadCapacityUnits":{"shape":"PositiveLongObject"},
+        "ProvisionedWriteCapacityUnits":{"shape":"PositiveLongObject"}
+      }
+    },
+    "ReplicaGlobalSecondaryIndexSettingsDescriptionList":{
+      "type":"list",
+      "member":{"shape":"ReplicaGlobalSecondaryIndexSettingsDescription"}
+    },
+    "ReplicaGlobalSecondaryIndexSettingsUpdate":{
+      "type":"structure",
+      "required":["IndexName"],
+      "members":{
+        "IndexName":{"shape":"IndexName"},
+        "ProvisionedReadCapacityUnits":{"shape":"PositiveLongObject"}
+      }
+    },
+    "ReplicaGlobalSecondaryIndexSettingsUpdateList":{
+      "type":"list",
+      "member":{"shape":"ReplicaGlobalSecondaryIndexSettingsUpdate"},
+      "max":20,
+      "min":1
+    },
     "ReplicaList":{
       "type":"list",
       "member":{"shape":"Replica"}
@@ -1614,6 +1707,45 @@
         "message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "ReplicaSettingsDescription":{
+      "type":"structure",
+      "required":["RegionName"],
+      "members":{
+        "RegionName":{"shape":"RegionName"},
+        "ReplicaStatus":{"shape":"ReplicaStatus"},
+        "ReplicaProvisionedReadCapacityUnits":{"shape":"PositiveLongObject"},
+        "ReplicaProvisionedWriteCapacityUnits":{"shape":"PositiveLongObject"},
+        "ReplicaGlobalSecondaryIndexSettings":{"shape":"ReplicaGlobalSecondaryIndexSettingsDescriptionList"}
+      }
+    },
+    "ReplicaSettingsDescriptionList":{
+      "type":"list",
+      "member":{"shape":"ReplicaSettingsDescription"}
+    },
+    "ReplicaSettingsUpdate":{
+      "type":"structure",
+      "required":["RegionName"],
+      "members":{
+        "RegionName":{"shape":"RegionName"},
+        "ReplicaProvisionedReadCapacityUnits":{"shape":"PositiveLongObject"},
+        "ReplicaGlobalSecondaryIndexSettingsUpdate":{"shape":"ReplicaGlobalSecondaryIndexSettingsUpdateList"}
+      }
+    },
+    "ReplicaSettingsUpdateList":{
+      "type":"list",
+      "member":{"shape":"ReplicaSettingsUpdate"},
+      "max":50,
+      "min":1
+    },
+    "ReplicaStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "UPDATING",
+        "DELETING",
+        "ACTIVE"
+      ]
     },
     "ReplicaUpdate":{
       "type":"structure",
@@ -2063,6 +2195,23 @@
       "type":"structure",
       "members":{
         "GlobalTableDescription":{"shape":"GlobalTableDescription"}
+      }
+    },
+    "UpdateGlobalTableSettingsInput":{
+      "type":"structure",
+      "required":["GlobalTableName"],
+      "members":{
+        "GlobalTableName":{"shape":"TableName"},
+        "GlobalTableProvisionedWriteCapacityUnits":{"shape":"PositiveLongObject"},
+        "GlobalTableGlobalSecondaryIndexSettingsUpdate":{"shape":"GlobalTableGlobalSecondaryIndexSettingsUpdateList"},
+        "ReplicaSettingsUpdate":{"shape":"ReplicaSettingsUpdateList"}
+      }
+    },
+    "UpdateGlobalTableSettingsOutput":{
+      "type":"structure",
+      "members":{
+        "GlobalTableName":{"shape":"TableName"},
+        "ReplicaSettings":{"shape":"ReplicaSettingsDescriptionList"}
       }
     },
     "UpdateItemInput":{

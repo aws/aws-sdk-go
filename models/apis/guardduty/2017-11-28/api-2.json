@@ -771,7 +771,8 @@
           "shape" : "Email",
           "locationName" : "email"
         }
-      }
+      },
+      "required" : [ "Email", "AccountId" ]
     },
     "AccountDetails" : {
       "type" : "list",
@@ -1345,13 +1346,14 @@
           "shape" : "UpdatedAt",
           "locationName" : "updatedAt"
         }
-      }
+      },
+      "required" : [ "AccountId", "SchemaVersion", "CreatedAt", "Resource", "Severity", "UpdatedAt", "Type", "Region", "Id", "Arn" ]
     },
     "FindingCriteria" : {
       "type" : "structure",
       "members" : {
         "Criterion" : {
-          "shape" : "MapOfCondition",
+          "shape" : "__mapOfCondition",
           "locationName" : "criterion"
         }
       }
@@ -1379,7 +1381,7 @@
       "type" : "structure",
       "members" : {
         "CountBySeverity" : {
-          "shape" : "MapOfCountBySeverityFindingStatistic",
+          "shape" : "__mapOfCountBySeverityFindingStatistic",
           "locationName" : "countBySeverity"
         }
       }
@@ -1756,6 +1758,10 @@
           "location" : "uri",
           "locationName" : "detectorId"
         },
+        "DisableEmailNotification" : {
+          "shape" : "__boolean",
+          "locationName" : "disableEmailNotification"
+        },
         "Message" : {
           "shape" : "Message",
           "locationName" : "message"
@@ -1970,12 +1976,6 @@
         }
       }
     },
-    "ListOfPortProbeDetail" : {
-      "type" : "list",
-      "member" : {
-        "shape" : "PortProbeDetail"
-      }
-    },
     "ListThreatIntelSetsRequest" : {
       "type" : "structure",
       "members" : {
@@ -2025,24 +2025,6 @@
     },
     "Location" : {
       "type" : "string"
-    },
-    "MapOfCondition" : {
-      "type" : "map",
-      "key" : {
-        "shape" : "__string"
-      },
-      "value" : {
-        "shape" : "Condition"
-      }
-    },
-    "MapOfCountBySeverityFindingStatistic" : {
-      "type" : "map",
-      "key" : {
-        "shape" : "__string"
-      },
-      "value" : {
-        "shape" : "CountBySeverityFindingStatistic"
-      }
     },
     "Master" : {
       "type" : "structure",
@@ -2104,7 +2086,8 @@
           "shape" : "UpdatedAt",
           "locationName" : "updatedAt"
         }
-      }
+      },
+      "required" : [ "Email", "AccountId", "MasterId", "UpdatedAt", "RelationshipStatus" ]
     },
     "Members" : {
       "type" : "list",
@@ -2236,7 +2219,7 @@
           "locationName" : "blocked"
         },
         "PortProbeDetails" : {
-          "shape" : "ListOfPortProbeDetail",
+          "shape" : "__listOfPortProbeDetail",
           "locationName" : "portProbeDetails"
         }
       }
@@ -2543,7 +2526,8 @@
           "shape" : "__string",
           "locationName" : "result"
         }
-      }
+      },
+      "required" : [ "AccountId", "Result" ]
     },
     "UnprocessedAccounts" : {
       "type" : "list",
@@ -2672,6 +2656,33 @@
     },
     "__integer" : {
       "type" : "integer"
+    },
+    "__listOfPortProbeDetail" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "PortProbeDetail"
+      }
+    },
+    "__long" : {
+      "type" : "long"
+    },
+    "__mapOfCondition" : {
+      "type" : "map",
+      "key" : {
+        "shape" : "__string"
+      },
+      "value" : {
+        "shape" : "Condition"
+      }
+    },
+    "__mapOfCountBySeverityFindingStatistic" : {
+      "type" : "map",
+      "key" : {
+        "shape" : "__string"
+      },
+      "value" : {
+        "shape" : "CountBySeverityFindingStatistic"
+      }
     },
     "__string" : {
       "type" : "string"
