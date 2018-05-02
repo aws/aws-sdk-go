@@ -4742,6 +4742,9 @@ func (c *SSM) GetDefaultPatchBaselineRequest(input *GetDefaultPatchBaselineInput
 // creating multiple default patch baselines. For example, you can create a
 // default patch baseline for each operating system.
 //
+// If you do not specify an operating system value, the default patch baseline
+// for Windows is returned.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7941,7 +7944,7 @@ func (c *SSM) PutParameterRequest(input *PutParameterInput) (req *request.Reques
 
 // PutParameter API operation for Amazon Simple Systems Manager (SSM).
 //
-// Add one or more parameters to the system.
+// Add a parameter to the system.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8659,6 +8662,9 @@ func (c *SSM) SendCommandRequest(input *SendCommandInput) (req *request.Request,
 //
 //   * ErrCodeInvalidDocument "InvalidDocument"
 //   The specified document does not exist.
+//
+//   * ErrCodeInvalidDocumentVersion "InvalidDocumentVersion"
+//   The document version is not valid or does not exist.
 //
 //   * ErrCodeInvalidOutputFolder "InvalidOutputFolder"
 //   The S3 bucket does not exist.
@@ -9897,15 +9903,28 @@ type AddTagsToResourceInput struct {
 
 	// The resource ID you want to tag.
 	//
-	// For the ManagedInstance, MaintenanceWindow, and PatchBaseline values, use
-	// the ID of the resource, such as mw-01234361858c9b57b for a Maintenance Window.
+	// Use the ID of the resource. Here are some examples:
+	//
+	// ManagedInstance: mi-012345abcde
+	//
+	// MaintenanceWindow: mw-012345abcde
+	//
+	// PatchBaseline: pb-012345abcde
 	//
 	// For the Document and Parameter values, use the name of the resource.
+	//
+	// The ManagedInstance type for this API action is only for on-premises managed
+	// instances. You must specify the the name of the managed instance in the following
+	// format: mi-ID_number. For example, mi-1a2b3c4d5e6f.
 	//
 	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
 	// Specifies the type of resource you are tagging.
+	//
+	// The ManagedInstance type for this API action is for on-premises managed instances.
+	// You must specify the the name of the managed instance in the following format:
+	// mi-ID_number. For example, mi-1a2b3c4d5e6f.
 	//
 	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true" enum:"ResourceTypeForTagging"`
@@ -11108,6 +11127,9 @@ type Command struct {
 	// The name of the document requested for execution.
 	DocumentName *string `type:"string"`
 
+	// The SSM document version.
+	DocumentVersion *string `type:"string"`
+
 	// The number of targets for which the status is Failed or Execution Timed Out.
 	ErrorCount *int64 `type:"integer"`
 
@@ -11237,6 +11259,12 @@ func (s *Command) SetCompletedCount(v int64) *Command {
 // SetDocumentName sets the DocumentName field's value.
 func (s *Command) SetDocumentName(v string) *Command {
 	s.DocumentName = &v
+	return s
+}
+
+// SetDocumentVersion sets the DocumentVersion field's value.
+func (s *Command) SetDocumentVersion(v string) *Command {
+	s.DocumentVersion = &v
 	return s
 }
 
@@ -11412,6 +11440,9 @@ type CommandInvocation struct {
 	// The document name that was requested for execution.
 	DocumentName *string `type:"string"`
 
+	// The SSM document version.
+	DocumentVersion *string `type:"string"`
+
 	// The instance ID in which this invocation was requested.
 	InstanceId *string `type:"string"`
 
@@ -11525,6 +11556,12 @@ func (s *CommandInvocation) SetComment(v string) *CommandInvocation {
 // SetDocumentName sets the DocumentName field's value.
 func (s *CommandInvocation) SetDocumentName(v string) *CommandInvocation {
 	s.DocumentName = &v
+	return s
+}
+
+// SetDocumentVersion sets the DocumentVersion field's value.
+func (s *CommandInvocation) SetDocumentVersion(v string) *CommandInvocation {
+	s.DocumentVersion = &v
 	return s
 }
 
@@ -11862,7 +11899,7 @@ type ComplianceItem struct {
 	ExecutionSummary *ComplianceExecutionSummary `type:"structure"`
 
 	// An ID for the compliance item. For example, if the compliance item is a Windows
-	// patch, the ID could be the number of the KB article. Here's an example: KB4010320.
+	// patch, the ID could be the number of the KB article; for example: KB4010320.
 	Id *string `min:"1" type:"string"`
 
 	// An ID for the resource. For a managed instance, this is the instance ID.
@@ -11880,8 +11917,8 @@ type ComplianceItem struct {
 	Status *string `type:"string" enum:"ComplianceStatus"`
 
 	// A title for the compliance item. For example, if the compliance item is a
-	// Windows patch, the title could be the title of the KB article for the patch.
-	// Here's an example: Security Update for Active Directory Federation Services.
+	// Windows patch, the title could be the title of the KB article for the patch;
+	// for example: Security Update for Active Directory Federation Services.
 	Title *string `type:"string"`
 }
 
@@ -11972,8 +12009,8 @@ type ComplianceItemEntry struct {
 	Status *string `type:"string" required:"true" enum:"ComplianceStatus"`
 
 	// The title of the compliance item. For example, if the compliance item is
-	// a Windows patch, the title could be the title of the KB article for the patch.
-	// Here's an example: Security Update for Active Directory Federation Services.
+	// a Windows patch, the title could be the title of the KB article for the patch;
+	// for example: Security Update for Active Directory Federation Services.
 	Title *string `type:"string"`
 }
 
@@ -12181,7 +12218,7 @@ type CreateActivationInput struct {
 	// Do not enter personally identifiable information in this field.
 	DefaultInstanceName *string `type:"string"`
 
-	// A userdefined description of the resource that you want to register with
+	// A user-defined description of the resource that you want to register with
 	// Amazon EC2.
 	//
 	// Do not enter personally identifiable information in this field.
@@ -12925,12 +12962,16 @@ type CreatePatchBaselineInput struct {
 	ApprovalRules *PatchRuleGroup `type:"structure"`
 
 	// A list of explicitly approved patches for the baseline.
+	//
+	// For information about accepted formats for lists of approved patches and
+	// rejected patches, see Package Name Formats for Approved and Rejected Patch
+	// Lists (http://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html)
+	// in the AWS Systems Manager User Guide.
 	ApprovedPatches []*string `type:"list"`
 
 	// Defines the compliance level for approved patches. This means that if an
 	// approved patch is reported as missing, this is the severity of the compliance
-	// violation. Valid compliance severity levels include the following: CRITICAL,
-	// HIGH, MEDIUM, LOW, INFORMATIONAL, UNSPECIFIED. The default value is UNSPECIFIED.
+	// violation. The default value is UNSPECIFIED.
 	ApprovedPatchesComplianceLevel *string `type:"string" enum:"PatchComplianceLevel"`
 
 	// Indicates whether the list of approved patches includes non-security updates
@@ -12957,6 +12998,11 @@ type CreatePatchBaselineInput struct {
 	OperatingSystem *string `type:"string" enum:"OperatingSystem"`
 
 	// A list of explicitly rejected patches for the baseline.
+	//
+	// For information about accepted formats for lists of approved patches and
+	// rejected patches, see Package Name Formats for Approved and Rejected Patch
+	// Lists (http://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html)
+	// in the AWS Systems Manager User Guide.
 	RejectedPatches []*string `type:"list"`
 
 	// Information about the patches to use to update the instances, including target
@@ -17619,6 +17665,9 @@ type GetCommandInvocationOutput struct {
 	// The name of the document that was executed. For example, AWS-RunShellScript.
 	DocumentName *string `type:"string"`
 
+	// The SSM document version used in the request.
+	DocumentVersion *string `type:"string"`
+
 	// Duration since ExecutionStartDateTime.
 	ExecutionElapsedTime *string `type:"string"`
 
@@ -17749,6 +17798,12 @@ func (s *GetCommandInvocationOutput) SetComment(v string) *GetCommandInvocationO
 // SetDocumentName sets the DocumentName field's value.
 func (s *GetCommandInvocationOutput) SetDocumentName(v string) *GetCommandInvocationOutput {
 	s.DocumentName = &v
+	return s
+}
+
+// SetDocumentVersion sets the DocumentVersion field's value.
+func (s *GetCommandInvocationOutput) SetDocumentVersion(v string) *GetCommandInvocationOutput {
+	s.DocumentVersion = &v
 	return s
 }
 
@@ -20554,7 +20609,7 @@ type InstancePatchState struct {
 	// OperationStartTime is a required field
 	OperationStartTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
 
-	// Placeholder information, this field will always be empty in the current release
+	// Placeholder information. This field will always be empty in the current release
 	// of the service.
 	OwnerInformation *string `min:"1" type:"string"`
 
@@ -24856,9 +24911,9 @@ func (s *PatchComplianceData) SetTitle(v string) *PatchComplianceData {
 //
 //    * Low
 //
-// SUSE Linux Enterprise Server (SUSE) Operating Systems
+// SUSE Linux Enterprise Server (SLES) Operating Systems
 //
-// The supported keys for SUSE operating systems are PRODUCT, CLASSIFICATION,
+// The supported keys for SLES operating systems are PRODUCT, CLASSIFICATION,
 // and SEVERITY. See the following lists for valid values for each of these
 // keys.
 //
@@ -24911,6 +24966,62 @@ func (s *PatchComplianceData) SetTitle(v string) *PatchComplianceData {
 //    * Important
 //
 //    * Moderate
+//
+//    * Low
+//
+// CentOS Operating Systems
+//
+// The supported keys for CentOS operating systems are PRODUCT, CLASSIFICATION,
+// and SEVERITY. See the following lists for valid values for each of these
+// keys.
+//
+// Supported key:PRODUCT
+//
+// Supported values:
+//
+//    * CentOS6.5
+//
+//    * CentOS6.6
+//
+//    * CentOS6.7
+//
+//    * CentOS6.8
+//
+//    * CentOS6.9
+//
+//    * CentOS7.0
+//
+//    * CentOS7.1
+//
+//    * CentOS7.2
+//
+//    * CentOS7.3
+//
+//    * CentOS7.4
+//
+// Supported key:CLASSIFICATION
+//
+// Supported values:
+//
+//    * Security
+//
+//    * Bugfix
+//
+//    * Enhancement
+//
+//    * Recommended
+//
+//    * Newpackage
+//
+// Supported key:SEVERITY
+//
+// Supported values:
+//
+//    * Critical
+//
+//    * Important
+//
+//    * Medium
 //
 //    * Low
 type PatchFilter struct {
@@ -25927,8 +26038,17 @@ type RegisterTargetWithMaintenanceWindowInput struct {
 	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true" enum:"MaintenanceWindowResourceType"`
 
-	// The targets (either instances or tags). Instances are specified using Key=instanceids,Values=<instanceid1>,<instanceid2>.
-	// Tags are specified using Key=<tag name>,Values=<tag value>.
+	// The targets (either instances or tags).
+	//
+	// Specify instances using the following format:
+	//
+	// Key=InstanceIds,Values=<instance-id-1>,<instance-id-2>
+	//
+	// Specify tags using either of the following formats:
+	//
+	// Key=tag:<tag-key>,Values=<tag-value-1>,<tag-value-2>
+	//
+	// Key=tag-key,Values=<tag-key-1>,<tag-key-2>
 	//
 	// Targets is a required field
 	Targets []*Target `type:"list" required:"true"`
@@ -26099,8 +26219,15 @@ type RegisterTaskWithMaintenanceWindowInput struct {
 	// ServiceRoleArn is a required field
 	ServiceRoleArn *string `type:"string" required:"true"`
 
-	// The targets (either instances or tags). Instances are specified using Key=instanceids,Values=<instanceid1>,<instanceid2>.
-	// Tags are specified using Key=<tag name>,Values=<tag value>.
+	// The targets (either instances or Maintenance Window targets).
+	//
+	// Specify instances using the following format:
+	//
+	// Key=InstanceIds,Values=<instance-id-1>,<instance-id-2>
+	//
+	// Specify Maintenance Window targets using the following format:
+	//
+	// Key=<WindowTargetIds>,Values=<window-target-id-1>,<window-target-id-2>
 	//
 	// Targets is a required field
 	Targets []*Target `type:"list" required:"true"`
@@ -26127,7 +26254,7 @@ type RegisterTaskWithMaintenanceWindowInput struct {
 	// TaskType is a required field
 	TaskType *string `type:"string" required:"true" enum:"MaintenanceWindowTaskType"`
 
-	// The id of the Maintenance Window the task should be added to.
+	// The ID of the Maintenance Window the task should be added to.
 	//
 	// WindowId is a required field
 	WindowId *string `min:"20" type:"string" required:"true"`
@@ -26325,12 +26452,29 @@ func (s *RegisterTaskWithMaintenanceWindowOutput) SetWindowTaskId(v string) *Reg
 type RemoveTagsFromResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The resource ID for which you want to remove tags.
+	// The resource ID for which you want to remove tags. Use the ID of the resource.
+	// Here are some examples:
+	//
+	// ManagedInstance: mi-012345abcde
+	//
+	// MaintenanceWindow: mw-012345abcde
+	//
+	// PatchBaseline: pb-012345abcde
+	//
+	// For the Document and Parameter values, use the name of the resource.
+	//
+	// The ManagedInstance type for this API action is only for on-premises managed
+	// instances. You must specify the the name of the managed instance in the following
+	// format: mi-ID_number. For example, mi-1a2b3c4d5e6f.
 	//
 	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
 	// The type of resource of which you want to remove a tag.
+	//
+	// The ManagedInstance type for this API action is only for on-premises managed
+	// instances. You must specify the the name of the managed instance in the following
+	// format: mi-ID_number. For example, mi-1a2b3c4d5e6f.
 	//
 	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true" enum:"ResourceTypeForTagging"`
@@ -26937,6 +27081,10 @@ type SendCommandInput struct {
 	// DocumentName is a required field
 	DocumentName *string `type:"string" required:"true"`
 
+	// The SSM document version to use in the request. You can specify Default,
+	// Latest, or a specific version number.
+	DocumentVersion *string `type:"string"`
+
 	// The instance IDs where the command should execute. You can specify a maximum
 	// of 50 IDs. If you prefer not to list individual instance IDs, you can instead
 	// send commands to a fleet of instances using the Targets parameter, which
@@ -27058,6 +27206,12 @@ func (s *SendCommandInput) SetDocumentHashType(v string) *SendCommandInput {
 // SetDocumentName sets the DocumentName field's value.
 func (s *SendCommandInput) SetDocumentName(v string) *SendCommandInput {
 	s.DocumentName = &v
+	return s
+}
+
+// SetDocumentVersion sets the DocumentVersion field's value.
+func (s *SendCommandInput) SetDocumentVersion(v string) *SendCommandInput {
+	s.DocumentVersion = &v
 	return s
 }
 
@@ -29095,6 +29249,11 @@ type UpdatePatchBaselineInput struct {
 	ApprovalRules *PatchRuleGroup `type:"structure"`
 
 	// A list of explicitly approved patches for the baseline.
+	//
+	// For information about accepted formats for lists of approved patches and
+	// rejected patches, see Package Name Formats for Approved and Rejected Patch
+	// Lists (http://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html)
+	// in the AWS Systems Manager User Guide.
 	ApprovedPatches []*string `type:"list"`
 
 	// Assigns a new compliance severity level to an existing patch baseline.
@@ -29120,6 +29279,11 @@ type UpdatePatchBaselineInput struct {
 	Name *string `min:"3" type:"string"`
 
 	// A list of explicitly rejected patches for the baseline.
+	//
+	// For information about accepted formats for lists of approved patches and
+	// rejected patches, see Package Name Formats for Approved and Rejected Patch
+	// Lists (http://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html)
+	// in the AWS Systems Manager User Guide.
 	RejectedPatches []*string `type:"list"`
 
 	// If True, then all fields that are required by the CreatePatchBaseline action
