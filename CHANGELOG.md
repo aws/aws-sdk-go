@@ -1,3 +1,16 @@
+Release v1.13.40 (2018-05-02)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service documentation
+  * Documentation updates for acm
+* `service/codepipeline`: Updates service API and documentation
+  * Added support for webhooks with accompanying definitions as needed in the AWS CodePipeline API Guide.
+* `service/ec2`: Updates service API and documentation
+  * Amazon EC2 Fleet is a new feature that simplifies the provisioning of Amazon EC2 capacity across different EC2 instance types, Availability Zones, and the On-Demand, Reserved Instance, and Spot Instance purchase models. With a single API call, you can now provision capacity to achieve desired scale, performance, and cost.
+* `service/ssm`: Updates service API and documentation
+  * Added support for new parameter, DocumentVersion, for SendCommand API. Users can now specify version of SSM document to be executed on the target(s).
+
 Release v1.13.39 (2018-04-30)
 ===
 
