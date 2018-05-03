@@ -1,3 +1,13 @@
+Release v1.13.41 (2018-05-03)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/config`: Updates service API and documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for secretsmanager
+
 Release v1.13.40 (2018-05-02)
 ===
 

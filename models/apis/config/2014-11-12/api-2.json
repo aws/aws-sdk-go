@@ -2007,7 +2007,14 @@
         "AWS::WAFRegional::Rule",
         "AWS::WAFRegional::WebACL",
         "AWS::CloudFront::Distribution",
-        "AWS::CloudFront::StreamingDistribution"
+        "AWS::CloudFront::StreamingDistribution",
+        "AWS::WAF::RuleGroup",
+        "AWS::WAFRegional::RuleGroup",
+        "AWS::Lambda::Function",
+        "AWS::ElasticBeanstalk::Application",
+        "AWS::ElasticBeanstalk::ApplicationVersion",
+        "AWS::ElasticBeanstalk::Environment",
+        "AWS::ElasticLoadBalancing::LoadBalancer"
       ]
     },
     "ResourceTypeList":{
