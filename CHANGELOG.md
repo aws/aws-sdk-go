@@ -1,3 +1,10 @@
+Release v1.13.42 (2018-05-04)
+===
+
+### Service Client Updates
+* `service/guardduty`: Updates service API, documentation, and paginators
+  * Amazon GuardDuty is adding five new API operations for creating and managing filters. For each filter, you can specify a criteria and an action. The action you specify is applied to findings that match the specified criteria.
+
 Release v1.13.41 (2018-05-03)
 ===
 
