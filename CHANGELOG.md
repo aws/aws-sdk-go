@@ -1,3 +1,16 @@
+Release v1.13.43 (2018-05-07)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API
+* `service/budgets`: Updates service API and documentation
+  * "With this release, customers can use AWS Budgets to monitor how much of their Amazon EC2, Amazon RDS, Amazon Redshift, and Amazon ElastiCache instance usage is covered by reservations, and receive alerts when their coverage falls below the threshold they define."
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/es`: Updates service API, documentation, and paginators
+  * This change brings support for Reserved Instances to AWS Elasticsearch.
+* `service/s3`: Updates service API and documentation
+  * Added BytesReturned details for Progress and Stats Events for Amazon S3 Select .
+
 Release v1.13.42 (2018-05-04)
 ===
 

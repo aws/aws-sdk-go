@@ -242,7 +242,8 @@
       "enum":[
         "USAGE",
         "COST",
-        "RI_UTILIZATION"
+        "RI_UTILIZATION",
+        "RI_COVERAGE"
       ]
     },
     "Budgets":{
