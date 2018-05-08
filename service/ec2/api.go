@@ -3129,7 +3129,7 @@ func (c *EC2) CreateFleetRequest(input *CreateFleetInput) (req *request.Request,
 // You can create a single EC2 Fleet that includes multiple launch specifications
 // that vary by instance type, AMI, Availability Zone, or subnet.
 //
-// For more information, see Launching an EC2 Fleet (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-launch-ec2-fleet.html)
+// For more information, see Launching an EC2 Fleet (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -26672,9 +26672,7 @@ type ConversionTask struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the conversion task.
-	//
-	// ConversionTaskId is a required field
-	ConversionTaskId *string `locationName:"conversionTaskId" type:"string" required:"true"`
+	ConversionTaskId *string `locationName:"conversionTaskId" type:"string"`
 
 	// The time when the task expires. If the upload isn't complete before the expiration
 	// time, we automatically cancel the task.
@@ -26689,9 +26687,7 @@ type ConversionTask struct {
 	ImportVolume *ImportVolumeTaskDetails `locationName:"importVolume" type:"structure"`
 
 	// The state of the conversion task.
-	//
-	// State is a required field
-	State *string `locationName:"state" type:"string" required:"true" enum:"ConversionTaskState"`
+	State *string `locationName:"state" type:"string" enum:"ConversionTaskState"`
 
 	// The status message related to the conversion task.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
@@ -27219,6 +27215,75 @@ func (s CopySnapshotOutput) GoString() string {
 // SetSnapshotId sets the SnapshotId field's value.
 func (s *CopySnapshotOutput) SetSnapshotId(v string) *CopySnapshotOutput {
 	s.SnapshotId = &v
+	return s
+}
+
+// The CPU options for the instance.
+type CpuOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The number of CPU cores for the instance.
+	CoreCount *int64 `locationName:"coreCount" type:"integer"`
+
+	// The number of threads per CPU core.
+	ThreadsPerCore *int64 `locationName:"threadsPerCore" type:"integer"`
+}
+
+// String returns the string representation
+func (s CpuOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CpuOptions) GoString() string {
+	return s.String()
+}
+
+// SetCoreCount sets the CoreCount field's value.
+func (s *CpuOptions) SetCoreCount(v int64) *CpuOptions {
+	s.CoreCount = &v
+	return s
+}
+
+// SetThreadsPerCore sets the ThreadsPerCore field's value.
+func (s *CpuOptions) SetThreadsPerCore(v int64) *CpuOptions {
+	s.ThreadsPerCore = &v
+	return s
+}
+
+// The CPU options for the instance. Both the core count and threads per core
+// must be specified in the request.
+type CpuOptionsRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The number of CPU cores for the instance.
+	CoreCount *int64 `type:"integer"`
+
+	// The number of threads per CPU core. To disable Intel Hyper-Threading Technology
+	// for the instance, specify a value of 1. Otherwise, specify the default value
+	// of 2.
+	ThreadsPerCore *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s CpuOptionsRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CpuOptionsRequest) GoString() string {
+	return s.String()
+}
+
+// SetCoreCount sets the CoreCount field's value.
+func (s *CpuOptionsRequest) SetCoreCount(v int64) *CpuOptionsRequest {
+	s.CoreCount = &v
+	return s
+}
+
+// SetThreadsPerCore sets the ThreadsPerCore field's value.
+func (s *CpuOptionsRequest) SetThreadsPerCore(v int64) *CpuOptionsRequest {
+	s.ThreadsPerCore = &v
 	return s
 }
 
@@ -44764,9 +44829,7 @@ type DiskImageDescription struct {
 	Checksum *string `locationName:"checksum" type:"string"`
 
 	// The disk image format.
-	//
-	// Format is a required field
-	Format *string `locationName:"format" type:"string" required:"true" enum:"DiskImageFormat"`
+	Format *string `locationName:"format" type:"string" enum:"DiskImageFormat"`
 
 	// A presigned URL for the import manifest stored in Amazon S3. For information
 	// about creating a presigned URL for an Amazon S3 object, read the "Query String
@@ -44776,14 +44839,10 @@ type DiskImageDescription struct {
 	//
 	// For information about the import manifest referenced by this API action,
 	// see VM Import Manifest (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html).
-	//
-	// ImportManifestUrl is a required field
-	ImportManifestUrl *string `locationName:"importManifestUrl" type:"string" required:"true"`
+	ImportManifestUrl *string `locationName:"importManifestUrl" type:"string"`
 
 	// The size of the disk image, in GiB.
-	//
-	// Size is a required field
-	Size *int64 `locationName:"size" type:"long" required:"true"`
+	Size *int64 `locationName:"size" type:"long"`
 }
 
 // String returns the string representation
@@ -44899,9 +44958,7 @@ type DiskImageVolumeDescription struct {
 	_ struct{} `type:"structure"`
 
 	// The volume identifier.
-	//
-	// Id is a required field
-	Id *string `locationName:"id" type:"string" required:"true"`
+	Id *string `locationName:"id" type:"string"`
 
 	// The size of the volume, in GiB.
 	Size *int64 `locationName:"size" type:"long"`
@@ -49128,9 +49185,7 @@ type ImportInstanceTaskDetails struct {
 	Platform *string `locationName:"platform" type:"string" enum:"PlatformValues"`
 
 	// One or more volumes.
-	//
-	// Volumes is a required field
-	Volumes []*ImportInstanceVolumeDetailItem `locationName:"volumes" locationNameList:"item" type:"list" required:"true"`
+	Volumes []*ImportInstanceVolumeDetailItem `locationName:"volumes" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation
@@ -49639,27 +49694,19 @@ type ImportVolumeTaskDetails struct {
 	_ struct{} `type:"structure"`
 
 	// The Availability Zone where the resulting volume will reside.
-	//
-	// AvailabilityZone is a required field
-	AvailabilityZone *string `locationName:"availabilityZone" type:"string" required:"true"`
+	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
 
 	// The number of bytes converted so far.
-	//
-	// BytesConverted is a required field
-	BytesConverted *int64 `locationName:"bytesConverted" type:"long" required:"true"`
+	BytesConverted *int64 `locationName:"bytesConverted" type:"long"`
 
 	// The description you provided when starting the import volume task.
 	Description *string `locationName:"description" type:"string"`
 
 	// The image.
-	//
-	// Image is a required field
-	Image *DiskImageDescription `locationName:"image" type:"structure" required:"true"`
+	Image *DiskImageDescription `locationName:"image" type:"structure"`
 
 	// The volume.
-	//
-	// Volume is a required field
-	Volume *DiskImageVolumeDescription `locationName:"volume" type:"structure" required:"true"`
+	Volume *DiskImageVolumeDescription `locationName:"volume" type:"structure"`
 }
 
 // String returns the string representation
@@ -49718,6 +49765,9 @@ type Instance struct {
 
 	// The idempotency token you provided when you launched the instance, if applicable.
 	ClientToken *string `locationName:"clientToken" type:"string"`
+
+	// The CPU options for the instance.
+	CpuOptions *CpuOptions `locationName:"cpuOptions" type:"structure"`
 
 	// Indicates whether the instance is optimized for Amazon EBS I/O. This optimization
 	// provides dedicated throughput to Amazon EBS and an optimized configuration
@@ -49877,6 +49927,12 @@ func (s *Instance) SetBlockDeviceMappings(v []*InstanceBlockDeviceMapping) *Inst
 // SetClientToken sets the ClientToken field's value.
 func (s *Instance) SetClientToken(v string) *Instance {
 	s.ClientToken = &v
+	return s
+}
+
+// SetCpuOptions sets the CpuOptions field's value.
+func (s *Instance) SetCpuOptions(v *CpuOptions) *Instance {
+	s.CpuOptions = v
 	return s
 }
 
@@ -62446,6 +62502,11 @@ type RunInstancesInput struct {
 	// Constraints: Maximum 64 ASCII characters
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
+	// The CPU options for the instance. For more information, see Optimizing CPU
+	// Options (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	CpuOptions *CpuOptionsRequest `type:"structure"`
+
 	// The credit option for CPU usage of the instance. Valid values are standard
 	// and unlimited. To change this attribute after launch, use ModifyInstanceCreditSpecification.
 	// For more information, see T2 Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/t2-instances.html)
@@ -62685,6 +62746,12 @@ func (s *RunInstancesInput) SetBlockDeviceMappings(v []*BlockDeviceMapping) *Run
 // SetClientToken sets the ClientToken field's value.
 func (s *RunInstancesInput) SetClientToken(v string) *RunInstancesInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetCpuOptions sets the CpuOptions field's value.
+func (s *RunInstancesInput) SetCpuOptions(v *CpuOptionsRequest) *RunInstancesInput {
+	s.CpuOptions = v
 	return s
 }
 

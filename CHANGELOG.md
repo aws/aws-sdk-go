@@ -1,3 +1,12 @@
+Release v1.13.44 (2018-05-08)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Enable support for specifying CPU options during instance launch.
+* `service/rds`: Updates service documentation
+  * Correction to the documentation about copying unencrypted snapshots.
+
 Release v1.13.43 (2018-05-07)
 ===
 
