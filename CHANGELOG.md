@@ -1,3 +1,15 @@
+Release v1.13.45 (2018-05-10)
+===
+
+### Service Client Updates
+* `service/budgets`: Updates service API and documentation
+  * Updating the regex for the NumericValue fields.
+* `service/ec2`: Updates service API and documentation
+  * Enable support for latest flag with Get Console Output
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/rds`: Updates service API and documentation
+  * Changes to support the Aurora MySQL Backtrack feature.
+
 Release v1.13.44 (2018-05-08)
 ===
 

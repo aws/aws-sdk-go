@@ -88,6 +88,22 @@
         {"shape":"AuthorizationQuotaExceededFault"}
       ]
     },
+    "BacktrackDBCluster":{
+      "name":"BacktrackDBCluster",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BacktrackDBClusterMessage"},
+      "output":{
+        "shape":"DBClusterBacktrack",
+        "resultWrapper":"BacktrackDBClusterResult"
+      },
+      "errors":[
+        {"shape":"DBClusterNotFoundFault"},
+        {"shape":"InvalidDBClusterStateFault"}
+      ]
+    },
     "CopyDBClusterParameterGroup":{
       "name":"CopyDBClusterParameterGroup",
       "http":{
@@ -585,6 +601,22 @@
       },
       "errors":[
         {"shape":"CertificateNotFoundFault"}
+      ]
+    },
+    "DescribeDBClusterBacktracks":{
+      "name":"DescribeDBClusterBacktracks",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDBClusterBacktracksMessage"},
+      "output":{
+        "shape":"DBClusterBacktrackMessage",
+        "resultWrapper":"DescribeDBClusterBacktracksResult"
+      },
+      "errors":[
+        {"shape":"DBClusterNotFoundFault"},
+        {"shape":"DBClusterBacktrackNotFoundFault"}
       ]
     },
     "DescribeDBClusterParameterGroups":{
@@ -1760,6 +1792,19 @@
         "locationName":"AvailabilityZone"
       }
     },
+    "BacktrackDBClusterMessage":{
+      "type":"structure",
+      "required":[
+        "DBClusterIdentifier",
+        "BacktrackTo"
+      ],
+      "members":{
+        "DBClusterIdentifier":{"shape":"String"},
+        "BacktrackTo":{"shape":"TStamp"},
+        "Force":{"shape":"BooleanOptional"},
+        "UseEarliestTimeOnPointInTimeUnavailable":{"shape":"BooleanOptional"}
+      }
+    },
     "Boolean":{"type":"boolean"},
     "BooleanOptional":{"type":"boolean"},
     "Certificate":{
@@ -1944,7 +1989,8 @@
         "StorageEncrypted":{"shape":"BooleanOptional"},
         "KmsKeyId":{"shape":"String"},
         "PreSignedUrl":{"shape":"String"},
-        "EnableIAMDatabaseAuthentication":{"shape":"BooleanOptional"}
+        "EnableIAMDatabaseAuthentication":{"shape":"BooleanOptional"},
+        "BacktrackWindow":{"shape":"LongOptional"}
       }
     },
     "CreateDBClusterParameterGroupMessage":{
@@ -2243,7 +2289,10 @@
         "AssociatedRoles":{"shape":"DBClusterRoles"},
         "IAMDatabaseAuthenticationEnabled":{"shape":"Boolean"},
         "CloneGroupId":{"shape":"String"},
-        "ClusterCreateTime":{"shape":"TStamp"}
+        "ClusterCreateTime":{"shape":"TStamp"},
+        "EarliestBacktrackTime":{"shape":"TStamp"},
+        "BacktrackWindow":{"shape":"LongOptional"},
+        "BacktrackConsumedChangeRecords":{"shape":"LongOptional"}
       },
       "wrapper":true
     },
@@ -2254,6 +2303,42 @@
       "error":{
         "code":"DBClusterAlreadyExistsFault",
         "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DBClusterBacktrack":{
+      "type":"structure",
+      "members":{
+        "DBClusterIdentifier":{"shape":"String"},
+        "BacktrackIdentifier":{"shape":"String"},
+        "BacktrackTo":{"shape":"TStamp"},
+        "BacktrackedFrom":{"shape":"TStamp"},
+        "BacktrackRequestCreationTime":{"shape":"TStamp"},
+        "Status":{"shape":"String"}
+      }
+    },
+    "DBClusterBacktrackList":{
+      "type":"list",
+      "member":{
+        "shape":"DBClusterBacktrack",
+        "locationName":"DBClusterBacktrack"
+      }
+    },
+    "DBClusterBacktrackMessage":{
+      "type":"structure",
+      "members":{
+        "Marker":{"shape":"String"},
+        "DBClusterBacktracks":{"shape":"DBClusterBacktrackList"}
+      }
+    },
+    "DBClusterBacktrackNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBClusterBacktrackNotFoundFault",
+        "httpStatusCode":404,
         "senderFault":true
       },
       "exception":true
@@ -3144,6 +3229,17 @@
         "Marker":{"shape":"String"}
       }
     },
+    "DescribeDBClusterBacktracksMessage":{
+      "type":"structure",
+      "required":["DBClusterIdentifier"],
+      "members":{
+        "DBClusterIdentifier":{"shape":"String"},
+        "BacktrackIdentifier":{"shape":"String"},
+        "Filters":{"shape":"FilterList"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
+      }
+    },
     "DescribeDBClusterParameterGroupsMessage":{
       "type":"structure",
       "members":{
@@ -3961,6 +4057,7 @@
       "member":{"shape":"String"}
     },
     "Long":{"type":"long"},
+    "LongOptional":{"type":"long"},
     "ModifyDBClusterMessage":{
       "type":"structure",
       "required":["DBClusterIdentifier"],
@@ -3977,6 +4074,7 @@
         "PreferredBackupWindow":{"shape":"String"},
         "PreferredMaintenanceWindow":{"shape":"String"},
         "EnableIAMDatabaseAuthentication":{"shape":"BooleanOptional"},
+        "BacktrackWindow":{"shape":"LongOptional"},
         "EngineVersion":{"shape":"String"}
       }
     },
@@ -4861,7 +4959,8 @@
         "SourceEngineVersion":{"shape":"String"},
         "S3BucketName":{"shape":"String"},
         "S3Prefix":{"shape":"String"},
-        "S3IngestionRoleArn":{"shape":"String"}
+        "S3IngestionRoleArn":{"shape":"String"},
+        "BacktrackWindow":{"shape":"LongOptional"}
       }
     },
     "RestoreDBClusterFromS3Result":{
@@ -4890,7 +4989,8 @@
         "VpcSecurityGroupIds":{"shape":"VpcSecurityGroupIdList"},
         "Tags":{"shape":"TagList"},
         "KmsKeyId":{"shape":"String"},
-        "EnableIAMDatabaseAuthentication":{"shape":"BooleanOptional"}
+        "EnableIAMDatabaseAuthentication":{"shape":"BooleanOptional"},
+        "BacktrackWindow":{"shape":"LongOptional"}
       }
     },
     "RestoreDBClusterFromSnapshotResult":{
@@ -4917,7 +5017,8 @@
         "VpcSecurityGroupIds":{"shape":"VpcSecurityGroupIdList"},
         "Tags":{"shape":"TagList"},
         "KmsKeyId":{"shape":"String"},
-        "EnableIAMDatabaseAuthentication":{"shape":"BooleanOptional"}
+        "EnableIAMDatabaseAuthentication":{"shape":"BooleanOptional"},
+        "BacktrackWindow":{"shape":"LongOptional"}
       }
     },
     "RestoreDBClusterToPointInTimeResult":{

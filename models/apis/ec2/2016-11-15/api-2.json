@@ -9542,7 +9542,8 @@
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
-        }
+        },
+        "Latest":{"shape":"Boolean"}
       }
     },
     "GetConsoleOutputResult":{
