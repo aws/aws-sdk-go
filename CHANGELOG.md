@@ -1,3 +1,11 @@
+Release v1.13.46 (2018-05-10)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/gamelift`: Updates service API and documentation
+  * AutoScaling Target Tracking scaling simplification along with StartFleetActions and StopFleetActions APIs to suspend and resume automatic scaling at will.
+
 Release v1.13.45 (2018-05-10)
 ===
 
