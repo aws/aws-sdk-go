@@ -80,17 +80,17 @@
       }
     },
     "AuthorizationAlreadyExistsFault": {
-      "base": "<p>The specified CIDRIP or EC2 security group is already authorized for the specified DB security group.</p>",
+      "base": "<p>The specified CIDRIP or Amazon EC2 security group is already authorized for the specified DB security group.</p>",
       "refs": {
       }
     },
     "AuthorizationNotFoundFault": {
-      "base": "<p>Specified CIDRIP or EC2 security group is not authorized for the specified DB security group.</p> <p>RDS may not also be authorized via IAM to perform necessary actions on your behalf.</p>",
+      "base": "<p>The specified CIDRIP or Amazon EC2 security group isn't authorized for the specified DB security group.</p> <p>RDS also may not be authorized by using IAM to perform necessary actions on your behalf.</p>",
       "refs": {
       }
     },
     "AuthorizationQuotaExceededFault": {
-      "base": "<p>DB security group authorization quota has been reached.</p>",
+      "base": "<p>The DB security group authorization quota has been reached.</p>",
       "refs": {
       }
     },
@@ -326,7 +326,7 @@
       }
     },
     "DBInstanceAlreadyExistsFault": {
-      "base": "<p>User already has a DB instance with the given identifier.</p>",
+      "base": "<p>The user already has a DB instance with the given identifier.</p>",
       "refs": {
       }
     },
@@ -342,7 +342,7 @@
       }
     },
     "DBInstanceNotFoundFault": {
-      "base": "<p> <i>DBInstanceIdentifier</i> does not refer to an existing DB instance. </p>",
+      "base": "<p> <i>DBInstanceIdentifier</i> doesn't refer to an existing DB instance. </p>",
       "refs": {
       }
     },
@@ -359,7 +359,7 @@
       }
     },
     "DBLogFileNotFoundFault": {
-      "base": "<p> <i>LogFileName</i> does not refer to an existing DB log file.</p>",
+      "base": "<p> <i>LogFileName</i> doesn't refer to an existing DB log file.</p>",
       "refs": {
       }
     },
@@ -393,12 +393,12 @@
       }
     },
     "DBParameterGroupNotFoundFault": {
-      "base": "<p> <i>DBParameterGroupName</i> does not refer to an existing DB parameter group. </p>",
+      "base": "<p> <i>DBParameterGroupName</i> doesn't refer to an existing DB parameter group. </p>",
       "refs": {
       }
     },
     "DBParameterGroupQuotaExceededFault": {
-      "base": "<p>Request would result in user exceeding the allowed number of DB parameter groups.</p>",
+      "base": "<p>The request would result in the user exceeding the allowed number of DB parameter groups.</p>",
       "refs": {
       }
     },
@@ -460,17 +460,17 @@
       }
     },
     "DBSecurityGroupNotFoundFault": {
-      "base": "<p> <i>DBSecurityGroupName</i> does not refer to an existing DB security group. </p>",
+      "base": "<p> <i>DBSecurityGroupName</i> doesn't refer to an existing DB security group. </p>",
       "refs": {
       }
     },
     "DBSecurityGroupNotSupportedFault": {
-      "base": "<p>A DB security group is not allowed for this action.</p>",
+      "base": "<p>A DB security group isn't allowed for this action.</p>",
       "refs": {
       }
     },
     "DBSecurityGroupQuotaExceededFault": {
-      "base": "<p>Request would result in user exceeding the allowed number of DB security groups.</p>",
+      "base": "<p>The request would result in the user exceeding the allowed number of DB security groups.</p>",
       "refs": {
       }
     },
@@ -506,7 +506,7 @@
       }
     },
     "DBSnapshotNotFoundFault": {
-      "base": "<p> <i>DBSnapshotIdentifier</i> does not refer to an existing DB snapshot. </p>",
+      "base": "<p> <i>DBSnapshotIdentifier</i> doesn't refer to an existing DB snapshot. </p>",
       "refs": {
       }
     },
@@ -535,17 +535,17 @@
       }
     },
     "DBSubnetGroupNotAllowedFault": {
-      "base": "<p>Indicates that the DBSubnetGroup should not be specified while creating read replicas that lie in the same region as the source instance.</p>",
+      "base": "<p>The DBSubnetGroup shouldn't be specified while creating read replicas that lie in the same region as the source instance.</p>",
       "refs": {
       }
     },
     "DBSubnetGroupNotFoundFault": {
-      "base": "<p> <i>DBSubnetGroupName</i> does not refer to an existing DB subnet group. </p>",
+      "base": "<p> <i>DBSubnetGroupName</i> doesn't refer to an existing DB subnet group. </p>",
       "refs": {
       }
     },
     "DBSubnetGroupQuotaExceededFault": {
-      "base": "<p>Request would result in user exceeding the allowed number of DB subnet groups.</p>",
+      "base": "<p>The request would result in the user exceeding the allowed number of DB subnet groups.</p>",
       "refs": {
       }
     },
@@ -556,12 +556,12 @@
       }
     },
     "DBSubnetQuotaExceededFault": {
-      "base": "<p>Request would result in user exceeding the allowed number of subnets in a DB subnet groups.</p>",
+      "base": "<p>The request would result in the user exceeding the allowed number of subnets in a DB subnet groups.</p>",
       "refs": {
       }
     },
     "DBUpgradeDependencyFailureFault": {
-      "base": "<p>The DB upgrade failed because a resource the DB depends on could not be modified.</p>",
+      "base": "<p>The DB upgrade failed because a resource the DB depends on can't be modified.</p>",
       "refs": {
       }
     },
@@ -886,12 +886,12 @@
       }
     },
     "InstanceQuotaExceededFault": {
-      "base": "<p>Request would result in user exceeding the allowed number of DB instances.</p>",
+      "base": "<p>The request would result in the user exceeding the allowed number of DB instances.</p>",
       "refs": {
       }
     },
     "InsufficientDBInstanceCapacityFault": {
-      "base": "<p>Specified DB instance class is not available in the specified Availability Zone.</p>",
+      "base": "<p>The specified DB instance class isn't available in the specified Availability Zone.</p>",
       "refs": {
       }
     },
@@ -957,37 +957,37 @@
       }
     },
     "InvalidDBInstanceStateFault": {
-      "base": "<p> The specified DB instance is not in the <i>available</i> state. </p>",
+      "base": "<p> The specified DB instance isn't in the <i>available</i> state. </p>",
       "refs": {
       }
     },
     "InvalidDBParameterGroupStateFault": {
-      "base": "<p>The DB parameter group is in use or is in an invalid state. If you are attempting to delete the parameter group, you cannot delete it when the parameter group is in this state.</p>",
+      "base": "<p>The DB parameter group is in use or is in an invalid state. If you are attempting to delete the parameter group, you can't delete it when the parameter group is in this state.</p>",
       "refs": {
       }
     },
     "InvalidDBSecurityGroupStateFault": {
-      "base": "<p>The state of the DB security group does not allow deletion.</p>",
+      "base": "<p>The state of the DB security group doesn't allow deletion.</p>",
       "refs": {
       }
     },
     "InvalidDBSnapshotStateFault": {
-      "base": "<p>The state of the DB snapshot does not allow deletion.</p>",
+      "base": "<p>The state of the DB snapshot doesn't allow deletion.</p>",
       "refs": {
       }
     },
     "InvalidDBSubnetGroupFault": {
-      "base": "<p>Indicates the DBSubnetGroup does not belong to the same VPC as that of an existing cross region read replica of the same source instance.</p>",
+      "base": "<p>The DBSubnetGroup doesn't belong to the same VPC as that of an existing cross-region read replica of the same source instance.</p>",
       "refs": {
       }
     },
     "InvalidDBSubnetGroupStateFault": {
-      "base": "<p>The DB subnet group cannot be deleted because it is in use.</p>",
+      "base": "<p>The DB subnet group cannot be deleted because it's in use.</p>",
       "refs": {
       }
     },
     "InvalidDBSubnetStateFault": {
-      "base": "<p> The DB subnet is not in the <i>available</i> state. </p>",
+      "base": "<p> The DB subnet isn't in the <i>available</i> state. </p>",
       "refs": {
       }
     },
@@ -997,12 +997,12 @@
       }
     },
     "InvalidOptionGroupStateFault": {
-      "base": "<p> The option group is not in the <i>available</i> state. </p>",
+      "base": "<p> The option group isn't in the <i>available</i> state. </p>",
       "refs": {
       }
     },
     "InvalidRestoreFault": {
-      "base": "<p>Cannot restore from vpc backup to non-vpc DB instance.</p>",
+      "base": "<p>Cannot restore from VPC backup to non-VPC DB instance.</p>",
       "refs": {
       }
     },
@@ -1012,7 +1012,7 @@
       }
     },
     "InvalidVPCNetworkStateFault": {
-      "base": "<p>DB subnet group does not cover all Availability Zones after it is created because users' change.</p>",
+      "base": "<p>The DB subnet group doesn't cover all Availability Zones after it's created because of users' change.</p>",
       "refs": {
       }
     },
@@ -1430,7 +1430,7 @@
       }
     },
     "SnapshotQuotaExceededFault": {
-      "base": "<p>Request would result in user exceeding the allowed number of DB snapshots.</p>",
+      "base": "<p>The request would result in the user exceeding the allowed number of DB snapshots.</p>",
       "refs": {
       }
     },
@@ -1454,12 +1454,12 @@
       }
     },
     "StorageQuotaExceededFault": {
-      "base": "<p>Request would result in user exceeding the allowed amount of storage available across all DB instances.</p>",
+      "base": "<p>The request would result in the user exceeding the allowed amount of storage available across all DB instances.</p>",
       "refs": {
       }
     },
     "StorageTypeNotSupportedFault": {
-      "base": "<p> <i>StorageType</i> specified cannot be associated with the DB Instance. </p>",
+      "base": "<p>Storage of the <i>StorageType</i> specified can't be associated with the DB instance. </p>",
       "refs": {
       }
     },
