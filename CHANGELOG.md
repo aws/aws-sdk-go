@@ -1,3 +1,10 @@
+Release v1.13.47 (2018-05-10)
+===
+
+### Service Client Updates
+* `service/firehose`: Updates service API and documentation
+  * With this release, Amazon Kinesis Data Firehose can convert the format of your input data from JSON to Apache Parquet or Apache ORC before storing the data in Amazon S3. Parquet and ORC are columnar data formats that save space and enable faster queries compared to row-oriented formats like JSON.
+
 Release v1.13.46 (2018-05-10)
 ===
 
