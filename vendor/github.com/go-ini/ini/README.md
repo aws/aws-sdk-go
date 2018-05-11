@@ -87,7 +87,7 @@ key1, err := cfg.GetKey("Key")
 key2, err := cfg.GetKey("KeY")
 ```
 
-#### MySQL-like boolean key 
+#### MySQL-like boolean key
 
 MySQL's configuration allows a key without value as follows:
 
@@ -104,7 +104,7 @@ By default, this is considered as missing value. But if you know you're going to
 cfg, err := LoadSources(LoadOptions{AllowBooleanKeys: true}, "my.cnf"))
 ```
 
-The value of those keys are always `true`, and when you save to a file, it will keep in the same format as you read.
+The value of those keys are always `true`, and when you save to a file, it will keep in the same foramt as you read.
 
 To generate such keys in your program, you could use `NewBooleanKey`:
 
@@ -314,7 +314,7 @@ cfg, err := ini.LoadSources(ini.LoadOptions{
 }, "filename")
 ```
 
-Holy crap! 
+Holy crap!
 
 Note that single quotes around values will be stripped:
 
@@ -420,7 +420,7 @@ By default, spaces are used to align "=" sign between key and values, to disable
 
 ```go
 ini.PrettyFormat = false
-``` 
+```
 
 ## Advanced Usage
 
