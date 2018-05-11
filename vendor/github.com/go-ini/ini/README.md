@@ -87,7 +87,7 @@ key1, err := cfg.GetKey("Key")
 key2, err := cfg.GetKey("KeY")
 ```
 
-#### MySQL-like boolean key
+#### MySQL-like boolean key 
 
 MySQL's configuration allows a key without value as follows:
 
@@ -314,7 +314,7 @@ cfg, err := ini.LoadSources(ini.LoadOptions{
 }, "filename")
 ```
 
-Holy crap!
+Holy crap! 
 
 Note that single quotes around values will be stripped:
 
@@ -420,7 +420,7 @@ By default, spaces are used to align "=" sign between key and values, to disable
 
 ```go
 ini.PrettyFormat = false
-```
+``` 
 
 ## Advanced Usage
 
