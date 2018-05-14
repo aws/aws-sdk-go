@@ -304,6 +304,7 @@
         "artifacts":{"shape":"BuildArtifacts"},
         "cache":{"shape":"ProjectCache"},
         "environment":{"shape":"ProjectEnvironment"},
+        "serviceRole":{"shape":"NonEmptyString"},
         "logs":{"shape":"LogsLocation"},
         "timeoutInMinutes":{"shape":"WrapperInt"},
         "buildComplete":{"shape":"Boolean"},
@@ -820,9 +821,21 @@
         "sourceVersion":{"shape":"String"},
         "artifactsOverride":{"shape":"ProjectArtifacts"},
         "environmentVariablesOverride":{"shape":"EnvironmentVariables"},
+        "sourceTypeOverride":{"shape":"SourceType"},
+        "sourceLocationOverride":{"shape":"String"},
+        "sourceAuthOverride":{"shape":"SourceAuth"},
         "gitCloneDepthOverride":{"shape":"GitCloneDepth"},
         "buildspecOverride":{"shape":"String"},
-        "timeoutInMinutesOverride":{"shape":"TimeOut"}
+        "insecureSslOverride":{"shape":"WrapperBoolean"},
+        "environmentTypeOverride":{"shape":"EnvironmentType"},
+        "imageOverride":{"shape":"NonEmptyString"},
+        "computeTypeOverride":{"shape":"ComputeType"},
+        "certificateOverride":{"shape":"String"},
+        "cacheOverride":{"shape":"ProjectCache"},
+        "serviceRoleOverride":{"shape":"NonEmptyString"},
+        "privilegedModeOverride":{"shape":"WrapperBoolean"},
+        "timeoutInMinutesOverride":{"shape":"TimeOut"},
+        "idempotencyToken":{"shape":"String"}
       }
     },
     "StartBuildOutput":{
