@@ -1,3 +1,14 @@
+Release v1.13.48 (2018-05-14)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * Adding support for more override fields for StartBuild API, add support for idempotency token field  for StartBuild API in AWS CodeBuild.
+* `service/iot1click-devices`: Adds new service
+* `service/iot1click-projects`: Adds new service
+* `service/organizations`: Updates service documentation
+  * Documentation updates for organizations
+
 Release v1.13.47 (2018-05-10)
 ===
 
