@@ -2014,7 +2014,8 @@
         "AWS::ElasticBeanstalk::Application",
         "AWS::ElasticBeanstalk::ApplicationVersion",
         "AWS::ElasticBeanstalk::Environment",
-        "AWS::ElasticLoadBalancing::LoadBalancer"
+        "AWS::ElasticLoadBalancing::LoadBalancer",
+        "AWS::XRay::EncryptionConfig"
       ]
     },
     "ResourceTypeList":{

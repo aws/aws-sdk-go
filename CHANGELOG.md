@@ -1,3 +1,9 @@
+Release v1.13.49 (2018-05-15)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API
+
 Release v1.13.48 (2018-05-14)
 ===
 
