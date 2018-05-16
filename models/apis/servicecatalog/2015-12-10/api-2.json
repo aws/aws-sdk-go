@@ -1635,7 +1635,8 @@
       "members":{
         "AcceptLanguage":{"shape":"AcceptLanguage"},
         "PageToken":{"shape":"PageToken"},
-        "PageSize":{"shape":"PageSize"}
+        "PageSize":{"shape":"PageSize"},
+        "PortfolioShareType":{"shape":"PortfolioShareType"}
       }
     },
     "ListAcceptedPortfolioSharesOutput":{
@@ -1912,6 +1913,13 @@
       "min":1
     },
     "PortfolioName":{"type":"string"},
+    "PortfolioShareType":{
+      "type":"string",
+      "enum":[
+        "IMPORTED",
+        "AWS_SERVICECATALOG"
+      ]
+    },
     "Principal":{
       "type":"structure",
       "members":{

@@ -1,3 +1,12 @@
+Release v1.13.50 (2018-05-16)
+===
+
+### Service Client Updates
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for secretsmanager
+* `service/servicecatalog`: Updates service API and documentation
+  * Users can now pass a new option to ListAcceptedPortfolioShares called portfolio-share-type with a value of AWS_SERVICECATALOG in order to access Getting Started Portfolios that contain selected products representing common customer use cases.
+
 Release v1.13.49 (2018-05-15)
 ===
 
