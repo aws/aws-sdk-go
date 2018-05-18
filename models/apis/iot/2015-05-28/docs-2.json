@@ -27,6 +27,8 @@
     "DeleteAuthorizer": "<p>Deletes an authorizer.</p>",
     "DeleteCACertificate": "<p>Deletes a registered CA certificate.</p>",
     "DeleteCertificate": "<p>Deletes the specified certificate.</p> <p>A certificate cannot be deleted if it has a policy attached to it or if its status is set to ACTIVE. To delete a certificate, first use the <a>DetachPrincipalPolicy</a> API to detach all policies. Next, use the <a>UpdateCertificate</a> API to set the certificate to the INACTIVE status.</p>",
+    "DeleteJob": "<p>Deletes a job and its related job executions.</p> <p>Deleting a job may take time, depending on the number of job executions created for the job and various other factors. While the job is being deleted, the status of the job will be shown as \"DELETION_IN_PROGRESS\". Attempting to delete or cancel a job whose status is already \"DELETION_IN_PROGRESS\" will result in an error.</p> <p>Only 10 jobs may have status \"DELETION_IN_PROGRESS\" at the same time, or a LimitExceededException will occur.</p>",
+    "DeleteJobExecution": "<p>Deletes a job execution.</p>",
     "DeleteOTAUpdate": "<p>Delete an OTA update.</p>",
     "DeletePolicy": "<p>Deletes the specified policy.</p> <p>A policy cannot be deleted if it has non-default versions or it is attached to any certificate.</p> <p>To delete a policy, use the DeletePolicyVersion API to delete all non-default versions of the policy; use the DetachPrincipalPolicy API to detach the policy from any certificate; and then use the DeletePolicy API to delete the policy.</p> <p>When a policy is deleted using DeletePolicy, its default version is deleted with it.</p>",
     "DeletePolicyVersion": "<p>Deletes the specified version of the specified policy. You cannot delete the default version of a policy using this API. To delete the default version of a policy, use <a>DeletePolicy</a>. To find out which version of a policy is marked as the default version, use ListPolicyVersions.</p>",
@@ -394,7 +396,7 @@
         "GetLoggingOptionsResponse$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
         "GetV2LoggingOptionsResponse$roleArn": "<p>The IAM role ARN AWS IoT uses to write to your CloudWatch logs.</p>",
         "IotAnalyticsAction$channelArn": "<p>(deprecated) The ARN of the IoT Analytics channel to which message data will be sent.</p>",
-        "IotAnalyticsAction$roleArn": "<p>The ARN of the role which has a policy that grants IoT permission to send message data via IoT Analytics (iotanalytics:BatchPutMessage).</p>",
+        "IotAnalyticsAction$roleArn": "<p>The ARN of the role which has a policy that grants IoT Analytics permission to send message data via IoT Analytics (iotanalytics:BatchPutMessage).</p>",
         "KinesisAction$roleArn": "<p>The ARN of the IAM role that grants access to the Amazon Kinesis stream.</p>",
         "LoggingOptionsPayload$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
         "RepublishAction$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
@@ -927,6 +929,16 @@
       "refs": {
       }
     },
+    "DeleteJobExecutionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteOTAUpdateRequest": {
       "base": null,
       "refs": {
@@ -1370,6 +1382,7 @@
     "ExecutionNumber": {
       "base": null,
       "refs": {
+        "DeleteJobExecutionRequest$executionNumber": "<p>The ID of the job execution to be deleted. The <code>executionNumber</code> refers to the execution of a particular job on a particular device.</p> <p>Note that once a job execution is deleted, the <code>executionNumber</code> may be reused by IoT, so be sure you get and use the correct value here.</p>",
         "DescribeJobExecutionRequest$executionNumber": "<p>A string (consisting of the digits \"0\" through \"9\" which is used to specify a particular job execution on a particular device.</p>",
         "JobExecution$executionNumber": "<p>A string (consisting of the digits \"0\" through \"9\") which identifies this particular job execution on this particular device. It can be used in commands which return or update job execution information. </p>",
         "JobExecutionSummary$executionNumber": "<p>A string (consisting of the digits \"0\" through \"9\") which identifies this particular job execution on this particular device. It can be used later in commands which return or update job execution information.</p>"
@@ -1428,6 +1441,13 @@
       "base": null,
       "refs": {
         "DeleteCertificateRequest$forceDelete": "<p>Forces a certificate request to be deleted.</p>"
+      }
+    },
+    "ForceFlag": {
+      "base": null,
+      "refs": {
+        "DeleteJobExecutionRequest$force": "<p>(Optional) When true, you can delete a job execution which is \"IN_PROGRESS\". Otherwise, you can only delete a job execution which is in a terminal state (\"SUCCEEDED\", \"FAILED\", \"REJECTED\", \"REMOVED\" or \"CANCELED\") or an exception will occur. The default is false.</p> <note> <p>Deleting a job execution which is \"IN_PROGRESS\", will cause the device to be unable to access job information or update the job execution status. Use caution and ensure that the device is able to recover to a valid state.</p> </note>",
+        "DeleteJobRequest$force": "<p>(Optional) When true, you can delete a job which is \"IN_PROGRESS\". Otherwise, you can only delete a job which is in a terminal state (\"COMPLETED\" or \"CANCELED\") or an exception will occur. The default is false.</p> <note> <p>Deleting a job which is \"IN_PROGRESS\", will cause a device which is executing the job to be unable to access job information or update the job execution status. Use caution and ensure that each device executing a job which is deleted is able to recover to a valid state.</p> </note>"
       }
     },
     "FunctionArn": {
@@ -1650,8 +1670,13 @@
       "refs": {
       }
     },
+    "InvalidStateTransitionException": {
+      "base": "<p>An attempt was made to change to an invalid state, for example by deleting a job or a job execution which is \"IN_PROGRESS\" without setting the <code>force</code> parameter.</p>",
+      "refs": {
+      }
+    },
     "IotAnalyticsAction": {
-      "base": "<p>Sends message data to an AWS IoT Analytics channel.</p>",
+      "base": "<p>Sends messge data to an AWS IoT Analytics channel.</p>",
       "refs": {
         "Action$iotAnalytics": "<p>Sends message data to an AWS IoT Analytics channel.</p>"
       }
@@ -1794,6 +1819,8 @@
         "CancelJobResponse$jobId": "<p>The unique identifier you assigned to this job when it was created.</p>",
         "CreateJobRequest$jobId": "<p>A job identifier which must be unique for your AWS account. We recommend using a UUID. Alpha-numeric characters, \"-\" and \"_\" are valid for use here.</p>",
         "CreateJobResponse$jobId": "<p>The unique identifier you assigned to this job.</p>",
+        "DeleteJobExecutionRequest$jobId": "<p>The ID of the job whose execution on a particular device will be deleted.</p>",
+        "DeleteJobRequest$jobId": "<p>The ID of the job to be deleted.</p> <p>After a job deletion is completed, you may reuse this jobId when you create a new job. However, this is not recommended, and you must ensure that your devices are not using the jobId to refer to the deleted job.</p>",
         "DescribeJobExecutionRequest$jobId": "<p>The unique identifier you assigned to this job when it was created.</p>",
         "DescribeJobRequest$jobId": "<p>The unique identifier you assigned to this job when it was created.</p>",
         "GetJobDocumentRequest$jobId": "<p>The unique identifier you assigned to this job when it was created.</p>",
@@ -1898,7 +1925,7 @@
       }
     },
     "LimitExceededException": {
-      "base": "<p>The number of attached entities exceeds the limit.</p>",
+      "base": "<p>A limit has been exceeded.</p>",
       "refs": {
       }
     },
@@ -3595,6 +3622,7 @@
         "AttachThingPrincipalRequest$thingName": "<p>The name of the thing.</p>",
         "CreateThingRequest$thingName": "<p>The name of the thing to create.</p>",
         "CreateThingResponse$thingName": "<p>The name of the new thing.</p>",
+        "DeleteJobExecutionRequest$thingName": "<p>The name of the thing whose job execution will be deleted.</p>",
         "DeleteThingRequest$thingName": "<p>The name of the thing to delete.</p>",
         "DescribeJobExecutionRequest$thingName": "<p>The name of the thing on which the job execution is running.</p>",
         "DescribeThingRequest$thingName": "<p>The name of the thing.</p>",
@@ -3923,6 +3951,7 @@
         "InvalidQueryException$message": null,
         "InvalidRequestException$message": "<p>The message for the exception.</p>",
         "InvalidResponseException$message": null,
+        "InvalidStateTransitionException$message": null,
         "LimitExceededException$message": "<p>The message for the exception.</p>",
         "MalformedPolicyException$message": "<p>The message for the exception.</p>",
         "NotConfiguredException$message": null,

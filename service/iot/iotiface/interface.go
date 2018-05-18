@@ -160,6 +160,14 @@ type IoTAPI interface {
 	DeleteCertificateWithContext(aws.Context, *iot.DeleteCertificateInput, ...request.Option) (*iot.DeleteCertificateOutput, error)
 	DeleteCertificateRequest(*iot.DeleteCertificateInput) (*request.Request, *iot.DeleteCertificateOutput)
 
+	DeleteJob(*iot.DeleteJobInput) (*iot.DeleteJobOutput, error)
+	DeleteJobWithContext(aws.Context, *iot.DeleteJobInput, ...request.Option) (*iot.DeleteJobOutput, error)
+	DeleteJobRequest(*iot.DeleteJobInput) (*request.Request, *iot.DeleteJobOutput)
+
+	DeleteJobExecution(*iot.DeleteJobExecutionInput) (*iot.DeleteJobExecutionOutput, error)
+	DeleteJobExecutionWithContext(aws.Context, *iot.DeleteJobExecutionInput, ...request.Option) (*iot.DeleteJobExecutionOutput, error)
+	DeleteJobExecutionRequest(*iot.DeleteJobExecutionInput) (*request.Request, *iot.DeleteJobExecutionOutput)
+
 	DeleteOTAUpdate(*iot.DeleteOTAUpdateInput) (*iot.DeleteOTAUpdateOutput, error)
 	DeleteOTAUpdateWithContext(aws.Context, *iot.DeleteOTAUpdateInput, ...request.Option) (*iot.DeleteOTAUpdateOutput, error)
 	DeleteOTAUpdateRequest(*iot.DeleteOTAUpdateInput) (*request.Request, *iot.DeleteOTAUpdateOutput)

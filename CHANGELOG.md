@@ -1,3 +1,12 @@
+Release v1.13.52 (2018-05-18)
+===
+
+### Service Client Updates
+* `service/email`: Updates service documentation
+  * Fixed a broken link in the documentation for S3Action.
+* `service/iot`: Updates service API and documentation
+  * We are releasing DeleteJob and DeleteJobExecution APIs to allow customer to delete resources created using AWS IoT Jobs.
+
 Release v1.13.51 (2018-05-17)
 ===
 
