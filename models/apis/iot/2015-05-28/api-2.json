@@ -437,6 +437,37 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DeleteJob":{
+      "name":"DeleteJob",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/jobs/{jobId}"
+      },
+      "input":{"shape":"DeleteJobRequest"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidStateTransitionException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "DeleteJobExecution":{
+      "name":"DeleteJobExecution",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/things/{thingName}/jobs/{jobId}/executionNumber/{executionNumber}"
+      },
+      "input":{"shape":"DeleteJobExecutionRequest"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidStateTransitionException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "DeleteOTAUpdate":{
       "name":"DeleteOTAUpdate",
       "http":{
@@ -2939,6 +2970,52 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
+    "DeleteJobExecutionRequest":{
+      "type":"structure",
+      "required":[
+        "jobId",
+        "thingName",
+        "executionNumber"
+      ],
+      "members":{
+        "jobId":{
+          "shape":"JobId",
+          "location":"uri",
+          "locationName":"jobId"
+        },
+        "thingName":{
+          "shape":"ThingName",
+          "location":"uri",
+          "locationName":"thingName"
+        },
+        "executionNumber":{
+          "shape":"ExecutionNumber",
+          "location":"uri",
+          "locationName":"executionNumber"
+        },
+        "force":{
+          "shape":"ForceFlag",
+          "location":"querystring",
+          "locationName":"force"
+        }
+      }
+    },
+    "DeleteJobRequest":{
+      "type":"structure",
+      "required":["jobId"],
+      "members":{
+        "jobId":{
+          "shape":"JobId",
+          "location":"uri",
+          "locationName":"jobId"
+        },
+        "force":{
+          "shape":"ForceFlag",
+          "location":"querystring",
+          "locationName":"force"
+        }
+      }
+    },
     "DeleteOTAUpdateRequest":{
       "type":"structure",
       "required":["otaUpdateId"],
@@ -3668,6 +3745,7 @@
     },
     "Flag":{"type":"boolean"},
     "ForceDelete":{"type":"boolean"},
+    "ForceFlag":{"type":"boolean"},
     "FunctionArn":{"type":"string"},
     "GEMaxResults":{
       "type":"integer",
@@ -3932,6 +4010,14 @@
         "message":{"shape":"errorMessage"}
       },
       "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "InvalidStateTransitionException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"errorMessage"}
+      },
+      "error":{"httpStatusCode":409},
       "exception":true
     },
     "IotAnalyticsAction":{
