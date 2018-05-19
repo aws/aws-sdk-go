@@ -360,7 +360,7 @@ Release v1.13.19 (2018-03-22)
 
 ### SDK Bugs
 * `aws/endpoints`: Use service metadata for fallback signing name ([#1854](https://github.com/aws/aws-sdk-go/pull/1854))
-  * Updates the SDK's endpoint resolution to fallback deriving the service's signing name from the service's modeled metadata in addition the the endpoints modeled data.
+  * Updates the SDK's endpoint resolution to fallback deriving the service's signing name from the service's modeled metadata in addition the endpoints modeled data.
   * Fixes [#1850](https://github.com/aws/aws-sdk-go/issues/1850)
 Release v1.13.18 (2018-03-21)
 ===
@@ -1097,7 +1097,7 @@ Release v1.12.31 (2017-11-20)
   * DescribeGroups API and miscellaneous enhancements
 
 ### SDK Bugs
-* `aws/client`: Retry delays for throttled exception were not limited to 5 mintues [#1654](https://github.com/aws/aws-sdk-go/pull/1654)
+* `aws/client`: Retry delays for throttled exception were not limited to 5 minutes [#1654](https://github.com/aws/aws-sdk-go/pull/1654)
   * Fixes [#1653](https://github.com/aws/aws-sdk-go/issues/1653)
 Release v1.12.30 (2017-11-17)
 ===
@@ -1229,7 +1229,7 @@ Release v1.12.21 (2017-11-02)
 * `aws/endpoints`: Updated Regions and Endpoints metadata.
 
 ### SDK Bugs
-* `aws/request`: Fix bug in request presign creating invalide URL ([#1624](https://github.com/aws/aws-sdk-go/pull/1624))
+* `aws/request`: Fix bug in request presign creating invalid URL ([#1624](https://github.com/aws/aws-sdk-go/pull/1624))
   * Fixes a bug the Request Presign and PresignRequest methods that would allow a invalid expire duration as input. A expire time of 0 would be interpreted by the SDK to generate a normal request signature, not a presigned URL. This caused the returned URL unusable.
   * Fixes [#1617](https://github.com/aws/aws-sdk-go/issues/1617)
 Release v1.12.20 (2017-11-01)
