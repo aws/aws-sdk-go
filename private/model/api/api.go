@@ -856,23 +856,3 @@ func (a *API) removeShapeRef(ref *ShapeRef) {
 		a.removeShape(ref.Shape)
 	}
 }
-
-// EventStreamTestGoCode will return the Go code for testing a service's API
-// operations which use EventStream APIs.
-func (a *API) EventStreamTestGoCode() string {
-	var buf bytes.Buffer
-
-	a.resetImports()
-	a.imports = map[string]bool{
-		"testing":                                                true,
-		"github.com/aws/aws-sdk-go/aws":                          true,
-		"github.com/aws/aws-sdk-go/aws/request":                  true,
-		"github.com/aws/aws-sdk-go/private/protocol/eventstream": true,
-	}
-
-	if err := eventStreamTestTmpl.Execute(&buf, a); err != nil {
-		panic("failed to generate event stream tests, " + err.Error())
-	}
-
-	return buf.String()
-}
