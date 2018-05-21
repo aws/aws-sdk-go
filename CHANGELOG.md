@@ -1,3 +1,10 @@
+Release v1.13.53 (2018-05-21)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API and documentation
+  * 1) Filtered Update for StackSet based on Accounts and Regions: This feature will allow flexibility for the customers to roll out updates on a StackSet based on specific Accounts and Regions.   2) Support for customized ExecutionRoleName: This feature will allow customers to attach ExecutionRoleName to the StackSet thus ensuring more security and controlling the behavior of any AWS resources in the target accounts.
+
 Release v1.13.52 (2018-05-18)
 ===
 
