@@ -7,16 +7,23 @@ import (
 	"io/ioutil"
 	"testing"
 
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream"
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+var eventMessageTypeHeader = eventstream.Header{
+	Name:  MessageTypeHeader,
+	Value: eventstream.StringValue(EventMessageType),
+}
+
 func TestEventReader(t *testing.T) {
 	stream := createStream(
 		eventstream.Message{
 			Headers: eventstream.Headers{
+				eventMessageTypeHeader,
 				eventstream.Header{
 					Name:  EventTypeHeader,
 					Value: eventstream.StringValue("eventABC"),
@@ -25,6 +32,7 @@ func TestEventReader(t *testing.T) {
 		},
 		eventstream.Message{
 			Headers: eventstream.Headers{
+				eventMessageTypeHeader,
 				eventstream.Header{
 					Name:  EventTypeHeader,
 					Value: eventstream.StringValue("eventEFG"),
@@ -60,8 +68,54 @@ func TestEventReader(t *testing.T) {
 	if event != nil {
 		t.Fatalf("expect no event, got %T, %v", event, event)
 	}
+}
 
-	fmt.Println(event)
+func TestEventReader_Error(t *testing.T) {
+	stream := createStream(
+		eventstream.Message{
+			Headers: eventstream.Headers{
+				eventstream.Header{
+					Name:  MessageTypeHeader,
+					Value: eventstream.StringValue(ErrorMessageType),
+				},
+				eventstream.Header{
+					Name:  ErrorCodeHeader,
+					Value: eventstream.StringValue("errorCode"),
+				},
+				eventstream.Header{
+					Name:  ErrorMessageHeader,
+					Value: eventstream.StringValue("error message occur"),
+				},
+			},
+		},
+	)
+
+	var unmarshalers request.HandlerList
+	unmarshalers.PushBackNamed(restjson.UnmarshalHandler)
+
+	eventReader := NewEventReader(stream,
+		protocol.HandlerPayloadUnmarshal{
+			Unmarshalers: unmarshalers,
+		},
+		unmarshalerForEventType,
+	)
+
+	event, err := eventReader.ReadEvent()
+	if err == nil {
+		t.Fatalf("expect error got none")
+	}
+
+	if event != nil {
+		t.Fatalf("expect no event, got %v", event)
+	}
+
+	aerr := err.(awserr.Error)
+	if e, a := "errorCode", aerr.Code(); e != a {
+		t.Errorf("expect %v code, got %v", e, a)
+	}
+	if e, a := "error message occur", aerr.Message(); e != a {
+		t.Errorf("expect %v message, got %v", e, a)
+	}
 }
 
 func BenchmarkEventReader(b *testing.B) {
@@ -69,6 +123,7 @@ func BenchmarkEventReader(b *testing.B) {
 	encoder := eventstream.NewEncoder(&buf)
 	msg := eventstream.Message{
 		Headers: eventstream.Headers{
+			eventMessageTypeHeader,
 			eventstream.Header{
 				Name:  EventTypeHeader,
 				Value: eventstream.StringValue("eventABC"),
@@ -104,7 +159,7 @@ func BenchmarkEventReader(b *testing.B) {
 	}
 }
 
-func unmarshalerForEventType(eventType string) (EventUnmarshaler, error) {
+func unmarshalerForEventType(eventType string) (Unmarshaler, error) {
 	switch eventType {
 	case "eventABC":
 		return &eventABC{}, nil

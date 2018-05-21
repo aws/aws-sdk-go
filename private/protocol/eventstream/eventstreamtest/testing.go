@@ -14,6 +14,7 @@ import (
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream"
+	"github.com/aws/aws-sdk-go/private/protocol/eventstream/eventstreamapi"
 	"golang.org/x/net/http2"
 )
 
@@ -105,4 +106,11 @@ func MarshalEventPayload(
 	}
 
 	return w.Bytes()
+}
+
+// EventMessageTypeHeader is a event message type header for marking an
+// message as being the event type.
+var EventMessageTypeHeader = eventstream.Header{
+	Name:  eventstreamapi.MessageTypeHeader,
+	Value: eventstream.StringValue(eventstreamapi.EventMessageType),
 }

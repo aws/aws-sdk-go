@@ -51,6 +51,7 @@ func mockSelectObjectContentEventStreamsOutputEvents() ([]SelectObjectContentEve
 	eventMsgs := []eventstream.Message{
 		{
 			Headers: eventstream.Headers{
+				eventstreamtest.EventMessageTypeHeader,
 				{
 					Name:  eventstreamapi.EventTypeHeader,
 					Value: eventstream.StringValue("Cont"),
@@ -59,6 +60,7 @@ func mockSelectObjectContentEventStreamsOutputEvents() ([]SelectObjectContentEve
 		},
 		{
 			Headers: eventstream.Headers{
+				eventstreamtest.EventMessageTypeHeader,
 				{
 					Name:  eventstreamapi.EventTypeHeader,
 					Value: eventstream.StringValue("End"),
@@ -67,6 +69,7 @@ func mockSelectObjectContentEventStreamsOutputEvents() ([]SelectObjectContentEve
 		},
 		{
 			Headers: eventstream.Headers{
+				eventstreamtest.EventMessageTypeHeader,
 				{
 					Name:  eventstreamapi.EventTypeHeader,
 					Value: eventstream.StringValue("Progress"),
@@ -76,6 +79,7 @@ func mockSelectObjectContentEventStreamsOutputEvents() ([]SelectObjectContentEve
 		},
 		{
 			Headers: eventstream.Headers{
+				eventstreamtest.EventMessageTypeHeader,
 				{
 					Name:  eventstreamapi.EventTypeHeader,
 					Value: eventstream.StringValue("Records"),
@@ -85,6 +89,7 @@ func mockSelectObjectContentEventStreamsOutputEvents() ([]SelectObjectContentEve
 		},
 		{
 			Headers: eventstream.Headers{
+				eventstreamtest.EventMessageTypeHeader,
 				{
 					Name:  eventstreamapi.EventTypeHeader,
 					Value: eventstream.StringValue("Stats"),

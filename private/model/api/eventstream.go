@@ -323,7 +323,7 @@ func (es *{{ $.ShapeName }}) readEventStream() {
 
 func (es *{{ $.ShapeName }}) unmarshalerForEventType(
 	eventType string,
-) (eventstreamapi.EventUnmarshaler, error) {
+) (eventstreamapi.Unmarshaler, error) {
 	switch eventType {
 		{{ range $_, $event := $.EventStreamAPI.Inbound.Events }}
 			case {{ printf "%q" $event.Name }}:

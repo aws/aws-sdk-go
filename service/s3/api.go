@@ -19785,7 +19785,7 @@ func (es *SelectObjectContentEventStream) readEventStream() {
 
 func (es *SelectObjectContentEventStream) unmarshalerForEventType(
 	eventType string,
-) (eventstreamapi.EventUnmarshaler, error) {
+) (eventstreamapi.Unmarshaler, error) {
 	switch eventType {
 
 	case "Cont":
