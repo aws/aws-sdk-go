@@ -430,9 +430,9 @@ func (TimestampValue) valueType() valueType {
 }
 
 func (v TimestampValue) epochMilli() int64 {
-	nano := time.Duration(time.Time(v).UnixNano())
-	msec := nano / time.Millisecond
-	return int64(msec)
+	nano := time.Time(v).UnixNano()
+	msec := nano / int64(time.Millisecond)
+	return msec
 }
 
 func (v TimestampValue) String() string {
@@ -457,14 +457,14 @@ func (v *TimestampValue) decode(r io.Reader) error {
 		return err
 	}
 
-	t := int64(n)
+	*v = TimestampValue(timeFromEpochMilli(int64(n)))
+	return nil
+}
 
+func timeFromEpochMilli(t int64) time.Time {
 	secs := t / 1e3
 	msec := t % 1e3
-
-	*v = TimestampValue(time.Unix(secs, msec*1e9))
-
-	return nil
+	return time.Unix(secs, msec*int64(time.Millisecond))
 }
 
 // An UUIDValue provides eventstream encoding, and representation of a UUID

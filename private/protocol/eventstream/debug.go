@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"strconv"
-	"time"
 )
 
 type decodedMessage struct {
@@ -121,9 +120,7 @@ func valueFromType(typ valueType, val interface{}) (Value, error) {
 		return StringValue(string(v)), err
 	case timestampValueType:
 		v, err := val.(json.Number).Int64()
-		secs := v / 1e3
-		msec := v % 1e3
-		return TimestampValue(time.Unix(secs, msec*1e9)), err
+		return TimestampValue(timeFromEpochMilli(v)), err
 	case uuidValueType:
 		v, err := base64.StdEncoding.DecodeString(val.(string))
 		var tv UUIDValue

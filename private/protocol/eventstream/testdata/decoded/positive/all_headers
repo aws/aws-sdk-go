@@ -25,7 +25,7 @@
     {
       "name": "byte",
       "type": 2,
-      "value": 207
+      "value": -49
     },
     {
       "name": "byte buf",
@@ -50,9 +50,9 @@
     {
       "name": "uuid",
       "type": 9,
-      "value": "AAECAwQFBgcICQoLDA0ODw=="
+      "value": "AQIDBAUGBwgJCgsMDQ4PEA=="
     }
   ],
   "payload": "eydmb28nOidiYXInfQ==",
-  "message_crc": 3758045736
+  "message_crc": -1415188212
 }
