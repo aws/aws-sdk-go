@@ -38,10 +38,12 @@ type Event struct {
 // ShapeDoc returns the docstring for the EventStream API.
 func (esAPI *EventStreamAPI) ShapeDoc() string {
 	tmpl := template.Must(template.New("eventStreamShapeDoc").Parse(`
-{{ $.Name }} provides handling of EventStreams for the {{ $.Operation.ExportedName }} API. 
+{{- $.Name }} provides handling of EventStreams for
+the {{ $.Operation.ExportedName }} API. 
+{{- if $.Inbound }}
 
-{{ if $.Inbound -}}
-Use this type to receive {{ $.Inbound.Name }} events. The events can be read from the Events channel member.
+Use this type to receive {{ $.Inbound.Name }} events. The events
+can be read from the Events channel member.
 
 The events that can be received are:
 {{ range $_, $event := $.Inbound.Events }}
@@ -50,14 +52,14 @@ The events that can be received are:
 
 {{- end }}
 
-{{ if $.Outbound -}}
-Use this type to send {{ $.Outbound.Name }} events. The events can be sent with the Send method.
+{{- if $.Outbound }}
+
+Use this type to send {{ $.Outbound.Name }} events. The events 
+can be sent with the Send method.
 
 The events that can be sent are:
-
 {{ range $_, $event := $.Outbound.Events -}}
     * {{ $event.Shape.ShapeName }}
-
 {{- end }}
 
 {{- end }}`))
@@ -216,7 +218,7 @@ var eventStreamAPIShapeTmpl = template.Must(template.New("eventStreamAPIShapeTmp
 	//
 	// These events are:
 	// {{ range $_, $event := $.EventStreamAPI.Inbound.Events }}
-	// 	* {{ $event.Shape.ShapeName }}
+	//     * {{ $event.Shape.ShapeName }}
 	{{- end }}
 	type {{ $.EventStreamAPI.Inbound.Name }}Event interface {
 		event{{ $.EventStreamAPI.Name }}()

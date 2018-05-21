@@ -19681,19 +19681,20 @@ func (s SSES3) GoString() string {
 //
 // These events are:
 //
-// 	* ContinuationEvent
-// 	* EndEvent
-// 	* ProgressEvent
-// 	* RecordsEvent
-// 	* StatsEvent
+//     * ContinuationEvent
+//     * EndEvent
+//     * ProgressEvent
+//     * RecordsEvent
+//     * StatsEvent
 type SelectObjectContentEventStreamEvent interface {
 	eventSelectObjectContentEventStream()
 }
 
+// SelectObjectContentEventStream provides handling of EventStreams for
+// the SelectObjectContent API.
 //
-// SelectObjectContentEventStream provides handling of EventStreams for the SelectObjectContent API.
-//
-// Use this type to receive SelectObjectContentEventStream events. The events can be read from the Events channel member.
+// Use this type to receive SelectObjectContentEventStream events. The events
+// can be read from the Events channel member.
 //
 // The events that can be received are:
 //
@@ -19702,7 +19703,6 @@ type SelectObjectContentEventStreamEvent interface {
 //     * ProgressEvent
 //     * RecordsEvent
 //     * StatsEvent
-//
 type SelectObjectContentEventStream struct {
 	eventReader   *eventstreamapi.EventReader
 	inboundStream chan SelectObjectContentEventStreamEvent
