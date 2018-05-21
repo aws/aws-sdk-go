@@ -9,7 +9,7 @@ import (
 	"testing"
 )
 
-func SkipTestWriteEncodedFromDecoded(t *testing.T) {
+func TestWriteEncodedFromDecoded(t *testing.T) {
 	cases, err := readPositiveTests("testdata")
 	if err != nil {
 		t.Fatalf("failed to load positive tests, %v", err)
