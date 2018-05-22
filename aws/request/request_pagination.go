@@ -37,6 +37,7 @@ type Pagination struct {
 	NewRequest func() (*Request, error)
 
 	started    bool
+	prevTokens []interface{}
 	nextTokens []interface{}
 
 	err     error
@@ -49,7 +50,7 @@ type Pagination struct {
 //
 // Will always return true if Next has not been called yet.
 func (p *Pagination) HasNextPage() bool {
-	return !(p.started && len(p.nextTokens) == 0)
+	return !(p.started && (len(p.nextTokens) == 0 || awsutil.DeepEqual(p.nextTokens, p.prevTokens)))
 }
 
 // Err returns the error Pagination encountered when retrieving the next page.
@@ -96,6 +97,7 @@ func (p *Pagination) Next() bool {
 		return false
 	}
 
+	p.prevTokens = p.nextTokens
 	p.nextTokens = req.nextPageTokens()
 	p.curPage = req.Data
 
