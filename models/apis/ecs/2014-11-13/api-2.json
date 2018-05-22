@@ -1581,7 +1581,9 @@
       "type":"structure",
       "members":{
         "registryArn":{"shape":"String"},
-        "port":{"shape":"BoxedInteger"}
+        "port":{"shape":"BoxedInteger"},
+        "containerName":{"shape":"String"},
+        "containerPort":{"shape":"BoxedInteger"}
       }
     },
     "Services":{
