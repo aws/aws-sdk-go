@@ -1,3 +1,12 @@
+Release v1.13.54 (2018-05-22)
+===
+
+### Service Client Updates
+* `service/ecs`: Updates service API and documentation
+  * Amazon Elastic Container Service (ECS) adds service discovery for services that use host or bridged network mode. ECS can now also register instance IPs for active tasks using bridged and host networking with Route 53, making them available via DNS.
+* `service/inspector`: Updates service API
+  * We are launching the ability to target all EC2 instances. With this launch, resourceGroupArn is now optional for CreateAssessmentTarget and UpdateAssessmentTarget. If resourceGroupArn is not specified, all EC2 instances in the account in the AWS region are included in the assessment target.
+
 Release v1.13.53 (2018-05-21)
 ===
 
