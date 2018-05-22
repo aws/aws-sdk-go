@@ -2,14 +2,20 @@ package s3
 
 import (
 	"bytes"
+	"encoding/csv"
+	"fmt"
+	"io"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"reflect"
+	"strings"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/corehandlers"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream"
@@ -170,6 +176,71 @@ func TestSelectObjectContentEventStream_Close(t *testing.T) {
 	}
 }
 
+func ExampleSelectObjectContentEventStream() {
+	sess := session.Must(session.NewSession())
+	svc := New(sess)
+
+	buf := `name,number
+gopher,0
+ᵷodɥǝɹ,1
+`
+	// Put a mock CSV file to the S3 bucket so that its contents can be
+	// selected.
+	_, err := svc.PutObject(&PutObjectInput{
+		Bucket: aws.String("myBucket"),
+		Key:    aws.String("myObjectKey"),
+		Body:   strings.NewReader(buf),
+	})
+
+	// Make the Select Object Content API request using the object uploaded.
+	resp, err := svc.SelectObjectContent(&SelectObjectContentInput{
+		Bucket:         aws.String("myBucket"),
+		Key:            aws.String("myObjectKey"),
+		Expression:     aws.String("SELECT name FROM S3Object WHERE cast(number as int) < 1"),
+		ExpressionType: aws.String(ExpressionTypeSql),
+		InputSerialization: &InputSerialization{
+			CSV: &CSVInput{
+				FileHeaderInfo: aws.String(FileHeaderInfoUse),
+			},
+		},
+		OutputSerialization: &OutputSerialization{
+			CSV: &CSVOutput{},
+		},
+	})
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "failed making API request, %v\n", err)
+		return
+	}
+	defer resp.EventStream.Close()
+
+	results, resultWriter := io.Pipe()
+	go func() {
+		defer resultWriter.Close()
+		for event := range resp.EventStream.Events {
+			switch e := event.(type) {
+			case *RecordsEvent:
+				resultWriter.Write(e.Payload)
+			case *StatsEvent:
+				fmt.Printf("Processed %d bytes\n", e.Details.BytesProcessed)
+			}
+		}
+	}()
+
+	// Printout the results
+	resReader := csv.NewReader(results)
+	for {
+		record, err := resReader.Read()
+		if err == io.EOF {
+			break
+		}
+		fmt.Println(record)
+	}
+
+	if err := resp.EventStream.Err(); err != nil {
+		fmt.Fprintf(os.Stderr, "reading from event stream failed, %v\n", err)
+	}
+}
+
 func BenchmarkSelectObjectContentEventStream(b *testing.B) {
 	_, eventMsgs := mockSelectObjectContentEventStreamsOutputEvents()
 	var buf bytes.Buffer
@@ -179,7 +250,7 @@ func BenchmarkSelectObjectContentEventStream(b *testing.B) {
 			b.Fatalf("failed to encode message, %v", err)
 		}
 	}
-	stream := &LoopReader{source: bytes.NewReader(buf.Bytes())}
+	stream := &loopReader{source: bytes.NewReader(buf.Bytes())}
 
 	sess := unit.Session
 	svc := New(sess, &aws.Config{
@@ -218,11 +289,11 @@ func BenchmarkSelectObjectContentEventStream(b *testing.B) {
 	}
 }
 
-type LoopReader struct {
+type loopReader struct {
 	source *bytes.Reader
 }
 
-func (c *LoopReader) Read(p []byte) (int, error) {
+func (c *loopReader) Read(p []byte) (int, error) {
 	if c.source.Len() == 0 {
 		c.source.Seek(0, 0)
 	}
