@@ -468,7 +468,7 @@ func TestBatchDeleteList(t *testing.T) {
 					Key: aws.String("1"),
 				},
 			},
-			NextMarker:  aws.String("1stMarker"),
+			NextMarker:  aws.String("marker"),
 			IsTruncated: aws.Bool(true),
 		},
 		{
@@ -477,7 +477,7 @@ func TestBatchDeleteList(t *testing.T) {
 					Key: aws.String("2"),
 				},
 			},
-			NextMarker:  aws.String("2ndMarker"),
+			NextMarker:  aws.String("marker"),
 			IsTruncated: aws.Bool(true),
 		},
 		{

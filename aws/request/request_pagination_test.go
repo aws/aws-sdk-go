@@ -496,6 +496,14 @@ func TestPagination_Standalone(t *testing.T) {
 			},
 			StopOnSameToken: true,
 		},
+		{
+			Cases: []testCase{
+				testCase{aws.String("FirstValue"), aws.String("InitalToken"), aws.String("FirstToken")},
+				testCase{aws.String("SecondValue"), aws.String("FirstToken"), aws.String("SecondToken")},
+				testCase{aws.String("SecondValue"), aws.String("SecondToken"), aws.String("SecondToken")},
+			},
+			StopOnSameToken: true,
+		},
 	}
 
 	for _, testcase := range cases {
