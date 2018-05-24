@@ -179,10 +179,6 @@ func setupEventStream(topShape *Shape) *EventStream {
 }
 
 func updateEventPayloadRef(parent *Shape) {
-	if parent.API.Metadata.Protocol != "rest-xml" {
-		return
-	}
-
 	refName := parent.PayloadRefName()
 	if len(refName) == 0 {
 		return
