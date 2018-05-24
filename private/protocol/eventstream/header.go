@@ -59,7 +59,7 @@ func decodeHeaders(r io.Reader) (Headers, error) {
 		name, err := decodeHeaderName(r)
 		if err != nil {
 			if err == io.EOF {
-				// fail to decode header name means no more headers.
+				// EOF while getting header name means no more headers
 				break
 			}
 			return nil, err
@@ -67,9 +67,6 @@ func decodeHeaders(r io.Reader) (Headers, error) {
 
 		value, err := decodeHeaderValue(r)
 		if err != nil {
-			if err == io.EOF {
-				break
-			}
 			return nil, err
 		}
 
@@ -100,7 +97,7 @@ func decodeHeaderValue(r io.Reader) (Value, error) {
 	var raw rawValue
 
 	typ, err := decodeUint8(r)
-	if err != nil && err != io.EOF {
+	if err != nil {
 		return nil, err
 	}
 	raw.Type = valueType(typ)
