@@ -1,3 +1,15 @@
+Release v1.13.55 (2018-05-24)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API
+  * AWS CodeBuild Adds Support for Windows Builds.
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/rds`: Updates service API and documentation
+  * This release adds CloudWatch Logs integration capabilities to RDS Aurora MySQL clusters
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for secretsmanager
+
 Release v1.13.54 (2018-05-22)
 ===
 
