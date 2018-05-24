@@ -21,18 +21,30 @@ type jsonMessage struct {
 	CRC        json.Number    `json:"message_crc"`
 }
 
-func (d *decodedMessage) UnmarshalJSON(b []byte) error {
+func (d *decodedMessage) UnmarshalJSON(b []byte) (err error) {
 	var jsonMsg jsonMessage
-	if err := json.Unmarshal(b, &jsonMsg); err != nil {
+	if err = json.Unmarshal(b, &jsonMsg); err != nil {
 		return err
 	}
 
-	d.Length = numAsUint32(jsonMsg.Length)
-	d.HeadersLen = numAsUint32(jsonMsg.HeadersLen)
-	d.PreludeCRC = numAsUint32(jsonMsg.PreludeCRC)
+	d.Length, err = numAsUint32(jsonMsg.Length)
+	if err != nil {
+		return err
+	}
+	d.HeadersLen, err = numAsUint32(jsonMsg.HeadersLen)
+	if err != nil {
+		return err
+	}
+	d.PreludeCRC, err = numAsUint32(jsonMsg.PreludeCRC)
+	if err != nil {
+		return err
+	}
 	d.Headers = jsonMsg.Headers
 	d.Payload = jsonMsg.Payload
-	d.CRC = numAsUint32(jsonMsg.CRC)
+	d.CRC, err = numAsUint32(jsonMsg.CRC)
+	if err != nil {
+		return err
+	}
 
 	return nil
 }
@@ -50,13 +62,13 @@ func (d *decodedMessage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(jsonMsg)
 }
 
-func numAsUint32(n json.Number) uint32 {
+func numAsUint32(n json.Number) (uint32, error) {
 	v, err := n.Int64()
 	if err != nil {
-		panic(fmt.Sprintf("failed to get int64 json number, %v", err))
+		return 0, fmt.Errorf("failed to get int64 json number, %v", err)
 	}
 
-	return uint32(v)
+	return uint32(v), nil
 }
 
 func (d decodedMessage) Message() Message {
