@@ -6062,7 +6062,6 @@ func (c *S3) SelectObjectContentRequest(input *SelectObjectContentInput) (req *r
 
 	output = &SelectObjectContentOutput{}
 	req = c.newRequest(op, input, output)
-	// TODO this only is valid for REST based protocols, (rest-xml, rest-json, json-rpc)
 	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, rest.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBack(output.runEventStreamLoop)
 	return

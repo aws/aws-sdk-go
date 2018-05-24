@@ -129,7 +129,6 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	{{ end -}}
 	{{ if ne .AuthType "" }}{{ .GetSigner }}{{ end -}}
 	{{ if .OutputRef.Shape.EventStreamsMemberName -}}
-		// TODO this only is valid for REST based protocols, (rest-xml, rest-json, json-rpc)
 		req.Handlers.Unmarshal.Swap({{ .API.ProtocolPackage }}.UnmarshalHandler.Name, rest.UnmarshalHandler)
 		req.Handlers.Unmarshal.PushBack(output.runEventStreamLoop)
 	{{ end -}}
