@@ -92,6 +92,13 @@ func (a *API) setupEventStreams() {
 				outbound.Name, outbound.Shape.ShapeName))
 		}
 
+		switch a.Metadata.Protocol {
+		case `rest-json`, `rest-xml`, `json`:
+		default:
+			panic(fmt.Sprintf("EventStream not supported for protocol %v",
+				a.Metadata.Protocol))
+		}
+
 		eventStreamAPI := &EventStreamAPI{
 			Name:      op.ExportedName + eventStreamMemberName,
 			Operation: op,
