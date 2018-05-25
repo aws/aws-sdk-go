@@ -1,3 +1,15 @@
+Release v1.13.56 (2018-05-25)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API and documentation
+  * This API update enables customers to control whether users can transfer data between their local devices and their streaming applications through file uploads and downloads, clipboard operations, or printing to local devices
+* `service/config`: Updates service API and documentation
+* `service/glue`: Updates service API and documentation
+  * AWS Glue now sends a delay notification to Amazon CloudWatch Events when an ETL job runs longer than the specified delay notification threshold.
+* `service/iot`: Updates service API
+  * We are exposing DELETION_IN_PROGRESS as a new job status in regards to the release of DeleteJob API.
+
 Release v1.13.55 (2018-05-24)
 ===
 

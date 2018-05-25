@@ -4164,7 +4164,8 @@
       "enum":[
         "IN_PROGRESS",
         "CANCELED",
-        "COMPLETED"
+        "COMPLETED",
+        "DELETION_IN_PROGRESS"
       ]
     },
     "JobSummary":{
