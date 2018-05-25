@@ -49,6 +49,12 @@
         "ServiceAccountCredentials$AccountPassword": "<p>The password for the account.</p>"
       }
     },
+    "Action": {
+      "base": null,
+      "refs": {
+        "UserSetting$Action": "<p>The action that is enabled or disabled.</p>"
+      }
+    },
     "Application": {
       "base": "<p>Describes an application in the application catalog.</p>",
       "refs": {
@@ -666,6 +672,12 @@
         "UpdateDirectoryConfigRequest$OrganizationalUnitDistinguishedNames": "<p>The distinguished names of the organizational units for computer accounts.</p>"
       }
     },
+    "Permission": {
+      "base": null,
+      "refs": {
+        "UserSetting$Permission": "<p>Indicates whether the action is enabled or disabled.</p>"
+      }
+    },
     "PlatformType": {
       "base": null,
       "refs": {
@@ -1062,6 +1074,20 @@
       "refs": {
         "DescribeSessionsRequest$UserId": "<p>The user ID.</p>",
         "Session$UserId": "<p>The identifier of the user for whom the session was created.</p>"
+      }
+    },
+    "UserSetting": {
+      "base": "<p>Describes an action and whether the action is enabled or disabled for users during their streaming sessions.</p>",
+      "refs": {
+        "UserSettingList$member": null
+      }
+    },
+    "UserSettingList": {
+      "base": null,
+      "refs": {
+        "CreateStackRequest$UserSettings": "<p>The actions that are enabled or disabled for users during their streaming sessions. By default, these actions are enabled. </p>",
+        "Stack$UserSettings": "<p>The actions that are enabled or disabled for users during their streaming sessions. By default these actions are enabled.</p>",
+        "UpdateStackRequest$UserSettings": "<p>The actions that are enabled or disabled for users during their streaming sessions. By default, these actions are enabled.</p>"
       }
     },
     "VisibilityType": {
