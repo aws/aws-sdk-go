@@ -10,7 +10,7 @@ const (
 )
 
 var (
-	// DefaultChannelSize ...
+	// DefaultChannelSize of metrics to hold in the channel
 	DefaultChannelSize = 100
 )
 
