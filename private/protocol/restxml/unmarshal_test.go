@@ -2587,7 +2587,7 @@ func TestOutputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	if e, a := "myname", *out.Str; e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
-	if e, a := time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamp.String(); e != a {
+	if e, a := time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamp.UTC().String(); e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 	if e, a := true, *out.TrueBool; e != a {
@@ -2645,7 +2645,7 @@ func TestOutputService1ProtocolTestScalarMembersCase2(t *testing.T) {
 	if e, a := "", *out.Str; e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
-	if e, a := time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamp.String(); e != a {
+	if e, a := time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamp.UTC().String(); e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 	if e, a := true, *out.TrueBool; e != a {
@@ -2680,10 +2680,10 @@ func TestOutputService1ProtocolTestScalarMembersCase3(t *testing.T) {
 	if e, a := "value2", string(out.Blobs[1]); e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
-	if e, a := time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamps[0].String(); e != a {
+	if e, a := time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamps[0].UTC().String(); e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
-	if e, a := time.Unix(1.422172801e+09, 0).UTC().String(), out.Timestamps[1].String(); e != a {
+	if e, a := time.Unix(1.422172801e+09, 0).UTC().String(), out.Timestamps[1].UTC().String(); e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 
@@ -2995,7 +2995,7 @@ func TestOutputService11ProtocolTestScalarMembersInHeadersCase1(t *testing.T) {
 	if e, a := "string", *out.Str; e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
-	if e, a := time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamp.String(); e != a {
+	if e, a := time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamp.UTC().String(); e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 	if e, a := true, *out.TrueBool; e != a {
