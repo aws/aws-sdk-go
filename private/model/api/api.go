@@ -10,6 +10,7 @@ import (
 	"io/ioutil"
 	"path"
 	"path/filepath"
+	"regexp"
 	"sort"
 	"strings"
 	"text/template"
@@ -69,6 +70,7 @@ type Metadata struct {
 	Protocol            string
 	UID                 string
 	EndpointsID         string
+	ServiceID           string
 
 	NoResolveEndpoint bool
 }
@@ -416,6 +418,9 @@ var tplServiceDoc = template.Must(template.New("service docs").Funcs(template.Fu
 // https://docs.aws.amazon.com/sdk-for-go/api/service/{{ .PackageName }}/#New
 `))
 
+var serviceIDRegex = regexp.MustCompile("[^a-zA-Z0-9 ]+")
+var prefixDigitRegex = regexp.MustCompile("^[0-9]+")
+
 // A tplService defines the template for the service generated code.
 var tplService = template.Must(template.New("service").Funcs(template.FuncMap{
 	"ServiceNameValue": func(a *API) string {
@@ -439,6 +444,23 @@ var tplService = template.Must(template.New("service").Funcs(template.FuncMap{
 		}
 
 		return "EndpointsID"
+	},
+	"ServiceID": func(a *API) string {
+		if len(a.Metadata.ServiceID) > 0 {
+			return fmt.Sprintf("%q", a.Metadata.ServiceID)
+		}
+
+		name := a.Metadata.ServiceAbbreviation
+		if len(name) == 0 {
+			name = a.Metadata.ServiceFullName
+		}
+
+		name = strings.Replace(name, "Amazon", "", -1)
+		name = strings.Replace(name, "AWS", "", -1)
+		name = serviceIDRegex.ReplaceAllString(name, "")
+		name = prefixDigitRegex.ReplaceAllString(name, "")
+		name = strings.TrimSpace(name)
+		return fmt.Sprintf("%q", name)
 	},
 }).Parse(`
 // {{ .StructName }} provides the API operation methods for making requests to
@@ -504,6 +526,7 @@ func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
     		cfg,
     		metadata.ClientInfo{
 			ServiceName: {{ ServiceNameValue . }},
+			ServiceID : {{ ServiceID . }},
 			SigningName: signingName,
 			SigningRegion: signingRegion,
 			Endpoint:     endpoint,
