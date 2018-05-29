@@ -1,3 +1,10 @@
+Release v1.13.57 (2018-05-29)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/pi`: Adds new service
+
 Release v1.13.56 (2018-05-25)
 ===
 
