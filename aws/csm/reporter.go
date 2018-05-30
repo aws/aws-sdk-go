@@ -155,12 +155,11 @@ func (rep *Reporter) start() {
 		rep.metricsCh.Pause()
 	}()
 
-Loop:
 	for {
 		select {
 		case <-rep.done:
 			rep.done = nil
-			break Loop
+			return
 		case m := <-rep.metricsCh.ch:
 			// TODO: What to do with this error? Probably should just log
 			b, err := json.Marshal(m)

@@ -17,7 +17,8 @@ const (
 
 // Start will start the a long running go routine to capture
 // client side metrics. Calling start multiple time will only
-// start the metric listener once.
+// start the metric listener once and will panic if a different
+// client ID or port is passed in.
 //
 //	Example:
 //		r, err := csm.Start("clientID", "127.0.0.1:8094")
