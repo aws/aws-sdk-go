@@ -39,6 +39,7 @@ type ShapeRef struct {
 
 // ErrorInfo represents the error block of a shape's structure
 type ErrorInfo struct {
+	Type           string
 	Code           string
 	HTTPStatusCode int
 }
@@ -101,7 +102,7 @@ func (s *Shape) ErrorCodeName() string {
 // ErrorName will return the shape's name or error code if available based
 // on the API's protocol. This is the error code string returned by the service.
 func (s *Shape) ErrorName() string {
-	name := s.ShapeName
+	name := s.ErrorInfo.Type
 	switch s.API.Metadata.Protocol {
 	case "query", "ec2query", "rest-xml":
 		if len(s.ErrorInfo.Code) > 0 {
