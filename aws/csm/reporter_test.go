@@ -1,12 +1,10 @@
 package csm_test
 
 import (
-	"encoding/json"
 	"fmt"
 	"net"
 	"net/http"
 	"net/http/httptest"
-	"sync"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -55,28 +53,10 @@ func startUDPServer(done chan struct{}, fn func([]byte)) (string, error) {
 }
 
 func TestReportingMetrics(t *testing.T) {
-	wg := sync.WaitGroup{}
-	count := 0
-	done := make(chan struct{})
-	m := map[string]interface{}{}
-
-	wg.Add(1)
-	url, err := startUDPServer(done, func(b []byte) {
-		defer wg.Done()
-		count++
-		if err := json.Unmarshal(b, &m); err != nil {
-			t.Errorf("expected no error, but received %v", err)
-		}
-	})
-	if err != nil {
-		t.Errorf("expected no error, but received %v", err)
+	reporter := csm.Get()
+	if reporter == nil {
+		t.Errorf("expected non-nil reporter")
 	}
-
-	reporter, err := csm.Start("foo", url)
-	if err != nil {
-		t.Errorf("expected no error, but received %v", err)
-	}
-	defer reporter.Pause()
 
 	sess := session.New()
 	sess.Handlers.Clear()
@@ -86,11 +66,7 @@ func TestReportingMetrics(t *testing.T) {
 	op := &request.Operation{}
 	r := request.New(*sess.Config, md, sess.Handlers, client.DefaultRetryer{NumMaxRetries: 0}, op, nil, nil)
 	sess.Handlers.Complete.Run(r)
-	wg.Wait()
-
-	if count != 1 {
-		t.Errorf("expected '1', but received %d", count)
-	}
+	m := <-csm.MetricsCh
 
 	for k, v := range m {
 		switch k {
@@ -126,15 +102,6 @@ func (s *mockService) Request(i input) *request.Request {
 }
 
 func BenchmarkWithCSM(b *testing.B) {
-	done := make(chan struct{})
-	defer close(done)
-
-	url, err := startUDPServer(done, func(b []byte) {
-	})
-	if err != nil {
-		panic(err)
-	}
-
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(fmt.Sprintf("{}")))
 	}))
@@ -144,13 +111,9 @@ func BenchmarkWithCSM(b *testing.B) {
 	}
 
 	sess := session.New(&cfg)
-	r, err := csm.Start("foo", url)
-	if err != nil {
-		panic(err)
-	}
+	r := csm.Get()
 
 	r.InjectHandlers(&sess.Handlers)
-	defer r.Pause()
 
 	c := sess.ClientConfig("id", &cfg)
 
@@ -184,9 +147,6 @@ func BenchmarkWithCSM(b *testing.B) {
 }
 
 func BenchmarkWithCSMNoUDPConnection(b *testing.B) {
-	done := make(chan struct{})
-	defer close(done)
-
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(fmt.Sprintf("{}")))
 	}))
@@ -197,6 +157,7 @@ func BenchmarkWithCSMNoUDPConnection(b *testing.B) {
 
 	sess := session.New(&cfg)
 	r := csm.Get()
+	r.Pause()
 	r.InjectHandlers(&sess.Handlers)
 	defer r.Pause()
 

@@ -1,7 +1,7 @@
-// Client Side Monitoring (CSM) is used to send metrics via UDP connection.
-// Using the Start function will enable the reporting of metrics on a given
-// port. If Start is called, with different parameters, again, a panic will
-// occur.
+// Package csm provides Client Side Monitoring (CSM) which enables sending metrics
+// via UDP connection. Using the Start function will enable the reporting of
+// metrics on a given port. If Start is called, with different parameters, again,
+// a panic will occur.
 //
 // Pause can be called to pause any metrics publishing on a given port. Sessions
 // that have had their handlers modified via InjectHandlers may still be used.
@@ -34,5 +34,13 @@
 //		})
 //
 //		// Resume monitoring
+//		r.Continue()
+//
+// Start returns a Reporter that is used to enable or disable monitoring. If
+// access to the Reporter is required later, calling Get will return the Reporter
+// singleton.
+//
+//	Example:
+//		r := csm.Get()
 //		r.Continue()
 package csm

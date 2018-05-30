@@ -1,6 +1,8 @@
 package csm
 
 import (
+	"encoding/json"
+	"fmt"
 	"net"
 	"testing"
 )
@@ -17,11 +19,10 @@ func startUDPServer(done chan struct{}, fn func([]byte)) (string, error) {
 	}
 
 	buf := make([]byte, 1024)
-	i := 0
 	go func() {
 		defer conn.Close()
+
 		for {
-			i++
 			select {
 			case <-done:
 				return
@@ -40,50 +41,34 @@ func startUDPServer(done chan struct{}, fn func([]byte)) (string, error) {
 	return conn.LocalAddr().String(), nil
 }
 
-func TestInvalidPort(t *testing.T) {
-	r, err := Start("clientID", ":0")
-	if sender != nil {
-		t.Errorf("expected sender to be a nil value")
-	}
-
-	if r != nil {
-		t.Errorf("expected r to be a nil value")
-	}
-
-	if err == nil {
-		t.Errorf("expected error, but received none")
-	}
-
-	sender = nil
+func TestDifferentParams(t *testing.T) {
+	defer func() {
+		if r := recover(); r == nil {
+			t.Errorf("expected panic with different parameters")
+		}
+	}()
+	Start("clientID2", ":0")
 }
-func TestStartPause(t *testing.T) {
-	done := make(chan struct{})
-	url, err := startUDPServer(done, func(b []byte) {})
+
+var MetricsCh = make(chan map[string]interface{}, 1)
+var Done = make(chan struct{})
+
+func init() {
+	url, err := startUDPServer(Done, func(b []byte) {
+		m := map[string]interface{}{}
+		if err := json.Unmarshal(b, &m); err != nil {
+			panic(fmt.Sprintf("expected no error, but received %v", err))
+		}
+
+		MetricsCh <- m
+	})
+
 	if err != nil {
-		t.Errorf("expected no error when starting UDP server, but received %v", err)
+		panic(err)
 	}
-	defer close(done)
 
 	_, err = Start("clientID", url)
-	if sender == nil {
-		t.Errorf("expected sender to be a nil value")
-	}
-
 	if err != nil {
-		t.Errorf("expected no error, but received %v", err)
+		panic(err)
 	}
-
-	r := Get()
-	r.Pause()
-
-	if !r.metricsCh.IsPaused() {
-		t.Errorf("expected monitoring to be paused, but was not")
-	}
-
-	r.Continue()
-	if r.metricsCh.IsPaused() {
-		t.Errorf("expected monitoring to be resumed, but was not")
-	}
-
-	sender = nil
 }

@@ -15,6 +15,8 @@ const (
 	DefaultPort = "31000"
 )
 
+// Reporter will gather metrics of API requests made and
+// send those metrics to the CSM endpoint.
 type Reporter struct {
 	clientID  string
 	url       string
@@ -45,7 +47,7 @@ func newReporter(clientID, url string) *Reporter {
 	return &Reporter{
 		clientID:  clientID,
 		url:       url,
-		metricsCh: newMetricChan(DefaultChannelSize),
+		metricsCh: newMetricChan(MetricsChannelSize),
 	}
 }
 
@@ -144,7 +146,6 @@ func (rep *Reporter) connect(network, url string) error {
 func (rep *Reporter) close() {
 	if rep.done != nil {
 		close(rep.done)
-		rep.done = nil
 	}
 
 	rep.metricsCh.Pause()
@@ -175,6 +176,9 @@ func (rep *Reporter) start() {
 // Pause will pause the metric channel preventing any new metrics from
 // being added.
 func (rep *Reporter) Pause() {
+	lock.Lock()
+	defer lock.Unlock()
+
 	if rep == nil {
 		return
 	}
@@ -185,6 +189,8 @@ func (rep *Reporter) Pause() {
 // Continue will reopen the metric channel and allow for monitoring
 // to be resumed.
 func (rep *Reporter) Continue() {
+	lock.Lock()
+	defer lock.Unlock()
 	if rep == nil {
 		return
 	}

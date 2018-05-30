@@ -10,8 +10,8 @@ const (
 )
 
 var (
-	// DefaultChannelSize of metrics to hold in the channel
-	DefaultChannelSize = 100
+	// MetricsChannelSize of metrics to hold in the channel
+	MetricsChannelSize = 100
 )
 
 type metricChan struct {

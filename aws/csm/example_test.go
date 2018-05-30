@@ -9,7 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3"
 )
 
-func ExampleCSM_S3GetObject() {
+func ExampleStart() {
 	r, err := csm.Start("clientID", ":31000")
 	if err != nil {
 		panic(fmt.Errorf("failed starting CSM:  %v", err))
