@@ -421,6 +421,25 @@ var tplServiceDoc = template.Must(template.New("service docs").Funcs(template.Fu
 var serviceIDRegex = regexp.MustCompile("[^a-zA-Z0-9 ]+")
 var prefixDigitRegex = regexp.MustCompile("^[0-9]+")
 
+// ServiceID will return a unique identifier specific to a service.
+func ServiceID(a *API) string {
+	if len(a.Metadata.ServiceID) > 0 {
+		return a.Metadata.ServiceID
+	}
+
+	name := a.Metadata.ServiceAbbreviation
+	if len(name) == 0 {
+		name = a.Metadata.ServiceFullName
+	}
+
+	name = strings.Replace(name, "Amazon", "", -1)
+	name = strings.Replace(name, "AWS", "", -1)
+	name = serviceIDRegex.ReplaceAllString(name, "")
+	name = prefixDigitRegex.ReplaceAllString(name, "")
+	name = strings.TrimSpace(name)
+	return name
+}
+
 // A tplService defines the template for the service generated code.
 var tplService = template.Must(template.New("service").Funcs(template.FuncMap{
 	"ServiceNameValue": func(a *API) string {
@@ -445,23 +464,7 @@ var tplService = template.Must(template.New("service").Funcs(template.FuncMap{
 
 		return "EndpointsID"
 	},
-	"ServiceID": func(a *API) string {
-		if len(a.Metadata.ServiceID) > 0 {
-			return fmt.Sprintf("%q", a.Metadata.ServiceID)
-		}
-
-		name := a.Metadata.ServiceAbbreviation
-		if len(name) == 0 {
-			name = a.Metadata.ServiceFullName
-		}
-
-		name = strings.Replace(name, "Amazon", "", -1)
-		name = strings.Replace(name, "AWS", "", -1)
-		name = serviceIDRegex.ReplaceAllString(name, "")
-		name = prefixDigitRegex.ReplaceAllString(name, "")
-		name = strings.TrimSpace(name)
-		return fmt.Sprintf("%q", name)
-	},
+	"ServiceID": ServiceID,
 }).Parse(`
 // {{ .StructName }} provides the API operation methods for making requests to
 // {{ .Metadata.ServiceFullName }}. See this package's package overview docs
@@ -486,6 +489,12 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "{{ .Metadata.EndpointPrefix }}" // Service endpoint prefix API calls made to.
 	EndpointsID = {{ EndpointsIDConstValue . }} // Service ID for Regions and Endpoints metadata.
+	ServiceID = "{{ ServiceID . }}" // ServiceID is a unique identifer of a specific service
+)
+{{ else }}
+// Service information constants
+const (
+	ServiceID = "{{ ServiceID . }}" // ServiceID is a unique identifer of a specific service
 )
 {{- end }}
 
@@ -526,7 +535,7 @@ func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
     		cfg,
     		metadata.ClientInfo{
 			ServiceName: {{ ServiceNameValue . }},
-			ServiceID : {{ ServiceID . }},
+			ServiceID : ServiceID,
 			SigningName: signingName,
 			SigningRegion: signingRegion,
 			Endpoint:     endpoint,
