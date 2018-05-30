@@ -87,8 +87,8 @@ func New(cfgs ...*aws.Config) *Session {
 	}
 
 	s := deprecatedNewSession(cfgs...)
-	if len(envCfg.CSMEnabled) != 0 {
-		enableCSM(&s.Handlers, envCfg.CSMClientID, envCfg.CSMPort)
+	if envCfg.CSMEnabled {
+		enableCSM(&s.Handlers, envCfg.CSMClientID, envCfg.CSMPort, s.Config.Logger)
 	}
 
 	return s
@@ -310,14 +310,17 @@ func deprecatedNewSession(cfgs ...*aws.Config) *Session {
 	return s
 }
 
-func enableCSM(handlers *request.Handlers, clientID string, port string) {
-	fmt.Println("Enabling CSM")
+func enableCSM(handlers *request.Handlers, clientID string, port string, logger aws.Logger) {
+	logger.Log("Enabling CSM")
 	if len(port) == 0 {
 		port = csm.DefaultPort
 	}
 
-	csm.Start(clientID, "127.0.0.1:"+port)
-	csm.InjectHandlers(handlers)
+	r, err := csm.Start(clientID, "127.0.0.1:"+port)
+	if err != nil {
+		return
+	}
+	r.InjectHandlers(handlers)
 }
 
 func newSession(opts Options, envCfg envConfig, cfgs ...*aws.Config) (*Session, error) {
@@ -359,8 +362,8 @@ func newSession(opts Options, envCfg envConfig, cfgs ...*aws.Config) (*Session, 
 	}
 
 	initHandlers(s)
-	if len(envCfg.CSMEnabled) != 0 {
-		enableCSM(&s.Handlers, envCfg.CSMClientID, envCfg.CSMPort)
+	if envCfg.CSMEnabled {
+		enableCSM(&s.Handlers, envCfg.CSMClientID, envCfg.CSMPort, s.Config.Logger)
 	}
 
 	// Setup HTTP client with custom cert bundle if enabled

@@ -1,7 +1,12 @@
 package csm
 
 import (
-	"github.com/aws/aws-sdk-go/aws/request"
+	"fmt"
+	"sync"
+)
+
+var (
+	lock sync.Mutex
 )
 
 // Client side metric handler names
@@ -15,50 +20,47 @@ const (
 // start the metric listener once.
 //
 //	Example:
-//		csm.Start("clientID", "127.0.0.1:8094")
+//		r, err := csm.Start("clientID", "127.0.0.1:8094")
+//		if err != nil {
+//			panic(fmt.Errorf("expected no error, but received %v", err))
+//		}
 //		sess := session.NewSession()
-//		csm.InjectHandlers(sess.Handlers)
+//		r.InjectHandlers(sess.Handlers)
 //
 //		svc := s3.New(sess)
 //		out, err := svc.GetObject(&s3.GetObjectInput{
 //			Bucket: aws.String("bucket"),
 //			Key: aws.String("key"),
 //		})
-func Start(clientID string, url string) error {
+func Start(clientID string, url string) (*Reporter, error) {
 	lock.Lock()
 	defer lock.Unlock()
+
 	if sender == nil {
-		sender = newReporter(clientID)
+		sender = newReporter(clientID, url)
+	} else {
+		if sender.clientID != clientID {
+			panic(fmt.Errorf("inconsistent client IDs. %q was expected, but received %q", sender.clientID, clientID))
+		}
+
+		if sender.url != url {
+			panic(fmt.Errorf("inconsistent URLs. %q was expected, but received %q", sender.url, url))
+		}
 	}
 
-	if sender.metricsCh.IsPaused() {
-		sender.metricsCh.Continue()
+	if err := connect(url); err != nil {
+		sender = nil
+		return nil, err
 	}
 
-	return connect(url)
+	return sender, nil
 }
 
-// Stop will pause the metric channel preventing any new metrics from
-// being added.
-func Stop() {
+// Get will return a reporter if one exists, if one does not exist, nil will
+// be returned.
+func Get() *Reporter {
 	lock.Lock()
 	defer lock.Unlock()
-	sender.Close()
-}
 
-// InjectHandlers will will enable client side metrics and inject the proper
-// handlers to handle how metrics are sent.
-//
-//	Example:
-//		sess := session.NewSession()
-//		csm.InjectHandlers(&sess.Handlers)
-//
-//		// create a new service client with our client side metric session
-//		svc := s3.New(sess)
-func InjectHandlers(handlers *request.Handlers) {
-	apiCallHandler := request.NamedHandler{Name: APICallMetricHandlerName, Fn: sender.SendAPICallMetric}
-	handlers.Complete.PushFrontNamed(apiCallHandler)
-
-	apiCallAttemptHandler := request.NamedHandler{Name: APICallAttemptMetricHandlerName, Fn: sender.SendAPICallAttemptMetric}
-	handlers.AfterRetry.PushFrontNamed(apiCallAttemptHandler)
+	return sender
 }

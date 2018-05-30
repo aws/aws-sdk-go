@@ -97,7 +97,8 @@ type envConfig struct {
 	//  AWS_CA_BUNDLE=$HOME/my_custom_ca_bundle
 	CustomCABundle string
 
-	CSMEnabled  string
+	csmEnabled  string
+	CSMEnabled  bool
 	CSMPort     string
 	CSMClientID string
 }
@@ -171,9 +172,10 @@ func envConfigLoad(enableSharedConfig bool) envConfig {
 	setFromEnvVal(&cfg.Creds.SessionToken, credSessionEnvKey)
 
 	// CSM environment variables
-	setFromEnvVal(&cfg.CSMEnabled, csmEnabledEnvKey)
+	setFromEnvVal(&cfg.csmEnabled, csmEnabledEnvKey)
 	setFromEnvVal(&cfg.CSMPort, csmPortEnvKey)
 	setFromEnvVal(&cfg.CSMClientID, csmClientIDEnvKey)
+	cfg.CSMEnabled = len(cfg.csmEnabled) > 0
 
 	// Require logical grouping of credentials
 	if len(cfg.Creds.AccessKeyID) == 0 || len(cfg.Creds.SecretAccessKey) == 0 {

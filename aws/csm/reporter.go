@@ -3,7 +3,6 @@ package csm
 import (
 	"encoding/json"
 	"net"
-	"sync"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -16,16 +15,16 @@ const (
 	DefaultPort = "31000"
 )
 
-type reporter struct {
+type Reporter struct {
 	clientID  string
+	url       string
 	conn      net.Conn
 	metricsCh metricChan
 	done      chan struct{}
 }
 
 var (
-	lock   sync.Mutex
-	sender *reporter
+	sender *Reporter
 )
 
 func connect(url string) error {
@@ -42,14 +41,15 @@ func connect(url string) error {
 	return nil
 }
 
-func newReporter(clientID string) *reporter {
-	return &reporter{
+func newReporter(clientID, url string) *Reporter {
+	return &Reporter{
 		clientID:  clientID,
+		url:       url,
 		metricsCh: newMetricChan(DefaultChannelSize),
 	}
 }
 
-func (rep *reporter) SendAPICallAttemptMetric(r *request.Request) {
+func (rep *Reporter) sendAPICallAttemptMetric(r *request.Request) {
 	if rep == nil {
 		return
 	}
@@ -104,7 +104,7 @@ func setError(m *metric, err awserr.Error) {
 	}
 }
 
-func (rep *reporter) SendAPICallMetric(r *request.Request) {
+func (rep *Reporter) sendAPICallMetric(r *request.Request) {
 	if rep == nil {
 		return
 	}
@@ -126,7 +126,7 @@ func (rep *reporter) SendAPICallMetric(r *request.Request) {
 	rep.metricsCh.Push(m)
 }
 
-func (rep *reporter) connect(network, url string) error {
+func (rep *Reporter) connect(network, url string) error {
 	if rep.conn != nil {
 		rep.conn.Close()
 	}
@@ -141,7 +141,7 @@ func (rep *reporter) connect(network, url string) error {
 	return nil
 }
 
-func (rep *reporter) Close() {
+func (rep *Reporter) close() {
 	if rep.done != nil {
 		close(rep.done)
 		rep.done = nil
@@ -150,7 +150,7 @@ func (rep *reporter) Close() {
 	rep.metricsCh.Pause()
 }
 
-func (rep *reporter) start() {
+func (rep *Reporter) start() {
 	defer func() {
 		rep.metricsCh.Pause()
 	}()
@@ -171,4 +171,55 @@ Loop:
 			rep.conn.Write(b)
 		}
 	}
+}
+
+// Pause will pause the metric channel preventing any new metrics from
+// being added.
+func (rep *Reporter) Pause() {
+	if rep == nil {
+		return
+	}
+
+	rep.close()
+}
+
+// Continue will reopen the metric channel and allow for monitoring
+// to be resumed.
+func (rep *Reporter) Continue() {
+	if rep == nil {
+		return
+	}
+
+	if !rep.metricsCh.IsPaused() {
+		return
+	}
+
+	rep.metricsCh.Continue()
+}
+
+// InjectHandlers will will enable client side metrics and inject the proper
+// handlers to handle how metrics are sent.
+//
+//	Example:
+//		// Start must be called in order to inject the correct handlers
+//		r, err := csm.Start("clientID", "127.0.0.1:8094")
+//		if err != nil {
+//			panic(fmt.Errorf("expected no error, but received %v", err))
+//		}
+//
+//		sess := session.NewSession()
+//		r.InjectHandlers(&sess.Handlers)
+//
+//		// create a new service client with our client side metric session
+//		svc := s3.New(sess)
+func (rep *Reporter) InjectHandlers(handlers *request.Handlers) {
+	if rep == nil {
+		return
+	}
+
+	apiCallHandler := request.NamedHandler{Name: APICallMetricHandlerName, Fn: rep.sendAPICallMetric}
+	handlers.Complete.PushFrontNamed(apiCallHandler)
+
+	apiCallAttemptHandler := request.NamedHandler{Name: APICallAttemptMetricHandlerName, Fn: rep.sendAPICallAttemptMetric}
+	handlers.AfterRetry.PushFrontNamed(apiCallAttemptHandler)
 }

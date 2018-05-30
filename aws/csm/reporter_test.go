@@ -72,15 +72,19 @@ func TestReportingMetrics(t *testing.T) {
 		t.Errorf("expected no error, but received %v", err)
 	}
 
-	csm.Start("foo", url)
-	defer csm.Stop()
+	reporter, err := csm.Start("foo", url)
+	if err != nil {
+		t.Errorf("expected no error, but received %v", err)
+	}
+	defer reporter.Pause()
+
 	sess := session.New()
 	sess.Handlers.Clear()
-	csm.InjectHandlers(&sess.Handlers)
+	reporter.InjectHandlers(&sess.Handlers)
 
 	md := metadata.ClientInfo{}
 	op := &request.Operation{}
-	r := request.New(*sess.Config, md, sess.Handlers, client.DefaultRetryer{0}, op, nil, nil)
+	r := request.New(*sess.Config, md, sess.Handlers, client.DefaultRetryer{NumMaxRetries: 0}, op, nil, nil)
 	sess.Handlers.Complete.Run(r)
 	wg.Wait()
 
@@ -140,9 +144,13 @@ func BenchmarkWithCSM(b *testing.B) {
 	}
 
 	sess := session.New(&cfg)
-	csm.Start("foo", url)
-	csm.InjectHandlers(&sess.Handlers)
-	defer csm.Stop()
+	r, err := csm.Start("foo", url)
+	if err != nil {
+		panic(err)
+	}
+
+	r.InjectHandlers(&sess.Handlers)
+	defer r.Pause()
 
 	c := sess.ClientConfig("id", &cfg)
 
@@ -188,8 +196,9 @@ func BenchmarkWithCSMNoUDPConnection(b *testing.B) {
 	}
 
 	sess := session.New(&cfg)
-	csm.InjectHandlers(&sess.Handlers)
-	defer csm.Stop()
+	r := csm.Get()
+	r.InjectHandlers(&sess.Handlers)
+	defer r.Pause()
 
 	c := sess.ClientConfig("id", &cfg)
 
