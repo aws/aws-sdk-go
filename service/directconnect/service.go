@@ -29,8 +29,9 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "directconnect" // Service endpoint prefix API calls made to.
-	EndpointsID = ServiceName     // Service ID for Regions and Endpoints metadata.
+	ServiceName = "directconnect"  // Service endpoint prefix API calls made to.
+	EndpointsID = ServiceName      // Service ID for Regions and Endpoints metadata.
+	ServiceID   = "Direct Connect" // ServiceID is a unique identifer of a specific service
 )
 
 // New creates a new instance of the DirectConnect client with a session.
@@ -55,7 +56,7 @@ func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
 			cfg,
 			metadata.ClientInfo{
 				ServiceName:   ServiceName,
-				ServiceID:     "Direct Connect",
+				ServiceID:     ServiceID,
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
 				Endpoint:      endpoint,

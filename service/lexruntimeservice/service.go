@@ -29,8 +29,9 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "runtime.lex" // Service endpoint prefix API calls made to.
-	EndpointsID = ServiceName   // Service ID for Regions and Endpoints metadata.
+	ServiceName = "runtime.lex"         // Service endpoint prefix API calls made to.
+	EndpointsID = ServiceName           // Service ID for Regions and Endpoints metadata.
+	ServiceID   = "Lex Runtime Service" // ServiceID is a unique identifer of a specific service
 )
 
 // New creates a new instance of the LexRuntimeService client with a session.
@@ -58,7 +59,7 @@ func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
 			cfg,
 			metadata.ClientInfo{
 				ServiceName:   ServiceName,
-				ServiceID:     "Lex Runtime Service",
+				ServiceID:     ServiceID,
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
 				Endpoint:      endpoint,
