@@ -1,3 +1,12 @@
+Release v1.13.58 (2018-05-30)
+===
+
+### Service Client Updates
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/neptune`: Adds new service
+  * Amazon Neptune is a fast, reliable graph database service that makes it easy to build and run applications that work with highly connected datasets. Neptune supports popular graph models Property Graph and W3C's Resource Description Frame (RDF), and their respective query languages Apache TinkerPop Gremlin 3.3.2 and SPARQL 1.1.
+
 Release v1.13.57 (2018-05-29)
 ===
 
