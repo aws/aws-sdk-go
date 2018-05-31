@@ -209,70 +209,45 @@ func renderEventStreamAPIShape(w io.Writer, s *Shape) error {
 	return eventStreamAPIShapeTmpl.Execute(w, s)
 }
 
+// EventStreamReaderInterfaceName returns the interface name for the
+// EventStream's reader interface.
+func EventStreamReaderInterfaceName(s *Shape) string {
+	return s.ShapeName + "Reader"
+}
+
 // Template for an EventStream API Shape that will provide read/writing events
 // across the EventStream. This is a special shape that's only public members
 // are the Events channel and a Close and Err method.
 //
 // Executed in the context of a Shape.
-var eventStreamAPIShapeTmpl = template.Must(template.New("eventStreamAPIShapeTmpl").Parse(`
-{{ if $.EventStreamAPI.Inbound }}
-	// {{ $.EventStreamAPI.Inbound.Name }}Event groups together all EventStream
-	// events read from the {{ $.EventStreamAPI.Operation.ExportedName }} API.
-	//
-	// These events are:
-	// {{ range $_, $event := $.EventStreamAPI.Inbound.Events }}
-	//     * {{ $event.Shape.ShapeName }}
-	{{- end }}
-	type {{ $.EventStreamAPI.Inbound.Name }}Event interface {
-		event{{ $.EventStreamAPI.Name }}()
-	}
-{{ end }}
+var eventStreamAPIShapeTmpl = func() *template.Template {
+	t := template.Must(
+		template.New("eventStreamAPIShapeTmpl").
+			Funcs(template.FuncMap{}).
+			Parse(eventStreamAPITmplDef),
+	)
 
+	template.Must(
+		t.AddParseTree(
+			"eventStreamAPIReaderTmpl", eventStreamAPIReaderTmpl.Tree),
+	)
+
+	return t
+}()
+
+const eventStreamAPITmplDef = `
 {{ $.Documentation }}
 type {{ $.ShapeName }} struct {
 	{{ if $.EventStreamAPI.Inbound }}
-		eventReader *eventstreamapi.EventReader
-		inboundStream chan {{ $.EventStreamAPI.Inbound.Name }}Event
-		Events <-chan {{ $.EventStreamAPI.Inbound.Name }}Event
+		reader {{ $.ShapeName }}Reader
 	{{ end }}
 
 	{{ if $.EventStreamAPI.Outbound }}
-		// TODO Outbound EventStream
+		writer *write{{ $.ShapeName }}
 	{{ end }}
 
 	done chan struct{}
 	closeOnce sync.Once
-	errVal atomic.Value
-}
-
-func new{{ $.ShapeName }}(
-	reader io.ReadCloser,
-	unmarshalers request.HandlerList,
-	logger aws.Logger,
-	logLevel aws.LogLevelType,
-) *{{ $.ShapeName }} {
-	es := {{ $.ShapeName }}{
-		done: make(chan struct{}),
-	}
-
-	{{ if $.EventStreamAPI.Inbound }}
-		payloadUnmarshaler := protocol.HandlerPayloadUnmarshal{
-			Unmarshalers: unmarshalers,
-		}
-		es.eventReader = eventstreamapi.NewEventReader(
-			reader, payloadUnmarshaler, es.unmarshalerForEventType,
-		)
-		es.eventReader.UseLogger(logger, logLevel)
-
-		es.inboundStream = make(chan {{ $.EventStreamAPI.Inbound.Name }}Event)
-		es.Events = es.inboundStream
-	{{ end }}
-
-	{{ if $.EventStreamAPI.Outbound }}
-		// TODO Outbound EventStream
-	{{ end }}
-
-	return &es
 }
 
 // Close closes the EventStream. This will also cause the Events channel to be
@@ -281,52 +256,203 @@ func new{{ $.ShapeName }}(
 func (es *{{ $.ShapeName }}) Close() (err error) { 
 	es.closeOnce.Do(func() {
 		close(es.done)
-		err = es.eventReader.Close()
+		{{ if $.EventStreamAPI.Inbound }}
+			es.reader.Close()
+		{{ end }}
+		{{ if $.EventStreamAPI.Outbound }}
+			es.writer.Close()
+		{{ end }}
 	})
+
+	return es.Err()
+}
+
+// Err returns any error that occurred while reading EventStream Events from
+// the service API's response. Returns nil if there were no errors.
+func (es *{{ $.ShapeName }}) Err() error { 
+	{{ if $.EventStreamAPI.Inbound }}
+		if err := es.reader.Err(); err != nil {
+			return err
+		}
+	{{ end }}
+	{{ if $.EventStreamAPI.Outbound }}
+		if err := es.writer.Err(); err != nil {
+			return err
+		}
+	{{ end }}
+
+	return nil
+}
+
+{{ if $.EventStreamAPI.Inbound }}
+	// New{{ $.ShapeName }}WithReader initializes a new {{ $.ShapeName }} with a
+	// reader for reading EventStream messages from the API. 
+	//
+	// Done channel will be closed by {{ $.ShapeName }} when the reader's Done
+	// channel is closed.
+	//
+	// Reader is the EventStream reader to read events. Implement a custom 
+	// {{ $.ShapeName }}Reader if mocking out the API.
+	func New{{ $.ShapeName }}WithReader(
+		done chan struct{},
+		reader {{ $.ShapeName }}Reader,
+	) *{{ $.ShapeName }} {
+		es := &{{ $.ShapeName }} {
+			done: done,
+			reader: reader,
+		}
+		go func() {
+			select {
+			case <-reader.Done():
+				es.Close()
+			case <-es.done:
+			}
+		}()
+		return es
+	}
+
+	// Events returns a channel to read EventStream Events from the 
+	// {{ $.EventStreamAPI.Operation.ExportedName }} API.
+	//
+	// These events are:
+	// {{ range $_, $event := $.EventStreamAPI.Inbound.Events }}
+	//     * {{ $event.Shape.ShapeName }}
+	{{- end }}
+	func (es *{{ $.ShapeName }}) Events() <-chan {{ $.EventStreamAPI.Inbound.Name }}Event {
+		return es.reader.Events()
+	}
+
+	{{ template "eventStreamAPIReaderTmpl" $ }}
+{{ end }}
+
+{{ if $.EventStreamAPI.Outbound }}
+	// Done returns a channel that will block until the EventStream API has
+	// completed. This completion could because the server closed the
+	// connection, or Close is called.
+	func (es *{{ $.ShapeName }}) Done() <-chan struct{} {
+		return es.done
+	}
+{{ end }}
+
+`
+
+var eventStreamAPIReaderTmpl = template.Must(template.New("eventStreamAPIReaderTmpl").
+	Funcs(template.FuncMap{}).
+	Parse(`
+// {{ $.EventStreamAPI.Inbound.Name }}Event groups together all EventStream
+// events read from the {{ $.EventStreamAPI.Operation.ExportedName }} API.
+//
+// These events are:
+// {{ range $_, $event := $.EventStreamAPI.Inbound.Events }}
+//     * {{ $event.Shape.ShapeName }}
+{{- end }}
+type {{ $.EventStreamAPI.Inbound.Name }}Event interface {
+	event{{ $.EventStreamAPI.Name }}()
+}
+
+// {{ $.ShapeName }}Reader provides the interface for reading EventStream
+// Events from the {{ $.EventStreamAPI.Operation.ExportedName }} API. The
+// default implementation for this interface will be {{ $.ShapeName }}.
+//
+// The reader's Close method must allow multiple concurrent calls.
+//
+// These events are:
+// {{ range $_, $event := $.EventStreamAPI.Inbound.Events }}
+//     * {{ $event.Shape.ShapeName }}
+{{- end }}
+type {{ $.ShapeName }}Reader interface {
+	Events() <-chan {{ $.EventStreamAPI.Inbound.Name }}Event
+	Done() <-chan struct{}
+	Close() error
+	Err() error
+}
+
+type read{{ $.ShapeName }} struct {
+	eventReader *eventstreamapi.EventReader
+	stream chan {{ $.EventStreamAPI.Inbound.Name }}Event
+	errVal atomic.Value
+	done chan struct{}
+}
+
+func newRead{{ $.ShapeName }}(
+	reader io.ReadCloser,
+	unmarshalers request.HandlerList,
+	logger aws.Logger,
+	logLevel aws.LogLevelType,
+) *read{{ $.ShapeName }} {
+	r := &read{{ $.ShapeName }}{
+		stream: make(chan {{ $.EventStreamAPI.Inbound.Name }}Event),
+		done: make(chan struct{}),
+	}
+
+	r.eventReader = eventstreamapi.NewEventReader(
+		reader,
+		protocol.HandlerPayloadUnmarshal{
+			Unmarshalers: unmarshalers,
+		},
+		r.unmarshalerForEventType,
+	)
+	r.eventReader.UseLogger(logger, logLevel)
+
+	return r
+}
+
+func (r *read{{ $.ShapeName }}) Close() error {
+	err := r.eventReader.Close()
+	if err != nil {
+		r.errVal.Store(err)
+	}
 
 	return err
 }
 
-func (es *{{ $.ShapeName }}) Err() error { 
-	if v := es.errVal.Load(); v != nil {
+func (r *read{{ $.ShapeName }}) Err() error {
+	if v := r.errVal.Load(); v != nil {
 		return v.(error)
 	}
 
 	return nil
 }
 
-{{ if $.EventStreamAPI.Inbound }}
-	{{ template "inbound eventstream" $ }}
-{{ end }}
+func (r *read{{ $.ShapeName }}) Events() <-chan {{ $.EventStreamAPI.Inbound.Name }}Event {
+	return r.stream
+}
 
-{{ define "inbound eventstream" }}
-func (es *{{ $.ShapeName }}) readEventStream() {
-	defer close(es.inboundStream)
+
+func (r *read{{ $.ShapeName }}) Done() <-chan struct{} {
+	return r.done
+}
+
+func (r *read{{ $.ShapeName }}) readEventStream(done <-chan struct{}) {
+	defer close(r.done)
+	defer close(r.stream)
+	defer r.eventReader.Close()
+
 	for {
-		event, err := es.eventReader.ReadEvent()
+		event, err := r.eventReader.ReadEvent()
 		if err != nil {
 			if err == io.EOF {
 				return
 			}
 			select {
-			case <-es.done:
+			case <-done:
 				// If closed already ignore the error
 				return
 			default:
 			}
-			es.errVal.Store(err)
+			r.errVal.Store(err)
 			return
 		}
 
 		select {
-		case es.inboundStream <- event.({{ $.EventStreamAPI.Inbound.Name }}Event):
-		case <-es.done:
+		case r.stream <- event.({{ $.EventStreamAPI.Inbound.Name }}Event):
+		case <-done:
 			return
 		}
 	}
 }
 
-func (es *{{ $.ShapeName }}) unmarshalerForEventType(
+func (r *read{{ $.ShapeName }}) unmarshalerForEventType(
 	eventType string,
 ) (eventstreamapi.Unmarshaler, error) {
 	switch eventType {
@@ -339,7 +465,6 @@ func (es *{{ $.ShapeName }}) unmarshalerForEventType(
 			"unknown event type name, %s, for {{ $.ShapeName }}", eventType)
 	}
 }
-{{ end }}
 `))
 
 // Template for the EventStream API Output shape that contains the EventStream
@@ -353,14 +478,22 @@ func (s *{{ $.ShapeName }}) runEventStreamLoop(r *request.Request) {
 		return
 	}
 
-	// TODO need to be be generated based on inbound and outbound streams
 	{{ $esMemberRef := index $.MemberRefs $.EventStreamsMemberName }}
-	s.{{ $.EventStreamsMemberName }} = new{{ $esMemberRef.ShapeName }}(
-		r.HTTPResponse.Body, r.Handlers.UnmarshalStream,
-		r.Config.Logger, r.Config.LogLevel.Value(),
-	)
 
-	go s.{{ $.EventStreamsMemberName }}.readEventStream()
+	done := make(chan struct{})
+	{{ if $esMemberRef.Shape.EventStreamAPI.Inbound }}
+		reader := newRead{{ $esMemberRef.ShapeName }}(
+			r.HTTPResponse.Body,
+			r.Handlers.UnmarshalStream,
+			r.Config.Logger,
+			r.Config.LogLevel.Value(),
+		)
+		go reader.readEventStream(done)
+
+		eventStream := New{{ $esMemberRef.ShapeName }}WithReader(done, reader)
+	{{ end }}
+
+	s.{{ $.EventStreamsMemberName }} = eventStream
 }
 `))
 

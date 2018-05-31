@@ -131,7 +131,7 @@ func TestSelectObjectContentEventStream(t *testing.T) {
 	defer resp.EventStream.Close()
 
 	var i int
-	for event := range resp.EventStream.Events {
+	for event := range resp.EventStream.Events() {
 		if event == nil {
 			t.Errorf("%d, expect event, got nil", i)
 		}
@@ -211,7 +211,7 @@ func ExampleSelectObjectContentEventStream() {
 	results, resultWriter := io.Pipe()
 	go func() {
 		defer resultWriter.Close()
-		for event := range resp.EventStream.Events {
+		for event := range resp.EventStream.Events() {
 			switch e := event.(type) {
 			case *RecordsEvent:
 				resultWriter.Write(e.Payload)
@@ -277,7 +277,7 @@ func BenchmarkSelectObjectContentEventStream(b *testing.B) {
 		if err = resp.EventStream.Err(); err != nil {
 			b.Fatalf("expect no error, got %v", err)
 		}
-		event := <-resp.EventStream.Events
+		event := <-resp.EventStream.Events()
 		if event == nil {
 			b.Fatalf("expect event, got nil, %v, %d", resp.EventStream.Err(), i)
 		}

@@ -45,7 +45,7 @@ func TestSelectObjectContent(t *testing.T) {
 
 	var sum int64
 	var processed int64
-	for event := range resp.EventStream.Events {
+	for event := range resp.EventStream.Events() {
 		switch tv := event.(type) {
 		case *s3.RecordsEvent:
 			sum += int64(len(tv.Payload))
@@ -102,7 +102,7 @@ func TestSelectObjectContent_Error(t *testing.T) {
 	defer resp.EventStream.Close()
 
 	var sum int64
-	for event := range resp.EventStream.Events {
+	for event := range resp.EventStream.Events() {
 		switch tv := event.(type) {
 		case *s3.RecordsEvent:
 			sum += int64(len(tv.Payload))
@@ -162,12 +162,12 @@ gopher,0
 	results, resultWriter := io.Pipe()
 	go func() {
 		defer resultWriter.Close()
-		for event := range resp.EventStream.Events {
+		for event := range resp.EventStream.Events() {
 			switch e := event.(type) {
 			case *s3.RecordsEvent:
 				resultWriter.Write(e.Payload)
 			case *s3.StatsEvent:
-				fmt.Printf("Processed %d bytes\n", e.Details.BytesProcessed)
+				fmt.Printf("Processed %d bytes\n", *e.Details.BytesProcessed)
 			}
 		}
 	}()
