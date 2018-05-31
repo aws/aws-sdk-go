@@ -1599,22 +1599,6 @@
           },
           "eu-west-2" : { },
           "eu-west-3" : { },
-          "fips-us-east-1" : {
-            "hostname" : "s3-fips.us-east-1.amazonaws.com",
-            "signatureVersions" : [ "s3", "s3v4" ]
-          },
-          "fips-us-east-2" : {
-            "hostname" : "s3-fips.us-east-2.amazonaws.com",
-            "signatureVersions" : [ "s3", "s3v4" ]
-          },
-          "fips-us-west-1" : {
-            "hostname" : "s3-fips.us-west-1.amazonaws.com",
-            "signatureVersions" : [ "s3", "s3v4" ]
-          },
-          "fips-us-west-2" : {
-            "hostname" : "s3-fips.us-west-2.amazonaws.com",
-            "signatureVersions" : [ "s3", "s3v4" ]
-          },
           "s3-external-1" : {
             "credentialScope" : {
               "region" : "us-east-1"
@@ -2670,8 +2654,7 @@
             "credentialScope" : {
               "region" : "us-gov-west-1"
             },
-            "hostname" : "s3-fips.us-gov-west-1.amazonaws.com",
-            "signatureVersions" : [ "s3", "s3v4" ]
+            "hostname" : "s3-fips-us-gov-west-1.amazonaws.com"
           },
           "us-gov-west-1" : {
             "hostname" : "s3.us-gov-west-1.amazonaws.com",
