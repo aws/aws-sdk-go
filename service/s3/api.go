@@ -19675,20 +19675,6 @@ func (s SSES3) GoString() string {
 	return s.String()
 }
 
-// SelectObjectContentEventStreamEvent groups together all EventStream
-// events read from the SelectObjectContent API.
-//
-// These events are:
-//
-//     * ContinuationEvent
-//     * EndEvent
-//     * ProgressEvent
-//     * RecordsEvent
-//     * StatsEvent
-type SelectObjectContentEventStreamEvent interface {
-	eventSelectObjectContentEventStream()
-}
-
 // SelectObjectContentEventStream provides handling of EventStreams for
 // the SelectObjectContent API.
 //
@@ -19703,37 +19689,10 @@ type SelectObjectContentEventStreamEvent interface {
 //     * RecordsEvent
 //     * StatsEvent
 type SelectObjectContentEventStream struct {
-	eventReader   *eventstreamapi.EventReader
-	inboundStream chan SelectObjectContentEventStreamEvent
-	Events        <-chan SelectObjectContentEventStreamEvent
+	reader SelectObjectContentEventStreamReader
 
 	done      chan struct{}
 	closeOnce sync.Once
-	errVal    atomic.Value
-}
-
-func newSelectObjectContentEventStream(
-	reader io.ReadCloser,
-	unmarshalers request.HandlerList,
-	logger aws.Logger,
-	logLevel aws.LogLevelType,
-) *SelectObjectContentEventStream {
-	es := SelectObjectContentEventStream{
-		done: make(chan struct{}),
-	}
-
-	payloadUnmarshaler := protocol.HandlerPayloadUnmarshal{
-		Unmarshalers: unmarshalers,
-	}
-	es.eventReader = eventstreamapi.NewEventReader(
-		reader, payloadUnmarshaler, es.unmarshalerForEventType,
-	)
-	es.eventReader.UseLogger(logger, logLevel)
-
-	es.inboundStream = make(chan SelectObjectContentEventStreamEvent)
-	es.Events = es.inboundStream
-
-	return &es
 }
 
 // Close closes the EventStream. This will also cause the Events channel to be
@@ -19742,47 +19701,184 @@ func newSelectObjectContentEventStream(
 func (es *SelectObjectContentEventStream) Close() (err error) {
 	es.closeOnce.Do(func() {
 		close(es.done)
-		err = es.eventReader.Close()
+
+		es.reader.Close()
+
 	})
+
+	return es.Err()
+}
+
+// Err returns any error that occurred while reading EventStream Events from
+// the service API's response. Returns nil if there were no errors.
+func (es *SelectObjectContentEventStream) Err() error {
+
+	if err := es.reader.Err(); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// NewSelectObjectContentEventStreamWithReader initializes a new SelectObjectContentEventStream with a
+// reader for reading EventStream messages from the API.
+//
+// Done channel will be closed by SelectObjectContentEventStream when the reader's Done
+// channel is closed.
+//
+// Reader is the EventStream reader to read events. Implement a custom
+// SelectObjectContentEventStreamReader if mocking out the API.
+func NewSelectObjectContentEventStreamWithReader(
+	done chan struct{},
+	reader SelectObjectContentEventStreamReader,
+) *SelectObjectContentEventStream {
+	es := &SelectObjectContentEventStream{
+		done:   done,
+		reader: reader,
+	}
+	go func() {
+		select {
+		case <-reader.Done():
+			es.Close()
+		case <-es.done:
+		}
+	}()
+	return es
+}
+
+// Events returns a channel to read EventStream Events from the
+// SelectObjectContent API.
+//
+// These events are:
+//
+//     * ContinuationEvent
+//     * EndEvent
+//     * ProgressEvent
+//     * RecordsEvent
+//     * StatsEvent
+func (es *SelectObjectContentEventStream) Events() <-chan SelectObjectContentEventStreamEvent {
+	return es.reader.Events()
+}
+
+// SelectObjectContentEventStreamEvent groups together all EventStream
+// events read from the SelectObjectContent API.
+//
+// These events are:
+//
+//     * ContinuationEvent
+//     * EndEvent
+//     * ProgressEvent
+//     * RecordsEvent
+//     * StatsEvent
+type SelectObjectContentEventStreamEvent interface {
+	eventSelectObjectContentEventStream()
+}
+
+// SelectObjectContentEventStreamReader provides the interface for reading EventStream
+// Events from the SelectObjectContent API. The
+// default implementation for this interface will be SelectObjectContentEventStream.
+//
+// The reader's Close method must allow multiple concurrent calls.
+//
+// These events are:
+//
+//     * ContinuationEvent
+//     * EndEvent
+//     * ProgressEvent
+//     * RecordsEvent
+//     * StatsEvent
+type SelectObjectContentEventStreamReader interface {
+	Events() <-chan SelectObjectContentEventStreamEvent
+	Done() <-chan struct{}
+	Close() error
+	Err() error
+}
+
+type readSelectObjectContentEventStream struct {
+	eventReader *eventstreamapi.EventReader
+	stream      chan SelectObjectContentEventStreamEvent
+	errVal      atomic.Value
+	done        chan struct{}
+}
+
+func newReadSelectObjectContentEventStream(
+	reader io.ReadCloser,
+	unmarshalers request.HandlerList,
+	logger aws.Logger,
+	logLevel aws.LogLevelType,
+) *readSelectObjectContentEventStream {
+	r := &readSelectObjectContentEventStream{
+		stream: make(chan SelectObjectContentEventStreamEvent),
+		done:   make(chan struct{}),
+	}
+
+	r.eventReader = eventstreamapi.NewEventReader(
+		reader,
+		protocol.HandlerPayloadUnmarshal{
+			Unmarshalers: unmarshalers,
+		},
+		r.unmarshalerForEventType,
+	)
+	r.eventReader.UseLogger(logger, logLevel)
+
+	return r
+}
+
+func (r *readSelectObjectContentEventStream) Close() error {
+	err := r.eventReader.Close()
+	if err != nil {
+		r.errVal.Store(err)
+	}
 
 	return err
 }
 
-func (es *SelectObjectContentEventStream) Err() error {
-	if v := es.errVal.Load(); v != nil {
+func (r *readSelectObjectContentEventStream) Err() error {
+	if v := r.errVal.Load(); v != nil {
 		return v.(error)
 	}
 
 	return nil
 }
 
-func (es *SelectObjectContentEventStream) readEventStream() {
-	defer close(es.inboundStream)
+func (r *readSelectObjectContentEventStream) Events() <-chan SelectObjectContentEventStreamEvent {
+	return r.stream
+}
+
+func (r *readSelectObjectContentEventStream) Done() <-chan struct{} {
+	return r.done
+}
+
+func (r *readSelectObjectContentEventStream) readEventStream(done <-chan struct{}) {
+	defer close(r.done)
+	defer close(r.stream)
+	defer r.eventReader.Close()
+
 	for {
-		event, err := es.eventReader.ReadEvent()
+		event, err := r.eventReader.ReadEvent()
 		if err != nil {
 			if err == io.EOF {
 				return
 			}
 			select {
-			case <-es.done:
+			case <-done:
 				// If closed already ignore the error
 				return
 			default:
 			}
-			es.errVal.Store(err)
+			r.errVal.Store(err)
 			return
 		}
 
 		select {
-		case es.inboundStream <- event.(SelectObjectContentEventStreamEvent):
-		case <-es.done:
+		case r.stream <- event.(SelectObjectContentEventStreamEvent):
+		case <-done:
 			return
 		}
 	}
 }
 
-func (es *SelectObjectContentEventStream) unmarshalerForEventType(
+func (r *readSelectObjectContentEventStream) unmarshalerForEventType(
 	eventType string,
 ) (eventstreamapi.Unmarshaler, error) {
 	switch eventType {
@@ -20007,14 +20103,19 @@ func (s *SelectObjectContentOutput) runEventStreamLoop(r *request.Request) {
 		return
 	}
 
-	// TODO need to be be generated based on inbound and outbound streams
+	done := make(chan struct{})
 
-	s.EventStream = newSelectObjectContentEventStream(
-		r.HTTPResponse.Body, r.Handlers.UnmarshalStream,
-		r.Config.Logger, r.Config.LogLevel.Value(),
+	reader := newReadSelectObjectContentEventStream(
+		r.HTTPResponse.Body,
+		r.Handlers.UnmarshalStream,
+		r.Config.Logger,
+		r.Config.LogLevel.Value(),
 	)
+	go reader.readEventStream(done)
 
-	go s.EventStream.readEventStream()
+	eventStream := NewSelectObjectContentEventStreamWithReader(done, reader)
+
+	s.EventStream = eventStream
 }
 
 // Describes the parameters for Select job types.
