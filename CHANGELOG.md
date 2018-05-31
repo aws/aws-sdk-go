@@ -1,3 +1,7 @@
+Release v1.13.59 (2018-05-31)
+===
+
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
 Release v1.13.58 (2018-05-30)
 ===
 
