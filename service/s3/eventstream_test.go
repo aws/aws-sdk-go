@@ -9,7 +9,6 @@ import (
 	"net/http"
 	"os"
 	"reflect"
-	"strings"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -180,17 +179,13 @@ func ExampleSelectObjectContentEventStream() {
 	sess := session.Must(session.NewSession())
 	svc := New(sess)
 
-	buf := `name,number
-gopher,0
-ᵷodɥǝɹ,1
-`
-	// Put a mock CSV file to the S3 bucket so that its contents can be
-	// selected.
-	_, err := svc.PutObject(&PutObjectInput{
-		Bucket: aws.String("myBucket"),
-		Key:    aws.String("myObjectKey"),
-		Body:   strings.NewReader(buf),
-	})
+	/*
+	   Example myObjectKey CSV content:
+
+	   name,number
+	   gopher,0
+	   ᵷodɥǝɹ,1
+	*/
 
 	// Make the Select Object Content API request using the object uploaded.
 	resp, err := svc.SelectObjectContent(&SelectObjectContentInput{

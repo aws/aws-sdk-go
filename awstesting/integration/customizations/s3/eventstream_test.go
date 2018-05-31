@@ -4,7 +4,12 @@ package s3
 
 import (
 	"bytes"
+	"encoding/csv"
+	"fmt"
+	"io"
+	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -119,5 +124,65 @@ func TestSelectObjectContent_Error(t *testing.T) {
 	}
 	if a := aerr.Message(); len(a) == 0 {
 		t.Errorf("expect, error message")
+	}
+}
+
+func TestSelectObjectContent_Stream(t *testing.T) {
+	keyName := "selectGopher.csv"
+
+	buf := `name,number
+gopher,0
+ᵷodɥǝɹ,1
+`
+	// Put a mock CSV file to the S3 bucket so that its contents can be
+	// selected.
+	putTestContent(t, strings.NewReader(buf), keyName)
+
+	// Make the Select Object Content API request using the object uploaded.
+	resp, err := svc.SelectObjectContent(&s3.SelectObjectContentInput{
+		Bucket:         bucketName,
+		Key:            &keyName,
+		Expression:     aws.String("SELECT name FROM S3Object WHERE cast(number as int) < 1"),
+		ExpressionType: aws.String(s3.ExpressionTypeSql),
+		InputSerialization: &s3.InputSerialization{
+			CSV: &s3.CSVInput{
+				FileHeaderInfo: aws.String(s3.FileHeaderInfoUse),
+			},
+		},
+		OutputSerialization: &s3.OutputSerialization{
+			CSV: &s3.CSVOutput{},
+		},
+	})
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "failed making API request, %v\n", err)
+		return
+	}
+	defer resp.EventStream.Close()
+
+	results, resultWriter := io.Pipe()
+	go func() {
+		defer resultWriter.Close()
+		for event := range resp.EventStream.Events {
+			switch e := event.(type) {
+			case *s3.RecordsEvent:
+				resultWriter.Write(e.Payload)
+			case *s3.StatsEvent:
+				fmt.Printf("Processed %d bytes\n", e.Details.BytesProcessed)
+			}
+		}
+	}()
+
+	// Printout the results
+	resReader := csv.NewReader(results)
+	for {
+		record, err := resReader.Read()
+		if err == io.EOF {
+			break
+		}
+		fmt.Println(record)
+	}
+
+	if err := resp.EventStream.Err(); err != nil {
+		fmt.Fprintf(os.Stderr, "reading from event stream failed, %v\n", err)
 	}
 }
