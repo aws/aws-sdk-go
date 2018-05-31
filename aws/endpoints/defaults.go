@@ -1878,22 +1878,6 @@ var awsPartition = partition{
 				},
 				"eu-west-2": endpoint{},
 				"eu-west-3": endpoint{},
-				"fips-us-east-1": endpoint{
-					Hostname:          "s3-fips.us-east-1.amazonaws.com",
-					SignatureVersions: []string{"s3", "s3v4"},
-				},
-				"fips-us-east-2": endpoint{
-					Hostname:          "s3-fips.us-east-2.amazonaws.com",
-					SignatureVersions: []string{"s3", "s3v4"},
-				},
-				"fips-us-west-1": endpoint{
-					Hostname:          "s3-fips.us-west-1.amazonaws.com",
-					SignatureVersions: []string{"s3", "s3v4"},
-				},
-				"fips-us-west-2": endpoint{
-					Hostname:          "s3-fips.us-west-2.amazonaws.com",
-					SignatureVersions: []string{"s3", "s3v4"},
-				},
 				"s3-external-1": endpoint{
 					Hostname:          "s3-external-1.amazonaws.com",
 					SignatureVersions: []string{"s3", "s3v4"},
@@ -3053,8 +3037,7 @@ var awsusgovPartition = partition{
 			},
 			Endpoints: endpoints{
 				"fips-us-gov-west-1": endpoint{
-					Hostname:          "s3-fips.us-gov-west-1.amazonaws.com",
-					SignatureVersions: []string{"s3", "s3v4"},
+					Hostname: "s3-fips-us-gov-west-1.amazonaws.com",
 					CredentialScope: credentialScope{
 						Region: "us-gov-west-1",
 					},
