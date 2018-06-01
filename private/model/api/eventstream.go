@@ -257,6 +257,9 @@ type {{ $.ShapeName }} struct {
 // Will close the underlying EventStream reader. For EventStream over HTTP
 // connection this will also close the HTTP connection.
 {{ end -}}
+//
+// Close must be called when done using the EventStream API. Not calling Close
+// may result in resource leaks.
 func (es *{{ $.ShapeName }}) Close() (err error) { 
 	{{- if $.EventStreamAPI.Inbound }}
 		es.Reader.Close()

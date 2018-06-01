@@ -19699,6 +19699,9 @@ type SelectObjectContentEventStream struct {
 //
 // Will close the underlying EventStream reader. For EventStream over HTTP
 // connection this will also close the HTTP connection.
+//
+// Close must be called when done using the EventStream API. Not calling Close
+// may result in resource leaks.
 func (es *SelectObjectContentEventStream) Close() (err error) {
 	es.Reader.Close()
 	return es.Err()
