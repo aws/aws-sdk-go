@@ -19689,7 +19689,17 @@ func (s SSES3) GoString() string {
 //     * RecordsEvent
 //     * StatsEvent
 type SelectObjectContentEventStream struct {
-	Reader       SelectObjectContentEventStreamReader
+	// Reader is the EventStream reader for the SelectObjectContentEventStream
+	// events. This value is automatically set by the SDK when the API call is made
+	// Use this member when unit testing your code with the SDK to mock out the
+	// EventStream Reader.
+	//
+	// Must not be nil.
+	Reader SelectObjectContentEventStreamReader
+
+	// StreamCloser is the io.Closer for the EventStream connection. For HTTP
+	// EventStream this is the response Body. The stream will be closed when
+	// the Close method of the EventStream is called.
 	StreamCloser io.Closer
 }
 

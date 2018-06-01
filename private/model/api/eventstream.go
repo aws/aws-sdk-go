@@ -239,13 +239,30 @@ const eventStreamAPITmplDef = `
 {{ $.Documentation }}
 type {{ $.ShapeName }} struct {
 	{{- if $.EventStreamAPI.Inbound }}
+		// Reader is the EventStream reader for the {{ $.EventStreamAPI.Inbound.Name }}
+		// events. This value is automatically set by the SDK when the API call is made
+		// Use this member when unit testing your code with the SDK to mock out the
+		// EventStream Reader.
+		//
+		// Must not be nil.
 		Reader {{ $.ShapeName }}Reader
+
 	{{ end -}}
 
 	{{- if $.EventStreamAPI.Outbound }}
+		// Writer is the EventStream reader for the {{ $.EventStreamAPI.Inbound.Name }}
+		// events. This value is automatically set by the SDK when the API call is made
+		// Use this member when unit testing your code with the SDK to mock out the
+		// EventStream Writer.
+		//
+		// Must not be nil.
 		Writer *{{ $.ShapeName }}Writer
+
 	{{ end -}}
 
+	// StreamCloser is the io.Closer for the EventStream connection. For HTTP
+	// EventStream this is the response Body. The stream will be closed when
+	// the Close method of the EventStream is called.
 	StreamCloser io.Closer
 }
 
