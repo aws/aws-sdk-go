@@ -92,6 +92,10 @@ type IoTAPI interface {
 	CancelJobWithContext(aws.Context, *iot.CancelJobInput, ...request.Option) (*iot.CancelJobOutput, error)
 	CancelJobRequest(*iot.CancelJobInput) (*request.Request, *iot.CancelJobOutput)
 
+	CancelJobExecution(*iot.CancelJobExecutionInput) (*iot.CancelJobExecutionOutput, error)
+	CancelJobExecutionWithContext(aws.Context, *iot.CancelJobExecutionInput, ...request.Option) (*iot.CancelJobExecutionOutput, error)
+	CancelJobExecutionRequest(*iot.CancelJobExecutionInput) (*request.Request, *iot.CancelJobExecutionOutput)
+
 	ClearDefaultAuthorizer(*iot.ClearDefaultAuthorizerInput) (*iot.ClearDefaultAuthorizerOutput, error)
 	ClearDefaultAuthorizerWithContext(aws.Context, *iot.ClearDefaultAuthorizerInput, ...request.Option) (*iot.ClearDefaultAuthorizerOutput, error)
 	ClearDefaultAuthorizerRequest(*iot.ClearDefaultAuthorizerInput) (*request.Request, *iot.ClearDefaultAuthorizerOutput)
