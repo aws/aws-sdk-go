@@ -466,6 +466,13 @@ var tplService = template.Must(template.New("service").Funcs(template.FuncMap{
 
 		return "EndpointsID"
 	},
+	"ServiceIDVar": func(a *API) string {
+		if a.NoConstServiceNames {
+			return fmt.Sprintf("%q", ServiceID(a))
+		}
+
+		return "ServiceID"
+	},
 	"ServiceID": ServiceID,
 }).Parse(`
 // {{ .StructName }} provides the API operation methods for making requests to
@@ -491,11 +498,6 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "{{ .Metadata.EndpointPrefix }}" // Service endpoint prefix API calls made to.
 	EndpointsID = {{ EndpointsIDConstValue . }} // Service ID for Regions and Endpoints metadata.
-	ServiceID = "{{ ServiceID . }}" // ServiceID is a unique identifer of a specific service
-)
-{{ else }}
-// Service information constants
-const (
 	ServiceID = "{{ ServiceID . }}" // ServiceID is a unique identifer of a specific service
 )
 {{- end }}
@@ -537,7 +539,7 @@ func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
     		cfg,
     		metadata.ClientInfo{
 			ServiceName: {{ ServiceNameValue . }},
-			ServiceID : ServiceID,
+			ServiceID : {{ ServiceIDVar . }},
 			SigningName: signingName,
 			SigningRegion: signingRegion,
 			Endpoint:     endpoint,
