@@ -54,6 +54,8 @@ type API struct {
 	path        string
 
 	BaseCrosslinkURL string
+
+	HasEventStream bool `json:"-"`
 }
 
 // A Metadata is the metadata about an API's definition.
@@ -528,6 +530,9 @@ func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
 	svc.Handlers.Unmarshal.PushBackNamed({{ .ProtocolPackage }}.UnmarshalHandler)
 	svc.Handlers.UnmarshalMeta.PushBackNamed({{ .ProtocolPackage }}.UnmarshalMetaHandler)
 	svc.Handlers.UnmarshalError.PushBackNamed({{ .ProtocolPackage }}.UnmarshalErrorHandler)
+	{{ if .HasEventStream }}
+	svc.Handlers.UnmarshalStream.PushBackNamed({{ .ProtocolPackage }}.UnmarshalHandler)
+	{{ end }}
 
 	{{ if .UseInitMethods }}// Run custom client initialization if present
 	if initClient != nil {

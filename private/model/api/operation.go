@@ -44,6 +44,7 @@ func (o *Operation) HasOutput() bool {
 	return o.OutputRef.ShapeName != ""
 }
 
+// GetSigner returns the signer that should be used for a API request.
 func (o *Operation) GetSigner() string {
 	if o.AuthType == "v4-unsigned-body" {
 		o.API.imports["github.com/aws/aws-sdk-go/aws/signer/v4"] = true
@@ -121,10 +122,16 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	}
 
 	output = &{{ .OutputRef.GoTypeElem }}{}
-	req = c.newRequest(op, input, output){{ if eq .OutputRef.Shape.Placeholder true }}
-	req.Handlers.Unmarshal.Remove({{ .API.ProtocolPackage }}.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler){{ end }}
+	req = c.newRequest(op, input, output)
+	{{ if eq .OutputRef.Shape.Placeholder true -}}
+		req.Handlers.Unmarshal.Remove({{ .API.ProtocolPackage }}.UnmarshalHandler)
+		req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	{{ end -}}
 	{{ if ne .AuthType "" }}{{ .GetSigner }}{{ end -}}
+	{{ if .OutputRef.Shape.EventStreamsMemberName -}}
+		req.Handlers.Unmarshal.Swap({{ .API.ProtocolPackage }}.UnmarshalHandler.Name, rest.UnmarshalHandler)
+		req.Handlers.Unmarshal.PushBack(output.runEventStreamLoop)
+	{{ end -}}
 	return
 }
 
@@ -242,6 +249,12 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}PagesWithContext(` +
 // GoCode returns a string of rendered GoCode for this Operation
 func (o *Operation) GoCode() string {
 	var buf bytes.Buffer
+
+	if len(o.OutputRef.Shape.EventStreamsMemberName) != 0 {
+		// TODO need better was of updating protocol unmarshalers
+		o.API.imports["github.com/aws/aws-sdk-go/private/protocol/rest"] = true
+	}
+
 	err := tplOperation.Execute(&buf, o)
 	if err != nil {
 		panic(err)
