@@ -925,12 +925,21 @@
       "type":"string",
       "max":100
     },
+    "Domain":{
+      "type":"string",
+      "max":64
+    },
     "DomainJoinInfo":{
       "type":"structure",
       "members":{
         "DirectoryName":{"shape":"DirectoryName"},
         "OrganizationalUnitDistinguishedName":{"shape":"OrganizationalUnitDistinguishedName"}
       }
+    },
+    "DomainList":{
+      "type":"list",
+      "member":{"shape":"Domain"},
+      "max":10
     },
     "ErrorMessage":{"type":"string"},
     "ExpireSessionRequest":{
@@ -1388,6 +1397,8 @@
       "type":"string",
       "enum":[
         "STORAGE_CONNECTORS",
+        "STORAGE_CONNECTOR_HOMEFOLDERS",
+        "STORAGE_CONNECTOR_GOOGLE_DRIVE",
         "REDIRECT_URL",
         "FEEDBACK_URL",
         "THEME_NAME",
@@ -1476,7 +1487,8 @@
       "required":["ConnectorType"],
       "members":{
         "ConnectorType":{"shape":"StorageConnectorType"},
-        "ResourceIdentifier":{"shape":"ResourceIdentifier"}
+        "ResourceIdentifier":{"shape":"ResourceIdentifier"},
+        "Domains":{"shape":"DomainList"}
       }
     },
     "StorageConnectorList":{
@@ -1485,7 +1497,10 @@
     },
     "StorageConnectorType":{
       "type":"string",
-      "enum":["HOMEFOLDERS"]
+      "enum":[
+        "HOMEFOLDERS",
+        "GOOGLE_DRIVE"
+      ]
     },
     "StreamingUrlUserId":{
       "type":"string",
