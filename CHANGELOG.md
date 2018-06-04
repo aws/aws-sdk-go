@@ -1,3 +1,24 @@
+Release v1.14.0 (2018-06-04)
+===
+
+### Service Client Updates
+* `service/AWSMigrationHub`: Updates service documentation
+* `service/appstream`: Updates service API and documentation
+  * Amazon AppStream 2.0 adds support for Google Drive for G Suite. With this feature, customers will be able to connect their G Suite accounts with AppStream 2.0 and enable Google Drive access for an AppStream 2.0 stack. Users of the stack can then link their Google Drive using their G Suite login credentials and use their existing files stored in Drive with their AppStream 2.0 applications. File changes will be synced automatically to Google cloud.
+* `service/ec2`: Updates service API and documentation
+  * You are now able to use instance storage (up to 3600 GB of NVMe based SSD) on M5 instances, the next generation of EC2's General Purpose instances in us-east-1, us-west-2, us-east-2, eu-west-1 and ca-central-1. M5 instances offer up to 96 vCPUs, 384 GiB of DDR4 instance memory, 25 Gbps in Network bandwidth and improved EBS and Networking bandwidth on smaller instance sizes and provide a balance of compute, memory and network resources for many applications.
+* `service/eks`: Adds new service
+* `service/mediaconvert`: Updates service API and documentation
+  * This release adds the support for Common Media Application Format (CMAF) fragmented outputs, RF64 WAV audio output format, and HEV1 or HEVC1 MP4 packaging types when using HEVC in DASH or CMAF outputs.
+* `service/sagemaker`: Updates service API, documentation, and paginators
+  * Amazon SageMaker has added the ability to run hyperparameter tuning jobs. A hyperparameter tuning job will create and evaluate multiple training jobs while tuning algorithm hyperparameters, to optimize a customer specified objective metric.
+
+### SDK Features
+* Add support for EventStream based APIs (S3 SelectObjectContent) ([#1941](https://github.com/aws/aws-sdk-go/pull/1941))
+  * Adds support for EventStream asynchronous APIs such as S3 SelectObjectContents API. This API allows your application to receiving multiple events asynchronously from the API response. Your application recieves these events from a channel on the API response.
+  * See PR [#1941](https://github.com/aws/aws-sdk-go/pull/1941) for example.
+  * Fixes [#1895](https://github.com/aws/aws-sdk-go/issues/1895)
+
 Release v1.13.60 (2018-06-01)
 ===
 

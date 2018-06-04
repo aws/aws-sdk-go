@@ -6501,7 +6501,7 @@ func (s *StopImageBuilderOutput) SetImageBuilder(v *ImageBuilder) *StopImageBuil
 	return s
 }
 
-// Describes a storage connector.
+// Describes a connector to enable persistent storage for users.
 type StorageConnector struct {
 	_ struct{} `type:"structure"`
 
@@ -6509,6 +6509,9 @@ type StorageConnector struct {
 	//
 	// ConnectorType is a required field
 	ConnectorType *string `type:"string" required:"true" enum:"StorageConnectorType"`
+
+	// The names of the domains for the G Suite account.
+	Domains []*string `type:"list"`
 
 	// The ARN of the storage connector.
 	ResourceIdentifier *string `min:"1" type:"string"`
@@ -6543,6 +6546,12 @@ func (s *StorageConnector) Validate() error {
 // SetConnectorType sets the ConnectorType field's value.
 func (s *StorageConnector) SetConnectorType(v string) *StorageConnector {
 	s.ConnectorType = &v
+	return s
+}
+
+// SetDomains sets the Domains field's value.
+func (s *StorageConnector) SetDomains(v []*string) *StorageConnector {
+	s.Domains = v
 	return s
 }
 
@@ -7490,6 +7499,12 @@ const (
 	// StackAttributeStorageConnectors is a StackAttribute enum value
 	StackAttributeStorageConnectors = "STORAGE_CONNECTORS"
 
+	// StackAttributeStorageConnectorHomefolders is a StackAttribute enum value
+	StackAttributeStorageConnectorHomefolders = "STORAGE_CONNECTOR_HOMEFOLDERS"
+
+	// StackAttributeStorageConnectorGoogleDrive is a StackAttribute enum value
+	StackAttributeStorageConnectorGoogleDrive = "STORAGE_CONNECTOR_GOOGLE_DRIVE"
+
 	// StackAttributeRedirectUrl is a StackAttribute enum value
 	StackAttributeRedirectUrl = "REDIRECT_URL"
 
@@ -7515,6 +7530,9 @@ const (
 const (
 	// StorageConnectorTypeHomefolders is a StorageConnectorType enum value
 	StorageConnectorTypeHomefolders = "HOMEFOLDERS"
+
+	// StorageConnectorTypeGoogleDrive is a StorageConnectorType enum value
+	StorageConnectorTypeGoogleDrive = "GOOGLE_DRIVE"
 )
 
 const (

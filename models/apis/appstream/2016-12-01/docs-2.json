@@ -386,6 +386,12 @@
         "UpdateStackRequest$DisplayName": "<p>The stack name for display.</p>"
       }
     },
+    "Domain": {
+      "base": "GSuite domain for GDrive integration.",
+      "refs": {
+        "DomainList$member": null
+      }
+    },
     "DomainJoinInfo": {
       "base": "<p>Contains the information needed to join a Microsoft Active Directory domain.</p>",
       "refs": {
@@ -394,6 +400,12 @@
         "Fleet$DomainJoinInfo": "<p>The information needed to join a Microsoft Active Directory domain.</p>",
         "ImageBuilder$DomainJoinInfo": "<p>The information needed to join a Microsoft Active Directory domain.</p>",
         "UpdateFleetRequest$DomainJoinInfo": "<p>The information needed to join a Microsoft Active Directory domain.</p>"
+      }
+    },
+    "DomainList": {
+      "base": null,
+      "refs": {
+        "StorageConnector$Domains": "<p>The names of the domains for the G Suite account.</p>"
       }
     },
     "ErrorMessage": {
@@ -854,7 +866,7 @@
       }
     },
     "StorageConnector": {
-      "base": "<p>Describes a storage connector.</p>",
+      "base": "<p>Describes a connector to enable persistent storage for users.</p>",
       "refs": {
         "StorageConnectorList$member": null
       }
