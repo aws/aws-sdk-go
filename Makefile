@@ -13,6 +13,7 @@ SDK_ONLY_PKGS=$(shell go list ./... | grep -v "/vendor/")
 SDK_UNIT_TEST_ONLY_PKGS=$(shell go list -tags ${UNIT_TEST_TAGS} ./... | grep -v "/vendor/")
 SDK_GO_1_4=$(shell go version | grep "go1.4")
 SDK_GO_1_5=$(shell go version | grep "go1.5")
+SDK_GO_1_6=$(shell go version | grep "go1.6")
 SDK_GO_VERSION=$(shell go version | awk '''{print $$3}''' | tr -d '''\n''')
 
 all: get-deps generate unit
@@ -59,6 +60,18 @@ unit: get-deps-tests build verify
 unit-with-race-cover: get-deps-tests build verify
 	@echo "go test SDK and vendor packages"
 	@go test -tags ${UNIT_TEST_TAGS} -race -cpu=1,2,4 $(SDK_UNIT_TEST_ONLY_PKGS)
+
+ci-test: ci-test-generate unit-with-race-cover ci-test-generate-validate
+
+ci-test-generate: get-deps
+	@echo "CI test generated code"
+	@if [ \( -z "${SDK_GO_1_6}" \) -a \( -z "${SDK_GO_1_5}" \) ]; then  make generate; else echo "skipping generate"; fi
+
+ci-test-generate-validate:
+	@echo "CI test validate no generated code changes"
+	@gitstatus=`if [ \( -z "${SDK_GO_1_6}" \) -a \( -z "${SDK_GO_1_5}" \) ]; then  git status --porcelain; else echo "skipping validation"; fi`; \
+	echo "$$gitstatus"; \
+	if [ "$$gitstatus" != "" ] && [ "$$gitstatus" != "skipping validation" ]; then git diff; exit 1; fi
 
 integration: get-deps-tests integ-custom smoke-tests performance
 
