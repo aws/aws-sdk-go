@@ -1,3 +1,17 @@
+Release v1.14.1 (2018-06-05)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/polly`: Updates service API and documentation
+  * Amazon Polly adds new French voice - "Lea"
+* `service/rds`: Updates service API and documentation
+  * This release adds customizable processor features for RDS instances.
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for secretsmanager
+* `service/shield`: Updates service API and documentation
+  * DDoS Response Team access management for AWS Shield
+
 Release v1.14.0 (2018-06-04)
 ===
 
