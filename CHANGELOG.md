@@ -1,3 +1,10 @@
+Release v1.14.2 (2018-06-07)
+===
+
+### Service Client Updates
+* `service/medialive`: Updates service API, documentation, and paginators
+  * AWS Elemental MediaLive now makes channel log information available through Amazon CloudWatch Logs. You can set up each MediaLive channel with a logging level; when the channel is run, logs will automatically be published to your account on Amazon CloudWatch Logs
+
 Release v1.14.1 (2018-06-05)
 ===
 
