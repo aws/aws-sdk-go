@@ -1,3 +1,9 @@
+Release v1.14.3 (2018-06-08)
+===
+
+### Service Client Updates
+* `service/mediatailor`: Updates service API
+
 Release v1.14.2 (2018-06-07)
 ===
 
