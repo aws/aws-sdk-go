@@ -16,7 +16,7 @@
       "name" : "DeletePlaybackConfiguration",
       "http" : {
         "method" : "DELETE",
-        "requestUri" : "/prod/playbackConfiguration/{Name}",
+        "requestUri" : "/playbackConfiguration/{Name}",
         "responseCode" : 204
       },
       "input" : {
@@ -28,7 +28,7 @@
       "name" : "GetPlaybackConfiguration",
       "http" : {
         "method" : "GET",
-        "requestUri" : "/prod/playbackConfiguration/{Name}",
+        "requestUri" : "/playbackConfiguration/{Name}",
         "responseCode" : 200
       },
       "input" : {
@@ -43,7 +43,7 @@
       "name" : "ListPlaybackConfigurations",
       "http" : {
         "method" : "GET",
-        "requestUri" : "/prod/playbackConfigurations",
+        "requestUri" : "/playbackConfigurations",
         "responseCode" : 200
       },
       "input" : {
@@ -58,7 +58,7 @@
       "name" : "PutPlaybackConfiguration",
       "http" : {
         "method" : "PUT",
-        "requestUri" : "/prod/playbackConfiguration",
+        "requestUri" : "/playbackConfiguration",
         "responseCode" : 200
       },
       "input" : {
