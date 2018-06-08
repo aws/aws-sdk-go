@@ -545,7 +545,7 @@ func (d *Decoder) decodeString(s *string, v reflect.Value, fieldTag tag) error {
 		if v.Type() == byteSliceType {
 			decoded, err := base64.StdEncoding.DecodeString(*s)
 			if err != nil {
-				return &UnmarshalTypeError{Value: "string", Type: v.Type()}
+				return &UnmarshalError{Err: err, Value: "string", Type: v.Type()}
 			}
 			v.SetBytes(decoded)
 		}
