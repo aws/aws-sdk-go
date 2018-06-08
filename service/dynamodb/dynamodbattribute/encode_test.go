@@ -1,6 +1,7 @@
 package dynamodbattribute
 
 import (
+	"encoding/json"
 	"fmt"
 	"reflect"
 	"testing"
@@ -267,5 +268,68 @@ func TestEncodeAliasedUnixTime(t *testing.T) {
 	}
 	if e, a := expect, actual; !reflect.DeepEqual(e, a) {
 		t.Errorf("expect %v, got %v", e, a)
+	}
+}
+
+func TestMarshalNumbers(t *testing.T) {
+	tests := []struct {
+		in       interface{}
+		expected *dynamodb.AttributeValue
+	}{
+		{
+			in:       123,
+			expected: &dynamodb.AttributeValue{N: aws.String("123")},
+		},
+		{
+			in:       Number("456"),
+			expected: &dynamodb.AttributeValue{N: aws.String("456")},
+		},
+		{
+			in:       json.Number("789"),
+			expected: &dynamodb.AttributeValue{N: aws.String("789")},
+		},
+	}
+
+	enc := NewEncoder()
+	for i, v := range tests {
+		out, err := enc.Encode(v.in)
+		if err != nil {
+			t.Errorf("%d: expect no error, got %v", i, err)
+		}
+		if !reflect.DeepEqual(v.expected, out) {
+			t.Errorf("%d: expect %v, got %v", i, v.expected, out)
+		}
+	}
+}
+
+func TestMarshalNumbersNoJSON(t *testing.T) {
+	tests := []struct {
+		in       interface{}
+		expected *dynamodb.AttributeValue
+	}{
+		{
+			in:       123,
+			expected: &dynamodb.AttributeValue{N: aws.String("123")},
+		},
+		{
+			in:       Number("456"),
+			expected: &dynamodb.AttributeValue{N: aws.String("456")},
+		},
+		{
+			in:       json.Number("789"),
+			expected: &dynamodb.AttributeValue{S: aws.String("789")},
+		},
+	}
+
+	enc := NewEncoder()
+	enc.SupportJSONNumber = false
+	for i, v := range tests {
+		out, err := enc.Encode(v.in)
+		if err != nil {
+			t.Errorf("%d: expect no error, got %v", i, err)
+		}
+		if !reflect.DeepEqual(v.expected, out) {
+			t.Errorf("%d: expect %v, got %v", i, v.expected, out)
+		}
 	}
 }

@@ -1,6 +1,7 @@
 package dynamodbattribute
 
 import (
+	"encoding/json"
 	"fmt"
 	"reflect"
 	"strconv"
@@ -407,6 +408,33 @@ func TestUnmarshalUnmashaler(t *testing.T) {
 	}
 }
 
+func TestUnmarshalNumbers(t *testing.T) {
+	type out struct {
+		Int        int
+		Number     Number
+		JSONNumber json.Number
+	}
+
+	var output out
+	err := UnmarshalMap(map[string]*dynamodb.AttributeValue{
+		"Int":        &dynamodb.AttributeValue{N: aws.String("123")},
+		"Number":     &dynamodb.AttributeValue{N: aws.String("456")},
+		"JSONNumber": &dynamodb.AttributeValue{N: aws.String("789")},
+	}, &output)
+	if err != nil {
+		t.Errorf("expect no error, got %v", err)
+	}
+
+	expected := out{
+		Int:        123,
+		Number:     Number("456"),
+		JSONNumber: json.Number("789"),
+	}
+	if !reflect.DeepEqual(expected, output) {
+		t.Errorf("expect %v, got %v", expected, output)
+	}
+}
+
 func TestDecodeUseNumber(t *testing.T) {
 	u := map[string]interface{}{}
 	av := &dynamodb.AttributeValue{
@@ -458,6 +486,66 @@ func TestDecodeUseNumberNumberSet(t *testing.T) {
 	}
 
 	ns := u["ns"].([]Number)
+
+	if e, a := "123", ns[0].String(); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "321", ns[1].String(); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+}
+
+func TestDecodeUseJSONNumber(t *testing.T) {
+	u := map[string]interface{}{}
+	av := &dynamodb.AttributeValue{
+		M: map[string]*dynamodb.AttributeValue{
+			"abc": {S: aws.String("value")},
+			"def": {N: aws.String("123")},
+			"ghi": {BOOL: aws.Bool(true)},
+		},
+	}
+
+	decoder := NewDecoder(func(d *Decoder) {
+		d.UseJSONNumber = true
+	})
+	err := decoder.Decode(av, &u)
+	if err != nil {
+		t.Errorf("expect no error, got %v", err)
+	}
+
+	if e, a := "value", u["abc"]; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	n := u["def"].(json.Number)
+	if e, a := "123", n.String(); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := true, u["ghi"]; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+}
+
+func TestDecodeUseJSONNumberNumberSet(t *testing.T) {
+	u := map[string]interface{}{}
+	av := &dynamodb.AttributeValue{
+		M: map[string]*dynamodb.AttributeValue{
+			"ns": {
+				NS: []*string{
+					aws.String("123"), aws.String("321"),
+				},
+			},
+		},
+	}
+
+	decoder := NewDecoder(func(d *Decoder) {
+		d.UseJSONNumber = true
+	})
+	err := decoder.Decode(av, &u)
+	if err != nil {
+		t.Errorf("expect no error, got %v", err)
+	}
+
+	ns := u["ns"].([]json.Number)
 
 	if e, a := "123", ns[0].String(); e != a {
 		t.Errorf("expect %v, got %v", e, a)
