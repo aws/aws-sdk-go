@@ -36,7 +36,7 @@ help:
 	@echo "  get-deps-tests          to get the SDK's test dependencies"
 	@echo "  get-deps-verify         to get the SDK's verification dependencies"
 
-generate: gen-test gen-endpoints gen-services
+generate: cleanup-models gen-test gen-endpoints gen-services
 
 gen-test: gen-protocol-test
 
@@ -48,6 +48,10 @@ gen-protocol-test:
 
 gen-endpoints:
 	go generate ./models/endpoints/
+
+cleanup-models:
+	@echo "Cleaning up stale model versions"
+	@./cleanup_models.sh
 
 build:
 	@echo "go build SDK and vendor packages"
