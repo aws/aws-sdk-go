@@ -9,8 +9,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws/signer/v4"
 )
 
-// BuildAuthToken will return a authentication token for the database's connect
-// based on the RDS database endpoint, AWS region, IAM user or role, and AWS credentials.
+// BuildAuthToken will return an authorization token used as the password for a DB
+// connection.
 //
 // Endpoint consists of the hostname and port, IE hostname:port, of the RDS database.
 // Region is the AWS region the RDS database is in and where the authentication token
