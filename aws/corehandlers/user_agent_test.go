@@ -8,7 +8,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 )
 
-func TestAddHostExecEnvUserAgentHandler(t *testing.T) {
+func TestAddHostExecEnvUserAgentHander(t *testing.T) {
 	cases := []struct {
 		ExecEnv string
 		Expect  string
@@ -27,7 +27,7 @@ func TestAddHostExecEnvUserAgentHandler(t *testing.T) {
 				Header: http.Header{},
 			},
 		}
-		AddHostExecEnvUserAgentHandler.Fn(req)
+		AddHostExecEnvUserAgentHander.Fn(req)
 
 		if err := req.Error; err != nil {
 			t.Fatalf("%d, expect no error, got %v", i, err)
