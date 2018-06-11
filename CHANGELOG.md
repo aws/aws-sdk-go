@@ -1,3 +1,14 @@
+Release v1.14.4 (2018-06-11)
+===
+
+### Service Client Updates
+* `service/clouddirectory`: Updates service API and documentation
+  * Amazon Cloud Directory now supports optional attributes on Typed Links, giving users the ability to associate and manage data on Typed Links.
+* `service/rds`: Updates service documentation
+  * Changed lists of valid EngineVersion values to links to the RDS User Guide.
+* `service/storagegateway`: Updates service API and documentation
+  * AWS Storage Gateway now enables you to create cached volumes and tapes with AWS KMS support.
+
 Release v1.14.3 (2018-06-08)
 ===
 
