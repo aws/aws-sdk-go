@@ -1,3 +1,12 @@
+Release v1.14.6 (2018-06-13)
+===
+
+### Service Client Updates
+* `service/servicecatalog`: Updates service API
+  * Introduced new length limitations for few of the product fields.
+* `service/ssm`: Updates service API and documentation
+  * Added support for new parameter, CloudWatchOutputConfig, for SendCommand API. Users can now have RunCommand output sent to CloudWatchLogs.
+
 Release v1.14.5 (2018-06-12)
 ===
 
