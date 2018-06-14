@@ -1,3 +1,13 @@
+Release v1.14.7 (2018-06-14)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API and documentation
+  * Support for PRIVATE endpoint configuration type
+* `service/dynamodb`: Updates service API and documentation
+  * Added two new fields SSEType and KMSMasterKeyArn to SSEDescription block in describe-table output.
+* `service/iotanalytics`: Updates service API and documentation
+
 Release v1.14.6 (2018-06-13)
 ===
 
