@@ -1,3 +1,10 @@
+Release v1.14.8 (2018-06-15)
+===
+
+### Service Client Updates
+* `service/mediaconvert`: Updates service API and documentation
+  * This release adds language code support according to the ISO-639-3 standard. Custom 3-character language codes are now supported on input and output for both audio and captions.
+
 Release v1.14.7 (2018-06-14)
 ===
 

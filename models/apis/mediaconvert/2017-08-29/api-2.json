@@ -993,6 +993,10 @@
           "shape": "AudioCodecSettings",
           "locationName": "codecSettings"
         },
+        "CustomLanguageCode": {
+          "shape": "__stringMin3Max3PatternAZaZ3",
+          "locationName": "customLanguageCode"
+        },
         "LanguageCode": {
           "shape": "LanguageCode",
           "locationName": "languageCode"
@@ -1081,6 +1085,10 @@
     "AudioSelector": {
       "type": "structure",
       "members": {
+        "CustomLanguageCode": {
+          "shape": "__stringMin3Max3PatternAZaZ3",
+          "locationName": "customLanguageCode"
+        },
         "DefaultSelection": {
           "shape": "AudioDefaultSelection",
           "locationName": "defaultSelection"
@@ -1320,6 +1328,10 @@
           "shape": "__stringMin1",
           "locationName": "captionSelectorName"
         },
+        "CustomLanguageCode": {
+          "shape": "__stringMin3Max3PatternAZaZ3",
+          "locationName": "customLanguageCode"
+        },
         "DestinationSettings": {
           "shape": "CaptionDestinationSettings",
           "locationName": "destinationSettings"
@@ -1341,6 +1353,10 @@
     "CaptionDescriptionPreset": {
       "type": "structure",
       "members": {
+        "CustomLanguageCode": {
+          "shape": "__stringMin3Max3PatternAZaZ3",
+          "locationName": "customLanguageCode"
+        },
         "DestinationSettings": {
           "shape": "CaptionDestinationSettings",
           "locationName": "destinationSettings"
@@ -1406,6 +1422,10 @@
     "CaptionSelector": {
       "type": "structure",
       "members": {
+        "CustomLanguageCode": {
+          "shape": "__stringMin3Max3PatternAZaZ3",
+          "locationName": "customLanguageCode"
+        },
         "LanguageCode": {
           "shape": "LanguageCode",
           "locationName": "languageCode"
@@ -1516,8 +1536,7 @@
         }
       },
       "required": [
-        "Type",
-        "StaticKeyProvider"
+        "Type"
       ]
     },
     "CmafEncryptionType": {
@@ -3470,6 +3489,10 @@
         "CaptionChannel": {
           "shape": "__integerMinNegative2147483648Max2147483647",
           "locationName": "captionChannel"
+        },
+        "CustomLanguageCode": {
+          "shape": "__stringMin3Max3PatternAZaZ3",
+          "locationName": "customLanguageCode"
         },
         "LanguageCode": {
           "shape": "LanguageCode",
@@ -6930,6 +6953,12 @@
       "min": 3,
       "max": 3,
       "pattern": "^[1-8][0-9a-fA-F][0-9a-eA-E]$"
+    },
+    "__stringMin3Max3PatternAZaZ3": {
+      "type": "string",
+      "min": 3,
+      "max": 3,
+      "pattern": "^[A-Za-z]{3}$"
     },
     "__stringPattern": {
       "type": "string",
