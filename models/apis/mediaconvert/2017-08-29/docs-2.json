@@ -354,7 +354,7 @@
       }
     },
     "CmafGroupSettings": {
-      "base": "Required when you set (Type) under (OutputGroups)>(OutputGroupSettings) to CMAF_GROUP_SETTINGS.",
+      "base": "Required when you set (Type) under (OutputGroups)>(OutputGroupSettings) to CMAF_GROUP_SETTINGS. Each output in a CMAF Output Group may only contain a single video, audio, or caption output.",
       "refs": {
         "OutputGroupSettings$CmafGroupSettings": null
       }
@@ -1386,7 +1386,7 @@
       }
     },
     "LanguageCode": {
-      "base": "Code to specify the language, following the specification \"ISO 639-2 three-digit code\":http://www.loc.gov/standards/iso639-2/",
+      "base": "Specify the language, using the ISO 639-2 three-letter code listed at https://www.loc.gov/standards/iso639-2/php/code_list.php.",
       "refs": {
         "AudioDescription$LanguageCode": "Indicates the language of the audio output track. The ISO 639 language specified in the 'Language Code' drop down will be used when 'Follow Input Language Code' is not selected or when 'Follow Input Language Code' is selected but there is no ISO 639 language code specified by the input.",
         "AudioSelector$LanguageCode": "Selects a specific language code from within an audio source.",
@@ -2731,7 +2731,7 @@
     "__listOfId3Insertion": {
       "base": null,
       "refs": {
-        "TimedMetadataInsertion$Id3Insertions": null
+        "TimedMetadataInsertion$Id3Insertions": "Id3Insertions contains the array of Id3Insertion instances."
       }
     },
     "__listOfInput": {
@@ -3013,6 +3013,17 @@
       "refs": {
         "TeletextDestinationSettings$PageNumber": "Set pageNumber to the Teletext page number for the destination captions for this output. This value must be a three-digit hexadecimal string; strings ending in -FF are invalid. If you are passing through the entire set of Teletext data, do not use this field.",
         "TeletextSourceSettings$PageNumber": "Use Page Number (PageNumber) to specify the three-digit hexadecimal page number that will be used for Teletext captions. Do not use this setting if you are passing through teletext from the input source to output."
+      }
+    },
+    "__stringMin3Max3PatternAZaZ3": {
+      "base": null,
+      "refs": {
+        "AudioDescription$CustomLanguageCode": "Specify the language for this audio output track, using the ISO 639-2 or ISO 639-3 three-letter language code. The language specified will be used when 'Follow Input Language Code' is not selected or when 'Follow Input Language Code' is selected but there is no ISO 639 language code specified by the input.",
+        "AudioSelector$CustomLanguageCode": "Selects a specific language code from within an audio source, using the ISO 639-2 or ISO 639-3 three-letter language code",
+        "CaptionDescription$CustomLanguageCode": "Indicates the language of the caption output track, using the ISO 639-2 or ISO 639-3 three-letter language code",
+        "CaptionDescriptionPreset$CustomLanguageCode": "Indicates the language of the caption output track, using the ISO 639-2 or ISO 639-3 three-letter language code",
+        "CaptionSelector$CustomLanguageCode": "The specific language to extract from source, using the ISO 639-2 or ISO 639-3 three-letter language code. If input is SCTE-27, complete this field and/or PID to select the caption language to extract. If input is DVB-Sub and output is Burn-in or SMPTE-TT, complete this field and/or PID to select the caption language to extract. If input is DVB-Sub that is being passed through, omit this field (and PID field); there is no way to extract a specific language with pass-through captions.",
+        "HlsCaptionLanguageMapping$CustomLanguageCode": "Specify the language for this caption channel, using the ISO 639-2 or ISO 639-3 three-letter language code"
       }
     },
     "__stringPattern": {
