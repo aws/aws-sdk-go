@@ -29,8 +29,8 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "Kinesis Video Media" // Name of service.
-	EndpointsID = "kinesisvideo"        // ID to lookup a service endpoint with.
+	ServiceName = "kinesisvideo"        // Name of service.
+	EndpointsID = ServiceName           // ID to lookup a service endpoint with.
 	ServiceID   = "Kinesis Video Media" // ServiceID is a unique identifer of a specific service.
 )
 

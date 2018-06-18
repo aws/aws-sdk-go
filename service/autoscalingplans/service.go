@@ -29,8 +29,8 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "Auto Scaling Plans" // Name of service.
-	EndpointsID = "autoscaling"        // ID to lookup a service endpoint with.
+	ServiceName = "autoscaling"        // Name of service.
+	EndpointsID = ServiceName          // ID to lookup a service endpoint with.
 	ServiceID   = "Auto Scaling Plans" // ServiceID is a unique identifer of a specific service.
 )
 

@@ -29,9 +29,9 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "Neptune" // Name of service.
-	EndpointsID = "rds"     // ID to lookup a service endpoint with.
-	ServiceID   = "Neptune" // ServiceID is a unique identifer of a specific service.
+	ServiceName = "rds"       // Name of service.
+	EndpointsID = ServiceName // ID to lookup a service endpoint with.
+	ServiceID   = "Neptune"   // ServiceID is a unique identifer of a specific service.
 )
 
 // New creates a new instance of the Neptune client with a session.
