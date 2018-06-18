@@ -29,7 +29,7 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "autoscaling"              // Service endpoint prefix API calls made to.
+	ServiceName = "Application Auto Scaling" // Service endpoint prefix API calls made to.
 	EndpointsID = "application-autoscaling"  // Service ID for Regions and Endpoints metadata.
 	ServiceID   = "Application Auto Scaling" // ServiceID is a unique identifer of a specific service
 )

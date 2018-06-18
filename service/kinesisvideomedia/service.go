@@ -29,8 +29,8 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "kinesisvideo"        // Service endpoint prefix API calls made to.
-	EndpointsID = ServiceName           // Service ID for Regions and Endpoints metadata.
+	ServiceName = "Kinesis Video Media" // Service endpoint prefix API calls made to.
+	EndpointsID = "kinesisvideo"        // Service ID for Regions and Endpoints metadata.
 	ServiceID   = "Kinesis Video Media" // ServiceID is a unique identifer of a specific service
 )
 

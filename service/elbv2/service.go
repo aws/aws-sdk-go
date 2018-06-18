@@ -29,8 +29,8 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "elasticloadbalancing"      // Service endpoint prefix API calls made to.
-	EndpointsID = ServiceName                 // Service ID for Regions and Endpoints metadata.
+	ServiceName = "Elastic Load Balancing v2" // Service endpoint prefix API calls made to.
+	EndpointsID = "elasticloadbalancing"      // Service ID for Regions and Endpoints metadata.
 	ServiceID   = "Elastic Load Balancing v2" // ServiceID is a unique identifer of a specific service
 )
 
