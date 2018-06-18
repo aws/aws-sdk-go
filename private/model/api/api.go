@@ -444,24 +444,26 @@ func ServiceID(a *API) string {
 
 // A tplService defines the template for the service generated code.
 var tplService = template.Must(template.New("service").Funcs(template.FuncMap{
+	"ServiceNameConstValue": ServiceName,
 	"ServiceNameValue": func(a *API) string {
-		if a.NoConstServiceNames {
-			return fmt.Sprintf("%q", a.Metadata.EndpointPrefix)
+		if !a.NoConstServiceNames {
+			return "ServiceName"
 		}
-		return "ServiceName"
+		return fmt.Sprintf("%q", ServiceName(a))
 	},
 	"EndpointsIDConstValue": func(a *API) string {
 		if a.NoConstServiceNames {
-			return fmt.Sprintf("%q", a.Metadata.EndpointPrefix)
+			return fmt.Sprintf("%q", a.Metadata.EndpointsID)
 		}
-		if a.Metadata.EndpointPrefix == a.Metadata.EndpointsID {
+		if a.Metadata.EndpointsID == ServiceName(a) {
 			return "ServiceName"
 		}
+
 		return fmt.Sprintf("%q", a.Metadata.EndpointsID)
 	},
 	"EndpointsIDValue": func(a *API) string {
 		if a.NoConstServiceNames {
-			return fmt.Sprintf("%q", a.Metadata.EndpointPrefix)
+			return fmt.Sprintf("%q", a.Metadata.EndpointsID)
 		}
 
 		return "EndpointsID"
@@ -496,7 +498,7 @@ var initRequest func(*request.Request)
 {{ if not .NoConstServiceNames -}}
 // Service information constants
 const (
-	ServiceName = "{{ .Metadata.EndpointPrefix }}" // Service endpoint prefix API calls made to.
+	ServiceName = "{{ ServiceNameConstValue . }}" // Service endpoint prefix API calls made to.
 	EndpointsID = {{ EndpointsIDConstValue . }} // Service ID for Regions and Endpoints metadata.
 	ServiceID = "{{ ServiceID . }}" // ServiceID is a unique identifer of a specific service
 )
