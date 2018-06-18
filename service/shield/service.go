@@ -29,9 +29,9 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "shield"    // Service endpoint prefix API calls made to.
-	EndpointsID = ServiceName // Service ID for Regions and Endpoints metadata.
-	ServiceID   = "Shield"    // ServiceID is a unique identifer of a specific service
+	ServiceName = "shield"    // Name of service.
+	EndpointsID = ServiceName // ID to lookup a service endpoint with.
+	ServiceID   = "Shield"    // ServiceID is a unique identifer of a specific service.
 )
 
 // New creates a new instance of the Shield client with a session.

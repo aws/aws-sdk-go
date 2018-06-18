@@ -29,9 +29,9 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "clouddirectory" // Service endpoint prefix API calls made to.
-	EndpointsID = ServiceName      // Service ID for Regions and Endpoints metadata.
-	ServiceID   = "CloudDirectory" // ServiceID is a unique identifer of a specific service
+	ServiceName = "clouddirectory" // Name of service.
+	EndpointsID = ServiceName      // ID to lookup a service endpoint with.
+	ServiceID   = "CloudDirectory" // ServiceID is a unique identifer of a specific service.
 )
 
 // New creates a new instance of the CloudDirectory client with a session.

@@ -29,9 +29,9 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "data.jobs.iot"       // Service endpoint prefix API calls made to.
-	EndpointsID = ServiceName           // Service ID for Regions and Endpoints metadata.
-	ServiceID   = "IoT Jobs Data Plane" // ServiceID is a unique identifer of a specific service
+	ServiceName = "data.jobs.iot"       // Name of service.
+	EndpointsID = ServiceName           // ID to lookup a service endpoint with.
+	ServiceID   = "IoT Jobs Data Plane" // ServiceID is a unique identifer of a specific service.
 )
 
 // New creates a new instance of the IoTJobsDataPlane client with a session.

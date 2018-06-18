@@ -29,9 +29,9 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "tagging"                     // Service endpoint prefix API calls made to.
-	EndpointsID = ServiceName                   // Service ID for Regions and Endpoints metadata.
-	ServiceID   = "Resource Groups Tagging API" // ServiceID is a unique identifer of a specific service
+	ServiceName = "tagging"                     // Name of service.
+	EndpointsID = ServiceName                   // ID to lookup a service endpoint with.
+	ServiceID   = "Resource Groups Tagging API" // ServiceID is a unique identifer of a specific service.
 )
 
 // New creates a new instance of the ResourceGroupsTaggingAPI client with a session.

@@ -29,9 +29,9 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "runtime.lex"         // Service endpoint prefix API calls made to.
-	EndpointsID = ServiceName           // Service ID for Regions and Endpoints metadata.
-	ServiceID   = "Lex Runtime Service" // ServiceID is a unique identifer of a specific service
+	ServiceName = "runtime.lex"         // Name of service.
+	EndpointsID = ServiceName           // ID to lookup a service endpoint with.
+	ServiceID   = "Lex Runtime Service" // ServiceID is a unique identifer of a specific service.
 )
 
 // New creates a new instance of the LexRuntimeService client with a session.

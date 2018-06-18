@@ -29,9 +29,9 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "Elastic Load Balancing v2" // Service endpoint prefix API calls made to.
-	EndpointsID = "elasticloadbalancing"      // Service ID for Regions and Endpoints metadata.
-	ServiceID   = "Elastic Load Balancing v2" // ServiceID is a unique identifer of a specific service
+	ServiceName = "Elastic Load Balancing v2" // Name of service.
+	EndpointsID = "elasticloadbalancing"      // ID to lookup a service endpoint with.
+	ServiceID   = "Elastic Load Balancing v2" // ServiceID is a unique identifer of a specific service.
 )
 
 // New creates a new instance of the ELBV2 client with a session.

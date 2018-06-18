@@ -29,9 +29,9 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "connect"   // Service endpoint prefix API calls made to.
-	EndpointsID = ServiceName // Service ID for Regions and Endpoints metadata.
-	ServiceID   = "Connect"   // ServiceID is a unique identifer of a specific service
+	ServiceName = "connect"   // Name of service.
+	EndpointsID = ServiceName // ID to lookup a service endpoint with.
+	ServiceID   = "Connect"   // ServiceID is a unique identifer of a specific service.
 )
 
 // New creates a new instance of the Connect client with a session.

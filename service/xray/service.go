@@ -29,9 +29,9 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "xray"      // Service endpoint prefix API calls made to.
-	EndpointsID = ServiceName // Service ID for Regions and Endpoints metadata.
-	ServiceID   = "XRay"      // ServiceID is a unique identifer of a specific service
+	ServiceName = "xray"      // Name of service.
+	EndpointsID = ServiceName // ID to lookup a service endpoint with.
+	ServiceID   = "XRay"      // ServiceID is a unique identifer of a specific service.
 )
 
 // New creates a new instance of the XRay client with a session.

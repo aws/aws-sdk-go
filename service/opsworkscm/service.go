@@ -29,9 +29,9 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "opsworks-cm" // Service endpoint prefix API calls made to.
-	EndpointsID = ServiceName   // Service ID for Regions and Endpoints metadata.
-	ServiceID   = "OpsWorksCM"  // ServiceID is a unique identifer of a specific service
+	ServiceName = "opsworks-cm" // Name of service.
+	EndpointsID = ServiceName   // ID to lookup a service endpoint with.
+	ServiceID   = "OpsWorksCM"  // ServiceID is a unique identifer of a specific service.
 )
 
 // New creates a new instance of the OpsWorksCM client with a session.

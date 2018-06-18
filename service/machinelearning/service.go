@@ -29,9 +29,9 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "machinelearning"  // Service endpoint prefix API calls made to.
-	EndpointsID = ServiceName        // Service ID for Regions and Endpoints metadata.
-	ServiceID   = "Machine Learning" // ServiceID is a unique identifer of a specific service
+	ServiceName = "machinelearning"  // Name of service.
+	EndpointsID = ServiceName        // ID to lookup a service endpoint with.
+	ServiceID   = "Machine Learning" // ServiceID is a unique identifer of a specific service.
 )
 
 // New creates a new instance of the MachineLearning client with a session.

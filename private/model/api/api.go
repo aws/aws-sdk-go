@@ -498,9 +498,9 @@ var initRequest func(*request.Request)
 {{ if not .NoConstServiceNames -}}
 // Service information constants
 const (
-	ServiceName = "{{ ServiceNameConstValue . }}" // Service endpoint prefix API calls made to.
-	EndpointsID = {{ EndpointsIDConstValue . }} // Service ID for Regions and Endpoints metadata.
-	ServiceID = "{{ ServiceID . }}" // ServiceID is a unique identifer of a specific service
+	ServiceName = "{{ ServiceNameConstValue . }}" // Name of service.
+	EndpointsID = {{ EndpointsIDConstValue . }} // ID to lookup a service endpoint with.
+	ServiceID = "{{ ServiceID . }}" // ServiceID is a unique identifer of a specific service.
 )
 {{- end }}
 
