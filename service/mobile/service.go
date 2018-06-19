@@ -29,9 +29,9 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "mobile"    // Service endpoint prefix API calls made to.
-	EndpointsID = ServiceName // Service ID for Regions and Endpoints metadata.
-	ServiceID   = "Mobile"    // ServiceID is a unique identifer of a specific service
+	ServiceName = "mobile"    // Name of service.
+	EndpointsID = ServiceName // ID to lookup a service endpoint with.
+	ServiceID   = "Mobile"    // ServiceID is a unique identifer of a specific service.
 )
 
 // New creates a new instance of the Mobile client with a session.

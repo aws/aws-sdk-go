@@ -75,7 +75,7 @@ func newOutputService1ProtocolTestClient(cfg aws.Config, handlers request.Handle
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "outputservice1protocoltest",
+				ServiceName:   "OutputService1ProtocolTest",
 				ServiceID:     "OutputService1ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
@@ -459,7 +459,7 @@ func newOutputService2ProtocolTestClient(cfg aws.Config, handlers request.Handle
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "outputservice2protocoltest",
+				ServiceName:   "OutputService2ProtocolTest",
 				ServiceID:     "OutputService2ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
@@ -604,7 +604,7 @@ func newOutputService3ProtocolTestClient(cfg aws.Config, handlers request.Handle
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "outputservice3protocoltest",
+				ServiceName:   "OutputService3ProtocolTest",
 				ServiceID:     "OutputService3ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
@@ -748,7 +748,7 @@ func newOutputService4ProtocolTestClient(cfg aws.Config, handlers request.Handle
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "outputservice4protocoltest",
+				ServiceName:   "OutputService4ProtocolTest",
 				ServiceID:     "OutputService4ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
@@ -892,7 +892,7 @@ func newOutputService5ProtocolTestClient(cfg aws.Config, handlers request.Handle
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "outputservice5protocoltest",
+				ServiceName:   "OutputService5ProtocolTest",
 				ServiceID:     "OutputService5ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
@@ -1036,7 +1036,7 @@ func newOutputService6ProtocolTestClient(cfg aws.Config, handlers request.Handle
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "outputservice6protocoltest",
+				ServiceName:   "OutputService6ProtocolTest",
 				ServiceID:     "OutputService6ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
@@ -1192,7 +1192,7 @@ func newOutputService7ProtocolTestClient(cfg aws.Config, handlers request.Handle
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "outputservice7protocoltest",
+				ServiceName:   "OutputService7ProtocolTest",
 				ServiceID:     "OutputService7ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
@@ -1336,7 +1336,7 @@ func newOutputService8ProtocolTestClient(cfg aws.Config, handlers request.Handle
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "outputservice8protocoltest",
+				ServiceName:   "OutputService8ProtocolTest",
 				ServiceID:     "OutputService8ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
@@ -1480,7 +1480,7 @@ func newOutputService9ProtocolTestClient(cfg aws.Config, handlers request.Handle
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "outputservice9protocoltest",
+				ServiceName:   "OutputService9ProtocolTest",
 				ServiceID:     "OutputService9ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
@@ -1644,7 +1644,7 @@ func newOutputService10ProtocolTestClient(cfg aws.Config, handlers request.Handl
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "outputservice10protocoltest",
+				ServiceName:   "OutputService10ProtocolTest",
 				ServiceID:     "OutputService10ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
@@ -1788,7 +1788,7 @@ func newOutputService11ProtocolTestClient(cfg aws.Config, handlers request.Handl
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "outputservice11protocoltest",
+				ServiceName:   "OutputService11ProtocolTest",
 				ServiceID:     "OutputService11ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
@@ -1996,7 +1996,7 @@ func newOutputService12ProtocolTestClient(cfg aws.Config, handlers request.Handl
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "outputservice12protocoltest",
+				ServiceName:   "OutputService12ProtocolTest",
 				ServiceID:     "OutputService12ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
@@ -2140,7 +2140,7 @@ func newOutputService13ProtocolTestClient(cfg aws.Config, handlers request.Handl
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "outputservice13protocoltest",
+				ServiceName:   "OutputService13ProtocolTest",
 				ServiceID:     "OutputService13ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
@@ -2390,7 +2390,7 @@ func newOutputService14ProtocolTestClient(cfg aws.Config, handlers request.Handl
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   "outputservice14protocoltest",
+				ServiceName:   "OutputService14ProtocolTest",
 				ServiceID:     "OutputService14ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,

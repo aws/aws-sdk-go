@@ -29,9 +29,9 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "resource-groups" // Service endpoint prefix API calls made to.
-	EndpointsID = ServiceName       // Service ID for Regions and Endpoints metadata.
-	ServiceID   = "Resource Groups" // ServiceID is a unique identifer of a specific service
+	ServiceName = "resource-groups" // Name of service.
+	EndpointsID = ServiceName       // ID to lookup a service endpoint with.
+	ServiceID   = "Resource Groups" // ServiceID is a unique identifer of a specific service.
 )
 
 // New creates a new instance of the ResourceGroups client with a session.
