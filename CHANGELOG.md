@@ -1,3 +1,14 @@
+Release v1.14.9 (2018-06-19)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/rekognition`: Updates service documentation and examples
+  * Documentation updates for rekognition
+
+### SDK Bugs
+* `private/model/api`: Update client ServiceName to be based on name of service for new services. ([#1997](https://github.com/aws/aws-sdk-go/pull/1997))
+    * Fixes the SDK's `ServiceName` AWS service client package value to be unique based on the service name for new AWS services. Does not change exiting client packages.
 Release v1.14.8 (2018-06-15)
 ===
 
