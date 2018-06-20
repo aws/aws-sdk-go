@@ -1,3 +1,20 @@
+Release v1.14.10 (2018-06-20)
+===
+
+### Service Client Updates
+* `service/acm-pca`: Updates service API, documentation, paginators, and examples
+* `service/medialive`: Updates service API, documentation, and paginators
+  * AWS Elemental MediaLive now makes Reserved Outputs and Inputs available through the AWS Management Console and API. You can reserve outputs and inputs with a 12 month commitment in exchange for discounted hourly rates. Pricing is available at https://aws.amazon.com/medialive/pricing/
+* `service/rds`: Updates service API, documentation, and examples
+  * This release adds a new parameter to specify the retention period for Performance Insights data for RDS instances. You can either choose 7 days (default) or 731 days. For more information, see Amazon RDS Documentation.
+
+### SDK Enhancements
+* `service/s3`: Update SelectObjectContent doc example to be on the API not nested type. ([#1991](https://github.com/aws/aws-sdk-go/pull/1991))
+
+### SDK Bugs
+* `aws/client`: Fix HTTP debug log EventStream payloads ([#2000](https://github.com/aws/aws-sdk-go/pull/2000))
+  * Fixes the SDK's HTTP client debug logging to not log the HTTP response body for EventStreams. This prevents the SDK from buffering a very large amount of data to be logged at once. The aws.LogDebugWithEventStreamBody should be used to log the event stream events.
+  * Fixes a bug in the SDK's response logger which will buffer the response body's content if LogDebug is enabled but LogDebugWithHTTPBody is not.
 Release v1.14.9 (2018-06-19)
 ===
 
