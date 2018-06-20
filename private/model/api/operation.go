@@ -129,6 +129,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	{{ end -}}
 	{{ if ne .AuthType "" }}{{ .GetSigner }}{{ end -}}
 	{{ if .OutputRef.Shape.EventStreamsMemberName -}}
+		req.Handlers.Send.Swap(client.LogHTTPResponseHandler.Name, client.LogHTTPResponseHeaderHandler)
 		req.Handlers.Unmarshal.Swap({{ .API.ProtocolPackage }}.UnmarshalHandler.Name, rest.UnmarshalHandler)
 		req.Handlers.Unmarshal.PushBack(output.runEventStreamLoop)
 	{{ end -}}
@@ -252,6 +253,7 @@ func (o *Operation) GoCode() string {
 
 	if len(o.OutputRef.Shape.EventStreamsMemberName) != 0 {
 		// TODO need better was of updating protocol unmarshalers
+		o.API.imports["github.com/aws/aws-sdk-go/aws/client"] = true
 		o.API.imports["github.com/aws/aws-sdk-go/private/protocol/rest"] = true
 	}
 
