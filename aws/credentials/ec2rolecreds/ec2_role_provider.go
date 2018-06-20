@@ -125,7 +125,7 @@ type ec2RoleCredRespBody struct {
 	Message string
 }
 
-const iamSecurityCredsPath = "/iam/security-credentials"
+const iamSecurityCredsPath = "/iam/security-credentials/"
 
 // requestCredList requests a list of credentials from the EC2 service.
 // If there are no credentials, or there is an error making or receiving the request
