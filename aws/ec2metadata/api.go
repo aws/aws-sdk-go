@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"path"
 	"strings"
 	"time"
 
@@ -19,7 +18,7 @@ func (c *EC2Metadata) GetMetadata(p string) (string, error) {
 	op := &request.Operation{
 		Name:       "GetMetadata",
 		HTTPMethod: "GET",
-		HTTPPath:   path.Join("/", "meta-data", p),
+		HTTPPath:   "/meta-data/" + p,
 	}
 
 	output := &metadataOutput{}
@@ -35,7 +34,7 @@ func (c *EC2Metadata) GetUserData() (string, error) {
 	op := &request.Operation{
 		Name:       "GetUserData",
 		HTTPMethod: "GET",
-		HTTPPath:   path.Join("/", "user-data"),
+		HTTPPath:   "/user-data",
 	}
 
 	output := &metadataOutput{}
@@ -56,7 +55,7 @@ func (c *EC2Metadata) GetDynamicData(p string) (string, error) {
 	op := &request.Operation{
 		Name:       "GetDynamicData",
 		HTTPMethod: "GET",
-		HTTPPath:   path.Join("/", "dynamic", p),
+		HTTPPath:   "/dynamic/" + p,
 	}
 
 	output := &metadataOutput{}
