@@ -175,7 +175,7 @@ func TestSelectObjectContentEventStream_Close(t *testing.T) {
 	}
 }
 
-func ExampleSelectObjectContentEventStream() {
+func ExampleS3_SelectObjectContent() {
 	sess := session.Must(session.NewSession())
 	svc := New(sess)
 
