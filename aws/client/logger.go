@@ -56,9 +56,10 @@ func logRequest(r *request.Request) {
 	logBody := r.Config.LogLevel.Matches(aws.LogDebugWithHTTPBody)
 	bodySeekable := aws.IsReaderSeekable(r.Body)
 
-	dumpedBody, err := httputil.DumpRequestOut(r.HTTPRequest, logBody)
+	b, err := httputil.DumpRequestOut(r.HTTPRequest, logBody)
 	if err != nil {
-		r.Config.Logger.Log(fmt.Sprintf(logReqErrMsg, r.ClientInfo.ServiceName, r.Operation.Name, err))
+		r.Config.Logger.Log(fmt.Sprintf(logReqErrMsg,
+			r.ClientInfo.ServiceName, r.Operation.Name, err))
 		return
 	}
 
@@ -72,7 +73,8 @@ func logRequest(r *request.Request) {
 		r.ResetBody()
 	}
 
-	r.Config.Logger.Log(fmt.Sprintf(logReqMsg, r.ClientInfo.ServiceName, r.Operation.Name, string(dumpedBody)))
+	r.Config.Logger.Log(fmt.Sprintf(logReqMsg,
+		r.ClientInfo.ServiceName, r.Operation.Name, string(b)))
 }
 
 // LogHTTPRequestHeaderHandler is a SDK request handler to log the HTTP request sent
@@ -86,11 +88,13 @@ var LogHTTPRequestHeaderHandler = request.NamedHandler{
 func logRequestHeader(r *request.Request) {
 	b, err := httputil.DumpRequestOut(r.HTTPRequest, false)
 	if err != nil {
-		r.Config.Logger.Log(fmt.Sprintf(logReqErrMsg, r.ClientInfo.ServiceName, r.Operation.Name, err))
+		r.Config.Logger.Log(fmt.Sprintf(logReqErrMsg,
+			r.ClientInfo.ServiceName, r.Operation.Name, err))
 		return
 	}
 
-	r.Config.Logger.Log(fmt.Sprintf(logReqMsg, r.ClientInfo.ServiceName, r.Operation.Name, string(b)))
+	r.Config.Logger.Log(fmt.Sprintf(logReqMsg,
+		r.ClientInfo.ServiceName, r.Operation.Name, string(b)))
 }
 
 const logRespMsg = `DEBUG: Response %s/%s Details:
@@ -112,11 +116,10 @@ var LogHTTPResponseHandler = request.NamedHandler{
 }
 
 func logResponse(r *request.Request) {
-	var lw *logWriter
+	lw := &logWriter{r.Config.Logger, bytes.NewBuffer(nil)}
 
 	logBody := r.Config.LogLevel.Matches(aws.LogDebugWithHTTPBody)
 	if logBody {
-		lw = &logWriter{r.Config.Logger, bytes.NewBuffer(nil)}
 		r.HTTPResponse.Body = &teeReaderCloser{
 			Reader: io.TeeReader(r.HTTPResponse.Body, lw),
 			Source: r.HTTPResponse.Body,
@@ -124,18 +127,21 @@ func logResponse(r *request.Request) {
 	}
 
 	handlerFn := func(req *request.Request) {
-		body, err := httputil.DumpResponse(req.HTTPResponse, false)
+		b, err := httputil.DumpResponse(req.HTTPResponse, false)
 		if err != nil {
-			lw.Logger.Log(fmt.Sprintf(logRespErrMsg, req.ClientInfo.ServiceName, req.Operation.Name, err))
+			lw.Logger.Log(fmt.Sprintf(logRespErrMsg,
+				req.ClientInfo.ServiceName, req.Operation.Name, err))
 			return
 		}
 
-		lw.Logger.Log(fmt.Sprintf(logRespMsg, req.ClientInfo.ServiceName, req.Operation.Name, string(body)))
+		lw.Logger.Log(fmt.Sprintf(logRespMsg,
+			req.ClientInfo.ServiceName, req.Operation.Name, string(b)))
 
 		if logBody {
 			b, err := ioutil.ReadAll(lw.buf)
 			if err != nil {
-				lw.Logger.Log(fmt.Sprintf(logRespErrMsg, req.ClientInfo.ServiceName, req.Operation.Name, err))
+				lw.Logger.Log(fmt.Sprintf(logRespErrMsg,
+					req.ClientInfo.ServiceName, req.Operation.Name, err))
 				return
 			}
 
@@ -168,9 +174,11 @@ func logResponseHeader(r *request.Request) {
 
 	b, err := httputil.DumpResponse(r.HTTPResponse, false)
 	if err != nil {
-		r.Config.Logger.Log(fmt.Sprintf(logRespErrMsg, r.ClientInfo.ServiceName, r.Operation.Name, err))
+		r.Config.Logger.Log(fmt.Sprintf(logRespErrMsg,
+			r.ClientInfo.ServiceName, r.Operation.Name, err))
 		return
 	}
 
-	r.Config.Logger.Log(fmt.Sprintf(logRespMsg, r.ClientInfo.ServiceName, r.Operation.Name, string(b)))
+	r.Config.Logger.Log(fmt.Sprintf(logRespMsg,
+		r.ClientInfo.ServiceName, r.Operation.Name, string(b)))
 }

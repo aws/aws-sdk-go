@@ -182,11 +182,16 @@ func TestLogResponse(t *testing.T) {
 		}
 
 		logResponse(req)
+		req.Handlers.Unmarshal.Run(req)
 
 		if c.ReadBody {
 			if e, a := len(c.ExpectBody), c.Body.Len(); e != a {
 				t.Errorf("%d, expect orginal body not to of been read", i)
 			}
+		}
+
+		if logW.Len() == 0 {
+			t.Errorf("%d, expect HTTP Response headers to be logged", i)
 		}
 
 		b, err := ioutil.ReadAll(req.HTTPResponse.Body)
