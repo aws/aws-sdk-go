@@ -1,3 +1,14 @@
+Release v1.14.11 (2018-06-21)
+===
+
+### Service Client Updates
+* `service/macie`: Adds new service
+  * Amazon Macie is a security service that uses machine learning to automatically discover, classify, and protect sensitive data in AWS. With this release, we are launching the following Macie HTTPS API operations: AssociateMemberAccount, AssociateS3Resources, DisassociateMemberAccount, DisassociateS3Resources, ListMemberAccounts, ListS3Resources, and UpdateS3Resources. With these API operations you can issue HTTPS requests directly to the service.
+* `service/neptune`: Updates service API, documentation, and examples
+  * Deprecates the PubliclyAccessible parameter that is not supported by Amazon Neptune.
+* `service/ssm`: Updates service API, documentation, and examples
+  * Adds Amazon Linux 2 support to Patch Manager
+
 Release v1.14.10 (2018-06-20)
 ===
 
