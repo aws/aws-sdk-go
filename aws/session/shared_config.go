@@ -16,11 +16,12 @@ const (
 	sessionTokenKey = `aws_session_token`     // optional
 
 	// Assume Role Credentials group
-	roleArnKey         = `role_arn`          // group required
-	sourceProfileKey   = `source_profile`    // group required
-	externalIDKey      = `external_id`       // optional
-	mfaSerialKey       = `mfa_serial`        // optional
-	roleSessionNameKey = `role_session_name` // optional
+	roleArnKey          = `role_arn`          // group required
+	sourceProfileKey    = `source_profile`    // group required (or credential_source)
+	credentialSourceKey = `credential_source` // group required (or source_profile)
+	externalIDKey       = `external_id`       // optional
+	mfaSerialKey        = `mfa_serial`        // optional
+	roleSessionNameKey  = `role_session_name` // optional
 
 	// Additional Config fields
 	regionKey = `region`
@@ -32,11 +33,12 @@ const (
 )
 
 type assumeRoleConfig struct {
-	RoleARN         string
-	SourceProfile   string
-	ExternalID      string
-	MFASerial       string
-	RoleSessionName string
+	RoleARN          string
+	SourceProfile    string
+	CredentialSource string
+	ExternalID       string
+	MFASerial        string
+	RoleSessionName  string
 }
 
 // sharedConfig represents the configuration fields of the SDK config files.
@@ -92,7 +94,7 @@ func loadSharedConfig(profile string, filenames []string) (sharedConfig, error) 
 		return sharedConfig{}, err
 	}
 
-	if len(cfg.AssumeRole.SourceProfile) > 0 {
+	if len(cfg.AssumeRole.SourceProfile) > 0 || len(cfg.AssumeRole.CredentialSource) > 0 {
 		if err := cfg.setAssumeRoleSource(profile, files); err != nil {
 			return sharedConfig{}, err
 		}
@@ -126,6 +128,11 @@ func loadSharedConfigIniFiles(filenames []string) ([]sharedConfigFile, error) {
 
 func (cfg *sharedConfig) setAssumeRoleSource(origProfile string, files []sharedConfigFile) error {
 	var assumeRoleSrc sharedConfig
+
+	if len(cfg.AssumeRole.CredentialSource) > 0 {
+		cfg.AssumeRoleSource = &sharedConfig{}
+		return nil
+	}
 
 	// Multiple level assume role chains are not support
 	if cfg.AssumeRole.SourceProfile == origProfile {
@@ -195,13 +202,16 @@ func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile) e
 	// Assume Role
 	roleArn := section.Key(roleArnKey).String()
 	srcProfile := section.Key(sourceProfileKey).String()
-	if len(roleArn) > 0 && len(srcProfile) > 0 {
+	credentialSource := section.Key(credentialSourceKey).String()
+	hasSource := len(srcProfile) > 0 || len(credentialSource) > 0
+	if len(roleArn) > 0 && hasSource {
 		cfg.AssumeRole = assumeRoleConfig{
-			RoleARN:         roleArn,
-			SourceProfile:   srcProfile,
-			ExternalID:      section.Key(externalIDKey).String(),
-			MFASerial:       section.Key(mfaSerialKey).String(),
-			RoleSessionName: section.Key(roleSessionNameKey).String(),
+			RoleARN:          roleArn,
+			SourceProfile:    srcProfile,
+			CredentialSource: credentialSource,
+			ExternalID:       section.Key(externalIDKey).String(),
+			MFASerial:        section.Key(mfaSerialKey).String(),
+			RoleSessionName:  section.Key(roleSessionNameKey).String(),
 		}
 	}
 

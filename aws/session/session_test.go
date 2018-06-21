@@ -437,6 +437,69 @@ func TestSessionAssumeRole_InvalidSourceProfile(t *testing.T) {
 	assert.Nil(t, s)
 }
 
+func TestSessionAssumeRole_EC2CredentialSource(t *testing.T) {
+	oldEnv := initSessionTestEnv()
+	defer awstesting.PopEnv(oldEnv)
+
+	os.Setenv("AWS_REGION", "us-east-1")
+	os.Setenv("AWS_SDK_LOAD_CONFIG", "1")
+	os.Setenv("AWS_SHARED_CREDENTIALS_FILE", testConfigFilename)
+	os.Setenv("AWS_PROFILE", "assume_role_ec2_instance_metadata")
+
+	const ec2MetadataResponse = `{
+	  "Code": "Success",
+	  "Type": "AWS-HMAC",
+	  "AccessKeyId" : "accessKey",
+	  "SecretAccessKey" : "secret",
+	  "Token" : "token",
+	  "Expiration" : "2100-01-01T00:00:00Z",
+	  "LastUpdated" : "2009-11-23T0:00:00Z"
+	}`
+
+	ec2MetadataCalled := false
+	ec2MetadataServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path == "/meta-data/iam/security-credentials/RoleName" {
+			ec2MetadataCalled = true
+			w.Write([]byte(ec2MetadataResponse))
+		} else if r.URL.Path == "/meta-data/iam/security-credentials" {
+			w.Write([]byte("RoleName"))
+		} else {
+			w.Write([]byte(""))
+		}
+	}))
+
+	defer ec2MetadataServer.Close()
+
+	stsServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte(fmt.Sprintf(assumeRoleRespMsg, time.Now().Add(15*time.Minute).Format("2006-01-02T15:04:05Z"))))
+	}))
+
+	defer stsServer.Close()
+
+	s, err := NewSession(&aws.Config{
+		EndpointResolver: endpoints.ResolverFunc(
+			func(service, region string, opts ...func(*endpoints.Options)) (endpoints.ResolvedEndpoint, error) {
+				if service == "ec2metadata" {
+					return endpoints.ResolvedEndpoint{
+						URL: ec2MetadataServer.URL,
+					}, nil
+				}
+
+				return endpoints.ResolvedEndpoint{
+					URL: stsServer.URL,
+				}, nil
+			},
+		),
+	})
+
+	creds, err := s.Config.Credentials.Get()
+	assert.NoError(t, err)
+	assert.Equal(t, ec2MetadataCalled, true)
+	assert.Equal(t, "AKID", creds.AccessKeyID)
+	assert.Equal(t, "SECRET", creds.SecretAccessKey)
+	assert.Equal(t, "SESSION_TOKEN", creds.SessionToken)
+}
+
 func initSessionTestEnv() (oldEnv []string) {
 	oldEnv = awstesting.StashEnv()
 	os.Setenv("AWS_CONFIG_FILE", "file_not_exists")

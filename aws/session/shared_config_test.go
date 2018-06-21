@@ -110,6 +110,17 @@ func TestLoadSharedConfig(t *testing.T) {
 		},
 		{
 			Filenames: []string{testConfigOtherFilename, testConfigFilename},
+			Profile:   "assume_role_ec2_instance_metadata",
+			Expected: sharedConfig{
+				AssumeRole: assumeRoleConfig{
+					RoleARN:          "assume_role_ec2_instance_metadata_role_arn",
+					CredentialSource: "Ec2InstanceMetadata",
+				},
+				AssumeRoleSource: &sharedConfig{},
+			},
+		},
+		{
+			Filenames: []string{testConfigOtherFilename, testConfigFilename},
 			Profile:   "assume_role_wo_creds",
 			Expected: sharedConfig{
 				AssumeRole: assumeRoleConfig{
