@@ -1281,7 +1281,10 @@
         "Iops":{"shape":"IntegerOptional"},
         "OptionGroupName":{"shape":"String"},
         "CharacterSetName":{"shape":"String"},
-        "PubliclyAccessible":{"shape":"BooleanOptional"},
+        "PubliclyAccessible":{
+          "shape":"BooleanOptional",
+          "deprecated":true
+        },
         "Tags":{"shape":"TagList"},
         "DBClusterIdentifier":{"shape":"String"},
         "StorageType":{"shape":"String"},
@@ -1732,7 +1735,10 @@
         "OptionGroupMemberships":{"shape":"OptionGroupMembershipList"},
         "CharacterSetName":{"shape":"String"},
         "SecondaryAvailabilityZone":{"shape":"String"},
-        "PubliclyAccessible":{"shape":"Boolean"},
+        "PubliclyAccessible":{
+          "shape":"Boolean",
+          "deprecated":true
+        },
         "StatusInfos":{"shape":"DBInstanceStatusInfoList"},
         "StorageType":{"shape":"String"},
         "TdeCredentialArn":{"shape":"String"},
@@ -2805,7 +2811,10 @@
         "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
         "MonitoringInterval":{"shape":"IntegerOptional"},
         "DBPortNumber":{"shape":"IntegerOptional"},
-        "PubliclyAccessible":{"shape":"BooleanOptional"},
+        "PubliclyAccessible":{
+          "shape":"BooleanOptional",
+          "deprecated":true
+        },
         "MonitoringRoleArn":{"shape":"String"},
         "DomainIAMRoleName":{"shape":"String"},
         "PromotionTier":{"shape":"IntegerOptional"},
