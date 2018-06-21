@@ -245,6 +245,13 @@ type CloudDirectoryAPI interface {
 	ListIndexPages(*clouddirectory.ListIndexInput, func(*clouddirectory.ListIndexOutput, bool) bool) error
 	ListIndexPagesWithContext(aws.Context, *clouddirectory.ListIndexInput, func(*clouddirectory.ListIndexOutput, bool) bool, ...request.Option) error
 
+	ListManagedSchemaArns(*clouddirectory.ListManagedSchemaArnsInput) (*clouddirectory.ListManagedSchemaArnsOutput, error)
+	ListManagedSchemaArnsWithContext(aws.Context, *clouddirectory.ListManagedSchemaArnsInput, ...request.Option) (*clouddirectory.ListManagedSchemaArnsOutput, error)
+	ListManagedSchemaArnsRequest(*clouddirectory.ListManagedSchemaArnsInput) (*request.Request, *clouddirectory.ListManagedSchemaArnsOutput)
+
+	ListManagedSchemaArnsPages(*clouddirectory.ListManagedSchemaArnsInput, func(*clouddirectory.ListManagedSchemaArnsOutput, bool) bool) error
+	ListManagedSchemaArnsPagesWithContext(aws.Context, *clouddirectory.ListManagedSchemaArnsInput, func(*clouddirectory.ListManagedSchemaArnsOutput, bool) bool, ...request.Option) error
+
 	ListObjectAttributes(*clouddirectory.ListObjectAttributesInput) (*clouddirectory.ListObjectAttributesOutput, error)
 	ListObjectAttributesWithContext(aws.Context, *clouddirectory.ListObjectAttributesInput, ...request.Option) (*clouddirectory.ListObjectAttributesOutput, error)
 	ListObjectAttributesRequest(*clouddirectory.ListObjectAttributesInput) (*request.Request, *clouddirectory.ListObjectAttributesOutput)

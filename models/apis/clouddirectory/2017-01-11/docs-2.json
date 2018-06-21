@@ -43,6 +43,7 @@
     "ListFacetNames": "<p>Retrieves the names of facets that exist in a schema.</p>",
     "ListIncomingTypedLinks": "<p>Returns a paginated list of all the incoming <a>TypedLinkSpecifier</a> information for an object. It also supports filtering by typed link facet and identity attributes. For more information, see <a href=\"http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink\">Typed link</a>.</p>",
     "ListIndex": "<p>Lists objects attached to the specified index.</p>",
+    "ListManagedSchemaArns": "<p>Lists the major version families of each managed schema. If a major version ARN is provided as SchemaArn, the minor version revisions in that family are listed instead.</p>",
     "ListObjectAttributes": "<p>Lists all attributes that are associated with an object. </p>",
     "ListObjectChildren": "<p>Returns a paginated list of child objects that are associated with a given object.</p>",
     "ListObjectParentPaths": "<p>Retrieves all available parent paths for any object type such as node, leaf node, policy node, and index node objects. For more information about objects, see <a href=\"http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_key_concepts.html#dirstructure\">Directory Structure</a>.</p> <p>Use this API to evaluate all parents for an object. The call returns all objects from the root of the directory up to the requested object. The API returns the number of paths based on user-defined <code>MaxResults</code>, in case there are multiple paths to the parent. The order of the paths and nodes returned is consistent among multiple API calls unless the objects are deleted or moved. Paths not leading to the directory root are ignored from the target object.</p>",
@@ -147,6 +148,7 @@
         "ListFacetNamesRequest$SchemaArn": "<p>The Amazon Resource Name (ARN) to retrieve facet names from.</p>",
         "ListIncomingTypedLinksRequest$DirectoryArn": "<p>The Amazon Resource Name (ARN) of the directory where you want to list the typed links.</p>",
         "ListIndexRequest$DirectoryArn": "<p>The ARN of the directory that the index exists in.</p>",
+        "ListManagedSchemaArnsRequest$SchemaArn": "<p>The response for ListManagedSchemaArns. When this parameter is used, all minor version ARNs for a major version are listed.</p>",
         "ListObjectAttributesRequest$DirectoryArn": "<p>The Amazon Resource Name (ARN) that is associated with the <a>Directory</a> where the object resides. For more information, see <a>arns</a>.</p>",
         "ListObjectChildrenRequest$DirectoryArn": "<p>The Amazon Resource Name (ARN) that is associated with the <a>Directory</a> where the object resides. For more information, see <a>arns</a>.</p>",
         "ListObjectParentPathsRequest$DirectoryArn": "<p>The ARN of the directory to which the parent path applies.</p>",
@@ -188,6 +190,7 @@
       "refs": {
         "ListAppliedSchemaArnsResponse$SchemaArns": "<p>The ARNs of schemas that are applied to the directory.</p>",
         "ListDevelopmentSchemaArnsResponse$SchemaArns": "<p>The ARNs of retrieved development schemas.</p>",
+        "ListManagedSchemaArnsResponse$SchemaArns": "<p>The ARNs for all AWS managed schemas.</p>",
         "ListPublishedSchemaArnsResponse$SchemaArns": "<p>The ARNs of published schemas.</p>"
       }
     },
@@ -1162,6 +1165,13 @@
       "refs": {
       }
     },
+    "FacetStyle": {
+      "base": null,
+      "refs": {
+        "CreateFacetRequest$FacetStyle": "<p>There are two different styles that you can define on any given facet, <code>Static</code> and <code>Dynamic</code>. For static facets, all attributes must be defined in the schema. For dynamic facets, attributes can be defined during data plane operations.</p>",
+        "Facet$FacetStyle": "<p>There are two different styles that you can define on any given facet, <code>Static</code> and <code>Dynamic</code>. For static facets, all attributes must be defined in the schema. For dynamic facets, attributes can be defined during data plane operations.</p>"
+      }
+    },
     "FacetValidationException": {
       "base": "<p>The <a>Facet</a> that you provided was not well formed or could not be validated with the schema.</p>",
       "refs": {
@@ -1443,6 +1453,16 @@
       "refs": {
       }
     },
+    "ListManagedSchemaArnsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListManagedSchemaArnsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListObjectAttributesRequest": {
       "base": null,
       "refs": {
@@ -1602,6 +1622,8 @@
         "ListIncomingTypedLinksResponse$NextToken": "<p>The pagination token.</p>",
         "ListIndexRequest$NextToken": "<p>The pagination token.</p>",
         "ListIndexResponse$NextToken": "<p>The pagination token.</p>",
+        "ListManagedSchemaArnsRequest$NextToken": "<p>The pagination token.</p>",
+        "ListManagedSchemaArnsResponse$NextToken": "<p>The pagination token.</p>",
         "ListObjectAttributesRequest$NextToken": "<p>The pagination token.</p>",
         "ListObjectAttributesResponse$NextToken": "<p>The pagination token.</p>",
         "ListObjectChildrenRequest$NextToken": "<p>The pagination token.</p>",
@@ -1670,6 +1692,7 @@
         "ListFacetNamesRequest$MaxResults": "<p>The maximum number of results to retrieve.</p>",
         "ListIncomingTypedLinksRequest$MaxResults": "<p>The maximum number of results to retrieve.</p>",
         "ListIndexRequest$MaxResults": "<p>The maximum number of objects in a single page to retrieve from the index during a request. For more information, see <a href=\"http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html#limits_cd\">AWS Directory Service Limits</a>.</p>",
+        "ListManagedSchemaArnsRequest$MaxResults": "<p>The maximum number of results to retrieve.</p>",
         "ListObjectAttributesRequest$MaxResults": "<p>The maximum number of items to be retrieved in a single call. This is an approximate number.</p>",
         "ListObjectChildrenRequest$MaxResults": "<p>The maximum number of items to be retrieved in a single call. This is an approximate number.</p>",
         "ListObjectParentPathsRequest$MaxResults": "<p>The maximum number of items to be retrieved in a single call. This is an approximate number.</p>",

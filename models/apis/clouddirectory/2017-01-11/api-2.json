@@ -1,13 +1,13 @@
 {
   "version":"2.0",
   "metadata":{
-    "apiVersion":"2016-05-10",
+    "apiVersion":"2017-01-11",
     "endpointPrefix":"clouddirectory",
     "protocol":"rest-json",
     "serviceFullName":"Amazon CloudDirectory",
     "signatureVersion":"v4",
     "signingName":"clouddirectory",
-    "uid":"clouddirectory-2016-05-10"
+    "uid":"clouddirectory-2017-01-11"
   },
   "operations":{
     "AddFacetToObject":{
@@ -47,6 +47,7 @@
         {"shape":"ValidationException"},
         {"shape":"LimitExceededException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"SchemaAlreadyExistsException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidAttachmentException"}
       ]
@@ -864,6 +865,24 @@
         {"shape":"NotIndexException"}
       ]
     },
+    "ListManagedSchemaArns":{
+      "name":"ListManagedSchemaArns",
+      "http":{
+        "method":"POST",
+        "requestUri":"/amazonclouddirectory/2017-01-11/schema/managed",
+        "responseCode":200
+      },
+      "input":{"shape":"ListManagedSchemaArnsRequest"},
+      "output":{"shape":"ListManagedSchemaArnsResponse"},
+      "errors":[
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidArnException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidNextTokenException"}
+      ]
+    },
     "ListObjectAttributes":{
       "name":"ListObjectAttributes",
       "http":{
@@ -1236,6 +1255,7 @@
         {"shape":"LimitExceededException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InvalidFacetUpdateException"},
+        {"shape":"FacetValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"FacetNotFoundException"},
         {"shape":"InvalidRuleException"}
@@ -1343,7 +1363,8 @@
         {"shape":"IncompatibleSchemaException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InvalidAttachmentException"}
+        {"shape":"InvalidAttachmentException"},
+        {"shape":"SchemaAlreadyExistsException"}
       ]
     },
     "UpgradePublishedSchema":{
@@ -2309,8 +2330,7 @@
       "type":"structure",
       "required":[
         "SchemaArn",
-        "Name",
-        "ObjectType"
+        "Name"
       ],
       "members":{
         "SchemaArn":{
@@ -2320,7 +2340,8 @@
         },
         "Name":{"shape":"FacetName"},
         "Attributes":{"shape":"FacetAttributeList"},
-        "ObjectType":{"shape":"ObjectType"}
+        "ObjectType":{"shape":"ObjectType"},
+        "FacetStyle":{"shape":"FacetStyle"}
       }
     },
     "CreateFacetResponse":{
@@ -2691,7 +2712,8 @@
       "type":"structure",
       "members":{
         "Name":{"shape":"FacetName"},
-        "ObjectType":{"shape":"ObjectType"}
+        "ObjectType":{"shape":"ObjectType"},
+        "FacetStyle":{"shape":"FacetStyle"}
       }
     },
     "FacetAlreadyExistsException":{
@@ -2744,7 +2766,8 @@
         "BINARY",
         "BOOLEAN",
         "NUMBER",
-        "DATETIME"
+        "DATETIME",
+        "VARIANT"
       ]
     },
     "FacetAttributeUpdate":{
@@ -2783,6 +2806,13 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "FacetStyle":{
+      "type":"string",
+      "enum":[
+        "STATIC",
+        "DYNAMIC"
+      ]
     },
     "FacetValidationException":{
       "type":"structure",
@@ -3274,6 +3304,21 @@
       "type":"structure",
       "members":{
         "IndexAttachments":{"shape":"IndexAttachmentList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListManagedSchemaArnsRequest":{
+      "type":"structure",
+      "members":{
+        "SchemaArn":{"shape":"Arn"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"NumberResults"}
+      }
+    },
+    "ListManagedSchemaArnsResponse":{
+      "type":"structure",
+      "members":{
+        "SchemaArns":{"shape":"Arns"},
         "NextToken":{"shape":"NextToken"}
       }
     },
