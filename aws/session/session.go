@@ -442,9 +442,14 @@ func mergeConfigSrcs(cfg, userCfg *aws.Config, envCfg envConfig, sharedCfg share
 			)
 		} else if envCfg.EnableSharedConfig && len(sharedCfg.AssumeRole.RoleARN) > 0 && sharedCfg.AssumeRoleSource != nil {
 			cfgCp := *cfg
-			cfgCp.Credentials = credentials.NewStaticCredentialsFromCreds(
-				sharedCfg.AssumeRoleSource.Creds,
-			)
+			if sharedCfg.AssumeRole.CredentialSource == "Ec2InstanceMetadata" {
+				p := defaults.RemoteCredProvider(cfgCp, handlers)
+				cfgCp.Credentials = credentials.NewCredentials(p)
+			} else if len(sharedCfg.AssumeRole.SourceProfile) > 0 {
+				cfgCp.Credentials = credentials.NewStaticCredentialsFromCreds(
+					sharedCfg.AssumeRoleSource.Creds,
+				)
+			}
 			if len(sharedCfg.AssumeRole.MFASerial) > 0 && sessOpts.AssumeRoleTokenProvider == nil {
 				// AssumeRole Token provider is required if doing Assume Role
 				// with MFA.
