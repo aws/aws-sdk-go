@@ -1,3 +1,10 @@
+Release v1.14.12 (2018-06-21)
+===
+
+### Service Client Updates
+* `service/clouddirectory`: Adds new service
+  * SDK release to support Flexible Schema initiative being carried out by Amazon Cloud Directory. This feature lets customers using new capabilities like: variant typed attributes, dynamic facets and AWS managed Cloud Directory schemas.
+
 Release v1.14.11 (2018-06-21)
 ===
 
