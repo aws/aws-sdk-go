@@ -477,7 +477,8 @@
         {"shape":"InvalidParameterCombinationException"},
         {"shape":"LimitExceededException"},
         {"shape":"InvalidAccountStatusException"},
-        {"shape":"IncompatibleImageException"}
+        {"shape":"IncompatibleImageException"},
+        {"shape":"OperationNotPermittedException"}
       ]
     }
   },
@@ -690,7 +691,7 @@
       "type":"structure",
       "required":["Name"],
       "members":{
-        "Name":{"shape":"String"},
+        "Name":{"shape":"Name"},
         "Description":{"shape":"Description"},
         "DisplayName":{"shape":"DisplayName"},
         "StorageConnectors":{"shape":"StorageConnectorList"},
@@ -1252,6 +1253,13 @@
       "type":"string",
       "pattern":"^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,100}$"
     },
+    "NetworkAccessConfiguration":{
+      "type":"structure",
+      "members":{
+        "EniPrivateIpAddress":{"shape":"String"},
+        "EniId":{"shape":"String"}
+      }
+    },
     "OperationNotPermittedException":{
       "type":"structure",
       "members":{
@@ -1362,7 +1370,8 @@
         "StackName":{"shape":"String"},
         "FleetName":{"shape":"String"},
         "State":{"shape":"SessionState"},
-        "AuthenticationType":{"shape":"AuthenticationType"}
+        "AuthenticationType":{"shape":"AuthenticationType"},
+        "NetworkAccessConfiguration":{"shape":"NetworkAccessConfiguration"}
       }
     },
     "SessionList":{

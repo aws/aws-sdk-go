@@ -246,7 +246,9 @@ func (c *AppStream) CreateDirectoryConfigRequest(input *CreateDirectoryConfigInp
 
 // CreateDirectoryConfig API operation for Amazon AppStream.
 //
-// Creates a directory configuration.
+// Creates a Directory Config object in AppStream 2.0. This object includes
+// the information required to join streaming instances to an Active Directory
+// domain.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -332,7 +334,8 @@ func (c *AppStream) CreateFleetRequest(input *CreateFleetInput) (req *request.Re
 
 // CreateFleet API operation for Amazon AppStream.
 //
-// Creates a fleet.
+// Creates a fleet. A fleet consists of streaming instances that run a specified
+// image.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -436,7 +439,8 @@ func (c *AppStream) CreateImageBuilderRequest(input *CreateImageBuilderInput) (r
 
 // CreateImageBuilder API operation for Amazon AppStream.
 //
-// Creates an image builder.
+// Creates an image builder. An image builder is a virtual machine that is used
+// to create an image.
 //
 // The initial state of the builder is PENDING. When it is ready, the state
 // is RUNNING.
@@ -625,7 +629,8 @@ func (c *AppStream) CreateStackRequest(input *CreateStackInput) (req *request.Re
 
 // CreateStack API operation for Amazon AppStream.
 //
-// Creates a stack.
+// Creates a stack to start streaming applications to users. A stack consists
+// of an associated fleet, user access policies, and storage configurations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -723,7 +728,9 @@ func (c *AppStream) CreateStreamingURLRequest(input *CreateStreamingURLInput) (r
 
 // CreateStreamingURL API operation for Amazon AppStream.
 //
-// Creates a URL to start a streaming session for the specified user.
+// Creates a temporary URL to start an AppStream 2.0 streaming session for the
+// specified user. A streaming URL enables application streaming to be tested
+// without user setup.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -811,7 +818,9 @@ func (c *AppStream) DeleteDirectoryConfigRequest(input *DeleteDirectoryConfigInp
 
 // DeleteDirectoryConfig API operation for Amazon AppStream.
 //
-// Deletes the specified directory configuration.
+// Deletes the specified Directory Config object from AppStream 2.0. This object
+// includes the information required to join streaming instances to an Active
+// Directory domain.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -978,9 +987,8 @@ func (c *AppStream) DeleteImageRequest(input *DeleteImageInput) (req *request.Re
 
 // DeleteImage API operation for Amazon AppStream.
 //
-// Deletes the specified image. You cannot delete an image that is currently
-// in use. After you delete an image, you cannot provision new capacity using
-// the image.
+// Deletes the specified image. You cannot delete an image when it is in use.
+// After you delete an image, you cannot provision new capacity using the image.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1153,8 +1161,10 @@ func (c *AppStream) DeleteStackRequest(input *DeleteStackInput) (req *request.Re
 
 // DeleteStack API operation for Amazon AppStream.
 //
-// Deletes the specified stack. After this operation completes, the environment
-// can no longer be activated and any reservations made for the stack are released.
+// Deletes the specified stack. After the stack is deleted, the application
+// streaming environment provided by the stack is no longer available to users.
+// Also, any reservations made for application streaming sessions for the stack
+// are released.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1239,9 +1249,14 @@ func (c *AppStream) DescribeDirectoryConfigsRequest(input *DescribeDirectoryConf
 
 // DescribeDirectoryConfigs API operation for Amazon AppStream.
 //
-// Describes the specified directory configurations. Note that although the
-// response syntax in this topic includes the account password, this password
-// is not returned in the actual response.
+// Retrieves a list that describes one or more specified Directory Config objects
+// for AppStream 2.0, if the names for these objects are provided. Otherwise,
+// all Directory Config objects in the account are described. These objects
+// include the information required to join streaming instances to an Active
+// Directory domain.
+//
+// Although the response syntax in this topic includes the account password,
+// this password is not returned in the actual response.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1320,7 +1335,8 @@ func (c *AppStream) DescribeFleetsRequest(input *DescribeFleetsInput) (req *requ
 
 // DescribeFleets API operation for Amazon AppStream.
 //
-// Describes the specified fleets or all fleets in the account.
+// Retrieves a list that describes one or more specified fleets, if the fleet
+// names are provided. Otherwise, all fleets in the account are described.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1399,7 +1415,9 @@ func (c *AppStream) DescribeImageBuildersRequest(input *DescribeImageBuildersInp
 
 // DescribeImageBuilders API operation for Amazon AppStream.
 //
-// Describes the specified image builders or all image builders in the account.
+// Retrieves a list that describes one or more specified image builders, if
+// the image builder names are provided. Otherwise, all image builders in the
+// account are described.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1478,7 +1496,8 @@ func (c *AppStream) DescribeImagesRequest(input *DescribeImagesInput) (req *requ
 
 // DescribeImages API operation for Amazon AppStream.
 //
-// Describes the specified images or all images in the account.
+// Retrieves a list that describes one or more specified images, if the image
+// names are provided. Otherwise, all images in the account are described.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1557,10 +1576,10 @@ func (c *AppStream) DescribeSessionsRequest(input *DescribeSessionsInput) (req *
 
 // DescribeSessions API operation for Amazon AppStream.
 //
-// Describes the streaming sessions for the specified stack and fleet. If a
-// user ID is provided, only the streaming sessions for only that user are returned.
-// If an authentication type is not provided, the default is to authenticate
-// users using a streaming URL.
+// Retrieves a list that describes the streaming sessions for a specified stack
+// and fleet. If a user ID is provided for the stack and fleet, only streaming
+// sessions for that user are described. If an authentication type is not provided,
+// the default is to authenticate users using a streaming URL.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1639,7 +1658,8 @@ func (c *AppStream) DescribeStacksRequest(input *DescribeStacksInput) (req *requ
 
 // DescribeStacks API operation for Amazon AppStream.
 //
-// Describes the specified stacks or all stacks in the account.
+// Retrieves a list that describes one or more specified stacks, if the stack
+// names are provided. Otherwise, all stacks in the account are described.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1803,7 +1823,7 @@ func (c *AppStream) ExpireSessionRequest(input *ExpireSessionInput) (req *reques
 
 // ExpireSession API operation for Amazon AppStream.
 //
-// Stops the specified streaming session.
+// Immediately stops the specified streaming session.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1877,7 +1897,7 @@ func (c *AppStream) ListAssociatedFleetsRequest(input *ListAssociatedFleetsInput
 
 // ListAssociatedFleets API operation for Amazon AppStream.
 //
-// Lists the fleets associated with the specified stack.
+// Retrieves the name of the fleet that is associated with the specified stack.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1951,7 +1971,7 @@ func (c *AppStream) ListAssociatedStacksRequest(input *ListAssociatedStacksInput
 
 // ListAssociatedStacks API operation for Amazon AppStream.
 //
-// Lists the stacks associated with the specified fleet.
+// Retrieves the name of the stack with which the specified fleet is associated.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2025,8 +2045,8 @@ func (c *AppStream) ListTagsForResourceRequest(input *ListTagsForResourceInput) 
 
 // ListTagsForResource API operation for Amazon AppStream.
 //
-// Lists the tags for the specified AppStream 2.0 resource. You can tag AppStream
-// 2.0 image builders, images, fleets, and stacks.
+// Retrieves a list of all tags for the specified AppStream 2.0 resource. You
+// can tag AppStream 2.0 image builders, images, fleets, and stacks.
 //
 // For more information about tags, see Tagging Your Resources (http://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html)
 // in the Amazon AppStream 2.0 Developer Guide.
@@ -2555,7 +2575,8 @@ func (c *AppStream) UntagResourceRequest(input *UntagResourceInput) (req *reques
 
 // UntagResource API operation for Amazon AppStream.
 //
-// Disassociates the specified tags from the specified AppStream 2.0 resource.
+// Disassociates one or more specified tags from the specified AppStream 2.0
+// resource.
 //
 // To list the current tags for your resources, use ListTagsForResource.
 //
@@ -2639,7 +2660,9 @@ func (c *AppStream) UpdateDirectoryConfigRequest(input *UpdateDirectoryConfigInp
 
 // UpdateDirectoryConfig API operation for Amazon AppStream.
 //
-// Updates the specified directory configuration.
+// Updates the specified Directory Config object in AppStream 2.0. This object
+// includes the information required to join streaming instances to an Active
+// Directory domain.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2836,7 +2859,7 @@ func (c *AppStream) UpdateStackRequest(input *UpdateStackInput) (req *request.Re
 
 // UpdateStack API operation for Amazon AppStream.
 //
-// Updates the specified stack.
+// Updates the specified fields for the specified stack.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2867,6 +2890,9 @@ func (c *AppStream) UpdateStackRequest(input *UpdateStackInput) (req *request.Re
 //
 //   * ErrCodeIncompatibleImageException "IncompatibleImageException"
 //   The image does not support storage connectors.
+//
+//   * ErrCodeOperationNotPermittedException "OperationNotPermittedException"
+//   The attempted operation is not permitted.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateStack
 func (c *AppStream) UpdateStack(input *UpdateStackInput) (*UpdateStackOutput, error) {
@@ -3820,7 +3846,7 @@ type CreateStackInput struct {
 	// The name of the stack.
 	//
 	// Name is a required field
-	Name *string `min:"1" type:"string" required:"true"`
+	Name *string `type:"string" required:"true"`
 
 	// The URL that users are redirected to after their streaming session ends.
 	RedirectURL *string `type:"string"`
@@ -3848,9 +3874,6 @@ func (s *CreateStackInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateStackInput"}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
-	}
-	if s.Name != nil && len(*s.Name) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
 	if s.UserSettings != nil && len(s.UserSettings) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("UserSettings", 1))
@@ -5746,7 +5769,7 @@ func (s *ListAssociatedFleetsInput) SetStackName(v string) *ListAssociatedFleets
 type ListAssociatedFleetsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The names of the fleets.
+	// The name of the fleet.
 	Names []*string `type:"list"`
 
 	// The pagination token to use to retrieve the next page of results for this
@@ -5833,7 +5856,7 @@ func (s *ListAssociatedStacksInput) SetNextToken(v string) *ListAssociatedStacks
 type ListAssociatedStacksOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The names of the stacks.
+	// The name of the stack.
 	Names []*string `type:"list"`
 
 	// The pagination token to use to retrieve the next page of results for this
@@ -5921,6 +5944,42 @@ func (s ListTagsForResourceOutput) GoString() string {
 // SetTags sets the Tags field's value.
 func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
 	s.Tags = v
+	return s
+}
+
+// The network details of the fleet instance for the streaming session.
+type NetworkAccessConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The resource identifier of the elastic network interface that is attached
+	// to instances in your VPC. All network interfaces have the eni-xxxxxxxx resource
+	// identifier.
+	EniId *string `min:"1" type:"string"`
+
+	// The private IP address of the elastic network interface that is attached
+	// to instances in your VPC.
+	EniPrivateIpAddress *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s NetworkAccessConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NetworkAccessConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetEniId sets the EniId field's value.
+func (s *NetworkAccessConfiguration) SetEniId(v string) *NetworkAccessConfiguration {
+	s.EniId = &v
+	return s
+}
+
+// SetEniPrivateIpAddress sets the EniPrivateIpAddress field's value.
+func (s *NetworkAccessConfiguration) SetEniPrivateIpAddress(v string) *NetworkAccessConfiguration {
+	s.EniPrivateIpAddress = &v
 	return s
 }
 
@@ -6046,6 +6105,9 @@ type Session struct {
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
+	// The network details for the streaming session.
+	NetworkAccessConfiguration *NetworkAccessConfiguration `type:"structure"`
+
 	// The name of the stack for the streaming session.
 	//
 	// StackName is a required field
@@ -6087,6 +6149,12 @@ func (s *Session) SetFleetName(v string) *Session {
 // SetId sets the Id field's value.
 func (s *Session) SetId(v string) *Session {
 	s.Id = &v
+	return s
+}
+
+// SetNetworkAccessConfiguration sets the NetworkAccessConfiguration field's value.
+func (s *Session) SetNetworkAccessConfiguration(v *NetworkAccessConfiguration) *Session {
+	s.NetworkAccessConfiguration = v
 	return s
 }
 
@@ -6705,7 +6773,7 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateDirectoryConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the directory configuration.
+	// The name of the Directory Config object.
 	//
 	// DirectoryName is a required field
 	DirectoryName *string `type:"string" required:"true"`
@@ -6767,7 +6835,7 @@ func (s *UpdateDirectoryConfigInput) SetServiceAccountCredentials(v *ServiceAcco
 type UpdateDirectoryConfigOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the directory configuration.
+	// Information about the Directory Config object.
 	DirectoryConfig *DirectoryConfig `type:"structure"`
 }
 
