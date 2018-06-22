@@ -1,3 +1,12 @@
+Release v1.14.13 (2018-06-22)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API and documentation
+* `service/appstream`: Updates service API, documentation, paginators, and examples
+  * This API update enables customers to find their VPC private IP address and ENI ID associated with AppStream streaming sessions.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.14.12 (2018-06-21)
 ===
 
