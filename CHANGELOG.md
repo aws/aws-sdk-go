@@ -217,6 +217,11 @@ Release v1.13.55 (2018-05-24)
   * This release adds CloudWatch Logs integration capabilities to RDS Aurora MySQL clusters
 * `service/secretsmanager`: Updates service documentation
   * Documentation updates for secretsmanager
+  
+### SDK Bugs
+* `service/cloudwatchlogs`: Fix pagination with cloudwatchlogs ([#1945](https://github.com/aws/aws-sdk-go/pull/1945))
+  * Fixes the SDK's behavior with CloudWatchLogs APIs which return duplicate `NextToken` values to signal end of pagination. 
+  * Fixes [#1908](https://github.com/aws/aws-sdk-go/pull/1908)
 
 Release v1.13.54 (2018-05-22)
 ===
