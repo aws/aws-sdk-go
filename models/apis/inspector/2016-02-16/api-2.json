@@ -59,6 +59,22 @@
         {"shape":"NoSuchEntityException"}
       ]
     },
+    "CreateExclusionsPreview":{
+      "name":"CreateExclusionsPreview",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateExclusionsPreviewRequest"},
+      "output":{"shape":"CreateExclusionsPreviewResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"PreviewGenerationInProgressException"},
+        {"shape":"InternalException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
+      ]
+    },
     "CreateResourceGroup":{
       "name":"CreateResourceGroup",
       "http":{
@@ -169,6 +185,19 @@
         {"shape":"InternalException"}
       ]
     },
+    "DescribeExclusions":{
+      "name":"DescribeExclusions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeExclusionsRequest"},
+      "output":{"shape":"DescribeExclusionsResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"}
+      ]
+    },
     "DescribeFindings":{
       "name":"DescribeFindings",
       "http":{
@@ -223,6 +252,21 @@
         {"shape":"NoSuchEntityException"},
         {"shape":"AssessmentRunInProgressException"},
         {"shape":"UnsupportedFeatureException"}
+      ]
+    },
+    "GetExclusionsPreview":{
+      "name":"GetExclusionsPreview",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetExclusionsPreviewRequest"},
+      "output":{"shape":"GetExclusionsPreviewResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "GetTelemetryMetadata":{
@@ -307,6 +351,21 @@
       },
       "input":{"shape":"ListEventSubscriptionsRequest"},
       "output":{"shape":"ListEventSubscriptionsResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
+      ]
+    },
+    "ListExclusions":{
+      "name":"ListExclusions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListExclusionsRequest"},
+      "output":{"shape":"ListExclusionsResponse"},
       "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
@@ -999,6 +1058,12 @@
       "max":10,
       "min":1
     },
+    "BatchDescribeExclusionsArnList":{
+      "type":"list",
+      "member":{"shape":"Arn"},
+      "max":100,
+      "min":1
+    },
     "Bool":{"type":"boolean"},
     "CreateAssessmentTargetRequest":{
       "type":"structure",
@@ -1036,6 +1101,20 @@
       "required":["assessmentTemplateArn"],
       "members":{
         "assessmentTemplateArn":{"shape":"Arn"}
+      }
+    },
+    "CreateExclusionsPreviewRequest":{
+      "type":"structure",
+      "required":["assessmentTemplateArn"],
+      "members":{
+        "assessmentTemplateArn":{"shape":"Arn"}
+      }
+    },
+    "CreateExclusionsPreviewResponse":{
+      "type":"structure",
+      "required":["previewToken"],
+      "members":{
+        "previewToken":{"shape":"UUID"}
       }
     },
     "CreateResourceGroupRequest":{
@@ -1140,6 +1219,25 @@
         "registeredAt":{"shape":"Timestamp"}
       }
     },
+    "DescribeExclusionsRequest":{
+      "type":"structure",
+      "required":["exclusionArns"],
+      "members":{
+        "exclusionArns":{"shape":"BatchDescribeExclusionsArnList"},
+        "locale":{"shape":"Locale"}
+      }
+    },
+    "DescribeExclusionsResponse":{
+      "type":"structure",
+      "required":[
+        "exclusions",
+        "failedItems"
+      ],
+      "members":{
+        "exclusions":{"shape":"ExclusionMap"},
+        "failedItems":{"shape":"FailedItems"}
+      }
+    },
     "DescribeFindingsRequest":{
       "type":"structure",
       "required":["findingArns"],
@@ -1224,6 +1322,53 @@
       "member":{"shape":"EventSubscription"},
       "max":50,
       "min":1
+    },
+    "Exclusion":{
+      "type":"structure",
+      "required":[
+        "arn",
+        "title",
+        "description",
+        "recommendation",
+        "scopes"
+      ],
+      "members":{
+        "arn":{"shape":"Arn"},
+        "title":{"shape":"Text"},
+        "description":{"shape":"Text"},
+        "recommendation":{"shape":"Text"},
+        "scopes":{"shape":"ScopeList"},
+        "attributes":{"shape":"AttributeList"}
+      }
+    },
+    "ExclusionMap":{
+      "type":"map",
+      "key":{"shape":"Arn"},
+      "value":{"shape":"Exclusion"},
+      "max":100,
+      "min":1
+    },
+    "ExclusionPreview":{
+      "type":"structure",
+      "required":[
+        "title",
+        "description",
+        "recommendation",
+        "scopes"
+      ],
+      "members":{
+        "title":{"shape":"Text"},
+        "description":{"shape":"Text"},
+        "recommendation":{"shape":"Text"},
+        "scopes":{"shape":"ScopeList"},
+        "attributes":{"shape":"AttributeList"}
+      }
+    },
+    "ExclusionPreviewList":{
+      "type":"list",
+      "member":{"shape":"ExclusionPreview"},
+      "max":100,
+      "min":0
     },
     "FailedItemDetails":{
       "type":"structure",
@@ -1332,6 +1477,29 @@
       "members":{
         "status":{"shape":"ReportStatus"},
         "url":{"shape":"Url"}
+      }
+    },
+    "GetExclusionsPreviewRequest":{
+      "type":"structure",
+      "required":[
+        "assessmentTemplateArn",
+        "previewToken"
+      ],
+      "members":{
+        "assessmentTemplateArn":{"shape":"Arn"},
+        "previewToken":{"shape":"UUID"},
+        "nextToken":{"shape":"PaginationToken"},
+        "maxResults":{"shape":"ListMaxResults"},
+        "locale":{"shape":"Locale"}
+      }
+    },
+    "GetExclusionsPreviewResponse":{
+      "type":"structure",
+      "required":["previewStatus"],
+      "members":{
+        "previewStatus":{"shape":"PreviewStatus"},
+        "exclusionPreviews":{"shape":"ExclusionPreviewList"},
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "GetTelemetryMetadataRequest":{
@@ -1609,6 +1777,23 @@
         "nextToken":{"shape":"PaginationToken"}
       }
     },
+    "ListExclusionsRequest":{
+      "type":"structure",
+      "required":["assessmentRunArn"],
+      "members":{
+        "assessmentRunArn":{"shape":"Arn"},
+        "nextToken":{"shape":"PaginationToken"},
+        "maxResults":{"shape":"ListMaxResults"}
+      }
+    },
+    "ListExclusionsResponse":{
+      "type":"structure",
+      "required":["exclusionArns"],
+      "members":{
+        "exclusionArns":{"shape":"ListReturnedArnList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
     "ListFindingsRequest":{
       "type":"structure",
       "members":{
@@ -1752,6 +1937,21 @@
         "nextToken":{"shape":"PaginationToken"}
       }
     },
+    "PreviewGenerationInProgressException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "PreviewStatus":{
+      "type":"string",
+      "enum":[
+        "WORK_IN_PROGRESS",
+        "COMPLETED"
+      ]
+    },
     "ProviderName":{
       "type":"string",
       "max":1000,
@@ -1874,6 +2074,26 @@
       "max":1000,
       "min":0
     },
+    "Scope":{
+      "type":"structure",
+      "members":{
+        "key":{"shape":"ScopeType"},
+        "value":{"shape":"ScopeValue"}
+      }
+    },
+    "ScopeList":{
+      "type":"list",
+      "member":{"shape":"Scope"},
+      "min":1
+    },
+    "ScopeType":{
+      "type":"string",
+      "enum":[
+        "INSTANCE_ID",
+        "RULES_PACKAGE_ARN"
+      ]
+    },
+    "ScopeValue":{"type":"string"},
     "ServiceName":{
       "type":"string",
       "max":128,
@@ -2019,6 +2239,10 @@
         "beginDate":{"shape":"Timestamp"},
         "endDate":{"shape":"Timestamp"}
       }
+    },
+    "UUID":{
+      "type":"string",
+      "pattern":"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
     },
     "UnsubscribeFromEventRequest":{
       "type":"structure",

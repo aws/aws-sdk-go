@@ -1,3 +1,14 @@
+Release v1.14.14 (2018-06-26)
+===
+
+### Service Client Updates
+* `service/inspector`: Updates service API, documentation, and paginators
+  * Introduce four new APIs to view and preview Exclusions.  Exclusions show which intended security checks are excluded from an assessment, along with reasons and recommendations to fix.  The APIs are CreateExclusionsPreview, GetExclusionsPreview, ListExclusions, and DescribeExclusions.
+* `service/s3`: Updates service API and documentation
+  * Add AllowQuotedRecordDelimiter to Amazon S3 Select API. Please refer to https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectSELECTContent.html for usage details.
+* `service/secretsmanager`: Updates service API, documentation, paginators, and examples
+  * This release adds support for resource-based policies that attach directly to your secrets. These policies provide an additional way to control who can access your secrets and what they can do with them. For more information, see https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-based-policies.html in the Secrets Manager User Guide.
+
 Release v1.14.13 (2018-06-22)
 ===
 
