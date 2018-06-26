@@ -95,6 +95,8 @@ func ExampleSecretsManager_CreateSecret_shared00() {
 				fmt.Println(secretsmanager.ErrCodeMalformedPolicyDocumentException, aerr.Error())
 			case secretsmanager.ErrCodeInternalServiceError:
 				fmt.Println(secretsmanager.ErrCodeInternalServiceError, aerr.Error())
+			case secretsmanager.ErrCodePreconditionNotMetException:
+				fmt.Println(secretsmanager.ErrCodePreconditionNotMetException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -509,6 +511,8 @@ func ExampleSecretsManager_TagResource_shared00() {
 			switch aerr.Code() {
 			case secretsmanager.ErrCodeResourceNotFoundException:
 				fmt.Println(secretsmanager.ErrCodeResourceNotFoundException, aerr.Error())
+			case secretsmanager.ErrCodeInvalidRequestException:
+				fmt.Println(secretsmanager.ErrCodeInvalidRequestException, aerr.Error())
 			case secretsmanager.ErrCodeInvalidParameterException:
 				fmt.Println(secretsmanager.ErrCodeInvalidParameterException, aerr.Error())
 			case secretsmanager.ErrCodeInternalServiceError:
@@ -548,6 +552,8 @@ func ExampleSecretsManager_UntagResource_shared00() {
 			switch aerr.Code() {
 			case secretsmanager.ErrCodeResourceNotFoundException:
 				fmt.Println(secretsmanager.ErrCodeResourceNotFoundException, aerr.Error())
+			case secretsmanager.ErrCodeInvalidRequestException:
+				fmt.Println(secretsmanager.ErrCodeInvalidRequestException, aerr.Error())
 			case secretsmanager.ErrCodeInvalidParameterException:
 				fmt.Println(secretsmanager.ErrCodeInvalidParameterException, aerr.Error())
 			case secretsmanager.ErrCodeInternalServiceError:
@@ -597,6 +603,8 @@ func ExampleSecretsManager_UpdateSecret_shared00() {
 				fmt.Println(secretsmanager.ErrCodeMalformedPolicyDocumentException, aerr.Error())
 			case secretsmanager.ErrCodeInternalServiceError:
 				fmt.Println(secretsmanager.ErrCodeInternalServiceError, aerr.Error())
+			case secretsmanager.ErrCodePreconditionNotMetException:
+				fmt.Println(secretsmanager.ErrCodePreconditionNotMetException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -642,6 +650,8 @@ func ExampleSecretsManager_UpdateSecret_shared01() {
 				fmt.Println(secretsmanager.ErrCodeMalformedPolicyDocumentException, aerr.Error())
 			case secretsmanager.ErrCodeInternalServiceError:
 				fmt.Println(secretsmanager.ErrCodeInternalServiceError, aerr.Error())
+			case secretsmanager.ErrCodePreconditionNotMetException:
+				fmt.Println(secretsmanager.ErrCodePreconditionNotMetException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -687,6 +697,8 @@ func ExampleSecretsManager_UpdateSecret_shared02() {
 				fmt.Println(secretsmanager.ErrCodeMalformedPolicyDocumentException, aerr.Error())
 			case secretsmanager.ErrCodeInternalServiceError:
 				fmt.Println(secretsmanager.ErrCodeInternalServiceError, aerr.Error())
+			case secretsmanager.ErrCodePreconditionNotMetException:
+				fmt.Println(secretsmanager.ErrCodePreconditionNotMetException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
