@@ -5,6 +5,7 @@ import (
 	"net"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -66,19 +67,34 @@ func TestReportingMetrics(t *testing.T) {
 	op := &request.Operation{}
 	r := request.New(*sess.Config, md, sess.Handlers, client.DefaultRetryer{NumMaxRetries: 0}, op, nil, nil)
 	sess.Handlers.Complete.Run(r)
-	m := <-csm.MetricsCh
 
-	for k, v := range m {
-		switch k {
-		case "Timestamp":
-			if _, ok := v.(float64); !ok {
-				t.Errorf("expected a float value, but received %T", v)
-			}
-		case "Type":
-			if e, a := "ApiCall", v.(string); e != a {
-				t.Errorf("expected %q, but received %q", e, a)
+	foundAttempt := false
+	foundCall := false
+
+	expectedMetrics := 2
+
+	for i := 0; i < expectedMetrics; i++ {
+		m := <-csm.MetricsCh
+		for k, v := range m {
+			switch k {
+			case "Type":
+				a := v.(string)
+				foundCall = foundCall || a == "ApiCall"
+				foundAttempt = foundAttempt || a == "ApiCallAttempt"
+
+				if prefix := "ApiCall"; !strings.HasPrefix(a, prefix) {
+					t.Errorf("expected 'APICall' prefix, but received %q", a)
+				}
 			}
 		}
+	}
+
+	if !foundAttempt {
+		t.Errorf("expected attempt event to have occurred")
+	}
+
+	if !foundCall {
+		t.Errorf("expected call event to have occurred")
 	}
 }
 
