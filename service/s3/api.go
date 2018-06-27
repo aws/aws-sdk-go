@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -19869,6 +19870,11 @@ func (r *readSelectObjectContentEventStream) readEventStream() {
 				return
 			default:
 			}
+			r.errVal.Store(err)
+			return
+		}
+
+		if err, ok := event.(awserr.Error); ok {
 			r.errVal.Store(err)
 			return
 		}
