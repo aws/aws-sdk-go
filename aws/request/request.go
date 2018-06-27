@@ -134,6 +134,11 @@ func New(cfg aws.Config, clientInfo metadata.ClientInfo, handlers Handlers,
 	}
 	r.SetBufferBody([]byte{})
 
+	if cfg.ClockSkew != nil {
+		r.AttemptTime = r.AttemptTime.Add(*cfg.ClockSkew)
+		r.Time = r.Time.Add(*cfg.ClockSkew)
+	}
+
 	return r
 }
 
@@ -464,6 +469,9 @@ func (r *Request) Send() error {
 
 	for {
 		r.AttemptTime = time.Now()
+		if cfg.ClockSkew != nil {
+			r.AttemptTime = r.AttemptTime.Add(*cfg.ClockSkew)
+		}
 		if aws.BoolValue(r.Retryable) {
 			if r.Config.LogLevel.Matches(aws.LogDebugWithRequestRetries) {
 				r.Config.Logger.Log(fmt.Sprintf("DEBUG: Retrying Request %s/%s, attempt %d",

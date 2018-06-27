@@ -223,6 +223,9 @@ type Config struct {
 	//    	Key: aws.String("//foo//bar//moo"),
 	//    })
 	DisableRestProtocolURICleaning *bool
+
+	// Enable clock skew correction for all API requests
+	ClockSkew *time.Duration
 }
 
 // NewConfig returns a new Config pointer that can be chained with builder
