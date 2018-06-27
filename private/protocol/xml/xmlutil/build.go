@@ -13,9 +13,13 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
-// BuildXML will serialize params into an xml.Encoder.
-// Error will be returned if the serialization of any of the params or nested values fails.
+// BuildXML will serialize params into an xml.Encoder. Error will be returned
+// if the serialization of any of the params or nested values fails.
 func BuildXML(params interface{}, e *xml.Encoder) error {
+	return buildXML(params, e, false)
+}
+
+func buildXML(params interface{}, e *xml.Encoder, sorted bool) error {
 	b := xmlBuilder{encoder: e, namespaces: map[string]string{}}
 	root := NewXMLElement(xml.Name{})
 	if err := b.buildValue(reflect.ValueOf(params), root, ""); err != nil {
@@ -23,7 +27,7 @@ func BuildXML(params interface{}, e *xml.Encoder) error {
 	}
 	for _, c := range root.Children {
 		for _, v := range c {
-			return StructToXML(e, v, false)
+			return StructToXML(e, v, sorted)
 		}
 	}
 	return nil
@@ -103,7 +107,15 @@ func (b *xmlBuilder) buildStruct(value reflect.Value, current *XMLNode, tag refl
 		}
 	}
 
-	child := NewXMLElement(xml.Name{Local: tag.Get("locationName")})
+	locationName := tag.Get("locationName")
+	// Only attempt to derive the location name for the top level element. All
+	// other cases the nodes will be merged within the parent via an unnamed
+	// node.
+	if len(locationName) == 0 && current.parent == nil {
+		locationName = value.Type().Name()
+	}
+
+	child := NewXMLElement(xml.Name{Local: locationName})
 
 	// there is an xmlNamespace associated with this struct
 	if prefix, uri := tag.Get("xmlPrefix"), tag.Get("xmlURI"); uri != "" {
