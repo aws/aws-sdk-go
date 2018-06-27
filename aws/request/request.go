@@ -469,8 +469,8 @@ func (r *Request) Send() error {
 
 	for {
 		r.AttemptTime = time.Now()
-		if cfg.ClockSkew != nil {
-			r.AttemptTime = r.AttemptTime.Add(*cfg.ClockSkew)
+		if r.Config.ClockSkew != nil {
+			r.AttemptTime = r.AttemptTime.Add(*r.Config.ClockSkew)
 		}
 		if aws.BoolValue(r.Retryable) {
 			if r.Config.LogLevel.Matches(aws.LogDebugWithRequestRetries) {
