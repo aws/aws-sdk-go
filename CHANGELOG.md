@@ -1,3 +1,17 @@
+Release v1.14.15 (2018-06-27)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Updates service API and documentation
+  * Unpublish delete-service-linked-role API.
+* `service/codepipeline`: Updates service API
+  * UpdatePipeline may now throw a LimitExceededException when adding or updating Source Actions that use periodic checks for change detection
+* `service/comprehend`: Updates service API, documentation, and paginators
+* `service/secretsmanager`: Updates service documentation, paginators, and examples
+  * Documentation updates for secretsmanager
+
+### SDK Bugs
+* `aws/csm`: Final API Call Attempt events were not being called [#2008](https://github.com/aws/aws-sdk-go/pull/2008)
 Release v1.14.14 (2018-06-26)
 ===
 
