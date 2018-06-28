@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/corehandlers"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
@@ -22,6 +23,7 @@ import (
 )
 
 var _ time.Time
+var _ awserr.Error
 
 func TestSelectObjectContent_Read(t *testing.T) {
 	expectEvents, eventMsgs := mockSelectObjectContentReadEvents()

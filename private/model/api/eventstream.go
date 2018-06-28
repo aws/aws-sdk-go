@@ -692,6 +692,7 @@ func (a *API) APIEventStreamTestGoCode() string {
 	a.imports["time"] = true
 	a.imports["github.com/aws/aws-sdk-go/aws/corehandlers"] = true
 	a.imports["github.com/aws/aws-sdk-go/aws/request"] = true
+	a.imports["github.com/aws/aws-sdk-go/aws/awserr"] = true
 	a.imports["github.com/aws/aws-sdk-go/awstesting/unit"] = true
 	a.imports["github.com/aws/aws-sdk-go/private/protocol"] = true
 	a.imports["github.com/aws/aws-sdk-go/private/protocol/"+a.ProtocolPackage()] = true
@@ -701,6 +702,7 @@ func (a *API) APIEventStreamTestGoCode() string {
 
 	unused := `
 	var _ time.Time
+	var _ awserr.Error
 	`
 
 	if err := eventStreamTestTmpl.Execute(&buf, a); err != nil {
@@ -978,20 +980,10 @@ func (c *loopReader) Read(p []byte) (int, error) {
 	) {
 		expectEvents := []{{ $.Inbound.Name }}Event {
 			{{- if eq $.Operation.API.Metadata.Protocol "json" }}
-				&{{ $.Operation.OutputRef.Shape.ShapeName }}{
-					{{- range $memName, $memRef := $.Operation.OutputRef.Shape.MemberRefs }}
-						{{- if not $memRef.Shape.IsEventStream }}
-							{{ $memName }}: {{ ValueForType $memRef.Shape nil }},
-						{{- end }}
-					{{- end }}
-				},
+				{{- template "set event type" $.Operation.OutputRef.Shape }}
 			{{- end }}
 			{{- range $_, $event := $.Inbound.Events }}
-				&{{ $event.Shape.ShapeName }} {
-					{{- range $memName, $memRef :=  $event.Shape.MemberRefs }}
-					{{ $memName }}: {{ ValueForType $memRef.Shape nil }},
-					{{- end }}
-				},
+				{{- template "set event type" $event.Shape }}
 			{{- end }}
 		}
 
@@ -1003,54 +995,133 @@ func (c *loopReader) Read(p []byte) (int, error) {
 
 		eventMsgs := []eventstream.Message{
 			{{- if eq $.Operation.API.Metadata.Protocol "json" }}
-				{
-					Headers: eventstream.Headers{
-						eventstreamtest.EventMessageTypeHeader,
-						{
-							Name:  eventstreamapi.EventTypeHeader,
-							Value: eventstream.StringValue("initial-response"),
-						},
-						{{- range $memName, $memRef := $.Operation.OutputRef.Shape.MemberRefs }}
-							{{- if $memRef.IsEventHeader }}
-								{{ template "set event message header" Map "idx" 0 "parentShape" $.Operation.OutputRef.Shape "memName" $memName "memRef" $memRef }}
-							{{- end }}
-						{{- end }}
-					},
-					{{- template "set event message payload" Map "idx" 0 "parentShape" $.Operation.OutputRef.Shape }}
-				},
+				{{- template "set event message" Map "idx" 0 "parentShape" $.Operation.OutputRef.Shape "eventName" "initial-response" }}
 			{{- end }}
 			{{- range $idx, $event := $.Inbound.Events }}
-				{
-					{{- $offsetIdx := OptionalAddInt (eq $.Operation.API.Metadata.Protocol "json") $idx 1 }}
-					Headers: eventstream.Headers{
-						eventstreamtest.EventMessageTypeHeader,
-						{
-							Name:  eventstreamapi.EventTypeHeader,
-							Value: eventstream.StringValue("{{ $event.Name }}"),
-						},
-						{{- range $memName, $memRef := $event.Shape.MemberRefs }}
-							{{- template "set event message header" Map "idx" $offsetIdx "parentShape" $event.Shape "memName" $memName "memRef" $memRef }}
-						{{- end }}
-					},
-					{{- template "set event message payload" Map "idx" $offsetIdx "parentShape" $event.Shape }}
-				},
+				{{- $offsetIdx := OptionalAddInt (eq $.Operation.API.Metadata.Protocol "json") $idx 1 }}
+				{{- template "set event message" Map "idx" $offsetIdx "parentShape" $event.Shape "eventName" $event.Name }}
 			{{- end }}
 		}
 
 		return expectEvents, eventMsgs
 	}
+
+	{{- if $.Inbound.Exceptions }}
+		func Test{{ $.Operation.ExportedName }}_ReadException(t *testing.T) {
+			expectEvents := []{{ $.Inbound.Name }}Event {
+				{{- if eq $.Operation.API.Metadata.Protocol "json" }}
+					{{- template "set event type" $.Operation.OutputRef.Shape }}
+				{{- end }}
+
+				{{- $exception := index $.Inbound.Exceptions 0 }}
+				{{- template "set event type" $exception.Shape }}
+			}
+
+			var marshalers request.HandlerList
+			marshalers.PushBackNamed({{ $.API.ProtocolPackage }}.BuildHandler)
+			payloadMarshaler := protocol.HandlerPayloadMarshal{
+				Marshalers: marshalers,
+			}
+
+			eventMsgs := []eventstream.Message{
+				{{- if eq $.Operation.API.Metadata.Protocol "json" }}
+					{{- template "set event message" Map "idx" 0 "parentShape" $.Operation.OutputRef.Shape "eventName" "initial-response" }}
+				{{- end }}
+
+				{{- $offsetIdx := OptionalAddInt (eq $.Operation.API.Metadata.Protocol "json") 0 1 }}
+				{{- $exception := index $.Inbound.Exceptions 0 }}
+				{{- template "set event message" Map "idx" $offsetIdx "parentShape" $exception.Shape "eventName" $exception.Name }}
+			}
+
+			sess, cleanupFn, err := eventstreamtest.SetupEventStreamSession(t,
+				eventstreamtest.ServeEventStream{
+					T:      t,
+					Events: eventMsgs,
+				},
+				true,
+			)
+			if err != nil {
+				t.Fatalf("expect no error, %v", err)
+			}
+			defer cleanupFn()
+
+			svc := New(sess)
+			resp, err := svc.{{ $.Operation.ExportedName }}(nil)
+			if err != nil {
+				t.Fatalf("expect no error got, %v", err)
+			}
+
+			defer resp.EventStream.Close()
+
+			for _ = range resp.EventStream.Events() {
+			}
+
+			err = resp.EventStream.Err()
+			if err == nil {
+				t.Fatalf("expect err, got none")
+			}
+
+			expectErr := {{ ValueForType $exception.Shape nil }}
+			aerr := err.(awserr.Error)
+			if e, a := expectErr.Code(), aerr.Code(); e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+			if e, a := expectErr.Message(), aerr.Message(); e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+
+			if e, a := expectErr, aerr; !reflect.DeepEqual(e, a) {
+				t.Errorf("expect %#v, got %#v", e, a)
+			}
+		}
+
+		{{- range $_, $exception := $.Inbound.Exceptions }}
+			var _ awserr.Error = (*{{ $exception.Shape.ShapeName }})(nil)
+		{{- end }}
+
+	{{ end }}
 {{ end }}
 
+{{/* Parms: *Shape */}}
+{{ define "set event type" }}
+	&{{ $.ShapeName }}{
+		{{- range $memName, $memRef := $.MemberRefs }}
+			{{- if not $memRef.Shape.IsEventStream }}
+				{{ $memName }}: {{ ValueForType $memRef.Shape nil }},
+			{{- end }}
+		{{- end }}
+	},
+{{- end }}
+
+{{/* Parms: idx:int, parentShape:*Shape, eventName:string */}}
+{{ define "set event message" }}
+	{
+		Headers: eventstream.Headers{
+			eventstreamtest.EventMessageTypeHeader,
+			{
+				Name:  eventstreamapi.EventTypeHeader,
+				Value: eventstream.StringValue("{{ $.eventName }}"),
+			},
+			{{- range $memName, $memRef := $.parentShape.MemberRefs }}
+				{{- template "set event message header" Map "idx" $.idx "parentShape" $.parentShape "memName" $memName "memRef" $memRef }}
+			{{- end }}
+		},
+		{{- template "set event message payload" Map "idx" $.idx "parentShape" $.parentShape }}
+	},
+{{- end }}
+
+{{/* Parms: idx:int, parentShape:*Shape, memName:string, memRef:*ShapeRef */}}
 {{ define "set event message header" }}
 	{{- if $.memRef.IsEventHeader }}
-	{
-		Name: "{{ $.memName }}",
-		{{- $shapeValueVar := printf "expectEvents[%d].(%s).%s" $.idx $.parentShape.GoType $.memName }}
-		Value: {{ SetEventHeaderValueForType $.memRef.Shape $shapeValueVar }},
-	},
+		{
+			Name: "{{ $.memName }}",
+			{{- $shapeValueVar := printf "expectEvents[%d].(%s).%s" $.idx $.parentShape.GoType $.memName }}
+			Value: {{ SetEventHeaderValueForType $.memRef.Shape $shapeValueVar }},
+		},
 	{{- end }}
-{{ end }}
+{{- end }}
 
+{{/* Parms: idx:int, parentShape:*Shape, memName:string, memRef:*ShapeRef */}}
 {{ define "set event message payload" }}
 	{{- $payloadMemName := $.parentShape.PayloadRefName }}
 	{{- if HasNonBlobPayloadMembers $.parentShape }}
@@ -1060,5 +1131,5 @@ func (c *loopReader) Read(p []byte) (int, error) {
 			Payload: expectEvents[{{ $.idx }}].({{ $.parentShape.GoType }}).{{ $payloadMemName }},
 		{{- end }}
 	{{- end }}
-{{ end }}
+{{- end }}
 `))

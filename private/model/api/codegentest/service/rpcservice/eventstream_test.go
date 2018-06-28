@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/corehandlers"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
@@ -22,6 +23,7 @@ import (
 )
 
 var _ time.Time
+var _ awserr.Error
 
 func TestGetEventStream_Read(t *testing.T) {
 	expectEvents, eventMsgs := mockGetEventStreamReadEvents()
@@ -223,7 +225,6 @@ func mockGetEventStreamReadEvents() (
 					Name:  "LongVal",
 					Value: eventstream.Int64Value(*expectEvents[2].(*ExplicitPayloadEvent).LongVal),
 				},
-
 				{
 					Name:  "StringVal",
 					Value: eventstream.StringValue(*expectEvents[2].(*ExplicitPayloadEvent).StringVal),
@@ -242,37 +243,30 @@ func mockGetEventStreamReadEvents() (
 					Name:  "BlobVal",
 					Value: eventstream.BytesValue(expectEvents[3].(*HeaderOnlyEvent).BlobVal),
 				},
-
 				{
 					Name:  "BoolVal",
 					Value: eventstream.BoolValue(*expectEvents[3].(*HeaderOnlyEvent).BoolVal),
 				},
-
 				{
 					Name:  "ByteVal",
 					Value: eventstream.Int8Value(int8(*expectEvents[3].(*HeaderOnlyEvent).ByteVal)),
 				},
-
 				{
 					Name:  "IntegerVal",
 					Value: eventstream.Int32Value(int32(*expectEvents[3].(*HeaderOnlyEvent).IntegerVal)),
 				},
-
 				{
 					Name:  "LongVal",
 					Value: eventstream.Int64Value(*expectEvents[3].(*HeaderOnlyEvent).LongVal),
 				},
-
 				{
 					Name:  "ShortVal",
 					Value: eventstream.Int16Value(int16(*expectEvents[3].(*HeaderOnlyEvent).ShortVal)),
 				},
-
 				{
 					Name:  "StringVal",
 					Value: eventstream.StringValue(*expectEvents[3].(*HeaderOnlyEvent).StringVal),
 				},
-
 				{
 					Name:  "TimeVal",
 					Value: eventstream.TimestampValue(*expectEvents[3].(*HeaderOnlyEvent).TimeVal),
@@ -317,6 +311,93 @@ func mockGetEventStreamReadEvents() (
 
 	return expectEvents, eventMsgs
 }
+func TestGetEventStream_ReadException(t *testing.T) {
+	expectEvents := []EventStreamEvent{
+		&GetEventStreamOutput{
+			IntVal: aws.Int64(123),
+			StrVal: aws.String("string value goes here"),
+		},
+		&ExceptionEvent{
+			IntVal:   aws.Int64(123),
+			Message_: aws.String("string value goes here"),
+		},
+	}
+
+	var marshalers request.HandlerList
+	marshalers.PushBackNamed(jsonrpc.BuildHandler)
+	payloadMarshaler := protocol.HandlerPayloadMarshal{
+		Marshalers: marshalers,
+	}
+
+	eventMsgs := []eventstream.Message{
+		{
+			Headers: eventstream.Headers{
+				eventstreamtest.EventMessageTypeHeader,
+				{
+					Name:  eventstreamapi.EventTypeHeader,
+					Value: eventstream.StringValue("initial-response"),
+				},
+			},
+			Payload: eventstreamtest.MarshalEventPayload(payloadMarshaler, expectEvents[0]),
+		},
+		{
+			Headers: eventstream.Headers{
+				eventstreamtest.EventMessageTypeHeader,
+				{
+					Name:  eventstreamapi.EventTypeHeader,
+					Value: eventstream.StringValue("Exception"),
+				},
+			},
+			Payload: eventstreamtest.MarshalEventPayload(payloadMarshaler, expectEvents[1]),
+		},
+	}
+
+	sess, cleanupFn, err := eventstreamtest.SetupEventStreamSession(t,
+		eventstreamtest.ServeEventStream{
+			T:      t,
+			Events: eventMsgs,
+		},
+		true,
+	)
+	if err != nil {
+		t.Fatalf("expect no error, %v", err)
+	}
+	defer cleanupFn()
+
+	svc := New(sess)
+	resp, err := svc.GetEventStream(nil)
+	if err != nil {
+		t.Fatalf("expect no error got, %v", err)
+	}
+
+	defer resp.EventStream.Close()
+
+	for range resp.EventStream.Events() {
+	}
+
+	err = resp.EventStream.Err()
+	if err == nil {
+		t.Fatalf("expect err, got none")
+	}
+
+	expectErr := &ExceptionEvent{
+		IntVal:   aws.Int64(123),
+		Message_: aws.String("string value goes here"),
+	}
+	aerr := err.(awserr.Error)
+	if e, a := expectErr.Code(), aerr.Code(); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := expectErr.Message(), aerr.Message(); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+
+	if e, a := expectErr, aerr; !reflect.DeepEqual(e, a) {
+		t.Errorf("expect %#v, got %#v", e, a)
+	}
+}
+
+var _ awserr.Error = (*ExceptionEvent)(nil)
 
 type loopReader struct {
 	source *bytes.Reader
