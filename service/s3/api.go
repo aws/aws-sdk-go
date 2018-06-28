@@ -11,7 +11,6 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -7576,7 +7575,7 @@ func (s *Condition) SetKeyPrefixEquals(v string) *Condition {
 }
 
 type ContinuationEvent struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `locationName:"ContinuationEvent" type:"structure"`
 }
 
 // String returns the string representation
@@ -10047,7 +10046,7 @@ func (s *EncryptionConfiguration) SetReplicaKmsKeyID(v string) *EncryptionConfig
 }
 
 type EndEvent struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `locationName:"EndEvent" type:"structure"`
 }
 
 // String returns the string representation
@@ -16575,7 +16574,7 @@ func (s *Progress) SetBytesScanned(v int64) *Progress {
 }
 
 type ProgressEvent struct {
-	_ struct{} `type:"structure" payload:"Details"`
+	_ struct{} `locationName:"ProgressEvent" type:"structure" payload:"Details"`
 
 	// The Progress event details.
 	Details *Progress `locationName:"Details" type:"structure"`
@@ -18857,7 +18856,7 @@ func (s *QueueConfigurationDeprecated) SetQueue(v string) *QueueConfigurationDep
 }
 
 type RecordsEvent struct {
-	_ struct{} `type:"structure" payload:"Payload"`
+	_ struct{} `locationName:"RecordsEvent" type:"structure" payload:"Payload"`
 
 	// The byte array of partial, one or more result records.
 	//
@@ -19874,7 +19873,7 @@ func (r *readSelectObjectContentEventStream) readEventStream() {
 			return
 		}
 
-		if err, ok := event.(awserr.Error); ok {
+		if err, ok := event.(error); ok {
 			r.errVal.Store(err)
 			return
 		}
@@ -20470,7 +20469,7 @@ func (s *Stats) SetBytesScanned(v int64) *Stats {
 }
 
 type StatsEvent struct {
-	_ struct{} `type:"structure" payload:"Details"`
+	_ struct{} `locationName:"StatsEvent" type:"structure" payload:"Details"`
 
 	// The Stats event details.
 	Details *Stats `locationName:"Details" type:"structure"`

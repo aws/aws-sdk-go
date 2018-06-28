@@ -107,15 +107,7 @@ func (b *xmlBuilder) buildStruct(value reflect.Value, current *XMLNode, tag refl
 		}
 	}
 
-	locationName := tag.Get("locationName")
-	// Only attempt to derive the location name for the top level element. All
-	// other cases the nodes will be merged within the parent via an unnamed
-	// node.
-	if len(locationName) == 0 && current.parent == nil {
-		locationName = value.Type().Name()
-	}
-
-	child := NewXMLElement(xml.Name{Local: locationName})
+	child := NewXMLElement(xml.Name{Local: tag.Get("locationName")})
 
 	// there is an xmlNamespace associated with this struct
 	if prefix, uri := tag.Get("xmlPrefix"), tag.Get("xmlURI"); uri != "" {

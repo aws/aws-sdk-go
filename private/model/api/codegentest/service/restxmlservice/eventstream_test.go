@@ -85,6 +85,7 @@ func TestGetEventStream_ReadClose(t *testing.T) {
 	}
 
 	resp.EventStream.Close()
+	<-resp.EventStream.Events()
 
 	if err := resp.EventStream.Err(); err != nil {
 		t.Errorf("expect no error, %v", err)
@@ -338,8 +339,7 @@ func TestGetEventStream_ReadException(t *testing.T) {
 
 	defer resp.EventStream.Close()
 
-	for range resp.EventStream.Events() {
-	}
+	<-resp.EventStream.Events()
 
 	err = resp.EventStream.Err()
 	if err == nil {

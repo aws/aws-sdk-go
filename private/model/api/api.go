@@ -300,9 +300,6 @@ var tplAPI = template.Must(template.New("api").Parse(`
 // APIGoCode renders the API in Go code. Returning it as a string
 func (a *API) APIGoCode() string {
 	a.resetImports()
-	if a.HasEventStream {
-		a.imports["github.com/aws/aws-sdk-go/aws/awserr"] = true
-	}
 	a.imports["github.com/aws/aws-sdk-go/aws/awsutil"] = true
 	a.imports["github.com/aws/aws-sdk-go/aws/request"] = true
 	if a.OperationHasOutputPlaceholder() {

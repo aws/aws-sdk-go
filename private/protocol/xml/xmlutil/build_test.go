@@ -65,7 +65,7 @@ func TestBuildXML(t *testing.T) {
 					StrVal: aws.String("third string"),
 				},
 			},
-			Expect: `<implicitPayload><Second><IntVal>1111</IntVal><StrVal>second string</StrVal></Second><StrVal>string value</StrVal><Third><IntVal>2222</IntVal><StrVal>third string</StrVal></Third></implicitPayload>`,
+			Expect: `<Second><IntVal>1111</IntVal><StrVal>second string</StrVal></Second><StrVal>string value</StrVal><Third><IntVal>2222</IntVal><StrVal>third string</StrVal></Third>`,
 		},
 		"named implicit payload": {
 			Input: &namedImplicitPayload{
@@ -80,6 +80,17 @@ func TestBuildXML(t *testing.T) {
 				},
 			},
 			Expect: `<namedPayload><Second><IntVal>1111</IntVal><StrVal>second string</StrVal></Second><StrVal>string value</StrVal><Third><IntVal>2222</IntVal><StrVal>third string</StrVal></Third></namedPayload>`,
+		},
+		"empty nested type": {
+			Input: &namedImplicitPayload{
+				StrVal: aws.String("string value"),
+				Second: &nestedType{},
+				Third: &nestedType{
+					IntVal: aws.Int64(2222),
+					StrVal: aws.String("third string"),
+				},
+			},
+			Expect: `<namedPayload><Second></Second><StrVal>string value</StrVal><Third><IntVal>2222</IntVal><StrVal>third string</StrVal></Third></namedPayload>`,
 		},
 	}
 

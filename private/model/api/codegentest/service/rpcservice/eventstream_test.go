@@ -54,6 +54,7 @@ func TestGetEventStream_Read(t *testing.T) {
 	if e, a := expectResp.StrVal, resp.StrVal; !reflect.DeepEqual(e, a) {
 		t.Errorf("expect %v, got %v", e, a)
 	}
+	// Trim off response output type pseudo event so only event messages remain.
 	expectEvents = expectEvents[1:]
 
 	var i int
@@ -93,6 +94,7 @@ func TestGetEventStream_ReadClose(t *testing.T) {
 	}
 
 	resp.EventStream.Close()
+	<-resp.EventStream.Events()
 
 	if err := resp.EventStream.Err(); err != nil {
 		t.Errorf("expect no error, %v", err)
@@ -374,8 +376,7 @@ func TestGetEventStream_ReadException(t *testing.T) {
 
 	defer resp.EventStream.Close()
 
-	for range resp.EventStream.Events() {
-	}
+	<-resp.EventStream.Events()
 
 	err = resp.EventStream.Err()
 	if err == nil {

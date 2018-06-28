@@ -466,7 +466,7 @@ func (r *read{{ $.ShapeName }}) readEventStream() {
 			return
 		}
 
-		if err, ok := event.(awserr.Error); ok {
+		if err, ok := event.(error); ok {
 			r.errVal.Store(err)
 			return
 		}
@@ -620,22 +620,21 @@ func (s *{{ $.ShapeName }}) UnmarshalEvent(
 	payloadUnmarshaler protocol.PayloadUnmarshaler,
 	msg eventstream.Message,
 ) error {
-	{{- range $fieldIdx, $fieldName := $.MemberNames }}
-		{{- $fieldRef := index $.MemberRefs $fieldName -}}
-		{{- if $fieldRef.IsEventHeader }}
-			if hv := msg.Headers.Get("{{ $fieldName }}"); hv != nil {
-				{{ $types := EventStreamHeaderTypeMap $fieldRef -}}
+	{{- range $memName, $memRef := $.MemberRefs }}
+		{{- if $memRef.IsEventHeader }}
+			if hv := msg.Headers.Get("{{ $memName }}"); hv != nil {
+				{{ $types := EventStreamHeaderTypeMap $memRef -}}
 				v := hv.Get().({{ $types.Header }})
 				{{- if ne $types.Header $types.Member }}
 					m := {{ $types.Member }}(v)
-					s.{{ $fieldName }} = {{ if $fieldRef.UseIndirection }}&{{ end }}m
+					s.{{ $memName }} = {{ if $memRef.UseIndirection }}&{{ end }}m
 				{{- else }}
-					s.{{ $fieldName }} = {{ if $fieldRef.UseIndirection }}&{{ end }}v
+					s.{{ $memName }} = {{ if $memRef.UseIndirection }}&{{ end }}v
 				{{- end }}
 			}
-		{{- else if (and ($fieldRef.IsEventPayload) (eq $fieldRef.Shape.Type "blob")) }}
-			s.{{ $fieldName }} = make([]byte, len(msg.Payload))
-			copy(s.{{ $fieldName }}, msg.Payload)
+		{{- else if (and ($memRef.IsEventPayload) (eq $memRef.Shape.Type "blob")) }}
+			s.{{ $memName }} = make([]byte, len(msg.Payload))
+			copy(s.{{ $memName }}, msg.Payload)
 		{{- end }}
 	{{- end }}
 	{{- if HasNonBlobPayloadMembers $ }}
@@ -881,6 +880,7 @@ func (c *loopReader) Read(p []byte) (int, error) {
 					}
 				{{- end }}
 			{{- end }}
+			// Trim off response output type pseudo event so only event messages remain.
 			expectEvents = expectEvents[1:]
 		{{ end }}
 
@@ -921,6 +921,7 @@ func (c *loopReader) Read(p []byte) (int, error) {
 		}
 
 		resp.EventStream.Close()
+		<-resp.EventStream.Events()
 
 		if err := resp.EventStream.Err(); err != nil {
 			t.Errorf("expect no error, %v", err)
@@ -1053,8 +1054,7 @@ func (c *loopReader) Read(p []byte) (int, error) {
 
 			defer resp.EventStream.Close()
 
-			for _ = range resp.EventStream.Events() {
-			}
+			<-resp.EventStream.Events()
 
 			err = resp.EventStream.Err()
 			if err == nil {
@@ -1082,7 +1082,7 @@ func (c *loopReader) Read(p []byte) (int, error) {
 	{{ end }}
 {{ end }}
 
-{{/* Parms: *Shape */}}
+{{/* Params: *Shape */}}
 {{ define "set event type" }}
 	&{{ $.ShapeName }}{
 		{{- range $memName, $memRef := $.MemberRefs }}
@@ -1093,7 +1093,7 @@ func (c *loopReader) Read(p []byte) (int, error) {
 	},
 {{- end }}
 
-{{/* Parms: idx:int, parentShape:*Shape, eventName:string */}}
+{{/* Params: idx:int, parentShape:*Shape, eventName:string */}}
 {{ define "set event message" }}
 	{
 		Headers: eventstream.Headers{
@@ -1110,7 +1110,7 @@ func (c *loopReader) Read(p []byte) (int, error) {
 	},
 {{- end }}
 
-{{/* Parms: idx:int, parentShape:*Shape, memName:string, memRef:*ShapeRef */}}
+{{/* Params: idx:int, parentShape:*Shape, memName:string, memRef:*ShapeRef */}}
 {{ define "set event message header" }}
 	{{- if $.memRef.IsEventHeader }}
 		{
@@ -1121,7 +1121,7 @@ func (c *loopReader) Read(p []byte) (int, error) {
 	{{- end }}
 {{- end }}
 
-{{/* Parms: idx:int, parentShape:*Shape, memName:string, memRef:*ShapeRef */}}
+{{/* Params: idx:int, parentShape:*Shape, memName:string, memRef:*ShapeRef */}}
 {{ define "set event message payload" }}
 	{{- $payloadMemName := $.parentShape.PayloadRefName }}
 	{{- if HasNonBlobPayloadMembers $.parentShape }}

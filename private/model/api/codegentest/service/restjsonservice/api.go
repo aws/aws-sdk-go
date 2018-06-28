@@ -11,7 +11,6 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -429,7 +428,7 @@ func (r *readGetEventStreamEventStream) readEventStream() {
 			return
 		}
 
-		if err, ok := event.(awserr.Error); ok {
+		if err, ok := event.(error); ok {
 			r.errVal.Store(err)
 			return
 		}

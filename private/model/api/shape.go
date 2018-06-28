@@ -376,6 +376,9 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 		tags = append(tags, ShapeTag{"locationName", ref.LocationName})
 	} else if ref.Shape.LocationName != "" {
 		tags = append(tags, ShapeTag{"locationName", ref.Shape.LocationName})
+	} else if len(ref.Shape.EventFor) != 0 && ref.API.Metadata.Protocol == "rest-xml" {
+		// RPC JSON events need to have location name modeled for round trip testing.
+		tags = append(tags, ShapeTag{"locationName", ref.Shape.ShapeName})
 	}
 
 	if ref.QueryName != "" {

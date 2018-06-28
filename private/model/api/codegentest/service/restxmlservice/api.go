@@ -11,7 +11,6 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -98,7 +97,7 @@ func (c *RESTXMLService) GetEventStreamWithContext(ctx aws.Context, input *GetEv
 }
 
 type EmptyEvent struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `locationName:"EmptyEvent" type:"structure"`
 }
 
 // String returns the string representation
@@ -124,7 +123,7 @@ func (s *EmptyEvent) UnmarshalEvent(
 }
 
 type ExceptionEvent struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `locationName:"ExceptionEvent" type:"structure"`
 
 	IntVal *int64 `type:"integer"`
 
@@ -178,7 +177,7 @@ func (s ExceptionEvent) Error() string {
 }
 
 type ExplicitPayloadEvent struct {
-	_ struct{} `type:"structure" payload:"NestedVal"`
+	_ struct{} `locationName:"ExplicitPayloadEvent" type:"structure" payload:"NestedVal"`
 
 	LongVal *int64 `location:"header" type:"long"`
 
@@ -429,7 +428,7 @@ func (r *readGetEventStreamEventStream) readEventStream() {
 			return
 		}
 
-		if err, ok := event.(awserr.Error); ok {
+		if err, ok := event.(error); ok {
 			r.errVal.Store(err)
 			return
 		}
@@ -553,7 +552,7 @@ func (s *GetEventStreamOutput) runEventStreamLoop(r *request.Request) {
 }
 
 type HeaderOnlyEvent struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `locationName:"HeaderOnlyEvent" type:"structure"`
 
 	// BlobVal is automatically base64 encoded/decoded by the SDK.
 	BlobVal []byte `location:"header" type:"blob"`
@@ -679,7 +678,7 @@ func (s *HeaderOnlyEvent) UnmarshalEvent(
 }
 
 type ImplicitPayloadEvent struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `locationName:"ImplicitPayloadEvent" type:"structure"`
 
 	ByteVal *int64 `location:"header" type:"byte"`
 
@@ -769,7 +768,7 @@ func (s *NestedShape) SetStrVal(v string) *NestedShape {
 }
 
 type PayloadOnlyBlobEvent struct {
-	_ struct{} `type:"structure" payload:"BlobPayload"`
+	_ struct{} `locationName:"PayloadOnlyBlobEvent" type:"structure" payload:"BlobPayload"`
 
 	// BlobPayload is automatically base64 encoded/decoded by the SDK.
 	BlobPayload []byte `type:"blob"`
@@ -806,7 +805,7 @@ func (s *PayloadOnlyBlobEvent) UnmarshalEvent(
 }
 
 type PayloadOnlyEvent struct {
-	_ struct{} `type:"structure" payload:"NestedVal"`
+	_ struct{} `locationName:"PayloadOnlyEvent" type:"structure" payload:"NestedVal"`
 
 	NestedVal *NestedShape `locationName:"NestedVal" type:"structure"`
 }
