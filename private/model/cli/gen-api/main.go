@@ -321,7 +321,7 @@ func writeAPIErrorsFile(g *generateInfo) error {
 func writeAPIEventStreamTestFile(g *generateInfo) error {
 	return writeGoFile(filepath.Join(g.PackageDir, "eventstream_test.go"),
 		codeLayout,
-		"",
+		"// +build go1.6\n",
 		g.API.PackageName(),
 		g.API.APIEventStreamTestGoCode(),
 	)

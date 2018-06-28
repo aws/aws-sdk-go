@@ -38,7 +38,10 @@ help:
 
 generate: cleanup-models gen-test gen-endpoints gen-services
 
-gen-test: gen-protocol-test
+gen-test: gen-protocol-test gen-codegen-test
+
+gen-codegen-test:
+	go generate ./private/model/api/codegentest/service
 
 gen-services:
 	go generate ./service
