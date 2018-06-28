@@ -1,3 +1,14 @@
+Release v1.14.16 (2018-06-28)
+===
+
+### Service Client Updates
+* `service/elasticbeanstalk`: Updates service API, documentation, and examples
+  * Elastic Beanstalk adds "Suspended" health status to the EnvironmentHealthStatus enum type and updates document.
+* `service/lambda`: Updates service API and documentation
+  * Support for SQS as an event source.
+* `service/storagegateway`: Updates service API, documentation, and examples
+  * AWS Storage Gateway now enables you to use Server Message Block (SMB) protocol  to store and access objects in Amazon Simple Storage Service (S3).
+
 Release v1.14.15 (2018-06-27)
 ===
 
