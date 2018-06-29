@@ -217,10 +217,12 @@ func updateEventPayloadRef(parent *Shape) {
 
 func renderEventStreamAPIShape(w io.Writer, s *Shape) error {
 	// Imports needed by the EventStream APIs.
+	s.API.imports["fmt"] = true
 	s.API.imports["bytes"] = true
 	s.API.imports["io"] = true
 	s.API.imports["sync"] = true
 	s.API.imports["sync/atomic"] = true
+	s.API.imports["github.com/aws/aws-sdk-go/aws/awserr"] = true
 	s.API.imports["github.com/aws/aws-sdk-go/private/protocol/eventstream"] = true
 	s.API.imports["github.com/aws/aws-sdk-go/private/protocol/eventstream/eventstreamapi"] = true
 
@@ -491,8 +493,11 @@ func (r *read{{ $.ShapeName }}) unmarshalerForEventType(
 				return &{{ $event.Shape.ShapeName }}{}, nil
 		{{ end -}}
 	default:
-		return nil, fmt.Errorf(
-			"unknown event type name, %s, for {{ $.ShapeName }}", eventType)
+		return nil, awserr.New(
+			request.ErrCodeSerialization,
+			fmt.Sprintf("unknown event type name, %s, for {{ $.ShapeName }}", eventType),
+			nil,
+		)
 	}
 }
 `))
@@ -542,7 +547,11 @@ func (s *{{ $.ShapeName }}) runEventStreamLoop(r *request.Request) {
 			es := s.EventStream
 			v, ok := event.(*{{ $.ShapeName }})
 			if !ok || v == nil {
-				r.Error = fmt.Errorf("invalid event, %T, expect *SubscribeToShardOutput, %v", event, v)
+				r.Error = awserr.New(
+					request.ErrCodeSerialization,
+					fmt.Sprintf("invalid event, %T, expect *SubscribeToShardOutput, %v", event, v),
+					nil,
+				)
 				return
 			}
 			*s = *v
@@ -636,7 +645,7 @@ func (s *{{ $.ShapeName }}) UnmarshalEvent(
 		if err := payloadUnmarshaler.UnmarshalPayload(
 			bytes.NewReader(msg.Payload), s,
 		); err != nil {
-			return fmt.Errorf("failed to unmarshal payload, %v", err)
+			return err
 		}
 	{{- end }}
 	return nil

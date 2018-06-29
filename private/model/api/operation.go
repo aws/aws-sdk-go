@@ -257,8 +257,6 @@ func (o *Operation) GoCode() string {
 	var buf bytes.Buffer
 
 	if len(o.OutputRef.Shape.EventStreamsMemberName) != 0 {
-		// TODO need better was of updating protocol unmarshalers
-		o.API.imports["fmt"] = true
 		o.API.imports["github.com/aws/aws-sdk-go/aws/client"] = true
 		o.API.imports["github.com/aws/aws-sdk-go/private/protocol"] = true
 		o.API.imports["github.com/aws/aws-sdk-go/private/protocol/rest"] = true

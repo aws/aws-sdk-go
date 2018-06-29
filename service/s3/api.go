@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -16608,7 +16609,7 @@ func (s *ProgressEvent) UnmarshalEvent(
 	if err := payloadUnmarshaler.UnmarshalPayload(
 		bytes.NewReader(msg.Payload), s,
 	); err != nil {
-		return fmt.Errorf("failed to unmarshal payload, %v", err)
+		return err
 	}
 	return nil
 }
@@ -19900,8 +19901,11 @@ func (r *readSelectObjectContentEventStream) unmarshalerForEventType(
 	case "Stats":
 		return &StatsEvent{}, nil
 	default:
-		return nil, fmt.Errorf(
-			"unknown event type name, %s, for SelectObjectContentEventStream", eventType)
+		return nil, awserr.New(
+			request.ErrCodeSerialization,
+			fmt.Sprintf("unknown event type name, %s, for SelectObjectContentEventStream", eventType),
+			nil,
+		)
 	}
 }
 
@@ -20498,7 +20502,7 @@ func (s *StatsEvent) UnmarshalEvent(
 	if err := payloadUnmarshaler.UnmarshalPayload(
 		bytes.NewReader(msg.Payload), s,
 	); err != nil {
-		return fmt.Errorf("failed to unmarshal payload, %v", err)
+		return err
 	}
 	return nil
 }

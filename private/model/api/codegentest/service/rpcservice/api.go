@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -153,7 +154,7 @@ func (s *ExceptionEvent) UnmarshalEvent(
 	if err := payloadUnmarshaler.UnmarshalPayload(
 		bytes.NewReader(msg.Payload), s,
 	); err != nil {
-		return fmt.Errorf("failed to unmarshal payload, %v", err)
+		return err
 	}
 	return nil
 }
@@ -235,7 +236,7 @@ func (s *ExplicitPayloadEvent) UnmarshalEvent(
 	if err := payloadUnmarshaler.UnmarshalPayload(
 		bytes.NewReader(msg.Payload), s,
 	); err != nil {
-		return fmt.Errorf("failed to unmarshal payload, %v", err)
+		return err
 	}
 	return nil
 }
@@ -469,8 +470,11 @@ func (r *readGetEventStreamEventStream) unmarshalerForEventType(
 	case "Exception":
 		return &ExceptionEvent{}, nil
 	default:
-		return nil, fmt.Errorf(
-			"unknown event type name, %s, for GetEventStreamEventStream", eventType)
+		return nil, awserr.New(
+			request.ErrCodeSerialization,
+			fmt.Sprintf("unknown event type name, %s, for GetEventStreamEventStream", eventType),
+			nil,
+		)
 	}
 }
 
@@ -566,7 +570,11 @@ func (s *GetEventStreamOutput) unmarshalInitialResponse(r *request.Request) {
 		es := s.EventStream
 		v, ok := event.(*GetEventStreamOutput)
 		if !ok || v == nil {
-			r.Error = fmt.Errorf("invalid event, %T, expect *SubscribeToShardOutput, %v", event, v)
+			r.Error = awserr.New(
+				request.ErrCodeSerialization,
+				fmt.Sprintf("invalid event, %T, expect *SubscribeToShardOutput, %v", event, v),
+				nil,
+			)
 			return
 		}
 		*s = *v
@@ -586,7 +594,7 @@ func (s *GetEventStreamOutput) UnmarshalEvent(
 	if err := payloadUnmarshaler.UnmarshalPayload(
 		bytes.NewReader(msg.Payload), s,
 	); err != nil {
-		return fmt.Errorf("failed to unmarshal payload, %v", err)
+		return err
 	}
 	return nil
 }
@@ -772,7 +780,7 @@ func (s *ImplicitPayloadEvent) UnmarshalEvent(
 	if err := payloadUnmarshaler.UnmarshalPayload(
 		bytes.NewReader(msg.Payload), s,
 	); err != nil {
-		return fmt.Errorf("failed to unmarshal payload, %v", err)
+		return err
 	}
 	return nil
 }
@@ -878,7 +886,7 @@ func (s *PayloadOnlyEvent) UnmarshalEvent(
 	if err := payloadUnmarshaler.UnmarshalPayload(
 		bytes.NewReader(msg.Payload), s,
 	); err != nil {
-		return fmt.Errorf("failed to unmarshal payload, %v", err)
+		return err
 	}
 	return nil
 }
