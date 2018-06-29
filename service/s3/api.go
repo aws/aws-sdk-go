@@ -19873,11 +19873,6 @@ func (r *readSelectObjectContentEventStream) readEventStream() {
 			return
 		}
 
-		if err, ok := event.(error); ok {
-			r.errVal.Store(err)
-			return
-		}
-
 		select {
 		case r.stream <- event.(SelectObjectContentEventStreamEvent):
 		case <-r.done:

@@ -466,11 +466,6 @@ func (r *read{{ $.ShapeName }}) readEventStream() {
 			return
 		}
 
-		if err, ok := event.(error); ok {
-			r.errVal.Store(err)
-			return
-		}
-
 		select {
 		case r.stream <- event.({{ $.EventStreamAPI.Inbound.Name }}Event):
 		case <-r.done:
@@ -1062,7 +1057,10 @@ func (c *loopReader) Read(p []byte) (int, error) {
 			}
 
 			expectErr := {{ ValueForType $exception.Shape nil }}
-			aerr := err.(awserr.Error)
+			aerr, ok := err.(awserr.Error)
+			if !ok {
+				t.Errorf("expect exception, got %T, %#v", err, err)
+			}
 			if e, a := expectErr.Code(), aerr.Code(); e != a {
 				t.Errorf("expect %v, got %v", e, a)
 			}
@@ -1097,11 +1095,19 @@ func (c *loopReader) Read(p []byte) (int, error) {
 {{ define "set event message" }}
 	{
 		Headers: eventstream.Headers{
-			eventstreamtest.EventMessageTypeHeader,
-			{
-				Name:  eventstreamapi.EventTypeHeader,
-				Value: eventstream.StringValue("{{ $.eventName }}"),
-			},
+			{{- if $.parentShape.Exception }}
+				eventstreamtest.EventExceptionTypeHeader,
+				{
+					Name:  eventstreamapi.ExceptionTypeHeader,
+					Value: eventstream.StringValue("{{ $.eventName }}"),
+				},
+			{{- else }}
+				eventstreamtest.EventMessageTypeHeader,
+				{
+					Name:  eventstreamapi.EventTypeHeader,
+					Value: eventstream.StringValue("{{ $.eventName }}"),
+				},
+			{{- end }}
 			{{- range $memName, $memRef := $.parentShape.MemberRefs }}
 				{{- template "set event message header" Map "idx" $.idx "parentShape" $.parentShape "memName" $memName "memRef" $memRef }}
 			{{- end }}

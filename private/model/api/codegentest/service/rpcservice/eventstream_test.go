@@ -346,9 +346,9 @@ func TestGetEventStream_ReadException(t *testing.T) {
 		},
 		{
 			Headers: eventstream.Headers{
-				eventstreamtest.EventMessageTypeHeader,
+				eventstreamtest.EventExceptionTypeHeader,
 				{
-					Name:  eventstreamapi.EventTypeHeader,
+					Name:  eventstreamapi.ExceptionTypeHeader,
 					Value: eventstream.StringValue("Exception"),
 				},
 			},
@@ -387,7 +387,10 @@ func TestGetEventStream_ReadException(t *testing.T) {
 		IntVal:   aws.Int64(123),
 		Message_: aws.String("string value goes here"),
 	}
-	aerr := err.(awserr.Error)
+	aerr, ok := err.(awserr.Error)
+	if !ok {
+		t.Errorf("expect exception, got %T, %#v", err, err)
+	}
 	if e, a := expectErr.Code(), aerr.Code(); e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
