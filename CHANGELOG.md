@@ -1,3 +1,10 @@
+Release v1.14.17 (2018-06-29)
+===
+
+### Service Client Updates
+* `service/secretsmanager`: Updates service examples
+  * New SDK code snippet examples for the new APIs released for the Resource-based Policy support in Secrets Manager
+
 Release v1.14.16 (2018-06-28)
 ===
 
