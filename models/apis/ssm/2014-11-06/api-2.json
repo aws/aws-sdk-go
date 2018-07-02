@@ -368,6 +368,35 @@
         {"shape":"InvalidInstanceId"}
       ]
     },
+    "DescribeAssociationExecutionTargets":{
+      "name":"DescribeAssociationExecutionTargets",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeAssociationExecutionTargetsRequest"},
+      "output":{"shape":"DescribeAssociationExecutionTargetsResult"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"AssociationDoesNotExist"},
+        {"shape":"InvalidNextToken"},
+        {"shape":"AssociationExecutionDoesNotExist"}
+      ]
+    },
+    "DescribeAssociationExecutions":{
+      "name":"DescribeAssociationExecutions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeAssociationExecutionsRequest"},
+      "output":{"shape":"DescribeAssociationExecutionsResult"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"AssociationDoesNotExist"},
+        {"shape":"InvalidNextToken"}
+      ]
+    },
     "DescribeAutomationExecutions":{
       "name":"DescribeAutomationExecutions",
       "http":{
@@ -1298,6 +1327,19 @@
         {"shape":"InvalidNotificationConfig"}
       ]
     },
+    "StartAssociationsOnce":{
+      "name":"StartAssociationsOnce",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartAssociationsOnceRequest"},
+      "output":{"shape":"StartAssociationsOnceResult"},
+      "errors":[
+        {"shape":"InvalidAssociation"},
+        {"shape":"AssociationDoesNotExist"}
+      ]
+    },
     "StartAutomationExecution":{
       "name":"StartAutomationExecution",
       "http":{
@@ -1611,6 +1653,110 @@
       },
       "exception":true
     },
+    "AssociationExecution":{
+      "type":"structure",
+      "members":{
+        "AssociationId":{"shape":"AssociationId"},
+        "AssociationVersion":{"shape":"AssociationVersion"},
+        "ExecutionId":{"shape":"AssociationExecutionId"},
+        "Status":{"shape":"StatusName"},
+        "DetailedStatus":{"shape":"StatusName"},
+        "CreatedTime":{"shape":"DateTime"},
+        "LastExecutionDate":{"shape":"DateTime"},
+        "ResourceCountByStatus":{"shape":"ResourceCountByStatus"}
+      }
+    },
+    "AssociationExecutionDoesNotExist":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "AssociationExecutionFilter":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value",
+        "Type"
+      ],
+      "members":{
+        "Key":{"shape":"AssociationExecutionFilterKey"},
+        "Value":{"shape":"AssociationExecutionFilterValue"},
+        "Type":{"shape":"AssociationFilterOperatorType"}
+      }
+    },
+    "AssociationExecutionFilterKey":{
+      "type":"string",
+      "enum":[
+        "ExecutionId",
+        "Status",
+        "CreatedTime"
+      ]
+    },
+    "AssociationExecutionFilterList":{
+      "type":"list",
+      "member":{"shape":"AssociationExecutionFilter"},
+      "min":1
+    },
+    "AssociationExecutionFilterValue":{
+      "type":"string",
+      "min":1
+    },
+    "AssociationExecutionId":{
+      "type":"string",
+      "pattern":"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"
+    },
+    "AssociationExecutionTarget":{
+      "type":"structure",
+      "members":{
+        "AssociationId":{"shape":"AssociationId"},
+        "AssociationVersion":{"shape":"AssociationVersion"},
+        "ExecutionId":{"shape":"AssociationExecutionId"},
+        "ResourceId":{"shape":"AssociationResourceId"},
+        "ResourceType":{"shape":"AssociationResourceType"},
+        "Status":{"shape":"StatusName"},
+        "DetailedStatus":{"shape":"StatusName"},
+        "LastExecutionDate":{"shape":"DateTime"},
+        "OutputSource":{"shape":"OutputSource"}
+      }
+    },
+    "AssociationExecutionTargetsFilter":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"AssociationExecutionTargetsFilterKey"},
+        "Value":{"shape":"AssociationExecutionTargetsFilterValue"}
+      }
+    },
+    "AssociationExecutionTargetsFilterKey":{
+      "type":"string",
+      "enum":[
+        "Status",
+        "ResourceId",
+        "ResourceType"
+      ]
+    },
+    "AssociationExecutionTargetsFilterList":{
+      "type":"list",
+      "member":{"shape":"AssociationExecutionTargetsFilter"},
+      "min":1
+    },
+    "AssociationExecutionTargetsFilterValue":{
+      "type":"string",
+      "min":1
+    },
+    "AssociationExecutionTargetsList":{
+      "type":"list",
+      "member":{"shape":"AssociationExecutionTarget"}
+    },
+    "AssociationExecutionsList":{
+      "type":"list",
+      "member":{"shape":"AssociationExecution"}
+    },
     "AssociationFilter":{
       "type":"structure",
       "required":[
@@ -1639,6 +1785,14 @@
       "member":{"shape":"AssociationFilter"},
       "min":1
     },
+    "AssociationFilterOperatorType":{
+      "type":"string",
+      "enum":[
+        "EQUAL",
+        "LESS_THAN",
+        "GREATER_THAN"
+      ]
+    },
     "AssociationFilterValue":{
       "type":"string",
       "min":1
@@ -1646,6 +1800,12 @@
     "AssociationId":{
       "type":"string",
       "pattern":"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"
+    },
+    "AssociationIdList":{
+      "type":"list",
+      "member":{"shape":"AssociationId"},
+      "max":10,
+      "min":1
     },
     "AssociationLimitExceeded":{
       "type":"structure",
@@ -1668,6 +1828,16 @@
         "DetailedStatus":{"shape":"StatusName"},
         "AssociationStatusAggregatedCount":{"shape":"AssociationStatusAggregatedCount"}
       }
+    },
+    "AssociationResourceId":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "AssociationResourceType":{
+      "type":"string",
+      "max":50,
+      "min":1
     },
     "AssociationStatus":{
       "type":"structure",
@@ -2723,6 +2893,50 @@
       "type":"structure",
       "members":{
         "ActivationList":{"shape":"ActivationList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeAssociationExecutionTargetsRequest":{
+      "type":"structure",
+      "required":[
+        "AssociationId",
+        "ExecutionId"
+      ],
+      "members":{
+        "AssociationId":{"shape":"AssociationId"},
+        "ExecutionId":{"shape":"AssociationExecutionId"},
+        "Filters":{"shape":"AssociationExecutionTargetsFilterList"},
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true
+        },
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeAssociationExecutionTargetsResult":{
+      "type":"structure",
+      "members":{
+        "AssociationExecutionTargets":{"shape":"AssociationExecutionTargetsList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeAssociationExecutionsRequest":{
+      "type":"structure",
+      "required":["AssociationId"],
+      "members":{
+        "AssociationId":{"shape":"AssociationId"},
+        "Filters":{"shape":"AssociationExecutionFilterList"},
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true
+        },
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeAssociationExecutionsResult":{
+      "type":"structure",
+      "members":{
+        "AssociationExecutions":{"shape":"AssociationExecutionsList"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -4224,6 +4438,13 @@
       },
       "exception":true
     },
+    "InvalidAssociation":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
     "InvalidAssociationVersion":{
       "type":"structure",
       "members":{
@@ -5496,6 +5717,19 @@
         "CENTOS"
       ]
     },
+    "OutputSource":{
+      "type":"structure",
+      "members":{
+        "OutputSourceId":{"shape":"OutputSourceId"},
+        "OutputSourceType":{"shape":"OutputSourceType"}
+      }
+    },
+    "OutputSourceId":{
+      "type":"string",
+      "max":36,
+      "min":36
+    },
+    "OutputSourceType":{"type":"string"},
     "OwnerInformation":{
       "type":"string",
       "max":128,
@@ -6255,6 +6489,7 @@
       "member":{"shape":"ResourceComplianceSummaryItem"}
     },
     "ResourceCount":{"type":"integer"},
+    "ResourceCountByStatus":{"type":"string"},
     "ResourceDataSyncAWSKMSKeyARN":{
       "type":"string",
       "max":512,
@@ -6510,6 +6745,18 @@
     "StandardOutputContent":{
       "type":"string",
       "max":24000
+    },
+    "StartAssociationsOnceRequest":{
+      "type":"structure",
+      "required":["AssociationIds"],
+      "members":{
+        "AssociationIds":{"shape":"AssociationIdList"}
+      }
+    },
+    "StartAssociationsOnceResult":{
+      "type":"structure",
+      "members":{
+      }
     },
     "StartAutomationExecutionRequest":{
       "type":"structure",

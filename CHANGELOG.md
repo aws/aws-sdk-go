@@ -1,3 +1,10 @@
+Release v1.14.18 (2018-07-02)
+===
+
+### Service Client Updates
+* `service/ssm`: Updates service API, documentation, and examples
+  * Execution History and StartAssociationOnce release for State Manager. Users now have the ability to view association execution history with DescribeAssociationExecutions and DescribeAssociationExecutionTargets. Users can also execute an association by calling StartAssociationOnce.
+
 Release v1.14.17 (2018-06-29)
 ===
 
