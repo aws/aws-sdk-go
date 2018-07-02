@@ -169,43 +169,66 @@ func TestUniqueInputAndOutputs(t *testing.T) {
 }
 
 func TestCollidingFields(t *testing.T) {
-	cases := []struct {
-		api      *API
-		expected []*Shapes
+	cases := map[string]struct {
+		Members map[string]*ShapeRef
+		Expect  []string
 	}{
-		{
-			&API{
-				name: "FooService",
-				Shapes: []*Shapes{
-					{
-						MemberRefs: map[string]*ShapeRef{
-							"String":   &ShapeRef{},
-							"GoString": &ShapeRef{},
-							"Validate": &ShapeRef{},
-							"Foo":      &ShapeRef{},
-							"SetFoo":   &ShapeRef{},
-						},
-					},
-				},
+		"SimpleMembers": {
+			MemberRefs: map[string]*ShapeRef{
+				"String":   &ShapeRef{},
+				"GoString": &ShapeRef{},
+				"Validate": &ShapeRef{},
+				"Foo":      &ShapeRef{},
+				"SetFoo":   &ShapeRef{},
+				"Code":     &ShapeRef{},
+				"Message":  &ShapeRef{},
+				"OrigErr":  &ShapeRef{},
 			},
-			[]*Shapes{
-				{
-					MemberRefs: map[string]*ShapeRef{
-						"String_":   &ShapeRef{},
-						"GoString_": &ShapeRef{},
-						"Validate_": &ShapeRef{},
-						"Foo":       &ShapeRef{},
-						"SetFoo_":   &ShapeRef{},
-					},
-				},
+			Expect: []string{
+				"String_",
+				"GoString_",
+				"Validate_",
+				"Foo",
+				"SetFoo_",
+				"Code",
+				"Message",
+				"OrigErr",
+			},
+		},
+		"ExceptionShape": {
+			MemberRefs: map[string]*ShapeRef{
+				"Code":    &ShapeRef{Shape: &Shape{Exception: true}},
+				"Message": &ShapeRef{Shape: &Shape{Exception: true}},
+				"OrigErr": &ShapeRef{Shape: &Shape{Exception: true}},
+				"String":  &ShapeRef{Shape: &Shape{Exception: true}},
+				"Other":   &ShapeRef{Shape: &Shape{Exception: true}},
+			},
+			Expect: []string{
+				"Code_",
+				"Message_",
+				"OrigErr_",
+				"String_",
+				"Other",
 			},
 		},
 	}
 
 	for _, c := range testCases {
-		c.api.renameCollidingFields()
-		if !reflect.DeepEqual(c.api.Shapes, c.expected) {
-			t.Errorf("expected %v, but received %v", c.expected, c.api.Shapes)
-		}
+		t.Run(k, func(t *testing.T) {
+			a := &API{
+				Shapes: []*Shape{
+					ShapeName:  k,
+					MemberRefs: c.Members,
+				},
+			}
+
+			a.renameCollidingFields()
+
+			for i, name := range a.Shapes[0].MemberNames() {
+				if e, a := c.Expect[i], name; e != a {
+					t.Errorf("expect %v, got %v", e, a)
+				}
+			}
+		})
 	}
 }

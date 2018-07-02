@@ -295,7 +295,7 @@ func goType(s *Shape, withPkgName bool) string {
 		return "*string"
 	case "blob":
 		return "[]byte"
-	case "integer", "long":
+	case "byte", "short", "integer", "long":
 		return "*int64"
 	case "float", "double":
 		return "*float64"
@@ -368,12 +368,17 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 		tags = append(tags, ShapeTag{"location", ref.Location})
 	} else if ref.Shape.Location != "" {
 		tags = append(tags, ShapeTag{"location", ref.Shape.Location})
+	} else if ref.IsEventHeader {
+		tags = append(tags, ShapeTag{"location", "header"})
 	}
 
 	if ref.LocationName != "" {
 		tags = append(tags, ShapeTag{"locationName", ref.LocationName})
 	} else if ref.Shape.LocationName != "" {
 		tags = append(tags, ShapeTag{"locationName", ref.Shape.LocationName})
+	} else if len(ref.Shape.EventFor) != 0 && ref.API.Metadata.Protocol == "rest-xml" {
+		// RPC JSON events need to have location name modeled for round trip testing.
+		tags = append(tags, ShapeTag{"locationName", ref.Shape.ShapeName})
 	}
 
 	if ref.QueryName != "" {
@@ -560,6 +565,12 @@ var structShapeTmpl = func() *template.Template {
 		shapeTmpl.AddParseTree(
 			"eventStreamEventShapeTmpl", eventStreamEventShapeTmpl.Tree),
 	)
+	template.Must(
+		shapeTmpl.AddParseTree(
+			"eventStreamExceptionEventShapeTmpl",
+			eventStreamExceptionEventShapeTmpl.Tree),
+	)
+	shapeTmpl.Funcs(eventStreamEventShapeTmplFuncs)
 
 	return shapeTmpl
 }()
@@ -598,13 +609,13 @@ type {{ .ShapeName }} struct {
 {{ if not .API.NoStringerMethods }}
 	{{ .GoCodeStringers }}
 {{ end }}
-{{ if not .API.NoValidataShapeMethods }}
+{{ if not (or .API.NoValidataShapeMethods .Exception) }}
 	{{ if .Validations -}}
 		{{ .Validations.GoCode . }}
 	{{ end }}
 {{ end }}
 
-{{ if not .API.NoGenStructFieldAccessors }}
+{{ if not (or .API.NoGenStructFieldAccessors .Exception) }}
 	{{ $builderShapeName := print .ShapeName -}}
 	{{ range $_, $name := $context.MemberNames -}}
 		{{ $elem := index $context.MemberRefs $name -}}
@@ -638,8 +649,12 @@ type {{ .ShapeName }} struct {
 	{{ template "eventStreamAPILoopMethodTmpl" $ }}
 {{ end }}
 
-{{ if $.IsEvent }}
+{{ if $.EventFor }}
 	{{ template "eventStreamEventShapeTmpl" $ }}
+
+	{{- if $.Exception }}
+		{{ template "eventStreamExceptionEventShapeTmpl" $ }}
+	{{ end -}}
 {{ end }}
 `
 
