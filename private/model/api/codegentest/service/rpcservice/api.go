@@ -620,6 +620,7 @@ func (s *ExplicitPayloadEvent) UnmarshalEvent(
 //     * ImplicitPayloadEvent
 //     * PayloadOnlyEvent
 //     * PayloadOnlyBlobEvent
+//     * PayloadOnlyStringEvent
 type GetEventStreamEventStream struct {
 	// Reader is the EventStream reader for the EventStream
 	// events. This value is automatically set by the SDK when the API call is made
@@ -671,6 +672,7 @@ func (es *GetEventStreamEventStream) Err() error {
 //     * ImplicitPayloadEvent
 //     * PayloadOnlyEvent
 //     * PayloadOnlyBlobEvent
+//     * PayloadOnlyStringEvent
 func (es *GetEventStreamEventStream) Events() <-chan EventStreamEvent {
 	return es.Reader.Events()
 }
@@ -686,6 +688,7 @@ func (es *GetEventStreamEventStream) Events() <-chan EventStreamEvent {
 //     * ImplicitPayloadEvent
 //     * PayloadOnlyEvent
 //     * PayloadOnlyBlobEvent
+//     * PayloadOnlyStringEvent
 type EventStreamEvent interface {
 	eventEventStream()
 }
@@ -704,6 +707,7 @@ type EventStreamEvent interface {
 //     * ImplicitPayloadEvent
 //     * PayloadOnlyEvent
 //     * PayloadOnlyBlobEvent
+//     * PayloadOnlyStringEvent
 type GetEventStreamEventStreamReader interface {
 	// Returns a channel of events as they are read from the event stream.
 	Events() <-chan EventStreamEvent
@@ -831,6 +835,9 @@ func (r *readGetEventStreamEventStream) unmarshalerForEventType(
 
 	case "PayloadOnlyBlob":
 		return &PayloadOnlyBlobEvent{}, nil
+
+	case "PayloadOnlyString":
+		return &PayloadOnlyStringEvent{}, nil
 
 	case "Exception":
 		return &ExceptionEvent{}, nil
@@ -1253,5 +1260,40 @@ func (s *PayloadOnlyEvent) UnmarshalEvent(
 	); err != nil {
 		return err
 	}
+	return nil
+}
+
+type PayloadOnlyStringEvent struct {
+	_ struct{} `type:"structure" payload:"StringPayload"`
+
+	StringPayload *string `locationName:"StringPayload" type:"string"`
+}
+
+// String returns the string representation
+func (s PayloadOnlyStringEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PayloadOnlyStringEvent) GoString() string {
+	return s.String()
+}
+
+// SetStringPayload sets the StringPayload field's value.
+func (s *PayloadOnlyStringEvent) SetStringPayload(v string) *PayloadOnlyStringEvent {
+	s.StringPayload = &v
+	return s
+}
+
+// The PayloadOnlyStringEvent is and event in the EventStream group of events.
+func (s *PayloadOnlyStringEvent) eventEventStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the PayloadOnlyStringEvent value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *PayloadOnlyStringEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	s.StringPayload = aws.String(string(msg.Payload))
 	return nil
 }

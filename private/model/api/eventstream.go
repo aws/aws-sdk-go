@@ -600,7 +600,7 @@ var eventStreamEventShapeTmplFuncs = template.FuncMap{
 func eventHasNonBlobPayloadMembers(s *Shape) bool {
 	num := len(s.MemberRefs)
 	for _, ref := range s.MemberRefs {
-		if ref.IsEventHeader || (ref.IsEventPayload && ref.Shape.Type == "blob") {
+		if ref.IsEventHeader || (ref.IsEventPayload && (ref.Shape.Type == "blob" || ref.Shape.Type == "string")) {
 			num--
 		}
 	}
@@ -639,6 +639,8 @@ func (s *{{ $.ShapeName }}) UnmarshalEvent(
 		{{- else if (and ($memRef.IsEventPayload) (eq $memRef.Shape.Type "blob")) }}
 			s.{{ $memName }} = make([]byte, len(msg.Payload))
 			copy(s.{{ $memName }}, msg.Payload)
+		{{- else if (and ($memRef.IsEventPayload) (eq $memRef.Shape.Type "string")) }}
+			s.{{ $memName }} = aws.String(string(msg.Payload))
 		{{- end }}
 	{{- end }}
 	{{- if HasNonBlobPayloadMembers $ }}
@@ -1151,8 +1153,11 @@ func (c *loopReader) Read(p []byte) (int, error) {
 	{{- if HasNonBlobPayloadMembers $.parentShape }}
 		Payload: eventstreamtest.MarshalEventPayload(payloadMarshaler, expectEvents[{{ $.idx }}]),
 	{{- else if $payloadMemName }} 
-		{{- if eq (index $.parentShape.MemberRefs $payloadMemName).Shape.Type "blob" }}
+		{{- $shapeType := (index $.parentShape.MemberRefs $payloadMemName).Shape.Type }}
+		{{- if eq $shapeType "blob" }}
 			Payload: expectEvents[{{ $.idx }}].({{ $.parentShape.GoType }}).{{ $payloadMemName }},
+		{{- else if eq $shapeType "string" }}
+			Payload: []byte(*expectEvents[{{ $.idx }}].({{ $.parentShape.GoType }}).{{ $payloadMemName }}),
 		{{- end }}
 	{{- end }}
 {{- end }}

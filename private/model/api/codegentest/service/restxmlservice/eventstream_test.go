@@ -307,6 +307,9 @@ func mockGetEventStreamReadEvents() (
 		&PayloadOnlyBlobEvent{
 			BlobPayload: []byte("blob value goes here"),
 		},
+		&PayloadOnlyStringEvent{
+			StringPayload: aws.String("string value goes here"),
+		},
 	}
 
 	var marshalers request.HandlerList
@@ -418,6 +421,16 @@ func mockGetEventStreamReadEvents() (
 				},
 			},
 			Payload: expectEvents[5].(*PayloadOnlyBlobEvent).BlobPayload,
+		},
+		{
+			Headers: eventstream.Headers{
+				eventstreamtest.EventMessageTypeHeader,
+				{
+					Name:  eventstreamapi.EventTypeHeader,
+					Value: eventstream.StringValue("PayloadOnlyString"),
+				},
+			},
+			Payload: []byte(*expectEvents[6].(*PayloadOnlyStringEvent).StringPayload),
 		},
 	}
 

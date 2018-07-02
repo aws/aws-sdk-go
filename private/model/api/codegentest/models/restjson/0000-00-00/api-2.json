@@ -63,6 +63,7 @@
         "ExplicitPayload":{"shape":"ExplicitPayloadEvent"},
         "PayloadOnly":{"shape":"PayloadOnlyEvent"},
         "PayloadOnlyBlob":{"shape":"PayloadOnlyBlobEvent"},
+        "PayloadOnlyString":{"shape":"PayloadOnlyStringEvent"},
         "Empty":{"shape":"EmptyEvent"},
         "Exception":{"shape":"ExceptionEvent"}
       },
@@ -176,6 +177,16 @@
       },
       "event":true
     },
+	"PayloadOnlyStringEvent":{
+      "type":"structure",
+      "members":{
+        "StringPayload":{
+          "shape":"String",
+          "eventpayload":true
+        }
+      },
+      "event":true
+	},
     "EmptyEvent": {
       "type":"structure",
       "members":{},
