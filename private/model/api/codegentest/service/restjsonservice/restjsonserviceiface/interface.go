@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // REST JSON Service.
 //    func myFunc(svc restjsonserviceiface.RESTJSONServiceAPI) bool {
-//        // Make svc.GetEventStream request
+//        // Make svc.EmptyStream request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockRESTJSONServiceClient struct {
 //        restjsonserviceiface.RESTJSONServiceAPI
 //    }
-//    func (m *mockRESTJSONServiceClient) GetEventStream(input *restjsonservice.GetEventStreamInput) (*restjsonservice.GetEventStreamOutput, error) {
+//    func (m *mockRESTJSONServiceClient) EmptyStream(input *restjsonservice.EmptyStreamInput) (*restjsonservice.EmptyStreamOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type RESTJSONServiceAPI interface {
+	EmptyStream(*restjsonservice.EmptyStreamInput) (*restjsonservice.EmptyStreamOutput, error)
+	EmptyStreamWithContext(aws.Context, *restjsonservice.EmptyStreamInput, ...request.Option) (*restjsonservice.EmptyStreamOutput, error)
+	EmptyStreamRequest(*restjsonservice.EmptyStreamInput) (*request.Request, *restjsonservice.EmptyStreamOutput)
+
 	GetEventStream(*restjsonservice.GetEventStreamInput) (*restjsonservice.GetEventStreamOutput, error)
 	GetEventStreamWithContext(aws.Context, *restjsonservice.GetEventStreamInput, ...request.Option) (*restjsonservice.GetEventStreamOutput, error)
 	GetEventStreamRequest(*restjsonservice.GetEventStreamInput) (*request.Request, *restjsonservice.GetEventStreamOutput)

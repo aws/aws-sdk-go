@@ -27,6 +27,149 @@ import (
 var _ time.Time
 var _ awserr.Error
 
+func TestEmptyStream_Read(t *testing.T) {
+	expectEvents, eventMsgs := mockEmptyStreamReadEvents()
+	sess, cleanupFn, err := eventstreamtest.SetupEventStreamSession(t,
+		eventstreamtest.ServeEventStream{
+			T:      t,
+			Events: eventMsgs,
+		},
+		true,
+	)
+	if err != nil {
+		t.Fatalf("expect no error, %v", err)
+	}
+	defer cleanupFn()
+
+	svc := New(sess)
+	resp, err := svc.EmptyStream(nil)
+	if err != nil {
+		t.Fatalf("expect no error got, %v", err)
+	}
+	defer resp.EventStream.Close()
+
+	var i int
+	for event := range resp.EventStream.Events() {
+		if event == nil {
+			t.Errorf("%d, expect event, got nil", i)
+		}
+		if e, a := expectEvents[i], event; !reflect.DeepEqual(e, a) {
+			t.Errorf("%d, expect %T %v, got %T %v", i, e, e, a, a)
+		}
+		i++
+	}
+
+	if err := resp.EventStream.Err(); err != nil {
+		t.Errorf("expect no error, %v", err)
+	}
+}
+
+func TestEmptyStream_ReadClose(t *testing.T) {
+	_, eventMsgs := mockEmptyStreamReadEvents()
+	sess, cleanupFn, err := eventstreamtest.SetupEventStreamSession(t,
+		eventstreamtest.ServeEventStream{
+			T:      t,
+			Events: eventMsgs,
+		},
+		true,
+	)
+	if err != nil {
+		t.Fatalf("expect no error, %v", err)
+	}
+	defer cleanupFn()
+
+	svc := New(sess)
+	resp, err := svc.EmptyStream(nil)
+	if err != nil {
+		t.Fatalf("expect no error got, %v", err)
+	}
+
+	resp.EventStream.Close()
+	<-resp.EventStream.Events()
+
+	if err := resp.EventStream.Err(); err != nil {
+		t.Errorf("expect no error, %v", err)
+	}
+}
+
+func BenchmarkEmptyStream_Read(b *testing.B) {
+	_, eventMsgs := mockEmptyStreamReadEvents()
+	var buf bytes.Buffer
+	encoder := eventstream.NewEncoder(&buf)
+	for _, msg := range eventMsgs {
+		if err := encoder.Encode(msg); err != nil {
+			b.Fatalf("failed to encode message, %v", err)
+		}
+	}
+	stream := &loopReader{source: bytes.NewReader(buf.Bytes())}
+
+	sess := unit.Session
+	svc := New(sess, &aws.Config{
+		Endpoint:               aws.String("https://example.com"),
+		DisableParamValidation: aws.Bool(true),
+	})
+	svc.Handlers.Send.Swap(corehandlers.SendHandler.Name,
+		request.NamedHandler{Name: "mockSend",
+			Fn: func(r *request.Request) {
+				r.HTTPResponse = &http.Response{
+					Status:     "200 OK",
+					StatusCode: 200,
+					Header:     http.Header{},
+					Body:       ioutil.NopCloser(stream),
+				}
+			},
+		},
+	)
+
+	resp, err := svc.EmptyStream(nil)
+	if err != nil {
+		b.Fatalf("failed to create request, %v", err)
+	}
+	defer resp.EventStream.Close()
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		if err = resp.EventStream.Err(); err != nil {
+			b.Fatalf("expect no error, got %v", err)
+		}
+		event := <-resp.EventStream.Events()
+		if event == nil {
+			b.Fatalf("expect event, got nil, %v, %d", resp.EventStream.Err(), i)
+		}
+	}
+}
+
+func mockEmptyStreamReadEvents() (
+	[]EmptyEventStreamEvent,
+	[]eventstream.Message,
+) {
+	expectEvents := []EmptyEventStreamEvent{
+		&EmptyStreamOutput{},
+	}
+
+	var marshalers request.HandlerList
+	marshalers.PushBackNamed(jsonrpc.BuildHandler)
+	payloadMarshaler := protocol.HandlerPayloadMarshal{
+		Marshalers: marshalers,
+	}
+	_ = payloadMarshaler
+
+	eventMsgs := []eventstream.Message{
+		{
+			Headers: eventstream.Headers{
+				eventstreamtest.EventMessageTypeHeader,
+				{
+					Name:  eventstreamapi.EventTypeHeader,
+					Value: eventstream.StringValue("initial-response"),
+				},
+			},
+			Payload: eventstreamtest.MarshalEventPayload(payloadMarshaler, expectEvents[0]),
+		},
+	}
+
+	return expectEvents, eventMsgs
+}
+
 func TestGetEventStream_Read(t *testing.T) {
 	expectEvents, eventMsgs := mockGetEventStreamReadEvents()
 	sess, cleanupFn, err := eventstreamtest.SetupEventStreamSession(t,
@@ -197,6 +340,7 @@ func mockGetEventStreamReadEvents() (
 	payloadMarshaler := protocol.HandlerPayloadMarshal{
 		Marshalers: marshalers,
 	}
+	_ = payloadMarshaler
 
 	eventMsgs := []eventstream.Message{
 		{
