@@ -832,6 +832,14 @@ var eventStreamTestTmpl = template.Must(
 			}
 			return a + b
 		},
+		"HasNonEventStreamMember": func(s *Shape) bool {
+			for _, ref := range s.MemberRefs {
+				if !ref.Shape.IsEventStream {
+					return true
+				}
+			}
+			return false
+		},
 	}).Parse(`
 {{ range $opName, $op := $.Operations }}
 	{{ if $op.EventStreamAPI }}
@@ -875,7 +883,7 @@ func (c *loopReader) Read(p []byte) (int, error) {
 		}
 		defer resp.EventStream.Close()
 
-		{{- if eq $.Operation.API.Metadata.Protocol "json" }}
+		{{- if and (eq $.Operation.API.Metadata.Protocol "json") (HasNonEventStreamMember $.Operation.OutputRef.Shape) }}
 			expectResp := expectEvents[0].(*{{ $.Operation.OutputRef.Shape.ShapeName }})
 			{{- range $name, $ref := $.Operation.OutputRef.Shape.MemberRefs }}
 				{{- if not $ref.Shape.IsEventStream }}
@@ -997,6 +1005,7 @@ func (c *loopReader) Read(p []byte) (int, error) {
 		payloadMarshaler := protocol.HandlerPayloadMarshal{
 			Marshalers: marshalers,
 		}
+		_ = payloadMarshaler
 
 		eventMsgs := []eventstream.Message{
 			{{- if eq $.Operation.API.Metadata.Protocol "json" }}

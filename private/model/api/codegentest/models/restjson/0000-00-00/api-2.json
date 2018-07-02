@@ -21,6 +21,15 @@
       },
       "input":{"shape":"GetEventStreamRequest"},
       "output":{"shape":"GetEventStreamResponse"}
+    },
+    "EmptyStream":{
+      "name":"EmptyStream",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EmptyStreamRequest"},
+      "output":{"shape":"EmptyStreamResponse"}
     }
   },
   "shapes":{
@@ -56,6 +65,22 @@
         "PayloadOnlyBlob":{"shape":"PayloadOnlyBlobEvent"},
         "Empty":{"shape":"EmptyEvent"},
         "Exception":{"shape":"ExceptionEvent"}
+      },
+      "eventstream":true
+    },
+    "EmptyStreamRequest":{
+      "type":"structure",
+      "members":{}
+    },
+    "EmptyStreamResponse":{
+      "type":"structure",
+      "members":{
+        "EventStream":{"shape":"EmptyEventStream"}
+      }
+    },
+    "EmptyEventStream":{
+      "type":"structure",
+      "members":{
       },
       "eventstream":true
     },
