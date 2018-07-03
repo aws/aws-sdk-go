@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws/credentials"
-	"github.com/go-ini/ini"
+	"github.com/aws/aws-sdk-go/aws/session/internal/ini"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -140,10 +140,11 @@ func TestLoadSharedConfig(t *testing.T) {
 
 func TestLoadSharedConfigFromFile(t *testing.T) {
 	filename := testConfigFilename
-	f, err := ini.Load(filename)
+	f, err := ini.OpenFile(filename)
 	if err != nil {
 		t.Fatalf("failed to load test config file, %s, %v", filename, err)
 	}
+
 	iniFile := sharedConfigFile{IniData: f, Filename: filename}
 
 	cases := []struct {

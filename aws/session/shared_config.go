@@ -2,11 +2,12 @@ package session
 
 import (
 	"fmt"
-	"io/ioutil"
+	"os"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/credentials"
-	"github.com/go-ini/ini"
+
+	"github.com/aws/aws-sdk-go/aws/session/internal/ini"
 )
 
 const (
@@ -64,7 +65,7 @@ type sharedConfig struct {
 
 type sharedConfigFile struct {
 	Filename string
-	IniData  *ini.File
+	IniData  ini.Tables
 }
 
 // loadSharedConfig retrieves the configuration from the list of files
@@ -105,19 +106,18 @@ func loadSharedConfigIniFiles(filenames []string) ([]sharedConfigFile, error) {
 	files := make([]sharedConfigFile, 0, len(filenames))
 
 	for _, filename := range filenames {
-		b, err := ioutil.ReadFile(filename)
+		f, err := os.Open(filename)
 		if err != nil {
-			// Skip files which can't be opened and read for whatever reason
 			continue
 		}
 
-		f, err := ini.Load(b)
+		tables, err := ini.ParseFile(f)
 		if err != nil {
 			return nil, SharedConfigLoadError{Filename: filename, Err: err}
 		}
 
 		files = append(files, sharedConfigFile{
-			Filename: filename, IniData: f,
+			Filename: filename, IniData: tables,
 		})
 	}
 
@@ -171,42 +171,42 @@ func (cfg *sharedConfig) setFromIniFiles(profile string, files []sharedConfigFil
 // if a config file only includes aws_access_key_id but no aws_secret_access_key
 // the aws_access_key_id will be ignored.
 func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile) error {
-	section, err := file.IniData.GetSection(profile)
-	if err != nil {
+	section, ok := file.IniData.GetSection(profile)
+	if !ok {
 		// Fallback to to alternate profile name: profile <name>
-		section, err = file.IniData.GetSection(fmt.Sprintf("profile %s", profile))
-		if err != nil {
-			return SharedConfigProfileNotExistsError{Profile: profile, Err: err}
+		section, ok = file.IniData.GetSection(fmt.Sprintf("profile %s", profile))
+		if !ok {
+			return SharedConfigProfileNotExistsError{Profile: profile, Err: nil}
 		}
 	}
 
 	// Shared Credentials
-	akid := section.Key(accessKeyIDKey).String()
-	secret := section.Key(secretAccessKey).String()
+	akid := section.String(accessKeyIDKey)
+	secret := section.String(secretAccessKey)
 	if len(akid) > 0 && len(secret) > 0 {
 		cfg.Creds = credentials.Value{
 			AccessKeyID:     akid,
 			SecretAccessKey: secret,
-			SessionToken:    section.Key(sessionTokenKey).String(),
+			SessionToken:    section.String(sessionTokenKey),
 			ProviderName:    fmt.Sprintf("SharedConfigCredentials: %s", file.Filename),
 		}
 	}
 
 	// Assume Role
-	roleArn := section.Key(roleArnKey).String()
-	srcProfile := section.Key(sourceProfileKey).String()
+	roleArn := section.String(roleArnKey)
+	srcProfile := section.String(sourceProfileKey)
 	if len(roleArn) > 0 && len(srcProfile) > 0 {
 		cfg.AssumeRole = assumeRoleConfig{
 			RoleARN:         roleArn,
 			SourceProfile:   srcProfile,
-			ExternalID:      section.Key(externalIDKey).String(),
-			MFASerial:       section.Key(mfaSerialKey).String(),
-			RoleSessionName: section.Key(roleSessionNameKey).String(),
+			ExternalID:      section.String(externalIDKey),
+			MFASerial:       section.String(mfaSerialKey),
+			RoleSessionName: section.String(roleSessionNameKey),
 		}
 	}
 
 	// Region
-	if v := section.Key(regionKey).String(); len(v) > 0 {
+	if v := section.String(regionKey); len(v) > 0 {
 		cfg.Region = v
 	}
 

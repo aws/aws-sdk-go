@@ -1,0 +1,3 @@
+[ default ]
+region = "foo-region"
+output = json
