@@ -97,8 +97,8 @@ func TestBatchDeleteContext(t *testing.T) {
 		}
 
 		batcher := BatchDelete{
-			Client:    svc,
-			BatchSize: c.size,
+			client:    svc,
+			batchSize: c.size,
 		}
 
 		err := batcher.Delete(ctx, &DeleteObjectsIterator{Objects: c.objects})
