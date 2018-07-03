@@ -195,8 +195,8 @@ func (iter *DeleteListIterator) DeleteObject() BatchDeleteObject {
 // BatchDelete will use the s3 package's service client to perform a batch
 // delete.
 type BatchDelete struct {
-	Client    s3iface.S3API
-	BatchSize int
+	client    s3iface.S3API
+	batchSize int
 }
 
 // NewBatchDeleteWithClient will return a new delete client that can delete a batched amount of
@@ -221,8 +221,8 @@ type BatchDelete struct {
 //	}
 func NewBatchDeleteWithClient(client s3iface.S3API, options ...func(*BatchDelete)) *BatchDelete {
 	svc := &BatchDelete{
-		Client:    client,
-		BatchSize: DefaultBatchSize,
+		client:    client,
+		batchSize: DefaultBatchSize,
 	}
 
 	for _, opt := range options {
@@ -319,7 +319,7 @@ func (d *BatchDelete) Delete(ctx aws.Context, iter BatchDeleteIterator) error {
 			objects = append(objects, o)
 		}
 
-		if len(input.Delete.Objects) == d.BatchSize || !parity {
+		if len(input.Delete.Objects) == d.batchSize || !parity {
 			if err := deleteBatch(ctx, d, input, objects); err != nil {
 				errs = append(errs, err...)
 			}
@@ -370,7 +370,7 @@ const (
 func deleteBatch(ctx aws.Context, d *BatchDelete, input *s3.DeleteObjectsInput, objects []BatchDeleteObject) []Error {
 	errs := []Error{}
 
-	if result, err := d.Client.DeleteObjectsWithContext(ctx, input); err != nil {
+	if result, err := d.client.DeleteObjectsWithContext(ctx, input); err != nil {
 		for i := 0; i < len(input.Delete.Objects); i++ {
 			errs = append(errs, newError(err, input.Bucket, input.Delete.Objects[i].Key))
 		}

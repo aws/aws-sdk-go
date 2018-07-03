@@ -294,8 +294,8 @@ func TestBatchDelete(t *testing.T) {
 	svc := &mockS3Client{S3: buildS3SvcClient(server.URL)}
 	for i, c := range cases {
 		batcher := BatchDelete{
-			Client:    svc,
-			BatchSize: c.size,
+			client:    svc,
+			batchSize: c.size,
 		}
 
 		if err := batcher.Delete(aws.BackgroundContext(), &DeleteObjectsIterator{Objects: c.objects}); err != nil {
@@ -374,8 +374,8 @@ func TestBatchDeleteError(t *testing.T) {
 	}
 	for _, c := range cases {
 		batcher := BatchDelete{
-			Client:    svc,
-			BatchSize: c.size,
+			client:    svc,
+			batchSize: c.size,
 		}
 
 		err := batcher.Delete(aws.BackgroundContext(), &DeleteObjectsIterator{Objects: c.objects})
@@ -492,8 +492,8 @@ func TestBatchDeleteList(t *testing.T) {
 
 	svc := &mockS3Client{S3: buildS3SvcClient(server.URL), objects: objects}
 	batcher := BatchDelete{
-		Client:    svc,
-		BatchSize: 1,
+		client:    svc,
+		batchSize: 1,
 	}
 
 	input := &s3.ListObjectsInput{
@@ -546,7 +546,7 @@ func TestBatchDeleteList_EmptyListObjects(t *testing.T) {
 
 	svc := &mockS3Client{S3: buildS3SvcClient(server.URL)}
 	batcher := BatchDelete{
-		Client: svc,
+		client: svc,
 	}
 
 	input := &s3.ListObjectsInput{
