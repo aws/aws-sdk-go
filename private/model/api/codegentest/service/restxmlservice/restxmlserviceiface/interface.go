@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // REST XML Service.
 //    func myFunc(svc restxmlserviceiface.RESTXMLServiceAPI) bool {
-//        // Make svc.GetEventStream request
+//        // Make svc.EmptyStream request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockRESTXMLServiceClient struct {
 //        restxmlserviceiface.RESTXMLServiceAPI
 //    }
-//    func (m *mockRESTXMLServiceClient) GetEventStream(input *restxmlservice.GetEventStreamInput) (*restxmlservice.GetEventStreamOutput, error) {
+//    func (m *mockRESTXMLServiceClient) EmptyStream(input *restxmlservice.EmptyStreamInput) (*restxmlservice.EmptyStreamOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type RESTXMLServiceAPI interface {
+	EmptyStream(*restxmlservice.EmptyStreamInput) (*restxmlservice.EmptyStreamOutput, error)
+	EmptyStreamWithContext(aws.Context, *restxmlservice.EmptyStreamInput, ...request.Option) (*restxmlservice.EmptyStreamOutput, error)
+	EmptyStreamRequest(*restxmlservice.EmptyStreamInput) (*request.Request, *restxmlservice.EmptyStreamOutput)
+
 	GetEventStream(*restxmlservice.GetEventStreamInput) (*restxmlservice.GetEventStreamOutput, error)
 	GetEventStreamWithContext(aws.Context, *restxmlservice.GetEventStreamInput, ...request.Option) (*restxmlservice.GetEventStreamOutput, error)
 	GetEventStreamRequest(*restxmlservice.GetEventStreamInput) (*request.Request, *restxmlservice.GetEventStreamOutput)

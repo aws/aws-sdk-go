@@ -21,6 +21,15 @@
       },
       "input":{"shape":"GetEventStreamRequest"},
       "output":{"shape":"GetEventStreamResponse"}
+    },
+    "EmptyStream":{
+      "name":"EmptyStream",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EmptyStreamRequest"},
+      "output":{"shape":"EmptyStreamResponse"}
     }
   },
   "shapes":{
@@ -54,8 +63,25 @@
         "ExplicitPayload":{"shape":"ExplicitPayloadEvent"},
         "PayloadOnly":{"shape":"PayloadOnlyEvent"},
         "PayloadOnlyBlob":{"shape":"PayloadOnlyBlobEvent"},
+        "PayloadOnlyString":{"shape":"PayloadOnlyStringEvent"},
         "Empty":{"shape":"EmptyEvent"},
         "Exception":{"shape":"ExceptionEvent"}
+      },
+      "eventstream":true
+    },
+    "EmptyStreamRequest":{
+      "type":"structure",
+      "members":{}
+    },
+    "EmptyStreamResponse":{
+      "type":"structure",
+      "members":{
+        "EventStream":{"shape":"EmptyEventStream"}
+      }
+    },
+    "EmptyEventStream":{
+      "type":"structure",
+      "members":{
       },
       "eventstream":true
     },
@@ -151,6 +177,16 @@
       },
       "event":true
     },
+	"PayloadOnlyStringEvent":{
+      "type":"structure",
+      "members":{
+        "StringPayload":{
+          "shape":"String",
+          "eventpayload":true
+        }
+      },
+      "event":true
+	},
     "EmptyEvent": {
       "type":"structure",
       "members":{},

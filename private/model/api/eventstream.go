@@ -600,7 +600,7 @@ var eventStreamEventShapeTmplFuncs = template.FuncMap{
 func eventHasNonBlobPayloadMembers(s *Shape) bool {
 	num := len(s.MemberRefs)
 	for _, ref := range s.MemberRefs {
-		if ref.IsEventHeader || (ref.IsEventPayload && ref.Shape.Type == "blob") {
+		if ref.IsEventHeader || (ref.IsEventPayload && (ref.Shape.Type == "blob" || ref.Shape.Type == "string")) {
 			num--
 		}
 	}
@@ -639,6 +639,8 @@ func (s *{{ $.ShapeName }}) UnmarshalEvent(
 		{{- else if (and ($memRef.IsEventPayload) (eq $memRef.Shape.Type "blob")) }}
 			s.{{ $memName }} = make([]byte, len(msg.Payload))
 			copy(s.{{ $memName }}, msg.Payload)
+		{{- else if (and ($memRef.IsEventPayload) (eq $memRef.Shape.Type "string")) }}
+			s.{{ $memName }} = aws.String(string(msg.Payload))
 		{{- end }}
 	{{- end }}
 	{{- if HasNonBlobPayloadMembers $ }}
@@ -744,7 +746,7 @@ func valueForType(s *Shape, visited []string) string {
 	case "double":
 		return `aws.Float64(123.45)`
 	case "timestamp":
-		return `aws.Time(time.Unix(1396594860, 0))`
+		return `aws.Time(time.Unix(1396594860, 0).UTC())`
 	case "structure":
 		w := bytes.NewBuffer(nil)
 		fmt.Fprintf(w, "&%s{\n", s.ShapeName)
@@ -832,6 +834,14 @@ var eventStreamTestTmpl = template.Must(
 			}
 			return a + b
 		},
+		"HasNonEventStreamMember": func(s *Shape) bool {
+			for _, ref := range s.MemberRefs {
+				if !ref.Shape.IsEventStream {
+					return true
+				}
+			}
+			return false
+		},
 	}).Parse(`
 {{ range $opName, $op := $.Operations }}
 	{{ if $op.EventStreamAPI }}
@@ -875,7 +885,7 @@ func (c *loopReader) Read(p []byte) (int, error) {
 		}
 		defer resp.EventStream.Close()
 
-		{{- if eq $.Operation.API.Metadata.Protocol "json" }}
+		{{- if and (eq $.Operation.API.Metadata.Protocol "json") (HasNonEventStreamMember $.Operation.OutputRef.Shape) }}
 			expectResp := expectEvents[0].(*{{ $.Operation.OutputRef.Shape.ShapeName }})
 			{{- range $name, $ref := $.Operation.OutputRef.Shape.MemberRefs }}
 				{{- if not $ref.Shape.IsEventStream }}
@@ -997,6 +1007,7 @@ func (c *loopReader) Read(p []byte) (int, error) {
 		payloadMarshaler := protocol.HandlerPayloadMarshal{
 			Marshalers: marshalers,
 		}
+		_ = payloadMarshaler
 
 		eventMsgs := []eventstream.Message{
 			{{- if eq $.Operation.API.Metadata.Protocol "json" }}
@@ -1142,8 +1153,11 @@ func (c *loopReader) Read(p []byte) (int, error) {
 	{{- if HasNonBlobPayloadMembers $.parentShape }}
 		Payload: eventstreamtest.MarshalEventPayload(payloadMarshaler, expectEvents[{{ $.idx }}]),
 	{{- else if $payloadMemName }} 
-		{{- if eq (index $.parentShape.MemberRefs $payloadMemName).Shape.Type "blob" }}
+		{{- $shapeType := (index $.parentShape.MemberRefs $payloadMemName).Shape.Type }}
+		{{- if eq $shapeType "blob" }}
 			Payload: expectEvents[{{ $.idx }}].({{ $.parentShape.GoType }}).{{ $payloadMemName }},
+		{{- else if eq $shapeType "string" }}
+			Payload: []byte(*expectEvents[{{ $.idx }}].({{ $.parentShape.GoType }}).{{ $payloadMemName }}),
 		{{- end }}
 	{{- end }}
 {{- end }}

@@ -170,6 +170,7 @@ func mockSelectObjectContentReadEvents() (
 	payloadMarshaler := protocol.HandlerPayloadMarshal{
 		Marshalers: marshalers,
 	}
+	_ = payloadMarshaler
 
 	eventMsgs := []eventstream.Message{
 		{
