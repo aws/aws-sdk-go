@@ -259,7 +259,7 @@ func (a *API) renameCollidingFields() {
 				namesWithSet[k] = struct{}{}
 			}
 
-			if collides(k) {
+			if collides(k) || (v.Exception && exceptionCollides(k)) {
 				renameCollidingField(k, v, field)
 			}
 		}
@@ -271,7 +271,6 @@ func (a *API) renameCollidingFields() {
 			}
 		}
 	}
-
 }
 
 func renameCollidingField(name string, v *Shape, field *ShapeRef) {
@@ -288,9 +287,18 @@ func collides(name string) bool {
 		"GoString",
 		"Validate":
 		return true
-	default:
-		return false
 	}
+	return false
+}
+
+func exceptionCollides(name string) bool {
+	switch name {
+	case "Code",
+		"Message",
+		"OrigErr":
+		return true
+	}
+	return false
 }
 
 // createInputOutputShapes creates toplevel input/output shapes if they

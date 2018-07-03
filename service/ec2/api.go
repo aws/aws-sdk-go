@@ -373,9 +373,8 @@ func (c *EC2) AllocateHostsRequest(input *AllocateHostsInput) (req *request.Requ
 
 // AllocateHosts API operation for Amazon Elastic Compute Cloud.
 //
-// Allocates a Dedicated Host to your account. At minimum you need to specify
-// the instance size type, Availability Zone, and quantity of hosts you want
-// to allocate.
+// Allocates a Dedicated Host to your account. At a minimum, specify the instance
+// size type, Availability Zone, and quantity of hosts to allocate.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1373,8 +1372,6 @@ func (c *EC2) AttachVolumeRequest(input *AttachVolumeInput) (req *request.Reques
 //    * The instance type and operating system of the instance must support
 //    the product. For example, you can't detach a volume from a Windows instance
 //    and attach it to a Linux instance.
-//
-// For an overview of the AWS Marketplace, see Introducing AWS Marketplace (https://aws.amazon.com/marketplace/help/200900000).
 //
 // For more information about EBS volumes, see Attaching Amazon EBS Volumes
 // (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html)
@@ -6081,12 +6078,11 @@ func (c *EC2) DeleteFleetsRequest(input *DeleteFleetsInput) (req *request.Reques
 //
 // Deletes the specified EC2 Fleet.
 //
-// After you delete an EC2 Fleet, the EC2 Fleet launches no new instances. You
-// must specify whether the EC2 Fleet should also terminate its instances. If
-// you terminate the instances, the EC2 Fleet enters the deleted_terminating
-// state. Otherwise, the EC2 Fleet enters the deleted_running state, and the
-// instances continue to run until they are interrupted or you terminate them
-// manually.
+// After you delete an EC2 Fleet, it launches no new instances. You must specify
+// whether an EC2 Fleet should also terminate its instances. If you terminate
+// the instances, the EC2 Fleet enters the deleted_terminating state. Otherwise,
+// the EC2 Fleet enters the deleted_running state, and the instances continue
+// to run until they are interrupted or you terminate them manually.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9527,7 +9523,7 @@ func (c *EC2) DescribeFleetsRequest(input *DescribeFleetsInput) (req *request.Re
 
 // DescribeFleets API operation for Amazon Elastic Compute Cloud.
 //
-// Describes the specified EC2 Fleet.
+// Describes one or more of your EC2 Fleet.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11974,7 +11970,8 @@ func (c *EC2) DescribePrefixListsRequest(input *DescribePrefixListsInput) (req *
 // the prefix list name and prefix list ID of the service and the IP address
 // range for the service. A prefix list ID is required for creating an outbound
 // security group rule that allows traffic from a VPC to access an AWS service
-// through a gateway VPC endpoint.
+// through a gateway VPC endpoint. Currently, the services that support this
+// action are Amazon S3 and Amazon DynamoDB.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -23498,20 +23495,19 @@ type AllocateHostsInput struct {
 	// AvailabilityZone is a required field
 	AvailabilityZone *string `locationName:"availabilityZone" type:"string" required:"true"`
 
-	// Unique, case-sensitive identifier you provide to ensure idempotency of the
-	// request. For more information, see How to Ensure Idempotency (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html)
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. For more information, see How to Ensure Idempotency (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
-	// Specify the instance type that you want your Dedicated Hosts to be configured
-	// for. When you specify the instance type, that is the only instance type that
-	// you can launch onto that host.
+	// Specify the instance type for which to configure your Dedicated Hosts. When
+	// you specify the instance type, that is the only instance type that you can
+	// launch onto that host.
 	//
 	// InstanceType is a required field
 	InstanceType *string `locationName:"instanceType" type:"string" required:"true"`
 
-	// The number of Dedicated Hosts you want to allocate to your account with these
-	// parameters.
+	// The number of Dedicated Hosts to allocate to your account with these parameters.
 	//
 	// Quantity is a required field
 	Quantity *int64 `locationName:"quantity" type:"integer" required:"true"`
@@ -23580,8 +23576,8 @@ func (s *AllocateHostsInput) SetQuantity(v int64) *AllocateHostsInput {
 type AllocateHostsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the allocated Dedicated Host. This is used when you want to launch
-	// an instance onto a specific host.
+	// The ID of the allocated Dedicated Host. This is used to launch an instance
+	// onto a specific host.
 	HostIds []*string `locationName:"hostIdSet" locationNameList:"item" type:"list"`
 }
 
@@ -27707,7 +27703,10 @@ type CreateFleetInput struct {
 	// this structure.
 	SpotOptions *SpotOptionsRequest `type:"structure"`
 
-	// The tags for an EC2 Fleet resource.
+	// The key-value pair for tagging the EC2 Fleet request on creation. The value
+	// for ResourceType must be fleet, otherwise the fleet request fails. To tag
+	// instances at launch, specify the tags in the launch template (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html#create-launch-template).
+	// For information about tagging after launch, see Tagging Your Resources (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#tag-resources).
 	TagSpecifications []*TagSpecification `locationName:"TagSpecification" locationNameList:"item" type:"list"`
 
 	// The TotalTargetCapacity, OnDemandTargetCapacity, SpotTargetCapacity, and
@@ -34140,12 +34139,9 @@ type DescribeAddressesInput struct {
 	//    in the filter value. For example, for the tag Purpose=X, specify tag:Purpose
 	//    for the filter name and X for the filter value.
 	//
-	//    * tag-key - The key of a tag assigned to the resource. This filter is
-	//    independent of the tag-value filter. For example, if you use both the
-	//    filter "tag-key=Purpose" and the filter "tag-value=X", you get any resources
-	//    assigned both the tag key Purpose (regardless of what the tag's value
-	//    is), and the tag value X (regardless of the tag's key). If you want to
-	//    list only resources where Purpose is X, see the tag:key=value filter.
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// [EC2-Classic] One or more Elastic IP addresses.
@@ -34463,16 +34459,9 @@ type DescribeClassicLinkInstancesInput struct {
 	//
 	//    * tag:key=value - The key/value combination of a tag assigned to the resource.
 	//
-	//    * tag-key - The key of a tag assigned to the resource. This filter is
-	//    independent of the tag-value filter. For example, if you use both the
-	//    filter "tag-key=Purpose" and the filter "tag-value=X", you get any resources
-	//    assigned both the tag key Purpose (regardless of what the tag's value
-	//    is), and the tag value X (regardless of what the tag's key is). If you
-	//    want to list only resources where Purpose is X, see the tag:key=value
-	//    filter.
-	//
-	//    * tag-value - The value of a tag assigned to the resource. This filter
-	//    is independent of the tag-key filter.
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	//
 	//    * vpc-id - The ID of the VPC that the instance is linked to.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
@@ -34664,16 +34653,9 @@ type DescribeCustomerGatewaysInput struct {
 	//    in the filter value. For example, for the tag Purpose=X, specify tag:Purpose
 	//    for the filter name and X for the filter value.
 	//
-	//    * tag-key - The key of a tag assigned to the resource. This filter is
-	//    independent of the tag-value filter. For example, if you use both the
-	//    filter "tag-key=Purpose" and the filter "tag-value=X", you get any resources
-	//    assigned both the tag key Purpose (regardless of what the tag's value
-	//    is), and the tag value X (regardless of what the tag's key is). If you
-	//    want to list only resources where Purpose is X, see the tag:key=value
-	//    filter.
-	//
-	//    * tag-value - The value of a tag assigned to the resource. This filter
-	//    is independent of the tag-key filter.
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 }
 
@@ -34757,16 +34739,9 @@ type DescribeDhcpOptionsInput struct {
 	//    in the filter value. For example, for the tag Purpose=X, specify tag:Purpose
 	//    for the filter name and X for the filter value.
 	//
-	//    * tag-key - The key of a tag assigned to the resource. This filter is
-	//    independent of the tag-value filter. For example, if you use both the
-	//    filter "tag-key=Purpose" and the filter "tag-value=X", you get any resources
-	//    assigned both the tag key Purpose (regardless of what the tag's value
-	//    is), and the tag value X (regardless of what the tag's key is). If you
-	//    want to list only resources where Purpose is X, see the tag:key=value
-	//    filter.
-	//
-	//    * tag-value - The value of a tag assigned to the resource. This filter
-	//    is independent of the tag-key filter.
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 }
 
@@ -35241,6 +35216,8 @@ type DescribeFleetInstancesInput struct {
 	DryRun *bool `type:"boolean"`
 
 	// One or more filters.
+	//
+	//    * instance-type - The instance type.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// The ID of the EC2 Fleet.
@@ -35362,6 +35339,21 @@ type DescribeFleetsInput struct {
 	DryRun *bool `type:"boolean"`
 
 	// One or more filters.
+	//
+	//    * activity-status - The progress of the EC2 Fleet ( error | pending-fulfillment
+	//    | pending-termination | fulfilled).
+	//
+	//    * excess-capacity-termination-policy - Indicates whether to terminate
+	//    running instances if the target capacity is decreased below the current
+	//    EC2 Fleet size (true | false).
+	//
+	//    * fleet-state - The state of the EC2 Fleet (submitted | active | deleted
+	//    | failed | deleted-running | deleted-terminating | modifying).
+	//
+	//    * replace-unhealthy-instances - Indicates whether EC2 Fleet should replace
+	//    unhealthy instances (true | false).
+	//
+	//    * type - The type of request (request | maintain).
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// The ID of the EC2 Fleets.
@@ -35419,7 +35411,7 @@ func (s *DescribeFleetsInput) SetNextToken(v string) *DescribeFleetsInput {
 type DescribeFleetsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The EC2 Fleets.
+	// Information about the EC2 Fleets.
 	Fleets []*FleetData `locationName:"fleetSet" locationNameList:"item" type:"list"`
 
 	// The token for the next set of results.
@@ -35667,16 +35659,9 @@ type DescribeFpgaImagesInput struct {
 	//    in the filter value. For example, for the tag Purpose=X, specify tag:Purpose
 	//    for the filter name and X for the filter value.
 	//
-	//    * tag-key - The key of a tag assigned to the resource. This filter is
-	//    independent of the tag-value filter. For example, if you use both the
-	//    filter "tag-key=Purpose" and the filter "tag-value=X", you get any resources
-	//    assigned both the tag key Purpose (regardless of what the tag's value
-	//    is), and the tag value X (regardless of what the tag's key is). If you
-	//    want to list only resources where Purpose is X, see the tag:key=value
-	//    filter.
-	//
-	//    * tag-value - The value of a tag assigned to the resource. This filter
-	//    is independent of the tag-key filter.
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	//
 	//    * update-time - The time of the most recent update.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
@@ -36020,6 +36005,10 @@ type DescribeHostsInput struct {
 	//
 	//    * state - The allocation state of the Dedicated Host (available | under-assessment
 	//    | permanent-failure | released | released-permanent-failure).
+	//
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	Filter []*Filter `locationName:"filter" locationNameList:"Filter" type:"list"`
 
 	// The IDs of the Dedicated Hosts. The IDs are used for targeted instance launches.
@@ -36584,16 +36573,9 @@ type DescribeImagesInput struct {
 	//    in the filter value. For example, for the tag Purpose=X, specify tag:Purpose
 	//    for the filter name and X for the filter value.
 	//
-	//    * tag-key - The key of a tag assigned to the resource. This filter is
-	//    independent of the tag-value filter. For example, if you use both the
-	//    filter "tag-key=Purpose" and the filter "tag-value=X", you get any resources
-	//    assigned both the tag key Purpose (regardless of what the tag's value
-	//    is), and the tag value X (regardless of what the tag's key is). If you
-	//    want to list only resources where Purpose is X, see the tag:key=value
-	//    filter.
-	//
-	//    * tag-value - The value of a tag assigned to the resource. This filter
-	//    is independent of the tag-key filter.
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	//
 	//    * virtualization-type - The virtualization type (paravirtual | hvm).
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
@@ -37581,15 +37563,9 @@ type DescribeInstancesInput struct {
 	//    in the filter value. For example, for the tag Purpose=X, specify tag:Purpose
 	//    for the filter name and X for the filter value.
 	//
-	//    * tag-key - The key of a tag assigned to the resource. This filter is
-	//    independent of the tag-value filter. For example, if you use both the
-	//    filter "tag-key=Purpose" and the filter "tag-value=X", you get any resources
-	//    assigned both the tag key Purpose (regardless of what the tag's value
-	//    is), and the tag value X (regardless of the tag's key). If you want to
-	//    list only resources where Purpose is X, see the tag:key=value filter.
-	//
-	//    * tag-value - The value of a tag assigned to the resource. This filter
-	//    is independent of the tag-key filter.
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	//
 	//    * tenancy - The tenancy of an instance (dedicated | default | host).
 	//
@@ -37712,16 +37688,9 @@ type DescribeInternetGatewaysInput struct {
 	//    in the filter value. For example, for the tag Purpose=X, specify tag:Purpose
 	//    for the filter name and X for the filter value.
 	//
-	//    * tag-key - The key of a tag assigned to the resource. This filter is
-	//    independent of the tag-value filter. For example, if you use both the
-	//    filter "tag-key=Purpose" and the filter "tag-value=X", you get any resources
-	//    assigned both the tag key Purpose (regardless of what the tag's value
-	//    is), and the tag value X (regardless of what the tag's key is). If you
-	//    want to list only resources where Purpose is X, see the tag:key=value
-	//    filter.
-	//
-	//    * tag-value - The value of a tag assigned to the resource. This filter
-	//    is independent of the tag-key filter.
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// One or more Internet gateway IDs.
@@ -37897,7 +37866,7 @@ type DescribeLaunchTemplateVersionsInput struct {
 
 	// The maximum number of results to return in a single call. To retrieve the
 	// remaining results, make another call with the returned NextToken value. This
-	// value can be between 5 and 1000.
+	// value can be between 1 and 200.
 	MaxResults *int64 `type:"integer"`
 
 	// The version number up to which to describe launch template versions.
@@ -38043,12 +38012,9 @@ type DescribeLaunchTemplatesInput struct {
 	//    in the filter value. For example, for the tag Purpose=X, specify tag:Purpose
 	//    for the filter name and X for the filter value.
 	//
-	//    * tag-key - The key of a tag assigned to the resource. This filter is
-	//    independent of the tag-value filter. For example, if you use both the
-	//    filter "tag-key=Purpose" and the filter "tag-value=X", you get any resources
-	//    assigned both the tag key Purpose (regardless of what the tag's value
-	//    is), and the tag value X (regardless of the tag's key). If you want to
-	//    list only resources where Purpose is X, see the tag:key=value filter.
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// One or more launch template IDs.
@@ -38268,16 +38234,9 @@ type DescribeNatGatewaysInput struct {
 	//    in the filter value. For example, for the tag Purpose=X, specify tag:Purpose
 	//    for the filter name and X for the filter value.
 	//
-	//    * tag-key - The key of a tag assigned to the resource. This filter is
-	//    independent of the tag-value filter. For example, if you use both the
-	//    filter "tag-key=Purpose" and the filter "tag-value=X", you get any resources
-	//    assigned both the tag key Purpose (regardless of what the tag's value
-	//    is), and the tag value X (regardless of what the tag's key is). If you
-	//    want to list only resources where Purpose is X, see the tag:key=value
-	//    filter.
-	//
-	//    * tag-value - The value of a tag assigned to the resource. This filter
-	//    is independent of the tag-key filter.
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	//
 	//    * vpc-id - The ID of the VPC in which the NAT gateway resides.
 	Filter []*Filter `locationNameList:"Filter" type:"list"`
@@ -38418,16 +38377,9 @@ type DescribeNetworkAclsInput struct {
 	//    in the filter value. For example, for the tag Purpose=X, specify tag:Purpose
 	//    for the filter name and X for the filter value.
 	//
-	//    * tag-key - The key of a tag assigned to the resource. This filter is
-	//    independent of the tag-value filter. For example, if you use both the
-	//    filter "tag-key=Purpose" and the filter "tag-value=X", you get any resources
-	//    assigned both the tag key Purpose (regardless of what the tag's value
-	//    is), and the tag value X (regardless of what the tag's key is). If you
-	//    want to list only resources where Purpose is X, see the tag:key=value
-	//    filter.
-	//
-	//    * tag-value - The value of a tag assigned to the resource. This filter
-	//    is independent of the tag-key filter.
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	//
 	//    * vpc-id - The ID of the VPC for the network ACL.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
@@ -38818,16 +38770,9 @@ type DescribeNetworkInterfacesInput struct {
 	//    in the filter value. For example, for the tag Purpose=X, specify tag:Purpose
 	//    for the filter name and X for the filter value.
 	//
-	//    * tag-key - The key of a tag assigned to the resource. This filter is
-	//    independent of the tag-value filter. For example, if you use both the
-	//    filter "tag-key=Purpose" and the filter "tag-value=X", you get any resources
-	//    assigned both the tag key Purpose (regardless of what the tag's value
-	//    is), and the tag value X (regardless of what the tag's key is). If you
-	//    want to list only resources where Purpose is X, see the tag:key=value
-	//    filter.
-	//
-	//    * tag-value - The value of a tag assigned to the resource. This filter
-	//    is independent of the tag-key filter.
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	//
 	//    * vpc-id - The ID of the VPC for the network interface.
 	Filters []*Filter `locationName:"filter" locationNameList:"Filter" type:"list"`
@@ -39291,16 +39236,9 @@ type DescribeReservedInstancesInput struct {
 	//    in the filter value. For example, for the tag Purpose=X, specify tag:Purpose
 	//    for the filter name and X for the filter value.
 	//
-	//    * tag-key - The key of a tag assigned to the resource. This filter is
-	//    independent of the tag-value filter. For example, if you use both the
-	//    filter "tag-key=Purpose" and the filter "tag-value=X", you get any resources
-	//    assigned both the tag key Purpose (regardless of what the tag's value
-	//    is), and the tag value X (regardless of what the tag's key is). If you
-	//    want to list only resources where Purpose is X, see the tag:key=value
-	//    filter.
-	//
-	//    * tag-value - The value of a tag assigned to the resource. This filter
-	//    is independent of the tag-key filter.
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	//
 	//    * usage-price - The usage price of the Reserved Instance, per hour (for
 	//    example, 0.84).
@@ -39875,16 +39813,9 @@ type DescribeRouteTablesInput struct {
 	//    in the filter value. For example, for the tag Purpose=X, specify tag:Purpose
 	//    for the filter name and X for the filter value.
 	//
-	//    * tag-key - The key of a tag assigned to the resource. This filter is
-	//    independent of the tag-value filter. For example, if you use both the
-	//    filter "tag-key=Purpose" and the filter "tag-value=X", you get any resources
-	//    assigned both the tag key Purpose (regardless of what the tag's value
-	//    is), and the tag value X (regardless of what the tag's key is). If you
-	//    want to list only resources where Purpose is X, see the tag:key=value
-	//    filter.
-	//
-	//    * tag-value - The value of a tag assigned to the resource. This filter
-	//    is independent of the tag-key filter.
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	//
 	//    * vpc-id - The ID of the VPC for the route table.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
@@ -40375,9 +40306,9 @@ type DescribeSecurityGroupsInput struct {
 	//
 	//    * owner-id - The AWS account ID of the owner of the security group.
 	//
-	//    * tag-key - The key of a tag assigned to the security group.
-	//
-	//    * tag-value - The value of a tag assigned to the security group.
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	//
 	//    * vpc-id - The ID of the VPC specified when the security group was created.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
@@ -40627,16 +40558,9 @@ type DescribeSnapshotsInput struct {
 	//    in the filter value. For example, for the tag Purpose=X, specify tag:Purpose
 	//    for the filter name and X for the filter value.
 	//
-	//    * tag-key - The key of a tag assigned to the resource. This filter is
-	//    independent of the tag-value filter. For example, if you use both the
-	//    filter "tag-key=Purpose" and the filter "tag-value=X", you get any resources
-	//    assigned both the tag key Purpose (regardless of what the tag's value
-	//    is), and the tag value X (regardless of what the tag's key is). If you
-	//    want to list only resources where Purpose is X, see the tag:key=value
-	//    filter.
-	//
-	//    * tag-value - The value of a tag assigned to the resource. This filter
-	//    is independent of the tag-key filter.
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	//
 	//    * volume-id - The ID of the volume the snapshot is for.
 	//
@@ -41296,16 +41220,9 @@ type DescribeSpotInstanceRequestsInput struct {
 	//    in the filter value. For example, for the tag Purpose=X, specify tag:Purpose
 	//    for the filter name and X for the filter value.
 	//
-	//    * tag-key - The key of a tag assigned to the resource. This filter is
-	//    independent of the tag-value filter. For example, if you use both the
-	//    filter "tag-key=Purpose" and the filter "tag-value=X", you get any resources
-	//    assigned both the tag key Purpose (regardless of what the tag's value
-	//    is), and the tag value X (regardless of what the tag's key is). If you
-	//    want to list only resources where Purpose is X, see the tag:key=value
-	//    filter.
-	//
-	//    * tag-value - The value of a tag assigned to the resource. This filter
-	//    is independent of the tag-key filter.
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	//
 	//    * type - The type of Spot Instance request (one-time | persistent).
 	//
@@ -41676,16 +41593,9 @@ type DescribeSubnetsInput struct {
 	//    in the filter value. For example, for the tag Purpose=X, specify tag:Purpose
 	//    for the filter name and X for the filter value.
 	//
-	//    * tag-key - The key of a tag assigned to the resource. This filter is
-	//    independent of the tag-value filter. For example, if you use both the
-	//    filter "tag-key=Purpose" and the filter "tag-value=X", you get any resources
-	//    assigned both the tag key Purpose (regardless of what the tag's value
-	//    is), and the tag value X (regardless of what the tag's key is). If you
-	//    want to list only resources where Purpose is X, see the tag:key=value
-	//    filter.
-	//
-	//    * tag-value - The value of a tag assigned to the resource. This filter
-	//    is independent of the tag-key filter.
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	//
 	//    * vpc-id - The ID of the VPC for the subnet.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
@@ -41765,9 +41675,9 @@ type DescribeTagsInput struct {
 	//    * resource-id - The resource ID.
 	//
 	//    * resource-type - The resource type (customer-gateway | dhcp-options |
-	//    elastic-ip | fpga-image | image | instance | internet-gateway | launch-template
-	//    | natgateway | network-acl | network-interface | reserved-instances |
-	//    route-table | security-group | snapshot | spot-instances-request | subnet
+	//    elastic-ip | fleet | fpga-image | image | instance | internet-gateway
+	//    | launch-template | natgateway | network-acl | network-interface | reserved-instances
+	//    | route-table | security-group | snapshot | spot-instances-request | subnet
 	//    | volume | vpc | vpc-peering-connection | vpn-connection | vpn-gateway).
 	//
 	//    * value - The tag value.
@@ -42134,16 +42044,9 @@ type DescribeVolumesInput struct {
 	//    in the filter value. For example, for the tag Purpose=X, specify tag:Purpose
 	//    for the filter name and X for the filter value.
 	//
-	//    * tag-key - The key of a tag assigned to the resource. This filter is
-	//    independent of the tag-value filter. For example, if you use both the
-	//    filter "tag-key=Purpose" and the filter "tag-value=X", you get any resources
-	//    assigned both the tag key Purpose (regardless of what the tag's value
-	//    is), and the tag value X (regardless of what the tag's key is). If you
-	//    want to list only resources where Purpose is X, see the tag:key=value
-	//    filter.
-	//
-	//    * tag-value - The value of a tag assigned to the resource. This filter
-	//    is independent of the tag-key filter.
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	//
 	//    * volume-id - The volume ID.
 	//
@@ -42571,16 +42474,9 @@ type DescribeVpcClassicLinkInput struct {
 	//    in the filter value. For example, for the tag Purpose=X, specify tag:Purpose
 	//    for the filter name and X for the filter value.
 	//
-	//    * tag-key - The key of a tag assigned to the resource. This filter is
-	//    independent of the tag-value filter. For example, if you use both the
-	//    filter "tag-key=Purpose" and the filter "tag-value=X", you get any resources
-	//    assigned both the tag key Purpose (regardless of what the tag's value
-	//    is), and the tag value X (regardless of what the tag's key is). If you
-	//    want to list only resources where Purpose is X, see the tag:key=value
-	//    filter.
-	//
-	//    * tag-value - The value of a tag assigned to the resource. This filter
-	//    is independent of the tag-key filter.
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// One or more VPCs for which you want to describe the ClassicLink status.
@@ -43336,16 +43232,9 @@ type DescribeVpcPeeringConnectionsInput struct {
 	//    in the filter value. For example, for the tag Purpose=X, specify tag:Purpose
 	//    for the filter name and X for the filter value.
 	//
-	//    * tag-key - The key of a tag assigned to the resource. This filter is
-	//    independent of the tag-value filter. For example, if you use both the
-	//    filter "tag-key=Purpose" and the filter "tag-value=X", you get any resources
-	//    assigned both the tag key Purpose (regardless of what the tag's value
-	//    is), and the tag value X (regardless of what the tag's key is). If you
-	//    want to list only resources where Purpose is X, see the tag:key=value
-	//    filter.
-	//
-	//    * tag-value - The value of a tag assigned to the resource. This filter
-	//    is independent of the tag-key filter.
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	//
 	//    * vpc-peering-connection-id - The ID of the VPC peering connection.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
@@ -43454,16 +43343,9 @@ type DescribeVpcsInput struct {
 	//    in the filter value. For example, for the tag Purpose=X, specify tag:Purpose
 	//    for the filter name and X for the filter value.
 	//
-	//    * tag-key - The key of a tag assigned to the resource. This filter is
-	//    independent of the tag-value filter. For example, if you use both the
-	//    filter "tag-key=Purpose" and the filter "tag-value=X", you get any resources
-	//    assigned both the tag key Purpose (regardless of what the tag's value
-	//    is), and the tag value X (regardless of what the tag's key is). If you
-	//    want to list only resources where Purpose is X, see the tag:key=value
-	//    filter.
-	//
-	//    * tag-value - The value of a tag assigned to the resource. This filter
-	//    is independent of the tag-key filter.
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	//
 	//    * vpc-id - The ID of the VPC.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
@@ -43562,16 +43444,9 @@ type DescribeVpnConnectionsInput struct {
 	//    in the filter value. For example, for the tag Purpose=X, specify tag:Purpose
 	//    for the filter name and X for the filter value.
 	//
-	//    * tag-key - The key of a tag assigned to the resource. This filter is
-	//    independent of the tag-value filter. For example, if you use both the
-	//    filter "tag-key=Purpose" and the filter "tag-value=X", you get any resources
-	//    assigned both the tag key Purpose (regardless of what the tag's value
-	//    is), and the tag value X (regardless of what the tag's key is). If you
-	//    want to list only resources where Purpose is X, see the tag:key=value
-	//    filter.
-	//
-	//    * tag-value - The value of a tag assigned to the resource. This filter
-	//    is independent of the tag-key filter.
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	//
 	//    * type - The type of VPN connection. Currently the only supported type
 	//    is ipsec.1.
@@ -43671,16 +43546,9 @@ type DescribeVpnGatewaysInput struct {
 	//    in the filter value. For example, for the tag Purpose=X, specify tag:Purpose
 	//    for the filter name and X for the filter value.
 	//
-	//    * tag-key - The key of a tag assigned to the resource. This filter is
-	//    independent of the tag-value filter. For example, if you use both the
-	//    filter "tag-key=Purpose" and the filter "tag-value=X", you get any resources
-	//    assigned both the tag key Purpose (regardless of what the tag's value
-	//    is), and the tag value X (regardless of what the tag's key is). If you
-	//    want to list only resources where Purpose is X, see the tag:key=value
-	//    filter.
-	//
-	//    * tag-value - The value of a tag assigned to the resource. This filter
-	//    is independent of the tag-key filter.
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
 	//
 	//    * type - The type of virtual private gateway. Currently the only supported
 	//    type is ipsec.1.
@@ -45042,8 +44910,8 @@ type EbsBlockDevice struct {
 	// Identifier (key ID, key alias, ID ARN, or alias ARN) for a user-managed CMK
 	// under which the EBS volume is encrypted.
 	//
-	// Note: This parameter is only supported on BlockDeviceMapping objects called
-	// by RunInstances (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html),
+	// This parameter is only supported on BlockDeviceMapping objects called by
+	// RunInstances (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html),
 	// RequestSpotFleet (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RequestSpotFleet.html),
 	// and RequestSpotInstances (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RequestSpotInstances.html).
 	KmsKeyId *string `type:"string"`
@@ -47620,7 +47488,7 @@ func (s *HistoryRecord) SetTimestamp(v time.Time) *HistoryRecord {
 	return s
 }
 
-// Describes an event in the history of the EC2 Fleet.
+// Describes an event in the history of an EC2 Fleet.
 type HistoryRecordEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -47701,6 +47569,9 @@ type Host struct {
 
 	// The Dedicated Host's state.
 	State *string `locationName:"state" type:"string" enum:"AllocationState"`
+
+	// Any tags assigned to the Dedicated Host.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation
@@ -47776,6 +47647,12 @@ func (s *Host) SetReleaseTime(v time.Time) *Host {
 // SetState sets the State field's value.
 func (s *Host) SetState(v string) *Host {
 	s.State = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Host) SetTags(v []*Tag) *Host {
+	s.Tags = v
 	return s
 }
 
@@ -53045,7 +52922,8 @@ type LaunchTemplateTagSpecificationRequest struct {
 	_ struct{} `type:"structure"`
 
 	// The type of resource to tag. Currently, the resource types that support tagging
-	// on creation are instance and volume.
+	// on creation are instance and volume. To tag a resource after it has been
+	// created, see CreateTags.
 	ResourceType *string `type:"string" enum:"ResourceType"`
 
 	// The tags to apply to the resource.
@@ -59747,9 +59625,10 @@ type RequestLaunchTemplateData struct {
 	// group ID and security name in the same request.
 	SecurityGroups []*string `locationName:"SecurityGroup" locationNameList:"SecurityGroup" type:"list"`
 
-	// The tags to apply to the resources during launch. You can tag instances and
-	// volumes. The specified tags are applied to all instances or volumes that
-	// are created during launch.
+	// The tags to apply to the resources during launch. You can only tag instances
+	// and volumes on launch. The specified tags are applied to all instances or
+	// volumes that are created during launch. To tag a resource after it has been
+	// created, see CreateTags.
 	TagSpecifications []*LaunchTemplateTagSpecificationRequest `locationName:"TagSpecification" locationNameList:"LaunchTemplateTagSpecificationRequest" type:"list"`
 
 	// The Base64-encoded user data to make available to the instance. For more
@@ -62664,9 +62543,10 @@ type RunInstancesInput struct {
 	// [EC2-VPC] The ID of the subnet to launch the instance into.
 	SubnetId *string `type:"string"`
 
-	// The tags to apply to the resources during launch. You can tag instances and
-	// volumes. The specified tags are applied to all instances or volumes that
-	// are created during launch.
+	// The tags to apply to the resources during launch. You can only tag instances
+	// and volumes on launch. The specified tags are applied to all instances or
+	// volumes that are created during launch. To tag a resource after it has been
+	// created, see CreateTags.
 	TagSpecifications []*TagSpecification `locationName:"TagSpecification" locationNameList:"item" type:"list"`
 
 	// The user data to make available to the instance. For more information, see
@@ -66968,7 +66848,8 @@ type TagSpecification struct {
 	_ struct{} `type:"structure"`
 
 	// The type of resource to tag. Currently, the resource types that support tagging
-	// on creation are instance, snapshot, and volume.
+	// on creation are fleet, instance, snapshot, and volume. To tag a resource
+	// after it has been created, see CreateTags.
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
 
 	// The tags to apply to the resource.

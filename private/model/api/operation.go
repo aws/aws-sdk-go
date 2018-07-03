@@ -25,6 +25,8 @@ type Operation struct {
 	Deprecated    bool   `json:"deprecated"`
 	AuthType      string `json:"authtype"`
 	imports       map[string]bool
+
+	EventStreamAPI *EventStreamAPI
 }
 
 // A HTTPInfo defines the method of HTTP request for the Operation.
@@ -132,6 +134,9 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 		req.Handlers.Send.Swap(client.LogHTTPResponseHandler.Name, client.LogHTTPResponseHeaderHandler)
 		req.Handlers.Unmarshal.Swap({{ .API.ProtocolPackage }}.UnmarshalHandler.Name, rest.UnmarshalHandler)
 		req.Handlers.Unmarshal.PushBack(output.runEventStreamLoop)
+		{{ if eq .API.Metadata.Protocol "json" -}}
+			req.Handlers.Unmarshal.PushBack(output.unmarshalInitialResponse)
+		{{ end -}}
 	{{ end -}}
 	return
 }
@@ -252,9 +257,10 @@ func (o *Operation) GoCode() string {
 	var buf bytes.Buffer
 
 	if len(o.OutputRef.Shape.EventStreamsMemberName) != 0 {
-		// TODO need better was of updating protocol unmarshalers
 		o.API.imports["github.com/aws/aws-sdk-go/aws/client"] = true
+		o.API.imports["github.com/aws/aws-sdk-go/private/protocol"] = true
 		o.API.imports["github.com/aws/aws-sdk-go/private/protocol/rest"] = true
+		o.API.imports["github.com/aws/aws-sdk-go/private/protocol/"+o.API.ProtocolPackage()] = true
 	}
 
 	err := tplOperation.Execute(&buf, o)
