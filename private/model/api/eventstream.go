@@ -746,7 +746,7 @@ func valueForType(s *Shape, visited []string) string {
 	case "double":
 		return `aws.Float64(123.45)`
 	case "timestamp":
-		return `aws.Time(time.Unix(1396594860, 0))`
+		return `aws.Time(time.Unix(1396594860, 0).UTC())`
 	case "structure":
 		w := bytes.NewBuffer(nil)
 		fmt.Fprintf(w, "&%s{\n", s.ShapeName)

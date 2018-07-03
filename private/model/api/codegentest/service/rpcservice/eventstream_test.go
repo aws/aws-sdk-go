@@ -317,7 +317,7 @@ func mockGetEventStreamReadEvents() (
 			LongVal:    aws.Int64(1234),
 			ShortVal:   aws.Int64(12),
 			StringVal:  aws.String("string value goes here"),
-			TimeVal:    aws.Time(time.Unix(1396594860, 0)),
+			TimeVal:    aws.Time(time.Unix(1396594860, 0).UTC()),
 		},
 		&ImplicitPayloadEvent{
 			ByteVal:    aws.Int64(1),
