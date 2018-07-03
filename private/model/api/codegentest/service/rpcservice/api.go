@@ -531,7 +531,7 @@ func (s ExceptionEvent) Code() string {
 
 // Message returns the exception's message.
 func (s ExceptionEvent) Message() string {
-	return ""
+	return *s.Message_
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
