@@ -1,3 +1,19 @@
+Release v1.14.19 (2018-07-03)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service waiters
+  * Adds a "CertificateValidated" waiter to AWS Certificate Manager clients, which polls on a new certificate's validation state.
+* `service/ec2`: Updates service API, documentation, and examples
+  * Added support for customers to tag EC2 Dedicated Hosts
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/redshift`: Updates service API and documentation
+  * Feature 1 - On-demand cluster release version - When Amazon Redshift releases a new cluster version, you can choose to upgrade to that version immediately instead of waiting until your next maintenance window. You can also choose to roll back to a previous version. The two new APIs added for managing cluster release version are - ModifyClusterDbRevision, DescribeClusterDbRevisions. Feature 2 - Upgradeable reserved instance - You can now exchange one Reserved Instance for a new Reserved Instance with no changes to the terms of your existing Reserved Instance (term, payment type, or number of nodes). The two new APIs added for managing these upgrades are - AcceptReservedNodeExchange, GetReservedNodeExchangeOfferings.
+
+### SDK Enhancements
+* `private/model/api`: Add EventStream support over RPC protocl ([#1998](https://github.com/aws/aws-sdk-go/pull/1998))
+  * Adds support for EventStream over JSON PRC protocol. This adds support for the EventStream's initial-response event, EventStream headers, and EventStream modeled exceptions. Also replaces the hand written tests with generated tests for EventStream usage.
+
 Release v1.14.18 (2018-07-02)
 ===
 

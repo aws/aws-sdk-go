@@ -11,6 +11,27 @@
     "xmlNamespace":"http://redshift.amazonaws.com/doc/2012-12-01/"
   },
   "operations":{
+    "AcceptReservedNodeExchange":{
+      "name":"AcceptReservedNodeExchange",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AcceptReservedNodeExchangeInputMessage"},
+      "output":{
+        "shape":"AcceptReservedNodeExchangeOutputMessage",
+        "resultWrapper":"AcceptReservedNodeExchangeResult"
+      },
+      "errors":[
+        {"shape":"ReservedNodeNotFoundFault"},
+        {"shape":"InvalidReservedNodeStateFault"},
+        {"shape":"ReservedNodeAlreadyMigratedFault"},
+        {"shape":"ReservedNodeOfferingNotFoundFault"},
+        {"shape":"UnsupportedOperationFault"},
+        {"shape":"DependentServiceUnavailableFault"},
+        {"shape":"ReservedNodeAlreadyExistsFault"}
+      ]
+    },
     "AuthorizeClusterSecurityGroupIngress":{
       "name":"AuthorizeClusterSecurityGroupIngress",
       "http":{
@@ -401,6 +422,21 @@
       "errors":[
         {"shape":"ResourceNotFoundFault"},
         {"shape":"InvalidTagFault"}
+      ]
+    },
+    "DescribeClusterDbRevisions":{
+      "name":"DescribeClusterDbRevisions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeClusterDbRevisionsMessage"},
+      "output":{
+        "shape":"ClusterDbRevisionsMessage",
+        "resultWrapper":"DescribeClusterDbRevisionsResult"
+      },
+      "errors":[
+        {"shape":"ClusterNotFoundFault"}
       ]
     },
     "DescribeClusterParameterGroups":{
@@ -811,6 +847,26 @@
         {"shape":"UnsupportedOperationFault"}
       ]
     },
+    "GetReservedNodeExchangeOfferings":{
+      "name":"GetReservedNodeExchangeOfferings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetReservedNodeExchangeOfferingsInputMessage"},
+      "output":{
+        "shape":"GetReservedNodeExchangeOfferingsOutputMessage",
+        "resultWrapper":"GetReservedNodeExchangeOfferingsResult"
+      },
+      "errors":[
+        {"shape":"ReservedNodeNotFoundFault"},
+        {"shape":"InvalidReservedNodeStateFault"},
+        {"shape":"ReservedNodeAlreadyMigratedFault"},
+        {"shape":"ReservedNodeOfferingNotFoundFault"},
+        {"shape":"UnsupportedOperationFault"},
+        {"shape":"DependentServiceUnavailableFault"}
+      ]
+    },
     "ModifyCluster":{
       "name":"ModifyCluster",
       "http":{
@@ -838,7 +894,25 @@
         {"shape":"ClusterAlreadyExistsFault"},
         {"shape":"LimitExceededFault"},
         {"shape":"DependentServiceRequestThrottlingFault"},
-        {"shape":"InvalidElasticIpFault"}
+        {"shape":"InvalidElasticIpFault"},
+        {"shape":"TableLimitExceededFault"}
+      ]
+    },
+    "ModifyClusterDbRevision":{
+      "name":"ModifyClusterDbRevision",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyClusterDbRevisionMessage"},
+      "output":{
+        "shape":"ModifyClusterDbRevisionResult",
+        "resultWrapper":"ModifyClusterDbRevisionResult"
+      },
+      "errors":[
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"ClusterOnLatestRevisionFault"},
+        {"shape":"InvalidClusterStateFault"}
       ]
     },
     "ModifyClusterIamRoles":{
@@ -1093,6 +1167,23 @@
     }
   },
   "shapes":{
+    "AcceptReservedNodeExchangeInputMessage":{
+      "type":"structure",
+      "required":[
+        "ReservedNodeId",
+        "TargetReservedNodeOfferingId"
+      ],
+      "members":{
+        "ReservedNodeId":{"shape":"String"},
+        "TargetReservedNodeOfferingId":{"shape":"String"}
+      }
+    },
+    "AcceptReservedNodeExchangeOutputMessage":{
+      "type":"structure",
+      "members":{
+        "ExchangedReservedNode":{"shape":"ReservedNode"}
+      }
+    },
     "AccessToSnapshotDeniedFault":{
       "type":"structure",
       "members":{
@@ -1248,7 +1339,8 @@
         "Tags":{"shape":"TagList"},
         "KmsKeyId":{"shape":"String"},
         "EnhancedVpcRouting":{"shape":"Boolean"},
-        "IamRoles":{"shape":"ClusterIamRoleList"}
+        "IamRoles":{"shape":"ClusterIamRoleList"},
+        "PendingActions":{"shape":"PendingActionsList"}
       },
       "wrapper":true
     },
@@ -1269,6 +1361,29 @@
         "DbUser":{"shape":"String"},
         "DbPassword":{"shape":"SensitiveString"},
         "Expiration":{"shape":"TStamp"}
+      }
+    },
+    "ClusterDbRevision":{
+      "type":"structure",
+      "members":{
+        "ClusterIdentifier":{"shape":"String"},
+        "CurrentDatabaseRevision":{"shape":"String"},
+        "DatabaseRevisionReleaseDate":{"shape":"TStamp"},
+        "RevisionTargets":{"shape":"RevisionTargetsList"}
+      }
+    },
+    "ClusterDbRevisionsList":{
+      "type":"list",
+      "member":{
+        "shape":"ClusterDbRevision",
+        "locationName":"ClusterDbRevision"
+      }
+    },
+    "ClusterDbRevisionsMessage":{
+      "type":"structure",
+      "members":{
+        "Marker":{"shape":"String"},
+        "ClusterDbRevisions":{"shape":"ClusterDbRevisionsList"}
       }
     },
     "ClusterIamRole":{
@@ -1311,6 +1426,17 @@
       "error":{
         "code":"ClusterNotFound",
         "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ClusterOnLatestRevisionFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ClusterOnLatestRevision",
+        "httpStatusCode":400,
         "senderFault":true
       },
       "exception":true
@@ -2001,6 +2127,14 @@
       },
       "exception":true
     },
+    "DescribeClusterDbRevisionsMessage":{
+      "type":"structure",
+      "members":{
+        "ClusterIdentifier":{"shape":"String"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
+      }
+    },
     "DescribeClusterParameterGroupsMessage":{
       "type":"structure",
       "members":{
@@ -2419,6 +2553,22 @@
         "DbGroups":{"shape":"DbGroupList"}
       }
     },
+    "GetReservedNodeExchangeOfferingsInputMessage":{
+      "type":"structure",
+      "required":["ReservedNodeId"],
+      "members":{
+        "ReservedNodeId":{"shape":"String"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
+      }
+    },
+    "GetReservedNodeExchangeOfferingsOutputMessage":{
+      "type":"structure",
+      "members":{
+        "Marker":{"shape":"String"},
+        "ReservedNodeOfferings":{"shape":"ReservedNodeOfferingList"}
+      }
+    },
     "HsmClientCertificate":{
       "type":"structure",
       "members":{
@@ -2720,6 +2870,17 @@
       },
       "exception":true
     },
+    "InvalidReservedNodeStateFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidReservedNodeState",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "InvalidRestoreFault":{
       "type":"structure",
       "members":{
@@ -2843,6 +3004,23 @@
     },
     "Long":{"type":"long"},
     "LongOptional":{"type":"long"},
+    "ModifyClusterDbRevisionMessage":{
+      "type":"structure",
+      "required":[
+        "ClusterIdentifier",
+        "RevisionTarget"
+      ],
+      "members":{
+        "ClusterIdentifier":{"shape":"String"},
+        "RevisionTarget":{"shape":"String"}
+      }
+    },
+    "ModifyClusterDbRevisionResult":{
+      "type":"structure",
+      "members":{
+        "Cluster":{"shape":"Cluster"}
+      }
+    },
     "ModifyClusterIamRolesMessage":{
       "type":"structure",
       "required":["ClusterIdentifier"],
@@ -3034,6 +3212,10 @@
         "locationName":"Parameter"
       }
     },
+    "PendingActionsList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "PendingModifiedValues":{
       "type":"structure",
       "members":{
@@ -3116,6 +3298,17 @@
       "error":{
         "code":"ReservedNodeAlreadyExists",
         "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ReservedNodeAlreadyMigratedFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ReservedNodeAlreadyMigrated",
+        "httpStatusCode":400,
         "senderFault":true
       },
       "exception":true
@@ -3330,6 +3523,21 @@
       "type":"structure",
       "members":{
         "TableRestoreStatus":{"shape":"TableRestoreStatus"}
+      }
+    },
+    "RevisionTarget":{
+      "type":"structure",
+      "members":{
+        "DatabaseRevision":{"shape":"String"},
+        "Description":{"shape":"String"},
+        "DatabaseRevisionReleaseDate":{"shape":"TStamp"}
+      }
+    },
+    "RevisionTargetsList":{
+      "type":"list",
+      "member":{
+        "shape":"RevisionTarget",
+        "locationName":"RevisionTarget"
       }
     },
     "RevokeClusterSecurityGroupIngressMessage":{
@@ -3685,6 +3893,17 @@
       }
     },
     "TStamp":{"type":"timestamp"},
+    "TableLimitExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"TableLimitExceeded",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "TableRestoreNotFoundFault":{
       "type":"structure",
       "members":{

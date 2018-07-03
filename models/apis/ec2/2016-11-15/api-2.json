@@ -9865,6 +9865,10 @@
         "ReleaseTime":{
           "shape":"DateTime",
           "locationName":"releaseTime"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },
