@@ -1,5 +1,3 @@
-// package ini TODOs:
-// [ ] support UTF-8
 package ini
 
 import (
@@ -7,6 +5,7 @@ import (
 	"io/ioutil"
 )
 
+// tokenType represents the various different tokens types
 type tokenType int
 
 func (t tokenType) String() string {
@@ -47,11 +46,13 @@ type iniToken interface {
 
 	Raw() string
 	StringValue() string
-	IntValue() int
+	IntValue() int64
 	FloatValue() float64
 	BoolValue() bool
 }
 
+// Tokenize will return a list of tokens during lexical analysis of the
+// io.Reader.
 func (l *iniLexer) Tokenize(r io.Reader) ([]iniToken, error) {
 	b, err := ioutil.ReadAll(r)
 	if err != nil {

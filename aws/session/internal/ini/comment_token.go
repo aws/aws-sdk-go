@@ -1,5 +1,7 @@
 package ini
 
+// CommentToken represents a token in an ini configuration.
+// Comments may start with a ';', '#', or "//".
 type CommentToken struct {
 	emptyToken
 	comment string

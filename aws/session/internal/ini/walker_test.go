@@ -40,6 +40,10 @@ func TestDataFiles(t *testing.T) {
 			expectedPath: "./testdata/valid/number_lhs_expr_expected",
 		},
 		{
+			path:         "./testdata/valid/base_numbers_profile",
+			expectedPath: "./testdata/valid/base_numbers_profile_expected",
+		},
+		{
 			path:               "./testdata/invalid/incomplete_section_profile",
 			expectedParseError: true,
 		},
@@ -114,13 +118,22 @@ func TestDataFiles(t *testing.T) {
 					}
 				case int:
 					a := p.Int(k)
-					if e != a {
+					if int64(e) != a {
 						t.Errorf("expected %v, but received %v", e, a)
 					}
 				case float64:
-					a := p.Float64(k)
-					if e != a {
-						t.Errorf("expected %v, but received %v", e, a)
+					tok := p.Values[k]
+					v := tok.(literalToken)
+					if v.Value.Type == IntegerType {
+						a := p.Int(k)
+						if int64(e) != a {
+							t.Errorf("expected %v, but received %v", e, a)
+						}
+					} else {
+						a := p.Float64(k)
+						if e != a {
+							t.Errorf("expected %v, but received %v", e, a)
+						}
 					}
 				default:
 					t.Errorf("unexpected type: %T", e)

@@ -15,7 +15,7 @@ func (token emptyToken) Raw() string {
 	return ""
 }
 
-func (token emptyToken) IntValue() int {
+func (token emptyToken) IntValue() int64 {
 	return 0
 }
 

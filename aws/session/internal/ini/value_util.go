@@ -64,13 +64,14 @@ func getBoolValue(b []byte) (string, int, error) {
 //
 // an error will be returned if the number is not of a correct
 // value
-func getNumericalValue(b []byte) (string, int, error) {
+func getNumericalValue(b []byte) (string, int, int, error) {
 	if !isDigit(b[0]) {
-		return "", 0, awserr.New(ErrCodeParseError, "invalid digit value", nil)
+		return "", 0, 0, awserr.New(ErrCodeParseError, "invalid digit value", nil)
 	}
 
 	value := ""
 	i := 0
+	base := 10
 
 	foundDecimal := false
 	foundBinary := false
@@ -85,31 +86,37 @@ loop:
 			case '.':
 				switch {
 				case foundDecimal:
-					return "", 0, awserr.New(ErrCodeParseError, "found multiple decimals", nil)
+					return "", 0, 0, awserr.New(ErrCodeParseError, "found multiple decimals", nil)
 				case foundBinary, foundOctal, foundHex:
-					return "", 0, awserr.New(ErrCodeParseError, "float value not valid", nil)
+					return "", 0, 0, awserr.New(ErrCodeParseError, "float value not valid", nil)
 				}
 
 				foundDecimal = true
 			case 'b', 'o', 'x':
-				if i == 0 {
-					return "", 0, awserr.New(ErrCodeParseError, "incorrect base format", nil)
+				if i == 0 && value != "0" {
+					return "", 0, 0, awserr.New(ErrCodeParseError, "incorrect base format", nil)
 				}
 
 				switch {
 				case foundDecimal:
-					return "", 0, awserr.New(ErrCodeParseError, "found decimal in binary, octal, hex format", nil)
+					return "", 0, 0, awserr.New(ErrCodeParseError, "found decimal in binary, octal, hex format", nil)
 				case foundBinary, foundOctal, foundHex:
-					return "", 0, awserr.New(ErrCodeParseError, "multiple base formats", nil)
+					return "", 0, 0, awserr.New(ErrCodeParseError, "multiple base formats", nil)
 				}
 
 				if b[i-1] != '0' {
-					return "", 0, awserr.New(ErrCodeParseError, "incorrect base format", nil)
+					return "", 0, 0, awserr.New(ErrCodeParseError, "incorrect base format", nil)
 				}
 
-				foundBinary = foundBinary || b[i] == 'b'
-				foundOctal = foundOctal || b[i] == 'o'
-				foundHex = foundHex || b[i] == 'x'
+				if foundBinary = foundBinary || b[i] == 'b'; foundBinary {
+					base = 2
+				}
+				if foundOctal = foundOctal || b[i] == 'o'; foundOctal {
+					base = 8
+				}
+				if foundHex = foundHex || b[i] == 'x'; foundHex {
+					base = 16
+				}
 			default:
 				if i > 0 && isWhitespace(b[i]) {
 					break loop
@@ -117,9 +124,9 @@ loop:
 
 				if !(foundHex && isHexByte(b[i])) {
 					if i+2 < len(b) && !isNewline(b[i:i+2]) {
-						return "", 0, awserr.New(ErrCodeParseError, "invalid numerical character", nil)
+						return "", 0, 0, awserr.New(ErrCodeParseError, "invalid numerical character", nil)
 					} else if !isNewline([]byte{b[i]}) {
-						return "", 0, awserr.New(ErrCodeParseError, "invalid numerical character", nil)
+						return "", 0, 0, awserr.New(ErrCodeParseError, "invalid numerical character", nil)
 					}
 
 					break loop
@@ -129,10 +136,13 @@ loop:
 		value += string(b[i])
 	}
 
-	return value, i, nil
+	return value, base, i, nil
 }
 
 func isHexByte(b byte) bool {
+	if isDigit(b) {
+		return true
+	}
 	return (b >= 'A' && b <= 'F') ||
 		(b >= 'a' && b <= 'f')
 }

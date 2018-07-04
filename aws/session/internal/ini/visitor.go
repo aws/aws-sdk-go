@@ -37,7 +37,7 @@ type Table struct {
 	Values Values
 }
 
-func (t Table) Int(k string) int {
+func (t Table) Int(k string) int64 {
 	return t.Values[k].IntValue()
 }
 

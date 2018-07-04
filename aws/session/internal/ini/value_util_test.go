@@ -94,31 +94,37 @@ func TestNumericalValue(t *testing.T) {
 		expectedRead  int
 		expectedError bool
 		expectedValue string
+		expectedBase  int
 	}{
 		{
 			b:             []byte("1.2"),
 			expectedRead:  3,
 			expectedValue: "1.2",
+			expectedBase:  10,
 		},
 		{
 			b:             []byte("123"),
 			expectedRead:  3,
 			expectedValue: "123",
+			expectedBase:  10,
 		},
 		{
 			b:             []byte("0x123A"),
 			expectedRead:  6,
 			expectedValue: "0x123A",
+			expectedBase:  16,
 		},
 		{
 			b:             []byte("0b101"),
 			expectedRead:  5,
 			expectedValue: "0b101",
+			expectedBase:  2,
 		},
 		{
 			b:             []byte("0o7"),
 			expectedRead:  3,
 			expectedValue: "0o7",
+			expectedBase:  8,
 		},
 		{
 			b:             []byte(`"123"`),
@@ -135,7 +141,7 @@ func TestNumericalValue(t *testing.T) {
 	}
 
 	for i, c := range cases {
-		a, n, err := getNumericalValue(c.b)
+		a, base, n, err := getNumericalValue(c.b)
 
 		if e := c.expectedValue; e != a {
 			t.Errorf("%d: expected %v, but received %v", i+1, e, a)
@@ -147,6 +153,10 @@ func TestNumericalValue(t *testing.T) {
 
 		if e, a := c.expectedError, err != nil; e != a {
 			t.Errorf("%d: expected %v, but received %v", i+1, e, a)
+		}
+
+		if e, a := c.expectedBase, base; e != a {
+			t.Errorf("%d: expected %d, but received %d", i+1, e, a)
 		}
 	}
 }

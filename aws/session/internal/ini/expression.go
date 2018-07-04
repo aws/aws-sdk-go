@@ -4,6 +4,10 @@ import (
 	"fmt"
 )
 
+// Expr represents an expression
+//
+//	grammar:
+//	expr -> string | number
 type Expr struct {
 	Root iniToken
 }

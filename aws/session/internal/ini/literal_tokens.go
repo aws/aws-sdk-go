@@ -119,7 +119,7 @@ type literalToken struct {
 type UnionValue struct {
 	Type int
 
-	integer int
+	integer int64
 	decimal float64
 	boolean bool
 	str     string
@@ -148,21 +148,23 @@ func newLitToken(b []byte) (literalToken, int, error) {
 	token := literalToken{}
 
 	if isNumberValue(b) {
-		value, n, err = getNumericalValue(b)
+		var base int
+		value, base, n, err = getNumericalValue(b)
 		if err != nil {
 			return token, 0, err
 		}
 
 		token.raw = value
-
-		// TODO: octal, hex, and binary values
 		// TODO: scientific notation
 		if strings.Contains(value, ".") {
 			token.Value.Type = DecimalType
 			token.Value.decimal, err = strconv.ParseFloat(value, 64)
 		} else {
+			if base != 10 {
+				value = value[2:]
+			}
 			token.Value.Type = IntegerType
-			token.Value.integer, err = strconv.Atoi(value)
+			token.Value.integer, err = strconv.ParseInt(value, base, 64)
 		}
 	} else if isBoolValue(b) {
 		value, n, err = getBoolValue(b)
@@ -187,7 +189,7 @@ func newLitToken(b []byte) (literalToken, int, error) {
 	return token, n, err
 }
 
-func (token literalToken) IntValue() int {
+func (token literalToken) IntValue() int64 {
 	return token.Value.integer
 }
 

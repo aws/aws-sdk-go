@@ -2,6 +2,8 @@ package ini
 
 type ASTKind int
 
+// ASTKind* is used in the parse table to transition between
+// the different states
 const (
 	ASTKindNone = ASTKind(iota)
 	ASTKindStart
@@ -10,7 +12,6 @@ const (
 	ASTKindExprStatement
 	ASTKindNestedTableStatement
 	ASTKindCompletedNestedTableStatement
-	ASTKindContainerExpr
 	ASTKindCommentStatement
 )
 
@@ -37,6 +38,7 @@ type AST interface {
 	Kind() ASTKind
 }
 
+// Start represents the starting parsing state.
 type Start struct{}
 
 func (node Start) Kind() ASTKind {
