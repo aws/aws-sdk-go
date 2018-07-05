@@ -12,21 +12,21 @@ func (stmt Statement) Kind() ASTKind {
 	return ASTKindStatement
 }
 
-type TableStatement struct {
+type SectionStatement struct {
 	Name string
 }
 
-func newTableStatement(tok iniToken) TableStatement {
-	return TableStatement{
+func newSectionStatement(tok iniToken) SectionStatement {
+	return SectionStatement{
 		Name: tok.Raw(),
 	}
 }
 
-func (stmt TableStatement) Kind() ASTKind {
+func (stmt SectionStatement) Kind() ASTKind {
 	return ASTKindStatement
 }
 
-func (stmt TableStatement) String() string {
+func (stmt SectionStatement) String() string {
 	return fmt.Sprintf("{%s}", stmt.Name)
 }
 
@@ -48,40 +48,40 @@ func (stmt ExprStatement) String() string {
 	return fmt.Sprintf("{%v}", stmt.V)
 }
 
-type NestedTableStatement struct {
+type NestedSectionStatement struct {
 	Labels []string
 	kind   ASTKind
 }
 
-func newNestedTableStatement() NestedTableStatement {
-	return NestedTableStatement{
-		kind: ASTKindNestedTableStatement,
+func newNestedSectionStatement() NestedSectionStatement {
+	return NestedSectionStatement{
+		kind: ASTKindNestedSectionStatement,
 	}
 }
 
-func (stmt NestedTableStatement) Kind() ASTKind {
-	return ASTKindNestedTableStatement
+func (stmt NestedSectionStatement) Kind() ASTKind {
+	return ASTKindNestedSectionStatement
 }
 
-func (stmt NestedTableStatement) String() string {
+func (stmt NestedSectionStatement) String() string {
 	return fmt.Sprintf("{[[ %v ]]}", stmt.Labels)
 }
 
-type CompletedNestedTableStatement struct {
+type CompletedNestedSectionStatement struct {
 	Root AST
 }
 
-func newCompletedNestedTableStatement(k AST) CompletedNestedTableStatement {
-	return CompletedNestedTableStatement{
+func newCompletedNestedSectionStatement(k AST) CompletedNestedSectionStatement {
+	return CompletedNestedSectionStatement{
 		Root: k,
 	}
 }
 
-func (stmt CompletedNestedTableStatement) Kind() ASTKind {
-	return ASTKindCompletedNestedTableStatement
+func (stmt CompletedNestedSectionStatement) Kind() ASTKind {
+	return ASTKindCompletedNestedSectionStatement
 }
 
-func (stmt CompletedNestedTableStatement) String() string {
+func (stmt CompletedNestedSectionStatement) String() string {
 	return fmt.Sprintf("{[[ %v ]]}", stmt.Root)
 }
 

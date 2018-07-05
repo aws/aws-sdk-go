@@ -61,14 +61,14 @@ var parseTable = map[ASTKind]map[tokenType]int{
 		tokenNL:      -1,
 		tokenComment: 11, // comment -> #comment' | ;comment' | /comment_slash
 	},
-	ASTKindNestedTableStatement: map[tokenType]int{
+	ASTKindNestedSectionStatement: map[tokenType]int{
 		tokenLit:     7, // table_nested -> label nested_array_close
 		tokenSep:     8, // nested_array_close -> ] array_close
 		tokenWS:      -1,
 		tokenNL:      -1,
 		tokenComment: 11, // comment -> #comment' | ;comment' | /comment_slash
 	},
-	ASTKindCompletedNestedTableStatement: map[tokenType]int{
+	ASTKindCompletedNestedSectionStatement: map[tokenType]int{
 		tokenSep:     9, // nested_array_close -> ] epsilon
 		tokenWS:      -1,
 		tokenNL:      -1,
@@ -173,18 +173,18 @@ func Parse(r io.Reader) ([]AST, error) {
 
 			var stmt AST
 
-			if t, ok := k.(TableStatement); ok {
+			if t, ok := k.(SectionStatement); ok {
 				t.Name = strings.Join([]string{t.Name, tok.Raw()}, " ")
 				stmt = t
 			} else {
-				stmt = newTableStatement(tok)
+				stmt = newSectionStatement(tok)
 			}
 			stack.Push(stmt)
 		case 6:
 			if tok.Raw() == "]" {
 				stack.Epsilon(k)
 			} else if tok.Raw() == "[" {
-				stmt := newNestedTableStatement()
+				stmt := newNestedSectionStatement()
 				stack.Push(stmt)
 			} else {
 				return stack.list, awserr.New(ErrCodeParseError, "expected ']'", nil)
@@ -192,9 +192,9 @@ func Parse(r io.Reader) ([]AST, error) {
 		case 7:
 			switch tok.Type() {
 			case tokenLit:
-				stmt, ok := k.(NestedTableStatement)
+				stmt, ok := k.(NestedSectionStatement)
 				if !ok {
-					return stack.list, awserr.New(ErrCodeParseError, "expected nested table statement", nil)
+					return stack.list, awserr.New(ErrCodeParseError, "expected nested section statement", nil)
 				}
 
 				stmt.Labels = append(stmt.Labels, tok.Raw())
@@ -207,7 +207,7 @@ func Parse(r io.Reader) ([]AST, error) {
 				return stack.list, awserr.New(ErrCodeParseError, "expected closing bracket", nil)
 			}
 
-			stmt := newCompletedNestedTableStatement(k)
+			stmt := newCompletedNestedSectionStatement(k)
 			stack.Push(stmt)
 		case 9:
 			if tok.Raw() != "]" {

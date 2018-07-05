@@ -82,20 +82,20 @@ func TestParser(t *testing.T) {
 		{
 			r: bytes.NewBuffer([]byte(`[ default ]`)),
 			expectedStack: []AST{
-				newTableStatement(defaultId),
+				newSectionStatement(defaultId),
 			},
 		},
 		{
 			r: bytes.NewBuffer([]byte(`[default]`)),
 			expectedStack: []AST{
-				newTableStatement(defaultId),
+				newSectionStatement(defaultId),
 			},
 		},
 		{
 			r: bytes.NewBuffer([]byte(`[default]
 					region="us-west-2"`)),
 			expectedStack: []AST{
-				newTableStatement(defaultId),
+				newSectionStatement(defaultId),
 				newExprStatement(EqualExpr{
 					Left:  newExpression(regionId),
 					Root:  equalOp,
@@ -114,7 +114,7 @@ output = json
 region = us-west-2
 		`)),
 			expectedStack: []AST{
-				newTableStatement(defaultId),
+				newSectionStatement(defaultId),
 				newExprStatement(EqualExpr{
 					Left:  newExpression(regionId),
 					Root:  equalOp,
@@ -130,7 +130,7 @@ region = us-west-2
 					Root:  equalOp,
 					Right: newExpression(outputLit),
 				}),
-				newTableStatement(assumeId),
+				newSectionStatement(assumeId),
 				newExprStatement(EqualExpr{
 					Left:  newExpression(outputId),
 					Root:  equalOp,
@@ -157,7 +157,7 @@ output = json
 region = us-west-2
 		`)),
 			expectedStack: []AST{
-				newTableStatement(defaultId),
+				newSectionStatement(defaultId),
 				newExprStatement(EqualExpr{
 					Left:  newExpression(regionId),
 					Root:  equalOp,
@@ -173,7 +173,7 @@ region = us-west-2
 					Root:  equalOp,
 					Right: newExpression(outputLit),
 				}),
-				newTableStatement(assumeId),
+				newSectionStatement(assumeId),
 				newExprStatement(EqualExpr{
 					Left:  newExpression(outputId),
 					Root:  equalOp,
@@ -200,7 +200,7 @@ output = json
 region = us-west-2
 		`)),
 			expectedStack: []AST{
-				newTableStatement(defaultId),
+				newSectionStatement(defaultId),
 				newExprStatement(EqualExpr{
 					Left:  newExpression(regionId),
 					Root:  equalOp,
@@ -216,7 +216,7 @@ region = us-west-2
 					Root:  equalOp,
 					Right: newExpression(outputLit),
 				}),
-				newTableStatement(assumeId),
+				newSectionStatement(assumeId),
 				newExprStatement(EqualExpr{
 					Left:  newExpression(outputId),
 					Root:  equalOp,

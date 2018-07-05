@@ -6,46 +6,48 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
+// Visitor is an interface used by walkers that will
+// traverse an array of ASTs.
 type Visitor interface {
 	VisitExpr(AST) error
 	VisitStatement(AST) error
 }
 
-type Tables map[string]Table
+type Sections map[string]Section
 
 type SharedConfigVisitor struct {
-	scope  string
-	Tables Tables
+	scope    string
+	Sections Sections
 }
 
 func NewSharedConfigVisitor() *SharedConfigVisitor {
 	return &SharedConfigVisitor{
-		Tables: Tables{},
+		Sections: Sections{},
 	}
 }
 
-func (t Tables) GetSection(p string) (Table, bool) {
-	tables := map[string]Table(t)
-	v, ok := tables[p]
+func (t Sections) GetSection(p string) (Section, bool) {
+	sections := map[string]Section(t)
+	v, ok := sections[p]
 	return v, ok
 }
 
 type Values map[string]iniToken
 
-type Table struct {
+type Section struct {
 	Name   string
 	Values Values
 }
 
-func (t Table) Int(k string) int64 {
+func (t Section) Int(k string) int64 {
 	return t.Values[k].IntValue()
 }
 
-func (t Table) Float64(k string) float64 {
+func (t Section) Float64(k string) float64 {
 	return t.Values[k].FloatValue()
 }
 
-func (t Table) String(k string) string {
+func (t Section) String(k string) string {
 	_, ok := t.Values[k]
 	if !ok {
 		return ""
@@ -54,7 +56,7 @@ func (t Table) String(k string) string {
 }
 
 func (v *SharedConfigVisitor) VisitExpr(expr AST) error {
-	t := v.Tables[v.scope]
+	t := v.Sections[v.scope]
 	if t.Values == nil {
 		t.Values = Values{}
 	}
@@ -69,14 +71,14 @@ func (v *SharedConfigVisitor) VisitExpr(expr AST) error {
 		return awserr.New(ErrCodeParseError, "unsupported expression", nil)
 	}
 
-	v.Tables[v.scope] = t
+	v.Sections[v.scope] = t
 	return nil
 }
 
 func (v *SharedConfigVisitor) VisitStatement(stmt AST) error {
 	switch s := stmt.(type) {
-	case TableStatement:
-		v.Tables[s.Name] = Table{}
+	case SectionStatement:
+		v.Sections[s.Name] = Section{}
 		v.scope = s.Name
 	default:
 		return awserr.New(ErrCodeParseError, fmt.Sprintf("unsupported statement: %T", s), nil)

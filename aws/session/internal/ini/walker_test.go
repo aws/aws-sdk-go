@@ -111,7 +111,7 @@ func TestDataFiles(t *testing.T) {
 		}
 
 		for profile, tableIface := range e {
-			p, ok := v.Tables.GetSection(profile)
+			p, ok := v.Sections.GetSection(profile)
 			if !ok {
 				t.Fatal("could not find profile " + profile)
 			}

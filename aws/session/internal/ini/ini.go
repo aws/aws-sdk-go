@@ -4,7 +4,9 @@ import (
 	"os"
 )
 
-func OpenFile(path string) (Tables, error) {
+// OpenFile takes a path to a given file, and will open  and parse
+// that file.
+func OpenFile(path string) (Sections, error) {
 	f, err := os.Open(path)
 	if err != nil {
 		return nil, err
@@ -14,7 +16,9 @@ func OpenFile(path string) (Tables, error) {
 	return ParseFile(f)
 }
 
-func ParseFile(f *os.File) (Tables, error) {
+// ParseFile will parse the given file using the shared config
+// visitor.
+func ParseFile(f *os.File) (Sections, error) {
 	tree, err := Parse(f)
 	if err != nil {
 		return nil, err
@@ -25,5 +29,5 @@ func ParseFile(f *os.File) (Tables, error) {
 		return nil, err
 	}
 
-	return v.Tables, nil
+	return v.Sections, nil
 }

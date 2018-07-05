@@ -10,8 +10,8 @@ func Walk(tree []AST, v Visitor) error {
 				return err
 			}
 		case ASTKindStatement,
-			ASTKindNestedTableStatement,
-			ASTKindCompletedNestedTableStatement:
+			ASTKindNestedSectionStatement,
+			ASTKindCompletedNestedSectionStatement:
 
 			if err := v.VisitStatement(node); err != nil {
 				return err

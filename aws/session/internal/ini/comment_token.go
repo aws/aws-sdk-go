@@ -7,6 +7,8 @@ type CommentToken struct {
 	comment string
 }
 
+// isComment will return whether or not the next byte(s) is a
+// comment.
 func isComment(b []byte) bool {
 	if len(b) == 0 {
 		return false
@@ -26,6 +28,8 @@ func isComment(b []byte) bool {
 	return false
 }
 
+// newCommentToken will create a comment token and
+// return how many bytes were read.
 func newCommentToken(b []byte) (CommentToken, int, error) {
 	i := 0
 	value := ""

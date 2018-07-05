@@ -10,8 +10,8 @@ const (
 	ASTKindExpr
 	ASTKindStatement
 	ASTKindExprStatement
-	ASTKindNestedTableStatement
-	ASTKindCompletedNestedTableStatement
+	ASTKindNestedSectionStatement
+	ASTKindCompletedNestedSectionStatement
 	ASTKindCommentStatement
 )
 
@@ -27,8 +27,8 @@ func (k ASTKind) String() string {
 		return "stmt"
 	case ASTKindExprStatement:
 		return "expr_stmt"
-	case ASTKindNestedTableStatement:
-		return "nested_table_stmt"
+	case ASTKindNestedSectionStatement:
+		return "nested_section_stmt"
 	default:
 		return ""
 	}
