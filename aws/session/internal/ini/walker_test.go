@@ -75,7 +75,7 @@ func TestDataFiles(t *testing.T) {
 			t.Errorf("unexpected error, %v", err)
 		}
 
-		tree, err := Parse(f)
+		tree, err := ParseAST(f)
 		if err != nil && !c.expectedParseError {
 			t.Errorf("unexpected error, %v", err)
 		} else if err == nil && c.expectedParseError {

@@ -31,6 +31,10 @@ func TestIsNumberValue(t *testing.T) {
 			true,
 		},
 		{
+			[]byte("1ea4"),
+			false,
+		},
+		{
 			[]byte("1-23"),
 			false,
 		},

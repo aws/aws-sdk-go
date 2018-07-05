@@ -110,9 +110,9 @@ func (s *skipper) Continue() {
 	s.prevTok = nil
 }
 
-// Parse will parse input from an io.Reader using
+// ParseAST will parse input from an io.Reader using
 // an LL(1) parser.
-func Parse(r io.Reader) ([]AST, error) {
+func ParseAST(r io.Reader) ([]AST, error) {
 	lexer := iniLexer{}
 	tokens, err := lexer.Tokenize(r)
 	if err != nil {

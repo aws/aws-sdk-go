@@ -25,6 +25,8 @@ const (
 	sepTypeCloseBrace
 )
 
+// sepToken is a separator token which represents the concept of
+// scoping in ini files.
 type sepToken struct {
 	emptyToken
 

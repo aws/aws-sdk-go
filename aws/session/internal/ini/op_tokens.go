@@ -24,6 +24,7 @@ const (
 	opTypeEqual
 )
 
+// opToken is an operation token that signifies an expression.
 type opToken struct {
 	emptyToken
 

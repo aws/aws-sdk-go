@@ -232,7 +232,7 @@ region = us-west-2
 	}
 
 	for i, c := range cases {
-		stack, err := Parse(c.r)
+		stack, err := ParseAST(c.r)
 
 		if e, a := c.expectedError, err != nil; e != a {
 			t.Errorf("%d: expected %t, but received %t with error %v", i+1, e, a, err)

@@ -1,6 +1,7 @@
 package ini
 
 import (
+	"io"
 	"os"
 )
 
@@ -13,13 +14,13 @@ func OpenFile(path string) (Sections, error) {
 	}
 	defer f.Close()
 
-	return ParseFile(f)
+	return Parse(f)
 }
 
-// ParseFile will parse the given file using the shared config
+// Parse will parse the given file using the shared config
 // visitor.
-func ParseFile(f *os.File) (Sections, error) {
-	tree, err := Parse(f)
+func Parse(f io.Reader) (Sections, error) {
+	tree, err := ParseAST(f)
 	if err != nil {
 		return nil, err
 	}

@@ -1,5 +1,6 @@
 package ini
 
+// Walk will traverse the AST using the v, the Visitor.
 func Walk(tree []AST, v Visitor) error {
 	for _, node := range tree {
 		switch node.Kind() {

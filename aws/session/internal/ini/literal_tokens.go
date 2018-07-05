@@ -26,62 +26,50 @@ func isBoolValue(b []byte) bool {
 	return false
 }
 
+// isNumberValue will return whether not the leading characters in
+// a byte slice is a number. A number is delimited by whitespace or
+// the newline token.
+//
+// A number is defined to be in a binary, octal, decimal (int | float), hex format,
+// or in scientific notation.
 func isNumberValue(b []byte) bool {
-	foundDecimal := false
-	foundBinary := false
-	foundOctal := false
-	foundHex := false
-	foundExponent := false
-	foundNegative := false
 	negativeIndex := 0
+	helper := numberHelper{}
 
 	for i := 0; i < len(b); i++ {
 		negativeIndex++
 
 		switch b[i] {
 		case '-':
-			if foundNegative || negativeIndex != 1 {
+			if helper.IsNegative() || negativeIndex != 1 {
 				return false
 			}
-			foundNegative = true
-			continue
-		case '.':
-			if foundDecimal ||
-				foundBinary ||
-				foundOctal ||
-				foundHex ||
-				foundExponent {
-				return false
-			}
-			foundDecimal = true
+			helper.Determine(b[i])
 			continue
 		case 'e', 'E':
-			if foundDecimal ||
-				foundBinary ||
-				foundOctal ||
-				foundHex ||
-				foundExponent {
+			if helper.Exists() {
 				return false
 			}
 
-			foundExponent = true
-			foundNegative = false
 			negativeIndex = 0
+			helper.Determine(b[i])
 			continue
-		case 'b', 'o', 'x':
+		case 'b':
+			if helper.hex {
+				break
+			}
+			fallthrough
+		case 'o', 'x':
 			if i == 0 {
 				return false
 			}
-			if foundDecimal ||
-				foundBinary ||
-				foundOctal ||
-				foundHex ||
-				foundExponent {
+
+			fallthrough
+		case '.':
+			if helper.Exists() {
 				return false
 			}
-			foundBinary = foundBinary || b[i] == 'b'
-			foundOctal = foundOctal || b[i] == 'o'
-			foundHex = foundHex || b[i] == 'x'
+			helper.Determine(b[i])
 			continue
 		}
 
@@ -90,47 +78,12 @@ func isNumberValue(b []byte) bool {
 			return true
 		}
 
-		switch {
-		case foundBinary:
-			if b[i] != '0' && b[i] != '1' {
-				return false
-			}
-		case foundOctal:
-			switch b[i] {
-			case '0', '1', '2', '3', '4', '5', '6', '7':
-			default:
-				return false
-			}
-		case foundHex:
-			if !isHexByte(b[i]) {
-				return false
-			}
-		case foundDecimal:
-			if !isDigit(b[i]) {
-				return false
-			}
-		case foundExponent:
-			if !isDigit(b[i]) {
-				return false
-			}
-		case foundNegative:
-			if !isDigit(b[i]) {
-				return false
-			}
-		default:
-			if !isDigit(b[i]) {
-				return false
-			}
+		if !helper.CorrectByte(b[i]) {
+			return false
 		}
-
 	}
 
 	return true
-}
-
-// isDigit will return whether or not something is an integer
-func isDigit(b byte) bool {
-	return b >= '0' && b <= '9'
 }
 
 func isValid(b byte) bool {
@@ -285,8 +238,4 @@ func (token literalToken) String() string {
 	}
 
 	return "invalid token"
-}
-
-func hasExponent(v string) bool {
-	return strings.Contains(v, "e") || strings.Contains(v, "E")
 }

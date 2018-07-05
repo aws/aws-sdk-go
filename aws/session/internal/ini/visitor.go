@@ -2,6 +2,7 @@ package ini
 
 import (
 	"fmt"
+	"sort"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
@@ -33,6 +34,18 @@ func (t Sections) GetSection(p string) (Section, bool) {
 }
 
 type Values map[string]iniToken
+
+func (t Sections) List() []string {
+	keys := make([]string, len(t))
+	i := 0
+	for k := range t {
+		keys[i] = k
+		i++
+	}
+
+	sort.Strings(keys)
+	return keys
+}
 
 type Section struct {
 	Name   string

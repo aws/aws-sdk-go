@@ -1,5 +1,7 @@
 package ini
 
+// newlineToken acts as a delimeter in ini is will be used
+// primarily to handle nesting expressions.
 type newlineToken struct {
 	emptyToken
 	raw string

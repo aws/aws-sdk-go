@@ -1,6 +1,9 @@
 package ini
 
 import (
+	"fmt"
+	"strings"
+
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
@@ -22,7 +25,12 @@ func getStringValue(b []byte) (string, int, error) {
 			break
 		} else if escaped {
 			value = value[:len(value)-1]
-			value += string(getEscapedCharacter(b[i]))
+			c, err := getEscapedByte(b[i])
+			if err != nil {
+				return "", 0, err
+			}
+
+			value += string(c)
 			continue
 		}
 		value += string(b[i])
@@ -74,16 +82,7 @@ func getNumericalValue(b []byte) (string, int, int, error) {
 
 	value := ""
 	i := 0
-	base := 10
-
-	foundDecimal := false
-	foundBinary := false
-	foundOctal := false
-	foundHex := false
-	foundExponent := false
-	// negativate variable is mostly to indicate whether or not
-	// a '-' character is in a valid area
-	foundNegative := false
+	helper := numberHelper{}
 
 loop:
 	for negativeIndex := 0; i < len(b); i++ {
@@ -92,73 +91,57 @@ loop:
 		if !isDigit(b[i]) {
 			switch b[i] {
 			case '-':
-				if foundNegative || negativeIndex != 1 {
+				if helper.IsNegative() || negativeIndex != 1 {
 					return "", 0, 0, awserr.New(ErrCodeParseError, "parse error '-'", nil)
 				}
 
 				neg, n := getNegativeNumber(b[i:])
 				value += neg
-				i += n
+				i += (n - 1)
+				helper.Determine(b[i])
 				continue
 			case '.':
-				switch {
-				case foundDecimal:
-					return "", 0, 0, awserr.New(ErrCodeParseError, "found multiple decimals", nil)
-				case foundBinary, foundOctal, foundHex:
-					return "", 0, 0, awserr.New(ErrCodeParseError, "float value not valid", nil)
+				if helper.Exists() {
+					return "", 0, 0, awserr.New(ErrCodeParseError, "invalid decimal format", nil)
 				}
 
-				foundDecimal = true
+				helper.Determine(b[i])
 			case 'e', 'E':
-				switch {
-				case foundDecimal:
-					return "", 0, 0, awserr.New(ErrCodeParseError, "exponent value not valid", nil)
-				case foundBinary:
-					return "", 0, 0, awserr.New(ErrCodeParseError, "exponent value not valid", nil)
-				case foundOctal:
-					return "", 0, 0, awserr.New(ErrCodeParseError, "exponent value not valid", nil)
-				case foundHex:
-					return "", 0, 0, awserr.New(ErrCodeParseError, "exponent value not valid", nil)
-				case foundExponent:
-					return "", 0, 0, awserr.New(ErrCodeParseError, "exponent value not valid", nil)
+				if helper.Exists() {
+					return "", 0, 0, awserr.New(ErrCodeParseError, fmt.Sprintf("multiple number formats found, %s", string(b[i])), nil)
 				}
 
-				foundExponent = true
-				foundNegative = false
 				negativeIndex = 0
-			case 'b', 'o', 'x':
+				helper.Determine(b[i])
+			case 'b':
+				if helper.hex {
+					break
+				}
+				fallthrough
+			case 'o', 'x':
 				if i == 0 && value != "0" {
 					return "", 0, 0, awserr.New(ErrCodeParseError, "incorrect base format", nil)
 				}
 
-				switch {
-				case foundDecimal:
-					return "", 0, 0, awserr.New(ErrCodeParseError, "found decimal in binary, octal, or hex format", nil)
-				case foundBinary, foundOctal, foundHex:
-					return "", 0, 0, awserr.New(ErrCodeParseError, "multiple base formats", nil)
-				case foundExponent:
-					return "", 0, 0, awserr.New(ErrCodeParseError, "found exponent in bainry, octal, or hex format", nil)
+				if helper.Exists() {
+					return "", 0, 0, awserr.New(ErrCodeParseError, "multiple base format", nil)
 				}
 
 				if b[i-1] != '0' {
 					return "", 0, 0, awserr.New(ErrCodeParseError, "incorrect base format", nil)
 				}
 
-				if foundBinary = foundBinary || b[i] == 'b'; foundBinary {
-					base = 2
-				}
-				if foundOctal = foundOctal || b[i] == 'o'; foundOctal {
-					base = 8
-				}
-				if foundHex = foundHex || b[i] == 'x'; foundHex {
-					base = 16
-				}
+				helper.Determine(b[i])
 			default:
 				if i > 0 && isWhitespace(b[i]) {
 					break loop
 				}
 
-				if !(foundHex && isHexByte(b[i])) {
+				if isNewline(b[i:]) {
+					break loop
+				}
+
+				if !(helper.hex && isHexByte(b[i])) {
 					if i+2 < len(b) && !isNewline(b[i:i+2]) {
 						return "", 0, 0, awserr.New(ErrCodeParseError, "invalid numerical character", nil)
 					} else if !isNewline([]byte{b[i]}) {
@@ -172,7 +155,34 @@ loop:
 		value += string(b[i])
 	}
 
-	return value, base, i, nil
+	return value, helper.Base(), i, nil
+}
+
+// isDigit will return whether or not something is an integer
+func isDigit(b byte) bool {
+	return b >= '0' && b <= '9'
+}
+
+func hasExponent(v string) bool {
+	return strings.Contains(v, "e") || strings.Contains(v, "E")
+}
+
+func isBinaryByte(b byte) bool {
+	switch b {
+	case '0', '1':
+		return true
+	default:
+		return false
+	}
+}
+
+func isOctalByte(b byte) bool {
+	switch b {
+	case '0', '1', '2', '3', '4', '5', '6', '7':
+		return true
+	default:
+		return false
+	}
 }
 
 func isHexByte(b byte) bool {
@@ -204,6 +214,9 @@ func getValue(b []byte) (string, int, error) {
 	return value, i, nil
 }
 
+// getNegativeNumber will return a negative number from a
+// byte slice. This will iterate through all characters until
+// a non-digit has been found.
 func getNegativeNumber(b []byte) (string, int) {
 	if b[0] != '-' {
 		return "", 0
@@ -220,15 +233,19 @@ func getNegativeNumber(b []byte) (string, int) {
 	return value, len(value)
 }
 
+// isEscaped will return whether or not the character is an escaped
+// character.
 func isEscaped(value string, b byte) bool {
 	if len(value) == 0 {
 		return false
 	}
 
 	switch b {
+	case '\'': // single quote
 	case '"': // quote
 	case 'n': // newline
-	case 't': // table
+	case 't': // tab
+	case '\\': // backslash
 	default:
 		return false
 	}
@@ -236,19 +253,19 @@ func isEscaped(value string, b byte) bool {
 	return value[len(value)-1] == '\\'
 }
 
-func getEscapedCharacter(b byte) byte {
+func getEscapedByte(b byte) (byte, error) {
 	switch b {
-	case '\'':
-		return '\''
+	case '\'': // single quote
+		return '\'', nil
 	case '"': // quote
-		return '"'
+		return '"', nil
 	case 'n': // newline
-		return '\n'
+		return '\n', nil
 	case 't': // table
-		return '\t'
-	case '\\':
-		return '\\'
+		return '\t', nil
+	case '\\': // backslash
+		return '\\', nil
 	default:
-		return '\\'
+		return b, awserr.New(ErrCodeParseError, fmt.Sprintf("invalid escaped character %c", b), nil)
 	}
 }

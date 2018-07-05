@@ -6,7 +6,9 @@ type wsToken struct {
 }
 
 // isWhitespace will return whether or not the character is
-// a whitespace character
+// a whitespace character.
+//
+// Whitespace is defined as a space or tab.
 func isWhitespace(c byte) bool {
 	return c == '\t' || c == ' '
 }
