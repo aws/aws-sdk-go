@@ -147,7 +147,7 @@ func (d Downloader) Download(w io.WriterAt, input *s3.GetObjectInput, options ..
 //
 // DownloadWithContext is the same as Download with the additional support for
 // Context input parameters. The Context must not be nil. A nil Context will
-// cause a panic. Use the Context to add deadlining, timeouts, ect. The
+// cause a panic. Use the Context to add deadlining, timeouts, etc. The
 // DownloadWithContext may create sub-contexts for individual underlying
 // requests.
 //
