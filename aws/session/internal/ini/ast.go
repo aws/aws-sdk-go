@@ -34,6 +34,8 @@ func (k ASTKind) String() string {
 	}
 }
 
+// AST interface allows us to determine what kind of node we
+// are on and casting may not need to be necessary.
 type AST interface {
 	Kind() ASTKind
 }

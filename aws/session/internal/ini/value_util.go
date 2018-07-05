@@ -17,10 +17,13 @@ func getStringValue(b []byte) (string, int, error) {
 	endQuote := false
 	i := 1
 	for ; i < len(b) && !endQuote; i++ {
-		// TODO: handle escaped strings, ie) "\"hello\""
-		if b[i] == '"' {
+		if escaped := isEscaped(value, b[i]); b[i] == '"' && !escaped {
 			endQuote = true
 			break
+		} else if escaped {
+			value = value[:len(value)-1]
+			value += string(getEscapedCharacter(b[i]))
+			continue
 		}
 		value += string(b[i])
 	}
@@ -215,4 +218,37 @@ func getNegativeNumber(b []byte) (string, int) {
 	}
 
 	return value, len(value)
+}
+
+func isEscaped(value string, b byte) bool {
+	if len(value) == 0 {
+		return false
+	}
+
+	switch b {
+	case '"': // quote
+	case 'n': // newline
+	case 't': // table
+	default:
+		return false
+	}
+
+	return value[len(value)-1] == '\\'
+}
+
+func getEscapedCharacter(b byte) byte {
+	switch b {
+	case '\'':
+		return '\''
+	case '"': // quote
+		return '"'
+	case 'n': // newline
+		return '\n'
+	case 't': // table
+		return '\t'
+	case '\\':
+		return '\\'
+	default:
+		return '\\'
+	}
 }
