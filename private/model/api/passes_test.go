@@ -244,9 +244,9 @@ func TestSupressHTTP2EventStreams(t *testing.T) {
     "endpointPrefix":"rpcservice",
     "jsonVersion":"1.1",
     "protocol":"json",
-	"protocolSettings":{
+    "protocolSettings":{
       "h2":"{h2Option}"
-	},
+    },
     "serviceAbbreviation":"RPCService",
     "serviceFullName":"RPC Service",
     "serviceId":"RPCService",
