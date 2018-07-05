@@ -7,6 +7,7 @@
     "protocol":"json",
     "serviceAbbreviation":"SageMaker",
     "serviceFullName":"Amazon SageMaker Service",
+    "serviceId":"SageMaker",
     "signatureVersion":"v4",
     "signingName":"sagemaker",
     "targetPrefix":"SageMaker",
@@ -749,6 +750,18 @@
       "type":"structure",
       "members":{
       }
+    },
+    "DeployedImage":{
+      "type":"structure",
+      "members":{
+        "SpecifiedImage":{"shape":"Image"},
+        "ResolvedImage":{"shape":"Image"},
+        "ResolutionTime":{"shape":"Timestamp"}
+      }
+    },
+    "DeployedImages":{
+      "type":"list",
+      "member":{"shape":"DeployedImage"}
     },
     "DescribeEndpointConfigInput":{
       "type":"structure",
@@ -1704,7 +1717,8 @@
         "Stopping",
         "Stopped",
         "Failed",
-        "Deleting"
+        "Deleting",
+        "Updating"
       ]
     },
     "NotebookInstanceSummary":{
@@ -1853,6 +1867,7 @@
       "required":["VariantName"],
       "members":{
         "VariantName":{"shape":"VariantName"},
+        "DeployedImages":{"shape":"DeployedImages"},
         "CurrentWeight":{"shape":"VariantWeight"},
         "DesiredWeight":{"shape":"VariantWeight"},
         "CurrentInstanceCount":{"shape":"TaskCount"},
