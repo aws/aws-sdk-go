@@ -44,6 +44,10 @@ func TestDataFiles(t *testing.T) {
 			expectedPath: "./testdata/valid/base_numbers_profile_expected",
 		},
 		{
+			path:         "./testdata/valid/exponent_profile",
+			expectedPath: "./testdata/valid/exponent_profile_expected",
+		},
+		{
 			path:               "./testdata/invalid/incomplete_section_profile",
 			expectedParseError: true,
 		},

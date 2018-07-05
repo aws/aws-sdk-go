@@ -1,0 +1,6 @@
+{
+	"default": {
+		"exponent": 10000,
+		"exponent_2": 0.0001 
+	}
+}

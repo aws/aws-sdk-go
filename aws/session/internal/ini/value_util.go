@@ -77,12 +77,26 @@ func getNumericalValue(b []byte) (string, int, int, error) {
 	foundBinary := false
 	foundOctal := false
 	foundHex := false
+	foundExponent := false
+	// negativate variable is mostly to indicate whether or not
+	// a '-' character is in a valid area
+	foundNegative := false
 
 loop:
-	for ; i < len(b); i++ {
-		// TODO: handle scientific notation
+	for negativeIndex := 0; i < len(b); i++ {
+		negativeIndex++
+
 		if !isDigit(b[i]) {
 			switch b[i] {
+			case '-':
+				if foundNegative || negativeIndex != 1 {
+					return "", 0, 0, awserr.New(ErrCodeParseError, "parse error '-'", nil)
+				}
+
+				neg, n := getNegativeNumber(b[i:])
+				value += neg
+				i += n
+				continue
 			case '.':
 				switch {
 				case foundDecimal:
@@ -92,6 +106,23 @@ loop:
 				}
 
 				foundDecimal = true
+			case 'e', 'E':
+				switch {
+				case foundDecimal:
+					return "", 0, 0, awserr.New(ErrCodeParseError, "exponent value not valid", nil)
+				case foundBinary:
+					return "", 0, 0, awserr.New(ErrCodeParseError, "exponent value not valid", nil)
+				case foundOctal:
+					return "", 0, 0, awserr.New(ErrCodeParseError, "exponent value not valid", nil)
+				case foundHex:
+					return "", 0, 0, awserr.New(ErrCodeParseError, "exponent value not valid", nil)
+				case foundExponent:
+					return "", 0, 0, awserr.New(ErrCodeParseError, "exponent value not valid", nil)
+				}
+
+				foundExponent = true
+				foundNegative = false
+				negativeIndex = 0
 			case 'b', 'o', 'x':
 				if i == 0 && value != "0" {
 					return "", 0, 0, awserr.New(ErrCodeParseError, "incorrect base format", nil)
@@ -99,9 +130,11 @@ loop:
 
 				switch {
 				case foundDecimal:
-					return "", 0, 0, awserr.New(ErrCodeParseError, "found decimal in binary, octal, hex format", nil)
+					return "", 0, 0, awserr.New(ErrCodeParseError, "found decimal in binary, octal, or hex format", nil)
 				case foundBinary, foundOctal, foundHex:
 					return "", 0, 0, awserr.New(ErrCodeParseError, "multiple base formats", nil)
+				case foundExponent:
+					return "", 0, 0, awserr.New(ErrCodeParseError, "found exponent in bainry, octal, or hex format", nil)
 				}
 
 				if b[i-1] != '0' {
@@ -166,4 +199,20 @@ func getValue(b []byte) (string, int, error) {
 	}
 
 	return value, i, nil
+}
+
+func getNegativeNumber(b []byte) (string, int) {
+	if b[0] != '-' {
+		return "", 0
+	}
+	value := string(b[0])
+	for i := 1; i < len(b); i++ {
+		if !isDigit(b[i]) {
+			return value, len(value)
+		}
+
+		value += string(b[i])
+	}
+
+	return value, len(value)
 }

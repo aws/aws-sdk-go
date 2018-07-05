@@ -31,17 +31,42 @@ func isNumberValue(b []byte) bool {
 	foundBinary := false
 	foundOctal := false
 	foundHex := false
+	foundExponent := false
+	foundNegative := false
+	negativeIndex := 0
 
 	for i := 0; i < len(b); i++ {
+		negativeIndex++
+
 		switch b[i] {
+		case '-':
+			if foundNegative || negativeIndex != 1 {
+				return false
+			}
+			foundNegative = true
+			continue
 		case '.':
 			if foundDecimal ||
 				foundBinary ||
 				foundOctal ||
-				foundHex {
+				foundHex ||
+				foundExponent {
 				return false
 			}
 			foundDecimal = true
+			continue
+		case 'e', 'E':
+			if foundDecimal ||
+				foundBinary ||
+				foundOctal ||
+				foundHex ||
+				foundExponent {
+				return false
+			}
+
+			foundExponent = true
+			foundNegative = false
+			negativeIndex = 0
 			continue
 		case 'b', 'o', 'x':
 			if i == 0 {
@@ -50,7 +75,8 @@ func isNumberValue(b []byte) bool {
 			if foundDecimal ||
 				foundBinary ||
 				foundOctal ||
-				foundHex {
+				foundHex ||
+				foundExponent {
 				return false
 			}
 			foundBinary = foundBinary || b[i] == 'b'
@@ -83,6 +109,14 @@ func isNumberValue(b []byte) bool {
 			if !isDigit(b[i]) {
 				return false
 			}
+		case foundExponent:
+			if !isDigit(b[i]) {
+				return false
+			}
+		case foundNegative:
+			if !isDigit(b[i]) {
+				return false
+			}
 		default:
 			if !isDigit(b[i]) {
 				return false
@@ -103,8 +137,27 @@ func isValid(b byte) bool {
 	return utf8.ValidRune(rune(b)) && b != '=' && b != '[' && b != ']' && b != ' ' && b != '\n'
 }
 
+type UnionValueType int
+
+func (v UnionValueType) String() string {
+	switch v {
+	case NoneType:
+		return "NONE"
+	case DecimalType:
+		return "FLOAT"
+	case IntegerType:
+		return "INT"
+	case StringType:
+		return "STRING"
+	case BoolType:
+		return "BOOL"
+	}
+
+	return ""
+}
+
 const (
-	NoneType = iota
+	NoneType = UnionValueType(iota)
 	DecimalType
 	IntegerType
 	StringType
@@ -117,7 +170,7 @@ type literalToken struct {
 }
 
 type UnionValue struct {
-	Type int
+	Type UnionValueType
 
 	integer int64
 	decimal float64
@@ -155,8 +208,7 @@ func newLitToken(b []byte) (literalToken, int, error) {
 		}
 
 		token.raw = value
-		// TODO: scientific notation
-		if strings.Contains(value, ".") {
+		if strings.Contains(value, ".") || hasExponent(value) {
 			token.Value.Type = DecimalType
 			token.Value.decimal, err = strconv.ParseFloat(value, 64)
 		} else {
@@ -233,4 +285,8 @@ func (token literalToken) String() string {
 	}
 
 	return "invalid token"
+}
+
+func hasExponent(v string) bool {
+	return strings.Contains(v, "e") || strings.Contains(v, "E")
 }
