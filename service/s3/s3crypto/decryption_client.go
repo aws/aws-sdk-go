@@ -8,7 +8,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/kms"
 	"github.com/aws/aws-sdk-go/service/s3"
-	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 )
 
 // WrapEntry is builder that return a proper key decrypter and error
@@ -16,6 +15,10 @@ type WrapEntry func(Envelope) (CipherDataDecrypter, error)
 
 // CEKEntry is a builder thatn returns a proper content decrypter and error
 type CEKEntry func(CipherData) (ContentCipher, error)
+
+type getObjectRequester interface {
+	GetObjectRequest(*s3.GetObjectInput) (*request.Request, *s3.GetObjectOutput)
+}
 
 // DecryptionClient is an S3 crypto client. The decryption client
 // will handle all get object requests from Amazon S3.
@@ -26,7 +29,7 @@ type CEKEntry func(CipherData) (ContentCipher, error)
 //	* AES/GCM
 //	* AES/CBC
 type DecryptionClient struct {
-	S3Client s3iface.S3API
+	S3Client getObjectRequester
 	// LoadStrategy is used to load the metadata either from the metadata of the object
 	// or from a separate file in s3.
 	//

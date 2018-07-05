@@ -14,7 +14,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/s3"
-	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 )
 
 // MaxUploadParts is the maximum allowed number of parts in a multi-part upload
@@ -212,6 +211,14 @@ func WithUploaderRequestOptions(opts ...request.Option) func(*Uploader) {
 	}
 }
 
+type uploadRequester interface {
+	PutObjectRequest(*s3.PutObjectInput) (*request.Request, *s3.PutObjectOutput)
+	CreateMultipartUploadWithContext(aws.Context, *s3.CreateMultipartUploadInput, ...request.Option) (*s3.CreateMultipartUploadOutput, error)
+	UploadPartWithContext(aws.Context, *s3.UploadPartInput, ...request.Option) (*s3.UploadPartOutput, error)
+	AbortMultipartUploadWithContext(aws.Context, *s3.AbortMultipartUploadInput, ...request.Option) (*s3.AbortMultipartUploadOutput, error)
+	CompleteMultipartUploadWithContext(aws.Context, *s3.CompleteMultipartUploadInput, ...request.Option) (*s3.CompleteMultipartUploadOutput, error)
+}
+
 // The Uploader structure that calls Upload(). It is safe to call Upload()
 // on this structure for multiple objects and across concurrent goroutines.
 // Mutating the Uploader's properties is not safe to be done concurrently.
@@ -244,7 +251,7 @@ type Uploader struct {
 	MaxUploadParts int
 
 	// The client to use when uploading to S3.
-	S3 s3iface.S3API
+	S3 uploadRequester
 
 	// List of request options that will be passed down to individual API
 	// operation requests made by the uploader.
@@ -301,7 +308,7 @@ func NewUploader(c client.ConfigProvider, options ...func(*Uploader)) *Uploader 
 //     uploader := s3manager.NewUploaderWithClient(s3Svc, func(u *s3manager.Uploader) {
 //          u.PartSize = 64 * 1024 * 1024 // 64MB per part
 //     })
-func NewUploaderWithClient(svc s3iface.S3API, options ...func(*Uploader)) *Uploader {
+func NewUploaderWithClient(svc uploadRequester, options ...func(*Uploader)) *Uploader {
 	u := &Uploader{
 		S3:                svc,
 		PartSize:          DefaultUploadPartSize,

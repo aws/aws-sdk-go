@@ -6,7 +6,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/s3"
-	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 )
 
 // GetBucketRegion will attempt to get the region for a bucket using the
@@ -46,12 +45,16 @@ func GetBucketRegion(ctx aws.Context, c client.ConfigProvider, bucket, regionHin
 
 const bucketRegionHeader = "X-Amz-Bucket-Region"
 
+type headBucketRequester interface {
+	HeadBucketRequest(*s3.HeadBucketInput) (*request.Request, *s3.HeadBucketOutput)
+}
+
 // GetBucketRegionWithClient is the same as GetBucketRegion with the exception
 // that it takes a S3 service client instead of a Session. The regionHint is
 // derived from the region the S3 service client was created in.
 //
 // See GetBucketRegion for more information.
-func GetBucketRegionWithClient(ctx aws.Context, svc s3iface.S3API, bucket string, opts ...request.Option) (string, error) {
+func GetBucketRegionWithClient(ctx aws.Context, svc headBucketRequester, bucket string, opts ...request.Option) (string, error) {
 	req, _ := svc.HeadBucketRequest(&s3.HeadBucketInput{
 		Bucket: aws.String(bucket),
 	})

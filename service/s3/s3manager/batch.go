@@ -10,7 +10,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/s3"
-	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 )
 
 const (
@@ -141,8 +140,12 @@ type DeleteListIterator struct {
 	objects   []*s3.Object
 }
 
+type listObjectsRequester interface {
+	ListObjectsRequest(*s3.ListObjectsInput) (*request.Request, *s3.ListObjectsOutput)
+}
+
 // NewDeleteListIterator will return a new DeleteListIterator.
-func NewDeleteListIterator(svc s3iface.S3API, input *s3.ListObjectsInput, opts ...func(*DeleteListIterator)) BatchDeleteIterator {
+func NewDeleteListIterator(svc listObjectsRequester, input *s3.ListObjectsInput, opts ...func(*DeleteListIterator)) BatchDeleteIterator {
 	iter := &DeleteListIterator{
 		Bucket: input.Bucket,
 		Paginator: request.Pagination{
@@ -192,10 +195,14 @@ func (iter *DeleteListIterator) DeleteObject() BatchDeleteObject {
 	}
 }
 
+type deleteObjectsRequester interface {
+	DeleteObjectsWithContext(aws.Context, *s3.DeleteObjectsInput, ...request.Option) (*s3.DeleteObjectsOutput, error)
+}
+
 // BatchDelete will use the s3 package's service client to perform a batch
 // delete.
 type BatchDelete struct {
-	Client    s3iface.S3API
+	Client    deleteObjectsRequester
 	BatchSize int
 }
 
@@ -219,7 +226,7 @@ type BatchDelete struct {
 //	}); err != nil {
 //		return err
 //	}
-func NewBatchDeleteWithClient(client s3iface.S3API, options ...func(*BatchDelete)) *BatchDelete {
+func NewBatchDeleteWithClient(client deleteObjectsRequester, options ...func(*BatchDelete)) *BatchDelete {
 	svc := &BatchDelete{
 		Client:    client,
 		BatchSize: DefaultBatchSize,

@@ -14,7 +14,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/s3"
-	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 )
 
 // DefaultDownloadPartSize is the default range of bytes to get at a time when
@@ -24,6 +23,10 @@ const DefaultDownloadPartSize = 1024 * 1024 * 5
 // DefaultDownloadConcurrency is the default number of goroutines to spin up
 // when using Download().
 const DefaultDownloadConcurrency = 5
+
+type getObjectRequester interface {
+	GetObjectWithContext(aws.Context, *s3.GetObjectInput, ...request.Option) (*s3.GetObjectOutput, error)
+}
 
 // The Downloader structure that calls Download(). It is safe to call Download()
 // on this structure for multiple objects and across concurrent goroutines.
@@ -43,7 +46,7 @@ type Downloader struct {
 	Concurrency int
 
 	// An S3 client to use when performing downloads.
-	S3 s3iface.S3API
+	S3 getObjectRequester
 
 	// List of request options that will be passed down to individual API
 	// operation requests made by the downloader.
@@ -106,7 +109,7 @@ func NewDownloader(c client.ConfigProvider, options ...func(*Downloader)) *Downl
 //     downloader := s3manager.NewDownloaderWithClient(s3Svc, func(d *s3manager.Downloader) {
 //          d.PartSize = 64 * 1024 * 1024 // 64MB per part
 //     })
-func NewDownloaderWithClient(svc s3iface.S3API, options ...func(*Downloader)) *Downloader {
+func NewDownloaderWithClient(svc getObjectRequester, options ...func(*Downloader)) *Downloader {
 	d := &Downloader{
 		S3:          svc,
 		PartSize:    DefaultDownloadPartSize,
@@ -419,7 +422,7 @@ func (d *downloader) downloadChunk(chunk dlchunk) error {
 	return err
 }
 
-func logMessage(svc s3iface.S3API, level aws.LogLevelType, msg string) {
+func logMessage(svc interface{}, level aws.LogLevelType, msg string) {
 	s, ok := svc.(*s3.S3)
 	if !ok {
 		return

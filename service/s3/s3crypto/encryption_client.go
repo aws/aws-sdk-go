@@ -9,19 +9,22 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/internal/sdkio"
 	"github.com/aws/aws-sdk-go/service/s3"
-	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 )
 
 // DefaultMinFileSize is used to check whether we want to write to a temp file
 // or store the data in memory.
 const DefaultMinFileSize = 1024 * 512 * 5
 
+type putObjectRequester interface {
+	PutObjectRequest(*s3.PutObjectInput) (*request.Request, *s3.PutObjectOutput)
+}
+
 // EncryptionClient is an S3 crypto client. By default the SDK will use Authentication mode which
 // will use KMS for key wrapping and AES GCM for content encryption.
 // AES GCM will load all data into memory. However, the rest of the content algorithms
 // do not load the entire contents into memory.
 type EncryptionClient struct {
-	S3Client             s3iface.S3API
+	S3Client             putObjectRequester
 	ContentCipherBuilder ContentCipherBuilder
 	// SaveStrategy will dictate where the envelope is saved.
 	//
