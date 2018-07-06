@@ -12,8 +12,7 @@ const (
 )
 
 // id -> value stmt
-// stmt -> expr stmt'
-// stmt' -> nop | op stmt
+// stmt -> nop | op id
 // value -> number | string | boolean
 //
 // table -> [ table' | [ array_table
@@ -29,80 +28,97 @@ const (
 // comment' -> string | epsilon
 //
 // epsilon -> nop
+
+const (
+	InvalidState = iota
+	StatementState
+	StatementPrimeState
+	ValueState
+	OpenScopeState
+	SectionState
+	CloseScopeState
+	NestedSectionBeginState
+	NestedSectionEndState
+	EndSectionState
+	SkipState
+	SkipTokenState
+	CommentState
+	EpsilonState
+	TerminalState
+)
+
 var parseTable = map[ASTKind]map[tokenType]int{
 	ASTKindStart: map[tokenType]int{
-		tokenLit:     1,  // stmt -> expr stmt'
-		tokenSep:     4,  // table -> [ table' | [ array_table
-		tokenWS:      -1, // skip token
-		tokenNL:      -1, // skip token
-		tokenComment: 11, // comment -> #comment' | ;comment' | /comment_slash
-		tokenNone:    -2,
+		tokenLit:     StatementState, // stmt -> expr stmt'
+		tokenSep:     OpenScopeState, // table -> [ table' | [ array_table
+		tokenWS:      SkipTokenState, // skip token
+		tokenNL:      SkipTokenState, // skip token
+		tokenComment: CommentState,   // comment -> #comment' | ;comment' | /comment_slash
+		tokenNone:    TerminalState,
 	},
 	ASTKindCommentStatement: map[tokenType]int{
-		tokenLit:     1,  // stmt -> expr stmt'
-		tokenSep:     4,  // table -> [ table' | [ array_table
-		tokenWS:      -1, // skip token
-		tokenNL:      -1, // skip token
-		tokenComment: 11, // comment -> #comment' | ;comment' | /comment_slash
-		tokenNone:    13,
+		tokenLit:     StatementState, // stmt -> expr stmt'
+		tokenSep:     OpenScopeState, // table -> [ table' | [ array_table
+		tokenWS:      SkipTokenState, // skip token
+		tokenNL:      SkipTokenState, // skip token
+		tokenComment: CommentState,   // comment -> #comment' | ;comment' | /comment_slash
+		tokenNone:    EpsilonState,
 	},
 	ASTKindExpr: map[tokenType]int{
-		tokenOp:      2, // stmt' -> nop | op stmt
-		tokenLit:     3, // value -> number | string | boolean
-		tokenSep:     2,
-		tokenWS:      -1, // skip token
-		tokenNL:      10, // skip section
-		tokenComment: 11, // comment -> #comment' | ;comment' | /comment_slash
-		tokenNone:    13,
+		tokenOp:      StatementPrimeState, // stmt' -> nop | op stmt
+		tokenLit:     ValueState,          // value -> number | string | boolean
+		tokenSep:     OpenScopeState,
+		tokenWS:      SkipTokenState, // skip token
+		tokenNL:      SkipState,      // skip section
+		tokenComment: CommentState,   // comment -> #comment' | ;comment' | /comment_slash
+		tokenNone:    EpsilonState,
 	},
 	ASTKindStatement: map[tokenType]int{
-		// TODO: fix 5 and 6 state transitions. Should have TableStatement return
-		// ASTKindTableStatement instead of ASTKindStatement.
-		tokenLit:     5, // table -> [ table' | [ array_table
-		tokenSep:     6, // array_close -> ] epsilon
-		tokenWS:      -1,
-		tokenNL:      -1,
-		tokenComment: 11, // comment -> #comment' | ;comment' | /comment_slash
-		tokenNone:    13,
+		tokenLit:     SectionState,    // table -> [ table' | [ array_table
+		tokenSep:     CloseScopeState, // array_close -> ] epsilon
+		tokenWS:      SkipTokenState,
+		tokenNL:      SkipTokenState,
+		tokenComment: CommentState, // comment -> #comment' | ;comment' | /comment_slash
+		tokenNone:    EpsilonState,
 	},
 	ASTKindExprStatement: map[tokenType]int{
-		tokenLit:     12, // stmt -> expr stmt'
-		tokenSep:     2,
-		tokenOp:      12,
-		tokenWS:      12,
-		tokenNL:      13,
-		tokenComment: 11, // comment -> #comment' | ;comment' | /comment_slash
-		tokenNone:    -2,
+		tokenLit:     ValueState, // stmt -> expr stmt'
+		tokenSep:     OpenScopeState,
+		tokenOp:      ValueState,
+		tokenWS:      ValueState,
+		tokenNL:      EpsilonState,
+		tokenComment: CommentState, // comment -> #comment' | ;comment' | /comment_slash
+		tokenNone:    TerminalState,
 	},
 	ASTKindNestedSectionStatement: map[tokenType]int{
-		tokenLit:     7, // table_nested -> label nested_array_close
-		tokenSep:     8, // nested_array_close -> ] array_close
-		tokenWS:      -1,
-		tokenNL:      -1,
-		tokenComment: 11, // comment -> #comment' | ;comment' | /comment_slash
+		tokenLit:     NestedSectionBeginState, // Section_nested -> label nested_array_close
+		tokenSep:     NestedSectionEndState,   // nested_array_close -> ] array_close
+		tokenWS:      SkipTokenState,
+		tokenNL:      SkipTokenState,
+		tokenComment: CommentState, // comment -> #comment' | ;comment' | /comment_slash
 	},
 	ASTKindCompletedNestedSectionStatement: map[tokenType]int{
-		tokenSep:     9, // nested_array_close -> ] epsilon
-		tokenWS:      -1,
-		tokenNL:      -1,
-		tokenComment: 11, // comment -> #comment' | ;comment' | /comment_slash
-		tokenNone:    13,
+		tokenSep:     EndSectionState, // nested_array_close -> ] epsilon
+		tokenWS:      SkipTokenState,
+		tokenNL:      SkipTokenState,
+		tokenComment: CommentState, // comment -> #comment' | ;comment' | /comment_slash
+		tokenNone:    EpsilonState,
 	},
 	ASTKindCompletedSectionStatement: map[tokenType]int{
-		tokenWS:      -1,
-		tokenNL:      -1,
-		tokenLit:     1,  // stmt -> expr stmt'
-		tokenSep:     4,  // table -> [ table' | [ array_table
-		tokenComment: 11, // comment -> #comment' | ;comment' | /comment_slash
-		tokenNone:    13,
+		tokenWS:      SkipTokenState,
+		tokenNL:      SkipTokenState,
+		tokenLit:     StatementState, // stmt -> expr stmt'
+		tokenSep:     OpenScopeState, // table -> [ table' | [ array_table
+		tokenComment: CommentState,   // comment -> #comment' | ;comment' | /comment_slash
+		tokenNone:    EpsilonState,
 	},
 	ASTKindSkipStatement: map[tokenType]int{
-		tokenLit:     1,  // stmt -> expr stmt'
-		tokenSep:     4,  // table -> [ table' | [ array_table
-		tokenWS:      -1, // skip token
-		tokenNL:      -1, // skip token
-		tokenComment: 11, // comment -> #comment' | ;comment' | /comment_slash
-		tokenNone:    -2,
+		tokenLit:     StatementState, // stmt -> expr stmt'
+		tokenSep:     OpenScopeState, // table -> [ table' | [ array_table
+		tokenWS:      SkipTokenState, // skip token
+		tokenNL:      SkipTokenState, // skip token
+		tokenComment: CommentState,   // comment -> #comment' | ;comment' | /comment_slash
+		tokenNone:    TerminalState,
 	},
 }
 
@@ -167,24 +183,24 @@ loop:
 
 		step := parseTable[k.Kind()][tok.Type()]
 		if s.ShouldSkip(tok) {
-			step = -1
+			step = SkipTokenState
 		}
 
 		switch step {
-		case -2:
+		case TerminalState:
 			if k.Kind() != ASTKindStart {
 				stack.Epsilon(k)
 			}
 			break loop
-		case -1:
+		case SkipTokenState:
 			stack.Push(k)
-		case 1:
+		case StatementState:
 			if k.Kind() != ASTKindStart {
 				stack.Epsilon(k)
 			}
 			expr := newExpression(tok)
 			stack.Push(expr)
-		case 2:
+		case StatementPrimeState: // stmt -> nop | op id
 			if tok.Type() != tokenOp {
 				stack.Epsilon(k)
 				continue
@@ -192,22 +208,57 @@ loop:
 
 			expr := newEqualExpr(k, tok)
 			stack.Push(expr)
-		case 3:
-			v, ok := k.(EqualExpr)
-			if !ok {
+		case ValueState:
+			switch v := k.(type) {
+			case EqualExpr:
+				v.Right = newExpression(tok)
+				stack.Push(newExprStatement(v))
+			case ExprStatement:
+				expr, ok := v.V.(EqualExpr)
+				if !ok {
+					return stack.list, awserr.New(ErrCodeParseError, "invalid expression", nil)
+				}
+
+				rhs, ok := expr.Right.(Expr)
+				if !ok {
+					return stack.list, awserr.New(ErrCodeParseError, "invalid expression", nil)
+				}
+
+				if rhs.Root.Type() != tokenLit {
+					return stack.list, awserr.New(ErrCodeParseError, "invalid expression", nil)
+				}
+
+				t := rhs.Root.(literalToken)
+				if t.Value.Type != QuotedStringType {
+					t.Value.Append(tok)
+
+					rhs.Root = t
+					expr.Right = rhs
+					v.V = expr
+					stack.Push(v)
+				} else {
+					stack.Push(k)
+				}
+			default:
 				return stack.list, awserr.New(ErrCodeParseError, "invalid expression", nil)
 			}
-
-			v.Right = newExpression(tok)
-			stack.Push(newExprStatement(v))
-		case 4:
+		case OpenScopeState:
 			if tok.Raw() != "[" {
 				return stack.list, awserr.New(ErrCodeParseError, "expected '['", nil)
 			}
 
 			stmt := newStatement()
 			stack.Push(stmt)
-		case 5:
+		case CloseScopeState:
+			if tok.Raw() == "]" {
+				stack.Push(newCompletedSectionStatement(k))
+			} else if tok.Raw() == "[" {
+				stmt := newNestedSectionStatement()
+				stack.Push(stmt)
+			} else {
+				return stack.list, awserr.New(ErrCodeParseError, "expected ']'", nil)
+			}
+		case SectionState:
 			if k.Kind() != ASTKindStatement {
 				return stack.list, awserr.New(ErrCodeParseError, "invalid statement", nil)
 			}
@@ -221,38 +272,7 @@ loop:
 				stmt = newSectionStatement(tok)
 			}
 			stack.Push(stmt)
-		case 12:
-			stmt, ok := k.(ExprStatement)
-			if !ok {
-				return stack.list, awserr.New(ErrCodeParseError, "invalid expression", nil)
-			}
-
-			expr, ok := stmt.V.(EqualExpr)
-			if !ok {
-				return stack.list, awserr.New(ErrCodeParseError, "invalid expression", nil)
-			}
-
-			rhs, ok := expr.Right.(Expr)
-			if !ok {
-				return stack.list, awserr.New(ErrCodeParseError, "invalid expression", nil)
-			}
-
-			if rhs.Root.Type() != tokenLit {
-				return stack.list, awserr.New(ErrCodeParseError, "invalid expression", nil)
-			}
-
-			t := rhs.Root.(literalToken)
-			if t.Value.Type != QuotedStringType {
-				t.Value.Append(tok)
-
-				rhs.Root = t
-				expr.Right = rhs
-				stmt.V = expr
-				stack.Push(stmt)
-			} else {
-				stack.Push(k)
-			}
-		case 13:
+		case EpsilonState:
 			if k.Kind() != ASTKindStart {
 				stack.Epsilon(k)
 			}
@@ -260,16 +280,7 @@ loop:
 			if stack.Len() == 0 {
 				stack.Push(start)
 			}
-		case 6:
-			if tok.Raw() == "]" {
-				stack.Push(newCompletedSectionStatement(k))
-			} else if tok.Raw() == "[" {
-				stmt := newNestedSectionStatement()
-				stack.Push(stmt)
-			} else {
-				return stack.list, awserr.New(ErrCodeParseError, "expected ']'", nil)
-			}
-		case 7:
+		case NestedSectionBeginState:
 			switch tok.Type() {
 			case tokenLit:
 				stmt, ok := k.(NestedSectionStatement)
@@ -282,23 +293,23 @@ loop:
 			default:
 				return stack.list, awserr.New(ErrCodeParseError, "expected literal", nil)
 			}
-		case 8:
+		case NestedSectionEndState:
 			if tok.Raw() != "]" {
 				return stack.list, awserr.New(ErrCodeParseError, "expected closing bracket", nil)
 			}
 
 			stmt := newCompletedNestedSectionStatement(k)
 			stack.Push(stmt)
-		case 9:
+		case EndSectionState:
 			if tok.Raw() != "]" {
 				return stack.list, awserr.New(ErrCodeParseError, "expected closing bracket", nil)
 			}
 
 			stack.Epsilon(k)
-		case 10:
+		case SkipState:
 			stack.Push(newSkipStatement(k))
 			s.Skip()
-		case 11:
+		case CommentState:
 			if _, ok := k.(Start); ok {
 				stack.Push(k)
 			} else {
