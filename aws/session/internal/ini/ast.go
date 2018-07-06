@@ -9,10 +9,12 @@ const (
 	ASTKindStart
 	ASTKindExpr
 	ASTKindStatement
+	ASTKindSkipStatement
 	ASTKindExprStatement
 	ASTKindNestedSectionStatement
 	ASTKindCompletedNestedSectionStatement
 	ASTKindCommentStatement
+	ASTKindCompletedSectionStatement
 )
 
 func (k ASTKind) String() string {
@@ -27,8 +29,14 @@ func (k ASTKind) String() string {
 		return "stmt"
 	case ASTKindExprStatement:
 		return "expr_stmt"
+	case ASTKindCommentStatement:
+		return "comment"
 	case ASTKindNestedSectionStatement:
 		return "nested_section_stmt"
+	case ASTKindCompletedSectionStatement:
+		return "completed_stmt"
+	case ASTKindSkipStatement:
+		return "skip"
 	default:
 		return ""
 	}

@@ -11,6 +11,7 @@ func Walk(tree []AST, v Visitor) error {
 				return err
 			}
 		case ASTKindStatement,
+			ASTKindCompletedSectionStatement,
 			ASTKindNestedSectionStatement,
 			ASTKindCompletedNestedSectionStatement:
 

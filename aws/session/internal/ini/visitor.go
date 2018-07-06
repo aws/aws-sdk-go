@@ -90,9 +90,13 @@ func (v *SharedConfigVisitor) VisitExpr(expr AST) error {
 
 func (v *SharedConfigVisitor) VisitStatement(stmt AST) error {
 	switch s := stmt.(type) {
-	case SectionStatement:
-		v.Sections[s.Name] = Section{}
-		v.scope = s.Name
+	case CompletedSectionStatement:
+		child, ok := s.V.(SectionStatement)
+		if !ok {
+			return awserr.New(ErrCodeParseError, fmt.Sprintf("unsupported child statement: %T", child), nil)
+		}
+		v.Sections[child.Name] = Section{}
+		v.scope = child.Name
 	default:
 		return awserr.New(ErrCodeParseError, fmt.Sprintf("unsupported statement: %T", s), nil)
 	}

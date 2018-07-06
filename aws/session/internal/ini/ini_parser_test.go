@@ -9,6 +9,7 @@ import (
 
 func TestParser(t *testing.T) {
 	xId, _, _ := newLitToken([]byte("x = 1234"))
+	s3Id, _, _ := newLitToken([]byte("s3 = 1234"))
 
 	regionId, _, _ := newLitToken([]byte("region"))
 	regionLit, _, _ := newLitToken([]byte(`"us-west-2"`))
@@ -50,9 +51,9 @@ func TestParser(t *testing.T) {
 		},
 		{
 			r: bytes.NewBuffer([]byte(`;foo
-	//bar
-			# baz
-			`)),
+			//bar
+					# baz
+					`)),
 			expectedStack: []AST{
 				newCommentStatement(CommentToken{comment: ";foo"}),
 				newCommentStatement(CommentToken{comment: "//bar"}),
@@ -82,20 +83,26 @@ func TestParser(t *testing.T) {
 		{
 			r: bytes.NewBuffer([]byte(`[ default ]`)),
 			expectedStack: []AST{
-				newSectionStatement(defaultId),
+				newCompletedSectionStatement(
+					newSectionStatement(defaultId),
+				),
 			},
 		},
 		{
 			r: bytes.NewBuffer([]byte(`[default]`)),
 			expectedStack: []AST{
-				newSectionStatement(defaultId),
+				newCompletedSectionStatement(
+					newSectionStatement(defaultId),
+				),
 			},
 		},
 		{
 			r: bytes.NewBuffer([]byte(`[default]
-					region="us-west-2"`)),
+							region="us-west-2"`)),
 			expectedStack: []AST{
-				newSectionStatement(defaultId),
+				newCompletedSectionStatement(
+					newSectionStatement(defaultId),
+				),
 				newExprStatement(EqualExpr{
 					Left:  newExpression(regionId),
 					Root:  equalOp,
@@ -105,16 +112,18 @@ func TestParser(t *testing.T) {
 		},
 		{
 			r: bytes.NewBuffer([]byte(`[default]
-region = us-west-2
-credential_source = Ec2InstanceMetadata
-output = json
+		region = us-west-2
+		credential_source = Ec2InstanceMetadata
+		output = json
 
-[assumerole]
-output = json
-region = us-west-2
-		`)),
+		[assumerole]
+		output = json
+		region = us-west-2
+				`)),
 			expectedStack: []AST{
-				newSectionStatement(defaultId),
+				newCompletedSectionStatement(
+					newSectionStatement(defaultId),
+				),
 				newExprStatement(EqualExpr{
 					Left:  newExpression(regionId),
 					Root:  equalOp,
@@ -130,7 +139,9 @@ region = us-west-2
 					Root:  equalOp,
 					Right: newExpression(outputLit),
 				}),
-				newSectionStatement(assumeId),
+				newCompletedSectionStatement(
+					newSectionStatement(assumeId),
+				),
 				newExprStatement(EqualExpr{
 					Left:  newExpression(outputId),
 					Root:  equalOp,
@@ -155,9 +166,12 @@ output = json
 [assumerole]
 output = json
 region = us-west-2
-		`)),
+				`)),
 			expectedStack: []AST{
-				newSectionStatement(defaultId),
+				newCompletedSectionStatement(
+					newSectionStatement(defaultId),
+				),
+				newSkipStatement(newEqualExpr(newExpression(s3Id), equalOp)),
 				newExprStatement(EqualExpr{
 					Left:  newExpression(regionId),
 					Root:  equalOp,
@@ -173,7 +187,9 @@ region = us-west-2
 					Root:  equalOp,
 					Right: newExpression(outputLit),
 				}),
-				newSectionStatement(assumeId),
+				newCompletedSectionStatement(
+					newSectionStatement(assumeId),
+				),
 				newExprStatement(EqualExpr{
 					Left:  newExpression(outputId),
 					Root:  equalOp,
@@ -198,9 +214,11 @@ output = json
 [assumerole]
 output = json
 region = us-west-2
-		`)),
+				`)),
 			expectedStack: []AST{
-				newSectionStatement(defaultId),
+				newCompletedSectionStatement(
+					newSectionStatement(defaultId),
+				),
 				newExprStatement(EqualExpr{
 					Left:  newExpression(regionId),
 					Root:  equalOp,
@@ -211,12 +229,15 @@ region = us-west-2
 					Root:  equalOp,
 					Right: newExpression(ec2MetadataLit),
 				}),
+				newSkipStatement(newEqualExpr(newExpression(s3Id), equalOp)),
 				newExprStatement(EqualExpr{
 					Left:  newExpression(outputId),
 					Root:  equalOp,
 					Right: newExpression(outputLit),
 				}),
-				newSectionStatement(assumeId),
+				newCompletedSectionStatement(
+					newSectionStatement(assumeId),
+				),
 				newExprStatement(EqualExpr{
 					Left:  newExpression(outputId),
 					Root:  equalOp,

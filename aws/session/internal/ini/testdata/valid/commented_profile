@@ -1,4 +1,4 @@
 # comment here
 [ default ]
 region = "foo-region" # another comment
-output = json
+output = json # comment again

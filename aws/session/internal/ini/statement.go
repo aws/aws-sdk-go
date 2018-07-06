@@ -108,3 +108,31 @@ func (stmt CommentStatement) Kind() ASTKind {
 func (stmt CommentStatement) String() string {
 	return stmt.Comment.Raw()
 }
+
+type CompletedSectionStatement struct {
+	V AST
+}
+
+func newCompletedSectionStatement(ast AST) CompletedSectionStatement {
+	return CompletedSectionStatement{
+		V: ast,
+	}
+}
+
+func (stmt CompletedSectionStatement) Kind() ASTKind {
+	return ASTKindCompletedSectionStatement
+}
+
+type SkipStatement struct {
+	V AST
+}
+
+func newSkipStatement(ast AST) SkipStatement {
+	return SkipStatement{
+		V: ast,
+	}
+}
+
+func (stmt SkipStatement) Kind() ASTKind {
+	return ASTKindSkipStatement
+}

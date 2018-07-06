@@ -15,8 +15,8 @@ type ParseStack struct {
 
 // Pop will return and truncate the last container element.
 func (s *ParseStack) Pop() AST {
-	temp := s.container[0]
-	s.container = s.container[1:]
+	temp := s.container[s.Len()-1]
+	s.container = s.container[:s.Len()-1]
 	return temp
 }
 
@@ -28,7 +28,6 @@ func (s *ParseStack) Push(ast AST) {
 // Epsilon will push Start{} back to the stack and append the
 // AST to the list of completed statements
 func (s *ParseStack) Epsilon(ast AST) {
-	s.Push(Start{})
 	s.list = append(s.list, ast)
 }
 

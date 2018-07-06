@@ -19,6 +19,7 @@ func getStringValue(b []byte) (string, int, error) {
 	value := ""
 	endQuote := false
 	i := 1
+
 	for ; i < len(b) && !endQuote; i++ {
 		if escaped := isEscaped(value, b[i]); b[i] == '"' && !escaped {
 			endQuote = true

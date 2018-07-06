@@ -112,7 +112,7 @@ func TestNewLiteralToken(t *testing.T) {
 			expectedRead: 7,
 			expectedToken: literalToken{
 				Value: UnionValue{
-					Type: StringType,
+					Type: QuotedStringType,
 					str:  `Hello`,
 				},
 			},
@@ -122,7 +122,7 @@ func TestNewLiteralToken(t *testing.T) {
 			expectedRead: 13,
 			expectedToken: literalToken{
 				Value: UnionValue{
-					Type: StringType,
+					Type: QuotedStringType,
 					str:  "Hello World",
 				},
 			},

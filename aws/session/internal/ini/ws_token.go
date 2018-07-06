@@ -32,6 +32,10 @@ func (tok wsToken) Raw() string {
 	return tok.raw
 }
 
+func (tok wsToken) StringValue() string {
+	return tok.raw
+}
+
 func (tok wsToken) Type() tokenType {
 	return tokenWS
 }

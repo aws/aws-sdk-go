@@ -68,10 +68,10 @@ func (l *iniLexer) Tokenize(r io.Reader) ([]iniToken, error) {
 		subB := b[i:]
 
 		switch {
-		case isComment(subB):
-			tok, n, err = newCommentToken(subB)
 		case isWhitespace(subB[0]):
 			tok, n, err = newWSToken(subB)
+		case isComment(subB):
+			tok, n, err = newCommentToken(subB)
 		case isNewline(subB):
 			tok, n, err = newNewlineToken(subB)
 		case isSep(subB):

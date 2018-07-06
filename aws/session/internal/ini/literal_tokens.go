@@ -114,6 +114,7 @@ const (
 	DecimalType
 	IntegerType
 	StringType
+	QuotedStringType
 	BoolType
 )
 
@@ -131,6 +132,13 @@ type UnionValue struct {
 	str     string
 }
 
+func (v *UnionValue) Append(tok iniToken) {
+	if v.Type != QuotedStringType {
+		v.Type = StringType
+	}
+	v.str += tok.StringValue()
+}
+
 func (v UnionValue) String() string {
 	switch v.Type {
 	case DecimalType:
@@ -139,6 +147,8 @@ func (v UnionValue) String() string {
 		return fmt.Sprintf("integer: %d", v.integer)
 	case StringType:
 		return fmt.Sprintf("string: %s", v.str)
+	case QuotedStringType:
+		return fmt.Sprintf("quoted string: %s", v.str)
 	case BoolType:
 		return fmt.Sprintf("bool: %t", v.boolean)
 	default:
@@ -181,7 +191,7 @@ func newLitToken(b []byte) (literalToken, int, error) {
 		value, n, err = getStringValue(b)
 
 		token.raw = value
-		token.Value.Type = StringType
+		token.Value.Type = QuotedStringType
 		token.Value.str = value
 	} else {
 		value, n, err = getValue(b)
@@ -206,12 +216,23 @@ func (token literalToken) BoolValue() bool {
 	return token.Value.boolean
 }
 
+func isTrimmable(r rune) bool {
+	switch r {
+	case '\n', ' ':
+		return true
+	}
+	return false
+}
+
 func (token literalToken) StringValue() string {
 	switch token.Value.Type {
 	case StringType:
+		return strings.TrimFunc(token.Value.str, isTrimmable)
+	case QuotedStringType:
+		// preserve all characters in the quotes
 		return token.Value.str
 	default:
-		return token.Raw()
+		return strings.TrimFunc(token.Raw(), isTrimmable)
 	}
 
 	return ""

@@ -36,6 +36,15 @@ var parseTable = map[ASTKind]map[tokenType]int{
 		tokenWS:      -1, // skip token
 		tokenNL:      -1, // skip token
 		tokenComment: 11, // comment -> #comment' | ;comment' | /comment_slash
+		tokenNone:    -2,
+	},
+	ASTKindCommentStatement: map[tokenType]int{
+		tokenLit:     1,  // stmt -> expr stmt'
+		tokenSep:     4,  // table -> [ table' | [ array_table
+		tokenWS:      -1, // skip token
+		tokenNL:      -1, // skip token
+		tokenComment: 11, // comment -> #comment' | ;comment' | /comment_slash
+		tokenNone:    13,
 	},
 	ASTKindExpr: map[tokenType]int{
 		tokenOp:      2, // stmt' -> nop | op stmt
@@ -44,6 +53,7 @@ var parseTable = map[ASTKind]map[tokenType]int{
 		tokenWS:      -1, // skip token
 		tokenNL:      10, // skip section
 		tokenComment: 11, // comment -> #comment' | ;comment' | /comment_slash
+		tokenNone:    13,
 	},
 	ASTKindStatement: map[tokenType]int{
 		// TODO: fix 5 and 6 state transitions. Should have TableStatement return
@@ -53,13 +63,16 @@ var parseTable = map[ASTKind]map[tokenType]int{
 		tokenWS:      -1,
 		tokenNL:      -1,
 		tokenComment: 11, // comment -> #comment' | ;comment' | /comment_slash
+		tokenNone:    13,
 	},
 	ASTKindExprStatement: map[tokenType]int{
-		tokenLit:     1, // stmt -> expr stmt'
+		tokenLit:     12, // stmt -> expr stmt'
 		tokenSep:     2,
-		tokenWS:      -1,
-		tokenNL:      -1,
+		tokenOp:      12,
+		tokenWS:      12,
+		tokenNL:      13,
 		tokenComment: 11, // comment -> #comment' | ;comment' | /comment_slash
+		tokenNone:    -2,
 	},
 	ASTKindNestedSectionStatement: map[tokenType]int{
 		tokenLit:     7, // table_nested -> label nested_array_close
@@ -73,6 +86,23 @@ var parseTable = map[ASTKind]map[tokenType]int{
 		tokenWS:      -1,
 		tokenNL:      -1,
 		tokenComment: 11, // comment -> #comment' | ;comment' | /comment_slash
+		tokenNone:    13,
+	},
+	ASTKindCompletedSectionStatement: map[tokenType]int{
+		tokenWS:      -1,
+		tokenNL:      -1,
+		tokenLit:     1,  // stmt -> expr stmt'
+		tokenSep:     4,  // table -> [ table' | [ array_table
+		tokenComment: 11, // comment -> #comment' | ;comment' | /comment_slash
+		tokenNone:    13,
+	},
+	ASTKindSkipStatement: map[tokenType]int{
+		tokenLit:     1,  // stmt -> expr stmt'
+		tokenSep:     4,  // table -> [ table' | [ array_table
+		tokenWS:      -1, // skip token
+		tokenNL:      -1, // skip token
+		tokenComment: 11, // comment -> #comment' | ;comment' | /comment_slash
+		tokenNone:    -2,
 	},
 }
 
@@ -119,18 +149,21 @@ func ParseAST(r io.Reader) ([]AST, error) {
 		return []AST{}, err
 	}
 
+	start := Start{}
 	stack := ParseStack{}
-	stack.Push(Start{})
+	stack.Push(start)
 	s := skipper{}
 
+loop:
 	for stack.Len() > 0 {
 		k := stack.Pop()
-		if len(tokens) == 0 {
-			stack.Epsilon(k)
-			break
-		}
 
-		tok := tokens[0]
+		var tok iniToken
+		if len(tokens) == 0 {
+			tok = emptyToken{}
+		} else {
+			tok = tokens[0]
+		}
 
 		step := parseTable[k.Kind()][tok.Type()]
 		if s.ShouldSkip(tok) {
@@ -138,9 +171,17 @@ func ParseAST(r io.Reader) ([]AST, error) {
 		}
 
 		switch step {
+		case -2:
+			if k.Kind() != ASTKindStart {
+				stack.Epsilon(k)
+			}
+			break loop
 		case -1:
 			stack.Push(k)
 		case 1:
+			if k.Kind() != ASTKindStart {
+				stack.Epsilon(k)
+			}
 			expr := newExpression(tok)
 			stack.Push(expr)
 		case 2:
@@ -158,7 +199,7 @@ func ParseAST(r io.Reader) ([]AST, error) {
 			}
 
 			v.Right = newExpression(tok)
-			stack.Epsilon(newExprStatement(v))
+			stack.Push(newExprStatement(v))
 		case 4:
 			if tok.Raw() != "[" {
 				return stack.list, awserr.New(ErrCodeParseError, "expected '['", nil)
@@ -180,9 +221,48 @@ func ParseAST(r io.Reader) ([]AST, error) {
 				stmt = newSectionStatement(tok)
 			}
 			stack.Push(stmt)
+		case 12:
+			stmt, ok := k.(ExprStatement)
+			if !ok {
+				return stack.list, awserr.New(ErrCodeParseError, "invalid expression", nil)
+			}
+
+			expr, ok := stmt.V.(EqualExpr)
+			if !ok {
+				return stack.list, awserr.New(ErrCodeParseError, "invalid expression", nil)
+			}
+
+			rhs, ok := expr.Right.(Expr)
+			if !ok {
+				return stack.list, awserr.New(ErrCodeParseError, "invalid expression", nil)
+			}
+
+			if rhs.Root.Type() != tokenLit {
+				return stack.list, awserr.New(ErrCodeParseError, "invalid expression", nil)
+			}
+
+			t := rhs.Root.(literalToken)
+			if t.Value.Type != QuotedStringType {
+				t.Value.Append(tok)
+
+				rhs.Root = t
+				expr.Right = rhs
+				stmt.V = expr
+				stack.Push(stmt)
+			} else {
+				stack.Push(k)
+			}
+		case 13:
+			if k.Kind() != ASTKindStart {
+				stack.Epsilon(k)
+			}
+
+			if stack.Len() == 0 {
+				stack.Push(start)
+			}
 		case 6:
 			if tok.Raw() == "]" {
-				stack.Epsilon(k)
+				stack.Push(newCompletedSectionStatement(k))
 			} else if tok.Raw() == "[" {
 				stmt := newNestedSectionStatement()
 				stack.Push(stmt)
@@ -216,25 +296,24 @@ func ParseAST(r io.Reader) ([]AST, error) {
 
 			stack.Epsilon(k)
 		case 10:
-			stack.Push(Start{})
+			stack.Push(newSkipStatement(k))
 			s.Skip()
 		case 11:
-			if _, ok := k.(Start); !ok {
+			if _, ok := k.(Start); ok {
 				stack.Push(k)
+			} else {
+				stack.Epsilon(k)
 			}
+
 			stmt := newCommentStatement(tok)
-			stack.Epsilon(stmt)
+			stack.Push(stmt)
 		default:
-			return stack.list, awserr.New(ErrCodeParseError, "parse error", nil)
+			return stack.list, awserr.New(ErrCodeParseError, "parse error: invalid state", nil)
 		}
 
-		tokens = tokens[1:]
-	}
-
-	// if the list is one, the list only contains the start symbol, which
-	// is invalid.
-	if len(stack.list) == 1 {
-		return stack.list, awserr.New(ErrCodeParseError, "invalid ini file", nil)
+		if len(tokens) > 0 {
+			tokens = tokens[1:]
+		}
 	}
 
 	// this occurs when a statement has not been completed
@@ -243,5 +322,5 @@ func ParseAST(r io.Reader) ([]AST, error) {
 	}
 
 	// returns a sublist which exludes the start symbol
-	return stack.list[:len(stack.list)-1], nil
+	return stack.list, nil
 }

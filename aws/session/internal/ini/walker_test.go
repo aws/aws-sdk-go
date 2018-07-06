@@ -52,24 +52,20 @@ func TestDataFiles(t *testing.T) {
 			expectedPath: "./testdata/valid/escaped_profile_expected",
 		},
 		{
-			path:               "./testdata/invalid/incomplete_section_profile",
-			expectedParseError: true,
+			path:         "./testdata/valid/global_values_profile",
+			expectedPath: "./testdata/valid/global_values_profile_expected",
 		},
 		{
-			path:               "./testdata/invalid/syntax_error_comment",
-			expectedParseError: true,
+			path:              "./testdata/invalid/incomplete_section_profile",
+			expectedWalkError: true,
 		},
 		{
-			path:               "./testdata/invalid/bad_syntax_1",
-			expectedParseError: true,
-		},
-		{
-			path:              "./testdata/invalid/bad_syntax_2",
+			path:              "./testdata/invalid/syntax_error_comment",
 			expectedWalkError: true,
 		},
 	}
 
-	for _, c := range cases {
+	for i, c := range cases {
 		f, err := os.Open(c.path)
 		if err != nil {
 			t.Errorf("unexpected error, %v", err)
@@ -77,9 +73,9 @@ func TestDataFiles(t *testing.T) {
 
 		tree, err := ParseAST(f)
 		if err != nil && !c.expectedParseError {
-			t.Errorf("unexpected error, %v", err)
+			t.Errorf("%d: unexpected error, %v", i+1, err)
 		} else if err == nil && c.expectedParseError {
-			t.Errorf("expected error, but received none")
+			t.Errorf("%d: expected error, but received none", i+1)
 		}
 
 		if c.expectedParseError {
@@ -89,7 +85,7 @@ func TestDataFiles(t *testing.T) {
 		v := NewSharedConfigVisitor()
 		err = Walk(tree, v)
 		if err != nil && !c.expectedWalkError {
-			t.Errorf("unexpected error, %v", err)
+			t.Errorf("%d: unexpected error, %v", i+1, err)
 		} else if err == nil && c.expectedWalkError {
 			t.Errorf("expected error, but received none")
 		}
@@ -122,12 +118,12 @@ func TestDataFiles(t *testing.T) {
 				case string:
 					a := p.String(k)
 					if e != a {
-						t.Errorf("expected %v, but received %v", e, a)
+						t.Errorf("%d: expected %v, but received %v", i+1, e, a)
 					}
 				case int:
 					a := p.Int(k)
 					if int64(e) != a {
-						t.Errorf("expected %v, but received %v", e, a)
+						t.Errorf("%d: expected %v, but received %v", i+1, e, a)
 					}
 				case float64:
 					tok := p.Values[k]
@@ -135,12 +131,12 @@ func TestDataFiles(t *testing.T) {
 					if v.Value.Type == IntegerType {
 						a := p.Int(k)
 						if int64(e) != a {
-							t.Errorf("expected %v, but received %v", e, a)
+							t.Errorf("%d: expected %v, but received %v", i+1, e, a)
 						}
 					} else {
 						a := p.Float64(k)
 						if e != a {
-							t.Errorf("expected %v, but received %v", e, a)
+							t.Errorf("%d: expected %v, but received %v", i+1, e, a)
 						}
 					}
 				default:
