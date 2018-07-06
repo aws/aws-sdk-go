@@ -48,7 +48,7 @@ func (a *API) Setup() {
 	a.updateTopLevelShapeReferences()
 	a.createInputOutputShapes()
 	a.setupEventStreams()
-	a.supressHTTP2EventStreams()
+	a.suppressHTTP2EventStreams()
 	a.customizationPasses()
 
 	if !a.NoRemoveUnusedShapes {

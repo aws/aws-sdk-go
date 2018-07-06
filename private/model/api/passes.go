@@ -362,7 +362,7 @@ func (a *API) setMetadataEndpointsKey() {
 	}
 }
 
-func (a *API) supressHTTP2EventStreams() {
+func (a *API) suppressHTTP2EventStreams() {
 	if a.Metadata.ProtocolSettings.HTTP2 != "eventstream" {
 		return
 	}
