@@ -590,6 +590,108 @@
         }
       ]
     },
+    "ListTagsForResource": {
+      "name": "ListTagsForResource",
+      "http": {
+        "method": "GET",
+        "requestUri": "/2017-08-29/tags/{arn}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListTagsForResourceRequest"
+      },
+      "output": {
+        "shape": "ListTagsForResourceResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "TagResource": {
+      "name": "TagResource",
+      "http": {
+        "method": "POST",
+        "requestUri": "/2017-08-29/tags",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "TagResourceRequest"
+      },
+      "output": {
+        "shape": "TagResourceResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "UntagResource": {
+      "name": "UntagResource",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/2017-08-29/tags",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UntagResourceRequest"
+      },
+      "output": {
+        "shape": "UntagResourceResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
     "UpdateJobTemplate": {
       "name": "UpdateJobTemplate",
       "http": {
@@ -1853,6 +1955,10 @@
         "Settings": {
           "shape": "JobTemplateSettings",
           "locationName": "settings"
+        },
+        "Tags": {
+          "shape": "__mapOf__string",
+          "locationName": "tags"
         }
       },
       "required": [
@@ -1887,6 +1993,10 @@
         "Settings": {
           "shape": "PresetSettings",
           "locationName": "settings"
+        },
+        "Tags": {
+          "shape": "__mapOf__string",
+          "locationName": "tags"
         }
       },
       "required": [
@@ -1913,6 +2023,10 @@
         "Name": {
           "shape": "__string",
           "locationName": "name"
+        },
+        "Tags": {
+          "shape": "__mapOf__string",
+          "locationName": "tags"
         }
       },
       "required": [
@@ -4433,7 +4547,7 @@
           "location": "querystring"
         },
         "MaxResults": {
-          "shape": "__integer",
+          "shape": "__integerMin1Max20",
           "locationName": "maxResults",
           "location": "querystring"
         },
@@ -4466,7 +4580,7 @@
       "type": "structure",
       "members": {
         "MaxResults": {
-          "shape": "__integer",
+          "shape": "__integerMin1Max20",
           "locationName": "maxResults",
           "location": "querystring"
         },
@@ -4519,7 +4633,7 @@
           "location": "querystring"
         },
         "MaxResults": {
-          "shape": "__integer",
+          "shape": "__integerMin1Max20",
           "locationName": "maxResults",
           "location": "querystring"
         },
@@ -4557,7 +4671,7 @@
           "location": "querystring"
         },
         "MaxResults": {
-          "shape": "__integer",
+          "shape": "__integerMin1Max20",
           "locationName": "maxResults",
           "location": "querystring"
         },
@@ -4583,6 +4697,28 @@
         "Queues": {
           "shape": "__listOfQueue",
           "locationName": "queues"
+        }
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "locationName": "arn",
+          "location": "uri"
+        }
+      },
+      "required": [
+        "Arn"
+      ]
+    },
+    "ListTagsForResourceResponse": {
+      "type": "structure",
+      "members": {
+        "ResourceTags": {
+          "shape": "ResourceTags",
+          "locationName": "resourceTags"
         }
       }
     },
@@ -5770,9 +5906,17 @@
           "shape": "__string",
           "locationName": "name"
         },
+        "ProgressingJobsCount": {
+          "shape": "__integer",
+          "locationName": "progressingJobsCount"
+        },
         "Status": {
           "shape": "QueueStatus",
           "locationName": "status"
+        },
+        "SubmittedJobsCount": {
+          "shape": "__integer",
+          "locationName": "submittedJobsCount"
         },
         "Type": {
           "shape": "Type",
@@ -5845,6 +5989,19 @@
         "ChannelMapping",
         "ChannelsIn"
       ]
+    },
+    "ResourceTags": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "locationName": "arn"
+        },
+        "Tags": {
+          "shape": "__mapOf__string",
+          "locationName": "tags"
+        }
+      }
     },
     "RespondToAfd": {
       "type": "string",
@@ -5925,6 +6082,28 @@
         "Url",
         "StaticKeyValue"
       ]
+    },
+    "TagResourceRequest": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "locationName": "arn"
+        },
+        "Tags": {
+          "shape": "__mapOf__string",
+          "locationName": "tags"
+        }
+      },
+      "required": [
+        "Arn",
+        "Tags"
+      ]
+    },
+    "TagResourceResponse": {
+      "type": "structure",
+      "members": {
+      }
     },
     "TeletextDestinationSettings": {
       "type": "structure",
@@ -6075,6 +6254,24 @@
         "SYSTEM",
         "CUSTOM"
       ]
+    },
+    "UntagResourceRequest": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "locationName": "arn"
+        },
+        "TagKeys": {
+          "shape": "__listOf__string",
+          "locationName": "tagKeys"
+        }
+      }
+    },
+    "UntagResourceResponse": {
+      "type": "structure",
+      "members": {
+      }
     },
     "UpdateJobTemplateRequest": {
       "type": "structure",
@@ -6587,6 +6784,11 @@
       "min": 1,
       "max": 2
     },
+    "__integerMin1Max20": {
+      "type": "integer",
+      "min": 1,
+      "max": 20
+    },
     "__integerMin1Max2147483647": {
       "type": "integer",
       "min": 1,
@@ -6858,6 +7060,12 @@
       "type": "list",
       "member": {
         "shape": "__integerMinNegative60Max6"
+      }
+    },
+    "__listOf__string": {
+      "type": "list",
+      "member": {
+        "shape": "__string"
       }
     },
     "__listOf__stringMin1": {
