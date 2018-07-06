@@ -28,6 +28,10 @@ func TestDataFiles(t *testing.T) {
 			expectedPath: "./testdata/valid/nested_profile_expected",
 		},
 		{
+			path:         "./testdata/valid/nested_profile_2",
+			expectedPath: "./testdata/valid/nested_profile_2_expected",
+		},
+		{
 			path:         "./testdata/valid/commented_profile",
 			expectedPath: "./testdata/valid/commented_profile_expected",
 		},
@@ -54,6 +58,10 @@ func TestDataFiles(t *testing.T) {
 		{
 			path:         "./testdata/valid/global_values_profile",
 			expectedPath: "./testdata/valid/global_values_profile_expected",
+		},
+		{
+			path:              "./testdata/invalid/bad_syntax_1",
+			expectedWalkError: true,
 		},
 		{
 			path:              "./testdata/invalid/incomplete_section_profile",
@@ -87,7 +95,7 @@ func TestDataFiles(t *testing.T) {
 		if err != nil && !c.expectedWalkError {
 			t.Errorf("%d: unexpected error, %v", i+1, err)
 		} else if err == nil && c.expectedWalkError {
-			t.Errorf("expected error, but received none")
+			t.Errorf("%d: expected error, but received none", i+1)
 		}
 
 		if len(c.expectedPath) == 0 {

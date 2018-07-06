@@ -1,6 +1,0 @@
-[ default ]
-s3 =
-	foo = bar
-	baz = qux
-region = "foo-region"
-output = json

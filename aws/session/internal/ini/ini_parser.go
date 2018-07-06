@@ -37,9 +37,6 @@ const (
 	OpenScopeState
 	SectionState
 	CloseScopeState
-	NestedSectionBeginState
-	NestedSectionEndState
-	EndSectionState
 	SkipState
 	SkipTokenState
 	CommentState
@@ -89,20 +86,6 @@ var parseTable = map[ASTKind]map[tokenType]int{
 		tokenNL:      EpsilonState,
 		tokenComment: CommentState, // comment -> #comment' | ;comment' | /comment_slash
 		tokenNone:    TerminalState,
-	},
-	ASTKindNestedSectionStatement: map[tokenType]int{
-		tokenLit:     NestedSectionBeginState, // Section_nested -> label nested_array_close
-		tokenSep:     NestedSectionEndState,   // nested_array_close -> ] array_close
-		tokenWS:      SkipTokenState,
-		tokenNL:      SkipTokenState,
-		tokenComment: CommentState, // comment -> #comment' | ;comment' | /comment_slash
-	},
-	ASTKindCompletedNestedSectionStatement: map[tokenType]int{
-		tokenSep:     EndSectionState, // nested_array_close -> ] epsilon
-		tokenWS:      SkipTokenState,
-		tokenNL:      SkipTokenState,
-		tokenComment: CommentState, // comment -> #comment' | ;comment' | /comment_slash
-		tokenNone:    EpsilonState,
 	},
 	ASTKindCompletedSectionStatement: map[tokenType]int{
 		tokenWS:      SkipTokenState,
@@ -200,7 +183,7 @@ loop:
 			}
 			expr := newExpression(tok)
 			stack.Push(expr)
-		case StatementPrimeState: // stmt -> nop | op id
+		case StatementPrimeState:
 			if tok.Type() != tokenOp {
 				stack.Epsilon(k)
 				continue
@@ -252,9 +235,6 @@ loop:
 		case CloseScopeState:
 			if tok.Raw() == "]" {
 				stack.Push(newCompletedSectionStatement(k))
-			} else if tok.Raw() == "[" {
-				stmt := newNestedSectionStatement()
-				stack.Push(stmt)
 			} else {
 				return stack.list, awserr.New(ErrCodeParseError, "expected ']'", nil)
 			}
@@ -280,32 +260,6 @@ loop:
 			if stack.Len() == 0 {
 				stack.Push(start)
 			}
-		case NestedSectionBeginState:
-			switch tok.Type() {
-			case tokenLit:
-				stmt, ok := k.(NestedSectionStatement)
-				if !ok {
-					return stack.list, awserr.New(ErrCodeParseError, "expected nested section statement", nil)
-				}
-
-				stmt.Labels = append(stmt.Labels, tok.Raw())
-				stack.Push(stmt)
-			default:
-				return stack.list, awserr.New(ErrCodeParseError, "expected literal", nil)
-			}
-		case NestedSectionEndState:
-			if tok.Raw() != "]" {
-				return stack.list, awserr.New(ErrCodeParseError, "expected closing bracket", nil)
-			}
-
-			stmt := newCompletedNestedSectionStatement(k)
-			stack.Push(stmt)
-		case EndSectionState:
-			if tok.Raw() != "]" {
-				return stack.list, awserr.New(ErrCodeParseError, "expected closing bracket", nil)
-			}
-
-			stack.Epsilon(k)
 		case SkipState:
 			stack.Push(newSkipStatement(k))
 			s.Skip()
