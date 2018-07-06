@@ -667,8 +667,8 @@ func (s {{ $.ShapeName }}) Code() string {
 
 // Message returns the exception's message.
 func (s {{ $.ShapeName }}) Message() string {
-	{{- if index $.MemberRefs "Message" }}
-		return *s.Message
+	{{- if index $.MemberRefs "Message_" }}
+		return *s.Message_
 	{{- else }}
 		return ""
 	{{ end -}}
