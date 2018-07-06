@@ -11,6 +11,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/ec2metadata"
+	"github.com/aws/aws-sdk-go/internal/sdkuri"
 )
 
 // ProviderName provides a name of EC2Role provider
@@ -152,7 +153,7 @@ func requestCredList(client *ec2metadata.EC2Metadata) ([]string, error) {
 // If the credentials cannot be found, or there is an error reading the response
 // and error will be returned.
 func requestCred(client *ec2metadata.EC2Metadata, credsName string) (ec2RoleCredRespBody, error) {
-	resp, err := client.GetMetadata(iamSecurityCredsPath + credsName)
+	resp, err := client.GetMetadata(sdkuri.PathJoin(iamSecurityCredsPath, credsName))
 	if err != nil {
 		return ec2RoleCredRespBody{},
 			awserr.New("EC2RoleRequestError",

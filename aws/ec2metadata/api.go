@@ -9,6 +9,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/internal/sdkuri"
 )
 
 // GetMetadata uses the path provided to request information from the EC2
@@ -18,7 +19,7 @@ func (c *EC2Metadata) GetMetadata(p string) (string, error) {
 	op := &request.Operation{
 		Name:       "GetMetadata",
 		HTTPMethod: "GET",
-		HTTPPath:   "/meta-data/" + p,
+		HTTPPath:   sdkuri.PathJoin("/meta-data", p),
 	}
 
 	output := &metadataOutput{}
@@ -55,7 +56,7 @@ func (c *EC2Metadata) GetDynamicData(p string) (string, error) {
 	op := &request.Operation{
 		Name:       "GetDynamicData",
 		HTTPMethod: "GET",
-		HTTPPath:   "/dynamic/" + p,
+		HTTPPath:   sdkuri.PathJoin("/dynamic", p),
 	}
 
 	output := &metadataOutput{}
