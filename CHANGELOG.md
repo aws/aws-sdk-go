@@ -1,3 +1,11 @@
+Release v1.14.21 (2018-07-06)
+===
+
+### Service Client Updates
+* `service/mediaconvert`: Updates service API and documentation
+  * This release adds support for the following 1) users can specify tags to be attached to queues, presets, and templates during creation of those resources on MediaConvert. 2) users can now view the count of jobs in submitted state and in progressing state on a per queue basis.
+* `service/serverlessrepo`: Updates service API and documentation
+
 Release v1.14.20 (2018-07-05)
 ===
 
