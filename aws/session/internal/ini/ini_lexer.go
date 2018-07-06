@@ -24,6 +24,8 @@ func (t tokenType) String() string {
 		return "newline"
 	case tokenComment:
 		return "comment"
+	case tokenComma:
+		return "comma"
 	default:
 		return ""
 	}
@@ -33,6 +35,7 @@ const (
 	tokenNone = tokenType(iota)
 	tokenLit
 	tokenSep
+	tokenComma
 	tokenOp
 	tokenWS
 	tokenNL
@@ -70,6 +73,8 @@ func (l *iniLexer) Tokenize(r io.Reader) ([]iniToken, error) {
 		switch {
 		case isWhitespace(subB[0]):
 			tok, n, err = newWSToken(subB)
+		case isComma(subB[0]):
+			tok, n = newCommaToken(), 1
 		case isComment(subB):
 			tok, n, err = newCommentToken(subB)
 		case isNewline(subB):

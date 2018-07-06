@@ -20,16 +20,12 @@ func TestDataFiles(t *testing.T) {
 			expectedPath: "./testdata/valid/empty_profile_expected",
 		},
 		{
+			path:         "./testdata/valid/array_profile",
+			expectedPath: "./testdata/valid/array_profile_expected",
+		},
+		{
 			path:         "./testdata/valid/simple_profile",
 			expectedPath: "./testdata/valid/simple_profile_expected",
-		},
-		{
-			path:         "./testdata/valid/nested_profile",
-			expectedPath: "./testdata/valid/nested_profile_expected",
-		},
-		{
-			path:         "./testdata/valid/nested_profile_2",
-			expectedPath: "./testdata/valid/nested_profile_2_expected",
 		},
 		{
 			path:         "./testdata/valid/commented_profile",
@@ -60,8 +56,8 @@ func TestDataFiles(t *testing.T) {
 			expectedPath: "./testdata/valid/global_values_profile_expected",
 		},
 		{
-			path:              "./testdata/invalid/bad_syntax_1",
-			expectedWalkError: true,
+			path:               "./testdata/invalid/bad_syntax_1",
+			expectedParseError: true,
 		},
 		{
 			path:              "./testdata/invalid/incomplete_section_profile",

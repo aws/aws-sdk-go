@@ -65,7 +65,7 @@ type sharedConfig struct {
 
 type sharedConfigFile struct {
 	Filename string
-	IniData  ini.Tables
+	IniData  ini.Sections
 }
 
 // loadSharedConfig retrieves the configuration from the list of files
@@ -111,7 +111,7 @@ func loadSharedConfigIniFiles(filenames []string) ([]sharedConfigFile, error) {
 			continue
 		}
 
-		tables, err := ini.ParseFile(f)
+		tables, err := ini.Parse(f)
 		if err != nil {
 			return nil, SharedConfigLoadError{Filename: filename, Err: err}
 		}

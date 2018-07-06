@@ -86,6 +86,7 @@ var parseTable = map[ASTKind]map[tokenType]int{
 		tokenNL:      EpsilonState,
 		tokenComment: CommentState, // comment -> #comment' | ;comment' | /comment_slash
 		tokenNone:    TerminalState,
+		tokenComma:   SkipState,
 	},
 	ASTKindCompletedSectionStatement: map[tokenType]int{
 		tokenWS:      SkipTokenState,
