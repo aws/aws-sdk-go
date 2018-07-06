@@ -1,15 +1,17 @@
 package ini
 
-type CommaToken struct {
+// CommaToken represents a comma character token
+type commaToken struct {
 	emptyToken
 }
 
-func newCommaToken() CommaToken {
-	return CommaToken{}
+func newCommaToken() commaToken {
+	return commaToken{}
 }
 
-func (tok CommaToken) Type() tokenType {
-	return tokenComma
+// Type will return the TokenType
+func (tok commaToken) Type() TokenType {
+	return TokenComma
 }
 
 func isComma(b byte) bool {

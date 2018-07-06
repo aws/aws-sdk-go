@@ -38,6 +38,6 @@ func (tok newlineToken) Raw() string {
 	return tok.raw
 }
 
-func (tok newlineToken) Type() tokenType {
-	return tokenNL
+func (tok newlineToken) Type() TokenType {
+	return TokenNL
 }

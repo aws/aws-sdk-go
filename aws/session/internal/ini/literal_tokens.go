@@ -90,6 +90,8 @@ func isValid(b byte) bool {
 	return utf8.ValidRune(rune(b)) && b != '=' && b != '[' && b != ']' && b != ' ' && b != '\n'
 }
 
+// UnionValueType is an enum that will signify what type
+// the UnionValue is
 type UnionValueType int
 
 func (v UnionValueType) String() string {
@@ -109,6 +111,7 @@ func (v UnionValueType) String() string {
 	return ""
 }
 
+// UnionValueType enums
 const (
 	NoneType = UnionValueType(iota)
 	DecimalType
@@ -123,6 +126,7 @@ type literalToken struct {
 	raw   string
 }
 
+// UnionValue is a union container
 type UnionValue struct {
 	Type UnionValueType
 
@@ -132,7 +136,9 @@ type UnionValue struct {
 	str     string
 }
 
-func (v *UnionValue) Append(tok iniToken) {
+// Append will append values and change the type to a string
+// type.
+func (v *UnionValue) Append(tok Token) {
 	if v.Type != QuotedStringType {
 		v.Type = StringType
 	}
@@ -176,6 +182,8 @@ func newLitToken(b []byte) (literalToken, int, error) {
 			token.Value.decimal, err = strconv.ParseFloat(value, 64)
 		} else {
 			if base != 10 {
+				// strip off 0b, 0o, or 0x so strconv.ParseInt can
+				// parse the value.
 				value = value[2:]
 			}
 			token.Value.Type = IntegerType
@@ -234,16 +242,14 @@ func (token literalToken) StringValue() string {
 	default:
 		return strings.TrimFunc(token.Raw(), isTrimmable)
 	}
-
-	return ""
 }
 
 func (token literalToken) Raw() string {
 	return token.raw
 }
 
-func (token literalToken) Type() tokenType {
-	return tokenLit
+func (token literalToken) Type() TokenType {
+	return TokenLit
 }
 
 func (token literalToken) String() string {

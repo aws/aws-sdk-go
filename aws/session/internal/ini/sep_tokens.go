@@ -58,6 +58,6 @@ func (token sepToken) Raw() string {
 	return token.value
 }
 
-func (token sepToken) Type() tokenType {
-	return tokenSep
+func (token sepToken) Type() TokenType {
+	return TokenSep
 }

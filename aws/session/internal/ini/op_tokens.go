@@ -53,8 +53,8 @@ func (token opToken) Raw() string {
 	return token.value
 }
 
-func (token opToken) Type() tokenType {
-	return tokenOp
+func (token opToken) Type() TokenType {
+	return TokenOp
 }
 
 func (token opToken) String() string {

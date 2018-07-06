@@ -1,6 +1,7 @@
 package ini
 
 import (
+	"fmt"
 	"io"
 	"strings"
 
@@ -8,136 +9,103 @@ import (
 )
 
 const (
+	// ErrCodeParseError is returned when a parsing error
+	// has occurred.
 	ErrCodeParseError = "ParseError"
 )
 
-// id -> value stmt
-// stmt -> nop | op id
-// value -> number | string | boolean
-//
-// table -> [ table' | [ array_table
-// table' -> label array_close
-// array_close -> ] epsilon
-//
-// array_table -> [ table_nested
-// table_nested -> label nested_array_close
-// nested_array_close -> ] array_close
-//
-// comment -> #comment' | ;comment' | /comment_slash
-// comment_slash -> / comment'
-// comment' -> string | epsilon
-//
-// epsilon -> nop
-
+// State enums for the parse table
 const (
 	InvalidState = iota
+	// stmt -> value stmt'
 	StatementState
+	// stmt' -> epsilon | op stmt
 	StatementPrimeState
+	// value -> number | string | boolean | quoted_string
 	ValueState
+	// section -> [ section'
 	OpenScopeState
+	// section' -> value section_close
 	SectionState
+	// section_close -> ]
 	CloseScopeState
+	// SkipState will skip (NL WS)+
 	SkipState
+	// SkipTokenState will skip any token and push the previous
+	// state onto the stack.
 	SkipTokenState
+	// comment -> # comment' | ; comment' | / comment_slash
+	// comment_slash -> / comment'
+	// comment' -> epsilon | value
 	CommentState
+	// Epsilon state will complete statements and move that
+	// to the completed AST list
 	EpsilonState
+	// TerminalState signifies that the tokens have been fully parsed
 	TerminalState
 )
 
-var parseTable = map[ASTKind]map[tokenType]int{
-	ASTKindStart: map[tokenType]int{
-		tokenLit:     StatementState, // stmt -> expr stmt'
-		tokenSep:     OpenScopeState, // table -> [ table' | [ array_table
-		tokenWS:      SkipTokenState, // skip token
-		tokenNL:      SkipTokenState, // skip token
-		tokenComment: CommentState,   // comment -> #comment' | ;comment' | /comment_slash
-		tokenNone:    TerminalState,
+// parseTable is a state machine to dictate the grammar above.
+var parseTable = map[ASTKind]map[TokenType]int{
+	ASTKindStart: map[TokenType]int{
+		TokenLit:     StatementState,
+		TokenSep:     OpenScopeState,
+		TokenWS:      SkipTokenState,
+		TokenNL:      SkipTokenState,
+		TokenComment: CommentState,
+		TokenNone:    TerminalState,
 	},
-	ASTKindCommentStatement: map[tokenType]int{
-		tokenLit:     StatementState, // stmt -> expr stmt'
-		tokenSep:     OpenScopeState, // table -> [ table' | [ array_table
-		tokenWS:      SkipTokenState, // skip token
-		tokenNL:      SkipTokenState, // skip token
-		tokenComment: CommentState,   // comment -> #comment' | ;comment' | /comment_slash
-		tokenNone:    EpsilonState,
+	ASTKindCommentStatement: map[TokenType]int{
+		TokenLit:     StatementState,
+		TokenSep:     OpenScopeState,
+		TokenWS:      SkipTokenState,
+		TokenNL:      SkipTokenState,
+		TokenComment: CommentState,
+		TokenNone:    EpsilonState,
 	},
-	ASTKindExpr: map[tokenType]int{
-		tokenOp:      StatementPrimeState, // stmt' -> nop | op stmt
-		tokenLit:     ValueState,          // value -> number | string | boolean
-		tokenSep:     OpenScopeState,
-		tokenWS:      SkipTokenState, // skip token
-		tokenNL:      SkipState,      // skip section
-		tokenComment: CommentState,   // comment -> #comment' | ;comment' | /comment_slash
-		tokenNone:    EpsilonState,
+	ASTKindExpr: map[TokenType]int{
+		TokenOp:      StatementPrimeState,
+		TokenLit:     ValueState,
+		TokenSep:     OpenScopeState,
+		TokenWS:      SkipTokenState,
+		TokenNL:      SkipState,
+		TokenComment: CommentState,
+		TokenNone:    EpsilonState,
 	},
-	ASTKindStatement: map[tokenType]int{
-		tokenLit:     SectionState,    // table -> [ table' | [ array_table
-		tokenSep:     CloseScopeState, // array_close -> ] epsilon
-		tokenWS:      SkipTokenState,
-		tokenNL:      SkipTokenState,
-		tokenComment: CommentState, // comment -> #comment' | ;comment' | /comment_slash
-		tokenNone:    EpsilonState,
+	ASTKindStatement: map[TokenType]int{
+		TokenLit:     SectionState,
+		TokenSep:     CloseScopeState,
+		TokenWS:      SkipTokenState,
+		TokenNL:      SkipTokenState,
+		TokenComment: CommentState,
+		TokenNone:    EpsilonState,
 	},
-	ASTKindExprStatement: map[tokenType]int{
-		tokenLit:     ValueState, // stmt -> expr stmt'
-		tokenSep:     OpenScopeState,
-		tokenOp:      ValueState,
-		tokenWS:      ValueState,
-		tokenNL:      EpsilonState,
-		tokenComment: CommentState, // comment -> #comment' | ;comment' | /comment_slash
-		tokenNone:    TerminalState,
-		tokenComma:   SkipState,
+	ASTKindExprStatement: map[TokenType]int{
+		TokenLit:     ValueState,
+		TokenSep:     OpenScopeState,
+		TokenOp:      ValueState,
+		TokenWS:      ValueState,
+		TokenNL:      EpsilonState,
+		TokenComment: CommentState,
+		TokenNone:    TerminalState,
+		TokenComma:   SkipState,
 	},
-	ASTKindCompletedSectionStatement: map[tokenType]int{
-		tokenWS:      SkipTokenState,
-		tokenNL:      SkipTokenState,
-		tokenLit:     StatementState, // stmt -> expr stmt'
-		tokenSep:     OpenScopeState, // table -> [ table' | [ array_table
-		tokenComment: CommentState,   // comment -> #comment' | ;comment' | /comment_slash
-		tokenNone:    EpsilonState,
+	ASTKindCompletedSectionStatement: map[TokenType]int{
+		TokenWS:      SkipTokenState,
+		TokenNL:      SkipTokenState,
+		TokenLit:     StatementState,
+		TokenSep:     OpenScopeState,
+		TokenComment: CommentState,
+		TokenNone:    EpsilonState,
 	},
-	ASTKindSkipStatement: map[tokenType]int{
-		tokenLit:     StatementState, // stmt -> expr stmt'
-		tokenSep:     OpenScopeState, // table -> [ table' | [ array_table
-		tokenWS:      SkipTokenState, // skip token
-		tokenNL:      SkipTokenState, // skip token
-		tokenComment: CommentState,   // comment -> #comment' | ;comment' | /comment_slash
-		tokenNone:    TerminalState,
+	ASTKindSkipStatement: map[TokenType]int{
+		TokenLit:     StatementState,
+		TokenSep:     OpenScopeState,
+		TokenWS:      SkipTokenState,
+		TokenNL:      SkipTokenState,
+		TokenComment: CommentState,
+		TokenNone:    TerminalState,
 	},
-}
-
-// skipper is used to skip certain blocks of an ini file.
-// Currently skipper is used to skip nested blocks of ini
-// files. See example below
-//
-//	[ foo ]
-//	nested = // this section will be skipped
-//		a=b
-//		c=d
-//	bar=baz // this will be included
-type skipper struct {
-	shouldSkip bool
-	prevTok    iniToken
-}
-
-func (s *skipper) ShouldSkip(tok iniToken) bool {
-	if s.shouldSkip && s.prevTok != nil && s.prevTok.Type() == tokenNL && tok.Type() != tokenWS {
-		s.Continue()
-		return false
-	}
-	s.prevTok = tok
-
-	return s.shouldSkip
-}
-
-func (s *skipper) Skip() {
-	s.shouldSkip = true
-	s.prevTok = nil
-}
-
-func (s *skipper) Continue() {
-	s.shouldSkip = false
-	s.prevTok = nil
 }
 
 // ParseAST will parse input from an io.Reader using
@@ -158,8 +126,11 @@ loop:
 	for stack.Len() > 0 {
 		k := stack.Pop()
 
-		var tok iniToken
+		var tok Token
 		if len(tokens) == 0 {
+			// this occurs when all the tokens have been processed
+			// but reduction of what's left on the stack needs to
+			// occur.
 			tok = emptyToken{}
 		} else {
 			tok = tokens[0]
@@ -172,11 +143,17 @@ loop:
 
 		switch step {
 		case TerminalState:
+			// Finished parsing. Push what should be the last
+			// statement to the stack. If there is anything left
+			// on the stack, an error in parsing has occurred.
 			if k.Kind() != ASTKindStart {
 				stack.Epsilon(k)
 			}
 			break loop
 		case SkipTokenState:
+			// When skipping a token, the previous state was popped off the stack.
+			// To maintain the correct state, the previous state will be pushed
+			// onto the stack.
 			stack.Push(k)
 		case StatementState:
 			if k.Kind() != ASTKindStart {
@@ -185,7 +162,7 @@ loop:
 			expr := newExpression(tok)
 			stack.Push(expr)
 		case StatementPrimeState:
-			if tok.Type() != tokenOp {
+			if tok.Type() != TokenOp {
 				stack.Epsilon(k)
 				continue
 			}
@@ -193,6 +170,20 @@ loop:
 			expr := newEqualExpr(k, tok)
 			stack.Push(expr)
 		case ValueState:
+			// ValueState requires the previous state to either be an equal expression
+			// or an expression statement.
+			//
+			// This grammar occurs when the RHS is a number, word, or quoted string.
+			// equal_expr -> lit op equal_expr'
+			// equal_expr' -> number | string | quoted_string
+			// quoted_string -> " quoted_string'
+			// quoted_string' -> string quoted_string_end
+			// quoted_string_end -> "
+			//
+			// otherwise
+			// expr_stmt -> equal_expr (expr_stmt')*
+			// expr_stmt' -> ws S | op S | epsilon
+			// S -> equal_expr' expr_stmt'
 			switch v := k.(type) {
 			case EqualExpr:
 				v.Right = newExpression(tok)
@@ -200,16 +191,34 @@ loop:
 			case ExprStatement:
 				expr, ok := v.V.(EqualExpr)
 				if !ok {
-					return stack.list, awserr.New(ErrCodeParseError, "invalid expression", nil)
+					return stack.list, awserr.New(
+						ErrCodeParseError,
+						fmt.Sprintf("invalid expression: expected equal expression, but found %T",
+							v.V,
+						),
+						nil,
+					)
 				}
 
 				rhs, ok := expr.Right.(Expr)
 				if !ok {
-					return stack.list, awserr.New(ErrCodeParseError, "invalid expression", nil)
+					return stack.list, awserr.New(
+						ErrCodeParseError,
+						fmt.Sprintf("invalid expression: RHS is not an expression:  %T",
+							expr.Right,
+						),
+						nil,
+					)
 				}
 
-				if rhs.Root.Type() != tokenLit {
-					return stack.list, awserr.New(ErrCodeParseError, "invalid expression", nil)
+				if rhs.Root.Type() != TokenLit {
+					return stack.list, awserr.New(
+						ErrCodeParseError,
+						fmt.Sprintf("invalid expression: RHS is not a literal:  %v",
+							rhs.Root,
+						),
+						nil,
+					)
 				}
 
 				t := rhs.Root.(literalToken)
@@ -241,12 +250,20 @@ loop:
 			}
 		case SectionState:
 			if k.Kind() != ASTKindStatement {
-				return stack.list, awserr.New(ErrCodeParseError, "invalid statement", nil)
+				return stack.list, awserr.New(
+					ErrCodeParseError,
+					fmt.Sprintf("invalid statement: expected statement: %T", k.Kind()),
+					nil,
+				)
 			}
 
 			var stmt AST
 
 			if t, ok := k.(SectionStatement); ok {
+				// If there are multiple literals inside of a scope declaration,
+				// then the current token's raw value will be appended to the Name.
+				//
+				// This handles cases like [ profile default ]
 				t.Name = strings.Join([]string{t.Name, tok.Raw()}, " ")
 				stmt = t
 			} else {

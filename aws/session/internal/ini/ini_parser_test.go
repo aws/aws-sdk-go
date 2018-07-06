@@ -8,23 +8,23 @@ import (
 )
 
 func TestParser(t *testing.T) {
-	xId, _, _ := newLitToken([]byte("x = 1234"))
-	s3Id, _, _ := newLitToken([]byte("s3 = 1234"))
+	xID, _, _ := newLitToken([]byte("x = 1234"))
+	s3ID, _, _ := newLitToken([]byte("s3 = 1234"))
 
-	regionId, _, _ := newLitToken([]byte("region"))
+	regionID, _, _ := newLitToken([]byte("region"))
 	regionLit, _, _ := newLitToken([]byte(`"us-west-2"`))
 	regionNoQuotesLit, _, _ := newLitToken([]byte("us-west-2"))
 
-	credentialId, _, _ := newLitToken([]byte("credential_source"))
+	credentialID, _, _ := newLitToken([]byte("credential_source"))
 	ec2MetadataLit, _, _ := newLitToken([]byte("Ec2InstanceMetadata"))
 
-	outputId, _, _ := newLitToken([]byte("output"))
+	outputID, _, _ := newLitToken([]byte("output"))
 	outputLit, _, _ := newLitToken([]byte("json"))
 
 	equalOp, _, _ := newOpToken([]byte("= 1234"))
 	numLit, _, _ := newLitToken([]byte("1234"))
-	defaultId, _, _ := newLitToken([]byte("default"))
-	assumeId, _, _ := newLitToken([]byte("assumerole"))
+	defaultID, _, _ := newLitToken([]byte("default"))
+	assumeID, _, _ := newLitToken([]byte("assumerole"))
 
 	cases := []struct {
 		r             io.Reader
@@ -34,19 +34,19 @@ func TestParser(t *testing.T) {
 		{
 			r: bytes.NewBuffer([]byte(`;foo`)),
 			expectedStack: []AST{
-				newCommentStatement(CommentToken{comment: ";foo"}),
+				newCommentStatement(commentToken{comment: ";foo"}),
 			},
 		},
 		{
 			r: bytes.NewBuffer([]byte(`# foo`)),
 			expectedStack: []AST{
-				newCommentStatement(CommentToken{comment: "# foo"}),
+				newCommentStatement(commentToken{comment: "# foo"}),
 			},
 		},
 		{
 			r: bytes.NewBuffer([]byte(`// foo`)),
 			expectedStack: []AST{
-				newCommentStatement(CommentToken{comment: "// foo"}),
+				newCommentStatement(commentToken{comment: "// foo"}),
 			},
 		},
 		{
@@ -55,16 +55,16 @@ func TestParser(t *testing.T) {
 					# baz
 					`)),
 			expectedStack: []AST{
-				newCommentStatement(CommentToken{comment: ";foo"}),
-				newCommentStatement(CommentToken{comment: "//bar"}),
-				newCommentStatement(CommentToken{comment: "# baz"}),
+				newCommentStatement(commentToken{comment: ";foo"}),
+				newCommentStatement(commentToken{comment: "//bar"}),
+				newCommentStatement(commentToken{comment: "# baz"}),
 			},
 		},
 		{
 			r: bytes.NewBuffer([]byte(`x = 1234`)),
 			expectedStack: []AST{
 				newExprStatement(EqualExpr{
-					Left:  newExpression(xId),
+					Left:  newExpression(xID),
 					Root:  equalOp,
 					Right: newExpression(numLit),
 				}),
@@ -74,7 +74,7 @@ func TestParser(t *testing.T) {
 			r: bytes.NewBuffer([]byte(`x=1234`)),
 			expectedStack: []AST{
 				newExprStatement(EqualExpr{
-					Left:  newExpression(xId),
+					Left:  newExpression(xID),
 					Root:  equalOp,
 					Right: newExpression(numLit),
 				}),
@@ -84,7 +84,7 @@ func TestParser(t *testing.T) {
 			r: bytes.NewBuffer([]byte(`[ default ]`)),
 			expectedStack: []AST{
 				newCompletedSectionStatement(
-					newSectionStatement(defaultId),
+					newSectionStatement(defaultID),
 				),
 			},
 		},
@@ -92,7 +92,7 @@ func TestParser(t *testing.T) {
 			r: bytes.NewBuffer([]byte(`[default]`)),
 			expectedStack: []AST{
 				newCompletedSectionStatement(
-					newSectionStatement(defaultId),
+					newSectionStatement(defaultID),
 				),
 			},
 		},
@@ -101,10 +101,10 @@ func TestParser(t *testing.T) {
 							region="us-west-2"`)),
 			expectedStack: []AST{
 				newCompletedSectionStatement(
-					newSectionStatement(defaultId),
+					newSectionStatement(defaultID),
 				),
 				newExprStatement(EqualExpr{
-					Left:  newExpression(regionId),
+					Left:  newExpression(regionID),
 					Root:  equalOp,
 					Right: newExpression(regionLit),
 				}),
@@ -122,33 +122,33 @@ func TestParser(t *testing.T) {
 				`)),
 			expectedStack: []AST{
 				newCompletedSectionStatement(
-					newSectionStatement(defaultId),
+					newSectionStatement(defaultID),
 				),
 				newExprStatement(EqualExpr{
-					Left:  newExpression(regionId),
+					Left:  newExpression(regionID),
 					Root:  equalOp,
 					Right: newExpression(regionNoQuotesLit),
 				}),
 				newExprStatement(EqualExpr{
-					Left:  newExpression(credentialId),
+					Left:  newExpression(credentialID),
 					Root:  equalOp,
 					Right: newExpression(ec2MetadataLit),
 				}),
 				newExprStatement(EqualExpr{
-					Left:  newExpression(outputId),
+					Left:  newExpression(outputID),
 					Root:  equalOp,
 					Right: newExpression(outputLit),
 				}),
 				newCompletedSectionStatement(
-					newSectionStatement(assumeId),
+					newSectionStatement(assumeID),
 				),
 				newExprStatement(EqualExpr{
-					Left:  newExpression(outputId),
+					Left:  newExpression(outputID),
 					Root:  equalOp,
 					Right: newExpression(outputLit),
 				}),
 				newExprStatement(EqualExpr{
-					Left:  newExpression(regionId),
+					Left:  newExpression(regionID),
 					Root:  equalOp,
 					Right: newExpression(regionNoQuotesLit),
 				}),
@@ -169,34 +169,34 @@ region = us-west-2
 				`)),
 			expectedStack: []AST{
 				newCompletedSectionStatement(
-					newSectionStatement(defaultId),
+					newSectionStatement(defaultID),
 				),
-				newSkipStatement(newEqualExpr(newExpression(s3Id), equalOp)),
+				newSkipStatement(newEqualExpr(newExpression(s3ID), equalOp)),
 				newExprStatement(EqualExpr{
-					Left:  newExpression(regionId),
+					Left:  newExpression(regionID),
 					Root:  equalOp,
 					Right: newExpression(regionNoQuotesLit),
 				}),
 				newExprStatement(EqualExpr{
-					Left:  newExpression(credentialId),
+					Left:  newExpression(credentialID),
 					Root:  equalOp,
 					Right: newExpression(ec2MetadataLit),
 				}),
 				newExprStatement(EqualExpr{
-					Left:  newExpression(outputId),
+					Left:  newExpression(outputID),
 					Root:  equalOp,
 					Right: newExpression(outputLit),
 				}),
 				newCompletedSectionStatement(
-					newSectionStatement(assumeId),
+					newSectionStatement(assumeID),
 				),
 				newExprStatement(EqualExpr{
-					Left:  newExpression(outputId),
+					Left:  newExpression(outputID),
 					Root:  equalOp,
 					Right: newExpression(outputLit),
 				}),
 				newExprStatement(EqualExpr{
-					Left:  newExpression(regionId),
+					Left:  newExpression(regionID),
 					Root:  equalOp,
 					Right: newExpression(regionNoQuotesLit),
 				}),
@@ -217,34 +217,34 @@ region = us-west-2
 				`)),
 			expectedStack: []AST{
 				newCompletedSectionStatement(
-					newSectionStatement(defaultId),
+					newSectionStatement(defaultID),
 				),
 				newExprStatement(EqualExpr{
-					Left:  newExpression(regionId),
+					Left:  newExpression(regionID),
 					Root:  equalOp,
 					Right: newExpression(regionNoQuotesLit),
 				}),
 				newExprStatement(EqualExpr{
-					Left:  newExpression(credentialId),
+					Left:  newExpression(credentialID),
 					Root:  equalOp,
 					Right: newExpression(ec2MetadataLit),
 				}),
-				newSkipStatement(newEqualExpr(newExpression(s3Id), equalOp)),
+				newSkipStatement(newEqualExpr(newExpression(s3ID), equalOp)),
 				newExprStatement(EqualExpr{
-					Left:  newExpression(outputId),
+					Left:  newExpression(outputID),
 					Root:  equalOp,
 					Right: newExpression(outputLit),
 				}),
 				newCompletedSectionStatement(
-					newSectionStatement(assumeId),
+					newSectionStatement(assumeID),
 				),
 				newExprStatement(EqualExpr{
-					Left:  newExpression(outputId),
+					Left:  newExpression(outputID),
 					Root:  equalOp,
 					Right: newExpression(outputLit),
 				}),
 				newExprStatement(EqualExpr{
-					Left:  newExpression(regionId),
+					Left:  newExpression(regionID),
 					Root:  equalOp,
 					Right: newExpression(regionNoQuotesLit),
 				}),

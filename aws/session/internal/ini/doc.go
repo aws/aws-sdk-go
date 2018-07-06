@@ -1,21 +1,30 @@
-// package ini deals with parsing and adapting toml files
-// to a structure.
+// Package ini is an LL(1) parser for configuration files.
 //
-// ABNF:
-/*
-	id -> value stmt
-	stmt -> expr stmt'
-	stmt' -> nop | op stmt
-	value -> number | string | boolean
-
-	table -> [ table' | [ array_table
-	table' -> label array_close
-	array_close -> ] epsilon
-
-	array_table -> [ table_nested
-	table_nested -> label nested_array_close
-	nested_array_close -> ] array_close
-
-	epsilon -> nop
-*/
+//	Example:
+//	sections, err := ini.OpenFile("/path/to/file")
+//	if err != nil {
+//		panic(err)
+//	}
+//
+//	profile := "foo"
+//	section, ok := sections.GetSection(profile)
+//	if !ok {
+//		fmt.Printf("section %q could not be found", profile)
+//	}
+//
+// Below is the BNF that describes this parser
+//	Grammar:
+//	stmt -> value stmt'
+//	stmt' -> epsilon | op stmt
+//	value -> number | string | boolean | quoted_string
+//
+//	section -> [ section'
+//	section' -> value section_close
+//	section_close -> ]
+//
+//	SkipState will skip (NL WS)+
+//
+//	comment -> # comment' | ; comment' | / comment_slash
+//	comment_slash -> / comment'
+//	comment' -> epsilon | value
 package ini

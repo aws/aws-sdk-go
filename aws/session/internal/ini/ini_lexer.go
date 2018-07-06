@@ -5,47 +5,49 @@ import (
 	"io/ioutil"
 )
 
-// tokenType represents the various different tokens types
-type tokenType int
+// TokenType represents the various different tokens types
+type TokenType int
 
-func (t tokenType) String() string {
+func (t TokenType) String() string {
 	switch t {
-	case tokenNone:
+	case TokenNone:
 		return "none"
-	case tokenLit:
+	case TokenLit:
 		return "literal"
-	case tokenSep:
+	case TokenSep:
 		return "sep"
-	case tokenOp:
+	case TokenOp:
 		return "op"
-	case tokenWS:
+	case TokenWS:
 		return "ws"
-	case tokenNL:
+	case TokenNL:
 		return "newline"
-	case tokenComment:
+	case TokenComment:
 		return "comment"
-	case tokenComma:
+	case TokenComma:
 		return "comma"
 	default:
 		return ""
 	}
 }
 
+// TokenType enums
 const (
-	tokenNone = tokenType(iota)
-	tokenLit
-	tokenSep
-	tokenComma
-	tokenOp
-	tokenWS
-	tokenNL
-	tokenComment
+	TokenNone = TokenType(iota)
+	TokenLit
+	TokenSep
+	TokenComma
+	TokenOp
+	TokenWS
+	TokenNL
+	TokenComment
 )
 
 type iniLexer struct{}
 
-type iniToken interface {
-	Type() tokenType
+// Token is represents a token used in lexical analysis
+type Token interface {
+	Type() TokenType
 
 	Raw() string
 	StringValue() string
@@ -56,15 +58,15 @@ type iniToken interface {
 
 // Tokenize will return a list of tokens during lexical analysis of the
 // io.Reader.
-func (l *iniLexer) Tokenize(r io.Reader) ([]iniToken, error) {
+func (l *iniLexer) Tokenize(r io.Reader) ([]Token, error) {
 	b, err := ioutil.ReadAll(r)
 	if err != nil {
 		return nil, err
 	}
 
-	var tok iniToken
+	var tok Token
 	n := 0
-	tokens := []iniToken{}
+	tokens := []Token{}
 	i := 0
 
 	for i < len(b) {

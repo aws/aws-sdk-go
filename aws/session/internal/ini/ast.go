@@ -1,5 +1,7 @@
 package ini
 
+// ASTKind represents different states in the parse table
+// and the type of AST that is being constructed
 type ASTKind int
 
 // ASTKind* is used in the parse table to transition between
@@ -51,6 +53,7 @@ type AST interface {
 // Start represents the starting parsing state.
 type Start struct{}
 
+// Kind will return the type of AST
 func (node Start) Kind() ASTKind {
 	return ASTKindStart
 }
