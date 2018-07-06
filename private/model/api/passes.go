@@ -361,3 +361,16 @@ func (a *API) setMetadataEndpointsKey() {
 		a.Metadata.EndpointsID = a.Metadata.EndpointPrefix
 	}
 }
+
+func (a *API) suppressHTTP2EventStreams() {
+	if a.Metadata.ProtocolSettings.HTTP2 != "eventstream" {
+		return
+	}
+
+	for name, op := range a.Operations {
+		if op.EventStreamAPI != nil {
+			a.removeOperation(name)
+			a.HasEventStream = false
+		}
+	}
+}
