@@ -5,6 +5,8 @@ import (
 	"strconv"
 	"strings"
 	"unicode/utf8"
+
+	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
 var literalValues = []string{
@@ -47,12 +49,10 @@ func isNumberValue(b []byte) bool {
 			helper.Determine(b[i])
 			continue
 		case 'e', 'E':
-			if helper.Exists() {
+			if err := helper.Determine(b[i]); err != nil {
 				return false
 			}
-
 			negativeIndex = 0
-			helper.Determine(b[i])
 			continue
 		case 'b':
 			if helper.hex {
@@ -66,10 +66,9 @@ func isNumberValue(b []byte) bool {
 
 			fallthrough
 		case '.':
-			if helper.Exists() {
+			if err := helper.Determine(b[i]); err != nil {
 				return false
 			}
-			helper.Determine(b[i])
 			continue
 		}
 
@@ -86,8 +85,16 @@ func isNumberValue(b []byte) bool {
 	return true
 }
 
-func isValid(b byte) bool {
-	return utf8.ValidRune(rune(b)) && b != '=' && b != '[' && b != ']' && b != ' ' && b != '\n'
+func isValid(b []byte) (bool, int, error) {
+	r, size := utf8.DecodeRune(b)
+	if !utf8.ValidRune(r) {
+		return false, 0, awserr.New(ErrCodeParseError, "invalid character", nil)
+	}
+	return isValidRune(r), size, nil
+}
+
+func isValidRune(r rune) bool {
+	return r != '=' && r != '[' && r != ']' && r != ' ' && r != '\n'
 }
 
 // UnionValueType is an enum that will signify what type
@@ -260,6 +267,8 @@ func (token literalToken) String() string {
 		return fmt.Sprintf("%d", token.IntValue())
 	case StringType:
 		return fmt.Sprintf("%s", token.StringValue())
+	case QuotedStringType:
+		return fmt.Sprintf("%q", token.StringValue())
 	case BoolType:
 		return fmt.Sprintf("%t", token.BoolValue())
 	}

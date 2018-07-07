@@ -56,6 +56,10 @@ func TestDataFiles(t *testing.T) {
 			expectedPath: "./testdata/valid/global_values_profile_expected",
 		},
 		{
+			path:         "./testdata/valid/utf_8_profile",
+			expectedPath: "./testdata/valid/utf_8_profile_expected",
+		},
+		{
 			path:               "./testdata/invalid/bad_syntax_1",
 			expectedParseError: true,
 		},

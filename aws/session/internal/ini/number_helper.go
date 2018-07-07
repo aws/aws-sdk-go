@@ -29,6 +29,10 @@ func (b numberHelper) IsNegative() bool {
 }
 
 func (b *numberHelper) Determine(c byte) error {
+	if b.Exists() {
+		return awserr.New(ErrCodeParseError, fmt.Sprintf("multiple number formats: 0%v", string(c)), nil)
+	}
+
 	switch c {
 	case 'b':
 		b.binary = true

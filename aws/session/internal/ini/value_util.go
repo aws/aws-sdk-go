@@ -16,12 +16,12 @@ func getStringValue(b []byte) (string, int, error) {
 		return "", 0, awserr.New(ErrCodeParseError, "strings must start with '\"'", nil)
 	}
 
-	value := ""
+	value := []byte{}
 	endQuote := false
 	i := 1
 
 	for ; i < len(b) && !endQuote; i++ {
-		if escaped := isEscaped(value, b[i]); b[i] == '"' && !escaped {
+		if escaped := isEscaped(string(value), b[i]); b[i] == '"' && !escaped {
 			endQuote = true
 			break
 		} else if escaped {
@@ -31,17 +31,17 @@ func getStringValue(b []byte) (string, int, error) {
 				return "", 0, err
 			}
 
-			value += string(c)
+			value = append(value, c)
 			continue
 		}
-		value += string(b[i])
+		value = append(value, b[i])
 	}
 
 	if !endQuote {
 		return "", 0, awserr.New(ErrCodeParseError, "missing '\"' in string value", nil)
 	}
 
-	return value, i + 1, nil
+	return string(value), i + 1, nil
 }
 
 // getBoolValue will return a boolean and the amount
@@ -102,18 +102,15 @@ loop:
 				helper.Determine(b[i])
 				continue
 			case '.':
-				if helper.Exists() {
-					return "", 0, 0, awserr.New(ErrCodeParseError, "invalid decimal format", nil)
+				if err := helper.Determine(b[i]); err != nil {
+					return "", 0, 0, err
 				}
-
-				helper.Determine(b[i])
 			case 'e', 'E':
-				if helper.Exists() {
-					return "", 0, 0, awserr.New(ErrCodeParseError, fmt.Sprintf("multiple number formats found, %s", string(b[i])), nil)
+				if err := helper.Determine(b[i]); err != nil {
+					return "", 0, 0, err
 				}
 
 				negativeIndex = 0
-				helper.Determine(b[i])
 			case 'b':
 				if helper.hex {
 					break
@@ -124,15 +121,13 @@ loop:
 					return "", 0, 0, awserr.New(ErrCodeParseError, "incorrect base format", nil)
 				}
 
-				if helper.Exists() {
-					return "", 0, 0, awserr.New(ErrCodeParseError, "multiple base format", nil)
-				}
-
 				if b[i-1] != '0' {
 					return "", 0, 0, awserr.New(ErrCodeParseError, "incorrect base format", nil)
 				}
 
-				helper.Determine(b[i])
+				if err := helper.Determine(b[i]); err != nil {
+					return "", 0, 0, err
+				}
 			default:
 				if i > 0 && isWhitespace(b[i]) {
 					break loop
@@ -197,19 +192,23 @@ func isHexByte(b byte) bool {
 func getValue(b []byte) (string, int, error) {
 	value := ""
 	i := 0
-	if !isValid(b[0]) {
-		return "", 0, awserr.New(ErrCodeParseError, "invalid id name", nil)
-	}
 
-	for ; i < len(b); i++ {
+	for i < len(b) {
 		if isWhitespace(b[i]) {
 			break
 		}
 
-		if !(isDigit(b[i]) || isValid(b[i])) {
+		valid, n, err := isValid(b[i:])
+		if err != nil {
+			return "", 0, err
+		}
+
+		if !valid {
 			break
 		}
-		value += string(b[i])
+
+		value += string(b[i : i+n])
+		i += n
 	}
 
 	return value, i, nil
