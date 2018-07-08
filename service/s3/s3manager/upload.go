@@ -395,7 +395,7 @@ func (u Uploader) UploadWithContext(ctx aws.Context, input *UploadInput, opts ..
 //		},
 //	}
 //
-//	iter := &s3managee.UploadObjectsIterator{Objects: objects}
+//	iter := &s3manager.UploadObjectsIterator{Objects: objects}
 //	if err := svc.UploadWithIterator(aws.BackgroundContext(), iter); err != nil {
 //		return err
 //	}
