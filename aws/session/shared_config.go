@@ -2,7 +2,6 @@ package session
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/credentials"
@@ -106,18 +105,16 @@ func loadSharedConfigIniFiles(filenames []string) ([]sharedConfigFile, error) {
 	files := make([]sharedConfigFile, 0, len(filenames))
 
 	for _, filename := range filenames {
-		f, err := os.Open(filename)
-		if err != nil {
+		sections, err := ini.OpenFile(filename)
+		if aerr, ok := err.(awserr.Error); ok && aerr.Code() == ini.ErrCodeUnableToReadFile {
+			// Skip files which can't be opened and read for whatever reason
 			continue
-		}
-
-		tables, err := ini.Parse(f)
-		if err != nil {
+		} else if err != nil {
 			return nil, SharedConfigLoadError{Filename: filename, Err: err}
 		}
 
 		files = append(files, sharedConfigFile{
-			Filename: filename, IniData: tables,
+			Filename: filename, IniData: sections,
 		})
 	}
 

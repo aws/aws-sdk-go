@@ -25,7 +25,7 @@ func isNewline(b []byte) bool {
 
 func newNewlineToken(b []byte) (newlineToken, int, error) {
 	value := string(b[0])
-	if isNewline(b[1:]) {
+	if value[0] == '\r' && isNewline(b[1:]) {
 		value += string(b[1])
 	}
 

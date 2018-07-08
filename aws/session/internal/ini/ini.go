@@ -3,6 +3,8 @@ package ini
 import (
 	"io"
 	"os"
+
+	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
 // OpenFile takes a path to a given file, and will open  and parse
@@ -10,7 +12,7 @@ import (
 func OpenFile(path string) (Sections, error) {
 	f, err := os.Open(path)
 	if err != nil {
-		return nil, err
+		return nil, awserr.New(ErrCodeUnableToReadFile, "unable to open file", err)
 	}
 	defer f.Close()
 
