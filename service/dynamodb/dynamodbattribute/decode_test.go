@@ -178,6 +178,68 @@ func TestUnmarshal(t *testing.T) {
 	}
 }
 
+func TestUnmarshalEmpties(t *testing.T) {
+	cases := []struct {
+		in               *dynamodb.AttributeValue
+		actual, expected interface{}
+		err              error
+	}{
+		//------------
+		// Sets
+		//------------
+		{
+			in:       &dynamodb.AttributeValue{SS: []*string{}},
+			actual:   &[]*string{},
+			expected: &[]*string{},
+		},
+		//------------
+		// Interfaces
+		//------------
+		{
+			in: &dynamodb.AttributeValue{L: []*dynamodb.AttributeValue{}},
+			actual: func() interface{} {
+				var v interface{}
+				return &v
+			}(),
+			expected: []interface{}{},
+		},
+		{
+			in: &dynamodb.AttributeValue{M: map[string]*dynamodb.AttributeValue{}},
+			actual: func() interface{} {
+				var v interface{}
+				return &v
+			}(),
+			expected: map[string]interface{}{},
+		},
+		{
+			in: &dynamodb.AttributeValue{S: aws.String("")},
+			actual: func() interface{} {
+				var v interface{}
+				return &v
+			}(),
+			expected: "",
+		},
+		{
+			in: &dynamodb.AttributeValue{SS: []*string{}},
+			actual: func() interface{} {
+				var v interface{}
+				return &v
+			}(),
+			expected: []string{},
+		},
+		{
+			in:       &dynamodb.AttributeValue{M: map[string]*dynamodb.AttributeValue{}},
+			actual:   &struct{ Abc, Cba string }{},
+			expected: struct{ Abc, Cba string }{},
+		},
+	}
+
+	for i, c := range cases {
+		err := Unmarshal(c.in, c.actual)
+		assertConvertTest(t, i, c.actual, c.expected, err, c.err)
+	}
+}
+
 func TestInterfaceInput(t *testing.T) {
 	var v interface{}
 	expected := []interface{}{"abc", "123"}
