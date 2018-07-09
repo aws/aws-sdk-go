@@ -4381,6 +4381,9 @@ const (
 
 	// ScalableDimensionSagemakerVariantDesiredInstanceCount is a ScalableDimension enum value
 	ScalableDimensionSagemakerVariantDesiredInstanceCount = "sagemaker:variant:DesiredInstanceCount"
+
+	// ScalableDimensionCustomResourceResourceTypeProperty is a ScalableDimension enum value
+	ScalableDimensionCustomResourceResourceTypeProperty = "custom-resource:ResourceType:Property"
 )
 
 const (
@@ -4424,4 +4427,7 @@ const (
 
 	// ServiceNamespaceSagemaker is a ServiceNamespace enum value
 	ServiceNamespaceSagemaker = "sagemaker"
+
+	// ServiceNamespaceCustomResource is a ServiceNamespace enum value
+	ServiceNamespaceCustomResource = "custom-resource"
 )

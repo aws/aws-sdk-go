@@ -1072,7 +1072,7 @@ type GetCostAndUsageInput struct {
 	// and unblended rates, see Why does the "blended" annotation appear on some
 	// line items in my bill? (https://aws.amazon.com/premiumsupport/knowledge-center/blended-rates-intro/).
 	//
-	// Valid values are BlendedCost, UnblendedCost, and UsageQuantity.
+	// Valid values are AmortizedCost, BlendedCost, UnblendedCost, and UsageQuantity.
 	//
 	// If you return the UsageQuantity metric, the service aggregates all usage
 	// numbers without taking into account the units. For example, if you aggregate
@@ -1527,6 +1527,8 @@ type GetReservationCoverageInput struct {
 	// object as the other operations, but only AND is supported among each dimension.
 	// You can nest only one level deep. If there are multiple values for a dimension,
 	// they are OR'd together.
+	//
+	// If you don't provide a SERVICE filter, Cost Explorer defaults to EC2.
 	Filter *Expression `type:"structure"`
 
 	// The granularity of the AWS cost data for the reservation. Valid values are
@@ -1686,9 +1688,12 @@ type GetReservationPurchaseRecommendationInput struct {
 	// The account ID that is associated with the recommendation.
 	AccountId *string `type:"string"`
 
-	// The account scope that you want recommendations for. The only valid value
-	// is Payer. This means that AWS includes the master account and any member
-	// accounts when it calculates its recommendations.
+	// The account scope that you want recommendations for. PAYER means that AWS
+	// includes the master account and any member accounts when it calculates its
+	// recommendations. LINKED means that AWS includes only member accounts when
+	// it calculates its recommendations.
+	//
+	// Valid values are PAYER and LINKED.
 	AccountScope *string `type:"string" enum:"AccountScope"`
 
 	// The number of previous days that you want AWS to consider when it calculates
@@ -2273,11 +2278,14 @@ type RDSInstanceDetails struct {
 	// Whether the recommendation is for a current generation instance.
 	CurrentGeneration *bool `type:"boolean"`
 
+	// The database edition that the recommended reservation supports.
+	DatabaseEdition *string `type:"string"`
+
 	// The database engine that the recommended reservation supports.
 	DatabaseEngine *string `type:"string"`
 
-	// Whether the recommendation is for a reservation in a single availability
-	// zone or a reservation with a backup in a second availability zone.
+	// Whether the recommendation is for a reservation in a single Availability
+	// Zone or a reservation with a backup in a second Availability Zone.
 	DeploymentOption *string `type:"string"`
 
 	// The instance family of the recommended reservation.
@@ -2309,6 +2317,12 @@ func (s RDSInstanceDetails) GoString() string {
 // SetCurrentGeneration sets the CurrentGeneration field's value.
 func (s *RDSInstanceDetails) SetCurrentGeneration(v bool) *RDSInstanceDetails {
 	s.CurrentGeneration = &v
+	return s
+}
+
+// SetDatabaseEdition sets the DatabaseEdition field's value.
+func (s *RDSInstanceDetails) SetDatabaseEdition(v string) *RDSInstanceDetails {
+	s.DatabaseEdition = &v
 	return s
 }
 
@@ -2354,7 +2368,7 @@ func (s *RDSInstanceDetails) SetSizeFlexEligible(v bool) *RDSInstanceDetails {
 	return s
 }
 
-// The aggregated numbers for your RI usage.
+// The aggregated numbers for your Reserved Instance (RI) usage.
 type ReservationAggregates struct {
 	_ struct{} `type:"structure"`
 
@@ -2364,8 +2378,8 @@ type ReservationAggregates struct {
 	// The upfront cost of your RI, amortized over the RI period.
 	AmortizedUpfrontFee *string `type:"string"`
 
-	// How much you saved due to purchasing and utilizing RIs. This is calculated
-	// by subtracting the TotalAmortizedFee from the OnDemandCostOfRIHoursUsed.
+	// How much you saved due to purchasing and utilizing RIs. AWS calculates this
+	// by subtracting TotalAmortizedFee from OnDemandCostOfRIHoursUsed.
 	NetRISavings *string `type:"string"`
 
 	// How much your RIs would cost if charged On-Demand rates.
@@ -2502,8 +2516,7 @@ type ReservationPurchaseRecommendation struct {
 	// in AWS Organizations.
 	AccountScope *string `type:"string" enum:"AccountScope"`
 
-	// How many days of previous usage that AWS takes into consideration when making
-	// this recommendation.
+	// How many days of previous usage that AWS considers when making this recommendation.
 	LookbackPeriodInDays *string `type:"string" enum:"LookbackPeriodInDays"`
 
 	// The payment option for the reservation. For example, AllUpfront or NoUpfront.
@@ -2799,8 +2812,8 @@ func (s *ReservationPurchaseRecommendationMetadata) SetRecommendationId(v string
 }
 
 // A summary about this recommendation, such as the currency code, the amount
-// that AWS estimates you could save, and the total amount of reservation to
-// purchase.
+// that AWS estimates that you could save, and the total amount of reservation
+// to purchase.
 type ReservationPurchaseRecommendationSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -2844,7 +2857,7 @@ func (s *ReservationPurchaseRecommendationSummary) SetTotalEstimatedMonthlySavin
 	return s
 }
 
-// A group of RIs that share a set of attributes.
+// A group of Reserved Instances (RIs) that share a set of attributes.
 type ReservationUtilizationGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -3049,6 +3062,9 @@ func (s *UtilizationByTime) SetTotal(v *ReservationAggregates) *UtilizationByTim
 const (
 	// AccountScopePayer is a AccountScope enum value
 	AccountScopePayer = "PAYER"
+
+	// AccountScopeLinked is a AccountScope enum value
+	AccountScopeLinked = "LINKED"
 )
 
 const (

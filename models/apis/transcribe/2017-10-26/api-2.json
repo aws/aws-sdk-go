@@ -6,6 +6,7 @@
     "jsonVersion":"1.1",
     "protocol":"json",
     "serviceFullName":"Amazon Transcribe Service",
+    "serviceId":"Transcribe",
     "signatureVersion":"v4",
     "signingName":"transcribe",
     "targetPrefix":"Transcribe",
@@ -37,6 +38,7 @@
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"LimitExceededException"},
+        {"shape":"BadRequestException"},
         {"shape":"InternalFailureException"}
       ]
     },
@@ -125,7 +127,8 @@
         {"shape":"BadRequestException"},
         {"shape":"LimitExceededException"},
         {"shape":"InternalFailureException"},
-        {"shape":"NotFoundException"}
+        {"shape":"NotFoundException"},
+        {"shape":"ConflictException"}
       ]
     }
   },
@@ -305,6 +308,17 @@
       },
       "exception":true
     },
+    "OutputBucketName":{
+      "type":"string",
+      "pattern":"[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]"
+    },
+    "OutputLocationType":{
+      "type":"string",
+      "enum":[
+        "CUSTOMER_BUCKET",
+        "SERVICE_BUCKET"
+      ]
+    },
     "Phrase":{
       "type":"string",
       "max":256,
@@ -336,6 +350,7 @@
         "MediaSampleRateHertz":{"shape":"MediaSampleRateHertz"},
         "MediaFormat":{"shape":"MediaFormat"},
         "Media":{"shape":"Media"},
+        "OutputBucketName":{"shape":"OutputBucketName"},
         "Settings":{"shape":"Settings"}
       }
     },
@@ -394,7 +409,8 @@
         "CompletionTime":{"shape":"DateTime"},
         "LanguageCode":{"shape":"LanguageCode"},
         "TranscriptionJobStatus":{"shape":"TranscriptionJobStatus"},
-        "FailureReason":{"shape":"FailureReason"}
+        "FailureReason":{"shape":"FailureReason"},
+        "OutputLocationType":{"shape":"OutputLocationType"}
       }
     },
     "UpdateVocabularyRequest":{
