@@ -69,7 +69,7 @@ func (c *TranscribeService) CreateVocabularyRequest(input *CreateVocabularyInput
 // Returned Error Codes:
 //   * ErrCodeBadRequestException "BadRequestException"
 //   Your request didn't pass one or more validation tests. For example, a name
-//   already exists when createing a resource or a name may not exist when getting
+//   already exists when creating a resource or a name may not exist when getting
 //   a transcription job or custom vocabulary. See the exception Message field
 //   for more information.
 //
@@ -82,8 +82,12 @@ func (c *TranscribeService) CreateVocabularyRequest(input *CreateVocabularyInput
 //   again.
 //
 //   * ErrCodeConflictException "ConflictException"
-//   The JobName field is a duplicate of a previously entered job name. Resend
-//   your request with a different name.
+//   When you are using the StartTranscriptionJob operation, the JobName field
+//   is a duplicate of a previously entered job name. Resend your request with
+//   a different name.
+//
+//   When you are using the UpdateVocabulary operation, there are two jobs running
+//   at the same time. Resend the second request later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/CreateVocabulary
 func (c *TranscribeService) CreateVocabulary(input *CreateVocabularyInput) (*CreateVocabularyOutput, error) {
@@ -164,12 +168,18 @@ func (c *TranscribeService) DeleteVocabularyRequest(input *DeleteVocabularyInput
 //
 // Returned Error Codes:
 //   * ErrCodeNotFoundException "NotFoundException"
-//   We can't find the requested transcription job or custom vocabulary. Check
-//   the name and try your request again.
+//   We can't find the requested resource. Check the name and try your request
+//   again.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
 //   Either you have sent too many requests or your input file is too long. Wait
 //   before you resend your request, or use a smaller file and resend the request.
+//
+//   * ErrCodeBadRequestException "BadRequestException"
+//   Your request didn't pass one or more validation tests. For example, a name
+//   already exists when creating a resource or a name may not exist when getting
+//   a transcription job or custom vocabulary. See the exception Message field
+//   for more information.
 //
 //   * ErrCodeInternalFailureException "InternalFailureException"
 //   There was an internal error. Check the error message and try your request
@@ -256,7 +266,7 @@ func (c *TranscribeService) GetTranscriptionJobRequest(input *GetTranscriptionJo
 // Returned Error Codes:
 //   * ErrCodeBadRequestException "BadRequestException"
 //   Your request didn't pass one or more validation tests. For example, a name
-//   already exists when createing a resource or a name may not exist when getting
+//   already exists when creating a resource or a name may not exist when getting
 //   a transcription job or custom vocabulary. See the exception Message field
 //   for more information.
 //
@@ -269,8 +279,8 @@ func (c *TranscribeService) GetTranscriptionJobRequest(input *GetTranscriptionJo
 //   again.
 //
 //   * ErrCodeNotFoundException "NotFoundException"
-//   We can't find the requested transcription job or custom vocabulary. Check
-//   the name and try your request again.
+//   We can't find the requested resource. Check the name and try your request
+//   again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/GetTranscriptionJob
 func (c *TranscribeService) GetTranscriptionJob(input *GetTranscriptionJobInput) (*GetTranscriptionJobOutput, error) {
@@ -349,8 +359,8 @@ func (c *TranscribeService) GetVocabularyRequest(input *GetVocabularyInput) (req
 //
 // Returned Error Codes:
 //   * ErrCodeNotFoundException "NotFoundException"
-//   We can't find the requested transcription job or custom vocabulary. Check
-//   the name and try your request again.
+//   We can't find the requested resource. Check the name and try your request
+//   again.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
 //   Either you have sent too many requests or your input file is too long. Wait
@@ -362,7 +372,7 @@ func (c *TranscribeService) GetVocabularyRequest(input *GetVocabularyInput) (req
 //
 //   * ErrCodeBadRequestException "BadRequestException"
 //   Your request didn't pass one or more validation tests. For example, a name
-//   already exists when createing a resource or a name may not exist when getting
+//   already exists when creating a resource or a name may not exist when getting
 //   a transcription job or custom vocabulary. See the exception Message field
 //   for more information.
 //
@@ -450,7 +460,7 @@ func (c *TranscribeService) ListTranscriptionJobsRequest(input *ListTranscriptio
 // Returned Error Codes:
 //   * ErrCodeBadRequestException "BadRequestException"
 //   Your request didn't pass one or more validation tests. For example, a name
-//   already exists when createing a resource or a name may not exist when getting
+//   already exists when creating a resource or a name may not exist when getting
 //   a transcription job or custom vocabulary. See the exception Message field
 //   for more information.
 //
@@ -597,7 +607,7 @@ func (c *TranscribeService) ListVocabulariesRequest(input *ListVocabulariesInput
 // Returned Error Codes:
 //   * ErrCodeBadRequestException "BadRequestException"
 //   Your request didn't pass one or more validation tests. For example, a name
-//   already exists when createing a resource or a name may not exist when getting
+//   already exists when creating a resource or a name may not exist when getting
 //   a transcription job or custom vocabulary. See the exception Message field
 //   for more information.
 //
@@ -737,7 +747,7 @@ func (c *TranscribeService) StartTranscriptionJobRequest(input *StartTranscripti
 // Returned Error Codes:
 //   * ErrCodeBadRequestException "BadRequestException"
 //   Your request didn't pass one or more validation tests. For example, a name
-//   already exists when createing a resource or a name may not exist when getting
+//   already exists when creating a resource or a name may not exist when getting
 //   a transcription job or custom vocabulary. See the exception Message field
 //   for more information.
 //
@@ -750,8 +760,12 @@ func (c *TranscribeService) StartTranscriptionJobRequest(input *StartTranscripti
 //   again.
 //
 //   * ErrCodeConflictException "ConflictException"
-//   The JobName field is a duplicate of a previously entered job name. Resend
-//   your request with a different name.
+//   When you are using the StartTranscriptionJob operation, the JobName field
+//   is a duplicate of a previously entered job name. Resend your request with
+//   a different name.
+//
+//   When you are using the UpdateVocabulary operation, there are two jobs running
+//   at the same time. Resend the second request later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/StartTranscriptionJob
 func (c *TranscribeService) StartTranscriptionJob(input *StartTranscriptionJobInput) (*StartTranscriptionJobOutput, error) {
@@ -819,7 +833,9 @@ func (c *TranscribeService) UpdateVocabularyRequest(input *UpdateVocabularyInput
 
 // UpdateVocabulary API operation for Amazon Transcribe Service.
 //
-// Updates an existing vocabulary with new values.
+// Updates an existing vocabulary with new values. The UpdateVocabulary operation
+// overwrites all of the existing information with the values that you provide
+// in the request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -831,7 +847,7 @@ func (c *TranscribeService) UpdateVocabularyRequest(input *UpdateVocabularyInput
 // Returned Error Codes:
 //   * ErrCodeBadRequestException "BadRequestException"
 //   Your request didn't pass one or more validation tests. For example, a name
-//   already exists when createing a resource or a name may not exist when getting
+//   already exists when creating a resource or a name may not exist when getting
 //   a transcription job or custom vocabulary. See the exception Message field
 //   for more information.
 //
@@ -844,8 +860,16 @@ func (c *TranscribeService) UpdateVocabularyRequest(input *UpdateVocabularyInput
 //   again.
 //
 //   * ErrCodeNotFoundException "NotFoundException"
-//   We can't find the requested transcription job or custom vocabulary. Check
-//   the name and try your request again.
+//   We can't find the requested resource. Check the name and try your request
+//   again.
+//
+//   * ErrCodeConflictException "ConflictException"
+//   When you are using the StartTranscriptionJob operation, the JobName field
+//   is a duplicate of a previously entered job name. Resend your request with
+//   a different name.
+//
+//   When you are using the UpdateVocabulary operation, there are two jobs running
+//   at the same time. Resend the second request later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/UpdateVocabulary
 func (c *TranscribeService) UpdateVocabulary(input *UpdateVocabularyInput) (*UpdateVocabularyOutput, error) {
@@ -1596,10 +1620,25 @@ type StartTranscriptionJobInput struct {
 	// The sample rate, in Hertz, of the audio track in the input media file.
 	MediaSampleRateHertz *int64 `min:"8000" type:"integer"`
 
+	// The location where the transcription is stored.
+	//
+	// If you set the OutputBucketName, Amazon Transcribe puts the transcription
+	// in the specified S3 bucket. When you call the GetTranscriptionJob operation,
+	// the operation returns this location in the TranscriptFileUri field. The S3
+	// bucket must have permissions that allow Amazon Transcribe to put files in
+	// the bucket. For more information, see Permissions Required for IAM User Roles
+	// (https://docs.aws.amazon.com/transcribe/latest/dg/access-control-managing-permissions.html#auth-role-iam-user).
+	//
+	// If you don't set the OutputBucketName, Amazon Transcribe generates a pre-signed
+	// URL, a shareable URL that provides secure access to your transcription, and
+	// returns it in the TranscriptFileUri field. Use this URL to download the transcription.
+	OutputBucketName *string `type:"string"`
+
 	// A Settings object that provides optional settings for a transcription job.
 	Settings *Settings `type:"structure"`
 
-	// The name of the job. The name must be unique within an AWS account.
+	// The name of the job. You can't use the strings "." or ".." in the job name.
+	// The name must be unique within an AWS account.
 	//
 	// TranscriptionJobName is a required field
 	TranscriptionJobName *string `min:"1" type:"string" required:"true"`
@@ -1677,6 +1716,12 @@ func (s *StartTranscriptionJobInput) SetMediaSampleRateHertz(v int64) *StartTran
 	return s
 }
 
+// SetOutputBucketName sets the OutputBucketName field's value.
+func (s *StartTranscriptionJobInput) SetOutputBucketName(v string) *StartTranscriptionJobInput {
+	s.OutputBucketName = &v
+	return s
+}
+
 // SetSettings sets the Settings field's value.
 func (s *StartTranscriptionJobInput) SetSettings(v *Settings) *StartTranscriptionJobInput {
 	s.Settings = v
@@ -1712,12 +1757,16 @@ func (s *StartTranscriptionJobOutput) SetTranscriptionJob(v *TranscriptionJob) *
 	return s
 }
 
-// Describes the output of a transcription job.
+// Identifies the location of a transcription.
 type Transcript struct {
 	_ struct{} `type:"structure"`
 
-	// The S3 location where the transcription result is stored. Use this URI to
-	// access the results of the transcription job.
+	// The location where the transcription is stored.
+	//
+	// Use this URI to access the transcription. If you specified an S3 bucket in
+	// the OutputBucketName field when you created the job, this is the URI of that
+	// bucket. If you chose to store the transcription in Amazon Transcribe, this
+	// is a shareable URL that provides secure access to that location.
 	TranscriptFileUri *string `min:"1" type:"string"`
 }
 
@@ -1742,10 +1791,10 @@ func (s *Transcript) SetTranscriptFileUri(v string) *Transcript {
 type TranscriptionJob struct {
 	_ struct{} `type:"structure"`
 
-	// Timestamp of the date and time that the job completed.
+	// A timestamp that shows when the job was completed.
 	CompletionTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	// Timestamp of the date and time that the job was created.
+	// A timestamp that shows when the job was created.
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// If the TranscriptionJobStatus field is FAILED, this field contains information
@@ -1755,7 +1804,7 @@ type TranscriptionJob struct {
 	// The language code for the input speech.
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
-	// An object that describes the input media for a transcription job.
+	// An object that describes the input media for the transcription job.
 	Media *Media `type:"structure"`
 
 	// The format of the input media file.
@@ -1764,13 +1813,16 @@ type TranscriptionJob struct {
 	// The sample rate, in Hertz, of the audio track in the input media file.
 	MediaSampleRateHertz *int64 `min:"8000" type:"integer"`
 
-	// Optional settings for the transcription job.
+	// Optional settings for the transcription job. Use these settings to turn on
+	// speaker recognition, to set the maximum number of speakers that should be
+	// identified and to specify a custom vocabulary to use when processing the
+	// transcription job.
 	Settings *Settings `type:"structure"`
 
 	// An object that describes the output of the transcription job.
 	Transcript *Transcript `type:"structure"`
 
-	// A name to identify the transcription job.
+	// The name of the transcription job.
 	TranscriptionJobName *string `min:"1" type:"string"`
 
 	// The status of the transcription job.
@@ -1857,20 +1909,30 @@ func (s *TranscriptionJob) SetTranscriptionJobStatus(v string) *TranscriptionJob
 type TranscriptionJobSummary struct {
 	_ struct{} `type:"structure"`
 
-	// Timestamp of the date and time that the job completed.
+	// A timestamp that shows when the job was completed.
 	CompletionTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	// Timestamp of the date and time that the job was created.
+	// A timestamp that shows when the job was created.
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	// If the TranscriptionJobStatus field is FAILED, this field contains a description
-	// of the error.
+	// If the TranscriptionJobStatus field is FAILED, a description of the error.
 	FailureReason *string `type:"string"`
 
 	// The language code for the input speech.
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
-	// The name assigned to the transcription job when it was created.
+	// Indicates the location of the output of the transcription job.
+	//
+	// If the value is CUSTOMER_BUCKET then the location is the S3 bucket specified
+	// in the outputBucketName field when the transcription job was started with
+	// the StartTranscriptionJob operation.
+	//
+	// If the value is SERVICE_BUCKET then the output is stored by Amazon Transcribe
+	// and can be retrieved using the URI in the GetTranscriptionJob response's
+	// TranscriptFileUri field.
+	OutputLocationType *string `type:"string" enum:"OutputLocationType"`
+
+	// The name of the transcription job.
 	TranscriptionJobName *string `min:"1" type:"string"`
 
 	// The status of the transcription job. When the status is COMPLETED, use the
@@ -1909,6 +1971,12 @@ func (s *TranscriptionJobSummary) SetFailureReason(v string) *TranscriptionJobSu
 // SetLanguageCode sets the LanguageCode field's value.
 func (s *TranscriptionJobSummary) SetLanguageCode(v string) *TranscriptionJobSummary {
 	s.LanguageCode = &v
+	return s
+}
+
+// SetOutputLocationType sets the OutputLocationType field's value.
+func (s *TranscriptionJobSummary) SetOutputLocationType(v string) *TranscriptionJobSummary {
+	s.OutputLocationType = &v
 	return s
 }
 
@@ -2116,6 +2184,14 @@ const (
 
 	// MediaFormatFlac is a MediaFormat enum value
 	MediaFormatFlac = "flac"
+)
+
+const (
+	// OutputLocationTypeCustomerBucket is a OutputLocationType enum value
+	OutputLocationTypeCustomerBucket = "CUSTOMER_BUCKET"
+
+	// OutputLocationTypeServiceBucket is a OutputLocationType enum value
+	OutputLocationTypeServiceBucket = "SERVICE_BUCKET"
 )
 
 const (

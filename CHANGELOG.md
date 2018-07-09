@@ -1,3 +1,15 @@
+Release v1.14.22 (2018-07-09)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API
+* `service/ce`: Updates service API and documentation
+* `service/dms`: Updates service API and documentation
+  * Added support for DmsTransfer endpoint type and support for re-validate option in table reload API.
+* `service/lambda`: Updates service API
+  * Add support for .NET Core 2.1 to Lambda.
+* `service/transcribe`: Updates service API and documentation
+
 Release v1.14.21 (2018-07-06)
 ===
 

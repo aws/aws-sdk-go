@@ -108,7 +108,10 @@
   "shapes":{
     "AccountScope":{
       "type":"string",
-      "enum":["PAYER"]
+      "enum":[
+        "PAYER",
+        "LINKED"
+      ]
     },
     "AmortizedRecurringFee":{"type":"string"},
     "AmortizedUpfrontFee":{"type":"string"},
@@ -516,6 +519,7 @@
         "InstanceType":{"shape":"GenericString"},
         "Region":{"shape":"GenericString"},
         "DatabaseEngine":{"shape":"GenericString"},
+        "DatabaseEdition":{"shape":"GenericString"},
         "DeploymentOption":{"shape":"GenericString"},
         "LicenseModel":{"shape":"GenericString"},
         "CurrentGeneration":{"shape":"GenericBoolean"},
