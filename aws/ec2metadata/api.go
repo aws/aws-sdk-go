@@ -1,7 +1,11 @@
 package ec2metadata
 
 import (
+	"bytes"
+	"crypto/x509"
+	"encoding/base64"
 	"encoding/json"
+	"encoding/pem"
 	"fmt"
 	"net/http"
 	"path"
@@ -10,6 +14,30 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/fullsailor/pkcs7"
+)
+
+const (
+	// AWSCertificatePem is the official public certificate for AWS
+	// copied from https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-identity-documents.html
+	AWSCertificatePem = `-----BEGIN CERTIFICATE-----
+MIIC7TCCAq0CCQCWukjZ5V4aZzAJBgcqhkjOOAQDMFwxCzAJBgNVBAYTAlVTMRkw
+FwYDVQQIExBXYXNoaW5ndG9uIFN0YXRlMRAwDgYDVQQHEwdTZWF0dGxlMSAwHgYD
+VQQKExdBbWF6b24gV2ViIFNlcnZpY2VzIExMQzAeFw0xMjAxMDUxMjU2MTJaFw0z
+ODAxMDUxMjU2MTJaMFwxCzAJBgNVBAYTAlVTMRkwFwYDVQQIExBXYXNoaW5ndG9u
+IFN0YXRlMRAwDgYDVQQHEwdTZWF0dGxlMSAwHgYDVQQKExdBbWF6b24gV2ViIFNl
+cnZpY2VzIExMQzCCAbcwggEsBgcqhkjOOAQBMIIBHwKBgQCjkvcS2bb1VQ4yt/5e
+ih5OO6kK/n1Lzllr7D8ZwtQP8fOEpp5E2ng+D6Ud1Z1gYipr58Kj3nssSNpI6bX3
+VyIQzK7wLclnd/YozqNNmgIyZecN7EglK9ITHJLP+x8FtUpt3QbyYXJdmVMegN6P
+hviYt5JH/nYl4hh3Pa1HJdskgQIVALVJ3ER11+Ko4tP6nwvHwh6+ERYRAoGBAI1j
+k+tkqMVHuAFcvAGKocTgsjJem6/5qomzJuKDmbJNu9Qxw3rAotXau8Qe+MBcJl/U
+hhy1KHVpCGl9fueQ2s6IL0CaO/buycU1CiYQk40KNHCcHfNiZbdlx1E9rpUp7bnF
+lRa2v1ntMX3caRVDdbtPEWmdxSCYsYFDk4mZrOLBA4GEAAKBgEbmeve5f8LIE/Gf
+MNmP9CM5eovQOGx5ho8WqD+aTebs+k2tn92BBPqeZqpWRa5P/+jrdKml1qx4llHW
+MXrs3IgIb6+hUIB+S8dz8/mmO0bpr76RoZVCXYab2CZedFut7qc3WUH9+EUAH5mw
+vSeDCOUMYQR7R9LINYwouHIziqQYMAkGByqGSM44BAMDLwAwLAIUWXBlk40xTwSw
+7HX32MxXYruse9ACFBNGmdX2ZBrVNGrN9N2f6ROk0k9K
+-----END CERTIFICATE-----`
 )
 
 // GetMetadata uses the path provided to request information from the EC2
@@ -65,19 +93,57 @@ func (c *EC2Metadata) GetDynamicData(p string) (string, error) {
 	return output.Content, req.Send()
 }
 
+// Parses a PEM-encoded certificate
+func parseCertificate(certPem string) (*x509.Certificate, error) {
+	dec, _ := pem.Decode([]byte(certPem))
+	if dec == nil {
+		return nil, fmt.Errorf("failed to find any PEM-encoded data block")
+	}
+	return x509.ParseCertificate(dec.Bytes)
+}
+
 // GetInstanceIdentityDocument retrieves an identity document describing an
-// instance. Error is returned if the request fails or is unable to parse
-// the response.
-func (c *EC2Metadata) GetInstanceIdentityDocument() (EC2InstanceIdentityDocument, error) {
-	resp, err := c.GetDynamicData("instance-identity/document")
+// instance and verifies its signature with provided certificate.
+// Error is returned if failed to parse the certificate, or the request fails,
+// or is unable to parse the response, or the signature verification fails.
+func (c *EC2Metadata) GetInstanceIdentityDocument(certPem string) (EC2InstanceIdentityDocument, error) {
+	cert, err := parseCertificate(certPem)
+	if err != nil {
+		return EC2InstanceIdentityDocument{},
+			awserr.New("CertificateParsingError",
+				"failed to parse the PEM-encoded certificate", err)
+	}
+
+	resp, err := c.GetDynamicData("instance-identity/pkcs7")
 	if err != nil {
 		return EC2InstanceIdentityDocument{},
 			awserr.New("EC2MetadataRequestError",
-				"failed to get EC2 instance identity document", err)
+				"failed to get EC2 instance PKCS7 signature", err)
+	}
+
+	dec, err := base64.StdEncoding.DecodeString(resp)
+	if err != nil {
+		return EC2InstanceIdentityDocument{},
+			awserr.New("Base64DecodeError",
+				"failed to base64-decode PKCS7 resopnse", err)
+	}
+
+	parsed, err := pkcs7.Parse(dec)
+	if err != nil {
+		return EC2InstanceIdentityDocument{},
+			awserr.New("EC2MetadataRequestError",
+				"failed to parse PKCS7 resopnse", err)
+	}
+
+	parsed.Certificates = []*x509.Certificate{cert}
+	if err := parsed.Verify(); err != nil {
+		return EC2InstanceIdentityDocument{},
+			awserr.New("EC2MetadataVerificationError",
+				"failed to verify PKCS7 signature with certificate", err)
 	}
 
 	doc := EC2InstanceIdentityDocument{}
-	if err := json.NewDecoder(strings.NewReader(resp)).Decode(&doc); err != nil {
+	if err := json.NewDecoder(bytes.NewReader(parsed.Content)).Decode(&doc); err != nil {
 		return EC2InstanceIdentityDocument{},
 			awserr.New("SerializationError",
 				"failed to decode EC2 instance identity document", err)
