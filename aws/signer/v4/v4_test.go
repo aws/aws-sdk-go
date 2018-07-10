@@ -62,7 +62,7 @@ func TestStripExcessHeaders(t *testing.T) {
 }
 
 func buildRequest(serviceName, region, body string) (*http.Request, io.ReadSeeker) {
-	reader := strings.NewReader(body)
+	reader := &readerSeekerWrapper{strings.NewReader(body)}
 	return buildRequestWithBodyReader(serviceName, region, reader)
 }
 
@@ -694,6 +694,7 @@ func TestRequestHost(t *testing.T) {
 }
 
 func BenchmarkPresignRequest(b *testing.B) {
+	b.ReportAllocs()
 	signer := buildSigner()
 	req, body := buildRequest("dynamodb", "us-east-1", "{}")
 	for i := 0; i < b.N; i++ {
@@ -702,6 +703,7 @@ func BenchmarkPresignRequest(b *testing.B) {
 }
 
 func BenchmarkSignRequest(b *testing.B) {
+	b.ReportAllocs()
 	signer := buildSigner()
 	req, body := buildRequest("dynamodb", "us-east-1", "{}")
 	for i := 0; i < b.N; i++ {
@@ -734,4 +736,21 @@ func BenchmarkStripExcessSpaces(b *testing.B) {
 		cases := append([]string{}, stripExcessSpaceCases...)
 		stripExcessSpaces(cases)
 	}
+}
+
+// readerSeekerWrapper mimics the interface provided by request.offsetReader
+type readerSeekerWrapper struct {
+	r *strings.Reader
+}
+
+func (r *readerSeekerWrapper) Read(p []byte) (n int, err error) {
+	return r.r.Read(p)
+}
+
+func (r *readerSeekerWrapper) Seek(offset int64, whence int) (int64, error) {
+	return r.r.Seek(offset, whence)
+}
+
+func (r *readerSeekerWrapper) Len() int {
+	return r.r.Len()
 }

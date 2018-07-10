@@ -687,7 +687,11 @@ func (ctx *signingCtx) buildBodyDigest() error {
 			if !aws.IsReaderSeekable(ctx.Body) {
 				return fmt.Errorf("cannot use unseekable request body %T, for signed request with body", ctx.Body)
 			}
-			hash = hex.EncodeToString(makeSha256Reader(ctx.Body))
+			hashBytes, err := makeSha256Reader(ctx.Body)
+			if err != nil {
+				return nil
+			}
+			hash = hex.EncodeToString(hashBytes)
 		}
 
 		if includeSHA256Header {
@@ -734,13 +738,20 @@ func makeSha256(data []byte) []byte {
 	return hash.Sum(nil)
 }
 
-func makeSha256Reader(reader io.ReadSeeker) []byte {
+func makeSha256Reader(reader io.ReadSeeker) ([]byte, error) {
 	hash := sha256.New()
 	start, _ := reader.Seek(0, sdkio.SeekCurrent)
 	defer reader.Seek(start, sdkio.SeekStart)
 
-	io.Copy(hash, reader)
-	return hash.Sum(nil)
+	// Use CopyN to avoid allocating the 32KB buffer in io.Copy for bodies
+	// smaller than 32KB.
+	len, err := aws.SeekerLen(reader)
+	if err != nil {
+		return nil, err
+	}
+	io.CopyN(hash, reader, len)
+
+	return hash.Sum(nil), nil
 }
 
 const doubleSpace = "  "
