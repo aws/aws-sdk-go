@@ -1,3 +1,18 @@
+Release v1.14.24 (2018-07-10)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API, documentation, paginators, and examples
+  * This API update adds pagination to the DescribeImages API to support future features and enhancements.
+* `service/codebuild`: Updates service API and documentation
+  * API changes to CodeBuild service, support report build status for Github sources
+* `service/ec2`: Updates service API and documentation
+  * Support CpuOptions field in Launch Template data and allow Launch Template name to contain hyphen.
+* `service/glue`: Updates service API and documentation
+  * AWS Glue adds the ability to crawl DynamoDB tables.
+* `service/opsworks`: Updates service documentation
+  * Documentation updates for AWS OpsWorks Stacks.
+
 Release v1.14.23 (2018-07-10)
 ===
 

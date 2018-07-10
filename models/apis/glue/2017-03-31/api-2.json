@@ -6,6 +6,7 @@
     "jsonVersion":"1.1",
     "protocol":"json",
     "serviceFullName":"AWS Glue",
+    "serviceId":"Glue",
     "signatureVersion":"v4",
     "targetPrefix":"AWSGlue",
     "uid":"glue-2017-03-31"
@@ -1709,7 +1710,8 @@
       "type":"structure",
       "members":{
         "S3Targets":{"shape":"S3TargetList"},
-        "JdbcTargets":{"shape":"JdbcTargetList"}
+        "JdbcTargets":{"shape":"JdbcTargetList"},
+        "DynamoDBTargets":{"shape":"DynamoDBTargetList"}
       }
     },
     "CreateClassifierRequest":{
@@ -2230,6 +2232,16 @@
     "DevEndpointList":{
       "type":"list",
       "member":{"shape":"DevEndpoint"}
+    },
+    "DynamoDBTarget":{
+      "type":"structure",
+      "members":{
+        "Path":{"shape":"Path"}
+      }
+    },
+    "DynamoDBTargetList":{
+      "type":"list",
+      "member":{"shape":"DynamoDBTarget"}
     },
     "EntityNotFoundException":{
       "type":"structure",
@@ -2979,7 +2991,8 @@
       "type":"structure",
       "members":{
         "Jdbc":{"shape":"CodeGenNodeArgs"},
-        "S3":{"shape":"CodeGenNodeArgs"}
+        "S3":{"shape":"CodeGenNodeArgs"},
+        "DynamoDB":{"shape":"CodeGenNodeArgs"}
       }
     },
     "LocationMap":{
