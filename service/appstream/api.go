@@ -4657,8 +4657,15 @@ func (s *DescribeImageBuildersOutput) SetNextToken(v string) *DescribeImageBuild
 type DescribeImagesInput struct {
 	_ struct{} `type:"structure"`
 
+	// The maximum size of each results page.
+	MaxResults *int64 `type:"integer"`
+
 	// The names of the images to describe.
 	Names []*string `type:"list"`
+
+	// The pagination token to use to retrieve the next page of results. If this
+	// value is empty, only the first page is retrieved.
+	NextToken *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -4671,9 +4678,34 @@ func (s DescribeImagesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeImagesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeImagesInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeImagesInput) SetMaxResults(v int64) *DescribeImagesInput {
+	s.MaxResults = &v
+	return s
+}
+
 // SetNames sets the Names field's value.
 func (s *DescribeImagesInput) SetNames(v []*string) *DescribeImagesInput {
 	s.Names = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeImagesInput) SetNextToken(v string) *DescribeImagesInput {
+	s.NextToken = &v
 	return s
 }
 
@@ -4682,6 +4714,10 @@ type DescribeImagesOutput struct {
 
 	// Information about the images.
 	Images []*Image `type:"list"`
+
+	// The pagination token used to retrieve the next page of results. If this value
+	// is empty, only the first page is retrieved.
+	NextToken *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -4697,6 +4733,12 @@ func (s DescribeImagesOutput) GoString() string {
 // SetImages sets the Images field's value.
 func (s *DescribeImagesOutput) SetImages(v []*Image) *DescribeImagesOutput {
 	s.Images = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeImagesOutput) SetNextToken(v string) *DescribeImagesOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -7573,6 +7615,9 @@ const (
 	// StackAttributeStorageConnectorGoogleDrive is a StackAttribute enum value
 	StackAttributeStorageConnectorGoogleDrive = "STORAGE_CONNECTOR_GOOGLE_DRIVE"
 
+	// StackAttributeStorageConnectorOneDrive is a StackAttribute enum value
+	StackAttributeStorageConnectorOneDrive = "STORAGE_CONNECTOR_ONE_DRIVE"
+
 	// StackAttributeRedirectUrl is a StackAttribute enum value
 	StackAttributeRedirectUrl = "REDIRECT_URL"
 
@@ -7601,6 +7646,9 @@ const (
 
 	// StorageConnectorTypeGoogleDrive is a StorageConnectorType enum value
 	StorageConnectorTypeGoogleDrive = "GOOGLE_DRIVE"
+
+	// StorageConnectorTypeOneDrive is a StorageConnectorType enum value
+	StorageConnectorTypeOneDrive = "ONE_DRIVE"
 )
 
 const (

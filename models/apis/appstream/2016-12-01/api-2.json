@@ -835,16 +835,25 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "DescribeImagesMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":25,
+      "min":0
+    },
     "DescribeImagesRequest":{
       "type":"structure",
       "members":{
-        "Names":{"shape":"StringList"}
+        "Names":{"shape":"StringList"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"DescribeImagesMaxResults"}
       }
     },
     "DescribeImagesResult":{
       "type":"structure",
       "members":{
-        "Images":{"shape":"ImageList"}
+        "Images":{"shape":"ImageList"},
+        "NextToken":{"shape":"String"}
       }
     },
     "DescribeSessionsRequest":{
@@ -1408,6 +1417,7 @@
         "STORAGE_CONNECTORS",
         "STORAGE_CONNECTOR_HOMEFOLDERS",
         "STORAGE_CONNECTOR_GOOGLE_DRIVE",
+        "STORAGE_CONNECTOR_ONE_DRIVE",
         "REDIRECT_URL",
         "FEEDBACK_URL",
         "THEME_NAME",
@@ -1508,7 +1518,8 @@
       "type":"string",
       "enum":[
         "HOMEFOLDERS",
-        "GOOGLE_DRIVE"
+        "GOOGLE_DRIVE",
+        "ONE_DRIVE"
       ]
     },
     "StreamingUrlUserId":{
