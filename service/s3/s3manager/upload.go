@@ -357,7 +357,7 @@ func (u Uploader) Upload(input *UploadInput, options ...func(*Uploader)) (*Uploa
 //
 // UploadWithContext is the same as Upload with the additional support for
 // Context input parameters. The Context must not be nil. A nil Context will
-// cause a panic. Use the context to add deadlining, timeouts, ect. The
+// cause a panic. Use the context to add deadlining, timeouts, etc. The
 // UploadWithContext may create sub-contexts for individual underlying requests.
 //
 // Additional functional options can be provided to configure the individual
@@ -395,7 +395,7 @@ func (u Uploader) UploadWithContext(ctx aws.Context, input *UploadInput, opts ..
 //		},
 //	}
 //
-//	iter := &s3managee.UploadObjectsIterator{Objects: objects}
+//	iter := &s3manager.UploadObjectsIterator{Objects: objects}
 //	if err := svc.UploadWithIterator(aws.BackgroundContext(), iter); err != nil {
 //		return err
 //	}

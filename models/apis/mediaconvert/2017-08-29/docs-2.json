@@ -19,6 +19,9 @@
     "ListJobs": "Retrieve a JSON array of up to twenty of your most recently created jobs. This array includes in-process, completed, and errored jobs. This will return the jobs themselves, not just a list of the jobs. To retrieve the twenty next most recent jobs, use the nextToken string returned with the array.",
     "ListPresets": "Retrieve a JSON array of up to twenty of your presets. This will return the presets themselves, not just a list of them. To retrieve the next twenty presets, use the nextToken string returned with the array.",
     "ListQueues": "Retrieve a JSON array of up to twenty of your queues. This will return the queues themselves, not just a list of them. To retrieve the next twenty queues, use the nextToken string returned with the array.",
+    "ListTagsForResource": "Retrieve the tags for a MediaConvert resource.",
+    "TagResource": "Tag a MediaConvert queue, preset, or job template. For information about these resource types, see the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html",
+    "UntagResource": "Untag a MediaConvert queue, preset, or job template. For information about these resource types, see the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html",
     "UpdateJobTemplate": "Modify one of your existing job templates.",
     "UpdatePreset": "Modify one of your existing presets.",
     "UpdateQueue": "Modify one of your existing queues."
@@ -1436,6 +1439,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceRequest": {
+      "base": "List the tags for your MediaConvert resource by sending a request with the Amazon Resource Name (ARN) of the resource. To get the ARN, send a GET request with the resource name.",
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": "Successful list tags for resource requests return a JSON map of tags.",
+      "refs": {
+      }
+    },
     "M2tsAudioBufferModel": {
       "base": "Selects between the DVB and ATSC buffer models for Dolby Digital audio.",
       "refs": {
@@ -1936,6 +1949,12 @@
         "AudioSelector$RemixSettings": "Use these settings to reorder the audio channels of one input to match those of another input. This allows you to combine the two files into a single output, one after the other."
       }
     },
+    "ResourceTags": {
+      "base": "The Amazon Resource Name (ARN) and tags for an AWS Elemental MediaConvert resource.",
+      "refs": {
+        "ListTagsForResourceResponse$ResourceTags": null
+      }
+    },
     "RespondToAfd": {
       "base": "Use Respond to AFD (RespondToAfd) to specify how the service changes the video itself in response to AFD values in the input. * Choose Respond to clip the input video frame according to the AFD value, input display aspect ratio, and output display aspect ratio. * Choose Passthrough to include the input AFD values. Do not choose this when AfdSignaling is set to (NONE). A preferred implementation of this workflow is to set RespondToAfd to (NONE) and set AfdSignaling to (AUTO). * Choose None to remove all input AFD values from this output.",
       "refs": {
@@ -1973,6 +1992,16 @@
       "refs": {
         "CmafEncryptionSettings$StaticKeyProvider": null,
         "HlsEncryptionSettings$StaticKeyProvider": null
+      }
+    },
+    "TagResourceRequest": {
+      "base": "To tag a queue, preset, or job template, send a request with the tags and the Amazon Resource Name (ARN) of the resource that you want to tag.",
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": "Successful tag resource requests return an OK message.",
+      "refs": {
       }
     },
     "TeletextDestinationSettings": {
@@ -2054,6 +2083,16 @@
         "JobTemplate$Type": "A job template can be of two types: system or custom. System or built-in job templates can't be modified or deleted by the user.",
         "Preset$Type": "A preset can be of two types: system or custom. System or built-in preset can't be modified or deleted by the user.",
         "Queue$Type": "A queue can be of two types: system or custom. System or built-in queues can't be modified or deleted by the user."
+      }
+    },
+    "UntagResourceRequest": {
+      "base": "To remove tags from a resource, send a request with the Amazon Resource Name (ARN) of the resource and the keys of the tags that you want to remove.",
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": "Successful untag resource requests return an OK message.",
+      "refs": {
       }
     },
     "UpdateJobTemplateRequest": {
@@ -2178,11 +2217,9 @@
       "refs": {
         "DescribeEndpointsRequest$MaxResults": "Optional. Max number of endpoints, up to twenty, that will be returned at one time.",
         "Job$ErrorCode": "Error code for the job",
-        "ListJobTemplatesRequest$MaxResults": "Optional. Number of job templates, up to twenty, that will be returned at one time.",
-        "ListJobsRequest$MaxResults": "Optional. Number of jobs, up to twenty, that will be returned at one time.",
-        "ListPresetsRequest$MaxResults": "Optional. Number of presets, up to twenty, that will be returned at one time",
-        "ListQueuesRequest$MaxResults": "Optional. Number of queues, up to twenty, that will be returned at one time.",
         "OutputDetail$DurationInMs": "Duration in milliseconds",
+        "Queue$ProgressingJobsCount": "Estimated number of jobs in PROGRESSING status.",
+        "Queue$SubmittedJobsCount": "Estimated number of jobs in SUBMITTED status.",
         "VideoDetail$HeightInPx": "Height in pixels for the output",
         "VideoDetail$WidthInPx": "Width in pixels for the output"
       }
@@ -2456,6 +2493,15 @@
       "refs": {
         "AiffSettings$Channels": "Set Channels to specify the number of channels in this output audio track. Choosing Mono in the console will give you 1 output channel; choosing Stereo will give you 2. In the API, valid values are 1 and 2.",
         "Mp2Settings$Channels": "Set Channels to specify the number of channels in this output audio track. Choosing Mono in the console will give you 1 output channel; choosing Stereo will give you 2. In the API, valid values are 1 and 2."
+      }
+    },
+    "__integerMin1Max20": {
+      "base": null,
+      "refs": {
+        "ListJobTemplatesRequest$MaxResults": "Optional. Number of job templates, up to twenty, that will be returned at one time.",
+        "ListJobsRequest$MaxResults": "Optional. Number of jobs, up to twenty, that will be returned at one time.",
+        "ListPresetsRequest$MaxResults": "Optional. Number of presets, up to twenty, that will be returned at one time",
+        "ListQueuesRequest$MaxResults": "Optional. Number of queues, up to twenty, that will be returned at one time."
       }
     },
     "__integerMin1Max2147483647": {
@@ -2835,10 +2881,16 @@
         "OutputChannelMapping$InputChannels": "List of input channels"
       }
     },
+    "__listOf__string": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": "The keys of the tags that you want to remove from the resource."
+      }
+    },
     "__listOf__stringMin1": {
       "base": null,
       "refs": {
-        "AudioSelectorGroup$AudioSelectorNames": "Name of an Audio Selector within the same input to include in the group.  Audio selector names are standardized, based on their order within the input (e.g., \"Audio Selector 1\").  The audio selector name parameter can be repeated to add any number of audio selectors to the group."
+        "AudioSelectorGroup$AudioSelectorNames": "Name of an Audio Selector within the same input to include in the group.  Audio selector names are standardized, based on their order within the input (e.g., \"Audio Selector 1\"). The audio selector name parameter can be repeated to add any number of audio selectors to the group."
       }
     },
     "__listOf__stringPattern09aFAF809aFAF409aFAF409aFAF409aFAF12": {
@@ -2872,7 +2924,12 @@
       "base": null,
       "refs": {
         "CreateJobRequest$UserMetadata": "User-defined metadata that you want to associate with an MediaConvert job. You specify metadata in key/value pairs.",
-        "Job$UserMetadata": "User-defined metadata that you want to associate with an MediaConvert job. You specify metadata in key/value pairs."
+        "CreateJobTemplateRequest$Tags": "The tags that you want to add to the resource. You can tag resources with a key-value pair or with only a key.",
+        "CreatePresetRequest$Tags": "The tags that you want to add to the resource. You can tag resources with a key-value pair or with only a key.",
+        "CreateQueueRequest$Tags": "The tags that you want to add to the resource. You can tag resources with a key-value pair or with only a key.",
+        "Job$UserMetadata": "User-defined metadata that you want to associate with an MediaConvert job. You specify metadata in key/value pairs.",
+        "ResourceTags$Tags": "The tags for the resource.",
+        "TagResourceRequest$Tags": "The tags that you want to add to the resource. You can tag resources with a key-value pair or with only a key."
       }
     },
     "__string": {
@@ -2935,6 +2992,7 @@
         "ListPresetsResponse$NextToken": "Use this string to request the next batch of presets.",
         "ListQueuesRequest$NextToken": "Use this string, provided with the response to a previous request, to request the next batch of queues.",
         "ListQueuesResponse$NextToken": "Use this string to request the next batch of queues.",
+        "ListTagsForResourceRequest$Arn": "The Amazon Resource Name (ARN) of the resource that you want to list tags for. To get the ARN, send a GET request with the resource name.",
         "Mp4Settings$Mp4MajorBrand": "Overrides the \"Major Brand\" field in the output file. Usually not necessary to specify.",
         "NielsenConfiguration$DistributorId": "Use Distributor ID (DistributorID) to specify the distributor ID that is assigned to your organization by Neilsen.",
         "Output$Extension": "Use Extension (Extension) to specify the file extension for outputs in File output groups. If you do not specify a value, the service will use default extensions by container type as follows * MPEG-2 transport stream, m2ts * Quicktime, mov * MXF container, mxf * MPEG-4 container, mp4 * No Container, the service will use codec extensions (e.g. AAC, H265, H265, AC3)",
@@ -2947,8 +3005,11 @@
         "Queue$Arn": "An identifier for this resource that is unique within all of AWS.",
         "Queue$Description": "An optional description you create for each queue.",
         "Queue$Name": "A name you create for each queue. Each name must be unique within your account.",
+        "ResourceTags$Arn": "The Amazon Resource Name (ARN) of the resource.",
         "SpekeKeyProvider$ResourceId": "The SPEKE-compliant server uses Resource ID (ResourceId) to identify content.",
         "StaticKeyProvider$Url": "Relates to DRM implementation. The location of the license server used for protecting content.",
+        "TagResourceRequest$Arn": "The Amazon Resource Name (ARN) of the resource that you want to tag. To get the ARN, send a GET request with the resource name.",
+        "UntagResourceRequest$Arn": "The Amazon Resource Name (ARN) of the resource that you want to remove tags from. To get the ARN, send a GET request with the resource name.",
         "UpdateJobTemplateRequest$Category": "The new category for the job template, if you are changing it.",
         "UpdateJobTemplateRequest$Description": "The new description for the job template, if you are changing it.",
         "UpdateJobTemplateRequest$Name": "The name of the job template you are modifying",
@@ -2958,6 +3019,7 @@
         "UpdatePresetRequest$Name": "The name of the preset you are modifying.",
         "UpdateQueueRequest$Description": "The new description for the queue, if you are changing it.",
         "UpdateQueueRequest$Name": "The name of the queue you are modifying.",
+        "__listOf__string$member": null,
         "__mapOf__string$member": null
       }
     },

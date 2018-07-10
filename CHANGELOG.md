@@ -1,3 +1,38 @@
+Release v1.14.23 (2018-07-10)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service documentation
+
+Release v1.14.22 (2018-07-09)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API
+* `service/ce`: Updates service API and documentation
+* `service/dms`: Updates service API and documentation
+  * Added support for DmsTransfer endpoint type and support for re-validate option in table reload API.
+* `service/lambda`: Updates service API
+  * Add support for .NET Core 2.1 to Lambda.
+* `service/transcribe`: Updates service API and documentation
+
+Release v1.14.21 (2018-07-06)
+===
+
+### Service Client Updates
+* `service/mediaconvert`: Updates service API and documentation
+  * This release adds support for the following 1) users can specify tags to be attached to queues, presets, and templates during creation of those resources on MediaConvert. 2) users can now view the count of jobs in submitted state and in progressing state on a per queue basis.
+* `service/serverlessrepo`: Updates service API and documentation
+
+Release v1.14.20 (2018-07-05)
+===
+
+### Service Client Updates
+* `service/pinpoint`: Updates service API and documentation
+  * This release of the Amazon Pinpoint SDK adds the ability to create complex segments and validate phone numbers for SMS messages. It also adds the ability to get or delete endpoints based on user IDs, remove attributes from endpoints, and list the defined channels for an app.
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker NotebookInstances supports 'Updating' as a NotebookInstanceStatus.  In addition, DescribeEndpointOutput now includes Docker repository digest of deployed Model images.
+
 Release v1.14.19 (2018-07-03)
 ===
 

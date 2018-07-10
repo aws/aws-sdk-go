@@ -70,6 +70,7 @@ type Metadata struct {
 	JSONVersion         string
 	TargetPrefix        string
 	Protocol            string
+	ProtocolSettings    ProtocolSettings
 	UID                 string
 	EndpointsID         string
 	ServiceID           string
@@ -77,8 +78,15 @@ type Metadata struct {
 	NoResolveEndpoint bool
 }
 
+// ProtocolSettings define how the SDK should handle requests in the context
+// of of a protocol.
+type ProtocolSettings struct {
+	HTTP2 string `json:"h2,omitempty"`
+}
+
 var serviceAliases map[string]string
 
+// Bootstrap loads SDK model customizations prior to the API model is parsed.
 func Bootstrap() error {
 	b, err := ioutil.ReadFile(filepath.Join("..", "models", "customizations", "service-aliases.json"))
 	if err != nil {
