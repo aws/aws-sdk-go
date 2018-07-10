@@ -1,3 +1,9 @@
+Release v1.14.23 (2018-07-10)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service documentation
+
 Release v1.14.22 (2018-07-09)
 ===
 
