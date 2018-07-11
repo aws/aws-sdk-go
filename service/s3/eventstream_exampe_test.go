@@ -51,7 +51,7 @@ func ExampleS3_SelectObjectContent() {
 			case *RecordsEvent:
 				resultWriter.Write(e.Payload)
 			case *StatsEvent:
-				fmt.Printf("Processed %d bytes\n", e.Details.BytesProcessed)
+				fmt.Printf("Processed %d bytes\n", *e.Details.BytesProcessed)
 			}
 		}
 	}()
