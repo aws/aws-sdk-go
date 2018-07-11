@@ -1,3 +1,15 @@
+Release v1.14.25 (2018-07-11)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API and documentation
+  * Support for fine grain throttling for API gateway.
+* `service/ce`: Updates service API and documentation
+* `service/s3`: Updates service API and documentation
+  * S3 Select support for BZIP2 compressed input files
+* `service/ssm`: Updates service API and documentation
+  * Support Conditional Branching OnFailure for SSM Automation
+
 Release v1.14.24 (2018-07-10)
 ===
 

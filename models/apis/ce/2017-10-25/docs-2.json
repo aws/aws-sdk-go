@@ -147,6 +147,18 @@
         "ServiceSpecification$EC2Specification": "<p>The EC2 hardware specifications that you want AWS to provide recommendations for.</p>"
       }
     },
+    "ESInstanceDetails": {
+      "base": "<p>Details about the ES instances that AWS recommends that you purchase.</p>",
+      "refs": {
+        "InstanceDetails$ESInstanceDetails": "<p>The Amazon ES instances that AWS recommends that you purchase.</p>"
+      }
+    },
+    "ElastiCacheInstanceDetails": {
+      "base": "<p>Details about the ElastiCache instances that AWS recommends that you purchase.</p>",
+      "refs": {
+        "InstanceDetails$ElastiCacheInstanceDetails": "<p>The ElastiCache instances that AWS recommends that you purchase.</p>"
+      }
+    },
     "Entity": {
       "base": null,
       "refs": {
@@ -191,8 +203,14 @@
       "refs": {
         "EC2InstanceDetails$CurrentGeneration": "<p>Whether the recommendation is for a current generation instance. </p>",
         "EC2InstanceDetails$SizeFlexEligible": "<p>Whether the recommended reservation is size flexible.</p>",
+        "ESInstanceDetails$CurrentGeneration": "<p>Whether the recommendation is for a current generation instance.</p>",
+        "ESInstanceDetails$SizeFlexEligible": "<p>Whether the recommended reservation is size flexible.</p>",
+        "ElastiCacheInstanceDetails$CurrentGeneration": "<p>Whether the recommendation is for a current generation instance.</p>",
+        "ElastiCacheInstanceDetails$SizeFlexEligible": "<p>Whether the recommended reservation is size flexible.</p>",
         "RDSInstanceDetails$CurrentGeneration": "<p>Whether the recommendation is for a current generation instance. </p>",
-        "RDSInstanceDetails$SizeFlexEligible": "<p>Whether the recommended reservation is size flexible.</p>"
+        "RDSInstanceDetails$SizeFlexEligible": "<p>Whether the recommended reservation is size flexible.</p>",
+        "RedshiftInstanceDetails$CurrentGeneration": "<p>Whether the recommendation is for a current generation instance.</p>",
+        "RedshiftInstanceDetails$SizeFlexEligible": "<p>Whether the recommended reservation is size flexible.</p>"
       }
     },
     "GenericString": {
@@ -204,6 +222,13 @@
         "EC2InstanceDetails$AvailabilityZone": "<p>The Availability Zone of the recommended reservation.</p>",
         "EC2InstanceDetails$Platform": "<p>The platform of the recommended reservation. The platform is the specific combination of operating system, license model, and software on an instance.</p>",
         "EC2InstanceDetails$Tenancy": "<p>Whether the recommended reservation is dedicated or shared.</p>",
+        "ESInstanceDetails$InstanceClass": "<p>The class of instance that AWS recommends.</p>",
+        "ESInstanceDetails$InstanceSize": "<p>The size of instance that AWS recommends.</p>",
+        "ESInstanceDetails$Region": "<p>The AWS Region of the recommended reservation.</p>",
+        "ElastiCacheInstanceDetails$Family": "<p>The instance family of the recommended reservation.</p>",
+        "ElastiCacheInstanceDetails$NodeType": "<p>The type of node that AWS recommends.</p>",
+        "ElastiCacheInstanceDetails$Region": "<p>The AWS Region of the recommended reservation.</p>",
+        "ElastiCacheInstanceDetails$ProductDescription": "<p>The description of the recommended reservation.</p>",
         "GetReservationPurchaseRecommendationRequest$AccountId": "<p>The account ID that is associated with the recommendation. </p>",
         "GetReservationPurchaseRecommendationRequest$Service": "<p>The specific service that you want recommendations for.</p>",
         "RDSInstanceDetails$Family": "<p>The instance family of the recommended reservation.</p>",
@@ -213,6 +238,9 @@
         "RDSInstanceDetails$DatabaseEdition": "<p>The database edition that the recommended reservation supports.</p>",
         "RDSInstanceDetails$DeploymentOption": "<p>Whether the recommendation is for a reservation in a single Availability Zone or a reservation with a backup in a second Availability Zone.</p>",
         "RDSInstanceDetails$LicenseModel": "<p>The license model that the recommended reservation supports.</p>",
+        "RedshiftInstanceDetails$Family": "<p>The instance family of the recommended reservation.</p>",
+        "RedshiftInstanceDetails$NodeType": "<p>The type of node that AWS recommends.</p>",
+        "RedshiftInstanceDetails$Region": "<p>The AWS Region of the recommended reservation.</p>",
         "ReservationPurchaseRecommendationDetail$RecommendedNumberOfInstancesToPurchase": "<p>The number of instances that AWS recommends that you purchase.</p>",
         "ReservationPurchaseRecommendationDetail$RecommendedNormalizedUnitsToPurchase": "<p>The number of normalized units that AWS recommends that you purchase.</p>",
         "ReservationPurchaseRecommendationDetail$MinimumNumberOfInstancesUsedPerHour": "<p>The minimum number of instances that you used in an hour during the historical period. AWS uses this to calculate your recommended reservation purchases.</p>",
@@ -490,6 +518,12 @@
       "base": "<p>Details about the RDS instances that AWS recommends that you purchase.</p>",
       "refs": {
         "InstanceDetails$RDSInstanceDetails": "<p>The RDS instances that AWS recommends that you purchase.</p>"
+      }
+    },
+    "RedshiftInstanceDetails": {
+      "base": "<p>Details about the Amazon Redshift instances that AWS recommends that you purchase.</p>",
+      "refs": {
+        "InstanceDetails$RedshiftInstanceDetails": "<p>The Amazon Redshift instances that AWS recommends that you purchase.</p>"
       }
     },
     "RequestChangedException": {
