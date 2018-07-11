@@ -685,6 +685,8 @@
         "PatchRule$EnableNonSecurity": "<p>For instances identified by the approval rule filters, enables a patch baseline to apply non-security updates available in the specified repository. The default value is 'false'. Applies to Linux instances only.</p>",
         "PutParameterRequest$Overwrite": "<p>Overwrite an existing parameter. If not specified, will default to \"false\".</p>",
         "ResolvedTargets$Truncated": "<p>A boolean value indicating whether the resolved target list is truncated.</p>",
+        "StepExecution$IsEnd": "<p>Enable this option to stop an Automation execution at the end of a specific step. The Automation execution stops if the step execution failed or succeeded.</p>",
+        "StepExecution$IsCritical": "<p>Enable this option to designate a step as critical for the successful completion of the Automation. If a step with this designation fails, then Automation reports the final status of the Automation as Failed. </p>",
         "UpdateMaintenanceWindowRequest$Replace": "<p>If True, then all fields that are required by the CreateMaintenanceWindow action are also required for this API request. Optional fields that are not specified are set to null. </p>",
         "UpdateMaintenanceWindowTargetRequest$Replace": "<p>If True, then all fields that are required by the RegisterTargetWithMaintenanceWindow action are also required for this API request. Optional fields that are not specified are set to null.</p>",
         "UpdateMaintenanceWindowTaskRequest$Replace": "<p>If True, then all fields that are required by the RegisterTaskWithMaintenanceWndow action are also required for this API request. Optional fields that are not specified are set to null.</p>",
@@ -5226,6 +5228,7 @@
         "StepExecution$Response": "<p>A message associated with the response code for an execution.</p>",
         "StepExecution$FailureMessage": "<p>If a step failed, this message explains why the execution failed.</p>",
         "StepExecution$StepExecutionId": "<p>The unique ID of a step execution.</p>",
+        "StepExecution$NextStep": "<p>Specifies which step in an Automation to process next after successfully completing a step. </p>",
         "StringList$member": null,
         "SubTypeCountLimitExceededException$Message": null,
         "TargetInUseException$Message": null,
@@ -5513,6 +5516,18 @@
         "GetCommandInvocationResult$StandardOutputUrl": "<p>The URL for the complete text written by the plugin to stdout in Amazon S3. If an Amazon S3 bucket was not specified, then this string is empty.</p>",
         "GetCommandInvocationResult$StandardErrorUrl": "<p>The URL for the complete text written by the plugin to stderr. If the command has not finished executing, then this string is empty.</p>",
         "S3OutputUrl$OutputUrl": "<p>A URL for an Amazon S3 bucket where you want to store the results of this request.</p>"
+      }
+    },
+    "ValidNextStep": {
+      "base": null,
+      "refs": {
+        "ValidNextStepList$member": null
+      }
+    },
+    "ValidNextStepList": {
+      "base": null,
+      "refs": {
+        "StepExecution$ValidNextSteps": "<p>ValidNextSteps offer different strategies for managing an Automation workflow when a step finishes. Automation dynamically processes ValidNextSteps when a step is completed. For example, you can specify <code>Abort</code> to stop the Automation when a step fails or <code>Continue</code> to ignore the failure of the current step and allow Automation to continue processing the next step. You can also specify <code>step:<i>step_name</i> </code> to jump to a designated step after a step succeeds. The result of the current step dynamically determines the ValidNextSteps. If a step finishes and no ValidNextStep is designated, then the Automation stops.</p>"
       }
     },
     "Version": {
