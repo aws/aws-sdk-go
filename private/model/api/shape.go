@@ -645,7 +645,6 @@ type {{ .ShapeName }} struct {
 	{{ end }}
 {{ end }}
 
-{{ if .API.HasEventStream -}}
 {{ if $.EventStreamsMemberName }}
 	{{ template "eventStreamAPILoopMethodTmpl" $ }}
 {{ end }}
@@ -656,7 +655,6 @@ type {{ .ShapeName }} struct {
 	{{- if $.Exception }}
 		{{ template "eventStreamExceptionEventShapeTmpl" $ }}
 	{{ end -}}
-{{ end -}}
 {{ end }}
 `
 

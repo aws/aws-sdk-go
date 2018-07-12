@@ -255,8 +255,8 @@ func (a *API) renameCollidingFields() {
 	for _, v := range a.Shapes {
 		namesWithSet := map[string]struct{}{}
 		for k, field := range v.MemberRefs {
-			if strings.HasPrefix(k, "Set") {
-				namesWithSet[k] = struct{}{}
+			if _, ok := v.MemberRefs["Set"+k]; ok {
+				namesWithSet["Set"+k] = struct{}{}
 			}
 
 			if collides(k) || (v.Exception && exceptionCollides(k)) {
@@ -266,9 +266,8 @@ func (a *API) renameCollidingFields() {
 
 		// checks if any field names collide with setters.
 		for name := range namesWithSet {
-			if field, ok := v.MemberRefs["Set"+name]; ok {
-				renameCollidingField(name, v, field)
-			}
+			field := v.MemberRefs[name]
+			renameCollidingField(name, v, field)
 		}
 	}
 }
@@ -362,15 +361,20 @@ func (a *API) setMetadataEndpointsKey() {
 	}
 }
 
+// Suppress event stream must be run before setup event stream
 func (a *API) suppressHTTP2EventStreams() {
 	if a.Metadata.ProtocolSettings.HTTP2 != "eventstream" {
 		return
 	}
 
 	for name, op := range a.Operations {
-		if op.EventStreamAPI != nil {
-			a.removeOperation(name)
-			a.HasEventStream = false
+		outbound := hasEventStream(op.InputRef.Shape)
+		inbound := hasEventStream(op.OutputRef.Shape)
+
+		if !(outbound || inbound) {
+			continue
 		}
+
+		a.removeOperation(name)
 	}
 }
