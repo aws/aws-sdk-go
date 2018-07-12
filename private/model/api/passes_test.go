@@ -1,4 +1,4 @@
-// +build 1.6,codegen
+// +build go1.8,codegen
 
 package api
 
@@ -160,10 +160,10 @@ func TestUniqueInputAndOutputs(t *testing.T) {
 		a.renameToplevelShapes()
 		for k, v := range expected {
 			if a.Operations[k].InputRef.Shape.ShapeName != v[0] {
-				t.Errorf("Error %d case: Expected %q, but received %q", k, v[0], a.Operations[k].InputRef.Shape.ShapeName)
+				t.Errorf("Error %s case: Expected %q, but received %q", k, v[0], a.Operations[k].InputRef.Shape.ShapeName)
 			}
 			if a.Operations[k].OutputRef.Shape.ShapeName != v[1] {
-				t.Errorf("Error %d case: Expected %q, but received %q", k, v[1], a.Operations[k].OutputRef.Shape.ShapeName)
+				t.Errorf("Error %s case: Expected %q, but received %q", k, v[1], a.Operations[k].OutputRef.Shape.ShapeName)
 			}
 		}
 
@@ -172,61 +172,66 @@ func TestUniqueInputAndOutputs(t *testing.T) {
 
 func TestCollidingFields(t *testing.T) {
 	cases := map[string]struct {
-		Members map[string]*ShapeRef
-		Expect  []string
+		MemberRefs  map[string]*ShapeRef
+		Expect      []string
+		IsException bool
 	}{
 		"SimpleMembers": {
 			MemberRefs: map[string]*ShapeRef{
-				"String":   &ShapeRef{},
-				"GoString": &ShapeRef{},
-				"Validate": &ShapeRef{},
-				"Foo":      &ShapeRef{},
-				"SetFoo":   &ShapeRef{},
 				"Code":     &ShapeRef{},
+				"Foo":      &ShapeRef{},
+				"GoString": &ShapeRef{},
 				"Message":  &ShapeRef{},
 				"OrigErr":  &ShapeRef{},
+				"SetFoo":   &ShapeRef{},
+				"String":   &ShapeRef{},
+				"Validate": &ShapeRef{},
 			},
 			Expect: []string{
-				"String_",
-				"GoString_",
-				"Validate_",
-				"Foo",
-				"SetFoo_",
 				"Code",
+				"Foo",
+				"GoString_",
 				"Message",
 				"OrigErr",
+				"SetFoo_",
+				"String_",
+				"Validate_",
 			},
 		},
 		"ExceptionShape": {
+			IsException: true,
 			MemberRefs: map[string]*ShapeRef{
-				"Code":    &ShapeRef{Shape: &Shape{Exception: true}},
-				"Message": &ShapeRef{Shape: &Shape{Exception: true}},
-				"OrigErr": &ShapeRef{Shape: &Shape{Exception: true}},
-				"String":  &ShapeRef{Shape: &Shape{Exception: true}},
-				"Other":   &ShapeRef{Shape: &Shape{Exception: true}},
+				"Code":    &ShapeRef{},
+				"Message": &ShapeRef{},
+				"OrigErr": &ShapeRef{},
+				"Other":   &ShapeRef{},
+				"String":  &ShapeRef{},
 			},
 			Expect: []string{
 				"Code_",
 				"Message_",
 				"OrigErr_",
-				"String_",
 				"Other",
+				"String_",
 			},
 		},
 	}
 
-	for _, c := range testCases {
+	for k, c := range cases {
 		t.Run(k, func(t *testing.T) {
 			a := &API{
-				Shapes: []*Shape{
-					ShapeName:  k,
-					MemberRefs: c.Members,
+				Shapes: map[string]*Shape{
+					"shapename": {
+						ShapeName:  k,
+						MemberRefs: c.MemberRefs,
+						Exception:  c.IsException,
+					},
 				},
 			}
 
 			a.renameCollidingFields()
 
-			for i, name := range a.Shapes[0].MemberNames() {
+			for i, name := range a.Shapes["shapename"].MemberNames() {
 				if e, a := c.Expect[i], name; e != a {
 					t.Errorf("expect %v, got %v", e, a)
 				}
@@ -244,9 +249,7 @@ func TestSupressHTTP2EventStreams(t *testing.T) {
     "endpointPrefix":"rpcservice",
     "jsonVersion":"1.1",
     "protocol":"json",
-    "protocolSettings":{
-      "h2":"{h2Option}"
-    },
+    "protocolSettings":{"h2":"{h2Option}"},
     "serviceAbbreviation":"RPCService",
     "serviceFullName":"RPC Service",
     "serviceId":"RPCService",
@@ -284,57 +287,78 @@ func TestSupressHTTP2EventStreams(t *testing.T) {
     }
   },
   "shapes":{
-    "BarRequest":{
+    "BarOpRequest":{
       "type":"structure",
       "members":{}
     },
-    "BarResponse":{
+    "BarOpResponse":{
       "type":"structure",
       "members":{}
     },
-    "EventStreamRequest":{
+    "EventStreamOpRequest":{
       "type":"structure",
       "members":{
       }
     },
-    "EventStreamResponse":{
+    "EventStreamOpResponse":{
       "type":"structure",
       "members":{
         "EventStream":{"shape":"EventStream"}
       }
     },
-    "FooRequest":{
+    "FooOpRequest":{
       "type":"structure",
       "members":{}
     },
-    "FooResponse":{
+    "FooOpResponse":{
       "type":"structure",
       "members":{}
     },
     "EventStream":{
       "type":"structure",
-      "members":{},
+      "members":{
+        "Empty":{"shape":"EmptyEvent"}
+	  },
       "eventstream":true
     },
+    "EmptyEvent": {
+      "type":"structure",
+      "members":{},
+      "event": true
+    }
   }
 }
 `
 
 	cases := map[string]struct {
-		Model     string
-		ExpectOps []string
+		Model        string
+		ExpectOps    []string
+		ExpectShapes []string
 	}{
 		"control": {
 			Model:     strings.Replace(baseModel, "{h2Option}", "", -1),
 			ExpectOps: []string{"BarOp", "EventStreamOp", "FooOp"},
+			ExpectShapes: []string{
+				"BarOpInput", "BarOpOutput", "EmptyEvent",
+				"EventStreamOpEventStream", "EventStreamOpInput",
+				"EventStreamOpOutput", "FooOpInput", "FooOpOutput",
+			},
 		},
 		"HTTP/2 with EventStreams": {
 			Model:     strings.Replace(baseModel, "{h2Option}", "eventstream", 1),
 			ExpectOps: []string{"BarOp", "FooOp"},
+			ExpectShapes: []string{
+				"BarOpInput", "BarOpOutput", "FooOpInput", "FooOpOutput",
+			},
 		},
 		"HTTP/2 with optional": {
 			Model:     strings.Replace(baseModel, "{h2Option}", "optional", 1),
 			ExpectOps: []string{"BarOp", "EventStreamOp", "FooOp"},
+			ExpectShapes: []string{
+				"BarOpInput", "BarOpOutput", "EmptyEvent",
+				"EventStreamOpEventStream", "EventStreamOpInput",
+				"EventStreamOpOutput", "FooOpInput", "FooOpOutput",
+			},
 		},
 	}
 
@@ -342,9 +366,14 @@ func TestSupressHTTP2EventStreams(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			var a API
 			a.AttachString(c.Model)
+			a.APIGoCode()
 
 			if e, a := c.ExpectOps, a.OperationNames(); !reflect.DeepEqual(e, a) {
 				t.Errorf("expect %v ops, got %v", e, a)
+			}
+
+			if e, a := c.ExpectShapes, a.ShapeNames(); !reflect.DeepEqual(e, a) {
+				t.Errorf("expect %v shapes, got %v", e, a)
 			}
 		})
 	}
