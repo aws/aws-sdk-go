@@ -75,6 +75,16 @@ The events that can be sent are:
 	return commentify(w.String())
 }
 
+func hasEventStream(topShape *Shape) bool {
+	for _, ref := range topShape.MemberRefs {
+		if ref.Shape.IsEventStream {
+			return true
+		}
+	}
+
+	return false
+}
+
 func eventStreamAPIShapeRefDoc(refName string) string {
 	return commentify(fmt.Sprintf("Use %s to use the API's stream.", refName))
 }
