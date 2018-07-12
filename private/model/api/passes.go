@@ -255,8 +255,8 @@ func (a *API) renameCollidingFields() {
 	for _, v := range a.Shapes {
 		namesWithSet := map[string]struct{}{}
 		for k, field := range v.MemberRefs {
-			if strings.HasPrefix(k, "Set") {
-				namesWithSet[k] = struct{}{}
+			if _, ok := v.MemberRefs["Set"+k]; ok {
+				namesWithSet["Set"+k] = struct{}{}
 			}
 
 			if collides(k) || (v.Exception && exceptionCollides(k)) {
@@ -266,9 +266,8 @@ func (a *API) renameCollidingFields() {
 
 		// checks if any field names collide with setters.
 		for name := range namesWithSet {
-			if field, ok := v.MemberRefs["Set"+name]; ok {
-				renameCollidingField(name, v, field)
-			}
+			field := v.MemberRefs[name]
+			renameCollidingField(name, v, field)
 		}
 	}
 }
