@@ -1,3 +1,22 @@
+Release v1.14.26 (2018-07-12)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/codebuild`: Updates service API
+  * Update CodeBuild CreateProject API - serviceRole is a required input
+* `service/dlm`: Adds new service
+* `service/elasticfilesystem`: Updates service API and documentation
+  * Amazon EFS now allows you to instantly provision the throughput required for your applications independent of the amount of data stored in your file system, allowing you to optimize throughput for your applications performance needs. Starting today, you can provision the throughput your applications require quickly with a few simple steps using AWS Console, AWS CLI or AWS API to achieve consistent performance.
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Documentation updates for EMR.
+* `service/iam`: Updates service API and documentation
+  * SDK release to support IAM delegated administrator feature. The feature lets customers attach permissions boundary to IAM principals. The IAM principals cannot operate exceeding the permission specified in permissions boundary.
+
+### SDK Enhancements
+* `aws/credentials/ec2rolecreds`: Avoid unnecessary redirect [#2037](https://github.com/aws/aws-sdk-go/pull/2037)
+  * This removes the unnecessary redirect for /latest/meta-data/iam/security-credentials/
+
 Release v1.14.25 (2018-07-11)
 ===
 
