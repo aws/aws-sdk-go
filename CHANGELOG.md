@@ -1,3 +1,13 @@
+Release v1.14.27 (2018-07-13)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API, documentation, and paginators
+  * This API update adds support for sharing AppStream images across AWS accounts within the same region.
+* `service/kinesis-video-archived-media`: Updates service API and documentation
+* `service/kinesisvideo`: Updates service API and documentation
+  * Adds support for HLS video playback of Kinesis Video streams using the KinesisVideo client by including "GET_HLS_STREAMING_SESSION_URL" as an additional APIName parameter in the GetDataEndpoint input.
+
 Release v1.14.26 (2018-07-12)
 ===
 
