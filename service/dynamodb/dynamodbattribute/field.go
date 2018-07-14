@@ -100,7 +100,10 @@ func enumFields(t reflect.Type, opts MarshalOptions) []field {
 				fieldTag := tag{}
 				fieldTag.parseAVTag(sf.Tag)
 				if opts.SupportJSONTags && fieldTag == (tag{}) {
-					fieldTag.parseJSONTag(sf.Tag)
+					fieldTag.parseStructTag("json", sf.Tag)
+				}
+				if opts.SupportYAMLTags && fieldTag == (tag{}) {
+					fieldTag.parseStructTag("yaml", sf.Tag)
 				}
 
 				if fieldTag.Ignore {

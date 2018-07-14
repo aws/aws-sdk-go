@@ -189,6 +189,10 @@ type MarshalOptions struct {
 	//
 	// Enabled by default.
 	SupportJSONTags bool
+
+	// Similarly supported for the YAML struct tag.
+	// Enabled by default.
+	SupportYAMLTags bool
 }
 
 // An Encoder provides marshaling Go value types to AttributeValues.

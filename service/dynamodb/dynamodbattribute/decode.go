@@ -127,6 +127,7 @@ func NewDecoder(opts ...func(*Decoder)) *Decoder {
 	d := &Decoder{
 		MarshalOptions: MarshalOptions{
 			SupportJSONTags: true,
+			SupportYAMLTags: true,
 		},
 	}
 	for _, o := range opts {
