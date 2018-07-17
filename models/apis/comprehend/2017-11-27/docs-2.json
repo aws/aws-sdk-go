@@ -6,6 +6,7 @@
     "BatchDetectEntities": "<p>Inspects the text of a batch of documents for named entities and returns information about them. For more information about named entities, see <a>how-entities</a> </p>",
     "BatchDetectKeyPhrases": "<p>Detects the key noun phrases found in a batch of documents.</p>",
     "BatchDetectSentiment": "<p>Inspects a batch of documents and returns an inference of the prevailing sentiment, <code>POSITIVE</code>, <code>NEUTRAL</code>, <code>MIXED</code>, or <code>NEGATIVE</code>, in each one.</p>",
+    "BatchDetectSyntax": "<p>Inspects the text of a batch of documents for the syntax and part of speech of the words in the document and returns information about them. For more information, see <a>how-syntax</a>.</p>",
     "DescribeDominantLanguageDetectionJob": "<p>Gets the properties associated with a dominant language detection job. Use this operation to get the status of a detection job.</p>",
     "DescribeEntitiesDetectionJob": "<p>Gets the properties associated with an entities detection job. Use this operation to get the status of a detection job.</p>",
     "DescribeKeyPhrasesDetectionJob": "<p>Gets the properties associated with a key phrases detection job. Use this operation to get the status of a detection job.</p>",
@@ -15,6 +16,7 @@
     "DetectEntities": "<p>Inspects text for named entities, and returns information about them. For more information, about named entities, see <a>how-entities</a>. </p>",
     "DetectKeyPhrases": "<p>Detects the key noun phrases found in the text. </p>",
     "DetectSentiment": "<p>Inspects text and returns an inference of the prevailing sentiment (<code>POSITIVE</code>, <code>NEUTRAL</code>, <code>MIXED</code>, or <code>NEGATIVE</code>). </p>",
+    "DetectSyntax": "<p>Inspects text for syntax and the part of speech of words in the document. For more information, <a>how-syntax</a>.</p>",
     "ListDominantLanguageDetectionJobs": "<p>Gets a list of the dominant language detection jobs that you have submitted.</p>",
     "ListEntitiesDetectionJobs": "<p>Gets a list of the entity detection jobs that you have submitted.</p>",
     "ListKeyPhrasesDetectionJobs": "<p>Get a list of key phrase detection jobs that you have submitted.</p>",
@@ -25,10 +27,10 @@
     "StartKeyPhrasesDetectionJob": "<p>Starts an asynchronous key phrase detection job for a collection of documents. Use the operation to track the status of a job.</p>",
     "StartSentimentDetectionJob": "<p>Starts an asynchronous sentiment detection job for a collection of documents. use the operation to track the status of a job.</p>",
     "StartTopicsDetectionJob": "<p>Starts an asynchronous topic detection job. Use the <code>DescribeTopicDetectionJob</code> operation to track the status of a job.</p>",
-    "StopDominantLanguageDetectionJob": "<p>Stops a dominant language detection job in progress.</p> <p>If the job state is <code>IN_PROGRESS</code> the job will be marked for termination and put into the <code>STOPPING</code> state.</p> <p>If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state when you call the <code>StopDominantLanguageDetectionJob</code> operation, the operation will return a 400 Internal Request Exception. </p> <p>When a job is stopped, any document that has already been processed will be written to the output location.</p>",
-    "StopEntitiesDetectionJob": "<p>Stops an entities detection job in progress.</p> <p>If the job state is <code>IN_PROGRESS</code> the job will be marked for termination and put into the <code>STOPPING</code> state.</p> <p>If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state when you call the <code>StopDominantLanguageDetectionJob</code> operation, the operation will return a 400 Internal Request Exception. </p> <p>When a job is stopped, any document that has already been processed will be written to the output location.</p>",
-    "StopKeyPhrasesDetectionJob": "<p>Stops a key phrases detection job in progress.</p> <p>If the job state is <code>IN_PROGRESS</code> the job will be marked for termination and put into the <code>STOPPING</code> state.</p> <p>If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state when you call the <code>StopDominantLanguageDetectionJob</code> operation, the operation will return a 400 Internal Request Exception. </p> <p>When a job is stopped, any document that has already been processed will be written to the output location.</p>",
-    "StopSentimentDetectionJob": "<p>Stops a sentiment detection job in progress.</p> <p>If the job state is <code>IN_PROGRESS</code> the job will be marked for termination and put into the <code>STOPPING</code> state.</p> <p>If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state when you call the <code>StopDominantLanguageDetectionJob</code> operation, the operation will return a 400 Internal Request Exception. </p> <p>When a job is stopped, any document that has already been processed will be written to the output location.</p>"
+    "StopDominantLanguageDetectionJob": "<p>Stops a dominant language detection job in progress.</p> <p>If the job state is <code>IN_PROGRESS</code> the job is marked for termination and put into the <code>STOP_REQUESTED</code> state. If the job completes before it can be stopped, it is put into the <code>COMPLETED</code> state; otherwise the job is stopped and put into the <code>STOPPED</code> state.</p> <p>If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state when you call the <code>StopDominantLanguageDetectionJob</code> operation, the operation returns a 400 Internal Request Exception. </p> <p>When a job is stopped, any documents already processed are written to the output location.</p>",
+    "StopEntitiesDetectionJob": "<p>Stops an entities detection job in progress.</p> <p>If the job state is <code>IN_PROGRESS</code> the job is marked for termination and put into the <code>STOP_REQUESTED</code> state. If the job completes before it can be stopped, it is put into the <code>COMPLETED</code> state; otherwise the job is stopped and put into the <code>STOPPED</code> state.</p> <p>If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state when you call the <code>StopDominantLanguageDetectionJob</code> operation, the operation returns a 400 Internal Request Exception. </p> <p>When a job is stopped, any documents already processed are written to the output location.</p>",
+    "StopKeyPhrasesDetectionJob": "<p>Stops a key phrases detection job in progress.</p> <p>If the job state is <code>IN_PROGRESS</code> the job is marked for termination and put into the <code>STOP_REQUESTED</code> state. If the job completes before it can be stopped, it is put into the <code>COMPLETED</code> state; otherwise the job is stopped and put into the <code>STOPPED</code> state.</p> <p>If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state when you call the <code>StopDominantLanguageDetectionJob</code> operation, the operation returns a 400 Internal Request Exception. </p> <p>When a job is stopped, any documents already processed are written to the output location.</p>",
+    "StopSentimentDetectionJob": "<p>Stops a sentiment detection job in progress.</p> <p>If the job state is <code>IN_PROGRESS</code> the job is marked for termination and put into the <code>STOP_REQUESTED</code> state. If the job completes before it can be stopped, it is put into the <code>COMPLETED</code> state; otherwise the job is be stopped and put into the <code>STOPPED</code> state.</p> <p>If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state when you call the <code>StopDominantLanguageDetectionJob</code> operation, the operation returns a 400 Internal Request Exception. </p> <p>When a job is stopped, any documents already processed are written to the output location.</p>"
   },
   "shapes": {
     "AnyLengthString": {
@@ -105,6 +107,22 @@
       "refs": {
       }
     },
+    "BatchDetectSyntaxItemResult": {
+      "base": "<p>The result of calling the operation. The operation returns one object that is successfully processed by the operation.</p>",
+      "refs": {
+        "ListOfDetectSyntaxResult$member": null
+      }
+    },
+    "BatchDetectSyntaxRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDetectSyntaxResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "BatchItemError": {
       "base": "<p>Describes an error that occurred while processing a document in a batch. The operation returns on <code>BatchItemError</code> object for each document that contained an error.</p>",
       "refs": {
@@ -117,7 +135,8 @@
         "BatchDetectDominantLanguageResponse$ErrorList": "<p>A list containing one object for each document that contained an error. The results are sorted in ascending order by the <code>Index</code> field and match the order of the documents in the input list. If there are no errors in the batch, the <code>ErrorList</code> is empty.</p>",
         "BatchDetectEntitiesResponse$ErrorList": "<p>A list containing one object for each document that contained an error. The results are sorted in ascending order by the <code>Index</code> field and match the order of the documents in the input list. If there are no errors in the batch, the <code>ErrorList</code> is empty.</p>",
         "BatchDetectKeyPhrasesResponse$ErrorList": "<p>A list containing one object for each document that contained an error. The results are sorted in ascending order by the <code>Index</code> field and match the order of the documents in the input list. If there are no errors in the batch, the <code>ErrorList</code> is empty.</p>",
-        "BatchDetectSentimentResponse$ErrorList": "<p>A list containing one object for each document that contained an error. The results are sorted in ascending order by the <code>Index</code> field and match the order of the documents in the input list. If there are no errors in the batch, the <code>ErrorList</code> is empty.</p>"
+        "BatchDetectSentimentResponse$ErrorList": "<p>A list containing one object for each document that contained an error. The results are sorted in ascending order by the <code>Index</code> field and match the order of the documents in the input list. If there are no errors in the batch, the <code>ErrorList</code> is empty.</p>",
+        "BatchDetectSyntaxResponse$ErrorList": "<p>A list containing one object for each document that contained an error. The results are sorted in ascending order by the <code>Index</code> field and match the order of the documents in the input list. If there are no errors in the batch, the <code>ErrorList</code> is empty.</p>"
       }
     },
     "BatchSizeLimitExceededException": {
@@ -225,6 +244,16 @@
       "refs": {
       }
     },
+    "DetectSyntaxRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DetectSyntaxResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DominantLanguage": {
       "base": "<p>Returns the code for the dominant language in the input text and the level of confidence that Amazon Comprehend has in the accuracy of the detection.</p>",
       "refs": {
@@ -287,6 +316,7 @@
         "DominantLanguage$Score": "<p>The level of confidence that Amazon Comprehend has in the accuracy of the detection.</p>",
         "Entity$Score": "<p>The level of confidence that Amazon Comprehend has in the accuracy of the detection.</p>",
         "KeyPhrase$Score": "<p>The level of confidence that Amazon Comprehend has in the accuracy of the detection.</p>",
+        "PartOfSpeechTag$Score": "<p>The confidence that Amazon Comprehend has that the part of speech was correctly identified.</p>",
         "SentimentScore$Positive": "<p>The level of confidence that Amazon Comprehend has in the accuracy of its detection of the <code>POSITIVE</code> sentiment.</p>",
         "SentimentScore$Negative": "<p>The level of confidence that Amazon Comprehend has in the accuracy of its detection of the <code>NEGATIVE</code> sentiment.</p>",
         "SentimentScore$Neutral": "<p>The level of confidence that Amazon Comprehend has in the accuracy of its detection of the <code>NEUTRAL</code> sentiment.</p>",
@@ -296,11 +326,15 @@
     "IamRoleArn": {
       "base": null,
       "refs": {
-        "StartDominantLanguageDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role that grants Amazon Comprehend read access to your input data.</p>",
-        "StartEntitiesDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role that grants Amazon Comprehend read access to your input data.</p>",
-        "StartKeyPhrasesDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role that grants Amazon Comprehend read access to your input data.</p>",
-        "StartSentimentDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role that grants Amazon Comprehend read access to your input data.</p>",
-        "StartTopicsDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data. </p>"
+        "DominantLanguageDetectionJobProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) that gives Amazon Comprehend read access to your input data.</p>",
+        "EntitiesDetectionJobProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) that gives Amazon Comprehend read access to your input data.</p>",
+        "KeyPhrasesDetectionJobProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) that gives Amazon Comprehend read access to your input data.</p>",
+        "SentimentDetectionJobProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) that gives Amazon Comprehend read access to your input data.</p>",
+        "StartDominantLanguageDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions\">https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions</a>.</p>",
+        "StartEntitiesDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions\">https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions</a>.</p>",
+        "StartKeyPhrasesDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions\">https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions</a>.</p>",
+        "StartSentimentDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions\">https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions</a>.</p>",
+        "StartTopicsDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions\">https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions</a>.</p>"
       }
     },
     "InputDataConfig": {
@@ -331,11 +365,15 @@
         "BatchDetectEntitiesItemResult$Index": "<p>The zero-based index of the document in the input list.</p>",
         "BatchDetectKeyPhrasesItemResult$Index": "<p>The zero-based index of the document in the input list.</p>",
         "BatchDetectSentimentItemResult$Index": "<p>The zero-based index of the document in the input list.</p>",
+        "BatchDetectSyntaxItemResult$Index": "<p>The zero-based index of the document in the input list.</p>",
         "BatchItemError$Index": "<p>The zero-based index of the document in the input list.</p>",
         "Entity$BeginOffset": "<p>A character offset in the input text that shows where the entity begins (the first character is at position 0). The offset returns the position of each UTF-8 code point in the string. A <i>code point</i> is the abstract character from a particular graphical representation. For example, a multi-byte UTF-8 character maps to a single code point.</p>",
         "Entity$EndOffset": "<p>A character offset in the input text that shows where the entity ends. The offset returns the position of each UTF-8 code point in the string. A <i>code point</i> is the abstract character from a particular graphical representation. For example, a multi-byte UTF-8 character maps to a single code point. </p>",
         "KeyPhrase$BeginOffset": "<p>A character offset in the input text that shows where the key phrase begins (the first character is at position 0). The offset returns the position of each UTF-8 code point in the string. A <i>code point</i> is the abstract character from a particular graphical representation. For example, a multi-byte UTF-8 character maps to a single code point.</p>",
         "KeyPhrase$EndOffset": "<p>A character offset in the input text where the key phrase ends. The offset returns the position of each UTF-8 code point in the string. A <code>code point</code> is the abstract character from a particular graphical representation. For example, a multi-byte UTF-8 character maps to a single code point.</p>",
+        "SyntaxToken$TokenId": "<p>A unique identifier for a token.</p>",
+        "SyntaxToken$BeginOffset": "<p>The zero-based offset from the beginning of the source text to the first character in the word.</p>",
+        "SyntaxToken$EndOffset": "<p>The zero-based offset from the beginning of the source text to the last character in the word.</p>",
         "TopicsDetectionJobProperties$NumberOfTopics": "<p>The number of topics to detect supplied when you created the topic detection job. The default is 10. </p>"
       }
     },
@@ -423,10 +461,10 @@
         "StartKeyPhrasesDetectionJobResponse$JobStatus": "<p>The status of the job. </p> <ul> <li> <p>SUBMITTED - The job has been received and is queued for processing.</p> </li> <li> <p>IN_PROGRESS - Amazon Comprehend is processing the job.</p> </li> <li> <p>COMPLETED - The job was successfully completed and the output is available.</p> </li> <li> <p>FAILED - The job did not complete. To get details, use the operation.</p> </li> </ul>",
         "StartSentimentDetectionJobResponse$JobStatus": "<p>The status of the job. </p> <ul> <li> <p>SUBMITTED - The job has been received and is queued for processing.</p> </li> <li> <p>IN_PROGRESS - Amazon Comprehend is processing the job.</p> </li> <li> <p>COMPLETED - The job was successfully completed and the output is available.</p> </li> <li> <p>FAILED - The job did not complete. To get details, use the operation.</p> </li> </ul>",
         "StartTopicsDetectionJobResponse$JobStatus": "<p>The status of the job: </p> <ul> <li> <p>SUBMITTED - The job has been received and is queued for processing.</p> </li> <li> <p>IN_PROGRESS - Amazon Comprehend is processing the job.</p> </li> <li> <p>COMPLETED - The job was successfully completed and the output is available.</p> </li> <li> <p>FAILED - The job did not complete. To get details, use the <code>DescribeTopicDetectionJob</code> operation.</p> </li> </ul>",
-        "StopDominantLanguageDetectionJobResponse$JobStatus": "<p>Either <code>STOPPING</code> if the job is currently running, or <code>STOPPED</code> if the job was previously stopped with the <code>StopDominantLanguageDetectionJob</code> operation.</p>",
-        "StopEntitiesDetectionJobResponse$JobStatus": "<p>Either <code>STOPPING</code> if the job is currently running, or <code>STOPPED</code> if the job was previously stopped with the <code>StopEntitiesDetectionJob</code> operation.</p>",
-        "StopKeyPhrasesDetectionJobResponse$JobStatus": "<p>Either <code>STOPPING</code> if the job is currently running, or <code>STOPPED</code> if the job was previously stopped with the <code>StopKeyPhrasesDetectionJob</code> operation.</p>",
-        "StopSentimentDetectionJobResponse$JobStatus": "<p>Either <code>STOPPING</code> if the job is currently running, or <code>STOPPED</code> if the job was previously stopped with the <code>StopSentimentDetectionJob</code> operation.</p>",
+        "StopDominantLanguageDetectionJobResponse$JobStatus": "<p>Either <code>STOP_REQUESTED</code> if the job is currently running, or <code>STOPPED</code> if the job was previously stopped with the <code>StopDominantLanguageDetectionJob</code> operation.</p>",
+        "StopEntitiesDetectionJobResponse$JobStatus": "<p>Either <code>STOP_REQUESTED</code> if the job is currently running, or <code>STOPPED</code> if the job was previously stopped with the <code>StopEntitiesDetectionJob</code> operation.</p>",
+        "StopKeyPhrasesDetectionJobResponse$JobStatus": "<p>Either <code>STOP_REQUESTED</code> if the job is currently running, or <code>STOPPED</code> if the job was previously stopped with the <code>StopKeyPhrasesDetectionJob</code> operation.</p>",
+        "StopSentimentDetectionJobResponse$JobStatus": "<p>Either <code>STOP_REQUESTED</code> if the job is currently running, or <code>STOPPED</code> if the job was previously stopped with the <code>StopSentimentDetectionJob</code> operation.</p>",
         "TopicsDetectionJobFilter$JobStatus": "<p>Filters the list of topic detection jobs based on job status. Returns only jobs with the specified status.</p>",
         "TopicsDetectionJobProperties$JobStatus": "<p>The current status of the topic detection job. If the status is <code>Failed</code>, the reason for the failure is shown in the <code>Message</code> field.</p>"
       }
@@ -527,6 +565,12 @@
         "BatchDetectSentimentResponse$ResultList": "<p>A list of objects containing the results of the operation. The results are sorted in ascending order by the <code>Index</code> field and match the order of the documents in the input list. If all of the documents contain an error, the <code>ResultList</code> is empty.</p>"
       }
     },
+    "ListOfDetectSyntaxResult": {
+      "base": null,
+      "refs": {
+        "BatchDetectSyntaxResponse$ResultList": "<p>A list of objects containing the results of the operation. The results are sorted in ascending order by the <code>Index</code> field and match the order of the documents in the input list. If all of the documents contain an error, the <code>ResultList</code> is empty.</p>"
+      }
+    },
     "ListOfDominantLanguages": {
       "base": null,
       "refs": {
@@ -546,6 +590,13 @@
       "refs": {
         "BatchDetectKeyPhrasesItemResult$KeyPhrases": "<p>One or more <a>KeyPhrase</a> objects, one for each key phrase detected in the document.</p>",
         "DetectKeyPhrasesResponse$KeyPhrases": "<p>A collection of key phrases that Amazon Comprehend identified in the input text. For each key phrase, the response provides the text of the key phrase, where the key phrase begins and ends, and the level of confidence that Amazon Comprehend has in the accuracy of the detection. </p>"
+      }
+    },
+    "ListOfSyntaxTokens": {
+      "base": null,
+      "refs": {
+        "BatchDetectSyntaxItemResult$SyntaxTokens": "<p>The syntax tokens for the words in the document, one token for each word.</p>",
+        "DetectSyntaxResponse$SyntaxTokens": "<p>A collection of syntax tokens describing the text. For each token, the response provides the text, the token type, where the text begins and ends, and the level of confidence that Amazon Comprehend has that the token is correct. For a list of token types, see <a>how-syntax</a>.</p>"
       }
     },
     "ListSentimentDetectionJobsRequest": {
@@ -597,6 +648,18 @@
         "StartSentimentDetectionJobRequest$OutputDataConfig": "<p>Specifies where to send the output files. </p>",
         "StartTopicsDetectionJobRequest$OutputDataConfig": "<p>Specifies where to send the output files. The output is a compressed archive with two files, <code>topic-terms.csv</code> that lists the terms associated with each topic, and <code>doc-topics.csv</code> that lists the documents associated with each topic</p>",
         "TopicsDetectionJobProperties$OutputDataConfig": "<p>The output data configuration supplied when you created the topic detection job.</p>"
+      }
+    },
+    "PartOfSpeechTag": {
+      "base": "<p>Identifies the part of speech represented by the token and gives the confidence that Amazon Comprehend has that the part of speech was correctly identified. For more information about the parts of speech that Amazon Comprehend can identify, see <a>how-syntax</a>.</p>",
+      "refs": {
+        "SyntaxToken$PartOfSpeech": "<p>Provides the part of speech label and the confidence level that Amazon Comprehend has that the part of speech was correctly identified. For more information, see <a>how-syntax</a>.</p>"
+      }
+    },
+    "PartOfSpeechTagType": {
+      "base": null,
+      "refs": {
+        "PartOfSpeechTag$Tag": "<p>Identifies the part of speech that the token represents.</p>"
       }
     },
     "S3Uri": {
@@ -739,6 +802,7 @@
         "DetectEntitiesRequest$Text": "<p>A UTF-8 text string. Each string must contain fewer that 5,000 bytes of UTF-8 encoded characters.</p>",
         "DetectKeyPhrasesRequest$Text": "<p>A UTF-8 text string. Each string must contain fewer that 5,000 bytes of UTF-8 encoded characters.</p>",
         "DetectSentimentRequest$Text": "<p>A UTF-8 text string. Each string must contain fewer that 5,000 bytes of UTF-8 encoded characters.</p>",
+        "DetectSyntaxRequest$Text": "<p>A UTF-8 string. Each string must contain fewer that 5,000 bytes of UTF encoded characters.</p>",
         "DominantLanguage$LanguageCode": "<p>The RFC 5646 language code for the dominant language. For more information about RFC 5646, see <a href=\"https://tools.ietf.org/html/rfc5646\">Tags for Identifying Languages</a> on the <i>IETF Tools</i> web site.</p>",
         "Entity$Text": "<p>The text of the entity.</p>",
         "InternalServerException$Message": null,
@@ -757,6 +821,7 @@
         "ListTopicsDetectionJobsRequest$NextToken": "<p>Identifies the next page of results to return.</p>",
         "ListTopicsDetectionJobsResponse$NextToken": "<p>Identifies the next page of results to return.</p>",
         "StringList$member": null,
+        "SyntaxToken$Text": "<p>The word that was recognized in the source text.</p>",
         "TextSizeLimitExceededException$Message": null,
         "TooManyRequestsException$Message": null,
         "UnsupportedLanguageException$Message": null
@@ -768,7 +833,21 @@
         "BatchDetectDominantLanguageRequest$TextList": "<p>A list containing the text of the input documents. The list can contain a maximum of 25 documents. Each document should contain at least 20 characters and must contain fewer than 5,000 bytes of UTF-8 encoded characters.</p>",
         "BatchDetectEntitiesRequest$TextList": "<p>A list containing the text of the input documents. The list can contain a maximum of 25 documents. Each document must contain fewer than 5,000 bytes of UTF-8 encoded characters.</p>",
         "BatchDetectKeyPhrasesRequest$TextList": "<p>A list containing the text of the input documents. The list can contain a maximum of 25 documents. Each document must contain fewer that 5,000 bytes of UTF-8 encoded characters.</p>",
-        "BatchDetectSentimentRequest$TextList": "<p>A list containing the text of the input documents. The list can contain a maximum of 25 documents. Each document must contain fewer that 5,000 bytes of UTF-8 encoded characters.</p>"
+        "BatchDetectSentimentRequest$TextList": "<p>A list containing the text of the input documents. The list can contain a maximum of 25 documents. Each document must contain fewer that 5,000 bytes of UTF-8 encoded characters.</p>",
+        "BatchDetectSyntaxRequest$TextList": "<p>A list containing the text of the input documents. The list can contain a maximum of 25 documents. Each document must contain fewer that 5,000 bytes of UTF-8 encoded characters.</p>"
+      }
+    },
+    "SyntaxLanguageCode": {
+      "base": null,
+      "refs": {
+        "BatchDetectSyntaxRequest$LanguageCode": "<p>The language of the input documents. You can specify English (\"en\") or Spanish (\"es\"). All documents must be in the same language.</p>",
+        "DetectSyntaxRequest$LanguageCode": "<p>The language code of the input documents. You can specify English (\"en\") or Spanish (\"es\").</p>"
+      }
+    },
+    "SyntaxToken": {
+      "base": "<p>Represents a work in the input text that was recognized and assigned a part of speech. There is one syntax token record for each word in the source text.</p>",
+      "refs": {
+        "ListOfSyntaxTokens$member": null
       }
     },
     "TextSizeLimitExceededException": {

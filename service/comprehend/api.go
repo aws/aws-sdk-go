@@ -388,6 +388,103 @@ func (c *Comprehend) BatchDetectSentimentWithContext(ctx aws.Context, input *Bat
 	return out, req.Send()
 }
 
+const opBatchDetectSyntax = "BatchDetectSyntax"
+
+// BatchDetectSyntaxRequest generates a "aws/request.Request" representing the
+// client's request for the BatchDetectSyntax operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchDetectSyntax for more information on using the BatchDetectSyntax
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the BatchDetectSyntaxRequest method.
+//    req, resp := client.BatchDetectSyntaxRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/BatchDetectSyntax
+func (c *Comprehend) BatchDetectSyntaxRequest(input *BatchDetectSyntaxInput) (req *request.Request, output *BatchDetectSyntaxOutput) {
+	op := &request.Operation{
+		Name:       opBatchDetectSyntax,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &BatchDetectSyntaxInput{}
+	}
+
+	output = &BatchDetectSyntaxOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchDetectSyntax API operation for Amazon Comprehend.
+//
+// Inspects the text of a batch of documents for the syntax and part of speech
+// of the words in the document and returns information about them. For more
+// information, see how-syntax.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation BatchDetectSyntax for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is invalid.
+//
+//   * ErrCodeTextSizeLimitExceededException "TextSizeLimitExceededException"
+//   The size of the input text exceeds the limit. Use a smaller document.
+//
+//   * ErrCodeUnsupportedLanguageException "UnsupportedLanguageException"
+//   Amazon Comprehend can't process the language of the input text. For all APIs
+//   except DetectDominantLanguage, Amazon Comprehend accepts only English or
+//   Spanish text. For the DetectDominantLanguage API, Amazon Comprehend detects
+//   100 languages. For a list of languages, see how-languages
+//
+//   * ErrCodeBatchSizeLimitExceededException "BatchSizeLimitExceededException"
+//   The number of documents in the request exceeds the limit of 25. Try your
+//   request again with fewer documents.
+//
+//   * ErrCodeInternalServerException "InternalServerException"
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/BatchDetectSyntax
+func (c *Comprehend) BatchDetectSyntax(input *BatchDetectSyntaxInput) (*BatchDetectSyntaxOutput, error) {
+	req, out := c.BatchDetectSyntaxRequest(input)
+	return out, req.Send()
+}
+
+// BatchDetectSyntaxWithContext is the same as BatchDetectSyntax with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchDetectSyntax for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) BatchDetectSyntaxWithContext(ctx aws.Context, input *BatchDetectSyntaxInput, opts ...request.Option) (*BatchDetectSyntaxOutput, error) {
+	req, out := c.BatchDetectSyntaxRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeDominantLanguageDetectionJob = "DescribeDominantLanguageDetectionJob"
 
 // DescribeDominantLanguageDetectionJobRequest generates a "aws/request.Request" representing the
@@ -1190,6 +1287,98 @@ func (c *Comprehend) DetectSentiment(input *DetectSentimentInput) (*DetectSentim
 // for more information on using Contexts.
 func (c *Comprehend) DetectSentimentWithContext(ctx aws.Context, input *DetectSentimentInput, opts ...request.Option) (*DetectSentimentOutput, error) {
 	req, out := c.DetectSentimentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDetectSyntax = "DetectSyntax"
+
+// DetectSyntaxRequest generates a "aws/request.Request" representing the
+// client's request for the DetectSyntax operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DetectSyntax for more information on using the DetectSyntax
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DetectSyntaxRequest method.
+//    req, resp := client.DetectSyntaxRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DetectSyntax
+func (c *Comprehend) DetectSyntaxRequest(input *DetectSyntaxInput) (req *request.Request, output *DetectSyntaxOutput) {
+	op := &request.Operation{
+		Name:       opDetectSyntax,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DetectSyntaxInput{}
+	}
+
+	output = &DetectSyntaxOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DetectSyntax API operation for Amazon Comprehend.
+//
+// Inspects text for syntax and the part of speech of words in the document.
+// For more information, how-syntax.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation DetectSyntax for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is invalid.
+//
+//   * ErrCodeTextSizeLimitExceededException "TextSizeLimitExceededException"
+//   The size of the input text exceeds the limit. Use a smaller document.
+//
+//   * ErrCodeUnsupportedLanguageException "UnsupportedLanguageException"
+//   Amazon Comprehend can't process the language of the input text. For all APIs
+//   except DetectDominantLanguage, Amazon Comprehend accepts only English or
+//   Spanish text. For the DetectDominantLanguage API, Amazon Comprehend detects
+//   100 languages. For a list of languages, see how-languages
+//
+//   * ErrCodeInternalServerException "InternalServerException"
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DetectSyntax
+func (c *Comprehend) DetectSyntax(input *DetectSyntaxInput) (*DetectSyntaxOutput, error) {
+	req, out := c.DetectSyntaxRequest(input)
+	return out, req.Send()
+}
+
+// DetectSyntaxWithContext is the same as DetectSyntax with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DetectSyntax for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) DetectSyntaxWithContext(ctx aws.Context, input *DetectSyntaxInput, opts ...request.Option) (*DetectSyntaxOutput, error) {
+	req, out := c.DetectSyntaxRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2396,14 +2585,16 @@ func (c *Comprehend) StopDominantLanguageDetectionJobRequest(input *StopDominant
 //
 // Stops a dominant language detection job in progress.
 //
-// If the job state is IN_PROGRESS the job will be marked for termination and
-// put into the STOPPING state.
+// If the job state is IN_PROGRESS the job is marked for termination and put
+// into the STOP_REQUESTED state. If the job completes before it can be stopped,
+// it is put into the COMPLETED state; otherwise the job is stopped and put
+// into the STOPPED state.
 //
 // If the job is in the COMPLETED or FAILED state when you call the StopDominantLanguageDetectionJob
-// operation, the operation will return a 400 Internal Request Exception.
+// operation, the operation returns a 400 Internal Request Exception.
 //
-// When a job is stopped, any document that has already been processed will
-// be written to the output location.
+// When a job is stopped, any documents already processed are written to the
+// output location.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2490,14 +2681,16 @@ func (c *Comprehend) StopEntitiesDetectionJobRequest(input *StopEntitiesDetectio
 //
 // Stops an entities detection job in progress.
 //
-// If the job state is IN_PROGRESS the job will be marked for termination and
-// put into the STOPPING state.
+// If the job state is IN_PROGRESS the job is marked for termination and put
+// into the STOP_REQUESTED state. If the job completes before it can be stopped,
+// it is put into the COMPLETED state; otherwise the job is stopped and put
+// into the STOPPED state.
 //
 // If the job is in the COMPLETED or FAILED state when you call the StopDominantLanguageDetectionJob
-// operation, the operation will return a 400 Internal Request Exception.
+// operation, the operation returns a 400 Internal Request Exception.
 //
-// When a job is stopped, any document that has already been processed will
-// be written to the output location.
+// When a job is stopped, any documents already processed are written to the
+// output location.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2584,14 +2777,16 @@ func (c *Comprehend) StopKeyPhrasesDetectionJobRequest(input *StopKeyPhrasesDete
 //
 // Stops a key phrases detection job in progress.
 //
-// If the job state is IN_PROGRESS the job will be marked for termination and
-// put into the STOPPING state.
+// If the job state is IN_PROGRESS the job is marked for termination and put
+// into the STOP_REQUESTED state. If the job completes before it can be stopped,
+// it is put into the COMPLETED state; otherwise the job is stopped and put
+// into the STOPPED state.
 //
 // If the job is in the COMPLETED or FAILED state when you call the StopDominantLanguageDetectionJob
-// operation, the operation will return a 400 Internal Request Exception.
+// operation, the operation returns a 400 Internal Request Exception.
 //
-// When a job is stopped, any document that has already been processed will
-// be written to the output location.
+// When a job is stopped, any documents already processed are written to the
+// output location.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2678,14 +2873,16 @@ func (c *Comprehend) StopSentimentDetectionJobRequest(input *StopSentimentDetect
 //
 // Stops a sentiment detection job in progress.
 //
-// If the job state is IN_PROGRESS the job will be marked for termination and
-// put into the STOPPING state.
+// If the job state is IN_PROGRESS the job is marked for termination and put
+// into the STOP_REQUESTED state. If the job completes before it can be stopped,
+// it is put into the COMPLETED state; otherwise the job is be stopped and put
+// into the STOPPED state.
 //
 // If the job is in the COMPLETED or FAILED state when you call the StopDominantLanguageDetectionJob
-// operation, the operation will return a 400 Internal Request Exception.
+// operation, the operation returns a 400 Internal Request Exception.
 //
-// When a job is stopped, any document that has already been processed will
-// be written to the output location.
+// When a job is stopped, any documents already processed are written to the
+// output location.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3242,6 +3439,137 @@ func (s *BatchDetectSentimentOutput) SetErrorList(v []*BatchItemError) *BatchDet
 
 // SetResultList sets the ResultList field's value.
 func (s *BatchDetectSentimentOutput) SetResultList(v []*BatchDetectSentimentItemResult) *BatchDetectSentimentOutput {
+	s.ResultList = v
+	return s
+}
+
+type BatchDetectSyntaxInput struct {
+	_ struct{} `type:"structure"`
+
+	// The language of the input documents. You can specify English ("en") or Spanish
+	// ("es"). All documents must be in the same language.
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"SyntaxLanguageCode"`
+
+	// A list containing the text of the input documents. The list can contain a
+	// maximum of 25 documents. Each document must contain fewer that 5,000 bytes
+	// of UTF-8 encoded characters.
+	//
+	// TextList is a required field
+	TextList []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s BatchDetectSyntaxInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchDetectSyntaxInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchDetectSyntaxInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchDetectSyntaxInput"}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.TextList == nil {
+		invalidParams.Add(request.NewErrParamRequired("TextList"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *BatchDetectSyntaxInput) SetLanguageCode(v string) *BatchDetectSyntaxInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetTextList sets the TextList field's value.
+func (s *BatchDetectSyntaxInput) SetTextList(v []*string) *BatchDetectSyntaxInput {
+	s.TextList = v
+	return s
+}
+
+// The result of calling the operation. The operation returns one object that
+// is successfully processed by the operation.
+type BatchDetectSyntaxItemResult struct {
+	_ struct{} `type:"structure"`
+
+	// The zero-based index of the document in the input list.
+	Index *int64 `type:"integer"`
+
+	// The syntax tokens for the words in the document, one token for each word.
+	SyntaxTokens []*SyntaxToken `type:"list"`
+}
+
+// String returns the string representation
+func (s BatchDetectSyntaxItemResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchDetectSyntaxItemResult) GoString() string {
+	return s.String()
+}
+
+// SetIndex sets the Index field's value.
+func (s *BatchDetectSyntaxItemResult) SetIndex(v int64) *BatchDetectSyntaxItemResult {
+	s.Index = &v
+	return s
+}
+
+// SetSyntaxTokens sets the SyntaxTokens field's value.
+func (s *BatchDetectSyntaxItemResult) SetSyntaxTokens(v []*SyntaxToken) *BatchDetectSyntaxItemResult {
+	s.SyntaxTokens = v
+	return s
+}
+
+type BatchDetectSyntaxOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list containing one object for each document that contained an error. The
+	// results are sorted in ascending order by the Index field and match the order
+	// of the documents in the input list. If there are no errors in the batch,
+	// the ErrorList is empty.
+	//
+	// ErrorList is a required field
+	ErrorList []*BatchItemError `type:"list" required:"true"`
+
+	// A list of objects containing the results of the operation. The results are
+	// sorted in ascending order by the Index field and match the order of the documents
+	// in the input list. If all of the documents contain an error, the ResultList
+	// is empty.
+	//
+	// ResultList is a required field
+	ResultList []*BatchDetectSyntaxItemResult `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s BatchDetectSyntaxOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchDetectSyntaxOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrorList sets the ErrorList field's value.
+func (s *BatchDetectSyntaxOutput) SetErrorList(v []*BatchItemError) *BatchDetectSyntaxOutput {
+	s.ErrorList = v
+	return s
+}
+
+// SetResultList sets the ResultList field's value.
+func (s *BatchDetectSyntaxOutput) SetResultList(v []*BatchDetectSyntaxItemResult) *BatchDetectSyntaxOutput {
 	s.ResultList = v
 	return s
 }
@@ -3943,6 +4271,89 @@ func (s *DetectSentimentOutput) SetSentimentScore(v *SentimentScore) *DetectSent
 	return s
 }
 
+type DetectSyntaxInput struct {
+	_ struct{} `type:"structure"`
+
+	// The language code of the input documents. You can specify English ("en")
+	// or Spanish ("es").
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"SyntaxLanguageCode"`
+
+	// A UTF-8 string. Each string must contain fewer that 5,000 bytes of UTF encoded
+	// characters.
+	//
+	// Text is a required field
+	Text *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DetectSyntaxInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DetectSyntaxInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DetectSyntaxInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DetectSyntaxInput"}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.Text == nil {
+		invalidParams.Add(request.NewErrParamRequired("Text"))
+	}
+	if s.Text != nil && len(*s.Text) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Text", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *DetectSyntaxInput) SetLanguageCode(v string) *DetectSyntaxInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *DetectSyntaxInput) SetText(v string) *DetectSyntaxInput {
+	s.Text = &v
+	return s
+}
+
+type DetectSyntaxOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A collection of syntax tokens describing the text. For each token, the response
+	// provides the text, the token type, where the text begins and ends, and the
+	// level of confidence that Amazon Comprehend has that the token is correct.
+	// For a list of token types, see how-syntax.
+	SyntaxTokens []*SyntaxToken `type:"list"`
+}
+
+// String returns the string representation
+func (s DetectSyntaxOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DetectSyntaxOutput) GoString() string {
+	return s.String()
+}
+
+// SetSyntaxTokens sets the SyntaxTokens field's value.
+func (s *DetectSyntaxOutput) SetSyntaxTokens(v []*SyntaxToken) *DetectSyntaxOutput {
+	s.SyntaxTokens = v
+	return s
+}
+
 // Returns the code for the dominant language in the input text and the level
 // of confidence that Amazon Comprehend has in the accuracy of the detection.
 type DominantLanguage struct {
@@ -4054,6 +4465,10 @@ func (s *DominantLanguageDetectionJobFilter) SetSubmitTimeBefore(v time.Time) *D
 type DominantLanguageDetectionJobProperties struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) that gives Amazon Comprehend read access to
+	// your input data.
+	DataAccessRoleArn *string `type:"string"`
+
 	// The time that the dominant language detection job completed.
 	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
@@ -4090,6 +4505,12 @@ func (s DominantLanguageDetectionJobProperties) String() string {
 // GoString returns the string representation
 func (s DominantLanguageDetectionJobProperties) GoString() string {
 	return s.String()
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *DominantLanguageDetectionJobProperties) SetDataAccessRoleArn(v string) *DominantLanguageDetectionJobProperties {
+	s.DataAccessRoleArn = &v
+	return s
 }
 
 // SetEndTime sets the EndTime field's value.
@@ -4214,6 +4635,10 @@ func (s *EntitiesDetectionJobFilter) SetSubmitTimeBefore(v time.Time) *EntitiesD
 type EntitiesDetectionJobProperties struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) that gives Amazon Comprehend read access to
+	// your input data.
+	DataAccessRoleArn *string `type:"string"`
+
 	// The time that the entities detection job completed
 	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
@@ -4253,6 +4678,12 @@ func (s EntitiesDetectionJobProperties) String() string {
 // GoString returns the string representation
 func (s EntitiesDetectionJobProperties) GoString() string {
 	return s.String()
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *EntitiesDetectionJobProperties) SetDataAccessRoleArn(v string) *EntitiesDetectionJobProperties {
+	s.DataAccessRoleArn = &v
+	return s
 }
 
 // SetEndTime sets the EndTime field's value.
@@ -4572,6 +5003,10 @@ func (s *KeyPhrasesDetectionJobFilter) SetSubmitTimeBefore(v time.Time) *KeyPhra
 type KeyPhrasesDetectionJobProperties struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) that gives Amazon Comprehend read access to
+	// your input data.
+	DataAccessRoleArn *string `type:"string"`
+
 	// The time that the key phrases detection job completed.
 	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
@@ -4611,6 +5046,12 @@ func (s KeyPhrasesDetectionJobProperties) String() string {
 // GoString returns the string representation
 func (s KeyPhrasesDetectionJobProperties) GoString() string {
 	return s.String()
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *KeyPhrasesDetectionJobProperties) SetDataAccessRoleArn(v string) *KeyPhrasesDetectionJobProperties {
+	s.DataAccessRoleArn = &v
+	return s
 }
 
 // SetEndTime sets the EndTime field's value.
@@ -5195,6 +5636,43 @@ func (s *OutputDataConfig) SetS3Uri(v string) *OutputDataConfig {
 	return s
 }
 
+// Identifies the part of speech represented by the token and gives the confidence
+// that Amazon Comprehend has that the part of speech was correctly identified.
+// For more information about the parts of speech that Amazon Comprehend can
+// identify, see how-syntax.
+type PartOfSpeechTag struct {
+	_ struct{} `type:"structure"`
+
+	// The confidence that Amazon Comprehend has that the part of speech was correctly
+	// identified.
+	Score *float64 `type:"float"`
+
+	// Identifies the part of speech that the token represents.
+	Tag *string `type:"string" enum:"PartOfSpeechTagType"`
+}
+
+// String returns the string representation
+func (s PartOfSpeechTag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PartOfSpeechTag) GoString() string {
+	return s.String()
+}
+
+// SetScore sets the Score field's value.
+func (s *PartOfSpeechTag) SetScore(v float64) *PartOfSpeechTag {
+	s.Score = &v
+	return s
+}
+
+// SetTag sets the Tag field's value.
+func (s *PartOfSpeechTag) SetTag(v string) *PartOfSpeechTag {
+	s.Tag = &v
+	return s
+}
+
 // Provides information for filtering a list of dominant language detection
 // jobs. For more information, see the operation.
 type SentimentDetectionJobFilter struct {
@@ -5269,6 +5747,10 @@ func (s *SentimentDetectionJobFilter) SetSubmitTimeBefore(v time.Time) *Sentimen
 type SentimentDetectionJobProperties struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) that gives Amazon Comprehend read access to
+	// your input data.
+	DataAccessRoleArn *string `type:"string"`
+
 	// The time that the sentiment detection job ended.
 	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
@@ -5308,6 +5790,12 @@ func (s SentimentDetectionJobProperties) String() string {
 // GoString returns the string representation
 func (s SentimentDetectionJobProperties) GoString() string {
 	return s.String()
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *SentimentDetectionJobProperties) SetDataAccessRoleArn(v string) *SentimentDetectionJobProperties {
+	s.DataAccessRoleArn = &v
+	return s
 }
 
 // SetEndTime sets the EndTime field's value.
@@ -5427,8 +5915,10 @@ type StartDominantLanguageDetectionJobInput struct {
 	// token, Amazon Comprehend generates one.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role
-	// that grants Amazon Comprehend read access to your input data.
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that grants Amazon Comprehend read access to your input data.
+	// For more information, see https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions
+	// (https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions).
 	//
 	// DataAccessRoleArn is a required field
 	DataAccessRoleArn *string `type:"string" required:"true"`
@@ -5570,8 +6060,10 @@ type StartEntitiesDetectionJobInput struct {
 	// token, Amazon Comprehend generates one.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role
-	// that grants Amazon Comprehend read access to your input data.
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that grants Amazon Comprehend read access to your input data.
+	// For more information, see https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions
+	// (https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions).
 	//
 	// DataAccessRoleArn is a required field
 	DataAccessRoleArn *string `type:"string" required:"true"`
@@ -5728,8 +6220,10 @@ type StartKeyPhrasesDetectionJobInput struct {
 	// token, Amazon Comprehend generates one.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role
-	// that grants Amazon Comprehend read access to your input data.
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that grants Amazon Comprehend read access to your input data.
+	// For more information, see https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions
+	// (https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions).
 	//
 	// DataAccessRoleArn is a required field
 	DataAccessRoleArn *string `type:"string" required:"true"`
@@ -5886,8 +6380,10 @@ type StartSentimentDetectionJobInput struct {
 	// token, Amazon Comprehend generates one.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role
-	// that grants Amazon Comprehend read access to your input data.
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that grants Amazon Comprehend read access to your input data.
+	// For more information, see https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions
+	// (https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions).
 	//
 	// DataAccessRoleArn is a required field
 	DataAccessRoleArn *string `type:"string" required:"true"`
@@ -6046,6 +6542,8 @@ type StartTopicsDetectionJobInput struct {
 
 	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
 	// (IAM) role that grants Amazon Comprehend read access to your input data.
+	// For more information, see https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions
+	// (https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions).
 	//
 	// DataAccessRoleArn is a required field
 	DataAccessRoleArn *string `type:"string" required:"true"`
@@ -6242,8 +6740,8 @@ type StopDominantLanguageDetectionJobOutput struct {
 	// The identifier of the dominant language detection job to stop.
 	JobId *string `min:"1" type:"string"`
 
-	// Either STOPPING if the job is currently running, or STOPPED if the job was
-	// previously stopped with the StopDominantLanguageDetectionJob operation.
+	// Either STOP_REQUESTED if the job is currently running, or STOPPED if the
+	// job was previously stopped with the StopDominantLanguageDetectionJob operation.
 	JobStatus *string `type:"string" enum:"JobStatus"`
 }
 
@@ -6316,8 +6814,8 @@ type StopEntitiesDetectionJobOutput struct {
 	// The identifier of the entities detection job to stop.
 	JobId *string `min:"1" type:"string"`
 
-	// Either STOPPING if the job is currently running, or STOPPED if the job was
-	// previously stopped with the StopEntitiesDetectionJob operation.
+	// Either STOP_REQUESTED if the job is currently running, or STOPPED if the
+	// job was previously stopped with the StopEntitiesDetectionJob operation.
 	JobStatus *string `type:"string" enum:"JobStatus"`
 }
 
@@ -6390,8 +6888,8 @@ type StopKeyPhrasesDetectionJobOutput struct {
 	// The identifier of the key phrases detection job to stop.
 	JobId *string `min:"1" type:"string"`
 
-	// Either STOPPING if the job is currently running, or STOPPED if the job was
-	// previously stopped with the StopKeyPhrasesDetectionJob operation.
+	// Either STOP_REQUESTED if the job is currently running, or STOPPED if the
+	// job was previously stopped with the StopKeyPhrasesDetectionJob operation.
 	JobStatus *string `type:"string" enum:"JobStatus"`
 }
 
@@ -6464,8 +6962,8 @@ type StopSentimentDetectionJobOutput struct {
 	// The identifier of the sentiment detection job to stop.
 	JobId *string `min:"1" type:"string"`
 
-	// Either STOPPING if the job is currently running, or STOPPED if the job was
-	// previously stopped with the StopSentimentDetectionJob operation.
+	// Either STOP_REQUESTED if the job is currently running, or STOPPED if the
+	// job was previously stopped with the StopSentimentDetectionJob operation.
 	JobStatus *string `type:"string" enum:"JobStatus"`
 }
 
@@ -6488,6 +6986,71 @@ func (s *StopSentimentDetectionJobOutput) SetJobId(v string) *StopSentimentDetec
 // SetJobStatus sets the JobStatus field's value.
 func (s *StopSentimentDetectionJobOutput) SetJobStatus(v string) *StopSentimentDetectionJobOutput {
 	s.JobStatus = &v
+	return s
+}
+
+// Represents a work in the input text that was recognized and assigned a part
+// of speech. There is one syntax token record for each word in the source text.
+type SyntaxToken struct {
+	_ struct{} `type:"structure"`
+
+	// The zero-based offset from the beginning of the source text to the first
+	// character in the word.
+	BeginOffset *int64 `type:"integer"`
+
+	// The zero-based offset from the beginning of the source text to the last character
+	// in the word.
+	EndOffset *int64 `type:"integer"`
+
+	// Provides the part of speech label and the confidence level that Amazon Comprehend
+	// has that the part of speech was correctly identified. For more information,
+	// see how-syntax.
+	PartOfSpeech *PartOfSpeechTag `type:"structure"`
+
+	// The word that was recognized in the source text.
+	Text *string `min:"1" type:"string"`
+
+	// A unique identifier for a token.
+	TokenId *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s SyntaxToken) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SyntaxToken) GoString() string {
+	return s.String()
+}
+
+// SetBeginOffset sets the BeginOffset field's value.
+func (s *SyntaxToken) SetBeginOffset(v int64) *SyntaxToken {
+	s.BeginOffset = &v
+	return s
+}
+
+// SetEndOffset sets the EndOffset field's value.
+func (s *SyntaxToken) SetEndOffset(v int64) *SyntaxToken {
+	s.EndOffset = &v
+	return s
+}
+
+// SetPartOfSpeech sets the PartOfSpeech field's value.
+func (s *SyntaxToken) SetPartOfSpeech(v *PartOfSpeechTag) *SyntaxToken {
+	s.PartOfSpeech = v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *SyntaxToken) SetText(v string) *SyntaxToken {
+	s.Text = &v
+	return s
+}
+
+// SetTokenId sets the TokenId field's value.
+func (s *SyntaxToken) SetTokenId(v int64) *SyntaxToken {
+	s.TokenId = &v
 	return s
 }
 
@@ -6726,6 +7289,59 @@ const (
 )
 
 const (
+	// PartOfSpeechTagTypeAdj is a PartOfSpeechTagType enum value
+	PartOfSpeechTagTypeAdj = "ADJ"
+
+	// PartOfSpeechTagTypeAdp is a PartOfSpeechTagType enum value
+	PartOfSpeechTagTypeAdp = "ADP"
+
+	// PartOfSpeechTagTypeAdv is a PartOfSpeechTagType enum value
+	PartOfSpeechTagTypeAdv = "ADV"
+
+	// PartOfSpeechTagTypeAux is a PartOfSpeechTagType enum value
+	PartOfSpeechTagTypeAux = "AUX"
+
+	// PartOfSpeechTagTypeConj is a PartOfSpeechTagType enum value
+	PartOfSpeechTagTypeConj = "CONJ"
+
+	// PartOfSpeechTagTypeDet is a PartOfSpeechTagType enum value
+	PartOfSpeechTagTypeDet = "DET"
+
+	// PartOfSpeechTagTypeIntj is a PartOfSpeechTagType enum value
+	PartOfSpeechTagTypeIntj = "INTJ"
+
+	// PartOfSpeechTagTypeNoun is a PartOfSpeechTagType enum value
+	PartOfSpeechTagTypeNoun = "NOUN"
+
+	// PartOfSpeechTagTypeNum is a PartOfSpeechTagType enum value
+	PartOfSpeechTagTypeNum = "NUM"
+
+	// PartOfSpeechTagTypeO is a PartOfSpeechTagType enum value
+	PartOfSpeechTagTypeO = "O"
+
+	// PartOfSpeechTagTypePart is a PartOfSpeechTagType enum value
+	PartOfSpeechTagTypePart = "PART"
+
+	// PartOfSpeechTagTypePron is a PartOfSpeechTagType enum value
+	PartOfSpeechTagTypePron = "PRON"
+
+	// PartOfSpeechTagTypePropn is a PartOfSpeechTagType enum value
+	PartOfSpeechTagTypePropn = "PROPN"
+
+	// PartOfSpeechTagTypePunct is a PartOfSpeechTagType enum value
+	PartOfSpeechTagTypePunct = "PUNCT"
+
+	// PartOfSpeechTagTypeSconj is a PartOfSpeechTagType enum value
+	PartOfSpeechTagTypeSconj = "SCONJ"
+
+	// PartOfSpeechTagTypeSym is a PartOfSpeechTagType enum value
+	PartOfSpeechTagTypeSym = "SYM"
+
+	// PartOfSpeechTagTypeVerb is a PartOfSpeechTagType enum value
+	PartOfSpeechTagTypeVerb = "VERB"
+)
+
+const (
 	// SentimentTypePositive is a SentimentType enum value
 	SentimentTypePositive = "POSITIVE"
 
@@ -6737,4 +7353,9 @@ const (
 
 	// SentimentTypeMixed is a SentimentType enum value
 	SentimentTypeMixed = "MIXED"
+)
+
+const (
+	// SyntaxLanguageCodeEn is a SyntaxLanguageCode enum value
+	SyntaxLanguageCodeEn = "en"
 )
