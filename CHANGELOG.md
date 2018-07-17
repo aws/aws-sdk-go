@@ -1,3 +1,15 @@
+Release v1.14.28 (2018-07-17)
+===
+
+### Service Client Updates
+* `service/comprehend`: Updates service API and documentation
+* `service/polly`: Updates service API, documentation, and paginators
+  * Amazon Polly adds new API for asynchronous synthesis to S3
+* `service/sagemaker`: Updates service API, documentation, and paginators
+  * Amazon SageMaker has added the capability for customers to run fully-managed, high-throughput batch transform machine learning models with a simple API call. Batch Transform is ideal for high-throughput workloads and predictions in non-real-time scenarios where data is accumulated over a period of time for offline processing.
+* `service/snowball`: Updates service API and documentation
+  * AWS Snowball Edge announces the availability of Amazon EC2 compute instances that run on the device. AWS Snowball Edge is a 100-TB ruggedized device built to transfer data into and out of AWS with optional support for local Lambda-based compute functions. With this feature, developers and administrators can run their EC2-based applications on the device providing them with an end to end vertically integrated AWS experience. Designed for data pre-processing, compression, machine learning, and data collection applications, these new instances, called SBE1 instances, feature 1.8 GHz Intel Xeon D processors up to 16 vCPUs, and 32 GB of memory. The SBE1 instance type is available in four sizes and multiple instances can be run on the device at the same time. Customers can now run compute instances using the same Amazon Machine Images (AMIs) that are used in Amazon EC2.
+
 Release v1.14.27 (2018-07-13)
 ===
 
