@@ -76,6 +76,10 @@ type ComprehendAPI interface {
 	BatchDetectSentimentWithContext(aws.Context, *comprehend.BatchDetectSentimentInput, ...request.Option) (*comprehend.BatchDetectSentimentOutput, error)
 	BatchDetectSentimentRequest(*comprehend.BatchDetectSentimentInput) (*request.Request, *comprehend.BatchDetectSentimentOutput)
 
+	BatchDetectSyntax(*comprehend.BatchDetectSyntaxInput) (*comprehend.BatchDetectSyntaxOutput, error)
+	BatchDetectSyntaxWithContext(aws.Context, *comprehend.BatchDetectSyntaxInput, ...request.Option) (*comprehend.BatchDetectSyntaxOutput, error)
+	BatchDetectSyntaxRequest(*comprehend.BatchDetectSyntaxInput) (*request.Request, *comprehend.BatchDetectSyntaxOutput)
+
 	DescribeDominantLanguageDetectionJob(*comprehend.DescribeDominantLanguageDetectionJobInput) (*comprehend.DescribeDominantLanguageDetectionJobOutput, error)
 	DescribeDominantLanguageDetectionJobWithContext(aws.Context, *comprehend.DescribeDominantLanguageDetectionJobInput, ...request.Option) (*comprehend.DescribeDominantLanguageDetectionJobOutput, error)
 	DescribeDominantLanguageDetectionJobRequest(*comprehend.DescribeDominantLanguageDetectionJobInput) (*request.Request, *comprehend.DescribeDominantLanguageDetectionJobOutput)
@@ -111,6 +115,10 @@ type ComprehendAPI interface {
 	DetectSentiment(*comprehend.DetectSentimentInput) (*comprehend.DetectSentimentOutput, error)
 	DetectSentimentWithContext(aws.Context, *comprehend.DetectSentimentInput, ...request.Option) (*comprehend.DetectSentimentOutput, error)
 	DetectSentimentRequest(*comprehend.DetectSentimentInput) (*request.Request, *comprehend.DetectSentimentOutput)
+
+	DetectSyntax(*comprehend.DetectSyntaxInput) (*comprehend.DetectSyntaxOutput, error)
+	DetectSyntaxWithContext(aws.Context, *comprehend.DetectSyntaxInput, ...request.Option) (*comprehend.DetectSyntaxOutput, error)
+	DetectSyntaxRequest(*comprehend.DetectSyntaxInput) (*request.Request, *comprehend.DetectSyntaxOutput)
 
 	ListDominantLanguageDetectionJobs(*comprehend.ListDominantLanguageDetectionJobsInput) (*comprehend.ListDominantLanguageDetectionJobsOutput, error)
 	ListDominantLanguageDetectionJobsWithContext(aws.Context, *comprehend.ListDominantLanguageDetectionJobsInput, ...request.Option) (*comprehend.ListDominantLanguageDetectionJobsOutput, error)

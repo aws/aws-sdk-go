@@ -955,6 +955,135 @@ func (s *EC2Specification) SetOfferingClass(v string) *EC2Specification {
 	return s
 }
 
+// Details about the ES instances that AWS recommends that you purchase.
+type ESInstanceDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Whether the recommendation is for a current generation instance.
+	CurrentGeneration *bool `type:"boolean"`
+
+	// The class of instance that AWS recommends.
+	InstanceClass *string `type:"string"`
+
+	// The size of instance that AWS recommends.
+	InstanceSize *string `type:"string"`
+
+	// The AWS Region of the recommended reservation.
+	Region *string `type:"string"`
+
+	// Whether the recommended reservation is size flexible.
+	SizeFlexEligible *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s ESInstanceDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ESInstanceDetails) GoString() string {
+	return s.String()
+}
+
+// SetCurrentGeneration sets the CurrentGeneration field's value.
+func (s *ESInstanceDetails) SetCurrentGeneration(v bool) *ESInstanceDetails {
+	s.CurrentGeneration = &v
+	return s
+}
+
+// SetInstanceClass sets the InstanceClass field's value.
+func (s *ESInstanceDetails) SetInstanceClass(v string) *ESInstanceDetails {
+	s.InstanceClass = &v
+	return s
+}
+
+// SetInstanceSize sets the InstanceSize field's value.
+func (s *ESInstanceDetails) SetInstanceSize(v string) *ESInstanceDetails {
+	s.InstanceSize = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *ESInstanceDetails) SetRegion(v string) *ESInstanceDetails {
+	s.Region = &v
+	return s
+}
+
+// SetSizeFlexEligible sets the SizeFlexEligible field's value.
+func (s *ESInstanceDetails) SetSizeFlexEligible(v bool) *ESInstanceDetails {
+	s.SizeFlexEligible = &v
+	return s
+}
+
+// Details about the ElastiCache instances that AWS recommends that you purchase.
+type ElastiCacheInstanceDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Whether the recommendation is for a current generation instance.
+	CurrentGeneration *bool `type:"boolean"`
+
+	// The instance family of the recommended reservation.
+	Family *string `type:"string"`
+
+	// The type of node that AWS recommends.
+	NodeType *string `type:"string"`
+
+	// The description of the recommended reservation.
+	ProductDescription *string `type:"string"`
+
+	// The AWS Region of the recommended reservation.
+	Region *string `type:"string"`
+
+	// Whether the recommended reservation is size flexible.
+	SizeFlexEligible *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s ElastiCacheInstanceDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ElastiCacheInstanceDetails) GoString() string {
+	return s.String()
+}
+
+// SetCurrentGeneration sets the CurrentGeneration field's value.
+func (s *ElastiCacheInstanceDetails) SetCurrentGeneration(v bool) *ElastiCacheInstanceDetails {
+	s.CurrentGeneration = &v
+	return s
+}
+
+// SetFamily sets the Family field's value.
+func (s *ElastiCacheInstanceDetails) SetFamily(v string) *ElastiCacheInstanceDetails {
+	s.Family = &v
+	return s
+}
+
+// SetNodeType sets the NodeType field's value.
+func (s *ElastiCacheInstanceDetails) SetNodeType(v string) *ElastiCacheInstanceDetails {
+	s.NodeType = &v
+	return s
+}
+
+// SetProductDescription sets the ProductDescription field's value.
+func (s *ElastiCacheInstanceDetails) SetProductDescription(v string) *ElastiCacheInstanceDetails {
+	s.ProductDescription = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *ElastiCacheInstanceDetails) SetRegion(v string) *ElastiCacheInstanceDetails {
+	s.Region = &v
+	return s
+}
+
+// SetSizeFlexEligible sets the SizeFlexEligible field's value.
+func (s *ElastiCacheInstanceDetails) SetSizeFlexEligible(v bool) *ElastiCacheInstanceDetails {
+	s.SizeFlexEligible = &v
+	return s
+}
+
 // Use Expression to filter by cost or by usage. There are two patterns:
 //
 //    * Simple dimension values - You can set the dimension name and values
@@ -2212,8 +2341,17 @@ type InstanceDetails struct {
 	// The EC2 instances that AWS recommends that you purchase.
 	EC2InstanceDetails *EC2InstanceDetails `type:"structure"`
 
+	// The Amazon ES instances that AWS recommends that you purchase.
+	ESInstanceDetails *ESInstanceDetails `type:"structure"`
+
+	// The ElastiCache instances that AWS recommends that you purchase.
+	ElastiCacheInstanceDetails *ElastiCacheInstanceDetails `type:"structure"`
+
 	// The RDS instances that AWS recommends that you purchase.
 	RDSInstanceDetails *RDSInstanceDetails `type:"structure"`
+
+	// The Amazon Redshift instances that AWS recommends that you purchase.
+	RedshiftInstanceDetails *RedshiftInstanceDetails `type:"structure"`
 }
 
 // String returns the string representation
@@ -2232,9 +2370,27 @@ func (s *InstanceDetails) SetEC2InstanceDetails(v *EC2InstanceDetails) *Instance
 	return s
 }
 
+// SetESInstanceDetails sets the ESInstanceDetails field's value.
+func (s *InstanceDetails) SetESInstanceDetails(v *ESInstanceDetails) *InstanceDetails {
+	s.ESInstanceDetails = v
+	return s
+}
+
+// SetElastiCacheInstanceDetails sets the ElastiCacheInstanceDetails field's value.
+func (s *InstanceDetails) SetElastiCacheInstanceDetails(v *ElastiCacheInstanceDetails) *InstanceDetails {
+	s.ElastiCacheInstanceDetails = v
+	return s
+}
+
 // SetRDSInstanceDetails sets the RDSInstanceDetails field's value.
 func (s *InstanceDetails) SetRDSInstanceDetails(v *RDSInstanceDetails) *InstanceDetails {
 	s.RDSInstanceDetails = v
+	return s
+}
+
+// SetRedshiftInstanceDetails sets the RedshiftInstanceDetails field's value.
+func (s *InstanceDetails) SetRedshiftInstanceDetails(v *RedshiftInstanceDetails) *InstanceDetails {
+	s.RedshiftInstanceDetails = v
 	return s
 }
 
@@ -2364,6 +2520,67 @@ func (s *RDSInstanceDetails) SetRegion(v string) *RDSInstanceDetails {
 
 // SetSizeFlexEligible sets the SizeFlexEligible field's value.
 func (s *RDSInstanceDetails) SetSizeFlexEligible(v bool) *RDSInstanceDetails {
+	s.SizeFlexEligible = &v
+	return s
+}
+
+// Details about the Amazon Redshift instances that AWS recommends that you
+// purchase.
+type RedshiftInstanceDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Whether the recommendation is for a current generation instance.
+	CurrentGeneration *bool `type:"boolean"`
+
+	// The instance family of the recommended reservation.
+	Family *string `type:"string"`
+
+	// The type of node that AWS recommends.
+	NodeType *string `type:"string"`
+
+	// The AWS Region of the recommended reservation.
+	Region *string `type:"string"`
+
+	// Whether the recommended reservation is size flexible.
+	SizeFlexEligible *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s RedshiftInstanceDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RedshiftInstanceDetails) GoString() string {
+	return s.String()
+}
+
+// SetCurrentGeneration sets the CurrentGeneration field's value.
+func (s *RedshiftInstanceDetails) SetCurrentGeneration(v bool) *RedshiftInstanceDetails {
+	s.CurrentGeneration = &v
+	return s
+}
+
+// SetFamily sets the Family field's value.
+func (s *RedshiftInstanceDetails) SetFamily(v string) *RedshiftInstanceDetails {
+	s.Family = &v
+	return s
+}
+
+// SetNodeType sets the NodeType field's value.
+func (s *RedshiftInstanceDetails) SetNodeType(v string) *RedshiftInstanceDetails {
+	s.NodeType = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *RedshiftInstanceDetails) SetRegion(v string) *RedshiftInstanceDetails {
+	s.Region = &v
+	return s
+}
+
+// SetSizeFlexEligible sets the SizeFlexEligible field's value.
+func (s *RedshiftInstanceDetails) SetSizeFlexEligible(v bool) *RedshiftInstanceDetails {
 	s.SizeFlexEligible = &v
 	return s
 }
@@ -3181,6 +3398,15 @@ const (
 
 	// PaymentOptionAllUpfront is a PaymentOption enum value
 	PaymentOptionAllUpfront = "ALL_UPFRONT"
+
+	// PaymentOptionLightUtilization is a PaymentOption enum value
+	PaymentOptionLightUtilization = "LIGHT_UTILIZATION"
+
+	// PaymentOptionMediumUtilization is a PaymentOption enum value
+	PaymentOptionMediumUtilization = "MEDIUM_UTILIZATION"
+
+	// PaymentOptionHeavyUtilization is a PaymentOption enum value
+	PaymentOptionHeavyUtilization = "HEAVY_UTILIZATION"
 )
 
 const (

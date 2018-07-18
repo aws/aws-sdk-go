@@ -12146,6 +12146,26 @@
         "locationName":"item"
       }
     },
+    "LaunchTemplateCpuOptions":{
+      "type":"structure",
+      "members":{
+        "CoreCount":{
+          "shape":"Integer",
+          "locationName":"coreCount"
+        },
+        "ThreadsPerCore":{
+          "shape":"Integer",
+          "locationName":"threadsPerCore"
+        }
+      }
+    },
+    "LaunchTemplateCpuOptionsRequest":{
+      "type":"structure",
+      "members":{
+        "CoreCount":{"shape":"Integer"},
+        "ThreadsPerCore":{"shape":"Integer"}
+      }
+    },
     "LaunchTemplateEbsBlockDevice":{
       "type":"structure",
       "members":{
@@ -14217,7 +14237,6 @@
     },
     "PrivateIpAddressSpecification":{
       "type":"structure",
-      "required":["PrivateIpAddress"],
       "members":{
         "Primary":{
           "shape":"Boolean",
@@ -15007,7 +15026,8 @@
           "locationName":"SecurityGroup"
         },
         "InstanceMarketOptions":{"shape":"LaunchTemplateInstanceMarketOptionsRequest"},
-        "CreditSpecification":{"shape":"CreditSpecificationRequest"}
+        "CreditSpecification":{"shape":"CreditSpecificationRequest"},
+        "CpuOptions":{"shape":"LaunchTemplateCpuOptionsRequest"}
       }
     },
     "RequestSpotFleetRequest":{
@@ -15845,6 +15865,10 @@
         "CreditSpecification":{
           "shape":"CreditSpecification",
           "locationName":"creditSpecification"
+        },
+        "CpuOptions":{
+          "shape":"LaunchTemplateCpuOptions",
+          "locationName":"cpuOptions"
         }
       }
     },

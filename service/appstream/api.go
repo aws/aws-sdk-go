@@ -373,6 +373,9 @@ func (c *AppStream) CreateFleetRequest(input *CreateFleetInput) (req *request.Re
 //   * ErrCodeIncompatibleImageException "IncompatibleImageException"
 //   The image does not support storage connectors.
 //
+//   * ErrCodeOperationNotPermittedException "OperationNotPermittedException"
+//   The attempted operation is not permitted.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateFleet
 func (c *AppStream) CreateFleet(input *CreateFleetInput) (*CreateFleetOutput, error) {
 	req, out := c.CreateFleetRequest(input)
@@ -480,6 +483,9 @@ func (c *AppStream) CreateImageBuilderRequest(input *CreateImageBuilderInput) (r
 //
 //   * ErrCodeIncompatibleImageException "IncompatibleImageException"
 //   The image does not support storage connectors.
+//
+//   * ErrCodeOperationNotPermittedException "OperationNotPermittedException"
+//   The attempted operation is not permitted.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateImageBuilder
 func (c *AppStream) CreateImageBuilder(input *CreateImageBuilderInput) (*CreateImageBuilderOutput, error) {
@@ -1117,6 +1123,90 @@ func (c *AppStream) DeleteImageBuilderWithContext(ctx aws.Context, input *Delete
 	return out, req.Send()
 }
 
+const opDeleteImagePermissions = "DeleteImagePermissions"
+
+// DeleteImagePermissionsRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteImagePermissions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteImagePermissions for more information on using the DeleteImagePermissions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteImagePermissionsRequest method.
+//    req, resp := client.DeleteImagePermissionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteImagePermissions
+func (c *AppStream) DeleteImagePermissionsRequest(input *DeleteImagePermissionsInput) (req *request.Request, output *DeleteImagePermissionsOutput) {
+	op := &request.Operation{
+		Name:       opDeleteImagePermissions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteImagePermissionsInput{}
+	}
+
+	output = &DeleteImagePermissionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteImagePermissions API operation for Amazon AppStream.
+//
+// Deletes permissions for the specified private image. After you delete permissions
+// for an image, AWS accounts to which you previously granted these permissions
+// can no longer use the image.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation DeleteImagePermissions for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeResourceNotAvailableException "ResourceNotAvailableException"
+//   The specified resource exists and is not in use, but isn't available.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteImagePermissions
+func (c *AppStream) DeleteImagePermissions(input *DeleteImagePermissionsInput) (*DeleteImagePermissionsOutput, error) {
+	req, out := c.DeleteImagePermissionsRequest(input)
+	return out, req.Send()
+}
+
+// DeleteImagePermissionsWithContext is the same as DeleteImagePermissions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteImagePermissions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) DeleteImagePermissionsWithContext(ctx aws.Context, input *DeleteImagePermissionsInput, opts ...request.Option) (*DeleteImagePermissionsOutput, error) {
+	req, out := c.DeleteImagePermissionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteStack = "DeleteStack"
 
 // DeleteStackRequest generates a "aws/request.Request" representing the
@@ -1452,6 +1542,142 @@ func (c *AppStream) DescribeImageBuildersWithContext(ctx aws.Context, input *Des
 	return out, req.Send()
 }
 
+const opDescribeImagePermissions = "DescribeImagePermissions"
+
+// DescribeImagePermissionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeImagePermissions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeImagePermissions for more information on using the DescribeImagePermissions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeImagePermissionsRequest method.
+//    req, resp := client.DescribeImagePermissionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeImagePermissions
+func (c *AppStream) DescribeImagePermissionsRequest(input *DescribeImagePermissionsInput) (req *request.Request, output *DescribeImagePermissionsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeImagePermissions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeImagePermissionsInput{}
+	}
+
+	output = &DescribeImagePermissionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeImagePermissions API operation for Amazon AppStream.
+//
+// Retrieves a list that describes the permissions for a private image that
+// you own.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation DescribeImagePermissions for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeImagePermissions
+func (c *AppStream) DescribeImagePermissions(input *DescribeImagePermissionsInput) (*DescribeImagePermissionsOutput, error) {
+	req, out := c.DescribeImagePermissionsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeImagePermissionsWithContext is the same as DescribeImagePermissions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeImagePermissions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) DescribeImagePermissionsWithContext(ctx aws.Context, input *DescribeImagePermissionsInput, opts ...request.Option) (*DescribeImagePermissionsOutput, error) {
+	req, out := c.DescribeImagePermissionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeImagePermissionsPages iterates over the pages of a DescribeImagePermissions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeImagePermissions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeImagePermissions operation.
+//    pageNum := 0
+//    err := client.DescribeImagePermissionsPages(params,
+//        func(page *DescribeImagePermissionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *AppStream) DescribeImagePermissionsPages(input *DescribeImagePermissionsInput, fn func(*DescribeImagePermissionsOutput, bool) bool) error {
+	return c.DescribeImagePermissionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeImagePermissionsPagesWithContext same as DescribeImagePermissionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) DescribeImagePermissionsPagesWithContext(ctx aws.Context, input *DescribeImagePermissionsInput, fn func(*DescribeImagePermissionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeImagePermissionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeImagePermissionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*DescribeImagePermissionsOutput), !p.HasNextPage())
+	}
+	return p.Err()
+}
+
 const opDescribeImages = "DescribeImages"
 
 // DescribeImagesRequest generates a "aws/request.Request" representing the
@@ -1483,6 +1709,12 @@ func (c *AppStream) DescribeImagesRequest(input *DescribeImagesInput) (req *requ
 		Name:       opDescribeImages,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1507,6 +1739,9 @@ func (c *AppStream) DescribeImagesRequest(input *DescribeImagesInput) (req *requ
 // API operation DescribeImages for usage and error information.
 //
 // Returned Error Codes:
+//   * ErrCodeInvalidParameterCombinationException "InvalidParameterCombinationException"
+//   Indicates an incorrect combination of parameters, or a missing parameter.
+//
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource was not found.
 //
@@ -1530,6 +1765,56 @@ func (c *AppStream) DescribeImagesWithContext(ctx aws.Context, input *DescribeIm
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeImagesPages iterates over the pages of a DescribeImages operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeImages method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeImages operation.
+//    pageNum := 0
+//    err := client.DescribeImagesPages(params,
+//        func(page *DescribeImagesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *AppStream) DescribeImagesPages(input *DescribeImagesInput, fn func(*DescribeImagesOutput, bool) bool) error {
+	return c.DescribeImagesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeImagesPagesWithContext same as DescribeImagesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) DescribeImagesPagesWithContext(ctx aws.Context, input *DescribeImagesInput, fn func(*DescribeImagesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeImagesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeImagesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*DescribeImagesOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opDescribeSessions = "DescribeSessions"
@@ -2815,6 +3100,91 @@ func (c *AppStream) UpdateFleetWithContext(ctx aws.Context, input *UpdateFleetIn
 	return out, req.Send()
 }
 
+const opUpdateImagePermissions = "UpdateImagePermissions"
+
+// UpdateImagePermissionsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateImagePermissions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateImagePermissions for more information on using the UpdateImagePermissions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateImagePermissionsRequest method.
+//    req, resp := client.UpdateImagePermissionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateImagePermissions
+func (c *AppStream) UpdateImagePermissionsRequest(input *UpdateImagePermissionsInput) (req *request.Request, output *UpdateImagePermissionsOutput) {
+	op := &request.Operation{
+		Name:       opUpdateImagePermissions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateImagePermissionsInput{}
+	}
+
+	output = &UpdateImagePermissionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateImagePermissions API operation for Amazon AppStream.
+//
+// Adds or updates permissions for the specified private image.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation UpdateImagePermissions for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource was not found.
+//
+//   * ErrCodeResourceNotAvailableException "ResourceNotAvailableException"
+//   The specified resource exists and is not in use, but isn't available.
+//
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   The requested limit exceeds the permitted limit for an account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateImagePermissions
+func (c *AppStream) UpdateImagePermissions(input *UpdateImagePermissionsInput) (*UpdateImagePermissionsOutput, error) {
+	req, out := c.UpdateImagePermissionsRequest(input)
+	return out, req.Send()
+}
+
+// UpdateImagePermissionsWithContext is the same as UpdateImagePermissions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateImagePermissions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) UpdateImagePermissionsWithContext(ctx aws.Context, input *UpdateImagePermissionsInput, opts ...request.Option) (*UpdateImagePermissionsOutput, error) {
+	req, out := c.UpdateImagePermissionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateStack = "UpdateStack"
 
 // UpdateStackRequest generates a "aws/request.Request" representing the
@@ -3392,10 +3762,11 @@ type CreateFleetInput struct {
 	// apps.
 	FleetType *string `type:"string" enum:"FleetType"`
 
+	// The ARN of the public, private, or shared image to use.
+	ImageArn *string `type:"string"`
+
 	// The name of the image used to create the fleet.
-	//
-	// ImageName is a required field
-	ImageName *string `min:"1" type:"string" required:"true"`
+	ImageName *string `min:"1" type:"string"`
 
 	// The instance type to use when launching fleet instances. The following instance
 	// types are available:
@@ -3472,9 +3843,6 @@ func (s *CreateFleetInput) Validate() error {
 	if s.ComputeCapacity == nil {
 		invalidParams.Add(request.NewErrParamRequired("ComputeCapacity"))
 	}
-	if s.ImageName == nil {
-		invalidParams.Add(request.NewErrParamRequired("ImageName"))
-	}
 	if s.ImageName != nil && len(*s.ImageName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ImageName", 1))
 	}
@@ -3538,6 +3906,12 @@ func (s *CreateFleetInput) SetEnableDefaultInternetAccess(v bool) *CreateFleetIn
 // SetFleetType sets the FleetType field's value.
 func (s *CreateFleetInput) SetFleetType(v string) *CreateFleetInput {
 	s.FleetType = &v
+	return s
+}
+
+// SetImageArn sets the ImageArn field's value.
+func (s *CreateFleetInput) SetImageArn(v string) *CreateFleetInput {
+	s.ImageArn = &v
 	return s
 }
 
@@ -3613,10 +3987,11 @@ type CreateImageBuilderInput struct {
 	// Enables or disables default internet access for the image builder.
 	EnableDefaultInternetAccess *bool `type:"boolean"`
 
+	// The ARN of the public, private, or shared image to use.
+	ImageArn *string `type:"string"`
+
 	// The name of the image used to create the builder.
-	//
-	// ImageName is a required field
-	ImageName *string `min:"1" type:"string" required:"true"`
+	ImageName *string `min:"1" type:"string"`
 
 	// The instance type to use when launching the image builder.
 	//
@@ -3647,9 +4022,6 @@ func (s *CreateImageBuilderInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateImageBuilderInput"}
 	if s.AppstreamAgentVersion != nil && len(*s.AppstreamAgentVersion) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("AppstreamAgentVersion", 1))
-	}
-	if s.ImageName == nil {
-		invalidParams.Add(request.NewErrParamRequired("ImageName"))
 	}
 	if s.ImageName != nil && len(*s.ImageName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ImageName", 1))
@@ -3697,6 +4069,12 @@ func (s *CreateImageBuilderInput) SetDomainJoinInfo(v *DomainJoinInfo) *CreateIm
 // SetEnableDefaultInternetAccess sets the EnableDefaultInternetAccess field's value.
 func (s *CreateImageBuilderInput) SetEnableDefaultInternetAccess(v bool) *CreateImageBuilderInput {
 	s.EnableDefaultInternetAccess = &v
+	return s
+}
+
+// SetImageArn sets the ImageArn field's value.
+func (s *CreateImageBuilderInput) SetImageArn(v string) *CreateImageBuilderInput {
+	s.ImageArn = &v
 	return s
 }
 
@@ -4342,6 +4720,72 @@ func (s *DeleteImageOutput) SetImage(v *Image) *DeleteImageOutput {
 	return s
 }
 
+type DeleteImagePermissionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the private image.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The 12-digit ID of the AWS account for which to delete image permissions.
+	//
+	// SharedAccountId is a required field
+	SharedAccountId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteImagePermissionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteImagePermissionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteImagePermissionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteImagePermissionsInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.SharedAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SharedAccountId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteImagePermissionsInput) SetName(v string) *DeleteImagePermissionsInput {
+	s.Name = &v
+	return s
+}
+
+// SetSharedAccountId sets the SharedAccountId field's value.
+func (s *DeleteImagePermissionsInput) SetSharedAccountId(v string) *DeleteImagePermissionsInput {
+	s.SharedAccountId = &v
+	return s
+}
+
+type DeleteImagePermissionsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteImagePermissionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteImagePermissionsOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteStackInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4654,11 +5098,139 @@ func (s *DescribeImageBuildersOutput) SetNextToken(v string) *DescribeImageBuild
 	return s
 }
 
+type DescribeImagePermissionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum size of each results page.
+	MaxResults *int64 `type:"integer"`
+
+	// The name of the private image for which to describe permissions. The image
+	// must be one that you own.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The pagination token to use to retrieve the next page of results. If this
+	// value is empty, only the first page is retrieved.
+	NextToken *string `min:"1" type:"string"`
+
+	// The 12-digit ID of one or more AWS accounts with which the image is shared.
+	SharedAwsAccountIds []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeImagePermissionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeImagePermissionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeImagePermissionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeImagePermissionsInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.SharedAwsAccountIds != nil && len(s.SharedAwsAccountIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SharedAwsAccountIds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeImagePermissionsInput) SetMaxResults(v int64) *DescribeImagePermissionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DescribeImagePermissionsInput) SetName(v string) *DescribeImagePermissionsInput {
+	s.Name = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeImagePermissionsInput) SetNextToken(v string) *DescribeImagePermissionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSharedAwsAccountIds sets the SharedAwsAccountIds field's value.
+func (s *DescribeImagePermissionsInput) SetSharedAwsAccountIds(v []*string) *DescribeImagePermissionsInput {
+	s.SharedAwsAccountIds = v
+	return s
+}
+
+type DescribeImagePermissionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the private image.
+	Name *string `type:"string"`
+
+	// The pagination token to use to retrieve the next page of results. If this
+	// value is empty, only the first page is retrieved.
+	NextToken *string `min:"1" type:"string"`
+
+	// The permissions for a private image that you own.
+	SharedImagePermissionsList []*SharedImagePermissions `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeImagePermissionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeImagePermissionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *DescribeImagePermissionsOutput) SetName(v string) *DescribeImagePermissionsOutput {
+	s.Name = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeImagePermissionsOutput) SetNextToken(v string) *DescribeImagePermissionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSharedImagePermissionsList sets the SharedImagePermissionsList field's value.
+func (s *DescribeImagePermissionsOutput) SetSharedImagePermissionsList(v []*SharedImagePermissions) *DescribeImagePermissionsOutput {
+	s.SharedImagePermissionsList = v
+	return s
+}
+
 type DescribeImagesInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ARNs of the public, private, and shared images to describe.
+	Arns []*string `type:"list"`
+
+	// The maximum size of each page of results.
+	MaxResults *int64 `type:"integer"`
+
 	// The names of the images to describe.
 	Names []*string `type:"list"`
+
+	// The pagination token to use to retrieve the next page of results. If this
+	// value is empty, only the first page is retrieved.
+	NextToken *string `min:"1" type:"string"`
+
+	// The type of image (public, private, or shared) to describe.
+	Type *string `type:"string" enum:"VisibilityType"`
 }
 
 // String returns the string representation
@@ -4671,9 +5243,46 @@ func (s DescribeImagesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeImagesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeImagesInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArns sets the Arns field's value.
+func (s *DescribeImagesInput) SetArns(v []*string) *DescribeImagesInput {
+	s.Arns = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeImagesInput) SetMaxResults(v int64) *DescribeImagesInput {
+	s.MaxResults = &v
+	return s
+}
+
 // SetNames sets the Names field's value.
 func (s *DescribeImagesInput) SetNames(v []*string) *DescribeImagesInput {
 	s.Names = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeImagesInput) SetNextToken(v string) *DescribeImagesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DescribeImagesInput) SetType(v string) *DescribeImagesInput {
+	s.Type = &v
 	return s
 }
 
@@ -4682,6 +5291,10 @@ type DescribeImagesOutput struct {
 
 	// Information about the images.
 	Images []*Image `type:"list"`
+
+	// The pagination token to use to retrieve the next page of results. If there
+	// are no more pages, this value is null.
+	NextToken *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -4697,6 +5310,12 @@ func (s DescribeImagesOutput) GoString() string {
 // SetImages sets the Images field's value.
 func (s *DescribeImagesOutput) SetImages(v []*Image) *DescribeImagesOutput {
 	s.Images = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeImagesOutput) SetNextToken(v string) *DescribeImagesOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -5179,10 +5798,11 @@ type Fleet struct {
 	// apps.
 	FleetType *string `type:"string" enum:"FleetType"`
 
+	// The ARN for the public, private, or shared image.
+	ImageArn *string `type:"string"`
+
 	// The name of the image used to create the fleet.
-	//
-	// ImageName is a required field
-	ImageName *string `min:"1" type:"string" required:"true"`
+	ImageName *string `min:"1" type:"string"`
 
 	// The instance type to use when launching fleet instances.
 	//
@@ -5274,6 +5894,12 @@ func (s *Fleet) SetFleetErrors(v []*FleetError) *Fleet {
 // SetFleetType sets the FleetType field's value.
 func (s *Fleet) SetFleetType(v string) *Fleet {
 	s.FleetType = &v
+	return s
+}
+
+// SetImageArn sets the ImageArn field's value.
+func (s *Fleet) SetImageArn(v string) *Fleet {
+	s.ImageArn = &v
 	return s
 }
 
@@ -5375,6 +6001,10 @@ type Image struct {
 	// Indicates whether an image builder can be launched from this image.
 	ImageBuilderSupported *bool `type:"boolean"`
 
+	// The permissions to provide to the destination AWS account for the specified
+	// image.
+	ImagePermissions *ImagePermissions `type:"structure"`
+
 	// The name of the image.
 	//
 	// Name is a required field
@@ -5453,6 +6083,12 @@ func (s *Image) SetDisplayName(v string) *Image {
 // SetImageBuilderSupported sets the ImageBuilderSupported field's value.
 func (s *Image) SetImageBuilderSupported(v bool) *Image {
 	s.ImageBuilderSupported = &v
+	return s
+}
+
+// SetImagePermissions sets the ImagePermissions field's value.
+func (s *Image) SetImagePermissions(v *ImagePermissions) *Image {
+	s.ImagePermissions = v
 	return s
 }
 
@@ -5676,6 +6312,39 @@ func (s *ImageBuilderStateChangeReason) SetCode(v string) *ImageBuilderStateChan
 // SetMessage sets the Message field's value.
 func (s *ImageBuilderStateChangeReason) SetMessage(v string) *ImageBuilderStateChangeReason {
 	s.Message = &v
+	return s
+}
+
+// Describes the permissions for an image.
+type ImagePermissions struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the image can be used for a fleet.
+	AllowFleet *bool `locationName:"allowFleet" type:"boolean"`
+
+	// Indicates whether the image can be used for an image builder.
+	AllowImageBuilder *bool `locationName:"allowImageBuilder" type:"boolean"`
+}
+
+// String returns the string representation
+func (s ImagePermissions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImagePermissions) GoString() string {
+	return s.String()
+}
+
+// SetAllowFleet sets the AllowFleet field's value.
+func (s *ImagePermissions) SetAllowFleet(v bool) *ImagePermissions {
+	s.AllowFleet = &v
+	return s
+}
+
+// SetAllowImageBuilder sets the AllowImageBuilder field's value.
+func (s *ImagePermissions) SetAllowImageBuilder(v bool) *ImagePermissions {
+	s.AllowImageBuilder = &v
 	return s
 }
 
@@ -6173,6 +6842,44 @@ func (s *Session) SetState(v string) *Session {
 // SetUserId sets the UserId field's value.
 func (s *Session) SetUserId(v string) *Session {
 	s.UserId = &v
+	return s
+}
+
+// Describes the permissions that are available to the specified AWS account
+// for a shared image.
+type SharedImagePermissions struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the permissions for a shared image.
+	//
+	// ImagePermissions is a required field
+	ImagePermissions *ImagePermissions `locationName:"imagePermissions" type:"structure" required:"true"`
+
+	// The 12-digit ID of the AWS account with which the image is shared.
+	//
+	// SharedAccountId is a required field
+	SharedAccountId *string `locationName:"sharedAccountId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s SharedImagePermissions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SharedImagePermissions) GoString() string {
+	return s.String()
+}
+
+// SetImagePermissions sets the ImagePermissions field's value.
+func (s *SharedImagePermissions) SetImagePermissions(v *ImagePermissions) *SharedImagePermissions {
+	s.ImagePermissions = v
+	return s
+}
+
+// SetSharedAccountId sets the SharedAccountId field's value.
+func (s *SharedImagePermissions) SetSharedAccountId(v string) *SharedImagePermissions {
+	s.SharedAccountId = &v
 	return s
 }
 
@@ -6885,6 +7592,9 @@ type UpdateFleetInput struct {
 	// Enables or disables default internet access for the fleet.
 	EnableDefaultInternetAccess *bool `type:"boolean"`
 
+	// The ARN of the public, private, or shared image to use.
+	ImageArn *string `type:"string"`
+
 	// The name of the image used to create the fleet.
 	ImageName *string `min:"1" type:"string"`
 
@@ -6937,9 +7647,7 @@ type UpdateFleetInput struct {
 	MaxUserDurationInSeconds *int64 `type:"integer"`
 
 	// A unique name for the fleet.
-	//
-	// Name is a required field
-	Name *string `min:"1" type:"string" required:"true"`
+	Name *string `min:"1" type:"string"`
 
 	// The VPC configuration for the fleet.
 	VpcConfig *VpcConfig `type:"structure"`
@@ -6963,9 +7671,6 @@ func (s *UpdateFleetInput) Validate() error {
 	}
 	if s.InstanceType != nil && len(*s.InstanceType) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("InstanceType", 1))
-	}
-	if s.Name == nil {
-		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
@@ -7030,6 +7735,12 @@ func (s *UpdateFleetInput) SetEnableDefaultInternetAccess(v bool) *UpdateFleetIn
 	return s
 }
 
+// SetImageArn sets the ImageArn field's value.
+func (s *UpdateFleetInput) SetImageArn(v string) *UpdateFleetInput {
+	s.ImageArn = &v
+	return s
+}
+
 // SetImageName sets the ImageName field's value.
 func (s *UpdateFleetInput) SetImageName(v string) *UpdateFleetInput {
 	s.ImageName = &v
@@ -7081,6 +7792,87 @@ func (s UpdateFleetOutput) GoString() string {
 func (s *UpdateFleetOutput) SetFleet(v *Fleet) *UpdateFleetOutput {
 	s.Fleet = v
 	return s
+}
+
+type UpdateImagePermissionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The permissions for the image.
+	//
+	// ImagePermissions is a required field
+	ImagePermissions *ImagePermissions `type:"structure" required:"true"`
+
+	// The name of the private image.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The 12-digit ID of the AWS account for which you want add or update image
+	// permissions.
+	//
+	// SharedAccountId is a required field
+	SharedAccountId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateImagePermissionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateImagePermissionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateImagePermissionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateImagePermissionsInput"}
+	if s.ImagePermissions == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImagePermissions"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.SharedAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SharedAccountId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImagePermissions sets the ImagePermissions field's value.
+func (s *UpdateImagePermissionsInput) SetImagePermissions(v *ImagePermissions) *UpdateImagePermissionsInput {
+	s.ImagePermissions = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateImagePermissionsInput) SetName(v string) *UpdateImagePermissionsInput {
+	s.Name = &v
+	return s
+}
+
+// SetSharedAccountId sets the SharedAccountId field's value.
+func (s *UpdateImagePermissionsInput) SetSharedAccountId(v string) *UpdateImagePermissionsInput {
+	s.SharedAccountId = &v
+	return s
+}
+
+type UpdateImagePermissionsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateImagePermissionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateImagePermissionsOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateStackInput struct {
@@ -7573,6 +8365,9 @@ const (
 	// StackAttributeStorageConnectorGoogleDrive is a StackAttribute enum value
 	StackAttributeStorageConnectorGoogleDrive = "STORAGE_CONNECTOR_GOOGLE_DRIVE"
 
+	// StackAttributeStorageConnectorOneDrive is a StackAttribute enum value
+	StackAttributeStorageConnectorOneDrive = "STORAGE_CONNECTOR_ONE_DRIVE"
+
 	// StackAttributeRedirectUrl is a StackAttribute enum value
 	StackAttributeRedirectUrl = "REDIRECT_URL"
 
@@ -7601,6 +8396,9 @@ const (
 
 	// StorageConnectorTypeGoogleDrive is a StorageConnectorType enum value
 	StorageConnectorTypeGoogleDrive = "GOOGLE_DRIVE"
+
+	// StorageConnectorTypeOneDrive is a StorageConnectorType enum value
+	StorageConnectorTypeOneDrive = "ONE_DRIVE"
 )
 
 const (
@@ -7609,4 +8407,7 @@ const (
 
 	// VisibilityTypePrivate is a VisibilityType enum value
 	VisibilityTypePrivate = "PRIVATE"
+
+	// VisibilityTypeShared is a VisibilityType enum value
+	VisibilityTypeShared = "SHARED"
 )

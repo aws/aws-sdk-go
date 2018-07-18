@@ -1,3 +1,77 @@
+Release v1.14.29 (2018-07-18)
+===
+
+### Service Client Updates
+* `service/iotanalytics`: Updates service API and documentation
+
+Release v1.14.28 (2018-07-17)
+===
+
+### Service Client Updates
+* `service/comprehend`: Updates service API and documentation
+* `service/polly`: Updates service API, documentation, and paginators
+  * Amazon Polly adds new API for asynchronous synthesis to S3
+* `service/sagemaker`: Updates service API, documentation, and paginators
+  * Amazon SageMaker has added the capability for customers to run fully-managed, high-throughput batch transform machine learning models with a simple API call. Batch Transform is ideal for high-throughput workloads and predictions in non-real-time scenarios where data is accumulated over a period of time for offline processing.
+* `service/snowball`: Updates service API and documentation
+  * AWS Snowball Edge announces the availability of Amazon EC2 compute instances that run on the device. AWS Snowball Edge is a 100-TB ruggedized device built to transfer data into and out of AWS with optional support for local Lambda-based compute functions. With this feature, developers and administrators can run their EC2-based applications on the device providing them with an end to end vertically integrated AWS experience. Designed for data pre-processing, compression, machine learning, and data collection applications, these new instances, called SBE1 instances, feature 1.8 GHz Intel Xeon D processors up to 16 vCPUs, and 32 GB of memory. The SBE1 instance type is available in four sizes and multiple instances can be run on the device at the same time. Customers can now run compute instances using the same Amazon Machine Images (AMIs) that are used in Amazon EC2.
+
+Release v1.14.27 (2018-07-13)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API, documentation, and paginators
+  * This API update adds support for sharing AppStream images across AWS accounts within the same region.
+* `service/kinesis-video-archived-media`: Updates service API and documentation
+* `service/kinesisvideo`: Updates service API and documentation
+  * Adds support for HLS video playback of Kinesis Video streams using the KinesisVideo client by including "GET_HLS_STREAMING_SESSION_URL" as an additional APIName parameter in the GetDataEndpoint input.
+
+Release v1.14.26 (2018-07-12)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/codebuild`: Updates service API
+  * Update CodeBuild CreateProject API - serviceRole is a required input
+* `service/dlm`: Adds new service
+* `service/elasticfilesystem`: Updates service API and documentation
+  * Amazon EFS now allows you to instantly provision the throughput required for your applications independent of the amount of data stored in your file system, allowing you to optimize throughput for your applications performance needs. Starting today, you can provision the throughput your applications require quickly with a few simple steps using AWS Console, AWS CLI or AWS API to achieve consistent performance.
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Documentation updates for EMR.
+* `service/iam`: Updates service API and documentation
+  * SDK release to support IAM delegated administrator feature. The feature lets customers attach permissions boundary to IAM principals. The IAM principals cannot operate exceeding the permission specified in permissions boundary.
+
+### SDK Enhancements
+* `aws/credentials/ec2rolecreds`: Avoid unnecessary redirect [#2037](https://github.com/aws/aws-sdk-go/pull/2037)
+  * This removes the unnecessary redirect for /latest/meta-data/iam/security-credentials/
+
+Release v1.14.25 (2018-07-11)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API and documentation
+  * Support for fine grain throttling for API gateway.
+* `service/ce`: Updates service API and documentation
+* `service/s3`: Updates service API and documentation
+  * S3 Select support for BZIP2 compressed input files
+* `service/ssm`: Updates service API and documentation
+  * Support Conditional Branching OnFailure for SSM Automation
+
+Release v1.14.24 (2018-07-10)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API, documentation, paginators, and examples
+  * This API update adds pagination to the DescribeImages API to support future features and enhancements.
+* `service/codebuild`: Updates service API and documentation
+  * API changes to CodeBuild service, support report build status for Github sources
+* `service/ec2`: Updates service API and documentation
+  * Support CpuOptions field in Launch Template data and allow Launch Template name to contain hyphen.
+* `service/glue`: Updates service API and documentation
+  * AWS Glue adds the ability to crawl DynamoDB tables.
+* `service/opsworks`: Updates service documentation
+  * Documentation updates for AWS OpsWorks Stacks.
+
 Release v1.14.23 (2018-07-10)
 ===
 
