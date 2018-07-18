@@ -1,3 +1,9 @@
+Release v1.14.29 (2018-07-18)
+===
+
+### Service Client Updates
+* `service/iotanalytics`: Updates service API and documentation
+
 Release v1.14.28 (2018-07-17)
 ===
 
