@@ -1,3 +1,15 @@
+Release v1.14.30 (2018-07-19)
+===
+
+### Service Client Updates
+* `service/mediapackage`: Updates service API and documentation
+  * Adds support for DASH OriginEnpoints with multiple media presentation description periods triggered by presence of SCTE-35 ad markers in Channel input streams.
+
+### SDK Enhancements
+* `aws/default`: Add helper to get default provider chain list of credential providers ([#2059](https://github.com/aws/aws-sdk-go/issues/2051))
+  * Exports the default provider chain list of providers so it can be used to compose custom chains of credential providers.
+  * Fixes [#2051](https://github.com/aws/aws-sdk-go/issues/2051)
+
 Release v1.14.29 (2018-07-18)
 ===
 
