@@ -2132,12 +2132,28 @@ func (c *InputService12ProtocolTest) InputService12TestCaseOperation1WithContext
 type InputService12TestShapeInputService12TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 
-	TimeArg *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	TimeArg *time.Time `type:"timestamp"`
+
+	TimeCustom *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	TimeFormat *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 }
 
 // SetTimeArg sets the TimeArg field's value.
 func (s *InputService12TestShapeInputService12TestCaseOperation1Input) SetTimeArg(v time.Time) *InputService12TestShapeInputService12TestCaseOperation1Input {
 	s.TimeArg = &v
+	return s
+}
+
+// SetTimeCustom sets the TimeCustom field's value.
+func (s *InputService12TestShapeInputService12TestCaseOperation1Input) SetTimeCustom(v time.Time) *InputService12TestShapeInputService12TestCaseOperation1Input {
+	s.TimeCustom = &v
+	return s
+}
+
+// SetTimeFormat sets the TimeFormat field's value.
+func (s *InputService12TestShapeInputService12TestCaseOperation1Input) SetTimeFormat(v time.Time) *InputService12TestShapeInputService12TestCaseOperation1Input {
+	s.TimeFormat = &v
 	return s
 }
 
@@ -2919,319 +2935,6 @@ type InputService14TestShapeInputService14TestCaseOperation2Output struct {
 	_ struct{} `type:"structure"`
 }
 
-// InputService15ProtocolTest provides the API operation methods for making requests to
-// . See this package's package overview docs
-// for details on the service.
-//
-// InputService15ProtocolTest methods are safe to use concurrently. It is not safe to
-// modify mutate any of the struct's properties though.
-type InputService15ProtocolTest struct {
-	*client.Client
-}
-
-// New creates a new instance of the InputService15ProtocolTest client with a session.
-// If additional configuration is needed for the client instance use the optional
-// aws.Config parameter to add your extra config.
-//
-// Example:
-//     // Create a InputService15ProtocolTest client from just a session.
-//     svc := inputservice15protocoltest.New(mySession)
-//
-//     // Create a InputService15ProtocolTest client with additional configuration
-//     svc := inputservice15protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
-func NewInputService15ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService15ProtocolTest {
-	c := p.ClientConfig("inputservice15protocoltest", cfgs...)
-	return newInputService15ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
-}
-
-// newClient creates, initializes and returns a new service client instance.
-func newInputService15ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *InputService15ProtocolTest {
-	svc := &InputService15ProtocolTest{
-		Client: client.New(
-			cfg,
-			metadata.ClientInfo{
-				ServiceName:   "InputService15ProtocolTest",
-				ServiceID:     "InputService15ProtocolTest",
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				Endpoint:      endpoint,
-				APIVersion:    "2014-01-01",
-			},
-			handlers,
-		),
-	}
-
-	// Handlers
-	svc.Handlers.Sign.PushBackNamed(v4.SignRequestHandler)
-	svc.Handlers.Build.PushBackNamed(query.BuildHandler)
-	svc.Handlers.Unmarshal.PushBackNamed(query.UnmarshalHandler)
-	svc.Handlers.UnmarshalMeta.PushBackNamed(query.UnmarshalMetaHandler)
-	svc.Handlers.UnmarshalError.PushBackNamed(query.UnmarshalErrorHandler)
-
-	return svc
-}
-
-// newRequest creates a new request for a InputService15ProtocolTest operation and runs any
-// custom request initialization.
-func (c *InputService15ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
-	req := c.NewRequest(op, params, data)
-
-	return req
-}
-
-const opInputService15TestCaseOperation1 = "OperationName"
-
-// InputService15TestCaseOperation1Request generates a "aws/request.Request" representing the
-// client's request for the InputService15TestCaseOperation1 operation. The "output" return
-// value will be populated with the request's response once the request completes
-// successfuly.
-//
-// Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
-//
-// See InputService15TestCaseOperation1 for more information on using the InputService15TestCaseOperation1
-// API call, and error handling.
-//
-// This method is useful when you want to inject custom logic or configuration
-// into the SDK's request lifecycle. Such as custom headers, or retry logic.
-//
-//
-//    // Example sending a request using the InputService15TestCaseOperation1Request method.
-//    req, resp := client.InputService15TestCaseOperation1Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
-func (c *InputService15ProtocolTest) InputService15TestCaseOperation1Request(input *InputService15TestShapeInputService15TestCaseOperation3Input) (req *request.Request, output *InputService15TestShapeInputService15TestCaseOperation1Output) {
-	op := &request.Operation{
-		Name:       opInputService15TestCaseOperation1,
-		HTTPMethod: "POST",
-		HTTPPath:   "/",
-	}
-
-	if input == nil {
-		input = &InputService15TestShapeInputService15TestCaseOperation3Input{}
-	}
-
-	output = &InputService15TestShapeInputService15TestCaseOperation1Output{}
-	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	return
-}
-
-// InputService15TestCaseOperation1 API operation for .
-//
-// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
-// with awserr.Error's Code and Message methods to get detailed information about
-// the error.
-//
-// See the AWS API reference guide for 's
-// API operation InputService15TestCaseOperation1 for usage and error information.
-func (c *InputService15ProtocolTest) InputService15TestCaseOperation1(input *InputService15TestShapeInputService15TestCaseOperation3Input) (*InputService15TestShapeInputService15TestCaseOperation1Output, error) {
-	req, out := c.InputService15TestCaseOperation1Request(input)
-	return out, req.Send()
-}
-
-// InputService15TestCaseOperation1WithContext is the same as InputService15TestCaseOperation1 with the addition of
-// the ability to pass a context and additional request options.
-//
-// See InputService15TestCaseOperation1 for details on how to use this API operation.
-//
-// The context must be non-nil and will be used for request cancellation. If
-// the context is nil a panic will occur. In the future the SDK may create
-// sub-contexts for http.Requests. See https://golang.org/pkg/context/
-// for more information on using Contexts.
-func (c *InputService15ProtocolTest) InputService15TestCaseOperation1WithContext(ctx aws.Context, input *InputService15TestShapeInputService15TestCaseOperation3Input, opts ...request.Option) (*InputService15TestShapeInputService15TestCaseOperation1Output, error) {
-	req, out := c.InputService15TestCaseOperation1Request(input)
-	req.SetContext(ctx)
-	req.ApplyOptions(opts...)
-	return out, req.Send()
-}
-
-const opInputService15TestCaseOperation2 = "OperationName"
-
-// InputService15TestCaseOperation2Request generates a "aws/request.Request" representing the
-// client's request for the InputService15TestCaseOperation2 operation. The "output" return
-// value will be populated with the request's response once the request completes
-// successfuly.
-//
-// Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
-//
-// See InputService15TestCaseOperation2 for more information on using the InputService15TestCaseOperation2
-// API call, and error handling.
-//
-// This method is useful when you want to inject custom logic or configuration
-// into the SDK's request lifecycle. Such as custom headers, or retry logic.
-//
-//
-//    // Example sending a request using the InputService15TestCaseOperation2Request method.
-//    req, resp := client.InputService15TestCaseOperation2Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
-func (c *InputService15ProtocolTest) InputService15TestCaseOperation2Request(input *InputService15TestShapeInputService15TestCaseOperation3Input) (req *request.Request, output *InputService15TestShapeInputService15TestCaseOperation2Output) {
-	op := &request.Operation{
-		Name:       opInputService15TestCaseOperation2,
-		HTTPMethod: "POST",
-		HTTPPath:   "/",
-	}
-
-	if input == nil {
-		input = &InputService15TestShapeInputService15TestCaseOperation3Input{}
-	}
-
-	output = &InputService15TestShapeInputService15TestCaseOperation2Output{}
-	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	return
-}
-
-// InputService15TestCaseOperation2 API operation for .
-//
-// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
-// with awserr.Error's Code and Message methods to get detailed information about
-// the error.
-//
-// See the AWS API reference guide for 's
-// API operation InputService15TestCaseOperation2 for usage and error information.
-func (c *InputService15ProtocolTest) InputService15TestCaseOperation2(input *InputService15TestShapeInputService15TestCaseOperation3Input) (*InputService15TestShapeInputService15TestCaseOperation2Output, error) {
-	req, out := c.InputService15TestCaseOperation2Request(input)
-	return out, req.Send()
-}
-
-// InputService15TestCaseOperation2WithContext is the same as InputService15TestCaseOperation2 with the addition of
-// the ability to pass a context and additional request options.
-//
-// See InputService15TestCaseOperation2 for details on how to use this API operation.
-//
-// The context must be non-nil and will be used for request cancellation. If
-// the context is nil a panic will occur. In the future the SDK may create
-// sub-contexts for http.Requests. See https://golang.org/pkg/context/
-// for more information on using Contexts.
-func (c *InputService15ProtocolTest) InputService15TestCaseOperation2WithContext(ctx aws.Context, input *InputService15TestShapeInputService15TestCaseOperation3Input, opts ...request.Option) (*InputService15TestShapeInputService15TestCaseOperation2Output, error) {
-	req, out := c.InputService15TestCaseOperation2Request(input)
-	req.SetContext(ctx)
-	req.ApplyOptions(opts...)
-	return out, req.Send()
-}
-
-const opInputService15TestCaseOperation3 = "OperationName"
-
-// InputService15TestCaseOperation3Request generates a "aws/request.Request" representing the
-// client's request for the InputService15TestCaseOperation3 operation. The "output" return
-// value will be populated with the request's response once the request completes
-// successfuly.
-//
-// Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
-//
-// See InputService15TestCaseOperation3 for more information on using the InputService15TestCaseOperation3
-// API call, and error handling.
-//
-// This method is useful when you want to inject custom logic or configuration
-// into the SDK's request lifecycle. Such as custom headers, or retry logic.
-//
-//
-//    // Example sending a request using the InputService15TestCaseOperation3Request method.
-//    req, resp := client.InputService15TestCaseOperation3Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
-func (c *InputService15ProtocolTest) InputService15TestCaseOperation3Request(input *InputService15TestShapeInputService15TestCaseOperation3Input) (req *request.Request, output *InputService15TestShapeInputService15TestCaseOperation3Output) {
-	op := &request.Operation{
-		Name:       opInputService15TestCaseOperation3,
-		HTTPMethod: "POST",
-		HTTPPath:   "/",
-	}
-
-	if input == nil {
-		input = &InputService15TestShapeInputService15TestCaseOperation3Input{}
-	}
-
-	output = &InputService15TestShapeInputService15TestCaseOperation3Output{}
-	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	return
-}
-
-// InputService15TestCaseOperation3 API operation for .
-//
-// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
-// with awserr.Error's Code and Message methods to get detailed information about
-// the error.
-//
-// See the AWS API reference guide for 's
-// API operation InputService15TestCaseOperation3 for usage and error information.
-func (c *InputService15ProtocolTest) InputService15TestCaseOperation3(input *InputService15TestShapeInputService15TestCaseOperation3Input) (*InputService15TestShapeInputService15TestCaseOperation3Output, error) {
-	req, out := c.InputService15TestCaseOperation3Request(input)
-	return out, req.Send()
-}
-
-// InputService15TestCaseOperation3WithContext is the same as InputService15TestCaseOperation3 with the addition of
-// the ability to pass a context and additional request options.
-//
-// See InputService15TestCaseOperation3 for details on how to use this API operation.
-//
-// The context must be non-nil and will be used for request cancellation. If
-// the context is nil a panic will occur. In the future the SDK may create
-// sub-contexts for http.Requests. See https://golang.org/pkg/context/
-// for more information on using Contexts.
-func (c *InputService15ProtocolTest) InputService15TestCaseOperation3WithContext(ctx aws.Context, input *InputService15TestShapeInputService15TestCaseOperation3Input, opts ...request.Option) (*InputService15TestShapeInputService15TestCaseOperation3Output, error) {
-	req, out := c.InputService15TestCaseOperation3Request(input)
-	req.SetContext(ctx)
-	req.ApplyOptions(opts...)
-	return out, req.Send()
-}
-
-type InputService15TestShapeInputService15TestCaseOperation1Output struct {
-	_ struct{} `type:"structure"`
-}
-
-type InputService15TestShapeInputService15TestCaseOperation2Output struct {
-	_ struct{} `type:"structure"`
-}
-
-type InputService15TestShapeInputService15TestCaseOperation3Input struct {
-	_ struct{} `type:"structure"`
-
-	FooEnum *string `type:"string" enum:"InputService15TestShapeEnumType"`
-
-	ListEnums []*string `type:"list"`
-}
-
-// SetFooEnum sets the FooEnum field's value.
-func (s *InputService15TestShapeInputService15TestCaseOperation3Input) SetFooEnum(v string) *InputService15TestShapeInputService15TestCaseOperation3Input {
-	s.FooEnum = &v
-	return s
-}
-
-// SetListEnums sets the ListEnums field's value.
-func (s *InputService15TestShapeInputService15TestCaseOperation3Input) SetListEnums(v []*string) *InputService15TestShapeInputService15TestCaseOperation3Input {
-	s.ListEnums = v
-	return s
-}
-
-type InputService15TestShapeInputService15TestCaseOperation3Output struct {
-	_ struct{} `type:"structure"`
-}
-
-const (
-	// EnumTypeFoo is a InputService15TestShapeEnumType enum value
-	EnumTypeFoo = "foo"
-
-	// EnumTypeBar is a InputService15TestShapeEnumType enum value
-	EnumTypeBar = "bar"
-)
-
 //
 // Tests begin here
 //
@@ -3693,7 +3396,9 @@ func TestInputService11ProtocolTestBase64EncodedBlobsNestedCase1(t *testing.T) {
 func TestInputService12ProtocolTestTimestampValuesCase1(t *testing.T) {
 	svc := NewInputService12ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService12TestShapeInputService12TestCaseOperation1Input{
-		TimeArg: aws.Time(time.Unix(1422172800, 0)),
+		TimeArg:    aws.Time(time.Unix(1422172800, 0)),
+		TimeCustom: aws.Time(time.Unix(1422172800, 0)),
+		TimeFormat: aws.Time(time.Unix(1422172800, 0)),
 	}
 	req, _ := svc.InputService12TestCaseOperation1Request(input)
 	r := req.HTTPRequest
@@ -3709,7 +3414,7 @@ func TestInputService12ProtocolTestTimestampValuesCase1(t *testing.T) {
 		t.Errorf("expect body not to be nil")
 	}
 	body, _ := ioutil.ReadAll(r.Body)
-	awstesting.AssertQuery(t, `Action=OperationName&TimeArg=2015-01-25T08%3A00%3A00Z&Version=2014-01-01`, util.Trim(string(body)))
+	awstesting.AssertQuery(t, `Action=OperationName&TimeArg=2015-01-25T08%3A00%3A00Z&TimeCustom=1422172800&TimeFormat=1422172800&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
@@ -3975,93 +3680,6 @@ func TestInputService14ProtocolTestIdempotencyTokenAutoFillCase2(t *testing.T) {
 	}
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertQuery(t, `Action=OperationName&Token=00000000-0000-4000-8000-000000000000&Version=2014-01-01`, util.Trim(string(body)))
-
-	// assert URL
-	awstesting.AssertURL(t, "https://test/", r.URL.String())
-
-	// assert headers
-
-}
-
-func TestInputService15ProtocolTestEnumCase1(t *testing.T) {
-	svc := NewInputService15ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
-	input := &InputService15TestShapeInputService15TestCaseOperation3Input{
-		FooEnum: aws.String("foo"),
-		ListEnums: []*string{
-			aws.String("foo"),
-			aws.String(""),
-			aws.String("bar"),
-		},
-	}
-	req, _ := svc.InputService15TestCaseOperation1Request(input)
-	r := req.HTTPRequest
-
-	// build request
-	query.Build(req)
-	if req.Error != nil {
-		t.Errorf("expect no error, got %v", req.Error)
-	}
-
-	// assert body
-	if r.Body == nil {
-		t.Errorf("expect body not to be nil")
-	}
-	body, _ := ioutil.ReadAll(r.Body)
-	awstesting.AssertQuery(t, `Action=OperationName&FooEnum=foo&ListEnums.member.1=foo&ListEnums.member.2=&ListEnums.member.3=bar&Version=2014-01-01`, util.Trim(string(body)))
-
-	// assert URL
-	awstesting.AssertURL(t, "https://test/", r.URL.String())
-
-	// assert headers
-
-}
-
-func TestInputService15ProtocolTestEnumCase2(t *testing.T) {
-	svc := NewInputService15ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
-	input := &InputService15TestShapeInputService15TestCaseOperation3Input{
-		FooEnum: aws.String("foo"),
-	}
-	req, _ := svc.InputService15TestCaseOperation2Request(input)
-	r := req.HTTPRequest
-
-	// build request
-	query.Build(req)
-	if req.Error != nil {
-		t.Errorf("expect no error, got %v", req.Error)
-	}
-
-	// assert body
-	if r.Body == nil {
-		t.Errorf("expect body not to be nil")
-	}
-	body, _ := ioutil.ReadAll(r.Body)
-	awstesting.AssertQuery(t, `Action=OperationName&FooEnum=foo&Version=2014-01-01`, util.Trim(string(body)))
-
-	// assert URL
-	awstesting.AssertURL(t, "https://test/", r.URL.String())
-
-	// assert headers
-
-}
-
-func TestInputService15ProtocolTestEnumCase3(t *testing.T) {
-	svc := NewInputService15ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
-	input := &InputService15TestShapeInputService15TestCaseOperation3Input{}
-	req, _ := svc.InputService15TestCaseOperation3Request(input)
-	r := req.HTTPRequest
-
-	// build request
-	query.Build(req)
-	if req.Error != nil {
-		t.Errorf("expect no error, got %v", req.Error)
-	}
-
-	// assert body
-	if r.Body == nil {
-		t.Errorf("expect body not to be nil")
-	}
-	body, _ := ioutil.ReadAll(r.Body)
-	awstesting.AssertQuery(t, `Action=OperationName&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
