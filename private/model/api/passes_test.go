@@ -178,14 +178,14 @@ func TestCollidingFields(t *testing.T) {
 	}{
 		"SimpleMembers": {
 			MemberRefs: map[string]*ShapeRef{
-				"Code":     &ShapeRef{},
-				"Foo":      &ShapeRef{},
-				"GoString": &ShapeRef{},
-				"Message":  &ShapeRef{},
-				"OrigErr":  &ShapeRef{},
-				"SetFoo":   &ShapeRef{},
-				"String":   &ShapeRef{},
-				"Validate": &ShapeRef{},
+				"Code":     {},
+				"Foo":      {},
+				"GoString": {},
+				"Message":  {},
+				"OrigErr":  {},
+				"SetFoo":   {},
+				"String":   {},
+				"Validate": {},
 			},
 			Expect: []string{
 				"Code",
@@ -201,11 +201,11 @@ func TestCollidingFields(t *testing.T) {
 		"ExceptionShape": {
 			IsException: true,
 			MemberRefs: map[string]*ShapeRef{
-				"Code":    &ShapeRef{},
-				"Message": &ShapeRef{},
-				"OrigErr": &ShapeRef{},
-				"Other":   &ShapeRef{},
-				"String":  &ShapeRef{},
+				"Code":    {},
+				"Message": {},
+				"OrigErr": {},
+				"Other":   {},
+				"String":  {},
 			},
 			Expect: []string{
 				"Code_",
