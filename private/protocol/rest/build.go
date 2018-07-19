@@ -267,8 +267,6 @@ func convertType(v reflect.Value, tag reflect.StructTag) (str string, err error)
 	case float64:
 		str = strconv.FormatFloat(value, 'f', -1, 64)
 	case time.Time:
-		// REST ignores "defaultTimestampFormat" as that tag only
-		// applies to structured payload body values.
 		format := tag.Get("timestampFormat")
 		if len(format) == 0 {
 			format = protocol.RFC822TimeFormatName

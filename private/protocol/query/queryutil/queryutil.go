@@ -233,8 +233,6 @@ func (q *queryParser) parseScalar(v url.Values, r reflect.Value, name string, ta
 		v.Set(name, strconv.FormatFloat(float64(value), 'f', -1, 32))
 	case time.Time:
 		const ISO8601UTC = "2006-01-02T15:04:05Z"
-		// Query ignores "defaultTimestampFormat" as that tag only
-		// applies to structured payload body values.
 		format := tag.Get("timestampFormat")
 		if len(format) == 0 {
 			format = protocol.ISO8601TimeFormatName

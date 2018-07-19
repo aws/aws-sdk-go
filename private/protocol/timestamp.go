@@ -40,20 +40,16 @@ func IsKnownTimestampFormat(name string) bool {
 func FormatTime(name string, t time.Time) string {
 	t = t.UTC()
 
-	var str string
-
 	switch name {
 	case RFC822TimeFormatName:
-		str = t.Format(RFC822TimeFormat)
+		return t.Format(RFC822TimeFormat)
 	case ISO8601TimeFormatName:
-		str = t.Format(ISO8601TimeFormat)
+		return t.Format(ISO8601TimeFormat)
 	case UnixTimeFormatName:
-		str = strconv.FormatInt(t.Unix(), 10)
+		return strconv.FormatInt(t.Unix(), 10)
 	default:
 		panic("unknown timestamp format name, " + name)
 	}
-
-	return str
 }
 
 // ParseTime attempts to parse the time given the format. Returns
