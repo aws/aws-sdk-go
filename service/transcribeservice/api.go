@@ -974,7 +974,7 @@ type CreateVocabularyOutput struct {
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
 	// The date and time that the vocabulary was created.
-	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModifiedTime *time.Time `type:"timestamp"`
 
 	// The name of the vocabulary.
 	VocabularyName *string `min:"1" type:"string"`
@@ -1199,7 +1199,7 @@ type GetVocabularyOutput struct {
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
 	// The date and time that the vocabulary was last modified.
-	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModifiedTime *time.Time `type:"timestamp"`
 
 	// The name of the vocabulary to return.
 	VocabularyName *string `min:"1" type:"string"`
@@ -1792,10 +1792,10 @@ type TranscriptionJob struct {
 	_ struct{} `type:"structure"`
 
 	// A timestamp that shows when the job was completed.
-	CompletionTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CompletionTime *time.Time `type:"timestamp"`
 
 	// A timestamp that shows when the job was created.
-	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationTime *time.Time `type:"timestamp"`
 
 	// If the TranscriptionJobStatus field is FAILED, this field contains information
 	// about why the job failed.
@@ -1910,10 +1910,10 @@ type TranscriptionJobSummary struct {
 	_ struct{} `type:"structure"`
 
 	// A timestamp that shows when the job was completed.
-	CompletionTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CompletionTime *time.Time `type:"timestamp"`
 
 	// A timestamp that shows when the job was created.
-	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationTime *time.Time `type:"timestamp"`
 
 	// If the TranscriptionJobStatus field is FAILED, a description of the error.
 	FailureReason *string `type:"string"`
@@ -2068,7 +2068,7 @@ type UpdateVocabularyOutput struct {
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
 	// The date and time that the vocabulary was updated.
-	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModifiedTime *time.Time `type:"timestamp"`
 
 	// The name of the vocabulary that was updated.
 	VocabularyName *string `min:"1" type:"string"`
@@ -2120,7 +2120,7 @@ type VocabularyInfo struct {
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
 	// The date and time that the vocabulary was last modified.
-	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModifiedTime *time.Time `type:"timestamp"`
 
 	// The name of the vocabulary.
 	VocabularyName *string `min:"1" type:"string"`
