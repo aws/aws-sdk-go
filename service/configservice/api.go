@@ -4487,7 +4487,7 @@ type BaseConfigurationItem struct {
 	ResourceCreationTime *time.Time `locationName:"resourceCreationTime" type:"timestamp"`
 
 	// The ID of the resource (for example., sg-xxxxxx).
-	ResourceId *string `locationName:"resourceId" type:"string"`
+	ResourceId *string `locationName:"resourceId" min:"1" type:"string"`
 
 	// The custom name of the resource, if available.
 	ResourceName *string `locationName:"resourceName" type:"string"`
@@ -5659,7 +5659,7 @@ type ConfigurationItem struct {
 	ResourceCreationTime *time.Time `locationName:"resourceCreationTime" type:"timestamp"`
 
 	// The ID of the resource (for example, sg-xxxxxx).
-	ResourceId *string `locationName:"resourceId" type:"string"`
+	ResourceId *string `locationName:"resourceId" min:"1" type:"string"`
 
 	// The custom name of the resource, if available.
 	ResourceName *string `locationName:"resourceName" type:"string"`
@@ -8676,7 +8676,7 @@ type GetResourceConfigHistoryInput struct {
 	// The ID of the resource (for example., sg-xxxxxx).
 	//
 	// ResourceId is a required field
-	ResourceId *string `locationName:"resourceId" type:"string" required:"true"`
+	ResourceId *string `locationName:"resourceId" min:"1" type:"string" required:"true"`
 
 	// The resource type.
 	//
@@ -8699,6 +8699,9 @@ func (s *GetResourceConfigHistoryInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetResourceConfigHistoryInput"}
 	if s.ResourceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
 	}
 	if s.ResourceType == nil {
 		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
@@ -9629,7 +9632,7 @@ type Relationship struct {
 	RelationshipName *string `locationName:"relationshipName" type:"string"`
 
 	// The ID of the related resource (for example, sg-xxxxxx).
-	ResourceId *string `locationName:"resourceId" type:"string"`
+	ResourceId *string `locationName:"resourceId" min:"1" type:"string"`
 
 	// The custom name of the related resource, if available.
 	ResourceName *string `locationName:"resourceName" type:"string"`
@@ -9714,7 +9717,7 @@ type ResourceIdentifier struct {
 	ResourceDeletionTime *time.Time `locationName:"resourceDeletionTime" type:"timestamp"`
 
 	// The ID of the resource (for example, sg-xxxxxx).
-	ResourceId *string `locationName:"resourceId" type:"string"`
+	ResourceId *string `locationName:"resourceId" min:"1" type:"string"`
 
 	// The custom name of the resource (if available).
 	ResourceName *string `locationName:"resourceName" type:"string"`
@@ -9765,7 +9768,7 @@ type ResourceKey struct {
 	// The ID of the resource (for example., sg-xxxxxx).
 	//
 	// ResourceId is a required field
-	ResourceId *string `locationName:"resourceId" type:"string" required:"true"`
+	ResourceId *string `locationName:"resourceId" min:"1" type:"string" required:"true"`
 
 	// The resource type.
 	//
@@ -9788,6 +9791,9 @@ func (s *ResourceKey) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ResourceKey"}
 	if s.ResourceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
 	}
 	if s.ResourceType == nil {
 		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
