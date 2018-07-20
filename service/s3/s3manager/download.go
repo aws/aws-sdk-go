@@ -39,6 +39,8 @@ type Downloader struct {
 	// The number of goroutines to spin up in parallel when sending parts.
 	// If this is set to zero, the DefaultDownloadConcurrency value will be used.
 	//
+	// Concurrency of 1 will download the parts sequentially.
+	//
 	// Concurrency is ignored if the Range input parameter is provided.
 	Concurrency int
 
@@ -135,6 +137,9 @@ type maxRetrier interface {
 // The w io.WriterAt can be satisfied by an os.File to do multipart concurrent
 // downloads, or in memory []byte wrapper using aws.WriteAtBuffer.
 //
+// Specifying a Downloader.Concurrency of 1 will cause the Downloader to
+// download the parts from S3 sequentially.
+//
 // If the GetObjectInput's Range value is provided that will cause the downloader
 // to perform a single GetObjectInput request for that object's range. This will
 // caused the part size, and concurrency configurations to be ignored.
@@ -159,6 +164,9 @@ func (d Downloader) Download(w io.WriterAt, input *s3.GetObjectInput, options ..
 //
 // The w io.WriterAt can be satisfied by an os.File to do multipart concurrent
 // downloads, or in memory []byte wrapper using aws.WriteAtBuffer.
+//
+// Specifying a Downloader.Concurrency of 1 will cause the Downloader to
+// download the parts from S3 sequentially.
 //
 // It is safe to call this method concurrently across goroutines.
 //
