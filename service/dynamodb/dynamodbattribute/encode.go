@@ -214,6 +214,7 @@ func NewEncoder(opts ...func(*Encoder)) *Encoder {
 	e := &Encoder{
 		MarshalOptions: MarshalOptions{
 			SupportJSONTags: true,
+			SupportYAMLTags: true,
 		},
 		NullEmptyString: true,
 	}
