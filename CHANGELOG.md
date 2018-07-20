@@ -1,3 +1,14 @@
+Release v1.14.31 (2018-07-20)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API
+* `service/dlm`: Updates service documentation
+
+### SDK Enhancements
+* `service/s3/s3manager`: Add documentation for sequential download [#2065](https://github.com/aws/aws-sdk-go/pull/2065)
+  * Adds documentation for downloading object sequentially with the S3 download manager.
+
 Release v1.14.30 (2018-07-19)
 ===
 
