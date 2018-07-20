@@ -77,9 +77,10 @@ ci-test-generate: get-deps
 
 ci-test-generate-validate:
 	@echo "CI test validate no generated code changes"
-	@gitstatus=`if [ \( -z "${SDK_GO_1_6}" \) -a \( -z "${SDK_GO_1_5}" \) ]; then  git status --porcelain; else echo "skipping validation"; fi`; \
+	@git add . -A
+	@gitstatus=`if [ \( -z "${SDK_GO_1_6}" \) -a \( -z "${SDK_GO_1_5}" \) ]; then  git diff --cached --ignore-space-change; else echo "skipping validation"; fi`; \
 	echo "$$gitstatus"; \
-	if [ "$$gitstatus" != "" ] && [ "$$gitstatus" != "skipping validation" ]; then git diff; exit 1; fi
+	if [ "$$gitstatus" != "" ] && [ "$$gitstatus" != "skipping validation" ]; then echo "$$gitstatus"; exit 1; fi
 
 integration: get-deps-tests integ-custom smoke-tests performance
 
