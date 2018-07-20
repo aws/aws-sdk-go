@@ -451,10 +451,10 @@ type Fragment struct {
 	FragmentSizeInBytes *int64 `type:"long"`
 
 	// The time stamp from the producer corresponding to the fragment.
-	ProducerTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ProducerTimestamp *time.Time `type:"timestamp"`
 
 	// The time stamp from the AWS server corresponding to the fragment.
-	ServerTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ServerTimestamp *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -953,7 +953,7 @@ type HLSTimestampRange struct {
 	// This value is inclusive. The EndTimestamp is compared to the (starting) time
 	// stamp of the fragment. Fragments that start before the EndTimestamp value
 	// and continue past it are included in the session.
-	EndTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	EndTimestamp *time.Time `type:"timestamp"`
 
 	// The start of the time stamp range for the requested media.
 	//
@@ -963,7 +963,7 @@ type HLSTimestampRange struct {
 	// This value is inclusive. Fragments that start before the StartTimestamp and
 	// continue past it are included in the session. If FragmentSelectorType is
 	// SERVER_TIMESTAMP, the StartTimestamp must be later than the stream head.
-	StartTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	StartTimestamp *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -1112,12 +1112,12 @@ type TimestampRange struct {
 	// The ending time stamp in the range of time stamps for which to return fragments.
 	//
 	// EndTimestamp is a required field
-	EndTimestamp *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	EndTimestamp *time.Time `type:"timestamp" required:"true"`
 
 	// The starting time stamp in the range of time stamps for which to return fragments.
 	//
 	// StartTimestamp is a required field
-	StartTimestamp *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	StartTimestamp *time.Time `type:"timestamp" required:"true"`
 }
 
 // String returns the string representation

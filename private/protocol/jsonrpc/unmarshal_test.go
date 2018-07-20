@@ -547,7 +547,11 @@ type OutputService3TestShapeOutputService3TestCaseOperation1Output struct {
 
 	StructMember *OutputService3TestShapeTimeContainer `type:"structure"`
 
-	TimeMember *time.Time `type:"timestamp" timestampFormat:"unix"`
+	TimeArg *time.Time `type:"timestamp"`
+
+	TimeCustom *time.Time `type:"timestamp" timestampFormat:"rfc822"`
+
+	TimeFormat *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
 // SetStructMember sets the StructMember field's value.
@@ -556,16 +560,36 @@ func (s *OutputService3TestShapeOutputService3TestCaseOperation1Output) SetStruc
 	return s
 }
 
-// SetTimeMember sets the TimeMember field's value.
-func (s *OutputService3TestShapeOutputService3TestCaseOperation1Output) SetTimeMember(v time.Time) *OutputService3TestShapeOutputService3TestCaseOperation1Output {
-	s.TimeMember = &v
+// SetTimeArg sets the TimeArg field's value.
+func (s *OutputService3TestShapeOutputService3TestCaseOperation1Output) SetTimeArg(v time.Time) *OutputService3TestShapeOutputService3TestCaseOperation1Output {
+	s.TimeArg = &v
+	return s
+}
+
+// SetTimeCustom sets the TimeCustom field's value.
+func (s *OutputService3TestShapeOutputService3TestCaseOperation1Output) SetTimeCustom(v time.Time) *OutputService3TestShapeOutputService3TestCaseOperation1Output {
+	s.TimeCustom = &v
+	return s
+}
+
+// SetTimeFormat sets the TimeFormat field's value.
+func (s *OutputService3TestShapeOutputService3TestCaseOperation1Output) SetTimeFormat(v time.Time) *OutputService3TestShapeOutputService3TestCaseOperation1Output {
+	s.TimeFormat = &v
 	return s
 }
 
 type OutputService3TestShapeTimeContainer struct {
 	_ struct{} `type:"structure"`
 
-	Foo *time.Time `locationName:"foo" type:"timestamp" timestampFormat:"unix"`
+	Bar *time.Time `locationName:"bar" type:"timestamp" timestampFormat:"iso8601"`
+
+	Foo *time.Time `locationName:"foo" type:"timestamp"`
+}
+
+// SetBar sets the Bar field's value.
+func (s *OutputService3TestShapeTimeContainer) SetBar(v time.Time) *OutputService3TestShapeTimeContainer {
+	s.Bar = &v
+	return s
 }
 
 // SetFoo sets the Foo field's value.
@@ -1341,7 +1365,7 @@ func TestOutputService2ProtocolTestBlobMembersCase1(t *testing.T) {
 func TestOutputService3ProtocolTestTimestampMembersCase1(t *testing.T) {
 	svc := NewOutputService3ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 
-	buf := bytes.NewReader([]byte("{\"TimeMember\": 1398796238, \"StructMember\": {\"foo\": 1398796238}}"))
+	buf := bytes.NewReader([]byte("{\"TimeArg\": 1398796238, \"TimeCustom\": \"Tue, 29 Apr 2014 18:30:38 GMT\", \"TimeFormat\": \"2014-04-29T18:30:38Z\", \"StructMember\": {\"foo\": 1398796238, \"bar\": \"2014-04-29T18:30:38Z\"}}"))
 	req, out := svc.OutputService3TestCaseOperation1Request(nil)
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
@@ -1358,10 +1382,19 @@ func TestOutputService3ProtocolTestTimestampMembersCase1(t *testing.T) {
 	if out == nil {
 		t.Errorf("expect not to be nil")
 	}
+	if e, a := time.Unix(1.398796238e+09, 0).UTC().String(), out.StructMember.Bar.UTC().String(); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 	if e, a := time.Unix(1.398796238e+09, 0).UTC().String(), out.StructMember.Foo.UTC().String(); e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
-	if e, a := time.Unix(1.398796238e+09, 0).UTC().String(), out.TimeMember.UTC().String(); e != a {
+	if e, a := time.Unix(1.398796238e+09, 0).UTC().String(), out.TimeArg.UTC().String(); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := time.Unix(1.398796238e+09, 0).UTC().String(), out.TimeCustom.UTC().String(); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := time.Unix(1.398796238e+09, 0).UTC().String(), out.TimeFormat.UTC().String(); e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 

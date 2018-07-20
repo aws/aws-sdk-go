@@ -837,7 +837,7 @@ var eventStreamTestTmpl = template.Must(
 		"ValueForType":               valueForType,
 		"HasNonBlobPayloadMembers":   eventHasNonBlobPayloadMembers,
 		"SetEventHeaderValueForType": setEventHeaderValueForType,
-		"Map": templateMap,
+		"Map":                        templateMap,
 		"OptionalAddInt": func(do bool, a, b int) int {
 			if !do {
 				return a

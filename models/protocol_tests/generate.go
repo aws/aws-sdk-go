@@ -270,7 +270,7 @@ func (i *testCase) TestCase(idx int) string {
 		case "rest-xml":
 			i.InputTest.Body = util.SortXML(bytes.NewReader([]byte(i.InputTest.Body)))
 		case "json", "rest-json":
-			i.InputTest.Body = strings.Replace(i.InputTest.Body, " ", "", -1)
+			i.InputTest.Body = i.InputTest.Body
 		}
 
 		jsonValues := buildJSONValues(i.Given.InputRef.Shape)

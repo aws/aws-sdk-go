@@ -2132,12 +2132,28 @@ func (c *InputService12ProtocolTest) InputService12TestCaseOperation1WithContext
 type InputService12TestShapeInputService12TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 
-	TimeArg *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	TimeArg *time.Time `type:"timestamp"`
+
+	TimeCustom *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	TimeFormat *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 }
 
 // SetTimeArg sets the TimeArg field's value.
 func (s *InputService12TestShapeInputService12TestCaseOperation1Input) SetTimeArg(v time.Time) *InputService12TestShapeInputService12TestCaseOperation1Input {
 	s.TimeArg = &v
+	return s
+}
+
+// SetTimeCustom sets the TimeCustom field's value.
+func (s *InputService12TestShapeInputService12TestCaseOperation1Input) SetTimeCustom(v time.Time) *InputService12TestShapeInputService12TestCaseOperation1Input {
+	s.TimeCustom = &v
+	return s
+}
+
+// SetTimeFormat sets the TimeFormat field's value.
+func (s *InputService12TestShapeInputService12TestCaseOperation1Input) SetTimeFormat(v time.Time) *InputService12TestShapeInputService12TestCaseOperation1Input {
+	s.TimeFormat = &v
 	return s
 }
 
@@ -3693,7 +3709,9 @@ func TestInputService11ProtocolTestBase64EncodedBlobsNestedCase1(t *testing.T) {
 func TestInputService12ProtocolTestTimestampValuesCase1(t *testing.T) {
 	svc := NewInputService12ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService12TestShapeInputService12TestCaseOperation1Input{
-		TimeArg: aws.Time(time.Unix(1422172800, 0)),
+		TimeArg:    aws.Time(time.Unix(1422172800, 0)),
+		TimeCustom: aws.Time(time.Unix(1422172800, 0)),
+		TimeFormat: aws.Time(time.Unix(1422172800, 0)),
 	}
 	req, _ := svc.InputService12TestCaseOperation1Request(input)
 	r := req.HTTPRequest
@@ -3709,7 +3727,7 @@ func TestInputService12ProtocolTestTimestampValuesCase1(t *testing.T) {
 		t.Errorf("expect body not to be nil")
 	}
 	body, _ := ioutil.ReadAll(r.Body)
-	awstesting.AssertQuery(t, `Action=OperationName&TimeArg=2015-01-25T08%3A00%3A00Z&Version=2014-01-01`, util.Trim(string(body)))
+	awstesting.AssertQuery(t, `Action=OperationName&TimeArg=2015-01-25T08%3A00%3A00Z&TimeCustom=1422172800&TimeFormat=1422172800&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())

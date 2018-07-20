@@ -3574,10 +3574,10 @@ type Channel struct {
 	Arn *string `locationName:"arn" type:"string"`
 
 	// When the channel was created.
-	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"unix"`
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
 	// When the channel was last updated.
-	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp" timestampFormat:"unix"`
+	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp"`
 
 	// The name of the channel.
 	Name *string `locationName:"name" min:"1" type:"string"`
@@ -3738,10 +3738,10 @@ type ChannelSummary struct {
 	ChannelName *string `locationName:"channelName" min:"1" type:"string"`
 
 	// When the channel was created.
-	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"unix"`
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
 	// The last time the channel was updated.
-	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp" timestampFormat:"unix"`
+	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp"`
 
 	// The status of the channel.
 	Status *string `locationName:"status" type:"string" enum:"ChannelStatus"`
@@ -4345,10 +4345,10 @@ type Dataset struct {
 	Arn *string `locationName:"arn" type:"string"`
 
 	// When the data set was created.
-	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"unix"`
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
 	// The last time the data set was updated.
-	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp" timestampFormat:"unix"`
+	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp"`
 
 	// The name of the data set.
 	Name *string `locationName:"name" min:"1" type:"string"`
@@ -4536,13 +4536,13 @@ type DatasetSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The time the data set was created.
-	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"unix"`
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
 	// The name of the data set.
 	DatasetName *string `locationName:"datasetName" min:"1" type:"string"`
 
 	// The last time the data set was updated.
-	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp" timestampFormat:"unix"`
+	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp"`
 
 	// The status of the data set.
 	Status *string `locationName:"status" type:"string" enum:"DatasetStatus"`
@@ -4614,10 +4614,10 @@ type Datastore struct {
 	Arn *string `locationName:"arn" type:"string"`
 
 	// When the data store was created.
-	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"unix"`
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
 	// The last time the data store was updated.
-	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp" timestampFormat:"unix"`
+	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp"`
 
 	// The name of the data store.
 	Name *string `locationName:"name" min:"1" type:"string"`
@@ -4769,13 +4769,13 @@ type DatastoreSummary struct {
 	_ struct{} `type:"structure"`
 
 	// When the data store was created.
-	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"unix"`
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
 	// The name of the data store.
 	DatastoreName *string `locationName:"datastoreName" min:"1" type:"string"`
 
 	// The last time the data store was updated.
-	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp" timestampFormat:"unix"`
+	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp"`
 
 	// The status of the data store.
 	Status *string `locationName:"status" type:"string" enum:"DatastoreStatus"`
@@ -5648,7 +5648,7 @@ type EstimatedResourceSize struct {
 	_ struct{} `type:"structure"`
 
 	// The time when the estimate of the size of the resource was made.
-	EstimatedOn *time.Time `locationName:"estimatedOn" type:"timestamp" timestampFormat:"unix"`
+	EstimatedOn *time.Time `locationName:"estimatedOn" type:"timestamp"`
 
 	// The estimated size of the resource in bytes.
 	EstimatedSizeInBytes *float64 `locationName:"estimatedSizeInBytes" type:"double"`
@@ -5811,7 +5811,7 @@ type GetDatasetContentOutput struct {
 	Status *DatasetContentStatus `locationName:"status" type:"structure"`
 
 	// The time when the request was made.
-	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" timestampFormat:"unix"`
+	Timestamp *time.Time `locationName:"timestamp" type:"timestamp"`
 }
 
 // String returns the string representation
@@ -6549,10 +6549,10 @@ type Pipeline struct {
 	Arn *string `locationName:"arn" type:"string"`
 
 	// When the pipeline was created.
-	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"unix"`
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
 	// The last time the pipeline was updated.
-	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp" timestampFormat:"unix"`
+	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp"`
 
 	// The name of the pipeline.
 	Name *string `locationName:"name" min:"1" type:"string"`
@@ -6779,10 +6779,10 @@ type PipelineSummary struct {
 	_ struct{} `type:"structure"`
 
 	// When the pipeline was created.
-	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"unix"`
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
 	// When the pipeline was last updated.
-	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp" timestampFormat:"unix"`
+	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp"`
 
 	// The name of the pipeline.
 	PipelineName *string `locationName:"pipelineName" min:"1" type:"string"`
@@ -6958,7 +6958,7 @@ type ReprocessingSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The time the pipeline reprocessing was created.
-	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"unix"`
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
 	// The 'reprocessingId' returned by "StartPipelineReprocessing".
 	Id *string `locationName:"id" type:"string"`
@@ -7149,14 +7149,14 @@ type SampleChannelDataInput struct {
 	ChannelName *string `location:"uri" locationName:"channelName" min:"1" type:"string" required:"true"`
 
 	// The end of the time window from which sample messages are retrieved.
-	EndTime *time.Time `location:"querystring" locationName:"endTime" type:"timestamp" timestampFormat:"unix"`
+	EndTime *time.Time `location:"querystring" locationName:"endTime" type:"timestamp"`
 
 	// The number of sample messages to be retrieved. The limit is 10, the default
 	// is also 10.
 	MaxMessages *int64 `location:"querystring" locationName:"maxMessages" min:"1" type:"integer"`
 
 	// The start of the time window from which sample messages are retrieved.
-	StartTime *time.Time `location:"querystring" locationName:"startTime" type:"timestamp" timestampFormat:"unix"`
+	StartTime *time.Time `location:"querystring" locationName:"startTime" type:"timestamp"`
 }
 
 // String returns the string representation
@@ -7377,7 +7377,7 @@ type StartPipelineReprocessingInput struct {
 	_ struct{} `type:"structure"`
 
 	// The end time (exclusive) of raw message data that is reprocessed.
-	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"unix"`
+	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
 
 	// The name of the pipeline on which to start reprocessing.
 	//
@@ -7385,7 +7385,7 @@ type StartPipelineReprocessingInput struct {
 	PipelineName *string `location:"uri" locationName:"pipelineName" min:"1" type:"string" required:"true"`
 
 	// The start time (inclusive) of raw message data that is reprocessed.
-	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"unix"`
+	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 }
 
 // String returns the string representation

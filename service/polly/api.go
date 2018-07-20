@@ -1252,7 +1252,7 @@ type LexiconAttributes struct {
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
 	// Date lexicon was last modified (a timestamp value).
-	LastModified *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModified *time.Time `type:"timestamp"`
 
 	// Number of lexemes in the lexicon.
 	LexemesCount *int64 `type:"integer"`
@@ -1732,7 +1732,7 @@ type SynthesisTask struct {
 	_ struct{} `type:"structure"`
 
 	// Timestamp for the time the synthesis task was started.
-	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationTime *time.Time `type:"timestamp"`
 
 	// List of one or more pronunciation lexicon names you want the service to apply
 	// during synthesis. Lexicons are applied only if the language of the lexicon

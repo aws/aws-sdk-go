@@ -6079,7 +6079,7 @@ type DeviceEvent struct {
 	_ struct{} `type:"structure"`
 
 	// The time (in epoch) when the event occurred.
-	Timestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	Timestamp *time.Time `type:"timestamp"`
 
 	// The type of device event.
 	Type *string `type:"string" enum:"DeviceEventType"`
