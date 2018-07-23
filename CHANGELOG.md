@@ -1006,6 +1006,12 @@ Release v1.12.77 (2018-02-14)
 * `aws/endpoints`: Updated Regions and Endpoints metadata.
 * `service/lex-models`: Updates service API and documentation
 
+### Bug Fixes
+* `aws/request`: Fix support for streamed payloads for unsigned body request ([#1778](https://github.com/aws/aws-sdk-go/pull/1778))
+  * Fixes the SDK's handling of the SDK's `ReaderSeekerCloser` helper type to not allow erroneous request retries, and request signature generation. This Fix allows you to use the `aws.ReaderSeekerCloser` to wrap an arbitrary `io.Reader` for request `io.ReadSeeker` input parameters. APIs such as lex-runtime's PostContent can now make use of the
+ReaderSeekerCloser type without causing unexpected failures.
+  * Fixes [#1776](https://github.com/aws/aws-sdk-go/issues/1776)
+
 Release v1.12.76 (2018-02-13)
 ===
 
