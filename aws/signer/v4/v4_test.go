@@ -62,6 +62,11 @@ func TestStripExcessHeaders(t *testing.T) {
 }
 
 func buildRequest(serviceName, region, body string) (*http.Request, io.ReadSeeker) {
+	reader := strings.NewReader(body)
+	return buildRequestWithBodyReader(serviceName, region, reader)
+}
+
+func buildRequestReaderSeeker(serviceName, region, body string) (*http.Request, io.ReadSeeker) {
 	reader := &readerSeekerWrapper{strings.NewReader(body)}
 	return buildRequestWithBodyReader(serviceName, region, reader)
 }
@@ -694,18 +699,16 @@ func TestRequestHost(t *testing.T) {
 }
 
 func BenchmarkPresignRequest(b *testing.B) {
-	b.ReportAllocs()
 	signer := buildSigner()
-	req, body := buildRequest("dynamodb", "us-east-1", "{}")
+	req, body := buildRequestReaderSeeker("dynamodb", "us-east-1", "{}")
 	for i := 0; i < b.N; i++ {
 		signer.Presign(req, body, "dynamodb", "us-east-1", 300*time.Second, time.Now())
 	}
 }
 
 func BenchmarkSignRequest(b *testing.B) {
-	b.ReportAllocs()
 	signer := buildSigner()
-	req, body := buildRequest("dynamodb", "us-east-1", "{}")
+	req, body := buildRequestReaderSeeker("dynamodb", "us-east-1", "{}")
 	for i := 0; i < b.N; i++ {
 		signer.Sign(req, body, "dynamodb", "us-east-1", time.Now())
 	}
