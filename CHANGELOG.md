@@ -1,3 +1,10 @@
+Release v1.14.32 (2018-07-24)
+===
+
+### Service Client Updates
+* `service/dynamodb`: Updates service API and documentation
+  * With this SDK update, APIs UpdateGlobalTableSettings and DescribeGlobalTableSettings now allow consistently configuring AutoScaling settings for a DynamoDB global table. Previously, they would only allow consistently setting IOPS. Now new APIs are being released, existing APIs are being extended.
+
 Release v1.14.31 (2018-07-20)
 ===
 
