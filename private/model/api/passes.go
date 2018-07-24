@@ -71,14 +71,6 @@ type referenceResolver struct {
 	visited map[*ShapeRef]bool
 }
 
-var jsonvalueShape = &Shape{
-	ShapeName: "JSONValue",
-	Type:      "jsonvalue",
-	ValueRef: ShapeRef{
-		JSONValue: true,
-	},
-}
-
 // resolveReference updates a shape reference to reference the API and
 // its shape definition. All other nested references are also resolved.
 func (r *referenceResolver) resolveReference(ref *ShapeRef) {
@@ -94,7 +86,16 @@ func (r *referenceResolver) resolveReference(ref *ShapeRef) {
 
 	if ref.JSONValue {
 		ref.ShapeName = "JSONValue"
-		r.API.Shapes[ref.ShapeName] = jsonvalueShape
+		if _, ok := r.API.Shapes[ref.ShapeName]; !ok {
+			r.API.Shapes[ref.ShapeName] = &Shape{
+				API:       r.API,
+				ShapeName: "JSONValue",
+				Type:      "jsonvalue",
+				ValueRef: ShapeRef{
+					JSONValue: true,
+				},
+			}
+		}
 	}
 
 	ref.API = r.API   // resolve reference back to API
@@ -119,40 +120,6 @@ func (r *referenceResolver) resolveShape(shape *Shape) {
 	r.resolveReference(&shape.ValueRef)
 	for _, m := range shape.MemberRefs {
 		r.resolveReference(m)
-	}
-}
-
-// renameToplevelShapes renames all top level shapes of an API to their
-// exportable variant. The shapes are also updated to include notations
-// if they are Input or Outputs.
-func (a *API) renameToplevelShapes() {
-	for _, v := range a.OperationList() {
-		if v.HasInput() {
-			name := v.ExportedName + "Input"
-			switch {
-			case a.Shapes[name] == nil:
-				if service, ok := shamelist[a.name]; ok {
-					if check, ok := service[v.Name]; ok && check.input {
-						break
-					}
-				}
-				v.InputRef.Shape.Rename(name)
-			}
-		}
-		if v.HasOutput() {
-			name := v.ExportedName + "Output"
-			switch {
-			case a.Shapes[name] == nil:
-				if service, ok := shamelist[a.name]; ok {
-					if check, ok := service[v.Name]; ok && check.output {
-						break
-					}
-				}
-				v.OutputRef.Shape.Rename(name)
-			}
-		}
-		v.InputRef.Payload = a.ExportableName(v.InputRef.Payload)
-		v.OutputRef.Payload = a.ExportableName(v.OutputRef.Payload)
 	}
 }
 
@@ -307,13 +274,71 @@ func exceptionCollides(name string) bool {
 // have an input and output structure in the signature.
 func (a *API) createInputOutputShapes() {
 	for _, op := range a.Operations {
-		if !op.HasInput() {
-			setAsPlacholderShape(&op.InputRef, op.ExportedName+"Input", a)
-		}
-		if !op.HasOutput() {
-			setAsPlacholderShape(&op.OutputRef, op.ExportedName+"Output", a)
+		createAPIInputShape(a, op)
+		createAPIOutputShape(a, op)
+	}
+}
+
+func createAPIInputShape(a *API, op *Operation) {
+	const suffix = "Input"
+	shapeName := op.ExportedName + suffix
+
+	if !op.HasInput() {
+		setAsPlacholderShape(&op.InputRef, shapeName, a)
+		return
+	}
+
+	// nothing to do if already the correct name.
+	if op.InputRef.Shape.ShapeName == shapeName {
+		return
+	}
+
+	if service, ok := shamelist[a.name]; ok {
+		if check, ok := service[op.Name]; ok && check.input {
+			// Do nothing keep the current shape references because they are in
+			// the blacklist of API operation parameter shapes that should not
+			// be renamed.
+			return
 		}
 	}
+
+	op.InputRef.Shape.removeRef(&op.InputRef)
+
+	op.InputRef.OrigShapeName = shapeName
+	op.InputRef.ShapeName = shapeName
+	op.InputRef.Shape = op.InputRef.Shape.Clone(shapeName)
+	op.InputRef.Shape.refs = append(op.InputRef.Shape.refs, &op.InputRef)
+}
+
+func createAPIOutputShape(a *API, op *Operation) {
+	const suffix = "Output"
+	shapeName := op.ExportedName + suffix
+
+	if !op.HasOutput() {
+		setAsPlacholderShape(&op.OutputRef, shapeName, a)
+		return
+	}
+
+	// nothing to do if already the correct name.
+	if op.OutputRef.Shape.ShapeName == shapeName {
+		return
+	}
+
+	if service, ok := shamelist[a.name]; ok {
+		if check, ok := service[op.Name]; ok && check.output {
+			// Do nothing keep the current shape references because they are in
+			// the blacklist of API operation parameter shapes that should not
+			// be renamed.
+			return
+		}
+	}
+
+	op.OutputRef.Shape.removeRef(&op.OutputRef)
+
+	op.OutputRef.OrigShapeName = shapeName
+	op.OutputRef.ShapeName = shapeName
+	op.OutputRef.Shape = op.OutputRef.Shape.Clone(shapeName)
+	op.OutputRef.Shape.refs = append(op.OutputRef.Shape.refs, &op.OutputRef)
 }
 
 func setAsPlacholderShape(tgtShapeRef *ShapeRef, name string, a *API) {
@@ -379,4 +404,44 @@ func (a *API) suppressHTTP2EventStreams() {
 
 		a.removeOperation(name)
 	}
+}
+
+// Clone returns a cloned version of the shape with all references clones.
+//
+// Does not clone EventStream or Validate related values.
+func (s *Shape) Clone(newName string) *Shape {
+	n := new(Shape)
+	*n = *s
+
+	fmt.Println("cloning", s.ShapeName, "to", newName)
+
+	n.MemberRefs = map[string]*ShapeRef{}
+	for k, r := range s.MemberRefs {
+		nr := new(ShapeRef)
+		*nr = *r
+		nr.Shape.refs = append(nr.Shape.refs, nr)
+		n.MemberRefs[k] = nr
+	}
+
+	if n.MemberRef.Shape != nil {
+		n.MemberRef.Shape.refs = append(n.MemberRef.Shape.refs, &n.MemberRef)
+	}
+	if n.KeyRef.Shape != nil {
+		n.KeyRef.Shape.refs = append(n.KeyRef.Shape.refs, &n.KeyRef)
+	}
+	if n.ValueRef.Shape != nil {
+		n.ValueRef.Shape.refs = append(n.ValueRef.Shape.refs, &n.ValueRef)
+	}
+
+	n.refs = []*ShapeRef{}
+
+	n.Required = append([]string{}, n.Required...)
+	n.Enum = append([]string{}, n.Enum...)
+	n.EnumConsts = append([]string{}, n.EnumConsts...)
+
+	n.OrigShapeName = n.ShapeName
+	n.API.Shapes[newName] = n
+	n.ShapeName = newName
+
+	return n
 }

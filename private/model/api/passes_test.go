@@ -157,7 +157,7 @@ func TestUniqueInputAndOutputs(t *testing.T) {
 		}
 
 		a.fixStutterNames()
-		a.renameToplevelShapes()
+		a.createInputOutputShapes()
 		for k, v := range expected {
 			if a.Operations[k].InputRef.Shape.ShapeName != v[0] {
 				t.Errorf("Error %s case: Expected %q, but received %q", k, v[0], a.Operations[k].InputRef.Shape.ShapeName)
