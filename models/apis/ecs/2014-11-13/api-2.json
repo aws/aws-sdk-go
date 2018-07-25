@@ -679,6 +679,7 @@
       "members":{
         "name":{"shape":"String"},
         "image":{"shape":"String"},
+        "repositoryCredentials":{"shape":"RepositoryCredentials"},
         "cpu":{"shape":"Integer"},
         "memory":{"shape":"BoxedInteger"},
         "memoryReservation":{"shape":"BoxedInteger"},
@@ -1472,6 +1473,13 @@
       "type":"structure",
       "members":{
         "taskDefinition":{"shape":"TaskDefinition"}
+      }
+    },
+    "RepositoryCredentials":{
+      "type":"structure",
+      "required":["credentialsParameter"],
+      "members":{
+        "credentialsParameter":{"shape":"String"}
       }
     },
     "RequiresAttributes":{
