@@ -269,6 +269,20 @@ func exceptionCollides(name string) bool {
 	return false
 }
 
+func (a *API) applyShapeNameAliases() {
+	service, ok := shapeNameAliases[a.name]
+	if !ok {
+		return
+	}
+
+	for name, s := range a.Shapes {
+		if alias, ok := service[name]; ok {
+			s.Rename(alias)
+			s.AliasedShapeName = true
+		}
+	}
+}
+
 // createInputOutputShapes creates toplevel input/output shapes if they
 // have not been defined in the API. This normalizes all APIs to always
 // have an input and output structure in the signature.
@@ -289,7 +303,7 @@ func createAPIInputShape(a *API, op *Operation) {
 	}
 
 	// nothing to do if already the correct name.
-	if op.InputRef.Shape.ShapeName == shapeName {
+	if s := op.InputRef.Shape; s.AliasedShapeName || s.ShapeName == shapeName {
 		return
 	}
 
@@ -320,7 +334,7 @@ func createAPIOutputShape(a *API, op *Operation) {
 	}
 
 	// nothing to do if already the correct name.
-	if op.OutputRef.Shape.ShapeName == shapeName {
+	if s := op.OutputRef.Shape; s.AliasedShapeName || s.ShapeName == shapeName {
 		return
 	}
 
@@ -404,44 +418,4 @@ func (a *API) suppressHTTP2EventStreams() {
 
 		a.removeOperation(name)
 	}
-}
-
-// Clone returns a cloned version of the shape with all references clones.
-//
-// Does not clone EventStream or Validate related values.
-func (s *Shape) Clone(newName string) *Shape {
-	n := new(Shape)
-	*n = *s
-
-	fmt.Println("cloning", s.ShapeName, "to", newName)
-
-	n.MemberRefs = map[string]*ShapeRef{}
-	for k, r := range s.MemberRefs {
-		nr := new(ShapeRef)
-		*nr = *r
-		nr.Shape.refs = append(nr.Shape.refs, nr)
-		n.MemberRefs[k] = nr
-	}
-
-	if n.MemberRef.Shape != nil {
-		n.MemberRef.Shape.refs = append(n.MemberRef.Shape.refs, &n.MemberRef)
-	}
-	if n.KeyRef.Shape != nil {
-		n.KeyRef.Shape.refs = append(n.KeyRef.Shape.refs, &n.KeyRef)
-	}
-	if n.ValueRef.Shape != nil {
-		n.ValueRef.Shape.refs = append(n.ValueRef.Shape.refs, &n.ValueRef)
-	}
-
-	n.refs = []*ShapeRef{}
-
-	n.Required = append([]string{}, n.Required...)
-	n.Enum = append([]string{}, n.Enum...)
-	n.EnumConsts = append([]string{}, n.EnumConsts...)
-
-	n.OrigShapeName = n.ShapeName
-	n.API.Shapes[newName] = n
-	n.ShapeName = newName
-
-	return n
 }

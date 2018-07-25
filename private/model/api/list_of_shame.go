@@ -352,6 +352,11 @@ var shamelist = map[string]map[string]struct {
 			output: true,
 		},
 	},
+	"ElasticTranscoder": {
+		"CreateJob": {
+			output: true,
+		},
+	},
 	"Glacier": {
 		"DescribeJob": {
 			output: true,
@@ -431,6 +436,54 @@ var shamelist = map[string]map[string]struct {
 			output: true,
 		},
 	},
+	"MQ": {
+		"CreateBroker": {
+			input:  true,
+			output: true,
+		},
+		"CreateConfiguration": {
+			input:  true,
+			output: true,
+		},
+		"CreateUser": {
+			input: true,
+		},
+		"DeleteBroker": {
+			output: true,
+		},
+		"DescribeBroker": {
+			output: true,
+		},
+		"DescribeUser": {
+			output: true,
+		},
+		"DescribeConfigurationRevision": {
+			output: true,
+		},
+		"ListBrokers": {
+			output: true,
+		},
+		"ListConfigurations": {
+			output: true,
+		},
+		"ListConfigurationRevisions": {
+			output: true,
+		},
+		"ListUsers": {
+			output: true,
+		},
+		"UpdateBroker": {
+			input:  true,
+			output: true,
+		},
+		"UpdateConfiguration": {
+			input:  true,
+			output: true,
+		},
+		"UpdateUser": {
+			input: true,
+		},
+	},
 	"RDS": {
 		"ModifyDBClusterParameterGroup": {
 			output: true,
@@ -470,6 +523,20 @@ var shamelist = map[string]map[string]struct {
 		"GetBucketNotificationConfiguration": {
 			input:  true,
 			output: true,
+		},
+	},
+	"ServerlessApplicationRepository": {
+		"CreateApplication": {
+			input: true,
+		},
+		"CreateApplicationVersion": {
+			input: true,
+		},
+		"CreateCloudFormationChangeSet": {
+			input: true,
+		},
+		"UpdateApplication": {
+			input: true,
 		},
 	},
 	"SWF": {

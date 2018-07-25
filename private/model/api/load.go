@@ -38,11 +38,10 @@ func (a *API) Setup() {
 	a.setMetadataEndpointsKey()
 	a.writeShapeNames()
 	a.resolveReferences()
+	a.applyShapeNameAliases()
 	a.fixStutterNames()
 	a.renameExportable()
-
 	a.createInputOutputShapes()
-
 	a.renameCollidingFields()
 	a.updateTopLevelShapeReferences()
 	a.suppressHTTP2EventStreams()
