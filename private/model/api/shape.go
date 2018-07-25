@@ -803,7 +803,7 @@ func (s *Shape) Clone(newName string) *Shape {
 	n := new(Shape)
 	*n = *s
 
-	fmt.Println("cloning", s.ShapeName, "to", newName)
+	debugLogger.Logln("cloning", s.ShapeName, "to", newName)
 
 	n.MemberRefs = map[string]*ShapeRef{}
 	for k, r := range s.MemberRefs {

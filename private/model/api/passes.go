@@ -241,9 +241,7 @@ func (a *API) renameCollidingFields() {
 
 func renameCollidingField(name string, v *Shape, field *ShapeRef) {
 	newName := name + "_"
-	if !(v.Exception && (name == "Code" || name == "Message")) {
-		fmt.Printf("Shape %s's field %q renamed to %q\n", v.ShapeName, name, newName)
-	}
+	debugLogger.Logf("Shape %s's field %q renamed to %q", v.ShapeName, name, newName)
 	delete(v.MemberRefs, name)
 	v.MemberRefs[newName] = field
 }
