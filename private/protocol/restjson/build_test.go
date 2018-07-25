@@ -2271,9 +2271,8 @@ func (c *InputService13ProtocolTest) InputService13TestCaseOperation2WithContext
 }
 
 type InputService13TestShapeInputService13TestCaseOperation1Input struct {
-	_ struct{} `type:"structure" payload:"foo"`
+	_ struct{} `type:"structure" payload:"Foo"`
 
-	// Foo is automatically base64 encoded/decoded by the SDK.
 	Foo []byte `locationName:"foo" type:"blob"`
 }
 
@@ -2288,9 +2287,8 @@ type InputService13TestShapeInputService13TestCaseOperation1Output struct {
 }
 
 type InputService13TestShapeInputService13TestCaseOperation2Input struct {
-	_ struct{} `type:"structure" payload:"foo"`
+	_ struct{} `type:"structure" payload:"Foo"`
 
-	// Foo is automatically base64 encoded/decoded by the SDK.
 	Foo []byte `locationName:"foo" type:"blob"`
 }
 
@@ -2519,7 +2517,7 @@ func (s *InputService14TestShapeFooShape) SetBaz(v string) *InputService14TestSh
 }
 
 type InputService14TestShapeInputService14TestCaseOperation1Input struct {
-	_ struct{} `type:"structure" payload:"foo"`
+	_ struct{} `type:"structure" payload:"Foo"`
 
 	Foo *InputService14TestShapeFooShape `locationName:"foo" type:"structure"`
 }
@@ -2535,7 +2533,7 @@ type InputService14TestShapeInputService14TestCaseOperation1Output struct {
 }
 
 type InputService14TestShapeInputService14TestCaseOperation2Input struct {
-	_ struct{} `type:"structure" payload:"foo"`
+	_ struct{} `type:"structure" payload:"Foo"`
 
 	Foo *InputService14TestShapeFooShape `locationName:"foo" type:"structure"`
 }
@@ -3892,7 +3890,7 @@ func (c *InputService19ProtocolTest) InputService19TestCaseOperation1WithContext
 }
 
 type InputService19TestShapeInputService19TestCaseOperation1Input struct {
-	_ struct{} `type:"structure" payload:"foo"`
+	_ struct{} `type:"structure" payload:"Foo"`
 
 	Foo *string `locationName:"foo" type:"string"`
 }

@@ -1,13 +1,15 @@
 package api
 
+type persistAPIType struct {
+	output bool
+	input  bool
+}
+
 // shamelist is used to not rename certain operation's input and output shapes.
 // We need to maintain backwards compatibility with pre-existing services. Since
 // not generating unique input/output shapes is not desired, we will generate
 // unique input/output shapes for new operations.
-var shamelist = map[string]map[string]struct {
-	input  bool
-	output bool
-}{
+var shamelist = map[string]map[string]persistAPIType{
 	"APIGateway": {
 		"CreateApiKey": {
 			output: true,

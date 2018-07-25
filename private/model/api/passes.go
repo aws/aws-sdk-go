@@ -268,15 +268,35 @@ func exceptionCollides(name string) bool {
 }
 
 func (a *API) applyShapeNameAliases() {
-	service, ok := shapeNameAliases[a.name]
-	if !ok {
-		return
+	// Operational API Input/Output aliases
+	if service, ok := shamelist[a.name]; ok {
+		for _, op := range a.Operations {
+			check, ok := service[op.Name]
+			if !ok {
+				continue
+			}
+
+			if check.input {
+				op.InputRef.Shape.AliasedShapeName = true
+			}
+			if check.output {
+				op.OutputRef.Shape.AliasedShapeName = true
+			}
+		}
 	}
 
-	for name, s := range a.Shapes {
-		if alias, ok := service[name]; ok {
-			s.Rename(alias)
-			s.AliasedShapeName = true
+	// Generic Shape Aliases
+	if service, ok := shapeNameAliases[a.name]; ok {
+		for name, s := range a.Shapes {
+			if alias, ok := service[name]; ok {
+				if s.AliasedShapeName {
+					panic(fmt.Sprintf(
+						"shape %s already aliased, conflict with operation alias and shape aliases",
+						name))
+				}
+				s.Rename(alias)
+				s.AliasedShapeName = true
+			}
 		}
 	}
 }
@@ -286,71 +306,41 @@ func (a *API) applyShapeNameAliases() {
 // have an input and output structure in the signature.
 func (a *API) createInputOutputShapes() {
 	for _, op := range a.Operations {
-		createAPIInputShape(a, op)
-		createAPIOutputShape(a, op)
+		createAPIParamShape(a, op.Name, &op.InputRef, op.ExportedName+"Input")
+		createAPIParamShape(a, op.Name, &op.OutputRef, op.ExportedName+"Output")
 	}
 }
 
-func createAPIInputShape(a *API, op *Operation) {
-	const suffix = "Input"
-	shapeName := op.ExportedName + suffix
+func (a *API) renameAPIPayloadShapes() {
+	for _, op := range a.Operations {
+		op.InputRef.Payload = a.ExportableName(op.InputRef.Payload)
+		op.OutputRef.Payload = a.ExportableName(op.OutputRef.Payload)
+	}
+}
 
-	if !op.HasInput() {
-		setAsPlacholderShape(&op.InputRef, shapeName, a)
+func createAPIParamShape(a *API, opName string, ref *ShapeRef, shapeName string) {
+	if len(ref.ShapeName) == 0 {
+		setAsPlacholderShape(ref, shapeName, a)
 		return
 	}
 
 	// nothing to do if already the correct name.
-	if s := op.InputRef.Shape; s.AliasedShapeName || s.ShapeName == shapeName {
+	if s := ref.Shape; s.AliasedShapeName || s.ShapeName == shapeName {
 		return
 	}
 
-	if service, ok := shamelist[a.name]; ok {
-		if check, ok := service[op.Name]; ok && check.input {
-			// Do nothing keep the current shape references because they are in
-			// the blacklist of API operation parameter shapes that should not
-			// be renamed.
-			return
-		}
+	if s, ok := a.Shapes[shapeName]; ok {
+		panic(fmt.Sprintf(
+			"attempting to create duplicate API parameter shape, %v, %v, %v, %v\n",
+			shapeName, opName, ref.ShapeName, s.OrigShapeName,
+		))
 	}
 
-	op.InputRef.Shape.removeRef(&op.InputRef)
-
-	op.InputRef.OrigShapeName = shapeName
-	op.InputRef.ShapeName = shapeName
-	op.InputRef.Shape = op.InputRef.Shape.Clone(shapeName)
-	op.InputRef.Shape.refs = append(op.InputRef.Shape.refs, &op.InputRef)
-}
-
-func createAPIOutputShape(a *API, op *Operation) {
-	const suffix = "Output"
-	shapeName := op.ExportedName + suffix
-
-	if !op.HasOutput() {
-		setAsPlacholderShape(&op.OutputRef, shapeName, a)
-		return
-	}
-
-	// nothing to do if already the correct name.
-	if s := op.OutputRef.Shape; s.AliasedShapeName || s.ShapeName == shapeName {
-		return
-	}
-
-	if service, ok := shamelist[a.name]; ok {
-		if check, ok := service[op.Name]; ok && check.output {
-			// Do nothing keep the current shape references because they are in
-			// the blacklist of API operation parameter shapes that should not
-			// be renamed.
-			return
-		}
-	}
-
-	op.OutputRef.Shape.removeRef(&op.OutputRef)
-
-	op.OutputRef.OrigShapeName = shapeName
-	op.OutputRef.ShapeName = shapeName
-	op.OutputRef.Shape = op.OutputRef.Shape.Clone(shapeName)
-	op.OutputRef.Shape.refs = append(op.OutputRef.Shape.refs, &op.OutputRef)
+	ref.Shape.removeRef(ref)
+	ref.OrigShapeName = shapeName
+	ref.ShapeName = shapeName
+	ref.Shape = ref.Shape.Clone(shapeName)
+	ref.Shape.refs = append(ref.Shape.refs, ref)
 }
 
 func setAsPlacholderShape(tgtShapeRef *ShapeRef, name string, a *API) {
