@@ -90,7 +90,7 @@ func TestDataFiles(t *testing.T) {
 			continue
 		}
 
-		v := NewSharedConfigVisitor()
+		v := NewDefaultVisitor()
 		err = Walk(tree, v)
 		if err != nil && !c.expectedWalkError {
 			t.Errorf("%d: unexpected error, %v", i+1, err)
@@ -134,9 +134,8 @@ func TestDataFiles(t *testing.T) {
 						t.Errorf("%d: expected %v, but received %v", i+1, e, a)
 					}
 				case float64:
-					tok := p.Values[k]
-					v := tok.(literalToken)
-					if v.Value.Type == IntegerType {
+					v := p.values[k]
+					if v.Type == IntegerType {
 						a := p.Int(k)
 						if int64(e) != a {
 							t.Errorf("%d: expected %v, but received %v", i+1, e, a)

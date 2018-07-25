@@ -17,9 +17,10 @@ func TestTokenize(t *testing.T) {
 			r: bytes.NewBuffer([]byte(`x = 123`)),
 			expectedTokens: []Token{
 				literalToken{
-					Value: UnionValue{
+					Value: Value{
 						Type: StringType,
 						str:  "x",
+						raw:  "x",
 					},
 					raw: "x",
 				},
@@ -34,9 +35,10 @@ func TestTokenize(t *testing.T) {
 					raw: " ",
 				},
 				literalToken{
-					Value: UnionValue{
+					Value: Value{
 						Type:    IntegerType,
 						integer: 123,
+						raw:     "123",
 					},
 					raw: "123",
 				},
@@ -53,9 +55,10 @@ func TestTokenize(t *testing.T) {
 					raw: " ",
 				},
 				literalToken{
-					Value: UnionValue{
+					Value: Value{
 						Type: StringType,
 						str:  "foo",
+						raw:  "foo",
 					},
 					raw: "foo",
 				},

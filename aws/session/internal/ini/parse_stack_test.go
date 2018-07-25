@@ -40,7 +40,7 @@ func TestStack(t *testing.T) {
 		p := ParseStack{}
 		for _, ast := range c.asts {
 			p.Push(ast)
-			p.Epsilon(ast)
+			p.MarkComplete(ast)
 		}
 
 		if e, a := len(c.expected), p.Len(); e != a {

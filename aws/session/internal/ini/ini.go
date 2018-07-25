@@ -12,7 +12,7 @@ import (
 func OpenFile(path string) (Sections, error) {
 	f, err := os.Open(path)
 	if err != nil {
-		return nil, awserr.New(ErrCodeUnableToReadFile, "unable to open file", err)
+		return Sections{}, awserr.New(ErrCodeUnableToReadFile, "unable to open file", err)
 	}
 	defer f.Close()
 
@@ -24,12 +24,12 @@ func OpenFile(path string) (Sections, error) {
 func Parse(f io.Reader) (Sections, error) {
 	tree, err := ParseAST(f)
 	if err != nil {
-		return nil, err
+		return Sections{}, err
 	}
 
-	v := NewSharedConfigVisitor()
+	v := NewDefaultVisitor()
 	if err = Walk(tree, v); err != nil {
-		return nil, err
+		return Sections{}, err
 	}
 
 	return v.Sections, nil

@@ -7,47 +7,47 @@ import (
 
 func TestIsNumberValue(t *testing.T) {
 	cases := []struct {
-		b        []byte
+		b        []rune
 		expected bool
 	}{
 		{
-			[]byte("123"),
+			[]rune("123"),
 			true,
 		},
 		{
-			[]byte("-123"),
+			[]rune("-123"),
 			true,
 		},
 		{
-			[]byte("123.456"),
+			[]rune("123.456"),
 			true,
 		},
 		{
-			[]byte("1e234"),
+			[]rune("1e234"),
 			true,
 		},
 		{
-			[]byte("1E234"),
+			[]rune("1E234"),
 			true,
 		},
 		{
-			[]byte("1ea4"),
+			[]rune("1ea4"),
 			false,
 		},
 		{
-			[]byte("1-23"),
+			[]rune("1-23"),
 			false,
 		},
 		{
-			[]byte("-1-23"),
+			[]rune("-1-23"),
 			false,
 		},
 		{
-			[]byte("123-"),
+			[]rune("123-"),
 			false,
 		},
 		{
-			[]byte("a"),
+			[]rune("a"),
 			false,
 		},
 	}
@@ -62,88 +62,96 @@ func TestIsNumberValue(t *testing.T) {
 // TODO: test errors
 func TestNewLiteralToken(t *testing.T) {
 	cases := []struct {
-		b             []byte
+		b             []rune
 		expectedRead  int
 		expectedToken literalToken
 		expectedError bool
 	}{
 		{
-			b:            []byte("123"),
+			b:            []rune("123"),
 			expectedRead: 3,
 			expectedToken: literalToken{
-				Value: UnionValue{
+				Value: Value{
 					Type:    IntegerType,
 					integer: 123,
+					raw:     "123",
 				},
 			},
 		},
 		{
-			b:            []byte("123.456"),
+			b:            []rune("123.456"),
 			expectedRead: 7,
 			expectedToken: literalToken{
-				Value: UnionValue{
+				Value: Value{
 					Type:    DecimalType,
 					decimal: 123.456,
+					raw:     "123.456",
 				},
 			},
 		},
 		{
-			b:            []byte("123 456"),
+			b:            []rune("123 456"),
 			expectedRead: 3,
 			expectedToken: literalToken{
-				Value: UnionValue{
+				Value: Value{
 					Type:    IntegerType,
 					integer: 123,
+					raw:     "123",
 				},
 			},
 		},
 		{
-			b:            []byte("123 abc"),
+			b:            []rune("123 abc"),
 			expectedRead: 3,
 			expectedToken: literalToken{
-				Value: UnionValue{
+				Value: Value{
 					Type:    IntegerType,
 					integer: 123,
+					raw:     "123",
 				},
 			},
 		},
 		{
-			b:            []byte(`"Hello" 123`),
+			b:            []rune(`"Hello" 123`),
 			expectedRead: 7,
 			expectedToken: literalToken{
-				Value: UnionValue{
+				Value: Value{
 					Type: QuotedStringType,
 					str:  `Hello`,
+					raw:  "Hello",
 				},
 			},
 		},
 		{
-			b:            []byte(`"Hello World"`),
+			b:            []rune(`"Hello World"`),
 			expectedRead: 13,
 			expectedToken: literalToken{
-				Value: UnionValue{
+				Value: Value{
 					Type: QuotedStringType,
 					str:  "Hello World",
+					raw:  "Hello World",
 				},
 			},
 		},
 		{
-			b:            []byte("true"),
+			b:            []rune("true"),
 			expectedRead: 4,
 			expectedToken: literalToken{
-				Value: UnionValue{
+				Value: Value{
 					Type:    BoolType,
 					boolean: true,
+					raw:     "true",
 				},
 			},
 		},
 		{
-			b:            []byte("false"),
+			b:            []rune("false"),
 			expectedRead: 5,
 			expectedToken: literalToken{
-				Value: UnionValue{
+				Value: Value{
 					Type:    BoolType,
 					boolean: false,
+					raw:     "false",
 				},
 			},
 		},

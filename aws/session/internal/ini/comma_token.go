@@ -14,6 +14,6 @@ func (tok commaToken) Type() TokenType {
 	return TokenComma
 }
 
-func isComma(b byte) bool {
+func isComma(b rune) bool {
 	return b == ','
 }

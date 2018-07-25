@@ -4,9 +4,6 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
-	"unicode/utf8"
-
-	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
 var literalValues = []string{
@@ -14,7 +11,7 @@ var literalValues = []string{
 	"false",
 }
 
-func isBoolValue(b []byte) bool {
+func isBoolValue(b []rune) bool {
 	for _, lv := range literalValues {
 		if len(b) < len(lv) {
 			continue
@@ -34,7 +31,7 @@ func isBoolValue(b []byte) bool {
 //
 // A number is defined to be in a binary, octal, decimal (int | float), hex format,
 // or in scientific notation.
-func isNumberValue(b []byte) bool {
+func isNumberValue(b []rune) bool {
 	negativeIndex := 0
 	helper := numberHelper{}
 
@@ -55,7 +52,7 @@ func isNumberValue(b []byte) bool {
 			negativeIndex = 0
 			continue
 		case 'b':
-			if helper.hex {
+			if helper.numberFormat == hex {
 				break
 			}
 			fallthrough
@@ -85,23 +82,24 @@ func isNumberValue(b []byte) bool {
 	return true
 }
 
-func isValid(b []byte) (bool, int, error) {
-	r, size := utf8.DecodeRune(b)
-	if !utf8.ValidRune(r) {
-		return false, 0, awserr.New(ErrCodeParseError, "invalid character", nil)
+func isValid(b []rune) (bool, int, error) {
+	if len(b) == 0 {
+		// TODO: should probably return an error
+		return false, 0, nil
 	}
-	return isValidRune(r), size, nil
+
+	return isValidRune(b[0]), 1, nil
 }
 
 func isValidRune(r rune) bool {
 	return r != '=' && r != '[' && r != ']' && r != ' ' && r != '\n'
 }
 
-// UnionValueType is an enum that will signify what type
-// the UnionValue is
-type UnionValueType int
+// ValueType is an enum that will signify what type
+// the Value is
+type ValueType int
 
-func (v UnionValueType) String() string {
+func (v ValueType) String() string {
 	switch v {
 	case NoneType:
 		return "NONE"
@@ -118,9 +116,9 @@ func (v UnionValueType) String() string {
 	return ""
 }
 
-// UnionValueType enums
+// ValueType enums
 const (
-	NoneType = UnionValueType(iota)
+	NoneType = ValueType(iota)
 	DecimalType
 	IntegerType
 	StringType
@@ -129,13 +127,14 @@ const (
 )
 
 type literalToken struct {
-	Value UnionValue
+	Value Value
 	raw   string
 }
 
-// UnionValue is a union container
-type UnionValue struct {
-	Type UnionValueType
+// Value is a union container
+type Value struct {
+	Type ValueType
+	raw  string
 
 	integer int64
 	decimal float64
@@ -145,14 +144,18 @@ type UnionValue struct {
 
 // Append will append values and change the type to a string
 // type.
-func (v *UnionValue) Append(tok Token) {
+func (v *Value) Append(tok Token) {
 	if v.Type != QuotedStringType {
 		v.Type = StringType
 	}
-	v.str += tok.StringValue()
+	if litToken, ok := tok.(literalToken); ok {
+		v.str += litToken.Value.StringValue()
+	} else {
+		v.str += tok.Raw()
+	}
 }
 
-func (v UnionValue) String() string {
+func (v Value) String() string {
 	switch v.Type {
 	case DecimalType:
 		return fmt.Sprintf("decimal: %f", v.decimal)
@@ -169,7 +172,7 @@ func (v UnionValue) String() string {
 	}
 }
 
-func newLitToken(b []byte) (literalToken, int, error) {
+func newLitToken(b []rune) (literalToken, int, error) {
 	value := ""
 	n := 0
 	var err error
@@ -184,6 +187,7 @@ func newLitToken(b []byte) (literalToken, int, error) {
 		}
 
 		token.raw = value
+		token.Value.raw = value
 		if strings.Contains(value, ".") || hasExponent(value) {
 			token.Value.Type = DecimalType
 			token.Value.decimal, err = strconv.ParseFloat(value, 64)
@@ -200,18 +204,21 @@ func newLitToken(b []byte) (literalToken, int, error) {
 		value, n, err = getBoolValue(b)
 
 		token.raw = value
+		token.Value.raw = value
 		token.Value.Type = BoolType
 		token.Value.boolean = value == "true"
 	} else if b[0] == '"' {
 		value, n, err = getStringValue(b)
 
 		token.raw = value
+		token.Value.raw = value
 		token.Value.Type = QuotedStringType
 		token.Value.str = value
 	} else {
 		value, n, err = getValue(b)
 
 		token.raw = value
+		token.Value.raw = value
 		token.Value.Type = StringType
 		token.Value.str = value
 	}
@@ -219,16 +226,16 @@ func newLitToken(b []byte) (literalToken, int, error) {
 	return token, n, err
 }
 
-func (token literalToken) IntValue() int64 {
-	return token.Value.integer
+func (v Value) IntValue() int64 {
+	return v.integer
 }
 
-func (token literalToken) FloatValue() float64 {
-	return token.Value.decimal
+func (v Value) FloatValue() float64 {
+	return v.decimal
 }
 
-func (token literalToken) BoolValue() bool {
-	return token.Value.boolean
+func (v Value) BoolValue() bool {
+	return v.boolean
 }
 
 func isTrimmable(r rune) bool {
@@ -239,15 +246,15 @@ func isTrimmable(r rune) bool {
 	return false
 }
 
-func (token literalToken) StringValue() string {
-	switch token.Value.Type {
+func (v Value) StringValue() string {
+	switch v.Type {
 	case StringType:
-		return strings.TrimFunc(token.Value.str, isTrimmable)
+		return strings.TrimFunc(v.str, isTrimmable)
 	case QuotedStringType:
 		// preserve all characters in the quotes
-		return token.Value.str
+		return v.str
 	default:
-		return strings.TrimFunc(token.Raw(), isTrimmable)
+		return strings.TrimFunc(v.raw, isTrimmable)
 	}
 }
 
@@ -260,18 +267,5 @@ func (token literalToken) Type() TokenType {
 }
 
 func (token literalToken) String() string {
-	switch token.Value.Type {
-	case DecimalType:
-		return fmt.Sprintf("%f", token.FloatValue())
-	case IntegerType:
-		return fmt.Sprintf("%d", token.IntValue())
-	case StringType:
-		return fmt.Sprintf("%s", token.StringValue())
-	case QuotedStringType:
-		return fmt.Sprintf("%q", token.StringValue())
-	case BoolType:
-		return fmt.Sprintf("%t", token.BoolValue())
-	}
-
-	return "invalid token"
+	return token.Value.String()
 }

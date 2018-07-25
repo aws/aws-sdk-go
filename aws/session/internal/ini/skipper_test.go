@@ -6,7 +6,7 @@ import (
 )
 
 func TestSkipper(t *testing.T) {
-	idTok, _, _ := newLitToken([]byte("id"))
+	idTok, _, _ := newLitToken([]rune("id"))
 	nlTok := newlineToken{}
 
 	cases := []struct {

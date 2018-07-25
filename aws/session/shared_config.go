@@ -6,7 +6,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 
-	"github.com/aws/aws-sdk-go/aws/session/internal/ini"
+	"github.com/aws/aws-sdk-go/internal/ini"
 )
 
 const (

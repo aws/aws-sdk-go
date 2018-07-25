@@ -7,20 +7,24 @@ import (
 
 func TestIsOp(t *testing.T) {
 	cases := []struct {
-		b        []byte
+		b        []rune
 		expected bool
 	}{
 		{
-			b: []byte(``),
+			b: []rune(``),
 		},
 		{
-			b: []byte("123"),
+			b: []rune("123"),
 		},
 		{
-			b: []byte(`"wee"`),
+			b: []rune(`"wee"`),
 		},
 		{
-			b:        []byte("="),
+			b:        []rune("="),
+			expected: true,
+		},
+		{
+			b:        []rune(":"),
 			expected: true,
 		},
 	}
@@ -34,16 +38,24 @@ func TestIsOp(t *testing.T) {
 
 func TestNewOp(t *testing.T) {
 	cases := []struct {
-		b             []byte
+		b             []rune
 		expectedRead  int
 		expectedError bool
 		expectedToken opToken
 	}{
 		{
-			b:            []byte("="),
+			b:            []rune("="),
 			expectedRead: 1,
 			expectedToken: opToken{
 				value:  "=",
+				opType: opTypeEqual,
+			},
+		},
+		{
+			b:            []rune(":"),
+			expectedRead: 1,
+			expectedToken: opToken{
+				value:  ":",
 				opType: opTypeEqual,
 			},
 		},

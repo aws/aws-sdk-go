@@ -4,14 +4,6 @@ import (
 	"fmt"
 	"io"
 	"strings"
-
-	"github.com/aws/aws-sdk-go/aws/awserr"
-)
-
-const (
-	// ErrCodeParseError is returned when a parsing error
-	// has occurred.
-	ErrCodeParseError = "ParseError"
 )
 
 // State enums for the parse table
@@ -19,7 +11,7 @@ const (
 	InvalidState = iota
 	// stmt -> value stmt'
 	StatementState
-	// stmt' -> epsilon | op stmt
+	// stmt' -> MarkComplete | op stmt
 	StatementPrimeState
 	// value -> number | string | boolean | quoted_string
 	ValueState
@@ -36,11 +28,11 @@ const (
 	SkipTokenState
 	// comment -> # comment' | ; comment' | / comment_slash
 	// comment_slash -> / comment'
-	// comment' -> epsilon | value
+	// comment' -> MarkComplete | value
 	CommentState
-	// Epsilon state will complete statements and move that
+	// MarkComplete state will complete statements and move that
 	// to the completed AST list
-	EpsilonState
+	MarkCompleteState
 	// TerminalState signifies that the tokens have been fully parsed
 	TerminalState
 )
@@ -61,7 +53,7 @@ var parseTable = map[ASTKind]map[TokenType]int{
 		TokenWS:      SkipTokenState,
 		TokenNL:      SkipTokenState,
 		TokenComment: CommentState,
-		TokenNone:    EpsilonState,
+		TokenNone:    MarkCompleteState,
 	},
 	ASTKindExpr: map[TokenType]int{
 		TokenOp:      StatementPrimeState,
@@ -70,7 +62,7 @@ var parseTable = map[ASTKind]map[TokenType]int{
 		TokenWS:      SkipTokenState,
 		TokenNL:      SkipState,
 		TokenComment: CommentState,
-		TokenNone:    EpsilonState,
+		TokenNone:    MarkCompleteState,
 	},
 	ASTKindStatement: map[TokenType]int{
 		TokenLit:     SectionState,
@@ -78,14 +70,14 @@ var parseTable = map[ASTKind]map[TokenType]int{
 		TokenWS:      SkipTokenState,
 		TokenNL:      SkipTokenState,
 		TokenComment: CommentState,
-		TokenNone:    EpsilonState,
+		TokenNone:    MarkCompleteState,
 	},
 	ASTKindExprStatement: map[TokenType]int{
 		TokenLit:     ValueState,
 		TokenSep:     OpenScopeState,
 		TokenOp:      ValueState,
 		TokenWS:      ValueState,
-		TokenNL:      EpsilonState,
+		TokenNL:      MarkCompleteState,
 		TokenComment: CommentState,
 		TokenNone:    TerminalState,
 		TokenComma:   SkipState,
@@ -96,7 +88,7 @@ var parseTable = map[ASTKind]map[TokenType]int{
 		TokenLit:     StatementState,
 		TokenSep:     OpenScopeState,
 		TokenComment: CommentState,
-		TokenNone:    EpsilonState,
+		TokenNone:    MarkCompleteState,
 	},
 	ASTKindSkipStatement: map[TokenType]int{
 		TokenLit:     StatementState,
@@ -141,13 +133,15 @@ loop:
 			step = SkipTokenState
 		}
 
+		//fmt.Println("STEP", step, k.Kind(), tok.Type(), tok.Raw())
+
 		switch step {
 		case TerminalState:
 			// Finished parsing. Push what should be the last
 			// statement to the stack. If there is anything left
 			// on the stack, an error in parsing has occurred.
 			if k.Kind() != ASTKindStart {
-				stack.Epsilon(k)
+				stack.MarkComplete(k)
 			}
 			break loop
 		case SkipTokenState:
@@ -157,14 +151,20 @@ loop:
 			stack.Push(k)
 		case StatementState:
 			if k.Kind() != ASTKindStart {
-				stack.Epsilon(k)
+				stack.MarkComplete(k)
 			}
 			expr := newExpression(tok)
 			stack.Push(expr)
 		case StatementPrimeState:
 			if tok.Type() != TokenOp {
-				stack.Epsilon(k)
+				stack.MarkComplete(k)
 				continue
+			}
+
+			if _, ok := k.(Expr); !ok {
+				return nil, NewParseError(
+					fmt.Sprintf("invalid expression: expected Expr type, but found %T type", k),
+				)
 			}
 
 			expr := newEqualExpr(k, tok)
@@ -182,7 +182,7 @@ loop:
 			//
 			// otherwise
 			// expr_stmt -> equal_expr (expr_stmt')*
-			// expr_stmt' -> ws S | op S | epsilon
+			// expr_stmt' -> ws S | op S | MarkComplete
 			// S -> equal_expr' expr_stmt'
 			switch v := k.(type) {
 			case EqualExpr:
@@ -191,33 +191,21 @@ loop:
 			case ExprStatement:
 				expr, ok := v.V.(EqualExpr)
 				if !ok {
-					return stack.list, awserr.New(
-						ErrCodeParseError,
-						fmt.Sprintf("invalid expression: expected equal expression, but found %T",
-							v.V,
-						),
-						nil,
+					return nil, NewParseError(
+						fmt.Sprintf("invalid expression: expected equal expression, but found %T", v.V),
 					)
 				}
 
 				rhs, ok := expr.Right.(Expr)
 				if !ok {
-					return stack.list, awserr.New(
-						ErrCodeParseError,
-						fmt.Sprintf("invalid expression: RHS is not an expression:  %T",
-							expr.Right,
-						),
-						nil,
+					return nil, NewParseError(
+						fmt.Sprintf("invalid expression: RHS is not an expression:  %T", expr.Right),
 					)
 				}
 
 				if rhs.Root.Type() != TokenLit {
-					return stack.list, awserr.New(
-						ErrCodeParseError,
-						fmt.Sprintf("invalid expression: RHS is not a literal:  %v",
-							rhs.Root,
-						),
-						nil,
+					return nil, NewParseError(
+						fmt.Sprintf("invalid expression: RHS is not a literal:  %v", rhs.Root),
 					)
 				}
 
@@ -233,11 +221,11 @@ loop:
 					stack.Push(k)
 				}
 			default:
-				return stack.list, awserr.New(ErrCodeParseError, "invalid expression", nil)
+				return nil, NewParseError(fmt.Sprintf("invalid expression token %v", tok))
 			}
 		case OpenScopeState:
 			if tok.Raw() != "[" {
-				return stack.list, awserr.New(ErrCodeParseError, "expected '['", nil)
+				return nil, NewParseError("expected '['")
 			}
 
 			stmt := newStatement()
@@ -246,14 +234,12 @@ loop:
 			if tok.Raw() == "]" {
 				stack.Push(newCompletedSectionStatement(k))
 			} else {
-				return stack.list, awserr.New(ErrCodeParseError, "expected ']'", nil)
+				return nil, NewParseError("expected ']'")
 			}
 		case SectionState:
 			if k.Kind() != ASTKindStatement {
-				return stack.list, awserr.New(
-					ErrCodeParseError,
+				return nil, NewParseError(
 					fmt.Sprintf("invalid statement: expected statement: %T", k.Kind()),
-					nil,
 				)
 			}
 
@@ -270,9 +256,9 @@ loop:
 				stmt = newSectionStatement(tok)
 			}
 			stack.Push(stmt)
-		case EpsilonState:
+		case MarkCompleteState:
 			if k.Kind() != ASTKindStart {
-				stack.Epsilon(k)
+				stack.MarkComplete(k)
 			}
 
 			if stack.Len() == 0 {
@@ -285,13 +271,13 @@ loop:
 			if _, ok := k.(Start); ok {
 				stack.Push(k)
 			} else {
-				stack.Epsilon(k)
+				stack.MarkComplete(k)
 			}
 
 			stmt := newCommentStatement(tok)
 			stack.Push(stmt)
 		default:
-			return stack.list, awserr.New(ErrCodeParseError, "parse error: invalid state", nil)
+			return nil, NewParseError(fmt.Sprintf("invalid state with ASTKind %v and TokenType %v", k, tok))
 		}
 
 		if len(tokens) > 0 {
@@ -301,7 +287,7 @@ loop:
 
 	// this occurs when a statement has not been completed
 	if len(stack.container) > 1 {
-		return stack.list, awserr.New(ErrCodeParseError, "parse error", nil)
+		return nil, NewParseError(fmt.Sprintf("incomplete expression: %v", stack.container))
 	}
 
 	// returns a sublist which exludes the start symbol

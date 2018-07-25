@@ -25,8 +25,8 @@ func (s *ParseStack) Push(ast AST) {
 	s.container = append(s.container, ast)
 }
 
-// Epsilon will append the AST to the list of completed statements
-func (s *ParseStack) Epsilon(ast AST) {
+// MarkComplete will append the AST to the list of completed statements
+func (s *ParseStack) MarkComplete(ast AST) {
 	s.list = append(s.list, ast)
 }
 

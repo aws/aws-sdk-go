@@ -2,11 +2,9 @@ package ini
 
 import (
 	"fmt"
-
-	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
-func isSep(b []byte) bool {
+func isSep(b []rune) bool {
 	if len(b) == 0 {
 		return false
 	}
@@ -34,7 +32,7 @@ type sepToken struct {
 	value   string
 }
 
-func newSepToken(b []byte) (sepToken, int, error) {
+func newSepToken(b []rune) (sepToken, int, error) {
 	tok := sepToken{}
 
 	switch b[0] {
@@ -45,13 +43,9 @@ func newSepToken(b []byte) (sepToken, int, error) {
 		tok.sepType = sepTypeCloseBrace
 		tok.value = string(b[0])
 	default:
-		return tok, 0, awserr.New(ErrCodeParseError, fmt.Sprintf("unexpected sep type, %v", b[0]), nil)
+		return tok, 0, NewParseError(fmt.Sprintf("unexpected sep type, %v", b[0]))
 	}
 	return tok, 1, nil
-}
-
-func (token sepToken) StringValue() string {
-	return token.value
 }
 
 func (token sepToken) Raw() string {

@@ -2,17 +2,17 @@ package ini
 
 import (
 	"fmt"
-
-	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
-func isOp(b []byte) bool {
+func isOp(b []rune) bool {
 	if len(b) == 0 {
 		return false
 	}
 
 	switch b[0] {
 	case '=':
+		return true
+	case ':':
 		return true
 	default:
 		return false
@@ -32,21 +32,17 @@ type opToken struct {
 	value  string
 }
 
-func newOpToken(b []byte) (opToken, int, error) {
+func newOpToken(b []rune) (opToken, int, error) {
 	tok := opToken{}
 
 	switch b[0] {
-	case '=':
+	case '=', ':':
 		tok.opType = opTypeEqual
 		tok.value = string(b[0])
 	default:
-		return tok, 0, awserr.New(ErrCodeParseError, fmt.Sprintf("unexpected op type, %v", b[0]), nil)
+		return tok, 0, NewParseError(fmt.Sprintf("unexpected op type, %v", b[0]))
 	}
 	return tok, 1, nil
-}
-
-func (token opToken) StringValue() string {
-	return token.value
 }
 
 func (token opToken) Raw() string {
@@ -55,8 +51,4 @@ func (token opToken) Raw() string {
 
 func (token opToken) Type() TokenType {
 	return TokenOp
-}
-
-func (token opToken) String() string {
-	return token.value
 }

@@ -3,76 +3,90 @@ package ini
 import (
 	"bytes"
 	"fmt"
-
-	"github.com/aws/aws-sdk-go/aws/awserr"
+	"strconv"
 )
+
+const (
+	none = numberFormat(iota)
+	binary
+	octal
+	decimal
+	hex
+	exponent
+)
+
+type numberFormat int
 
 // numberHelper is used to dictate what format a number is in
 // and what to do for negative values. Since -1e-4 is a valid
 // number, we cannot just simply check for duplicate negatives.
 type numberHelper struct {
-	binary  bool
-	octal   bool
-	decimal bool
-	hex     bool
+	numberFormat numberFormat
 
-	exponent bool
-	negative bool
+	negative         bool
+	negativeExponent bool
 }
 
 func (b numberHelper) Exists() bool {
-	return b.decimal || b.binary || b.octal || b.hex || b.exponent
+	return b.numberFormat != none
 }
 
 func (b numberHelper) IsNegative() bool {
-	return b.negative
+	return b.negative || b.negativeExponent
 }
 
-func (b *numberHelper) Determine(c byte) error {
+func (b *numberHelper) Determine(c rune) error {
 	if b.Exists() {
-		return awserr.New(ErrCodeParseError, fmt.Sprintf("multiple number formats: 0%v", string(c)), nil)
+		return NewParseError(fmt.Sprintf("multiple number formats: 0%v", string(c)))
 	}
 
 	switch c {
 	case 'b':
-		b.binary = true
+		b.numberFormat = binary
 	case 'o':
-		b.octal = true
+		b.numberFormat = octal
 	case 'x':
-		b.hex = true
+		b.numberFormat = hex
 	case 'e', 'E':
-		b.exponent = true
-		b.negative = false
+		b.numberFormat = exponent
 	case '-':
-		b.negative = true
+		if b.numberFormat != exponent {
+			b.negative = true
+		} else {
+			b.negativeExponent = true
+		}
 	case '.':
-		b.decimal = true
+		b.numberFormat = decimal
 	default:
-		return awserr.New(ErrCodeParseError, fmt.Sprintf("invalid number character: %v", string(c)), nil)
+		return NewParseError(fmt.Sprintf("invalid number character: %v", string(c)))
 	}
 
 	return nil
 }
 
-func (b numberHelper) CorrectByte(c byte) bool {
+func (b numberHelper) CorrectByte(c rune) bool {
 	switch {
-	case b.binary:
+	case b.numberFormat == binary:
 		if !isBinaryByte(c) {
 			return false
 		}
-	case b.octal:
+	case b.numberFormat == octal:
 		if !isOctalByte(c) {
 			return false
 		}
-	case b.hex:
+	case b.numberFormat == hex:
 		if !isHexByte(c) {
 			return false
 		}
-	case b.decimal:
+	case b.numberFormat == decimal:
 		if !isDigit(c) {
 			return false
 		}
-	case b.exponent:
+	case b.numberFormat == exponent:
+		if !isDigit(c) {
+			return false
+		}
+	case b.negativeExponent:
 		if !isDigit(c) {
 			return false
 		}
@@ -90,12 +104,12 @@ func (b numberHelper) CorrectByte(c byte) bool {
 }
 
 func (b numberHelper) Base() int {
-	switch {
-	case b.binary:
+	switch b.numberFormat {
+	case binary:
 		return 2
-	case b.octal:
+	case octal:
 		return 8
-	case b.hex:
+	case hex:
 		return 16
 	default:
 		return 10
@@ -106,29 +120,31 @@ func (b numberHelper) String() string {
 	buf := bytes.Buffer{}
 	i := 0
 
-	if b.binary {
+	if b.numberFormat == binary {
 		i++
-		buf.WriteString(string(i+'0') + ": binary format\n")
-	}
-
-	if b.octal {
+		buf.WriteString(strconv.Itoa(i) + ": binary format\n")
+	} else if b.numberFormat == octal {
 		i++
-		buf.WriteString(string(i+'0') + ": octal format\n")
-	}
-
-	if b.hex {
+		buf.WriteString(strconv.Itoa(i) + ": octal format\n")
+	} else if b.numberFormat == hex {
 		i++
-		buf.WriteString(string(i+'0') + ": hex format\n")
-	}
-
-	if b.exponent {
+		buf.WriteString(strconv.Itoa(i) + ": hex format\n")
+	} else if b.numberFormat == exponent {
 		i++
-		buf.WriteString(string(i+'0') + ": exponent format\n")
+		buf.WriteString(strconv.Itoa(i) + ": exponent format\n")
+	} else {
+		i++
+		buf.WriteString(strconv.Itoa(i) + ": integer format\n")
 	}
 
 	if b.negative {
 		i++
-		buf.WriteString(string(i+'0') + ": negative format\n")
+		buf.WriteString(strconv.Itoa(i) + ": negative format\n")
+	}
+
+	if b.negativeExponent {
+		i++
+		buf.WriteString(strconv.Itoa(i) + ": negative exponent format\n")
 	}
 
 	return buf.String()

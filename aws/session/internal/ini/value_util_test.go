@@ -6,27 +6,27 @@ import (
 
 func TestStringValue(t *testing.T) {
 	cases := []struct {
-		b             []byte
+		b             []rune
 		expectedRead  int
 		expectedError bool
 		expectedValue string
 	}{
 		{
-			b:             []byte(`"foo"`),
+			b:             []rune(`"foo"`),
 			expectedRead:  5,
 			expectedValue: "foo",
 		},
 		{
-			b:             []byte(`"123 !$_ 456 abc"`),
+			b:             []rune(`"123 !$_ 456 abc"`),
 			expectedRead:  17,
 			expectedValue: "123 !$_ 456 abc",
 		},
 		{
-			b:             []byte("foo"),
+			b:             []rune("foo"),
 			expectedError: true,
 		},
 		{
-			b:             []byte(` "foo"`),
+			b:             []rune(` "foo"`),
 			expectedError: true,
 		},
 	}
@@ -50,23 +50,23 @@ func TestStringValue(t *testing.T) {
 
 func TestBoolValue(t *testing.T) {
 	cases := []struct {
-		b             []byte
+		b             []rune
 		expectedRead  int
 		expectedError bool
 		expectedValue string
 	}{
 		{
-			b:             []byte("true"),
+			b:             []rune("true"),
 			expectedRead:  4,
 			expectedValue: "true",
 		},
 		{
-			b:             []byte("false"),
+			b:             []rune("false"),
 			expectedRead:  5,
 			expectedValue: "false",
 		},
 		{
-			b:             []byte(`"false"`),
+			b:             []rune(`"false"`),
 			expectedError: true,
 		},
 	}
@@ -90,52 +90,52 @@ func TestBoolValue(t *testing.T) {
 
 func TestNumericalValue(t *testing.T) {
 	cases := []struct {
-		b             []byte
+		b             []rune
 		expectedRead  int
 		expectedError bool
 		expectedValue string
 		expectedBase  int
 	}{
 		{
-			b:             []byte("1.2"),
+			b:             []rune("1.2"),
 			expectedRead:  3,
 			expectedValue: "1.2",
 			expectedBase:  10,
 		},
 		{
-			b:             []byte("123"),
+			b:             []rune("123"),
 			expectedRead:  3,
 			expectedValue: "123",
 			expectedBase:  10,
 		},
 		{
-			b:             []byte("0x123A"),
+			b:             []rune("0x123A"),
 			expectedRead:  6,
 			expectedValue: "0x123A",
 			expectedBase:  16,
 		},
 		{
-			b:             []byte("0b101"),
+			b:             []rune("0b101"),
 			expectedRead:  5,
 			expectedValue: "0b101",
 			expectedBase:  2,
 		},
 		{
-			b:             []byte("0o7"),
+			b:             []rune("0o7"),
 			expectedRead:  3,
 			expectedValue: "0o7",
 			expectedBase:  8,
 		},
 		{
-			b:             []byte(`"123"`),
+			b:             []rune(`"123"`),
 			expectedError: true,
 		},
 		{
-			b:             []byte("0xo123"),
+			b:             []rune("0xo123"),
 			expectedError: true,
 		},
 		{
-			b:             []byte("123A"),
+			b:             []rune("123A"),
 			expectedError: true,
 		},
 	}

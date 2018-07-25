@@ -7,21 +7,21 @@ import (
 
 func TestIsSep(t *testing.T) {
 	cases := []struct {
-		b        []byte
+		b        []rune
 		expected bool
 	}{
 		{
-			b: []byte(``),
+			b: []rune(``),
 		},
 		{
-			b: []byte(`"wee"`),
+			b: []rune(`"wee"`),
 		},
 		{
-			b:        []byte("["),
+			b:        []rune("["),
 			expected: true,
 		},
 		{
-			b:        []byte("]"),
+			b:        []rune("]"),
 			expected: true,
 		},
 	}
@@ -35,13 +35,13 @@ func TestIsSep(t *testing.T) {
 
 func TestNewSep(t *testing.T) {
 	cases := []struct {
-		b             []byte
+		b             []rune
 		expectedRead  int
 		expectedError bool
 		expectedToken sepToken
 	}{
 		{
-			b:            []byte("["),
+			b:            []rune("["),
 			expectedRead: 1,
 			expectedToken: sepToken{
 				value:   "[",
@@ -49,7 +49,7 @@ func TestNewSep(t *testing.T) {
 			},
 		},
 		{
-			b:            []byte("]"),
+			b:            []rune("]"),
 			expectedRead: 1,
 			expectedToken: sepToken{
 				value:   "]",

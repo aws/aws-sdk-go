@@ -3,20 +3,18 @@ package ini
 import (
 	"fmt"
 	"strings"
-
-	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
 // getStringValue will return a quoted string and the amount
 // of bytes read
 //
 // an error will be returned if the string is not properly formatted
-func getStringValue(b []byte) (string, int, error) {
+func getStringValue(b []rune) (string, int, error) {
 	if b[0] != '"' {
-		return "", 0, awserr.New(ErrCodeParseError, "strings must start with '\"'", nil)
+		return "", 0, NewParseError("strings must start with '\"'")
 	}
 
-	value := []byte{}
+	value := []rune{}
 	endQuote := false
 	i := 1
 
@@ -38,7 +36,7 @@ func getStringValue(b []byte) (string, int, error) {
 	}
 
 	if !endQuote {
-		return "", 0, awserr.New(ErrCodeParseError, "missing '\"' in string value", nil)
+		return "", 0, NewParseError("missing '\"' in string value")
 	}
 
 	return string(value), i + 1, nil
@@ -49,14 +47,17 @@ func getStringValue(b []byte) (string, int, error) {
 //
 // an error will be returned if the boolean is not of a correct
 // value
-func getBoolValue(b []byte) (string, int, error) {
+func getBoolValue(b []rune) (string, int, error) {
 	if len(b) < 4 {
-		return "", 0, awserr.New(ErrCodeParseError, "invalid boolean value", nil)
+		return "", 0, NewParseError("invalid boolean value")
 	}
 
 	value := ""
 	n := 0
 	for _, lv := range literalValues {
+		if len(lv) > len(b) {
+			continue
+		}
 		v := string(b[:len(lv)])
 		if v == lv {
 			value = v
@@ -65,20 +66,20 @@ func getBoolValue(b []byte) (string, int, error) {
 	}
 
 	if n == 0 {
-		return "", 0, awserr.New(ErrCodeParseError, "invalid boolean value", nil)
+		return "", 0, NewParseError("invalid boolean value")
 	}
 
 	return value, n, nil
 }
 
-// getNumericalValue will return a numerical string and the amount
-// of bytes read
+// getNumericalValue will return a numerical string, the amount
+// of bytes read, and the base of the number
 //
 // an error will be returned if the number is not of a correct
 // value
-func getNumericalValue(b []byte) (string, int, int, error) {
+func getNumericalValue(b []rune) (string, int, int, error) {
 	if !isDigit(b[0]) {
-		return "", 0, 0, awserr.New(ErrCodeParseError, "invalid digit value", nil)
+		return "", 0, 0, NewParseError("invalid digit value")
 	}
 
 	value := ""
@@ -93,7 +94,7 @@ loop:
 			switch b[i] {
 			case '-':
 				if helper.IsNegative() || negativeIndex != 1 {
-					return "", 0, 0, awserr.New(ErrCodeParseError, "parse error '-'", nil)
+					return "", 0, 0, NewParseError("parse error '-'")
 				}
 
 				neg, n := getNegativeNumber(b[i:])
@@ -112,17 +113,17 @@ loop:
 
 				negativeIndex = 0
 			case 'b':
-				if helper.hex {
+				if helper.numberFormat == hex {
 					break
 				}
 				fallthrough
 			case 'o', 'x':
 				if i == 0 && value != "0" {
-					return "", 0, 0, awserr.New(ErrCodeParseError, "incorrect base format", nil)
+					return "", 0, 0, NewParseError("incorrect base format, expected leading '0'")
 				}
 
-				if b[i-1] != '0' {
-					return "", 0, 0, awserr.New(ErrCodeParseError, "incorrect base format", nil)
+				if i != 1 {
+					return "", 0, 0, NewParseError(fmt.Sprintf("incorrect base format found %s at %d index", string(b[i]), i))
 				}
 
 				if err := helper.Determine(b[i]); err != nil {
@@ -137,11 +138,11 @@ loop:
 					break loop
 				}
 
-				if !(helper.hex && isHexByte(b[i])) {
+				if !(helper.numberFormat == hex && isHexByte(b[i])) {
 					if i+2 < len(b) && !isNewline(b[i:i+2]) {
-						return "", 0, 0, awserr.New(ErrCodeParseError, "invalid numerical character", nil)
-					} else if !isNewline([]byte{b[i]}) {
-						return "", 0, 0, awserr.New(ErrCodeParseError, "invalid numerical character", nil)
+						return "", 0, 0, NewParseError("invalid numerical character")
+					} else if !isNewline([]rune{b[i]}) {
+						return "", 0, 0, NewParseError("invalid numerical character")
 					}
 
 					break loop
@@ -155,7 +156,7 @@ loop:
 }
 
 // isDigit will return whether or not something is an integer
-func isDigit(b byte) bool {
+func isDigit(b rune) bool {
 	return b >= '0' && b <= '9'
 }
 
@@ -163,7 +164,7 @@ func hasExponent(v string) bool {
 	return strings.Contains(v, "e") || strings.Contains(v, "E")
 }
 
-func isBinaryByte(b byte) bool {
+func isBinaryByte(b rune) bool {
 	switch b {
 	case '0', '1':
 		return true
@@ -172,7 +173,7 @@ func isBinaryByte(b byte) bool {
 	}
 }
 
-func isOctalByte(b byte) bool {
+func isOctalByte(b rune) bool {
 	switch b {
 	case '0', '1', '2', '3', '4', '5', '6', '7':
 		return true
@@ -181,7 +182,7 @@ func isOctalByte(b byte) bool {
 	}
 }
 
-func isHexByte(b byte) bool {
+func isHexByte(b rune) bool {
 	if isDigit(b) {
 		return true
 	}
@@ -189,12 +190,16 @@ func isHexByte(b byte) bool {
 		(b >= 'a' && b <= 'f')
 }
 
-func getValue(b []byte) (string, int, error) {
+func getValue(b []rune) (string, int, error) {
 	value := ""
 	i := 0
 
 	for i < len(b) {
 		if isWhitespace(b[i]) {
+			break
+		}
+
+		if isOp(b[i:]) {
 			break
 		}
 
@@ -217,7 +222,7 @@ func getValue(b []byte) (string, int, error) {
 // getNegativeNumber will return a negative number from a
 // byte slice. This will iterate through all characters until
 // a non-digit has been found.
-func getNegativeNumber(b []byte) (string, int) {
+func getNegativeNumber(b []rune) (string, int) {
 	if b[0] != '-' {
 		return "", 0
 	}
@@ -235,7 +240,7 @@ func getNegativeNumber(b []byte) (string, int) {
 
 // isEscaped will return whether or not the character is an escaped
 // character.
-func isEscaped(value string, b byte) bool {
+func isEscaped(value string, b rune) bool {
 	if len(value) == 0 {
 		return false
 	}
@@ -253,7 +258,7 @@ func isEscaped(value string, b byte) bool {
 	return value[len(value)-1] == '\\'
 }
 
-func getEscapedByte(b byte) (byte, error) {
+func getEscapedByte(b rune) (rune, error) {
 	switch b {
 	case '\'': // single quote
 		return '\'', nil
@@ -266,6 +271,6 @@ func getEscapedByte(b byte) (byte, error) {
 	case '\\': // backslash
 		return '\\', nil
 	default:
-		return b, awserr.New(ErrCodeParseError, fmt.Sprintf("invalid escaped character %c", b), nil)
+		return b, NewParseError(fmt.Sprintf("invalid escaped character %c", b))
 	}
 }

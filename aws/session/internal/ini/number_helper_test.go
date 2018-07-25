@@ -6,7 +6,7 @@ import (
 
 func TestNumberHelper(t *testing.T) {
 	cases := []struct {
-		b              []byte
+		b              []rune
 		determineIndex int
 
 		expectedExists   []bool
@@ -16,7 +16,7 @@ func TestNumberHelper(t *testing.T) {
 		expectedBase     int
 	}{
 		{
-			b:              []byte("-10"),
+			b:              []rune("-10"),
 			determineIndex: 0,
 			expectedExists: []bool{
 				false,
@@ -37,7 +37,7 @@ func TestNumberHelper(t *testing.T) {
 			expectedBase:     10,
 		},
 		{
-			b:              []byte("0x10"),
+			b:              []rune("0x10"),
 			determineIndex: 1,
 			expectedExists: []bool{
 				false,
@@ -61,7 +61,7 @@ func TestNumberHelper(t *testing.T) {
 			expectedBase:     16,
 		},
 		{
-			b:              []byte("0b101"),
+			b:              []rune("0b101"),
 			determineIndex: 1,
 			expectedExists: []bool{
 				false,
@@ -88,7 +88,7 @@ func TestNumberHelper(t *testing.T) {
 			expectedBase:     2,
 		},
 		{
-			b:              []byte("0o271"),
+			b:              []rune("0o271"),
 			determineIndex: 1,
 			expectedExists: []bool{
 				false,
@@ -115,7 +115,7 @@ func TestNumberHelper(t *testing.T) {
 			expectedBase:     8,
 		},
 		{
-			b:              []byte("99"),
+			b:              []rune("99"),
 			determineIndex: -1,
 			expectedExists: []bool{
 				false,
@@ -133,7 +133,7 @@ func TestNumberHelper(t *testing.T) {
 			expectedBase:     10,
 		},
 		{
-			b:              []byte("0o2o71"),
+			b:              []rune("0o2o71"),
 			determineIndex: 1,
 			expectedExists: []bool{
 				false,

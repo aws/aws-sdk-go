@@ -1,5 +1,9 @@
 package ini
 
+import (
+	"unicode"
+)
+
 type wsToken struct {
 	emptyToken
 	raw string
@@ -9,11 +13,11 @@ type wsToken struct {
 // a whitespace character.
 //
 // Whitespace is defined as a space or tab.
-func isWhitespace(c byte) bool {
-	return c == '\t' || c == ' '
+func isWhitespace(c rune) bool {
+	return unicode.IsSpace(c) && c != '\n' && c != '\r'
 }
 
-func newWSToken(b []byte) (wsToken, int, error) {
+func newWSToken(b []rune) (wsToken, int, error) {
 	i := 0
 	value := ""
 	for ; i < len(b); i++ {

@@ -2,29 +2,31 @@ package ini
 
 import (
 	"bytes"
+	"fmt"
 	"io"
 	"reflect"
 	"testing"
 )
 
 func TestParser(t *testing.T) {
-	xID, _, _ := newLitToken([]byte("x = 1234"))
-	s3ID, _, _ := newLitToken([]byte("s3 = 1234"))
+	xID, _, _ := newLitToken([]rune("x = 1234"))
+	s3ID, _, _ := newLitToken([]rune("s3 = 1234"))
 
-	regionID, _, _ := newLitToken([]byte("region"))
-	regionLit, _, _ := newLitToken([]byte(`"us-west-2"`))
-	regionNoQuotesLit, _, _ := newLitToken([]byte("us-west-2"))
+	regionID, _, _ := newLitToken([]rune("region"))
+	regionLit, _, _ := newLitToken([]rune(`"us-west-2"`))
+	regionNoQuotesLit, _, _ := newLitToken([]rune("us-west-2"))
 
-	credentialID, _, _ := newLitToken([]byte("credential_source"))
-	ec2MetadataLit, _, _ := newLitToken([]byte("Ec2InstanceMetadata"))
+	credentialID, _, _ := newLitToken([]rune("credential_source"))
+	ec2MetadataLit, _, _ := newLitToken([]rune("Ec2InstanceMetadata"))
 
-	outputID, _, _ := newLitToken([]byte("output"))
-	outputLit, _, _ := newLitToken([]byte("json"))
+	outputID, _, _ := newLitToken([]rune("output"))
+	outputLit, _, _ := newLitToken([]rune("json"))
 
-	equalOp, _, _ := newOpToken([]byte("= 1234"))
-	numLit, _, _ := newLitToken([]byte("1234"))
-	defaultID, _, _ := newLitToken([]byte("default"))
-	assumeID, _, _ := newLitToken([]byte("assumerole"))
+	equalOp, _, _ := newOpToken([]rune("= 1234"))
+	equalColonOp, _, _ := newOpToken([]rune(": 1234"))
+	numLit, _, _ := newLitToken([]rune("1234"))
+	defaultID, _, _ := newLitToken([]rune("default"))
+	assumeID, _, _ := newLitToken([]rune("assumerole"))
 
 	cases := []struct {
 		r             io.Reader
@@ -35,6 +37,31 @@ func TestParser(t *testing.T) {
 			r: bytes.NewBuffer([]byte(`;foo`)),
 			expectedStack: []AST{
 				newCommentStatement(commentToken{comment: ";foo"}),
+			},
+		},
+		{
+			r:             bytes.NewBuffer([]byte(`0==0`)),
+			expectedError: true,
+		},
+		{
+			r:             bytes.NewBuffer([]byte(`0=:0`)),
+			expectedError: true,
+		},
+		{
+			r:             bytes.NewBuffer([]byte(`0:=0`)),
+			expectedError: true,
+		},
+		{
+			r:             bytes.NewBuffer([]byte(`0::0`)),
+			expectedError: true,
+		},
+		{
+			r: bytes.NewBuffer([]byte(`[ default ]x`)),
+			expectedStack: []AST{
+				newCompletedSectionStatement(
+					newSectionStatement(defaultID),
+				),
+				newExpression(xID),
 			},
 		},
 		{
@@ -76,6 +103,26 @@ func TestParser(t *testing.T) {
 				newExprStatement(EqualExpr{
 					Left:  newExpression(xID),
 					Root:  equalOp,
+					Right: newExpression(numLit),
+				}),
+			},
+		},
+		{
+			r: bytes.NewBuffer([]byte(`x : 1234`)),
+			expectedStack: []AST{
+				newExprStatement(EqualExpr{
+					Left:  newExpression(xID),
+					Root:  equalColonOp,
+					Right: newExpression(numLit),
+				}),
+			},
+		},
+		{
+			r: bytes.NewBuffer([]byte(`x:1234`)),
+			expectedStack: []AST{
+				newExprStatement(EqualExpr{
+					Left:  newExpression(xID),
+					Root:  equalColonOp,
 					Right: newExpression(numLit),
 				}),
 			},
@@ -253,14 +300,15 @@ region = us-west-2
 	}
 
 	for i, c := range cases {
+		fmt.Println("running", i)
 		stack, err := ParseAST(c.r)
 
 		if e, a := c.expectedError, err != nil; e != a {
-			t.Errorf("%d: expected %t, but received %t with error %v", i+1, e, a, err)
+			t.Errorf("%d: expected %t, but received %t with error %v", i, e, a, err)
 		}
 
 		if e, a := c.expectedStack, stack; !reflect.DeepEqual(e, a) {
-			t.Errorf("%d: expected %v, but received %v", i+1, e, a)
+			t.Errorf("%d: expected %v, but received %v", i, e, a)
 		}
 	}
 }

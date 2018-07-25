@@ -7,7 +7,7 @@ type newlineToken struct {
 	raw string
 }
 
-func isNewline(b []byte) bool {
+func isNewline(b []rune) bool {
 	if len(b) == 0 {
 		return false
 	}
@@ -23,10 +23,14 @@ func isNewline(b []byte) bool {
 	return b[0] == '\r' && b[1] == '\n'
 }
 
-func newNewlineToken(b []byte) (newlineToken, int, error) {
+func newNewlineToken(b []rune) (newlineToken, int, error) {
 	value := string(b[0])
 	if value[0] == '\r' && isNewline(b[1:]) {
 		value += string(b[1])
+	}
+
+	if !isNewline([]rune(value)) {
+		return newlineToken{}, 0, NewParseError("invalid new line token")
 	}
 
 	return newlineToken{
