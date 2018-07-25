@@ -1,3 +1,13 @@
+Release v1.14.33 (2018-07-25)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * R5 is the successor to R4 in EC2's memory-optimized instance family. R5d is a variant of R5 that has local NVMe SSD. Z1d instances deliver both high compute and high memory. Z1d instances use custom Intel Xeon Scalable Processors running at up to 4.0 GHz, powered by sustained all-core Turbo Boost. They are available in 6 sizes, with up to 48 vCPUs, 384 GiB of memory, and 1.8 TB of local NVMe storage.
+* `service/ecs`: Updates service API and documentation
+  * This release of Amazon Elastic Container Service (Amazon ECS) introduces support for private registry authentication using AWS Secrets Manager. With private registry authentication, private Docker images can be used in a task definition.
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+
 Release v1.14.32 (2018-07-24)
 ===
 
