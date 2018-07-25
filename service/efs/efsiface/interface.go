@@ -42,7 +42,7 @@ import (
 //    type mockEFSClient struct {
 //        efsiface.EFSAPI
 //    }
-//    func (m *mockEFSClient) CreateFileSystem(input *efs.CreateFileSystemInput) (*efs.UpdateFileSystemOutput, error) {
+//    func (m *mockEFSClient) CreateFileSystem(input *efs.CreateFileSystemInput) (*efs.FileSystemDescription, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,9 +60,9 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type EFSAPI interface {
-	CreateFileSystem(*efs.CreateFileSystemInput) (*efs.UpdateFileSystemOutput, error)
-	CreateFileSystemWithContext(aws.Context, *efs.CreateFileSystemInput, ...request.Option) (*efs.UpdateFileSystemOutput, error)
-	CreateFileSystemRequest(*efs.CreateFileSystemInput) (*request.Request, *efs.UpdateFileSystemOutput)
+	CreateFileSystem(*efs.CreateFileSystemInput) (*efs.FileSystemDescription, error)
+	CreateFileSystemWithContext(aws.Context, *efs.CreateFileSystemInput, ...request.Option) (*efs.FileSystemDescription, error)
+	CreateFileSystemRequest(*efs.CreateFileSystemInput) (*request.Request, *efs.FileSystemDescription)
 
 	CreateMountTarget(*efs.CreateMountTargetInput) (*efs.MountTargetDescription, error)
 	CreateMountTargetWithContext(aws.Context, *efs.CreateMountTargetInput, ...request.Option) (*efs.MountTargetDescription, error)
