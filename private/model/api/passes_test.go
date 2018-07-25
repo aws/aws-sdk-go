@@ -366,3 +366,336 @@ func TestSupressHTTP2EventStreams(t *testing.T) {
 		})
 	}
 }
+
+func TestCreateInputOutputShapes(t *testing.T) {
+	meta := Metadata{
+		APIVersion:          "0000-00-00",
+		EndpointPrefix:      "rpcservice",
+		JSONVersion:         "1.1",
+		Protocol:            "json",
+		ServiceAbbreviation: "RPCService",
+		ServiceFullName:     "RPC Service",
+		ServiceID:           "RPCService",
+		SignatureVersion:    "v4",
+		TargetPrefix:        "RPCService_00000000",
+		UID:                 "RPCService-0000-00-00",
+	}
+
+	type OpExpect struct {
+		Input  string
+		Output string
+	}
+
+	cases := map[string]struct {
+		API          *API
+		ExpectOps    map[string]OpExpect
+		ExpectShapes []string
+	}{
+		"allRename": {
+			API: &API{Metadata: meta,
+				Operations: map[string]*Operation{
+					"FirstOp": {Name: "FirstOp",
+						InputRef:  ShapeRef{ShapeName: "FirstOpRequest"},
+						OutputRef: ShapeRef{ShapeName: "FirstOpResponse"},
+					},
+					"SecondOp": {Name: "SecondOp",
+						InputRef:  ShapeRef{ShapeName: "SecondOpRequest"},
+						OutputRef: ShapeRef{ShapeName: "SecondOpResponse"},
+					},
+				},
+				Shapes: map[string]*Shape{
+					"FirstOpRequest":   {ShapeName: "FirstOpRequest", Type: "structure"},
+					"FirstOpResponse":  {ShapeName: "FirstOpResponse", Type: "structure"},
+					"SecondOpRequest":  {ShapeName: "SecondOpRequest", Type: "structure"},
+					"SecondOpResponse": {ShapeName: "SecondOpResponse", Type: "structure"},
+				},
+			},
+			ExpectOps: map[string]OpExpect{
+				"FirstOp": {
+					Input:  "FirstOpInput",
+					Output: "FirstOpOutput",
+				},
+				"SecondOp": {
+					Input:  "SecondOpInput",
+					Output: "SecondOpOutput",
+				},
+			},
+			ExpectShapes: []string{
+				"FirstOpInput", "FirstOpOutput",
+				"SecondOpInput", "SecondOpOutput",
+			},
+		},
+		"noRename": {
+			API: &API{Metadata: meta,
+				Operations: map[string]*Operation{
+					"FirstOp": {Name: "FirstOp",
+						InputRef:  ShapeRef{ShapeName: "FirstOpInput"},
+						OutputRef: ShapeRef{ShapeName: "FirstOpOutput"},
+					},
+					"SecondOp": {Name: "SecondOp",
+						InputRef:  ShapeRef{ShapeName: "SecondOpInput"},
+						OutputRef: ShapeRef{ShapeName: "SecondOpOutput"},
+					},
+				},
+				Shapes: map[string]*Shape{
+					"FirstOpInput":   {ShapeName: "FirstOpInput", Type: "structure"},
+					"FirstOpOutput":  {ShapeName: "FirstOpOutput", Type: "structure"},
+					"SecondOpInput":  {ShapeName: "SecondOpInput", Type: "structure"},
+					"SecondOpOutput": {ShapeName: "SecondOpOutput", Type: "structure"},
+				},
+			},
+			ExpectOps: map[string]OpExpect{
+				"FirstOp": {
+					Input:  "FirstOpInput",
+					Output: "FirstOpOutput",
+				},
+				"SecondOp": {
+					Input:  "SecondOpInput",
+					Output: "SecondOpOutput",
+				},
+			},
+			ExpectShapes: []string{
+				"FirstOpInput", "FirstOpOutput",
+				"SecondOpInput", "SecondOpOutput",
+			},
+		},
+		"renameWithNested": {
+			API: &API{Metadata: meta,
+				Operations: map[string]*Operation{
+					"FirstOp": {Name: "FirstOp",
+						InputRef:  ShapeRef{ShapeName: "FirstOpWriteMe"},
+						OutputRef: ShapeRef{ShapeName: "FirstOpReadMe"},
+					},
+					"SecondOp": {Name: "SecondOp",
+						InputRef:  ShapeRef{ShapeName: "SecondOpWriteMe"},
+						OutputRef: ShapeRef{ShapeName: "SecondOpReadMe"},
+					},
+				},
+				Shapes: map[string]*Shape{
+					"FirstOpWriteMe": {ShapeName: "FirstOpWriteMe", Type: "structure",
+						MemberRefs: map[string]*ShapeRef{
+							"Foo": {ShapeName: "String"},
+						},
+					},
+					"FirstOpReadMe": {ShapeName: "FirstOpReadMe", Type: "structure",
+						MemberRefs: map[string]*ShapeRef{
+							"Bar":  {ShapeName: "Struct"},
+							"Once": {ShapeName: "Once"},
+						},
+					},
+					"SecondOpWriteMe": {ShapeName: "SecondOpWriteMe", Type: "structure"},
+					"SecondOpReadMe":  {ShapeName: "SecondOpReadMe", Type: "structure"},
+					"Once":            {ShapeName: "Once", Type: "string"},
+					"String":          {ShapeName: "String", Type: "string"},
+					"Struct": {ShapeName: "Struct", Type: "structure",
+						MemberRefs: map[string]*ShapeRef{
+							"Foo": {ShapeName: "String"},
+							"Bar": {ShapeName: "Struct"},
+						},
+					},
+				},
+			},
+			ExpectOps: map[string]OpExpect{
+				"FirstOp": {
+					Input:  "FirstOpInput",
+					Output: "FirstOpOutput",
+				},
+				"SecondOp": {
+					Input:  "SecondOpInput",
+					Output: "SecondOpOutput",
+				},
+			},
+			ExpectShapes: []string{
+				"FirstOpInput", "FirstOpOutput",
+				"Once",
+				"SecondOpInput", "SecondOpOutput",
+				"String", "Struct",
+			},
+		},
+		"aliasedInput": {
+			API: &API{Metadata: meta,
+				Operations: map[string]*Operation{
+					"FirstOp": {Name: "FirstOp",
+						InputRef:  ShapeRef{ShapeName: "FirstOpRequest"},
+						OutputRef: ShapeRef{ShapeName: "FirstOpResponse"},
+					},
+				},
+				Shapes: map[string]*Shape{
+					"FirstOpRequest": {ShapeName: "FirstOpRequest", Type: "structure",
+						AliasedShapeName: true,
+					},
+					"FirstOpResponse": {ShapeName: "FirstOpResponse", Type: "structure"},
+				},
+			},
+			ExpectOps: map[string]OpExpect{
+				"FirstOp": {
+					Input:  "FirstOpRequest",
+					Output: "FirstOpOutput",
+				},
+			},
+			ExpectShapes: []string{
+				"FirstOpOutput", "FirstOpRequest",
+			},
+		},
+		"aliasedOutput": {
+			API: &API{Metadata: meta,
+				Operations: map[string]*Operation{
+					"FirstOp": {Name: "FirstOp",
+						InputRef:  ShapeRef{ShapeName: "FirstOpRequest"},
+						OutputRef: ShapeRef{ShapeName: "FirstOpResponse"},
+					},
+				},
+				Shapes: map[string]*Shape{
+					"FirstOpRequest": {ShapeName: "FirstOpRequest", Type: "structure"},
+					"FirstOpResponse": {ShapeName: "FirstOpResponse", Type: "structure",
+						AliasedShapeName: true,
+					},
+				},
+			},
+			ExpectOps: map[string]OpExpect{
+				"FirstOp": {
+					Input:  "FirstOpInput",
+					Output: "FirstOpResponse",
+				},
+			},
+			ExpectShapes: []string{
+				"FirstOpInput", "FirstOpResponse",
+			},
+		},
+		"resusedShape": {
+			API: &API{Metadata: meta,
+				Operations: map[string]*Operation{
+					"FirstOp": {Name: "FirstOp",
+						InputRef:  ShapeRef{ShapeName: "FirstOpRequest"},
+						OutputRef: ShapeRef{ShapeName: "ReusedShape"},
+					},
+				},
+				Shapes: map[string]*Shape{
+					"FirstOpRequest": {ShapeName: "FirstOpRequest", Type: "structure",
+						MemberRefs: map[string]*ShapeRef{
+							"Foo": {ShapeName: "ReusedShape"},
+							"ooF": {ShapeName: "ReusedShapeList"},
+						},
+					},
+					"ReusedShape": {ShapeName: "ReusedShape", Type: "structure"},
+					"ReusedShapeList": {ShapeName: "ReusedShapeList", Type: "list",
+						MemberRef: ShapeRef{ShapeName: "ReusedShape"},
+					},
+				},
+			},
+			ExpectOps: map[string]OpExpect{
+				"FirstOp": {
+					Input:  "FirstOpInput",
+					Output: "FirstOpOutput",
+				},
+			},
+			ExpectShapes: []string{
+				"FirstOpInput", "FirstOpOutput",
+				"ReusedShape", "ReusedShapeList",
+			},
+		},
+		"aliasedResusedShape": {
+			API: &API{Metadata: meta,
+				Operations: map[string]*Operation{
+					"FirstOp": {Name: "FirstOp",
+						InputRef:  ShapeRef{ShapeName: "FirstOpRequest"},
+						OutputRef: ShapeRef{ShapeName: "ReusedShape"},
+					},
+				},
+				Shapes: map[string]*Shape{
+					"FirstOpRequest": {ShapeName: "FirstOpRequest", Type: "structure",
+						MemberRefs: map[string]*ShapeRef{
+							"Foo": {ShapeName: "ReusedShape"},
+							"ooF": {ShapeName: "ReusedShapeList"},
+						},
+					},
+					"ReusedShape": {ShapeName: "ReusedShape", Type: "structure",
+						AliasedShapeName: true,
+					},
+					"ReusedShapeList": {ShapeName: "ReusedShapeList", Type: "list",
+						MemberRef: ShapeRef{ShapeName: "ReusedShape"},
+					},
+				},
+			},
+			ExpectOps: map[string]OpExpect{
+				"FirstOp": {
+					Input:  "FirstOpInput",
+					Output: "ReusedShape",
+				},
+			},
+			ExpectShapes: []string{
+				"FirstOpInput",
+				"ReusedShape", "ReusedShapeList",
+			},
+		},
+		"unsetInput": {
+			API: &API{Metadata: meta,
+				Operations: map[string]*Operation{
+					"FirstOp": {Name: "FirstOp",
+						OutputRef: ShapeRef{ShapeName: "FirstOpResponse"},
+					},
+				},
+				Shapes: map[string]*Shape{
+					"FirstOpResponse": {ShapeName: "FirstOpResponse", Type: "structure"},
+				},
+			},
+			ExpectOps: map[string]OpExpect{
+				"FirstOp": {
+					Input:  "FirstOpInput",
+					Output: "FirstOpOutput",
+				},
+			},
+			ExpectShapes: []string{
+				"FirstOpInput", "FirstOpOutput",
+			},
+		},
+		"unsetOutput": {
+			API: &API{Metadata: meta,
+				Operations: map[string]*Operation{
+					"FirstOp": {Name: "FirstOp",
+						InputRef: ShapeRef{ShapeName: "FirstOpRequest"},
+					},
+				},
+				Shapes: map[string]*Shape{
+					"FirstOpRequest": {ShapeName: "FirstOpRequest", Type: "structure"},
+				},
+			},
+			ExpectOps: map[string]OpExpect{
+				"FirstOp": {
+					Input:  "FirstOpInput",
+					Output: "FirstOpOutput",
+				},
+			},
+			ExpectShapes: []string{
+				"FirstOpInput", "FirstOpOutput",
+			},
+		},
+	}
+
+	for name, c := range cases {
+		t.Run(name, func(t *testing.T) {
+			a := c.API
+			a.Setup()
+
+			for opName, op := range a.Operations {
+				if e, a := op.InputRef.ShapeName, op.InputRef.Shape.ShapeName; e != a {
+					t.Errorf("expect input ref and shape names to match, %s, %s", e, a)
+				}
+				if e, a := c.ExpectOps[opName].Input, op.InputRef.ShapeName; e != a {
+					t.Errorf("expect %v input shape, got %v", e, a)
+				}
+
+				if e, a := op.OutputRef.ShapeName, op.OutputRef.Shape.ShapeName; e != a {
+					t.Errorf("expect output ref and shape names to match, %s, %s", e, a)
+				}
+				if e, a := c.ExpectOps[opName].Output, op.OutputRef.ShapeName; e != a {
+					t.Errorf("expect %v output shape, got %v", e, a)
+				}
+			}
+
+			if e, a := c.ExpectShapes, a.ShapeNames(); !reflect.DeepEqual(e, a) {
+				t.Errorf("expect %v shapes, got %v", e, a)
+			}
+		})
+	}
+}
