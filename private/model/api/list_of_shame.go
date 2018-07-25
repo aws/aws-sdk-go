@@ -5,11 +5,30 @@ type persistAPIType struct {
 	input  bool
 }
 
+type persistAPITypes map[string]map[string]persistAPIType
+
+func (ts persistAPITypes) Lookup(serviceName, opName string) persistAPIType {
+	service, ok := shamelist[serviceName]
+	if !ok {
+		return persistAPIType{}
+	}
+
+	return service[opName]
+}
+
+func (ts persistAPITypes) Input(serviceName, opName string) bool {
+	return ts.Lookup(serviceName, opName).input
+}
+
+func (ts persistAPITypes) Output(serviceName, opName string) bool {
+	return ts.Lookup(serviceName, opName).output
+}
+
 // shamelist is used to not rename certain operation's input and output shapes.
 // We need to maintain backwards compatibility with pre-existing services. Since
 // not generating unique input/output shapes is not desired, we will generate
 // unique input/output shapes for new operations.
-var shamelist = map[string]map[string]persistAPIType{
+var shamelist = persistAPITypes{
 	"APIGateway": {
 		"CreateApiKey": {
 			output: true,

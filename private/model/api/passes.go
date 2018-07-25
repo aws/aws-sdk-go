@@ -268,35 +268,16 @@ func exceptionCollides(name string) bool {
 }
 
 func (a *API) applyShapeNameAliases() {
-	// Operational API Input/Output aliases
-	if service, ok := shamelist[a.name]; ok {
-		for _, op := range a.Operations {
-			check, ok := service[op.Name]
-			if !ok {
-				continue
-			}
-
-			if check.input {
-				op.InputRef.Shape.AliasedShapeName = true
-			}
-			if check.output {
-				op.OutputRef.Shape.AliasedShapeName = true
-			}
-		}
+	service, ok := shapeNameAliases[a.name]
+	if !ok {
+		return
 	}
 
 	// Generic Shape Aliases
-	if service, ok := shapeNameAliases[a.name]; ok {
-		for name, s := range a.Shapes {
-			if alias, ok := service[name]; ok {
-				if s.AliasedShapeName {
-					panic(fmt.Sprintf(
-						"shape %s already aliased, conflict with operation alias and shape aliases",
-						name))
-				}
-				s.Rename(alias)
-				s.AliasedShapeName = true
-			}
+	for name, s := range a.Shapes {
+		if alias, ok := service[name]; ok {
+			s.Rename(alias)
+			s.AliasedShapeName = true
 		}
 	}
 }
@@ -306,8 +287,12 @@ func (a *API) applyShapeNameAliases() {
 // have an input and output structure in the signature.
 func (a *API) createInputOutputShapes() {
 	for _, op := range a.Operations {
-		createAPIParamShape(a, op.Name, &op.InputRef, op.ExportedName+"Input")
-		createAPIParamShape(a, op.Name, &op.OutputRef, op.ExportedName+"Output")
+		createAPIParamShape(a, op.Name, &op.InputRef, op.ExportedName+"Input",
+			shamelist.Input,
+		)
+		createAPIParamShape(a, op.Name, &op.OutputRef, op.ExportedName+"Output",
+			shamelist.Output,
+		)
 	}
 }
 
@@ -318,14 +303,14 @@ func (a *API) renameAPIPayloadShapes() {
 	}
 }
 
-func createAPIParamShape(a *API, opName string, ref *ShapeRef, shapeName string) {
+func createAPIParamShape(a *API, opName string, ref *ShapeRef, shapeName string, shamelistLookup func(string, string) bool) {
 	if len(ref.ShapeName) == 0 {
 		setAsPlacholderShape(ref, shapeName, a)
 		return
 	}
 
 	// nothing to do if already the correct name.
-	if s := ref.Shape; s.AliasedShapeName || s.ShapeName == shapeName {
+	if s := ref.Shape; s.AliasedShapeName || s.ShapeName == shapeName || shamelistLookup(a.name, opName) {
 		return
 	}
 
