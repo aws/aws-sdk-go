@@ -518,6 +518,10 @@ func getType(t string) uint {
 }
 
 func main() {
+	if len(os.Getenv("AWS_SDK_CODEGEN_DEBUG")) != 0 {
+		api.LogDebug(os.Stdout)
+	}
+
 	fmt.Println("Generating test suite", os.Args[1:])
 	out := generateTestSuite(os.Args[1])
 	if len(os.Args) == 3 {

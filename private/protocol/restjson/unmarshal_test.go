@@ -1922,7 +1922,7 @@ const opOutputService12TestCaseOperation1 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1Request(input *OutputService12TestShapeOutputService12TestCaseOperation1Input) (req *request.Request, output *OutputService12TestShapeOutputService12TestCaseOperation2Output) {
+func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1Request(input *OutputService12TestShapeOutputService12TestCaseOperation1Input) (req *request.Request, output *OutputService12TestShapeOutputService12TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opOutputService12TestCaseOperation1,
 		HTTPPath: "/",
@@ -1932,7 +1932,7 @@ func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1Request(i
 		input = &OutputService12TestShapeOutputService12TestCaseOperation1Input{}
 	}
 
-	output = &OutputService12TestShapeOutputService12TestCaseOperation2Output{}
+	output = &OutputService12TestShapeOutputService12TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
 	return
 }
@@ -1945,7 +1945,7 @@ func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1Request(i
 //
 // See the AWS API reference guide for 's
 // API operation OutputService12TestCaseOperation1 for usage and error information.
-func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1(input *OutputService12TestShapeOutputService12TestCaseOperation1Input) (*OutputService12TestShapeOutputService12TestCaseOperation2Output, error) {
+func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1(input *OutputService12TestShapeOutputService12TestCaseOperation1Input) (*OutputService12TestShapeOutputService12TestCaseOperation1Output, error) {
 	req, out := c.OutputService12TestCaseOperation1Request(input)
 	return out, req.Send()
 }
@@ -1959,7 +1959,7 @@ func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1(input *O
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1WithContext(ctx aws.Context, input *OutputService12TestShapeOutputService12TestCaseOperation1Input, opts ...request.Option) (*OutputService12TestShapeOutputService12TestCaseOperation2Output, error) {
+func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1WithContext(ctx aws.Context, input *OutputService12TestShapeOutputService12TestCaseOperation1Input, opts ...request.Option) (*OutputService12TestShapeOutputService12TestCaseOperation1Output, error) {
 	req, out := c.OutputService12TestCaseOperation1Request(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
@@ -2036,6 +2036,34 @@ func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation2WithConte
 
 type OutputService12TestShapeOutputService12TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
+}
+
+type OutputService12TestShapeOutputService12TestCaseOperation1Output struct {
+	_ struct{} `type:"structure"`
+
+	BodyField aws.JSONValue `type:"jsonvalue"`
+
+	BodyListField []aws.JSONValue `type:"list"`
+
+	HeaderField aws.JSONValue `location:"header" locationName:"X-Amz-Foo" type:"jsonvalue"`
+}
+
+// SetBodyField sets the BodyField field's value.
+func (s *OutputService12TestShapeOutputService12TestCaseOperation1Output) SetBodyField(v aws.JSONValue) *OutputService12TestShapeOutputService12TestCaseOperation1Output {
+	s.BodyField = v
+	return s
+}
+
+// SetBodyListField sets the BodyListField field's value.
+func (s *OutputService12TestShapeOutputService12TestCaseOperation1Output) SetBodyListField(v []aws.JSONValue) *OutputService12TestShapeOutputService12TestCaseOperation1Output {
+	s.BodyListField = v
+	return s
+}
+
+// SetHeaderField sets the HeaderField field's value.
+func (s *OutputService12TestShapeOutputService12TestCaseOperation1Output) SetHeaderField(v aws.JSONValue) *OutputService12TestShapeOutputService12TestCaseOperation1Output {
+	s.HeaderField = v
+	return s
 }
 
 type OutputService12TestShapeOutputService12TestCaseOperation2Input struct {
@@ -2154,7 +2182,7 @@ const opOutputService13TestCaseOperation1 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-func (c *OutputService13ProtocolTest) OutputService13TestCaseOperation1Request(input *OutputService13TestShapeOutputService13TestCaseOperation1Input) (req *request.Request, output *OutputService13TestShapeOutputService13TestCaseOperation2Input) {
+func (c *OutputService13ProtocolTest) OutputService13TestCaseOperation1Request(input *OutputService13TestShapeOutputService13TestCaseOperation1Input) (req *request.Request, output *OutputService13TestShapeOutputService13TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:       opOutputService13TestCaseOperation1,
 		HTTPMethod: "POST",
@@ -2165,7 +2193,7 @@ func (c *OutputService13ProtocolTest) OutputService13TestCaseOperation1Request(i
 		input = &OutputService13TestShapeOutputService13TestCaseOperation1Input{}
 	}
 
-	output = &OutputService13TestShapeOutputService13TestCaseOperation2Input{}
+	output = &OutputService13TestShapeOutputService13TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
 	return
 }
@@ -2178,7 +2206,7 @@ func (c *OutputService13ProtocolTest) OutputService13TestCaseOperation1Request(i
 //
 // See the AWS API reference guide for 's
 // API operation OutputService13TestCaseOperation1 for usage and error information.
-func (c *OutputService13ProtocolTest) OutputService13TestCaseOperation1(input *OutputService13TestShapeOutputService13TestCaseOperation1Input) (*OutputService13TestShapeOutputService13TestCaseOperation2Input, error) {
+func (c *OutputService13ProtocolTest) OutputService13TestCaseOperation1(input *OutputService13TestShapeOutputService13TestCaseOperation1Input) (*OutputService13TestShapeOutputService13TestCaseOperation1Output, error) {
 	req, out := c.OutputService13TestCaseOperation1Request(input)
 	return out, req.Send()
 }
@@ -2192,7 +2220,7 @@ func (c *OutputService13ProtocolTest) OutputService13TestCaseOperation1(input *O
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *OutputService13ProtocolTest) OutputService13TestCaseOperation1WithContext(ctx aws.Context, input *OutputService13TestShapeOutputService13TestCaseOperation1Input, opts ...request.Option) (*OutputService13TestShapeOutputService13TestCaseOperation2Input, error) {
+func (c *OutputService13ProtocolTest) OutputService13TestCaseOperation1WithContext(ctx aws.Context, input *OutputService13TestShapeOutputService13TestCaseOperation1Input, opts ...request.Option) (*OutputService13TestShapeOutputService13TestCaseOperation1Output, error) {
 	req, out := c.OutputService13TestCaseOperation1Request(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
@@ -2272,6 +2300,34 @@ func (c *OutputService13ProtocolTest) OutputService13TestCaseOperation2WithConte
 
 type OutputService13TestShapeOutputService13TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
+}
+
+type OutputService13TestShapeOutputService13TestCaseOperation1Output struct {
+	_ struct{} `type:"structure"`
+
+	FooEnum *string `type:"string" enum:"OutputService13TestShapeRESTJSONEnumType"`
+
+	HeaderEnum *string `location:"header" locationName:"x-amz-enum" type:"string" enum:"OutputService13TestShapeRESTJSONEnumType"`
+
+	ListEnums []*string `type:"list"`
+}
+
+// SetFooEnum sets the FooEnum field's value.
+func (s *OutputService13TestShapeOutputService13TestCaseOperation1Output) SetFooEnum(v string) *OutputService13TestShapeOutputService13TestCaseOperation1Output {
+	s.FooEnum = &v
+	return s
+}
+
+// SetHeaderEnum sets the HeaderEnum field's value.
+func (s *OutputService13TestShapeOutputService13TestCaseOperation1Output) SetHeaderEnum(v string) *OutputService13TestShapeOutputService13TestCaseOperation1Output {
+	s.HeaderEnum = &v
+	return s
+}
+
+// SetListEnums sets the ListEnums field's value.
+func (s *OutputService13TestShapeOutputService13TestCaseOperation1Output) SetListEnums(v []*string) *OutputService13TestShapeOutputService13TestCaseOperation1Output {
+	s.ListEnums = v
+	return s
 }
 
 type OutputService13TestShapeOutputService13TestCaseOperation2Input struct {
