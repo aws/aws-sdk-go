@@ -1,3 +1,35 @@
+Release v1.15.0 (2018-07-26)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * Add artifacts encryptionDisabled and build encryptionKey.
+* `service/ec2`: Updates service API and documentation
+  * This change provides the EC2/Spot customers with two new allocation strategies -- LowestN for Spot instances, and OD priority for on-demand instances.
+* `service/greengrass`: Updates service documentation
+  * Documentation updates for Greengrass Local Resource Access feature
+* `service/inspector`: Updates service API and documentation
+  * inspector will return ServiceTemporarilyUnavailableException when service is under stress
+* `service/redshift`: Updates service API and documentation
+  * When we make a new version of Amazon Redshift available, we update your cluster during its maintenance window. By selecting a maintenance track, you control whether we update your cluster with the most recent approved release, or with the previous release. The two values for maintenance track are current and trailing. If you choose the current track, your cluster is updated with the latest approved release. If you choose the trailing track, your cluster is updated with the release that was approved previously.The new API operation for managing maintenance tracks for a cluster is DescribeClusterTracks. In addition, the following API operations have new MaintenanceTrackName parameters:  Cluster,  PendingModifiedValues,  ModifyCluster,  RestoreFromClusterSnapshot,  CreateCluster,  Snapshot
+* `service/ssm`: Updates service API and documentation
+  * This release updates AWS Systems Manager APIs to allow customers to attach labels to history parameter records and reference history parameter records via labels.  It also adds Parameter Store integration with AWS Secrets Manager to allow referencing and retrieving AWS Secrets Manager's secrets from Parameter Store.
+
+### SDK Features
+* `private/model/api`: SDK APIs input/output are not consistently generated ([#2073](https://github.com/aws/aws-sdk-go/pull/2073))
+  * Updates the SDK's API code generation to generate the API input and output types consistently. This ensures that the SDK will no longer rename input/output types unexpectedly as in [#2070](https://github.com/aws/aws-sdk-go/issues/2070). SDK API input and output parameter types will always be the API name with a suffix of Input and Output.
+  * Existing service APIs which were incorrectly modeled have been preserved to ensure they do not break.
+  * Fixes [#2070](https://github.com/aws/aws-sdk-go/issues/2070)
+
+### SDK Enhancements
+* `service/s3/s3manager`: Document default behavior for Upload's MaxNumParts ([#2077](https://github.com/aws/aws-sdk-go/issues/2077))
+  * Updates the S3 Upload Manager's default behavior for MaxNumParts, and ensures that the Uploader.MaxNumPart's member value is initialized properly if the type was created via struct initialization instead of using the NewUploader function.
+  * Fixes [#2015](https://github.com/aws/aws-sdk-go/issues/2015)
+
+### SDK Bugs
+* `private/model/api`: SDK APIs input/output are not consistently generated ([#2073](https://github.com/aws/aws-sdk-go/pull/2073))
+  * Fixes EFS service breaking change in v1.14.26 where `FileSystemDescription` was incorrectly renamed to `UpdateFileSystemOutput.
+  * Fixes [#2070](https://github.com/aws/aws-sdk-go/issues/2070)
 Release v1.14.33 (2018-07-25)
 ===
 

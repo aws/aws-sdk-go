@@ -118,7 +118,8 @@
         {"shape":"TagLimitExceededFault"},
         {"shape":"InvalidTagFault"},
         {"shape":"LimitExceededFault"},
-        {"shape":"DependentServiceRequestThrottlingFault"}
+        {"shape":"DependentServiceRequestThrottlingFault"},
+        {"shape":"InvalidClusterTrackFault"}
       ]
     },
     "CreateClusterParameterGroup":{
@@ -519,6 +520,22 @@
         {"shape":"InvalidTagFault"}
       ]
     },
+    "DescribeClusterTracks":{
+      "name":"DescribeClusterTracks",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeClusterTracksMessage"},
+      "output":{
+        "shape":"TrackListMessage",
+        "resultWrapper":"DescribeClusterTracksResult"
+      },
+      "errors":[
+        {"shape":"InvalidClusterTrackFault"},
+        {"shape":"UnauthorizedOperation"}
+      ]
+    },
     "DescribeClusterVersions":{
       "name":"DescribeClusterVersions",
       "http":{
@@ -895,7 +912,8 @@
         {"shape":"LimitExceededFault"},
         {"shape":"DependentServiceRequestThrottlingFault"},
         {"shape":"InvalidElasticIpFault"},
-        {"shape":"TableLimitExceededFault"}
+        {"shape":"TableLimitExceededFault"},
+        {"shape":"InvalidClusterTrackFault"}
       ]
     },
     "ModifyClusterDbRevision":{
@@ -1090,7 +1108,8 @@
         {"shape":"ClusterParameterGroupNotFoundFault"},
         {"shape":"ClusterSecurityGroupNotFoundFault"},
         {"shape":"LimitExceededFault"},
-        {"shape":"DependentServiceRequestThrottlingFault"}
+        {"shape":"DependentServiceRequestThrottlingFault"},
+        {"shape":"InvalidClusterTrackFault"}
       ]
     },
     "RestoreTableFromClusterSnapshot":{
@@ -1340,7 +1359,8 @@
         "KmsKeyId":{"shape":"String"},
         "EnhancedVpcRouting":{"shape":"Boolean"},
         "IamRoles":{"shape":"ClusterIamRoleList"},
-        "PendingActions":{"shape":"PendingActionsList"}
+        "PendingActions":{"shape":"PendingActionsList"},
+        "MaintenanceTrackName":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -1826,7 +1846,8 @@
         "KmsKeyId":{"shape":"String"},
         "EnhancedVpcRouting":{"shape":"BooleanOptional"},
         "AdditionalInfo":{"shape":"String"},
-        "IamRoles":{"shape":"IamRoleArnList"}
+        "IamRoles":{"shape":"IamRoleArnList"},
+        "MaintenanceTrackName":{"shape":"String"}
       }
     },
     "CreateClusterParameterGroupMessage":{
@@ -2191,6 +2212,14 @@
         "TagValues":{"shape":"TagValueList"}
       }
     },
+    "DescribeClusterTracksMessage":{
+      "type":"structure",
+      "members":{
+        "MaintenanceTrackName":{"shape":"String"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
+      }
+    },
     "DescribeClusterVersionsMessage":{
       "type":"structure",
       "members":{
@@ -2385,6 +2414,13 @@
       "members":{
         "ElasticIp":{"shape":"String"},
         "Status":{"shape":"String"}
+      }
+    },
+    "EligibleTracksToUpdateList":{
+      "type":"list",
+      "member":{
+        "shape":"UpdateTarget",
+        "locationName":"UpdateTarget"
       }
     },
     "EnableLoggingMessage":{
@@ -2837,6 +2873,17 @@
       },
       "exception":true
     },
+    "InvalidClusterTrackFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidClusterTrack",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "InvalidElasticIpFault":{
       "type":"structure",
       "members":{
@@ -3004,6 +3051,14 @@
     },
     "Long":{"type":"long"},
     "LongOptional":{"type":"long"},
+    "MaintenanceTrack":{
+      "type":"structure",
+      "members":{
+        "MaintenanceTrackName":{"shape":"String"},
+        "DatabaseVersion":{"shape":"String"},
+        "UpdateTargets":{"shape":"EligibleTracksToUpdateList"}
+      }
+    },
     "ModifyClusterDbRevisionMessage":{
       "type":"structure",
       "required":[
@@ -3057,7 +3112,8 @@
         "NewClusterIdentifier":{"shape":"String"},
         "PubliclyAccessible":{"shape":"BooleanOptional"},
         "ElasticIp":{"shape":"String"},
-        "EnhancedVpcRouting":{"shape":"BooleanOptional"}
+        "EnhancedVpcRouting":{"shape":"BooleanOptional"},
+        "MaintenanceTrackName":{"shape":"String"}
       }
     },
     "ModifyClusterParameterGroupMessage":{
@@ -3227,7 +3283,8 @@
         "AutomatedSnapshotRetentionPeriod":{"shape":"IntegerOptional"},
         "ClusterIdentifier":{"shape":"String"},
         "PubliclyAccessible":{"shape":"BooleanOptional"},
-        "EnhancedVpcRouting":{"shape":"BooleanOptional"}
+        "EnhancedVpcRouting":{"shape":"BooleanOptional"},
+        "MaintenanceTrackName":{"shape":"String"}
       }
     },
     "PurchaseReservedNodeOfferingMessage":{
@@ -3479,7 +3536,8 @@
         "NodeType":{"shape":"String"},
         "EnhancedVpcRouting":{"shape":"BooleanOptional"},
         "AdditionalInfo":{"shape":"String"},
-        "IamRoles":{"shape":"IamRoleArnList"}
+        "IamRoles":{"shape":"IamRoleArnList"},
+        "MaintenanceTrackName":{"shape":"String"}
       }
     },
     "RestoreFromClusterSnapshotResult":{
@@ -3655,7 +3713,8 @@
         "SourceRegion":{"shape":"String"},
         "Tags":{"shape":"TagList"},
         "RestorableNodeTypes":{"shape":"RestorableNodeTypeList"},
-        "EnhancedVpcRouting":{"shape":"Boolean"}
+        "EnhancedVpcRouting":{"shape":"Boolean"},
+        "MaintenanceTrackName":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -4020,6 +4079,20 @@
         "Marker":{"shape":"String"}
       }
     },
+    "TrackList":{
+      "type":"list",
+      "member":{
+        "shape":"MaintenanceTrack",
+        "locationName":"MaintenanceTrack"
+      }
+    },
+    "TrackListMessage":{
+      "type":"structure",
+      "members":{
+        "MaintenanceTracks":{"shape":"TrackList"},
+        "Marker":{"shape":"String"}
+      }
+    },
     "UnauthorizedOperation":{
       "type":"structure",
       "members":{
@@ -4063,6 +4136,13 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "UpdateTarget":{
+      "type":"structure",
+      "members":{
+        "MaintenanceTrackName":{"shape":"String"},
+        "DatabaseVersion":{"shape":"String"}
+      }
     },
     "VpcSecurityGroupIdList":{
       "type":"list",

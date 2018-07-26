@@ -195,6 +195,10 @@ type RedshiftAPI interface {
 	DescribeClusterSubnetGroupsPages(*redshift.DescribeClusterSubnetGroupsInput, func(*redshift.DescribeClusterSubnetGroupsOutput, bool) bool) error
 	DescribeClusterSubnetGroupsPagesWithContext(aws.Context, *redshift.DescribeClusterSubnetGroupsInput, func(*redshift.DescribeClusterSubnetGroupsOutput, bool) bool, ...request.Option) error
 
+	DescribeClusterTracks(*redshift.DescribeClusterTracksInput) (*redshift.DescribeClusterTracksOutput, error)
+	DescribeClusterTracksWithContext(aws.Context, *redshift.DescribeClusterTracksInput, ...request.Option) (*redshift.DescribeClusterTracksOutput, error)
+	DescribeClusterTracksRequest(*redshift.DescribeClusterTracksInput) (*request.Request, *redshift.DescribeClusterTracksOutput)
+
 	DescribeClusterVersions(*redshift.DescribeClusterVersionsInput) (*redshift.DescribeClusterVersionsOutput, error)
 	DescribeClusterVersionsWithContext(aws.Context, *redshift.DescribeClusterVersionsInput, ...request.Option) (*redshift.DescribeClusterVersionsOutput, error)
 	DescribeClusterVersionsRequest(*redshift.DescribeClusterVersionsInput) (*request.Request, *redshift.DescribeClusterVersionsOutput)

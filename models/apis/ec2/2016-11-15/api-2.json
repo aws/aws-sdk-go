@@ -4162,6 +4162,7 @@
         "DryRun":{"shape":"Boolean"},
         "ClientToken":{"shape":"String"},
         "SpotOptions":{"shape":"SpotOptionsRequest"},
+        "OnDemandOptions":{"shape":"OnDemandOptionsRequest"},
         "ExcessCapacityTerminationPolicy":{"shape":"FleetExcessCapacityTerminationPolicy"},
         "LaunchTemplateConfigs":{"shape":"FleetLaunchTemplateConfigListRequest"},
         "TargetCapacitySpecification":{"shape":"TargetCapacitySpecificationRequest"},
@@ -9180,6 +9181,10 @@
           "shape":"SpotOptions",
           "locationName":"spotOptions"
         },
+        "OnDemandOptions":{
+          "shape":"OnDemandOptions",
+          "locationName":"onDemandOptions"
+        },
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
@@ -9263,6 +9268,10 @@
         "WeightedCapacity":{
           "shape":"Double",
           "locationName":"weightedCapacity"
+        },
+        "Priority":{
+          "shape":"Double",
+          "locationName":"priority"
         }
       }
     },
@@ -9288,7 +9297,8 @@
         "MaxPrice":{"shape":"String"},
         "SubnetId":{"shape":"String"},
         "AvailabilityZone":{"shape":"String"},
-        "WeightedCapacity":{"shape":"Double"}
+        "WeightedCapacity":{"shape":"Double"},
+        "Priority":{"shape":"Double"}
       }
     },
     "FleetLaunchTemplateSpecification":{
@@ -9315,6 +9325,13 @@
         "LaunchTemplateName":{"shape":"LaunchTemplateName"},
         "Version":{"shape":"String"}
       }
+    },
+    "FleetOnDemandAllocationStrategy":{
+      "type":"string",
+      "enum":[
+        "lowest-price",
+        "prioritized"
+      ]
     },
     "FleetSet":{
       "type":"list",
@@ -12408,6 +12425,10 @@
         "WeightedCapacity":{
           "shape":"Double",
           "locationName":"weightedCapacity"
+        },
+        "Priority":{
+          "shape":"Double",
+          "locationName":"priority"
         }
       }
     },
@@ -13947,6 +13968,28 @@
         "Partial Upfront",
         "All Upfront"
       ]
+    },
+    "OnDemandAllocationStrategy":{
+      "type":"string",
+      "enum":[
+        "lowestPrice",
+        "prioritized"
+      ]
+    },
+    "OnDemandOptions":{
+      "type":"structure",
+      "members":{
+        "AllocationStrategy":{
+          "shape":"FleetOnDemandAllocationStrategy",
+          "locationName":"allocationStrategy"
+        }
+      }
+    },
+    "OnDemandOptionsRequest":{
+      "type":"structure",
+      "members":{
+        "AllocationStrategy":{"shape":"FleetOnDemandAllocationStrategy"}
+      }
     },
     "OperationType":{
       "type":"string",
@@ -17191,6 +17234,10 @@
           "shape":"AllocationStrategy",
           "locationName":"allocationStrategy"
         },
+        "OnDemandAllocationStrategy":{
+          "shape":"OnDemandAllocationStrategy",
+          "locationName":"onDemandAllocationStrategy"
+        },
         "ClientToken":{
           "shape":"String",
           "locationName":"clientToken"
@@ -17258,6 +17305,10 @@
         "LoadBalancersConfig":{
           "shape":"LoadBalancersConfig",
           "locationName":"loadBalancersConfig"
+        },
+        "InstancePoolsToUseCount":{
+          "shape":"Integer",
+          "locationName":"instancePoolsToUseCount"
         }
       }
     },
@@ -17458,6 +17509,10 @@
         "InstanceInterruptionBehavior":{
           "shape":"SpotInstanceInterruptionBehavior",
           "locationName":"instanceInterruptionBehavior"
+        },
+        "InstancePoolsToUseCount":{
+          "shape":"Integer",
+          "locationName":"instancePoolsToUseCount"
         }
       }
     },
@@ -17465,7 +17520,8 @@
       "type":"structure",
       "members":{
         "AllocationStrategy":{"shape":"SpotAllocationStrategy"},
-        "InstanceInterruptionBehavior":{"shape":"SpotInstanceInterruptionBehavior"}
+        "InstanceInterruptionBehavior":{"shape":"SpotInstanceInterruptionBehavior"},
+        "InstancePoolsToUseCount":{"shape":"Integer"}
       }
     },
     "SpotPlacement":{
