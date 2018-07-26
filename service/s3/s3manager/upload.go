@@ -241,6 +241,8 @@ type Uploader struct {
 	// E.g: 5GB file, with MaxUploadParts set to 100, will upload the file
 	// as 100, 50MB parts.
 	// With a limited of s3.MaxUploadParts (10,000 parts).
+	//
+	// Defaults to package const's MaxUploadParts value.
 	MaxUploadParts int
 
 	// The client to use when uploading to S3.
@@ -476,6 +478,9 @@ func (u *uploader) init() {
 	}
 	if u.cfg.PartSize == 0 {
 		u.cfg.PartSize = DefaultUploadPartSize
+	}
+	if u.cfg.MaxUploadParts == 0 {
+		u.cfg.MaxUploadParts = MaxUploadParts
 	}
 
 	u.bufferPool = sync.Pool{
