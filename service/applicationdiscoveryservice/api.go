@@ -15,7 +15,7 @@ const opAssociateConfigurationItemsToApplication = "AssociateConfigurationItemsT
 
 // AssociateConfigurationItemsToApplicationRequest generates a "aws/request.Request" representing the
 // client's request for the AssociateConfigurationItemsToApplication operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -105,7 +105,7 @@ const opCreateApplication = "CreateApplication"
 
 // CreateApplicationRequest generates a "aws/request.Request" representing the
 // client's request for the CreateApplication operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -195,7 +195,7 @@ const opCreateTags = "CreateTags"
 
 // CreateTagsRequest generates a "aws/request.Request" representing the
 // client's request for the CreateTags operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -291,7 +291,7 @@ const opDeleteApplications = "DeleteApplications"
 
 // DeleteApplicationsRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteApplications operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -382,7 +382,7 @@ const opDeleteTags = "DeleteTags"
 
 // DeleteTagsRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteTags operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -477,7 +477,7 @@ const opDescribeAgents = "DescribeAgents"
 
 // DescribeAgentsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeAgents operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -568,7 +568,7 @@ const opDescribeConfigurations = "DescribeConfigurations"
 
 // DescribeConfigurationsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeConfigurations operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -665,7 +665,7 @@ const opDescribeExportConfigurations = "DescribeExportConfigurations"
 
 // DescribeExportConfigurationsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeExportConfigurations operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -765,7 +765,7 @@ const opDescribeExportTasks = "DescribeExportTasks"
 
 // DescribeExportTasksRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeExportTasks operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -856,7 +856,7 @@ const opDescribeTags = "DescribeTags"
 
 // DescribeTagsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeTags operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -951,7 +951,7 @@ const opDisassociateConfigurationItemsFromApplication = "DisassociateConfigurati
 
 // DisassociateConfigurationItemsFromApplicationRequest generates a "aws/request.Request" representing the
 // client's request for the DisassociateConfigurationItemsFromApplication operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1041,7 +1041,7 @@ const opExportConfigurations = "ExportConfigurations"
 
 // ExportConfigurationsRequest generates a "aws/request.Request" representing the
 // client's request for the ExportConfigurations operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1143,7 +1143,7 @@ const opGetDiscoverySummary = "GetDiscoverySummary"
 
 // GetDiscoverySummaryRequest generates a "aws/request.Request" representing the
 // client's request for the GetDiscoverySummary operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1233,7 +1233,7 @@ const opListConfigurations = "ListConfigurations"
 
 // ListConfigurationsRequest generates a "aws/request.Request" representing the
 // client's request for the ListConfigurations operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1328,7 +1328,7 @@ const opListServerNeighbors = "ListServerNeighbors"
 
 // ListServerNeighborsRequest generates a "aws/request.Request" representing the
 // client's request for the ListServerNeighbors operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1419,7 +1419,7 @@ const opStartDataCollectionByAgentIds = "StartDataCollectionByAgentIds"
 
 // StartDataCollectionByAgentIdsRequest generates a "aws/request.Request" representing the
 // client's request for the StartDataCollectionByAgentIds operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1509,7 +1509,7 @@ const opStartExportTask = "StartExportTask"
 
 // StartExportTaskRequest generates a "aws/request.Request" representing the
 // client's request for the StartExportTask operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1612,7 +1612,7 @@ const opStopDataCollectionByAgentIds = "StopDataCollectionByAgentIds"
 
 // StopDataCollectionByAgentIdsRequest generates a "aws/request.Request" representing the
 // client's request for the StopDataCollectionByAgentIds operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1702,7 +1702,7 @@ const opUpdateApplication = "UpdateApplication"
 
 // UpdateApplicationRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateApplication operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2059,7 +2059,7 @@ type ConfigurationTag struct {
 
 	// The time the configuration tag was created in Coordinated Universal Time
 	// (UTC).
-	TimeOfCreation *time.Time `locationName:"timeOfCreation" type:"timestamp" timestampFormat:"unix"`
+	TimeOfCreation *time.Time `locationName:"timeOfCreation" type:"timestamp"`
 
 	// A value on which to filter. For example key = serverType and value = web
 	// server.
@@ -3227,7 +3227,7 @@ type ExportInfo struct {
 	// The time that the data export was initiated.
 	//
 	// ExportRequestTime is a required field
-	ExportRequestTime *time.Time `locationName:"exportRequestTime" type:"timestamp" timestampFormat:"unix" required:"true"`
+	ExportRequestTime *time.Time `locationName:"exportRequestTime" type:"timestamp" required:"true"`
 
 	// The status of the data export job.
 	//
@@ -3242,11 +3242,11 @@ type ExportInfo struct {
 
 	// The endTime used in the StartExportTask request. If no endTime was requested,
 	// this result does not appear in ExportInfo.
-	RequestedEndTime *time.Time `locationName:"requestedEndTime" type:"timestamp" timestampFormat:"unix"`
+	RequestedEndTime *time.Time `locationName:"requestedEndTime" type:"timestamp"`
 
 	// The value of startTime parameter in the StartExportTask request. If no startTime
 	// was requested, this result does not appear in ExportInfo.
-	RequestedStartTime *time.Time `locationName:"requestedStartTime" type:"timestamp" timestampFormat:"unix"`
+	RequestedStartTime *time.Time `locationName:"requestedStartTime" type:"timestamp"`
 
 	// A status message provided for API callers.
 	//
@@ -3925,7 +3925,7 @@ type StartExportTaskInput struct {
 	// The end timestamp for exported data from the single Application Discovery
 	// Agent selected in the filters. If no value is specified, exported data includes
 	// the most recent data collected by the agent.
-	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"unix"`
+	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
 
 	// The file format for the returned export data. Default value is CSV. Note:TheGRAPHMLoption
 	// has been deprecated.
@@ -3941,7 +3941,7 @@ type StartExportTaskInput struct {
 	// The start timestamp for exported data from the single Application Discovery
 	// Agent selected in the filters. If no value is specified, data is exported
 	// starting from the first data collected by the agent.
-	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"unix"`
+	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 }
 
 // String returns the string representation

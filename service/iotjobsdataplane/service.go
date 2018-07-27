@@ -29,8 +29,9 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "data.jobs.iot" // Service endpoint prefix API calls made to.
-	EndpointsID = ServiceName     // Service ID for Regions and Endpoints metadata.
+	ServiceName = "data.jobs.iot"       // Name of service.
+	EndpointsID = ServiceName           // ID to lookup a service endpoint with.
+	ServiceID   = "IoT Jobs Data Plane" // ServiceID is a unique identifer of a specific service.
 )
 
 // New creates a new instance of the IoTJobsDataPlane client with a session.
@@ -45,19 +46,20 @@ const (
 //     svc := iotjobsdataplane.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *IoTJobsDataPlane {
 	c := p.ClientConfig(EndpointsID, cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+		c.SigningName = "iot-jobs-data"
+	}
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
 // newClient creates, initializes and returns a new service client instance.
 func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *IoTJobsDataPlane {
-	if len(signingName) == 0 {
-		signingName = "iot-jobs-data"
-	}
 	svc := &IoTJobsDataPlane{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
 				ServiceName:   ServiceName,
+				ServiceID:     ServiceID,
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
 				Endpoint:      endpoint,

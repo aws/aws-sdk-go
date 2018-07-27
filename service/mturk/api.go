@@ -15,7 +15,7 @@ const opAcceptQualificationRequest = "AcceptQualificationRequest"
 
 // AcceptQualificationRequestRequest generates a "aws/request.Request" representing the
 // client's request for the AcceptQualificationRequest operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -105,7 +105,7 @@ const opApproveAssignment = "ApproveAssignment"
 
 // ApproveAssignmentRequest generates a "aws/request.Request" representing the
 // client's request for the ApproveAssignment operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -206,7 +206,7 @@ const opAssociateQualificationWithWorker = "AssociateQualificationWithWorker"
 
 // AssociateQualificationWithWorkerRequest generates a "aws/request.Request" representing the
 // client's request for the AssociateQualificationWithWorker operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -301,7 +301,7 @@ const opCreateAdditionalAssignmentsForHIT = "CreateAdditionalAssignmentsForHIT"
 
 // CreateAdditionalAssignmentsForHITRequest generates a "aws/request.Request" representing the
 // client's request for the CreateAdditionalAssignmentsForHIT operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -398,7 +398,7 @@ const opCreateHIT = "CreateHIT"
 
 // CreateHITRequest generates a "aws/request.Request" representing the
 // client's request for the CreateHIT operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -502,7 +502,7 @@ const opCreateHITType = "CreateHITType"
 
 // CreateHITTypeRequest generates a "aws/request.Request" representing the
 // client's request for the CreateHITType operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -588,7 +588,7 @@ const opCreateHITWithHITType = "CreateHITWithHITType"
 
 // CreateHITWithHITTypeRequest generates a "aws/request.Request" representing the
 // client's request for the CreateHITWithHITType operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -683,7 +683,7 @@ const opCreateQualificationType = "CreateQualificationType"
 
 // CreateQualificationTypeRequest generates a "aws/request.Request" representing the
 // client's request for the CreateQualificationType operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -767,7 +767,7 @@ const opCreateWorkerBlock = "CreateWorkerBlock"
 
 // CreateWorkerBlockRequest generates a "aws/request.Request" representing the
 // client's request for the CreateWorkerBlock operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -852,7 +852,7 @@ const opDeleteHIT = "DeleteHIT"
 
 // DeleteHITRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteHIT operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -953,7 +953,7 @@ const opDeleteQualificationType = "DeleteQualificationType"
 
 // DeleteQualificationTypeRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteQualificationType operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1048,7 +1048,7 @@ const opDeleteWorkerBlock = "DeleteWorkerBlock"
 
 // DeleteWorkerBlockRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteWorkerBlock operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1136,7 +1136,7 @@ const opDisassociateQualificationFromWorker = "DisassociateQualificationFromWork
 
 // DisassociateQualificationFromWorkerRequest generates a "aws/request.Request" representing the
 // client's request for the DisassociateQualificationFromWorker operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1223,7 +1223,7 @@ const opGetAccountBalance = "GetAccountBalance"
 
 // GetAccountBalanceRequest generates a "aws/request.Request" representing the
 // client's request for the GetAccountBalance operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1307,7 +1307,7 @@ const opGetAssignment = "GetAssignment"
 
 // GetAssignmentRequest generates a "aws/request.Request" representing the
 // client's request for the GetAssignment operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1390,7 +1390,7 @@ const opGetFileUploadURL = "GetFileUploadURL"
 
 // GetFileUploadURLRequest generates a "aws/request.Request" representing the
 // client's request for the GetFileUploadURL operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1483,7 +1483,7 @@ const opGetHIT = "GetHIT"
 
 // GetHITRequest generates a "aws/request.Request" representing the
 // client's request for the GetHIT operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1566,7 +1566,7 @@ const opGetQualificationScore = "GetQualificationScore"
 
 // GetQualificationScoreRequest generates a "aws/request.Request" representing the
 // client's request for the GetQualificationScore operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1657,7 +1657,7 @@ const opGetQualificationType = "GetQualificationType"
 
 // GetQualificationTypeRequest generates a "aws/request.Request" representing the
 // client's request for the GetQualificationType operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1741,7 +1741,7 @@ const opListAssignmentsForHIT = "ListAssignmentsForHIT"
 
 // ListAssignmentsForHITRequest generates a "aws/request.Request" representing the
 // client's request for the ListAssignmentsForHIT operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -1900,7 +1900,7 @@ const opListBonusPayments = "ListBonusPayments"
 
 // ListBonusPaymentsRequest generates a "aws/request.Request" representing the
 // client's request for the ListBonusPayments operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2040,7 +2040,7 @@ const opListHITs = "ListHITs"
 
 // ListHITsRequest generates a "aws/request.Request" representing the
 // client's request for the ListHITs operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2181,7 +2181,7 @@ const opListHITsForQualificationType = "ListHITsForQualificationType"
 
 // ListHITsForQualificationTypeRequest generates a "aws/request.Request" representing the
 // client's request for the ListHITsForQualificationType operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2323,7 +2323,7 @@ const opListQualificationRequests = "ListQualificationRequests"
 
 // ListQualificationRequestsRequest generates a "aws/request.Request" representing the
 // client's request for the ListQualificationRequests operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2465,7 +2465,7 @@ const opListQualificationTypes = "ListQualificationTypes"
 
 // ListQualificationTypesRequest generates a "aws/request.Request" representing the
 // client's request for the ListQualificationTypes operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2511,10 +2511,8 @@ func (c *MTurk) ListQualificationTypesRequest(input *ListQualificationTypesInput
 
 // ListQualificationTypes API operation for Amazon Mechanical Turk.
 //
-// The ListQualificationRequests operation retrieves requests for Qualifications
-// of a particular Qualification type. The owner of the Qualification type calls
-// this operation to poll for pending requests, and accepts them using the AcceptQualification
-// operation.
+// The ListQualificationTypes operation returns a list of Qualification types,
+// filtered by an optional search term.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2607,7 +2605,7 @@ const opListReviewPolicyResultsForHIT = "ListReviewPolicyResultsForHIT"
 
 // ListReviewPolicyResultsForHITRequest generates a "aws/request.Request" representing the
 // client's request for the ListReviewPolicyResultsForHIT operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2750,7 +2748,7 @@ const opListReviewableHITs = "ListReviewableHITs"
 
 // ListReviewableHITsRequest generates a "aws/request.Request" representing the
 // client's request for the ListReviewableHITs operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -2891,7 +2889,7 @@ const opListWorkerBlocks = "ListWorkerBlocks"
 
 // ListWorkerBlocksRequest generates a "aws/request.Request" representing the
 // client's request for the ListWorkerBlocks operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3031,7 +3029,7 @@ const opListWorkersWithQualificationType = "ListWorkersWithQualificationType"
 
 // ListWorkersWithQualificationTypeRequest generates a "aws/request.Request" representing the
 // client's request for the ListWorkersWithQualificationType operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3171,7 +3169,7 @@ const opNotifyWorkers = "NotifyWorkers"
 
 // NotifyWorkersRequest generates a "aws/request.Request" representing the
 // client's request for the NotifyWorkers operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3258,7 +3256,7 @@ const opRejectAssignment = "RejectAssignment"
 
 // RejectAssignmentRequest generates a "aws/request.Request" representing the
 // client's request for the RejectAssignment operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3349,7 +3347,7 @@ const opRejectQualificationRequest = "RejectQualificationRequest"
 
 // RejectQualificationRequestRequest generates a "aws/request.Request" representing the
 // client's request for the RejectQualificationRequest operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3435,7 +3433,7 @@ const opSendBonus = "SendBonus"
 
 // SendBonusRequest generates a "aws/request.Request" representing the
 // client's request for the SendBonus operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3526,7 +3524,7 @@ const opSendTestEventNotification = "SendTestEventNotification"
 
 // SendTestEventNotificationRequest generates a "aws/request.Request" representing the
 // client's request for the SendTestEventNotification operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3614,7 +3612,7 @@ const opUpdateExpirationForHIT = "UpdateExpirationForHIT"
 
 // UpdateExpirationForHITRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateExpirationForHIT operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3699,7 +3697,7 @@ const opUpdateHITReviewStatus = "UpdateHITReviewStatus"
 
 // UpdateHITReviewStatusRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateHITReviewStatus operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3784,7 +3782,7 @@ const opUpdateHITTypeOfHIT = "UpdateHITTypeOfHIT"
 
 // UpdateHITTypeOfHITRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateHITTypeOfHIT operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3870,7 +3868,7 @@ const opUpdateNotificationSettings = "UpdateNotificationSettings"
 
 // UpdateNotificationSettingsRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateNotificationSettings operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -3962,7 +3960,7 @@ const opUpdateQualificationType = "UpdateQualificationType"
 
 // UpdateQualificationTypeRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateQualificationType operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -4217,7 +4215,7 @@ type Assignment struct {
 	_ struct{} `type:"structure"`
 
 	// The date and time the Worker accepted the assignment.
-	AcceptTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	AcceptTime *time.Time `type:"timestamp"`
 
 	// The Worker's answers submitted for the HIT contained in a QuestionFormAnswers
 	// document, if the Worker provides an answer. If the Worker does not provide
@@ -4229,7 +4227,7 @@ type Assignment struct {
 	// ApprovalTime is the date and time the Requester approved the results. This
 	// value is omitted from the assignment if the Requester has not yet approved
 	// the results.
-	ApprovalTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ApprovalTime *time.Time `type:"timestamp"`
 
 	// A unique identifier for the assignment.
 	AssignmentId *string `min:"1" type:"string"`
@@ -4243,19 +4241,19 @@ type Assignment struct {
 	// This value is derived from the auto-approval delay specified by the Requester
 	// in the HIT. This value is omitted from the assignment if the Worker has not
 	// yet submitted results.
-	AutoApprovalTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	AutoApprovalTime *time.Time `type:"timestamp"`
 
 	// The date and time of the deadline for the assignment. This value is derived
 	// from the deadline specification for the HIT and the date and time the Worker
 	// accepted the HIT.
-	Deadline *time.Time `type:"timestamp" timestampFormat:"unix"`
+	Deadline *time.Time `type:"timestamp"`
 
 	// The ID of the HIT.
 	HITId *string `min:"1" type:"string"`
 
 	// If the Worker has submitted results and the Requester has rejected the results,
 	// RejectionTime is the date and time the Requester rejected the results.
-	RejectionTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	RejectionTime *time.Time `type:"timestamp"`
 
 	// The feedback string included with the call to the ApproveAssignment operation
 	// or the RejectAssignment operation, if the Requester approved or rejected
@@ -4265,7 +4263,7 @@ type Assignment struct {
 	// If the Worker has submitted results, SubmitTime is the date and time the
 	// assignment was submitted. This value is omitted from the assignment if the
 	// Worker has not yet submitted results.
-	SubmitTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	SubmitTime *time.Time `type:"timestamp"`
 
 	// The ID of the Worker who accepted the HIT.
 	WorkerId *string `min:"1" type:"string"`
@@ -4457,7 +4455,7 @@ type BonusPayment struct {
 	BonusAmount *string `type:"string"`
 
 	// The date and time of when the bonus was granted.
-	GrantTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	GrantTime *time.Time `type:"timestamp"`
 
 	// The Reason text given when the bonus was granted, if any.
 	Reason *string `type:"string"`
@@ -4655,8 +4653,11 @@ type CreateHITInput struct {
 	// becomes unavailable.
 	MaxAssignments *int64 `type:"integer"`
 
-	// A condition that a Worker's Qualifications must meet before the Worker is
-	// allowed to accept and complete the HIT.
+	// Conditions that a Worker's Qualifications must meet in order to accept the
+	// HIT. A HIT can have between zero and ten Qualification requirements. All
+	// requirements must be met in order for a Worker to accept the HIT. Additionally,
+	// other actions can be restricted using the ActionsGuarded field on each QualificationRequirement
+	// structure.
 	QualificationRequirements []*QualificationRequirement `type:"list"`
 
 	// The data the person completing the HIT uses to produce the results.
@@ -4927,8 +4928,11 @@ type CreateHITTypeInput struct {
 	// These words are used in searches to find HITs.
 	Keywords *string `type:"string"`
 
-	// A condition that a Worker's Qualifications must meet before the Worker is
-	// allowed to accept and complete the HIT.
+	// Conditions that a Worker's Qualifications must meet in order to accept the
+	// HIT. A HIT can have between zero and ten Qualification requirements. All
+	// requirements must be met in order for a Worker to accept the HIT. Additionally,
+	// other actions can be restricted using the ActionsGuarded field on each QualificationRequirement
+	// structure.
 	QualificationRequirements []*QualificationRequirement `type:"list"`
 
 	// The amount of money the Requester will pay a Worker for successfully completing
@@ -6205,13 +6209,13 @@ type HIT struct {
 	AutoApprovalDelayInSeconds *int64 `type:"long"`
 
 	// The date and time the HIT was created.
-	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationTime *time.Time `type:"timestamp"`
 
 	// A general description of the HIT.
 	Description *string `type:"string"`
 
 	// The date and time the HIT expires.
-	Expiration *time.Time `type:"timestamp" timestampFormat:"unix"`
+	Expiration *time.Time `type:"timestamp"`
 
 	// The ID of the HIT Group of this HIT.
 	HITGroupId *string `min:"1" type:"string"`
@@ -6253,10 +6257,11 @@ type HIT struct {
 	// accepted by Workers, but have not yet been submitted, returned, or abandoned.
 	NumberOfAssignmentsPending *int64 `type:"integer"`
 
-	// A condition that a Worker's Qualifications must meet in order to accept the
+	// Conditions that a Worker's Qualifications must meet in order to accept the
 	// HIT. A HIT can have between zero and ten Qualification requirements. All
-	// requirements must be met by a Worker's Qualifications for the Worker to accept
-	// the HIT.
+	// requirements must be met in order for a Worker to accept the HIT. Additionally,
+	// other actions can be restricted using the ActionsGuarded field on each QualificationRequirement
+	// structure.
 	QualificationRequirements []*QualificationRequirement `type:"list"`
 
 	// The data the Worker completing the HIT uses produce the results. This is
@@ -8006,7 +8011,7 @@ type Qualification struct {
 	// Qualification was revoked, and then re-granted based on a new Qualification
 	// request, GrantTime is the date and time of the last call to the AcceptQualificationRequest
 	// operation.
-	GrantTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	GrantTime *time.Time `type:"timestamp"`
 
 	// The value (score) of the Qualification, if the Qualification has an integer
 	// value.
@@ -8093,7 +8098,7 @@ type QualificationRequest struct {
 	// is either the time the Worker submitted answers for a Qualification test,
 	// or the time the Worker requested the Qualification if the Qualification type
 	// does not have a test.
-	SubmitTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	SubmitTime *time.Time `type:"timestamp"`
 
 	// The contents of the Qualification test that was presented to the Worker,
 	// if the type has a test and the Worker has submitted answers. This value is
@@ -8154,9 +8159,28 @@ func (s *QualificationRequest) SetWorkerId(v string) *QualificationRequest {
 // The QualificationRequirement data structure describes a Qualification that
 // a Worker must have before the Worker is allowed to accept a HIT. A requirement
 // may optionally state that a Worker must have the Qualification in order to
-// preview the HIT.
+// preview the HIT, or see the HIT in search results.
 type QualificationRequirement struct {
 	_ struct{} `type:"structure"`
+
+	// Setting this attribute prevents Workers whose Qualifications do not meet
+	// this QualificationRequirement from taking the specified action. Valid arguments
+	// include "Accept" (Worker cannot accept the HIT, but can preview the HIT and
+	// see it in their search results), "PreviewAndAccept" (Worker cannot accept
+	// or preview the HIT, but can see the HIT in their search results), and "DiscoverPreviewAndAccept"
+	// (Worker cannot accept, preview, or see the HIT in their search results).
+	// It's possible for you to create a HIT with multiple QualificationRequirements
+	// (which can have different values for the ActionGuarded attribute). In this
+	// case, the Worker is only permitted to perform an action when they have met
+	// all QualificationRequirements guarding the action. The actions in the order
+	// of least restrictive to most restrictive are Discover, Preview and Accept.
+	// For example, if a Worker meets all QualificationRequirements that are set
+	// to DiscoverPreviewAndAccept, but do not meet all requirements that are set
+	// with PreviewAndAccept, then the Worker will be able to Discover, i.e. see
+	// the HIT in their search result, but will not be able to Preview or Accept
+	// the HIT. ActionsGuarded should not be used in combination with the RequiredToPreview
+	// field.
+	ActionsGuarded *string `type:"string" enum:"HITAccessActions"`
 
 	// The kind of comparison to make against a Qualification's value. You can compare
 	// a Qualification's value to an IntegerValue to see if it is LessThan, LessThanOrEqualTo,
@@ -8193,15 +8217,17 @@ type QualificationRequirement struct {
 	// QualificationTypeId is a required field
 	QualificationTypeId *string `type:"string" required:"true"`
 
-	// If true, the question data for the HIT will not be shown when a Worker whose
+	// DEPRECATED: Use the ActionsGuarded field instead. If RequiredToPreview is
+	// true, the question data for the HIT will not be shown when a Worker whose
 	// Qualifications do not meet this requirement tries to preview the HIT. That
 	// is, a Worker's Qualifications must meet all of the requirements for which
 	// RequiredToPreview is true in order to preview the HIT. If a Worker meets
 	// all of the requirements where RequiredToPreview is true (or if there are
 	// no such requirements), but does not meet all of the requirements for the
 	// HIT, the Worker will be allowed to preview the HIT's question data, but will
-	// not be allowed to accept and complete the HIT. The default is false.
-	RequiredToPreview *bool `type:"boolean"`
+	// not be allowed to accept and complete the HIT. The default is false. This
+	// should not be used in combination with the ActionsGuarded field.
+	RequiredToPreview *bool `deprecated:"true" type:"boolean"`
 }
 
 // String returns the string representation
@@ -8238,6 +8264,12 @@ func (s *QualificationRequirement) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetActionsGuarded sets the ActionsGuarded field's value.
+func (s *QualificationRequirement) SetActionsGuarded(v string) *QualificationRequirement {
+	s.ActionsGuarded = &v
+	return s
 }
 
 // SetComparator sets the Comparator field's value.
@@ -8291,7 +8323,7 @@ type QualificationType struct {
 	AutoGrantedValue *int64 `type:"integer"`
 
 	// The date and time the Qualification type was created.
-	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationTime *time.Time `type:"timestamp"`
 
 	// A long description for the Qualification type.
 	Description *string `type:"string"`
@@ -8576,7 +8608,7 @@ type ReviewActionDetail struct {
 	ActionName *string `type:"string"`
 
 	// The date when the action was completed.
-	CompleteTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CompleteTime *time.Time `type:"timestamp"`
 
 	// Present only when the Results have a FAILED Status.
 	ErrorCode *string `type:"string"`
@@ -9014,7 +9046,7 @@ type UpdateExpirationForHITInput struct {
 	// The date and time at which you want the HIT to expire
 	//
 	// ExpireAt is a required field
-	ExpireAt *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	ExpireAt *time.Time `type:"timestamp" required:"true"`
 
 	// The HIT to update.
 	//
@@ -9569,6 +9601,17 @@ const (
 
 	// EventTypePing is a EventType enum value
 	EventTypePing = "Ping"
+)
+
+const (
+	// HITAccessActionsAccept is a HITAccessActions enum value
+	HITAccessActionsAccept = "Accept"
+
+	// HITAccessActionsPreviewAndAccept is a HITAccessActions enum value
+	HITAccessActionsPreviewAndAccept = "PreviewAndAccept"
+
+	// HITAccessActionsDiscoverPreviewAndAccept is a HITAccessActions enum value
+	HITAccessActionsDiscoverPreviewAndAccept = "DiscoverPreviewAndAccept"
 )
 
 const (

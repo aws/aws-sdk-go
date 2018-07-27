@@ -15,7 +15,7 @@ const opBatchGetTraces = "BatchGetTraces"
 
 // BatchGetTracesRequest generates a "aws/request.Request" representing the
 // client's request for the BatchGetTraces operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -151,11 +151,93 @@ func (c *XRay) BatchGetTracesPagesWithContext(ctx aws.Context, input *BatchGetTr
 	return p.Err()
 }
 
+const opGetEncryptionConfig = "GetEncryptionConfig"
+
+// GetEncryptionConfigRequest generates a "aws/request.Request" representing the
+// client's request for the GetEncryptionConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetEncryptionConfig for more information on using the GetEncryptionConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetEncryptionConfigRequest method.
+//    req, resp := client.GetEncryptionConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetEncryptionConfig
+func (c *XRay) GetEncryptionConfigRequest(input *GetEncryptionConfigInput) (req *request.Request, output *GetEncryptionConfigOutput) {
+	op := &request.Operation{
+		Name:       opGetEncryptionConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/EncryptionConfig",
+	}
+
+	if input == nil {
+		input = &GetEncryptionConfigInput{}
+	}
+
+	output = &GetEncryptionConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetEncryptionConfig API operation for AWS X-Ray.
+//
+// Retrieves the current encryption configuration for X-Ray data.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS X-Ray's
+// API operation GetEncryptionConfig for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is missing required parameters or has invalid parameters.
+//
+//   * ErrCodeThrottledException "ThrottledException"
+//   The request exceeds the maximum number of requests per second.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetEncryptionConfig
+func (c *XRay) GetEncryptionConfig(input *GetEncryptionConfigInput) (*GetEncryptionConfigOutput, error) {
+	req, out := c.GetEncryptionConfigRequest(input)
+	return out, req.Send()
+}
+
+// GetEncryptionConfigWithContext is the same as GetEncryptionConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetEncryptionConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *XRay) GetEncryptionConfigWithContext(ctx aws.Context, input *GetEncryptionConfigInput, opts ...request.Option) (*GetEncryptionConfigOutput, error) {
+	req, out := c.GetEncryptionConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetServiceGraph = "GetServiceGraph"
 
 // GetServiceGraphRequest generates a "aws/request.Request" representing the
 // client's request for the GetServiceGraph operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -297,7 +379,7 @@ const opGetTraceGraph = "GetTraceGraph"
 
 // GetTraceGraphRequest generates a "aws/request.Request" representing the
 // client's request for the GetTraceGraph operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -435,7 +517,7 @@ const opGetTraceSummaries = "GetTraceSummaries"
 
 // GetTraceSummariesRequest generates a "aws/request.Request" representing the
 // client's request for the GetTraceSummaries operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -585,11 +667,93 @@ func (c *XRay) GetTraceSummariesPagesWithContext(ctx aws.Context, input *GetTrac
 	return p.Err()
 }
 
+const opPutEncryptionConfig = "PutEncryptionConfig"
+
+// PutEncryptionConfigRequest generates a "aws/request.Request" representing the
+// client's request for the PutEncryptionConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutEncryptionConfig for more information on using the PutEncryptionConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutEncryptionConfigRequest method.
+//    req, resp := client.PutEncryptionConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/PutEncryptionConfig
+func (c *XRay) PutEncryptionConfigRequest(input *PutEncryptionConfigInput) (req *request.Request, output *PutEncryptionConfigOutput) {
+	op := &request.Operation{
+		Name:       opPutEncryptionConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/PutEncryptionConfig",
+	}
+
+	if input == nil {
+		input = &PutEncryptionConfigInput{}
+	}
+
+	output = &PutEncryptionConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutEncryptionConfig API operation for AWS X-Ray.
+//
+// Updates the encryption configuration for X-Ray data.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS X-Ray's
+// API operation PutEncryptionConfig for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is missing required parameters or has invalid parameters.
+//
+//   * ErrCodeThrottledException "ThrottledException"
+//   The request exceeds the maximum number of requests per second.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/PutEncryptionConfig
+func (c *XRay) PutEncryptionConfig(input *PutEncryptionConfigInput) (*PutEncryptionConfigOutput, error) {
+	req, out := c.PutEncryptionConfigRequest(input)
+	return out, req.Send()
+}
+
+// PutEncryptionConfigWithContext is the same as PutEncryptionConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutEncryptionConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *XRay) PutEncryptionConfigWithContext(ctx aws.Context, input *PutEncryptionConfigInput, opts ...request.Option) (*PutEncryptionConfigOutput, error) {
+	req, out := c.PutEncryptionConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutTelemetryRecords = "PutTelemetryRecords"
 
 // PutTelemetryRecordsRequest generates a "aws/request.Request" representing the
 // client's request for the PutTelemetryRecords operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -671,7 +835,7 @@ const opPutTraceSegments = "PutTraceSegments"
 
 // PutTraceSegmentsRequest generates a "aws/request.Request" representing the
 // client's request for the PutTraceSegments operation. The "output" return
-// value will be populated with the request's response once the request complets
+// value will be populated with the request's response once the request completes
 // successfuly.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
@@ -717,7 +881,7 @@ func (c *XRay) PutTraceSegmentsRequest(input *PutTraceSegmentsInput) (req *reque
 // of subsegments.
 //
 // Segments must include the following fields. For the full segment document
-// schema, see AWS X-Ray Segment Documents (http://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html)
+// schema, see AWS X-Ray Segment Documents (https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html)
 // in the AWS X-Ray Developer Guide.
 //
 // Required Segment Document Fields
@@ -1037,7 +1201,7 @@ type Edge struct {
 	Aliases []*Alias `type:"list"`
 
 	// The end time of the last segment on the edge.
-	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	EndTime *time.Time `type:"timestamp"`
 
 	// Identifier of the edge. Unique within a service map.
 	ReferenceId *int64 `type:"integer"`
@@ -1046,7 +1210,7 @@ type Edge struct {
 	ResponseTimeHistogram []*HistogramEntry `type:"list"`
 
 	// The start time of the first segment on the edge.
-	StartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	StartTime *time.Time `type:"timestamp"`
 
 	// Response statistics for segments on the edge.
 	SummaryStatistics *EdgeStatistics `type:"structure"`
@@ -1158,6 +1322,51 @@ func (s *EdgeStatistics) SetTotalResponseTime(v float64) *EdgeStatistics {
 	return s
 }
 
+// A configuration document that specifies encryption configuration settings.
+type EncryptionConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the customer master key (CMK) used for encryption, if applicable.
+	KeyId *string `type:"string"`
+
+	// The encryption status. After modifying encryption configuration with PutEncryptionConfig,
+	// the status can be UPDATING for up to one hour before X-Ray starts encrypting
+	// data with the new key.
+	Status *string `type:"string" enum:"EncryptionStatus"`
+
+	// The type of encryption. Set to KMS for encryption with CMKs. Set to NONE
+	// for default encryption.
+	Type *string `type:"string" enum:"EncryptionType"`
+}
+
+// String returns the string representation
+func (s EncryptionConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EncryptionConfig) GoString() string {
+	return s.String()
+}
+
+// SetKeyId sets the KeyId field's value.
+func (s *EncryptionConfig) SetKeyId(v string) *EncryptionConfig {
+	s.KeyId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *EncryptionConfig) SetStatus(v string) *EncryptionConfig {
+	s.Status = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *EncryptionConfig) SetType(v string) *EncryptionConfig {
+	s.Type = &v
+	return s
+}
+
 // Information about requests that failed with a 4xx Client Error status code.
 type ErrorStatistics struct {
 	_ struct{} `type:"structure"`
@@ -1235,13 +1444,50 @@ func (s *FaultStatistics) SetTotalCount(v int64) *FaultStatistics {
 	return s
 }
 
+type GetEncryptionConfigInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetEncryptionConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetEncryptionConfigInput) GoString() string {
+	return s.String()
+}
+
+type GetEncryptionConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The encryption configuration document.
+	EncryptionConfig *EncryptionConfig `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetEncryptionConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetEncryptionConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetEncryptionConfig sets the EncryptionConfig field's value.
+func (s *GetEncryptionConfigOutput) SetEncryptionConfig(v *EncryptionConfig) *GetEncryptionConfigOutput {
+	s.EncryptionConfig = v
+	return s
+}
+
 type GetServiceGraphInput struct {
 	_ struct{} `type:"structure"`
 
 	// The end of the time frame for which to generate a graph.
 	//
 	// EndTime is a required field
-	EndTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	EndTime *time.Time `type:"timestamp" required:"true"`
 
 	// Pagination token. Not used.
 	NextToken *string `type:"string"`
@@ -1249,7 +1495,7 @@ type GetServiceGraphInput struct {
 	// The start of the time frame for which to generate a graph.
 	//
 	// StartTime is a required field
-	StartTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	StartTime *time.Time `type:"timestamp" required:"true"`
 }
 
 // String returns the string representation
@@ -1300,7 +1546,7 @@ type GetServiceGraphOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The end of the time frame for which the graph was generated.
-	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	EndTime *time.Time `type:"timestamp"`
 
 	// Pagination token. Not used.
 	NextToken *string `type:"string"`
@@ -1310,7 +1556,7 @@ type GetServiceGraphOutput struct {
 	Services []*Service `type:"list"`
 
 	// The start of the time frame for which the graph was generated.
-	StartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	StartTime *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -1432,7 +1678,7 @@ type GetTraceSummariesInput struct {
 	// The end of the time frame for which to retrieve traces.
 	//
 	// EndTime is a required field
-	EndTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	EndTime *time.Time `type:"timestamp" required:"true"`
 
 	// Specify a filter expression to retrieve trace summaries for services or requests
 	// that meet certain requirements.
@@ -1448,7 +1694,7 @@ type GetTraceSummariesInput struct {
 	// The start of the time frame for which to retrieve traces.
 	//
 	// StartTime is a required field
-	StartTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	StartTime *time.Time `type:"timestamp" required:"true"`
 }
 
 // String returns the string representation
@@ -1514,7 +1760,7 @@ type GetTraceSummariesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The start time of this page of results.
-	ApproximateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ApproximateTime *time.Time `type:"timestamp"`
 
 	// If the requested time frame contained more than one page of results, you
 	// can use this token to retrieve the next page. The first page contains the
@@ -1524,7 +1770,8 @@ type GetTraceSummariesOutput struct {
 	// Trace IDs and metadata for traces that were found in the specified time frame.
 	TraceSummaries []*TraceSummary `type:"list"`
 
-	// The number of traces that were processed to get this set of summaries.
+	// The total number of traces processed, including traces that did not match
+	// the specified filter expression.
 	TracesProcessedCount *int64 `type:"long"`
 }
 
@@ -1653,6 +1900,90 @@ func (s *Http) SetHttpURL(v string) *Http {
 // SetUserAgent sets the UserAgent field's value.
 func (s *Http) SetUserAgent(v string) *Http {
 	s.UserAgent = &v
+	return s
+}
+
+type PutEncryptionConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// An AWS KMS customer master key (CMK) in one of the following formats:
+	//
+	//    * Alias - The name of the key. For example, alias/MyKey.
+	//
+	//    * Key ID - The KMS key ID of the key. For example, ae4aa6d49-a4d8-9df9-a475-4ff6d7898456.
+	//
+	//    * ARN - The full Amazon Resource Name of the key ID or alias. For example,
+	//    arn:aws:kms:us-east-2:123456789012:key/ae4aa6d49-a4d8-9df9-a475-4ff6d7898456.
+	//    Use this format to specify a key in a different account.
+	//
+	// Omit this key if you set Type to NONE.
+	KeyId *string `min:"1" type:"string"`
+
+	// The type of encryption. Set to KMS to use your own key for encryption. Set
+	// to NONE for default encryption.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"EncryptionType"`
+}
+
+// String returns the string representation
+func (s PutEncryptionConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutEncryptionConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutEncryptionConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutEncryptionConfigInput"}
+	if s.KeyId != nil && len(*s.KeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KeyId", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKeyId sets the KeyId field's value.
+func (s *PutEncryptionConfigInput) SetKeyId(v string) *PutEncryptionConfigInput {
+	s.KeyId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *PutEncryptionConfigInput) SetType(v string) *PutEncryptionConfigInput {
+	s.Type = &v
+	return s
+}
+
+type PutEncryptionConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The new encryption configuration.
+	EncryptionConfig *EncryptionConfig `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutEncryptionConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutEncryptionConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetEncryptionConfig sets the EncryptionConfig field's value.
+func (s *PutEncryptionConfigOutput) SetEncryptionConfig(v *EncryptionConfig) *PutEncryptionConfigOutput {
+	s.EncryptionConfig = v
 	return s
 }
 
@@ -1805,10 +2136,13 @@ func (s *PutTraceSegmentsOutput) SetUnprocessedTraceSegments(v []*UnprocessedTra
 // can be compiled from documents uploaded with PutTraceSegments, or an inferred
 // segment for a downstream service, generated from a subsegment sent by the
 // service that called it.
+//
+// For the full segment document schema, see AWS X-Ray Segment Documents (https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html)
+// in the AWS X-Ray Developer Guide.
 type Segment struct {
 	_ struct{} `type:"structure"`
 
-	// The segment document
+	// The segment document.
 	Document *string `min:"1" type:"string"`
 
 	// The segment's ID.
@@ -1853,7 +2187,7 @@ type Service struct {
 	Edges []*Edge `type:"list"`
 
 	// The end time of the last segment that the service generated.
-	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	EndTime *time.Time `type:"timestamp"`
 
 	// The canonical name of the service.
 	Name *string `type:"string"`
@@ -1871,7 +2205,7 @@ type Service struct {
 	Root *bool `type:"boolean"`
 
 	// The start time of the first segment that the service generated.
-	StartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	StartTime *time.Time `type:"timestamp"`
 
 	// The service's state.
 	State *string `type:"string"`
@@ -2103,7 +2437,7 @@ type TelemetryRecord struct {
 	SegmentsSpilloverCount *int64 `type:"integer"`
 
 	// Timestamp is a required field
-	Timestamp *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	Timestamp *time.Time `type:"timestamp" required:"true"`
 }
 
 // String returns the string representation
@@ -2435,3 +2769,19 @@ func (s *ValueWithServiceIds) SetServiceIds(v []*ServiceId) *ValueWithServiceIds
 	s.ServiceIds = v
 	return s
 }
+
+const (
+	// EncryptionStatusUpdating is a EncryptionStatus enum value
+	EncryptionStatusUpdating = "UPDATING"
+
+	// EncryptionStatusActive is a EncryptionStatus enum value
+	EncryptionStatusActive = "ACTIVE"
+)
+
+const (
+	// EncryptionTypeNone is a EncryptionType enum value
+	EncryptionTypeNone = "NONE"
+
+	// EncryptionTypeKms is a EncryptionType enum value
+	EncryptionTypeKms = "KMS"
+)

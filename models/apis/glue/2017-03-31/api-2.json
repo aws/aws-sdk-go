@@ -6,6 +6,7 @@
     "jsonVersion":"1.1",
     "protocol":"json",
     "serviceFullName":"AWS Glue",
+    "serviceId":"Glue",
     "signatureVersion":"v4",
     "targetPrefix":"AWSGlue",
     "uid":"glue-2017-03-31"
@@ -1190,7 +1191,9 @@
       "type":"structure",
       "members":{
         "JobName":{"shape":"NameString"},
-        "Arguments":{"shape":"GenericMap"}
+        "Arguments":{"shape":"GenericMap"},
+        "Timeout":{"shape":"Timeout"},
+        "NotificationProperty":{"shape":"NotificationProperty"}
       }
     },
     "ActionList":{
@@ -1707,7 +1710,8 @@
       "type":"structure",
       "members":{
         "S3Targets":{"shape":"S3TargetList"},
-        "JdbcTargets":{"shape":"JdbcTargetList"}
+        "JdbcTargets":{"shape":"JdbcTargetList"},
+        "DynamoDBTargets":{"shape":"DynamoDBTargetList"}
       }
     },
     "CreateClassifierRequest":{
@@ -1842,7 +1846,9 @@
         "DefaultArguments":{"shape":"GenericMap"},
         "Connections":{"shape":"ConnectionsList"},
         "MaxRetries":{"shape":"MaxRetries"},
-        "AllocatedCapacity":{"shape":"IntegerValue"}
+        "AllocatedCapacity":{"shape":"IntegerValue"},
+        "Timeout":{"shape":"Timeout"},
+        "NotificationProperty":{"shape":"NotificationProperty"}
       }
     },
     "CreateJobResponse":{
@@ -1926,7 +1932,8 @@
         "Schedule":{"shape":"GenericString"},
         "Predicate":{"shape":"Predicate"},
         "Actions":{"shape":"ActionList"},
-        "Description":{"shape":"DescriptionString"}
+        "Description":{"shape":"DescriptionString"},
+        "StartOnCreation":{"shape":"BooleanValue"}
       }
     },
     "CreateTriggerResponse":{
@@ -2226,6 +2233,16 @@
       "type":"list",
       "member":{"shape":"DevEndpoint"}
     },
+    "DynamoDBTarget":{
+      "type":"structure",
+      "members":{
+        "Path":{"shape":"Path"}
+      }
+    },
+    "DynamoDBTargetList":{
+      "type":"list",
+      "member":{"shape":"DynamoDBTarget"}
+    },
     "EntityNotFoundException":{
       "type":"structure",
       "members":{
@@ -2252,6 +2269,7 @@
         "MaxConcurrentRuns":{"shape":"MaxConcurrentRuns"}
       }
     },
+    "ExecutionTime":{"type":"integer"},
     "FieldType":{"type":"string"},
     "FilterString":{
       "type":"string",
@@ -2841,7 +2859,9 @@
         "DefaultArguments":{"shape":"GenericMap"},
         "Connections":{"shape":"ConnectionsList"},
         "MaxRetries":{"shape":"MaxRetries"},
-        "AllocatedCapacity":{"shape":"IntegerValue"}
+        "AllocatedCapacity":{"shape":"IntegerValue"},
+        "Timeout":{"shape":"Timeout"},
+        "NotificationProperty":{"shape":"NotificationProperty"}
       }
     },
     "JobBookmarkEntry":{
@@ -2881,7 +2901,10 @@
         "Arguments":{"shape":"GenericMap"},
         "ErrorMessage":{"shape":"ErrorString"},
         "PredecessorRuns":{"shape":"PredecessorList"},
-        "AllocatedCapacity":{"shape":"IntegerValue"}
+        "AllocatedCapacity":{"shape":"IntegerValue"},
+        "ExecutionTime":{"shape":"ExecutionTime"},
+        "Timeout":{"shape":"Timeout"},
+        "NotificationProperty":{"shape":"NotificationProperty"}
       }
     },
     "JobRunList":{
@@ -2896,7 +2919,8 @@
         "STOPPING",
         "STOPPED",
         "SUCCEEDED",
-        "FAILED"
+        "FAILED",
+        "TIMEOUT"
       ]
     },
     "JobUpdate":{
@@ -2910,7 +2934,9 @@
         "DefaultArguments":{"shape":"GenericMap"},
         "Connections":{"shape":"ConnectionsList"},
         "MaxRetries":{"shape":"MaxRetries"},
-        "AllocatedCapacity":{"shape":"IntegerValue"}
+        "AllocatedCapacity":{"shape":"IntegerValue"},
+        "Timeout":{"shape":"Timeout"},
+        "NotificationProperty":{"shape":"NotificationProperty"}
       }
     },
     "JsonClassifier":{
@@ -2965,7 +2991,8 @@
       "type":"structure",
       "members":{
         "Jdbc":{"shape":"CodeGenNodeArgs"},
-        "S3":{"shape":"CodeGenNodeArgs"}
+        "S3":{"shape":"CodeGenNodeArgs"},
+        "DynamoDB":{"shape":"CodeGenNodeArgs"}
       }
     },
     "LocationMap":{
@@ -3056,6 +3083,17 @@
     "NonNegativeInteger":{
       "type":"integer",
       "min":0
+    },
+    "NotificationProperty":{
+      "type":"structure",
+      "members":{
+        "NotifyDelayAfter":{"shape":"NotifyDelayAfter"}
+      }
+    },
+    "NotifyDelayAfter":{
+      "type":"integer",
+      "box":true,
+      "min":1
     },
     "OperationTimeoutException":{
       "type":"structure",
@@ -3360,7 +3398,9 @@
         "JobName":{"shape":"NameString"},
         "JobRunId":{"shape":"IdString"},
         "Arguments":{"shape":"GenericMap"},
-        "AllocatedCapacity":{"shape":"IntegerValue"}
+        "AllocatedCapacity":{"shape":"IntegerValue"},
+        "Timeout":{"shape":"Timeout"},
+        "NotificationProperty":{"shape":"NotificationProperty"}
       }
     },
     "StartJobRunResponse":{
@@ -3523,6 +3563,11 @@
     "TableVersionErrors":{
       "type":"list",
       "member":{"shape":"TableVersionError"}
+    },
+    "Timeout":{
+      "type":"integer",
+      "box":true,
+      "min":1
     },
     "Timestamp":{"type":"timestamp"},
     "TimestampValue":{"type":"timestamp"},

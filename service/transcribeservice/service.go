@@ -29,8 +29,9 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "transcribe" // Service endpoint prefix API calls made to.
-	EndpointsID = ServiceName  // Service ID for Regions and Endpoints metadata.
+	ServiceName = "transcribe" // Name of service.
+	EndpointsID = ServiceName  // ID to lookup a service endpoint with.
+	ServiceID   = "Transcribe" // ServiceID is a unique identifer of a specific service.
 )
 
 // New creates a new instance of the TranscribeService client with a session.
@@ -45,19 +46,20 @@ const (
 //     svc := transcribeservice.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *TranscribeService {
 	c := p.ClientConfig(EndpointsID, cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+		c.SigningName = "transcribe"
+	}
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
 // newClient creates, initializes and returns a new service client instance.
 func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *TranscribeService {
-	if len(signingName) == 0 {
-		signingName = "transcribe"
-	}
 	svc := &TranscribeService{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
 				ServiceName:   ServiceName,
+				ServiceID:     ServiceID,
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
 				Endpoint:      endpoint,

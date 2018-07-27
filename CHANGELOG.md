@@ -1,3 +1,861 @@
+Release v1.15.0 (2018-07-26)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * Add artifacts encryptionDisabled and build encryptionKey.
+* `service/ec2`: Updates service API and documentation
+  * This change provides the EC2/Spot customers with two new allocation strategies -- LowestN for Spot instances, and OD priority for on-demand instances.
+* `service/greengrass`: Updates service documentation
+  * Documentation updates for Greengrass Local Resource Access feature
+* `service/inspector`: Updates service API and documentation
+  * inspector will return ServiceTemporarilyUnavailableException when service is under stress
+* `service/redshift`: Updates service API and documentation
+  * When we make a new version of Amazon Redshift available, we update your cluster during its maintenance window. By selecting a maintenance track, you control whether we update your cluster with the most recent approved release, or with the previous release. The two values for maintenance track are current and trailing. If you choose the current track, your cluster is updated with the latest approved release. If you choose the trailing track, your cluster is updated with the release that was approved previously.The new API operation for managing maintenance tracks for a cluster is DescribeClusterTracks. In addition, the following API operations have new MaintenanceTrackName parameters:  Cluster,  PendingModifiedValues,  ModifyCluster,  RestoreFromClusterSnapshot,  CreateCluster,  Snapshot
+* `service/ssm`: Updates service API and documentation
+  * This release updates AWS Systems Manager APIs to allow customers to attach labels to history parameter records and reference history parameter records via labels.  It also adds Parameter Store integration with AWS Secrets Manager to allow referencing and retrieving AWS Secrets Manager's secrets from Parameter Store.
+
+### SDK Features
+* `private/model/api`: SDK APIs input/output are not consistently generated ([#2073](https://github.com/aws/aws-sdk-go/pull/2073))
+  * Updates the SDK's API code generation to generate the API input and output types consistently. This ensures that the SDK will no longer rename input/output types unexpectedly as in [#2070](https://github.com/aws/aws-sdk-go/issues/2070). SDK API input and output parameter types will always be the API name with a suffix of Input and Output.
+  * Existing service APIs which were incorrectly modeled have been preserved to ensure they do not break.
+  * Fixes [#2070](https://github.com/aws/aws-sdk-go/issues/2070)
+
+### SDK Enhancements
+* `service/s3/s3manager`: Document default behavior for Upload's MaxNumParts ([#2077](https://github.com/aws/aws-sdk-go/issues/2077))
+  * Updates the S3 Upload Manager's default behavior for MaxNumParts, and ensures that the Uploader.MaxNumPart's member value is initialized properly if the type was created via struct initialization instead of using the NewUploader function.
+  * Fixes [#2015](https://github.com/aws/aws-sdk-go/issues/2015)
+
+### SDK Bugs
+* `private/model/api`: SDK APIs input/output are not consistently generated ([#2073](https://github.com/aws/aws-sdk-go/pull/2073))
+  * Fixes EFS service breaking change in v1.14.26 where `FileSystemDescription` was incorrectly renamed to `UpdateFileSystemOutput.
+  * Fixes [#2070](https://github.com/aws/aws-sdk-go/issues/2070)
+Release v1.14.33 (2018-07-25)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * R5 is the successor to R4 in EC2's memory-optimized instance family. R5d is a variant of R5 that has local NVMe SSD. Z1d instances deliver both high compute and high memory. Z1d instances use custom Intel Xeon Scalable Processors running at up to 4.0 GHz, powered by sustained all-core Turbo Boost. They are available in 6 sizes, with up to 48 vCPUs, 384 GiB of memory, and 1.8 TB of local NVMe storage.
+* `service/ecs`: Updates service API and documentation
+  * This release of Amazon Elastic Container Service (Amazon ECS) introduces support for private registry authentication using AWS Secrets Manager. With private registry authentication, private Docker images can be used in a task definition.
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+
+Release v1.14.32 (2018-07-24)
+===
+
+### Service Client Updates
+* `service/dynamodb`: Updates service API and documentation
+  * With this SDK update, APIs UpdateGlobalTableSettings and DescribeGlobalTableSettings now allow consistently configuring AutoScaling settings for a DynamoDB global table. Previously, they would only allow consistently setting IOPS. Now new APIs are being released, existing APIs are being extended.
+
+Release v1.14.31 (2018-07-20)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API
+* `service/dlm`: Updates service documentation
+
+### SDK Enhancements
+* `service/s3/s3manager`: Add documentation for sequential download [#2065](https://github.com/aws/aws-sdk-go/pull/2065)
+  * Adds documentation for downloading object sequentially with the S3 download manager.
+
+Release v1.14.30 (2018-07-19)
+===
+
+### Service Client Updates
+* `service/mediapackage`: Updates service API and documentation
+  * Adds support for DASH OriginEnpoints with multiple media presentation description periods triggered by presence of SCTE-35 ad markers in Channel input streams.
+
+### SDK Enhancements
+* `aws/default`: Add helper to get default provider chain list of credential providers ([#2059](https://github.com/aws/aws-sdk-go/issues/2051))
+  * Exports the default provider chain list of providers so it can be used to compose custom chains of credential providers.
+  * Fixes [#2051](https://github.com/aws/aws-sdk-go/issues/2051)
+
+Release v1.14.29 (2018-07-18)
+===
+
+### Service Client Updates
+* `service/iotanalytics`: Updates service API and documentation
+
+Release v1.14.28 (2018-07-17)
+===
+
+### Service Client Updates
+* `service/comprehend`: Updates service API and documentation
+* `service/polly`: Updates service API, documentation, and paginators
+  * Amazon Polly adds new API for asynchronous synthesis to S3
+* `service/sagemaker`: Updates service API, documentation, and paginators
+  * Amazon SageMaker has added the capability for customers to run fully-managed, high-throughput batch transform machine learning models with a simple API call. Batch Transform is ideal for high-throughput workloads and predictions in non-real-time scenarios where data is accumulated over a period of time for offline processing.
+* `service/snowball`: Updates service API and documentation
+  * AWS Snowball Edge announces the availability of Amazon EC2 compute instances that run on the device. AWS Snowball Edge is a 100-TB ruggedized device built to transfer data into and out of AWS with optional support for local Lambda-based compute functions. With this feature, developers and administrators can run their EC2-based applications on the device providing them with an end to end vertically integrated AWS experience. Designed for data pre-processing, compression, machine learning, and data collection applications, these new instances, called SBE1 instances, feature 1.8 GHz Intel Xeon D processors up to 16 vCPUs, and 32 GB of memory. The SBE1 instance type is available in four sizes and multiple instances can be run on the device at the same time. Customers can now run compute instances using the same Amazon Machine Images (AMIs) that are used in Amazon EC2.
+
+Release v1.14.27 (2018-07-13)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API, documentation, and paginators
+  * This API update adds support for sharing AppStream images across AWS accounts within the same region.
+* `service/kinesis-video-archived-media`: Updates service API and documentation
+* `service/kinesisvideo`: Updates service API and documentation
+  * Adds support for HLS video playback of Kinesis Video streams using the KinesisVideo client by including "GET_HLS_STREAMING_SESSION_URL" as an additional APIName parameter in the GetDataEndpoint input.
+
+Release v1.14.26 (2018-07-12)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/codebuild`: Updates service API
+  * Update CodeBuild CreateProject API - serviceRole is a required input
+* `service/dlm`: Adds new service
+* `service/elasticfilesystem`: Updates service API and documentation
+  * Amazon EFS now allows you to instantly provision the throughput required for your applications independent of the amount of data stored in your file system, allowing you to optimize throughput for your applications performance needs. Starting today, you can provision the throughput your applications require quickly with a few simple steps using AWS Console, AWS CLI or AWS API to achieve consistent performance.
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Documentation updates for EMR.
+* `service/iam`: Updates service API and documentation
+  * SDK release to support IAM delegated administrator feature. The feature lets customers attach permissions boundary to IAM principals. The IAM principals cannot operate exceeding the permission specified in permissions boundary.
+
+### SDK Enhancements
+* `aws/credentials/ec2rolecreds`: Avoid unnecessary redirect [#2037](https://github.com/aws/aws-sdk-go/pull/2037)
+  * This removes the unnecessary redirect for /latest/meta-data/iam/security-credentials/
+
+Release v1.14.25 (2018-07-11)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API and documentation
+  * Support for fine grain throttling for API gateway.
+* `service/ce`: Updates service API and documentation
+* `service/s3`: Updates service API and documentation
+  * S3 Select support for BZIP2 compressed input files
+* `service/ssm`: Updates service API and documentation
+  * Support Conditional Branching OnFailure for SSM Automation
+
+Release v1.14.24 (2018-07-10)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API, documentation, paginators, and examples
+  * This API update adds pagination to the DescribeImages API to support future features and enhancements.
+* `service/codebuild`: Updates service API and documentation
+  * API changes to CodeBuild service, support report build status for Github sources
+* `service/ec2`: Updates service API and documentation
+  * Support CpuOptions field in Launch Template data and allow Launch Template name to contain hyphen.
+* `service/glue`: Updates service API and documentation
+  * AWS Glue adds the ability to crawl DynamoDB tables.
+* `service/opsworks`: Updates service documentation
+  * Documentation updates for AWS OpsWorks Stacks.
+
+Release v1.14.23 (2018-07-10)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service documentation
+
+Release v1.14.22 (2018-07-09)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API
+* `service/ce`: Updates service API and documentation
+* `service/dms`: Updates service API and documentation
+  * Added support for DmsTransfer endpoint type and support for re-validate option in table reload API.
+* `service/lambda`: Updates service API
+  * Add support for .NET Core 2.1 to Lambda.
+* `service/transcribe`: Updates service API and documentation
+
+Release v1.14.21 (2018-07-06)
+===
+
+### Service Client Updates
+* `service/mediaconvert`: Updates service API and documentation
+  * This release adds support for the following 1) users can specify tags to be attached to queues, presets, and templates during creation of those resources on MediaConvert. 2) users can now view the count of jobs in submitted state and in progressing state on a per queue basis.
+* `service/serverlessrepo`: Updates service API and documentation
+
+Release v1.14.20 (2018-07-05)
+===
+
+### Service Client Updates
+* `service/pinpoint`: Updates service API and documentation
+  * This release of the Amazon Pinpoint SDK adds the ability to create complex segments and validate phone numbers for SMS messages. It also adds the ability to get or delete endpoints based on user IDs, remove attributes from endpoints, and list the defined channels for an app.
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker NotebookInstances supports 'Updating' as a NotebookInstanceStatus.  In addition, DescribeEndpointOutput now includes Docker repository digest of deployed Model images.
+
+Release v1.14.19 (2018-07-03)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service waiters
+  * Adds a "CertificateValidated" waiter to AWS Certificate Manager clients, which polls on a new certificate's validation state.
+* `service/ec2`: Updates service API, documentation, and examples
+  * Added support for customers to tag EC2 Dedicated Hosts
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/redshift`: Updates service API and documentation
+  * Feature 1 - On-demand cluster release version - When Amazon Redshift releases a new cluster version, you can choose to upgrade to that version immediately instead of waiting until your next maintenance window. You can also choose to roll back to a previous version. The two new APIs added for managing cluster release version are - ModifyClusterDbRevision, DescribeClusterDbRevisions. Feature 2 - Upgradeable reserved instance - You can now exchange one Reserved Instance for a new Reserved Instance with no changes to the terms of your existing Reserved Instance (term, payment type, or number of nodes). The two new APIs added for managing these upgrades are - AcceptReservedNodeExchange, GetReservedNodeExchangeOfferings.
+
+### SDK Enhancements
+* `private/model/api`: Add EventStream support over RPC protocl ([#1998](https://github.com/aws/aws-sdk-go/pull/1998))
+  * Adds support for EventStream over JSON PRC protocol. This adds support for the EventStream's initial-response event, EventStream headers, and EventStream modeled exceptions. Also replaces the hand written tests with generated tests for EventStream usage.
+
+Release v1.14.18 (2018-07-02)
+===
+
+### Service Client Updates
+* `service/ssm`: Updates service API, documentation, and examples
+  * Execution History and StartAssociationOnce release for State Manager. Users now have the ability to view association execution history with DescribeAssociationExecutions and DescribeAssociationExecutionTargets. Users can also execute an association by calling StartAssociationOnce.
+
+Release v1.14.17 (2018-06-29)
+===
+
+### Service Client Updates
+* `service/secretsmanager`: Updates service examples
+  * New SDK code snippet examples for the new APIs released for the Resource-based Policy support in Secrets Manager
+
+Release v1.14.16 (2018-06-28)
+===
+
+### Service Client Updates
+* `service/elasticbeanstalk`: Updates service API, documentation, and examples
+  * Elastic Beanstalk adds "Suspended" health status to the EnvironmentHealthStatus enum type and updates document.
+* `service/lambda`: Updates service API and documentation
+  * Support for SQS as an event source.
+* `service/storagegateway`: Updates service API, documentation, and examples
+  * AWS Storage Gateway now enables you to use Server Message Block (SMB) protocol  to store and access objects in Amazon Simple Storage Service (S3).
+
+Release v1.14.15 (2018-06-27)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Updates service API and documentation
+  * Unpublish delete-service-linked-role API.
+* `service/codepipeline`: Updates service API
+  * UpdatePipeline may now throw a LimitExceededException when adding or updating Source Actions that use periodic checks for change detection
+* `service/comprehend`: Updates service API, documentation, and paginators
+* `service/secretsmanager`: Updates service documentation, paginators, and examples
+  * Documentation updates for secretsmanager
+
+### SDK Bugs
+* `aws/csm`: Final API Call Attempt events were not being called [#2008](https://github.com/aws/aws-sdk-go/pull/2008)
+Release v1.14.14 (2018-06-26)
+===
+
+### Service Client Updates
+* `service/inspector`: Updates service API, documentation, and paginators
+  * Introduce four new APIs to view and preview Exclusions.  Exclusions show which intended security checks are excluded from an assessment, along with reasons and recommendations to fix.  The APIs are CreateExclusionsPreview, GetExclusionsPreview, ListExclusions, and DescribeExclusions.
+* `service/s3`: Updates service API and documentation
+  * Add AllowQuotedRecordDelimiter to Amazon S3 Select API. Please refer to https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectSELECTContent.html for usage details.
+* `service/secretsmanager`: Updates service API, documentation, paginators, and examples
+  * This release adds support for resource-based policies that attach directly to your secrets. These policies provide an additional way to control who can access your secrets and what they can do with them. For more information, see https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-based-policies.html in the Secrets Manager User Guide.
+
+Release v1.14.13 (2018-06-22)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API and documentation
+* `service/appstream`: Updates service API, documentation, paginators, and examples
+  * This API update enables customers to find their VPC private IP address and ENI ID associated with AppStream streaming sessions.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
+Release v1.14.12 (2018-06-21)
+===
+
+### Service Client Updates
+* `service/clouddirectory`: Adds new service
+  * SDK release to support Flexible Schema initiative being carried out by Amazon Cloud Directory. This feature lets customers using new capabilities like: variant typed attributes, dynamic facets and AWS managed Cloud Directory schemas.
+
+Release v1.14.11 (2018-06-21)
+===
+
+### Service Client Updates
+* `service/macie`: Adds new service
+  * Amazon Macie is a security service that uses machine learning to automatically discover, classify, and protect sensitive data in AWS. With this release, we are launching the following Macie HTTPS API operations: AssociateMemberAccount, AssociateS3Resources, DisassociateMemberAccount, DisassociateS3Resources, ListMemberAccounts, ListS3Resources, and UpdateS3Resources. With these API operations you can issue HTTPS requests directly to the service.
+* `service/neptune`: Updates service API, documentation, and examples
+  * Deprecates the PubliclyAccessible parameter that is not supported by Amazon Neptune.
+* `service/ssm`: Updates service API, documentation, and examples
+  * Adds Amazon Linux 2 support to Patch Manager
+
+Release v1.14.10 (2018-06-20)
+===
+
+### Service Client Updates
+* `service/acm-pca`: Updates service API, documentation, paginators, and examples
+* `service/medialive`: Updates service API, documentation, and paginators
+  * AWS Elemental MediaLive now makes Reserved Outputs and Inputs available through the AWS Management Console and API. You can reserve outputs and inputs with a 12 month commitment in exchange for discounted hourly rates. Pricing is available at https://aws.amazon.com/medialive/pricing/
+* `service/rds`: Updates service API, documentation, and examples
+  * This release adds a new parameter to specify the retention period for Performance Insights data for RDS instances. You can either choose 7 days (default) or 731 days. For more information, see Amazon RDS Documentation.
+
+### SDK Enhancements
+* `service/s3`: Update SelectObjectContent doc example to be on the API not nested type. ([#1991](https://github.com/aws/aws-sdk-go/pull/1991))
+
+### SDK Bugs
+* `aws/client`: Fix HTTP debug log EventStream payloads ([#2000](https://github.com/aws/aws-sdk-go/pull/2000))
+  * Fixes the SDK's HTTP client debug logging to not log the HTTP response body for EventStreams. This prevents the SDK from buffering a very large amount of data to be logged at once. The aws.LogDebugWithEventStreamBody should be used to log the event stream events.
+  * Fixes a bug in the SDK's response logger which will buffer the response body's content if LogDebug is enabled but LogDebugWithHTTPBody is not.
+Release v1.14.9 (2018-06-19)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/rekognition`: Updates service documentation and examples
+  * Documentation updates for rekognition
+
+### SDK Bugs
+* `private/model/api`: Update client ServiceName to be based on name of service for new services. ([#1997](https://github.com/aws/aws-sdk-go/pull/1997))
+    * Fixes the SDK's `ServiceName` AWS service client package value to be unique based on the service name for new AWS services. Does not change exiting client packages.
+Release v1.14.8 (2018-06-15)
+===
+
+### Service Client Updates
+* `service/mediaconvert`: Updates service API and documentation
+  * This release adds language code support according to the ISO-639-3 standard. Custom 3-character language codes are now supported on input and output for both audio and captions.
+
+Release v1.14.7 (2018-06-14)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API and documentation
+  * Support for PRIVATE endpoint configuration type
+* `service/dynamodb`: Updates service API and documentation
+  * Added two new fields SSEType and KMSMasterKeyArn to SSEDescription block in describe-table output.
+* `service/iotanalytics`: Updates service API and documentation
+
+Release v1.14.6 (2018-06-13)
+===
+
+### Service Client Updates
+* `service/servicecatalog`: Updates service API
+  * Introduced new length limitations for few of the product fields.
+* `service/ssm`: Updates service API and documentation
+  * Added support for new parameter, CloudWatchOutputConfig, for SendCommand API. Users can now have RunCommand output sent to CloudWatchLogs.
+
+Release v1.14.5 (2018-06-12)
+===
+
+### Service Client Updates
+* `service/devicefarm`: Updates service API and documentation
+  * Adding VPCEndpoint support for Remote access. Allows customers to be able to access their private endpoints/services running in their VPC during remote access.
+* `service/ecs`: Updates service API and documentation
+  * Introduces daemon scheduling capability to deploy one task per instance on selected instances in a cluster.  Adds a "force" flag to the DeleteService API to delete a service without requiring to scale down the number of tasks to zero.
+
+### SDK Enhancements
+* `service/rds/rdsutils`: Clean up the rdsutils package and adds a new builder to construct connection strings ([#1985](https://github.com/aws/aws-sdk-go/pull/1985))
+    * Rewords documentation to be more useful and provides links to prior setup needed to support authentication tokens. Introduces a builder that allows for building connection strings
+
+### SDK Bugs
+* `aws/signer/v4`: Fix X-Amz-Content-Sha256 being in to query for presign ([#1976](https://github.com/aws/aws-sdk-go/pull/1976))
+    * Fixes the bug which would allow the X-Amz-Content-Sha256 header to be promoted to the query string when presigning a S3 request. This bug also was preventing users from setting their own sha256 value for a presigned URL. Presigned requests generated with the custom sha256 would of always failed with invalid signature.
+    * Fixes [#1974](https://github.com/aws/aws-sdk-go/pull/1974)
+Release v1.14.4 (2018-06-11)
+===
+
+### Service Client Updates
+* `service/clouddirectory`: Updates service API and documentation
+  * Amazon Cloud Directory now supports optional attributes on Typed Links, giving users the ability to associate and manage data on Typed Links.
+* `service/rds`: Updates service documentation
+  * Changed lists of valid EngineVersion values to links to the RDS User Guide.
+* `service/storagegateway`: Updates service API and documentation
+  * AWS Storage Gateway now enables you to create cached volumes and tapes with AWS KMS support.
+
+Release v1.14.3 (2018-06-08)
+===
+
+### Service Client Updates
+* `service/mediatailor`: Updates service API
+
+Release v1.14.2 (2018-06-07)
+===
+
+### Service Client Updates
+* `service/medialive`: Updates service API, documentation, and paginators
+  * AWS Elemental MediaLive now makes channel log information available through Amazon CloudWatch Logs. You can set up each MediaLive channel with a logging level; when the channel is run, logs will automatically be published to your account on Amazon CloudWatch Logs
+
+Release v1.14.1 (2018-06-05)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/polly`: Updates service API and documentation
+  * Amazon Polly adds new French voice - "Lea"
+* `service/rds`: Updates service API and documentation
+  * This release adds customizable processor features for RDS instances.
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for secretsmanager
+* `service/shield`: Updates service API and documentation
+  * DDoS Response Team access management for AWS Shield
+
+Release v1.14.0 (2018-06-04)
+===
+
+### Service Client Updates
+* `service/AWSMigrationHub`: Updates service documentation
+* `service/appstream`: Updates service API and documentation
+  * Amazon AppStream 2.0 adds support for Google Drive for G Suite. With this feature, customers will be able to connect their G Suite accounts with AppStream 2.0 and enable Google Drive access for an AppStream 2.0 stack. Users of the stack can then link their Google Drive using their G Suite login credentials and use their existing files stored in Drive with their AppStream 2.0 applications. File changes will be synced automatically to Google cloud.
+* `service/ec2`: Updates service API and documentation
+  * You are now able to use instance storage (up to 3600 GB of NVMe based SSD) on M5 instances, the next generation of EC2's General Purpose instances in us-east-1, us-west-2, us-east-2, eu-west-1 and ca-central-1. M5 instances offer up to 96 vCPUs, 384 GiB of DDR4 instance memory, 25 Gbps in Network bandwidth and improved EBS and Networking bandwidth on smaller instance sizes and provide a balance of compute, memory and network resources for many applications.
+* `service/eks`: Adds new service
+* `service/mediaconvert`: Updates service API and documentation
+  * This release adds the support for Common Media Application Format (CMAF) fragmented outputs, RF64 WAV audio output format, and HEV1 or HEVC1 MP4 packaging types when using HEVC in DASH or CMAF outputs.
+* `service/sagemaker`: Updates service API, documentation, and paginators
+  * Amazon SageMaker has added the ability to run hyperparameter tuning jobs. A hyperparameter tuning job will create and evaluate multiple training jobs while tuning algorithm hyperparameters, to optimize a customer specified objective metric.
+
+### SDK Features
+* Add support for EventStream based APIs (S3 SelectObjectContent) ([#1941](https://github.com/aws/aws-sdk-go/pull/1941))
+  * Adds support for EventStream asynchronous APIs such as S3 SelectObjectContents API. This API allows your application to receiving multiple events asynchronously from the API response. Your application recieves these events from a channel on the API response.
+  * See PR [#1941](https://github.com/aws/aws-sdk-go/pull/1941) for example.
+  * Fixes [#1895](https://github.com/aws/aws-sdk-go/issues/1895)
+
+Release v1.13.60 (2018-06-01)
+===
+
+### Service Client Updates
+* `service/ds`: Updates service API and documentation
+  * Added ResetUserPassword API. Customers can now reset their users' passwords without providing the old passwords in Simple AD and Microsoft AD.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/iot`: Updates service API and documentation
+  * We are releasing force CancelJob and CancelJobExecution functionalities to customers.
+* `service/mediatailor`: Adds new service
+* `service/redshift`: Updates service documentation
+  * Documentation updates for redshift
+* `service/sns`: Updates service API, documentation, and paginators
+  * The SNS Subscribe API has been updated with two new optional parameters: Attributes and ReturnSubscriptionArn. Attributes is a map of subscription attributes which can be one or more of: FilterPolicy, DeliveryPolicy, and RawMessageDelivery. ReturnSubscriptionArn is a boolean parameter that overrides the default behavior of returning "pending confirmation" for subscriptions that require confirmation instead of returning the subscription ARN.
+
+### SDK Bugs
+* `private/mode/api`: Fix error code constants being generated incorrectly.([#1958](https://github.com/aws/aws-sdk-go/issues/1958))
+    * Fixes the SDK's code generation to not modify the error code text value when generating error code constants. This prevents generating error code values which are invalid and will never be sent by the service. This change does not change the error code constant variable name generated by the SDK, only the value of the error code.
+    * Fixes [#1856](https://github.com/aws/aws-sdk-go/issues/1856)
+Release v1.13.59 (2018-05-31)
+===
+
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+Release v1.13.58 (2018-05-30)
+===
+
+### Service Client Updates
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/neptune`: Adds new service
+  * Amazon Neptune is a fast, reliable graph database service that makes it easy to build and run applications that work with highly connected datasets. Neptune supports popular graph models Property Graph and W3C's Resource Description Frame (RDF), and their respective query languages Apache TinkerPop Gremlin 3.3.2 and SPARQL 1.1.
+
+Release v1.13.57 (2018-05-29)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/pi`: Adds new service
+
+Release v1.13.56 (2018-05-25)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API and documentation
+  * This API update enables customers to control whether users can transfer data between their local devices and their streaming applications through file uploads and downloads, clipboard operations, or printing to local devices
+* `service/config`: Updates service API and documentation
+* `service/glue`: Updates service API and documentation
+  * AWS Glue now sends a delay notification to Amazon CloudWatch Events when an ETL job runs longer than the specified delay notification threshold.
+* `service/iot`: Updates service API
+  * We are exposing DELETION_IN_PROGRESS as a new job status in regards to the release of DeleteJob API.
+
+Release v1.13.55 (2018-05-24)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API
+  * AWS CodeBuild Adds Support for Windows Builds.
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/rds`: Updates service API and documentation
+  * This release adds CloudWatch Logs integration capabilities to RDS Aurora MySQL clusters
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for secretsmanager
+  
+### SDK Bugs
+* `service/cloudwatchlogs`: Fix pagination with cloudwatchlogs ([#1945](https://github.com/aws/aws-sdk-go/pull/1945))
+  * Fixes the SDK's behavior with CloudWatchLogs APIs which return duplicate `NextToken` values to signal end of pagination. 
+  * Fixes [#1908](https://github.com/aws/aws-sdk-go/pull/1908)
+
+Release v1.13.54 (2018-05-22)
+===
+
+### Service Client Updates
+* `service/ecs`: Updates service API and documentation
+  * Amazon Elastic Container Service (ECS) adds service discovery for services that use host or bridged network mode. ECS can now also register instance IPs for active tasks using bridged and host networking with Route 53, making them available via DNS.
+* `service/inspector`: Updates service API
+  * We are launching the ability to target all EC2 instances. With this launch, resourceGroupArn is now optional for CreateAssessmentTarget and UpdateAssessmentTarget. If resourceGroupArn is not specified, all EC2 instances in the account in the AWS region are included in the assessment target.
+
+Release v1.13.53 (2018-05-21)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API and documentation
+  * 1) Filtered Update for StackSet based on Accounts and Regions: This feature will allow flexibility for the customers to roll out updates on a StackSet based on specific Accounts and Regions.   2) Support for customized ExecutionRoleName: This feature will allow customers to attach ExecutionRoleName to the StackSet thus ensuring more security and controlling the behavior of any AWS resources in the target accounts.
+
+Release v1.13.52 (2018-05-18)
+===
+
+### Service Client Updates
+* `service/email`: Updates service documentation
+  * Fixed a broken link in the documentation for S3Action.
+* `service/iot`: Updates service API and documentation
+  * We are releasing DeleteJob and DeleteJobExecution APIs to allow customer to delete resources created using AWS IoT Jobs.
+
+Release v1.13.51 (2018-05-17)
+===
+
+### Service Client Updates
+* `service/codedeploy`: Updates service documentation
+  * Documentation updates for codedeploy
+* `service/cognito-idp`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * You are now able to use instance storage (up to 1800 GB of NVMe based SSD) on C5 instances, the next generation of EC2's compute optimized instances in us-east-1, us-west-2, us-east-2, eu-west-1 and ca-central-1. C5 instances offer up to 72 vCPUs, 144 GiB of DDR4 instance memory, 25 Gbps in Network bandwidth and improved EBS and Networking bandwidth on smaller instance sizes to deliver improved performance for compute-intensive workloads.You can now run bare metal workloads on EC2 with i3.metal instances. As a new instance size belonging to the I3 instance family, i3.metal instances have the same characteristics as other instances in the family, including NVMe SSD-backed instance storage optimized for low latency, very high random I/O performance, and high sequential read throughput. I3.metal instances are powered by 2.3 GHz Intel Xeon processors, offering 36 hyper-threaded cores (72 logical processors), 512 GiB of memory, and 15.2 TB of NVMe SSD-backed instance storage. These instances deliver high networking throughput and lower latency with up to 25 Gbps of aggregate network bandwidth using Elastic Network Adapter (ENA)-based Enhanced Networking.
+
+Release v1.13.50 (2018-05-16)
+===
+
+### Service Client Updates
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for secretsmanager
+* `service/servicecatalog`: Updates service API and documentation
+  * Users can now pass a new option to ListAcceptedPortfolioShares called portfolio-share-type with a value of AWS_SERVICECATALOG in order to access Getting Started Portfolios that contain selected products representing common customer use cases.
+
+Release v1.13.49 (2018-05-15)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API
+
+Release v1.13.48 (2018-05-14)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * Adding support for more override fields for StartBuild API, add support for idempotency token field  for StartBuild API in AWS CodeBuild.
+* `service/iot1click-devices`: Adds new service
+* `service/iot1click-projects`: Adds new service
+* `service/organizations`: Updates service documentation
+  * Documentation updates for organizations
+
+Release v1.13.47 (2018-05-10)
+===
+
+### Service Client Updates
+* `service/firehose`: Updates service API and documentation
+  * With this release, Amazon Kinesis Data Firehose can convert the format of your input data from JSON to Apache Parquet or Apache ORC before storing the data in Amazon S3. Parquet and ORC are columnar data formats that save space and enable faster queries compared to row-oriented formats like JSON.
+
+Release v1.13.46 (2018-05-10)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/gamelift`: Updates service API and documentation
+  * AutoScaling Target Tracking scaling simplification along with StartFleetActions and StopFleetActions APIs to suspend and resume automatic scaling at will.
+
+Release v1.13.45 (2018-05-10)
+===
+
+### Service Client Updates
+* `service/budgets`: Updates service API and documentation
+  * Updating the regex for the NumericValue fields.
+* `service/ec2`: Updates service API and documentation
+  * Enable support for latest flag with Get Console Output
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/rds`: Updates service API and documentation
+  * Changes to support the Aurora MySQL Backtrack feature.
+
+Release v1.13.44 (2018-05-08)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Enable support for specifying CPU options during instance launch.
+* `service/rds`: Updates service documentation
+  * Correction to the documentation about copying unencrypted snapshots.
+
+Release v1.13.43 (2018-05-07)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API
+* `service/budgets`: Updates service API and documentation
+  * "With this release, customers can use AWS Budgets to monitor how much of their Amazon EC2, Amazon RDS, Amazon Redshift, and Amazon ElastiCache instance usage is covered by reservations, and receive alerts when their coverage falls below the threshold they define."
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/es`: Updates service API, documentation, and paginators
+  * This change brings support for Reserved Instances to AWS Elasticsearch.
+* `service/s3`: Updates service API and documentation
+  * Added BytesReturned details for Progress and Stats Events for Amazon S3 Select .
+
+Release v1.13.42 (2018-05-04)
+===
+
+### Service Client Updates
+* `service/guardduty`: Updates service API, documentation, and paginators
+  * Amazon GuardDuty is adding five new API operations for creating and managing filters. For each filter, you can specify a criteria and an action. The action you specify is applied to findings that match the specified criteria.
+
+Release v1.13.41 (2018-05-03)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/config`: Updates service API and documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for secretsmanager
+
+Release v1.13.40 (2018-05-02)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service documentation
+  * Documentation updates for acm
+* `service/codepipeline`: Updates service API and documentation
+  * Added support for webhooks with accompanying definitions as needed in the AWS CodePipeline API Guide.
+* `service/ec2`: Updates service API and documentation
+  * Amazon EC2 Fleet is a new feature that simplifies the provisioning of Amazon EC2 capacity across different EC2 instance types, Availability Zones, and the On-Demand, Reserved Instance, and Spot Instance purchase models. With a single API call, you can now provision capacity to achieve desired scale, performance, and cost.
+* `service/ssm`: Updates service API and documentation
+  * Added support for new parameter, DocumentVersion, for SendCommand API. Users can now specify version of SSM document to be executed on the target(s).
+
+Release v1.13.39 (2018-04-30)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API, documentation, and paginators
+* `service/dynamodb`: Updates service API and documentation
+  * Adds two new APIs UpdateGlobalTableSettings and DescribeGlobalTableSettings. This update introduces new constraints in the CreateGlobalTable and UpdateGlobalTable APIs . Tables must have the same write capacity units. If Global Secondary Indexes exist then they must have the same write capacity units and key schema.
+* `service/guardduty`: Updates service API and documentation
+  * You can disable the email notification when inviting GuardDuty members using the disableEmailNotification parameter in the InviteMembers operation.
+* `service/route53domains`: Updates service API and documentation
+  * This release adds a SubmittedSince attribute to the ListOperations API, so you can list operations that were submitted after a specified date and time.
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker has added support for VPC configuration for both Endpoints and Training Jobs. This allows you to connect from the instances running the Endpoint or Training Job to your VPC and any resources reachable in the VPC rather than being restricted to resources that were internet accessible.
+* `service/workspaces`: Updates service API and documentation
+  * Added new IP Access Control APIs, an API to change the state of a Workspace, and the ADMIN_MAINTENANCE WorkSpace state. With the new IP Access Control APIs, you can now create/delete IP Access Control Groups, add/delete/update rules for IP Access Control Groups, Associate/Disassociate IP Access Control Groups to/from a WorkSpaces Directory, and Describe IP Based Access Control Groups.
+
+Release v1.13.38 (2018-04-26)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/glacier`: Updates service documentation
+  * Documentation updates for Glacier to fix a broken link
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for secretsmanager
+
+Release v1.13.37 (2018-04-25)
+===
+
+### Service Client Updates
+* `service/codedeploy`: Updates service API and documentation
+  * AWS CodeDeploy has a new exception that indicates when a GitHub token is not valid.
+* `service/rekognition`: Updates service documentation
+  * Documentation updates for Amazon Rekognition.
+* `service/xray`: Updates service API and documentation
+  * Added PutEncryptionConfig and GetEncryptionConfig APIs for managing data encryption settings. Use PutEncryptionConfig to configure X-Ray to use an AWS Key Management Service customer master key to encrypt trace data at rest.
+
+Release v1.13.36 (2018-04-24)
+===
+
+### Service Client Updates
+* `service/elasticbeanstalk`: Updates service API and documentation
+  * Support tracking Elastic Beanstalk resources in AWS Config.
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for secretsmanager
+
+Release v1.13.35 (2018-04-23)
+===
+
+### Service Client Updates
+* `service/autoscaling-plans`: Updates service API and documentation
+* `service/iot`: Updates service API and documentation
+  * Add IotAnalyticsAction which sends message data to an AWS IoT Analytics channel
+* `service/iotanalytics`: Adds new service
+
+### SDK Enhancements
+* `aws/endpoints`: Add Get Region description to endpoints package ([#1909](https://github.com/aws/aws-sdk-go/pull/1909))
+  * Adds exposing the description field of the endpoints Region struct.
+  * Fixes [#1194](https://github.com/aws/aws-sdk-go/issues/1194)
+
+### SDK Bugs
+* Fix XML unmarshaler not correctly unmarshaling list of timestamp values ([#1894](https://github.com/aws/aws-sdk-go/pull/1894))
+  * Fixes a bug in the XML unmarshaler that would incorrectly try to unmarshal "time.Time" parameters that did not have the struct tag type on them. This would occur for nested lists like CloudWatch's GetMetricDataResponse MetricDataResults timestamp parameters.
+  * Fixes [#1892](https://github.com/aws/aws-sdk-go/issues/1892)
+Release v1.13.34 (2018-04-20)
+===
+
+### Service Client Updates
+* `service/firehose`: Updates service API and documentation
+  * With this release, Amazon Kinesis Data Firehose allows you to tag your delivery streams. Tags are metadata that you can create and use to manage your delivery streams. For more information about tagging, see AWS Tagging Strategies. For technical documentation, look for the tagging operations in the Amazon Kinesis Firehose API reference.
+* `service/medialive`: Updates service API and documentation
+  * With AWS Elemental MediaLive you can now output live channels as RTMP (Real-Time Messaging Protocol) and RTMPS as the encrypted version of the protocol (Secure, over SSL/TLS). RTMP is the preferred protocol for sending live streams to popular social platforms which  means you can send live channel content to social and sharing platforms in a secure and reliable way while continuing to stream to your own website, app or network.
+
+Release v1.13.33 (2018-04-19)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/codepipeline`: Updates service API and documentation
+  * Added new SourceRevision structure to Execution Summary with accompanying definitions as needed in the AWS CodePipeline API Guide.
+* `service/devicefarm`: Updates service API and documentation
+  * Adding support for VPCEndpoint feature. Allows customers to be able to access their private endpoints/services running in their VPC during test automation.
+* `service/ec2`: Updates service API and documentation
+  * Added support for customers to see the time at which a Dedicated Host was allocated or released.
+* `service/rds`: Updates service API and documentation
+  * The ModifyDBCluster operation now includes an EngineVersion parameter. You can use this to upgrade the engine for a clustered database.
+* `service/secretsmanager`: Updates service documentation and examples
+  * Documentation updates
+* `service/ssm`: Updates service API and documentation
+  * Added new APIs DeleteInventory and DescribeInventoryDeletions, for customers to delete their custom inventory data.
+
+Release v1.13.32 (2018-04-10)
+===
+
+### Service Client Updates
+* `service/dms`: Updates service API and documentation
+  * Native Change Data Capture start point and task recovery support in Database Migration Service.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/glue`: Updates service API and documentation
+  * "AWS Glue now supports timeout values for ETL jobs. With this release, all new ETL jobs have a default timeout value of 48 hours. AWS Glue also now supports the ability to start a schedule or job events trigger when it is created."
+* `service/mediapackage`: Updates service API and documentation
+  * Adds a new OriginEndpoint package type CmafPackage in MediaPackage. Origin endpoints can now be configured to use the Common Media Application Format (CMAF) media streaming format. This version of CmafPackage only supports HTTP Live Streaming (HLS) manifests with fragmented MP4.
+* `service/ssm`: Updates service API and documentation
+  * Added TooManyUpdates exception for AddTagsToResource and RemoveTagsFromResource API
+* `service/workmail`: Updates service API, documentation, and paginators
+  * Amazon WorkMail adds the ability to grant users and groups with "Full Access", "Send As" and "Send on Behalf" permissions on a given mailbox.
+
+Release v1.13.31 (2018-04-09)
+===
+
+### Service Client Updates
+* `service/clouddirectory`: Updates service API and documentation
+  * Cloud Directory customers can fetch attributes within a facet on an object with the new GetObjectAttributes API and can fetch attributes from multiple facets or objects with the BatchGetObjectAttributes operation.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
+Release v1.13.30 (2018-04-06)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API and documentation
+  * Support for Timeout in SubmitJob and RegisterJobDefinition
+
+Release v1.13.29 (2018-04-05)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/ssm`: Updates service documentation
+
+Release v1.13.28 (2018-04-04)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service API and documentation
+  * AWS Certificate Manager has added support for AWS Certificate Manager Private Certificate Authority (CA). Customers can now request private certificates with the RequestCertificate API, and also export private certificates with the ExportCertificate API.
+* `service/acm-pca`: Adds new service
+* `service/config`: Updates service API and documentation
+* `service/fms`: Adds new service
+* `service/monitoring`: Updates service API and documentation
+  * The new GetMetricData API enables you to collect batch amounts of metric data and optionally perform math expressions on the data. With one GetMetricData call you can retrieve as many as 100 different metrics and a total of 100,800 data points.
+* `service/s3`: Updates service API and documentation
+  * ONEZONE_IA storage class stores object data in only one Availability Zone at a lower price than STANDARD_IA. This SDK release provides API support for this new storage class.
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker is now supporting many additional instance types in previously supported families for Notebooks, Training Jobs, and Endpoints. Training Jobs and Endpoints now support instances in the m5 family in addition to the previously supported instance families. For specific instance types supported please see the documentation for the SageMaker API.
+* `service/secretsmanager`: Adds new service
+  * AWS Secrets Manager enables you to easily create and manage the secrets that you use in your customer-facing apps.  Instead of embedding credentials into your source code, you can dynamically query Secrets Manager from your app whenever you need credentials.  You can automatically and frequently rotate your secrets without having to deploy updates to your apps.  All secret values are encrypted when they're at rest with AWS KMS, and while they're in transit with HTTPS and TLS.
+* `service/transcribe`: Updates service API, documentation, and paginators
+
+Release v1.13.27 (2018-04-03)
+===
+
+### Service Client Updates
+* `service/devicefarm`: Updates service API and documentation
+  * Added Private Device Management feature. Customers can now manage their private devices efficiently - view their status, set labels and apply profiles on them. Customers can also schedule automated tests and remote access sessions on individual instances in their private device fleet.
+* `service/lambda`: Updates service API and documentation
+  * added nodejs8.10 as a valid runtime
+* `service/translate`: Updates service API and documentation
+
+Release v1.13.26 (2018-04-02)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API and documentation
+  * Amazon API Gateway now supports resource policies for APIs making it easier to set access controls for invoking APIs.
+* `service/cloudfront`: Adds new service
+  * You can now use a new Amazon CloudFront capability called Field-Level Encryption to further enhance the security of sensitive data, such as credit card numbers or personally identifiable information (PII) like social security numbers. CloudFront's field-level encryption further encrypts sensitive data in an HTTPS form using field-specific encryption keys (which you supply) before a POST request is forwarded to your origin. This ensures that sensitive data can only be decrypted and viewed by certain components or services in your application stack. Field-level encryption is easy to setup. Simply configure the fields that have to be further encrypted by CloudFront using the public keys you specify and you can reduce attack surface for your sensitive data.
+* `service/es`: Updates service API and documentation
+  * This adds Amazon Cognito authentication support to Kibana.
+
+Release v1.13.25 (2018-03-30)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service API and documentation
+  * Documentation updates for acm
+* `service/connect`: Adds new service
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
+Release v1.13.24 (2018-03-29)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API, documentation, and paginators
+* `service/cloudformation`: Updates service API and documentation
+  * Enabling resource level permission control for StackSets APIs. Adding support for customers to use customized AdministrationRole to create security boundaries between different users.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/greengrass`: Updates service API and documentation
+  * Greengrass APIs now support creating Machine Learning resource types and configuring binary data as the input payload for Greengrass Lambda functions.
+* `service/ssm`: Updates service API
+  * This Patch Manager release supports creating patch baselines for CentOS.
+
+Release v1.13.23 (2018-03-28)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/iam`: Updates service API and documentation
+  * Add support for Longer Role Sessions. Four APIs manage max session duration: GetRole, ListRoles, CreateRole, and the new API UpdateRole. The max session duration integer attribute is measured in seconds.
+* `service/mturk-requester`: Updates service API and documentation
+* `service/sts`: Updates service API and documentation
+  * Change utilizes the Max Session Duration attribute introduced for IAM Roles and allows STS customers to request session duration up to the Max Session Duration of 12 hours from AssumeRole based APIs.
+
+Release v1.13.22 (2018-03-27)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service API and documentation
+  * AWS Certificate Manager has added support for customers to disable Certificate Transparency logging on a per-certificate basis.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
+Release v1.13.21 (2018-03-26)
+===
+
+### Service Client Updates
+* `service/dynamodb`: Updates service API and documentation
+  * Point-in-time recovery (PITR) provides continuous backups of your DynamoDB table data. With PITR, you do not have to worry about creating, maintaining, or scheduling backups. You enable PITR on your table and your backup is available for restore at any point in time from the moment you enable it, up to a maximum of the 35 preceding days. PITR provides continuous backups until you explicitly disable it. For more information, see the Amazon DynamoDB Developer Guide.
+
+Release v1.13.20 (2018-03-23)
+===
+
+### Service Client Updates
+* `service/rds`: Updates service documentation
+  * Documentation updates for RDS
+
+Release v1.13.19 (2018-03-22)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API and documentation
+  * Feedback URL allows admins to provide a feedback link or a survey link for collecting user feedback while streaming sessions. When a feedback link is provided, streaming users will see a "Send Feedback" choice in their streaming session toolbar. On selecting this choice, user will be redirected to the link provided in a new browser tab. If a feedback link is not provided, users will not see the "Send Feedback" option.
+* `service/codebuild`: Updates service API and documentation
+  * Adding support for branch filtering when using webhooks with AWS CodeBuild.
+* `service/ecs`: Updates service API and documentation
+  * Amazon Elastic Container Service (ECS) now includes integrated Service Discovery using Route 53 Auto Naming. Customers can now specify a Route 53 Auto Naming service as part of an ECS service. ECS will register task IPs with Route 53, making them available via DNS in your VPC.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
+### SDK Bugs
+* `aws/endpoints`: Use service metadata for fallback signing name ([#1854](https://github.com/aws/aws-sdk-go/pull/1854))
+  * Updates the SDK's endpoint resolution to fallback deriving the service's signing name from the service's modeled metadata in addition the endpoints modeled data.
+  * Fixes [#1850](https://github.com/aws/aws-sdk-go/issues/1850)
+Release v1.13.18 (2018-03-21)
+===
+
+### Service Client Updates
+* `service/serverlessrepo`: Updates service documentation
+
 Release v1.13.17 (2018-03-20)
 ===
 
@@ -196,6 +1054,12 @@ Release v1.12.77 (2018-02-14)
 * `service/appsync`: Updates service API and documentation
 * `aws/endpoints`: Updated Regions and Endpoints metadata.
 * `service/lex-models`: Updates service API and documentation
+
+### Bug Fixes
+* `aws/request`: Fix support for streamed payloads for unsigned body request ([#1778](https://github.com/aws/aws-sdk-go/pull/1778))
+  * Fixes the SDK's handling of the SDK's `ReaderSeekerCloser` helper type to not allow erroneous request retries, and request signature generation. This Fix allows you to use the `aws.ReaderSeekerCloser` to wrap an arbitrary `io.Reader` for request `io.ReadSeeker` input parameters. APIs such as lex-runtime's PostContent can now make use of the
+ReaderSeekerCloser type without causing unexpected failures.
+  * Fixes [#1776](https://github.com/aws/aws-sdk-go/issues/1776)
 
 Release v1.12.76 (2018-02-13)
 ===
@@ -727,7 +1591,7 @@ Release v1.12.31 (2017-11-20)
   * DescribeGroups API and miscellaneous enhancements
 
 ### SDK Bugs
-* `aws/client`: Retry delays for throttled exception were not limited to 5 mintues [#1654](https://github.com/aws/aws-sdk-go/pull/1654)
+* `aws/client`: Retry delays for throttled exception were not limited to 5 minutes [#1654](https://github.com/aws/aws-sdk-go/pull/1654)
   * Fixes [#1653](https://github.com/aws/aws-sdk-go/issues/1653)
 Release v1.12.30 (2017-11-17)
 ===
@@ -859,7 +1723,7 @@ Release v1.12.21 (2017-11-02)
 * `aws/endpoints`: Updated Regions and Endpoints metadata.
 
 ### SDK Bugs
-* `aws/request`: Fix bug in request presign creating invalide URL ([#1624](https://github.com/aws/aws-sdk-go/pull/1624))
+* `aws/request`: Fix bug in request presign creating invalid URL ([#1624](https://github.com/aws/aws-sdk-go/pull/1624))
   * Fixes a bug the Request Presign and PresignRequest methods that would allow a invalid expire duration as input. A expire time of 0 would be interpreted by the SDK to generate a normal request signature, not a presigned URL. This caused the returned URL unusable.
   * Fixes [#1617](https://github.com/aws/aws-sdk-go/issues/1617)
 Release v1.12.20 (2017-11-01)

@@ -567,7 +567,8 @@
         {"shape":"OperationInProgressException"},
         {"shape":"OperationIdAlreadyExistsException"},
         {"shape":"StaleRequestException"},
-        {"shape":"InvalidOperationException"}
+        {"shape":"InvalidOperationException"},
+        {"shape":"StackInstanceNotFoundException"}
       ]
     },
     "UpdateTerminationProtection":{
@@ -888,6 +889,8 @@
         "Parameters":{"shape":"Parameters"},
         "Capabilities":{"shape":"Capabilities"},
         "Tags":{"shape":"Tags"},
+        "AdministrationRoleARN":{"shape":"RoleARN"},
+        "ExecutionRoleName":{"shape":"ExecutionRoleName"},
         "ClientRequestToken":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
@@ -1167,6 +1170,12 @@
       "type":"structure",
       "members":{
       }
+    },
+    "ExecutionRoleName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[a-zA-Z_0-9+=,.@-]+"
     },
     "ExecutionStatus":{
       "type":"string",
@@ -1963,9 +1972,13 @@
         "TemplateBody":{"shape":"TemplateBody"},
         "Parameters":{"shape":"Parameters"},
         "Capabilities":{"shape":"Capabilities"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "StackSetARN":{"shape":"StackSetARN"},
+        "AdministrationRoleARN":{"shape":"RoleARN"},
+        "ExecutionRoleName":{"shape":"ExecutionRoleName"}
       }
     },
+    "StackSetARN":{"type":"string"},
     "StackSetId":{"type":"string"},
     "StackSetName":{"type":"string"},
     "StackSetNameOrId":{
@@ -2003,6 +2016,8 @@
         "Status":{"shape":"StackSetOperationStatus"},
         "OperationPreferences":{"shape":"StackSetOperationPreferences"},
         "RetainStacks":{"shape":"RetainStacksNullable"},
+        "AdministrationRoleARN":{"shape":"RoleARN"},
+        "ExecutionRoleName":{"shape":"ExecutionRoleName"},
         "CreationTimestamp":{"shape":"Timestamp"},
         "EndTimestamp":{"shape":"Timestamp"}
       }
@@ -2287,7 +2302,7 @@
         "Regions"
       ],
       "members":{
-        "StackSetName":{"shape":"StackSetName"},
+        "StackSetName":{"shape":"StackSetNameOrId"},
         "Accounts":{"shape":"AccountList"},
         "Regions":{"shape":"RegionList"},
         "ParameterOverrides":{"shape":"Parameters"},
@@ -2323,10 +2338,14 @@
         "Capabilities":{"shape":"Capabilities"},
         "Tags":{"shape":"Tags"},
         "OperationPreferences":{"shape":"StackSetOperationPreferences"},
+        "AdministrationRoleARN":{"shape":"RoleARN"},
+        "ExecutionRoleName":{"shape":"ExecutionRoleName"},
         "OperationId":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
-        }
+        },
+        "Accounts":{"shape":"AccountList"},
+        "Regions":{"shape":"RegionList"}
       }
     },
     "UpdateStackSetOutput":{

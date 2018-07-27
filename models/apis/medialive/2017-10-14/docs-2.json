@@ -8,12 +8,18 @@
     "DeleteChannel": "Starts deletion of channel. The associated outputs are also deleted.",
     "DeleteInput": "Deletes the input end point",
     "DeleteInputSecurityGroup": "Deletes an Input Security Group",
+    "DeleteReservation": "Delete an expired reservation.",
     "DescribeChannel": "Gets details about a channel",
     "DescribeInput": "Produces details about an input",
     "DescribeInputSecurityGroup": "Produces a summary of an Input Security Group",
+    "DescribeOffering": "Get details for an offering.",
+    "DescribeReservation": "Get details for a reservation.",
     "ListChannels": "Produces list of channels that have been created",
     "ListInputSecurityGroups": "Produces a list of Input Security Groups for an account",
     "ListInputs": "Produces list of inputs that have been created",
+    "ListOfferings": "List offerings available for purchase.",
+    "ListReservations": "List purchased reservations.",
+    "PurchaseOffering": "Purchase an offering and create a reservation.",
     "StartChannel": "Starts an existing channel",
     "StopChannel": "Stops a running channel",
     "UpdateChannel": "Updates a channel.",
@@ -240,6 +246,12 @@
       "base": null,
       "refs": {
         "AudioDescription$AudioType": "Applies only if audioTypeControl is useConfigured. The values for audioType are defined in ISO-IEC 13818-1."
+      }
+    },
+    "AuthenticationScheme": {
+      "base": null,
+      "refs": {
+        "RtmpGroupSettings$AuthenticationScheme": "Authentication scheme to use when connecting with CDN"
       }
     },
     "AvailBlanking": {
@@ -1201,6 +1213,25 @@
       "refs": {
       }
     },
+    "ListOfferingsResultModel": {
+      "base": "ListOfferings response",
+      "refs": {
+      }
+    },
+    "ListReservationsResultModel": {
+      "base": "ListReservations response",
+      "refs": {
+      }
+    },
+    "LogLevel": {
+      "base": null,
+      "refs": {
+        "Channel$LogLevel": "The log level being written to CloudWatch Logs.",
+        "ChannelSummary$LogLevel": "The log level being written to CloudWatch Logs.",
+        "CreateChannel$LogLevel": "The log level to write to CloudWatch Logs.",
+        "UpdateChannel$LogLevel": "The log level to write to CloudWatch Logs."
+      }
+    },
     "M2tsAbsentInputAudioBehavior": {
       "base": null,
       "refs": {
@@ -1381,6 +1412,26 @@
       "refs": {
       }
     },
+    "Offering": {
+      "base": "Reserved resources available for purchase",
+      "refs": {
+        "__listOfOffering$member": null
+      }
+    },
+    "OfferingDurationUnits": {
+      "base": "Units for duration, e.g. 'MONTHS'",
+      "refs": {
+        "Offering$DurationUnits": "Units for duration, e.g. 'MONTHS'",
+        "Reservation$DurationUnits": "Units for duration, e.g. 'MONTHS'"
+      }
+    },
+    "OfferingType": {
+      "base": "Offering type, e.g. 'NO_UPFRONT'",
+      "refs": {
+        "Offering$OfferingType": "Offering type, e.g. 'NO_UPFRONT'",
+        "Reservation$OfferingType": "Offering type, e.g. 'NO_UPFRONT'"
+      }
+    },
     "Output": {
       "base": "Output settings. There can be multiple outputs within a group.",
       "refs": {
@@ -1417,6 +1468,7 @@
         "ArchiveGroupSettings$Destination": "A directory and base filename where archive files should be written.  If the base filename portion of the URI is left blank, the base filename of the first input will be automatically inserted.",
         "HlsGroupSettings$Destination": "A directory or HTTP destination for the HLS segments, manifest files, and encryption keys (if enabled).",
         "MsSmoothGroupSettings$Destination": "Smooth Streaming publish point on an IIS server. Elemental Live acts as a \"Push\" encoder to IIS.",
+        "RtmpOutputSettings$Destination": "The RTMP endpoint excluding the stream name (eg. rtmp://host/appname). For connection to Akamai, a username and password must be supplied. URI fields accept format identifiers.",
         "UdpOutputSettings$Destination": "Destination address and port number for RTP or UDP packets. Can be unicast or multicast RTP or UDP (eg. rtp://239.10.10.10:5001 or udp://10.100.100.100:5002)."
       }
     },
@@ -1432,10 +1484,82 @@
         "AudioCodecSettings$PassThroughSettings": null
       }
     },
+    "PurchaseOffering": {
+      "base": "PurchaseOffering request",
+      "refs": {
+      }
+    },
+    "PurchaseOfferingResultModel": {
+      "base": "PurchaseOffering response",
+      "refs": {
+      }
+    },
     "RemixSettings": {
       "base": null,
       "refs": {
         "AudioDescription$RemixSettings": "Settings that control how input audio channels are remixed into the output audio channels."
+      }
+    },
+    "Reservation": {
+      "base": "Reserved resources available to use",
+      "refs": {
+        "PurchaseOfferingResultModel$Reservation": null,
+        "__listOfReservation$member": null
+      }
+    },
+    "ReservationCodec": {
+      "base": "Codec, 'MPEG2', 'AVC', 'HEVC', or 'AUDIO'",
+      "refs": {
+        "ReservationResourceSpecification$Codec": "Codec, e.g. 'AVC'"
+      }
+    },
+    "ReservationMaximumBitrate": {
+      "base": "Maximum bitrate in megabits per second",
+      "refs": {
+        "ReservationResourceSpecification$MaximumBitrate": "Maximum bitrate, e.g. 'MAX_20_MBPS'"
+      }
+    },
+    "ReservationMaximumFramerate": {
+      "base": "Maximum framerate in frames per second (Outputs only)",
+      "refs": {
+        "ReservationResourceSpecification$MaximumFramerate": "Maximum framerate, e.g. 'MAX_30_FPS' (Outputs only)"
+      }
+    },
+    "ReservationResolution": {
+      "base": "Resolution based on lines of vertical resolution; SD is less than 720 lines, HD is 720 to 1080 lines, UHD is greater than 1080 lines\n",
+      "refs": {
+        "ReservationResourceSpecification$Resolution": "Resolution, e.g. 'HD'"
+      }
+    },
+    "ReservationResourceSpecification": {
+      "base": "Resource configuration (codec, resolution, bitrate, ...)",
+      "refs": {
+        "Offering$ResourceSpecification": "Resource configuration details",
+        "Reservation$ResourceSpecification": "Resource configuration details"
+      }
+    },
+    "ReservationResourceType": {
+      "base": "Resource type, 'INPUT', 'OUTPUT', or 'CHANNEL'",
+      "refs": {
+        "ReservationResourceSpecification$ResourceType": "Resource type, 'INPUT', 'OUTPUT', or 'CHANNEL'"
+      }
+    },
+    "ReservationSpecialFeature": {
+      "base": "Special features, 'ADVANCED_AUDIO' or 'AUDIO_NORMALIZATION'",
+      "refs": {
+        "ReservationResourceSpecification$SpecialFeature": "Special feature, e.g. 'AUDIO_NORMALIZATION' (Channels only)"
+      }
+    },
+    "ReservationState": {
+      "base": "Current reservation state",
+      "refs": {
+        "Reservation$State": "Current state of reservation, e.g. 'ACTIVE'"
+      }
+    },
+    "ReservationVideoQuality": {
+      "base": "Video quality, e.g. 'STANDARD' (Outputs only)",
+      "refs": {
+        "ReservationResourceSpecification$VideoQuality": "Video quality, e.g. 'STANDARD' (Outputs only)"
       }
     },
     "ResourceConflict": {
@@ -1446,6 +1570,42 @@
     "ResourceNotFound": {
       "base": null,
       "refs": {
+      }
+    },
+    "RtmpCacheFullBehavior": {
+      "base": null,
+      "refs": {
+        "RtmpGroupSettings$CacheFullBehavior": "Controls behavior when content cache fills up. If remote origin server stalls the RTMP connection and does not accept content fast enough the 'Media Cache' will fill up. When the cache reaches the duration specified by cacheLength the cache will stop accepting new content. If set to disconnectImmediately, the RTMP output will force a disconnect. Clear the media cache, and reconnect after restartDelay seconds. If set to waitForServer, the RTMP output will wait up to 5 minutes to allow the origin server to begin accepting data again."
+      }
+    },
+    "RtmpCaptionData": {
+      "base": null,
+      "refs": {
+        "RtmpGroupSettings$CaptionData": "Controls the types of data that passes to onCaptionInfo outputs.  If set to 'all' then 608 and 708 carried DTVCC data will be passed.  If set to 'field1AndField2608' then DTVCC data will be stripped out, but 608 data from both fields will be passed. If set to 'field1608' then only the data carried in 608 from field 1 video will be passed."
+      }
+    },
+    "RtmpCaptionInfoDestinationSettings": {
+      "base": null,
+      "refs": {
+        "CaptionDestinationSettings$RtmpCaptionInfoDestinationSettings": null
+      }
+    },
+    "RtmpGroupSettings": {
+      "base": null,
+      "refs": {
+        "OutputGroupSettings$RtmpGroupSettings": null
+      }
+    },
+    "RtmpOutputCertificateMode": {
+      "base": null,
+      "refs": {
+        "RtmpOutputSettings$CertificateMode": "If set to verifyAuthenticity, verify the tls certificate chain to a trusted Certificate Authority (CA).  This will cause rtmps outputs with self-signed certificates to fail."
+      }
+    },
+    "RtmpOutputSettings": {
+      "base": null,
+      "refs": {
+        "OutputSettings$RtmpOutputSettings": null
       }
     },
     "Scte20Convert608To708": {
@@ -1523,7 +1683,7 @@
     "SmoothGroupCertificateMode": {
       "base": null,
       "refs": {
-        "MsSmoothGroupSettings$CertificateMode": "If set to verifyAuthenticity, verify the https certificate chain to a trusted Certificate Authority (CA).  This will cause https outputs to self-signed certificates to fail unless those certificates are manually added to the OS trusted keystore."
+        "MsSmoothGroupSettings$CertificateMode": "If set to verifyAuthenticity, verify the https certificate chain to a trusted Certificate Authority (CA).  This will cause https outputs to self-signed certificates to fail."
       }
     },
     "SmoothGroupEventIdMode": {
@@ -1759,7 +1919,11 @@
         "Eac3Settings$LtRtCenterMixLevel": "Left total/Right total center mix level. Only used for 3/2 coding mode.",
         "Eac3Settings$LtRtSurroundMixLevel": "Left total/Right total surround mix level. Only used for 3/2 coding mode.",
         "Mp2Settings$Bitrate": "Average bitrate in bits/second.",
-        "Mp2Settings$SampleRate": "Sample rate in Hz."
+        "Mp2Settings$SampleRate": "Sample rate in Hz.",
+        "Offering$FixedPrice": "One-time charge for each reserved resource, e.g. '0.0' for a NO_UPFRONT offering",
+        "Offering$UsagePrice": "Recurring usage charge for each reserved resource, e.g. '157.0'",
+        "Reservation$FixedPrice": "One-time charge for each reserved resource, e.g. '0.0' for a NO_UPFRONT offering",
+        "Reservation$UsagePrice": "Recurring usage charge for each reserved resource, e.g. '157.0'"
       }
     },
     "__doubleMin0": {
@@ -1794,6 +1958,9 @@
         "H264Settings$FramerateDenominator": "Framerate denominator.",
         "H264Settings$FramerateNumerator": "Framerate numerator - framerate is a fraction, e.g. 24000 / 1001 = 23.976 fps.",
         "H264Settings$ParNumerator": "Pixel Aspect Ratio numerator.",
+        "Offering$Duration": "Lease duration, e.g. '12'",
+        "Reservation$Count": "Number of reserved resources",
+        "Reservation$Duration": "Lease duration, e.g. '12'",
         "VideoDescription$Height": "Output video height (in pixels). Leave blank to use source video height. If left blank, width must also be unspecified.",
         "VideoDescription$Width": "Output video width (in pixels). Leave out to use source video width.  If left out, height must also be left out. Display aspect ratio is always preserved by letterboxing or pillarboxing when necessary."
       }
@@ -1829,6 +1996,8 @@
         "MsSmoothGroupSettings$FilecacheDuration": "Size in seconds of file cache for streaming outputs.",
         "MsSmoothGroupSettings$NumRetries": "Number of retry attempts.",
         "MsSmoothGroupSettings$RestartDelay": "Number of seconds before initiating a restart due to output failure, due to exhausting the numRetries on one segment, or exceeding filecacheDuration.",
+        "RtmpGroupSettings$RestartDelay": "If a streaming output fails, number of seconds to wait until a restart is initiated. A value of 0 means never restart.",
+        "RtmpOutputSettings$NumRetries": "Number of retry attempts.",
         "UdpGroupSettings$TimedMetadataId3Period": "Timed Metadata interval in seconds."
       }
     },
@@ -1965,6 +2134,8 @@
         "HlsGroupSettings$SegmentLength": "Length of MPEG-2 Transport Stream segments to create (in seconds). Note that segments will end on the next keyframe after this number of seconds, so actual segment length may be longer.",
         "HlsGroupSettings$SegmentsPerSubdirectory": "Number of segments to write to a subdirectory before starting a new one. directoryStructure must be subdirectoryPerStream for this setting to have an effect.",
         "MsSmoothGroupSettings$FragmentLength": "Length of mp4 fragments to generate (in seconds). Fragment length must be compatible with GOP size and framerate.",
+        "PurchaseOffering$Count": "Number of resources",
+        "RtmpOutputSettings$ConnectionRetryInterval": "Number of seconds to wait before retrying a connection to the Flash Media server if the connection is lost.",
         "Scte27SourceSettings$Pid": "The pid field is used in conjunction with the caption selector languageCode field as follows:\n  - Specify PID and Language: Extracts captions from that PID; the language is \"informational\".\n  - Specify PID and omit Language: Extracts the specified PID.\n  - Omit PID and specify Language: Extracts the specified language, whichever PID that happens to be.\n  - Omit PID and omit Language: Valid only if source is DVB-Sub that is being passed through; all languages will be passed through."
       }
     },
@@ -2055,6 +2226,12 @@
       "base": null,
       "refs": {
         "HlsGroupSettings$IndexNSegments": "If mode is \"live\", the number of segments to retain in the manifest (.m3u8) file. This number must be less than or equal to keepSegments. If mode is \"vod\", this parameter has no effect."
+      }
+    },
+    "__integerMin30": {
+      "base": null,
+      "refs": {
+        "RtmpGroupSettings$CacheLength": "Cache length, in seconds, is used to calculate buffer size."
       }
     },
     "__integerMin4Max20": {
@@ -2209,6 +2386,12 @@
         "InputSecurityGroupWhitelistRequest$WhitelistRules": "List of IPv4 CIDR addresses to whitelist"
       }
     },
+    "__listOfOffering": {
+      "base": null,
+      "refs": {
+        "ListOfferingsResultModel$Offerings": "List of offerings"
+      }
+    },
     "__listOfOutput": {
       "base": null,
       "refs": {
@@ -2234,6 +2417,12 @@
       "base": null,
       "refs": {
         "EncoderSettings$OutputGroups": null
+      }
+    },
+    "__listOfReservation": {
+      "base": null,
+      "refs": {
+        "ListReservationsResultModel$Reservations": "List of reservations"
       }
     },
     "__listOfValidationError": {
@@ -2314,7 +2503,7 @@
         "InputDestination$Url": "This represents the endpoint that the customer stream will be\npushed to.\n",
         "InputDestinationRequest$StreamName": "A unique name for the location the RTMP stream is being pushed\nto.\n",
         "InputLocation$PasswordParam": "key used to extract the password from EC2 Parameter store",
-        "InputLocation$Uri": "Uniform Resource Identifier - This should be a path to a file accessible to the Live system (eg. a http:// URI) depending on the output type. For example, a rtmpEndpoint should have a uri simliar to: \"rtmp://fmsserver/live\".",
+        "InputLocation$Uri": "Uniform Resource Identifier - This should be a path to a file accessible to the Live system (eg. a http:// URI) depending on the output type. For example, a RTMP destination should have a uri simliar to: \"rtmp://fmsserver/live\".",
         "InputLocation$Username": "Username if credentials are required to access a file or publishing point.  This can be either a plaintext username, or a reference to an AWS parameter store name from which the username can be retrieved.  AWS Parameter store format: \"ssm://<parameter name>\"",
         "InputSecurityGroup$Arn": "Unique ARN of Input Security Group",
         "InputSecurityGroup$Id": "The Id of the Input Security Group",
@@ -2332,6 +2521,8 @@
         "ListChannelsResultModel$NextToken": null,
         "ListInputSecurityGroupsResultModel$NextToken": null,
         "ListInputsResultModel$NextToken": null,
+        "ListOfferingsResultModel$NextToken": "Token to retrieve the next page of results",
+        "ListReservationsResultModel$NextToken": "Token to retrieve the next page of results",
         "M2tsSettings$AribCaptionsPid": "Packet Identifier (PID) for ARIB Captions in the transport stream. Can be entered as a decimal or hexadecimal value.  Valid values are 32 (or 0x20)..8182 (or 0x1ff6).",
         "M2tsSettings$AudioPids": "Packet Identifier (PID) of the elementary audio stream(s) in the transport stream. Multiple values are accepted, and can be entered in ranges and/or by comma separation. Can be entered as decimal or hexadecimal values. Each PID specified must be in the range of 32 (or 0x20)..8182 (or 0x1ff6).",
         "M2tsSettings$DvbSubPids": "Packet Identifier (PID) for input source DVB Subtitle data to this output. Multiple values are accepted, and can be entered in ranges and/or by comma separation. Can be entered as decimal or hexadecimal values.  Each PID specified must be in the range of 32 (or 0x20)..8182 (or 0x1ff6).",
@@ -2351,17 +2542,35 @@
         "M3u8Settings$PcrPid": "Packet Identifier (PID) of the Program Clock Reference (PCR) in the transport stream. When no value is given, the encoder will assign the same value as the Video PID. Can be entered as a decimal or hexadecimal value.",
         "M3u8Settings$PmtPid": "Packet Identifier (PID) for the Program Map Table (PMT) in the transport stream. Can be entered as a decimal or hexadecimal value.",
         "M3u8Settings$Scte35Pid": "Packet Identifier (PID) of the SCTE-35 stream in the transport stream. Can be entered as a decimal or hexadecimal value.",
+        "M3u8Settings$TimedMetadataPid": "Packet Identifier (PID) of the timed metadata stream in the transport stream. Can be entered as a decimal or hexadecimal value.  Valid values are 32 (or 0x20)..8182 (or 0x1ff6).",
         "M3u8Settings$VideoPid": "Packet Identifier (PID) of the elementary video stream in the transport stream. Can be entered as a decimal or hexadecimal value.",
         "MsSmoothGroupSettings$AcquisitionPointId": "The value of the \"Acquisition Point Identity\" element used in each message placed in the sparse track.  Only enabled if sparseTrackType is not \"none\".",
         "MsSmoothGroupSettings$EventId": "MS Smooth event ID to be sent to the IIS server.\n\nShould only be specified if eventIdMode is set to useConfigured.",
         "MsSmoothGroupSettings$TimestampOffset": "Timestamp offset for the event.  Only used if timestampOffsetMode is set to useConfiguredOffset.",
         "MsSmoothOutputSettings$NameModifier": "String concatenated to the end of the destination filename.  Required for multiple outputs of the same type.",
+        "Offering$Arn": "Unique offering ARN, e.g. 'arn:aws:medialive:us-west-2:123456789012:offering:87654321'",
+        "Offering$CurrencyCode": "Currency code for usagePrice and fixedPrice in ISO-4217 format, e.g. 'USD'",
+        "Offering$OfferingDescription": "Offering description, e.g. 'HD AVC output at 10-20 Mbps, 30 fps, and standard VQ in US West (Oregon)'",
+        "Offering$OfferingId": "Unique offering ID, e.g. '87654321'",
+        "Offering$Region": "AWS region, e.g. 'us-west-2'",
         "Output$VideoDescriptionName": "The name of the VideoDescription used as the source for this output.",
         "OutputDestination$Id": "User-specified id. This is used in an output group or an output.",
         "OutputDestinationSettings$PasswordParam": "key used to extract the password from EC2 Parameter store",
+        "OutputDestinationSettings$StreamName": "Stream name for RTMP destinations (URLs of type rtmp://)",
         "OutputDestinationSettings$Url": "A URL specifying a destination",
         "OutputDestinationSettings$Username": "username for destination",
         "OutputLocationRef$DestinationRefId": null,
+        "PurchaseOffering$Name": "Name for the new reservation",
+        "PurchaseOffering$RequestId": "Unique request ID to be specified. This is needed to prevent retries from creating multiple resources.",
+        "Reservation$Arn": "Unique reservation ARN, e.g. 'arn:aws:medialive:us-west-2:123456789012:reservation:1234567'",
+        "Reservation$CurrencyCode": "Currency code for usagePrice and fixedPrice in ISO-4217 format, e.g. 'USD'",
+        "Reservation$End": "Reservation UTC end date and time in ISO-8601 format, e.g. '2019-03-01T00:00:00'",
+        "Reservation$Name": "User specified reservation name",
+        "Reservation$OfferingDescription": "Offering description, e.g. 'HD AVC output at 10-20 Mbps, 30 fps, and standard VQ in US West (Oregon)'",
+        "Reservation$OfferingId": "Unique offering ID, e.g. '87654321'",
+        "Reservation$Region": "AWS region, e.g. 'us-west-2'",
+        "Reservation$ReservationId": "Unique reservation ID, e.g. '1234567'",
+        "Reservation$Start": "Reservation UTC start date and time in ISO-8601 format, e.g. '2018-03-01T00:00:00'",
         "ResourceConflict$Message": null,
         "ResourceNotFound$Message": null,
         "StandardHlsSettings$AudioRenditionSets": "List all the audio groups that are used with the video output stream. Input all the audio GROUP-IDs that are associated to the video, separate by ','.",
