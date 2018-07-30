@@ -1044,7 +1044,7 @@
       "refs": {
         "CreateDevEndpointRequest$EndpointName": "<p>The name to be assigned to the new DevEndpoint.</p>",
         "CreateDevEndpointRequest$SubnetId": "<p>The subnet ID for the new DevEndpoint to use.</p>",
-        "CreateDevEndpointRequest$PublicKey": "<p>The public key to use for authentication.</p>",
+        "CreateDevEndpointRequest$PublicKey": "<p>The public key to be used by this DevEndpoint for authentication. This attribute is provided for backward compatibility, as the recommended attribute to use is public keys.</p>",
         "CreateDevEndpointRequest$ExtraPythonLibsS3Path": "<p>Path(s) to one or more Python libraries in an S3 bucket that should be loaded in your DevEndpoint. Multiple values must be complete paths separated by a comma.</p> <p>Please note that only pure Python libraries can currently be used on a DevEndpoint. Libraries that rely on C extensions, such as the <a href=\"http://pandas.pydata.org/\">pandas</a> Python data analysis library, are not yet supported.</p>",
         "CreateDevEndpointRequest$ExtraJarsS3Path": "<p>Path to one or more Java Jars in an S3 bucket that should be loaded in your DevEndpoint.</p>",
         "CreateDevEndpointResponse$EndpointName": "<p>The name assigned to the new DevEndpoint.</p>",
@@ -1061,7 +1061,7 @@
         "DevEndpoint$EndpointName": "<p>The name of the DevEndpoint.</p>",
         "DevEndpoint$SubnetId": "<p>The subnet ID for this DevEndpoint.</p>",
         "DevEndpoint$YarnEndpointAddress": "<p>The YARN endpoint address used by this DevEndpoint.</p>",
-        "DevEndpoint$PrivateAddress": "<p>The private address used by this DevEndpoint.</p>",
+        "DevEndpoint$PrivateAddress": "<p>A private DNS to access the DevEndpoint within a VPC, if the DevEndpoint is created within one.</p>",
         "DevEndpoint$PublicAddress": "<p>The public VPC address used by this DevEndpoint.</p>",
         "DevEndpoint$Status": "<p>The current status of this DevEndpoint.</p>",
         "DevEndpoint$AvailabilityZone": "<p>The AWS availability zone where this DevEndpoint is located.</p>",
@@ -1070,7 +1070,7 @@
         "DevEndpoint$ExtraJarsS3Path": "<p>Path to one or more Java Jars in an S3 bucket that should be loaded in your DevEndpoint.</p> <p>Please note that only pure Java/Scala libraries can currently be used on a DevEndpoint.</p>",
         "DevEndpoint$FailureReason": "<p>The reason for a current failure in this DevEndpoint.</p>",
         "DevEndpoint$LastUpdateStatus": "<p>The status of the last update.</p>",
-        "DevEndpoint$PublicKey": "<p>The public key to be used by this DevEndpoint for authentication.</p>",
+        "DevEndpoint$PublicKey": "<p>The public key to be used by this DevEndpoint for authentication. This attribute is provided for backward compatibility, as the recommended attribute to use is public keys.</p>",
         "DevEndpointCustomLibraries$ExtraPythonLibsS3Path": "<p>Path(s) to one or more Python libraries in an S3 bucket that should be loaded in your DevEndpoint. Multiple values must be complete paths separated by a comma.</p> <p>Please note that only pure Python libraries can currently be used on a DevEndpoint. Libraries that rely on C extensions, such as the <a href=\"http://pandas.pydata.org/\">pandas</a> Python data analysis library, are not yet supported.</p>",
         "DevEndpointCustomLibraries$ExtraJarsS3Path": "<p>Path to one or more Java Jars in an S3 bucket that should be loaded in your DevEndpoint.</p> <p>Please note that only pure Java/Scala libraries can currently be used on a DevEndpoint.</p>",
         "GenericMap$key": null,
@@ -1085,6 +1085,7 @@
         "GetTriggersRequest$NextToken": "<p>A continuation token, if this is a continuation call.</p>",
         "GetTriggersResponse$NextToken": "<p>A continuation token, if not all the requested triggers have yet been returned.</p>",
         "JobCommand$Name": "<p>The name of the job command: this must be <code>glueetl</code>.</p>",
+        "PublicKeysList$member": null,
         "StringList$member": null,
         "Trigger$Schedule": "<p>A <code>cron</code> expression used to specify the schedule (see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html\">Time-Based Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15 UTC, you would specify: <code>cron(15 12 * * ? *)</code>.</p>",
         "TriggerUpdate$Schedule": "<p>A <code>cron</code> expression used to specify the schedule (see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html\">Time-Based Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15 UTC, you would specify: <code>cron(15 12 * * ? *)</code>.</p>",
@@ -2060,6 +2061,15 @@
       "refs": {
         "UserDefinedFunction$OwnerType": "<p>The owner type.</p>",
         "UserDefinedFunctionInput$OwnerType": "<p>The owner type.</p>"
+      }
+    },
+    "PublicKeysList": {
+      "base": null,
+      "refs": {
+        "CreateDevEndpointRequest$PublicKeys": "<p>A list of public keys to be used by the DevEndpoints for authentication. The use of this attribute is preferred over a single public key because the public keys allow you to have a different private key per client.</p> <note> <p>If you previously created an endpoint with a public key, you must remove that key to be able to set a list of public keys: call the <code>UpdateDevEndpoint</code> API with the public key content in the <code>deletePublicKeys</code> attribute, and the list of new keys in the <code>addPublicKeys</code> attribute.</p> </note>",
+        "DevEndpoint$PublicKeys": "<p>A list of public keys to be used by the DevEndpoints for authentication. The use of this attribute is preferred over a single public key because the public keys allow you to have a different private key per client.</p> <note> <p>If you previously created an endpoint with a public key, you must remove that key to be able to set a list of public keys: call the <code>UpdateDevEndpoint</code> API with the public key content in the <code>deletePublicKeys</code> attribute, and the list of new keys in the <code>addPublicKeys</code> attribute.</p> </note>",
+        "UpdateDevEndpointRequest$AddPublicKeys": "<p>The list of public keys for the DevEndpoint to use.</p>",
+        "UpdateDevEndpointRequest$DeletePublicKeys": "<p>The list of public keys to be deleted from the DevEndpoint. </p>"
       }
     },
     "PythonScript": {

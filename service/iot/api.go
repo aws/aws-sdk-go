@@ -1902,6 +1902,9 @@ func (c *IoT) CreateThingRequest(input *CreateThingInput) (req *request.Request,
 //
 // Creates a thing record in the registry.
 //
+// This is a control plane operation. See Authorization (http://docs.aws.amazon.com/iot/latest/developerguide/authorization.html)
+// for information about authorizing control plane actions.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1995,6 +1998,9 @@ func (c *IoT) CreateThingGroupRequest(input *CreateThingGroupInput) (req *reques
 // CreateThingGroup API operation for AWS IoT.
 //
 // Create a thing group.
+//
+// This is a control plane operation. See Authorization (http://docs.aws.amazon.com/iot/latest/developerguide/authorization.html)
+// for information about authorizing control plane actions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5912,6 +5918,8 @@ func (c *IoT) GetLoggingOptionsRequest(input *GetLoggingOptionsInput) (req *requ
 // GetLoggingOptions API operation for AWS IoT.
 //
 // Gets the logging options.
+//
+// NOTE: use of this command is not recommended. Use GetV2LoggingOptions instead.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9958,6 +9966,8 @@ func (c *IoT) SetLoggingOptionsRequest(input *SetLoggingOptionsInput) (req *requ
 //
 // Sets the logging options.
 //
+// NOTE: use of this command is not recommended. Use SetV2LoggingOptions instead.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -13404,7 +13414,7 @@ type CodeSigningCertificateChain struct {
 	// A base64 encoded binary representation of the code signing certificate chain.
 	InlineDocument *string `locationName:"inlineDocument" type:"string"`
 
-	// A stream of the certificate chain files.
+	// Describes a group of files that can be streamed.
 	Stream *Stream `locationName:"stream" type:"structure"`
 }
 
@@ -13460,7 +13470,7 @@ type CodeSigningSignature struct {
 	// InlineDocument is automatically base64 encoded/decoded by the SDK.
 	InlineDocument []byte `locationName:"inlineDocument" type:"blob"`
 
-	// A stream of the code signing signature.
+	// Describes a group of files that can be streamed.
 	Stream *Stream `locationName:"stream" type:"structure"`
 }
 
@@ -13757,9 +13767,6 @@ type CreateJobInput struct {
 	// The job document.
 	Document *string `locationName:"document" type:"string"`
 
-	// Parameters for the job document.
-	DocumentParameters map[string]*string `locationName:"documentParameters" type:"map"`
-
 	// An S3 link to the job document.
 	DocumentSource *string `locationName:"documentSource" min:"1" type:"string"`
 
@@ -13843,12 +13850,6 @@ func (s *CreateJobInput) SetDescription(v string) *CreateJobInput {
 // SetDocument sets the Document field's value.
 func (s *CreateJobInput) SetDocument(v string) *CreateJobInput {
 	s.Document = &v
-	return s
-}
-
-// SetDocumentParameters sets the DocumentParameters field's value.
-func (s *CreateJobInput) SetDocumentParameters(v map[string]*string) *CreateJobInput {
-	s.DocumentParameters = v
 	return s
 }
 
@@ -19079,9 +19080,6 @@ type Job struct {
 	// A short text description of the job.
 	Description *string `locationName:"description" type:"string"`
 
-	// The parameters specified for the job document.
-	DocumentParameters map[string]*string `locationName:"documentParameters" type:"map"`
-
 	// Will be true if the job was canceled with the optional force parameter set
 	// to true.
 	ForceCanceled *bool `locationName:"forceCanceled" type:"boolean"`
@@ -19150,12 +19148,6 @@ func (s *Job) SetCreatedAt(v time.Time) *Job {
 // SetDescription sets the Description field's value.
 func (s *Job) SetDescription(v string) *Job {
 	s.Description = &v
-	return s
-}
-
-// SetDocumentParameters sets the DocumentParameters field's value.
-func (s *Job) SetDocumentParameters(v map[string]*string) *Job {
-	s.DocumentParameters = v
 	return s
 }
 
@@ -24018,21 +24010,15 @@ func (s *S3Action) SetRoleArn(v string) *S3Action {
 	return s
 }
 
-// The location in S3 the contains the files to stream.
 type S3Location struct {
 	_ struct{} `type:"structure"`
 
-	// The S3 bucket that contains the file to stream.
-	//
 	// Bucket is a required field
 	Bucket *string `locationName:"bucket" min:"1" type:"string" required:"true"`
 
-	// The name of the file within the S3 bucket to stream.
-	//
 	// Key is a required field
 	Key *string `locationName:"key" min:"1" type:"string" required:"true"`
 
-	// The file version.
 	Version *string `locationName:"version" type:"string"`
 }
 
@@ -24540,10 +24526,10 @@ type SetV2LoggingOptionsInput struct {
 	// The default logging level.
 	DefaultLogLevel *string `locationName:"defaultLogLevel" type:"string" enum:"LogLevel"`
 
-	// Set to true to disable all logs, otherwise set to false.
+	// If true all logs are disabled. The default is false.
 	DisableAllLogs *bool `locationName:"disableAllLogs" type:"boolean"`
 
-	// The role ARN that allows IoT to write to Cloudwatch logs.
+	// The ARN of the role that allows IoT to write to Cloudwatch logs.
 	RoleArn *string `locationName:"roleArn" type:"string"`
 }
 

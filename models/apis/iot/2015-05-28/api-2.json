@@ -2696,8 +2696,7 @@
         "description":{"shape":"JobDescription"},
         "presignedUrlConfig":{"shape":"PresignedUrlConfig"},
         "targetSelection":{"shape":"TargetSelection"},
-        "jobExecutionsRolloutConfig":{"shape":"JobExecutionsRolloutConfig"},
-        "documentParameters":{"shape":"JobDocumentParameters"}
+        "jobExecutionsRolloutConfig":{"shape":"JobExecutionsRolloutConfig"}
       }
     },
     "CreateJobResponse":{
@@ -4096,8 +4095,7 @@
         "createdAt":{"shape":"DateType"},
         "lastUpdatedAt":{"shape":"DateType"},
         "completedAt":{"shape":"DateType"},
-        "jobProcessDetails":{"shape":"JobProcessDetails"},
-        "documentParameters":{"shape":"JobDocumentParameters"}
+        "jobProcessDetails":{"shape":"JobProcessDetails"}
       }
     },
     "JobArn":{"type":"string"},
@@ -4109,12 +4107,6 @@
     "JobDocument":{
       "type":"string",
       "max":32768
-    },
-    "JobDocumentParameters":{
-      "type":"map",
-      "key":{"shape":"ParameterKey"},
-      "value":{"shape":"ParameterValue"},
-      "max":10
     },
     "JobDocumentSource":{
       "type":"string",
@@ -5340,18 +5332,6 @@
       "min":1
     },
     "Parameter":{"type":"string"},
-    "ParameterKey":{
-      "type":"string",
-      "max":128,
-      "min":1,
-      "pattern":"[a-zA-Z0-9:_-]+"
-    },
-    "ParameterValue":{
-      "type":"string",
-      "max":1024,
-      "min":1,
-      "pattern":"[^\\p{C}]+"
-    },
     "Parameters":{
       "type":"map",
       "key":{"shape":"Parameter"},
