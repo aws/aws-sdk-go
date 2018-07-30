@@ -1,3 +1,22 @@
+Release v1.15.1 (2018-07-30)
+===
+
+### Service Client Updates
+* `service/cloudhsmv2`: Updates service API and documentation
+  * This update  to the AWS CloudHSM API adds copy-backup-to-region, which allows you to copy a backup of a cluster from one region to another. The copied backup can be used in the destination region to create a new AWS CloudHSM cluster as a clone of the original cluster.
+* `service/directconnect`: Updates service API and documentation
+  * 1. awsDeviceV2 field is introduced for Connection/Lag/Interconnect/VirtualInterface/Bgp Objects, while deprecating the awsDevice field for Connection/Lag/Interconnect Objects. 2. region field is introduced for VirtualInterface/Location objects
+* `service/glacier`: Updates service API and documentation
+  * Documentation updates for glacier
+* `service/glue`: Updates service API and documentation
+  * Glue Development Endpoints now support association of multiple SSH public keys with a development endpoint.
+* `service/iot`: Updates service API and documentation
+  * get rid of documentParameters field from CreateJob API
+* `service/mq`: Updates service API, documentation, and paginators
+  * Modified the CreateBroker, UpdateBroker, and DescribeBroker operations to support integration with Amazon CloudWatch Logs. Added a field to indicate the IP address(es) that correspond to wire-level endpoints of broker instances. While a single-instance broker has one IP address, an active/standby broker for high availability has 2 IP addresses. Added fields to indicate the time when resources were created. Updated documentation for Amazon MQ.
+* `service/sagemaker`: Updates service API and documentation
+  * Added SecondaryStatusTransitions to DescribeTrainingJob to provide more visibility into SageMaker training job progress and lifecycle.
+
 Release v1.15.0 (2018-07-26)
 ===
 

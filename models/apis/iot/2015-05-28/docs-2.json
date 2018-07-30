@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<fullname>AWS IoT</fullname> <p>AWS IoT provides secure, bi-directional communication between Internet-connected devices (such as sensors, actuators, embedded devices, or smart appliances) and the AWS cloud. You can discover your custom IoT-Data endpoint to communicate with, configure rules for data processing and integration with other services, organize resources associated with each device (Registry), configure logging, and create and manage policies and credentials to authenticate devices.</p> <p>For more information about how AWS IoT works, see the <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/aws-iot-how-it-works.html\">Developer Guide</a>.</p>",
+  "service": "<fullname>AWS IoT</fullname> <p>AWS IoT provides secure, bi-directional communication between Internet-connected devices (such as sensors, actuators, embedded devices, or smart appliances) and the AWS cloud. You can discover your custom IoT-Data endpoint to communicate with, configure rules for data processing and integration with other services, organize resources associated with each device (Registry), configure logging, and create and manage policies and credentials to authenticate devices.</p> <p>For more information about how AWS IoT works, see the <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/aws-iot-how-it-works.html\">Developer Guide</a>.</p> <p>For information about how to use the credentials provider for AWS IoT, see <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/authorizing-direct-aws.html\">Authorizing Direct Calls to AWS Services</a>.</p>",
   "operations": {
     "AcceptCertificateTransfer": "<p>Accepts a pending certificate transfer. The default state of the certificate is INACTIVE.</p> <p>To check for pending certificate transfers, call <a>ListCertificates</a> to enumerate your certificates.</p>",
     "AddThingToThingGroup": "<p>Adds a thing to a thing group.</p>",
@@ -21,8 +21,8 @@
     "CreatePolicyVersion": "<p>Creates a new version of the specified AWS IoT policy. To update a policy, create a new policy version. A managed policy can have up to five versions. If the policy has five versions, you must use <a>DeletePolicyVersion</a> to delete an existing version before you create a new one.</p> <p>Optionally, you can set the new version as the policy's default version. The default version is the operative version (that is, the version that is in effect for the certificates to which the policy is attached).</p>",
     "CreateRoleAlias": "<p>Creates a role alias.</p>",
     "CreateStream": "<p>Creates a stream for delivering one or more large files in chunks over MQTT. A stream transports data bytes in chunks or blocks packaged as MQTT messages from a source like S3. You can have one or more files associated with a stream. The total size of a file associated with the stream cannot exceed more than 2 MB. The stream will be created with version 0. If a stream is created with the same streamID as a stream that existed and was deleted within last 90 days, we will resurrect that old stream by incrementing the version by 1.</p>",
-    "CreateThing": "<p>Creates a thing record in the registry.</p>",
-    "CreateThingGroup": "<p>Create a thing group.</p>",
+    "CreateThing": "<p>Creates a thing record in the registry.</p> <note> <p>This is a control plane operation. See <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> </note>",
+    "CreateThingGroup": "<p>Create a thing group.</p> <note> <p>This is a control plane operation. See <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> </note>",
     "CreateThingType": "<p>Creates a new thing type.</p>",
     "CreateTopicRule": "<p>Creates a rule. Creating rules is an administrator-level action. Any user who has permission to create rules will be able to access data processed by the rule.</p>",
     "DeleteAuthorizer": "<p>Deletes an authorizer.</p>",
@@ -65,7 +65,7 @@
     "GetEffectivePolicies": "<p>Gets a list of the policies that have an effect on the authorization behavior of the specified device when it connects to the AWS IoT device gateway.</p>",
     "GetIndexingConfiguration": "<p>Gets the search configuration.</p>",
     "GetJobDocument": "<p>Gets a job document.</p>",
-    "GetLoggingOptions": "<p>Gets the logging options.</p>",
+    "GetLoggingOptions": "<p>Gets the logging options.</p> <p>NOTE: use of this command is not recommended. Use <code>GetV2LoggingOptions</code> instead.</p>",
     "GetOTAUpdate": "<p>Gets an OTA update.</p>",
     "GetPolicy": "<p>Gets information about the specified policy with the policy document of the default version.</p>",
     "GetPolicyVersion": "<p>Gets information about the specified policy version.</p>",
@@ -110,7 +110,7 @@
     "SearchIndex": "<p>The query search index.</p>",
     "SetDefaultAuthorizer": "<p>Sets the default authorizer. This will be used if a websocket connection is made without specifying an authorizer.</p>",
     "SetDefaultPolicyVersion": "<p>Sets the specified version of the specified policy as the policy's default (operative) version. This action affects all certificates to which the policy is attached. To list the principals the policy is attached to, use the ListPrincipalPolicy API.</p>",
-    "SetLoggingOptions": "<p>Sets the logging options.</p>",
+    "SetLoggingOptions": "<p>Sets the logging options.</p> <p>NOTE: use of this command is not recommended. Use <code>SetV2LoggingOptions</code> instead.</p>",
     "SetV2LoggingLevel": "<p>Sets the logging level.</p>",
     "SetV2LoggingOptions": "<p>Sets the logging options for the V2 logging service.</p>",
     "StartThingRegistrationTask": "<p>Creates a bulk thing provisioning task.</p>",
@@ -402,7 +402,7 @@
         "LoggingOptionsPayload$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
         "RepublishAction$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
         "S3Action$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
-        "SetV2LoggingOptionsRequest$roleArn": "<p>The role ARN that allows IoT to write to Cloudwatch logs.</p>",
+        "SetV2LoggingOptionsRequest$roleArn": "<p>The ARN of the role that allows IoT to write to Cloudwatch logs.</p>",
         "SnsAction$targetArn": "<p>The ARN of the SNS topic.</p>",
         "SnsAction$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
         "SqsAction$roleArn": "<p>The ARN of the IAM role that grants access.</p>"
@@ -1263,7 +1263,7 @@
       "base": null,
       "refs": {
         "GetV2LoggingOptionsResponse$disableAllLogs": "<p>Disables all logs.</p>",
-        "SetV2LoggingOptionsRequest$disableAllLogs": "<p>Set to true to disable all logs, otherwise set to false.</p>"
+        "SetV2LoggingOptionsRequest$disableAllLogs": "<p>If true all logs are disabled. The default is false.</p>"
       }
     },
     "DisableTopicRuleRequest": {
@@ -1757,13 +1757,6 @@
       "refs": {
         "CreateJobRequest$document": "<p>The job document.</p>",
         "GetJobDocumentResponse$document": "<p>The job document content.</p>"
-      }
-    },
-    "JobDocumentParameters": {
-      "base": null,
-      "refs": {
-        "CreateJobRequest$documentParameters": "<p>Parameters for the job document.</p>",
-        "Job$documentParameters": "<p>The parameters specified for the job document.</p>"
       }
     },
     "JobDocumentSource": {
@@ -2560,18 +2553,6 @@
         "Parameters$key": null
       }
     },
-    "ParameterKey": {
-      "base": null,
-      "refs": {
-        "JobDocumentParameters$key": null
-      }
-    },
-    "ParameterValue": {
-      "base": null,
-      "refs": {
-        "JobDocumentParameters$value": null
-      }
-    },
     "Parameters": {
       "base": null,
       "refs": {
@@ -3104,7 +3085,7 @@
     "S3Bucket": {
       "base": null,
       "refs": {
-        "S3Location$bucket": "<p>The S3 bucket that contains the file to stream.</p>"
+        "S3Location$bucket": null
       }
     },
     "S3FileUrl": {
@@ -3122,11 +3103,11 @@
     "S3Key": {
       "base": null,
       "refs": {
-        "S3Location$key": "<p>The name of the file within the S3 bucket to stream.</p>"
+        "S3Location$key": null
       }
     },
     "S3Location": {
-      "base": "<p>The location in S3 the contains the files to stream.</p>",
+      "base": null,
       "refs": {
         "StreamFile$s3Location": "<p>The location of the file in S3.</p>"
       }
@@ -3134,7 +3115,7 @@
     "S3Version": {
       "base": null,
       "refs": {
-        "S3Location$version": "<p>The file version.</p>"
+        "S3Location$version": null
       }
     },
     "SQL": {
@@ -3324,8 +3305,8 @@
     "Stream": {
       "base": "<p>Describes a group of files that can be streamed.</p>",
       "refs": {
-        "CodeSigningCertificateChain$stream": "<p>A stream of the certificate chain files.</p>",
-        "CodeSigningSignature$stream": "<p>A stream of the code signing signature.</p>",
+        "CodeSigningCertificateChain$stream": null,
+        "CodeSigningSignature$stream": null,
         "OTAUpdateFile$fileSource": "<p>The source of the file.</p>"
       }
     },
