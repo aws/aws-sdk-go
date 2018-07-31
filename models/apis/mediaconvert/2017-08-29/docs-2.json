@@ -3180,7 +3180,7 @@
         "AudioDescription$StreamName": "Used for MS Smooth and Apple HLS outputs. Indicates the name displayed by the player (eg. English, or Director Commentary). Alphanumeric characters, spaces, and underscore are legal."
       }
     },
-    "__timestampIso8601": {
+    "__timestampUnix": {
       "base": null,
       "refs": {
         "Job$CreatedAt": "The time, in Unix epoch format in seconds, when the job got created.",
