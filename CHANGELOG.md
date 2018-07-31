@@ -1,3 +1,29 @@
+Release v1.15.2 (2018-07-31)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API and documentation
+* `service/es`: Updates service API and documentation
+  * Amazon Elasticsearch Service adds support for enabling Elasticsearch error logs, providing you valuable information for troubleshooting your Elasticsearch domains quickly and easily. These logs are published to the Amazon CloudWatch Logs service and can be turned on or off at will.
+* `service/iot`: Updates service API and documentation
+  * As part of this release we are introducing a new IoT security service, AWS IoT Device Defender, and extending capability of AWS IoT to support Step Functions rule action. The AWS IoT Device Defender is a fully managed service that helps you secure your fleet of IoT devices. For more details on this new service, go to https://aws.amazon.com/iot-device-defender. The Step Functions rule action lets you start an execution of AWS Step Functions state machine from a rule.
+* `service/kms`: Updates service API and documentation
+  * Added a KeyID parameter to the ListAliases operation. This parameter allows users to list only the aliases that refer to a particular AWS KMS customer master key. All other functionality remains intact.
+* `service/mediaconvert`: Updates service API and documentation
+  * Fixes an issue with modeled timestamps being labeled with the incorrect format.
+
+### SDK Enhancements
+* `service/dynamodb/dynamodbattribute`: Add support for custom struct tag keys([#2054](https://github.com/aws/aws-sdk-go/pull/2054))
+  * Adds support for (un)marshaling Go types using custom struct tag keys. The new `MarshalOptions.TagKey` allows the user to specify the tag key to use when (un)marshaling struct fields.  Adds support for struct tags such as `yaml`, `toml`, etc. Support for these keys are in name only, and require the tag value format and values to be supported by the package's Marshalers.
+
+### SDK Bugs
+* `aws/endpoints`: Add workaround for AWS China Application Autoscaling ([#2080](https://github.com/aws/aws-sdk-go/pull/2080))
+  * Adds workaround to correct the endpoint for Application Autoscaling running in AWS China. This will allow your application to make API calls to Application Autoscaling service in AWS China.
+  * Fixes [#2079](https://github.com/aws/aws-sdk-go/issues/2079)
+  * Fixes [#1957](https://github.com/aws/aws-sdk-go/issues/1957)
+* `private/protocol/xml/xmlutil`: Fix SDK marshaling of empty types ([#2081](https://github.com/aws/aws-sdk-go/pull/2081))
+  * Fixes the SDK's marshaling of types without members. This corrects the issue where the SDK would not marshal an XML tag for a type, if that type did not have any exported members.
+  * Fixes [#2015](https://github.com/aws/aws-sdk-go/issues/2015)
 Release v1.15.1 (2018-07-30)
 ===
 
