@@ -34,3 +34,17 @@ func Parse(f io.Reader) (Sections, error) {
 
 	return v.Sections, nil
 }
+
+func ParseBytes(b []byte) (Sections, error) {
+	tree, err := ParseASTBytes(b)
+	if err != nil {
+		return Sections{}, err
+	}
+
+	v := NewDefaultVisitor()
+	if err = Walk(tree, v); err != nil {
+		return Sections{}, err
+	}
+
+	return v.Sections, nil
+}

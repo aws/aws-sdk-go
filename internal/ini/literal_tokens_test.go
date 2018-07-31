@@ -74,7 +74,7 @@ func TestNewLiteralToken(t *testing.T) {
 				Value: Value{
 					Type:    IntegerType,
 					integer: 123,
-					raw:     "123",
+					raw:     []rune("123"),
 				},
 			},
 		},
@@ -85,7 +85,7 @@ func TestNewLiteralToken(t *testing.T) {
 				Value: Value{
 					Type:    DecimalType,
 					decimal: 123.456,
-					raw:     "123.456",
+					raw:     []rune("123.456"),
 				},
 			},
 		},
@@ -96,7 +96,7 @@ func TestNewLiteralToken(t *testing.T) {
 				Value: Value{
 					Type:    IntegerType,
 					integer: 123,
-					raw:     "123",
+					raw:     []rune("123"),
 				},
 			},
 		},
@@ -107,7 +107,7 @@ func TestNewLiteralToken(t *testing.T) {
 				Value: Value{
 					Type:    IntegerType,
 					integer: 123,
-					raw:     "123",
+					raw:     []rune("123"),
 				},
 			},
 		},
@@ -117,8 +117,7 @@ func TestNewLiteralToken(t *testing.T) {
 			expectedToken: literalToken{
 				Value: Value{
 					Type: QuotedStringType,
-					str:  `Hello`,
-					raw:  "Hello",
+					raw:  []rune("Hello"),
 				},
 			},
 		},
@@ -128,8 +127,7 @@ func TestNewLiteralToken(t *testing.T) {
 			expectedToken: literalToken{
 				Value: Value{
 					Type: QuotedStringType,
-					str:  "Hello World",
-					raw:  "Hello World",
+					raw:  []rune("Hello World"),
 				},
 			},
 		},
@@ -140,7 +138,7 @@ func TestNewLiteralToken(t *testing.T) {
 				Value: Value{
 					Type:    BoolType,
 					boolean: true,
-					raw:     "true",
+					raw:     []rune("true"),
 				},
 			},
 		},
@@ -151,7 +149,7 @@ func TestNewLiteralToken(t *testing.T) {
 				Value: Value{
 					Type:    BoolType,
 					boolean: false,
-					raw:     "false",
+					raw:     []rune("false"),
 				},
 			},
 		},

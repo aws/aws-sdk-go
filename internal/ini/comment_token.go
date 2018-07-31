@@ -4,7 +4,7 @@ package ini
 // Comments may start with a ';', '#', or "//".
 type commentToken struct {
 	emptyToken
-	comment string
+	comment []rune
 }
 
 // isComment will return whether or not the next byte(s) is a
@@ -32,7 +32,6 @@ func isComment(b []rune) bool {
 // return how many bytes were read.
 func newCommentToken(b []rune) (commentToken, int, error) {
 	i := 0
-	value := ""
 	for ; i < len(b); i++ {
 		if b[i] == '\n' {
 			break
@@ -41,21 +40,20 @@ func newCommentToken(b []rune) (commentToken, int, error) {
 		if len(b) > 2 && b[i] == '\r' && b[i+1] == '\n' {
 			break
 		}
-		value += string(b[i])
 	}
 
 	return commentToken{
-		comment: value,
+		comment: b[:i],
 	}, i, nil
 }
 
 // Raw will return the raw value from the token
-func (token commentToken) Raw() string {
+func (token commentToken) Raw() []rune {
 	return token.comment
 }
 
 func (token commentToken) StringValue() string {
-	return token.comment
+	return string(token.comment)
 }
 
 // Type will return the TokenType

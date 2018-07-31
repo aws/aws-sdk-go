@@ -14,6 +14,12 @@ func (tok commaToken) Type() TokenType {
 	return TokenComma
 }
 
+func (tok commaToken) Raw() []rune {
+	return []rune{
+		',',
+	}
+}
+
 func isComma(b rune) bool {
 	return b == ','
 }

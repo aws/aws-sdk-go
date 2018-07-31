@@ -19,28 +19,26 @@ func TestTokenize(t *testing.T) {
 				literalToken{
 					Value: Value{
 						Type: StringType,
-						str:  "x",
-						raw:  "x",
+						raw:  []rune("x"),
 					},
-					raw: "x",
+					raw: []rune("x"),
 				},
 				wsToken{
-					raw: " ",
+					raw: []rune(" "),
 				},
 				opToken{
 					opType: opTypeEqual,
-					value:  "=",
 				},
 				wsToken{
-					raw: " ",
+					raw: []rune(" "),
 				},
 				literalToken{
 					Value: Value{
 						Type:    IntegerType,
 						integer: 123,
-						raw:     "123",
+						raw:     []rune("123"),
 					},
-					raw: "123",
+					raw: []rune("123"),
 				},
 			},
 		},
@@ -49,25 +47,22 @@ func TestTokenize(t *testing.T) {
 			expectedTokens: []Token{
 				sepToken{
 					sepType: sepTypeOpenBrace,
-					value:   "[",
 				},
 				wsToken{
-					raw: " ",
+					raw: []rune(" "),
 				},
 				literalToken{
 					Value: Value{
 						Type: StringType,
-						str:  "foo",
-						raw:  "foo",
+						raw:  []rune("foo"),
 					},
-					raw: "foo",
+					raw: []rune("foo"),
 				},
 				wsToken{
-					raw: " ",
+					raw: []rune(" "),
 				},
 				sepToken{
 					sepType: sepTypeCloseBrace,
-					value:   "]",
 				},
 			},
 		},

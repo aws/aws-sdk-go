@@ -6,23 +6,37 @@ import (
 	"strings"
 )
 
-var literalValues = []string{
-	"true",
-	"false",
+var (
+	runesTrue  = []rune("true")
+	runesFalse = []rune("false")
+)
+
+var literalValues = [][]rune{
+	runesTrue,
+	runesFalse,
 }
 
 func isBoolValue(b []rune) bool {
 	for _, lv := range literalValues {
-		if len(b) < len(lv) {
-			continue
-		}
-
-		v := string(b[:len(lv)])
-		if v == lv {
+		if isLitValue(lv, b) {
 			return true
 		}
 	}
 	return false
+}
+
+func isLitValue(want, have []rune) bool {
+	if len(have) < len(want) {
+		return false
+	}
+
+	for i := 0; i < len(want); i++ {
+		if want[i] != have[i] {
+			return false
+		}
+	}
+
+	return true
 }
 
 // isNumberValue will return whether not the leading characters in
@@ -69,8 +83,7 @@ func isNumberValue(b []rune) bool {
 			continue
 		}
 
-		if isWhitespace(b[i]) ||
-			isNewline(b[i:]) {
+		if i > 0 && (isNewline(b[i:]) || isWhitespace(b[i])) {
 			return true
 		}
 
@@ -128,18 +141,17 @@ const (
 
 type literalToken struct {
 	Value Value
-	raw   string
+	raw   []rune
 }
 
 // Value is a union container
 type Value struct {
 	Type ValueType
-	raw  string
+	raw  []rune
 
 	integer int64
 	decimal float64
 	boolean bool
-	str     string
 }
 
 // Append will append values and change the type to a string
@@ -149,9 +161,9 @@ func (v *Value) Append(tok Token) {
 		v.Type = StringType
 	}
 	if litToken, ok := tok.(literalToken); ok {
-		v.str += litToken.Value.StringValue()
+		v.raw = append(v.raw, []rune(litToken.Value.StringValue())...)
 	} else {
-		v.str += tok.Raw()
+		v.raw = append(v.raw, tok.Raw()...)
 	}
 }
 
@@ -162,9 +174,9 @@ func (v Value) String() string {
 	case IntegerType:
 		return fmt.Sprintf("integer: %d", v.integer)
 	case StringType:
-		return fmt.Sprintf("string: %s", v.str)
+		return fmt.Sprintf("string: %s", string(v.raw))
 	case QuotedStringType:
-		return fmt.Sprintf("quoted string: %s", v.str)
+		return fmt.Sprintf("quoted string: %s", string(v.raw))
 	case BoolType:
 		return fmt.Sprintf("bool: %t", v.boolean)
 	default:
@@ -173,7 +185,6 @@ func (v Value) String() string {
 }
 
 func newLitToken(b []rune) (literalToken, int, error) {
-	value := ""
 	n := 0
 	var err error
 
@@ -181,16 +192,18 @@ func newLitToken(b []rune) (literalToken, int, error) {
 
 	if isNumberValue(b) {
 		var base int
-		value, base, n, err = getNumericalValue(b)
+		base, n, err = getNumericalValue(b)
 		if err != nil {
 			return token, 0, err
 		}
 
-		token.raw = value
-		token.Value.raw = value
-		if strings.Contains(value, ".") || hasExponent(value) {
+		token.raw = b[:n]
+		token.Value.raw = token.raw
+		value := token.raw
+		if contains(value, '.') || hasExponent(value) {
 			token.Value.Type = DecimalType
-			token.Value.decimal, err = strconv.ParseFloat(value, 64)
+			// TODO: use buffer
+			token.Value.decimal, err = strconv.ParseFloat(string(value), 64)
 		} else {
 			if base != 10 {
 				// strip off 0b, 0o, or 0x so strconv.ParseInt can
@@ -198,29 +211,31 @@ func newLitToken(b []rune) (literalToken, int, error) {
 				value = value[2:]
 			}
 			token.Value.Type = IntegerType
-			token.Value.integer, err = strconv.ParseInt(value, base, 64)
+			token.Value.integer, err = strconv.ParseInt(string(value), base, 64)
 		}
 	} else if isBoolValue(b) {
-		value, n, err = getBoolValue(b)
+		n, err = getBoolValue(b)
 
-		token.raw = value
-		token.Value.raw = value
+		token.raw = b[:n]
+		token.Value.raw = token.raw
 		token.Value.Type = BoolType
-		token.Value.boolean = value == "true"
+		token.Value.boolean = runeCompare(token.raw, runesTrue)
 	} else if b[0] == '"' {
-		value, n, err = getStringValue(b)
+		n, err = getStringValue(b)
+		if err != nil {
+			return token, n, err
+		}
 
-		token.raw = value
-		token.Value.raw = value
+		// remove quotes
+		token.raw = b[1 : n-1]
+		token.Value.raw = token.raw
 		token.Value.Type = QuotedStringType
-		token.Value.str = value
 	} else {
-		value, n, err = getValue(b)
+		n, err = getValue(b)
 
-		token.raw = value
-		token.Value.raw = value
+		token.raw = b[:n]
+		token.Value.raw = token.raw
 		token.Value.Type = StringType
-		token.Value.str = value
 	}
 
 	return token, n, err
@@ -249,17 +264,17 @@ func isTrimmable(r rune) bool {
 func (v Value) StringValue() string {
 	switch v.Type {
 	case StringType:
-		return strings.TrimFunc(v.str, isTrimmable)
+		return strings.TrimFunc(string(v.raw), isTrimmable)
 	case QuotedStringType:
 		// preserve all characters in the quotes
-		return v.str
+		return string(v.raw)
 	default:
-		return strings.TrimFunc(v.raw, isTrimmable)
+		return strings.TrimFunc(string(v.raw), isTrimmable)
 	}
 }
 
-func (token literalToken) Raw() string {
-	return token.raw
+func (token literalToken) Raw() []rune {
+	return []rune(token.raw)
 }
 
 func (token literalToken) Type() TokenType {
@@ -268,4 +283,28 @@ func (token literalToken) Type() TokenType {
 
 func (token literalToken) String() string {
 	return token.Value.String()
+}
+
+func contains(runes []rune, c rune) bool {
+	for i := 0; i < len(runes); i++ {
+		if runes[i] == c {
+			return true
+		}
+	}
+
+	return false
+}
+
+func runeCompare(v1 []rune, v2 []rune) bool {
+	if len(v1) != len(v2) {
+		return false
+	}
+
+	for i := 0; i < len(v1); i++ {
+		if v1[i] != v2[i] {
+			return false
+		}
+	}
+
+	return true
 }

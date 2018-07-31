@@ -14,12 +14,12 @@ func TestStringValue(t *testing.T) {
 		{
 			b:             []rune(`"foo"`),
 			expectedRead:  5,
-			expectedValue: "foo",
+			expectedValue: `"foo"`,
 		},
 		{
 			b:             []rune(`"123 !$_ 456 abc"`),
 			expectedRead:  17,
-			expectedValue: "123 !$_ 456 abc",
+			expectedValue: `"123 !$_ 456 abc"`,
 		},
 		{
 			b:             []rune("foo"),
@@ -32,18 +32,18 @@ func TestStringValue(t *testing.T) {
 	}
 
 	for i, c := range cases {
-		a, n, err := getStringValue(c.b)
+		n, err := getStringValue(c.b)
 
-		if e := c.expectedValue; e != a {
-			t.Errorf("%d: expected %v, but received %v", i+1, e, a)
+		if e, a := c.expectedValue, string(c.b[:n]); e != a {
+			t.Errorf("%d: expected %v, but received %v", i, e, a)
 		}
 
 		if e, a := c.expectedRead, n; e != a {
-			t.Errorf("%d: expected %v, but received %v", i+1, e, a)
+			t.Errorf("%d: expected %v, but received %v", i, e, a)
 		}
 
 		if e, a := c.expectedError, err != nil; e != a {
-			t.Errorf("%d: expected %v, but received %v", i+1, e, a)
+			t.Errorf("%d: expected %v, but received %v", i, e, a)
 		}
 	}
 }
@@ -72,9 +72,9 @@ func TestBoolValue(t *testing.T) {
 	}
 
 	for _, c := range cases {
-		a, n, err := getBoolValue(c.b)
+		n, err := getBoolValue(c.b)
 
-		if e := c.expectedValue; e != a {
+		if e, a := c.expectedValue, string(c.b[:n]); e != a {
 			t.Errorf("expected %v, but received %v", e, a)
 		}
 
@@ -141,9 +141,9 @@ func TestNumericalValue(t *testing.T) {
 	}
 
 	for i, c := range cases {
-		a, base, n, err := getNumericalValue(c.b)
+		base, n, err := getNumericalValue(c.b)
 
-		if e := c.expectedValue; e != a {
+		if e, a := c.expectedValue, string(c.b[:n]); e != a {
 			t.Errorf("%d: expected %v, but received %v", i+1, e, a)
 		}
 

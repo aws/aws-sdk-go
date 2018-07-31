@@ -2,7 +2,6 @@ package ini
 
 import (
 	"bytes"
-	"fmt"
 	"io"
 	"reflect"
 	"testing"
@@ -36,7 +35,7 @@ func TestParser(t *testing.T) {
 		{
 			r: bytes.NewBuffer([]byte(`;foo`)),
 			expectedStack: []AST{
-				newCommentStatement(commentToken{comment: ";foo"}),
+				newCommentStatement(commentToken{comment: []rune(";foo")}),
 			},
 		},
 		{
@@ -67,13 +66,13 @@ func TestParser(t *testing.T) {
 		{
 			r: bytes.NewBuffer([]byte(`# foo`)),
 			expectedStack: []AST{
-				newCommentStatement(commentToken{comment: "# foo"}),
+				newCommentStatement(commentToken{comment: []rune("# foo")}),
 			},
 		},
 		{
 			r: bytes.NewBuffer([]byte(`// foo`)),
 			expectedStack: []AST{
-				newCommentStatement(commentToken{comment: "// foo"}),
+				newCommentStatement(commentToken{comment: []rune("// foo")}),
 			},
 		},
 		{
@@ -82,9 +81,9 @@ func TestParser(t *testing.T) {
 					# baz
 					`)),
 			expectedStack: []AST{
-				newCommentStatement(commentToken{comment: ";foo"}),
-				newCommentStatement(commentToken{comment: "//bar"}),
-				newCommentStatement(commentToken{comment: "# baz"}),
+				newCommentStatement(commentToken{comment: []rune(";foo")}),
+				newCommentStatement(commentToken{comment: []rune("//bar")}),
+				newCommentStatement(commentToken{comment: []rune("# baz")}),
 			},
 		},
 		{
@@ -300,7 +299,6 @@ region = us-west-2
 	}
 
 	for i, c := range cases {
-		fmt.Println("running", i)
 		stack, err := ParseAST(c.r)
 
 		if e, a := c.expectedError, err != nil; e != a {

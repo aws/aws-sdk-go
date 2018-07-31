@@ -9,30 +9,46 @@ import (
 // and the list which is the list of ASTs that have been successfully
 // parsed.
 type ParseStack struct {
+	size      int
+	top       int
 	container []AST
 	list      []AST
+	index     int
+}
+
+func newParseStack(size int) ParseStack {
+	return ParseStack{
+		size:      size,
+		container: make([]AST, size),
+		list:      make([]AST, size),
+	}
 }
 
 // Pop will return and truncate the last container element.
 func (s *ParseStack) Pop() AST {
-	temp := s.container[s.Len()-1]
-	s.container = s.container[:s.Len()-1]
-	return temp
+	s.top--
+	return s.container[s.top]
 }
 
 // Push will add the new AST to the container
 func (s *ParseStack) Push(ast AST) {
-	s.container = append(s.container, ast)
+	s.container[s.top] = ast
+	s.top++
 }
 
 // MarkComplete will append the AST to the list of completed statements
 func (s *ParseStack) MarkComplete(ast AST) {
-	s.list = append(s.list, ast)
+	s.list[s.index] = ast
+	s.index++
+}
+
+func (s ParseStack) List() []AST {
+	return s.list[:s.index]
 }
 
 // Len will return the length of the container
 func (s *ParseStack) Len() int {
-	return len(s.container)
+	return s.top
 }
 
 func (s ParseStack) String() string {

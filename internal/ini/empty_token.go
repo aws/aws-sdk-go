@@ -7,6 +7,6 @@ func (token emptyToken) Type() TokenType {
 	return TokenNone
 }
 
-func (token emptyToken) Raw() string {
-	return ""
+func (token emptyToken) Raw() []rune {
+	return []rune{}
 }

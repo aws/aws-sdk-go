@@ -6,7 +6,7 @@ import (
 
 type wsToken struct {
 	emptyToken
-	raw string
+	raw []rune
 }
 
 // isWhitespace will return whether or not the character is
@@ -19,25 +19,23 @@ func isWhitespace(c rune) bool {
 
 func newWSToken(b []rune) (wsToken, int, error) {
 	i := 0
-	value := ""
 	for ; i < len(b); i++ {
 		if !isWhitespace(b[i]) {
 			break
 		}
-		value += string(b[i])
 	}
 
 	return wsToken{
-		raw: value,
+		raw: b[:i],
 	}, i, nil
 }
 
-func (tok wsToken) Raw() string {
+func (tok wsToken) Raw() []rune {
 	return tok.raw
 }
 
 func (tok wsToken) StringValue() string {
-	return tok.raw
+	return string(tok.raw)
 }
 
 func (tok wsToken) Type() TokenType {

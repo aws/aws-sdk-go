@@ -25,7 +25,7 @@ func (expr Expr) Kind() ASTKind {
 }
 
 func (expr Expr) String() string {
-	return fmt.Sprintf("%s", expr.Root.Raw())
+	return string(expr.Root.Raw())
 }
 
 // EqualExpr AST
@@ -54,5 +54,5 @@ func (expr EqualExpr) String() string {
 
 // Key will return a LHS value in the equal expr
 func (expr EqualExpr) Key() string {
-	return expr.Left.(Expr).Root.Raw()
+	return string(expr.Left.(Expr).Root.Raw())
 }

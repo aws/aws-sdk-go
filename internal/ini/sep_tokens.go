@@ -23,13 +23,17 @@ const (
 	sepTypeCloseBrace
 )
 
+var (
+	openBrace  = []rune("[")
+	closeBrace = []rune("]")
+)
+
 // sepToken is a separator token which represents the concept of
 // scoping in ini files.
 type sepToken struct {
 	emptyToken
 
 	sepType int
-	value   string
 }
 
 func newSepToken(b []rune) (sepToken, int, error) {
@@ -38,18 +42,22 @@ func newSepToken(b []rune) (sepToken, int, error) {
 	switch b[0] {
 	case '[':
 		tok.sepType = sepTypeOpenBrace
-		tok.value = string(b[0])
 	case ']':
 		tok.sepType = sepTypeCloseBrace
-		tok.value = string(b[0])
 	default:
 		return tok, 0, NewParseError(fmt.Sprintf("unexpected sep type, %v", b[0]))
 	}
 	return tok, 1, nil
 }
 
-func (token sepToken) Raw() string {
-	return token.value
+func (token sepToken) Raw() []rune {
+	switch token.sepType {
+	case sepTypeOpenBrace:
+		return openBrace
+	case sepTypeCloseBrace:
+		return closeBrace
+	}
+	return []rune{}
 }
 
 func (token sepToken) Type() TokenType {

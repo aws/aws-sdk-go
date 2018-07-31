@@ -47,7 +47,6 @@ func TestNewOp(t *testing.T) {
 			b:            []rune("="),
 			expectedRead: 1,
 			expectedToken: opToken{
-				value:  "=",
 				opType: opTypeEqual,
 			},
 		},
@@ -55,7 +54,6 @@ func TestNewOp(t *testing.T) {
 			b:            []rune(":"),
 			expectedRead: 1,
 			expectedToken: opToken{
-				value:  ":",
 				opType: opTypeEqual,
 			},
 		},

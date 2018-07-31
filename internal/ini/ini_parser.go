@@ -109,8 +109,23 @@ func ParseAST(r io.Reader) ([]AST, error) {
 		return []AST{}, err
 	}
 
+	return parse(tokens)
+}
+
+func ParseASTBytes(b []byte) ([]AST, error) {
+	lexer := iniLexer{}
+	tokens, err := lexer.tokenize(b)
+	if err != nil {
+		return []AST{}, err
+	}
+
+	return parse(tokens)
+}
+
+func parse(tokens []Token) ([]AST, error) {
 	start := Start{}
-	stack := ParseStack{}
+	stack := newParseStack(len(tokens) + 1)
+
 	stack.Push(start)
 	s := skipper{}
 
@@ -224,14 +239,24 @@ loop:
 				return nil, NewParseError(fmt.Sprintf("invalid expression token %v", tok))
 			}
 		case OpenScopeState:
-			if tok.Raw() != "[" {
+			t, ok := tok.(sepToken)
+			if !ok {
+				return nil, NewParseError("expected '['")
+			}
+
+			if t.sepType != sepTypeOpenBrace {
 				return nil, NewParseError("expected '['")
 			}
 
 			stmt := newStatement()
 			stack.Push(stmt)
 		case CloseScopeState:
-			if tok.Raw() == "]" {
+			t, ok := tok.(sepToken)
+			if !ok {
+				return nil, NewParseError("expected ']'")
+			}
+
+			if t.sepType == sepTypeCloseBrace {
 				stack.Push(newCompletedSectionStatement(k))
 			} else {
 				return nil, NewParseError("expected ']'")
@@ -250,7 +275,7 @@ loop:
 				// then the current token's raw value will be appended to the Name.
 				//
 				// This handles cases like [ profile default ]
-				t.Name = strings.Join([]string{t.Name, tok.Raw()}, " ")
+				t.Name = strings.Join([]string{t.Name, string(tok.Raw())}, " ")
 				stmt = t
 			} else {
 				stmt = newSectionStatement(tok)
@@ -286,10 +311,10 @@ loop:
 	}
 
 	// this occurs when a statement has not been completed
-	if len(stack.container) > 1 {
+	if stack.top > 1 {
 		return nil, NewParseError(fmt.Sprintf("incomplete expression: %v", stack.container))
 	}
 
 	// returns a sublist which exludes the start symbol
-	return stack.list, nil
+	return stack.List(), nil
 }

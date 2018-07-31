@@ -37,7 +37,7 @@ func TestStack(t *testing.T) {
 	}
 
 	for _, c := range cases {
-		p := ParseStack{}
+		p := newParseStack(10)
 		for _, ast := range c.asts {
 			p.Push(ast)
 			p.MarkComplete(ast)
@@ -52,11 +52,11 @@ func TestStack(t *testing.T) {
 			}
 		}
 
-		if e, a := len(p.list), len(c.expected); e != a {
+		if e, a := len(c.expected), p.index; e != a {
 			t.Errorf("expected %d, but received %d", e, a)
 		}
 
-		if e, a := p.list, c.asts; !reflect.DeepEqual(e, a) {
+		if e, a := c.asts, p.list[:p.index]; !reflect.DeepEqual(e, a) {
 			t.Errorf("expected %v, but received %v", e, a)
 		}
 	}

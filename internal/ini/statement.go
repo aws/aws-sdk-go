@@ -22,7 +22,7 @@ type SectionStatement struct {
 
 func newSectionStatement(tok Token) SectionStatement {
 	return SectionStatement{
-		Name: tok.Raw(),
+		Name: string(tok.Raw()),
 	}
 }
 
@@ -77,7 +77,7 @@ func (stmt CommentStatement) Kind() ASTKind {
 }
 
 func (stmt CommentStatement) String() string {
-	return stmt.Comment.Raw()
+	return string(stmt.Comment.Raw())
 }
 
 // CompletedSectionStatement represents a completed section

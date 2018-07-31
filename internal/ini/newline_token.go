@@ -4,7 +4,7 @@ package ini
 // primarily to handle nesting expressions.
 type newlineToken struct {
 	emptyToken
-	raw string
+	raw []rune
 }
 
 func isNewline(b []rune) bool {
@@ -24,21 +24,21 @@ func isNewline(b []rune) bool {
 }
 
 func newNewlineToken(b []rune) (newlineToken, int, error) {
-	value := string(b[0])
-	if value[0] == '\r' && isNewline(b[1:]) {
-		value += string(b[1])
+	i := 1
+	if b[0] == '\r' && isNewline(b[1:]) {
+		i++
 	}
 
-	if !isNewline([]rune(value)) {
+	if !isNewline([]rune(b[:i])) {
 		return newlineToken{}, 0, NewParseError("invalid new line token")
 	}
 
 	return newlineToken{
-		raw: value,
-	}, len(value), nil
+		raw: b[:i],
+	}, i, nil
 }
 
-func (tok newlineToken) Raw() string {
+func (tok newlineToken) Raw() []rune {
 	return tok.raw
 }
 

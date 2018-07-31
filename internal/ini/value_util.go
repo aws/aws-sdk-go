@@ -2,44 +2,43 @@ package ini
 
 import (
 	"fmt"
-	"strings"
 )
 
 // getStringValue will return a quoted string and the amount
 // of bytes read
 //
 // an error will be returned if the string is not properly formatted
-func getStringValue(b []rune) (string, int, error) {
+func getStringValue(b []rune) (int, error) {
 	if b[0] != '"' {
-		return "", 0, NewParseError("strings must start with '\"'")
+		return 0, NewParseError("strings must start with '\"'")
 	}
 
-	value := []rune{}
 	endQuote := false
 	i := 1
 
 	for ; i < len(b) && !endQuote; i++ {
-		if escaped := isEscaped(string(value), b[i]); b[i] == '"' && !escaped {
+		if escaped := isEscaped(b[:i], b[i]); b[i] == '"' && !escaped {
 			endQuote = true
 			break
 		} else if escaped {
-			value = value[:len(value)-1]
 			c, err := getEscapedByte(b[i])
 			if err != nil {
-				return "", 0, err
+				return 0, err
 			}
 
-			value = append(value, c)
+			b[i-1] = c
+			b = append(b[:i], b[i+1:]...)
+			i--
+
 			continue
 		}
-		value = append(value, b[i])
 	}
 
 	if !endQuote {
-		return "", 0, NewParseError("missing '\"' in string value")
+		return 0, NewParseError("missing '\"' in string value")
 	}
 
-	return string(value), i + 1, nil
+	return i + 1, nil
 }
 
 // getBoolValue will return a boolean and the amount
@@ -47,29 +46,27 @@ func getStringValue(b []rune) (string, int, error) {
 //
 // an error will be returned if the boolean is not of a correct
 // value
-func getBoolValue(b []rune) (string, int, error) {
+func getBoolValue(b []rune) (int, error) {
 	if len(b) < 4 {
-		return "", 0, NewParseError("invalid boolean value")
+		return 0, NewParseError("invalid boolean value")
 	}
 
-	value := ""
 	n := 0
 	for _, lv := range literalValues {
 		if len(lv) > len(b) {
 			continue
 		}
-		v := string(b[:len(lv)])
-		if v == lv {
-			value = v
-			n = len(v)
+
+		if isLitValue(lv, b) {
+			n = len(lv)
 		}
 	}
 
 	if n == 0 {
-		return "", 0, NewParseError("invalid boolean value")
+		return 0, NewParseError("invalid boolean value")
 	}
 
-	return value, n, nil
+	return n, nil
 }
 
 // getNumericalValue will return a numerical string, the amount
@@ -77,12 +74,11 @@ func getBoolValue(b []rune) (string, int, error) {
 //
 // an error will be returned if the number is not of a correct
 // value
-func getNumericalValue(b []rune) (string, int, int, error) {
+func getNumericalValue(b []rune) (int, int, error) {
 	if !isDigit(b[0]) {
-		return "", 0, 0, NewParseError("invalid digit value")
+		return 0, 0, NewParseError("invalid digit value")
 	}
 
-	value := ""
 	i := 0
 	helper := numberHelper{}
 
@@ -94,21 +90,20 @@ loop:
 			switch b[i] {
 			case '-':
 				if helper.IsNegative() || negativeIndex != 1 {
-					return "", 0, 0, NewParseError("parse error '-'")
+					return 0, 0, NewParseError("parse error '-'")
 				}
 
-				neg, n := getNegativeNumber(b[i:])
-				value += neg
+				n := getNegativeNumber(b[i:])
 				i += (n - 1)
 				helper.Determine(b[i])
 				continue
 			case '.':
 				if err := helper.Determine(b[i]); err != nil {
-					return "", 0, 0, err
+					return 0, 0, err
 				}
 			case 'e', 'E':
 				if err := helper.Determine(b[i]); err != nil {
-					return "", 0, 0, err
+					return 0, 0, err
 				}
 
 				negativeIndex = 0
@@ -118,16 +113,16 @@ loop:
 				}
 				fallthrough
 			case 'o', 'x':
-				if i == 0 && value != "0" {
-					return "", 0, 0, NewParseError("incorrect base format, expected leading '0'")
+				if i == 0 && b[i] != '0' {
+					return 0, 0, NewParseError("incorrect base format, expected leading '0'")
 				}
 
 				if i != 1 {
-					return "", 0, 0, NewParseError(fmt.Sprintf("incorrect base format found %s at %d index", string(b[i]), i))
+					return 0, 0, NewParseError(fmt.Sprintf("incorrect base format found %s at %d index", string(b[i]), i))
 				}
 
 				if err := helper.Determine(b[i]); err != nil {
-					return "", 0, 0, err
+					return 0, 0, err
 				}
 			default:
 				if i > 0 && isWhitespace(b[i]) {
@@ -140,19 +135,18 @@ loop:
 
 				if !(helper.numberFormat == hex && isHexByte(b[i])) {
 					if i+2 < len(b) && !isNewline(b[i:i+2]) {
-						return "", 0, 0, NewParseError("invalid numerical character")
+						return 0, 0, NewParseError("invalid numerical character")
 					} else if !isNewline([]rune{b[i]}) {
-						return "", 0, 0, NewParseError("invalid numerical character")
+						return 0, 0, NewParseError("invalid numerical character")
 					}
 
 					break loop
 				}
 			}
 		}
-		value += string(b[i])
 	}
 
-	return value, helper.Base(), i, nil
+	return helper.Base(), i, nil
 }
 
 // isDigit will return whether or not something is an integer
@@ -160,8 +154,8 @@ func isDigit(b rune) bool {
 	return b >= '0' && b <= '9'
 }
 
-func hasExponent(v string) bool {
-	return strings.Contains(v, "e") || strings.Contains(v, "E")
+func hasExponent(v []rune) bool {
+	return contains(v, 'e') || contains(v, 'E')
 }
 
 func isBinaryByte(b rune) bool {
@@ -190,12 +184,11 @@ func isHexByte(b rune) bool {
 		(b >= 'a' && b <= 'f')
 }
 
-func getValue(b []rune) (string, int, error) {
-	value := ""
+func getValue(b []rune) (int, error) {
 	i := 0
 
 	for i < len(b) {
-		if isWhitespace(b[i]) {
+		if isNewline(b[i:]) {
 			break
 		}
 
@@ -205,42 +198,40 @@ func getValue(b []rune) (string, int, error) {
 
 		valid, n, err := isValid(b[i:])
 		if err != nil {
-			return "", 0, err
+			return 0, err
 		}
 
 		if !valid {
 			break
 		}
 
-		value += string(b[i : i+n])
 		i += n
 	}
 
-	return value, i, nil
+	return i, nil
 }
 
 // getNegativeNumber will return a negative number from a
 // byte slice. This will iterate through all characters until
 // a non-digit has been found.
-func getNegativeNumber(b []rune) (string, int) {
+func getNegativeNumber(b []rune) int {
 	if b[0] != '-' {
-		return "", 0
+		return 0
 	}
-	value := string(b[0])
-	for i := 1; i < len(b); i++ {
+
+	i := 1
+	for ; i < len(b); i++ {
 		if !isDigit(b[i]) {
-			return value, len(value)
+			return i
 		}
-
-		value += string(b[i])
 	}
 
-	return value, len(value)
+	return i
 }
 
 // isEscaped will return whether or not the character is an escaped
 // character.
-func isEscaped(value string, b rune) bool {
+func isEscaped(value []rune, b rune) bool {
 	if len(value) == 0 {
 		return false
 	}

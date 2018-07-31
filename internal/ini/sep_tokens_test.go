@@ -44,7 +44,6 @@ func TestNewSep(t *testing.T) {
 			b:            []rune("["),
 			expectedRead: 1,
 			expectedToken: sepToken{
-				value:   "[",
 				sepType: sepTypeOpenBrace,
 			},
 		},
@@ -52,7 +51,6 @@ func TestNewSep(t *testing.T) {
 			b:            []rune("]"),
 			expectedRead: 1,
 			expectedToken: sepToken{
-				value:   "]",
 				sepType: sepTypeCloseBrace,
 			},
 		},

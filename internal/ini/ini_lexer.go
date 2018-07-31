@@ -1,6 +1,7 @@
 package ini
 
 import (
+	"bytes"
 	"io"
 	"io/ioutil"
 
@@ -56,7 +57,7 @@ type iniLexer struct{}
 // Token is represents a token used in lexical analysis
 type Token interface {
 	Type() TokenType
-	Raw() string
+	Raw() []rune
 }
 
 // Tokenize will return a list of tokens during lexical analysis of the
@@ -68,31 +69,32 @@ func (l *iniLexer) Tokenize(r io.Reader) ([]Token, error) {
 		return nil, awserr.New(ErrCodeUnableToReadFile, "unable to read file", err)
 	}
 
-	runes := []rune(string(b))
+	return l.tokenize(b)
+}
 
+func (l *iniLexer) tokenize(b []byte) ([]Token, error) {
+	runes := bytes.Runes(b)
 	var tok Token
+	var err error
 	n := 0
-	tokens := []Token{}
-	i := 0
+	tokens := make([]Token, 0, len(runes))
 
-	for i < len(runes) {
-		subB := runes[i:]
-
+	for len(runes) > 0 {
 		switch {
-		case isWhitespace(subB[0]):
-			tok, n, err = newWSToken(subB)
-		case isComma(subB[0]):
+		case isWhitespace(runes[0]):
+			tok, n, err = newWSToken(runes)
+		case isComma(runes[0]):
 			tok, n = newCommaToken(), 1
-		case isComment(subB):
-			tok, n, err = newCommentToken(subB)
-		case isNewline(subB):
-			tok, n, err = newNewlineToken(subB)
-		case isSep(subB):
-			tok, n, err = newSepToken(subB)
-		case isOp(subB):
-			tok, n, err = newOpToken(subB)
+		case isComment(runes):
+			tok, n, err = newCommentToken(runes)
+		case isNewline(runes):
+			tok, n, err = newNewlineToken(runes)
+		case isSep(runes):
+			tok, n, err = newSepToken(runes)
+		case isOp(runes):
+			tok, n, err = newOpToken(runes)
 		default:
-			tok, n, err = newLitToken(subB)
+			tok, n, err = newLitToken(runes)
 		}
 
 		if err != nil {
@@ -100,7 +102,8 @@ func (l *iniLexer) Tokenize(r io.Reader) ([]Token, error) {
 		}
 
 		tokens = append(tokens, tok)
-		i += n
+
+		runes = runes[n:]
 	}
 
 	return tokens, nil
