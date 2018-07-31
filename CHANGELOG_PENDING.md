@@ -1,6 +1,8 @@
 ### SDK Features
 
 ### SDK Enhancements
+* `service/dynamodb/dynamodbattribute`: Add support for custom struct tag keys([#2054](https://github.com/aws/aws-sdk-go/pull/2054))
+  * Adds support for (un)marshaling Go types using custom struct tag keys. The new `MarshalOptions.TagKey` allows the user to specify the tag key to use when (un)marshaling struct fields.  Adds support for struct tags such as `yaml`, `toml`, etc. Support for these keys are in name only, and require the tag value format and values to be supported by the package's Marshalers.
 
 ### SDK Bugs
 * `aws/endpoints`: Add workaround for AWS China Application Autoscaling ([#2080](https://github.com/aws/aws-sdk-go/pull/2080))
