@@ -4,11 +4,6 @@ import (
 	"unicode"
 )
 
-type wsToken struct {
-	emptyToken
-	raw []rune
-}
-
 // isWhitespace will return whether or not the character is
 // a whitespace character.
 //
@@ -17,7 +12,7 @@ func isWhitespace(c rune) bool {
 	return unicode.IsSpace(c) && c != '\n' && c != '\r'
 }
 
-func newWSToken(b []rune) (wsToken, int, error) {
+func newWSToken(b []rune) (Token, int, error) {
 	i := 0
 	for ; i < len(b); i++ {
 		if !isWhitespace(b[i]) {
@@ -25,19 +20,5 @@ func newWSToken(b []rune) (wsToken, int, error) {
 		}
 	}
 
-	return wsToken{
-		raw: b[:i],
-	}, i, nil
-}
-
-func (tok wsToken) Raw() []rune {
-	return tok.raw
-}
-
-func (tok wsToken) StringValue() string {
-	return string(tok.raw)
-}
-
-func (tok wsToken) Type() TokenType {
-	return TokenWS
+	return newToken(TokenWS, b[:i], NoneType), i, nil
 }

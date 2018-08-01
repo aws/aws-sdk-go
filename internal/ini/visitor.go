@@ -47,12 +47,11 @@ func (v *DefaultVisitor) VisitExpr(expr AST) error {
 				return NewParseError("unexpected token type")
 			}
 
-			tok, ok := rhs.Root.(literalToken)
-			if !ok {
+			if rhs.Root.Type() != TokenLit {
 				return NewParseError("unexpected token type")
 			}
 
-			t.values[opExpr.Key()] = tok.Value
+			t.values[opExpr.Key()] = newValue(rhs.Root.ValueType, rhs.Root.base, rhs.Root.Raw())
 		}
 	default:
 		return NewParseError(fmt.Sprintf("unsupported expression %v", expr))

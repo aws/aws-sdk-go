@@ -21,14 +21,14 @@ func getStringValue(b []rune) (int, error) {
 			endQuote = true
 			break
 		} else if escaped {
-			c, err := getEscapedByte(b[i])
+			/*c, err := getEscapedByte(b[i])
 			if err != nil {
 				return 0, err
 			}
 
 			b[i-1] = c
 			b = append(b[:i], b[i+1:]...)
-			i--
+			i--*/
 
 			continue
 		}
@@ -264,4 +264,21 @@ func getEscapedByte(b rune) (rune, error) {
 	default:
 		return b, NewParseError(fmt.Sprintf("invalid escaped character %c", b))
 	}
+}
+
+func removeEscapedCharacters(b []rune) []rune {
+	for i := 0; i < len(b); i++ {
+		if isEscaped(b[:i], b[i]) {
+			c, err := getEscapedByte(b[i])
+			if err != nil {
+				return b
+			}
+
+			b[i-1] = c
+			b = append(b[:i], b[i+1:]...)
+			i--
+		}
+	}
+
+	return b
 }

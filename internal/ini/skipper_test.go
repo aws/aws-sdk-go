@@ -7,7 +7,7 @@ import (
 
 func TestSkipper(t *testing.T) {
 	idTok, _, _ := newLitToken([]rune("id"))
-	nlTok := newlineToken{}
+	nlTok := newToken(TokenNL, []rune("\n"), NoneType)
 
 	cases := []struct {
 		name               string
@@ -21,7 +21,8 @@ func TestSkipper(t *testing.T) {
 			name: "empty case",
 			Fn: func(s *skipper) {
 			},
-			param: emptyToken{},
+			param:           emptyToken,
+			expectedPrevTok: emptyToken,
 		},
 		{
 			name: "skip case",
@@ -31,13 +32,15 @@ func TestSkipper(t *testing.T) {
 			param:              idTok,
 			expectedShouldSkip: true,
 			expected:           true,
+			expectedPrevTok:    emptyToken,
 		},
 		{
 			name: "continue case",
 			Fn: func(s *skipper) {
 				s.Continue()
 			},
-			param: emptyToken{},
+			param:           emptyToken,
+			expectedPrevTok: emptyToken,
 		},
 		{
 			name: "skip then continue case",
@@ -45,7 +48,8 @@ func TestSkipper(t *testing.T) {
 				s.Skip()
 				s.Continue()
 			},
-			param: emptyToken{},
+			param:           emptyToken,
+			expectedPrevTok: emptyToken,
 		},
 		{
 			name: "do not skip case",
@@ -60,19 +64,22 @@ func TestSkipper(t *testing.T) {
 	}
 
 	for _, c := range cases {
-		s := skipper{}
-		c.Fn(&s)
 
-		if e, a := c.expectedShouldSkip, s.shouldSkip; e != a {
-			t.Errorf("%s: expected %t, but received %t", c.name, e, a)
-		}
+		t.Run(c.name, func(t *testing.T) {
+			s := newSkipper()
+			c.Fn(&s)
 
-		if e, a := c.expectedPrevTok, s.prevTok; !reflect.DeepEqual(e, a) {
-			t.Errorf("%s: expected %v, but received %v", c.name, e, a)
-		}
+			if e, a := c.expectedShouldSkip, s.shouldSkip; e != a {
+				t.Errorf("%s: expected %t, but received %t", c.name, e, a)
+			}
 
-		if e, a := c.expected, s.ShouldSkip(c.param); e != a {
-			t.Errorf("%s: expected %t, but received %t", c.name, e, a)
-		}
+			if e, a := c.expectedPrevTok, s.prevTok; !reflect.DeepEqual(e, a) {
+				t.Errorf("%s: expected %v, but received %v", c.name, e, a)
+			}
+
+			if e, a := c.expected, s.ShouldSkip(c.param); e != a {
+				t.Errorf("%s: expected %t, but received %t", c.name, e, a)
+			}
+		})
 	}
 }

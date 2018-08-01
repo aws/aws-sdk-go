@@ -37,7 +37,7 @@ func TestStack(t *testing.T) {
 	}
 
 	for _, c := range cases {
-		p := newParseStack(10)
+		p := newParseStack(10, 10)
 		for _, ast := range c.asts {
 			p.Push(ast)
 			p.MarkComplete(ast)

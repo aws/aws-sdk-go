@@ -41,21 +41,17 @@ func TestNewOp(t *testing.T) {
 		b             []rune
 		expectedRead  int
 		expectedError bool
-		expectedToken opToken
+		expectedToken Token
 	}{
 		{
-			b:            []rune("="),
-			expectedRead: 1,
-			expectedToken: opToken{
-				opType: opTypeEqual,
-			},
+			b:             []rune("="),
+			expectedRead:  1,
+			expectedToken: newToken(TokenOp, []rune("="), NoneType),
 		},
 		{
-			b:            []rune(":"),
-			expectedRead: 1,
-			expectedToken: opToken{
-				opType: opTypeEqual,
-			},
+			b:             []rune(":"),
+			expectedRead:  1,
+			expectedToken: newToken(TokenOp, []rune(":"), NoneType),
 		},
 	}
 

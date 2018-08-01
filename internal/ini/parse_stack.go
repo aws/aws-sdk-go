@@ -9,18 +9,16 @@ import (
 // and the list which is the list of ASTs that have been successfully
 // parsed.
 type ParseStack struct {
-	size      int
 	top       int
 	container []AST
 	list      []AST
 	index     int
 }
 
-func newParseStack(size int) ParseStack {
+func newParseStack(sizeContainer, sizeList int) ParseStack {
 	return ParseStack{
-		size:      size,
-		container: make([]AST, size),
-		list:      make([]AST, size),
+		container: make([]AST, sizeContainer),
+		list:      make([]AST, sizeList),
 	}
 }
 

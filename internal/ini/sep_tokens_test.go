@@ -38,21 +38,17 @@ func TestNewSep(t *testing.T) {
 		b             []rune
 		expectedRead  int
 		expectedError bool
-		expectedToken sepToken
+		expectedToken Token
 	}{
 		{
-			b:            []rune("["),
-			expectedRead: 1,
-			expectedToken: sepToken{
-				sepType: sepTypeOpenBrace,
-			},
+			b:             []rune("["),
+			expectedRead:  1,
+			expectedToken: newToken(TokenSep, []rune("["), NoneType),
 		},
 		{
-			b:            []rune("]"),
-			expectedRead: 1,
-			expectedToken: sepToken{
-				sepType: sepTypeCloseBrace,
-			},
+			b:             []rune("]"),
+			expectedRead:  1,
+			expectedToken: newToken(TokenSep, []rune("]"), NoneType),
 		},
 	}
 

@@ -49,7 +49,7 @@ func (expr EqualExpr) Kind() ASTKind {
 }
 
 func (expr EqualExpr) String() string {
-	return fmt.Sprintf("{%s %s %s}", expr.Left, expr.Root, expr.Right)
+	return fmt.Sprintf("{%s %v %s}", expr.Left, expr.Root, expr.Right)
 }
 
 // Key will return a LHS value in the equal expr

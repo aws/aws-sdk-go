@@ -1,12 +1,5 @@
 package ini
 
-// commentToken represents a token in an ini configuration.
-// Comments may start with a ';', '#', or "//".
-type commentToken struct {
-	emptyToken
-	comment []rune
-}
-
 // isComment will return whether or not the next byte(s) is a
 // comment.
 func isComment(b []rune) bool {
@@ -30,7 +23,7 @@ func isComment(b []rune) bool {
 
 // newCommentToken will create a comment token and
 // return how many bytes were read.
-func newCommentToken(b []rune) (commentToken, int, error) {
+func newCommentToken(b []rune) (Token, int, error) {
 	i := 0
 	for ; i < len(b); i++ {
 		if b[i] == '\n' {
@@ -42,21 +35,5 @@ func newCommentToken(b []rune) (commentToken, int, error) {
 		}
 	}
 
-	return commentToken{
-		comment: b[:i],
-	}, i, nil
-}
-
-// Raw will return the raw value from the token
-func (token commentToken) Raw() []rune {
-	return token.comment
-}
-
-func (token commentToken) StringValue() string {
-	return string(token.comment)
-}
-
-// Type will return the TokenType
-func (token commentToken) Type() TokenType {
-	return TokenComment
+	return newToken(TokenComment, b[:i], NoneType), i, nil
 }

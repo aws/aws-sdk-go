@@ -7,167 +7,169 @@ import (
 
 func TestIsNumberValue(t *testing.T) {
 	cases := []struct {
+		name     string
 		b        []rune
 		expected bool
 	}{
 		{
+			"integer",
 			[]rune("123"),
 			true,
 		},
 		{
+			"negative integer",
 			[]rune("-123"),
 			true,
 		},
 		{
+			"decimal",
 			[]rune("123.456"),
 			true,
 		},
 		{
+			"small e exponent",
 			[]rune("1e234"),
 			true,
 		},
 		{
+			"big E exponent",
 			[]rune("1E234"),
 			true,
 		},
 		{
+			"error case exponent base 16",
 			[]rune("1ea4"),
 			false,
 		},
 		{
+			"error case negative",
 			[]rune("1-23"),
 			false,
 		},
 		{
+			"error case multiple negative",
 			[]rune("-1-23"),
 			false,
 		},
 		{
+			"error case end negative",
 			[]rune("123-"),
 			false,
 		},
 		{
+			"error case non-number",
 			[]rune("a"),
 			false,
 		},
 	}
 
 	for i, c := range cases {
-		if e, a := c.expected, isNumberValue(c.b); e != a {
-			t.Errorf("%d: expected %t, but received %t", i+1, e, a)
-		}
+		t.Run(c.name, func(t *testing.T) {
+			if e, a := c.expected, isNumberValue(c.b); e != a {
+				t.Errorf("%d: expected %t, but received %t", i+1, e, a)
+			}
+		})
 	}
 }
 
 // TODO: test errors
 func TestNewLiteralToken(t *testing.T) {
 	cases := []struct {
+		name          string
 		b             []rune
 		expectedRead  int
-		expectedToken literalToken
+		expectedToken Token
 		expectedError bool
 	}{
 		{
+			name:         "numbers",
 			b:            []rune("123"),
 			expectedRead: 3,
-			expectedToken: literalToken{
-				Value: Value{
-					Type:    IntegerType,
-					integer: 123,
-					raw:     []rune("123"),
-				},
-			},
+			expectedToken: newToken(TokenLit,
+				[]rune("123"),
+				IntegerType,
+			),
 		},
 		{
+			name:         "decimal",
 			b:            []rune("123.456"),
 			expectedRead: 7,
-			expectedToken: literalToken{
-				Value: Value{
-					Type:    DecimalType,
-					decimal: 123.456,
-					raw:     []rune("123.456"),
-				},
-			},
+			expectedToken: newToken(TokenLit,
+				[]rune("123.456"),
+				DecimalType,
+			),
 		},
 		{
+			name:         "two numbers",
 			b:            []rune("123 456"),
 			expectedRead: 3,
-			expectedToken: literalToken{
-				Value: Value{
-					Type:    IntegerType,
-					integer: 123,
-					raw:     []rune("123"),
-				},
-			},
+			expectedToken: newToken(TokenLit,
+				[]rune("123"),
+				IntegerType,
+			),
 		},
 		{
+			name:         "number followed by alpha",
 			b:            []rune("123 abc"),
 			expectedRead: 3,
-			expectedToken: literalToken{
-				Value: Value{
-					Type:    IntegerType,
-					integer: 123,
-					raw:     []rune("123"),
-				},
-			},
+			expectedToken: newToken(TokenLit,
+				[]rune("123"),
+				IntegerType,
+			),
 		},
 		{
+			name:         "quoted string followed by number",
 			b:            []rune(`"Hello" 123`),
 			expectedRead: 7,
-			expectedToken: literalToken{
-				Value: Value{
-					Type: QuotedStringType,
-					raw:  []rune("Hello"),
-				},
-			},
+			expectedToken: newToken(TokenLit,
+				[]rune("Hello"),
+				QuotedStringType,
+			),
 		},
 		{
+			name:         "quoted string",
 			b:            []rune(`"Hello World"`),
 			expectedRead: 13,
-			expectedToken: literalToken{
-				Value: Value{
-					Type: QuotedStringType,
-					raw:  []rune("Hello World"),
-				},
-			},
+			expectedToken: newToken(TokenLit,
+				[]rune("Hello World"),
+				QuotedStringType,
+			),
 		},
 		{
+			name:         "boolean true",
 			b:            []rune("true"),
 			expectedRead: 4,
-			expectedToken: literalToken{
-				Value: Value{
-					Type:    BoolType,
-					boolean: true,
-					raw:     []rune("true"),
-				},
-			},
+			expectedToken: newToken(TokenLit,
+				[]rune("true"),
+				BoolType,
+			),
 		},
 		{
+			name:         "boolean false",
 			b:            []rune("false"),
 			expectedRead: 5,
-			expectedToken: literalToken{
-				Value: Value{
-					Type:    BoolType,
-					boolean: false,
-					raw:     []rune("false"),
-				},
-			},
+			expectedToken: newToken(TokenLit,
+				[]rune("false"),
+				BoolType,
+			),
 		},
 	}
 
 	for i, c := range cases {
-		tok, n, err := newLitToken(c.b)
+		t.Run(c.name, func(t *testing.T) {
+			tok, n, err := newLitToken(c.b)
 
-		if e, a := c.expectedToken.Value, tok.Value; !reflect.DeepEqual(e, a) {
-			t.Errorf("%d: expected %v, but received %v", i+1, e, a)
-		}
+			if e, a := c.expectedToken.ValueType, tok.ValueType; !reflect.DeepEqual(e, a) {
+				t.Errorf("%d: expected %v, but received %v", i+1, e, a)
+			}
 
-		if e, a := c.expectedRead, n; e != a {
-			t.Errorf("%d: expected %v, but received %v", i+1, e, a)
-		}
+			if e, a := c.expectedRead, n; e != a {
+				t.Errorf("%d: expected %v, but received %v", i+1, e, a)
+			}
 
-		if e, a := c.expectedError, err != nil; e != a {
-			t.Errorf("%d: expected %v, but received %v", i+1, e, a)
-		}
+			if e, a := c.expectedError, err != nil; e != a {
+				t.Errorf("%d: expected %v, but received %v", i+1, e, a)
+			}
+		})
 	}
 }

@@ -1,8 +1,8 @@
 package ini
 
 import (
+	oldini "github.com/go-ini/ini"
 	"testing"
-	//oldini "github.com/go-ini/ini"
 )
 
 const (
@@ -20,7 +20,7 @@ region = us-west-2
 `
 )
 
-/*func BenchmarkINIParser(b *testing.B) {
+func BenchmarkINIParser(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		ParseBytes([]byte(section))
 	}
@@ -30,7 +30,7 @@ func BenchmarkGoINIParser(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		oldini.Load([]byte(section))
 	}
-}*/
+}
 
 func BenchmarkTokenize(b *testing.B) {
 	lexer := iniLexer{}

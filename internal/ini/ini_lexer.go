@@ -54,12 +54,6 @@ const (
 
 type iniLexer struct{}
 
-// Token is represents a token used in lexical analysis
-type Token interface {
-	Type() TokenType
-	Raw() []rune
-}
-
 // Tokenize will return a list of tokens during lexical analysis of the
 // io.Reader.
 // TODO: Change to use runes instead of bytes
@@ -74,37 +68,97 @@ func (l *iniLexer) Tokenize(r io.Reader) ([]Token, error) {
 
 func (l *iniLexer) tokenize(b []byte) ([]Token, error) {
 	runes := bytes.Runes(b)
-	var tok Token
 	var err error
 	n := 0
-	tokens := make([]Token, 0, len(runes))
+	tokenAmount := countTokens(runes)
+	tokens := make([]Token, tokenAmount)
+	count := 0
 
-	for len(runes) > 0 {
+	for len(runes) > 0 && count < tokenAmount {
 		switch {
 		case isWhitespace(runes[0]):
-			tok, n, err = newWSToken(runes)
+			tokens[count], n, err = newWSToken(runes)
 		case isComma(runes[0]):
-			tok, n = newCommaToken(), 1
+			tokens[count], n = newCommaToken(), 1
 		case isComment(runes):
-			tok, n, err = newCommentToken(runes)
+			tokens[count], n, err = newCommentToken(runes)
 		case isNewline(runes):
-			tok, n, err = newNewlineToken(runes)
+			tokens[count], n, err = newNewlineToken(runes)
 		case isSep(runes):
-			tok, n, err = newSepToken(runes)
+			tokens[count], n, err = newSepToken(runes)
 		case isOp(runes):
-			tok, n, err = newOpToken(runes)
+			tokens[count], n, err = newOpToken(runes)
 		default:
-			tok, n, err = newLitToken(runes)
+			tokens[count], n, err = newLitToken(runes)
 		}
 
 		if err != nil {
 			return nil, err
 		}
 
-		tokens = append(tokens, tok)
+		count++
 
 		runes = runes[n:]
 	}
 
-	return tokens, nil
+	return tokens[:count], nil
+}
+
+func countTokens(runes []rune) int {
+	count, n := 0, 0
+	var err error
+
+	for len(runes) > 0 {
+		switch {
+		case isWhitespace(runes[0]):
+			_, n, err = newWSToken(runes)
+		case isComma(runes[0]):
+			_, n = newCommaToken(), 1
+		case isComment(runes):
+			_, n, err = newCommentToken(runes)
+		case isNewline(runes):
+			_, n, err = newNewlineToken(runes)
+		case isSep(runes):
+			_, n, err = newSepToken(runes)
+		case isOp(runes):
+			_, n, err = newOpToken(runes)
+		default:
+			_, n, err = newLitToken(runes)
+		}
+
+		if err != nil {
+			return 0
+		}
+
+		count++
+		runes = runes[n:]
+	}
+
+	return count + 1
+}
+
+type Token struct {
+	t TokenType
+	//Value     Value
+	ValueType ValueType
+	base      int
+	raw       []rune
+}
+
+var emptyValue = Value{}
+
+func newToken(t TokenType, raw []rune, v ValueType) Token {
+	return Token{
+		t:         t,
+		raw:       raw,
+		ValueType: v,
+	}
+}
+
+func (tok Token) Raw() []rune {
+	return tok.raw
+}
+
+func (tok Token) Type() TokenType {
+	return tok.t
 }

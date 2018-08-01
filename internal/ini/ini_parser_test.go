@@ -28,34 +28,41 @@ func TestParser(t *testing.T) {
 	assumeID, _, _ := newLitToken([]rune("assumerole"))
 
 	cases := []struct {
+		name          string
 		r             io.Reader
 		expectedStack []AST
 		expectedError bool
 	}{
 		{
-			r: bytes.NewBuffer([]byte(`;foo`)),
+			name: "semicolon comment",
+			r:    bytes.NewBuffer([]byte(`;foo`)),
 			expectedStack: []AST{
-				newCommentStatement(commentToken{comment: []rune(";foo")}),
+				newCommentStatement(newToken(TokenComment, []rune(";foo"), NoneType)),
 			},
 		},
 		{
+			name:          "0==0",
 			r:             bytes.NewBuffer([]byte(`0==0`)),
 			expectedError: true,
 		},
 		{
+			name:          "0=:0",
 			r:             bytes.NewBuffer([]byte(`0=:0`)),
 			expectedError: true,
 		},
 		{
+			name:          "0:=0",
 			r:             bytes.NewBuffer([]byte(`0:=0`)),
 			expectedError: true,
 		},
 		{
+			name:          "0::0",
 			r:             bytes.NewBuffer([]byte(`0::0`)),
 			expectedError: true,
 		},
 		{
-			r: bytes.NewBuffer([]byte(`[ default ]x`)),
+			name: "section with variable",
+			r:    bytes.NewBuffer([]byte(`[ default ]x`)),
 			expectedStack: []AST{
 				newCompletedSectionStatement(
 					newSectionStatement(defaultID),
@@ -64,30 +71,34 @@ func TestParser(t *testing.T) {
 			},
 		},
 		{
-			r: bytes.NewBuffer([]byte(`# foo`)),
+			name: "# comment",
+			r:    bytes.NewBuffer([]byte(`# foo`)),
 			expectedStack: []AST{
-				newCommentStatement(commentToken{comment: []rune("# foo")}),
+				newCommentStatement(newToken(TokenComment, []rune("# foo"), NoneType)),
 			},
 		},
 		{
-			r: bytes.NewBuffer([]byte(`// foo`)),
+			name: "// comment",
+			r:    bytes.NewBuffer([]byte(`// foo`)),
 			expectedStack: []AST{
-				newCommentStatement(commentToken{comment: []rune("// foo")}),
+				newCommentStatement(newToken(TokenComment, []rune("// foo"), NoneType)),
 			},
 		},
 		{
+			name: "multiple comments",
 			r: bytes.NewBuffer([]byte(`;foo
 			//bar
 					# baz
 					`)),
 			expectedStack: []AST{
-				newCommentStatement(commentToken{comment: []rune(";foo")}),
-				newCommentStatement(commentToken{comment: []rune("//bar")}),
-				newCommentStatement(commentToken{comment: []rune("# baz")}),
+				newCommentStatement(newToken(TokenComment, []rune(";foo"), NoneType)),
+				newCommentStatement(newToken(TokenComment, []rune("//bar"), NoneType)),
+				newCommentStatement(newToken(TokenComment, []rune("# baz"), NoneType)),
 			},
 		},
 		{
-			r: bytes.NewBuffer([]byte(`x = 1234`)),
+			name: "assignment",
+			r:    bytes.NewBuffer([]byte(`x = 1234`)),
 			expectedStack: []AST{
 				newExprStatement(EqualExpr{
 					Left:  newExpression(xID),
@@ -97,7 +108,8 @@ func TestParser(t *testing.T) {
 			},
 		},
 		{
-			r: bytes.NewBuffer([]byte(`x=1234`)),
+			name: "assignment spaceless",
+			r:    bytes.NewBuffer([]byte(`x=1234`)),
 			expectedStack: []AST{
 				newExprStatement(EqualExpr{
 					Left:  newExpression(xID),
@@ -107,7 +119,8 @@ func TestParser(t *testing.T) {
 			},
 		},
 		{
-			r: bytes.NewBuffer([]byte(`x : 1234`)),
+			name: "assignment :",
+			r:    bytes.NewBuffer([]byte(`x : 1234`)),
 			expectedStack: []AST{
 				newExprStatement(EqualExpr{
 					Left:  newExpression(xID),
@@ -117,7 +130,8 @@ func TestParser(t *testing.T) {
 			},
 		},
 		{
-			r: bytes.NewBuffer([]byte(`x:1234`)),
+			name: "assignment : no spaces",
+			r:    bytes.NewBuffer([]byte(`x:1234`)),
 			expectedStack: []AST{
 				newExprStatement(EqualExpr{
 					Left:  newExpression(xID),
@@ -127,7 +141,8 @@ func TestParser(t *testing.T) {
 			},
 		},
 		{
-			r: bytes.NewBuffer([]byte(`[ default ]`)),
+			name: "section expression",
+			r:    bytes.NewBuffer([]byte(`[ default ]`)),
 			expectedStack: []AST{
 				newCompletedSectionStatement(
 					newSectionStatement(defaultID),
@@ -135,7 +150,8 @@ func TestParser(t *testing.T) {
 			},
 		},
 		{
-			r: bytes.NewBuffer([]byte(`[default]`)),
+			name: "section expression no spaces",
+			r:    bytes.NewBuffer([]byte(`[default]`)),
 			expectedStack: []AST{
 				newCompletedSectionStatement(
 					newSectionStatement(defaultID),
@@ -143,6 +159,7 @@ func TestParser(t *testing.T) {
 			},
 		},
 		{
+			name: "section statement",
 			r: bytes.NewBuffer([]byte(`[default]
 							region="us-west-2"`)),
 			expectedStack: []AST{
@@ -157,6 +174,7 @@ func TestParser(t *testing.T) {
 			},
 		},
 		{
+			name: "complex section statement",
 			r: bytes.NewBuffer([]byte(`[default]
 		region = us-west-2
 		credential_source = Ec2InstanceMetadata
@@ -201,6 +219,7 @@ func TestParser(t *testing.T) {
 			},
 		},
 		{
+			name: "complex section statement with nested params",
 			r: bytes.NewBuffer([]byte(`[default]
 s3 =
 	foo=bar
@@ -249,6 +268,7 @@ region = us-west-2
 			},
 		},
 		{
+			name: "complex section statement",
 			r: bytes.NewBuffer([]byte(`[default]
 region = us-west-2
 credential_source = Ec2InstanceMetadata
@@ -299,14 +319,20 @@ region = us-west-2
 	}
 
 	for i, c := range cases {
-		stack, err := ParseAST(c.r)
+		t.Run(c.name, func(t *testing.T) {
+			stack, err := ParseAST(c.r)
 
-		if e, a := c.expectedError, err != nil; e != a {
-			t.Errorf("%d: expected %t, but received %t with error %v", i, e, a, err)
-		}
+			if e, a := c.expectedError, err != nil; e != a {
+				t.Errorf("%d: expected %t, but received %t with error %v", i, e, a, err)
+			}
 
-		if e, a := c.expectedStack, stack; !reflect.DeepEqual(e, a) {
-			t.Errorf("%d: expected %v, but received %v", i, e, a)
-		}
+			if e, a := len(c.expectedStack), len(stack); e != a {
+				t.Errorf("expected same length %d, but received %d", e, a)
+			}
+
+			if e, a := c.expectedStack, stack; !reflect.DeepEqual(e, a) {
+				t.Errorf("%d: expected %v, but received %v", i, e, a)
+			}
+		})
 	}
 }

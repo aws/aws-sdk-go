@@ -8,6 +8,8 @@ import (
 )
 
 func TestTokenize(t *testing.T) {
+	numberToken := newToken(TokenLit, []rune("123"), IntegerType)
+	numberToken.base = 10
 	cases := []struct {
 		r              io.Reader
 		expectedTokens []Token
@@ -16,54 +18,21 @@ func TestTokenize(t *testing.T) {
 		{
 			r: bytes.NewBuffer([]byte(`x = 123`)),
 			expectedTokens: []Token{
-				literalToken{
-					Value: Value{
-						Type: StringType,
-						raw:  []rune("x"),
-					},
-					raw: []rune("x"),
-				},
-				wsToken{
-					raw: []rune(" "),
-				},
-				opToken{
-					opType: opTypeEqual,
-				},
-				wsToken{
-					raw: []rune(" "),
-				},
-				literalToken{
-					Value: Value{
-						Type:    IntegerType,
-						integer: 123,
-						raw:     []rune("123"),
-					},
-					raw: []rune("123"),
-				},
+				newToken(TokenLit, []rune("x"), StringType),
+				newToken(TokenWS, []rune(" "), NoneType),
+				newToken(TokenOp, []rune("="), NoneType),
+				newToken(TokenWS, []rune(" "), NoneType),
+				numberToken,
 			},
 		},
 		{
 			r: bytes.NewBuffer([]byte(`[ foo ]`)),
 			expectedTokens: []Token{
-				sepToken{
-					sepType: sepTypeOpenBrace,
-				},
-				wsToken{
-					raw: []rune(" "),
-				},
-				literalToken{
-					Value: Value{
-						Type: StringType,
-						raw:  []rune("foo"),
-					},
-					raw: []rune("foo"),
-				},
-				wsToken{
-					raw: []rune(" "),
-				},
-				sepToken{
-					sepType: sepTypeCloseBrace,
-				},
+				newToken(TokenSep, []rune("["), NoneType),
+				newToken(TokenWS, []rune(" "), NoneType),
+				newToken(TokenLit, []rune("foo"), StringType),
+				newToken(TokenWS, []rune(" "), NoneType),
+				newToken(TokenSep, []rune("]"), NoneType),
 			},
 		},
 	}

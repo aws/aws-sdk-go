@@ -11,11 +11,18 @@ package ini
 //	bar=baz // this will be included
 type skipper struct {
 	shouldSkip bool
+	TokenSet   bool
 	prevTok    Token
 }
 
+func newSkipper() skipper {
+	return skipper{
+		prevTok: emptyToken,
+	}
+}
+
 func (s *skipper) ShouldSkip(tok Token) bool {
-	if s.shouldSkip && s.prevTok != nil && s.prevTok.Type() == TokenNL && tok.Type() != TokenWS {
+	if s.shouldSkip && s.prevTok.Type() == TokenNL && tok.Type() != TokenWS {
 		s.Continue()
 		return false
 	}
@@ -26,10 +33,10 @@ func (s *skipper) ShouldSkip(tok Token) bool {
 
 func (s *skipper) Skip() {
 	s.shouldSkip = true
-	s.prevTok = nil
+	s.prevTok = emptyToken
 }
 
 func (s *skipper) Continue() {
 	s.shouldSkip = false
-	s.prevTok = nil
+	s.prevTok = emptyToken
 }

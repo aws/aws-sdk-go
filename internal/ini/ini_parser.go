@@ -124,10 +124,10 @@ func ParseASTBytes(b []byte) ([]AST, error) {
 
 func parse(tokens []Token) ([]AST, error) {
 	start := Start{}
-	stack := newParseStack(len(tokens) + 1)
+	stack := newParseStack(3, len(tokens))
 
 	stack.Push(start)
-	s := skipper{}
+	s := newSkipper()
 
 loop:
 	for stack.Len() > 0 {
@@ -138,7 +138,7 @@ loop:
 			// this occurs when all the tokens have been processed
 			// but reduction of what's left on the stack needs to
 			// occur.
-			tok = emptyToken{}
+			tok = emptyToken
 		} else {
 			tok = tokens[0]
 		}
@@ -224,11 +224,9 @@ loop:
 					)
 				}
 
-				t := rhs.Root.(literalToken)
-				if t.Value.Type != QuotedStringType {
-					t.Value.Append(tok)
+				if rhs.Root.ValueType != QuotedStringType {
+					rhs.Root.raw = append(rhs.Root.raw, tok.Raw()...)
 
-					rhs.Root = t
 					expr.Right = rhs
 					v.V = expr
 					stack.Push(v)
@@ -239,24 +237,14 @@ loop:
 				return nil, NewParseError(fmt.Sprintf("invalid expression token %v", tok))
 			}
 		case OpenScopeState:
-			t, ok := tok.(sepToken)
-			if !ok {
-				return nil, NewParseError("expected '['")
-			}
-
-			if t.sepType != sepTypeOpenBrace {
+			if !runeCompare(tok.Raw(), openBrace) {
 				return nil, NewParseError("expected '['")
 			}
 
 			stmt := newStatement()
 			stack.Push(stmt)
 		case CloseScopeState:
-			t, ok := tok.(sepToken)
-			if !ok {
-				return nil, NewParseError("expected ']'")
-			}
-
-			if t.sepType == sepTypeCloseBrace {
+			if runeCompare(tok.Raw(), closeBrace) {
 				stack.Push(newCompletedSectionStatement(k))
 			} else {
 				return nil, NewParseError("expected ']'")

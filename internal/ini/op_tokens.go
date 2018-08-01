@@ -5,7 +5,8 @@ import (
 )
 
 var (
-	equalOp = []rune("=")
+	equalOp      = []rune("=")
+	equalColonOp = []rune(":")
 )
 
 func isOp(b []rune) bool {
@@ -23,34 +24,16 @@ func isOp(b []rune) bool {
 	}
 }
 
-const (
-	opTypeNone = iota
-	opTypeEqual
-)
-
-// opToken is an operation token that signifies an expression.
-type opToken struct {
-	emptyToken
-
-	opType int
-}
-
-func newOpToken(b []rune) (opToken, int, error) {
-	tok := opToken{}
+func newOpToken(b []rune) (Token, int, error) {
+	tok := Token{}
 
 	switch b[0] {
-	case '=', ':':
-		tok.opType = opTypeEqual
+	case '=':
+		tok = newToken(TokenOp, equalOp, NoneType)
+	case ':':
+		tok = newToken(TokenOp, equalColonOp, NoneType)
 	default:
 		return tok, 0, NewParseError(fmt.Sprintf("unexpected op type, %v", b[0]))
 	}
 	return tok, 1, nil
-}
-
-func (token opToken) Raw() []rune {
-	return equalOp
-}
-
-func (token opToken) Type() TokenType {
-	return TokenOp
 }
