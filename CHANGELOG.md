@@ -1,3 +1,11 @@
+Release v1.15.3 (2018-08-01)
+===
+
+### Service Client Updates
+* `service/storagegateway`: Updates service API, documentation, and examples
+  * AWS Storage Gateway now enables you to create stored volumes with AWS KMS support.
+* `service/transcribe`: Updates service API and documentation
+
 Release v1.15.2 (2018-07-31)
 ===
 
