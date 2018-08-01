@@ -1539,16 +1539,31 @@ func (s *Media) SetMediaFileUri(v string) *Media {
 type Settings struct {
 	_ struct{} `type:"structure"`
 
+	// Instructs Amazon Transcribe to process each audio channel separately and
+	// then merge the transcription output of each channel into a single transcription.
+	//
+	// Amazon Transcribe also produces a transcription of each item detected on
+	// an audio channel, including the start time and end time of the item and alternative
+	// transcriptions of the item including the confidence that Amazon Transcribe
+	// has in the transcription.
+	//
+	// You can't set both ShowSpeakerLabels and ChannelIdentification in the same
+	// request. If you set both, your request returns a BadRequestException.
+	ChannelIdentification *bool `type:"boolean"`
+
 	// The maximum number of speakers to identify in the input audio. If there are
 	// more speakers in the audio than this number, multiple speakers will be identified
 	// as a single speaker. If you specify the MaxSpeakerLabels field, you must
 	// set the ShowSpeakerLabels field to true.
 	MaxSpeakerLabels *int64 `min:"2" type:"integer"`
 
-	// Determines whether the transcription job should use speaker recognition to
-	// identify different speakers in the input audio. If you set the ShowSpeakerLabels
-	// field to true, you must also set the maximum number of speaker labels MaxSpeakerLabels
-	// field.
+	// Determines whether the transcription job uses speaker recognition to identify
+	// different speakers in the input audio. Speaker recognition labels individual
+	// speakers in the audio file. If you set the ShowSpeakerLabels field to true,
+	// you must also set the maximum number of speaker labels MaxSpeakerLabels field.
+	//
+	// You can't set both ShowSpeakerLabels and ChannelIdentification in the same
+	// request. If you set both, your request returns a BadRequestException.
 	ShowSpeakerLabels *bool `type:"boolean"`
 
 	// The name of a vocabulary to use when processing the transcription job.
@@ -1579,6 +1594,12 @@ func (s *Settings) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetChannelIdentification sets the ChannelIdentification field's value.
+func (s *Settings) SetChannelIdentification(v bool) *Settings {
+	s.ChannelIdentification = &v
+	return s
 }
 
 // SetMaxSpeakerLabels sets the MaxSpeakerLabels field's value.

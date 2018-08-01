@@ -333,7 +333,8 @@
       "members":{
         "VocabularyName":{"shape":"VocabularyName"},
         "ShowSpeakerLabels":{"shape":"Boolean"},
-        "MaxSpeakerLabels":{"shape":"MaxSpeakers"}
+        "MaxSpeakerLabels":{"shape":"MaxSpeakers"},
+        "ChannelIdentification":{"shape":"Boolean"}
       }
     },
     "StartTranscriptionJobRequest":{
