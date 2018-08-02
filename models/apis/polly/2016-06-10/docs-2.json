@@ -68,6 +68,7 @@
         "InvalidSnsTopicArnException$message": null,
         "InvalidSsmlException$message": null,
         "InvalidTaskIdException$message": null,
+        "LanguageNotSupportedException$message": null,
         "LexiconNotFoundException$message": null,
         "LexiconSizeExceededException$message": null,
         "MarksNotSupportedForFormatException$message": null,
@@ -105,6 +106,12 @@
     "GetSpeechSynthesisTaskOutput": {
       "base": null,
       "refs": {
+      }
+    },
+    "IncludeAdditionalLanguageCodes": {
+      "base": null,
+      "refs": {
+        "DescribeVoicesInput$IncludeAdditionalLanguageCodes": "<p>Boolean value indicating whether to return any bilingual voices that use the specified language as an additional language. For instance, if you request all languages that use US English (es-US), and there is an Italian voice that speaks both Italian (it-IT) and US English, that voice will be included if you specify <code>yes</code> but not if you specify <code>no</code>.</p>"
       }
     },
     "InvalidLexiconException": {
@@ -151,14 +158,29 @@
       "base": null,
       "refs": {
         "DescribeVoicesInput$LanguageCode": "<p> The language identification tag (ISO 639 code for the language name-ISO 3166 country code) for filtering the list of voices returned. If you don't specify this optional parameter, all available voices are returned. </p>",
+        "LanguageCodeList$member": null,
         "LexiconAttributes$LanguageCode": "<p>Language code that the lexicon applies to. A lexicon with a language code such as \"en\" would be applied to all English languages (en-GB, en-US, en-AUS, en-WLS, and so on.</p>",
+        "StartSpeechSynthesisTaskInput$LanguageCode": "<p>Optional language code for the Speech Synthesis request. This is only necessary if using a bilingual voice, such as Aditi, which can be used for either Indian English (en-IN) or Hindi (hi-IN). </p> <p>If a bilingual voice is used and no language code is specified, Amazon Polly will use the default language of the bilingual voice. The default language for any voice is the one returned by the <a href=\"https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html\">DescribeVoices</a> operation for the <code>LanguageCode</code> parameter. For example, if no language code is specified, Aditi will use Indian English rather than Hindi.</p>",
+        "SynthesisTask$LanguageCode": "<p>Optional language code for a synthesis task. This is only necessary if using a bilingual voice, such as Aditi, which can be used for either Indian English (en-IN) or Hindi (hi-IN). </p> <p>If a bilingual voice is used and no language code is specified, Amazon Polly will use the default language of the bilingual voice. The default language for any voice is the one returned by the <a href=\"https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html\">DescribeVoices</a> operation for the <code>LanguageCode</code> parameter. For example, if no language code is specified, Aditi will use Indian English rather than Hindi.</p>",
+        "SynthesizeSpeechInput$LanguageCode": "<p>Optional language code for the Synthesize Speech request. This is only necessary if using a bilingual voice, such as Aditi, which can be used for either Indian English (en-IN) or Hindi (hi-IN). </p> <p>If a bilingual voice is used and no language code is specified, Amazon Polly will use the default language of the bilingual voice. The default language for any voice is the one returned by the <a href=\"https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html\">DescribeVoices</a> operation for the <code>LanguageCode</code> parameter. For example, if no language code is specified, Aditi will use Indian English rather than Hindi.</p>",
         "Voice$LanguageCode": "<p>Language code of the voice.</p>"
+      }
+    },
+    "LanguageCodeList": {
+      "base": null,
+      "refs": {
+        "Voice$AdditionalLanguageCodes": "<p>Additional codes for languages available for the specified voice in addition to its default language. </p> <p>For example, the default language for Aditi is Indian English (en-IN) because it was first used for that language. Since Aditi is bilingual and fluent in both Indian English and Hindi, this parameter would show the code <code>hi-IN</code>.</p>"
       }
     },
     "LanguageName": {
       "base": null,
       "refs": {
         "Voice$LanguageName": "<p>Human readable name of the language in English.</p>"
+      }
+    },
+    "LanguageNotSupportedException": {
+      "base": "<p>The language specified is not currently supported by Amazon Polly in this capacity.</p>",
+      "refs": {
       }
     },
     "LastModified": {
@@ -309,7 +331,7 @@
     "OutputS3KeyPrefix": {
       "base": null,
       "refs": {
-        "StartSpeechSynthesisTaskInput$OutputS3KeyPrefix": "<p>The Amazon S3 Key prefix for the output speech file.</p>"
+        "StartSpeechSynthesisTaskInput$OutputS3KeyPrefix": "<p>The Amazon S3 key prefix for the output speech file.</p>"
       }
     },
     "OutputUri": {
@@ -406,7 +428,7 @@
     "SynthesisTasks": {
       "base": null,
       "refs": {
-        "ListSpeechSynthesisTasksOutput$SynthesisTasks": "<p>SynthesisTask object that provides information from the specified task in the list request, including output format, creation time, task status, and so on.</p>"
+        "ListSpeechSynthesisTasksOutput$SynthesisTasks": "<p>List of SynthesisTask objects that provides information from the specified task in the list request, including output format, creation time, task status, and so on.</p>"
       }
     },
     "SynthesizeSpeechInput": {
@@ -447,7 +469,7 @@
       }
     },
     "TextLengthExceededException": {
-      "base": "<p>The value of the \"Text\" parameter is longer than the accepted limits. For the <code>SynthesizeSpeech</code> API, the limit for input text is a maximum of 6000 characters total, of which no more than 3000 can be billed characters. For the <code>SetSpeechSynthesisTask</code> API, the maximum is 200,000 characters, of which no more than 100,000 can be billed characters. SSML tags are not counted as billed characters.</p>",
+      "base": "<p>The value of the \"Text\" parameter is longer than the accepted limits. For the <code>SynthesizeSpeech</code> API, the limit for input text is a maximum of 6000 characters total, of which no more than 3000 can be billed characters. For the <code>StartSpeechSynthesisTask</code> API, the maximum is 200,000 characters, of which no more than 100,000 can be billed characters. SSML tags are not counted as billed characters.</p>",
       "refs": {
       }
     },

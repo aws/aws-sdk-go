@@ -6467,7 +6467,6 @@
         "WindowId",
         "Targets",
         "TaskArn",
-        "ServiceRoleArn",
         "TaskType",
         "MaxConcurrency",
         "MaxErrors"
