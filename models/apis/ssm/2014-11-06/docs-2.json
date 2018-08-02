@@ -69,7 +69,7 @@
     "GetParametersByPath": "<p>Retrieve parameters in a specific hierarchy. For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-working.html\">Working with Systems Manager Parameters</a> in the <i>AWS Systems Manager User Guide</i>. </p> <p>Request results are returned on a best-effort basis. If you specify <code>MaxResults</code> in the request, the response includes information up to the limit specified. The number of items returned, however, can be between zero and the value of <code>MaxResults</code>. If the service reaches an internal limit while processing the results, it stops the operation and returns the matching values up to that point and a <code>NextToken</code>. You can specify the <code>NextToken</code> in a subsequent call to get the next set of results.</p> <note> <p>This API action doesn't support filtering by tags. </p> </note>",
     "GetPatchBaseline": "<p>Retrieves information about a patch baseline.</p>",
     "GetPatchBaselineForPatchGroup": "<p>Retrieves the patch baseline that should be used for the specified patch group.</p>",
-    "LabelParameterVersion": null,
+    "LabelParameterVersion": "<p>A parameter label is a user-defined alias to help you manage different versions of a parameter. When you modify a parameter, Systems Manager automatically saves a new version and increments the version number by one. A label can help you remember the purpose of a parameter when there are multiple versions. </p> <p>Parameter labels have the following requirements and restrictions.</p> <ul> <li> <p>A version of a parameter can have a maximum of 10 labels.</p> </li> <li> <p>You can't attach the same label to different versions of the same parameter. For example, if version 1 has the label Production, then you can't attach Production to version 2.</p> </li> <li> <p>You can move a label from one version of a parameter to another.</p> </li> <li> <p>You can't create a label when you create a new parameter. You must attach a label to a specific version of a parameter.</p> </li> <li> <p>You can't delete a parameter label. If you no longer want to use a parameter label, then you must move it to a different version of a parameter.</p> </li> <li> <p>A label can have a maximum of 100 characters.</p> </li> <li> <p>Labels can contain letters (case sensitive), numbers, periods (.), hyphens (-), or underscores (_).</p> </li> <li> <p>Labels can't begin with a number, \"aws,\" or \"ssm\" (not case sensitive). If a label fails to meet these requirements, then the label is not associated with a parameter and the system displays it in the list of InvalidLabels.</p> </li> </ul>",
     "ListAssociationVersions": "<p>Retrieves all versions of an association for a specific association ID.</p>",
     "ListAssociations": "<p>Lists the associations for the specified Systems Manager document or instance.</p>",
     "ListCommandInvocations": "<p>An invocation is copy of a command sent to a specific instance. A command can apply to one or more instances. A command invocation applies to one instance. For example, if a user executes SendCommand against three instances, then a command invocation is created for each requested instance ID. ListCommandInvocations provide status about command execution.</p>",
@@ -3983,7 +3983,7 @@
         "GetParameterHistoryRequest$Name": "<p>The name of a parameter you want to query.</p>",
         "GetParameterRequest$Name": "<p>The name of the parameter you want to query.</p>",
         "GetParametersByPathRequest$Path": "<p>The hierarchy for the parameter. Hierarchies start with a forward slash (/) and end with the parameter name. A parameter name hierarchy can have a maximum of 15 levels. Here is an example of a hierarchy: <code>/Finance/Prod/IAD/WinServ2016/license33</code> </p>",
-        "LabelParameterVersionRequest$Name": null,
+        "LabelParameterVersionRequest$Name": "<p>The parameter name on which you want to attach one or more labels.</p>",
         "Parameter$Name": "<p>The name of the parameter.</p>",
         "ParameterHistory$Name": "<p>The name of the parameter.</p>",
         "ParameterMetadata$Name": "<p>The parameter name.</p>",
@@ -4008,7 +4008,7 @@
     "PSParameterVersion": {
       "base": null,
       "refs": {
-        "LabelParameterVersionRequest$ParameterVersion": null,
+        "LabelParameterVersionRequest$ParameterVersion": "<p>The specific version of the parameter on which you want to attach one or more labels. If no version is specified, the system attaches the label to the latest version.)</p>",
         "Parameter$Version": "<p>The parameter version.</p>",
         "ParameterHistory$Version": "<p>The parameter version.</p>",
         "ParameterMetadata$Version": "<p>The parameter version.</p>",
@@ -4064,8 +4064,8 @@
     "ParameterLabelList": {
       "base": null,
       "refs": {
-        "LabelParameterVersionRequest$Labels": null,
-        "LabelParameterVersionResult$InvalidLabels": null,
+        "LabelParameterVersionRequest$Labels": "<p>One or more labels to attach to the specified parameter version.</p>",
+        "LabelParameterVersionResult$InvalidLabels": "<p>The label does not meet the requirements. For information about parameter label requirements, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-labels.html\">Labeling Parameters</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
         "ParameterHistory$Labels": "<p>Labels assigned to the parameter version.</p>"
       }
     },
@@ -4184,7 +4184,7 @@
       }
     },
     "ParameterVersionLabelLimitExceeded": {
-      "base": null,
+      "base": "<p>A parameter version can have a maximum of ten labels.</p>",
       "refs": {
       }
     },
@@ -5001,9 +5001,9 @@
         "GetMaintenanceWindowTaskResult$ServiceRoleArn": "<p>The IAM service role to assume during task execution.</p>",
         "MaintenanceWindowRunCommandParameters$ServiceRoleArn": "<p>The IAM service role to assume during task execution.</p>",
         "MaintenanceWindowTask$ServiceRoleArn": "<p>The role that should be assumed when executing the task</p>",
-        "RegisterTaskWithMaintenanceWindowRequest$ServiceRoleArn": "<p>The role that should be assumed when executing the task.</p>",
+        "RegisterTaskWithMaintenanceWindowRequest$ServiceRoleArn": "<p>The role to assume when running the Maintenance Window task.</p> <p>If you do not specify a service role ARN, Systems Manager will use your account's service-linked role for Systems Manager by default. If no service-linked role for Systems Manager exists in your account, it will be created when you run <code>RegisterTaskWithMaintenanceWindow</code> without specifying a service role ARN.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/using-service-linked-roles.html#slr-permissions\">Service-Linked Role Permissions for Systems Manager</a> and <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-maintenance-permissions.html#maintenance-window-tasks-service-role\">Should I Use a Service-Linked Role or a Custom Service Role to Run Maintenance Window Tasks? </a> in the <i>AWS Systems Manager User Guide</i>.</p>",
         "SendCommandRequest$ServiceRoleArn": "<p>The IAM role that Systems Manager uses to send notifications. </p>",
-        "UpdateMaintenanceWindowTaskRequest$ServiceRoleArn": "<p>The IAM service role ARN to modify. The system assumes this role during task execution. </p>",
+        "UpdateMaintenanceWindowTaskRequest$ServiceRoleArn": "<p>The IAM service role ARN to modify. The system assumes this role during task execution.</p> <p>If you do not specify a service role ARN, Systems Manager will use your account's service-linked role for Systems Manager by default. If no service-linked role for Systems Manager exists in your account, it will be created when you run <code>RegisterTaskWithMaintenanceWindow</code> without specifying a service role ARN.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/using-service-linked-roles.html#slr-permissions\">Service-Linked Role Permissions for Systems Manager</a> and <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-maintenance-permissions.html#maintenance-window-tasks-service-role\">Should I Use a Service-Linked Role or a Custom Service Role to Run Maintenance Window Tasks? </a> in the <i>AWS Systems Manager User Guide</i>.</p>",
         "UpdateMaintenanceWindowTaskResult$ServiceRoleArn": "<p>The updated service role ARN value.</p>"
       }
     },
