@@ -1,3 +1,9 @@
+Release v1.15.5 (2018-08-03)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API and documentation
+
 Release v1.15.4 (2018-08-02)
 ===
 
