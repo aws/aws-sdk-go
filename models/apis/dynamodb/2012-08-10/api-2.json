@@ -649,6 +649,7 @@
         "BackupArn",
         "BackupName",
         "BackupStatus",
+        "BackupType",
         "BackupCreationDateTime"
       ],
       "members":{
@@ -656,7 +657,9 @@
         "BackupName":{"shape":"BackupName"},
         "BackupSizeBytes":{"shape":"BackupSizeBytes"},
         "BackupStatus":{"shape":"BackupStatus"},
-        "BackupCreationDateTime":{"shape":"BackupCreationDateTime"}
+        "BackupType":{"shape":"BackupType"},
+        "BackupCreationDateTime":{"shape":"BackupCreationDateTime"},
+        "BackupExpiryDateTime":{"shape":"Date"}
       }
     },
     "BackupInUseException":{
@@ -704,9 +707,26 @@
         "BackupArn":{"shape":"BackupArn"},
         "BackupName":{"shape":"BackupName"},
         "BackupCreationDateTime":{"shape":"BackupCreationDateTime"},
+        "BackupExpiryDateTime":{"shape":"Date"},
         "BackupStatus":{"shape":"BackupStatus"},
+        "BackupType":{"shape":"BackupType"},
         "BackupSizeBytes":{"shape":"BackupSizeBytes"}
       }
+    },
+    "BackupType":{
+      "type":"string",
+      "enum":[
+        "USER",
+        "SYSTEM"
+      ]
+    },
+    "BackupTypeFilter":{
+      "type":"string",
+      "enum":[
+        "USER",
+        "SYSTEM",
+        "ALL"
+      ]
     },
     "BackupsInputLimit":{
       "type":"integer",
@@ -1440,7 +1460,8 @@
         "Limit":{"shape":"BackupsInputLimit"},
         "TimeRangeLowerBound":{"shape":"TimeRangeLowerBound"},
         "TimeRangeUpperBound":{"shape":"TimeRangeUpperBound"},
-        "ExclusiveStartBackupArn":{"shape":"BackupArn"}
+        "ExclusiveStartBackupArn":{"shape":"BackupArn"},
+        "BackupType":{"shape":"BackupTypeFilter"}
       }
     },
     "ListBackupsOutput":{
