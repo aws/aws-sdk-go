@@ -271,6 +271,19 @@
         "BackupSummaries$member": null
       }
     },
+    "BackupType": {
+      "base": null,
+      "refs": {
+        "BackupDetails$BackupType": "<p>BackupType:</p> <ul> <li> <p> <code>USER</code> - On demand backup created by you.</p> </li> <li> <p> <code>SYSTEM</code> - On demand backup automatically created by DynamoDB.</p> </li> </ul>",
+        "BackupSummary$BackupType": "<p>BackupType:</p> <ul> <li> <p> <code>USER</code> - On demand backup created by you.</p> </li> <li> <p> <code>SYSTEM</code> - On demand backup automatically created by DynamoDB.</p> </li> </ul>"
+      }
+    },
+    "BackupTypeFilter": {
+      "base": null,
+      "refs": {
+        "ListBackupsInput$BackupType": "<p>The backups from the table specified by BackupType are listed.</p> <p>Where BackupType can be:</p> <ul> <li> <p> <code>USER</code> - On demand backup created by you.</p> </li> <li> <p> <code>SYSTEM</code> - On demand backup automatically created by DynamoDB.</p> </li> <li> <p> <code>ALL</code> - All types of on demand backups (USER and SYSTEM).</p> </li> </ul>"
+      }
+    },
     "BackupsInputLimit": {
       "base": null,
       "refs": {
@@ -493,6 +506,8 @@
     "Date": {
       "base": null,
       "refs": {
+        "BackupDetails$BackupExpiryDateTime": "<p>Time at which the automatic on demand backup created by DynamoDB will expire. This <code>SYSTEM</code> on demand backup expires automatically 35 days after its creation.</p>",
+        "BackupSummary$BackupExpiryDateTime": "<p>Time at which the automatic on demand backup created by DynamoDB will expire. This <code>SYSTEM</code> on demand backup expires automatically 35 days after its creation.</p>",
         "GlobalTableDescription$CreationDateTime": "<p>The creation time of the global table.</p>",
         "PointInTimeRecoveryDescription$EarliestRestorableDateTime": "<p>Specifies the earliest point in time you can restore your table to. It You can restore your table to any point in time during the last 35 days. </p>",
         "PointInTimeRecoveryDescription$LatestRestorableDateTime": "<p> <code>LatestRestorableDateTime</code> is typically 5 minutes before the current time. </p>",
