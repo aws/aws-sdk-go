@@ -1,3 +1,5 @@
+// +build go1.7
+
 package ini
 
 import (
@@ -12,52 +14,42 @@ func TestDataFiles(t *testing.T) {
 		path               string
 		expectedParseError bool
 		expectedWalkError  bool
-
-		expectedPath string
 	}{
 		{
-			path:         "./testdata/valid/empty_profile",
-			expectedPath: "./testdata/valid/empty_profile_expected",
+			path: "./testdata/valid/empty_profile",
 		},
 		{
-			path:         "./testdata/valid/array_profile",
-			expectedPath: "./testdata/valid/array_profile_expected",
+			path: "./testdata/valid/array_profile",
 		},
 		{
-			path:         "./testdata/valid/simple_profile",
-			expectedPath: "./testdata/valid/simple_profile_expected",
+			path: "./testdata/valid/simple_profile",
 		},
 		{
-			path:         "./testdata/valid/commented_profile",
-			expectedPath: "./testdata/valid/commented_profile_expected",
+			path: "./testdata/valid/commented_profile",
 		},
 		{
-			path:         "./testdata/valid/sections_profile",
-			expectedPath: "./testdata/valid/sections_profile_expected",
+			path: "./testdata/valid/sections_profile",
 		},
 		{
-			path:         "./testdata/valid/number_lhs_expr",
-			expectedPath: "./testdata/valid/number_lhs_expr_expected",
+			path: "./testdata/valid/number_lhs_expr",
 		},
 		{
-			path:         "./testdata/valid/base_numbers_profile",
-			expectedPath: "./testdata/valid/base_numbers_profile_expected",
+			path: "./testdata/valid/base_numbers_profile",
 		},
 		{
-			path:         "./testdata/valid/exponent_profile",
-			expectedPath: "./testdata/valid/exponent_profile_expected",
+			path: "./testdata/valid/exponent_profile",
 		},
 		{
-			path:         "./testdata/valid/escaped_profile",
-			expectedPath: "./testdata/valid/escaped_profile_expected",
+			path: "./testdata/valid/escaped_profile",
 		},
 		{
-			path:         "./testdata/valid/global_values_profile",
-			expectedPath: "./testdata/valid/global_values_profile_expected",
+			path: "./testdata/valid/global_values_profile",
 		},
 		{
-			path:         "./testdata/valid/utf_8_profile",
-			expectedPath: "./testdata/valid/utf_8_profile_expected",
+			path: "./testdata/valid/utf_8_profile",
+		},
+		{
+			path: "./testdata/valid/profile_name",
 		},
 		{
 			path:               "./testdata/invalid/bad_syntax_1",
@@ -99,15 +91,12 @@ func TestDataFiles(t *testing.T) {
 				t.Errorf("%d: expected error, but received none", i+1)
 			}
 
-			if len(c.expectedPath) == 0 {
-				return
-			}
-
+			expectedPath := c.path + "_expected"
 			e := map[string]interface{}{}
 
-			b, err := ioutil.ReadFile(c.expectedPath)
+			b, err := ioutil.ReadFile(expectedPath)
 			if err != nil {
-				t.Errorf("unexpected error opening expected file, %v", err)
+				return
 			}
 
 			err = json.Unmarshal(b, &e)

@@ -256,14 +256,17 @@ func newLitToken(b []rune) (Token, int, error) {
 	return token, n, err
 }
 
+// IntValue returns an integer value
 func (v Value) IntValue() int64 {
 	return v.integer
 }
 
+// FloatValue returns a float value
 func (v Value) FloatValue() float64 {
 	return v.decimal
 }
 
+// BoolValue returns a bool value
 func (v Value) BoolValue() bool {
 	return v.boolean
 }
@@ -276,6 +279,7 @@ func isTrimmable(r rune) bool {
 	return false
 }
 
+// StringValue returns the string value
 func (v Value) StringValue() string {
 	switch v.Type {
 	case StringType:

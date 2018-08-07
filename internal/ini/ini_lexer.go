@@ -56,7 +56,6 @@ type iniLexer struct{}
 
 // Tokenize will return a list of tokens during lexical analysis of the
 // io.Reader.
-// TODO: Change to use runes instead of bytes
 func (l *iniLexer) Tokenize(r io.Reader) ([]Token, error) {
 	b, err := ioutil.ReadAll(r)
 	if err != nil {
@@ -137,6 +136,7 @@ func countTokens(runes []rune) int {
 	return count + 1
 }
 
+// Token indicates a metadata about a given value.
 type Token struct {
 	t         TokenType
 	ValueType ValueType
@@ -154,10 +154,12 @@ func newToken(t TokenType, raw []rune, v ValueType) Token {
 	}
 }
 
+// Raw return the raw runes that were consumed
 func (tok Token) Raw() []rune {
 	return tok.raw
 }
 
+// Type returns the token type
 func (tok Token) Type() TokenType {
 	return tok.t
 }

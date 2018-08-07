@@ -120,19 +120,20 @@ func (b numberHelper) String() string {
 	buf := bytes.Buffer{}
 	i := 0
 
-	if b.numberFormat == binary {
+	switch b.numberFormat {
+	case binary:
 		i++
 		buf.WriteString(strconv.Itoa(i) + ": binary format\n")
-	} else if b.numberFormat == octal {
+	case octal:
 		i++
 		buf.WriteString(strconv.Itoa(i) + ": octal format\n")
-	} else if b.numberFormat == hex {
+	case hex:
 		i++
 		buf.WriteString(strconv.Itoa(i) + ": hex format\n")
-	} else if b.numberFormat == exponent {
+	case exponent:
 		i++
 		buf.WriteString(strconv.Itoa(i) + ": exponent format\n")
-	} else {
+	default:
 		i++
 		buf.WriteString(strconv.Itoa(i) + ": integer format\n")
 	}

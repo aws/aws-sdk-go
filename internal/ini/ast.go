@@ -31,6 +31,8 @@ func (k ASTKind) String() string {
 		return "expr"
 	case ASTKindStatement:
 		return "stmt"
+	case ASTKindSectionStatement:
+		return "section_stmt"
 	case ASTKindExprStatement:
 		return "expr_stmt"
 	case ASTKindCommentStatement:
@@ -73,10 +75,13 @@ func newASTWithRootToken(kind ASTKind, root Token, children ...AST) AST {
 	}
 }
 
+// AppendChild will append to the list of children an AST has.
 func (a *AST) AppendChild(child AST) {
 	a.Children = append(a.Children, child)
 }
 
+// GetRoot will return the root AST which can be the first entry
+// in the children list or a token.
 func (a *AST) GetRoot() AST {
 	if a.RootToken {
 		return *a
@@ -89,6 +94,7 @@ func (a *AST) GetRoot() AST {
 	return a.Children[0]
 }
 
+// GetChildren will return the current AST's list of children
 func (a *AST) GetChildren() []AST {
 	if len(a.Children) == 0 {
 		return []AST{}
@@ -101,6 +107,7 @@ func (a *AST) GetChildren() []AST {
 	return a.Children[1:]
 }
 
+// SetChildren will set and override all children of the AST.
 func (a *AST) SetChildren(children []AST) {
 	if a.RootToken {
 		a.Children = children
@@ -109,4 +116,5 @@ func (a *AST) SetChildren(children []AST) {
 	}
 }
 
+// Start is used to indicate the starting state of the parse table.
 var Start = newAST(ASTKindStart, AST{})

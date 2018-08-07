@@ -1,8 +1,5 @@
 package ini
 
-// TODO: Since we added a new state 'ASTKindEqualExpr' we have to
-// update the parser to reflect that change
-
 // newExpression will return an expression AST.
 // Expr represents an expression
 //

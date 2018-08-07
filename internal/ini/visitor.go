@@ -61,6 +61,8 @@ func (v *DefaultVisitor) VisitExpr(expr AST) error {
 			}
 
 			t.values[key] = v
+		default:
+			return NewParseError(fmt.Sprintf("unsupported expression %v", expr))
 		}
 	default:
 		return NewParseError(fmt.Sprintf("unsupported expression %v", expr))

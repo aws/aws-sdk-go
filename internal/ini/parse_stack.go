@@ -40,6 +40,7 @@ func (s *ParseStack) MarkComplete(ast AST) {
 	s.index++
 }
 
+// List will return the completed statements
 func (s ParseStack) List() []AST {
 	return s.list[:s.index]
 }

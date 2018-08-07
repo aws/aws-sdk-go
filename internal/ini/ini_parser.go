@@ -122,6 +122,8 @@ func ParseAST(r io.Reader) ([]AST, error) {
 	return parse(tokens)
 }
 
+// ParseASTBytes will parse input from a byte slice using
+// an LL(1) parser.
 func ParseASTBytes(b []byte) ([]AST, error) {
 	lexer := iniLexer{}
 	tokens, err := lexer.tokenize(b)
@@ -260,9 +262,13 @@ loop:
 				// k will represent a SectionStatement with the children representing
 				// the label of the section
 				stmt = newSectionStatement(tok)
+			case ASTKindSectionStatement:
+				k.Root.raw = append(k.Root.raw, ' ')
+				k.Root.raw = append(k.Root.raw, tok.Raw()...)
+				stmt = k
 			default:
 				return nil, NewParseError(
-					fmt.Sprintf("invalid statement: expected statement: %T", k.Kind),
+					fmt.Sprintf("invalid statement: expected statement: %v", k.Kind),
 				)
 			}
 

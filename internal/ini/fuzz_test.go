@@ -10,6 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/internal/ini"
 )
 
+// TestFuzz is used to test for crashes and not validity of the input
 func TestFuzz(t *testing.T) {
 	paths, err := filepath.Glob("testdata/fuzz/*")
 	if err != nil {

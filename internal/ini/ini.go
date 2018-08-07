@@ -35,6 +35,7 @@ func Parse(f io.Reader) (Sections, error) {
 	return v.Sections, nil
 }
 
+// ParseBytes will parse the given bytes and return the parsed sections.
 func ParseBytes(b []byte) (Sections, error) {
 	tree, err := ParseASTBytes(b)
 	if err != nil {

@@ -22,14 +22,18 @@ func NewParseError(message string) *ParseError {
 	}
 }
 
+// Code will return the ErrCodeParseError
 func (err *ParseError) Code() string {
 	return ErrCodeParseError
 }
 
+// Message returns the error's message
 func (err *ParseError) Message() string {
 	return err.msg
 }
 
+// OrigError return nothing since there will never be any
+// original error.
 func (err *ParseError) OrigError() error {
 	return nil
 }
