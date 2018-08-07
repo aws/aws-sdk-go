@@ -321,6 +321,7 @@
         "location":{"shape":"String"},
         "sha256sum":{"shape":"String"},
         "md5sum":{"shape":"String"},
+        "overrideArtifactName":{"shape":"WrapperBoolean"},
         "encryptionDisabled":{"shape":"WrapperBoolean"}
       }
     },
@@ -700,6 +701,7 @@
         "namespaceType":{"shape":"ArtifactNamespace"},
         "name":{"shape":"String"},
         "packaging":{"shape":"ArtifactPackaging"},
+        "overrideArtifactName":{"shape":"WrapperBoolean"},
         "encryptionDisabled":{"shape":"WrapperBoolean"}
       }
     },

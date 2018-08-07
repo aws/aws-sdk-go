@@ -4189,13 +4189,12 @@
     "CreateFlowLogsRequest":{
       "type":"structure",
       "required":[
-        "DeliverLogsPermissionArn",
-        "LogGroupName",
         "ResourceIds",
         "ResourceType",
         "TrafficType"
       ],
       "members":{
+        "DryRun":{"shape":"Boolean"},
         "ClientToken":{"shape":"String"},
         "DeliverLogsPermissionArn":{"shape":"String"},
         "LogGroupName":{"shape":"String"},
@@ -4204,7 +4203,9 @@
           "locationName":"ResourceId"
         },
         "ResourceType":{"shape":"FlowLogsResourceType"},
-        "TrafficType":{"shape":"TrafficType"}
+        "TrafficType":{"shape":"TrafficType"},
+        "LogDestinationType":{"shape":"LogDestinationType"},
+        "LogDestination":{"shape":"String"}
       }
     },
     "CreateFlowLogsResult":{
@@ -5306,6 +5307,7 @@
       "type":"structure",
       "required":["FlowLogIds"],
       "members":{
+        "DryRun":{"shape":"Boolean"},
         "FlowLogIds":{
           "shape":"ValueStringList",
           "locationName":"FlowLogId"
@@ -6226,6 +6228,7 @@
     "DescribeFlowLogsRequest":{
       "type":"structure",
       "members":{
+        "DryRun":{"shape":"Boolean"},
         "Filter":{"shape":"FilterList"},
         "FlowLogIds":{
           "shape":"ValueStringList",
@@ -9398,6 +9401,14 @@
         "TrafficType":{
           "shape":"TrafficType",
           "locationName":"trafficType"
+        },
+        "LogDestinationType":{
+          "shape":"LogDestinationType",
+          "locationName":"logDestinationType"
+        },
+        "LogDestination":{
+          "shape":"String",
+          "locationName":"logDestination"
         }
       }
     },
@@ -12696,6 +12707,13 @@
         "Group":{"shape":"PermissionGroup"},
         "UserId":{"shape":"String"}
       }
+    },
+    "LogDestinationType":{
+      "type":"string",
+      "enum":[
+        "cloud-watch-logs",
+        "s3"
+      ]
     },
     "Long":{"type":"long"},
     "MarketType":{
