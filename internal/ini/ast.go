@@ -10,9 +10,11 @@ const (
 	ASTKindNone = ASTKind(iota)
 	ASTKindStart
 	ASTKindExpr
+	ASTKindEqualExpr
 	ASTKindStatement
 	ASTKindSkipStatement
 	ASTKindExprStatement
+	ASTKindSectionStatement
 	ASTKindNestedSectionStatement
 	ASTKindCompletedNestedSectionStatement
 	ASTKindCommentStatement
@@ -46,14 +48,65 @@ func (k ASTKind) String() string {
 
 // AST interface allows us to determine what kind of node we
 // are on and casting may not need to be necessary.
-type AST interface {
-	Kind() ASTKind
+//
+// The root is always the first node in Children
+type AST struct {
+	Kind      ASTKind
+	Root      Token
+	RootToken bool
+	Children  []AST
 }
 
-// Start represents the starting parsing state.
-type Start struct{}
-
-// Kind will return the type of AST
-func (node Start) Kind() ASTKind {
-	return ASTKindStart
+func newAST(kind ASTKind, root AST, children ...AST) AST {
+	return AST{
+		Kind:     kind,
+		Children: append([]AST{root}, children...),
+	}
 }
+
+func newASTWithRootToken(kind ASTKind, root Token, children ...AST) AST {
+	return AST{
+		Kind:      kind,
+		Root:      root,
+		RootToken: true,
+		Children:  children,
+	}
+}
+
+func (a *AST) AppendChild(child AST) {
+	a.Children = append(a.Children, child)
+}
+
+func (a *AST) GetRoot() AST {
+	if a.RootToken {
+		return *a
+	}
+
+	if len(a.Children) == 0 {
+		return AST{}
+	}
+
+	return a.Children[0]
+}
+
+func (a *AST) GetChildren() []AST {
+	if len(a.Children) == 0 {
+		return []AST{}
+	}
+
+	if a.RootToken {
+		return a.Children
+	}
+
+	return a.Children[1:]
+}
+
+func (a *AST) SetChildren(children []AST) {
+	if a.RootToken {
+		a.Children = children
+	} else {
+		a.Children = append(a.Children[:1], children...)
+	}
+}
+
+var Start = newAST(ASTKindStart, AST{})

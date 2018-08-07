@@ -125,7 +125,7 @@ loop:
 					return 0, 0, err
 				}
 			default:
-				if i > 0 && isWhitespace(b[i]) {
+				if isWhitespace(b[i]) {
 					break loop
 				}
 

@@ -3,7 +3,6 @@ package ini
 import (
 	"fmt"
 	"io"
-	"strings"
 )
 
 // State enums for the parse table
@@ -64,6 +63,11 @@ var parseTable = map[ASTKind]map[TokenType]int{
 		TokenComment: CommentState,
 		TokenNone:    MarkCompleteState,
 	},
+	ASTKindEqualExpr: map[TokenType]int{
+		TokenLit: ValueState,
+		TokenWS:  SkipTokenState,
+		TokenNL:  SkipState,
+	},
 	ASTKindStatement: map[TokenType]int{
 		TokenLit:     SectionState,
 		TokenSep:     CloseScopeState,
@@ -81,6 +85,12 @@ var parseTable = map[ASTKind]map[TokenType]int{
 		TokenComment: CommentState,
 		TokenNone:    TerminalState,
 		TokenComma:   SkipState,
+	},
+	ASTKindSectionStatement: map[TokenType]int{
+		TokenLit: SectionState,
+		TokenSep: CloseScopeState,
+		TokenWS:  SkipTokenState,
+		TokenNL:  SkipTokenState,
 	},
 	ASTKindCompletedSectionStatement: map[TokenType]int{
 		TokenWS:      SkipTokenState,
@@ -123,7 +133,7 @@ func ParseASTBytes(b []byte) ([]AST, error) {
 }
 
 func parse(tokens []Token) ([]AST, error) {
-	start := Start{}
+	start := Start
 	stack := newParseStack(3, len(tokens))
 
 	stack.Push(start)
@@ -143,19 +153,17 @@ loop:
 			tok = tokens[0]
 		}
 
-		step := parseTable[k.Kind()][tok.Type()]
+		step := parseTable[k.Kind][tok.Type()]
 		if s.ShouldSkip(tok) {
 			step = SkipTokenState
 		}
-
-		//fmt.Println("STEP", step, k.Kind(), tok.Type(), tok.Raw())
 
 		switch step {
 		case TerminalState:
 			// Finished parsing. Push what should be the last
 			// statement to the stack. If there is anything left
 			// on the stack, an error in parsing has occurred.
-			if k.Kind() != ASTKindStart {
+			if k.Kind != ASTKindStart {
 				stack.MarkComplete(k)
 			}
 			break loop
@@ -165,7 +173,7 @@ loop:
 			// onto the stack.
 			stack.Push(k)
 		case StatementState:
-			if k.Kind() != ASTKindStart {
+			if k.Kind != ASTKindStart {
 				stack.MarkComplete(k)
 			}
 			expr := newExpression(tok)
@@ -176,7 +184,7 @@ loop:
 				continue
 			}
 
-			if _, ok := k.(Expr); !ok {
+			if k.Kind != ASTKindExpr {
 				return nil, NewParseError(
 					fmt.Sprintf("invalid expression: expected Expr type, but found %T type", k),
 				)
@@ -199,42 +207,32 @@ loop:
 			// expr_stmt -> equal_expr (expr_stmt')*
 			// expr_stmt' -> ws S | op S | MarkComplete
 			// S -> equal_expr' expr_stmt'
-			switch v := k.(type) {
-			case EqualExpr:
-				v.Right = newExpression(tok)
-				stack.Push(newExprStatement(v))
-			case ExprStatement:
-				expr, ok := v.V.(EqualExpr)
-				if !ok {
+			switch k.Kind {
+			case ASTKindEqualExpr:
+				// assiging a value to some key
+				k.AppendChild(newExpression(tok))
+				stack.Push(newExprStatement(k))
+			case ASTKindExprStatement:
+				root := k.GetRoot()
+				children := root.GetChildren()
+				if len(children) == 0 {
 					return nil, NewParseError(
-						fmt.Sprintf("invalid expression: expected equal expression, but found %T", v.V),
+						fmt.Sprintf("invalid expression: AST contains no children %s", k.Kind),
 					)
 				}
 
-				rhs, ok := expr.Right.(Expr)
-				if !ok {
-					return nil, NewParseError(
-						fmt.Sprintf("invalid expression: RHS is not an expression:  %T", expr.Right),
-					)
-				}
-
-				if rhs.Root.Type() != TokenLit {
-					return nil, NewParseError(
-						fmt.Sprintf("invalid expression: RHS is not a literal:  %v", rhs.Root),
-					)
-				}
+				rhs := children[len(children)-1]
 
 				if rhs.Root.ValueType != QuotedStringType {
+					rhs.Root.ValueType = StringType
 					rhs.Root.raw = append(rhs.Root.raw, tok.Raw()...)
 
-					expr.Right = rhs
-					v.V = expr
-					stack.Push(v)
-				} else {
-					stack.Push(k)
 				}
-			default:
-				return nil, NewParseError(fmt.Sprintf("invalid expression token %v", tok))
+
+				children[len(children)-1] = rhs
+				k.SetChildren(children)
+
+				stack.Push(k)
 			}
 		case OpenScopeState:
 			if !runeCompare(tok.Raw(), openBrace) {
@@ -244,33 +242,33 @@ loop:
 			stmt := newStatement()
 			stack.Push(stmt)
 		case CloseScopeState:
-			if runeCompare(tok.Raw(), closeBrace) {
-				stack.Push(newCompletedSectionStatement(k))
-			} else {
+			if !runeCompare(tok.Raw(), closeBrace) {
 				return nil, NewParseError("expected ']'")
 			}
-		case SectionState:
-			if k.Kind() != ASTKindStatement {
-				return nil, NewParseError(
-					fmt.Sprintf("invalid statement: expected statement: %T", k.Kind()),
-				)
-			}
 
+			stack.Push(newCompletedSectionStatement(k))
+		case SectionState:
 			var stmt AST
 
-			if t, ok := k.(SectionStatement); ok {
+			switch k.Kind {
+			case ASTKindStatement:
 				// If there are multiple literals inside of a scope declaration,
 				// then the current token's raw value will be appended to the Name.
 				//
 				// This handles cases like [ profile default ]
-				t.Name = strings.Join([]string{t.Name, string(tok.Raw())}, " ")
-				stmt = t
-			} else {
+				//
+				// k will represent a SectionStatement with the children representing
+				// the label of the section
 				stmt = newSectionStatement(tok)
+			default:
+				return nil, NewParseError(
+					fmt.Sprintf("invalid statement: expected statement: %T", k.Kind),
+				)
 			}
+
 			stack.Push(stmt)
 		case MarkCompleteState:
-			if k.Kind() != ASTKindStart {
+			if k.Kind != ASTKindStart {
 				stack.MarkComplete(k)
 			}
 
@@ -281,7 +279,7 @@ loop:
 			stack.Push(newSkipStatement(k))
 			s.Skip()
 		case CommentState:
-			if _, ok := k.(Start); ok {
+			if k.Kind == ASTKindStart {
 				stack.Push(k)
 			} else {
 				stack.MarkComplete(k)

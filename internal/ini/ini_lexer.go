@@ -138,8 +138,7 @@ func countTokens(runes []rune) int {
 }
 
 type Token struct {
-	t TokenType
-	//Value     Value
+	t         TokenType
 	ValueType ValueType
 	base      int
 	raw       []rune

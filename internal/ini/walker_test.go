@@ -64,12 +64,12 @@ func TestDataFiles(t *testing.T) {
 			expectedParseError: true,
 		},
 		{
-			path:              "./testdata/invalid/incomplete_section_profile",
-			expectedWalkError: true,
+			path:               "./testdata/invalid/incomplete_section_profile",
+			expectedParseError: true,
 		},
 		{
-			path:              "./testdata/invalid/syntax_error_comment",
-			expectedWalkError: true,
+			path:               "./testdata/invalid/syntax_error_comment",
+			expectedParseError: true,
 		},
 	}
 

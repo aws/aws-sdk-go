@@ -32,9 +32,9 @@ func BenchmarkGoINIParser(b *testing.B) {
 	}
 }
 
-func BenchmarkTokenize(b *testing.B) {
+/*func BenchmarkTokenize(b *testing.B) {
 	lexer := iniLexer{}
 	for i := 0; i < b.N; i++ {
 		lexer.tokenize([]byte(section))
 	}
-}
+}*/

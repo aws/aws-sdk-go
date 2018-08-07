@@ -1,3 +1,6 @@
+// +build fuzz
+
+// fuzz test data is stored in Amazon S3.
 package ini_test
 
 import (

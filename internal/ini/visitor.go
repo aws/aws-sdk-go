@@ -38,20 +38,29 @@ func (v *DefaultVisitor) VisitExpr(expr AST) error {
 		t.values = values{}
 	}
 
-	switch e := expr.(type) {
-	case ExprStatement:
-		switch opExpr := e.V.(type) {
-		case EqualExpr:
-			rhs, ok := opExpr.Right.(Expr)
-			if !ok {
+	switch expr.Kind {
+	case ASTKindExprStatement:
+		opExpr := expr.GetRoot()
+		switch opExpr.Kind {
+		case ASTKindEqualExpr:
+			children := opExpr.GetChildren()
+			if len(children) <= 1 {
 				return NewParseError("unexpected token type")
 			}
+
+			rhs := children[1]
 
 			if rhs.Root.Type() != TokenLit {
 				return NewParseError("unexpected token type")
 			}
 
-			t.values[opExpr.Key()] = newValue(rhs.Root.ValueType, rhs.Root.base, rhs.Root.Raw())
+			key := EqualExprKey(opExpr)
+			v, err := newValue(rhs.Root.ValueType, rhs.Root.base, rhs.Root.Raw())
+			if err != nil {
+				return err
+			}
+
+			t.values[key] = v
 		}
 	default:
 		return NewParseError(fmt.Sprintf("unsupported expression %v", expr))
@@ -63,16 +72,18 @@ func (v *DefaultVisitor) VisitExpr(expr AST) error {
 
 // VisitStatement visits statements...
 func (v *DefaultVisitor) VisitStatement(stmt AST) error {
-	switch s := stmt.(type) {
-	case CompletedSectionStatement:
-		child, ok := s.V.(SectionStatement)
-		if !ok {
+	switch stmt.Kind {
+	case ASTKindCompletedSectionStatement:
+		child := stmt.GetRoot()
+		if child.Kind != ASTKindSectionStatement {
 			return NewParseError(fmt.Sprintf("unsupported child statement: %T", child))
 		}
-		v.Sections.container[child.Name] = Section{}
-		v.scope = child.Name
+
+		name := string(child.Root.Raw())
+		v.Sections.container[name] = Section{}
+		v.scope = name
 	default:
-		return NewParseError(fmt.Sprintf("unsupported statement: %T", s))
+		return NewParseError(fmt.Sprintf("unsupported statement: %s", stmt.Kind))
 	}
 
 	return nil

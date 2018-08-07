@@ -1,58 +1,27 @@
 package ini
 
-import (
-	"fmt"
-)
+// TODO: Since we added a new state 'ASTKindEqualExpr' we have to
+// update the parser to reflect that change
 
+// newExpression will return an expression AST.
 // Expr represents an expression
 //
 //	grammar:
 //	expr -> string | number
-type Expr struct {
-	Root Token
+func newExpression(tok Token) AST {
+	return newASTWithRootToken(ASTKindExpr, tok)
 }
 
-// newExpression will return an expression AST.
-func newExpression(token Token) Expr {
-	return Expr{
-		Root: token,
+func newEqualExpr(left AST, tok Token) AST {
+	return newASTWithRootToken(ASTKindEqualExpr, tok, left)
+}
+
+// EqualExprKey will return a LHS value in the equal expr
+func EqualExprKey(ast AST) string {
+	children := ast.GetChildren()
+	if len(children) == 0 || ast.Kind != ASTKindEqualExpr {
+		return ""
 	}
-}
 
-// Kind will return the type of AST
-func (expr Expr) Kind() ASTKind {
-	return ASTKindExpr
-}
-
-func (expr Expr) String() string {
-	return string(expr.Root.Raw())
-}
-
-// EqualExpr AST
-type EqualExpr struct {
-	Root  Token
-	Left  AST
-	Right AST
-}
-
-func newEqualExpr(left AST, token Token) EqualExpr {
-	expr := EqualExpr{
-		Left: left,
-	}
-	expr.Root = token
-	return expr
-}
-
-// Kind will return the type of AST
-func (expr EqualExpr) Kind() ASTKind {
-	return ASTKindExpr
-}
-
-func (expr EqualExpr) String() string {
-	return fmt.Sprintf("{%s %v %s}", expr.Left, expr.Root, expr.Right)
-}
-
-// Key will return a LHS value in the equal expr
-func (expr EqualExpr) Key() string {
-	return string(expr.Left.(Expr).Root.Raw())
+	return string(children[0].Root.Raw())
 }

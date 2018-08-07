@@ -48,6 +48,7 @@ func isLitValue(want, have []rune) bool {
 func isNumberValue(b []rune) bool {
 	negativeIndex := 0
 	helper := numberHelper{}
+	needDigit := false
 
 	for i := 0; i < len(b); i++ {
 		negativeIndex++
@@ -58,12 +59,14 @@ func isNumberValue(b []rune) bool {
 				return false
 			}
 			helper.Determine(b[i])
+			needDigit = true
 			continue
 		case 'e', 'E':
 			if err := helper.Determine(b[i]); err != nil {
 				return false
 			}
 			negativeIndex = 0
+			needDigit = true
 			continue
 		case 'b':
 			if helper.numberFormat == hex {
@@ -71,6 +74,7 @@ func isNumberValue(b []rune) bool {
 			}
 			fallthrough
 		case 'o', 'x':
+			needDigit = true
 			if i == 0 {
 				return false
 			}
@@ -80,19 +84,21 @@ func isNumberValue(b []rune) bool {
 			if err := helper.Determine(b[i]); err != nil {
 				return false
 			}
+			needDigit = true
 			continue
 		}
 
 		if i > 0 && (isNewline(b[i:]) || isWhitespace(b[i])) {
-			return true
+			return !needDigit
 		}
 
 		if !helper.CorrectByte(b[i]) {
 			return false
 		}
+		needDigit = false
 	}
 
-	return true
+	return !needDigit
 }
 
 func isValid(b []rune) (bool, int, error) {
@@ -150,7 +156,7 @@ type Value struct {
 	str     string
 }
 
-func newValue(t ValueType, base int, raw []rune) Value {
+func newValue(t ValueType, base int, raw []rune) (Value, error) {
 	v := Value{
 		Type: t,
 		raw:  raw,
@@ -169,9 +175,6 @@ func newValue(t ValueType, base int, raw []rune) Value {
 		}
 
 		v.integer, err = strconv.ParseInt(string(raw), base, 64)
-		if err != nil {
-			panic(err)
-		}
 	case StringType:
 		v.str = string(raw)
 	case QuotedStringType:
@@ -180,7 +183,7 @@ func newValue(t ValueType, base int, raw []rune) Value {
 		v.boolean = runeCompare(v.raw, runesTrue)
 	}
 
-	return v
+	return v, err
 }
 
 // Append will append values and change the type to a string
@@ -220,8 +223,14 @@ func newLitToken(b []rune) (Token, int, error) {
 	var err error
 
 	token := Token{}
+	if b[0] == '"' {
+		n, err = getStringValue(b)
+		if err != nil {
+			return token, n, err
+		}
 
-	if isNumberValue(b) {
+		token = newToken(TokenLit, b[:n], QuotedStringType)
+	} else if isNumberValue(b) {
 		var base int
 		base, n, err = getNumericalValue(b)
 		if err != nil {
@@ -232,28 +241,13 @@ func newLitToken(b []rune) (Token, int, error) {
 		vType := IntegerType
 		if contains(value, '.') || hasExponent(value) {
 			vType = DecimalType
-			// TODO: use buffer
-		} else {
-			if base != 10 {
-				// strip off 0b, 0o, or 0x so strconv.ParseInt can
-				// parse the value.
-				value = value[2:]
-			}
 		}
-		token = newToken(TokenLit, b[:n], vType)
+		token = newToken(TokenLit, value, vType)
 		token.base = base
 	} else if isBoolValue(b) {
 		n, err = getBoolValue(b)
 
 		token = newToken(TokenLit, b[:n], BoolType)
-	} else if b[0] == '"' {
-		n, err = getStringValue(b)
-		if err != nil {
-			return token, n, err
-		}
-
-		// TODO: remove quotes
-		token = newToken(TokenLit, b[:n], QuotedStringType)
 	} else {
 		n, err = getValue(b)
 		token = newToken(TokenLit, b[:n], StringType)

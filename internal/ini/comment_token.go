@@ -30,7 +30,7 @@ func newCommentToken(b []rune) (Token, int, error) {
 			break
 		}
 
-		if len(b) > 2 && b[i] == '\r' && b[i+1] == '\n' {
+		if len(b)-i > 2 && b[i] == '\r' && b[i+1] == '\n' {
 			break
 		}
 	}

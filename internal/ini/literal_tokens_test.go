@@ -61,6 +61,11 @@ func TestIsNumberValue(t *testing.T) {
 			[]rune("a"),
 			false,
 		},
+		{
+			"utf8 whitespace",
+			[]rune("00"),
+			true,
+		},
 	}
 
 	for i, c := range cases {
@@ -151,6 +156,24 @@ func TestNewLiteralToken(t *testing.T) {
 			expectedToken: newToken(TokenLit,
 				[]rune("false"),
 				BoolType,
+			),
+		},
+		{
+			name: "utf8 whitespace",
+			b: []rune("00"),
+			expectedRead: 1,
+			expectedToken: newToken(TokenLit,
+				[]rune("0"),
+				IntegerType,
+			),
+		},
+		{
+			name: "utf8 whitespace expr",
+			b: []rune("0=00"),
+			expectedRead: 1,
+			expectedToken: newToken(TokenLit,
+				[]rune("0"),
+				StringType,
 			),
 		},
 	}

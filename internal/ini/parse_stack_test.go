@@ -5,12 +5,8 @@ import (
 	"testing"
 )
 
-type mockAST struct {
-	Value int
-}
-
-func (ast mockAST) Kind() ASTKind {
-	return ASTKindNone
+func newMockAST(v []rune) AST {
+	return newASTWithRootToken(ASTKindNone, Token{raw: v})
 }
 
 func TestStack(t *testing.T) {
@@ -20,18 +16,18 @@ func TestStack(t *testing.T) {
 	}{
 		{
 			asts: []AST{
-				mockAST{0},
-				mockAST{1},
-				mockAST{2},
-				mockAST{3},
-				mockAST{4},
+				newMockAST([]rune("0")),
+				newMockAST([]rune("1")),
+				newMockAST([]rune("2")),
+				newMockAST([]rune("3")),
+				newMockAST([]rune("4")),
 			},
 			expected: []AST{
-				mockAST{0},
-				mockAST{1},
-				mockAST{2},
-				mockAST{3},
-				mockAST{4},
+				newMockAST([]rune("0")),
+				newMockAST([]rune("1")),
+				newMockAST([]rune("2")),
+				newMockAST([]rune("3")),
+				newMockAST([]rune("4")),
 			},
 		},
 	}
@@ -47,7 +43,7 @@ func TestStack(t *testing.T) {
 			t.Errorf("expected the same legnth with %d, but received %d", e, a)
 		}
 		for i := len(c.expected) - 1; i >= 0; i-- {
-			if e, a := c.expected[i], p.Pop(); e != a {
+			if e, a := c.expected[i], p.Pop(); !reflect.DeepEqual(e, a) {
 				t.Errorf("stack element %d invalid: expected %v, but received %v", i, e, a)
 			}
 		}
