@@ -272,6 +272,10 @@ type PinpointAPI interface {
 	PutEventStreamWithContext(aws.Context, *pinpoint.PutEventStreamInput, ...request.Option) (*pinpoint.PutEventStreamOutput, error)
 	PutEventStreamRequest(*pinpoint.PutEventStreamInput) (*request.Request, *pinpoint.PutEventStreamOutput)
 
+	PutEvents(*pinpoint.PutEventsInput) (*pinpoint.PutEventsOutput, error)
+	PutEventsWithContext(aws.Context, *pinpoint.PutEventsInput, ...request.Option) (*pinpoint.PutEventsOutput, error)
+	PutEventsRequest(*pinpoint.PutEventsInput) (*request.Request, *pinpoint.PutEventsOutput)
+
 	RemoveAttributes(*pinpoint.RemoveAttributesInput) (*pinpoint.RemoveAttributesOutput, error)
 	RemoveAttributesWithContext(aws.Context, *pinpoint.RemoveAttributesInput, ...request.Option) (*pinpoint.RemoveAttributesOutput, error)
 	RemoveAttributesRequest(*pinpoint.RemoveAttributesInput) (*request.Request, *pinpoint.RemoveAttributesOutput)

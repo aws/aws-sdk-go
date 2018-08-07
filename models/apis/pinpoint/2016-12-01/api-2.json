@@ -1442,6 +1442,33 @@
         "shape" : "TooManyRequestsException"
       } ]
     },
+    "PutEvents" : {
+      "name" : "PutEvents",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/v1/apps/{application-id}/events",
+        "responseCode" : 202
+      },
+      "input" : {
+        "shape" : "PutEventsRequest"
+      },
+      "output" : {
+        "shape" : "PutEventsResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      }, {
+        "shape" : "ForbiddenException"
+      }, {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "MethodNotAllowedException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
     "RemoveAttributes" : {
       "name" : "RemoveAttributes",
       "http" : {
@@ -2360,6 +2387,9 @@
       "members" : {
         "Item" : {
           "shape" : "ListOfActivityResponse"
+        },
+        "NextToken" : {
+          "shape" : "__string"
         }
       },
       "required" : [ ]
@@ -3506,6 +3536,17 @@
         }
       }
     },
+    "EndpointItemResponse" : {
+      "type" : "structure",
+      "members" : {
+        "Message" : {
+          "shape" : "__string"
+        },
+        "StatusCode" : {
+          "shape" : "__integer"
+        }
+      }
+    },
     "EndpointLocation" : {
       "type" : "structure",
       "members" : {
@@ -3681,6 +3722,41 @@
       },
       "required" : [ ]
     },
+    "Event" : {
+      "type" : "structure",
+      "members" : {
+        "Attributes" : {
+          "shape" : "MapOf__string"
+        },
+        "ClientSdkVersion" : {
+          "shape" : "__string"
+        },
+        "EventType" : {
+          "shape" : "__string"
+        },
+        "Metrics" : {
+          "shape" : "MapOf__double"
+        },
+        "Session" : {
+          "shape" : "Session"
+        },
+        "Timestamp" : {
+          "shape" : "__string"
+        }
+      },
+      "required" : [ ]
+    },
+    "EventItemResponse" : {
+      "type" : "structure",
+      "members" : {
+        "Message" : {
+          "shape" : "__string"
+        },
+        "StatusCode" : {
+          "shape" : "__integer"
+        }
+      }
+    },
     "EventStream" : {
       "type" : "structure",
       "members" : {
@@ -3704,6 +3780,35 @@
         }
       },
       "required" : [ ]
+    },
+    "EventsBatch" : {
+      "type" : "structure",
+      "members" : {
+        "Endpoint" : {
+          "shape" : "PublicEndpoint"
+        },
+        "Events" : {
+          "shape" : "MapOfEvent"
+        }
+      },
+      "required" : [ ]
+    },
+    "EventsRequest" : {
+      "type" : "structure",
+      "members" : {
+        "BatchItem" : {
+          "shape" : "MapOfEventsBatch"
+        }
+      },
+      "required" : [ ]
+    },
+    "EventsResponse" : {
+      "type" : "structure",
+      "members" : {
+        "Results" : {
+          "shape" : "MapOfItemResponse"
+        }
+      }
     },
     "ExportJobRequest" : {
       "type" : "structure",
@@ -4908,6 +5013,17 @@
         "httpStatusCode" : 500
       }
     },
+    "ItemResponse" : {
+      "type" : "structure",
+      "members" : {
+        "EndpointItemResponse" : {
+          "shape" : "EndpointItemResponse"
+        },
+        "EventsItemResponse" : {
+          "shape" : "MapOfEventItemResponse"
+        }
+      }
+    },
     "JobStatus" : {
       "type" : "string",
       "enum" : [ "CREATED", "INITIALIZING", "PROCESSING", "COMPLETING", "COMPLETED", "FAILING", "FAILED" ]
@@ -5005,6 +5121,9 @@
         },
         "MessageConfiguration" : {
           "shape" : "DirectMessageConfiguration"
+        },
+        "TraceId" : {
+          "shape" : "__string"
         }
       },
       "required" : [ ]
@@ -5175,6 +5294,44 @@
       "required" : [ "NumberValidateResponse" ],
       "payload" : "NumberValidateResponse"
     },
+    "PublicEndpoint" : {
+      "type" : "structure",
+      "members" : {
+        "Address" : {
+          "shape" : "__string"
+        },
+        "Attributes" : {
+          "shape" : "MapOfListOf__string"
+        },
+        "ChannelType" : {
+          "shape" : "ChannelType"
+        },
+        "Demographic" : {
+          "shape" : "EndpointDemographic"
+        },
+        "EffectiveDate" : {
+          "shape" : "__string"
+        },
+        "EndpointStatus" : {
+          "shape" : "__string"
+        },
+        "Location" : {
+          "shape" : "EndpointLocation"
+        },
+        "Metrics" : {
+          "shape" : "MapOf__double"
+        },
+        "OptOut" : {
+          "shape" : "__string"
+        },
+        "RequestId" : {
+          "shape" : "__string"
+        },
+        "User" : {
+          "shape" : "EndpointUser"
+        }
+      }
+    },
     "PutEventStreamRequest" : {
       "type" : "structure",
       "members" : {
@@ -5199,6 +5356,31 @@
       },
       "required" : [ "EventStream" ],
       "payload" : "EventStream"
+    },
+    "PutEventsRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ApplicationId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "application-id"
+        },
+        "EventsRequest" : {
+          "shape" : "EventsRequest"
+        }
+      },
+      "required" : [ "ApplicationId", "EventsRequest" ],
+      "payload" : "EventsRequest"
+    },
+    "PutEventsResponse" : {
+      "type" : "structure",
+      "members" : {
+        "EventsResponse" : {
+          "shape" : "EventsResponse"
+        }
+      },
+      "required" : [ "EventsResponse" ],
+      "payload" : "EventsResponse"
     },
     "QuietTime" : {
       "type" : "structure",
@@ -5583,6 +5765,9 @@
         "MessageConfiguration" : {
           "shape" : "DirectMessageConfiguration"
         },
+        "TraceId" : {
+          "shape" : "__string"
+        },
         "Users" : {
           "shape" : "MapOfEndpointSendConfiguration"
         }
@@ -5629,6 +5814,24 @@
       "required" : [ "SendUsersMessageResponse" ],
       "payload" : "SendUsersMessageResponse"
     },
+    "Session" : {
+      "type" : "structure",
+      "members" : {
+        "Duration" : {
+          "shape" : "__integer"
+        },
+        "Id" : {
+          "shape" : "__string"
+        },
+        "StartTimestamp" : {
+          "shape" : "__string"
+        },
+        "StopTimestamp" : {
+          "shape" : "__string"
+        }
+      },
+      "required" : [ ]
+    },
     "SetDimension" : {
       "type" : "structure",
       "members" : {
@@ -5643,7 +5846,7 @@
     },
     "SourceType" : {
       "type" : "string",
-      "enum" : [ "ALL", "ANY" ]
+      "enum" : [ "ALL", "ANY", "NONE" ]
     },
     "TooManyRequestsException" : {
       "type" : "structure",
@@ -6312,6 +6515,42 @@
       },
       "value" : {
         "shape" : "EndpointSendConfiguration"
+      }
+    },
+    "MapOfEvent" : {
+      "type" : "map",
+      "key" : {
+        "shape" : "__string"
+      },
+      "value" : {
+        "shape" : "Event"
+      }
+    },
+    "MapOfEventItemResponse" : {
+      "type" : "map",
+      "key" : {
+        "shape" : "__string"
+      },
+      "value" : {
+        "shape" : "EventItemResponse"
+      }
+    },
+    "MapOfEventsBatch" : {
+      "type" : "map",
+      "key" : {
+        "shape" : "__string"
+      },
+      "value" : {
+        "shape" : "EventsBatch"
+      }
+    },
+    "MapOfItemResponse" : {
+      "type" : "map",
+      "key" : {
+        "shape" : "__string"
+      },
+      "value" : {
+        "shape" : "ItemResponse"
       }
     },
     "MapOfMessageResult" : {

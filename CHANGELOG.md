@@ -1,3 +1,18 @@
+Release v1.15.7 (2018-08-07)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * Release semantic versioning feature for CodeBuild
+* `service/ec2`: Updates service API and documentation
+  * Amazon VPC Flow Logs adds support for delivering flow logs directly to S3
+* `service/logs`: Updates service API and documentation
+  * Documentation Update
+* `service/pinpoint`: Updates service API and documentation
+  * This release includes a new batch API call for Amazon Pinpoint which can be used to update endpoints and submit events. This call will accept events from clients such as mobile devices and AWS SDKs. This call will accept requests which has multiple endpoints and multiple events attached to those endpoints in a single call. This call will update the endpoints attached and will ingest events for those endpoints. The response from this call will be a multipart response per endpoint/per event submitted.
+* `service/ssm`: Updates service API and documentation
+  * Two new filters ExecutionStage and DocumentName will be added to ListCommands so that customers will have more approaches to query their commands.
+
 Release v1.15.6 (2018-08-06)
 ===
 
