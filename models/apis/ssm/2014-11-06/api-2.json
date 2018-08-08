@@ -1962,6 +1962,7 @@
         "CurrentAction":{"shape":"String"},
         "TargetParameterName":{"shape":"AutomationParameterKey"},
         "Targets":{"shape":"Targets"},
+        "TargetMaps":{"shape":"TargetMaps"},
         "ResolvedTargets":{"shape":"ResolvedTargets"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
         "MaxErrors":{"shape":"MaxErrors"},
@@ -2039,6 +2040,7 @@
         "FailureMessage":{"shape":"String"},
         "TargetParameterName":{"shape":"AutomationParameterKey"},
         "Targets":{"shape":"Targets"},
+        "TargetMaps":{"shape":"TargetMaps"},
         "ResolvedTargets":{"shape":"ResolvedTargets"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
         "MaxErrors":{"shape":"MaxErrors"},
@@ -2194,20 +2196,17 @@
       "enum":[
         "InvokedAfter",
         "InvokedBefore",
-        "Status",
-        "ExecutionStage",
-        "DocumentName"
+        "Status"
       ]
     },
     "CommandFilterList":{
       "type":"list",
       "member":{"shape":"CommandFilter"},
-      "max":5,
+      "max":3,
       "min":1
     },
     "CommandFilterValue":{
       "type":"string",
-      "max":128,
       "min":1
     },
     "CommandId":{
@@ -6840,6 +6839,7 @@
         "Mode":{"shape":"ExecutionMode"},
         "TargetParameterName":{"shape":"AutomationParameterKey"},
         "Targets":{"shape":"Targets"},
+        "TargetMaps":{"shape":"TargetMaps"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
         "MaxErrors":{"shape":"MaxErrors"}
       }
@@ -7037,6 +7037,35 @@
       "max":128,
       "min":1,
       "pattern":"^[\\p{L}\\p{Z}\\p{N}_.:/=\\-@]*$"
+    },
+    "TargetMap":{
+      "type":"map",
+      "key":{"shape":"TargetMapKey"},
+      "value":{"shape":"TargetMapValueList"},
+      "max":20,
+      "min":1
+    },
+    "TargetMapKey":{
+      "type":"string",
+      "max":50,
+      "min":1
+    },
+    "TargetMapValue":{
+      "type":"string",
+      "max":50,
+      "min":1
+    },
+    "TargetMapValueList":{
+      "type":"list",
+      "member":{"shape":"TargetMapValue"},
+      "max":25,
+      "min":0
+    },
+    "TargetMaps":{
+      "type":"list",
+      "member":{"shape":"TargetMap"},
+      "max":300,
+      "min":0
     },
     "TargetParameterList":{
       "type":"list",
