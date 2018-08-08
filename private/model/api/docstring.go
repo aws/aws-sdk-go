@@ -49,8 +49,8 @@ func (d *apiDocumentation) setup() {
 
 	for opName, doc := range d.Operations {
 		if _, ok := d.API.Operations[opName]; !ok {
-			panic(fmt.Sprintf("%s, doc op %q not found in API op set, %v",
-				d.API.name, opName, d.API.OperationNames()),
+			panic(fmt.Sprintf("%s, doc op %q not found in API op set",
+				d.API.name, opName),
 			)
 		}
 		d.API.Operations[opName].Documentation = docstring(doc)
