@@ -11333,6 +11333,9 @@ type AutomationExecution struct {
 	// The target of the execution.
 	Target *string `type:"string"`
 
+	// The specified key-value mapping of document parameters to target resources.
+	TargetMaps []map[string][]*string `type:"list"`
+
 	// The parameter name.
 	TargetParameterName *string `min:"1" type:"string"`
 
@@ -11470,6 +11473,12 @@ func (s *AutomationExecution) SetTarget(v string) *AutomationExecution {
 	return s
 }
 
+// SetTargetMaps sets the TargetMaps field's value.
+func (s *AutomationExecution) SetTargetMaps(v []map[string][]*string) *AutomationExecution {
+	s.TargetMaps = v
+	return s
+}
+
 // SetTargetParameterName sets the TargetParameterName field's value.
 func (s *AutomationExecution) SetTargetParameterName(v string) *AutomationExecution {
 	s.TargetParameterName = &v
@@ -11602,6 +11611,9 @@ type AutomationExecutionMetadata struct {
 	// The list of execution outputs as defined in the Automation document.
 	Target *string `type:"string"`
 
+	// The specified key-value mapping of document parameters to target resources.
+	TargetMaps []map[string][]*string `type:"list"`
+
 	// The list of execution outputs as defined in the Automation document.
 	TargetParameterName *string `min:"1" type:"string"`
 
@@ -11724,6 +11736,12 @@ func (s *AutomationExecutionMetadata) SetResolvedTargets(v *ResolvedTargets) *Au
 // SetTarget sets the Target field's value.
 func (s *AutomationExecutionMetadata) SetTarget(v string) *AutomationExecutionMetadata {
 	s.Target = &v
+	return s
+}
+
+// SetTargetMaps sets the TargetMaps field's value.
+func (s *AutomationExecutionMetadata) SetTargetMaps(v []map[string][]*string) *AutomationExecutionMetadata {
+	s.TargetMaps = v
 	return s
 }
 
@@ -12143,44 +12161,7 @@ type CommandFilter struct {
 	// Key is a required field
 	Key *string `locationName:"key" type:"string" required:"true" enum:"CommandFilterKey"`
 
-	// The filter value. Valid values for each filter key are as follows:
-	//
-	//    * InvokedAfter: Specify a timestamp to limit your results. For example,
-	//    specify 2018-07-07T00:00:00Z to see a list of command executions occurring
-	//    July 7, 2018, and later.
-	//
-	//    * InvokedBefore: Specify a timestamp to limit your results. For example,
-	//    specify 2018-07-07T00:00:00Z to see a list of command executions from
-	//    before July 7, 2018.
-	//
-	//    * Status: Specify a valid command status to see a list of all command
-	//    executions with that status. Status values you can specify include:
-	//
-	// Pending
-	//
-	// InProgress
-	//
-	// Success
-	//
-	// Cancelled
-	//
-	// Failed
-	//
-	// TimedOut
-	//
-	// Cancelling
-	//
-	//    * DocumentName: Specify name of the SSM document for which you want to
-	//    see command execution results. For example, specify AWS-RunPatchBaseline
-	//    to see command executions that used this SSM document to perform security
-	//    patching operations on instances.
-	//
-	//    * ExecutionStage: Specify one of the following values:
-	//
-	// Executing: Returns a list of command executions that are currently still
-	//    running.
-	//
-	// Complete: Returns a list of command exeuctions that have already completed.
+	// The filter value.
 	//
 	// Value is a required field
 	Value *string `locationName:"value" min:"1" type:"string" required:"true"`
@@ -27592,7 +27573,19 @@ type RegisterTaskWithMaintenanceWindowInput struct {
 	// order with tasks that have the same priority scheduled in parallel.
 	Priority *int64 `type:"integer"`
 
-	// The role that should be assumed when executing the task.
+	// The role to assume when running the Maintenance Window task.
+	//
+	// If you do not specify a service role ARN, Systems Manager will use your account's
+	// service-linked role for Systems Manager by default. If no service-linked
+	// role for Systems Manager exists in your account, it will be created when
+	// you run RegisterTaskWithMaintenanceWindow without specifying a service role
+	// ARN.
+	//
+	// For more information, see Service-Linked Role Permissions for Systems Manager
+	// (http://docs.aws.amazon.com/systems-manager/latest/userguide/using-service-linked-roles.html#slr-permissions)
+	// and Should I Use a Service-Linked Role or a Custom Service Role to Run Maintenance
+	// Window Tasks?  (http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-maintenance-permissions.html#maintenance-window-tasks-service-role)
+	// in the AWS Systems Manager User Guide.
 	ServiceRoleArn *string `type:"string"`
 
 	// The targets (either instances or Maintenance Window targets).
@@ -28886,6 +28879,10 @@ type StartAutomationExecutionInput struct {
 	// in the Automation document.
 	Parameters map[string][]*string `min:"1" type:"map"`
 
+	// A key-value mapping of document parameters to target resources. Both Targets
+	// and TargetMaps cannot be specified together.
+	TargetMaps []map[string][]*string `type:"list"`
+
 	// The name of the parameter used as the target resource for the rate-controlled
 	// execution. Required if you specify Targets.
 	TargetParameterName *string `min:"1" type:"string"`
@@ -28981,6 +28978,12 @@ func (s *StartAutomationExecutionInput) SetMode(v string) *StartAutomationExecut
 // SetParameters sets the Parameters field's value.
 func (s *StartAutomationExecutionInput) SetParameters(v map[string][]*string) *StartAutomationExecutionInput {
 	s.Parameters = v
+	return s
+}
+
+// SetTargetMaps sets the TargetMaps field's value.
+func (s *StartAutomationExecutionInput) SetTargetMaps(v []map[string][]*string) *StartAutomationExecutionInput {
+	s.TargetMaps = v
 	return s
 }
 
@@ -30344,6 +30347,18 @@ type UpdateMaintenanceWindowTaskInput struct {
 
 	// The IAM service role ARN to modify. The system assumes this role during task
 	// execution.
+	//
+	// If you do not specify a service role ARN, Systems Manager will use your account's
+	// service-linked role for Systems Manager by default. If no service-linked
+	// role for Systems Manager exists in your account, it will be created when
+	// you run RegisterTaskWithMaintenanceWindow without specifying a service role
+	// ARN.
+	//
+	// For more information, see Service-Linked Role Permissions for Systems Manager
+	// (http://docs.aws.amazon.com/systems-manager/latest/userguide/using-service-linked-roles.html#slr-permissions)
+	// and Should I Use a Service-Linked Role or a Custom Service Role to Run Maintenance
+	// Window Tasks?  (http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-maintenance-permissions.html#maintenance-window-tasks-service-role)
+	// in the AWS Systems Manager User Guide.
 	ServiceRoleArn *string `type:"string"`
 
 	// The targets (either instances or tags) to modify. Instances are specified
@@ -31173,12 +31188,6 @@ const (
 
 	// CommandFilterKeyStatus is a CommandFilterKey enum value
 	CommandFilterKeyStatus = "Status"
-
-	// CommandFilterKeyExecutionStage is a CommandFilterKey enum value
-	CommandFilterKeyExecutionStage = "ExecutionStage"
-
-	// CommandFilterKeyDocumentName is a CommandFilterKey enum value
-	CommandFilterKeyDocumentName = "DocumentName"
 )
 
 const (
