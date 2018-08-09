@@ -1,3 +1,14 @@
+Release v1.15.9 (2018-08-09)
+===
+
+### Service Client Updates
+* `service/dax`: Updates service API and documentation
+  * Add the SSESpecification field to CreateCluster to allow creation of clusters with server-side encryption, and add the SSEDescription field to DescribeClusters to display the status of server-side encryption for a cluster.
+* `service/ecs`: Updates service API and documentation
+  * This release of Amazon Elastic Container Service (Amazon ECS) introduces support for Docker volumes and Docker volume drivers. Customers can now configure their ECS Tasks to use Docker volumes, enabling stateful and storage-intensive applications to be deployed on ECS.
+* `service/rds`: Updates service API, documentation, and examples
+  * Launch RDS Aurora Serverless
+
 Release v1.15.8 (2018-08-08)
 ===
 

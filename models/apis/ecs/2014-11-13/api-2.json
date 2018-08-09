@@ -1039,6 +1039,16 @@
       "key":{"shape":"String"},
       "value":{"shape":"String"}
     },
+    "DockerVolumeConfiguration":{
+      "type":"structure",
+      "members":{
+        "scope":{"shape":"Scope"},
+        "autoprovision":{"shape":"BoxedBoolean"},
+        "driver":{"shape":"String"},
+        "driverOpts":{"shape":"StringMap"},
+        "labels":{"shape":"StringMap"}
+      }
+    },
     "Double":{"type":"double"},
     "EnvironmentVariables":{
       "type":"list",
@@ -1532,6 +1542,13 @@
         "DAEMON"
       ]
     },
+    "Scope":{
+      "type":"string",
+      "enum":[
+        "task",
+        "shared"
+      ]
+    },
     "ServerException":{
       "type":"structure",
       "members":{
@@ -1661,6 +1678,11 @@
     "StringList":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "StringMap":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"String"}
     },
     "SubmitContainerStateChangeRequest":{
       "type":"structure",
@@ -1943,7 +1965,8 @@
       "type":"structure",
       "members":{
         "name":{"shape":"String"},
-        "host":{"shape":"HostVolumeProperties"}
+        "host":{"shape":"HostVolumeProperties"},
+        "dockerVolumeConfiguration":{"shape":"DockerVolumeConfiguration"}
       }
     },
     "VolumeFrom":{
