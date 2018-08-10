@@ -4148,7 +4148,7 @@
           "locationName": "arn"
         },
         "CreatedAt": {
-          "shape": "__timestampIso8601",
+          "shape": "__timestampUnix",
           "locationName": "createdAt"
         },
         "ErrorCode": {
@@ -4260,7 +4260,7 @@
           "locationName": "category"
         },
         "CreatedAt": {
-          "shape": "__timestampIso8601",
+          "shape": "__timestampUnix",
           "locationName": "createdAt"
         },
         "Description": {
@@ -4268,7 +4268,7 @@
           "locationName": "description"
         },
         "LastUpdated": {
-          "shape": "__timestampIso8601",
+          "shape": "__timestampUnix",
           "locationName": "lastUpdated"
         },
         "Name": {
@@ -5722,7 +5722,7 @@
           "locationName": "category"
         },
         "CreatedAt": {
-          "shape": "__timestampIso8601",
+          "shape": "__timestampUnix",
           "locationName": "createdAt"
         },
         "Description": {
@@ -5730,7 +5730,7 @@
           "locationName": "description"
         },
         "LastUpdated": {
-          "shape": "__timestampIso8601",
+          "shape": "__timestampUnix",
           "locationName": "lastUpdated"
         },
         "Name": {
@@ -5891,7 +5891,7 @@
           "locationName": "arn"
         },
         "CreatedAt": {
-          "shape": "__timestampIso8601",
+          "shape": "__timestampUnix",
           "locationName": "createdAt"
         },
         "Description": {
@@ -5899,7 +5899,7 @@
           "locationName": "description"
         },
         "LastUpdated": {
-          "shape": "__timestampIso8601",
+          "shape": "__timestampUnix",
           "locationName": "lastUpdated"
         },
         "Name": {
@@ -6206,15 +6206,15 @@
       "type": "structure",
       "members": {
         "FinishTime": {
-          "shape": "__timestampIso8601",
+          "shape": "__timestampUnix",
           "locationName": "finishTime"
         },
         "StartTime": {
-          "shape": "__timestampIso8601",
+          "shape": "__timestampUnix",
           "locationName": "startTime"
         },
         "SubmitTime": {
-          "shape": "__timestampIso8601",
+          "shape": "__timestampUnix",
           "locationName": "submitTime"
         }
       }

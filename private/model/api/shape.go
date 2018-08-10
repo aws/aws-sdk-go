@@ -10,6 +10,8 @@ import (
 	"sort"
 	"strings"
 	"text/template"
+
+	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
 // ErrorInfo represents the error block of a shape's structure
@@ -41,9 +43,10 @@ type ShapeRef struct {
 	Ignore           bool
 	XMLNamespace     XMLInfo
 	Payload          string
-	IdempotencyToken bool `json:"idempotencyToken"`
-	JSONValue        bool `json:"jsonvalue"`
-	Deprecated       bool `json:"deprecated"`
+	IdempotencyToken bool   `json:"idempotencyToken"`
+	TimestampFormat  string `json:"timestampFormat"`
+	JSONValue        bool   `json:"jsonvalue"`
+	Deprecated       bool   `json:"deprecated"`
 
 	OrigShapeName string `json:"-"`
 
@@ -72,7 +75,8 @@ type Shape struct {
 	Streaming        bool
 	Location         string
 	LocationName     string
-	IdempotencyToken bool `json:"idempotencyToken"`
+	IdempotencyToken bool   `json:"idempotencyToken"`
+	TimestampFormat  string `json:"timestampFormat"`
 	XMLNamespace     XMLInfo
 	Min              float64 // optional Minimum length (string, list) or value (number)
 	Max              float64 // optional Maximum length (string, list) or value (number)
@@ -99,6 +103,10 @@ type Shape struct {
 	// Error information that is set if the shape is an error shape.
 	IsError   bool
 	ErrorInfo ErrorInfo `json:"error"`
+
+	// Flags that the shape cannot be rename. Prevents the shape from being
+	// renamed further by the Input/Output.
+	AliasedShapeName bool
 }
 
 // ErrorCodeName will return the error shape's name formated for
@@ -147,6 +155,11 @@ func (s *Shape) GoTags(root, required bool) string {
 // Rename changes the name of the Shape to newName. Also updates
 // the associated API's reference to use newName.
 func (s *Shape) Rename(newName string) {
+	if s.AliasedShapeName {
+		panic(fmt.Sprintf("attempted to rename %s, but flagged as aliased",
+			s.ShapeName))
+	}
+
 	for _, r := range s.refs {
 		r.OrigShapeName = r.ShapeName
 		r.ShapeName = newName
@@ -201,6 +214,32 @@ func (s *ShapeRef) UseIndirection() bool {
 	}
 
 	return true
+}
+
+func (s Shape) GetTimestampFormat() string {
+	format := s.TimestampFormat
+
+	if len(format) > 0 && !protocol.IsKnownTimestampFormat(format) {
+		panic(fmt.Sprintf("Unknown timestampFormat %s, for %s",
+			format, s.ShapeName))
+	}
+
+	return format
+}
+
+func (ref ShapeRef) GetTimestampFormat() string {
+	format := ref.TimestampFormat
+
+	if len(format) == 0 {
+		format = ref.Shape.TimestampFormat
+	}
+
+	if len(format) > 0 && !protocol.IsKnownTimestampFormat(format) {
+		panic(fmt.Sprintf("Unknown timestampFormat %s, for %s",
+			format, ref.ShapeName))
+	}
+
+	return format
 }
 
 // GoStructValueType returns the Shape's Go type value instead of a pointer
@@ -406,18 +445,12 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 
 	// embed the timestamp type for easier lookups
 	if ref.Shape.Type == "timestamp" {
-		t := ShapeTag{Key: "timestampFormat"}
-		if ref.Location == "header" {
-			t.Val = "rfc822"
-		} else {
-			switch ref.API.Metadata.Protocol {
-			case "json", "rest-json":
-				t.Val = "unix"
-			case "rest-xml", "ec2", "query":
-				t.Val = "iso8601"
-			}
+		if format := ref.GetTimestampFormat(); len(format) > 0 {
+			tags = append(tags, ShapeTag{
+				Key: "timestampFormat",
+				Val: format,
+			})
 		}
-		tags = append(tags, t)
 	}
 
 	if ref.Shape.Flattened || ref.Flattened {
@@ -756,4 +789,49 @@ func (s *Shape) WillRefBeBase64Encoded(refName string) bool {
 	}
 
 	return ref.Shape.Type == "blob"
+}
+
+// Clone returns a cloned version of the shape with all references clones.
+//
+// Does not clone EventStream or Validate related values.
+func (s *Shape) Clone(newName string) *Shape {
+	if s.AliasedShapeName {
+		panic(fmt.Sprintf("attempted to clone and rename %s, but flagged as aliased",
+			s.ShapeName))
+	}
+
+	n := new(Shape)
+	*n = *s
+
+	debugLogger.Logln("cloning", s.ShapeName, "to", newName)
+
+	n.MemberRefs = map[string]*ShapeRef{}
+	for k, r := range s.MemberRefs {
+		nr := new(ShapeRef)
+		*nr = *r
+		nr.Shape.refs = append(nr.Shape.refs, nr)
+		n.MemberRefs[k] = nr
+	}
+
+	if n.MemberRef.Shape != nil {
+		n.MemberRef.Shape.refs = append(n.MemberRef.Shape.refs, &n.MemberRef)
+	}
+	if n.KeyRef.Shape != nil {
+		n.KeyRef.Shape.refs = append(n.KeyRef.Shape.refs, &n.KeyRef)
+	}
+	if n.ValueRef.Shape != nil {
+		n.ValueRef.Shape.refs = append(n.ValueRef.Shape.refs, &n.ValueRef)
+	}
+
+	n.refs = []*ShapeRef{}
+
+	n.Required = append([]string{}, n.Required...)
+	n.Enum = append([]string{}, n.Enum...)
+	n.EnumConsts = append([]string{}, n.EnumConsts...)
+
+	n.OrigShapeName = n.ShapeName
+	n.API.Shapes[newName] = n
+	n.ShapeName = newName
+
+	return n
 }

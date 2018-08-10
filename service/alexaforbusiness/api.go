@@ -153,6 +153,8 @@ func (c *AlexaForBusiness) AssociateDeviceWithRoomRequest(input *AssociateDevice
 //   HTTP Status Code: 400
 //
 //   * ErrCodeDeviceNotRegisteredException "DeviceNotRegisteredException"
+//   The request failed because this device is no longer registered and therefore
+//   no longer managed by this account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateDeviceWithRoom
 func (c *AlexaForBusiness) AssociateDeviceWithRoom(input *AssociateDeviceWithRoomInput) (*AssociateDeviceWithRoomOutput, error) {
@@ -1428,6 +1430,8 @@ func (c *AlexaForBusiness) DisassociateDeviceFromRoomRequest(input *Disassociate
 //
 // Returned Error Codes:
 //   * ErrCodeDeviceNotRegisteredException "DeviceNotRegisteredException"
+//   The request failed because this device is no longer registered and therefore
+//   no longer managed by this account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateDeviceFromRoom
 func (c *AlexaForBusiness) DisassociateDeviceFromRoom(input *DisassociateDeviceFromRoomInput) (*DisassociateDeviceFromRoomOutput, error) {
@@ -2129,10 +2133,8 @@ func (c *AlexaForBusiness) ListDeviceEventsRequest(input *ListDeviceEventsInput)
 
 // ListDeviceEvents API operation for Alexa For Business.
 //
-// Lists the Device Event history for up to 30 days. If EventType isn't specified
-// in the request, this returns a list of all device events in reverse chronological
-// order. If EventType is specified, this returns a list of device events for
-// that EventType in reverse chronological order.
+// Lists the device event history, including device connection status, for up
+// to 30 days.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2397,7 +2399,7 @@ func (c *AlexaForBusiness) ListTagsRequest(input *ListTagsInput) (req *request.R
 
 // ListTags API operation for Alexa For Business.
 //
-// Lists all tags for a specific resource.
+// Lists all tags for the specified resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3768,6 +3770,8 @@ func (c *AlexaForBusiness) StartDeviceSyncRequest(input *StartDeviceSyncInput) (
 //
 // Returned Error Codes:
 //   * ErrCodeDeviceNotRegisteredException "DeviceNotRegisteredException"
+//   The request failed because this device is no longer registered and therefore
+//   no longer managed by this account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/StartDeviceSync
 func (c *AlexaForBusiness) StartDeviceSync(input *StartDeviceSyncInput) (*StartDeviceSyncOutput, error) {
@@ -4168,6 +4172,8 @@ func (c *AlexaForBusiness) UpdateDeviceRequest(input *UpdateDeviceInput) (req *r
 //   The resource is not found. HTTP Status Code: 400
 //
 //   * ErrCodeDeviceNotRegisteredException "DeviceNotRegisteredException"
+//   The request failed because this device is no longer registered and therefore
+//   no longer managed by this account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateDevice
 func (c *AlexaForBusiness) UpdateDevice(input *UpdateDeviceInput) (*UpdateDeviceOutput, error) {
@@ -6079,7 +6085,7 @@ type DeviceEvent struct {
 	_ struct{} `type:"structure"`
 
 	// The time (in epoch) when the event occurred.
-	Timestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+	Timestamp *time.Time `type:"timestamp"`
 
 	// The type of device event.
 	Type *string `type:"string" enum:"DeviceEventType"`
@@ -6781,17 +6787,21 @@ type ListDeviceEventsInput struct {
 	// DeviceArn is a required field
 	DeviceArn *string `type:"string" required:"true"`
 
-	// The event type to filter device events.
+	// The event type to filter device events. If EventType isn't specified, this
+	// returns a list of all device events in reverse chronological order. If EventType
+	// is specified, this returns a list of device events for that EventType in
+	// reverse chronological order.
 	EventType *string `type:"string" enum:"DeviceEventType"`
 
-	// The maximum number of results to include in the response. If more results
-	// exist than the specified MaxResults value, a token is included in the response
-	// so that the remaining results can be retrieved. Required.
+	// The maximum number of results to include in the response. The default value
+	// is 50. If more results exist than the specified MaxResults value, a token
+	// is included in the response so that the remaining results can be retrieved.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// An optional token returned from a prior request. Use this token for pagination
 	// of results from this action. If this parameter is specified, the response
 	// only includes results beyond the token, up to the value specified by MaxResults.
+	// When the end of results is reached, the response has a value of null.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -6851,8 +6861,10 @@ func (s *ListDeviceEventsInput) SetNextToken(v string) *ListDeviceEventsInput {
 type ListDeviceEventsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The device events requested for the device ARN.
 	DeviceEvents []*DeviceEvent `type:"list"`
 
+	// The token returned to indicate that there is more data available.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -6975,7 +6987,7 @@ func (s *ListSkillsOutput) SetSkillSummaries(v []*SkillSummary) *ListSkillsOutpu
 type ListTagsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the specific resource for which to list tags. Required.
+	// The ARN of the specified resource for which to list tags.
 	//
 	// Arn is a required field
 	Arn *string `type:"string" required:"true"`
@@ -7044,7 +7056,7 @@ type ListTagsOutput struct {
 	// The token returned to indicate that there is more data available.
 	NextToken *string `min:"1" type:"string"`
 
-	// The list of tags requested for the specific resource.
+	// The tags requested for the specified resource.
 	Tags []*Tag `type:"list"`
 }
 

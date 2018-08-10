@@ -133,7 +133,8 @@
         {"shape":"LexiconNotFoundException"},
         {"shape":"ServiceFailureException"},
         {"shape":"MarksNotSupportedForFormatException"},
-        {"shape":"SsmlMarksNotSupportedForTextTypeException"}
+        {"shape":"SsmlMarksNotSupportedForTextTypeException"},
+        {"shape":"LanguageNotSupportedException"}
       ]
     },
     "SynthesizeSpeech":{
@@ -152,7 +153,8 @@
         {"shape":"LexiconNotFoundException"},
         {"shape":"ServiceFailureException"},
         {"shape":"MarksNotSupportedForFormatException"},
-        {"shape":"SsmlMarksNotSupportedForTextTypeException"}
+        {"shape":"SsmlMarksNotSupportedForTextTypeException"},
+        {"shape":"LanguageNotSupportedException"}
       ]
     }
   },
@@ -187,6 +189,11 @@
           "shape":"LanguageCode",
           "location":"querystring",
           "locationName":"LanguageCode"
+        },
+        "IncludeAdditionalLanguageCodes":{
+          "shape":"IncludeAdditionalLanguageCodes",
+          "location":"querystring",
+          "locationName":"IncludeAdditionalLanguageCodes"
         },
         "NextToken":{
           "shape":"NextToken",
@@ -245,6 +252,7 @@
         "SynthesisTask":{"shape":"SynthesisTask"}
       }
     },
+    "IncludeAdditionalLanguageCodes":{"type":"boolean"},
     "InvalidLexiconException":{
       "type":"structure",
       "members":{
@@ -326,8 +334,9 @@
         "fr-FR",
         "is-IS",
         "it-IT",
-        "ko-KR",
         "ja-JP",
+        "hi-IN",
+        "ko-KR",
         "nb-NO",
         "nl-NL",
         "pl-PL",
@@ -339,7 +348,19 @@
         "tr-TR"
       ]
     },
+    "LanguageCodeList":{
+      "type":"list",
+      "member":{"shape":"LanguageCode"}
+    },
     "LanguageName":{"type":"string"},
+    "LanguageNotSupportedException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "LastModified":{"type":"timestamp"},
     "LexemesCount":{"type":"integer"},
     "Lexicon":{
@@ -567,7 +588,8 @@
         "SpeechMarkTypes":{"shape":"SpeechMarkTypeList"},
         "Text":{"shape":"Text"},
         "TextType":{"shape":"TextType"},
-        "VoiceId":{"shape":"VoiceId"}
+        "VoiceId":{"shape":"VoiceId"},
+        "LanguageCode":{"shape":"LanguageCode"}
       }
     },
     "StartSpeechSynthesisTaskOutput":{
@@ -591,7 +613,8 @@
         "SampleRate":{"shape":"SampleRate"},
         "SpeechMarkTypes":{"shape":"SpeechMarkTypeList"},
         "TextType":{"shape":"TextType"},
-        "VoiceId":{"shape":"VoiceId"}
+        "VoiceId":{"shape":"VoiceId"},
+        "LanguageCode":{"shape":"LanguageCode"}
       }
     },
     "SynthesisTaskNotFoundException":{
@@ -620,7 +643,8 @@
         "SpeechMarkTypes":{"shape":"SpeechMarkTypeList"},
         "Text":{"shape":"Text"},
         "TextType":{"shape":"TextType"},
-        "VoiceId":{"shape":"VoiceId"}
+        "VoiceId":{"shape":"VoiceId"},
+        "LanguageCode":{"shape":"LanguageCode"}
       }
     },
     "SynthesizeSpeechOutput":{
@@ -694,7 +718,8 @@
         "Id":{"shape":"VoiceId"},
         "LanguageCode":{"shape":"LanguageCode"},
         "LanguageName":{"shape":"LanguageName"},
-        "Name":{"shape":"VoiceName"}
+        "Name":{"shape":"VoiceName"},
+        "AdditionalLanguageCodes":{"shape":"LanguageCodeList"}
       }
     },
     "VoiceId":{

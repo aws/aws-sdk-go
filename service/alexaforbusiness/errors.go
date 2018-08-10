@@ -12,6 +12,9 @@ const (
 
 	// ErrCodeDeviceNotRegisteredException for service response error code
 	// "DeviceNotRegisteredException".
+	//
+	// The request failed because this device is no longer registered and therefore
+	// no longer managed by this account.
 	ErrCodeDeviceNotRegisteredException = "DeviceNotRegisteredException"
 
 	// ErrCodeInvalidUserStatusException for service response error code

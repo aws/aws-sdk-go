@@ -855,7 +855,7 @@ func (a *API) APIErrorsGoCode() string {
 // removeOperation removes an operation, its input/output shapes, as well as
 // any references/shapes that are unique to this operation.
 func (a *API) removeOperation(name string) {
-	fmt.Println("removing operation,", name)
+	debugLogger.Logln("removing operation,", name)
 	op := a.Operations[name]
 
 	delete(a.Operations, name)
@@ -869,7 +869,7 @@ func (a *API) removeOperation(name string) {
 // shapes. Will also remove member reference targeted shapes if those shapes do
 // not have any additional references.
 func (a *API) removeShape(s *Shape) {
-	fmt.Println("removing shape,", s.ShapeName)
+	debugLogger.Logln("removing shape,", s.ShapeName)
 
 	delete(a.Shapes, s.ShapeName)
 

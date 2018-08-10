@@ -3979,7 +3979,7 @@ type OptionStatus struct {
 	// Timestamp which tells the creation date for the entity.
 	//
 	// CreationDate is a required field
-	CreationDate *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	CreationDate *time.Time `type:"timestamp" required:"true"`
 
 	// Indicates whether the Elasticsearch domain is being deleted.
 	PendingDeletion *bool `type:"boolean"`
@@ -3992,7 +3992,7 @@ type OptionStatus struct {
 	// Timestamp which tells the last updated time for the entity.
 	//
 	// UpdateDate is a required field
-	UpdateDate *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	UpdateDate *time.Time `type:"timestamp" required:"true"`
 
 	// Specifies the latest version for the entity.
 	UpdateVersion *int64 `type:"integer"`
@@ -4282,7 +4282,7 @@ type ReservedElasticsearchInstance struct {
 	ReservedElasticsearchInstanceOfferingId *string `type:"string"`
 
 	// The time the reservation started.
-	StartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	StartTime *time.Time `type:"timestamp"`
 
 	// The state of the reserved Elasticsearch instance.
 	State *string `type:"string"`
@@ -5091,16 +5091,22 @@ const (
 )
 
 // Type of Log File, it can be one of the following: INDEX_SLOW_LOGS: Index
-// slow logs contains insert requests that took more time than configured index
+// slow logs contain insert requests that took more time than configured index
 // query log threshold to execute.
-// SEARCH_SLOW_LOGS: Search slow logs contains search queries that took more
+// SEARCH_SLOW_LOGS: Search slow logs contain search queries that took more
 // time than configured search query log threshold to execute.
+// ES_APPLICATION_LOGS: Elasticsearch application logs contain information about
+// errors and warnings raised during the operation of the service and can be
+// useful for troubleshooting.
 const (
 	// LogTypeIndexSlowLogs is a LogType enum value
 	LogTypeIndexSlowLogs = "INDEX_SLOW_LOGS"
 
 	// LogTypeSearchSlowLogs is a LogType enum value
 	LogTypeSearchSlowLogs = "SEARCH_SLOW_LOGS"
+
+	// LogTypeEsApplicationLogs is a LogType enum value
+	LogTypeEsApplicationLogs = "ES_APPLICATION_LOGS"
 )
 
 // The state of a requested change. One of the following:

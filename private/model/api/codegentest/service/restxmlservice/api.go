@@ -892,7 +892,7 @@ type HeaderOnlyEvent struct {
 
 	StringVal *string `location:"header" type:"string"`
 
-	TimeVal *time.Time `location:"header" type:"timestamp" timestampFormat:"iso8601"`
+	TimeVal *time.Time `location:"header" type:"timestamp"`
 }
 
 // String returns the string representation

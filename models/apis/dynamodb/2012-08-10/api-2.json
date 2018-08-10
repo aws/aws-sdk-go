@@ -557,6 +557,77 @@
         "Action":{"shape":"AttributeAction"}
       }
     },
+    "AutoScalingPolicyDescription":{
+      "type":"structure",
+      "members":{
+        "PolicyName":{"shape":"AutoScalingPolicyName"},
+        "TargetTrackingScalingPolicyConfiguration":{"shape":"AutoScalingTargetTrackingScalingPolicyConfigurationDescription"}
+      }
+    },
+    "AutoScalingPolicyDescriptionList":{
+      "type":"list",
+      "member":{"shape":"AutoScalingPolicyDescription"}
+    },
+    "AutoScalingPolicyName":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"\\p{Print}+"
+    },
+    "AutoScalingPolicyUpdate":{
+      "type":"structure",
+      "required":["TargetTrackingScalingPolicyConfiguration"],
+      "members":{
+        "PolicyName":{"shape":"AutoScalingPolicyName"},
+        "TargetTrackingScalingPolicyConfiguration":{"shape":"AutoScalingTargetTrackingScalingPolicyConfigurationUpdate"}
+      }
+    },
+    "AutoScalingRoleArn":{
+      "type":"string",
+      "max":1600,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+    },
+    "AutoScalingSettingsDescription":{
+      "type":"structure",
+      "members":{
+        "MinimumUnits":{"shape":"PositiveLongObject"},
+        "MaximumUnits":{"shape":"PositiveLongObject"},
+        "AutoScalingDisabled":{"shape":"BooleanObject"},
+        "AutoScalingRoleArn":{"shape":"String"},
+        "ScalingPolicies":{"shape":"AutoScalingPolicyDescriptionList"}
+      }
+    },
+    "AutoScalingSettingsUpdate":{
+      "type":"structure",
+      "members":{
+        "MinimumUnits":{"shape":"PositiveLongObject"},
+        "MaximumUnits":{"shape":"PositiveLongObject"},
+        "AutoScalingDisabled":{"shape":"BooleanObject"},
+        "AutoScalingRoleArn":{"shape":"AutoScalingRoleArn"},
+        "ScalingPolicyUpdate":{"shape":"AutoScalingPolicyUpdate"}
+      }
+    },
+    "AutoScalingTargetTrackingScalingPolicyConfigurationDescription":{
+      "type":"structure",
+      "required":["TargetValue"],
+      "members":{
+        "DisableScaleIn":{"shape":"BooleanObject"},
+        "ScaleInCooldown":{"shape":"IntegerObject"},
+        "ScaleOutCooldown":{"shape":"IntegerObject"},
+        "TargetValue":{"shape":"Double"}
+      }
+    },
+    "AutoScalingTargetTrackingScalingPolicyConfigurationUpdate":{
+      "type":"structure",
+      "required":["TargetValue"],
+      "members":{
+        "DisableScaleIn":{"shape":"BooleanObject"},
+        "ScaleInCooldown":{"shape":"IntegerObject"},
+        "ScaleOutCooldown":{"shape":"IntegerObject"},
+        "TargetValue":{"shape":"Double"}
+      }
+    },
     "Backfilling":{"type":"boolean"},
     "BackupArn":{
       "type":"string",
@@ -578,6 +649,7 @@
         "BackupArn",
         "BackupName",
         "BackupStatus",
+        "BackupType",
         "BackupCreationDateTime"
       ],
       "members":{
@@ -585,7 +657,9 @@
         "BackupName":{"shape":"BackupName"},
         "BackupSizeBytes":{"shape":"BackupSizeBytes"},
         "BackupStatus":{"shape":"BackupStatus"},
-        "BackupCreationDateTime":{"shape":"BackupCreationDateTime"}
+        "BackupType":{"shape":"BackupType"},
+        "BackupCreationDateTime":{"shape":"BackupCreationDateTime"},
+        "BackupExpiryDateTime":{"shape":"Date"}
       }
     },
     "BackupInUseException":{
@@ -633,9 +707,26 @@
         "BackupArn":{"shape":"BackupArn"},
         "BackupName":{"shape":"BackupName"},
         "BackupCreationDateTime":{"shape":"BackupCreationDateTime"},
+        "BackupExpiryDateTime":{"shape":"Date"},
         "BackupStatus":{"shape":"BackupStatus"},
+        "BackupType":{"shape":"BackupType"},
         "BackupSizeBytes":{"shape":"BackupSizeBytes"}
       }
+    },
+    "BackupType":{
+      "type":"string",
+      "enum":[
+        "USER",
+        "SYSTEM"
+      ]
+    },
+    "BackupTypeFilter":{
+      "type":"string",
+      "enum":[
+        "USER",
+        "SYSTEM",
+        "ALL"
+      ]
     },
     "BackupsInputLimit":{
       "type":"integer",
@@ -1035,6 +1126,7 @@
         "TimeToLiveDescription":{"shape":"TimeToLiveDescription"}
       }
     },
+    "Double":{"type":"double"},
     "ErrorMessage":{"type":"string"},
     "ExpectedAttributeMap":{
       "type":"map",
@@ -1182,7 +1274,8 @@
       "required":["IndexName"],
       "members":{
         "IndexName":{"shape":"IndexName"},
-        "ProvisionedWriteCapacityUnits":{"shape":"PositiveLongObject"}
+        "ProvisionedWriteCapacityUnits":{"shape":"PositiveLongObject"},
+        "ProvisionedWriteCapacityAutoScalingSettingsUpdate":{"shape":"AutoScalingSettingsUpdate"}
       }
     },
     "GlobalTableGlobalSecondaryIndexSettingsUpdateList":{
@@ -1234,6 +1327,7 @@
       ]
     },
     "Integer":{"type":"integer"},
+    "IntegerObject":{"type":"integer"},
     "InternalServerError":{
       "type":"structure",
       "members":{
@@ -1366,7 +1460,8 @@
         "Limit":{"shape":"BackupsInputLimit"},
         "TimeRangeLowerBound":{"shape":"TimeRangeLowerBound"},
         "TimeRangeUpperBound":{"shape":"TimeRangeUpperBound"},
-        "ExclusiveStartBackupArn":{"shape":"BackupArn"}
+        "ExclusiveStartBackupArn":{"shape":"BackupArn"},
+        "BackupType":{"shape":"BackupTypeFilter"}
       }
     },
     "ListBackupsOutput":{
@@ -1677,7 +1772,9 @@
         "IndexName":{"shape":"IndexName"},
         "IndexStatus":{"shape":"IndexStatus"},
         "ProvisionedReadCapacityUnits":{"shape":"PositiveLongObject"},
-        "ProvisionedWriteCapacityUnits":{"shape":"PositiveLongObject"}
+        "ProvisionedReadCapacityAutoScalingSettings":{"shape":"AutoScalingSettingsDescription"},
+        "ProvisionedWriteCapacityUnits":{"shape":"PositiveLongObject"},
+        "ProvisionedWriteCapacityAutoScalingSettings":{"shape":"AutoScalingSettingsDescription"}
       }
     },
     "ReplicaGlobalSecondaryIndexSettingsDescriptionList":{
@@ -1689,7 +1786,8 @@
       "required":["IndexName"],
       "members":{
         "IndexName":{"shape":"IndexName"},
-        "ProvisionedReadCapacityUnits":{"shape":"PositiveLongObject"}
+        "ProvisionedReadCapacityUnits":{"shape":"PositiveLongObject"},
+        "ProvisionedReadCapacityAutoScalingSettingsUpdate":{"shape":"AutoScalingSettingsUpdate"}
       }
     },
     "ReplicaGlobalSecondaryIndexSettingsUpdateList":{
@@ -1716,7 +1814,9 @@
         "RegionName":{"shape":"RegionName"},
         "ReplicaStatus":{"shape":"ReplicaStatus"},
         "ReplicaProvisionedReadCapacityUnits":{"shape":"PositiveLongObject"},
+        "ReplicaProvisionedReadCapacityAutoScalingSettings":{"shape":"AutoScalingSettingsDescription"},
         "ReplicaProvisionedWriteCapacityUnits":{"shape":"PositiveLongObject"},
+        "ReplicaProvisionedWriteCapacityAutoScalingSettings":{"shape":"AutoScalingSettingsDescription"},
         "ReplicaGlobalSecondaryIndexSettings":{"shape":"ReplicaGlobalSecondaryIndexSettingsDescriptionList"}
       }
     },
@@ -1730,6 +1830,7 @@
       "members":{
         "RegionName":{"shape":"RegionName"},
         "ReplicaProvisionedReadCapacityUnits":{"shape":"PositiveLongObject"},
+        "ReplicaProvisionedReadCapacityAutoScalingSettingsUpdate":{"shape":"AutoScalingSettingsUpdate"},
         "ReplicaGlobalSecondaryIndexSettingsUpdate":{"shape":"ReplicaGlobalSecondaryIndexSettingsUpdateList"}
       }
     },
@@ -2213,6 +2314,7 @@
       "members":{
         "GlobalTableName":{"shape":"TableName"},
         "GlobalTableProvisionedWriteCapacityUnits":{"shape":"PositiveLongObject"},
+        "GlobalTableProvisionedWriteCapacityAutoScalingSettingsUpdate":{"shape":"AutoScalingSettingsUpdate"},
         "GlobalTableGlobalSecondaryIndexSettingsUpdate":{"shape":"GlobalTableGlobalSecondaryIndexSettingsUpdateList"},
         "ReplicaSettingsUpdate":{"shape":"ReplicaSettingsUpdateList"}
       }

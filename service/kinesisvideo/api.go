@@ -1571,7 +1571,7 @@ type StreamInfo struct {
 	_ struct{} `type:"structure"`
 
 	// A time stamp that indicates when the stream was created.
-	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationTime *time.Time `type:"timestamp"`
 
 	// How long the stream retains data, in hours.
 	DataRetentionInHours *int64 `type:"integer"`

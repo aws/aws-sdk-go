@@ -1,3 +1,191 @@
+Release v1.15.9 (2018-08-09)
+===
+
+### Service Client Updates
+* `service/dax`: Updates service API and documentation
+  * Add the SSESpecification field to CreateCluster to allow creation of clusters with server-side encryption, and add the SSEDescription field to DescribeClusters to display the status of server-side encryption for a cluster.
+* `service/ecs`: Updates service API and documentation
+  * This release of Amazon Elastic Container Service (Amazon ECS) introduces support for Docker volumes and Docker volume drivers. Customers can now configure their ECS Tasks to use Docker volumes, enabling stateful and storage-intensive applications to be deployed on ECS.
+* `service/rds`: Updates service API, documentation, and examples
+  * Launch RDS Aurora Serverless
+
+Release v1.15.8 (2018-08-08)
+===
+
+### Service Client Updates
+* `service/secretsmanager`: Updates service API and documentation
+  * This release introduces a ForceDeleteWithoutRecovery parameter to the DeleteSecret API enabling customers to force the deletion of a secret without any recovery window
+* `service/ssm`: Updates service API and documentation
+  * AWS Systems Manager Automation is launching two new features for Automation Execution Rate Control based on tags and customized parameter maps. With the first feature, customer can target their resources by specifying a Tag with Key/Value. With the second feature, Parameter maps rate control, customers can benefit from customization of input parameters.
+
+Release v1.15.7 (2018-08-07)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * Release semantic versioning feature for CodeBuild
+* `service/ec2`: Updates service API and documentation
+  * Amazon VPC Flow Logs adds support for delivering flow logs directly to S3
+* `service/logs`: Updates service API and documentation
+  * Documentation Update
+* `service/pinpoint`: Updates service API and documentation
+  * This release includes a new batch API call for Amazon Pinpoint which can be used to update endpoints and submit events. This call will accept events from clients such as mobile devices and AWS SDKs. This call will accept requests which has multiple endpoints and multiple events attached to those endpoints in a single call. This call will update the endpoints attached and will ingest events for those endpoints. The response from this call will be a multipart response per endpoint/per event submitted.
+* `service/ssm`: Updates service API and documentation
+  * Two new filters ExecutionStage and DocumentName will be added to ListCommands so that customers will have more approaches to query their commands.
+
+Release v1.15.6 (2018-08-06)
+===
+
+### Service Client Updates
+* `service/dynamodb`: Updates service API and documentation
+  * Amazon DynamoDB Point-in-time recovery (PITR) provides continuous backups of your table data. DynamoDB now supports the ability to self-restore a deleted PITR enabled table. Now, when a table with PITR enabled is deleted, a system backup is automatically created and retained for 35 days (at no additional cost). System backups allow you to restore the deleted PITR enabled table to the state it was just before the point of deletion. For more information, see the Amazon DynamoDB Developer Guide.
+* `service/health`: Updates service API, documentation, and paginators
+  * Updates the ARN structure vended by AWS Health API. All ARNs will now include the service and type code of the associated event, as vended by DescribeEventTypes.
+
+Release v1.15.5 (2018-08-03)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API and documentation
+
+Release v1.15.4 (2018-08-02)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/kinesis`: Updates service API, documentation, and paginators
+  * This update introduces SubscribeToShard and RegisterStreamConsumer APIs which allows for retrieving records on a data stream over HTTP2 with enhanced fan-out capabilities. With this new feature the Java SDK now supports event streaming natively which will allow you to define payload and exception structures on the client over a persistent connection. For more information, see Developing Consumers with Enhanced Fan-Out in the Kinesis Developer Guide.
+* `service/polly`: Updates service API and documentation
+  * Amazon Polly enables female voice Aditi to speak Hindi language
+* `service/resource-groups`: Updates service API and documentation
+* `service/ssm`: Updates service API and documentation
+  * This release updates AWS Systems Manager APIs to let customers create and use service-linked roles to register and edit Maintenance Window tasks.
+
+Release v1.15.3 (2018-08-01)
+===
+
+### Service Client Updates
+* `service/storagegateway`: Updates service API, documentation, and examples
+  * AWS Storage Gateway now enables you to create stored volumes with AWS KMS support.
+* `service/transcribe`: Updates service API and documentation
+
+Release v1.15.2 (2018-07-31)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API and documentation
+* `service/es`: Updates service API and documentation
+  * Amazon Elasticsearch Service adds support for enabling Elasticsearch error logs, providing you valuable information for troubleshooting your Elasticsearch domains quickly and easily. These logs are published to the Amazon CloudWatch Logs service and can be turned on or off at will.
+* `service/iot`: Updates service API and documentation
+  * As part of this release we are introducing a new IoT security service, AWS IoT Device Defender, and extending capability of AWS IoT to support Step Functions rule action. The AWS IoT Device Defender is a fully managed service that helps you secure your fleet of IoT devices. For more details on this new service, go to https://aws.amazon.com/iot-device-defender. The Step Functions rule action lets you start an execution of AWS Step Functions state machine from a rule.
+* `service/kms`: Updates service API and documentation
+  * Added a KeyID parameter to the ListAliases operation. This parameter allows users to list only the aliases that refer to a particular AWS KMS customer master key. All other functionality remains intact.
+* `service/mediaconvert`: Updates service API and documentation
+  * Fixes an issue with modeled timestamps being labeled with the incorrect format.
+
+### SDK Enhancements
+* `service/dynamodb/dynamodbattribute`: Add support for custom struct tag keys([#2054](https://github.com/aws/aws-sdk-go/pull/2054))
+  * Adds support for (un)marshaling Go types using custom struct tag keys. The new `MarshalOptions.TagKey` allows the user to specify the tag key to use when (un)marshaling struct fields.  Adds support for struct tags such as `yaml`, `toml`, etc. Support for these keys are in name only, and require the tag value format and values to be supported by the package's Marshalers.
+
+### SDK Bugs
+* `aws/endpoints`: Add workaround for AWS China Application Autoscaling ([#2080](https://github.com/aws/aws-sdk-go/pull/2080))
+  * Adds workaround to correct the endpoint for Application Autoscaling running in AWS China. This will allow your application to make API calls to Application Autoscaling service in AWS China.
+  * Fixes [#2079](https://github.com/aws/aws-sdk-go/issues/2079)
+  * Fixes [#1957](https://github.com/aws/aws-sdk-go/issues/1957)
+* `private/protocol/xml/xmlutil`: Fix SDK marshaling of empty types ([#2081](https://github.com/aws/aws-sdk-go/pull/2081))
+  * Fixes the SDK's marshaling of types without members. This corrects the issue where the SDK would not marshal an XML tag for a type, if that type did not have any exported members.
+  * Fixes [#2015](https://github.com/aws/aws-sdk-go/issues/2015)
+Release v1.15.1 (2018-07-30)
+===
+
+### Service Client Updates
+* `service/cloudhsmv2`: Updates service API and documentation
+  * This update  to the AWS CloudHSM API adds copy-backup-to-region, which allows you to copy a backup of a cluster from one region to another. The copied backup can be used in the destination region to create a new AWS CloudHSM cluster as a clone of the original cluster.
+* `service/directconnect`: Updates service API and documentation
+  * 1. awsDeviceV2 field is introduced for Connection/Lag/Interconnect/VirtualInterface/Bgp Objects, while deprecating the awsDevice field for Connection/Lag/Interconnect Objects. 2. region field is introduced for VirtualInterface/Location objects
+* `service/glacier`: Updates service API and documentation
+  * Documentation updates for glacier
+* `service/glue`: Updates service API and documentation
+  * Glue Development Endpoints now support association of multiple SSH public keys with a development endpoint.
+* `service/iot`: Updates service API and documentation
+  * get rid of documentParameters field from CreateJob API
+* `service/mq`: Updates service API, documentation, and paginators
+  * Modified the CreateBroker, UpdateBroker, and DescribeBroker operations to support integration with Amazon CloudWatch Logs. Added a field to indicate the IP address(es) that correspond to wire-level endpoints of broker instances. While a single-instance broker has one IP address, an active/standby broker for high availability has 2 IP addresses. Added fields to indicate the time when resources were created. Updated documentation for Amazon MQ.
+* `service/sagemaker`: Updates service API and documentation
+  * Added SecondaryStatusTransitions to DescribeTrainingJob to provide more visibility into SageMaker training job progress and lifecycle.
+
+Release v1.15.0 (2018-07-26)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * Add artifacts encryptionDisabled and build encryptionKey.
+* `service/ec2`: Updates service API and documentation
+  * This change provides the EC2/Spot customers with two new allocation strategies -- LowestN for Spot instances, and OD priority for on-demand instances.
+* `service/greengrass`: Updates service documentation
+  * Documentation updates for Greengrass Local Resource Access feature
+* `service/inspector`: Updates service API and documentation
+  * inspector will return ServiceTemporarilyUnavailableException when service is under stress
+* `service/redshift`: Updates service API and documentation
+  * When we make a new version of Amazon Redshift available, we update your cluster during its maintenance window. By selecting a maintenance track, you control whether we update your cluster with the most recent approved release, or with the previous release. The two values for maintenance track are current and trailing. If you choose the current track, your cluster is updated with the latest approved release. If you choose the trailing track, your cluster is updated with the release that was approved previously.The new API operation for managing maintenance tracks for a cluster is DescribeClusterTracks. In addition, the following API operations have new MaintenanceTrackName parameters:  Cluster,  PendingModifiedValues,  ModifyCluster,  RestoreFromClusterSnapshot,  CreateCluster,  Snapshot
+* `service/ssm`: Updates service API and documentation
+  * This release updates AWS Systems Manager APIs to allow customers to attach labels to history parameter records and reference history parameter records via labels.  It also adds Parameter Store integration with AWS Secrets Manager to allow referencing and retrieving AWS Secrets Manager's secrets from Parameter Store.
+
+### SDK Features
+* `private/model/api`: SDK APIs input/output are not consistently generated ([#2073](https://github.com/aws/aws-sdk-go/pull/2073))
+  * Updates the SDK's API code generation to generate the API input and output types consistently. This ensures that the SDK will no longer rename input/output types unexpectedly as in [#2070](https://github.com/aws/aws-sdk-go/issues/2070). SDK API input and output parameter types will always be the API name with a suffix of Input and Output.
+  * Existing service APIs which were incorrectly modeled have been preserved to ensure they do not break.
+  * Fixes [#2070](https://github.com/aws/aws-sdk-go/issues/2070)
+
+### SDK Enhancements
+* `service/s3/s3manager`: Document default behavior for Upload's MaxNumParts ([#2077](https://github.com/aws/aws-sdk-go/issues/2077))
+  * Updates the S3 Upload Manager's default behavior for MaxNumParts, and ensures that the Uploader.MaxNumPart's member value is initialized properly if the type was created via struct initialization instead of using the NewUploader function.
+  * Fixes [#2015](https://github.com/aws/aws-sdk-go/issues/2015)
+
+### SDK Bugs
+* `private/model/api`: SDK APIs input/output are not consistently generated ([#2073](https://github.com/aws/aws-sdk-go/pull/2073))
+  * Fixes EFS service breaking change in v1.14.26 where `FileSystemDescription` was incorrectly renamed to `UpdateFileSystemOutput.
+  * Fixes [#2070](https://github.com/aws/aws-sdk-go/issues/2070)
+Release v1.14.33 (2018-07-25)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * R5 is the successor to R4 in EC2's memory-optimized instance family. R5d is a variant of R5 that has local NVMe SSD. Z1d instances deliver both high compute and high memory. Z1d instances use custom Intel Xeon Scalable Processors running at up to 4.0 GHz, powered by sustained all-core Turbo Boost. They are available in 6 sizes, with up to 48 vCPUs, 384 GiB of memory, and 1.8 TB of local NVMe storage.
+* `service/ecs`: Updates service API and documentation
+  * This release of Amazon Elastic Container Service (Amazon ECS) introduces support for private registry authentication using AWS Secrets Manager. With private registry authentication, private Docker images can be used in a task definition.
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+
+Release v1.14.32 (2018-07-24)
+===
+
+### Service Client Updates
+* `service/dynamodb`: Updates service API and documentation
+  * With this SDK update, APIs UpdateGlobalTableSettings and DescribeGlobalTableSettings now allow consistently configuring AutoScaling settings for a DynamoDB global table. Previously, they would only allow consistently setting IOPS. Now new APIs are being released, existing APIs are being extended.
+
+Release v1.14.31 (2018-07-20)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API
+* `service/dlm`: Updates service documentation
+
+### SDK Enhancements
+* `service/s3/s3manager`: Add documentation for sequential download [#2065](https://github.com/aws/aws-sdk-go/pull/2065)
+  * Adds documentation for downloading object sequentially with the S3 download manager.
+
+Release v1.14.30 (2018-07-19)
+===
+
+### Service Client Updates
+* `service/mediapackage`: Updates service API and documentation
+  * Adds support for DASH OriginEnpoints with multiple media presentation description periods triggered by presence of SCTE-35 ad markers in Channel input streams.
+
+### SDK Enhancements
+* `aws/default`: Add helper to get default provider chain list of credential providers ([#2059](https://github.com/aws/aws-sdk-go/issues/2051))
+  * Exports the default provider chain list of providers so it can be used to compose custom chains of credential providers.
+  * Fixes [#2051](https://github.com/aws/aws-sdk-go/issues/2051)
+
 Release v1.14.29 (2018-07-18)
 ===
 
@@ -982,6 +1170,12 @@ Release v1.12.77 (2018-02-14)
 * `service/appsync`: Updates service API and documentation
 * `aws/endpoints`: Updated Regions and Endpoints metadata.
 * `service/lex-models`: Updates service API and documentation
+
+### Bug Fixes
+* `aws/request`: Fix support for streamed payloads for unsigned body request ([#1778](https://github.com/aws/aws-sdk-go/pull/1778))
+  * Fixes the SDK's handling of the SDK's `ReaderSeekerCloser` helper type to not allow erroneous request retries, and request signature generation. This Fix allows you to use the `aws.ReaderSeekerCloser` to wrap an arbitrary `io.Reader` for request `io.ReadSeeker` input parameters. APIs such as lex-runtime's PostContent can now make use of the
+ReaderSeekerCloser type without causing unexpected failures.
+  * Fixes [#1776](https://github.com/aws/aws-sdk-go/issues/1776)
 
 Release v1.12.76 (2018-02-13)
 ===

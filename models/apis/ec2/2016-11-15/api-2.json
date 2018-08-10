@@ -4162,6 +4162,7 @@
         "DryRun":{"shape":"Boolean"},
         "ClientToken":{"shape":"String"},
         "SpotOptions":{"shape":"SpotOptionsRequest"},
+        "OnDemandOptions":{"shape":"OnDemandOptionsRequest"},
         "ExcessCapacityTerminationPolicy":{"shape":"FleetExcessCapacityTerminationPolicy"},
         "LaunchTemplateConfigs":{"shape":"FleetLaunchTemplateConfigListRequest"},
         "TargetCapacitySpecification":{"shape":"TargetCapacitySpecificationRequest"},
@@ -4188,13 +4189,12 @@
     "CreateFlowLogsRequest":{
       "type":"structure",
       "required":[
-        "DeliverLogsPermissionArn",
-        "LogGroupName",
         "ResourceIds",
         "ResourceType",
         "TrafficType"
       ],
       "members":{
+        "DryRun":{"shape":"Boolean"},
         "ClientToken":{"shape":"String"},
         "DeliverLogsPermissionArn":{"shape":"String"},
         "LogGroupName":{"shape":"String"},
@@ -4203,7 +4203,9 @@
           "locationName":"ResourceId"
         },
         "ResourceType":{"shape":"FlowLogsResourceType"},
-        "TrafficType":{"shape":"TrafficType"}
+        "TrafficType":{"shape":"TrafficType"},
+        "LogDestinationType":{"shape":"LogDestinationType"},
+        "LogDestination":{"shape":"String"}
       }
     },
     "CreateFlowLogsResult":{
@@ -5305,6 +5307,7 @@
       "type":"structure",
       "required":["FlowLogIds"],
       "members":{
+        "DryRun":{"shape":"Boolean"},
         "FlowLogIds":{
           "shape":"ValueStringList",
           "locationName":"FlowLogId"
@@ -6225,6 +6228,7 @@
     "DescribeFlowLogsRequest":{
       "type":"structure",
       "members":{
+        "DryRun":{"shape":"Boolean"},
         "Filter":{"shape":"FilterList"},
         "FlowLogIds":{
           "shape":"ValueStringList",
@@ -9180,6 +9184,10 @@
           "shape":"SpotOptions",
           "locationName":"spotOptions"
         },
+        "OnDemandOptions":{
+          "shape":"OnDemandOptions",
+          "locationName":"onDemandOptions"
+        },
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
@@ -9263,6 +9271,10 @@
         "WeightedCapacity":{
           "shape":"Double",
           "locationName":"weightedCapacity"
+        },
+        "Priority":{
+          "shape":"Double",
+          "locationName":"priority"
         }
       }
     },
@@ -9288,7 +9300,8 @@
         "MaxPrice":{"shape":"String"},
         "SubnetId":{"shape":"String"},
         "AvailabilityZone":{"shape":"String"},
-        "WeightedCapacity":{"shape":"Double"}
+        "WeightedCapacity":{"shape":"Double"},
+        "Priority":{"shape":"Double"}
       }
     },
     "FleetLaunchTemplateSpecification":{
@@ -9315,6 +9328,13 @@
         "LaunchTemplateName":{"shape":"LaunchTemplateName"},
         "Version":{"shape":"String"}
       }
+    },
+    "FleetOnDemandAllocationStrategy":{
+      "type":"string",
+      "enum":[
+        "lowest-price",
+        "prioritized"
+      ]
     },
     "FleetSet":{
       "type":"list",
@@ -9381,6 +9401,14 @@
         "TrafficType":{
           "shape":"TrafficType",
           "locationName":"trafficType"
+        },
+        "LogDestinationType":{
+          "shape":"LogDestinationType",
+          "locationName":"logDestinationType"
+        },
+        "LogDestination":{
+          "shape":"String",
+          "locationName":"logDestination"
         }
       }
     },
@@ -11656,6 +11684,24 @@
         "r4.4xlarge",
         "r4.8xlarge",
         "r4.16xlarge",
+        "r5.large",
+        "r5.xlarge",
+        "r5.2xlarge",
+        "r5.4xlarge",
+        "r5.8xlarge",
+        "r5.12xlarge",
+        "r5.16xlarge",
+        "r5.24xlarge",
+        "r5.metal",
+        "r5d.large",
+        "r5d.xlarge",
+        "r5d.2xlarge",
+        "r5d.4xlarge",
+        "r5d.8xlarge",
+        "r5d.12xlarge",
+        "r5d.16xlarge",
+        "r5d.24xlarge",
+        "r5d.metal",
         "x1.16xlarge",
         "x1.32xlarge",
         "x1e.xlarge",
@@ -11736,7 +11782,13 @@
         "h1.2xlarge",
         "h1.4xlarge",
         "h1.8xlarge",
-        "h1.16xlarge"
+        "h1.16xlarge",
+        "z1d.large",
+        "z1d.xlarge",
+        "z1d.2xlarge",
+        "z1d.3xlarge",
+        "z1d.6xlarge",
+        "z1d.12xlarge"
       ]
     },
     "InstanceTypeList":{
@@ -12384,6 +12436,10 @@
         "WeightedCapacity":{
           "shape":"Double",
           "locationName":"weightedCapacity"
+        },
+        "Priority":{
+          "shape":"Double",
+          "locationName":"priority"
         }
       }
     },
@@ -12651,6 +12707,13 @@
         "Group":{"shape":"PermissionGroup"},
         "UserId":{"shape":"String"}
       }
+    },
+    "LogDestinationType":{
+      "type":"string",
+      "enum":[
+        "cloud-watch-logs",
+        "s3"
+      ]
     },
     "Long":{"type":"long"},
     "MarketType":{
@@ -13923,6 +13986,28 @@
         "Partial Upfront",
         "All Upfront"
       ]
+    },
+    "OnDemandAllocationStrategy":{
+      "type":"string",
+      "enum":[
+        "lowestPrice",
+        "prioritized"
+      ]
+    },
+    "OnDemandOptions":{
+      "type":"structure",
+      "members":{
+        "AllocationStrategy":{
+          "shape":"FleetOnDemandAllocationStrategy",
+          "locationName":"allocationStrategy"
+        }
+      }
+    },
+    "OnDemandOptionsRequest":{
+      "type":"structure",
+      "members":{
+        "AllocationStrategy":{"shape":"FleetOnDemandAllocationStrategy"}
+      }
     },
     "OperationType":{
       "type":"string",
@@ -17167,6 +17252,10 @@
           "shape":"AllocationStrategy",
           "locationName":"allocationStrategy"
         },
+        "OnDemandAllocationStrategy":{
+          "shape":"OnDemandAllocationStrategy",
+          "locationName":"onDemandAllocationStrategy"
+        },
         "ClientToken":{
           "shape":"String",
           "locationName":"clientToken"
@@ -17234,6 +17323,10 @@
         "LoadBalancersConfig":{
           "shape":"LoadBalancersConfig",
           "locationName":"loadBalancersConfig"
+        },
+        "InstancePoolsToUseCount":{
+          "shape":"Integer",
+          "locationName":"instancePoolsToUseCount"
         }
       }
     },
@@ -17434,6 +17527,10 @@
         "InstanceInterruptionBehavior":{
           "shape":"SpotInstanceInterruptionBehavior",
           "locationName":"instanceInterruptionBehavior"
+        },
+        "InstancePoolsToUseCount":{
+          "shape":"Integer",
+          "locationName":"instancePoolsToUseCount"
         }
       }
     },
@@ -17441,7 +17538,8 @@
       "type":"structure",
       "members":{
         "AllocationStrategy":{"shape":"SpotAllocationStrategy"},
-        "InstanceInterruptionBehavior":{"shape":"SpotInstanceInterruptionBehavior"}
+        "InstanceInterruptionBehavior":{"shape":"SpotInstanceInterruptionBehavior"},
+        "InstancePoolsToUseCount":{"shape":"Integer"}
       }
     },
     "SpotPlacement":{

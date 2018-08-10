@@ -311,7 +311,8 @@
         "buildComplete":{"shape":"Boolean"},
         "initiator":{"shape":"String"},
         "vpcConfig":{"shape":"VpcConfig"},
-        "networkInterface":{"shape":"NetworkInterface"}
+        "networkInterface":{"shape":"NetworkInterface"},
+        "encryptionKey":{"shape":"NonEmptyString"}
       }
     },
     "BuildArtifacts":{
@@ -319,7 +320,9 @@
       "members":{
         "location":{"shape":"String"},
         "sha256sum":{"shape":"String"},
-        "md5sum":{"shape":"String"}
+        "md5sum":{"shape":"String"},
+        "overrideArtifactName":{"shape":"WrapperBoolean"},
+        "encryptionDisabled":{"shape":"WrapperBoolean"}
       }
     },
     "BuildIds":{
@@ -697,7 +700,9 @@
         "path":{"shape":"String"},
         "namespaceType":{"shape":"ArtifactNamespace"},
         "name":{"shape":"String"},
-        "packaging":{"shape":"ArtifactPackaging"}
+        "packaging":{"shape":"ArtifactPackaging"},
+        "overrideArtifactName":{"shape":"WrapperBoolean"},
+        "encryptionDisabled":{"shape":"WrapperBoolean"}
       }
     },
     "ProjectBadge":{

@@ -771,7 +771,7 @@ func (c *Polly) StartSpeechSynthesisTaskRequest(input *StartSpeechSynthesisTaskI
 //   * ErrCodeTextLengthExceededException "TextLengthExceededException"
 //   The value of the "Text" parameter is longer than the accepted limits. For
 //   the SynthesizeSpeech API, the limit for input text is a maximum of 6000 characters
-//   total, of which no more than 3000 can be billed characters. For the SetSpeechSynthesisTask
+//   total, of which no more than 3000 can be billed characters. For the StartSpeechSynthesisTask
 //   API, the maximum is 200,000 characters, of which no more than 100,000 can
 //   be billed characters. SSML tags are not counted as billed characters.
 //
@@ -811,6 +811,10 @@ func (c *Polly) StartSpeechSynthesisTaskRequest(input *StartSpeechSynthesisTaskI
 //
 //   * ErrCodeSsmlMarksNotSupportedForTextTypeException "SsmlMarksNotSupportedForTextTypeException"
 //   SSML speech marks are not supported for plain text-type input.
+//
+//   * ErrCodeLanguageNotSupportedException "LanguageNotSupportedException"
+//   The language specified is not currently supported by Amazon Polly in this
+//   capacity.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/polly-2016-06-10/StartSpeechSynthesisTask
 func (c *Polly) StartSpeechSynthesisTask(input *StartSpeechSynthesisTaskInput) (*StartSpeechSynthesisTaskOutput, error) {
@@ -895,7 +899,7 @@ func (c *Polly) SynthesizeSpeechRequest(input *SynthesizeSpeechInput) (req *requ
 //   * ErrCodeTextLengthExceededException "TextLengthExceededException"
 //   The value of the "Text" parameter is longer than the accepted limits. For
 //   the SynthesizeSpeech API, the limit for input text is a maximum of 6000 characters
-//   total, of which no more than 3000 can be billed characters. For the SetSpeechSynthesisTask
+//   total, of which no more than 3000 can be billed characters. For the StartSpeechSynthesisTask
 //   API, the maximum is 200,000 characters, of which no more than 100,000 can
 //   be billed characters. SSML tags are not counted as billed characters.
 //
@@ -923,6 +927,10 @@ func (c *Polly) SynthesizeSpeechRequest(input *SynthesizeSpeechInput) (req *requ
 //
 //   * ErrCodeSsmlMarksNotSupportedForTextTypeException "SsmlMarksNotSupportedForTextTypeException"
 //   SSML speech marks are not supported for plain text-type input.
+//
+//   * ErrCodeLanguageNotSupportedException "LanguageNotSupportedException"
+//   The language specified is not currently supported by Amazon Polly in this
+//   capacity.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/polly-2016-06-10/SynthesizeSpeech
 func (c *Polly) SynthesizeSpeech(input *SynthesizeSpeechInput) (*SynthesizeSpeechOutput, error) {
@@ -1001,6 +1009,13 @@ func (s DeleteLexiconOutput) GoString() string {
 type DescribeVoicesInput struct {
 	_ struct{} `type:"structure"`
 
+	// Boolean value indicating whether to return any bilingual voices that use
+	// the specified language as an additional language. For instance, if you request
+	// all languages that use US English (es-US), and there is an Italian voice
+	// that speaks both Italian (it-IT) and US English, that voice will be included
+	// if you specify yes but not if you specify no.
+	IncludeAdditionalLanguageCodes *bool `location:"querystring" locationName:"IncludeAdditionalLanguageCodes" type:"boolean"`
+
 	// The language identification tag (ISO 639 code for the language name-ISO 3166
 	// country code) for filtering the list of voices returned. If you don't specify
 	// this optional parameter, all available voices are returned.
@@ -1019,6 +1034,12 @@ func (s DescribeVoicesInput) String() string {
 // GoString returns the string representation
 func (s DescribeVoicesInput) GoString() string {
 	return s.String()
+}
+
+// SetIncludeAdditionalLanguageCodes sets the IncludeAdditionalLanguageCodes field's value.
+func (s *DescribeVoicesInput) SetIncludeAdditionalLanguageCodes(v bool) *DescribeVoicesInput {
+	s.IncludeAdditionalLanguageCodes = &v
+	return s
 }
 
 // SetLanguageCode sets the LanguageCode field's value.
@@ -1252,7 +1273,7 @@ type LexiconAttributes struct {
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
 	// Date lexicon was last modified (a timestamp value).
-	LastModified *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModified *time.Time `type:"timestamp"`
 
 	// Number of lexemes in the lexicon.
 	LexemesCount *int64 `type:"integer"`
@@ -1462,9 +1483,9 @@ type ListSpeechSynthesisTasksOutput struct {
 	// request. If present, this indicates where to continue the listing.
 	NextToken *string `type:"string"`
 
-	// SynthesisTask object that provides information from the specified task in
-	// the list request, including output format, creation time, task status, and
-	// so on.
+	// List of SynthesisTask objects that provides information from the specified
+	// task in the list request, including output format, creation time, task status,
+	// and so on.
 	SynthesisTasks []*SynthesisTask `type:"list"`
 }
 
@@ -1561,6 +1582,17 @@ func (s PutLexiconOutput) GoString() string {
 type StartSpeechSynthesisTaskInput struct {
 	_ struct{} `type:"structure"`
 
+	// Optional language code for the Speech Synthesis request. This is only necessary
+	// if using a bilingual voice, such as Aditi, which can be used for either Indian
+	// English (en-IN) or Hindi (hi-IN).
+	//
+	// If a bilingual voice is used and no language code is specified, Amazon Polly
+	// will use the default language of the bilingual voice. The default language
+	// for any voice is the one returned by the DescribeVoices (https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html)
+	// operation for the LanguageCode parameter. For example, if no language code
+	// is specified, Aditi will use Indian English rather than Hindi.
+	LanguageCode *string `type:"string" enum:"LanguageCode"`
+
 	// List of one or more pronunciation lexicon names you want the service to apply
 	// during synthesis. Lexicons are applied only if the language of the lexicon
 	// is the same as the language of the voice.
@@ -1577,7 +1609,7 @@ type StartSpeechSynthesisTaskInput struct {
 	// OutputS3BucketName is a required field
 	OutputS3BucketName *string `type:"string" required:"true"`
 
-	// The Amazon S3 Key prefix for the output speech file.
+	// The Amazon S3 key prefix for the output speech file.
 	OutputS3KeyPrefix *string `type:"string"`
 
 	// The audio frequency specified in Hz.
@@ -1641,6 +1673,12 @@ func (s *StartSpeechSynthesisTaskInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *StartSpeechSynthesisTaskInput) SetLanguageCode(v string) *StartSpeechSynthesisTaskInput {
+	s.LanguageCode = &v
+	return s
 }
 
 // SetLexiconNames sets the LexiconNames field's value.
@@ -1732,7 +1770,18 @@ type SynthesisTask struct {
 	_ struct{} `type:"structure"`
 
 	// Timestamp for the time the synthesis task was started.
-	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreationTime *time.Time `type:"timestamp"`
+
+	// Optional language code for a synthesis task. This is only necessary if using
+	// a bilingual voice, such as Aditi, which can be used for either Indian English
+	// (en-IN) or Hindi (hi-IN).
+	//
+	// If a bilingual voice is used and no language code is specified, Amazon Polly
+	// will use the default language of the bilingual voice. The default language
+	// for any voice is the one returned by the DescribeVoices (https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html)
+	// operation for the LanguageCode parameter. For example, if no language code
+	// is specified, Aditi will use Indian English rather than Hindi.
+	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
 	// List of one or more pronunciation lexicon names you want the service to apply
 	// during synthesis. Lexicons are applied only if the language of the lexicon
@@ -1795,6 +1844,12 @@ func (s SynthesisTask) GoString() string {
 // SetCreationTime sets the CreationTime field's value.
 func (s *SynthesisTask) SetCreationTime(v time.Time) *SynthesisTask {
 	s.CreationTime = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *SynthesisTask) SetLanguageCode(v string) *SynthesisTask {
+	s.LanguageCode = &v
 	return s
 }
 
@@ -1873,6 +1928,17 @@ func (s *SynthesisTask) SetVoiceId(v string) *SynthesisTask {
 type SynthesizeSpeechInput struct {
 	_ struct{} `type:"structure"`
 
+	// Optional language code for the Synthesize Speech request. This is only necessary
+	// if using a bilingual voice, such as Aditi, which can be used for either Indian
+	// English (en-IN) or Hindi (hi-IN).
+	//
+	// If a bilingual voice is used and no language code is specified, Amazon Polly
+	// will use the default language of the bilingual voice. The default language
+	// for any voice is the one returned by the DescribeVoices (https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html)
+	// operation for the LanguageCode parameter. For example, if no language code
+	// is specified, Aditi will use Indian English rather than Hindi.
+	LanguageCode *string `type:"string" enum:"LanguageCode"`
+
 	// List of one or more pronunciation lexicon names you want the service to apply
 	// during synthesis. Lexicons are applied only if the language of the lexicon
 	// is the same as the language of the voice. For information about storing lexicons,
@@ -1941,6 +2007,12 @@ func (s *SynthesizeSpeechInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *SynthesizeSpeechInput) SetLanguageCode(v string) *SynthesizeSpeechInput {
+	s.LanguageCode = &v
+	return s
 }
 
 // SetLexiconNames sets the LexiconNames field's value.
@@ -2044,6 +2116,14 @@ func (s *SynthesizeSpeechOutput) SetRequestCharacters(v int64) *SynthesizeSpeech
 type Voice struct {
 	_ struct{} `type:"structure"`
 
+	// Additional codes for languages available for the specified voice in addition
+	// to its default language.
+	//
+	// For example, the default language for Aditi is Indian English (en-IN) because
+	// it was first used for that language. Since Aditi is bilingual and fluent
+	// in both Indian English and Hindi, this parameter would show the code hi-IN.
+	AdditionalLanguageCodes []*string `type:"list"`
+
 	// Gender of the voice.
 	Gender *string `type:"string" enum:"Gender"`
 
@@ -2070,6 +2150,12 @@ func (s Voice) String() string {
 // GoString returns the string representation
 func (s Voice) GoString() string {
 	return s.String()
+}
+
+// SetAdditionalLanguageCodes sets the AdditionalLanguageCodes field's value.
+func (s *Voice) SetAdditionalLanguageCodes(v []*string) *Voice {
+	s.AdditionalLanguageCodes = v
+	return s
 }
 
 // SetGender sets the Gender field's value.
@@ -2153,11 +2239,14 @@ const (
 	// LanguageCodeItIt is a LanguageCode enum value
 	LanguageCodeItIt = "it-IT"
 
-	// LanguageCodeKoKr is a LanguageCode enum value
-	LanguageCodeKoKr = "ko-KR"
-
 	// LanguageCodeJaJp is a LanguageCode enum value
 	LanguageCodeJaJp = "ja-JP"
+
+	// LanguageCodeHiIn is a LanguageCode enum value
+	LanguageCodeHiIn = "hi-IN"
+
+	// LanguageCodeKoKr is a LanguageCode enum value
+	LanguageCodeKoKr = "ko-KR"
 
 	// LanguageCodeNbNo is a LanguageCode enum value
 	LanguageCodeNbNo = "nb-NO"

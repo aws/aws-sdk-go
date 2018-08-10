@@ -553,6 +553,9 @@ func (c *Redshift) CreateClusterRequest(input *CreateClusterInput) (req *request
 //   The request cannot be completed because a dependent service is throttling
 //   requests made by Amazon Redshift on your behalf. Wait and retry the request.
 //
+//   * ErrCodeInvalidClusterTrackFault "InvalidClusterTrack"
+//   The provided cluster track name is not valid.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateCluster
 func (c *Redshift) CreateCluster(input *CreateClusterInput) (*CreateClusterOutput, error) {
 	req, out := c.CreateClusterRequest(input)
@@ -3264,6 +3267,88 @@ func (c *Redshift) DescribeClusterSubnetGroupsPagesWithContext(ctx aws.Context, 
 	return p.Err()
 }
 
+const opDescribeClusterTracks = "DescribeClusterTracks"
+
+// DescribeClusterTracksRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeClusterTracks operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeClusterTracks for more information on using the DescribeClusterTracks
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeClusterTracksRequest method.
+//    req, resp := client.DescribeClusterTracksRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeClusterTracks
+func (c *Redshift) DescribeClusterTracksRequest(input *DescribeClusterTracksInput) (req *request.Request, output *DescribeClusterTracksOutput) {
+	op := &request.Operation{
+		Name:       opDescribeClusterTracks,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeClusterTracksInput{}
+	}
+
+	output = &DescribeClusterTracksOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeClusterTracks API operation for Amazon Redshift.
+//
+// Returns a list of all the available maintenance tracks.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation DescribeClusterTracks for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidClusterTrackFault "InvalidClusterTrack"
+//   The provided cluster track name is not valid.
+//
+//   * ErrCodeUnauthorizedOperation "UnauthorizedOperation"
+//   Your account is not authorized to perform the requested operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeClusterTracks
+func (c *Redshift) DescribeClusterTracks(input *DescribeClusterTracksInput) (*DescribeClusterTracksOutput, error) {
+	req, out := c.DescribeClusterTracksRequest(input)
+	return out, req.Send()
+}
+
+// DescribeClusterTracksWithContext is the same as DescribeClusterTracks with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeClusterTracks for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DescribeClusterTracksWithContext(ctx aws.Context, input *DescribeClusterTracksInput, opts ...request.Option) (*DescribeClusterTracksOutput, error) {
+	req, out := c.DescribeClusterTracksRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeClusterVersions = "DescribeClusterVersions"
 
 // DescribeClusterVersionsRequest generates a "aws/request.Request" representing the
@@ -5744,8 +5829,8 @@ func (c *Redshift) GetReservedNodeExchangeOfferingsRequest(input *GetReservedNod
 
 // GetReservedNodeExchangeOfferings API operation for Amazon Redshift.
 //
-// Returns an array of ReservedNodeOfferings which is filtered by payment type,
-// term, and instance type.
+// Returns an array of DC2 ReservedNodeOfferings that matches the payment type,
+// term, and usage price of the given DC1 reserved node.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5916,6 +6001,9 @@ func (c *Redshift) ModifyClusterRequest(input *ModifyClusterInput) (req *request
 //   * ErrCodeTableLimitExceededFault "TableLimitExceeded"
 //   The number of tables in the cluster exceeds the limit for the requested new
 //   cluster node type.
+//
+//   * ErrCodeInvalidClusterTrackFault "InvalidClusterTrack"
+//   The provided cluster track name is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyCluster
 func (c *Redshift) ModifyCluster(input *ModifyClusterInput) (*ModifyClusterOutput, error) {
@@ -6916,6 +7004,9 @@ func (c *Redshift) RestoreFromClusterSnapshotRequest(input *RestoreFromClusterSn
 //   The request cannot be completed because a dependent service is throttling
 //   requests made by Amazon Redshift on your behalf. Wait and retry the request.
 //
+//   * ErrCodeInvalidClusterTrackFault "InvalidClusterTrack"
+//   The provided cluster track name is not valid.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/RestoreFromClusterSnapshot
 func (c *Redshift) RestoreFromClusterSnapshot(input *RestoreFromClusterSnapshotInput) (*RestoreFromClusterSnapshotOutput, error) {
 	req, out := c.RestoreFromClusterSnapshotRequest(input)
@@ -7323,12 +7414,14 @@ func (c *Redshift) RotateEncryptionKeyWithContext(ctx aws.Context, input *Rotate
 type AcceptReservedNodeExchangeInput struct {
 	_ struct{} `type:"structure"`
 
-	// A string representing the identifier of the Reserved Node to be exchanged.
+	// A string representing the node identifier of the DC1 Reserved Node to be
+	// exchanged.
 	//
 	// ReservedNodeId is a required field
 	ReservedNodeId *string `type:"string" required:"true"`
 
-	// The unique identifier of the Reserved Node offering to be used for the exchange.
+	// The unique identifier of the DC2 Reserved Node offering to be used for the
+	// exchange. You can obtain the value for the parameter by calling GetReservedNodeExchangeOfferings
 	//
 	// TargetReservedNodeOfferingId is a required field
 	TargetReservedNodeOfferingId *string `type:"string" required:"true"`
@@ -7658,7 +7751,7 @@ type Cluster struct {
 	AvailabilityZone *string `type:"string"`
 
 	// The date and time that the cluster was created.
-	ClusterCreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	ClusterCreateTime *time.Time `type:"timestamp"`
 
 	// The unique identifier of the cluster.
 	ClusterIdentifier *string `type:"string"`
@@ -7771,6 +7864,9 @@ type Cluster struct {
 	// The AWS Key Management Service (AWS KMS) key ID of the encryption key used
 	// to encrypt data in the cluster.
 	KmsKeyId *string `type:"string"`
+
+	// The name of the maintenance track for the cluster.
+	MaintenanceTrackName *string `type:"string"`
 
 	// The master user name for the cluster. This name is used to connect to the
 	// database that is specified in the DBName parameter.
@@ -7958,6 +8054,12 @@ func (s *Cluster) SetKmsKeyId(v string) *Cluster {
 	return s
 }
 
+// SetMaintenanceTrackName sets the MaintenanceTrackName field's value.
+func (s *Cluster) SetMaintenanceTrackName(v string) *Cluster {
+	s.MaintenanceTrackName = &v
+	return s
+}
+
 // SetMasterUsername sets the MasterUsername field's value.
 func (s *Cluster) SetMasterUsername(v string) *Cluster {
 	s.MasterUsername = &v
@@ -8041,7 +8143,7 @@ type ClusterDbRevision struct {
 	CurrentDatabaseRevision *string `type:"string"`
 
 	// The date on which the database revision was released.
-	DatabaseRevisionReleaseDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	DatabaseRevisionReleaseDate *time.Time `type:"timestamp"`
 
 	// A list of RevisionTarget objects, where each object describes the database
 	// revision that a cluster can be updated to.
@@ -8896,6 +8998,11 @@ type CreateClusterInput struct {
 	// want to use to encrypt data in the cluster.
 	KmsKeyId *string `type:"string"`
 
+	// An optional parameter for the name of the maintenance track for the cluster.
+	// If you don't provide a maintenance track name, the cluster is assigned to
+	// the current track.
+	MaintenanceTrackName *string `type:"string"`
+
 	// The password associated with the master user account for the cluster that
 	// is being created.
 	//
@@ -9133,6 +9240,12 @@ func (s *CreateClusterInput) SetIamRoles(v []*string) *CreateClusterInput {
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *CreateClusterInput) SetKmsKeyId(v string) *CreateClusterInput {
 	s.KmsKeyId = &v
+	return s
+}
+
+// SetMaintenanceTrackName sets the MaintenanceTrackName field's value.
+func (s *CreateClusterInput) SetMaintenanceTrackName(v string) *CreateClusterInput {
+	s.MaintenanceTrackName = &v
 	return s
 }
 
@@ -11331,7 +11444,7 @@ type DescribeClusterSnapshotsInput struct {
 	// about ISO 8601, go to the ISO8601 Wikipedia page. (http://en.wikipedia.org/wiki/ISO_8601)
 	//
 	// Example: 2012-07-16T18:00:00Z
-	EndTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	EndTime *time.Time `type:"timestamp"`
 
 	// An optional parameter that specifies the starting point to return a set of
 	// response records. When the results of a DescribeClusterSnapshots request
@@ -11371,7 +11484,7 @@ type DescribeClusterSnapshotsInput struct {
 	// ISO 8601, go to the ISO8601 Wikipedia page. (http://en.wikipedia.org/wiki/ISO_8601)
 	//
 	// Example: 2012-07-16T18:00:00Z
-	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	StartTime *time.Time `type:"timestamp"`
 
 	// A tag key or keys for which you want to return all matching cluster snapshots
 	// that are associated with the specified key or keys. For example, suppose
@@ -11617,6 +11730,86 @@ func (s *DescribeClusterSubnetGroupsOutput) SetClusterSubnetGroups(v []*ClusterS
 
 // SetMarker sets the Marker field's value.
 func (s *DescribeClusterSubnetGroupsOutput) SetMarker(v string) *DescribeClusterSubnetGroupsOutput {
+	s.Marker = &v
+	return s
+}
+
+type DescribeClusterTracksInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the maintenance track.
+	MaintenanceTrackName *string `type:"string"`
+
+	// An optional parameter that specifies the starting point to return a set of
+	// response records. When the results of a DescribeClusterTracks request exceed
+	// the value specified in MaxRecords, Amazon Redshift returns a value in the
+	// Marker field of the response. You can retrieve the next set of response records
+	// by providing the returned marker value in the Marker parameter and retrying
+	// the request.
+	Marker *string `type:"string"`
+
+	// An integer value for the maximum number of maintenance tracks to return.
+	MaxRecords *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s DescribeClusterTracksInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeClusterTracksInput) GoString() string {
+	return s.String()
+}
+
+// SetMaintenanceTrackName sets the MaintenanceTrackName field's value.
+func (s *DescribeClusterTracksInput) SetMaintenanceTrackName(v string) *DescribeClusterTracksInput {
+	s.MaintenanceTrackName = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeClusterTracksInput) SetMarker(v string) *DescribeClusterTracksInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeClusterTracksInput) SetMaxRecords(v int64) *DescribeClusterTracksInput {
+	s.MaxRecords = &v
+	return s
+}
+
+type DescribeClusterTracksOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of maintenance tracks output by the DescribeClusterTracks operation.
+	MaintenanceTracks []*MaintenanceTrack `locationNameList:"MaintenanceTrack" type:"list"`
+
+	// The starting point to return a set of response tracklist records. You can
+	// retrieve the next set of response records by providing the returned marker
+	// value in the Marker parameter and retrying the request.
+	Marker *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeClusterTracksOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeClusterTracksOutput) GoString() string {
+	return s.String()
+}
+
+// SetMaintenanceTracks sets the MaintenanceTracks field's value.
+func (s *DescribeClusterTracksOutput) SetMaintenanceTracks(v []*MaintenanceTrack) *DescribeClusterTracksOutput {
+	s.MaintenanceTracks = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeClusterTracksOutput) SetMarker(v string) *DescribeClusterTracksOutput {
 	s.Marker = &v
 	return s
 }
@@ -12124,7 +12317,7 @@ type DescribeEventsInput struct {
 	// page. (http://en.wikipedia.org/wiki/ISO_8601)
 	//
 	// Example: 2009-07-08T18:00Z
-	EndTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	EndTime *time.Time `type:"timestamp"`
 
 	// An optional parameter that specifies the starting point to return a set of
 	// response records. When the results of a DescribeEvents request exceed the
@@ -12183,7 +12376,7 @@ type DescribeEventsInput struct {
 	// page. (http://en.wikipedia.org/wiki/ISO_8601)
 	//
 	// Example: 2009-07-08T18:00Z
-	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	StartTime *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -13808,7 +14001,7 @@ type Event struct {
 	_ struct{} `type:"structure"`
 
 	// The date and time of the event.
-	Date *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	Date *time.Time `type:"timestamp"`
 
 	// A list of the event categories.
 	//
@@ -14023,7 +14216,7 @@ type EventSubscription struct {
 
 	// The date and time the Amazon Redshift event notification subscription was
 	// created.
-	SubscriptionCreationTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	SubscriptionCreationTime *time.Time `type:"timestamp"`
 
 	// The list of tags for the event subscription.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
@@ -14276,7 +14469,7 @@ type GetClusterCredentialsOutput struct {
 	DbUser *string `type:"string"`
 
 	// The date and time the password in DbPassword expires.
-	Expiration *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	Expiration *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -14316,7 +14509,8 @@ type GetReservedNodeExchangeOfferingsInput struct {
 	// An integer setting the maximum number of ReservedNodeOfferings to retrieve.
 	MaxRecords *int64 `type:"integer"`
 
-	// A string representing the node identifier for the Reserved Node to be exchanged.
+	// A string representing the node identifier for the DC1 Reserved Node to be
+	// exchanged.
 	//
 	// ReservedNodeId is a required field
 	ReservedNodeId *string `type:"string" required:"true"`
@@ -14608,10 +14802,10 @@ type LoggingStatus struct {
 	LastFailureMessage *string `type:"string"`
 
 	// The last time when logs failed to be delivered.
-	LastFailureTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	LastFailureTime *time.Time `type:"timestamp"`
 
 	// The last time that logs were delivered.
-	LastSuccessfulDeliveryTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	LastSuccessfulDeliveryTime *time.Time `type:"timestamp"`
 
 	// true if logging is on, false if logging is off.
 	LoggingEnabled *bool `type:"boolean"`
@@ -14663,6 +14857,52 @@ func (s *LoggingStatus) SetLoggingEnabled(v bool) *LoggingStatus {
 // SetS3KeyPrefix sets the S3KeyPrefix field's value.
 func (s *LoggingStatus) SetS3KeyPrefix(v string) *LoggingStatus {
 	s.S3KeyPrefix = &v
+	return s
+}
+
+// Defines a maintenance track that determines which Amazon Redshift version
+// to apply during a maintenance window. If the value for MaintenanceTrack is
+// current, the cluster is updated to the most recently certified maintenance
+// release. If the value is trailing, the cluster is updated to the previously
+// certified maintenance release.
+type MaintenanceTrack struct {
+	_ struct{} `type:"structure"`
+
+	// The version number for the cluster release.
+	DatabaseVersion *string `type:"string"`
+
+	// The name of the maintenance track. Possible values are current and trailing.
+	MaintenanceTrackName *string `type:"string"`
+
+	// An array of UpdateTarget objects to update with the maintenance track.
+	UpdateTargets []*UpdateTarget `locationNameList:"UpdateTarget" type:"list"`
+}
+
+// String returns the string representation
+func (s MaintenanceTrack) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MaintenanceTrack) GoString() string {
+	return s.String()
+}
+
+// SetDatabaseVersion sets the DatabaseVersion field's value.
+func (s *MaintenanceTrack) SetDatabaseVersion(v string) *MaintenanceTrack {
+	s.DatabaseVersion = &v
+	return s
+}
+
+// SetMaintenanceTrackName sets the MaintenanceTrackName field's value.
+func (s *MaintenanceTrack) SetMaintenanceTrackName(v string) *MaintenanceTrack {
+	s.MaintenanceTrackName = &v
+	return s
+}
+
+// SetUpdateTargets sets the UpdateTargets field's value.
+func (s *MaintenanceTrack) SetUpdateTargets(v []*UpdateTarget) *MaintenanceTrack {
+	s.UpdateTargets = v
 	return s
 }
 
@@ -14931,6 +15171,13 @@ type ModifyClusterInput struct {
 	// the Amazon Redshift cluster can use to retrieve and store keys in an HSM.
 	HsmConfigurationIdentifier *string `type:"string"`
 
+	// The name for the maintenance track that you want to assign for the cluster.
+	// This name change is asynchronous. The new track name stays in the PendingModifiedValues
+	// for the cluster until the next maintenance window. When the maintenance track
+	// changes, the cluster is switched to the latest cluster release available
+	// for the maintenance track. At this point, the maintenance track name is applied.
+	MaintenanceTrackName *string `type:"string"`
+
 	// The new password for the cluster master user. This change is asynchronously
 	// applied as soon as possible. Between the time of the request and the completion
 	// of the request, the MasterUserPassword element exists in the PendingModifiedValues
@@ -15115,6 +15362,12 @@ func (s *ModifyClusterInput) SetHsmClientCertificateIdentifier(v string) *Modify
 // SetHsmConfigurationIdentifier sets the HsmConfigurationIdentifier field's value.
 func (s *ModifyClusterInput) SetHsmConfigurationIdentifier(v string) *ModifyClusterInput {
 	s.HsmConfigurationIdentifier = &v
+	return s
+}
+
+// SetMaintenanceTrackName sets the MaintenanceTrackName field's value.
+func (s *ModifyClusterInput) SetMaintenanceTrackName(v string) *ModifyClusterInput {
+	s.MaintenanceTrackName = &v
 	return s
 }
 
@@ -15733,6 +15986,10 @@ type PendingModifiedValues struct {
 	// Default: false
 	EnhancedVpcRouting *bool `type:"boolean"`
 
+	// The name of the maintenance track that the cluster will change to during
+	// the next maintenance window.
+	MaintenanceTrackName *string `type:"string"`
+
 	// The pending or in-progress change of the master user password for the cluster.
 	MasterUserPassword *string `type:"string"`
 
@@ -15784,6 +16041,12 @@ func (s *PendingModifiedValues) SetClusterVersion(v string) *PendingModifiedValu
 // SetEnhancedVpcRouting sets the EnhancedVpcRouting field's value.
 func (s *PendingModifiedValues) SetEnhancedVpcRouting(v bool) *PendingModifiedValues {
 	s.EnhancedVpcRouting = &v
+	return s
+}
+
+// SetMaintenanceTrackName sets the MaintenanceTrackName field's value.
+func (s *PendingModifiedValues) SetMaintenanceTrackName(v string) *PendingModifiedValues {
+	s.MaintenanceTrackName = &v
 	return s
 }
 
@@ -16016,7 +16279,7 @@ type ReservedNode struct {
 
 	// The time the reservation started. You purchase a reserved node offering for
 	// a duration. This is the start time of that duration.
-	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	StartTime *time.Time `type:"timestamp"`
 
 	// The state of the reserved compute node.
 	//
@@ -16398,6 +16661,15 @@ type RestoreFromClusterSnapshotInput struct {
 	// snapshot.
 	KmsKeyId *string `type:"string"`
 
+	// The name of the maintenance track for the restored cluster. When you take
+	// a snapshot, the snapshot inherits the MaintenanceTrack value from the cluster.
+	// The snapshot might be on a different track than the cluster that was the
+	// source for the snapshot. For example, suppose that you take a snapshot of
+	// a cluster that is on the current track and then change the cluster to be
+	// on the trailing track. In this case, the snapshot and the source cluster
+	// are on different tracks.
+	MaintenanceTrackName *string `type:"string"`
+
 	// The node type that the restored cluster will be provisioned with.
 	//
 	// Default: The node type of the cluster from which the snapshot was taken.
@@ -16571,6 +16843,12 @@ func (s *RestoreFromClusterSnapshotInput) SetIamRoles(v []*string) *RestoreFromC
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *RestoreFromClusterSnapshotInput) SetKmsKeyId(v string) *RestoreFromClusterSnapshotInput {
 	s.KmsKeyId = &v
+	return s
+}
+
+// SetMaintenanceTrackName sets the MaintenanceTrackName field's value.
+func (s *RestoreFromClusterSnapshotInput) SetMaintenanceTrackName(v string) *RestoreFromClusterSnapshotInput {
+	s.MaintenanceTrackName = &v
 	return s
 }
 
@@ -16875,7 +17153,7 @@ type RevisionTarget struct {
 	DatabaseRevision *string `type:"string"`
 
 	// The date on which the database revision was released.
-	DatabaseRevisionReleaseDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	DatabaseRevisionReleaseDate *time.Time `type:"timestamp"`
 
 	// A string that describes the changes and features that will be applied to
 	// the cluster when it is updated to the corresponding ClusterDbRevision.
@@ -17176,7 +17454,7 @@ type Snapshot struct {
 	BackupProgressInMegaBytes *float64 `type:"double"`
 
 	// The time (UTC) when the cluster was originally created.
-	ClusterCreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	ClusterCreateTime *time.Time `type:"timestamp"`
 
 	// The identifier of the cluster for which the snapshot was taken.
 	ClusterIdentifier *string `type:"string"`
@@ -17222,6 +17500,9 @@ type Snapshot struct {
 	// used to encrypt data in the cluster from which the snapshot was taken.
 	KmsKeyId *string `type:"string"`
 
+	// The name of the maintenance track for the snapshot.
+	MaintenanceTrackName *string `type:"string"`
+
 	// The master user name for the cluster.
 	MasterUsername *string `type:"string"`
 
@@ -17244,7 +17525,7 @@ type Snapshot struct {
 
 	// The time (UTC) when Amazon Redshift began the snapshot. A snapshot contains
 	// a copy of the cluster data as of this exact time.
-	SnapshotCreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	SnapshotCreateTime *time.Time `type:"timestamp"`
 
 	// The snapshot identifier that is provided in the request.
 	SnapshotIdentifier *string `type:"string"`
@@ -17377,6 +17658,12 @@ func (s *Snapshot) SetEstimatedSecondsToCompletion(v int64) *Snapshot {
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *Snapshot) SetKmsKeyId(v string) *Snapshot {
 	s.KmsKeyId = &v
+	return s
+}
+
+// SetMaintenanceTrackName sets the MaintenanceTrackName field's value.
+func (s *Snapshot) SetMaintenanceTrackName(v string) *Snapshot {
+	s.MaintenanceTrackName = &v
 	return s
 }
 
@@ -17598,7 +17885,7 @@ type TableRestoreStatus struct {
 
 	// The time that the table restore request was made, in Universal Coordinated
 	// Time (UTC).
-	RequestTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	RequestTime *time.Time `type:"timestamp"`
 
 	// The identifier of the snapshot that the table is being restored from.
 	SnapshotIdentifier *string `type:"string"`
@@ -17820,6 +18107,39 @@ func (s *TaggedResource) SetResourceType(v string) *TaggedResource {
 // SetTag sets the Tag field's value.
 func (s *TaggedResource) SetTag(v *Tag) *TaggedResource {
 	s.Tag = v
+	return s
+}
+
+// A maintenance track that you can switch the current track to.
+type UpdateTarget struct {
+	_ struct{} `type:"structure"`
+
+	// The cluster version for the new maintenance track.
+	DatabaseVersion *string `type:"string"`
+
+	// The name of the new maintenance track.
+	MaintenanceTrackName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateTarget) GoString() string {
+	return s.String()
+}
+
+// SetDatabaseVersion sets the DatabaseVersion field's value.
+func (s *UpdateTarget) SetDatabaseVersion(v string) *UpdateTarget {
+	s.DatabaseVersion = &v
+	return s
+}
+
+// SetMaintenanceTrackName sets the MaintenanceTrackName field's value.
+func (s *UpdateTarget) SetMaintenanceTrackName(v string) *UpdateTarget {
+	s.MaintenanceTrackName = &v
 	return s
 }
 

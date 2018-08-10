@@ -1992,7 +1992,11 @@
     },
     "ResourceCreationTime":{"type":"timestamp"},
     "ResourceDeletionTime":{"type":"timestamp"},
-    "ResourceId":{"type":"string"},
+    "ResourceId":{
+      "type":"string",
+      "max":768,
+      "min":1
+    },
     "ResourceIdList":{
       "type":"list",
       "member":{"shape":"ResourceId"}

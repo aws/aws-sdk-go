@@ -4406,12 +4406,12 @@ type DominantLanguageDetectionJobFilter struct {
 	// Filters the list of jobs based on the time that the job was submitted for
 	// processing. Returns only jobs submitted after the specified time. Jobs are
 	// returned in descending order, newest to oldest.
-	SubmitTimeAfter *time.Time `type:"timestamp" timestampFormat:"unix"`
+	SubmitTimeAfter *time.Time `type:"timestamp"`
 
 	// Filters the list of jobs based on the time that the job was submitted for
 	// processing. Returns only jobs submitted before the specified time. Jobs are
 	// returned in ascending order, oldest to newest.
-	SubmitTimeBefore *time.Time `type:"timestamp" timestampFormat:"unix"`
+	SubmitTimeBefore *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -4470,7 +4470,7 @@ type DominantLanguageDetectionJobProperties struct {
 	DataAccessRoleArn *string `type:"string"`
 
 	// The time that the dominant language detection job completed.
-	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	EndTime *time.Time `type:"timestamp"`
 
 	// The input data configuration that you supplied when you created the dominant
 	// language detection job.
@@ -4494,7 +4494,7 @@ type DominantLanguageDetectionJobProperties struct {
 	OutputDataConfig *OutputDataConfig `type:"structure"`
 
 	// The time that the dominant language detection job was submitted for processing.
-	SubmitTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	SubmitTime *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -4576,12 +4576,12 @@ type EntitiesDetectionJobFilter struct {
 	// Filters the list of jobs based on the time that the job was submitted for
 	// processing. Returns only jobs submitted after the specified time. Jobs are
 	// returned in descending order, newest to oldest.
-	SubmitTimeAfter *time.Time `type:"timestamp" timestampFormat:"unix"`
+	SubmitTimeAfter *time.Time `type:"timestamp"`
 
 	// Filters the list of jobs based on the time that the job was submitted for
 	// processing. Returns only jobs submitted before the specified time. Jobs are
 	// returned in ascending order, oldest to newest.
-	SubmitTimeBefore *time.Time `type:"timestamp" timestampFormat:"unix"`
+	SubmitTimeBefore *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -4640,7 +4640,7 @@ type EntitiesDetectionJobProperties struct {
 	DataAccessRoleArn *string `type:"string"`
 
 	// The time that the entities detection job completed
-	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	EndTime *time.Time `type:"timestamp"`
 
 	// The input data configuration that you supplied when you created the entities
 	// detection job.
@@ -4667,7 +4667,7 @@ type EntitiesDetectionJobProperties struct {
 	OutputDataConfig *OutputDataConfig `type:"structure"`
 
 	// The time that the entities detection job was submitted for processing.
-	SubmitTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	SubmitTime *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -4944,12 +4944,12 @@ type KeyPhrasesDetectionJobFilter struct {
 	// Filters the list of jobs based on the time that the job was submitted for
 	// processing. Returns only jobs submitted after the specified time. Jobs are
 	// returned in descending order, newest to oldest.
-	SubmitTimeAfter *time.Time `type:"timestamp" timestampFormat:"unix"`
+	SubmitTimeAfter *time.Time `type:"timestamp"`
 
 	// Filters the list of jobs based on the time that the job was submitted for
 	// processing. Returns only jobs submitted before the specified time. Jobs are
 	// returned in ascending order, oldest to newest.
-	SubmitTimeBefore *time.Time `type:"timestamp" timestampFormat:"unix"`
+	SubmitTimeBefore *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -5008,7 +5008,7 @@ type KeyPhrasesDetectionJobProperties struct {
 	DataAccessRoleArn *string `type:"string"`
 
 	// The time that the key phrases detection job completed.
-	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	EndTime *time.Time `type:"timestamp"`
 
 	// The input data configuration that you supplied when you created the key phrases
 	// detection job.
@@ -5035,7 +5035,7 @@ type KeyPhrasesDetectionJobProperties struct {
 	OutputDataConfig *OutputDataConfig `type:"structure"`
 
 	// The time that the key phrases detection job was submitted for processing.
-	SubmitTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	SubmitTime *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -5688,12 +5688,12 @@ type SentimentDetectionJobFilter struct {
 	// Filters the list of jobs based on the time that the job was submitted for
 	// processing. Returns only jobs submitted after the specified time. Jobs are
 	// returned in descending order, newest to oldest.
-	SubmitTimeAfter *time.Time `type:"timestamp" timestampFormat:"unix"`
+	SubmitTimeAfter *time.Time `type:"timestamp"`
 
 	// Filters the list of jobs based on the time that the job was submitted for
 	// processing. Returns only jobs submitted before the specified time. Jobs are
 	// returned in ascending order, oldest to newest.
-	SubmitTimeBefore *time.Time `type:"timestamp" timestampFormat:"unix"`
+	SubmitTimeBefore *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -5752,7 +5752,7 @@ type SentimentDetectionJobProperties struct {
 	DataAccessRoleArn *string `type:"string"`
 
 	// The time that the sentiment detection job ended.
-	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	EndTime *time.Time `type:"timestamp"`
 
 	// The input data configuration that you supplied when you created the sentiment
 	// detection job.
@@ -5779,7 +5779,7 @@ type SentimentDetectionJobProperties struct {
 	OutputDataConfig *OutputDataConfig `type:"structure"`
 
 	// The time that the sentiment detection job was submitted for processing.
-	SubmitTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	SubmitTime *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -7068,12 +7068,12 @@ type TopicsDetectionJobFilter struct {
 	// Filters the list of jobs based on the time that the job was submitted for
 	// processing. Only returns jobs submitted after the specified time. Jobs are
 	// returned in ascending order, oldest to newest.
-	SubmitTimeAfter *time.Time `type:"timestamp" timestampFormat:"unix"`
+	SubmitTimeAfter *time.Time `type:"timestamp"`
 
 	// Filters the list of jobs based on the time that the job was submitted for
 	// processing. Only returns jobs submitted before the specified time. Jobs are
 	// returned in descending order, newest to oldest.
-	SubmitTimeBefore *time.Time `type:"timestamp" timestampFormat:"unix"`
+	SubmitTimeBefore *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -7128,7 +7128,7 @@ type TopicsDetectionJobProperties struct {
 	_ struct{} `type:"structure"`
 
 	// The time that the topic detection job was completed.
-	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	EndTime *time.Time `type:"timestamp"`
 
 	// The input data configuration supplied when you created the topic detection
 	// job.
@@ -7156,7 +7156,7 @@ type TopicsDetectionJobProperties struct {
 	OutputDataConfig *OutputDataConfig `type:"structure"`
 
 	// The time that the topic detection job was submitted for processing.
-	SubmitTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	SubmitTime *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation

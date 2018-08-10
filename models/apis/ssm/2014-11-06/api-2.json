@@ -961,6 +961,22 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "LabelParameterVersion":{
+      "name":"LabelParameterVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"LabelParameterVersionRequest"},
+      "output":{"shape":"LabelParameterVersionResult"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"TooManyUpdates"},
+        {"shape":"ParameterNotFound"},
+        {"shape":"ParameterVersionNotFound"},
+        {"shape":"ParameterVersionLabelLimitExceeded"}
+      ]
+    },
     "ListAssociationVersions":{
       "name":"ListAssociationVersions",
       "http":{
@@ -1946,6 +1962,7 @@
         "CurrentAction":{"shape":"String"},
         "TargetParameterName":{"shape":"AutomationParameterKey"},
         "Targets":{"shape":"Targets"},
+        "TargetMaps":{"shape":"TargetMaps"},
         "ResolvedTargets":{"shape":"ResolvedTargets"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
         "MaxErrors":{"shape":"MaxErrors"},
@@ -2023,6 +2040,7 @@
         "FailureMessage":{"shape":"String"},
         "TargetParameterName":{"shape":"AutomationParameterKey"},
         "Targets":{"shape":"Targets"},
+        "TargetMaps":{"shape":"TargetMaps"},
         "ResolvedTargets":{"shape":"ResolvedTargets"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
         "MaxErrors":{"shape":"MaxErrors"},
@@ -4990,6 +5008,27 @@
       "type":"list",
       "member":{"shape":"TagKey"}
     },
+    "LabelParameterVersionRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Labels"
+      ],
+      "members":{
+        "Name":{"shape":"PSParameterName"},
+        "ParameterVersion":{
+          "shape":"PSParameterVersion",
+          "box":true
+        },
+        "Labels":{"shape":"ParameterLabelList"}
+      }
+    },
+    "LabelParameterVersionResult":{
+      "type":"structure",
+      "members":{
+        "InvalidLabels":{"shape":"ParameterLabelList"}
+      }
+    },
     "LastResourceDataSyncMessage":{"type":"string"},
     "LastResourceDataSyncStatus":{
       "type":"string",
@@ -5742,6 +5781,11 @@
       "max":2048,
       "min":1
     },
+    "PSParameterSelector":{
+      "type":"string",
+      "max":128,
+      "min":0
+    },
     "PSParameterValue":{
       "type":"string",
       "max":4096,
@@ -5754,7 +5798,11 @@
         "Name":{"shape":"PSParameterName"},
         "Type":{"shape":"ParameterType"},
         "Value":{"shape":"PSParameterValue"},
-        "Version":{"shape":"PSParameterVersion"}
+        "Version":{"shape":"PSParameterVersion"},
+        "Selector":{"shape":"PSParameterSelector"},
+        "SourceResult":{"shape":"String"},
+        "LastModifiedDate":{"shape":"DateTime"},
+        "ARN":{"shape":"String"}
       }
     },
     "ParameterAlreadyExists":{
@@ -5780,7 +5828,8 @@
         "Description":{"shape":"ParameterDescription"},
         "Value":{"shape":"PSParameterValue"},
         "AllowedPattern":{"shape":"AllowedPattern"},
-        "Version":{"shape":"PSParameterVersion"}
+        "Version":{"shape":"PSParameterVersion"},
+        "Labels":{"shape":"ParameterLabelList"}
       }
     },
     "ParameterHistoryList":{
@@ -5792,6 +5841,17 @@
       "max":256,
       "min":1,
       "pattern":"^([a-zA-Z0-9:/_-]+)$"
+    },
+    "ParameterLabel":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "ParameterLabelList":{
+      "type":"list",
+      "member":{"shape":"ParameterLabel"},
+      "max":10,
+      "min":1
     },
     "ParameterLimitExceeded":{
       "type":"structure",
@@ -5862,7 +5922,7 @@
       "type":"string",
       "max":132,
       "min":1,
-      "pattern":"tag:.+|Name|Type|KeyId|Path"
+      "pattern":"tag:.+|Name|Type|KeyId|Path|Label"
     },
     "ParameterStringFilterList":{
       "type":"list",
@@ -5896,6 +5956,13 @@
     "ParameterValueList":{
       "type":"list",
       "member":{"shape":"ParameterValue"}
+    },
+    "ParameterVersionLabelLimitExceeded":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "exception":true
     },
     "ParameterVersionNotFound":{
       "type":"structure",
@@ -6402,7 +6469,6 @@
         "WindowId",
         "Targets",
         "TaskArn",
-        "ServiceRoleArn",
         "TaskType",
         "MaxConcurrency",
         "MaxErrors"
@@ -6773,6 +6839,7 @@
         "Mode":{"shape":"ExecutionMode"},
         "TargetParameterName":{"shape":"AutomationParameterKey"},
         "Targets":{"shape":"Targets"},
+        "TargetMaps":{"shape":"TargetMaps"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
         "MaxErrors":{"shape":"MaxErrors"}
       }
@@ -6970,6 +7037,35 @@
       "max":128,
       "min":1,
       "pattern":"^[\\p{L}\\p{Z}\\p{N}_.:/=\\-@]*$"
+    },
+    "TargetMap":{
+      "type":"map",
+      "key":{"shape":"TargetMapKey"},
+      "value":{"shape":"TargetMapValueList"},
+      "max":20,
+      "min":1
+    },
+    "TargetMapKey":{
+      "type":"string",
+      "max":50,
+      "min":1
+    },
+    "TargetMapValue":{
+      "type":"string",
+      "max":50,
+      "min":1
+    },
+    "TargetMapValueList":{
+      "type":"list",
+      "member":{"shape":"TargetMapValue"},
+      "max":25,
+      "min":0
+    },
+    "TargetMaps":{
+      "type":"list",
+      "member":{"shape":"TargetMap"},
+      "max":300,
+      "min":0
     },
     "TargetParameterList":{
       "type":"list",

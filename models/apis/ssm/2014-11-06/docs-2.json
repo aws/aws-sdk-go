@@ -69,6 +69,7 @@
     "GetParametersByPath": "<p>Retrieve parameters in a specific hierarchy. For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-working.html\">Working with Systems Manager Parameters</a> in the <i>AWS Systems Manager User Guide</i>. </p> <p>Request results are returned on a best-effort basis. If you specify <code>MaxResults</code> in the request, the response includes information up to the limit specified. The number of items returned, however, can be between zero and the value of <code>MaxResults</code>. If the service reaches an internal limit while processing the results, it stops the operation and returns the matching values up to that point and a <code>NextToken</code>. You can specify the <code>NextToken</code> in a subsequent call to get the next set of results.</p> <note> <p>This API action doesn't support filtering by tags. </p> </note>",
     "GetPatchBaseline": "<p>Retrieves information about a patch baseline.</p>",
     "GetPatchBaselineForPatchGroup": "<p>Retrieves the patch baseline that should be used for the specified patch group.</p>",
+    "LabelParameterVersion": "<p>A parameter label is a user-defined alias to help you manage different versions of a parameter. When you modify a parameter, Systems Manager automatically saves a new version and increments the version number by one. A label can help you remember the purpose of a parameter when there are multiple versions. </p> <p>Parameter labels have the following requirements and restrictions.</p> <ul> <li> <p>A version of a parameter can have a maximum of 10 labels.</p> </li> <li> <p>You can't attach the same label to different versions of the same parameter. For example, if version 1 has the label Production, then you can't attach Production to version 2.</p> </li> <li> <p>You can move a label from one version of a parameter to another.</p> </li> <li> <p>You can't create a label when you create a new parameter. You must attach a label to a specific version of a parameter.</p> </li> <li> <p>You can't delete a parameter label. If you no longer want to use a parameter label, then you must move it to a different version of a parameter.</p> </li> <li> <p>A label can have a maximum of 100 characters.</p> </li> <li> <p>Labels can contain letters (case sensitive), numbers, periods (.), hyphens (-), or underscores (_).</p> </li> <li> <p>Labels can't begin with a number, \"aws,\" or \"ssm\" (not case sensitive). If a label fails to meet these requirements, then the label is not associated with a parameter and the system displays it in the list of InvalidLabels.</p> </li> </ul>",
     "ListAssociationVersions": "<p>Retrieves all versions of an association for a specific association ID.</p>",
     "ListAssociations": "<p>Lists the associations for the specified Systems Manager document or instance.</p>",
     "ListCommandInvocations": "<p>An invocation is copy of a command sent to a specific instance. A command can apply to one or more instances. A command invocation applies to one instance. For example, if a user executes SendCommand against three instances, then a command invocation is created for each requested instance ID. ListCommandInvocations provide status about command execution.</p>",
@@ -685,8 +686,8 @@
         "PatchRule$EnableNonSecurity": "<p>For instances identified by the approval rule filters, enables a patch baseline to apply non-security updates available in the specified repository. The default value is 'false'. Applies to Linux instances only.</p>",
         "PutParameterRequest$Overwrite": "<p>Overwrite an existing parameter. If not specified, will default to \"false\".</p>",
         "ResolvedTargets$Truncated": "<p>A boolean value indicating whether the resolved target list is truncated.</p>",
-        "StepExecution$IsEnd": "<p>Enable this option to stop an Automation execution at the end of a specific step. The Automation execution stops if the step execution failed or succeeded.</p>",
-        "StepExecution$IsCritical": "<p>Enable this option to designate a step as critical for the successful completion of the Automation. If a step with this designation fails, then Automation reports the final status of the Automation as Failed. </p>",
+        "StepExecution$IsEnd": "<p>The flag which can be used to end automation no matter whether the step succeeds or fails.</p>",
+        "StepExecution$IsCritical": "<p>The flag which can be used to help decide whether the failure of current step leads to the Automation failure.</p>",
         "UpdateMaintenanceWindowRequest$Replace": "<p>If True, then all fields that are required by the CreateMaintenanceWindow action are also required for this API request. Optional fields that are not specified are set to null. </p>",
         "UpdateMaintenanceWindowTargetRequest$Replace": "<p>If True, then all fields that are required by the RegisterTargetWithMaintenanceWindow action are also required for this API request. Optional fields that are not specified are set to null.</p>",
         "UpdateMaintenanceWindowTaskRequest$Replace": "<p>If True, then all fields that are required by the RegisterTaskWithMaintenanceWndow action are also required for this API request. Optional fields that are not specified are set to null.</p>",
@@ -1215,6 +1216,7 @@
         "MaintenanceWindowExecutionTaskIdentity$EndTime": "<p>The time the task execution finished.</p>",
         "MaintenanceWindowExecutionTaskInvocationIdentity$StartTime": "<p>The time the invocation started.</p>",
         "MaintenanceWindowExecutionTaskInvocationIdentity$EndTime": "<p>The time the invocation finished.</p>",
+        "Parameter$LastModifiedDate": "<p>Date the parameter was last changed or updated and the parameter version was created.</p>",
         "ParameterHistory$LastModifiedDate": "<p>Date the parameter was last changed or updated.</p>",
         "ParameterMetadata$LastModifiedDate": "<p>Date the parameter was last changed or updated.</p>",
         "Patch$ReleaseDate": "<p>The date the patch was released.</p>",
@@ -3060,6 +3062,16 @@
         "RemoveTagsFromResourceRequest$TagKeys": "<p>Tag keys that you want to remove from the specified resource.</p>"
       }
     },
+    "LabelParameterVersionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "LabelParameterVersionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "LastResourceDataSyncMessage": {
       "base": null,
       "refs": {
@@ -3971,11 +3983,18 @@
         "GetParameterHistoryRequest$Name": "<p>The name of a parameter you want to query.</p>",
         "GetParameterRequest$Name": "<p>The name of the parameter you want to query.</p>",
         "GetParametersByPathRequest$Path": "<p>The hierarchy for the parameter. Hierarchies start with a forward slash (/) and end with the parameter name. A parameter name hierarchy can have a maximum of 15 levels. Here is an example of a hierarchy: <code>/Finance/Prod/IAD/WinServ2016/license33</code> </p>",
+        "LabelParameterVersionRequest$Name": "<p>The parameter name on which you want to attach one or more labels.</p>",
         "Parameter$Name": "<p>The name of the parameter.</p>",
         "ParameterHistory$Name": "<p>The name of the parameter.</p>",
         "ParameterMetadata$Name": "<p>The parameter name.</p>",
         "ParameterNameList$member": null,
         "PutParameterRequest$Name": "<p>The fully qualified name of the parameter that you want to add to the system. The fully qualified name includes the complete hierarchy of the parameter path and name. For example: <code>/Dev/DBServer/MySQL/db-string13</code> </p> <p>Naming Constraints:</p> <ul> <li> <p>Parameter names are case sensitive.</p> </li> <li> <p>A parameter name must be unique within an AWS Region</p> </li> <li> <p>A parameter name can't be prefixed with \"aws\" or \"ssm\" (case-insensitive).</p> </li> <li> <p>Parameter names can include only the following symbols and letters: <code>a-zA-Z0-9_.-/</code> </p> </li> <li> <p>A parameter name can't include spaces.</p> </li> <li> <p>Parameter hierarchies are limited to a maximum depth of fifteen levels.</p> </li> </ul> <p>For additional information about valid values for parameter names, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-parameter-name-constraints.html\">Requirements and Constraints for Parameter Names</a> in the <i>AWS Systems Manager User Guide</i>.</p> <note> <p>The maximum length constraint listed below includes capacity for additional system attributes that are not part of the name. The maximum length for the fully qualified parameter name is 1011 characters. </p> </note>"
+      }
+    },
+    "PSParameterSelector": {
+      "base": null,
+      "refs": {
+        "Parameter$Selector": "<p>Either the version number or the label used to retrieve the parameter value. Specify selectors by using one of the following formats:</p> <p>parameter_name:version</p> <p>parameter_name:label</p>"
       }
     },
     "PSParameterValue": {
@@ -3989,6 +4008,7 @@
     "PSParameterVersion": {
       "base": null,
       "refs": {
+        "LabelParameterVersionRequest$ParameterVersion": "<p>The specific version of the parameter on which you want to attach one or more labels. If no version is specified, the system attaches the label to the latest version.)</p>",
         "Parameter$Version": "<p>The parameter version.</p>",
         "ParameterHistory$Version": "<p>The parameter version.</p>",
         "ParameterMetadata$Version": "<p>The parameter version.</p>",
@@ -4033,6 +4053,20 @@
         "ParameterHistory$KeyId": "<p>The ID of the query key used for this parameter.</p>",
         "ParameterMetadata$KeyId": "<p>The ID of the query key used for this parameter.</p>",
         "PutParameterRequest$KeyId": "<p>The KMS Key ID that you want to use to encrypt a parameter. Either the default AWS Key Management Service (AWS KMS) key automatically assigned to your AWS account or a custom key. Required for parameters that use the <code>SecureString</code> data type.</p> <p>If you don't specify a key ID, the system uses the default key associated with your AWS account.</p> <ul> <li> <p>To use your default AWS KMS key, choose the <code>SecureString</code> data type, and do <i>not</i> specify the <code>Key ID</code> when you create the parameter. The system automatically populates <code>Key ID</code> with your default KMS key.</p> </li> <li> <p>To use a custom KMS key, choose the <code>SecureString</code> data type with the <code>Key ID</code> parameter.</p> </li> </ul>"
+      }
+    },
+    "ParameterLabel": {
+      "base": null,
+      "refs": {
+        "ParameterLabelList$member": null
+      }
+    },
+    "ParameterLabelList": {
+      "base": null,
+      "refs": {
+        "LabelParameterVersionRequest$Labels": "<p>One or more labels to attach to the specified parameter version.</p>",
+        "LabelParameterVersionResult$InvalidLabels": "<p>The label does not meet the requirements. For information about parameter label requirements, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-labels.html\">Labeling Parameters</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
+        "ParameterHistory$Labels": "<p>Labels assigned to the parameter version.</p>"
       }
     },
     "ParameterLimitExceeded": {
@@ -4147,6 +4181,11 @@
       "base": null,
       "refs": {
         "Parameters$value": null
+      }
+    },
+    "ParameterVersionLabelLimitExceeded": {
+      "base": "<p>A parameter version can have a maximum of ten labels.</p>",
+      "refs": {
       }
     },
     "ParameterVersionNotFound": {
@@ -4962,9 +5001,9 @@
         "GetMaintenanceWindowTaskResult$ServiceRoleArn": "<p>The IAM service role to assume during task execution.</p>",
         "MaintenanceWindowRunCommandParameters$ServiceRoleArn": "<p>The IAM service role to assume during task execution.</p>",
         "MaintenanceWindowTask$ServiceRoleArn": "<p>The role that should be assumed when executing the task</p>",
-        "RegisterTaskWithMaintenanceWindowRequest$ServiceRoleArn": "<p>The role that should be assumed when executing the task.</p>",
+        "RegisterTaskWithMaintenanceWindowRequest$ServiceRoleArn": "<p>The role to assume when running the Maintenance Window task.</p> <p>If you do not specify a service role ARN, Systems Manager will use your account's service-linked role for Systems Manager by default. If no service-linked role for Systems Manager exists in your account, it will be created when you run <code>RegisterTaskWithMaintenanceWindow</code> without specifying a service role ARN.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/using-service-linked-roles.html#slr-permissions\">Service-Linked Role Permissions for Systems Manager</a> and <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-maintenance-permissions.html#maintenance-window-tasks-service-role\">Should I Use a Service-Linked Role or a Custom Service Role to Run Maintenance Window Tasks? </a> in the <i>AWS Systems Manager User Guide</i>.</p>",
         "SendCommandRequest$ServiceRoleArn": "<p>The IAM role that Systems Manager uses to send notifications. </p>",
-        "UpdateMaintenanceWindowTaskRequest$ServiceRoleArn": "<p>The IAM service role ARN to modify. The system assumes this role during task execution. </p>",
+        "UpdateMaintenanceWindowTaskRequest$ServiceRoleArn": "<p>The IAM service role ARN to modify. The system assumes this role during task execution.</p> <p>If you do not specify a service role ARN, Systems Manager will use your account's service-linked role for Systems Manager by default. If no service-linked role for Systems Manager exists in your account, it will be created when you run <code>RegisterTaskWithMaintenanceWindow</code> without specifying a service role ARN.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/using-service-linked-roles.html#slr-permissions\">Service-Linked Role Permissions for Systems Manager</a> and <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-maintenance-permissions.html#maintenance-window-tasks-service-role\">Should I Use a Service-Linked Role or a Custom Service Role to Run Maintenance Window Tasks? </a> in the <i>AWS Systems Manager User Guide</i>.</p>",
         "UpdateMaintenanceWindowTaskResult$ServiceRoleArn": "<p>The updated service role ARN value.</p>"
       }
     },
@@ -5210,6 +5249,8 @@
         "MaxDocumentSizeExceeded$Message": null,
         "NormalStringMap$key": null,
         "NormalStringMap$value": null,
+        "Parameter$SourceResult": "<p>Applies to parameters that reference information in other AWS services. SourceResult is the raw result or response from the source.</p>",
+        "Parameter$ARN": "<p>The Amazon Resource Name (ARN) of the parameter.</p>",
         "ParameterAlreadyExists$message": null,
         "ParameterHistory$LastModifiedUser": "<p>Amazon Resource Name (ARN) of the AWS user who last changed the parameter.</p>",
         "ParameterLimitExceeded$message": null,
@@ -5217,6 +5258,7 @@
         "ParameterMetadata$LastModifiedUser": "<p>Amazon Resource Name (ARN) of the AWS user who last changed the parameter.</p>",
         "ParameterNotFound$message": null,
         "ParameterPatternMismatchException$message": "<p>The parameter name is not valid.</p>",
+        "ParameterVersionLabelLimitExceeded$message": null,
         "ParameterVersionNotFound$message": null,
         "ResourceDataSyncCountExceededException$Message": null,
         "ResourceDataSyncInvalidConfigurationException$Message": null,
@@ -5228,7 +5270,7 @@
         "StepExecution$Response": "<p>A message associated with the response code for an execution.</p>",
         "StepExecution$FailureMessage": "<p>If a step failed, this message explains why the execution failed.</p>",
         "StepExecution$StepExecutionId": "<p>The unique ID of a step execution.</p>",
-        "StepExecution$NextStep": "<p>Specifies which step in an Automation to process next after successfully completing a step. </p>",
+        "StepExecution$NextStep": "<p>The next step after the step succeeds.</p>",
         "StringList$member": null,
         "SubTypeCountLimitExceededException$Message": null,
         "TargetInUseException$Message": null,
@@ -5309,6 +5351,38 @@
       "base": null,
       "refs": {
         "Target$Key": "<p>User-defined criteria for sending commands that target instances that meet the criteria. Key can be tag:&lt;Amazon EC2 tag&gt; or InstanceIds. For more information about how to send commands that target instances using Key,Value parameters, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html#send-commands-targeting\">Targeting Multiple Instances</a> in the <i>AWS Systems Manager User Guide</i>.</p>"
+      }
+    },
+    "TargetMap": {
+      "base": null,
+      "refs": {
+        "TargetMaps$member": null
+      }
+    },
+    "TargetMapKey": {
+      "base": null,
+      "refs": {
+        "TargetMap$key": null
+      }
+    },
+    "TargetMapValue": {
+      "base": null,
+      "refs": {
+        "TargetMapValueList$member": null
+      }
+    },
+    "TargetMapValueList": {
+      "base": null,
+      "refs": {
+        "TargetMap$value": null
+      }
+    },
+    "TargetMaps": {
+      "base": null,
+      "refs": {
+        "AutomationExecution$TargetMaps": "<p>The specified key-value mapping of document parameters to target resources.</p>",
+        "AutomationExecutionMetadata$TargetMaps": "<p>The specified key-value mapping of document parameters to target resources.</p>",
+        "StartAutomationExecutionRequest$TargetMaps": "<p>A key-value mapping of document parameters to target resources. Both Targets and TargetMaps cannot be specified together.</p>"
       }
     },
     "TargetParameterList": {
@@ -5527,7 +5601,7 @@
     "ValidNextStepList": {
       "base": null,
       "refs": {
-        "StepExecution$ValidNextSteps": "<p>ValidNextSteps offer different strategies for managing an Automation workflow when a step finishes. Automation dynamically processes ValidNextSteps when a step is completed. For example, you can specify <code>Abort</code> to stop the Automation when a step fails or <code>Continue</code> to ignore the failure of the current step and allow Automation to continue processing the next step. You can also specify <code>step:<i>step_name</i> </code> to jump to a designated step after a step succeeds. The result of the current step dynamically determines the ValidNextSteps. If a step finishes and no ValidNextStep is designated, then the Automation stops.</p>"
+        "StepExecution$ValidNextSteps": "<p>Strategies used when step fails, we support Continue and Abort. Abort will fail the automation when the step fails. Continue will ignore the failure of current step and allow automation to execute the next step. With conditional branching, we add step:stepName to support the automation to go to another specific step.</p>"
       }
     },
     "Version": {

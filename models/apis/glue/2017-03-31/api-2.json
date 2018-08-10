@@ -1791,6 +1791,7 @@
         "SecurityGroupIds":{"shape":"StringList"},
         "SubnetId":{"shape":"GenericString"},
         "PublicKey":{"shape":"GenericString"},
+        "PublicKeys":{"shape":"PublicKeysList"},
         "NumberOfNodes":{"shape":"IntegerValue"},
         "ExtraPythonLibsS3Path":{"shape":"GenericString"},
         "ExtraJarsS3Path":{"shape":"GenericString"}
@@ -2219,7 +2220,8 @@
         "LastUpdateStatus":{"shape":"GenericString"},
         "CreatedTimestamp":{"shape":"TimestampValue"},
         "LastModifiedTimestamp":{"shape":"TimestampValue"},
-        "PublicKey":{"shape":"GenericString"}
+        "PublicKey":{"shape":"GenericString"},
+        "PublicKeys":{"shape":"PublicKeysList"}
       }
     },
     "DevEndpointCustomLibraries":{
@@ -3228,6 +3230,11 @@
         "GROUP"
       ]
     },
+    "PublicKeysList":{
+      "type":"list",
+      "member":{"shape":"GenericString"},
+      "max":5
+    },
     "PythonScript":{"type":"string"},
     "ResetJobBookmarkRequest":{
       "type":"structure",
@@ -3725,6 +3732,8 @@
       "members":{
         "EndpointName":{"shape":"GenericString"},
         "PublicKey":{"shape":"GenericString"},
+        "AddPublicKeys":{"shape":"PublicKeysList"},
+        "DeletePublicKeys":{"shape":"PublicKeysList"},
         "CustomLibraries":{"shape":"DevEndpointCustomLibraries"},
         "UpdateEtlLibraries":{"shape":"BooleanValue"}
       }

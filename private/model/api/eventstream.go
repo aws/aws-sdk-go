@@ -127,7 +127,13 @@ func (a *API) setupEventStreams() {
 			Type:           "structure",
 			EventStreamAPI: op.EventStreamAPI,
 			IsEventStream:  true,
+			MemberRefs: map[string]*ShapeRef{
+				"Inbound": &ShapeRef{
+					ShapeName: inbound.Shape.ShapeName,
+				},
+			},
 		}
+		inbound.Shape.refs = append(inbound.Shape.refs, streamShape.MemberRefs["Inbound"])
 		streamShapeRef := &ShapeRef{
 			API:           a,
 			ShapeName:     streamShape.ShapeName,

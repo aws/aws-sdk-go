@@ -1248,7 +1248,9 @@
         "SnapshotId":{"shape":"SnapshotId"},
         "PreserveExistingData":{"shape":"boolean"},
         "TargetName":{"shape":"TargetName"},
-        "NetworkInterfaceId":{"shape":"NetworkInterfaceId"}
+        "NetworkInterfaceId":{"shape":"NetworkInterfaceId"},
+        "KMSEncrypted":{"shape":"Boolean"},
+        "KMSKey":{"shape":"KMSKey"}
       }
     },
     "CreateStorediSCSIVolumeOutput":{
@@ -2511,7 +2513,8 @@
         "PreservedExistingData":{"shape":"boolean"},
         "VolumeiSCSIAttributes":{"shape":"VolumeiSCSIAttributes"},
         "CreatedDate":{"shape":"CreatedDate"},
-        "VolumeUsedInBytes":{"shape":"VolumeUsedInBytes"}
+        "VolumeUsedInBytes":{"shape":"VolumeUsedInBytes"},
+        "KMSKey":{"shape":"KMSKey"}
       }
     },
     "StorediSCSIVolumes":{
