@@ -1686,6 +1686,10 @@
           "shape": "__integerMin0Max2147483647",
           "locationName": "minBufferTime"
         },
+        "MinFinalSegmentLength": {
+          "shape": "__doubleMin0Max2147483647",
+          "locationName": "minFinalSegmentLength"
+        },
         "SegmentControl": {
           "shape": "CmafSegmentControl",
           "locationName": "segmentControl"
@@ -2891,6 +2895,13 @@
         "MAIN"
       ]
     },
+    "H264DynamicSubGop": {
+      "type": "string",
+      "enum": [
+        "ADAPTIVE",
+        "STATIC"
+      ]
+    },
     "H264EntropyEncoding": {
       "type": "string",
       "enum": [
@@ -2965,11 +2976,28 @@
         "MULTI_PASS_HQ"
       ]
     },
+    "H264QvbrSettings": {
+      "type": "structure",
+      "members": {
+        "MaxAverageBitrate": {
+          "shape": "__integerMin1000Max1152000000",
+          "locationName": "maxAverageBitrate"
+        },
+        "QvbrQualityLevel": {
+          "shape": "__integerMin1Max10",
+          "locationName": "qvbrQualityLevel"
+        }
+      },
+      "required": [
+        "QvbrQualityLevel"
+      ]
+    },
     "H264RateControlMode": {
       "type": "string",
       "enum": [
         "VBR",
-        "CBR"
+        "CBR",
+        "QVBR"
       ]
     },
     "H264RepeatPps": {
@@ -3004,6 +3032,10 @@
         "CodecProfile": {
           "shape": "H264CodecProfile",
           "locationName": "codecProfile"
+        },
+        "DynamicSubGop": {
+          "shape": "H264DynamicSubGop",
+          "locationName": "dynamicSubGop"
         },
         "EntropyEncoding": {
           "shape": "H264EntropyEncoding",
@@ -3092,6 +3124,10 @@
         "QualityTuningLevel": {
           "shape": "H264QualityTuningLevel",
           "locationName": "qualityTuningLevel"
+        },
+        "QvbrSettings": {
+          "shape": "H264QvbrSettings",
+          "locationName": "qvbrSettings"
         },
         "RateControlMode": {
           "shape": "H264RateControlMode",
@@ -3232,6 +3268,13 @@
         "MAIN_422_10BIT_HIGH"
       ]
     },
+    "H265DynamicSubGop": {
+      "type": "string",
+      "enum": [
+        "ADAPTIVE",
+        "STATIC"
+      ]
+    },
     "H265FlickerAdaptiveQuantization": {
       "type": "string",
       "enum": [
@@ -3292,11 +3335,28 @@
         "MULTI_PASS_HQ"
       ]
     },
+    "H265QvbrSettings": {
+      "type": "structure",
+      "members": {
+        "MaxAverageBitrate": {
+          "shape": "__integerMin1000Max1466400000",
+          "locationName": "maxAverageBitrate"
+        },
+        "QvbrQualityLevel": {
+          "shape": "__integerMin1Max10",
+          "locationName": "qvbrQualityLevel"
+        }
+      },
+      "required": [
+        "QvbrQualityLevel"
+      ]
+    },
     "H265RateControlMode": {
       "type": "string",
       "enum": [
         "VBR",
-        "CBR"
+        "CBR",
+        "QVBR"
       ]
     },
     "H265SampleAdaptiveOffsetFilterMode": {
@@ -3336,6 +3396,10 @@
         "CodecProfile": {
           "shape": "H265CodecProfile",
           "locationName": "codecProfile"
+        },
+        "DynamicSubGop": {
+          "shape": "H265DynamicSubGop",
+          "locationName": "dynamicSubGop"
         },
         "FlickerAdaptiveQuantization": {
           "shape": "H265FlickerAdaptiveQuantization",
@@ -3416,6 +3480,10 @@
         "QualityTuningLevel": {
           "shape": "H265QualityTuningLevel",
           "locationName": "qualityTuningLevel"
+        },
+        "QvbrSettings": {
+          "shape": "H265QvbrSettings",
+          "locationName": "qvbrSettings"
         },
         "RateControlMode": {
           "shape": "H265RateControlMode",
@@ -3732,6 +3800,10 @@
         "ManifestDurationFormat": {
           "shape": "HlsManifestDurationFormat",
           "locationName": "manifestDurationFormat"
+        },
+        "MinFinalSegmentLength": {
+          "shape": "__doubleMin0Max2147483647",
+          "locationName": "minFinalSegmentLength"
         },
         "MinSegmentLength": {
           "shape": "__integerMin0Max2147483647",
@@ -5179,6 +5251,13 @@
         "PROFILE_422"
       ]
     },
+    "Mpeg2DynamicSubGop": {
+      "type": "string",
+      "enum": [
+        "ADAPTIVE",
+        "STATIC"
+      ]
+    },
     "Mpeg2FramerateControl": {
       "type": "string",
       "enum": [
@@ -5266,6 +5345,10 @@
         "CodecProfile": {
           "shape": "Mpeg2CodecProfile",
           "locationName": "codecProfile"
+        },
+        "DynamicSubGop": {
+          "shape": "Mpeg2DynamicSubGop",
+          "locationName": "dynamicSubGop"
         },
         "FramerateControl": {
           "shape": "Mpeg2FramerateControl",
@@ -5945,19 +6028,19 @@
       "type": "structure",
       "members": {
         "Height": {
-          "shape": "__integerMinNegative2147483648Max2147483647",
+          "shape": "__integerMin2Max2147483647",
           "locationName": "height"
         },
         "Width": {
-          "shape": "__integerMinNegative2147483648Max2147483647",
+          "shape": "__integerMin2Max2147483647",
           "locationName": "width"
         },
         "X": {
-          "shape": "__integerMinNegative2147483648Max2147483647",
+          "shape": "__integerMin0Max2147483647",
           "locationName": "x"
         },
         "Y": {
-          "shape": "__integerMinNegative2147483648Max2147483647",
+          "shape": "__integerMin0Max2147483647",
           "locationName": "y"
         }
       },
@@ -6592,6 +6675,9 @@
     "__doubleMin0": {
       "type": "double"
     },
+    "__doubleMin0Max2147483647": {
+      "type": "double"
+    },
     "__doubleMinNegative59Max0": {
       "type": "double"
     },
@@ -6759,6 +6845,11 @@
       "min": 1,
       "max": 1
     },
+    "__integerMin1Max10": {
+      "type": "integer",
+      "min": 1,
+      "max": 10
+    },
     "__integerMin1Max100": {
       "type": "integer",
       "min": 1,
@@ -6833,6 +6924,11 @@
       "type": "integer",
       "min": 25,
       "max": 2000
+    },
+    "__integerMin2Max2147483647": {
+      "type": "integer",
+      "min": 2,
+      "max": 2147483647
     },
     "__integerMin32000Max384000": {
       "type": "integer",
