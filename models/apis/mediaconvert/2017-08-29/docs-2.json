@@ -870,6 +870,12 @@
         "H264Settings$CodecProfile": null
       }
     },
+    "H264DynamicSubGop": {
+      "base": "Choose Adaptive to improve subjective video quality for high-motion content. This will cause the service to use fewer B-frames (which infer information based on other frames) for high-motion portions of the video and more B-frames for low-motion portions. The maximum number of B-frames is limited by the value you provide for the setting B frames between reference frames (numberBFramesBetweenReferenceFrames).",
+      "refs": {
+        "H264Settings$DynamicSubGop": "Choose Adaptive to improve subjective video quality for high-motion content. This will cause the service to use fewer B-frames (which infer information based on other frames) for high-motion portions of the video and more B-frames for low-motion portions. The maximum number of B-frames is limited by the value you provide for the setting B frames between reference frames (numberBFramesBetweenReferenceFrames)."
+      }
+    },
     "H264EntropyEncoding": {
       "base": "Entropy encoding mode. Use CABAC (must be in Main or High profile) or CAVLC.",
       "refs": {
@@ -930,8 +936,14 @@
         "H264Settings$QualityTuningLevel": null
       }
     },
+    "H264QvbrSettings": {
+      "base": "Settings for quality-defined variable bitrate encoding with the H.264 codec. Required when you set Rate control mode to QVBR. Not valid when you set Rate control mode to a value other than QVBR, or when you don't define Rate control mode.",
+      "refs": {
+        "H264Settings$QvbrSettings": "Settings for quality-defined variable bitrate encoding with the H.264 codec. Required when you set Rate control mode to QVBR. Not valid when you set Rate control mode to a value other than QVBR, or when you don't define Rate control mode."
+      }
+    },
     "H264RateControlMode": {
-      "base": "Use this setting to specify whether this output has a variable bitrate (VBR) or constant bitrate (CBR).",
+      "base": "Use this setting to specify whether this output has a variable bitrate (VBR), constant bitrate (CBR) or quality-defined variable bitrate (QVBR).",
       "refs": {
         "H264Settings$RateControlMode": null
       }
@@ -1014,6 +1026,12 @@
         "H265Settings$CodecProfile": null
       }
     },
+    "H265DynamicSubGop": {
+      "base": "Choose Adaptive to improve subjective video quality for high-motion content. This will cause the service to use fewer B-frames (which infer information based on other frames) for high-motion portions of the video and more B-frames for low-motion portions. The maximum number of B-frames is limited by the value you provide for the setting B frames between reference frames (numberBFramesBetweenReferenceFrames).",
+      "refs": {
+        "H265Settings$DynamicSubGop": "Choose Adaptive to improve subjective video quality for high-motion content. This will cause the service to use fewer B-frames (which infer information based on other frames) for high-motion portions of the video and more B-frames for low-motion portions. The maximum number of B-frames is limited by the value you provide for the setting B frames between reference frames (numberBFramesBetweenReferenceFrames)."
+      }
+    },
     "H265FlickerAdaptiveQuantization": {
       "base": "Adjust quantization within each frame to reduce flicker or 'pop' on I-frames.",
       "refs": {
@@ -1062,8 +1080,14 @@
         "H265Settings$QualityTuningLevel": null
       }
     },
+    "H265QvbrSettings": {
+      "base": "Settings for quality-defined variable bitrate encoding with the H.265 codec. Required when you set Rate control mode to QVBR. Not valid when you set Rate control mode to a value other than QVBR, or when you don't define Rate control mode.",
+      "refs": {
+        "H265Settings$QvbrSettings": "Settings for quality-defined variable bitrate encoding with the H.265 codec. Required when you set Rate control mode to QVBR. Not valid when you set Rate control mode to a value other than QVBR, or when you don't define Rate control mode."
+      }
+    },
     "H265RateControlMode": {
-      "base": "Use this setting to specify whether this output has a variable bitrate (VBR) or constant bitrate (CBR).",
+      "base": "Use this setting to specify whether this output has a variable bitrate (VBR), constant bitrate (CBR) or quality-defined variable bitrate (QVBR).",
       "refs": {
         "H265Settings$RateControlMode": null
       }
@@ -1440,12 +1464,12 @@
       }
     },
     "ListTagsForResourceRequest": {
-      "base": "List the tags for your MediaConvert resource by sending a request with the Amazon Resource Name (ARN) of the resource. To get the ARN, send a GET request with the resource name.",
+      "base": "List the tags for your AWS Elemental MediaConvert resource by sending a request with the Amazon Resource Name (ARN) of the resource. To get the ARN, send a GET request with the resource name.",
       "refs": {
       }
     },
     "ListTagsForResourceResponse": {
-      "base": "Successful list tags for resource requests return a JSON map of tags.",
+      "base": "A successful request to list the tags for a resource returns a JSON map of tags.",
       "refs": {
       }
     },
@@ -1627,6 +1651,12 @@
       "base": "Use Profile (Mpeg2CodecProfile) to set the MPEG-2 profile for the video output.",
       "refs": {
         "Mpeg2Settings$CodecProfile": null
+      }
+    },
+    "Mpeg2DynamicSubGop": {
+      "base": "Choose Adaptive to improve subjective video quality for high-motion content. This will cause the service to use fewer B-frames (which infer information based on other frames) for high-motion portions of the video and more B-frames for low-motion portions. The maximum number of B-frames is limited by the value you provide for the setting B frames between reference frames (numberBFramesBetweenReferenceFrames).",
+      "refs": {
+        "Mpeg2Settings$DynamicSubGop": "Choose Adaptive to improve subjective video quality for high-motion content. This will cause the service to use fewer B-frames (which infer information based on other frames) for high-motion portions of the video and more B-frames for low-motion portions. The maximum number of B-frames is limited by the value you provide for the setting B frames between reference frames (numberBFramesBetweenReferenceFrames)."
       }
     },
     "Mpeg2FramerateControl": {
@@ -2091,7 +2121,7 @@
       }
     },
     "UntagResourceResponse": {
-      "base": "Successful untag resource requests return an OK message.",
+      "base": "A successful request to remove a tag from a resource returns an OK message.",
       "refs": {
       }
     },
@@ -2190,6 +2220,13 @@
         "M2tsSettings$NullPacketBitrate": "Value in bits per second of extra null packets to insert into the transport stream. This can be used if a downstream encryption system requires periodic null packets.",
         "M2tsSettings$SegmentationTime": "The length in seconds of each segment. Required unless markers is set to _none_.",
         "Mpeg2Settings$GopSize": "GOP Length (keyframe interval) in frames or seconds. Must be greater than zero."
+      }
+    },
+    "__doubleMin0Max2147483647": {
+      "base": null,
+      "refs": {
+        "CmafGroupSettings$MinFinalSegmentLength": "Keep this setting at the default value of 0, unless you are troubleshooting a problem with how devices play back the end of your video asset. If you know that player devices are hanging on the final segment of your video because the length of your final segment is too short, use this setting to specify a minimum final segment length, in seconds. Choose a value that is greater than or equal to 1 and less than your segment length. When you specify a value for this setting, the encoder will combine any final segment that is shorter than the length that you specify with the previous segment. For example, your segment length is 3 seconds and your final segment is .5 seconds without a minimum final segment length; when you set the minimum final segment length to 1, your final segment is 3.5 seconds.",
+        "HlsGroupSettings$MinFinalSegmentLength": "Keep this setting at the default value of 0, unless you are troubleshooting a problem with how devices play back the end of your video asset. If you know that player devices are hanging on the final segment of your video because the length of your final segment is too short, use this setting to specify a minimum final segment length, in seconds. Choose a value that is greater than or equal to 1 and less than your segment length. When you specify a value for this setting, the encoder will combine any final segment that is shorter than the length that you specify with the previous segment. For example, your segment length is 3 seconds and your final segment is .5 seconds without a minimum final segment length; when you set the minimum final segment length to 1, your final segment is 3.5 seconds."
       }
     },
     "__doubleMinNegative59Max0": {
@@ -2304,7 +2341,9 @@
         "M2tsSettings$AudioFramesPerPes": "The number of audio frames to insert for each PES packet.",
         "M2tsSettings$Bitrate": "The output bitrate of the transport stream in bits per second. Setting to 0 lets the muxer automatically determine the appropriate bitrate. Other common values are 3750000, 7500000, and 15000000.",
         "M3u8Settings$AudioFramesPerPes": "The number of audio frames to insert for each PES packet.",
-        "Mpeg2Settings$GopClosedCadence": "Frequency of closed GOPs. In streaming applications, it is recommended that this be set to 1 so a decoder joining mid-stream will receive an IDR frame as quickly as possible. Setting this value to 0 will break output segmenting."
+        "Mpeg2Settings$GopClosedCadence": "Frequency of closed GOPs. In streaming applications, it is recommended that this be set to 1 so a decoder joining mid-stream will receive an IDR frame as quickly as possible. Setting this value to 0 will break output segmenting.",
+        "Rectangle$X": "The distance, in pixels, between the rectangle and the left edge of the video frame. Specify only even numbers.",
+        "Rectangle$Y": "The distance, in pixels, between the rectangle and the top edge of the video frame. Specify only even numbers."
       }
     },
     "__integerMin0Max255": {
@@ -2413,15 +2452,17 @@
     "__integerMin1000Max1152000000": {
       "base": null,
       "refs": {
+        "H264QvbrSettings$MaxAverageBitrate": "Use this setting only when Rate control mode is QVBR and Quality tuning level is Multi-pass HQ. For Max average bitrate values suited to the complexity of your input video, the service limits the average bitrate of the video part of this output to the value you choose. That is, the total size of the video element is less than or equal to the value you set multiplied by the number of seconds of encoded output.",
         "H264Settings$Bitrate": "Average bitrate in bits/second. Required for VBR and CBR. For MS Smooth outputs, bitrates must be unique when rounded down to the nearest multiple of 1000.",
-        "H264Settings$MaxBitrate": "Maximum bitrate in bits/second. For example, enter five megabits per second as 5000000."
+        "H264Settings$MaxBitrate": "Maximum bitrate in bits/second. For example, enter five megabits per second as 5000000. Required when Rate control mode is QVBR."
       }
     },
     "__integerMin1000Max1466400000": {
       "base": null,
       "refs": {
+        "H265QvbrSettings$MaxAverageBitrate": "Use this setting only when Rate control mode is QVBR and Quality tuning level is Multi-pass HQ. For Max average bitrate values suited to the complexity of your input video, the service limits the average bitrate of the video part of this output to the value you choose. That is, the total size of the video element is less than or equal to the value you set multiplied by the number of seconds of encoded output.",
         "H265Settings$Bitrate": "Average bitrate in bits/second. Required for VBR and CBR. For MS Smooth outputs, bitrates must be unique when rounded down to the nearest multiple of 1000.",
-        "H265Settings$MaxBitrate": "Maximum bitrate in bits/second."
+        "H265Settings$MaxBitrate": "Maximum bitrate in bits/second. For example, enter five megabits per second as 5000000. Required when Rate control mode is QVBR."
       }
     },
     "__integerMin1000Max288000000": {
@@ -2459,6 +2500,13 @@
       "base": null,
       "refs": {
         "EmbeddedSourceSettings$Source608TrackNumber": "Specifies the video track index used for extracting captions. The system only supports one input video track, so this should always be set to '1'."
+      }
+    },
+    "__integerMin1Max10": {
+      "base": null,
+      "refs": {
+        "H264QvbrSettings$QvbrQualityLevel": "Required when you use QVBR rate control mode. That is, when you specify qvbrSettings within h264Settings. Specify the target quality level for this output, from 1 to 10. Use higher numbers for greater quality. Level 10 results in nearly lossless compression. The quality level for most broadcast-quality transcodes is between 6 and 9.",
+        "H265QvbrSettings$QvbrQualityLevel": "Required when you use QVBR rate control mode. That is, when you specify qvbrSettings within h265Settings. Specify the target quality level for this output, from 1 to 10. Use higher numbers for greater quality. Level 10 results in nearly lossless compression. The quality level for most broadcast-quality transcodes is between 6 and 9."
       }
     },
     "__integerMin1Max100": {
@@ -2590,6 +2638,13 @@
         "DvbSdtSettings$SdtInterval": "The number of milliseconds between instances of this table in the output transport stream."
       }
     },
+    "__integerMin2Max2147483647": {
+      "base": null,
+      "refs": {
+        "Rectangle$Height": "Height of rectangle in pixels. Specify only even numbers.",
+        "Rectangle$Width": "Width of rectangle in pixels. Specify only even numbers."
+      }
+    },
     "__integerMin32000Max384000": {
       "base": null,
       "refs": {
@@ -2705,10 +2760,6 @@
         "InsertableImage$ImageX": "Use Left (ImageX) to set the distance, in pixels, between the inserted image and the left edge of the frame. Required for BMP, PNG and TGA input.",
         "InsertableImage$ImageY": "Use Top (ImageY) to set the distance, in pixels, between the inserted image and the top edge of the video frame. Required for BMP, PNG and TGA input.",
         "InsertableImage$Width": "Specify the Width (Width) of the inserted image. Use a value that is less than or equal to the video resolution width. Leave this setting blank to use the native width of the image.",
-        "Rectangle$Height": "Height of rectangle in pixels.",
-        "Rectangle$Width": "Width of rectangle in pixels.",
-        "Rectangle$X": "The distance, in pixels, between the rectangle and the left edge of the video frame.",
-        "Rectangle$Y": "The distance, in pixels, between the rectangle and the top edge of the video frame.",
         "VideoSelector$ProgramNumber": "Selects a specific program from within a multi-program transport stream. Note that Quad 4K is not currently supported."
       }
     },

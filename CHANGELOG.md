@@ -1,3 +1,12 @@
+Release v1.15.10 (2018-08-10)
+===
+
+### Service Client Updates
+* `service/mediaconvert`: Updates service API and documentation
+  * This release adds support for a new rate control mode, Quality-Defined Variable Bitrate (QVBR) encoding, includes updates to optimize transcoding performance, and resolves previously reported bugs.
+* `service/rds`: Updates service documentation
+  * Documentation updates for rds
+
 Release v1.15.9 (2018-08-09)
 ===
 
