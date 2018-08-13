@@ -2,7 +2,7 @@
   "version":"2.0",
   "metadata":{
     "apiVersion":"2017-07-24",
-    "endpointPrefix":"sagemaker",
+    "endpointPrefix":"api.sagemaker",
     "jsonVersion":"1.1",
     "protocol":"json",
     "serviceAbbreviation":"SageMaker",
