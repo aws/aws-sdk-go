@@ -1,3 +1,10 @@
+Release v1.15.11 (2018-08-13)
+===
+
+### Service Client Updates
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker updated the default endpoint URL to support Private Link via the CLI/SDK.
+
 Release v1.15.10 (2018-08-10)
 ===
 
