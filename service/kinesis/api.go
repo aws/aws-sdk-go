@@ -3,14 +3,23 @@
 package kinesis
 
 import (
+	"bytes"
 	"fmt"
+	"io"
+	"sync"
+	"sync/atomic"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/eventstream"
+	"github.com/aws/aws-sdk-go/private/protocol/eventstream/eventstreamapi"
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
+	"github.com/aws/aws-sdk-go/private/protocol/rest"
 )
 
 const opAddTagsToStream = "AddTagsToStream"
@@ -3106,6 +3115,112 @@ func (c *Kinesis) StopStreamEncryptionWithContext(ctx aws.Context, input *StopSt
 	return out, req.Send()
 }
 
+const opSubscribeToShard = "SubscribeToShard"
+
+// SubscribeToShardRequest generates a "aws/request.Request" representing the
+// client's request for the SubscribeToShard operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SubscribeToShard for more information on using the SubscribeToShard
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SubscribeToShardRequest method.
+//    req, resp := client.SubscribeToShardRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/SubscribeToShard
+func (c *Kinesis) SubscribeToShardRequest(input *SubscribeToShardInput) (req *request.Request, output *SubscribeToShardOutput) {
+	op := &request.Operation{
+		Name:       opSubscribeToShard,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &SubscribeToShardInput{}
+	}
+
+	output = &SubscribeToShardOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Send.Swap(client.LogHTTPResponseHandler.Name, client.LogHTTPResponseHeaderHandler)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, rest.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBack(output.runEventStreamLoop)
+	req.Handlers.Unmarshal.PushBack(output.unmarshalInitialResponse)
+	return
+}
+
+// SubscribeToShard API operation for Amazon Kinesis.
+//
+// Call this operation from your consumer after you call RegisterStreamConsumer
+// to register the consumer with Kinesis Data Streams. If the call succeeds,
+// your consumer starts receiving events of type SubscribeToShardEvent for up
+// to 5 minutes, after which time you need to call SubscribeToShard again to
+// renew the subscription if you want to continue to receive records.
+//
+// You can make one call to SubscribeToShard per second per ConsumerARN. If
+// your call succeeds, and then you call the operation again less than 5 seconds
+// later, the second call generates a ResourceInUseException. If you call the
+// operation a second time more than 5 seconds after the first call succeeds,
+// the second call succeeds and the first connection gets shut down.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis's
+// API operation SubscribeToShard for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The requested resource could not be found. The stream might not be specified
+//   correctly.
+//
+//   * ErrCodeInvalidArgumentException "InvalidArgumentException"
+//   A specified parameter exceeds its restrictions, is not supported, or can't
+//   be used. For more information, see the returned message.
+//
+//   * ErrCodeResourceInUseException "ResourceInUseException"
+//   The resource is not available for this operation. For successful operation,
+//   the resource must be in the ACTIVE state.
+//
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   The requested resource exceeds the maximum number allowed, or the number
+//   of concurrent stream requests exceeds the maximum number allowed.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02/SubscribeToShard
+func (c *Kinesis) SubscribeToShard(input *SubscribeToShardInput) (*SubscribeToShardOutput, error) {
+	req, out := c.SubscribeToShardRequest(input)
+	return out, req.Send()
+}
+
+// SubscribeToShardWithContext is the same as SubscribeToShard with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SubscribeToShard for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kinesis) SubscribeToShardWithContext(ctx aws.Context, input *SubscribeToShardInput, opts ...request.Option) (*SubscribeToShardOutput, error) {
+	req, out := c.SubscribeToShardRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateShardCount = "UpdateShardCount"
 
 // UpdateShardCountRequest generates a "aws/request.Request" representing the
@@ -4654,6 +4769,58 @@ func (s IncreaseStreamRetentionPeriodOutput) String() string {
 // GoString returns the string representation
 func (s IncreaseStreamRetentionPeriodOutput) GoString() string {
 	return s.String()
+}
+
+type InternalFailureException struct {
+	_ struct{} `type:"structure"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s InternalFailureException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalFailureException) GoString() string {
+	return s.String()
+}
+
+// The InternalFailureException is and event in the SubscribeToShardEventStream group of events.
+func (s *InternalFailureException) eventSubscribeToShardEventStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the InternalFailureException value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *InternalFailureException) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Code returns the exception type name.
+func (s InternalFailureException) Code() string {
+	return "InternalFailureException"
+}
+
+// Message returns the exception's message.
+func (s InternalFailureException) Message() string {
+	return *s.Message_
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InternalFailureException) OrigErr() error {
+	return nil
+}
+
+func (s InternalFailureException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 type ListShardsInput struct {
@@ -6210,6 +6377,58 @@ func (s StartStreamEncryptionOutput) GoString() string {
 	return s.String()
 }
 
+type StartingPosition struct {
+	_ struct{} `type:"structure"`
+
+	SequenceNumber *string `type:"string"`
+
+	Timestamp *time.Time `type:"timestamp"`
+
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"ShardIteratorType"`
+}
+
+// String returns the string representation
+func (s StartingPosition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartingPosition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartingPosition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartingPosition"}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSequenceNumber sets the SequenceNumber field's value.
+func (s *StartingPosition) SetSequenceNumber(v string) *StartingPosition {
+	s.SequenceNumber = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *StartingPosition) SetTimestamp(v time.Time) *StartingPosition {
+	s.Timestamp = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *StartingPosition) SetType(v string) *StartingPosition {
+	s.Type = &v
+	return s
+}
+
 type StopStreamEncryptionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6614,6 +6833,460 @@ func (s *StreamDescriptionSummary) SetStreamName(v string) *StreamDescriptionSum
 func (s *StreamDescriptionSummary) SetStreamStatus(v string) *StreamDescriptionSummary {
 	s.StreamStatus = &v
 	return s
+}
+
+// After you call SubscribeToShard, Kinesis Data Streams sends events of this
+// type to your consumer.
+type SubscribeToShardEvent struct {
+	_ struct{} `type:"structure"`
+
+	// Use this as StartingSequenceNumber in the next call to SubscribeToShard.
+	//
+	// ContinuationSequenceNumber is a required field
+	ContinuationSequenceNumber *string `type:"string" required:"true"`
+
+	// The number of milliseconds the read records are from the tip of the stream,
+	// indicating how far behind current time the consumer is. A value of zero indicates
+	// that record processing is caught up, and there are no new records to process
+	// at this moment.
+	//
+	// MillisBehindLatest is a required field
+	MillisBehindLatest *int64 `type:"long" required:"true"`
+
+	// Records is a required field
+	Records []*Record `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s SubscribeToShardEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SubscribeToShardEvent) GoString() string {
+	return s.String()
+}
+
+// SetContinuationSequenceNumber sets the ContinuationSequenceNumber field's value.
+func (s *SubscribeToShardEvent) SetContinuationSequenceNumber(v string) *SubscribeToShardEvent {
+	s.ContinuationSequenceNumber = &v
+	return s
+}
+
+// SetMillisBehindLatest sets the MillisBehindLatest field's value.
+func (s *SubscribeToShardEvent) SetMillisBehindLatest(v int64) *SubscribeToShardEvent {
+	s.MillisBehindLatest = &v
+	return s
+}
+
+// SetRecords sets the Records field's value.
+func (s *SubscribeToShardEvent) SetRecords(v []*Record) *SubscribeToShardEvent {
+	s.Records = v
+	return s
+}
+
+// The SubscribeToShardEvent is and event in the SubscribeToShardEventStream group of events.
+func (s *SubscribeToShardEvent) eventSubscribeToShardEventStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the SubscribeToShardEvent value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *SubscribeToShardEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// SubscribeToShardEventStream provides handling of EventStreams for
+// the SubscribeToShard API.
+//
+// Use this type to receive SubscribeToShardEventStream events. The events
+// can be read from the Events channel member.
+//
+// The events that can be received are:
+//
+//     * SubscribeToShardEvent
+type SubscribeToShardEventStream struct {
+	// Reader is the EventStream reader for the SubscribeToShardEventStream
+	// events. This value is automatically set by the SDK when the API call is made
+	// Use this member when unit testing your code with the SDK to mock out the
+	// EventStream Reader.
+	//
+	// Must not be nil.
+	Reader SubscribeToShardEventStreamReader
+
+	// StreamCloser is the io.Closer for the EventStream connection. For HTTP
+	// EventStream this is the response Body. The stream will be closed when
+	// the Close method of the EventStream is called.
+	StreamCloser io.Closer
+}
+
+// Close closes the EventStream. This will also cause the Events channel to be
+// closed. You can use the closing of the Events channel to terminate your
+// application's read from the API's EventStream.
+//
+// Will close the underlying EventStream reader. For EventStream over HTTP
+// connection this will also close the HTTP connection.
+//
+// Close must be called when done using the EventStream API. Not calling Close
+// may result in resource leaks.
+func (es *SubscribeToShardEventStream) Close() (err error) {
+	es.Reader.Close()
+	return es.Err()
+}
+
+// Err returns any error that occurred while reading EventStream Events from
+// the service API's response. Returns nil if there were no errors.
+func (es *SubscribeToShardEventStream) Err() error {
+	if err := es.Reader.Err(); err != nil {
+		return err
+	}
+	es.StreamCloser.Close()
+
+	return nil
+}
+
+// Events returns a channel to read EventStream Events from the
+// SubscribeToShard API.
+//
+// These events are:
+//
+//     * SubscribeToShardEvent
+func (es *SubscribeToShardEventStream) Events() <-chan SubscribeToShardEventStreamEvent {
+	return es.Reader.Events()
+}
+
+// SubscribeToShardEventStreamEvent groups together all EventStream
+// events read from the SubscribeToShard API.
+//
+// These events are:
+//
+//     * SubscribeToShardEvent
+type SubscribeToShardEventStreamEvent interface {
+	eventSubscribeToShardEventStream()
+}
+
+// SubscribeToShardEventStreamReader provides the interface for reading EventStream
+// Events from the SubscribeToShard API. The
+// default implementation for this interface will be SubscribeToShardEventStream.
+//
+// The reader's Close method must allow multiple concurrent calls.
+//
+// These events are:
+//
+//     * SubscribeToShardEvent
+type SubscribeToShardEventStreamReader interface {
+	// Returns a channel of events as they are read from the event stream.
+	Events() <-chan SubscribeToShardEventStreamEvent
+
+	// Close will close the underlying event stream reader. For event stream over
+	// HTTP this will also close the HTTP connection.
+	Close() error
+
+	// Returns any error that has occured while reading from the event stream.
+	Err() error
+}
+
+type readSubscribeToShardEventStream struct {
+	eventReader *eventstreamapi.EventReader
+	stream      chan SubscribeToShardEventStreamEvent
+	errVal      atomic.Value
+
+	done      chan struct{}
+	closeOnce sync.Once
+
+	initResp eventstreamapi.Unmarshaler
+}
+
+func newReadSubscribeToShardEventStream(
+	reader io.ReadCloser,
+	unmarshalers request.HandlerList,
+	logger aws.Logger,
+	logLevel aws.LogLevelType,
+	initResp eventstreamapi.Unmarshaler,
+) *readSubscribeToShardEventStream {
+	r := &readSubscribeToShardEventStream{
+		stream:   make(chan SubscribeToShardEventStreamEvent),
+		done:     make(chan struct{}),
+		initResp: initResp,
+	}
+
+	r.eventReader = eventstreamapi.NewEventReader(
+		reader,
+		protocol.HandlerPayloadUnmarshal{
+			Unmarshalers: unmarshalers,
+		},
+		r.unmarshalerForEventType,
+	)
+	r.eventReader.UseLogger(logger, logLevel)
+
+	return r
+}
+
+// Close will close the underlying event stream reader. For EventStream over
+// HTTP this will also close the HTTP connection.
+func (r *readSubscribeToShardEventStream) Close() error {
+	r.closeOnce.Do(r.safeClose)
+
+	return r.Err()
+}
+
+func (r *readSubscribeToShardEventStream) safeClose() {
+	close(r.done)
+	err := r.eventReader.Close()
+	if err != nil {
+		r.errVal.Store(err)
+	}
+}
+
+func (r *readSubscribeToShardEventStream) Err() error {
+	if v := r.errVal.Load(); v != nil {
+		return v.(error)
+	}
+
+	return nil
+}
+
+func (r *readSubscribeToShardEventStream) Events() <-chan SubscribeToShardEventStreamEvent {
+	return r.stream
+}
+
+func (r *readSubscribeToShardEventStream) readEventStream() {
+	defer close(r.stream)
+
+	for {
+		event, err := r.eventReader.ReadEvent()
+		if err != nil {
+			if err == io.EOF {
+				return
+			}
+			select {
+			case <-r.done:
+				// If closed already ignore the error
+				return
+			default:
+			}
+			r.errVal.Store(err)
+			return
+		}
+
+		select {
+		case r.stream <- event.(SubscribeToShardEventStreamEvent):
+		case <-r.done:
+			return
+		}
+	}
+}
+
+func (r *readSubscribeToShardEventStream) unmarshalerForEventType(
+	eventType string,
+) (eventstreamapi.Unmarshaler, error) {
+	switch eventType {
+	case "initial-response":
+		return r.initResp, nil
+
+	case "SubscribeToShardEvent":
+		return &SubscribeToShardEvent{}, nil
+
+	case "InternalFailureException":
+		return &InternalFailureException{}, nil
+
+	case "KMSAccessDeniedException":
+		return &KMSAccessDeniedException{}, nil
+
+	case "KMSDisabledException":
+		return &KMSDisabledException{}, nil
+
+	case "KMSInvalidStateException":
+		return &KMSInvalidStateException{}, nil
+
+	case "KMSNotFoundException":
+		return &KMSNotFoundException{}, nil
+
+	case "KMSOptInRequired":
+		return &KMSOptInRequired{}, nil
+
+	case "KMSThrottlingException":
+		return &KMSThrottlingException{}, nil
+
+	case "ResourceInUseException":
+		return &ResourceInUseException{}, nil
+
+	case "ResourceNotFoundException":
+		return &ResourceNotFoundException{}, nil
+	default:
+		return nil, awserr.New(
+			request.ErrCodeSerialization,
+			fmt.Sprintf("unknown event type name, %s, for SubscribeToShardEventStream", eventType),
+			nil,
+		)
+	}
+}
+
+type SubscribeToShardInput struct {
+	_ struct{} `type:"structure"`
+
+	// For this parameter, use the value you obtained when you called RegisterStreamConsumer.
+	//
+	// ConsumerARN is a required field
+	ConsumerARN *string `min:"1" type:"string" required:"true"`
+
+	// The ID of the shard you want to subscribe to. To see a list of all the shards
+	// for a given stream, use ListShards.
+	//
+	// ShardId is a required field
+	ShardId *string `min:"1" type:"string" required:"true"`
+
+	// StartingPosition is a required field
+	StartingPosition *StartingPosition `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s SubscribeToShardInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SubscribeToShardInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SubscribeToShardInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SubscribeToShardInput"}
+	if s.ConsumerARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConsumerARN"))
+	}
+	if s.ConsumerARN != nil && len(*s.ConsumerARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConsumerARN", 1))
+	}
+	if s.ShardId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ShardId"))
+	}
+	if s.ShardId != nil && len(*s.ShardId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ShardId", 1))
+	}
+	if s.StartingPosition == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartingPosition"))
+	}
+	if s.StartingPosition != nil {
+		if err := s.StartingPosition.Validate(); err != nil {
+			invalidParams.AddNested("StartingPosition", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConsumerARN sets the ConsumerARN field's value.
+func (s *SubscribeToShardInput) SetConsumerARN(v string) *SubscribeToShardInput {
+	s.ConsumerARN = &v
+	return s
+}
+
+// SetShardId sets the ShardId field's value.
+func (s *SubscribeToShardInput) SetShardId(v string) *SubscribeToShardInput {
+	s.ShardId = &v
+	return s
+}
+
+// SetStartingPosition sets the StartingPosition field's value.
+func (s *SubscribeToShardInput) SetStartingPosition(v *StartingPosition) *SubscribeToShardInput {
+	s.StartingPosition = v
+	return s
+}
+
+type SubscribeToShardOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Use EventStream to use the API's stream.
+	//
+	// EventStream is a required field
+	EventStream *SubscribeToShardEventStream `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s SubscribeToShardOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SubscribeToShardOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventStream sets the EventStream field's value.
+func (s *SubscribeToShardOutput) SetEventStream(v *SubscribeToShardEventStream) *SubscribeToShardOutput {
+	s.EventStream = v
+	return s
+}
+
+func (s *SubscribeToShardOutput) runEventStreamLoop(r *request.Request) {
+	if r.Error != nil {
+		return
+	}
+	reader := newReadSubscribeToShardEventStream(
+		r.HTTPResponse.Body,
+		r.Handlers.UnmarshalStream,
+		r.Config.Logger,
+		r.Config.LogLevel.Value(),
+		s,
+	)
+	go reader.readEventStream()
+
+	eventStream := &SubscribeToShardEventStream{
+		StreamCloser: r.HTTPResponse.Body,
+		Reader:       reader,
+	}
+	s.EventStream = eventStream
+}
+
+func (s *SubscribeToShardOutput) unmarshalInitialResponse(r *request.Request) {
+	// Wait for the initial response event, which must be the first event to be
+	// received from the API.
+	select {
+	case event, ok := <-s.EventStream.Events():
+		if !ok {
+			return
+		}
+		es := s.EventStream
+		v, ok := event.(*SubscribeToShardOutput)
+		if !ok || v == nil {
+			r.Error = awserr.New(
+				request.ErrCodeSerialization,
+				fmt.Sprintf("invalid event, %T, expect *SubscribeToShardOutput, %v", event, v),
+				nil,
+			)
+			return
+		}
+		*s = *v
+		s.EventStream = es
+	}
+}
+
+// The SubscribeToShardOutput is and event in the SubscribeToShardEventStream group of events.
+func (s *SubscribeToShardOutput) eventSubscribeToShardEventStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the SubscribeToShardOutput value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *SubscribeToShardOutput) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
 }
 
 // Metadata assigned to the stream, consisting of a key-value pair.
