@@ -378,24 +378,6 @@ func (a *API) setMetadataEndpointsKey() {
 	}
 }
 
-// Suppress event stream must be run before setup event stream
-func (a *API) suppressHTTP2EventStreams() {
-	if a.Metadata.ProtocolSettings.HTTP2 != "eventstream" {
-		return
-	}
-
-	for name, op := range a.Operations {
-		outbound := hasEventStream(op.InputRef.Shape)
-		inbound := hasEventStream(op.OutputRef.Shape)
-
-		if !(outbound || inbound) {
-			continue
-		}
-
-		a.removeOperation(name)
-	}
-}
-
 func (a *API) findEndpointDiscoveryOp() {
 	for _, op := range a.Operations {
 		if op.IsEndpointDiscoveryOp {
