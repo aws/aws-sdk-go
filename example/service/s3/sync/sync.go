@@ -5,6 +5,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"mime"
 	"os"
 	"path/filepath"
 	"strings"
