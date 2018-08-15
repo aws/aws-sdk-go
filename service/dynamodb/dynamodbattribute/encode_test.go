@@ -144,13 +144,11 @@ func TestMarshalMapOmitEmptyElem(t *testing.T) {
 func TestMarshalMapNilAsEmpty(t *testing.T) {
 	expect := &dynamodb.AttributeValue{
 		M: map[string]*dynamodb.AttributeValue{
-			"Values": {M: map[string]*dynamodb.AttributeValue{
-			}},
+			"Values": {M: map[string]*dynamodb.AttributeValue{}},
 		},
 	}
 
-	m := testNilAsEmptyElemMapStruct{Values: map[string]interface{}{
-	}}
+	m := testNilAsEmptyElemMapStruct{Values: map[string]interface{}{}}
 
 	actual, err := Marshal(m)
 	if err != nil {

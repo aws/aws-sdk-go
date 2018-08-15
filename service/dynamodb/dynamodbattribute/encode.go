@@ -362,7 +362,7 @@ func (e *Encoder) encodeMap(av *dynamodb.AttributeValue, v reflect.Value, fieldT
 }
 
 func keepNilOrEmpty(av *dynamodb.AttributeValue, fieldTag tag) {
-	if len(av.M) == 0  {
+	if len(av.M) == 0 {
 		if fieldTag.NilAsEmpty {
 			encodeEmptyMap(av)
 		} else {
