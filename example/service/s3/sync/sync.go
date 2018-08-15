@@ -69,10 +69,19 @@ func (iter *SyncFolderIterator) UploadObject() s3manager.BatchUploadObject {
 		iter.err = err
 	}
 
+	fileSplit := strings.Split(fi.key, ".")
+	extension := "." + fileSplit[len(fileSplit)-1]
+	mimeType := mime.TypeByExtension(extension)
+
+	if mimeType == "" {
+		mimeType = "binary/octet-stream"
+	}
+
 	input := s3manager.UploadInput{
-		Bucket: &iter.bucket,
-		Key:    &fi.key,
-		Body:   body,
+		Bucket:      &iter.bucket,
+		Key:         &fi.key,
+		Body:        body,
+		ContentType: aws.String(mimeType),
 	}
 
 	return s3manager.BatchUploadObject{
