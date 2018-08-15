@@ -163,7 +163,7 @@ func (d *Decoder) decode(av *dynamodb.AttributeValue, v reflect.Value, fieldTag 
 		if u != nil {
 			return u.UnmarshalDynamoDBAttributeValue(av)
 		}
-		return d.decodeNull(v)
+		return d.decodeNull(fieldTag.NilAsEmpty, v)
 	}
 
 	u, v = indirect(v, false)
@@ -191,7 +191,7 @@ func (d *Decoder) decode(av *dynamodb.AttributeValue, v reflect.Value, fieldTag 
 	case len(av.SS) != 0:
 		return d.decodeStringSet(av.SS, v)
 	}
-
+	d.decodeEmpty(fieldTag.NilAsEmpty, av, v)
 	return nil
 }
 
@@ -512,11 +512,18 @@ func (d *Decoder) decodeMap(avMap map[string]*dynamodb.AttributeValue, v reflect
 	return nil
 }
 
-func (d *Decoder) decodeNull(v reflect.Value) error {
+func (d *Decoder) decodeNull(nilAsEmpty bool, v reflect.Value) error {
 	if v.IsValid() && v.CanSet() {
 		v.Set(reflect.Zero(v.Type()))
 	}
-
+	if nilAsEmpty {
+		switch v.Kind() {
+		case reflect.Map:
+			v.Set(reflect.MakeMap(v.Type()))
+		case reflect.Slice:
+			v.Set(reflect.MakeSlice(v.Type(), 0, 0))
+		}
+	}
 	return nil
 }
 
@@ -598,6 +605,16 @@ func (d *Decoder) decodeStringSet(ss []*string, v reflect.Value) error {
 	}
 
 	return nil
+}
+
+func (d *Decoder) decodeEmpty(nilAsEmpty bool, av *dynamodb.AttributeValue, v reflect.Value) {
+	if !nilAsEmpty {
+		return
+	}
+	switch {
+	case len(av.B) == 0, len(av.BS) == 0, len(av.NS) == 0, len(av.SS) == 0, len(av.L) == 0, len(av.M) == 0:
+		d.decodeNull(nilAsEmpty, v)
+	}
 }
 
 func decodeUnixTime(n string) (time.Time, error) {
