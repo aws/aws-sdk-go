@@ -882,7 +882,7 @@
       },
       "elasticmapreduce" : {
         "defaults" : {
-          "protocols" : [ "http", "https" ],
+          "protocols" : [ "https" ],
           "sslCommonName" : "{region}.{service}.{dnsSuffix}"
         },
         "endpoints" : {
@@ -2340,7 +2340,7 @@
       },
       "elasticmapreduce" : {
         "defaults" : {
-          "protocols" : [ "http", "https" ]
+          "protocols" : [ "https" ]
         },
         "endpoints" : {
           "cn-north-1" : { },
@@ -2578,6 +2578,17 @@
           "us-gov-west-1" : { }
         }
       },
+      "data.iot" : {
+        "defaults" : {
+          "credentialScope" : {
+            "service" : "iotdata"
+          },
+          "protocols" : [ "https" ]
+        },
+        "endpoints" : {
+          "us-gov-west-1" : { }
+        }
+      },
       "directconnect" : {
         "endpoints" : {
           "us-gov-west-1" : { }
@@ -2640,7 +2651,7 @@
       "elasticmapreduce" : {
         "endpoints" : {
           "us-gov-west-1" : {
-            "protocols" : [ "http", "https" ]
+            "protocols" : [ "https" ]
           }
         }
       },
@@ -2674,6 +2685,16 @@
         "partitionEndpoint" : "aws-us-gov-global"
       },
       "inspector" : {
+        "endpoints" : {
+          "us-gov-west-1" : { }
+        }
+      },
+      "iot" : {
+        "defaults" : {
+          "credentialScope" : {
+            "service" : "execute-api"
+          }
+        },
         "endpoints" : {
           "us-gov-west-1" : { }
         }
