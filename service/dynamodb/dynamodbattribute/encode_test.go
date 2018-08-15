@@ -90,6 +90,10 @@ type testOmitEmptyElemMapStruct struct {
 	Values map[string]interface{} `dynamodbav:",omitemptyelem"`
 }
 
+type testNilAsEmptyElemMapStruct struct {
+	Values map[string]interface{} `dynamodbav:",omitemptyelem,nilasempty"`
+}
+
 func TestMarshalListOmitEmptyElem(t *testing.T) {
 	expect := &dynamodb.AttributeValue{
 		M: map[string]*dynamodb.AttributeValue{
@@ -126,6 +130,26 @@ func TestMarshalMapOmitEmptyElem(t *testing.T) {
 		"efg": nil,
 		"hij": "",
 		"klm": "abc",
+	}}
+
+	actual, err := Marshal(m)
+	if err != nil {
+		t.Errorf("expect nil, got %v", err)
+	}
+	if e, a := expect, actual; !reflect.DeepEqual(e, a) {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+}
+
+func TestMarshalMapNilAsEmpty(t *testing.T) {
+	expect := &dynamodb.AttributeValue{
+		M: map[string]*dynamodb.AttributeValue{
+			"Values": {M: map[string]*dynamodb.AttributeValue{
+			}},
+		},
+	}
+
+	m := testNilAsEmptyElemMapStruct{Values: map[string]interface{}{
 	}}
 
 	actual, err := Marshal(m)

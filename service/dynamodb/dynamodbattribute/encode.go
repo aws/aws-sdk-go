@@ -357,11 +357,18 @@ func (e *Encoder) encodeMap(av *dynamodb.AttributeValue, v reflect.Value, fieldT
 
 		av.M[keyName] = elem
 	}
-	if len(av.M) == 0 {
-		encodeNull(av)
-	}
-
+	keepNilOrEmpty(av, fieldTag)
 	return nil
+}
+
+func keepNilOrEmpty(av *dynamodb.AttributeValue, fieldTag tag) {
+	if len(av.M) == 0  {
+		if fieldTag.NilAsEmpty {
+			encodeEmptyMap(av)
+		} else {
+			encodeNull(av)
+		}
+	}
 }
 
 func (e *Encoder) encodeSlice(av *dynamodb.AttributeValue, v reflect.Value, fieldTag tag) error {
@@ -532,6 +539,10 @@ func encodeFloat(f float64) string {
 func encodeNull(av *dynamodb.AttributeValue) {
 	t := true
 	*av = dynamodb.AttributeValue{NULL: &t}
+}
+
+func encodeEmptyMap(av *dynamodb.AttributeValue) {
+	*av = dynamodb.AttributeValue{M: make(map[string]*dynamodb.AttributeValue)}
 }
 
 func valueElem(v reflect.Value) reflect.Value {
