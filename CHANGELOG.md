@@ -1,3 +1,11 @@
+Release v1.15.13 (2018-08-15)
+===
+
+### Service Client Updates
+* `service/devicefarm`: Updates service API and documentation
+  * Support for running tests in a custom environment with live logs/video streaming, full test features parity and reduction in overall test execution time.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.15.12 (2018-08-14)
 ===
 
