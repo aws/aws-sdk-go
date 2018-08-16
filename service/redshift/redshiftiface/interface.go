@@ -357,6 +357,10 @@ type RedshiftAPI interface {
 	ResetClusterParameterGroupWithContext(aws.Context, *redshift.ResetClusterParameterGroupInput, ...request.Option) (*redshift.ClusterParameterGroupNameMessage, error)
 	ResetClusterParameterGroupRequest(*redshift.ResetClusterParameterGroupInput) (*request.Request, *redshift.ClusterParameterGroupNameMessage)
 
+	ResizeCluster(*redshift.ResizeClusterInput) (*redshift.ResizeClusterOutput, error)
+	ResizeClusterWithContext(aws.Context, *redshift.ResizeClusterInput, ...request.Option) (*redshift.ResizeClusterOutput, error)
+	ResizeClusterRequest(*redshift.ResizeClusterInput) (*request.Request, *redshift.ResizeClusterOutput)
+
 	RestoreFromClusterSnapshot(*redshift.RestoreFromClusterSnapshotInput) (*redshift.RestoreFromClusterSnapshotOutput, error)
 	RestoreFromClusterSnapshotWithContext(aws.Context, *redshift.RestoreFromClusterSnapshotInput, ...request.Option) (*redshift.RestoreFromClusterSnapshotOutput, error)
 	RestoreFromClusterSnapshotRequest(*redshift.RestoreFromClusterSnapshotInput) (*request.Request, *redshift.RestoreFromClusterSnapshotOutput)

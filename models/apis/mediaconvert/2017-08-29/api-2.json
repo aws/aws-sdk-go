@@ -2092,6 +2092,10 @@
         "SegmentLength": {
           "shape": "__integerMin1Max2147483647",
           "locationName": "segmentLength"
+        },
+        "WriteSegmentTimelineInRepresentation": {
+          "shape": "DashIsoWriteSegmentTimelineInRepresentation",
+          "locationName": "writeSegmentTimelineInRepresentation"
         }
       },
       "required": [
@@ -2111,6 +2115,13 @@
       "enum": [
         "SINGLE_FILE",
         "SEGMENTED_FILES"
+      ]
+    },
+    "DashIsoWriteSegmentTimelineInRepresentation": {
+      "type": "string",
+      "enum": [
+        "ENABLED",
+        "DISABLED"
       ]
     },
     "DeinterlaceAlgorithm": {

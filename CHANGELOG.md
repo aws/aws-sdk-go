@@ -1,3 +1,18 @@
+Release v1.15.14 (2018-08-16)
+===
+
+### Service Client Updates
+* `service/discovery`: Updates service API, documentation, and paginators
+  * The Application Discovery Service's Continuous Export APIs allow you to analyze your on-premises server inventory data, including system performance and network dependencies, in Amazon Athena.
+* `service/ec2`: Updates service API
+  * The 'Attribute' parameter DescribeVolumeAttribute request has been marked as required - the API has always required this parameter, but up until now this wasn't reflected appropriately in the SDK.
+* `service/mediaconvert`: Updates service API and documentation
+  * Added WriteSegmentTimelineInRepresentation option for Dash Outputs
+* `service/redshift`: Updates service API and documentation
+  * You can now resize your Amazon Redshift cluster quickly. With the new ResizeCluster action, your cluster is available for read and write operations within minutes
+* `service/ssm`: Updates service API and documentation
+  * AWS Systems Manager Inventory now supports groups to quickly see a count of which managed instances are and arent configured to collect one or more Inventory types
+
 Release v1.15.13 (2018-08-15)
 ===
 
