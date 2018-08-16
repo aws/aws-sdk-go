@@ -522,6 +522,12 @@
         "DashIsoGroupSettings$SegmentControl": null
       }
     },
+    "DashIsoWriteSegmentTimelineInRepresentation": {
+      "base": "When ENABLED, segment durations are indicated in the manifest using SegmentTimeline and SegmentTimeline will be promoted down into Representation from AdaptationSet.",
+      "refs": {
+        "DashIsoGroupSettings$WriteSegmentTimelineInRepresentation": "When ENABLED, segment durations are indicated in the manifest using SegmentTimeline and SegmentTimeline will be promoted down into Representation from AdaptationSet."
+      }
+    },
     "DeinterlaceAlgorithm": {
       "base": "Only applies when you set Deinterlacer (DeinterlaceMode) to Deinterlace (DEINTERLACE) or Adaptive (ADAPTIVE). Motion adaptive interpolate (INTERPOLATE) produces sharper pictures, while blend (BLEND) produces smoother motion. Use (INTERPOLATE_TICKER) OR (BLEND_TICKER) if your source file includes a ticker, such as a scrolling headline at the bottom of the frame.",
       "refs": {

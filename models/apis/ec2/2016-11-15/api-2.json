@@ -7766,7 +7766,10 @@
     },
     "DescribeVolumeAttributeRequest":{
       "type":"structure",
-      "required":["VolumeId"],
+      "required":[
+        "Attribute",
+        "VolumeId"
+      ],
       "members":{
         "Attribute":{"shape":"VolumeAttributeName"},
         "VolumeId":{"shape":"String"},
