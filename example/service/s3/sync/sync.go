@@ -70,8 +70,7 @@ func (iter *SyncFolderIterator) UploadObject() s3manager.BatchUploadObject {
 		iter.err = err
 	}
 
-	fileSplit := strings.Split(fi.key, ".")
-	extension := "." + fileSplit[len(fileSplit)-1]
+	extension := filepath.Ext(fi.key)
 	mimeType := mime.TypeByExtension(extension)
 
 	if mimeType == "" {
@@ -82,7 +81,7 @@ func (iter *SyncFolderIterator) UploadObject() s3manager.BatchUploadObject {
 		Bucket:      &iter.bucket,
 		Key:         &fi.key,
 		Body:        body,
-		ContentType: aws.String(mimeType),
+		ContentType: &mimeType,
 	}
 
 	return s3manager.BatchUploadObject{
