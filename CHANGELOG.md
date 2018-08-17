@@ -1,3 +1,14 @@
+Release v1.15.15 (2018-08-17)
+===
+
+### Service Client Updates
+* `service/dax`: Updates service API
+  * DAX CreateClusterRequest is updated to include IamRoleArn as a required request parameter.
+* `service/sagemaker`: Updates service API and documentation
+  * Added an optional boolean parameter, 'DisassociateLifecycleConfig', to the UpdateNotebookInstance operation. When set to true, the lifecycle configuration associated with the notebook instance will be removed, allowing a new one to be set via a new 'LifecycleConfigName' parameter.
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for Secrets Manager
+
 Release v1.15.14 (2018-08-16)
 ===
 
