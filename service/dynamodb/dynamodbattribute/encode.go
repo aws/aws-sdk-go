@@ -357,7 +357,9 @@ func (e *Encoder) encodeMap(av *dynamodb.AttributeValue, v reflect.Value, fieldT
 
 		av.M[keyName] = elem
 	}
-	keepNilOrEmpty(av, reflect.Map, fieldTag.NilAsEmpty)
+	if len(av.M) == 0 {
+		keepNilOrEmpty(av, reflect.Map, fieldTag.NilAsEmpty)
+	}
 	return nil
 }
 
@@ -581,9 +583,6 @@ func tryMarshaler(av *dynamodb.AttributeValue, v reflect.Value) (bool, error) {
 }
 
 func keepNilOrEmpty(av *dynamodb.AttributeValue, kind reflect.Kind, nilAsEmpty bool) {
-	if len(av.M) != 0 {
-		return
-	}
 	if !nilAsEmpty {
 		encodeNull(av)
 		return
