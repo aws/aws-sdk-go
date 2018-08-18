@@ -620,3 +620,99 @@ func TestDecodeAliasedUnixTime(t *testing.T) {
 		t.Errorf("expect %v, got %v", expect, actual)
 	}
 }
+
+func TestUnmarshallNilMapAsEmpty(t *testing.T) {
+	input := &dynamodb.AttributeValue{
+		M: map[string]*dynamodb.AttributeValue{
+			"Values": {NULL: aws.Bool(true)},
+		},
+	}
+	actual := &testNilAsEmptyElemMapStruct{}
+	expect := &testNilAsEmptyElemMapStruct{
+		Values: map[string]interface{}{},
+	}
+
+	err := Unmarshal(input, actual)
+
+	if err != nil {
+		t.Errorf("expect nil, got %v", err)
+	}
+	if e, a := expect, actual; !reflect.DeepEqual(e, a) {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+}
+
+func TestUnmarshallNilMapAsNil(t *testing.T) {
+	input := &dynamodb.AttributeValue{
+		M: map[string]*dynamodb.AttributeValue{
+			"Values": {NULL: aws.Bool(true)},
+		},
+	}
+	actual := &testNilElemMapStruct{}
+	expect := &testNilElemMapStruct{
+		Values: nil,
+	}
+
+	err := Unmarshal(input, actual)
+
+	if err != nil {
+		t.Errorf("expect nil, got %v", err)
+	}
+	if e, a := expect, actual; !reflect.DeepEqual(e, a) {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+}
+
+func TestUnmarshallNilSliceAsEmpty(t *testing.T) {
+	input := &dynamodb.AttributeValue{
+		M: map[string]*dynamodb.AttributeValue{
+			"BinarySet": {NULL: aws.Bool(true)},
+			"StringSet": {NULL: aws.Bool(true)},
+			"NumberSet": {NULL: aws.Bool(true)},
+			"OtherList": {NULL: aws.Bool(true)},
+		},
+	}
+	actual := &testNilListIsEmptyStruct{}
+	expect := &testNilListIsEmptyStruct{
+		BinarySet: [][]byte{},
+		StringSet: []*string{},
+		NumberSet: []int{},
+		OtherList: []string{},
+	}
+
+	err := Unmarshal(input, actual)
+
+	if err != nil {
+		t.Errorf("expect nil, got %v", err)
+	}
+	if e, a := expect, actual; !reflect.DeepEqual(e, a) {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+}
+
+func TestUnmarshallNilSliceAsNil(t *testing.T) {
+	input := &dynamodb.AttributeValue{
+		M: map[string]*dynamodb.AttributeValue{
+			"BinarySet": {NULL: aws.Bool(true)},
+			"StringSet": {NULL: aws.Bool(true)},
+			"NumberSet": {NULL: aws.Bool(true)},
+			"OtherList": {NULL: aws.Bool(true)},
+		},
+	}
+
+	actual := &testNilListIsNilStruct{}
+
+	expect := &testNilListIsNilStruct{
+		BinarySet: nil,
+		StringSet: nil,
+		NumberSet: nil,
+		OtherList: nil,
+	}
+	err := Unmarshal(input, actual)
+	if err != nil {
+		t.Errorf("expect nil, got %v", err)
+	}
+	if e, a := expect, actual; !reflect.DeepEqual(e, a) {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+}
