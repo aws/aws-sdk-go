@@ -145,42 +145,6 @@ func TestMarshalMapOmitEmptyElem(t *testing.T) {
 	}
 }
 
-func TestMarshalMapNilAsEmpty(t *testing.T) {
-	expect := &dynamodb.AttributeValue{
-		M: map[string]*dynamodb.AttributeValue{
-			"Values": {M: map[string]*dynamodb.AttributeValue{}},
-		},
-	}
-
-	m := testNilAsEmptyElemMapStruct{Values: map[string]interface{}{}}
-
-	actual, err := Marshal(m)
-	if err != nil {
-		t.Errorf("expect nil, got %v", err)
-	}
-	if e, a := expect, actual; !reflect.DeepEqual(e, a) {
-		t.Errorf("expect %v, got %v", e, a)
-	}
-}
-
-func TestMarshalMapNil(t *testing.T) {
-	expect := &dynamodb.AttributeValue{
-		M: map[string]*dynamodb.AttributeValue{
-			"Values": {NULL: aws.Bool(true)},
-		},
-	}
-
-	m := testNilElemMapStruct{Values: map[string]interface{}{}}
-
-	actual, err := Marshal(m)
-	if err != nil {
-		t.Errorf("expect nil, got %v", err)
-	}
-	if e, a := expect, actual; !reflect.DeepEqual(e, a) {
-		t.Errorf("expect %v, got %v", e, a)
-	}
-}
-
 type testOmitEmptyScalar struct {
 	IntZero       int  `dynamodbav:",omitempty"`
 	IntPtrNil     *int `dynamodbav:",omitempty"`
@@ -314,22 +278,34 @@ func TestEncodeAliasedUnixTime(t *testing.T) {
 	}
 }
 
-type testNilListIsNilStruct struct {
+type testWithoutNilAsEmptyStruct struct {
 	BinarySet [][]byte  `dynamodbav:",binaryset"`
 	StringSet []*string `dynamodbav:",stringset"`
 	NumberSet []int     `dynamodbav:",numberset"`
 	OtherList []string
 }
 
-type testNilListIsEmptyStruct struct {
+type testNilAsEmptySliceStruct struct {
 	BinarySet [][]byte  `dynamodbav:",binaryset,nilasempty"`
 	StringSet []*string `dynamodbav:",stringset,nilasempty"`
 	NumberSet []int     `dynamodbav:",numberset,nilasempty"`
 	OtherList []string  `dynamodbav:",nilasempty"`
 }
 
-func TestNilSliceIsNilListIsNil(t *testing.T) {
-	expect := &dynamodb.AttributeValue{
+type MarshalHelperStruct struct {
+	name           string
+	input          interface{}
+	actual, expect *dynamodb.AttributeValue
+	err            error
+}
+
+func TestMarshalNilForEmptyOrNilInput(t *testing.T) {
+	expectMapNull := &dynamodb.AttributeValue{
+		M: map[string]*dynamodb.AttributeValue{
+			"Values": {NULL: aws.Bool(true)},
+		},
+	}
+	expectSliceNull := &dynamodb.AttributeValue{
 		M: map[string]*dynamodb.AttributeValue{
 			"BinarySet": {NULL: aws.Bool(true)},
 			"StringSet": {NULL: aws.Bool(true)},
@@ -337,25 +313,55 @@ func TestNilSliceIsNilListIsNil(t *testing.T) {
 			"OtherList": {NULL: aws.Bool(true)},
 		},
 	}
+	tests := []MarshalHelperStruct{
+		{
+			name: "marshal empty slice as nil when nilasempty tag is not set",
+			input: testWithoutNilAsEmptyStruct{
+				BinarySet: [][]byte{},
+				StringSet: []*string{},
+				NumberSet: []int{},
+				OtherList: []string{},
+			},
+			expect: expectSliceNull,
+		},
+		{
+			name: "marshal nil slice as nil when nilasempty tag is not set",
+			input: testWithoutNilAsEmptyStruct{
+				BinarySet: nil,
+				StringSet: nil,
+				NumberSet: nil,
+				OtherList: nil,
+			},
+			expect: expectSliceNull,
+		},
+		{
+			name: "marshal nil map as nil when nilasempty tag is not set",
+			input: testOmitEmptyElemMapStruct{
+				Values: nil,
+			},
+			expect: expectMapNull,
+		},
+		{
+			name: "marshal empty map as nil when nilasempty tag is not set",
+			input: testOmitEmptyElemMapStruct{
+				Values: map[string]interface{}{},
+			},
+			expect: expectMapNull,
+		},
+	}
+	tableTestMarshalAssertion(t, tests)
+}
 
-	m := testNilListIsNilStruct{
+func TestMarshalEmptyForEmptyOrNilInput(t *testing.T) {
+	inputEmptyForSlice := testNilAsEmptySliceStruct{
 		BinarySet: [][]byte{},
 		StringSet: []*string{},
 		NumberSet: []int{},
 		OtherList: []string{},
 	}
+	inputEmptyForMap := testNilAsEmptyElemMapStruct{Values: map[string]interface{}{}}
 
-	actual, err := Marshal(m)
-	if err != nil {
-		t.Errorf("expect nil, got %v", err)
-	}
-	if e, a := expect, actual; !reflect.DeepEqual(e, a) {
-		t.Errorf("expect %v, got %v", e, a)
-	}
-}
-
-func TestNilSliceIsEmpty(t *testing.T) {
-	expect := &dynamodb.AttributeValue{
+	expectedEmptyForSlice := &dynamodb.AttributeValue{
 		M: map[string]*dynamodb.AttributeValue{
 			"BinarySet": {BS: [][]byte{}},
 			"StringSet": {SS: []*string{}},
@@ -363,19 +369,51 @@ func TestNilSliceIsEmpty(t *testing.T) {
 			"OtherList": {L: []*dynamodb.AttributeValue{}},
 		},
 	}
-
-	m := testNilListIsEmptyStruct{
-		BinarySet: [][]byte{},
-		StringSet: []*string{},
-		NumberSet: []int{},
-		OtherList: []string{},
+	expectedEmptyForMap := &dynamodb.AttributeValue{
+		M: map[string]*dynamodb.AttributeValue{
+			"Values": {M: map[string]*dynamodb.AttributeValue{}},
+		},
 	}
-
-	actual, err := Marshal(m)
-	if err != nil {
-		t.Errorf("expect nil, got %v", err)
+	tests := []MarshalHelperStruct{
+		{
+			name:   "marshal empty map as empty when nilasempty tag is set",
+			input:  inputEmptyForMap,
+			expect: expectedEmptyForMap,
+		},
+		{
+			name:   "marshal nil map as empty when nilasempty tag is set",
+			input:  testNilAsEmptyElemMapStruct{Values: nil},
+			expect: expectedEmptyForMap,
+		},
+		{
+			name:   "marshal empty slice as empty when nilasempty tag is set",
+			input:  inputEmptyForSlice,
+			expect: expectedEmptyForSlice,
+		},
+		{
+			name: "marshal nil slice as empty when nilasempty tag is set",
+			input: testNilAsEmptySliceStruct{
+				BinarySet: nil,
+				StringSet: nil,
+				NumberSet: nil,
+				OtherList: nil,
+			},
+			expect: expectedEmptyForSlice,
+		},
 	}
-	if e, a := expect, actual; !reflect.DeepEqual(e, a) {
-		t.Errorf("expect %v, got %v", e, a)
+	tableTestMarshalAssertion(t, tests)
+}
+
+func tableTestMarshalAssertion(t *testing.T, tests []MarshalHelperStruct) {
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			tt.actual, tt.err = Marshal(tt.input)
+			if tt.err != nil {
+				t.Errorf("expect nil, got %v", tt.err)
+			}
+			if e, a := tt.expect, tt.actual; !reflect.DeepEqual(e, a) {
+				t.Errorf("%s: expect %v, got %v", tt.name, e, a)
+			}
+		})
 	}
 }
