@@ -371,7 +371,7 @@ func (e *Encoder) encodeSlice(av *dynamodb.AttributeValue, v reflect.Value, fiel
 
 		b := slice.Bytes()
 		if len(b) == 0 {
-			encodeNull(av)
+			keepNilOrEmpty(av, reflect.Slice, fieldTag.NilAsEmpty)
 			return nil
 		}
 		av.B = append([]byte{}, b...)
@@ -416,7 +416,7 @@ func (e *Encoder) encodeSlice(av *dynamodb.AttributeValue, v reflect.Value, fiel
 		if n, err := e.encodeList(v, fieldTag, elemFn); err != nil {
 			return err
 		} else if n == 0 {
-			encodeNull(av)
+			keepNilOrEmpty(av, reflect.Slice, fieldTag.NilAsEmpty)
 		}
 	}
 
@@ -590,6 +590,8 @@ func keepNilOrEmpty(av *dynamodb.AttributeValue, kind reflect.Kind, nilAsEmpty b
 	switch kind {
 	case reflect.Map:
 		encodeEmptyMap(av)
+	case reflect.Slice:
+		return
 	default:
 		encodeNull(av)
 	}

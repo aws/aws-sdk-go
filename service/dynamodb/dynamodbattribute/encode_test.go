@@ -313,3 +313,69 @@ func TestEncodeAliasedUnixTime(t *testing.T) {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 }
+
+type testNilListIsNilStruct struct {
+	BinarySet [][]byte  `dynamodbav:",binaryset"`
+	StringSet []*string `dynamodbav:",stringset"`
+	NumberSet []int     `dynamodbav:",numberset"`
+	OtherList []string
+}
+
+type testNilListIsEmptyStruct struct {
+	BinarySet [][]byte  `dynamodbav:",binaryset,nilasempty"`
+	StringSet []*string `dynamodbav:",stringset,nilasempty"`
+	NumberSet []int     `dynamodbav:",numberset,nilasempty"`
+	OtherList []string  `dynamodbav:",nilasempty"`
+}
+
+func TestNilSliceIsNilListIsNil(t *testing.T) {
+	expect := &dynamodb.AttributeValue{
+		M: map[string]*dynamodb.AttributeValue{
+			"BinarySet": {NULL: aws.Bool(true)},
+			"StringSet": {NULL: aws.Bool(true)},
+			"NumberSet": {NULL: aws.Bool(true)},
+			"OtherList": {NULL: aws.Bool(true)},
+		},
+	}
+
+	m := testNilListIsNilStruct{
+		BinarySet: [][]byte{},
+		StringSet: []*string{},
+		NumberSet: []int{},
+		OtherList: []string{},
+	}
+
+	actual, err := Marshal(m)
+	if err != nil {
+		t.Errorf("expect nil, got %v", err)
+	}
+	if e, a := expect, actual; !reflect.DeepEqual(e, a) {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+}
+
+func TestNilSliceIsEmpty(t *testing.T) {
+	expect := &dynamodb.AttributeValue{
+		M: map[string]*dynamodb.AttributeValue{
+			"BinarySet": {BS: [][]byte{}},
+			"StringSet": {SS: []*string{}},
+			"NumberSet": {NS: []*string{}},
+			"OtherList": {L: []*dynamodb.AttributeValue{}},
+		},
+	}
+
+	m := testNilListIsEmptyStruct{
+		BinarySet: [][]byte{},
+		StringSet: []*string{},
+		NumberSet: []int{},
+		OtherList: []string{},
+	}
+
+	actual, err := Marshal(m)
+	if err != nil {
+		t.Errorf("expect nil, got %v", err)
+	}
+	if e, a := expect, actual; !reflect.DeepEqual(e, a) {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+}
