@@ -716,3 +716,72 @@ func TestUnmarshallNilSliceAsNil(t *testing.T) {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 }
+
+func TestNilAsEmptyForEmptyInput(t *testing.T) {
+	inputForMap := &dynamodb.AttributeValue{
+		M: map[string]*dynamodb.AttributeValue{
+			"Values": {M: map[string]*dynamodb.AttributeValue{}},
+		},
+	}
+	inputForSlice := &dynamodb.AttributeValue{
+		M: map[string]*dynamodb.AttributeValue{
+			"BinarySet": {BS: [][]byte{}},
+			"StringSet": {SS: []*string{}},
+			"NumberSet": {NS: []*string{}},
+			"OtherList": {L: []*dynamodb.AttributeValue{}},
+		},
+	}
+	tests := []struct {
+		name           string
+		input          *dynamodb.AttributeValue
+		actual, expect interface{}
+	}{
+		{
+			name:   "unmarshal empty map as nil when nilasempty tag is not set",
+			input:  inputForMap,
+			actual: &testOmitEmptyElemMapStruct{},
+			expect: &testOmitEmptyElemMapStruct{
+				Values: nil,
+			},
+		},
+		{
+			name:   "unmarshal empty map as empty when nilasempty tag is set",
+			input:  inputForMap,
+			actual: &testNilAsEmptyElemMapStruct{},
+			expect: &testNilAsEmptyElemMapStruct{
+				Values: map[string]interface{}{},
+			},
+		}, {
+			name:   "unmarshal empty slices as nil when nilasempty tag is not set",
+			input:  inputForSlice,
+			actual: &testNilListIsNilStruct{},
+			expect: &testNilListIsNilStruct{
+				BinarySet: nil,
+				StringSet: nil,
+				NumberSet: nil,
+				OtherList: nil,
+			},
+		}, {
+			name:   "unmarshal empty slices as empty when nilasempty tag is not set",
+			input:  inputForSlice,
+			actual: &testNilListIsEmptyStruct{},
+			expect: &testNilListIsEmptyStruct{
+				BinarySet: [][]byte{},
+				StringSet: []*string{},
+				NumberSet: []int{},
+				OtherList: []string{},
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			err := Unmarshal(tt.input, tt.actual)
+			if err != nil {
+				t.Errorf("expect nil, got %v", err)
+			}
+			if e, a := tt.expect, tt.actual; !reflect.DeepEqual(e, a) {
+				t.Errorf("%s: expect %v, got %v", tt.name, e, a)
+			}
+		})
+	}
+}
