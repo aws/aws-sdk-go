@@ -357,18 +357,8 @@ func (e *Encoder) encodeMap(av *dynamodb.AttributeValue, v reflect.Value, fieldT
 
 		av.M[keyName] = elem
 	}
-	keepNilOrEmpty(av, fieldTag)
+	keepNilOrEmpty(av, reflect.Map, fieldTag.NilAsEmpty)
 	return nil
-}
-
-func keepNilOrEmpty(av *dynamodb.AttributeValue, fieldTag tag) {
-	if len(av.M) == 0 {
-		if fieldTag.NilAsEmpty {
-			encodeEmptyMap(av)
-		} else {
-			encodeNull(av)
-		}
-	}
 }
 
 func (e *Encoder) encodeSlice(av *dynamodb.AttributeValue, v reflect.Value, fieldTag tag) error {
@@ -588,6 +578,22 @@ func tryMarshaler(av *dynamodb.AttributeValue, v reflect.Value) (bool, error) {
 	}
 
 	return false, nil
+}
+
+func keepNilOrEmpty(av *dynamodb.AttributeValue, kind reflect.Kind, nilAsEmpty bool) {
+	if len(av.M) != 0 {
+		return
+	}
+	if !nilAsEmpty {
+		encodeNull(av)
+		return
+	}
+	switch kind {
+	case reflect.Map:
+		encodeEmptyMap(av)
+	default:
+		encodeNull(av)
+	}
 }
 
 func keepOrOmitEmpty(omitEmpty bool, av *dynamodb.AttributeValue, err error) (bool, error) {
