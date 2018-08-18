@@ -406,14 +406,12 @@ func TestMarshalEmptyForEmptyOrNilInput(t *testing.T) {
 
 func tableTestMarshalAssertion(t *testing.T, tests []MarshalHelperStruct) {
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			tt.actual, tt.err = Marshal(tt.input)
-			if tt.err != nil {
-				t.Errorf("expect nil, got %v", tt.err)
-			}
-			if e, a := tt.expect, tt.actual; !reflect.DeepEqual(e, a) {
-				t.Errorf("%s: expect %v, got %v", tt.name, e, a)
-			}
-		})
+		tt.actual, tt.err = Marshal(tt.input)
+		if tt.err != nil {
+			t.Errorf("expect nil, got %v", tt.err)
+		}
+		if e, a := tt.expect, tt.actual; !reflect.DeepEqual(e, a) {
+			t.Errorf("%s: expect %v, got %v", tt.name, e, a)
+		}
 	}
 }

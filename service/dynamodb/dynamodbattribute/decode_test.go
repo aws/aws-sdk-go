@@ -737,14 +737,12 @@ func TestUnmarshalNilAsEmptyForEmptyInput(t *testing.T) {
 
 func tableTestUnmarshalAssertion(t *testing.T, tests []UnmarshalHelperStruct) {
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			err := Unmarshal(tt.input, tt.actual)
-			if err != nil {
-				t.Errorf("expect nil, got %v", err)
-			}
-			if e, a := tt.expect, tt.actual; !reflect.DeepEqual(e, a) {
-				t.Errorf("%s: expect %v, got %v", tt.name, e, a)
-			}
-		})
+		err := Unmarshal(tt.input, tt.actual)
+		if err != nil {
+			t.Errorf("expect nil, got %v", err)
+		}
+		if e, a := tt.expect, tt.actual; !reflect.DeepEqual(e, a) {
+			t.Errorf("%s: expect %v, got %v", tt.name, e, a)
+		}
 	}
 }
