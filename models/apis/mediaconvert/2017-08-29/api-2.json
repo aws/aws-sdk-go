@@ -874,11 +874,7 @@
           "shape": "AacVbrQuality",
           "locationName": "vbrQuality"
         }
-      },
-      "required": [
-        "CodingMode",
-        "SampleRate"
-      ]
+      }
     },
     "AacSpecification": {
       "type": "string",
@@ -1060,10 +1056,7 @@
           "shape": "WavSettings",
           "locationName": "wavSettings"
         }
-      },
-      "required": [
-        "Codec"
-      ]
+      }
     },
     "AudioDefaultSelection": {
       "type": "string",
@@ -1115,10 +1108,7 @@
           "shape": "__stringPatternWS",
           "locationName": "streamName"
         }
-      },
-      "required": [
-        "CodecSettings"
-      ]
+      }
     },
     "AudioLanguageCodeControl": {
       "type": "string",
@@ -1236,10 +1226,7 @@
           "shape": "__listOf__stringMin1",
           "locationName": "audioSelectorNames"
         }
-      },
-      "required": [
-        "AudioSelectorNames"
-      ]
+      }
     },
     "AudioSelectorType": {
       "type": "string",
@@ -1345,13 +1332,7 @@
           "shape": "__integerMin0Max2147483647",
           "locationName": "yPosition"
         }
-      },
-      "required": [
-        "OutlineColor",
-        "Alignment",
-        "OutlineSize",
-        "FontOpacity"
-      ]
+      }
     },
     "BurninSubtitleAlignment": {
       "type": "string",
@@ -1446,11 +1427,7 @@
           "shape": "__string",
           "locationName": "languageDescription"
         }
-      },
-      "required": [
-        "DestinationSettings",
-        "CaptionSelectorName"
-      ]
+      }
     },
     "CaptionDescriptionPreset": {
       "type": "structure",
@@ -1471,10 +1448,7 @@
           "shape": "__string",
           "locationName": "languageDescription"
         }
-      },
-      "required": [
-        "DestinationSettings"
-      ]
+      }
     },
     "CaptionDestinationSettings": {
       "type": "structure",
@@ -1503,10 +1477,7 @@
           "shape": "TtmlDestinationSettings",
           "locationName": "ttmlDestinationSettings"
         }
-      },
-      "required": [
-        "DestinationType"
-      ]
+      }
     },
     "CaptionDestinationType": {
       "type": "string",
@@ -1536,10 +1507,7 @@
           "shape": "CaptionSourceSettings",
           "locationName": "sourceSettings"
         }
-      },
-      "required": [
-        "SourceSettings"
-      ]
+      }
     },
     "CaptionSourceSettings": {
       "type": "structure",
@@ -1568,10 +1536,7 @@
           "shape": "TeletextSourceSettings",
           "locationName": "teletextSourceSettings"
         }
-      },
-      "required": [
-        "SourceType"
-      ]
+      }
     },
     "CaptionSourceType": {
       "type": "string",
@@ -1594,10 +1559,7 @@
           "shape": "__listOfOutputChannelMapping",
           "locationName": "outputChannels"
         }
-      },
-      "required": [
-        "OutputChannels"
-      ]
+      }
     },
     "CmafClientCache": {
       "type": "string",
@@ -1636,10 +1598,7 @@
           "shape": "CmafKeyProviderType",
           "locationName": "type"
         }
-      },
-      "required": [
-        "Type"
-      ]
+      }
     },
     "CmafEncryptionType": {
       "type": "string",
@@ -1710,11 +1669,7 @@
           "shape": "CmafWriteHLSManifest",
           "locationName": "writeHlsManifest"
         }
-      },
-      "required": [
-        "FragmentLength",
-        "SegmentLength"
-      ]
+      }
     },
     "CmafInitializationVectorInManifest": {
       "type": "string",
@@ -1874,10 +1829,7 @@
           "shape": "Mp4Settings",
           "locationName": "mp4Settings"
         }
-      },
-      "required": [
-        "Container"
-      ]
+      }
     },
     "ContainerType": {
       "type": "string",
@@ -2053,10 +2005,7 @@
           "shape": "SpekeKeyProvider",
           "locationName": "spekeKeyProvider"
         }
-      },
-      "required": [
-        "SpekeKeyProvider"
-      ]
+      }
     },
     "DashIsoGroupSettings": {
       "type": "structure",
@@ -2097,11 +2046,7 @@
           "shape": "DashIsoWriteSegmentTimelineInRepresentation",
           "locationName": "writeSegmentTimelineInRepresentation"
         }
-      },
-      "required": [
-        "SegmentLength",
-        "FragmentLength"
-      ]
+      }
     },
     "DashIsoHbbtvCompliance": {
       "type": "string",
@@ -2267,12 +2212,7 @@
           "shape": "__integerMin25Max10000",
           "locationName": "nitInterval"
         }
-      },
-      "required": [
-        "NetworkName",
-        "NitInterval",
-        "NetworkId"
-      ]
+      }
     },
     "DvbSdtSettings": {
       "type": "structure",
@@ -2362,13 +2302,7 @@
           "shape": "__integerMin0Max2147483647",
           "locationName": "yPosition"
         }
-      },
-      "required": [
-        "OutlineColor",
-        "Alignment",
-        "OutlineSize",
-        "FontOpacity"
-      ]
+      }
     },
     "DvbSubSourceSettings": {
       "type": "structure",
@@ -2438,10 +2372,7 @@
           "shape": "__integerMin1000Max30000",
           "locationName": "tdtInterval"
         }
-      },
-      "required": [
-        "TdtInterval"
-      ]
+      }
     },
     "Eac3AttenuationControl": {
       "type": "string",
@@ -2735,10 +2666,7 @@
           "shape": "__integerMinNegative2147483648Max2147483647",
           "locationName": "timeDelta"
         }
-      },
-      "required": [
-        "SourceFile"
-      ]
+      }
     },
     "ForbiddenException": {
       "type": "structure",
@@ -2998,10 +2926,7 @@
           "shape": "__integerMin1Max10",
           "locationName": "qvbrQualityLevel"
         }
-      },
-      "required": [
-        "QvbrQualityLevel"
-      ]
+      }
     },
     "H264RateControlMode": {
       "type": "string",
@@ -3357,10 +3282,7 @@
           "shape": "__integerMin1Max10",
           "locationName": "qvbrQualityLevel"
         }
-      },
-      "required": [
-        "QvbrQualityLevel"
-      ]
+      }
     },
     "H265RateControlMode": {
       "type": "string",
@@ -3654,11 +3576,7 @@
           "shape": "__integerMin0Max50000",
           "locationName": "whitePointY"
         }
-      },
-      "required": [
-        "MaxContentLightLevel",
-        "MaxFrameAverageLightLevel"
-      ]
+      }
     },
     "HlsAdMarkers": {
       "type": "string",
@@ -3753,10 +3671,7 @@
           "shape": "HlsKeyProviderType",
           "locationName": "type"
         }
-      },
-      "required": [
-        "Type"
-      ]
+      }
     },
     "HlsEncryptionType": {
       "type": "string",
@@ -3860,11 +3775,7 @@
           "shape": "__integerMinNegative2147483648Max2147483647",
           "locationName": "timestampDeltaMilliseconds"
         }
-      },
-      "required": [
-        "MinSegmentLength",
-        "SegmentLength"
-      ]
+      }
     },
     "HlsIFrameOnlyManifest": {
       "type": "string",
@@ -3973,11 +3884,7 @@
           "shape": "__stringPattern010920405090509092",
           "locationName": "timecode"
         }
-      },
-      "required": [
-        "Timecode",
-        "Id3"
-      ]
+      }
     },
     "ImageInserter": {
       "type": "structure",
@@ -3986,10 +3893,7 @@
           "shape": "__listOfInsertableImage",
           "locationName": "insertableImages"
         }
-      },
-      "required": [
-        "InsertableImages"
-      ]
+      }
     },
     "Input": {
       "type": "structure",
@@ -4046,10 +3950,7 @@
           "shape": "VideoSelector",
           "locationName": "videoSelector"
         }
-      },
-      "required": [
-        "FileInput"
-      ]
+      }
     },
     "InputClipping": {
       "type": "structure",
@@ -4201,14 +4102,7 @@
           "shape": "__integerMinNegative2147483648Max2147483647",
           "locationName": "width"
         }
-      },
-      "required": [
-        "ImageY",
-        "ImageX",
-        "ImageInserterInput",
-        "Opacity",
-        "Layer"
-      ]
+      }
     },
     "InternalServerErrorException": {
       "type": "structure",
@@ -4315,11 +4209,7 @@
           "shape": "TimedMetadataInsertion",
           "locationName": "timedMetadataInsertion"
         }
-      },
-      "required": [
-        "OutputGroups",
-        "Inputs"
-      ]
+      }
     },
     "JobStatus": {
       "type": "string",
@@ -4415,10 +4305,7 @@
           "shape": "TimedMetadataInsertion",
           "locationName": "timedMetadataInsertion"
         }
-      },
-      "required": [
-        "OutputGroups"
-      ]
+      }
     },
     "LanguageCode": {
       "type": "string",
@@ -5517,10 +5404,7 @@
           "shape": "SpekeKeyProvider",
           "locationName": "spekeKeyProvider"
         }
-      },
-      "required": [
-        "SpekeKeyProvider"
-      ]
+      }
     },
     "MsSmoothGroupSettings": {
       "type": "structure",
@@ -5545,10 +5429,7 @@
           "shape": "MsSmoothManifestEncoding",
           "locationName": "manifestEncoding"
         }
-      },
-      "required": [
-        "FragmentLength"
-      ]
+      }
     },
     "MsSmoothManifestEncoding": {
       "type": "string",
@@ -5585,10 +5466,7 @@
           "shape": "NoiseReducerSpatialFilterSettings",
           "locationName": "spatialFilterSettings"
         }
-      },
-      "required": [
-        "Filter"
-      ]
+      }
     },
     "NoiseReducerFilter": {
       "type": "string",
@@ -5692,10 +5570,7 @@
           "shape": "__listOf__integerMinNegative60Max6",
           "locationName": "inputChannels"
         }
-      },
-      "required": [
-        "InputChannels"
-      ]
+      }
     },
     "OutputDetail": {
       "type": "structure",
@@ -5729,11 +5604,7 @@
           "shape": "__listOfOutput",
           "locationName": "outputs"
         }
-      },
-      "required": [
-        "Outputs",
-        "OutputGroupSettings"
-      ]
+      }
     },
     "OutputGroupDetail": {
       "type": "structure",
@@ -5771,10 +5642,7 @@
           "shape": "OutputGroupType",
           "locationName": "type"
         }
-      },
-      "required": [
-        "Type"
-      ]
+      }
     },
     "OutputGroupType": {
       "type": "string",
@@ -6054,13 +5922,7 @@
           "shape": "__integerMin0Max2147483647",
           "locationName": "y"
         }
-      },
-      "required": [
-        "X",
-        "Y",
-        "Height",
-        "Width"
-      ]
+      }
     },
     "RemixSettings": {
       "type": "structure",
@@ -6077,12 +5939,7 @@
           "shape": "__integerMin1Max8",
           "locationName": "channelsOut"
         }
-      },
-      "required": [
-        "ChannelsOut",
-        "ChannelMapping",
-        "ChannelsIn"
-      ]
+      }
     },
     "ResourceTags": {
       "type": "structure",
@@ -6145,12 +6002,7 @@
           "shape": "__stringPatternHttps",
           "locationName": "url"
         }
-      },
-      "required": [
-        "ResourceId",
-        "SystemIds",
-        "Url"
-      ]
+      }
     },
     "StaticKeyProvider": {
       "type": "structure",
@@ -6171,11 +6023,7 @@
           "shape": "__string",
           "locationName": "url"
         }
-      },
-      "required": [
-        "Url",
-        "StaticKeyValue"
-      ]
+      }
     },
     "TagResourceRequest": {
       "type": "structure",
@@ -6291,10 +6139,7 @@
           "shape": "__listOfId3Insertion",
           "locationName": "id3Insertions"
         }
-      },
-      "required": [
-        "Id3Insertions"
-      ]
+      }
     },
     "Timing": {
       "type": "structure",
@@ -6506,10 +6351,7 @@
           "shape": "ProresSettings",
           "locationName": "proresSettings"
         }
-      },
-      "required": [
-        "Codec"
-      ]
+      }
     },
     "VideoDescription": {
       "type": "structure",
@@ -6574,10 +6416,7 @@
           "shape": "__integerMin32Max4096",
           "locationName": "width"
         }
-      },
-      "required": [
-        "CodecSettings"
-      ]
+      }
     },
     "VideoDetail": {
       "type": "structure",

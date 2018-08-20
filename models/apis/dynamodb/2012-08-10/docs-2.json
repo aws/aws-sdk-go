@@ -274,14 +274,14 @@
     "BackupType": {
       "base": null,
       "refs": {
-        "BackupDetails$BackupType": "<p>BackupType:</p> <ul> <li> <p> <code>USER</code> - On demand backup created by you.</p> </li> <li> <p> <code>SYSTEM</code> - On demand backup automatically created by DynamoDB.</p> </li> </ul>",
-        "BackupSummary$BackupType": "<p>BackupType:</p> <ul> <li> <p> <code>USER</code> - On demand backup created by you.</p> </li> <li> <p> <code>SYSTEM</code> - On demand backup automatically created by DynamoDB.</p> </li> </ul>"
+        "BackupDetails$BackupType": "<p>BackupType:</p> <ul> <li> <p> <code>USER</code> - On-demand backup created by you.</p> </li> <li> <p> <code>SYSTEM</code> - On-demand backup automatically created by DynamoDB.</p> </li> </ul>",
+        "BackupSummary$BackupType": "<p>BackupType:</p> <ul> <li> <p> <code>USER</code> - On-demand backup created by you.</p> </li> <li> <p> <code>SYSTEM</code> - On-demand backup automatically created by DynamoDB.</p> </li> </ul>"
       }
     },
     "BackupTypeFilter": {
       "base": null,
       "refs": {
-        "ListBackupsInput$BackupType": "<p>The backups from the table specified by BackupType are listed.</p> <p>Where BackupType can be:</p> <ul> <li> <p> <code>USER</code> - On demand backup created by you.</p> </li> <li> <p> <code>SYSTEM</code> - On demand backup automatically created by DynamoDB.</p> </li> <li> <p> <code>ALL</code> - All types of on demand backups (USER and SYSTEM).</p> </li> </ul>"
+        "ListBackupsInput$BackupType": "<p>The backups from the table specified by <code>BackupType</code> are listed.</p> <p>Where <code>BackupType</code> can be:</p> <ul> <li> <p> <code>USER</code> - On-demand backup created by you.</p> </li> <li> <p> <code>SYSTEM</code> - On-demand backup automatically created by DynamoDB.</p> </li> <li> <p> <code>ALL</code> - All types of on-demand backups (USER and SYSTEM).</p> </li> </ul>"
       }
     },
     "BackupsInputLimit": {
@@ -453,7 +453,7 @@
     "ContinuousBackupsStatus": {
       "base": null,
       "refs": {
-        "ContinuousBackupsDescription$ContinuousBackupsStatus": "<p> <code>ContinuousBackupsStatus</code> can be one of the following states : ENABLED, DISABLED</p>"
+        "ContinuousBackupsDescription$ContinuousBackupsStatus": "<p> <code>ContinuousBackupsStatus</code> can be one of the following states: ENABLED, DISABLED</p>"
       }
     },
     "ContinuousBackupsUnavailableException": {
@@ -506,8 +506,8 @@
     "Date": {
       "base": null,
       "refs": {
-        "BackupDetails$BackupExpiryDateTime": "<p>Time at which the automatic on demand backup created by DynamoDB will expire. This <code>SYSTEM</code> on demand backup expires automatically 35 days after its creation.</p>",
-        "BackupSummary$BackupExpiryDateTime": "<p>Time at which the automatic on demand backup created by DynamoDB will expire. This <code>SYSTEM</code> on demand backup expires automatically 35 days after its creation.</p>",
+        "BackupDetails$BackupExpiryDateTime": "<p>Time at which the automatic on-demand backup created by DynamoDB will expire. This <code>SYSTEM</code> on-demand backup expires automatically 35 days after its creation.</p>",
+        "BackupSummary$BackupExpiryDateTime": "<p>Time at which the automatic on-demand backup created by DynamoDB will expire. This <code>SYSTEM</code> on-demand backup expires automatically 35 days after its creation.</p>",
         "GlobalTableDescription$CreationDateTime": "<p>The creation time of the global table.</p>",
         "PointInTimeRecoveryDescription$EarliestRestorableDateTime": "<p>Specifies the earliest point in time you can restore your table to. It You can restore your table to any point in time during the last 35 days. </p>",
         "PointInTimeRecoveryDescription$LatestRestorableDateTime": "<p> <code>LatestRestorableDateTime</code> is typically 5 minutes before the current time. </p>",
@@ -957,6 +957,12 @@
       "base": null,
       "refs": {
         "SSEDescription$KMSMasterKeyArn": "<p>The KMS master key ARN used for the KMS encryption.</p>"
+      }
+    },
+    "KMSMasterKeyId": {
+      "base": null,
+      "refs": {
+        "SSESpecification$KMSMasterKeyId": "<p>The KMS Master Key (CMK) which should be used for the KMS encryption. To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name, or alias ARN. Note that you should only provide this parameter if the key is different from the default DynamoDB KMS Master Key alias/aws/dynamodb.</p>"
       }
     },
     "Key": {
@@ -1531,19 +1537,21 @@
     "SSESpecification": {
       "base": "<p>Represents the settings used to enable server-side encryption.</p>",
       "refs": {
-        "CreateTableInput$SSESpecification": "<p>Represents the settings used to enable server-side encryption.</p>"
+        "CreateTableInput$SSESpecification": "<p>Represents the settings used to enable server-side encryption.</p>",
+        "UpdateTableInput$SSESpecification": "<p>The new server-side encryption settings for the specified table.</p>"
       }
     },
     "SSEStatus": {
       "base": null,
       "refs": {
-        "SSEDescription$Status": "<p>The current state of server-side encryption:</p> <ul> <li> <p> <code>ENABLING</code> - Server-side encryption is being enabled.</p> </li> <li> <p> <code>ENABLED</code> - Server-side encryption is enabled.</p> </li> <li> <p> <code>DISABLING</code> - Server-side encryption is being disabled.</p> </li> <li> <p> <code>DISABLED</code> - Server-side encryption is disabled.</p> </li> </ul>"
+        "SSEDescription$Status": "<p>The current state of server-side encryption:</p> <ul> <li> <p> <code>ENABLING</code> - Server-side encryption is being enabled.</p> </li> <li> <p> <code>ENABLED</code> - Server-side encryption is enabled.</p> </li> <li> <p> <code>DISABLING</code> - Server-side encryption is being disabled.</p> </li> <li> <p> <code>DISABLED</code> - Server-side encryption is disabled.</p> </li> <li> <p> <code>UPDATING</code> - Server-side encryption is being updated.</p> </li> </ul>"
       }
     },
     "SSEType": {
       "base": null,
       "refs": {
-        "SSEDescription$SSEType": "<p>Server-side encryption type:</p> <ul> <li> <p> <code>AES256</code> - Server-side encryption which uses the AES256 algorithm.</p> </li> <li> <p> <code>KMS</code> - Server-side encryption which uses AWS Key Management Service.</p> </li> </ul>"
+        "SSEDescription$SSEType": "<p>Server-side encryption type:</p> <ul> <li> <p> <code>AES256</code> - Server-side encryption which uses the AES256 algorithm.</p> </li> <li> <p> <code>KMS</code> - Server-side encryption which uses AWS Key Management Service.</p> </li> </ul>",
+        "SSESpecification$SSEType": "<p>Server-side encryption type:</p> <ul> <li> <p> <code>AES256</code> - Server-side encryption which uses the AES256 algorithm.</p> </li> <li> <p> <code>KMS</code> - Server-side encryption which uses AWS Key Management Service. (default)</p> </li> </ul>"
       }
     },
     "ScalarAttributeType": {
@@ -1716,7 +1724,7 @@
         "GlobalTable$GlobalTableName": "<p>The global table name.</p>",
         "GlobalTableDescription$GlobalTableName": "<p>The global table name.</p>",
         "ItemCollectionMetricsPerTable$key": null,
-        "ListBackupsInput$TableName": "<p>The backups from the table specified by TableName are listed. </p>",
+        "ListBackupsInput$TableName": "<p>The backups from the table specified by <code>TableName</code> are listed. </p>",
         "ListGlobalTablesInput$ExclusiveStartGlobalTableName": "<p>The first global table name that this operation will evaluate.</p>",
         "ListGlobalTablesOutput$LastEvaluatedGlobalTableName": "<p>Last evaluated global table name.</p>",
         "ListTablesInput$ExclusiveStartTableName": "<p>The first table name that this operation will evaluate. Use the value that was returned for <code>LastEvaluatedTableName</code> in a previous operation, so that you can obtain the next page of results.</p>",

@@ -1,3 +1,12 @@
+Release v1.15.16 (2018-08-20)
+===
+
+### Service Client Updates
+* `service/dynamodb`: Updates service API and documentation
+  * Added SSESpecification block to update-table command which allows users to modify table Server-Side Encryption. Added two new fields (SSEType and KMSMasterKeyId) to SSESpecification block used by create-table and update-table commands. Added new SSEDescription Status value UPDATING.
+* `service/mediaconvert`: Updates service API
+  * This release fixes backward-incompatible changes from a previous release. That previous release changed non-required job settings to required, which prevented jobs and job templates from merging correctly. The current change removes validation of required settings from the SDK and instead centralizes the validation in the service API. For information on required settings, see the Resources chapter of the AWS Elemental MediaConvert API Reference https://docs.aws.amazon.com/mediaconvert/latest/apireference/resources.html
+
 Release v1.15.15 (2018-08-17)
 ===
 
