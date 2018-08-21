@@ -1,3 +1,15 @@
+Release v1.15.17 (2018-08-21)
+===
+
+### Service Client Updates
+* `service/dlm`: Updates service documentation
+* `service/ec2`: Updates service API
+  * Added support for T3 Instance type in EC2. To learn more about T3 instances, please see https://aws.amazon.com/ec2/instance-types/t3/
+* `service/elasticbeanstalk`: Updates service API, documentation, and examples
+  * Elastic Beanstalk adds the "Privileged" field to the "CPUUtilization" type, to support enhanced health reporting in Windows environments.
+* `service/rds`: Updates service paginators
+  * Adds a paginator for the DescribeDBClusters operation.
+
 Release v1.15.16 (2018-08-20)
 ===
 
