@@ -4752,6 +4752,9 @@ const (
 	// JobStateInTransitToAws is a JobState enum value
 	JobStateInTransitToAws = "InTransitToAWS"
 
+	// JobStateWithAwssortingFacility is a JobState enum value
+	JobStateWithAwssortingFacility = "WithAWSSortingFacility"
+
 	// JobStateWithAws is a JobState enum value
 	JobStateWithAws = "WithAWS"
 
