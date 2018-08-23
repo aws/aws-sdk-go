@@ -339,7 +339,8 @@
         "AttributePayload$attributes": "<p>A JSON string containing up to three key-value pair in JSON format. For example:</p> <p> <code>{\\\"attributes\\\":{\\\"string1\\\":\\\"string2\\\"}}</code> </p>",
         "DescribeThingResponse$attributes": "<p>The thing attributes.</p>",
         "ThingAttribute$attributes": "<p>A list of thing attributes which are name-value pairs.</p>",
-        "ThingDocument$attributes": "<p>The attributes.</p>"
+        "ThingDocument$attributes": "<p>The attributes.</p>",
+        "ThingGroupDocument$attributes": "<p>The thing group attributes.</p>"
       }
     },
     "AttributesMap": {
@@ -1787,7 +1788,7 @@
     "EndpointType": {
       "base": null,
       "refs": {
-        "DescribeEndpointRequest$endpointType": "<p>The endpoint type.</p>"
+        "DescribeEndpointRequest$endpointType": "<p>The endpoint type (such as <code>iot:Data</code>, <code>iot:CredentialProvider</code> and <code>iot:Jobs</code>). </p>"
       }
     },
     "ErrorCode": {
@@ -4325,7 +4326,20 @@
     "ThingGroupDescription": {
       "base": null,
       "refs": {
+        "ThingGroupDocument$thingGroupDescription": "<p>The thing group description.</p>",
         "ThingGroupProperties$thingGroupDescription": "<p>The thing group description.</p>"
+      }
+    },
+    "ThingGroupDocument": {
+      "base": "<p>The thing group search index document.</p>",
+      "refs": {
+        "ThingGroupDocumentList$member": null
+      }
+    },
+    "ThingGroupDocumentList": {
+      "base": null,
+      "refs": {
+        "SearchIndexResponse$thingGroups": "<p>The thing groups that match the search query.</p>"
       }
     },
     "ThingGroupId": {
@@ -4334,7 +4348,21 @@
         "CreateThingGroupResponse$thingGroupId": "<p>The thing group ID.</p>",
         "DescribeThingGroupResponse$thingGroupId": "<p>The thing group ID.</p>",
         "JobSummary$thingGroupId": "<p>The ID of the thing group.</p>",
-        "ListJobsRequest$thingGroupId": "<p>A filter that limits the returned jobs to those for the specified group.</p>"
+        "ListJobsRequest$thingGroupId": "<p>A filter that limits the returned jobs to those for the specified group.</p>",
+        "ThingGroupDocument$thingGroupId": "<p>The thing group ID.</p>"
+      }
+    },
+    "ThingGroupIndexingConfiguration": {
+      "base": "<p>Thing group indexing configuration.</p>",
+      "refs": {
+        "GetIndexingConfigurationResponse$thingGroupIndexingConfiguration": "<p>The index configuration.</p>",
+        "UpdateIndexingConfigurationRequest$thingGroupIndexingConfiguration": "<p>Thing group indexing configuration.</p>"
+      }
+    },
+    "ThingGroupIndexingMode": {
+      "base": null,
+      "refs": {
+        "ThingGroupIndexingConfiguration$thingGroupIndexingMode": "<p>Thing group indexing mode.</p>"
       }
     },
     "ThingGroupList": {
@@ -4366,6 +4394,7 @@
         "ListThingGroupsRequest$namePrefixFilter": "<p>A filter that limits the results to those with the specified name prefix.</p>",
         "ListThingsInThingGroupRequest$thingGroupName": "<p>The thing group name.</p>",
         "RemoveThingFromThingGroupRequest$thingGroupName": "<p>The group name.</p>",
+        "ThingGroupDocument$thingGroupName": "<p>The thing group name.</p>",
         "ThingGroupList$member": null,
         "ThingGroupMetadata$parentGroupName": "<p>The parent thing group name.</p>",
         "ThingGroupNameList$member": null,
@@ -4383,7 +4412,8 @@
     "ThingGroupNameList": {
       "base": null,
       "refs": {
-        "ThingDocument$thingGroupNames": "<p>Thing group names.</p>"
+        "ThingDocument$thingGroupNames": "<p>Thing group names.</p>",
+        "ThingGroupDocument$parentGroupNames": "<p>Parent group names.</p>"
       }
     },
     "ThingGroupProperties": {

@@ -4696,7 +4696,8 @@
     "GetIndexingConfigurationResponse":{
       "type":"structure",
       "members":{
-        "thingIndexingConfiguration":{"shape":"ThingIndexingConfiguration"}
+        "thingIndexingConfiguration":{"shape":"ThingIndexingConfiguration"},
+        "thingGroupIndexingConfiguration":{"shape":"ThingGroupIndexingConfiguration"}
       }
     },
     "GetJobDocumentRequest":{
@@ -6591,7 +6592,6 @@
     },
     "QueryString":{
       "type":"string",
-      "max":1000,
       "min":1
     },
     "QueryVersion":{"type":"string"},
@@ -6978,7 +6978,8 @@
       "type":"structure",
       "members":{
         "nextToken":{"shape":"NextToken"},
-        "things":{"shape":"ThingDocumentList"}
+        "things":{"shape":"ThingDocumentList"},
+        "thingGroups":{"shape":"ThingGroupDocumentList"}
       }
     },
     "SearchableAttributes":{
@@ -7419,11 +7420,39 @@
       "max":2028,
       "pattern":"[\\p{Graph}\\x20]*"
     },
+    "ThingGroupDocument":{
+      "type":"structure",
+      "members":{
+        "thingGroupName":{"shape":"ThingGroupName"},
+        "thingGroupId":{"shape":"ThingGroupId"},
+        "thingGroupDescription":{"shape":"ThingGroupDescription"},
+        "attributes":{"shape":"Attributes"},
+        "parentGroupNames":{"shape":"ThingGroupNameList"}
+      }
+    },
+    "ThingGroupDocumentList":{
+      "type":"list",
+      "member":{"shape":"ThingGroupDocument"}
+    },
     "ThingGroupId":{
       "type":"string",
       "max":128,
       "min":1,
       "pattern":"[a-zA-Z0-9\\-]+"
+    },
+    "ThingGroupIndexingConfiguration":{
+      "type":"structure",
+      "required":["thingGroupIndexingMode"],
+      "members":{
+        "thingGroupIndexingMode":{"shape":"ThingGroupIndexingMode"}
+      }
+    },
+    "ThingGroupIndexingMode":{
+      "type":"string",
+      "enum":[
+        "OFF",
+        "ON"
+      ]
     },
     "ThingGroupList":{
       "type":"list",
@@ -7461,6 +7490,7 @@
     "ThingId":{"type":"string"},
     "ThingIndexingConfiguration":{
       "type":"structure",
+      "required":["thingIndexingMode"],
       "members":{
         "thingIndexingMode":{"shape":"ThingIndexingMode"}
       }
@@ -7752,7 +7782,8 @@
     "UpdateIndexingConfigurationRequest":{
       "type":"structure",
       "members":{
-        "thingIndexingConfiguration":{"shape":"ThingIndexingConfiguration"}
+        "thingIndexingConfiguration":{"shape":"ThingIndexingConfiguration"},
+        "thingGroupIndexingConfiguration":{"shape":"ThingGroupIndexingConfiguration"}
       }
     },
     "UpdateIndexingConfigurationResponse":{

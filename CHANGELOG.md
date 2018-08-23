@@ -1,3 +1,16 @@
+Release v1.15.19 (2018-08-23)
+===
+
+### Service Client Updates
+* `service/iot`: Updates service API and documentation
+  * This release adds support for IoT Thing Group Indexing and Searching functionality.
+* `service/iotanalytics`: Updates service API and documentation
+* `service/lex-models`: Updates service API
+* `service/medialive`: Updates service API, documentation, and paginators
+  * Adds two APIs for working with Channel Schedules: BatchUpdateSchedule and DescribeSchedule. These APIs allow scheduling actions for SCTE-35 message insertion and for static image overlays.
+* `service/rekognition`: Updates service API, documentation, and examples
+  * This release introduces a new API called DescribeCollection to Amazon Rekognition.  You can use DescribeCollection to get information about an existing face collection. Given the ID for a face collection, DescribeCollection returns the following information: the number of faces indexed into the collection, the version of the face detection model used by the collection, the Amazon Resource Name (ARN) of the collection and the creation date/time of the collection.
+
 Release v1.15.18 (2018-08-22)
 ===
 
