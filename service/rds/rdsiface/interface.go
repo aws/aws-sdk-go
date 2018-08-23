@@ -220,6 +220,9 @@ type RDSAPI interface {
 	DescribeDBClustersWithContext(aws.Context, *rds.DescribeDBClustersInput, ...request.Option) (*rds.DescribeDBClustersOutput, error)
 	DescribeDBClustersRequest(*rds.DescribeDBClustersInput) (*request.Request, *rds.DescribeDBClustersOutput)
 
+	DescribeDBClustersPages(*rds.DescribeDBClustersInput, func(*rds.DescribeDBClustersOutput, bool) bool) error
+	DescribeDBClustersPagesWithContext(aws.Context, *rds.DescribeDBClustersInput, func(*rds.DescribeDBClustersOutput, bool) bool, ...request.Option) error
+
 	DescribeDBEngineVersions(*rds.DescribeDBEngineVersionsInput) (*rds.DescribeDBEngineVersionsOutput, error)
 	DescribeDBEngineVersionsWithContext(aws.Context, *rds.DescribeDBEngineVersionsInput, ...request.Option) (*rds.DescribeDBEngineVersionsOutput, error)
 	DescribeDBEngineVersionsRequest(*rds.DescribeDBEngineVersionsInput) (*request.Request, *rds.DescribeDBEngineVersionsOutput)

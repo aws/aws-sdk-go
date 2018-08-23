@@ -1111,6 +1111,7 @@
         "Disabled"
       ]
     },
+    "DisassociateNotebookInstanceLifecycleConfig":{"type":"boolean"},
     "EndpointArn":{
       "type":"string",
       "max":2048,
@@ -2590,7 +2591,9 @@
       "members":{
         "NotebookInstanceName":{"shape":"NotebookInstanceName"},
         "InstanceType":{"shape":"InstanceType"},
-        "RoleArn":{"shape":"RoleArn"}
+        "RoleArn":{"shape":"RoleArn"},
+        "LifecycleConfigName":{"shape":"NotebookInstanceLifecycleConfigName"},
+        "DisassociateLifecycleConfig":{"shape":"DisassociateNotebookInstanceLifecycleConfig"}
       }
     },
     "UpdateNotebookInstanceLifecycleConfigInput":{

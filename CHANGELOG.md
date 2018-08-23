@@ -1,3 +1,57 @@
+Release v1.15.18 (2018-08-22)
+===
+
+### Service Client Updates
+* `service/snowball`: Updates service API
+  * Snowball job states allow customers to track the status of the Snowball job. We are launching a new Snowball job state "WithSortingFacility"!  When customer returns the Snowball to AWS, the device first goes to a sorting facility before it reaches an AWS data center.  Many customers have requested us to add a new state to reflect the presence of the device at the sorting facility for better tracking. Today when a customer returns  the Snowball, the state first changes from "InTransitToAWS" to "WithAWS". With the addition of new state, the device will move from "InTransitToAWS" to "WithAWSSortingFacility", and then to "WithAWS".  There are no other changes to the API at this time besides adding this new state.
+
+Release v1.15.17 (2018-08-21)
+===
+
+### Service Client Updates
+* `service/dlm`: Updates service documentation
+* `service/ec2`: Updates service API
+  * Added support for T3 Instance type in EC2. To learn more about T3 instances, please see https://aws.amazon.com/ec2/instance-types/t3/
+* `service/elasticbeanstalk`: Updates service API, documentation, and examples
+  * Elastic Beanstalk adds the "Privileged" field to the "CPUUtilization" type, to support enhanced health reporting in Windows environments.
+* `service/rds`: Updates service paginators
+  * Adds a paginator for the DescribeDBClusters operation.
+
+Release v1.15.16 (2018-08-20)
+===
+
+### Service Client Updates
+* `service/dynamodb`: Updates service API and documentation
+  * Added SSESpecification block to update-table command which allows users to modify table Server-Side Encryption. Added two new fields (SSEType and KMSMasterKeyId) to SSESpecification block used by create-table and update-table commands. Added new SSEDescription Status value UPDATING.
+* `service/mediaconvert`: Updates service API
+  * This release fixes backward-incompatible changes from a previous release. That previous release changed non-required job settings to required, which prevented jobs and job templates from merging correctly. The current change removes validation of required settings from the SDK and instead centralizes the validation in the service API. For information on required settings, see the Resources chapter of the AWS Elemental MediaConvert API Reference https://docs.aws.amazon.com/mediaconvert/latest/apireference/resources.html
+
+Release v1.15.15 (2018-08-17)
+===
+
+### Service Client Updates
+* `service/dax`: Updates service API
+  * DAX CreateClusterRequest is updated to include IamRoleArn as a required request parameter.
+* `service/sagemaker`: Updates service API and documentation
+  * Added an optional boolean parameter, 'DisassociateLifecycleConfig', to the UpdateNotebookInstance operation. When set to true, the lifecycle configuration associated with the notebook instance will be removed, allowing a new one to be set via a new 'LifecycleConfigName' parameter.
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for Secrets Manager
+
+Release v1.15.14 (2018-08-16)
+===
+
+### Service Client Updates
+* `service/discovery`: Updates service API, documentation, and paginators
+  * The Application Discovery Service's Continuous Export APIs allow you to analyze your on-premises server inventory data, including system performance and network dependencies, in Amazon Athena.
+* `service/ec2`: Updates service API
+  * The 'Attribute' parameter DescribeVolumeAttribute request has been marked as required - the API has always required this parameter, but up until now this wasn't reflected appropriately in the SDK.
+* `service/mediaconvert`: Updates service API and documentation
+  * Added WriteSegmentTimelineInRepresentation option for Dash Outputs
+* `service/redshift`: Updates service API and documentation
+  * You can now resize your Amazon Redshift cluster quickly. With the new ResizeCluster action, your cluster is available for read and write operations within minutes
+* `service/ssm`: Updates service API and documentation
+  * AWS Systems Manager Inventory now supports groups to quickly see a count of which managed instances are and arent configured to collect one or more Inventory types
+
 Release v1.15.13 (2018-08-15)
 ===
 

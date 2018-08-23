@@ -1076,6 +1076,29 @@
         {"shape":"ClusterParameterGroupNotFoundFault"}
       ]
     },
+    "ResizeCluster":{
+      "name":"ResizeCluster",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ResizeClusterMessage"},
+      "output":{
+        "shape":"ResizeClusterResult",
+        "resultWrapper":"ResizeClusterResult"
+      },
+      "errors":[
+        {"shape":"InvalidClusterStateFault"},
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"NumberOfNodesQuotaExceededFault"},
+        {"shape":"NumberOfNodesPerClusterLimitExceededFault"},
+        {"shape":"InsufficientClusterCapacityFault"},
+        {"shape":"UnsupportedOptionFault"},
+        {"shape":"UnsupportedOperationFault"},
+        {"shape":"UnauthorizedOperation"},
+        {"shape":"LimitExceededFault"}
+      ]
+    },
     "RestoreFromClusterSnapshot":{
       "name":"RestoreFromClusterSnapshot",
       "http":{
@@ -1360,7 +1383,8 @@
         "EnhancedVpcRouting":{"shape":"Boolean"},
         "IamRoles":{"shape":"ClusterIamRoleList"},
         "PendingActions":{"shape":"PendingActionsList"},
-        "MaintenanceTrackName":{"shape":"String"}
+        "MaintenanceTrackName":{"shape":"String"},
+        "ElasticResizeNumberOfNodeOptions":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -3462,6 +3486,26 @@
         "Parameters":{"shape":"ParametersList"}
       }
     },
+    "ResizeClusterMessage":{
+      "type":"structure",
+      "required":[
+        "ClusterIdentifier",
+        "NumberOfNodes"
+      ],
+      "members":{
+        "ClusterIdentifier":{"shape":"String"},
+        "ClusterType":{"shape":"String"},
+        "NodeType":{"shape":"String"},
+        "NumberOfNodes":{"shape":"Integer"},
+        "Classic":{"shape":"BooleanOptional"}
+      }
+    },
+    "ResizeClusterResult":{
+      "type":"structure",
+      "members":{
+        "Cluster":{"shape":"Cluster"}
+      }
+    },
     "ResizeNotFoundFault":{
       "type":"structure",
       "members":{
@@ -3487,7 +3531,9 @@
         "TotalResizeDataInMegaBytes":{"shape":"LongOptional"},
         "ProgressInMegaBytes":{"shape":"LongOptional"},
         "ElapsedTimeInSeconds":{"shape":"LongOptional"},
-        "EstimatedTimeToCompletionInSeconds":{"shape":"LongOptional"}
+        "EstimatedTimeToCompletionInSeconds":{"shape":"LongOptional"},
+        "ResizeType":{"shape":"String"},
+        "Message":{"shape":"String"}
       }
     },
     "ResourceNotFoundFault":{

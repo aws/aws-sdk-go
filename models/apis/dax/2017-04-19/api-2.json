@@ -427,7 +427,8 @@
       "required":[
         "ClusterName",
         "NodeType",
-        "ReplicationFactor"
+        "ReplicationFactor",
+        "IamRoleArn"
       ],
       "members":{
         "ClusterName":{"shape":"String"},

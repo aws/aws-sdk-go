@@ -1385,6 +1385,7 @@
       "member":{"shape":"AttributeMap"}
     },
     "KMSMasterKeyArn":{"type":"string"},
+    "KMSMasterKeyId":{"type":"string"},
     "Key":{
       "type":"map",
       "key":{"shape":"AttributeName"},
@@ -1965,9 +1966,10 @@
     "SSEEnabled":{"type":"boolean"},
     "SSESpecification":{
       "type":"structure",
-      "required":["Enabled"],
       "members":{
-        "Enabled":{"shape":"SSEEnabled"}
+        "Enabled":{"shape":"SSEEnabled"},
+        "SSEType":{"shape":"SSEType"},
+        "KMSMasterKeyId":{"shape":"KMSMasterKeyId"}
       }
     },
     "SSEStatus":{
@@ -1976,7 +1978,8 @@
         "ENABLING",
         "ENABLED",
         "DISABLING",
-        "DISABLED"
+        "DISABLED",
+        "UPDATING"
       ]
     },
     "SSEType":{
@@ -2363,7 +2366,8 @@
         "TableName":{"shape":"TableName"},
         "ProvisionedThroughput":{"shape":"ProvisionedThroughput"},
         "GlobalSecondaryIndexUpdates":{"shape":"GlobalSecondaryIndexUpdateList"},
-        "StreamSpecification":{"shape":"StreamSpecification"}
+        "StreamSpecification":{"shape":"StreamSpecification"},
+        "SSESpecification":{"shape":"SSESpecification"}
       }
     },
     "UpdateTableOutput":{
