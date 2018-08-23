@@ -2,6 +2,7 @@
   "version": "2.0",
   "service": "API for AWS Elemental MediaLive",
   "operations": {
+    "BatchUpdateSchedule": "Update a channel schedule",
     "CreateChannel": "Creates a new channel",
     "CreateInput": "Create an input",
     "CreateInputSecurityGroup": "Creates a Input Security Group",
@@ -14,6 +15,7 @@
     "DescribeInputSecurityGroup": "Produces a summary of an Input Security Group",
     "DescribeOffering": "Get details for an offering.",
     "DescribeReservation": "Get details for a reservation.",
+    "DescribeSchedule": "Get a channel schedule",
     "ListChannels": "Produces list of channels that have been created",
     "ListInputSecurityGroups": "Produces a list of Input Security Groups for an account",
     "ListInputs": "Produces list of inputs that have been created",
@@ -285,6 +287,40 @@
     },
     "BadRequestException": {
       "base": null,
+      "refs": {
+      }
+    },
+    "BatchScheduleActionCreateRequest": {
+      "base": "A list of schedule actions to create.",
+      "refs": {
+        "BatchUpdateScheduleRequest$Creates": "Schedule actions to create in the schedule."
+      }
+    },
+    "BatchScheduleActionCreateResult": {
+      "base": "Returned list of created schedule actions.",
+      "refs": {
+        "BatchUpdateScheduleResult$Creates": "Schedule actions created in the schedule."
+      }
+    },
+    "BatchScheduleActionDeleteRequest": {
+      "base": "A list of schedule actions to delete.",
+      "refs": {
+        "BatchUpdateScheduleRequest$Deletes": "Schedule actions to delete from the schedule."
+      }
+    },
+    "BatchScheduleActionDeleteResult": {
+      "base": "Returned list of deleted schedule actions.",
+      "refs": {
+        "BatchUpdateScheduleResult$Deletes": "Schedule actions deleted from the schedule."
+      }
+    },
+    "BatchUpdateScheduleRequest": {
+      "base": "A schedule update, including actions to insert, and action names to delete.",
+      "refs": {
+      }
+    },
+    "BatchUpdateScheduleResult": {
+      "base": "Results of a batch schedule update.",
       "refs": {
       }
     },
@@ -660,6 +696,12 @@
       "base": null,
       "refs": {
         "H264Settings$FixedAfd": "Four bit AFD value to write on all frames of video in the output stream. Only valid when afdSignaling is set to 'Fixed'."
+      }
+    },
+    "FixedModeScheduleActionStartSettings": {
+      "base": "Fixed mode schedule action start settings",
+      "refs": {
+        "ScheduleActionStartSettings$FixedModeScheduleActionStartSettings": "Fixed timestamp action start. Conforms to ISO-8601."
       }
     },
     "ForbiddenException": {
@@ -1050,6 +1092,7 @@
         "BurnInDestinationSettings$Font": "External font file used for caption burn-in. File extension must be 'ttf' or 'tte'.  Although the user can select output fonts for many different types of input captions,  embedded, STL and teletext sources use a strict grid system. Using external fonts with these caption sources could cause unexpected display of proportional fonts.  All burn-in and DVB-Sub font settings must match.",
         "DvbSubDestinationSettings$Font": "External font file used for caption burn-in. File extension must be 'ttf' or 'tte'.  Although the user can select output fonts for many different types of input captions, embedded, STL and teletext sources use a strict grid system. Using external fonts with these caption sources could cause unexpected display of proportional fonts.  All burn-in and DVB-Sub font settings must match.",
         "InputLossBehavior$InputLossImageSlate": "When input loss image type is \"slate\" these fields specify the parameters for accessing the slate.",
+        "StaticImageActivateScheduleActionSettings$Image": "The image to overlay on the video.  Must be a 32 bit BMP, PNG, or TGA file.  Must not be larger than the input video.",
         "StaticKeySettings$KeyProviderServer": "The URL of the license server used for protecting content."
       }
     },
@@ -1608,6 +1651,29 @@
         "OutputSettings$RtmpOutputSettings": null
       }
     },
+    "ScheduleAction": {
+      "base": "A single schedule action.",
+      "refs": {
+        "__listOfScheduleAction$member": null
+      }
+    },
+    "ScheduleActionSettings": {
+      "base": "Settings for a single schedule action.",
+      "refs": {
+        "ScheduleAction$ScheduleActionSettings": "Settings for this schedule action."
+      }
+    },
+    "ScheduleActionStartSettings": {
+      "base": "When the schedule action starts.",
+      "refs": {
+        "ScheduleAction$ScheduleActionStartSettings": "When the action takes effect."
+      }
+    },
+    "ScheduleDescribeResultModel": {
+      "base": "A complete schedule description.",
+      "refs": {
+      }
+    },
     "Scte20Convert608To708": {
       "base": null,
       "refs": {
@@ -1650,6 +1716,60 @@
         "Scte35TimeSignalApos$WebDeliveryAllowedFlag": "When set to ignore, Segment Descriptors with webDeliveryAllowedFlag set to 0 will no longer trigger blackouts or Ad Avail slates"
       }
     },
+    "Scte35ArchiveAllowedFlag": {
+      "base": "SCTE-35 segmentation_descriptor archive_allowed_flag.",
+      "refs": {
+        "Scte35DeliveryRestrictions$ArchiveAllowedFlag": "SCTE-35 segmentation_descriptor archive_allowed_flag."
+      }
+    },
+    "Scte35DeliveryRestrictions": {
+      "base": "SCTE-35 Delivery Restrictions.",
+      "refs": {
+        "Scte35SegmentationDescriptor$DeliveryRestrictions": "SCTE-35 delivery restrictions."
+      }
+    },
+    "Scte35Descriptor": {
+      "base": "SCTE-35 Descriptor.",
+      "refs": {
+        "__listOfScte35Descriptor$member": null
+      }
+    },
+    "Scte35DescriptorSettings": {
+      "base": "SCTE-35 Descriptor settings.",
+      "refs": {
+        "Scte35Descriptor$Scte35DescriptorSettings": "SCTE-35 Descriptor Settings."
+      }
+    },
+    "Scte35DeviceRestrictions": {
+      "base": "SCTE-35 Device Restrictions.",
+      "refs": {
+        "Scte35DeliveryRestrictions$DeviceRestrictions": "SCTE-35 segmentation_descriptor web_delivery_allowed_flag."
+      }
+    },
+    "Scte35NoRegionalBlackoutFlag": {
+      "base": "SCTE-35 segmentation_descriptor no_regional_blackout_flag.",
+      "refs": {
+        "Scte35DeliveryRestrictions$NoRegionalBlackoutFlag": "SCTE-35 segmentation_descriptor no_regional_blackout_flag."
+      }
+    },
+    "Scte35ReturnToNetworkScheduleActionSettings": {
+      "base": "SCTE-35 Return to Network Settings.",
+      "refs": {
+        "ScheduleActionSettings$Scte35ReturnToNetworkSettings": "SCTE-35 Return to Network Settings"
+      }
+    },
+    "Scte35SegmentationCancelIndicator": {
+      "base": "SCTE-35 segmentation_descriptor segmentation_event_cancel_indicator.",
+      "refs": {
+        "Scte35SegmentationDescriptor$SegmentationCancelIndicator": "SCTE-35 segmentation_descriptor segmentation_event_cancel_indicator."
+      }
+    },
+    "Scte35SegmentationDescriptor": {
+      "base": "SCTE-35 Segmentation Descriptor.",
+      "refs": {
+        "Scte35DescriptorSettings$SegmentationDescriptorScte35DescriptorSettings": "SCTE-35 Segmentation Descriptor."
+      }
+    },
     "Scte35SpliceInsert": {
       "base": null,
       "refs": {
@@ -1662,6 +1782,12 @@
         "Scte35SpliceInsert$NoRegionalBlackoutFlag": "When set to ignore, Segment Descriptors with noRegionalBlackoutFlag set to 0 will no longer trigger blackouts or Ad Avail slates"
       }
     },
+    "Scte35SpliceInsertScheduleActionSettings": {
+      "base": "SCTE-35 Splice Insert Settings.",
+      "refs": {
+        "ScheduleActionSettings$Scte35SpliceInsertSettings": "SCTE-35 Splice Insert Settings"
+      }
+    },
     "Scte35SpliceInsertWebDeliveryAllowedBehavior": {
       "base": null,
       "refs": {
@@ -1672,6 +1798,18 @@
       "base": null,
       "refs": {
         "AvailSettings$Scte35TimeSignalApos": null
+      }
+    },
+    "Scte35TimeSignalScheduleActionSettings": {
+      "base": "SCTE-35 Time Signal Settings.",
+      "refs": {
+        "ScheduleActionSettings$Scte35TimeSignalSettings": "SCTE-35 Time Signal Settings"
+      }
+    },
+    "Scte35WebDeliveryAllowedFlag": {
+      "base": "SCTE-35 segmentation_descriptor web_delivery_allowed_flag.",
+      "refs": {
+        "Scte35DeliveryRestrictions$WebDeliveryAllowedFlag": "SCTE-35 segmentation_descriptor web_delivery_allowed_flag."
       }
     },
     "SmoothGroupAudioOnlyTimecodeControl": {
@@ -1732,6 +1870,18 @@
       "base": null,
       "refs": {
         "HlsSettings$StandardHlsSettings": null
+      }
+    },
+    "StaticImageActivateScheduleActionSettings": {
+      "base": "Static image activate.",
+      "refs": {
+        "ScheduleActionSettings$StaticImageActivateSettings": "Static Image Activate"
+      }
+    },
+    "StaticImageDeactivateScheduleActionSettings": {
+      "base": "Static image deactivate.",
+      "refs": {
+        "ScheduleActionSettings$StaticImageDeactivateSettings": "Static Image Deactivate"
       }
     },
     "StaticKeySettings": {
@@ -1998,6 +2148,12 @@
         "MsSmoothGroupSettings$RestartDelay": "Number of seconds before initiating a restart due to output failure, due to exhausting the numRetries on one segment, or exceeding filecacheDuration.",
         "RtmpGroupSettings$RestartDelay": "If a streaming output fails, number of seconds to wait until a restart is initiated. A value of 0 means never restart.",
         "RtmpOutputSettings$NumRetries": "Number of retry attempts.",
+        "StaticImageActivateScheduleActionSettings$Duration": "The duration in milliseconds for the image to remain in the video. If omitted or set to 0, duration is infinite and image will remain until explicitly deactivated.",
+        "StaticImageActivateScheduleActionSettings$FadeIn": "The time in milliseconds for the image to fade in. Defaults to 0.",
+        "StaticImageActivateScheduleActionSettings$FadeOut": "The time in milliseconds for the image to fade out. Defaults to 0.",
+        "StaticImageActivateScheduleActionSettings$ImageX": "Placement of the left edge of the image on the horizontal axis in pixels. 0 is the left edge of the frame. Defaults to 0.",
+        "StaticImageActivateScheduleActionSettings$ImageY": "Placement of the top edge of the image on the vertical axis in pixels.  0 is the top edge of the frame. Defaults to 0.",
+        "StaticImageDeactivateScheduleActionSettings$FadeOut": "The time in milliseconds for the image to fade out. Defaults to 0.",
         "UdpGroupSettings$TimedMetadataId3Period": "Timed Metadata interval in seconds."
       }
     },
@@ -2012,6 +2168,7 @@
       "base": null,
       "refs": {
         "H264Settings$BufFillPct": "Percentage of the buffer that should initially be filled (HRD buffer model).",
+        "StaticImageActivateScheduleActionSettings$Opacity": "Opacity of image where 0 is transparent and 100 is fully opaque. Defaults to 100.",
         "VideoDescription$Sharpness": "Changes the width of the anti-alias filter kernel used for scaling. Only applies if scaling is being performed and antiAlias is set to true. 0 is the softest setting, 100 the sharpest, and 50 recommended for most content."
       }
     },
@@ -2039,6 +2196,12 @@
         "InputLossBehavior$RepeatFrameMsec": "On input loss, the number of milliseconds to repeat the previous picture before substituting black into the output.  A value x, where 0 <= x <= 1,000,000 and a value of 1,000,000 will be interpreted as infinite."
       }
     },
+    "__integerMin0Max1099511627775": {
+      "base": null,
+      "refs": {
+        "Scte35SegmentationDescriptor$SegmentationDuration": "SCTE-35 segmentation_descriptor segmentation_duration specified in 90 KHz clock ticks."
+      }
+    },
     "__integerMin0Max128": {
       "base": null,
       "refs": {
@@ -2063,7 +2226,13 @@
         "BurnInDestinationSettings$ShadowOpacity": "Specifies the opacity of the shadow. 255 is opaque; 0 is transparent. Leaving this parameter out is equivalent to setting it to 0 (transparent).  All burn-in and DVB-Sub font settings must match.",
         "DvbSubDestinationSettings$BackgroundOpacity": "Specifies the opacity of the background rectangle. 255 is opaque; 0 is transparent. Leaving this parameter blank is equivalent to setting it to 0 (transparent).  All burn-in and DVB-Sub font settings must match.",
         "DvbSubDestinationSettings$FontOpacity": "Specifies the opacity of the burned-in captions. 255 is opaque; 0 is transparent.  All burn-in and DVB-Sub font settings must match.",
-        "DvbSubDestinationSettings$ShadowOpacity": "Specifies the opacity of the shadow. 255 is opaque; 0 is transparent. Leaving this parameter blank is equivalent to setting it to 0 (transparent).  All burn-in and DVB-Sub font settings must match."
+        "DvbSubDestinationSettings$ShadowOpacity": "Specifies the opacity of the shadow. 255 is opaque; 0 is transparent. Leaving this parameter blank is equivalent to setting it to 0 (transparent).  All burn-in and DVB-Sub font settings must match.",
+        "Scte35SegmentationDescriptor$SegmentNum": "SCTE-35 segmentation_descriptor segment_num.",
+        "Scte35SegmentationDescriptor$SegmentationTypeId": "SCTE-35 segmentation_descriptor segmentation_type_id.",
+        "Scte35SegmentationDescriptor$SegmentationUpidType": "SCTE-35 segmentation_descriptor segmentation_upid_type.",
+        "Scte35SegmentationDescriptor$SegmentsExpected": "SCTE-35 segmentation_descriptor segments_expected.",
+        "Scte35SegmentationDescriptor$SubSegmentNum": "SCTE-35 segmentation_descriptor sub_segment_num.",
+        "Scte35SegmentationDescriptor$SubSegmentsExpected": "SCTE-35 segmentation_descriptor sub_segments_expected."
       }
     },
     "__integerMin0Max30": {
@@ -2076,6 +2245,14 @@
       "base": null,
       "refs": {
         "HlsGroupSettings$ProgramDateTimePeriod": "Period of insertion of EXT-X-PROGRAM-DATE-TIME entry, in seconds."
+      }
+    },
+    "__integerMin0Max4294967295": {
+      "base": null,
+      "refs": {
+        "Scte35ReturnToNetworkScheduleActionSettings$SpliceEventId": "The splice_event_id for the SCTE-35 splice_insert, as defined in SCTE-35.",
+        "Scte35SegmentationDescriptor$SegmentationEventId": "SCTE-35 segmentation_descriptor segmentation_event_id.",
+        "Scte35SpliceInsertScheduleActionSettings$SpliceEventId": "The splice_event_id for the SCTE-35 splice_insert, as defined in SCTE-35."
       }
     },
     "__integerMin0Max500": {
@@ -2114,7 +2291,9 @@
       "base": null,
       "refs": {
         "AudioChannelMapping$OutputChannel": "The index of the output channel being produced.",
-        "H264Settings$GopNumBFrames": "Number of B-frames between reference frames."
+        "H264Settings$GopNumBFrames": "Number of B-frames between reference frames.",
+        "StaticImageActivateScheduleActionSettings$Layer": "The Z order of the inserted image.  Images with higher layer values will be inserted on top of images with lower layer values. Permitted values are 0-7 inclusive. Defaults to 0.",
+        "StaticImageDeactivateScheduleActionSettings$Layer": "The Z order of the inserted image.  Images with higher layer values will be inserted on top of images with lower layer values. Permitted values are 0-7 inclusive. Defaults to 0."
       }
     },
     "__integerMin0Max8191": {
@@ -2122,6 +2301,12 @@
       "refs": {
         "AudioPidSelection$Pid": "Selects a specific PID from within a source.",
         "VideoSelectorPid$Pid": "Selects a specific PID from within a video source."
+      }
+    },
+    "__integerMin0Max8589934591": {
+      "base": null,
+      "refs": {
+        "Scte35SpliceInsertScheduleActionSettings$Duration": "The duration for the SCTE-35 splice_insert specified in 90KHz clock ticks. When duration is not specified the expectation is that a Scte35ReturnToNetwork action will be scheduled."
       }
     },
     "__integerMin1": {
@@ -2136,7 +2321,9 @@
         "MsSmoothGroupSettings$FragmentLength": "Length of mp4 fragments to generate (in seconds). Fragment length must be compatible with GOP size and framerate.",
         "PurchaseOffering$Count": "Number of resources",
         "RtmpOutputSettings$ConnectionRetryInterval": "Number of seconds to wait before retrying a connection to the Flash Media server if the connection is lost.",
-        "Scte27SourceSettings$Pid": "The pid field is used in conjunction with the caption selector languageCode field as follows:\n  - Specify PID and Language: Extracts captions from that PID; the language is \"informational\".\n  - Specify PID and omit Language: Extracts the specified PID.\n  - Omit PID and specify Language: Extracts the specified language, whichever PID that happens to be.\n  - Omit PID and omit Language: Valid only if source is DVB-Sub that is being passed through; all languages will be passed through."
+        "Scte27SourceSettings$Pid": "The pid field is used in conjunction with the caption selector languageCode field as follows:\n  - Specify PID and Language: Extracts captions from that PID; the language is \"informational\".\n  - Specify PID and omit Language: Extracts the specified PID.\n  - Omit PID and specify Language: Extracts the specified language, whichever PID that happens to be.\n  - Omit PID and omit Language: Valid only if source is DVB-Sub that is being passed through; all languages will be passed through.",
+        "StaticImageActivateScheduleActionSettings$Height": "The height of the image when inserted into the video.  Defaults to the native height of the image.",
+        "StaticImageActivateScheduleActionSettings$Width": "The width of the image when inserted into the video.  Defaults to the native width of the image."
       }
     },
     "__integerMin1000": {
@@ -2425,10 +2612,25 @@
         "ListReservationsResultModel$Reservations": "List of reservations"
       }
     },
+    "__listOfScheduleAction": {
+      "base": null,
+      "refs": {
+        "BatchScheduleActionCreateRequest$ScheduleActions": "A list of schedule actions to create.",
+        "BatchScheduleActionCreateResult$ScheduleActions": "Returned list of created schedule actions.",
+        "BatchScheduleActionDeleteResult$ScheduleActions": "Returned list of deleted schedule actions.",
+        "ScheduleDescribeResultModel$ScheduleActions": "The list of schedule actions."
+      }
+    },
+    "__listOfScte35Descriptor": {
+      "base": null,
+      "refs": {
+        "Scte35TimeSignalScheduleActionSettings$Scte35Descriptors": "The list of SCTE-35 descriptors accompanying the SCTE-35 time_signal."
+      }
+    },
     "__listOfValidationError": {
       "base": null,
       "refs": {
-        "ChannelConfigurationValidationError$ValidationErrors": "A collection of validation error responses from attempting to create a channel with a bouquet of settings."
+        "ChannelConfigurationValidationError$ValidationErrors": "A collection of validation error responses."
       }
     },
     "__listOfVideoDescription": {
@@ -2440,6 +2642,7 @@
     "__listOf__string": {
       "base": null,
       "refs": {
+        "BatchScheduleActionDeleteRequest$ActionNames": "A list of schedule actions to delete, identified by unique name.",
         "CreateInput$InputSecurityGroups": "A list of security groups referenced by IDs to attach to the input.",
         "Input$AttachedChannels": "A list of channel IDs that that input is attached to (currently an input can only be attached to one channel).",
         "Input$SecurityGroups": "A list of IDs for all the security groups attached to the input.",
@@ -2486,6 +2689,7 @@
         "CreateInput$Name": "Name of the input.",
         "CreateInput$RequestId": "Unique identifier of the request to ensure the request is handled\nexactly once in case of retries.\n",
         "DvbSubDestinationSettings$FontSize": "When set to auto fontSize will scale depending on the size of the output.  Giving a positive integer will specify the exact font size in points.  All burn-in and DVB-Sub font settings must match.",
+        "FixedModeScheduleActionStartSettings$Time": "Fixed timestamp action start. Conforms to ISO-8601.",
         "GatewayTimeoutException$Message": null,
         "HlsAkamaiSettings$Salt": "Salt for authenticated Akamai.",
         "HlsAkamaiSettings$Token": "Token parameter for authenticated akamai. If not specified, _gda_ is used.",
@@ -2573,6 +2777,9 @@
         "Reservation$Start": "Reservation UTC start date and time in ISO-8601 format, e.g. '2018-03-01T00:00:00'",
         "ResourceConflict$Message": null,
         "ResourceNotFound$Message": null,
+        "ScheduleAction$ActionName": "The name of the action, must be unique within the schedule.",
+        "ScheduleDescribeResultModel$NextToken": "The next token; for use in pagination.",
+        "Scte35SegmentationDescriptor$SegmentationUpid": "SCTE-35 segmentation_descriptor segmentation_upid as a hex string.",
         "StandardHlsSettings$AudioRenditionSets": "List all the audio groups that are used with the video output stream. Input all the audio GROUP-IDs that are associated to the video, separate by ','.",
         "TeletextSourceSettings$PageNumber": "Specifies the teletext page number within the data stream from which to extract captions. Range of 0x100 (256) to 0x8FF (2303). Unused for passthrough. Should be specified as a hexadecimal string with no \"0x\" prefix.",
         "UpdateChannel$Name": "The name of the channel.",
