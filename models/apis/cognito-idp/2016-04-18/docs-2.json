@@ -53,7 +53,7 @@
     "DescribeRiskConfiguration": "<p>Describes the risk configuration.</p>",
     "DescribeUserImportJob": "<p>Describes the user import job.</p>",
     "DescribeUserPool": "<p>Returns the configuration information and metadata of the specified user pool.</p>",
-    "DescribeUserPoolClient": "<p>Client method for returning the configuration information and metadata of the specified user pool client.</p>",
+    "DescribeUserPoolClient": "<p>Client method for returning the configuration information and metadata of the specified user pool app client.</p>",
     "DescribeUserPoolDomain": "<p>Gets information about a domain.</p>",
     "ForgetDevice": "<p>Forgets the specified device.</p>",
     "ForgotPassword": "<p>Calling this API causes a message to be sent to the end user with a confirmation code that is required to change the user's password. For the <code>Username</code> parameter, you can use the username or user alias. If a verified phone number exists for the user, the confirmation code is sent to the phone number. Otherwise, if a verified email exists, the confirmation code is sent to the email. If neither a verified phone number nor a verified email exists, <code>InvalidParameterException</code> is thrown. To use the confirmation code for resetting the password, call .</p>",
@@ -93,8 +93,8 @@
     "UpdateIdentityProvider": "<p>Updates identity provider information for a user pool.</p>",
     "UpdateResourceServer": "<p>Updates the name and scopes of resource server. All other fields are read-only.</p>",
     "UpdateUserAttributes": "<p>Allows a user to update a specific attribute (one at a time).</p>",
-    "UpdateUserPool": "<p>Updates the specified user pool with the specified attributes.</p>",
-    "UpdateUserPoolClient": "<p>Allows the developer to update the specified user pool client and password policy.</p>",
+    "UpdateUserPool": "<p>Updates the specified user pool with the specified attributes. If you don't provide a value for an attribute, it will be set to the default value. You can get a list of the current user pool settings with .</p>",
+    "UpdateUserPoolClient": "<p>Updates the specified user pool app client with the specified attributes. If you don't provide a value for an attribute, it will be set to the default value. You can get a list of the current user pool app client settings with .</p>",
     "VerifySoftwareToken": "<p>Use this API to register a user's entered TOTP code and mark the user's software token MFA status as \"verified\" if successful. The request takes an access token or a session string, but not both.</p>",
     "VerifyUserAttribute": "<p>Verifies the specified user attributes in the user pool.</p>"
   },
@@ -444,7 +444,7 @@
         "AnalyticsConfigurationType$RoleArn": "<p>The ARN of an IAM role that authorizes Amazon Cognito to publish events to Amazon Pinpoint analytics.</p>",
         "CreateGroupRequest$RoleArn": "<p>The role ARN for the group.</p>",
         "CreateUserImportJobRequest$CloudWatchLogsRoleArn": "<p>The role ARN for the Amazon CloudWatch Logging role for the user import job.</p>",
-        "DomainDescriptionType$CloudFrontDistribution": "<p>The ARN of the CloudFront distribution.</p>",
+        "CustomDomainConfigType$CertificateArn": "<p>The Amazon Resource Name (ARN) of an AWS Certificate Manager SSL certificate. You use this certificate for the subdomain of your custom domain.</p>",
         "EmailConfigurationType$SourceArn": "<p>The Amazon Resource Name (ARN) of the email source.</p>",
         "GroupType$RoleArn": "<p>The role ARN for the group.</p>",
         "LambdaConfigType$PreSignUp": "<p>A pre-registration AWS Lambda trigger.</p>",
@@ -625,9 +625,9 @@
     "CallbackURLsListType": {
       "base": null,
       "refs": {
-        "CreateUserPoolClientRequest$CallbackURLs": "<p>A list of allowed redirect (callback) URLs for the identity providers.</p> <p>A redirect URI must:</p> <ul> <li> <p>Be an absolute URI.</p> </li> <li> <p>Be registered with the authorization server.</p> </li> <li> <p>Not use HTTP without TLS (i.e. use HTTPS instead of HTTP).</p> </li> <li> <p>Not include a fragment component.</p> </li> </ul> <p>See <a href=\"https://tools.ietf.org/html/rfc6749#section-3.1.2\">OAuth 2.0 - Redirection Endpoint</a>.</p>",
-        "UpdateUserPoolClientRequest$CallbackURLs": "<p>A list of allowed redirect (callback) URLs for the identity providers.</p> <p>A redirect URI must:</p> <ul> <li> <p>Be an absolute URI.</p> </li> <li> <p>Be registered with the authorization server.</p> </li> <li> <p>Not use HTTP without TLS (i.e. use HTTPS instead of HTTP).</p> </li> <li> <p>Not include a fragment component.</p> </li> </ul> <p>See <a href=\"https://tools.ietf.org/html/rfc6749#section-3.1.2\">OAuth 2.0 - Redirection Endpoint</a>.</p>",
-        "UserPoolClientType$CallbackURLs": "<p>A list of allowed redirect (callback) URLs for the identity providers.</p> <p>A redirect URI must:</p> <ul> <li> <p>Be an absolute URI.</p> </li> <li> <p>Be registered with the authorization server.</p> </li> <li> <p>Not use HTTP without TLS (i.e. use HTTPS instead of HTTP).</p> </li> <li> <p>Not include a fragment component.</p> </li> </ul> <p>See <a href=\"https://tools.ietf.org/html/rfc6749#section-3.1.2\">OAuth 2.0 - Redirection Endpoint</a>.</p>"
+        "CreateUserPoolClientRequest$CallbackURLs": "<p>A list of allowed redirect (callback) URLs for the identity providers.</p> <p>A redirect URI must:</p> <ul> <li> <p>Be an absolute URI.</p> </li> <li> <p>Be registered with the authorization server.</p> </li> <li> <p>Not include a fragment component.</p> </li> </ul> <p>See <a href=\"https://tools.ietf.org/html/rfc6749#section-3.1.2\">OAuth 2.0 - Redirection Endpoint</a>.</p> <p>Amazon Cognito requires HTTPS over HTTP except for http://localhost for testing purposes only.</p> <p>App callback URLs such as myapp://example are also supported.</p>",
+        "UpdateUserPoolClientRequest$CallbackURLs": "<p>A list of allowed redirect (callback) URLs for the identity providers.</p> <p>A redirect URI must:</p> <ul> <li> <p>Be an absolute URI.</p> </li> <li> <p>Be registered with the authorization server.</p> </li> <li> <p>Not include a fragment component.</p> </li> </ul> <p>See <a href=\"https://tools.ietf.org/html/rfc6749#section-3.1.2\">OAuth 2.0 - Redirection Endpoint</a>.</p> <p>Amazon Cognito requires HTTPS over HTTP except for http://localhost for testing purposes only.</p> <p>App callback URLs such as myapp://example are also supported.</p>",
+        "UserPoolClientType$CallbackURLs": "<p>A list of allowed redirect (callback) URLs for the identity providers.</p> <p>A redirect URI must:</p> <ul> <li> <p>Be an absolute URI.</p> </li> <li> <p>Be registered with the authorization server.</p> </li> <li> <p>Not include a fragment component.</p> </li> </ul> <p>See <a href=\"https://tools.ietf.org/html/rfc6749#section-3.1.2\">OAuth 2.0 - Redirection Endpoint</a>.</p> <p>Amazon Cognito requires HTTPS over HTTP except for http://localhost for testing purposes only.</p> <p>App callback URLs such as myapp://example are also supported.</p>"
       }
     },
     "ChallengeName": {
@@ -938,6 +938,13 @@
         "AddCustomAttributesRequest$CustomAttributes": "<p>An array of custom attributes, such as Mutable and Name.</p>"
       }
     },
+    "CustomDomainConfigType": {
+      "base": "<p>The configuration for a custom domain that hosts the sign-up and sign-in webpages for your application.</p>",
+      "refs": {
+        "CreateUserPoolDomainRequest$CustomDomainConfig": "<p>The configuration for a custom domain that hosts the sign-up and sign-in webpages for your application.</p> <p>Provide this parameter only if you want to use own custom domain for your user pool. Otherwise, you can exclude this parameter and use the Amazon Cognito hosted domain instead.</p> <p>For more information about the hosted domain and custom domains, see <a href=\"http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-assign-domain.html\">Configuring a User Pool Domain</a>.</p>",
+        "DomainDescriptionType$CustomDomainConfig": null
+      }
+    },
     "DateType": {
       "base": null,
       "refs": {
@@ -1190,10 +1197,12 @@
       "base": null,
       "refs": {
         "CreateUserPoolDomainRequest$Domain": "<p>The domain string.</p>",
+        "CreateUserPoolDomainResponse$CloudFrontDomain": "<p>The Amazon CloudFront endpoint that you use as the target of the alias that you set up with your Domain Name Service (DNS) provider.</p>",
         "DeleteUserPoolDomainRequest$Domain": "<p>The domain string.</p>",
         "DescribeUserPoolDomainRequest$Domain": "<p>The domain string.</p>",
         "DomainDescriptionType$Domain": "<p>The domain string.</p>",
-        "UserPoolType$Domain": "<p>Holds the domain prefix if the user pool has a domain associated with it.</p>"
+        "UserPoolType$Domain": "<p>Holds the domain prefix if the user pool has a domain associated with it.</p>",
+        "UserPoolType$CustomDomain": null
       }
     },
     "DomainVersionType": {
@@ -2040,10 +2049,10 @@
       "base": null,
       "refs": {
         "CallbackURLsListType$member": null,
-        "CreateUserPoolClientRequest$DefaultRedirectURI": "<p>The default redirect URI. Must be in the <code>CallbackURLs</code> list.</p> <p>A redirect URI must:</p> <ul> <li> <p>Be an absolute URI.</p> </li> <li> <p>Be registered with the authorization server.</p> </li> <li> <p>Not use HTTP without TLS (i.e. use HTTPS instead of HTTP).</p> </li> <li> <p>Not include a fragment component.</p> </li> </ul> <p>See <a href=\"https://tools.ietf.org/html/rfc6749#section-3.1.2\">OAuth 2.0 - Redirection Endpoint</a>.</p>",
+        "CreateUserPoolClientRequest$DefaultRedirectURI": "<p>The default redirect URI. Must be in the <code>CallbackURLs</code> list.</p> <p>A redirect URI must:</p> <ul> <li> <p>Be an absolute URI.</p> </li> <li> <p>Be registered with the authorization server.</p> </li> <li> <p>Not include a fragment component.</p> </li> </ul> <p>See <a href=\"https://tools.ietf.org/html/rfc6749#section-3.1.2\">OAuth 2.0 - Redirection Endpoint</a>.</p> <p>Amazon Cognito requires HTTPS over HTTP except for http://localhost for testing purposes only.</p> <p>App callback URLs such as myapp://example are also supported.</p>",
         "LogoutURLsListType$member": null,
-        "UpdateUserPoolClientRequest$DefaultRedirectURI": "<p>The default redirect URI. Must be in the <code>CallbackURLs</code> list.</p> <p>A redirect URI must:</p> <ul> <li> <p>Be an absolute URI.</p> </li> <li> <p>Be registered with the authorization server.</p> </li> <li> <p>Not use HTTP without TLS (i.e. use HTTPS instead of HTTP).</p> </li> <li> <p>Not include a fragment component.</p> </li> </ul> <p>See <a href=\"https://tools.ietf.org/html/rfc6749#section-3.1.2\">OAuth 2.0 - Redirection Endpoint</a>.</p>",
-        "UserPoolClientType$DefaultRedirectURI": "<p>The default redirect URI. Must be in the <code>CallbackURLs</code> list.</p> <p>A redirect URI must:</p> <ul> <li> <p>Be an absolute URI.</p> </li> <li> <p>Be registered with the authorization server.</p> </li> <li> <p>Not use HTTP without TLS (i.e. use HTTPS instead of HTTP).</p> </li> <li> <p>Not include a fragment component.</p> </li> </ul> <p>See <a href=\"https://tools.ietf.org/html/rfc6749#section-3.1.2\">OAuth 2.0 - Redirection Endpoint</a>.</p>"
+        "UpdateUserPoolClientRequest$DefaultRedirectURI": "<p>The default redirect URI. Must be in the <code>CallbackURLs</code> list.</p> <p>A redirect URI must:</p> <ul> <li> <p>Be an absolute URI.</p> </li> <li> <p>Be registered with the authorization server.</p> </li> <li> <p>Not include a fragment component.</p> </li> </ul> <p>See <a href=\"https://tools.ietf.org/html/rfc6749#section-3.1.2\">OAuth 2.0 - Redirection Endpoint</a>.</p> <p>Amazon Cognito requires HTTPS over HTTP except for http://localhost for testing purposes only.</p> <p>App callback URLs such as myapp://example are also supported.</p>",
+        "UserPoolClientType$DefaultRedirectURI": "<p>The default redirect URI. Must be in the <code>CallbackURLs</code> list.</p> <p>A redirect URI must:</p> <ul> <li> <p>Be an absolute URI.</p> </li> <li> <p>Be registered with the authorization server.</p> </li> <li> <p>Not include a fragment component.</p> </li> </ul> <p>See <a href=\"https://tools.ietf.org/html/rfc6749#section-3.1.2\">OAuth 2.0 - Redirection Endpoint</a>.</p> <p>Amazon Cognito requires HTTPS over HTTP except for http://localhost for testing purposes only.</p> <p>App callback URLs such as myapp://example are also supported.</p>"
       }
     },
     "RefreshTokenValidityType": {
@@ -2441,6 +2450,7 @@
         "ContextDataType$EncodedData": "<p>Encoded data containing device fingerprinting details, collected using the Amazon Cognito context data collection library.</p>",
         "DeviceSecretVerifierConfigType$PasswordVerifier": "<p>The password verifier.</p>",
         "DeviceSecretVerifierConfigType$Salt": "<p>The salt.</p>",
+        "DomainDescriptionType$CloudFrontDistribution": "<p>The ARN of the CloudFront distribution.</p>",
         "EventContextDataType$IpAddress": "<p>The user's IP address.</p>",
         "EventContextDataType$DeviceName": "<p>The user's device name.</p>",
         "EventContextDataType$Timezone": "<p>The user's time zone.</p>",
@@ -2636,7 +2646,7 @@
     "UserFilterType": {
       "base": null,
       "refs": {
-        "ListUsersRequest$Filter": "<p>A filter string of the form \"<i>AttributeName</i> <i>Filter-Type</i> \"<i>AttributeValue</i>\"\". Quotation marks within the filter string must be escaped using the backslash (\\) character. For example, \"<code>family_name</code> = \\\"Reddy\\\"\".</p> <ul> <li> <p> <i>AttributeName</i>: The name of the attribute to search for. You can only search for one attribute at a time.</p> </li> <li> <p> <i>Filter-Type</i>: For an exact match, use =, for example, \"<code>given_name</code> = \\\"Jon\\\"\". For a prefix (\"starts with\") match, use ^=, for example, \"<code>given_name</code> ^= \\\"Jon\\\"\". </p> </li> <li> <p> <i>AttributeValue</i>: The attribute value that must be matched for each user.</p> </li> </ul> <p>If the filter string is empty, <code>ListUsers</code> returns all users in the user pool.</p> <p>You can only search for the following standard attributes:</p> <ul> <li> <p> <code>username</code> (case-sensitive)</p> </li> <li> <p> <code>email</code> </p> </li> <li> <p> <code>phone_number</code> </p> </li> <li> <p> <code>name</code> </p> </li> <li> <p> <code>given_name</code> </p> </li> <li> <p> <code>family_name</code> </p> </li> <li> <p> <code>preferred_username</code> </p> </li> <li> <p> <code>cognito:user_status</code> (called <b>Enabled</b> in the Console) (case-sensitive)</p> </li> <li> <p> <code>status</code> (case-insensitive)</p> </li> <li> <p> <code>sub</code> </p> </li> </ul> <p>Custom attributes are not searchable.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-using-listusers-api\">Searching for Users Using the ListUsers API</a> and <a href=\"http://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-listusers-api-examples\">Examples of Using the ListUsers API</a> in the <i>Amazon Cognito Developer Guide</i>.</p>"
+        "ListUsersRequest$Filter": "<p>A filter string of the form \"<i>AttributeName</i> <i>Filter-Type</i> \"<i>AttributeValue</i>\"\". Quotation marks within the filter string must be escaped using the backslash (\\) character. For example, \"<code>family_name</code> = \\\"Reddy\\\"\".</p> <ul> <li> <p> <i>AttributeName</i>: The name of the attribute to search for. You can only search for one attribute at a time.</p> </li> <li> <p> <i>Filter-Type</i>: For an exact match, use =, for example, \"<code>given_name</code> = \\\"Jon\\\"\". For a prefix (\"starts with\") match, use ^=, for example, \"<code>given_name</code> ^= \\\"Jon\\\"\". </p> </li> <li> <p> <i>AttributeValue</i>: The attribute value that must be matched for each user.</p> </li> </ul> <p>If the filter string is empty, <code>ListUsers</code> returns all users in the user pool.</p> <p>You can only search for the following standard attributes:</p> <ul> <li> <p> <code>username</code> (case-sensitive)</p> </li> <li> <p> <code>email</code> </p> </li> <li> <p> <code>phone_number</code> </p> </li> <li> <p> <code>name</code> </p> </li> <li> <p> <code>given_name</code> </p> </li> <li> <p> <code>family_name</code> </p> </li> <li> <p> <code>preferred_username</code> </p> </li> <li> <p> <code>cognito:user_status</code> (called <b>Status</b> in the Console) (case-insensitive)</p> </li> <li> <p> <code>status (called <b>Enabled</b> in the Console) (case-sensitive)</code> </p> </li> <li> <p> <code>sub</code> </p> </li> </ul> <p>Custom attributes are not searchable.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-using-listusers-api\">Searching for Users Using the ListUsers API</a> and <a href=\"http://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-listusers-api-examples\">Examples of Using the ListUsers API</a> in the <i>Amazon Cognito Developer Guide</i>.</p>"
       }
     },
     "UserImportInProgressException": {

@@ -1,3 +1,11 @@
+Release v1.15.20 (2018-08-24)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service API and documentation
+* `service/events`: Updates service API and documentation
+  * Added Fargate and NetworkConfiguration support to EcsParameters.
+
 Release v1.15.19 (2018-08-23)
 ===
 
