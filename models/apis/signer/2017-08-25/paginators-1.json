@@ -1,26 +1,16 @@
 {
   "pagination": {
-    "ListChannels": {
+    "ListSigningJobs": {
       "input_token": "nextToken",
       "output_token": "nextToken",
       "limit_key": "maxResults"
     },
-    "ListDatasetContents": {
+    "ListSigningPlatforms": {
       "input_token": "nextToken",
       "output_token": "nextToken",
       "limit_key": "maxResults"
     },
-    "ListDatasets": {
-      "input_token": "nextToken",
-      "output_token": "nextToken",
-      "limit_key": "maxResults"
-    },
-    "ListDatastores": {
-      "input_token": "nextToken",
-      "output_token": "nextToken",
-      "limit_key": "maxResults"
-    },
-    "ListPipelines": {
+    "ListSigningProfiles": {
       "input_token": "nextToken",
       "output_token": "nextToken",
       "limit_key": "maxResults"
