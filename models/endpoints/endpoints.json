@@ -1160,6 +1160,14 @@
           "us-west-2" : { }
         }
       },
+      "iotanalytics" : {
+        "endpoints" : {
+          "eu-west-1" : { },
+          "us-east-1" : { },
+          "us-east-2" : { },
+          "us-west-2" : { }
+        }
+      },
       "kinesis" : {
         "endpoints" : {
           "ap-northeast-1" : { },

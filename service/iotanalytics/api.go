@@ -1826,6 +1826,153 @@ func (c *IoTAnalytics) ListChannelsPagesWithContext(ctx aws.Context, input *List
 	return p.Err()
 }
 
+const opListDatasetContents = "ListDatasetContents"
+
+// ListDatasetContentsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDatasetContents operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDatasetContents for more information on using the ListDatasetContents
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListDatasetContentsRequest method.
+//    req, resp := client.ListDatasetContentsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotanalytics-2017-11-27/ListDatasetContents
+func (c *IoTAnalytics) ListDatasetContentsRequest(input *ListDatasetContentsInput) (req *request.Request, output *ListDatasetContentsOutput) {
+	op := &request.Operation{
+		Name:       opListDatasetContents,
+		HTTPMethod: "GET",
+		HTTPPath:   "/datasets/{datasetName}/contents",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDatasetContentsInput{}
+	}
+
+	output = &ListDatasetContentsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDatasetContents API operation for AWS IoT Analytics.
+//
+// Lists information about data set contents that have been created.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Analytics's
+// API operation ListDatasetContents for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request was not valid.
+//
+//   * ErrCodeInternalFailureException "InternalFailureException"
+//   There was an internal failure.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   The service is temporarily unavailable.
+//
+//   * ErrCodeThrottlingException "ThrottlingException"
+//   The request was denied due to request throttling.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   A resource with the specified name could not be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotanalytics-2017-11-27/ListDatasetContents
+func (c *IoTAnalytics) ListDatasetContents(input *ListDatasetContentsInput) (*ListDatasetContentsOutput, error) {
+	req, out := c.ListDatasetContentsRequest(input)
+	return out, req.Send()
+}
+
+// ListDatasetContentsWithContext is the same as ListDatasetContents with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDatasetContents for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTAnalytics) ListDatasetContentsWithContext(ctx aws.Context, input *ListDatasetContentsInput, opts ...request.Option) (*ListDatasetContentsOutput, error) {
+	req, out := c.ListDatasetContentsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDatasetContentsPages iterates over the pages of a ListDatasetContents operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDatasetContents method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListDatasetContents operation.
+//    pageNum := 0
+//    err := client.ListDatasetContentsPages(params,
+//        func(page *ListDatasetContentsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoTAnalytics) ListDatasetContentsPages(input *ListDatasetContentsInput, fn func(*ListDatasetContentsOutput, bool) bool) error {
+	return c.ListDatasetContentsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDatasetContentsPagesWithContext same as ListDatasetContentsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTAnalytics) ListDatasetContentsPagesWithContext(ctx aws.Context, input *ListDatasetContentsInput, fn func(*ListDatasetContentsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDatasetContentsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDatasetContentsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListDatasetContentsOutput), !p.HasNextPage())
+	}
+	return p.Err()
+}
+
 const opListDatasets = "ListDatasets"
 
 // ListDatasetsRequest generates a "aws/request.Request" representing the
@@ -4701,6 +4848,57 @@ func (s *DatasetContentStatus) SetState(v string) *DatasetContentStatus {
 	return s
 }
 
+// Summary information about data set contents.
+type DatasetContentSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The actual time the creation of the data set contents was started.
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
+
+	// The time the creation of the data set contents was scheduled to start.
+	ScheduleTime *time.Time `locationName:"scheduleTime" type:"timestamp"`
+
+	// The status of the data set contents.
+	Status *DatasetContentStatus `locationName:"status" type:"structure"`
+
+	// The version of the data set contents.
+	Version *string `locationName:"version" min:"7" type:"string"`
+}
+
+// String returns the string representation
+func (s DatasetContentSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DatasetContentSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DatasetContentSummary) SetCreationTime(v time.Time) *DatasetContentSummary {
+	s.CreationTime = &v
+	return s
+}
+
+// SetScheduleTime sets the ScheduleTime field's value.
+func (s *DatasetContentSummary) SetScheduleTime(v time.Time) *DatasetContentSummary {
+	s.ScheduleTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DatasetContentSummary) SetStatus(v *DatasetContentStatus) *DatasetContentSummary {
+	s.Status = v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *DatasetContentSummary) SetVersion(v string) *DatasetContentSummary {
+	s.Version = &v
+	return s
+}
+
 // The data set whose latest contents will be used as input to the notebook
 // or application.
 type DatasetContentVersionValue struct {
@@ -6371,6 +6569,101 @@ func (s *ListChannelsOutput) SetChannelSummaries(v []*ChannelSummary) *ListChann
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListChannelsOutput) SetNextToken(v string) *ListChannelsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDatasetContentsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the data set whose contents information you want to list.
+	//
+	// DatasetName is a required field
+	DatasetName *string `location:"uri" locationName:"datasetName" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return in this request.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListDatasetContentsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDatasetContentsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDatasetContentsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDatasetContentsInput"}
+	if s.DatasetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetName"))
+	}
+	if s.DatasetName != nil && len(*s.DatasetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetName sets the DatasetName field's value.
+func (s *ListDatasetContentsInput) SetDatasetName(v string) *ListDatasetContentsInput {
+	s.DatasetName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDatasetContentsInput) SetMaxResults(v int64) *ListDatasetContentsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDatasetContentsInput) SetNextToken(v string) *ListDatasetContentsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDatasetContentsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Summary information about data set contents that have been created.
+	DatasetContentSummaries []*DatasetContentSummary `locationName:"datasetContentSummaries" type:"list"`
+
+	// The token to retrieve the next set of results, or null if there are no more
+	// results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListDatasetContentsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDatasetContentsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatasetContentSummaries sets the DatasetContentSummaries field's value.
+func (s *ListDatasetContentsOutput) SetDatasetContentSummaries(v []*DatasetContentSummary) *ListDatasetContentsOutput {
+	s.DatasetContentSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDatasetContentsOutput) SetNextToken(v string) *ListDatasetContentsOutput {
 	s.NextToken = &v
 	return s
 }

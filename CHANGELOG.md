@@ -1,3 +1,16 @@
+Release v1.15.22 (2018-08-27)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/iot`: Updates service API and documentation
+  * This release adds support to create a Stream and Code signing for Amazon FreeRTOS job along with Over-the-air updates.
+* `service/iotanalytics`: Updates service API, documentation, and paginators
+* `service/redshift`: Updates service documentation
+  * Documentation updates for redshift
+* `service/signer`: Adds new service
+  * AWS Signer is a new feature that allows Amazon FreeRTOS (AFR) Over The Air (OTA) customers to cryptographically sign code using code-signing certificates managed by AWS Certificate Manager.
+
 Release v1.15.21 (2018-08-25)
 ===
 

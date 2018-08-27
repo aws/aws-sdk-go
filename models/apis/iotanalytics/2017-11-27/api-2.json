@@ -323,6 +323,22 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "ListDatasetContents":{
+      "name":"ListDatasetContents",
+      "http":{
+        "method":"GET",
+        "requestUri":"/datasets/{datasetName}/contents"
+      },
+      "input":{"shape":"ListDatasetContentsRequest"},
+      "output":{"shape":"ListDatasetContentsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "ListDatasets":{
       "name":"ListDatasets",
       "http":{
@@ -878,6 +894,19 @@
         "reason":{"shape":"Reason"}
       }
     },
+    "DatasetContentSummaries":{
+      "type":"list",
+      "member":{"shape":"DatasetContentSummary"}
+    },
+    "DatasetContentSummary":{
+      "type":"structure",
+      "members":{
+        "version":{"shape":"DatasetContentVersion"},
+        "status":{"shape":"DatasetContentStatus"},
+        "creationTime":{"shape":"Timestamp"},
+        "scheduleTime":{"shape":"Timestamp"}
+      }
+    },
     "DatasetContentVersion":{
       "type":"string",
       "max":36,
@@ -1315,6 +1344,34 @@
       "type":"structure",
       "members":{
         "channelSummaries":{"shape":"ChannelSummaries"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListDatasetContentsRequest":{
+      "type":"structure",
+      "required":["datasetName"],
+      "members":{
+        "datasetName":{
+          "shape":"DatasetName",
+          "location":"uri",
+          "locationName":"datasetName"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListDatasetContentsResponse":{
+      "type":"structure",
+      "members":{
+        "datasetContentSummaries":{"shape":"DatasetContentSummaries"},
         "nextToken":{"shape":"NextToken"}
       }
     },

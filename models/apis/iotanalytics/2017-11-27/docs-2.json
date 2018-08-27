@@ -21,6 +21,7 @@
     "DescribePipeline": "<p>Retrieves information about a pipeline.</p>",
     "GetDatasetContent": "<p>Retrieves the contents of a data set as pre-signed URIs.</p>",
     "ListChannels": "<p>Retrieves a list of channels.</p>",
+    "ListDatasetContents": "<p>Lists information about data set contents that have been created.</p>",
     "ListDatasets": "<p>Retrieves information about data sets.</p>",
     "ListDatastores": "<p>Retrieves a list of data stores.</p>",
     "ListPipelines": "<p>Retrieves a list of pipelines.</p>",
@@ -313,13 +314,27 @@
     "DatasetContentStatus": {
       "base": "<p>The state of the data set contents and the reason they are in this state.</p>",
       "refs": {
+        "DatasetContentSummary$status": "<p>The status of the data set contents.</p>",
         "GetDatasetContentResponse$status": "<p>The status of the data set content.</p>"
+      }
+    },
+    "DatasetContentSummaries": {
+      "base": null,
+      "refs": {
+        "ListDatasetContentsResponse$datasetContentSummaries": "<p>Summary information about data set contents that have been created.</p>"
+      }
+    },
+    "DatasetContentSummary": {
+      "base": "<p>Summary information about data set contents.</p>",
+      "refs": {
+        "DatasetContentSummaries$member": null
       }
     },
     "DatasetContentVersion": {
       "base": null,
       "refs": {
         "CreateDatasetContentResponse$versionId": "<p>The version ID of the data set contents which are being created.</p>",
+        "DatasetContentSummary$version": "<p>The version of the data set contents.</p>",
         "DeleteDatasetContentRequest$versionId": "<p>The version of the data set whose content is deleted. You can also use the strings \"$LATEST\" or \"$LATEST_SUCCEEDED\" to delete the latest or latest successfully completed data set. If not specified, \"$LATEST_SUCCEEDED\" is the default.</p>",
         "GetDatasetContentRequest$versionId": "<p>The version of the data set whose contents are retrieved. You can also use the strings \"$LATEST\" or \"$LATEST_SUCCEEDED\" to retrieve the contents of the latest or latest successfully completed data set. If not specified, \"$LATEST_SUCCEEDED\" is the default.</p>"
       }
@@ -355,6 +370,7 @@
         "DeleteDatasetRequest$datasetName": "<p>The name of the data set to delete.</p>",
         "DescribeDatasetRequest$datasetName": "<p>The name of the data set whose information is retrieved.</p>",
         "GetDatasetContentRequest$datasetName": "<p>The name of the data set whose contents are retrieved.</p>",
+        "ListDatasetContentsRequest$datasetName": "<p>The name of the data set whose contents information you want to list.</p>",
         "TriggeringDataset$name": "<p>The name of the data set whose content generation will trigger the new data set content generation.</p>",
         "UpdateDatasetRequest$datasetName": "<p>The name of the data set to update.</p>"
       }
@@ -653,6 +669,16 @@
       "refs": {
       }
     },
+    "ListDatasetContentsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDatasetContentsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListDatasetsRequest": {
       "base": null,
       "refs": {
@@ -740,6 +766,7 @@
       "base": null,
       "refs": {
         "ListChannelsRequest$maxResults": "<p>The maximum number of results to return in this request.</p> <p>The default value is 100.</p>",
+        "ListDatasetContentsRequest$maxResults": "<p>The maximum number of results to return in this request.</p>",
         "ListDatasetsRequest$maxResults": "<p>The maximum number of results to return in this request.</p> <p>The default value is 100.</p>",
         "ListDatastoresRequest$maxResults": "<p>The maximum number of results to return in this request.</p> <p>The default value is 100.</p>",
         "ListPipelinesRequest$maxResults": "<p>The maximum number of results to return in this request.</p> <p>The default value is 100.</p>"
@@ -784,6 +811,8 @@
       "refs": {
         "ListChannelsRequest$nextToken": "<p>The token for the next set of results.</p>",
         "ListChannelsResponse$nextToken": "<p>The token to retrieve the next set of results, or <code>null</code> if there are no more results.</p>",
+        "ListDatasetContentsRequest$nextToken": "<p>The token for the next set of results.</p>",
+        "ListDatasetContentsResponse$nextToken": "<p>The token to retrieve the next set of results, or <code>null</code> if there are no more results.</p>",
         "ListDatasetsRequest$nextToken": "<p>The token for the next set of results.</p>",
         "ListDatasetsResponse$nextToken": "<p>The token to retrieve the next set of results, or <code>null</code> if there are no more results.</p>",
         "ListDatastoresRequest$nextToken": "<p>The token for the next set of results.</p>",
@@ -1132,6 +1161,8 @@
         "ChannelSummary$lastUpdateTime": "<p>The last time the channel was updated.</p>",
         "Dataset$creationTime": "<p>When the data set was created.</p>",
         "Dataset$lastUpdateTime": "<p>The last time the data set was updated.</p>",
+        "DatasetContentSummary$creationTime": "<p>The actual time the creation of the data set contents was started.</p>",
+        "DatasetContentSummary$scheduleTime": "<p>The time the creation of the data set contents was scheduled to start.</p>",
         "DatasetSummary$creationTime": "<p>The time the data set was created.</p>",
         "DatasetSummary$lastUpdateTime": "<p>The last time the data set was updated.</p>",
         "Datastore$creationTime": "<p>When the data store was created.</p>",

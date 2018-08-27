@@ -310,6 +310,13 @@
       "refs": {
       }
     },
+    "AttributeKey": {
+      "base": null,
+      "refs": {
+        "AdditionalParameterMap$key": null,
+        "AttributesMap$key": null
+      }
+    },
     "AttributeName": {
       "base": null,
       "refs": {
@@ -632,6 +639,13 @@
         "TopicRulePayload$awsIotSqlVersion": "<p>The version of the SQL rules engine to use when evaluating the rule.</p>"
       }
     },
+    "AwsJobExecutionsRolloutConfig": {
+      "base": "<p>Configuration for the rollout of OTA updates.</p>",
+      "refs": {
+        "CreateOTAUpdateRequest$awsJobExecutionsRolloutConfig": "<p>Configuration for the rollout of OTA updates.</p>",
+        "OTAUpdateInfo$awsJobExecutionsRolloutConfig": "<p>Configuration for the rollout of OTA updates.</p>"
+      }
+    },
     "Behavior": {
       "base": "<p>A Device Defender security profile behavior.</p>",
       "refs": {
@@ -772,6 +786,7 @@
         "OutgoingCertificate$certificateArn": "<p>The certificate ARN.</p>",
         "RegisterCACertificateResponse$certificateArn": "<p>The CA certificate ARN.</p>",
         "RegisterCertificateResponse$certificateArn": "<p>The certificate ARN.</p>",
+        "SigningProfileParameter$certificateArn": "<p>Certificate ARN.</p>",
         "TransferCertificateResponse$transferredCertificateArn": "<p>The ARN of the certificate.</p>"
       }
     },
@@ -818,6 +833,12 @@
       "base": null,
       "refs": {
         "CodeSigningCertificateChain$certificateName": "<p>The name of the certificate.</p>"
+      }
+    },
+    "CertificatePathOnDevice": {
+      "base": null,
+      "refs": {
+        "SigningProfileParameter$certificatePathOnDevice": "<p>The location of the code-signing certificate on your device.</p>"
       }
     },
     "CertificatePem": {
@@ -1357,6 +1378,12 @@
       "refs": {
       }
     },
+    "DeleteStream": {
+      "base": null,
+      "refs": {
+        "DeleteOTAUpdateRequest$deleteStream": "<p>Specifies if the stream associated with an OTA update should be deleted when the OTA update is deleted.</p>"
+      }
+    },
     "DeleteStreamRequest": {
       "base": null,
       "refs": {
@@ -1632,6 +1659,12 @@
         "TopicRulePayload$description": "<p>The description of the rule.</p>"
       }
     },
+    "Destination": {
+      "base": "<p>Describes the location of the updated firmware.</p>",
+      "refs": {
+        "StartSigningJobParameter$destination": "<p>The location to write the code-signed file.</p>"
+      }
+    },
     "DetachPolicyRequest": {
       "base": null,
       "refs": {
@@ -1876,6 +1909,12 @@
         "StreamFile$fileId": "<p>The file ID.</p>"
       }
     },
+    "FileLocation": {
+      "base": "<p>The location of the OTA update.</p>",
+      "refs": {
+        "OTAUpdateFile$fileLocation": "<p>The location of the updated firmware.</p>"
+      }
+    },
     "FileName": {
       "base": null,
       "refs": {
@@ -1904,6 +1943,12 @@
       "base": null,
       "refs": {
         "DeleteCertificateRequest$forceDelete": "<p>Forces a certificate request to be deleted.</p>"
+      }
+    },
+    "ForceDeleteAWSJob": {
+      "base": null,
+      "refs": {
+        "DeleteOTAUpdateRequest$forceDeleteAWSJob": "<p>Specifies if the AWS Job associated with the OTA update should be deleted with the OTA update is deleted.</p>"
       }
     },
     "ForceFlag": {
@@ -2346,8 +2391,6 @@
     "Key": {
       "base": null,
       "refs": {
-        "AdditionalParameterMap$key": null,
-        "AttributesMap$key": null,
         "S3Action$key": "<p>The object key.</p>"
       }
     },
@@ -2875,6 +2918,12 @@
         "ListViolationEventsRequest$maxResults": "<p>The maximum number of results to return at one time.</p>"
       }
     },
+    "MaximumPerMinute": {
+      "base": null,
+      "refs": {
+        "AwsJobExecutionsRolloutConfig$maximumPerMinute": "<p>The maximum number of OTA update job executions started per minute.</p>"
+      }
+    },
     "Message": {
       "base": null,
       "refs": {
@@ -3135,6 +3184,12 @@
         "DescribeThingRegistrationTaskResponse$percentageProgress": "<p>The progress of the bulk provisioning task expressed as a percentage.</p>"
       }
     },
+    "Platform": {
+      "base": null,
+      "refs": {
+        "SigningProfileParameter$platform": "<p>The hardware platform of your device.</p>"
+      }
+    },
     "Policies": {
       "base": null,
       "refs": {
@@ -3272,6 +3327,12 @@
       "base": null,
       "refs": {
         "MetricValue$ports": "<p>If the <code>comparisonOperator</code> calls for a set of ports, use this to specify that set to be compared with the <code>metric</code>.</p>"
+      }
+    },
+    "Prefix": {
+      "base": null,
+      "refs": {
+        "S3Destination$prefix": "<p>The S3 prefix.</p>"
       }
     },
     "PresignedUrlConfig": {
@@ -3707,7 +3768,14 @@
     "S3Bucket": {
       "base": null,
       "refs": {
-        "S3Location$bucket": "<p>The S3 bucket that contains the file to stream.</p>"
+        "S3Destination$bucket": "<p>The S3 bucket that contains the updated firmware.</p>",
+        "S3Location$bucket": "<p>The S3 bucket.</p>"
+      }
+    },
+    "S3Destination": {
+      "base": "<p>Describes the location of updated firmware in S3.</p>",
+      "refs": {
+        "Destination$s3Destination": "<p>Describes the location in S3 of the updated firmware.</p>"
       }
     },
     "S3FileUrl": {
@@ -3725,19 +3793,20 @@
     "S3Key": {
       "base": null,
       "refs": {
-        "S3Location$key": "<p>The name of the file within the S3 bucket to stream.</p>"
+        "S3Location$key": "<p>The S3 key.</p>"
       }
     },
     "S3Location": {
-      "base": "<p>The location in S3 the contains the files to stream.</p>",
+      "base": "<p>The S3 location.</p>",
       "refs": {
+        "FileLocation$s3Location": "<p>The location of the updated firmware in S3.</p>",
         "StreamFile$s3Location": "<p>The location of the file in S3.</p>"
       }
     },
     "S3Version": {
       "base": null,
       "refs": {
-        "S3Location$version": "<p>The file version.</p>"
+        "S3Location$version": "<p>The S3 bucket version.</p>"
       }
     },
     "SQL": {
@@ -3980,6 +4049,18 @@
         "CodeSigning$awsSignerJobId": "<p>The ID of the AWSSignerJob which was created to sign the file.</p>"
       }
     },
+    "SigningProfileName": {
+      "base": null,
+      "refs": {
+        "StartSigningJobParameter$signingProfileName": "<p>The code-signing profile name.</p>"
+      }
+    },
+    "SigningProfileParameter": {
+      "base": "<p>Describes the code-signing profile.</p>",
+      "refs": {
+        "StartSigningJobParameter$signingProfileParameter": "<p>Describes the code-signing profile.</p>"
+      }
+    },
     "SkyfallMaxResults": {
       "base": null,
       "refs": {
@@ -4011,6 +4092,12 @@
     "StartOnDemandAuditTaskResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "StartSigningJobParameter": {
+      "base": "<p>Information required to start a signing job.</p>",
+      "refs": {
+        "CodeSigning$startSigningJobParameter": "<p>Describes the code-signing job.</p>"
       }
     },
     "StartThingRegistrationTaskRequest": {
@@ -4067,9 +4154,7 @@
     "Stream": {
       "base": "<p>Describes a group of files that can be streamed.</p>",
       "refs": {
-        "CodeSigningCertificateChain$stream": "<p>A stream of the certificate chain files.</p>",
-        "CodeSigningSignature$stream": "<p>A stream of the code signing signature.</p>",
-        "OTAUpdateFile$fileSource": "<p>The source of the file.</p>"
+        "FileLocation$stream": "<p>The stream that contains the OTA update.</p>"
       }
     },
     "StreamArn": {

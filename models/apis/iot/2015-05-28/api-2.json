@@ -285,6 +285,7 @@
       "output":{"shape":"CreateOTAUpdateResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
+        {"shape":"LimitExceededException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceAlreadyExistsException"},
         {"shape":"ThrottlingException"},
@@ -388,6 +389,7 @@
       "output":{"shape":"CreateStreamResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
+        {"shape":"LimitExceededException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceAlreadyExistsException"},
         {"shape":"ThrottlingException"},
@@ -575,7 +577,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"UnauthorizedException"},
         {"shape":"InternalFailureException"},
-        {"shape":"ServiceUnavailableException"}
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"VersionConflictException"}
       ]
     },
     "DeletePolicy":{
@@ -2523,7 +2526,7 @@
     },
     "AdditionalParameterMap":{
       "type":"map",
-      "key":{"shape":"Key"},
+      "key":{"shape":"AttributeKey"},
       "value":{"shape":"Value"}
     },
     "AlarmName":{"type":"string"},
@@ -2662,6 +2665,7 @@
       "members":{
       }
     },
+    "AttributeKey":{"type":"string"},
     "AttributeName":{
       "type":"string",
       "max":128,
@@ -2686,7 +2690,7 @@
     },
     "AttributesMap":{
       "type":"map",
-      "key":{"shape":"Key"},
+      "key":{"shape":"AttributeKey"},
       "value":{"shape":"Value"}
     },
     "AuditCheckConfiguration":{
@@ -2906,6 +2910,12 @@
     "AwsIotJobArn":{"type":"string"},
     "AwsIotJobId":{"type":"string"},
     "AwsIotSqlVersion":{"type":"string"},
+    "AwsJobExecutionsRolloutConfig":{
+      "type":"structure",
+      "members":{
+        "maximumPerMinute":{"shape":"MaximumPerMinute"}
+      }
+    },
     "Behavior":{
       "type":"structure",
       "required":["name"],
@@ -3109,6 +3119,7 @@
       "pattern":"(0x)?[a-fA-F0-9]+"
     },
     "CertificateName":{"type":"string"},
+    "CertificatePathOnDevice":{"type":"string"},
     "CertificatePem":{
       "type":"string",
       "max":65536,
@@ -3217,13 +3228,13 @@
       "type":"structure",
       "members":{
         "awsSignerJobId":{"shape":"SigningJobId"},
+        "startSigningJobParameter":{"shape":"StartSigningJobParameter"},
         "customCodeSigning":{"shape":"CustomCodeSigning"}
       }
     },
     "CodeSigningCertificateChain":{
       "type":"structure",
       "members":{
-        "stream":{"shape":"Stream"},
         "certificateName":{"shape":"CertificateName"},
         "inlineDocument":{"shape":"InlineDocument"}
       }
@@ -3231,7 +3242,6 @@
     "CodeSigningSignature":{
       "type":"structure",
       "members":{
-        "stream":{"shape":"Stream"},
         "inlineDocument":{"shape":"Signature"}
       }
     },
@@ -3382,6 +3392,7 @@
         "description":{"shape":"OTAUpdateDescription"},
         "targets":{"shape":"Targets"},
         "targetSelection":{"shape":"TargetSelection"},
+        "awsJobExecutionsRolloutConfig":{"shape":"AwsJobExecutionsRolloutConfig"},
         "files":{"shape":"OTAUpdateFiles"},
         "roleArn":{"shape":"RoleArn"},
         "additionalParameters":{"shape":"AdditionalParameterMap"}
@@ -3789,6 +3800,16 @@
           "shape":"OTAUpdateId",
           "location":"uri",
           "locationName":"otaUpdateId"
+        },
+        "deleteStream":{
+          "shape":"DeleteStream",
+          "location":"querystring",
+          "locationName":"deleteStream"
+        },
+        "forceDeleteAWSJob":{
+          "shape":"ForceDeleteAWSJob",
+          "location":"querystring",
+          "locationName":"forceDeleteAWSJob"
         }
       }
     },
@@ -3891,6 +3912,7 @@
       "members":{
       }
     },
+    "DeleteStream":{"type":"boolean"},
     "DeleteStreamRequest":{
       "type":"structure",
       "required":["streamId"],
@@ -4390,6 +4412,12 @@
       }
     },
     "Description":{"type":"string"},
+    "Destination":{
+      "type":"structure",
+      "members":{
+        "s3Destination":{"shape":"S3Destination"}
+      }
+    },
     "DetachPolicyRequest":{
       "type":"structure",
       "required":[
@@ -4642,6 +4670,13 @@
       "max":255,
       "min":0
     },
+    "FileLocation":{
+      "type":"structure",
+      "members":{
+        "stream":{"shape":"Stream"},
+        "s3Location":{"shape":"S3Location"}
+      }
+    },
     "FileName":{"type":"string"},
     "FirehoseAction":{
       "type":"structure",
@@ -4661,6 +4696,7 @@
     },
     "Flag":{"type":"boolean"},
     "ForceDelete":{"type":"boolean"},
+    "ForceDeleteAWSJob":{"type":"boolean"},
     "ForceFlag":{"type":"boolean"},
     "Forced":{"type":"boolean"},
     "FunctionArn":{"type":"string"},
@@ -6330,6 +6366,11 @@
       "max":250,
       "min":1
     },
+    "MaximumPerMinute":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
     "Message":{
       "type":"string",
       "max":128
@@ -6385,7 +6426,7 @@
       "members":{
         "fileName":{"shape":"FileName"},
         "fileVersion":{"shape":"OTAUpdateFileVersion"},
-        "fileSource":{"shape":"Stream"},
+        "fileLocation":{"shape":"FileLocation"},
         "codeSigning":{"shape":"CodeSigning"},
         "attributes":{"shape":"AttributesMap"}
       }
@@ -6394,7 +6435,7 @@
     "OTAUpdateFiles":{
       "type":"list",
       "member":{"shape":"OTAUpdateFile"},
-      "max":10,
+      "max":50,
       "min":1
     },
     "OTAUpdateId":{
@@ -6412,6 +6453,7 @@
         "lastModifiedDate":{"shape":"DateType"},
         "description":{"shape":"OTAUpdateDescription"},
         "targets":{"shape":"Targets"},
+        "awsJobExecutionsRolloutConfig":{"shape":"AwsJobExecutionsRolloutConfig"},
         "targetSelection":{"shape":"TargetSelection"},
         "otaUpdateFiles":{"shape":"OTAUpdateFiles"},
         "otaUpdateStatus":{"shape":"OTAUpdateStatus"},
@@ -6476,6 +6518,7 @@
       "max":100,
       "min":0
     },
+    "Platform":{"type":"string"},
     "Policies":{
       "type":"list",
       "member":{"shape":"Policy"}
@@ -6540,6 +6583,7 @@
       "type":"list",
       "member":{"shape":"Port"}
     },
+    "Prefix":{"type":"string"},
     "PresignedUrlConfig":{
       "type":"structure",
       "members":{
@@ -6896,6 +6940,13 @@
       "type":"string",
       "min":1
     },
+    "S3Destination":{
+      "type":"structure",
+      "members":{
+        "bucket":{"shape":"S3Bucket"},
+        "prefix":{"shape":"Prefix"}
+      }
+    },
     "S3FileUrl":{
       "type":"string",
       "max":65535
@@ -6910,10 +6961,6 @@
     },
     "S3Location":{
       "type":"structure",
-      "required":[
-        "bucket",
-        "key"
-      ],
       "members":{
         "bucket":{"shape":"S3Bucket"},
         "key":{"shape":"S3Key"},
@@ -7112,6 +7159,15 @@
     "Signature":{"type":"blob"},
     "SignatureAlgorithm":{"type":"string"},
     "SigningJobId":{"type":"string"},
+    "SigningProfileName":{"type":"string"},
+    "SigningProfileParameter":{
+      "type":"structure",
+      "members":{
+        "certificateArn":{"shape":"CertificateArn"},
+        "platform":{"shape":"Platform"},
+        "certificatePathOnDevice":{"shape":"CertificatePathOnDevice"}
+      }
+    },
     "SkyfallMaxResults":{
       "type":"integer",
       "max":250,
@@ -7160,6 +7216,14 @@
       "type":"structure",
       "members":{
         "taskId":{"shape":"AuditTaskId"}
+      }
+    },
+    "StartSigningJobParameter":{
+      "type":"structure",
+      "members":{
+        "signingProfileParameter":{"shape":"SigningProfileParameter"},
+        "signingProfileName":{"shape":"SigningProfileName"},
+        "destination":{"shape":"Destination"}
       }
     },
     "StartThingRegistrationTaskRequest":{
@@ -7247,7 +7311,7 @@
     "StreamFiles":{
       "type":"list",
       "member":{"shape":"StreamFile"},
-      "max":10,
+      "max":50,
       "min":1
     },
     "StreamId":{
