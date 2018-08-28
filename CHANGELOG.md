@@ -1,3 +1,12 @@
+Release v1.15.23 (2018-08-28)
+===
+
+### Service Client Updates
+* `service/glue`: Updates service API and documentation
+  * New Glue APIs for creating, updating, reading and deleting Data Catalog resource-based policies.
+* `service/xray`: Updates service API and documentation
+  * Support for new APIs that enable management of sampling rules.
+
 Release v1.15.22 (2018-08-27)
 ===
 

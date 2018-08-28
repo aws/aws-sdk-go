@@ -67,9 +67,29 @@ type XRayAPI interface {
 	BatchGetTracesPages(*xray.BatchGetTracesInput, func(*xray.BatchGetTracesOutput, bool) bool) error
 	BatchGetTracesPagesWithContext(aws.Context, *xray.BatchGetTracesInput, func(*xray.BatchGetTracesOutput, bool) bool, ...request.Option) error
 
+	CreateSamplingRule(*xray.CreateSamplingRuleInput) (*xray.CreateSamplingRuleOutput, error)
+	CreateSamplingRuleWithContext(aws.Context, *xray.CreateSamplingRuleInput, ...request.Option) (*xray.CreateSamplingRuleOutput, error)
+	CreateSamplingRuleRequest(*xray.CreateSamplingRuleInput) (*request.Request, *xray.CreateSamplingRuleOutput)
+
+	DeleteSamplingRule(*xray.DeleteSamplingRuleInput) (*xray.DeleteSamplingRuleOutput, error)
+	DeleteSamplingRuleWithContext(aws.Context, *xray.DeleteSamplingRuleInput, ...request.Option) (*xray.DeleteSamplingRuleOutput, error)
+	DeleteSamplingRuleRequest(*xray.DeleteSamplingRuleInput) (*request.Request, *xray.DeleteSamplingRuleOutput)
+
 	GetEncryptionConfig(*xray.GetEncryptionConfigInput) (*xray.GetEncryptionConfigOutput, error)
 	GetEncryptionConfigWithContext(aws.Context, *xray.GetEncryptionConfigInput, ...request.Option) (*xray.GetEncryptionConfigOutput, error)
 	GetEncryptionConfigRequest(*xray.GetEncryptionConfigInput) (*request.Request, *xray.GetEncryptionConfigOutput)
+
+	GetSamplingRules(*xray.GetSamplingRulesInput) (*xray.GetSamplingRulesOutput, error)
+	GetSamplingRulesWithContext(aws.Context, *xray.GetSamplingRulesInput, ...request.Option) (*xray.GetSamplingRulesOutput, error)
+	GetSamplingRulesRequest(*xray.GetSamplingRulesInput) (*request.Request, *xray.GetSamplingRulesOutput)
+
+	GetSamplingStatisticSummaries(*xray.GetSamplingStatisticSummariesInput) (*xray.GetSamplingStatisticSummariesOutput, error)
+	GetSamplingStatisticSummariesWithContext(aws.Context, *xray.GetSamplingStatisticSummariesInput, ...request.Option) (*xray.GetSamplingStatisticSummariesOutput, error)
+	GetSamplingStatisticSummariesRequest(*xray.GetSamplingStatisticSummariesInput) (*request.Request, *xray.GetSamplingStatisticSummariesOutput)
+
+	GetSamplingTargets(*xray.GetSamplingTargetsInput) (*xray.GetSamplingTargetsOutput, error)
+	GetSamplingTargetsWithContext(aws.Context, *xray.GetSamplingTargetsInput, ...request.Option) (*xray.GetSamplingTargetsOutput, error)
+	GetSamplingTargetsRequest(*xray.GetSamplingTargetsInput) (*request.Request, *xray.GetSamplingTargetsOutput)
 
 	GetServiceGraph(*xray.GetServiceGraphInput) (*xray.GetServiceGraphOutput, error)
 	GetServiceGraphWithContext(aws.Context, *xray.GetServiceGraphInput, ...request.Option) (*xray.GetServiceGraphOutput, error)
@@ -103,6 +123,10 @@ type XRayAPI interface {
 	PutTraceSegments(*xray.PutTraceSegmentsInput) (*xray.PutTraceSegmentsOutput, error)
 	PutTraceSegmentsWithContext(aws.Context, *xray.PutTraceSegmentsInput, ...request.Option) (*xray.PutTraceSegmentsOutput, error)
 	PutTraceSegmentsRequest(*xray.PutTraceSegmentsInput) (*request.Request, *xray.PutTraceSegmentsOutput)
+
+	UpdateSamplingRule(*xray.UpdateSamplingRuleInput) (*xray.UpdateSamplingRuleOutput, error)
+	UpdateSamplingRuleWithContext(aws.Context, *xray.UpdateSamplingRuleInput, ...request.Option) (*xray.UpdateSamplingRuleOutput, error)
+	UpdateSamplingRuleRequest(*xray.UpdateSamplingRuleInput) (*request.Request, *xray.UpdateSamplingRuleOutput)
 }
 
 var _ XRayAPI = (*xray.XRay)(nil)
