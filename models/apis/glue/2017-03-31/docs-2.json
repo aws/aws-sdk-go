@@ -28,7 +28,6 @@
     "DeleteDevEndpoint": "<p>Deletes a specified DevEndpoint.</p>",
     "DeleteJob": "<p>Deletes a specified job definition. If the job definition is not found, no exception is thrown.</p>",
     "DeletePartition": "<p>Deletes a specified partition.</p>",
-    "DeleteResourcePolicy": "<p>Deletes a specified policy.</p>",
     "DeleteSecurityConfiguration": "<p>Deletes a specified security configuration.</p>",
     "DeleteTable": "<p>Removes a table definition from the Data Catalog.</p> <note> <p>After completing this operation, you will no longer have access to the table versions and partitions that belong to the deleted table. AWS Glue deletes these \"orphaned\" resources asynchronously in a timely manner, at the discretion of the service.</p> <p>To ensure immediate deletion of all related resources, before calling <code>DeleteTable</code>, use <code>DeleteTableVersion</code> or <code>BatchDeleteTableVersion</code>, and <code>DeletePartition</code> or <code>BatchDeletePartition</code>, to delete any resources that belong to the table.</p> </note>",
     "DeleteTableVersion": "<p>Deletes a specified version of a table.</p>",
@@ -55,7 +54,6 @@
     "GetPartition": "<p>Retrieves information about a specified partition.</p>",
     "GetPartitions": "<p>Retrieves information about the partitions in a table.</p>",
     "GetPlan": "<p>Gets code to perform a specified mapping.</p>",
-    "GetResourcePolicy": "<p>Retrieves a specified resource policy.</p>",
     "GetSecurityConfiguration": "<p>Retrieves a specified security configuration.</p>",
     "GetSecurityConfigurations": "<p>Retrieves a list of all security configurations.</p>",
     "GetTable": "<p>Retrieves the <code>Table</code> definition in a Data Catalog for a specified table.</p>",
@@ -68,7 +66,6 @@
     "GetUserDefinedFunctions": "<p>Retrieves a multiple function definitions from the Data Catalog.</p>",
     "ImportCatalogToGlue": "<p>Imports an existing Athena Data Catalog to AWS Glue</p>",
     "PutDataCatalogEncryptionSettings": "<p>Sets the security configuration for a specified catalog. Once the configuration has been set, the specified encryption is applied to every catalog write thereafter.</p>",
-    "PutResourcePolicy": "<p>Sets the Data Catalog resource policy for access control.</p>",
     "ResetJobBookmark": "<p>Resets a bookmark entry.</p>",
     "StartCrawler": "<p>Starts a crawl using the specified crawler, regardless of what is scheduled. If the crawler is already running, returns a <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-exceptions.html#aws-glue-api-exceptions-CrawlerRunningException\">CrawlerRunningException</a>.</p>",
     "StartCrawlerSchedule": "<p>Changes the schedule state of the specified crawler to <code>SCHEDULED</code>, unless the crawler is already running or the schedule state is already <code>SCHEDULED</code>.</p>",
@@ -175,7 +172,7 @@
     "BatchDeleteTableVersionList": {
       "base": null,
       "refs": {
-        "BatchDeleteTableVersionRequest$VersionIds": "<p>A list of the IDs of versions to be deleted. A <code>VersionId</code> is a string representation of an integer. Each version is incremented by 1.</p>"
+        "BatchDeleteTableVersionRequest$VersionIds": "<p>A list of the IDs of versions to be deleted.</p>"
       }
     },
     "BatchDeleteTableVersionRequest": {
@@ -498,11 +495,6 @@
         "ConditionList$member": null
       }
     },
-    "ConditionCheckFailureException": {
-      "base": null,
-      "refs": {
-      }
-    },
     "ConditionList": {
       "base": null,
       "refs": {
@@ -574,9 +566,9 @@
     "CrawlerConfiguration": {
       "base": null,
       "refs": {
-        "Crawler$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Configuring a Crawler</a>.</p>",
-        "CreateCrawlerRequest$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Configuring a Crawler</a>.</p>",
-        "UpdateCrawlerRequest$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Configuring a Crawler</a>.</p>"
+        "Crawler$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a Crawler's behavior.</p> <p>You can use this field to force partitions to inherit metadata such as classification, input format, output format, serde information, and schema from their parent table, rather than detect this information separately for each partition. Use the following JSON string to specify that behavior:</p> <p>Example: <code>'{ \"Version\": 1.0, \"CrawlerOutput\": { \"Partitions\": { \"AddOrUpdateBehavior\": \"InheritFromTable\" } } }'</code> </p>",
+        "CreateCrawlerRequest$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a Crawler's behavior.</p> <p>You can use this field to force partitions to inherit metadata such as classification, input format, output format, serde information, and schema from their parent table, rather than detect this information separately for each partition. Use the following JSON string to specify that behavior:</p> <p>Example: <code>'{ \"Version\": 1.0, \"CrawlerOutput\": { \"Partitions\": { \"AddOrUpdateBehavior\": \"InheritFromTable\" } } }'</code> </p>",
+        "UpdateCrawlerRequest$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a Crawler's behavior.</p> <p>You can use this field to force partitions to inherit metadata such as classification, input format, output format, serde information, and schema from their parent table, rather than detect this information separately for each partition. Use the following JSON string to specify that behavior:</p> <p>Example: <code>'{ \"Version\": 1.0, \"CrawlerOutput\": { \"Partitions\": { \"AddOrUpdateBehavior\": \"InheritFromTable\" } } }'</code> </p>"
       }
     },
     "CrawlerList": {
@@ -925,16 +917,6 @@
       "refs": {
       }
     },
-    "DeleteResourcePolicyRequest": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "DeleteResourcePolicyResponse": {
-      "base": null,
-      "refs": {
-      }
-    },
     "DeleteSecurityConfigurationRequest": {
       "base": null,
       "refs": {
@@ -1095,12 +1077,6 @@
       "base": null,
       "refs": {
         "JobRun$ExecutionTime": "<p>The amount of time (in seconds) that the job run consumed resources.</p>"
-      }
-    },
-    "ExistCondition": {
-      "base": null,
-      "refs": {
-        "PutResourcePolicyRequest$PolicyExistsCondition": "<p>If a value of <code>MUST_EXIST</code> is used here, the call will fail unless a policy has already been set. If a value of <code>NOT_Exist</code> is used, the call will fail if a policy has already been set. If a value of <code>NONE</code> or a null value is used, the call will not depend on the existence of a policy.</p>"
       }
     },
     "FieldType": {
@@ -1407,16 +1383,6 @@
       "refs": {
       }
     },
-    "GetResourcePolicyRequest": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "GetResourcePolicyResponse": {
-      "base": null,
-      "refs": {
-      }
-    },
     "GetSecurityConfigurationRequest": {
       "base": null,
       "refs": {
@@ -1540,15 +1506,6 @@
         "CreateGrokClassifierRequest$GrokPattern": "<p>The grok pattern used by this classifier.</p>",
         "GrokClassifier$GrokPattern": "<p>The grok pattern applied to a data store by this classifier. For more information, see built-in patterns in <a href=\"http://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html\">Writing Custom Classifers</a>.</p>",
         "UpdateGrokClassifierRequest$GrokPattern": "<p>The grok pattern used by this classifier.</p>"
-      }
-    },
-    "HashString": {
-      "base": null,
-      "refs": {
-        "DeleteResourcePolicyRequest$PolicyHashCondition": "<p>The hash value returned when this policy was set.</p>",
-        "GetResourcePolicyResponse$PolicyHash": "<p>Contains the hash value associated with this policy.</p>",
-        "PutResourcePolicyRequest$PolicyHashCondition": "<p>This is the hash value returned when the previous policy was set using PutResourcePolicy. Its purpose is to prevent concurrent modifications of a policy. Do not use this parameter if no previous policy has been set.</p>",
-        "PutResourcePolicyResponse$PolicyHash": "<p>A hash of the policy that has just been set. This must be included in a subsequent call that overwrites or updates this policy.</p>"
       }
     },
     "IdString": {
@@ -1850,7 +1807,6 @@
         "AlreadyExistsException$Message": "<p>A message describing the problem.</p>",
         "ConcurrentModificationException$Message": "<p>A message describing the problem.</p>",
         "ConcurrentRunsExceededException$Message": "<p>A message describing the problem.</p>",
-        "ConditionCheckFailureException$Message": null,
         "CrawlerNotRunningException$Message": "<p>A message describing the problem.</p>",
         "CrawlerRunningException$Message": "<p>A message describing the problem.</p>",
         "CrawlerStoppingException$Message": "<p>A message describing the problem.</p>",
@@ -2210,13 +2166,6 @@
         "ConnectionInput$PhysicalConnectionRequirements": "<p>A map of physical connection requirements, such as VPC and SecurityGroup, needed for making this connection successfully.</p>"
       }
     },
-    "PolicyJsonString": {
-      "base": null,
-      "refs": {
-        "GetResourcePolicyResponse$PolicyInJson": "<p>Contains the requested policy document, in JSON format.</p>",
-        "PutResourcePolicyRequest$PolicyInJson": "<p>Contains the policy document to set, in JSON format.</p>"
-      }
-    },
     "Predecessor": {
       "base": "<p>A job run that was used in the predicate of a conditional trigger that triggered this job run.</p>",
       "refs": {
@@ -2240,7 +2189,7 @@
     "PredicateString": {
       "base": null,
       "refs": {
-        "GetPartitionsRequest$Expression": "<p>An expression filtering the partitions to be returned.</p> <p>The expression uses SQL syntax similar to the SQL <code>WHERE</code> filter clause. The SQL statement parser <a href=\"http://jsqlparser.sourceforge.net/home.php\">JSQLParser</a> parses the expression. </p> <p> <i>Operators</i>: The following are the operators that you can use in the <code>Expression</code> API call:</p> <dl> <dt>=</dt> <dd> <p>Checks if the values of the two operands are equal or not; if yes, then the condition becomes true.</p> <p>Example: Assume 'variable a' holds 10 and 'variable b' holds 20. </p> <p>(a = b) is not true.</p> </dd> <dt>&lt; &gt;</dt> <dd> <p>Checks if the values of two operands are equal or not; if the values are not equal, then the condition becomes true.</p> <p>Example: (a &lt; &gt; b) is true.</p> </dd> <dt>&gt;</dt> <dd> <p>Checks if the value of the left operand is greater than the value of the right operand; if yes, then the condition becomes true.</p> <p>Example: (a &gt; b) is not true.</p> </dd> <dt>&lt;</dt> <dd> <p>Checks if the value of the left operand is less than the value of the right operand; if yes, then the condition becomes true.</p> <p>Example: (a &lt; b) is true.</p> </dd> <dt>&gt;=</dt> <dd> <p>Checks if the value of the left operand is greater than or equal to the value of the right operand; if yes, then the condition becomes true.</p> <p>Example: (a &gt;= b) is not true.</p> </dd> <dt>&lt;=</dt> <dd> <p>Checks if the value of the left operand is less than or equal to the value of the right operand; if yes, then the condition becomes true.</p> <p>Example: (a &lt;= b) is true.</p> </dd> <dt>AND, OR, IN, BETWEEN, LIKE, NOT, IS NULL</dt> <dd> <p>Logical operators.</p> </dd> </dl> <p> <i>Supported Partition Key Types</i>: The following are the the supported partition keys.</p> <ul> <li> <p> <code>string</code> </p> </li> <li> <p> <code>date</code> </p> </li> <li> <p> <code>timestamp</code> </p> </li> <li> <p> <code>int</code> </p> </li> <li> <p> <code>bigint</code> </p> </li> <li> <p> <code>long</code> </p> </li> <li> <p> <code>tinyint</code> </p> </li> <li> <p> <code>smallint</code> </p> </li> <li> <p> <code>decimal</code> </p> </li> </ul> <p>If an invalid type is encountered, a <code> <a href=\"https://code.amazon.com/packages/DaylightService/blobs/5820762977ffbdd59f23f4cf349e47189632202f/--/src/com/amazonaws/daylight/core/storage/parsers/query/parser/PredicateFactoryProvider.java#L37\">PredicateConstructionException</a> </code> is thrown. </p> <p>The following list shows the valid operators on each type. When you define a crawler, the <code>partitionKey</code> type is created as a <code>STRING</code>, to be compatible with the catalog partitions. </p> <p> <i>Sample API Call</i>: </p>"
+        "GetPartitionsRequest$Expression": "<p>An expression filtering the partitions to be returned.</p>"
       }
     },
     "PrincipalType": {
@@ -2265,16 +2214,6 @@
       }
     },
     "PutDataCatalogEncryptionSettingsResponse": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "PutResourcePolicyRequest": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "PutResourcePolicyResponse": {
       "base": null,
       "refs": {
       }
@@ -2657,8 +2596,6 @@
         "Crawler$CreationTime": "<p>The time when the crawler was created.</p>",
         "Crawler$LastUpdated": "<p>The time the crawler was last updated.</p>",
         "Database$CreateTime": "<p>The time at which the metadata database was created in the catalog.</p>",
-        "GetResourcePolicyResponse$CreateTime": "<p>The date and time at which the policy was created.</p>",
-        "GetResourcePolicyResponse$UpdateTime": "<p>The date and time at which the policy was last updated.</p>",
         "GrokClassifier$CreationTime": "<p>The time this classifier was registered.</p>",
         "GrokClassifier$LastUpdated": "<p>The time this classifier was last updated.</p>",
         "JsonClassifier$CreationTime": "<p>The time this classifier was registered.</p>",
@@ -2969,10 +2906,10 @@
       "base": null,
       "refs": {
         "BatchDeleteTableVersionList$member": null,
-        "DeleteTableVersionRequest$VersionId": "<p>The ID of the table version to be deleted. A <code>VersionID</code> is a string representation of an integer. Each version is incremented by 1.</p>",
-        "GetTableVersionRequest$VersionId": "<p>The ID value of the table version to be retrieved. A <code>VersionID</code> is a string representation of an integer. Each version is incremented by 1. </p>",
-        "TableVersion$VersionId": "<p>The ID value that identifies this table version. A <code>VersionId</code> is a string representation of an integer. Each version is incremented by 1.</p>",
-        "TableVersionError$VersionId": "<p>The ID value of the version in question. A <code>VersionID</code> is a string representation of an integer. Each version is incremented by 1.</p>"
+        "DeleteTableVersionRequest$VersionId": "<p>The ID of the table version to be deleted.</p>",
+        "GetTableVersionRequest$VersionId": "<p>The ID value of the table version to be retrieved.</p>",
+        "TableVersion$VersionId": "<p>The ID value that identifies this table version.</p>",
+        "TableVersionError$VersionId": "<p>The ID value of the version in question.</p>"
       }
     },
     "ViewTextString": {
