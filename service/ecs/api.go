@@ -4201,7 +4201,7 @@ type ContainerDefinition struct {
 	// section of the Docker Remote API (https://docs.docker.com/engine/api/v1.35/)
 	// and the --add-host option to docker run (https://docs.docker.com/engine/reference/run/).
 	//
-	// This parameter is not supported for Windows containers.
+	// This parameter is not supported for Windows containers and awsvpc networkMode.
 	ExtraHosts []*HostEntry `locationName:"extraHosts" type:"list"`
 
 	// The health check command and associated configuration parameters for the
