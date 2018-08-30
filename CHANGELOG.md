@@ -1,3 +1,12 @@
+Release v1.15.25 (2018-08-30)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * Support multiple sources and artifacts for CodeBuild projects.
+* `service/sagemaker`: Updates service API and documentation
+  * VolumeKmsKeyId now available in Batch Transform Job
+
 Release v1.15.24 (2018-08-29)
 ===
 
