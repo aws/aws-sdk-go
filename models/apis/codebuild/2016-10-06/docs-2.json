@@ -92,7 +92,14 @@
     "BuildArtifacts": {
       "base": "<p>Information about build output artifacts.</p>",
       "refs": {
-        "Build$artifacts": "<p>Information about the output artifacts for the build.</p>"
+        "Build$artifacts": "<p>Information about the output artifacts for the build.</p>",
+        "BuildArtifactsList$member": null
+      }
+    },
+    "BuildArtifactsList": {
+      "base": null,
+      "refs": {
+        "Build$secondaryArtifacts": "<p> An array of <code>ProjectArtifacts</code> objects. </p>"
       }
     },
     "BuildIds": {
@@ -424,8 +431,18 @@
       "refs": {
         "CreateProjectInput$artifacts": "<p>Information about the build output artifacts for the build project.</p>",
         "Project$artifacts": "<p>Information about the build output artifacts for the build project.</p>",
+        "ProjectArtifactsList$member": null,
         "StartBuildInput$artifactsOverride": "<p>Build output artifact settings that override, for this build only, the latest ones already defined in the build project.</p>",
         "UpdateProjectInput$artifacts": "<p>Information to be changed about the build output artifacts for the build project.</p>"
+      }
+    },
+    "ProjectArtifactsList": {
+      "base": null,
+      "refs": {
+        "CreateProjectInput$secondaryArtifacts": "<p> An array of <code>ProjectArtifacts</code> objects. </p>",
+        "Project$secondaryArtifacts": "<p> An array of <code>ProjectArtifacts</code> objects. </p>",
+        "StartBuildInput$secondaryArtifactsOverride": "<p> An array of <code>ProjectArtifacts</code> objects. </p>",
+        "UpdateProjectInput$secondaryArtifacts": "<p> An array of <code>ProjectSource</code> objects. </p>"
       }
     },
     "ProjectBadge": {
@@ -479,6 +496,13 @@
         "ListProjectsOutput$projects": "<p>The list of build project names, with each build project name representing a single build project.</p>"
       }
     },
+    "ProjectSecondarySourceVersions": {
+      "base": null,
+      "refs": {
+        "Build$secondarySourceVersions": "<p> An array of <code>ProjectSourceVersion</code> objects. Each <code>ProjectSourceVersion</code> must be one of: </p> <ul> <li> <p>For AWS CodeCommit: the commit ID to use.</p> </li> <li> <p>For GitHub: the commit ID, pull request ID, branch name, or tag name that corresponds to the version of the source code you want to build. If a pull request ID is specified, it must use the format <code>pr/pull-request-ID</code> (for example <code>pr/25</code>). If a branch name is specified, the branch's HEAD commit ID will be used. If not specified, the default branch's HEAD commit ID will be used.</p> </li> <li> <p>For Bitbucket: the commit ID, branch name, or tag name that corresponds to the version of the source code you want to build. If a branch name is specified, the branch's HEAD commit ID will be used. If not specified, the default branch's HEAD commit ID will be used.</p> </li> <li> <p>For Amazon Simple Storage Service (Amazon S3): the version ID of the object representing the build input ZIP file to use.</p> </li> </ul>",
+        "StartBuildInput$secondarySourcesVersionOverride": "<p> An array of <code>ProjectSourceVersion</code> objects that specify one or more versions of the project's secondary sources to be used for this build only. </p>"
+      }
+    },
     "ProjectSortByType": {
       "base": null,
       "refs": {
@@ -491,7 +515,24 @@
         "Build$source": "<p>Information about the source code to be built.</p>",
         "CreateProjectInput$source": "<p>Information about the build input source code for the build project.</p>",
         "Project$source": "<p>Information about the build input source code for this build project.</p>",
+        "ProjectSources$member": null,
         "UpdateProjectInput$source": "<p>Information to be changed about the build input source code for the build project.</p>"
+      }
+    },
+    "ProjectSourceVersion": {
+      "base": "<p>A source identifier and its corresponding version.</p>",
+      "refs": {
+        "ProjectSecondarySourceVersions$member": null
+      }
+    },
+    "ProjectSources": {
+      "base": null,
+      "refs": {
+        "Build$secondarySources": "<p> An array of <code>ProjectSource</code> objects. </p>",
+        "CreateProjectInput$secondarySources": "<p> An array of <code>ProjectSource</code> objects. </p>",
+        "Project$secondarySources": "<p> An array of <code>ProjectSource</code> objects. </p>",
+        "StartBuildInput$secondarySourcesOverride": "<p> An array of <code>ProjectSource</code> objects. </p>",
+        "UpdateProjectInput$secondarySources": "<p> An array of <code>ProjectSource</code> objects. </p>"
       }
     },
     "Projects": {
@@ -579,6 +620,7 @@
         "BuildArtifacts$location": "<p>Information about the location of the build artifacts.</p>",
         "BuildArtifacts$sha256sum": "<p>The SHA-256 hash of the build artifact.</p> <p>You can use this hash along with a checksum tool to confirm both file integrity and authenticity.</p> <note> <p>This value is available only if the build project's <code>packaging</code> value is set to <code>ZIP</code>.</p> </note>",
         "BuildArtifacts$md5sum": "<p>The MD5 hash of the build artifact.</p> <p>You can use this hash along with a checksum tool to confirm both file integrity and authenticity.</p> <note> <p>This value is available only if the build project's <code>packaging</code> value is set to <code>ZIP</code>.</p> </note>",
+        "BuildArtifacts$artifactIdentifier": "<p> An identifier for this artifact definition. </p>",
         "BuildNotDeleted$statusCode": "<p>Additional information about the build that could not be successfully deleted.</p>",
         "CreateWebhookInput$branchFilter": "<p>A regular expression used to determine which branches in a repository are built when a webhook is triggered. If the name of a branch matches the regular expression, then it is built. If it doesn't match, then it is not. If branchFilter is empty, then all branches are built.</p>",
         "EnvironmentImage$name": "<p>The name of the Docker image.</p>",
@@ -599,11 +641,15 @@
         "ProjectArtifacts$location": "<p>Information about the build output artifact location, as follows:</p> <ul> <li> <p>If <code>type</code> is set to <code>CODEPIPELINE</code>, then AWS CodePipeline will ignore this value if specified. This is because AWS CodePipeline manages its build output locations instead of AWS CodeBuild.</p> </li> <li> <p>If <code>type</code> is set to <code>NO_ARTIFACTS</code>, then this value will be ignored if specified, because no build output will be produced.</p> </li> <li> <p>If <code>type</code> is set to <code>S3</code>, this is the name of the output bucket.</p> </li> </ul>",
         "ProjectArtifacts$path": "<p>Along with <code>namespaceType</code> and <code>name</code>, the pattern that AWS CodeBuild will use to name and store the output artifact, as follows:</p> <ul> <li> <p>If <code>type</code> is set to <code>CODEPIPELINE</code>, then AWS CodePipeline will ignore this value if specified. This is because AWS CodePipeline manages its build output names instead of AWS CodeBuild.</p> </li> <li> <p>If <code>type</code> is set to <code>NO_ARTIFACTS</code>, then this value will be ignored if specified, because no build output will be produced.</p> </li> <li> <p>If <code>type</code> is set to <code>S3</code>, this is the path to the output artifact. If <code>path</code> is not specified, then <code>path</code> will not be used.</p> </li> </ul> <p>For example, if <code>path</code> is set to <code>MyArtifacts</code>, <code>namespaceType</code> is set to <code>NONE</code>, and <code>name</code> is set to <code>MyArtifact.zip</code>, then the output artifact would be stored in the output bucket at <code>MyArtifacts/MyArtifact.zip</code>.</p>",
         "ProjectArtifacts$name": "<p>Along with <code>path</code> and <code>namespaceType</code>, the pattern that AWS CodeBuild will use to name and store the output artifact, as follows:</p> <ul> <li> <p>If <code>type</code> is set to <code>CODEPIPELINE</code>, then AWS CodePipeline will ignore this value if specified. This is because AWS CodePipeline manages its build output names instead of AWS CodeBuild.</p> </li> <li> <p>If <code>type</code> is set to <code>NO_ARTIFACTS</code>, then this value will be ignored if specified, because no build output will be produced.</p> </li> <li> <p>If <code>type</code> is set to <code>S3</code>, this is the name of the output artifact object. If you set the name to be a forward slash (\"/\"), then the artifact is stored in the root of the output bucket.</p> </li> </ul> <p>For example:</p> <ul> <li> <p> If <code>path</code> is set to <code>MyArtifacts</code>, <code>namespaceType</code> is set to <code>BUILD_ID</code>, and <code>name</code> is set to <code>MyArtifact.zip</code>, then the output artifact would be stored in <code>MyArtifacts/<i>build-ID</i>/MyArtifact.zip</code>. </p> </li> <li> <p> If <code>path</code> is empty, <code>namespaceType</code> is set to <code>NONE</code>, and <code>name</code> is set to \"<code>/</code>\", then the output artifact would be stored in the root of the output bucket. </p> </li> <li> <p> If <code>path</code> is set to <code>MyArtifacts</code>, <code>namespaceType</code> is set to <code>BUILD_ID</code>, and <code>name</code> is set to \"<code>/</code>\", then the output artifact would be stored in <code>MyArtifacts/<i>build-ID</i> </code>. </p> </li> </ul>",
+        "ProjectArtifacts$artifactIdentifier": "<p> An identifier for this artifact definition. </p>",
         "ProjectBadge$badgeRequestUrl": "<p>The publicly-accessible URL through which you can access the build badge for your project. </p>",
         "ProjectCache$location": "<p>Information about the cache location, as follows: </p> <ul> <li> <p> <code>NO_CACHE</code>: This value will be ignored.</p> </li> <li> <p> <code>S3</code>: This is the S3 bucket name/prefix.</p> </li> </ul>",
         "ProjectEnvironment$certificate": "<p>The certificate to use with this build project.</p>",
         "ProjectSource$location": "<p>Information about the location of the source code to be built. Valid values include:</p> <ul> <li> <p>For source code settings that are specified in the source action of a pipeline in AWS CodePipeline, <code>location</code> should not be specified. If it is specified, AWS CodePipeline will ignore it. This is because AWS CodePipeline uses the settings in a pipeline's source action instead of this value.</p> </li> <li> <p>For source code in an AWS CodeCommit repository, the HTTPS clone URL to the repository that contains the source code and the build spec (for example, <code>https://git-codecommit.<i>region-ID</i>.amazonaws.com/v1/repos/<i>repo-name</i> </code>).</p> </li> <li> <p>For source code in an Amazon Simple Storage Service (Amazon S3) input bucket, the path to the ZIP file that contains the source code (for example, <code> <i>bucket-name</i>/<i>path</i>/<i>to</i>/<i>object-name</i>.zip</code>)</p> </li> <li> <p>For source code in a GitHub repository, the HTTPS clone URL to the repository that contains the source and the build spec. Also, you must connect your AWS account to your GitHub account. To do this, use the AWS CodeBuild console to begin creating a build project. When you use the console to connect (or reconnect) with GitHub, on the GitHub <b>Authorize application</b> page that displays, for <b>Organization access</b>, choose <b>Request access</b> next to each repository you want to allow AWS CodeBuild to have access to. Then choose <b>Authorize application</b>. (After you have connected to your GitHub account, you do not need to finish creating the build project, and you may then leave the AWS CodeBuild console.) To instruct AWS CodeBuild to then use this connection, in the <code>source</code> object, set the <code>auth</code> object's <code>type</code> value to <code>OAUTH</code>.</p> </li> <li> <p>For source code in a Bitbucket repository, the HTTPS clone URL to the repository that contains the source and the build spec. Also, you must connect your AWS account to your Bitbucket account. To do this, use the AWS CodeBuild console to begin creating a build project. When you use the console to connect (or reconnect) with Bitbucket, on the Bitbucket <b>Confirm access to your account</b> page that displays, choose <b>Grant access</b>. (After you have connected to your Bitbucket account, you do not need to finish creating the build project, and you may then leave the AWS CodeBuild console.) To instruct AWS CodeBuild to then use this connection, in the <code>source</code> object, set the <code>auth</code> object's <code>type</code> value to <code>OAUTH</code>.</p> </li> </ul>",
         "ProjectSource$buildspec": "<p>The build spec declaration to use for the builds in this build project.</p> <p>If this value is not specified, a build spec must be included along with the source code to be built.</p>",
+        "ProjectSource$sourceIdentifier": "<p> An identifier for this project source. </p>",
+        "ProjectSourceVersion$sourceIdentifier": "<p>An identifier for a source in the build project.</p>",
+        "ProjectSourceVersion$sourceVersion": "<p>The source version for the corresponding source identifier. If specified, must be one of:</p> <ul> <li> <p>For AWS CodeCommit: the commit ID to use.</p> </li> <li> <p>For GitHub: the commit ID, pull request ID, branch name, or tag name that corresponds to the version of the source code you want to build. If a pull request ID is specified, it must use the format <code>pr/pull-request-ID</code> (for example <code>pr/25</code>). If a branch name is specified, the branch's HEAD commit ID will be used. If not specified, the default branch's HEAD commit ID will be used.</p> </li> <li> <p>For Bitbucket: the commit ID, branch name, or tag name that corresponds to the version of the source code you want to build. If a branch name is specified, the branch's HEAD commit ID will be used. If not specified, the default branch's HEAD commit ID will be used.</p> </li> <li> <p>For Amazon Simple Storage Service (Amazon S3): the version ID of the object representing the build input ZIP file to use.</p> </li> </ul>",
         "SourceAuth$resource": "<p>The resource value that applies to the specified authorization type.</p>",
         "StartBuildInput$sourceVersion": "<p>A version of the build input to be built, for this build only. If not specified, the latest version will be used. If specified, must be one of:</p> <ul> <li> <p>For AWS CodeCommit: the commit ID to use.</p> </li> <li> <p>For GitHub: the commit ID, pull request ID, branch name, or tag name that corresponds to the version of the source code you want to build. If a pull request ID is specified, it must use the format <code>pr/pull-request-ID</code> (for example <code>pr/25</code>). If a branch name is specified, the branch's HEAD commit ID will be used. If not specified, the default branch's HEAD commit ID will be used.</p> </li> <li> <p>For Bitbucket: the commit ID, branch name, or tag name that corresponds to the version of the source code you want to build. If a branch name is specified, the branch's HEAD commit ID will be used. If not specified, the default branch's HEAD commit ID will be used.</p> </li> <li> <p>For Amazon Simple Storage Service (Amazon S3): the version ID of the object representing the build input ZIP file to use.</p> </li> </ul>",
         "StartBuildInput$sourceLocationOverride": "<p>A location that overrides for this build the source location for the one defined in the build project.</p>",

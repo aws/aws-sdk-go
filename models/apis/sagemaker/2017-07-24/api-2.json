@@ -1178,6 +1178,7 @@
         "OutOfService",
         "Creating",
         "Updating",
+        "SystemUpdating",
         "RollingBack",
         "InService",
         "Deleting",
@@ -2535,7 +2536,8 @@
       ],
       "members":{
         "InstanceType":{"shape":"TransformInstanceType"},
-        "InstanceCount":{"shape":"TransformInstanceCount"}
+        "InstanceCount":{"shape":"TransformInstanceCount"},
+        "VolumeKmsKeyId":{"shape":"KmsKeyId"}
       }
     },
     "TransformS3DataSource":{
