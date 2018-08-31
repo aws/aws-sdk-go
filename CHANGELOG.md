@@ -1,3 +1,12 @@
+Release v1.15.26 (2018-08-31)
+===
+
+### Service Client Updates
+* `service/eks`: Updates service API and documentation
+* `service/waf`: Updates service API and documentation
+  * This change includes support for the WAF FullLogging feature through which Customers will have access to all the logs of requests that are inspected by a WAF WebACL. The new APIs allow Customers to manage association of a WebACL with one or more supported "LogDestination" and redact any request fields from the logs.
+* `service/waf-regional`: Updates service API and documentation
+
 Release v1.15.25 (2018-08-30)
 ===
 
