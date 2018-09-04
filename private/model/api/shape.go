@@ -622,6 +622,10 @@ type {{ .ShapeName }} struct {
 
 		{{ if $doc -}}
 			{{ $doc }}
+			{{ if $elem.Deprecated -}}
+			//
+			// Deprecated: {{ $name }} is a deprecated field
+			{{ end -}}
 		{{ end -}}
 		{{ if $isBlob -}}
 			{{ if $doc -}}
