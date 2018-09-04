@@ -668,6 +668,98 @@ func (c *Rekognition) DeleteStreamProcessorWithContext(ctx aws.Context, input *D
 	return out, req.Send()
 }
 
+const opDescribeCollection = "DescribeCollection"
+
+// DescribeCollectionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCollection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeCollection for more information on using the DescribeCollection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeCollectionRequest method.
+//    req, resp := client.DescribeCollectionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Rekognition) DescribeCollectionRequest(input *DescribeCollectionInput) (req *request.Request, output *DescribeCollectionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeCollection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeCollectionInput{}
+	}
+
+	output = &DescribeCollectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeCollection API operation for Amazon Rekognition.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation DescribeCollection for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   Input parameter violated a constraint. Validate your parameter before calling
+//   the API operation again.
+//
+//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   You are not authorized to perform the action.
+//
+//   * ErrCodeInternalServerError "InternalServerError"
+//   Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   * ErrCodeThrottlingException "ThrottlingException"
+//   Amazon Rekognition is temporarily unable to process the request. Try your
+//   call again.
+//
+//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   The number of requests exceeded your throughput limit. If you want to increase
+//   this limit, contact Amazon Rekognition.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The collection specified in the request cannot be found.
+//
+func (c *Rekognition) DescribeCollection(input *DescribeCollectionInput) (*DescribeCollectionOutput, error) {
+	req, out := c.DescribeCollectionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeCollectionWithContext is the same as DescribeCollection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeCollection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) DescribeCollectionWithContext(ctx aws.Context, input *DescribeCollectionInput, opts ...request.Option) (*DescribeCollectionOutput, error) {
+	req, out := c.DescribeCollectionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeStreamProcessor = "DescribeStreamProcessor"
 
 // DescribeStreamProcessorRequest generates a "aws/request.Request" representing the
@@ -2557,7 +2649,7 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 // by the service for the input image. If you request all facial attributes
 // (using the detectionAttributes parameter, Amazon Rekognition returns detailed
 // facial attributes such as facial landmarks (for example, location of eye
-// and mount) and other facial attributes such gender. If you provide the same
+// and mouth) and other facial attributes such gender. If you provide the same
 // image, specify the same collection, and use the same external ID in the IndexFaces
 // operation, Amazon Rekognition doesn't save duplicate face metadata.
 //
@@ -3903,7 +3995,7 @@ func (c *Rekognition) StartFaceSearchRequest(input *StartFaceSearchInput) (req *
 // you specify in NotificationChannel. To get the search results, first check
 // that the status value published to the Amazon SNS topic is SUCCEEDED. If
 // so, call and pass the job identifier (JobId) from the initial call to StartFaceSearch.
-// For more information, see collections-search-person.
+// For more information, see procedure-person-search-videos.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5469,6 +5561,91 @@ func (s DeleteStreamProcessorOutput) GoString() string {
 	return s.String()
 }
 
+type DescribeCollectionInput struct {
+	_ struct{} `type:"structure"`
+
+	// CollectionId is a required field
+	CollectionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeCollectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCollectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeCollectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeCollectionInput"}
+	if s.CollectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollectionId"))
+	}
+	if s.CollectionId != nil && len(*s.CollectionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CollectionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCollectionId sets the CollectionId field's value.
+func (s *DescribeCollectionInput) SetCollectionId(v string) *DescribeCollectionInput {
+	s.CollectionId = &v
+	return s
+}
+
+type DescribeCollectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	CollectionARN *string `type:"string"`
+
+	CreationTimestamp *time.Time `type:"timestamp"`
+
+	FaceCount *int64 `type:"long"`
+
+	FaceModelVersion *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeCollectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCollectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetCollectionARN sets the CollectionARN field's value.
+func (s *DescribeCollectionOutput) SetCollectionARN(v string) *DescribeCollectionOutput {
+	s.CollectionARN = &v
+	return s
+}
+
+// SetCreationTimestamp sets the CreationTimestamp field's value.
+func (s *DescribeCollectionOutput) SetCreationTimestamp(v time.Time) *DescribeCollectionOutput {
+	s.CreationTimestamp = &v
+	return s
+}
+
+// SetFaceCount sets the FaceCount field's value.
+func (s *DescribeCollectionOutput) SetFaceCount(v int64) *DescribeCollectionOutput {
+	s.FaceCount = &v
+	return s
+}
+
+// SetFaceModelVersion sets the FaceModelVersion field's value.
+func (s *DescribeCollectionOutput) SetFaceModelVersion(v string) *DescribeCollectionOutput {
+	s.FaceModelVersion = &v
+	return s
+}
+
 type DescribeStreamProcessorInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6086,6 +6263,8 @@ func (s *Eyeglasses) SetValue(v bool) *Eyeglasses {
 type Face struct {
 	_ struct{} `type:"structure"`
 
+	AssociationScore *float64 `type:"float"`
+
 	// Bounding box of the face.
 	BoundingBox *BoundingBox `type:"structure"`
 
@@ -6111,6 +6290,12 @@ func (s Face) String() string {
 // GoString returns the string representation
 func (s Face) GoString() string {
 	return s.String()
+}
+
+// SetAssociationScore sets the AssociationScore field's value.
+func (s *Face) SetAssociationScore(v float64) *Face {
+	s.AssociationScore = &v
+	return s
 }
 
 // SetBoundingBox sets the BoundingBox field's value.
@@ -6697,8 +6882,12 @@ func (s *GetCelebrityRecognitionInput) SetSortBy(v string) *GetCelebrityRecognit
 type GetCelebrityRecognitionOutput struct {
 	_ struct{} `type:"structure"`
 
+	BillableDurationSeconds *int64 `type:"integer"`
+
 	// Array of celebrities recognized in the video.
 	Celebrities []*CelebrityRecognition `type:"list"`
+
+	ErrorCode *string `type:"string"`
 
 	// The current status of the celebrity recognition job.
 	JobStatus *string `type:"string" enum:"VideoJobStatus"`
@@ -6714,6 +6903,8 @@ type GetCelebrityRecognitionOutput struct {
 	// is returned in every page of paginated responses from a Amazon Rekognition
 	// Video operation.
 	VideoMetadata *VideoMetadata `type:"structure"`
+
+	Warnings []*Warning `type:"list"`
 }
 
 // String returns the string representation
@@ -6726,9 +6917,21 @@ func (s GetCelebrityRecognitionOutput) GoString() string {
 	return s.String()
 }
 
+// SetBillableDurationSeconds sets the BillableDurationSeconds field's value.
+func (s *GetCelebrityRecognitionOutput) SetBillableDurationSeconds(v int64) *GetCelebrityRecognitionOutput {
+	s.BillableDurationSeconds = &v
+	return s
+}
+
 // SetCelebrities sets the Celebrities field's value.
 func (s *GetCelebrityRecognitionOutput) SetCelebrities(v []*CelebrityRecognition) *GetCelebrityRecognitionOutput {
 	s.Celebrities = v
+	return s
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *GetCelebrityRecognitionOutput) SetErrorCode(v string) *GetCelebrityRecognitionOutput {
+	s.ErrorCode = &v
 	return s
 }
 
@@ -6753,6 +6956,12 @@ func (s *GetCelebrityRecognitionOutput) SetStatusMessage(v string) *GetCelebrity
 // SetVideoMetadata sets the VideoMetadata field's value.
 func (s *GetCelebrityRecognitionOutput) SetVideoMetadata(v *VideoMetadata) *GetCelebrityRecognitionOutput {
 	s.VideoMetadata = v
+	return s
+}
+
+// SetWarnings sets the Warnings field's value.
+func (s *GetCelebrityRecognitionOutput) SetWarnings(v []*Warning) *GetCelebrityRecognitionOutput {
+	s.Warnings = v
 	return s
 }
 
@@ -6838,6 +7047,10 @@ func (s *GetContentModerationInput) SetSortBy(v string) *GetContentModerationInp
 type GetContentModerationOutput struct {
 	_ struct{} `type:"structure"`
 
+	BillableDurationSeconds *int64 `type:"integer"`
+
+	ErrorCode *string `type:"string"`
+
 	// The current status of the content moderation job.
 	JobStatus *string `type:"string" enum:"VideoJobStatus"`
 
@@ -6855,6 +7068,8 @@ type GetContentModerationOutput struct {
 	// Information about a video that Amazon Rekognition analyzed. Videometadata
 	// is returned in every page of paginated responses from GetContentModeration.
 	VideoMetadata *VideoMetadata `type:"structure"`
+
+	Warnings []*Warning `type:"list"`
 }
 
 // String returns the string representation
@@ -6865,6 +7080,18 @@ func (s GetContentModerationOutput) String() string {
 // GoString returns the string representation
 func (s GetContentModerationOutput) GoString() string {
 	return s.String()
+}
+
+// SetBillableDurationSeconds sets the BillableDurationSeconds field's value.
+func (s *GetContentModerationOutput) SetBillableDurationSeconds(v int64) *GetContentModerationOutput {
+	s.BillableDurationSeconds = &v
+	return s
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *GetContentModerationOutput) SetErrorCode(v string) *GetContentModerationOutput {
+	s.ErrorCode = &v
+	return s
 }
 
 // SetJobStatus sets the JobStatus field's value.
@@ -6894,6 +7121,12 @@ func (s *GetContentModerationOutput) SetStatusMessage(v string) *GetContentModer
 // SetVideoMetadata sets the VideoMetadata field's value.
 func (s *GetContentModerationOutput) SetVideoMetadata(v *VideoMetadata) *GetContentModerationOutput {
 	s.VideoMetadata = v
+	return s
+}
+
+// SetWarnings sets the Warnings field's value.
+func (s *GetContentModerationOutput) SetWarnings(v []*Warning) *GetContentModerationOutput {
+	s.Warnings = v
 	return s
 }
 
@@ -6967,6 +7200,10 @@ func (s *GetFaceDetectionInput) SetNextToken(v string) *GetFaceDetectionInput {
 type GetFaceDetectionOutput struct {
 	_ struct{} `type:"structure"`
 
+	BillableDurationSeconds *int64 `type:"integer"`
+
+	ErrorCode *string `type:"string"`
+
 	// An array of faces detected in the video. Each element contains a detected
 	// face's details and the time, in milliseconds from the start of the video,
 	// the face was detected.
@@ -6986,6 +7223,8 @@ type GetFaceDetectionOutput struct {
 	// is returned in every page of paginated responses from a Amazon Rekognition
 	// video operation.
 	VideoMetadata *VideoMetadata `type:"structure"`
+
+	Warnings []*Warning `type:"list"`
 }
 
 // String returns the string representation
@@ -6996,6 +7235,18 @@ func (s GetFaceDetectionOutput) String() string {
 // GoString returns the string representation
 func (s GetFaceDetectionOutput) GoString() string {
 	return s.String()
+}
+
+// SetBillableDurationSeconds sets the BillableDurationSeconds field's value.
+func (s *GetFaceDetectionOutput) SetBillableDurationSeconds(v int64) *GetFaceDetectionOutput {
+	s.BillableDurationSeconds = &v
+	return s
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *GetFaceDetectionOutput) SetErrorCode(v string) *GetFaceDetectionOutput {
+	s.ErrorCode = &v
+	return s
 }
 
 // SetFaces sets the Faces field's value.
@@ -7025,6 +7276,12 @@ func (s *GetFaceDetectionOutput) SetStatusMessage(v string) *GetFaceDetectionOut
 // SetVideoMetadata sets the VideoMetadata field's value.
 func (s *GetFaceDetectionOutput) SetVideoMetadata(v *VideoMetadata) *GetFaceDetectionOutput {
 	s.VideoMetadata = v
+	return s
+}
+
+// SetWarnings sets the Warnings field's value.
+func (s *GetFaceDetectionOutput) SetWarnings(v []*Warning) *GetFaceDetectionOutput {
+	s.Warnings = v
 	return s
 }
 
@@ -7109,6 +7366,10 @@ func (s *GetFaceSearchInput) SetSortBy(v string) *GetFaceSearchInput {
 type GetFaceSearchOutput struct {
 	_ struct{} `type:"structure"`
 
+	BillableDurationSeconds *int64 `type:"integer"`
+
+	ErrorCode *string `type:"string"`
+
 	// The current status of the face search job.
 	JobStatus *string `type:"string" enum:"VideoJobStatus"`
 
@@ -7132,6 +7393,8 @@ type GetFaceSearchOutput struct {
 	// is returned in every page of paginated responses from a Amazon Rekognition
 	// Video operation.
 	VideoMetadata *VideoMetadata `type:"structure"`
+
+	Warnings []*Warning `type:"list"`
 }
 
 // String returns the string representation
@@ -7142,6 +7405,18 @@ func (s GetFaceSearchOutput) String() string {
 // GoString returns the string representation
 func (s GetFaceSearchOutput) GoString() string {
 	return s.String()
+}
+
+// SetBillableDurationSeconds sets the BillableDurationSeconds field's value.
+func (s *GetFaceSearchOutput) SetBillableDurationSeconds(v int64) *GetFaceSearchOutput {
+	s.BillableDurationSeconds = &v
+	return s
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *GetFaceSearchOutput) SetErrorCode(v string) *GetFaceSearchOutput {
+	s.ErrorCode = &v
+	return s
 }
 
 // SetJobStatus sets the JobStatus field's value.
@@ -7171,6 +7446,12 @@ func (s *GetFaceSearchOutput) SetStatusMessage(v string) *GetFaceSearchOutput {
 // SetVideoMetadata sets the VideoMetadata field's value.
 func (s *GetFaceSearchOutput) SetVideoMetadata(v *VideoMetadata) *GetFaceSearchOutput {
 	s.VideoMetadata = v
+	return s
+}
+
+// SetWarnings sets the Warnings field's value.
+func (s *GetFaceSearchOutput) SetWarnings(v []*Warning) *GetFaceSearchOutput {
+	s.Warnings = v
 	return s
 }
 
@@ -7256,6 +7537,10 @@ func (s *GetLabelDetectionInput) SetSortBy(v string) *GetLabelDetectionInput {
 type GetLabelDetectionOutput struct {
 	_ struct{} `type:"structure"`
 
+	BillableDurationSeconds *int64 `type:"integer"`
+
+	ErrorCode *string `type:"string"`
+
 	// The current status of the label detection job.
 	JobStatus *string `type:"string" enum:"VideoJobStatus"`
 
@@ -7275,6 +7560,8 @@ type GetLabelDetectionOutput struct {
 	// is returned in every page of paginated responses from a Amazon Rekognition
 	// video operation.
 	VideoMetadata *VideoMetadata `type:"structure"`
+
+	Warnings []*Warning `type:"list"`
 }
 
 // String returns the string representation
@@ -7285,6 +7572,18 @@ func (s GetLabelDetectionOutput) String() string {
 // GoString returns the string representation
 func (s GetLabelDetectionOutput) GoString() string {
 	return s.String()
+}
+
+// SetBillableDurationSeconds sets the BillableDurationSeconds field's value.
+func (s *GetLabelDetectionOutput) SetBillableDurationSeconds(v int64) *GetLabelDetectionOutput {
+	s.BillableDurationSeconds = &v
+	return s
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *GetLabelDetectionOutput) SetErrorCode(v string) *GetLabelDetectionOutput {
+	s.ErrorCode = &v
+	return s
 }
 
 // SetJobStatus sets the JobStatus field's value.
@@ -7314,6 +7613,12 @@ func (s *GetLabelDetectionOutput) SetStatusMessage(v string) *GetLabelDetectionO
 // SetVideoMetadata sets the VideoMetadata field's value.
 func (s *GetLabelDetectionOutput) SetVideoMetadata(v *VideoMetadata) *GetLabelDetectionOutput {
 	s.VideoMetadata = v
+	return s
+}
+
+// SetWarnings sets the Warnings field's value.
+func (s *GetLabelDetectionOutput) SetWarnings(v []*Warning) *GetLabelDetectionOutput {
+	s.Warnings = v
 	return s
 }
 
@@ -7399,6 +7704,10 @@ func (s *GetPersonTrackingInput) SetSortBy(v string) *GetPersonTrackingInput {
 type GetPersonTrackingOutput struct {
 	_ struct{} `type:"structure"`
 
+	BillableDurationSeconds *int64 `type:"integer"`
+
+	ErrorCode *string `type:"string"`
+
 	// The current status of the person tracking job.
 	JobStatus *string `type:"string" enum:"VideoJobStatus"`
 
@@ -7418,6 +7727,8 @@ type GetPersonTrackingOutput struct {
 	// is returned in every page of paginated responses from a Amazon Rekognition
 	// Video operation.
 	VideoMetadata *VideoMetadata `type:"structure"`
+
+	Warnings []*Warning `type:"list"`
 }
 
 // String returns the string representation
@@ -7428,6 +7739,18 @@ func (s GetPersonTrackingOutput) String() string {
 // GoString returns the string representation
 func (s GetPersonTrackingOutput) GoString() string {
 	return s.String()
+}
+
+// SetBillableDurationSeconds sets the BillableDurationSeconds field's value.
+func (s *GetPersonTrackingOutput) SetBillableDurationSeconds(v int64) *GetPersonTrackingOutput {
+	s.BillableDurationSeconds = &v
+	return s
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *GetPersonTrackingOutput) SetErrorCode(v string) *GetPersonTrackingOutput {
+	s.ErrorCode = &v
+	return s
 }
 
 // SetJobStatus sets the JobStatus field's value.
@@ -7457,6 +7780,12 @@ func (s *GetPersonTrackingOutput) SetStatusMessage(v string) *GetPersonTrackingO
 // SetVideoMetadata sets the VideoMetadata field's value.
 func (s *GetPersonTrackingOutput) SetVideoMetadata(v *VideoMetadata) *GetPersonTrackingOutput {
 	s.VideoMetadata = v
+	return s
+}
+
+// SetWarnings sets the Warnings field's value.
+func (s *GetPersonTrackingOutput) SetWarnings(v []*Warning) *GetPersonTrackingOutput {
+	s.Warnings = v
 	return s
 }
 
@@ -8409,7 +8738,7 @@ func (s *PersonDetection) SetTimestamp(v int64) *PersonDetection {
 
 // Information about a person whose face matches a face(s) in a Amazon Rekognition
 // collection. Includes information about the faces in the Amazon Rekognition
-// collection (, information about the person (PersonDetail) and the timestamp
+// collection (), information about the person (PersonDetail) and the timestamp
 // for when the person was detected in a video. An array of PersonMatch objects
 // is returned by .
 type PersonMatch struct {
@@ -8964,6 +9293,36 @@ func (s *SearchFacesOutput) SetSearchedFaceId(v string) *SearchFacesOutput {
 	return s
 }
 
+type Section struct {
+	_ struct{} `type:"structure"`
+
+	EndTimestamp *int64 `type:"long"`
+
+	StartTimestamp *int64 `type:"long"`
+}
+
+// String returns the string representation
+func (s Section) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Section) GoString() string {
+	return s.String()
+}
+
+// SetEndTimestamp sets the EndTimestamp field's value.
+func (s *Section) SetEndTimestamp(v int64) *Section {
+	s.EndTimestamp = &v
+	return s
+}
+
+// SetStartTimestamp sets the StartTimestamp field's value.
+func (s *Section) SetStartTimestamp(v int64) *Section {
+	s.StartTimestamp = &v
+	return s
+}
+
 // Indicates whether or not the face is smiling, and the confidence level in
 // the determination.
 type Smile struct {
@@ -9006,6 +9365,8 @@ type StartCelebrityRecognitionInput struct {
 	// returned. Use ClientRequestToken to prevent the same job from being accidently
 	// started more than once.
 	ClientRequestToken *string `min:"1" type:"string"`
+
+	EnablePersonTracking *bool `type:"boolean"`
 
 	// Unique identifier you specify to identify the job in the completion status
 	// published to the Amazon Simple Notification Service topic.
@@ -9064,6 +9425,12 @@ func (s *StartCelebrityRecognitionInput) Validate() error {
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *StartCelebrityRecognitionInput) SetClientRequestToken(v string) *StartCelebrityRecognitionInput {
 	s.ClientRequestToken = &v
+	return s
+}
+
+// SetEnablePersonTracking sets the EnablePersonTracking field's value.
+func (s *StartCelebrityRecognitionInput) SetEnablePersonTracking(v bool) *StartCelebrityRecognitionInput {
+	s.EnablePersonTracking = &v
 	return s
 }
 
@@ -9373,6 +9740,8 @@ type StartFaceSearchInput struct {
 	// CollectionId is a required field
 	CollectionId *string `min:"1" type:"string" required:"true"`
 
+	EnablePersonTracking *bool `type:"boolean"`
+
 	// The minimum confidence in the person match to return. For example, don't
 	// return any matches where confidence in matches is less than 70%.
 	FaceMatchThreshold *float64 `type:"float"`
@@ -9445,6 +9814,12 @@ func (s *StartFaceSearchInput) SetClientRequestToken(v string) *StartFaceSearchI
 // SetCollectionId sets the CollectionId field's value.
 func (s *StartFaceSearchInput) SetCollectionId(v string) *StartFaceSearchInput {
 	s.CollectionId = &v
+	return s
+}
+
+// SetEnablePersonTracking sets the EnablePersonTracking field's value.
+func (s *StartFaceSearchInput) SetEnablePersonTracking(v bool) *StartFaceSearchInput {
+	s.EnablePersonTracking = &v
 	return s
 }
 
@@ -10155,6 +10530,8 @@ type VideoMetadata struct {
 
 	// Horizontal pixel dimension of the video.
 	FrameWidth *int64 `type:"long"`
+
+	Rotation *int64 `type:"integer"`
 }
 
 // String returns the string representation
@@ -10200,6 +10577,50 @@ func (s *VideoMetadata) SetFrameRate(v float64) *VideoMetadata {
 // SetFrameWidth sets the FrameWidth field's value.
 func (s *VideoMetadata) SetFrameWidth(v int64) *VideoMetadata {
 	s.FrameWidth = &v
+	return s
+}
+
+// SetRotation sets the Rotation field's value.
+func (s *VideoMetadata) SetRotation(v int64) *VideoMetadata {
+	s.Rotation = &v
+	return s
+}
+
+type Warning struct {
+	_ struct{} `type:"structure"`
+
+	ErrorCode *string `type:"string"`
+
+	Message *string `type:"string"`
+
+	Sections []*Section `type:"list"`
+}
+
+// String returns the string representation
+func (s Warning) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Warning) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *Warning) SetErrorCode(v string) *Warning {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *Warning) SetMessage(v string) *Warning {
+	s.Message = &v
+	return s
+}
+
+// SetSections sets the Sections field's value.
+func (s *Warning) SetSections(v []*Section) *Warning {
+	s.Sections = v
 	return s
 }
 

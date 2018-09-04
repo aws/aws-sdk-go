@@ -106,7 +106,8 @@
         "resourcesVpcConfig":{"shape":"VpcConfigResponse"},
         "status":{"shape":"ClusterStatus"},
         "certificateAuthority":{"shape":"Certificate"},
-        "clientRequestToken":{"shape":"String"}
+        "clientRequestToken":{"shape":"String"},
+        "platformVersion":{"shape":"String"}
       }
     },
     "ClusterName":{

@@ -87,6 +87,7 @@
         "requestUri":"/datasets/{datasetName}/content"
       },
       "input":{"shape":"CreateDatasetContentRequest"},
+      "output":{"shape":"CreateDatasetContentResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
@@ -320,6 +321,22 @@
         {"shape":"InternalFailureException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "ListDatasetContents":{
+      "name":"ListDatasetContents",
+      "http":{
+        "method":"GET",
+        "requestUri":"/datasets/{datasetName}/contents"
+      },
+      "input":{"shape":"ListDatasetContentsRequest"},
+      "output":{"shape":"ListDatasetContentsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "ListDatasets":{
@@ -695,6 +712,27 @@
         "lastUpdateTime":{"shape":"Timestamp"}
       }
     },
+    "ComputeType":{
+      "type":"string",
+      "enum":[
+        "ACU_1",
+        "ACU_2"
+      ]
+    },
+    "ContainerDatasetAction":{
+      "type":"structure",
+      "required":[
+        "image",
+        "executionRoleArn",
+        "resourceConfiguration"
+      ],
+      "members":{
+        "image":{"shape":"Image"},
+        "executionRoleArn":{"shape":"RoleArn"},
+        "resourceConfiguration":{"shape":"ResourceConfiguration"},
+        "variables":{"shape":"Variables"}
+      }
+    },
     "CreateChannelRequest":{
       "type":"structure",
       "required":["channelName"],
@@ -723,6 +761,12 @@
         }
       }
     },
+    "CreateDatasetContentResponse":{
+      "type":"structure",
+      "members":{
+        "versionId":{"shape":"DatasetContentVersion"}
+      }
+    },
     "CreateDatasetRequest":{
       "type":"structure",
       "required":[
@@ -733,6 +777,7 @@
         "datasetName":{"shape":"DatasetName"},
         "actions":{"shape":"DatasetActions"},
         "triggers":{"shape":"DatasetTriggers"},
+        "retentionPeriod":{"shape":"RetentionPeriod"},
         "tags":{"shape":"TagList"}
       }
     },
@@ -740,7 +785,8 @@
       "type":"structure",
       "members":{
         "datasetName":{"shape":"DatasetName"},
-        "datasetArn":{"shape":"DatasetArn"}
+        "datasetArn":{"shape":"DatasetArn"},
+        "retentionPeriod":{"shape":"RetentionPeriod"}
       }
     },
     "CreateDatastoreRequest":{
@@ -788,14 +834,16 @@
         "triggers":{"shape":"DatasetTriggers"},
         "status":{"shape":"DatasetStatus"},
         "creationTime":{"shape":"Timestamp"},
-        "lastUpdateTime":{"shape":"Timestamp"}
+        "lastUpdateTime":{"shape":"Timestamp"},
+        "retentionPeriod":{"shape":"RetentionPeriod"}
       }
     },
     "DatasetAction":{
       "type":"structure",
       "members":{
         "actionName":{"shape":"DatasetActionName"},
-        "queryAction":{"shape":"SqlQueryDatasetAction"}
+        "queryAction":{"shape":"SqlQueryDatasetAction"},
+        "containerAction":{"shape":"ContainerDatasetAction"}
       }
     },
     "DatasetActionName":{
@@ -803,6 +851,26 @@
       "max":128,
       "min":1,
       "pattern":"^[a-zA-Z0-9_]+$"
+    },
+    "DatasetActionSummaries":{
+      "type":"list",
+      "member":{"shape":"DatasetActionSummary"},
+      "max":1,
+      "min":1
+    },
+    "DatasetActionSummary":{
+      "type":"structure",
+      "members":{
+        "actionName":{"shape":"DatasetActionName"},
+        "actionType":{"shape":"DatasetActionType"}
+      }
+    },
+    "DatasetActionType":{
+      "type":"string",
+      "enum":[
+        "QUERY",
+        "CONTAINER"
+      ]
     },
     "DatasetActions":{
       "type":"list",
@@ -826,7 +894,31 @@
         "reason":{"shape":"Reason"}
       }
     },
-    "DatasetContentVersion":{"type":"string"},
+    "DatasetContentSummaries":{
+      "type":"list",
+      "member":{"shape":"DatasetContentSummary"}
+    },
+    "DatasetContentSummary":{
+      "type":"structure",
+      "members":{
+        "version":{"shape":"DatasetContentVersion"},
+        "status":{"shape":"DatasetContentStatus"},
+        "creationTime":{"shape":"Timestamp"},
+        "scheduleTime":{"shape":"Timestamp"}
+      }
+    },
+    "DatasetContentVersion":{
+      "type":"string",
+      "max":36,
+      "min":7
+    },
+    "DatasetContentVersionValue":{
+      "type":"structure",
+      "required":["datasetName"],
+      "members":{
+        "datasetName":{"shape":"DatasetName"}
+      }
+    },
     "DatasetEntries":{
       "type":"list",
       "member":{"shape":"DatasetEntry"}
@@ -862,13 +954,16 @@
         "datasetName":{"shape":"DatasetName"},
         "status":{"shape":"DatasetStatus"},
         "creationTime":{"shape":"Timestamp"},
-        "lastUpdateTime":{"shape":"Timestamp"}
+        "lastUpdateTime":{"shape":"Timestamp"},
+        "triggers":{"shape":"DatasetTriggers"},
+        "actions":{"shape":"DatasetActionSummaries"}
       }
     },
     "DatasetTrigger":{
       "type":"structure",
       "members":{
-        "schedule":{"shape":"Schedule"}
+        "schedule":{"shape":"Schedule"},
+        "dataset":{"shape":"TriggeringDataset"}
       }
     },
     "DatasetTriggers":{
@@ -991,6 +1086,17 @@
           "location":"uri",
           "locationName":"pipelineName"
         }
+      }
+    },
+    "DeltaTime":{
+      "type":"structure",
+      "required":[
+        "offsetSeconds",
+        "timeExpression"
+      ],
+      "members":{
+        "offsetSeconds":{"shape":"OffsetSeconds"},
+        "timeExpression":{"shape":"TimeExpression"}
       }
     },
     "DescribeChannelRequest":{
@@ -1116,6 +1222,7 @@
         "next":{"shape":"ActivityName"}
       }
     },
+    "DoubleValue":{"type":"double"},
     "EndTime":{"type":"timestamp"},
     "EntryName":{"type":"string"},
     "ErrorCode":{"type":"string"},
@@ -1167,6 +1274,10 @@
         "timestamp":{"shape":"Timestamp"},
         "status":{"shape":"DatasetContentStatus"}
       }
+    },
+    "Image":{
+      "type":"string",
+      "max":255
     },
     "IncludeStatisticsFlag":{"type":"boolean"},
     "InternalFailureException":{
@@ -1233,6 +1344,34 @@
       "type":"structure",
       "members":{
         "channelSummaries":{"shape":"ChannelSummaries"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListDatasetContentsRequest":{
+      "type":"structure",
+      "required":["datasetName"],
+      "members":{
+        "datasetName":{
+          "shape":"DatasetName",
+          "location":"uri",
+          "locationName":"datasetName"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListDatasetContentsResponse":{
+      "type":"structure",
+      "members":{
+        "datasetContentSummaries":{"shape":"DatasetContentSummaries"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -1395,6 +1534,18 @@
       "member":{"shape":"Message"}
     },
     "NextToken":{"type":"string"},
+    "OffsetSeconds":{"type":"integer"},
+    "OutputFileName":{
+      "type":"string",
+      "pattern":"[\\w\\.-]{1,255}"
+    },
+    "OutputFileUriValue":{
+      "type":"structure",
+      "required":["fileName"],
+      "members":{
+        "fileName":{"shape":"OutputFileName"}
+      }
+    },
     "Pipeline":{
       "type":"structure",
       "members":{
@@ -1455,6 +1606,18 @@
         "loggingOptions":{"shape":"LoggingOptions"}
       }
     },
+    "QueryFilter":{
+      "type":"structure",
+      "members":{
+        "deltaTime":{"shape":"DeltaTime"}
+      }
+    },
+    "QueryFilters":{
+      "type":"list",
+      "member":{"shape":"QueryFilter"},
+      "max":1,
+      "min":0
+    },
     "Reason":{"type":"string"},
     "RemoveAttributesActivity":{
       "type":"structure",
@@ -1504,6 +1667,17 @@
       "type":"string",
       "max":2048,
       "min":20
+    },
+    "ResourceConfiguration":{
+      "type":"structure",
+      "required":[
+        "computeType",
+        "volumeSizeInGB"
+      ],
+      "members":{
+        "computeType":{"shape":"ComputeType"},
+        "volumeSizeInGB":{"shape":"VolumeSizeInGB"}
+      }
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -1613,7 +1787,8 @@
       "type":"structure",
       "required":["sqlQuery"],
       "members":{
-        "sqlQuery":{"shape":"SqlQuery"}
+        "sqlQuery":{"shape":"SqlQuery"},
+        "filters":{"shape":"QueryFilters"}
       }
     },
     "StartPipelineReprocessingRequest":{
@@ -1636,6 +1811,11 @@
       }
     },
     "StartTime":{"type":"timestamp"},
+    "StringValue":{
+      "type":"string",
+      "max":1024,
+      "min":0
+    },
     "Tag":{
       "type":"structure",
       "required":[
@@ -1697,7 +1877,15 @@
       "error":{"httpStatusCode":429},
       "exception":true
     },
+    "TimeExpression":{"type":"string"},
     "Timestamp":{"type":"timestamp"},
+    "TriggeringDataset":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"DatasetName"}
+      }
+    },
     "UnlimitedRetentionPeriod":{"type":"boolean"},
     "UntagResourceRequest":{
       "type":"structure",
@@ -1748,7 +1936,8 @@
           "locationName":"datasetName"
         },
         "actions":{"shape":"DatasetActions"},
-        "triggers":{"shape":"DatasetTriggers"}
+        "triggers":{"shape":"DatasetTriggers"},
+        "retentionPeriod":{"shape":"RetentionPeriod"}
       }
     },
     "UpdateDatastoreRequest":{
@@ -1777,6 +1966,36 @@
         },
         "pipelineActivities":{"shape":"PipelineActivities"}
       }
+    },
+    "Variable":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"VariableName"},
+        "stringValue":{"shape":"StringValue"},
+        "doubleValue":{
+          "shape":"DoubleValue",
+          "box":true
+        },
+        "datasetContentVersionValue":{"shape":"DatasetContentVersionValue"},
+        "outputFileUriValue":{"shape":"OutputFileUriValue"}
+      }
+    },
+    "VariableName":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "Variables":{
+      "type":"list",
+      "member":{"shape":"Variable"},
+      "max":50,
+      "min":0
+    },
+    "VolumeSizeInGB":{
+      "type":"integer",
+      "max":50,
+      "min":1
     },
     "errorMessage":{"type":"string"},
     "resourceArn":{"type":"string"},
