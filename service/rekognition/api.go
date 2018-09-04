@@ -710,6 +710,13 @@ func (c *Rekognition) DescribeCollectionRequest(input *DescribeCollectionInput) 
 
 // DescribeCollection API operation for Amazon Rekognition.
 //
+// Describes the specified collection. You can use DescribeCollection to get
+// information, such as the number of faces indexed into a collection and the
+// version of the model used by the collection for face detection.
+//
+// For more information, see Describing a Collection in the Amazon Rekognition
+// Developer Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1319,7 +1326,7 @@ func (c *Rekognition) DetectTextRequest(input *DetectTextInput) (req *request.Re
 // To determine whether a TextDetection element is a line of text or a word,
 // use the TextDetection object Type field.
 //
-// To be detected, text must be within +/- 30 degrees orientation of the horizontal
+// To be detected, text must be within +/- 90 degrees orientation of the horizontal
 // axis.
 //
 // For more information, see DetectText in the Amazon Rekognition Developer
@@ -2627,11 +2634,14 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 // it in the back-end database. Amazon Rekognition uses feature vectors when
 // performing face match and search operations using the and operations.
 //
+// To get the number of faces in a collection, call .
+//
 // If you are using version 1.0 of the face detection model, IndexFaces indexes
 // the 15 largest faces in the input image. Later versions of the face detection
 // model index the 100 largest faces in the input image. To determine which
-// version of the model you are using, check the the value of FaceModelVersion
-// in the response from IndexFaces.
+// version of the model you are using, call and supply the collection ID. You
+// also get the model version from the value of FaceModelVersion in the response
+// from IndexFaces.
 //
 // For more information, see Model Versioning in the Amazon Rekognition Developer
 // Guide.
@@ -4580,7 +4590,7 @@ func (s *Beard) SetValue(v bool) *Beard {
 	return s
 }
 
-// Identifies the bounding box around the object, face or text. The left (x-coordinate)
+// Identifies the bounding box around the face or text. The left (x-coordinate)
 // and top (y-coordinate) are coordinates representing the top and left sides
 // of the bounding box. Note that the upper-left corner of the image is the
 // origin (0,0).
@@ -5564,6 +5574,8 @@ func (s DeleteStreamProcessorOutput) GoString() string {
 type DescribeCollectionInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the collection to describe.
+	//
 	// CollectionId is a required field
 	CollectionId *string `min:"1" type:"string" required:"true"`
 }
@@ -5603,12 +5615,22 @@ func (s *DescribeCollectionInput) SetCollectionId(v string) *DescribeCollectionI
 type DescribeCollectionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the collection.
 	CollectionARN *string `type:"string"`
 
+	// The number of milliseconds since the Unix epoch time until the creation of
+	// the collection. The Unix epoch time is 00:00:00 Coordinated Universal Time
+	// (UTC), Thursday, 1 January 1970.
 	CreationTimestamp *time.Time `type:"timestamp"`
 
+	// The number of faces that are indexed into the collection. To index faces
+	// into a collection, use .
 	FaceCount *int64 `type:"long"`
 
+	// The version of the face model that's used by the collection for face detection.
+	//
+	// For more information, see Model Versioning in the Amazon Rekognition Developer
+	// Guide.
 	FaceModelVersion *string `type:"string"`
 }
 
@@ -6263,8 +6285,6 @@ func (s *Eyeglasses) SetValue(v bool) *Eyeglasses {
 type Face struct {
 	_ struct{} `type:"structure"`
 
-	AssociationScore *float64 `type:"float"`
-
 	// Bounding box of the face.
 	BoundingBox *BoundingBox `type:"structure"`
 
@@ -6290,12 +6310,6 @@ func (s Face) String() string {
 // GoString returns the string representation
 func (s Face) GoString() string {
 	return s.String()
-}
-
-// SetAssociationScore sets the AssociationScore field's value.
-func (s *Face) SetAssociationScore(v float64) *Face {
-	s.AssociationScore = &v
-	return s
 }
 
 // SetBoundingBox sets the BoundingBox field's value.
@@ -6882,12 +6896,8 @@ func (s *GetCelebrityRecognitionInput) SetSortBy(v string) *GetCelebrityRecognit
 type GetCelebrityRecognitionOutput struct {
 	_ struct{} `type:"structure"`
 
-	BillableDurationSeconds *int64 `type:"integer"`
-
 	// Array of celebrities recognized in the video.
 	Celebrities []*CelebrityRecognition `type:"list"`
-
-	ErrorCode *string `type:"string"`
 
 	// The current status of the celebrity recognition job.
 	JobStatus *string `type:"string" enum:"VideoJobStatus"`
@@ -6903,8 +6913,6 @@ type GetCelebrityRecognitionOutput struct {
 	// is returned in every page of paginated responses from a Amazon Rekognition
 	// Video operation.
 	VideoMetadata *VideoMetadata `type:"structure"`
-
-	Warnings []*Warning `type:"list"`
 }
 
 // String returns the string representation
@@ -6917,21 +6925,9 @@ func (s GetCelebrityRecognitionOutput) GoString() string {
 	return s.String()
 }
 
-// SetBillableDurationSeconds sets the BillableDurationSeconds field's value.
-func (s *GetCelebrityRecognitionOutput) SetBillableDurationSeconds(v int64) *GetCelebrityRecognitionOutput {
-	s.BillableDurationSeconds = &v
-	return s
-}
-
 // SetCelebrities sets the Celebrities field's value.
 func (s *GetCelebrityRecognitionOutput) SetCelebrities(v []*CelebrityRecognition) *GetCelebrityRecognitionOutput {
 	s.Celebrities = v
-	return s
-}
-
-// SetErrorCode sets the ErrorCode field's value.
-func (s *GetCelebrityRecognitionOutput) SetErrorCode(v string) *GetCelebrityRecognitionOutput {
-	s.ErrorCode = &v
 	return s
 }
 
@@ -6956,12 +6952,6 @@ func (s *GetCelebrityRecognitionOutput) SetStatusMessage(v string) *GetCelebrity
 // SetVideoMetadata sets the VideoMetadata field's value.
 func (s *GetCelebrityRecognitionOutput) SetVideoMetadata(v *VideoMetadata) *GetCelebrityRecognitionOutput {
 	s.VideoMetadata = v
-	return s
-}
-
-// SetWarnings sets the Warnings field's value.
-func (s *GetCelebrityRecognitionOutput) SetWarnings(v []*Warning) *GetCelebrityRecognitionOutput {
-	s.Warnings = v
 	return s
 }
 
@@ -7047,10 +7037,6 @@ func (s *GetContentModerationInput) SetSortBy(v string) *GetContentModerationInp
 type GetContentModerationOutput struct {
 	_ struct{} `type:"structure"`
 
-	BillableDurationSeconds *int64 `type:"integer"`
-
-	ErrorCode *string `type:"string"`
-
 	// The current status of the content moderation job.
 	JobStatus *string `type:"string" enum:"VideoJobStatus"`
 
@@ -7068,8 +7054,6 @@ type GetContentModerationOutput struct {
 	// Information about a video that Amazon Rekognition analyzed. Videometadata
 	// is returned in every page of paginated responses from GetContentModeration.
 	VideoMetadata *VideoMetadata `type:"structure"`
-
-	Warnings []*Warning `type:"list"`
 }
 
 // String returns the string representation
@@ -7080,18 +7064,6 @@ func (s GetContentModerationOutput) String() string {
 // GoString returns the string representation
 func (s GetContentModerationOutput) GoString() string {
 	return s.String()
-}
-
-// SetBillableDurationSeconds sets the BillableDurationSeconds field's value.
-func (s *GetContentModerationOutput) SetBillableDurationSeconds(v int64) *GetContentModerationOutput {
-	s.BillableDurationSeconds = &v
-	return s
-}
-
-// SetErrorCode sets the ErrorCode field's value.
-func (s *GetContentModerationOutput) SetErrorCode(v string) *GetContentModerationOutput {
-	s.ErrorCode = &v
-	return s
 }
 
 // SetJobStatus sets the JobStatus field's value.
@@ -7121,12 +7093,6 @@ func (s *GetContentModerationOutput) SetStatusMessage(v string) *GetContentModer
 // SetVideoMetadata sets the VideoMetadata field's value.
 func (s *GetContentModerationOutput) SetVideoMetadata(v *VideoMetadata) *GetContentModerationOutput {
 	s.VideoMetadata = v
-	return s
-}
-
-// SetWarnings sets the Warnings field's value.
-func (s *GetContentModerationOutput) SetWarnings(v []*Warning) *GetContentModerationOutput {
-	s.Warnings = v
 	return s
 }
 
@@ -7200,10 +7166,6 @@ func (s *GetFaceDetectionInput) SetNextToken(v string) *GetFaceDetectionInput {
 type GetFaceDetectionOutput struct {
 	_ struct{} `type:"structure"`
 
-	BillableDurationSeconds *int64 `type:"integer"`
-
-	ErrorCode *string `type:"string"`
-
 	// An array of faces detected in the video. Each element contains a detected
 	// face's details and the time, in milliseconds from the start of the video,
 	// the face was detected.
@@ -7223,8 +7185,6 @@ type GetFaceDetectionOutput struct {
 	// is returned in every page of paginated responses from a Amazon Rekognition
 	// video operation.
 	VideoMetadata *VideoMetadata `type:"structure"`
-
-	Warnings []*Warning `type:"list"`
 }
 
 // String returns the string representation
@@ -7235,18 +7195,6 @@ func (s GetFaceDetectionOutput) String() string {
 // GoString returns the string representation
 func (s GetFaceDetectionOutput) GoString() string {
 	return s.String()
-}
-
-// SetBillableDurationSeconds sets the BillableDurationSeconds field's value.
-func (s *GetFaceDetectionOutput) SetBillableDurationSeconds(v int64) *GetFaceDetectionOutput {
-	s.BillableDurationSeconds = &v
-	return s
-}
-
-// SetErrorCode sets the ErrorCode field's value.
-func (s *GetFaceDetectionOutput) SetErrorCode(v string) *GetFaceDetectionOutput {
-	s.ErrorCode = &v
-	return s
 }
 
 // SetFaces sets the Faces field's value.
@@ -7276,12 +7224,6 @@ func (s *GetFaceDetectionOutput) SetStatusMessage(v string) *GetFaceDetectionOut
 // SetVideoMetadata sets the VideoMetadata field's value.
 func (s *GetFaceDetectionOutput) SetVideoMetadata(v *VideoMetadata) *GetFaceDetectionOutput {
 	s.VideoMetadata = v
-	return s
-}
-
-// SetWarnings sets the Warnings field's value.
-func (s *GetFaceDetectionOutput) SetWarnings(v []*Warning) *GetFaceDetectionOutput {
-	s.Warnings = v
 	return s
 }
 
@@ -7366,10 +7308,6 @@ func (s *GetFaceSearchInput) SetSortBy(v string) *GetFaceSearchInput {
 type GetFaceSearchOutput struct {
 	_ struct{} `type:"structure"`
 
-	BillableDurationSeconds *int64 `type:"integer"`
-
-	ErrorCode *string `type:"string"`
-
 	// The current status of the face search job.
 	JobStatus *string `type:"string" enum:"VideoJobStatus"`
 
@@ -7393,8 +7331,6 @@ type GetFaceSearchOutput struct {
 	// is returned in every page of paginated responses from a Amazon Rekognition
 	// Video operation.
 	VideoMetadata *VideoMetadata `type:"structure"`
-
-	Warnings []*Warning `type:"list"`
 }
 
 // String returns the string representation
@@ -7405,18 +7341,6 @@ func (s GetFaceSearchOutput) String() string {
 // GoString returns the string representation
 func (s GetFaceSearchOutput) GoString() string {
 	return s.String()
-}
-
-// SetBillableDurationSeconds sets the BillableDurationSeconds field's value.
-func (s *GetFaceSearchOutput) SetBillableDurationSeconds(v int64) *GetFaceSearchOutput {
-	s.BillableDurationSeconds = &v
-	return s
-}
-
-// SetErrorCode sets the ErrorCode field's value.
-func (s *GetFaceSearchOutput) SetErrorCode(v string) *GetFaceSearchOutput {
-	s.ErrorCode = &v
-	return s
 }
 
 // SetJobStatus sets the JobStatus field's value.
@@ -7446,12 +7370,6 @@ func (s *GetFaceSearchOutput) SetStatusMessage(v string) *GetFaceSearchOutput {
 // SetVideoMetadata sets the VideoMetadata field's value.
 func (s *GetFaceSearchOutput) SetVideoMetadata(v *VideoMetadata) *GetFaceSearchOutput {
 	s.VideoMetadata = v
-	return s
-}
-
-// SetWarnings sets the Warnings field's value.
-func (s *GetFaceSearchOutput) SetWarnings(v []*Warning) *GetFaceSearchOutput {
-	s.Warnings = v
 	return s
 }
 
@@ -7537,10 +7455,6 @@ func (s *GetLabelDetectionInput) SetSortBy(v string) *GetLabelDetectionInput {
 type GetLabelDetectionOutput struct {
 	_ struct{} `type:"structure"`
 
-	BillableDurationSeconds *int64 `type:"integer"`
-
-	ErrorCode *string `type:"string"`
-
 	// The current status of the label detection job.
 	JobStatus *string `type:"string" enum:"VideoJobStatus"`
 
@@ -7560,8 +7474,6 @@ type GetLabelDetectionOutput struct {
 	// is returned in every page of paginated responses from a Amazon Rekognition
 	// video operation.
 	VideoMetadata *VideoMetadata `type:"structure"`
-
-	Warnings []*Warning `type:"list"`
 }
 
 // String returns the string representation
@@ -7572,18 +7484,6 @@ func (s GetLabelDetectionOutput) String() string {
 // GoString returns the string representation
 func (s GetLabelDetectionOutput) GoString() string {
 	return s.String()
-}
-
-// SetBillableDurationSeconds sets the BillableDurationSeconds field's value.
-func (s *GetLabelDetectionOutput) SetBillableDurationSeconds(v int64) *GetLabelDetectionOutput {
-	s.BillableDurationSeconds = &v
-	return s
-}
-
-// SetErrorCode sets the ErrorCode field's value.
-func (s *GetLabelDetectionOutput) SetErrorCode(v string) *GetLabelDetectionOutput {
-	s.ErrorCode = &v
-	return s
 }
 
 // SetJobStatus sets the JobStatus field's value.
@@ -7613,12 +7513,6 @@ func (s *GetLabelDetectionOutput) SetStatusMessage(v string) *GetLabelDetectionO
 // SetVideoMetadata sets the VideoMetadata field's value.
 func (s *GetLabelDetectionOutput) SetVideoMetadata(v *VideoMetadata) *GetLabelDetectionOutput {
 	s.VideoMetadata = v
-	return s
-}
-
-// SetWarnings sets the Warnings field's value.
-func (s *GetLabelDetectionOutput) SetWarnings(v []*Warning) *GetLabelDetectionOutput {
-	s.Warnings = v
 	return s
 }
 
@@ -7704,10 +7598,6 @@ func (s *GetPersonTrackingInput) SetSortBy(v string) *GetPersonTrackingInput {
 type GetPersonTrackingOutput struct {
 	_ struct{} `type:"structure"`
 
-	BillableDurationSeconds *int64 `type:"integer"`
-
-	ErrorCode *string `type:"string"`
-
 	// The current status of the person tracking job.
 	JobStatus *string `type:"string" enum:"VideoJobStatus"`
 
@@ -7727,8 +7617,6 @@ type GetPersonTrackingOutput struct {
 	// is returned in every page of paginated responses from a Amazon Rekognition
 	// Video operation.
 	VideoMetadata *VideoMetadata `type:"structure"`
-
-	Warnings []*Warning `type:"list"`
 }
 
 // String returns the string representation
@@ -7739,18 +7627,6 @@ func (s GetPersonTrackingOutput) String() string {
 // GoString returns the string representation
 func (s GetPersonTrackingOutput) GoString() string {
 	return s.String()
-}
-
-// SetBillableDurationSeconds sets the BillableDurationSeconds field's value.
-func (s *GetPersonTrackingOutput) SetBillableDurationSeconds(v int64) *GetPersonTrackingOutput {
-	s.BillableDurationSeconds = &v
-	return s
-}
-
-// SetErrorCode sets the ErrorCode field's value.
-func (s *GetPersonTrackingOutput) SetErrorCode(v string) *GetPersonTrackingOutput {
-	s.ErrorCode = &v
-	return s
 }
 
 // SetJobStatus sets the JobStatus field's value.
@@ -7780,12 +7656,6 @@ func (s *GetPersonTrackingOutput) SetStatusMessage(v string) *GetPersonTrackingO
 // SetVideoMetadata sets the VideoMetadata field's value.
 func (s *GetPersonTrackingOutput) SetVideoMetadata(v *VideoMetadata) *GetPersonTrackingOutput {
 	s.VideoMetadata = v
-	return s
-}
-
-// SetWarnings sets the Warnings field's value.
-func (s *GetPersonTrackingOutput) SetWarnings(v []*Warning) *GetPersonTrackingOutput {
-	s.Warnings = v
 	return s
 }
 
@@ -9293,36 +9163,6 @@ func (s *SearchFacesOutput) SetSearchedFaceId(v string) *SearchFacesOutput {
 	return s
 }
 
-type Section struct {
-	_ struct{} `type:"structure"`
-
-	EndTimestamp *int64 `type:"long"`
-
-	StartTimestamp *int64 `type:"long"`
-}
-
-// String returns the string representation
-func (s Section) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s Section) GoString() string {
-	return s.String()
-}
-
-// SetEndTimestamp sets the EndTimestamp field's value.
-func (s *Section) SetEndTimestamp(v int64) *Section {
-	s.EndTimestamp = &v
-	return s
-}
-
-// SetStartTimestamp sets the StartTimestamp field's value.
-func (s *Section) SetStartTimestamp(v int64) *Section {
-	s.StartTimestamp = &v
-	return s
-}
-
 // Indicates whether or not the face is smiling, and the confidence level in
 // the determination.
 type Smile struct {
@@ -9365,8 +9205,6 @@ type StartCelebrityRecognitionInput struct {
 	// returned. Use ClientRequestToken to prevent the same job from being accidently
 	// started more than once.
 	ClientRequestToken *string `min:"1" type:"string"`
-
-	EnablePersonTracking *bool `type:"boolean"`
 
 	// Unique identifier you specify to identify the job in the completion status
 	// published to the Amazon Simple Notification Service topic.
@@ -9425,12 +9263,6 @@ func (s *StartCelebrityRecognitionInput) Validate() error {
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *StartCelebrityRecognitionInput) SetClientRequestToken(v string) *StartCelebrityRecognitionInput {
 	s.ClientRequestToken = &v
-	return s
-}
-
-// SetEnablePersonTracking sets the EnablePersonTracking field's value.
-func (s *StartCelebrityRecognitionInput) SetEnablePersonTracking(v bool) *StartCelebrityRecognitionInput {
-	s.EnablePersonTracking = &v
 	return s
 }
 
@@ -9740,8 +9572,6 @@ type StartFaceSearchInput struct {
 	// CollectionId is a required field
 	CollectionId *string `min:"1" type:"string" required:"true"`
 
-	EnablePersonTracking *bool `type:"boolean"`
-
 	// The minimum confidence in the person match to return. For example, don't
 	// return any matches where confidence in matches is less than 70%.
 	FaceMatchThreshold *float64 `type:"float"`
@@ -9814,12 +9644,6 @@ func (s *StartFaceSearchInput) SetClientRequestToken(v string) *StartFaceSearchI
 // SetCollectionId sets the CollectionId field's value.
 func (s *StartFaceSearchInput) SetCollectionId(v string) *StartFaceSearchInput {
 	s.CollectionId = &v
-	return s
-}
-
-// SetEnablePersonTracking sets the EnablePersonTracking field's value.
-func (s *StartFaceSearchInput) SetEnablePersonTracking(v bool) *StartFaceSearchInput {
-	s.EnablePersonTracking = &v
 	return s
 }
 
@@ -10530,8 +10354,6 @@ type VideoMetadata struct {
 
 	// Horizontal pixel dimension of the video.
 	FrameWidth *int64 `type:"long"`
-
-	Rotation *int64 `type:"integer"`
 }
 
 // String returns the string representation
@@ -10577,50 +10399,6 @@ func (s *VideoMetadata) SetFrameRate(v float64) *VideoMetadata {
 // SetFrameWidth sets the FrameWidth field's value.
 func (s *VideoMetadata) SetFrameWidth(v int64) *VideoMetadata {
 	s.FrameWidth = &v
-	return s
-}
-
-// SetRotation sets the Rotation field's value.
-func (s *VideoMetadata) SetRotation(v int64) *VideoMetadata {
-	s.Rotation = &v
-	return s
-}
-
-type Warning struct {
-	_ struct{} `type:"structure"`
-
-	ErrorCode *string `type:"string"`
-
-	Message *string `type:"string"`
-
-	Sections []*Section `type:"list"`
-}
-
-// String returns the string representation
-func (s Warning) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s Warning) GoString() string {
-	return s.String()
-}
-
-// SetErrorCode sets the ErrorCode field's value.
-func (s *Warning) SetErrorCode(v string) *Warning {
-	s.ErrorCode = &v
-	return s
-}
-
-// SetMessage sets the Message field's value.
-func (s *Warning) SetMessage(v string) *Warning {
-	s.Message = &v
-	return s
-}
-
-// SetSections sets the Sections field's value.
-func (s *Warning) SetSections(v []*Section) *Warning {
-	s.Sections = v
 	return s
 }
 
