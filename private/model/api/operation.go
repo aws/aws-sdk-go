@@ -23,6 +23,7 @@ type Operation struct {
 	ErrorRefs     []ShapeRef `json:"errors"`
 	Paginator     *Paginator
 	Deprecated    bool   `json:"deprecated"`
+	DeprecatedMsg string `json:"deprecatedMessage"`
 	AuthType      string `json:"authtype"`
 	imports       map[string]bool
 
@@ -71,6 +72,7 @@ func (o *Operation) GetSigner() string {
 var tplOperation = template.Must(template.New("operation").Funcs(template.FuncMap{
 	"GetCrosslinkURL":       GetCrosslinkURL,
 	"EnableStopOnSameToken": enableStopOnSameToken,
+	"GetDeprecatedMsg":      getDeprecatedMessage,
 }).Parse(`
 const op{{ .ExportedName }} = "{{ .Name }}"
 
@@ -102,7 +104,7 @@ const op{{ .ExportedName }} = "{{ .Name }}"
 // See also, {{ $crosslinkURL }}
 {{ end -}}
 {{- if .Deprecated }}//
-// Deprecated: {{ .ExportedName }}Request is a deprecated operation
+// Deprecated: {{ GetDeprecatedMsg .DeprecatedMsg .ExportedName }}
 {{ end -}}
 func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	`input {{ .InputRef.GoType }}) (req *request.Request, output {{ .OutputRef.GoType }}) {
@@ -172,7 +174,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 // See also, {{ $crosslinkURL }}
 {{ end -}}
 {{- if .Deprecated }}//
-// Deprecated: {{ .ExportedName }} is a deprecated operation
+// Deprecated: {{ GetDeprecatedMsg .DeprecatedMsg .ExportedName }}
 {{ end -}}
 func (c *{{ .API.StructName }}) {{ .ExportedName }}(` +
 	`input {{ .InputRef.GoType }}) ({{ .OutputRef.GoType }}, error) {
@@ -190,7 +192,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}(` +
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
 {{ if .Deprecated }}//
-// Deprecated: {{ .ExportedName }}WithContext is a deprecated operation
+// Deprecated: {{ GetDeprecatedMsg .DeprecatedMsg (printf "%s%s" .ExportedName "WithContext") }}
 {{ end -}}
 func (c *{{ .API.StructName }}) {{ .ExportedName }}WithContext(` +
 	`ctx aws.Context, input {{ .InputRef.GoType }}, opts ...request.Option) ` +
@@ -220,7 +222,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}WithContext(` +
 //        })
 //
 {{ if .Deprecated }}//
-// Deprecated: {{ .ExportedName }}Pages is a deprecated paginator
+// Deprecated: {{ GetDeprecatedMsg .DeprecatedMsg (printf "%s%s" .ExportedName "Pages") }}
 {{ end -}}
 func (c *{{ .API.StructName }}) {{ .ExportedName }}Pages(` +
 	`input {{ .InputRef.GoType }}, fn func({{ .OutputRef.GoType }}, bool) bool) error {
@@ -235,7 +237,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Pages(` +
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
 {{ if .Deprecated }}//
-// Deprecated: {{ .ExportedName }}PagesWithContext is a deprecated paginator
+// Deprecated: {{ GetDeprecatedMsg .DeprecatedMsg (printf "%s%s" .ExportedName "PagesWithContext") }}
 {{ end -}}
 func (c *{{ .API.StructName }}) {{ .ExportedName }}PagesWithContext(` +
 	`ctx aws.Context, ` +
