@@ -38,7 +38,7 @@ const opAllocateConnectionOnInterconnect = "AllocateConnectionOnInterconnect"
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/AllocateConnectionOnInterconnect
 //
-// Deprecated: AllocateConnectionOnInterconnectRequest is a deprecated operation
+// Deprecated: AllocateConnectionOnInterconnect has been deprecated
 func (c *DirectConnect) AllocateConnectionOnInterconnectRequest(input *AllocateConnectionOnInterconnectInput) (req *request.Request, output *Connection) {
 	if c.Client.Config.Logger != nil {
 		c.Client.Config.Logger.Log("This operation, AllocateConnectionOnInterconnect, has been deprecated")
@@ -87,7 +87,7 @@ func (c *DirectConnect) AllocateConnectionOnInterconnectRequest(input *AllocateC
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/AllocateConnectionOnInterconnect
 //
-// Deprecated: AllocateConnectionOnInterconnect is a deprecated operation
+// Deprecated: AllocateConnectionOnInterconnect has been deprecated
 func (c *DirectConnect) AllocateConnectionOnInterconnect(input *AllocateConnectionOnInterconnectInput) (*Connection, error) {
 	req, out := c.AllocateConnectionOnInterconnectRequest(input)
 	return out, req.Send()
@@ -103,7 +103,7 @@ func (c *DirectConnect) AllocateConnectionOnInterconnect(input *AllocateConnecti
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
 //
-// Deprecated: AllocateConnectionOnInterconnectWithContext is a deprecated operation
+// Deprecated: AllocateConnectionOnInterconnectWithContext has been deprecated
 func (c *DirectConnect) AllocateConnectionOnInterconnectWithContext(ctx aws.Context, input *AllocateConnectionOnInterconnectInput, opts ...request.Option) (*Connection, error) {
 	req, out := c.AllocateConnectionOnInterconnectRequest(input)
 	req.SetContext(ctx)
@@ -2331,7 +2331,7 @@ const opDescribeConnectionLoa = "DescribeConnectionLoa"
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/DescribeConnectionLoa
 //
-// Deprecated: DescribeConnectionLoaRequest is a deprecated operation
+// Deprecated: DescribeConnectionLoa has been deprecated
 func (c *DirectConnect) DescribeConnectionLoaRequest(input *DescribeConnectionLoaInput) (req *request.Request, output *DescribeConnectionLoaOutput) {
 	if c.Client.Config.Logger != nil {
 		c.Client.Config.Logger.Log("This operation, DescribeConnectionLoa, has been deprecated")
@@ -2381,7 +2381,7 @@ func (c *DirectConnect) DescribeConnectionLoaRequest(input *DescribeConnectionLo
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/DescribeConnectionLoa
 //
-// Deprecated: DescribeConnectionLoa is a deprecated operation
+// Deprecated: DescribeConnectionLoa has been deprecated
 func (c *DirectConnect) DescribeConnectionLoa(input *DescribeConnectionLoaInput) (*DescribeConnectionLoaOutput, error) {
 	req, out := c.DescribeConnectionLoaRequest(input)
 	return out, req.Send()
@@ -2397,7 +2397,7 @@ func (c *DirectConnect) DescribeConnectionLoa(input *DescribeConnectionLoaInput)
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
 //
-// Deprecated: DescribeConnectionLoaWithContext is a deprecated operation
+// Deprecated: DescribeConnectionLoaWithContext has been deprecated
 func (c *DirectConnect) DescribeConnectionLoaWithContext(ctx aws.Context, input *DescribeConnectionLoaInput, opts ...request.Option) (*DescribeConnectionLoaOutput, error) {
 	req, out := c.DescribeConnectionLoaRequest(input)
 	req.SetContext(ctx)
@@ -2518,7 +2518,7 @@ const opDescribeConnectionsOnInterconnect = "DescribeConnectionsOnInterconnect"
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/DescribeConnectionsOnInterconnect
 //
-// Deprecated: DescribeConnectionsOnInterconnectRequest is a deprecated operation
+// Deprecated: DescribeConnectionsOnInterconnect has been deprecated
 func (c *DirectConnect) DescribeConnectionsOnInterconnectRequest(input *DescribeConnectionsOnInterconnectInput) (req *request.Request, output *Connections) {
 	if c.Client.Config.Logger != nil {
 		c.Client.Config.Logger.Log("This operation, DescribeConnectionsOnInterconnect, has been deprecated")
@@ -2564,7 +2564,7 @@ func (c *DirectConnect) DescribeConnectionsOnInterconnectRequest(input *Describe
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/DescribeConnectionsOnInterconnect
 //
-// Deprecated: DescribeConnectionsOnInterconnect is a deprecated operation
+// Deprecated: DescribeConnectionsOnInterconnect has been deprecated
 func (c *DirectConnect) DescribeConnectionsOnInterconnect(input *DescribeConnectionsOnInterconnectInput) (*Connections, error) {
 	req, out := c.DescribeConnectionsOnInterconnectRequest(input)
 	return out, req.Send()
@@ -2580,7 +2580,7 @@ func (c *DirectConnect) DescribeConnectionsOnInterconnect(input *DescribeConnect
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
 //
-// Deprecated: DescribeConnectionsOnInterconnectWithContext is a deprecated operation
+// Deprecated: DescribeConnectionsOnInterconnectWithContext has been deprecated
 func (c *DirectConnect) DescribeConnectionsOnInterconnectWithContext(ctx aws.Context, input *DescribeConnectionsOnInterconnectInput, opts ...request.Option) (*Connections, error) {
 	req, out := c.DescribeConnectionsOnInterconnectRequest(input)
 	req.SetContext(ctx)
@@ -2970,7 +2970,7 @@ const opDescribeInterconnectLoa = "DescribeInterconnectLoa"
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/DescribeInterconnectLoa
 //
-// Deprecated: DescribeInterconnectLoaRequest is a deprecated operation
+// Deprecated: DescribeInterconnectLoa has been deprecated
 func (c *DirectConnect) DescribeInterconnectLoaRequest(input *DescribeInterconnectLoaInput) (req *request.Request, output *DescribeInterconnectLoaOutput) {
 	if c.Client.Config.Logger != nil {
 		c.Client.Config.Logger.Log("This operation, DescribeInterconnectLoa, has been deprecated")
@@ -3020,7 +3020,7 @@ func (c *DirectConnect) DescribeInterconnectLoaRequest(input *DescribeInterconne
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/DescribeInterconnectLoa
 //
-// Deprecated: DescribeInterconnectLoa is a deprecated operation
+// Deprecated: DescribeInterconnectLoa has been deprecated
 func (c *DirectConnect) DescribeInterconnectLoa(input *DescribeInterconnectLoaInput) (*DescribeInterconnectLoaOutput, error) {
 	req, out := c.DescribeInterconnectLoaRequest(input)
 	return out, req.Send()
@@ -3036,7 +3036,7 @@ func (c *DirectConnect) DescribeInterconnectLoa(input *DescribeInterconnectLoaIn
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
 //
-// Deprecated: DescribeInterconnectLoaWithContext is a deprecated operation
+// Deprecated: DescribeInterconnectLoaWithContext has been deprecated
 func (c *DirectConnect) DescribeInterconnectLoaWithContext(ctx aws.Context, input *DescribeInterconnectLoaInput, opts ...request.Option) (*DescribeInterconnectLoaOutput, error) {
 	req, out := c.DescribeInterconnectLoaRequest(input)
 	req.SetContext(ctx)

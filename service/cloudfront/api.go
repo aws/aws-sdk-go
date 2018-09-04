@@ -14650,7 +14650,7 @@ type ViewerCertificate struct {
 	//
 	//    * ViewerCertificate$CloudFrontDefaultCertificate
 	//
-	// Deprecated: Certificate is a deprecated field
+	// Deprecated: Certificate has been deprecated
 	Certificate *string `deprecated:"true" type:"string"`
 
 	// This field has been deprecated. Use one of the following fields instead:
@@ -14661,7 +14661,7 @@ type ViewerCertificate struct {
 	//
 	//    * ViewerCertificate$CloudFrontDefaultCertificate
 	//
-	// Deprecated: CertificateSource is a deprecated field
+	// Deprecated: CertificateSource has been deprecated
 	CertificateSource *string `deprecated:"true" type:"string" enum:"CertificateSource"`
 
 	// For information about how and when to use CloudFrontDefaultCertificate, see

@@ -416,7 +416,7 @@ const opAttachPrincipalPolicy = "AttachPrincipalPolicy"
 //        fmt.Println(resp)
 //    }
 //
-// Deprecated: AttachPrincipalPolicyRequest is a deprecated operation
+// Deprecated: AttachPrincipalPolicy has been deprecated
 func (c *IoT) AttachPrincipalPolicyRequest(input *AttachPrincipalPolicyInput) (req *request.Request, output *AttachPrincipalPolicyOutput) {
 	if c.Client.Config.Logger != nil {
 		c.Client.Config.Logger.Log("This operation, AttachPrincipalPolicy, has been deprecated")
@@ -475,7 +475,7 @@ func (c *IoT) AttachPrincipalPolicyRequest(input *AttachPrincipalPolicyInput) (r
 //   A limit has been exceeded.
 //
 //
-// Deprecated: AttachPrincipalPolicy is a deprecated operation
+// Deprecated: AttachPrincipalPolicy has been deprecated
 func (c *IoT) AttachPrincipalPolicy(input *AttachPrincipalPolicyInput) (*AttachPrincipalPolicyOutput, error) {
 	req, out := c.AttachPrincipalPolicyRequest(input)
 	return out, req.Send()
@@ -491,7 +491,7 @@ func (c *IoT) AttachPrincipalPolicy(input *AttachPrincipalPolicyInput) (*AttachP
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
 //
-// Deprecated: AttachPrincipalPolicyWithContext is a deprecated operation
+// Deprecated: AttachPrincipalPolicyWithContext has been deprecated
 func (c *IoT) AttachPrincipalPolicyWithContext(ctx aws.Context, input *AttachPrincipalPolicyInput, opts ...request.Option) (*AttachPrincipalPolicyOutput, error) {
 	req, out := c.AttachPrincipalPolicyRequest(input)
 	req.SetContext(ctx)
@@ -6230,7 +6230,7 @@ const opDetachPrincipalPolicy = "DetachPrincipalPolicy"
 //        fmt.Println(resp)
 //    }
 //
-// Deprecated: DetachPrincipalPolicyRequest is a deprecated operation
+// Deprecated: DetachPrincipalPolicy has been deprecated
 func (c *IoT) DetachPrincipalPolicyRequest(input *DetachPrincipalPolicyInput) (req *request.Request, output *DetachPrincipalPolicyOutput) {
 	if c.Client.Config.Logger != nil {
 		c.Client.Config.Logger.Log("This operation, DetachPrincipalPolicy, has been deprecated")
@@ -6285,7 +6285,7 @@ func (c *IoT) DetachPrincipalPolicyRequest(input *DetachPrincipalPolicyInput) (r
 //   An unexpected error has occurred.
 //
 //
-// Deprecated: DetachPrincipalPolicy is a deprecated operation
+// Deprecated: DetachPrincipalPolicy has been deprecated
 func (c *IoT) DetachPrincipalPolicy(input *DetachPrincipalPolicyInput) (*DetachPrincipalPolicyOutput, error) {
 	req, out := c.DetachPrincipalPolicyRequest(input)
 	return out, req.Send()
@@ -6301,7 +6301,7 @@ func (c *IoT) DetachPrincipalPolicy(input *DetachPrincipalPolicyInput) (*DetachP
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
 //
-// Deprecated: DetachPrincipalPolicyWithContext is a deprecated operation
+// Deprecated: DetachPrincipalPolicyWithContext has been deprecated
 func (c *IoT) DetachPrincipalPolicyWithContext(ctx aws.Context, input *DetachPrincipalPolicyInput, opts ...request.Option) (*DetachPrincipalPolicyOutput, error) {
 	req, out := c.DetachPrincipalPolicyRequest(input)
 	req.SetContext(ctx)
@@ -8877,7 +8877,7 @@ const opListPolicyPrincipals = "ListPolicyPrincipals"
 //        fmt.Println(resp)
 //    }
 //
-// Deprecated: ListPolicyPrincipalsRequest is a deprecated operation
+// Deprecated: ListPolicyPrincipals has been deprecated
 func (c *IoT) ListPolicyPrincipalsRequest(input *ListPolicyPrincipalsInput) (req *request.Request, output *ListPolicyPrincipalsOutput) {
 	if c.Client.Config.Logger != nil {
 		c.Client.Config.Logger.Log("This operation, ListPolicyPrincipals, has been deprecated")
@@ -8930,7 +8930,7 @@ func (c *IoT) ListPolicyPrincipalsRequest(input *ListPolicyPrincipalsInput) (req
 //   An unexpected error has occurred.
 //
 //
-// Deprecated: ListPolicyPrincipals is a deprecated operation
+// Deprecated: ListPolicyPrincipals has been deprecated
 func (c *IoT) ListPolicyPrincipals(input *ListPolicyPrincipalsInput) (*ListPolicyPrincipalsOutput, error) {
 	req, out := c.ListPolicyPrincipalsRequest(input)
 	return out, req.Send()
@@ -8946,7 +8946,7 @@ func (c *IoT) ListPolicyPrincipals(input *ListPolicyPrincipalsInput) (*ListPolic
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
 //
-// Deprecated: ListPolicyPrincipalsWithContext is a deprecated operation
+// Deprecated: ListPolicyPrincipalsWithContext has been deprecated
 func (c *IoT) ListPolicyPrincipalsWithContext(ctx aws.Context, input *ListPolicyPrincipalsInput, opts ...request.Option) (*ListPolicyPrincipalsOutput, error) {
 	req, out := c.ListPolicyPrincipalsRequest(input)
 	req.SetContext(ctx)
@@ -9070,7 +9070,7 @@ const opListPrincipalPolicies = "ListPrincipalPolicies"
 //        fmt.Println(resp)
 //    }
 //
-// Deprecated: ListPrincipalPoliciesRequest is a deprecated operation
+// Deprecated: ListPrincipalPolicies has been deprecated
 func (c *IoT) ListPrincipalPoliciesRequest(input *ListPrincipalPoliciesInput) (req *request.Request, output *ListPrincipalPoliciesOutput) {
 	if c.Client.Config.Logger != nil {
 		c.Client.Config.Logger.Log("This operation, ListPrincipalPolicies, has been deprecated")
@@ -9124,7 +9124,7 @@ func (c *IoT) ListPrincipalPoliciesRequest(input *ListPrincipalPoliciesInput) (r
 //   An unexpected error has occurred.
 //
 //
-// Deprecated: ListPrincipalPolicies is a deprecated operation
+// Deprecated: ListPrincipalPolicies has been deprecated
 func (c *IoT) ListPrincipalPolicies(input *ListPrincipalPoliciesInput) (*ListPrincipalPoliciesOutput, error) {
 	req, out := c.ListPrincipalPoliciesRequest(input)
 	return out, req.Send()
@@ -9140,7 +9140,7 @@ func (c *IoT) ListPrincipalPolicies(input *ListPrincipalPoliciesInput) (*ListPri
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
 //
-// Deprecated: ListPrincipalPoliciesWithContext is a deprecated operation
+// Deprecated: ListPrincipalPoliciesWithContext has been deprecated
 func (c *IoT) ListPrincipalPoliciesWithContext(ctx aws.Context, input *ListPrincipalPoliciesInput, opts ...request.Option) (*ListPrincipalPoliciesOutput, error) {
 	req, out := c.ListPrincipalPoliciesRequest(input)
 	req.SetContext(ctx)
@@ -28236,7 +28236,7 @@ type RegisterCertificateInput struct {
 
 	// A boolean value that specifies if the CA certificate is set to active.
 	//
-	// Deprecated: SetAsActive is a deprecated field
+	// Deprecated: SetAsActive has been deprecated
 	SetAsActive *bool `location:"querystring" locationName:"setAsActive" deprecated:"true" type:"boolean"`
 
 	// The status of the register certificate request.

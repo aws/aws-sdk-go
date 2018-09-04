@@ -8915,7 +8915,7 @@ type CreateInstancesInput struct {
 	// In releases prior to June 12, 2017, this parameter was ignored by the API.
 	// It is now deprecated.
 	//
-	// Deprecated: CustomImageName is a deprecated field
+	// Deprecated: CustomImageName has been deprecated
 	CustomImageName *string `locationName:"customImageName" deprecated:"true" type:"string"`
 
 	// The names to use for your new Lightsail instances. Separate multiple values
@@ -10166,7 +10166,7 @@ type Disk struct {
 	// for system disks in the API response. It is now deprecated, but still included
 	// in the response. Use isAttached instead.
 	//
-	// Deprecated: AttachmentState is a deprecated field
+	// Deprecated: AttachmentState has been deprecated
 	AttachmentState *string `locationName:"attachmentState" deprecated:"true" type:"string"`
 
 	// The date when the disk was created.
@@ -10177,7 +10177,7 @@ type Disk struct {
 	// In releases prior to November 14, 2017, this parameter was not included in
 	// the API response. It is now deprecated.
 	//
-	// Deprecated: GbInUse is a deprecated field
+	// Deprecated: GbInUse has been deprecated
 	GbInUse *int64 `locationName:"gbInUse" deprecated:"true" type:"integer"`
 
 	// The input/output operations per second (IOPS) of the disk.
@@ -10565,7 +10565,7 @@ type DomainEntry struct {
 	// In releases prior to November 29, 2017, this parameter was not included in
 	// the API response. It is now deprecated.
 	//
-	// Deprecated: Options is a deprecated field
+	// Deprecated: Options has been deprecated
 	Options map[string]*string `locationName:"options" deprecated:"true" type:"map"`
 
 	// The target AWS name server (e.g., ns-111.awsdns-22.com.).
@@ -12557,7 +12557,7 @@ type GetOperationsForResourceOutput struct {
 	// In releases prior to June 12, 2017, this parameter returned null by the API.
 	// It is now deprecated, and the API returns the nextPageToken parameter instead.
 	//
-	// Deprecated: NextPageCount is a deprecated field
+	// Deprecated: NextPageCount has been deprecated
 	NextPageCount *string `locationName:"nextPageCount" deprecated:"true" type:"string"`
 
 	// An identifier that was returned from the previous call to this operation,

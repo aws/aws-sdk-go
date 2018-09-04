@@ -1472,7 +1472,7 @@ const opTestRole = "TestRole"
 //        fmt.Println(resp)
 //    }
 //
-// Deprecated: TestRoleRequest is a deprecated operation
+// Deprecated: TestRole has been deprecated
 func (c *ElasticTranscoder) TestRoleRequest(input *TestRoleInput) (req *request.Request, output *TestRoleOutput) {
 	if c.Client.Config.Logger != nil {
 		c.Client.Config.Logger.Log("This operation, TestRole, has been deprecated")
@@ -1528,7 +1528,7 @@ func (c *ElasticTranscoder) TestRoleRequest(input *TestRoleInput) (req *request.
 //   the request.
 //
 //
-// Deprecated: TestRole is a deprecated operation
+// Deprecated: TestRole has been deprecated
 func (c *ElasticTranscoder) TestRole(input *TestRoleInput) (*TestRoleOutput, error) {
 	req, out := c.TestRoleRequest(input)
 	return out, req.Send()
@@ -1544,7 +1544,7 @@ func (c *ElasticTranscoder) TestRole(input *TestRoleInput) (*TestRoleOutput, err
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
 //
-// Deprecated: TestRoleWithContext is a deprecated operation
+// Deprecated: TestRoleWithContext has been deprecated
 func (c *ElasticTranscoder) TestRoleWithContext(ctx aws.Context, input *TestRoleInput, opts ...request.Option) (*TestRoleOutput, error) {
 	req, out := c.TestRoleRequest(input)
 	req.SetContext(ctx)
@@ -2546,7 +2546,7 @@ type Captions struct {
 	// Source files for the input sidecar captions used during the transcoding process.
 	// To omit all sidecar captions, leave CaptionSources blank.
 	//
-	// Deprecated: CaptionSources is a deprecated field
+	// Deprecated: CaptionSources has been deprecated
 	CaptionSources []*CaptionSource `deprecated:"true" type:"list"`
 
 	// A policy that determines how Elastic Transcoder handles the existence of
@@ -2569,7 +2569,7 @@ type Captions struct {
 	//
 	// MergePolicy cannot be null.
 	//
-	// Deprecated: MergePolicy is a deprecated field
+	// Deprecated: MergePolicy has been deprecated
 	MergePolicy *string `deprecated:"true" type:"string"`
 }
 
@@ -2623,6 +2623,8 @@ func (s *Captions) SetMergePolicy(v string) *Captions {
 
 // Settings for one clip in a composition. All jobs in a playlist must have
 // the same clip settings.
+//
+// Deprecated: Clip has been deprecated
 type Clip struct {
 	_ struct{} `deprecated:"true" type:"structure"`
 
@@ -2869,7 +2871,7 @@ type CreateJobOutput struct {
 	// make up an output file. For the current release, you can only specify settings
 	// for a single clip per output file. The Composition object cannot be null.
 	//
-	// Deprecated: Composition is a deprecated field
+	// Deprecated: Composition has been deprecated
 	Composition []*Clip `deprecated:"true" type:"list"`
 
 	// You can specify encryption settings for any output files that you want to
@@ -4644,7 +4646,7 @@ type JobOutput struct {
 	// make up an output file. For the current release, you can only specify settings
 	// for a single clip per output file. The Composition object cannot be null.
 	//
-	// Deprecated: Composition is a deprecated field
+	// Deprecated: Composition has been deprecated
 	Composition []*Clip `deprecated:"true" type:"list"`
 
 	// Duration of the output file, in seconds.
@@ -6603,6 +6605,8 @@ func (s *ReadPresetOutput) SetPreset(v *Preset) *ReadPresetOutput {
 }
 
 // The TestRoleRequest structure.
+//
+// Deprecated: TestRoleInput has been deprecated
 type TestRoleInput struct {
 	_ struct{} `deprecated:"true" type:"structure"`
 
@@ -6688,6 +6692,8 @@ func (s *TestRoleInput) SetTopics(v []*string) *TestRoleInput {
 }
 
 // The TestRoleResponse structure.
+//
+// Deprecated: TestRoleOutput has been deprecated
 type TestRoleOutput struct {
 	_ struct{} `deprecated:"true" type:"structure"`
 

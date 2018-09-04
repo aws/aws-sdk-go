@@ -8228,7 +8228,7 @@ type QualificationRequirement struct {
 	// not be allowed to accept and complete the HIT. The default is false. This
 	// should not be used in combination with the ActionsGuarded field.
 	//
-	// Deprecated: RequiredToPreview is a deprecated field
+	// Deprecated: RequiredToPreview has been deprecated
 	RequiredToPreview *bool `deprecated:"true" type:"boolean"`
 }
 

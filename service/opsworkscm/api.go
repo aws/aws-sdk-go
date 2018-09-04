@@ -1631,12 +1631,12 @@ type Backup struct {
 
 	// This field is deprecated and is no longer used.
 	//
-	// Deprecated: S3DataSize is a deprecated field
+	// Deprecated: S3DataSize has been deprecated
 	S3DataSize *int64 `deprecated:"true" type:"integer"`
 
 	// This field is deprecated and is no longer used.
 	//
-	// Deprecated: S3DataUrl is a deprecated field
+	// Deprecated: S3DataUrl has been deprecated
 	S3DataUrl *string `deprecated:"true" type:"string"`
 
 	// The Amazon S3 URL of the backup's log file.

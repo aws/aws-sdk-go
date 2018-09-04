@@ -1602,7 +1602,7 @@ const opInvokeAsync = "InvokeAsync"
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/InvokeAsync
 //
-// Deprecated: InvokeAsyncRequest is a deprecated operation
+// Deprecated: InvokeAsync has been deprecated
 func (c *Lambda) InvokeAsyncRequest(input *InvokeAsyncInput) (req *request.Request, output *InvokeAsyncOutput) {
 	if c.Client.Config.Logger != nil {
 		c.Client.Config.Logger.Log("This operation, InvokeAsync, has been deprecated")
@@ -1655,7 +1655,7 @@ func (c *Lambda) InvokeAsyncRequest(input *InvokeAsyncInput) (req *request.Reque
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/InvokeAsync
 //
-// Deprecated: InvokeAsync is a deprecated operation
+// Deprecated: InvokeAsync has been deprecated
 func (c *Lambda) InvokeAsync(input *InvokeAsyncInput) (*InvokeAsyncOutput, error) {
 	req, out := c.InvokeAsyncRequest(input)
 	return out, req.Send()
@@ -1671,7 +1671,7 @@ func (c *Lambda) InvokeAsync(input *InvokeAsyncInput) (*InvokeAsyncOutput, error
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
 //
-// Deprecated: InvokeAsyncWithContext is a deprecated operation
+// Deprecated: InvokeAsyncWithContext has been deprecated
 func (c *Lambda) InvokeAsyncWithContext(ctx aws.Context, input *InvokeAsyncInput, opts ...request.Option) (*InvokeAsyncOutput, error) {
 	req, out := c.InvokeAsyncRequest(input)
 	req.SetContext(ctx)
@@ -5273,6 +5273,7 @@ func (s *GetPolicyOutput) SetRevisionId(v string) *GetPolicyOutput {
 	return s
 }
 
+// Deprecated: InvokeAsyncInput has been deprecated
 type InvokeAsyncInput struct {
 	_ struct{} `deprecated:"true" type:"structure" payload:"InvokeArgs"`
 
@@ -5331,6 +5332,8 @@ func (s *InvokeAsyncInput) SetInvokeArgs(v io.ReadSeeker) *InvokeAsyncInput {
 }
 
 // Upon success, it returns empty response. Otherwise, throws an exception.
+//
+// Deprecated: InvokeAsyncOutput has been deprecated
 type InvokeAsyncOutput struct {
 	_ struct{} `deprecated:"true" type:"structure"`
 

@@ -7180,7 +7180,7 @@ type DescribeUsersOutput struct {
 
 	// The total number of users included in the results.
 	//
-	// Deprecated: TotalNumberOfUsers is a deprecated field
+	// Deprecated: TotalNumberOfUsers has been deprecated
 	TotalNumberOfUsers *int64 `deprecated:"true" type:"long"`
 
 	// The users.

@@ -1959,7 +1959,7 @@ const opGetBucketLifecycle = "GetBucketLifecycle"
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/GetBucketLifecycle
 //
-// Deprecated: GetBucketLifecycleRequest is a deprecated operation
+// Deprecated: GetBucketLifecycle has been deprecated
 func (c *S3) GetBucketLifecycleRequest(input *GetBucketLifecycleInput) (req *request.Request, output *GetBucketLifecycleOutput) {
 	if c.Client.Config.Logger != nil {
 		c.Client.Config.Logger.Log("This operation, GetBucketLifecycle, has been deprecated")
@@ -1991,7 +1991,7 @@ func (c *S3) GetBucketLifecycleRequest(input *GetBucketLifecycleInput) (req *req
 // API operation GetBucketLifecycle for usage and error information.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/GetBucketLifecycle
 //
-// Deprecated: GetBucketLifecycle is a deprecated operation
+// Deprecated: GetBucketLifecycle has been deprecated
 func (c *S3) GetBucketLifecycle(input *GetBucketLifecycleInput) (*GetBucketLifecycleOutput, error) {
 	req, out := c.GetBucketLifecycleRequest(input)
 	return out, req.Send()
@@ -2007,7 +2007,7 @@ func (c *S3) GetBucketLifecycle(input *GetBucketLifecycleInput) (*GetBucketLifec
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
 //
-// Deprecated: GetBucketLifecycleWithContext is a deprecated operation
+// Deprecated: GetBucketLifecycleWithContext has been deprecated
 func (c *S3) GetBucketLifecycleWithContext(ctx aws.Context, input *GetBucketLifecycleInput, opts ...request.Option) (*GetBucketLifecycleOutput, error) {
 	req, out := c.GetBucketLifecycleRequest(input)
 	req.SetContext(ctx)
@@ -2340,7 +2340,7 @@ const opGetBucketNotification = "GetBucketNotification"
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/GetBucketNotification
 //
-// Deprecated: GetBucketNotificationRequest is a deprecated operation
+// Deprecated: GetBucketNotification has been deprecated
 func (c *S3) GetBucketNotificationRequest(input *GetBucketNotificationConfigurationRequest) (req *request.Request, output *NotificationConfigurationDeprecated) {
 	if c.Client.Config.Logger != nil {
 		c.Client.Config.Logger.Log("This operation, GetBucketNotification, has been deprecated")
@@ -2372,7 +2372,7 @@ func (c *S3) GetBucketNotificationRequest(input *GetBucketNotificationConfigurat
 // API operation GetBucketNotification for usage and error information.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/GetBucketNotification
 //
-// Deprecated: GetBucketNotification is a deprecated operation
+// Deprecated: GetBucketNotification has been deprecated
 func (c *S3) GetBucketNotification(input *GetBucketNotificationConfigurationRequest) (*NotificationConfigurationDeprecated, error) {
 	req, out := c.GetBucketNotificationRequest(input)
 	return out, req.Send()
@@ -2388,7 +2388,7 @@ func (c *S3) GetBucketNotification(input *GetBucketNotificationConfigurationRequ
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
 //
-// Deprecated: GetBucketNotificationWithContext is a deprecated operation
+// Deprecated: GetBucketNotificationWithContext has been deprecated
 func (c *S3) GetBucketNotificationWithContext(ctx aws.Context, input *GetBucketNotificationConfigurationRequest, opts ...request.Option) (*NotificationConfigurationDeprecated, error) {
 	req, out := c.GetBucketNotificationRequest(input)
 	req.SetContext(ctx)
@@ -4828,7 +4828,7 @@ const opPutBucketLifecycle = "PutBucketLifecycle"
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/PutBucketLifecycle
 //
-// Deprecated: PutBucketLifecycleRequest is a deprecated operation
+// Deprecated: PutBucketLifecycle has been deprecated
 func (c *S3) PutBucketLifecycleRequest(input *PutBucketLifecycleInput) (req *request.Request, output *PutBucketLifecycleOutput) {
 	if c.Client.Config.Logger != nil {
 		c.Client.Config.Logger.Log("This operation, PutBucketLifecycle, has been deprecated")
@@ -4862,7 +4862,7 @@ func (c *S3) PutBucketLifecycleRequest(input *PutBucketLifecycleInput) (req *req
 // API operation PutBucketLifecycle for usage and error information.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/PutBucketLifecycle
 //
-// Deprecated: PutBucketLifecycle is a deprecated operation
+// Deprecated: PutBucketLifecycle has been deprecated
 func (c *S3) PutBucketLifecycle(input *PutBucketLifecycleInput) (*PutBucketLifecycleOutput, error) {
 	req, out := c.PutBucketLifecycleRequest(input)
 	return out, req.Send()
@@ -4878,7 +4878,7 @@ func (c *S3) PutBucketLifecycle(input *PutBucketLifecycleInput) (*PutBucketLifec
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
 //
-// Deprecated: PutBucketLifecycleWithContext is a deprecated operation
+// Deprecated: PutBucketLifecycleWithContext has been deprecated
 func (c *S3) PutBucketLifecycleWithContext(ctx aws.Context, input *PutBucketLifecycleInput, opts ...request.Option) (*PutBucketLifecycleOutput, error) {
 	req, out := c.PutBucketLifecycleRequest(input)
 	req.SetContext(ctx)
@@ -5145,7 +5145,7 @@ const opPutBucketNotification = "PutBucketNotification"
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/PutBucketNotification
 //
-// Deprecated: PutBucketNotificationRequest is a deprecated operation
+// Deprecated: PutBucketNotification has been deprecated
 func (c *S3) PutBucketNotificationRequest(input *PutBucketNotificationInput) (req *request.Request, output *PutBucketNotificationOutput) {
 	if c.Client.Config.Logger != nil {
 		c.Client.Config.Logger.Log("This operation, PutBucketNotification, has been deprecated")
@@ -5179,7 +5179,7 @@ func (c *S3) PutBucketNotificationRequest(input *PutBucketNotificationInput) (re
 // API operation PutBucketNotification for usage and error information.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/PutBucketNotification
 //
-// Deprecated: PutBucketNotification is a deprecated operation
+// Deprecated: PutBucketNotification has been deprecated
 func (c *S3) PutBucketNotification(input *PutBucketNotificationInput) (*PutBucketNotificationOutput, error) {
 	req, out := c.PutBucketNotificationRequest(input)
 	return out, req.Send()
@@ -5195,7 +5195,7 @@ func (c *S3) PutBucketNotification(input *PutBucketNotificationInput) (*PutBucke
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
 //
-// Deprecated: PutBucketNotificationWithContext is a deprecated operation
+// Deprecated: PutBucketNotificationWithContext has been deprecated
 func (c *S3) PutBucketNotificationWithContext(ctx aws.Context, input *PutBucketNotificationInput, opts ...request.Option) (*PutBucketNotificationOutput, error) {
 	req, out := c.PutBucketNotificationRequest(input)
 	req.SetContext(ctx)
@@ -7237,7 +7237,7 @@ type CloudFunctionConfiguration struct {
 
 	// Bucket event for which to send notifications.
 	//
-	// Deprecated: Event is a deprecated field
+	// Deprecated: Event has been deprecated
 	Event *string `deprecated:"true" type:"string" enum:"Event"`
 
 	Events []*string `locationName:"Event" type:"list" flattened:"true"`
@@ -13742,7 +13742,7 @@ type LifecycleRule struct {
 	// Prefix identifying one or more objects to which the rule applies. This is
 	// deprecated; use Filter instead.
 	//
-	// Deprecated: Prefix is a deprecated field
+	// Deprecated: Prefix has been deprecated
 	Prefix *string `deprecated:"true" type:"string"`
 
 	// If 'Enabled', the rule is currently being applied. If 'Disabled', the rule
@@ -18846,7 +18846,7 @@ type QueueConfigurationDeprecated struct {
 
 	// Bucket event for which to send notifications.
 	//
-	// Deprecated: Event is a deprecated field
+	// Deprecated: Event has been deprecated
 	Event *string `deprecated:"true" type:"string" enum:"Event"`
 
 	Events []*string `locationName:"Event" type:"list" flattened:"true"`
@@ -20865,7 +20865,7 @@ type TopicConfigurationDeprecated struct {
 
 	// Bucket event for which to send notifications.
 	//
-	// Deprecated: Event is a deprecated field
+	// Deprecated: Event has been deprecated
 	Event *string `deprecated:"true" type:"string" enum:"Event"`
 
 	Events []*string `locationName:"Event" type:"list" flattened:"true"`

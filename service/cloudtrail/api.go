@@ -1994,7 +1994,7 @@ type CreateTrailOutput struct {
 
 	// This field is deprecated. Use SnsTopicARN.
 	//
-	// Deprecated: SnsTopicName is a deprecated field
+	// Deprecated: SnsTopicName has been deprecated
 	SnsTopicName *string `deprecated:"true" type:"string"`
 
 	// Specifies the ARN of the trail that was created. The format of a trail ARN
@@ -3627,7 +3627,7 @@ type Trail struct {
 
 	// This field is deprecated. Use SnsTopicARN.
 	//
-	// Deprecated: SnsTopicName is a deprecated field
+	// Deprecated: SnsTopicName has been deprecated
 	SnsTopicName *string `deprecated:"true" type:"string"`
 
 	// Specifies the ARN of the trail. The format of a trail ARN is:
@@ -3951,7 +3951,7 @@ type UpdateTrailOutput struct {
 
 	// This field is deprecated. Use SnsTopicARN.
 	//
-	// Deprecated: SnsTopicName is a deprecated field
+	// Deprecated: SnsTopicName has been deprecated
 	SnsTopicName *string `deprecated:"true" type:"string"`
 
 	// Specifies the ARN of the trail that was updated. The format of a trail ARN

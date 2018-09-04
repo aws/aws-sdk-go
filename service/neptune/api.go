@@ -7552,7 +7552,7 @@ type CreateDBInstanceInput struct {
 
 	// This parameter is not supported.
 	//
-	// Deprecated: PubliclyAccessible is a deprecated field
+	// Deprecated: PubliclyAccessible has been deprecated
 	PubliclyAccessible *bool `deprecated:"true" type:"boolean"`
 
 	// Specifies whether the DB instance is encrypted.
@@ -9399,7 +9399,7 @@ type DBInstance struct {
 
 	// This parameter is not supported.
 	//
-	// Deprecated: PubliclyAccessible is a deprecated field
+	// Deprecated: PubliclyAccessible has been deprecated
 	PubliclyAccessible *bool `deprecated:"true" type:"boolean"`
 
 	// Contains one or more identifiers of DB clusters that are Read Replicas of
@@ -14094,7 +14094,7 @@ type ModifyDBInstanceInput struct {
 
 	// This parameter is not supported.
 	//
-	// Deprecated: PubliclyAccessible is a deprecated field
+	// Deprecated: PubliclyAccessible has been deprecated
 	PubliclyAccessible *bool `deprecated:"true" type:"boolean"`
 
 	// Specifies the storage type to be associated with the DB instance.

@@ -855,7 +855,7 @@ const opDescribeExportConfigurations = "DescribeExportConfigurations"
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeExportConfigurations
 //
-// Deprecated: DescribeExportConfigurationsRequest is a deprecated operation
+// Deprecated: DescribeExportConfigurations has been deprecated
 func (c *ApplicationDiscoveryService) DescribeExportConfigurationsRequest(input *DescribeExportConfigurationsInput) (req *request.Request, output *DescribeExportConfigurationsOutput) {
 	if c.Client.Config.Logger != nil {
 		c.Client.Config.Logger.Log("This operation, DescribeExportConfigurations, has been deprecated")
@@ -909,7 +909,7 @@ func (c *ApplicationDiscoveryService) DescribeExportConfigurationsRequest(input 
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeExportConfigurations
 //
-// Deprecated: DescribeExportConfigurations is a deprecated operation
+// Deprecated: DescribeExportConfigurations has been deprecated
 func (c *ApplicationDiscoveryService) DescribeExportConfigurations(input *DescribeExportConfigurationsInput) (*DescribeExportConfigurationsOutput, error) {
 	req, out := c.DescribeExportConfigurationsRequest(input)
 	return out, req.Send()
@@ -925,7 +925,7 @@ func (c *ApplicationDiscoveryService) DescribeExportConfigurations(input *Descri
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
 //
-// Deprecated: DescribeExportConfigurationsWithContext is a deprecated operation
+// Deprecated: DescribeExportConfigurationsWithContext has been deprecated
 func (c *ApplicationDiscoveryService) DescribeExportConfigurationsWithContext(ctx aws.Context, input *DescribeExportConfigurationsInput, opts ...request.Option) (*DescribeExportConfigurationsOutput, error) {
 	req, out := c.DescribeExportConfigurationsRequest(input)
 	req.SetContext(ctx)
@@ -1247,7 +1247,7 @@ const opExportConfigurations = "ExportConfigurations"
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ExportConfigurations
 //
-// Deprecated: ExportConfigurationsRequest is a deprecated operation
+// Deprecated: ExportConfigurations has been deprecated
 func (c *ApplicationDiscoveryService) ExportConfigurationsRequest(input *ExportConfigurationsInput) (req *request.Request, output *ExportConfigurationsOutput) {
 	if c.Client.Config.Logger != nil {
 		c.Client.Config.Logger.Log("This operation, ExportConfigurations, has been deprecated")
@@ -1304,7 +1304,7 @@ func (c *ApplicationDiscoveryService) ExportConfigurationsRequest(input *ExportC
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ExportConfigurations
 //
-// Deprecated: ExportConfigurations is a deprecated operation
+// Deprecated: ExportConfigurations has been deprecated
 func (c *ApplicationDiscoveryService) ExportConfigurations(input *ExportConfigurationsInput) (*ExportConfigurationsOutput, error) {
 	req, out := c.ExportConfigurationsRequest(input)
 	return out, req.Send()
@@ -1320,7 +1320,7 @@ func (c *ApplicationDiscoveryService) ExportConfigurations(input *ExportConfigur
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
 //
-// Deprecated: ExportConfigurationsWithContext is a deprecated operation
+// Deprecated: ExportConfigurationsWithContext has been deprecated
 func (c *ApplicationDiscoveryService) ExportConfigurationsWithContext(ctx aws.Context, input *ExportConfigurationsInput, opts ...request.Option) (*ExportConfigurationsOutput, error) {
 	req, out := c.ExportConfigurationsRequest(input)
 	req.SetContext(ctx)

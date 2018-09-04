@@ -1283,7 +1283,7 @@ type CreateDeliveryStreamInput struct {
 
 	// [Deprecated] The destination in Amazon S3. You can specify only one destination.
 	//
-	// Deprecated: S3DestinationConfiguration is a deprecated field
+	// Deprecated: S3DestinationConfiguration has been deprecated
 	S3DestinationConfiguration *S3DestinationConfiguration `deprecated:"true" type:"structure"`
 
 	// The destination in Splunk. You can specify only one destination.
@@ -5825,7 +5825,7 @@ type UpdateDestinationInput struct {
 
 	// [Deprecated] Describes an update for a destination in Amazon S3.
 	//
-	// Deprecated: S3DestinationUpdate is a deprecated field
+	// Deprecated: S3DestinationUpdate has been deprecated
 	S3DestinationUpdate *S3DestinationUpdate `deprecated:"true" type:"structure"`
 
 	// Describes an update for a destination in Splunk.
