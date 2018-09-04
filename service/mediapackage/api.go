@@ -852,6 +852,8 @@ const opRotateChannelCredentials = "RotateChannelCredentials"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-2017-10-12/RotateChannelCredentials
+//
+// Deprecated: RotateChannelCredentialsRequest is a deprecated operation
 func (c *MediaPackage) RotateChannelCredentialsRequest(input *RotateChannelCredentialsInput) (req *request.Request, output *RotateChannelCredentialsOutput) {
 	if c.Client.Config.Logger != nil {
 		c.Client.Config.Logger.Log("This operation, RotateChannelCredentials, has been deprecated")
@@ -897,6 +899,8 @@ func (c *MediaPackage) RotateChannelCredentialsRequest(input *RotateChannelCrede
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-2017-10-12/RotateChannelCredentials
+//
+// Deprecated: RotateChannelCredentials is a deprecated operation
 func (c *MediaPackage) RotateChannelCredentials(input *RotateChannelCredentialsInput) (*RotateChannelCredentialsOutput, error) {
 	req, out := c.RotateChannelCredentialsRequest(input)
 	return out, req.Send()
@@ -911,6 +915,8 @@ func (c *MediaPackage) RotateChannelCredentials(input *RotateChannelCredentialsI
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: RotateChannelCredentialsWithContext is a deprecated operation
 func (c *MediaPackage) RotateChannelCredentialsWithContext(ctx aws.Context, input *RotateChannelCredentialsInput, opts ...request.Option) (*RotateChannelCredentialsOutput, error) {
 	req, out := c.RotateChannelCredentialsRequest(input)
 	req.SetContext(ctx)

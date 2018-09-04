@@ -8227,6 +8227,8 @@ type QualificationRequirement struct {
 	// HIT, the Worker will be allowed to preview the HIT's question data, but will
 	// not be allowed to accept and complete the HIT. The default is false. This
 	// should not be used in combination with the ActionsGuarded field.
+	//
+	// Deprecated: RequiredToPreview is a deprecated field
 	RequiredToPreview *bool `deprecated:"true" type:"boolean"`
 }
 

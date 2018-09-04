@@ -1630,9 +1630,13 @@ type Backup struct {
 	PreferredMaintenanceWindow *string `type:"string"`
 
 	// This field is deprecated and is no longer used.
+	//
+	// Deprecated: S3DataSize is a deprecated field
 	S3DataSize *int64 `deprecated:"true" type:"integer"`
 
 	// This field is deprecated and is no longer used.
+	//
+	// Deprecated: S3DataUrl is a deprecated field
 	S3DataUrl *string `deprecated:"true" type:"string"`
 
 	// The Amazon S3 URL of the backup's log file.

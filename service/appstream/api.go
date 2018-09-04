@@ -7572,6 +7572,8 @@ type UpdateFleetInput struct {
 	ComputeCapacity *ComputeCapacity `type:"structure"`
 
 	// Deletes the VPC association for the specified fleet.
+	//
+	// Deprecated: DeleteVpcConfig is a deprecated field
 	DeleteVpcConfig *bool `deprecated:"true" type:"boolean"`
 
 	// The description for display.
@@ -7882,6 +7884,8 @@ type UpdateStackInput struct {
 	AttributesToDelete []*string `type:"list"`
 
 	// Deletes the storage connectors currently enabled for the stack.
+	//
+	// Deprecated: DeleteStorageConnectors is a deprecated field
 	DeleteStorageConnectors *bool `deprecated:"true" type:"boolean"`
 
 	// The description for display.
