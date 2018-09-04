@@ -5188,6 +5188,8 @@ type UpdateDomainNameserversInput struct {
 	DomainName *string `type:"string" required:"true"`
 
 	// The authorization key for .fi domains
+	//
+	// Deprecated: FIAuthKey has been deprecated
 	FIAuthKey *string `deprecated:"true" type:"string"`
 
 	// A list of new name servers for the domain.
