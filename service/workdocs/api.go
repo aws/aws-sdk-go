@@ -7179,6 +7179,8 @@ type DescribeUsersOutput struct {
 	Marker *string `min:"1" type:"string"`
 
 	// The total number of users included in the results.
+	//
+	// Deprecated: TotalNumberOfUsers has been deprecated
 	TotalNumberOfUsers *int64 `deprecated:"true" type:"long"`
 
 	// The users.

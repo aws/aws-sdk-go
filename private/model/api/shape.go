@@ -47,6 +47,7 @@ type ShapeRef struct {
 	TimestampFormat  string `json:"timestampFormat"`
 	JSONValue        bool   `json:"jsonvalue"`
 	Deprecated       bool   `json:"deprecated"`
+	DeprecatedMsg    string `json:"deprecatedMessage"`
 
 	OrigShapeName string `json:"-"`
 
@@ -96,7 +97,8 @@ type Shape struct {
 	// Defines if the shape is a placeholder and should not be used directly
 	Placeholder bool
 
-	Deprecated bool `json:"deprecated"`
+	Deprecated    bool   `json:"deprecated"`
+	DeprecatedMsg string `json:"deprecatedMessage"`
 
 	Validations ShapeValidations
 
@@ -584,7 +586,8 @@ var structShapeTmpl = func() *template.Template {
 	shapeTmpl := template.Must(
 		template.New("structShapeTmpl").
 			Funcs(template.FuncMap{
-				"GetCrosslinkURL": GetCrosslinkURL,
+				"GetCrosslinkURL":  GetCrosslinkURL,
+				"GetDeprecatedMsg": getDeprecatedMessage,
 			}).
 			Parse(structShapeTmplDef),
 	)
@@ -610,6 +613,12 @@ var structShapeTmpl = func() *template.Template {
 
 const structShapeTmplDef = `
 {{ .Docstring }}
+{{ if .Deprecated -}}
+{{ if .Docstring -}}
+//
+{{ end -}}
+// Deprecated: {{ GetDeprecatedMsg .DeprecatedMsg .ShapeName }}
+{{ end -}}
 {{ $context := . -}}
 type {{ .ShapeName }} struct {
 	_ struct{} {{ .GoTags true false }}
@@ -622,6 +631,10 @@ type {{ .ShapeName }} struct {
 
 		{{ if $doc -}}
 			{{ $doc }}
+			{{ if $elem.Deprecated -}}
+			//
+			// Deprecated: {{ GetDeprecatedMsg $elem.DeprecatedMsg $name }}
+			{{ end -}}
 		{{ end -}}
 		{{ if $isBlob -}}
 			{{ if $doc -}}

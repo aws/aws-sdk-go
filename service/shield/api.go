@@ -572,6 +572,8 @@ const opDeleteSubscription = "DeleteSubscription"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DeleteSubscription
+//
+// Deprecated: DeleteSubscription has been deprecated
 func (c *Shield) DeleteSubscriptionRequest(input *DeleteSubscriptionInput) (req *request.Request, output *DeleteSubscriptionOutput) {
 	if c.Client.Config.Logger != nil {
 		c.Client.Config.Logger.Log("This operation, DeleteSubscription, has been deprecated")
@@ -619,6 +621,8 @@ func (c *Shield) DeleteSubscriptionRequest(input *DeleteSubscriptionInput) (req 
 //   Exception indicating the specified resource does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DeleteSubscription
+//
+// Deprecated: DeleteSubscription has been deprecated
 func (c *Shield) DeleteSubscription(input *DeleteSubscriptionInput) (*DeleteSubscriptionOutput, error) {
 	req, out := c.DeleteSubscriptionRequest(input)
 	return out, req.Send()
@@ -633,6 +637,8 @@ func (c *Shield) DeleteSubscription(input *DeleteSubscriptionInput) (*DeleteSubs
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: DeleteSubscriptionWithContext has been deprecated
 func (c *Shield) DeleteSubscriptionWithContext(ctx aws.Context, input *DeleteSubscriptionInput, opts ...request.Option) (*DeleteSubscriptionOutput, error) {
 	req, out := c.DeleteSubscriptionRequest(input)
 	req.SetContext(ctx)
@@ -2303,6 +2309,7 @@ func (s DeleteProtectionOutput) GoString() string {
 	return s.String()
 }
 
+// Deprecated: DeleteSubscriptionInput has been deprecated
 type DeleteSubscriptionInput struct {
 	_ struct{} `deprecated:"true" type:"structure"`
 }
@@ -2317,6 +2324,7 @@ func (s DeleteSubscriptionInput) GoString() string {
 	return s.String()
 }
 
+// Deprecated: DeleteSubscriptionOutput has been deprecated
 type DeleteSubscriptionOutput struct {
 	_ struct{} `deprecated:"true" type:"structure"`
 }
