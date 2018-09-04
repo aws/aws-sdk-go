@@ -900,3 +900,11 @@ func (a *API) removeShapeRef(ref *ShapeRef) {
 		a.removeShape(ref.Shape)
 	}
 }
+
+func getDeprecatedMessage(msg string, name string) string {
+	if len(msg) == 0 {
+		return name + " has been deprecated"
+	}
+
+	return msg
+}

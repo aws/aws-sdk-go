@@ -582,14 +582,6 @@ func (s *Shape) NestedShape() *Shape {
 	return nestedShape
 }
 
-func getDeprecatedMessage(msg string, name string) string {
-	if len(msg) == 0 {
-		return name + " has been deprecated"
-	}
-
-	return msg
-}
-
 var structShapeTmpl = func() *template.Template {
 	shapeTmpl := template.Must(
 		template.New("structShapeTmpl").
