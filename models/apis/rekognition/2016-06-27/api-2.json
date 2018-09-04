@@ -1030,7 +1030,6 @@
       "type":"list",
       "member":{"shape":"Emotion"}
     },
-    "ErrorCode":{"type":"string"},
     "ExternalImageId":{
       "type":"string",
       "max":255,
@@ -1058,8 +1057,7 @@
         "BoundingBox":{"shape":"BoundingBox"},
         "ImageId":{"shape":"ImageId"},
         "ExternalImageId":{"shape":"ExternalImageId"},
-        "Confidence":{"shape":"Percent"},
-        "AssociationScore":{"shape":"Percent"}
+        "Confidence":{"shape":"Percent"}
       }
     },
     "FaceAttributes":{
@@ -1211,10 +1209,7 @@
         "StatusMessage":{"shape":"StatusMessage"},
         "VideoMetadata":{"shape":"VideoMetadata"},
         "NextToken":{"shape":"PaginationToken"},
-        "Celebrities":{"shape":"CelebrityRecognitions"},
-        "BillableDurationSeconds":{"shape":"UInteger"},
-        "ErrorCode":{"shape":"ErrorCode"},
-        "Warnings":{"shape":"Warnings"}
+        "Celebrities":{"shape":"CelebrityRecognitions"}
       }
     },
     "GetContentModerationRequest":{
@@ -1234,10 +1229,7 @@
         "StatusMessage":{"shape":"StatusMessage"},
         "VideoMetadata":{"shape":"VideoMetadata"},
         "ModerationLabels":{"shape":"ContentModerationDetections"},
-        "NextToken":{"shape":"PaginationToken"},
-        "BillableDurationSeconds":{"shape":"UInteger"},
-        "ErrorCode":{"shape":"ErrorCode"},
-        "Warnings":{"shape":"Warnings"}
+        "NextToken":{"shape":"PaginationToken"}
       }
     },
     "GetFaceDetectionRequest":{
@@ -1256,10 +1248,7 @@
         "StatusMessage":{"shape":"StatusMessage"},
         "VideoMetadata":{"shape":"VideoMetadata"},
         "NextToken":{"shape":"PaginationToken"},
-        "Faces":{"shape":"FaceDetections"},
-        "BillableDurationSeconds":{"shape":"UInteger"},
-        "ErrorCode":{"shape":"ErrorCode"},
-        "Warnings":{"shape":"Warnings"}
+        "Faces":{"shape":"FaceDetections"}
       }
     },
     "GetFaceSearchRequest":{
@@ -1279,10 +1268,7 @@
         "StatusMessage":{"shape":"StatusMessage"},
         "NextToken":{"shape":"PaginationToken"},
         "VideoMetadata":{"shape":"VideoMetadata"},
-        "Persons":{"shape":"PersonMatches"},
-        "BillableDurationSeconds":{"shape":"UInteger"},
-        "ErrorCode":{"shape":"ErrorCode"},
-        "Warnings":{"shape":"Warnings"}
+        "Persons":{"shape":"PersonMatches"}
       }
     },
     "GetLabelDetectionRequest":{
@@ -1302,10 +1288,7 @@
         "StatusMessage":{"shape":"StatusMessage"},
         "VideoMetadata":{"shape":"VideoMetadata"},
         "NextToken":{"shape":"PaginationToken"},
-        "Labels":{"shape":"LabelDetections"},
-        "BillableDurationSeconds":{"shape":"UInteger"},
-        "ErrorCode":{"shape":"ErrorCode"},
-        "Warnings":{"shape":"Warnings"}
+        "Labels":{"shape":"LabelDetections"}
       }
     },
     "GetPersonTrackingRequest":{
@@ -1325,10 +1308,7 @@
         "StatusMessage":{"shape":"StatusMessage"},
         "VideoMetadata":{"shape":"VideoMetadata"},
         "NextToken":{"shape":"PaginationToken"},
-        "Persons":{"shape":"PersonDetections"},
-        "BillableDurationSeconds":{"shape":"UInteger"},
-        "ErrorCode":{"shape":"ErrorCode"},
-        "Warnings":{"shape":"Warnings"}
+        "Persons":{"shape":"PersonDetections"}
       }
     },
     "IdempotentParameterMismatchException":{
@@ -1619,7 +1599,6 @@
         "RoleArn":{"shape":"RoleArn"}
       }
     },
-    "NullableBoolean":{"type":"boolean"},
     "OrientationCorrection":{
       "type":"string",
       "enum":[
@@ -1746,7 +1725,7 @@
     },
     "RoleArn":{
       "type":"string",
-      "pattern":"arn:([a-z\\d-]+):iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+"
+      "pattern":"arn:aws:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+"
     },
     "S3Bucket":{
       "type":"string",
@@ -1774,7 +1753,7 @@
     },
     "SNSTopicArn":{
       "type":"string",
-      "pattern":"(^arn:([a-z\\d-]+):sns:.*:\\w{12}:.+$)"
+      "pattern":"(^arn:aws:sns:.*:\\w{12}:.+$)"
     },
     "SearchFacesByImageRequest":{
       "type":"structure",
@@ -1819,17 +1798,6 @@
         "FaceModelVersion":{"shape":"String"}
       }
     },
-    "Section":{
-      "type":"structure",
-      "members":{
-        "StartTimestamp":{"shape":"Timestamp"},
-        "EndTimestamp":{"shape":"Timestamp"}
-      }
-    },
-    "Sections":{
-      "type":"list",
-      "member":{"shape":"Section"}
-    },
     "Smile":{
       "type":"structure",
       "members":{
@@ -1844,7 +1812,6 @@
         "Video":{"shape":"Video"},
         "ClientRequestToken":{"shape":"ClientRequestToken"},
         "NotificationChannel":{"shape":"NotificationChannel"},
-        "EnablePersonTracking":{"shape":"NullableBoolean"},
         "JobTag":{"shape":"JobTag"}
       }
     },
@@ -1899,7 +1866,6 @@
         "ClientRequestToken":{"shape":"ClientRequestToken"},
         "FaceMatchThreshold":{"shape":"Percent"},
         "CollectionId":{"shape":"CollectionId"},
-        "EnablePersonTracking":{"shape":"NullableBoolean"},
         "NotificationChannel":{"shape":"NotificationChannel"},
         "JobTag":{"shape":"JobTag"}
       }
@@ -2090,8 +2056,7 @@
         "Format":{"shape":"String"},
         "FrameRate":{"shape":"Float"},
         "FrameHeight":{"shape":"ULong"},
-        "FrameWidth":{"shape":"ULong"},
-        "Rotation":{"shape":"UInteger"}
+        "FrameWidth":{"shape":"ULong"}
       }
     },
     "VideoTooLargeException":{
@@ -2099,18 +2064,6 @@
       "members":{
       },
       "exception":true
-    },
-    "Warning":{
-      "type":"structure",
-      "members":{
-        "ErrorCode":{"shape":"ErrorCode"},
-        "Message":{"shape":"StatusMessage"},
-        "Sections":{"shape":"Sections"}
-      }
-    },
-    "Warnings":{
-      "type":"list",
-      "member":{"shape":"Warning"}
     }
   }
 }

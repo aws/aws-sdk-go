@@ -1,3 +1,12 @@
+Release v1.15.27 (2018-09-04)
+===
+
+### Service Client Updates
+* `service/rds`: Updates service documentation
+  * Updating cross references for the new Aurora User Guide.
+* `service/rekognition`: Updates service API and documentation
+  * This release introduces a new API called DescribeCollection to Amazon Rekognition. You can use DescribeCollection to get information about an existing face collection. Given the ID for a face collection, DescribeCollection returns the following information: the number of faces indexed into the collection, the version of the face detection model used by the collection, the Amazon Resource Name (ARN) of the collection and the creation date/time of the collection.
+
 Release v1.15.26 (2018-08-31)
 ===
 
