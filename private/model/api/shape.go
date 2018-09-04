@@ -614,7 +614,7 @@ var structShapeTmpl = func() *template.Template {
 const structShapeTmplDef = `
 {{ .Docstring }}
 {{ if .Deprecated -}}
-{{ if (gt (len .Docstring) 0) -}}
+{{ if .Docstring -}}
 //
 {{ end -}}
 // Deprecated: {{ GetDeprecatedMsg .DeprecatedMsg .ShapeName }}
