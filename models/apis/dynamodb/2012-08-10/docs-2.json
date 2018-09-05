@@ -12,6 +12,7 @@
     "DeleteTable": "<p>The <code>DeleteTable</code> operation deletes a table and all of its items. After a <code>DeleteTable</code> request, the specified table is in the <code>DELETING</code> state until DynamoDB completes the deletion. If the table is in the <code>ACTIVE</code> state, you can delete it. If a table is in <code>CREATING</code> or <code>UPDATING</code> states, then DynamoDB returns a <code>ResourceInUseException</code>. If the specified table does not exist, DynamoDB returns a <code>ResourceNotFoundException</code>. If table is already in the <code>DELETING</code> state, no error is returned. </p> <note> <p>DynamoDB might continue to accept data read and write operations, such as <code>GetItem</code> and <code>PutItem</code>, on a table in the <code>DELETING</code> state until the table deletion is complete.</p> </note> <p>When you delete a table, any indexes on that table are also deleted.</p> <p>If you have DynamoDB Streams enabled on the table, then the corresponding stream on that table goes into the <code>DISABLED</code> state, and the stream is automatically deleted after 24 hours.</p> <p>Use the <code>DescribeTable</code> action to check the status of the table. </p>",
     "DescribeBackup": "<p>Describes an existing backup of a table.</p> <p>You can call <code>DescribeBackup</code> at a maximum rate of 10 times per second.</p>",
     "DescribeContinuousBackups": "<p>Checks the status of continuous backups and point in time recovery on the specified table. Continuous backups are <code>ENABLED</code> on all tables at table creation. If point in time recovery is enabled, <code>PointInTimeRecoveryStatus</code> will be set to ENABLED.</p> <p> Once continuous backups and point in time recovery are enabled, you can restore to any point in time within <code>EarliestRestorableDateTime</code> and <code>LatestRestorableDateTime</code>. </p> <p> <code>LatestRestorableDateTime</code> is typically 5 minutes before the current time. You can restore your table to any point in time during the last 35 days. </p> <p>You can call <code>DescribeContinuousBackups</code> at a maximum rate of 10 times per second.</p>",
+    "DescribeEndpoints": null,
     "DescribeGlobalTable": "<p>Returns information about the specified global table.</p>",
     "DescribeGlobalTableSettings": "<p>Describes region specific settings for a global table.</p>",
     "DescribeLimits": "<p>Returns the current provisioned-capacity limits for your AWS account in a region, both for the region as a whole and for any one DynamoDB table that you create there.</p> <p>When you establish an AWS account, the account has initial limits on the maximum read capacity units and write capacity units that you can provision across all of your DynamoDB tables in a given region. Also, there are per-table limits that apply when you create a table there. For more information, see <a href=\"http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html\">Limits</a> page in the <i>Amazon DynamoDB Developer Guide</i>.</p> <p>Although you can increase these limits by filing a case at <a href=\"https://console.aws.amazon.com/support/home#/\">AWS Support Center</a>, obtaining the increase is not instantaneous. The <code>DescribeLimits</code> action lets you write code to compare the capacity you are currently using to those limits imposed by your account so that you have enough time to apply for an increase before you hit a limit.</p> <p>For example, you could use one of the AWS SDKs to do the following:</p> <ol> <li> <p>Call <code>DescribeLimits</code> for a particular region to obtain your current account limits on provisioned capacity there.</p> </li> <li> <p>Create a variable to hold the aggregate read capacity units provisioned for all your tables in that region, and one to hold the aggregate write capacity units. Zero them both.</p> </li> <li> <p>Call <code>ListTables</code> to obtain a list of all your DynamoDB tables.</p> </li> <li> <p>For each table name listed by <code>ListTables</code>, do the following:</p> <ul> <li> <p>Call <code>DescribeTable</code> with the table name.</p> </li> <li> <p>Use the data returned by <code>DescribeTable</code> to add the read capacity units and write capacity units provisioned for the table itself to your variables.</p> </li> <li> <p>If the table has one or more global secondary indexes (GSIs), loop over these GSIs and add their provisioned capacity values to your variables as well.</p> </li> </ul> </li> <li> <p>Report the account limits for that region returned by <code>DescribeLimits</code>, along with the total current provisioned capacity levels you have calculated.</p> </li> </ol> <p>This will let you see whether you are getting close to your account-level limits.</p> <p>The per-table limits apply only when you are creating a new table. They restrict the sum of the provisioned capacity of the new table itself and all its global secondary indexes.</p> <p>For existing tables and their GSIs, DynamoDB will not let you increase provisioned capacity extremely rapidly, but the only upper limit that applies is that the aggregate provisioned capacity over all your tables and GSIs cannot exceed either of the per-account limits.</p> <note> <p> <code>DescribeLimits</code> should only be called periodically. You can expect throttling errors if you call it more than once in a minute.</p> </note> <p>The <code>DescribeLimits</code> Request element has no content.</p>",
@@ -586,6 +587,16 @@
       "refs": {
       }
     },
+    "DescribeEndpointsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeEndpointsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeGlobalTableInput": {
       "base": null,
       "refs": {
@@ -641,6 +652,18 @@
       "refs": {
         "AutoScalingTargetTrackingScalingPolicyConfigurationDescription$TargetValue": "<p>The target value for the metric. The range is 8.515920e-109 to 1.174271e+108 (Base 10) or 2e-360 to 2e360 (Base 2).</p>",
         "AutoScalingTargetTrackingScalingPolicyConfigurationUpdate$TargetValue": "<p>The target value for the metric. The range is 8.515920e-109 to 1.174271e+108 (Base 10) or 2e-360 to 2e360 (Base 2).</p>"
+      }
+    },
+    "Endpoint": {
+      "base": null,
+      "refs": {
+        "Endpoints$member": null
+      }
+    },
+    "Endpoints": {
+      "base": null,
+      "refs": {
+        "DescribeEndpointsResponse$Endpoints": null
       }
     },
     "ErrorMessage": {
@@ -1133,6 +1156,7 @@
     "Long": {
       "base": null,
       "refs": {
+        "Endpoint$CachePeriodInMinutes": null,
         "GlobalSecondaryIndexDescription$IndexSizeBytes": "<p>The total size of the specified index, in bytes. DynamoDB updates this value approximately every six hours. Recent changes might not be reflected in this value.</p>",
         "GlobalSecondaryIndexDescription$ItemCount": "<p>The number of items in the specified index. DynamoDB updates this value approximately every six hours. Recent changes might not be reflected in this value.</p>",
         "LocalSecondaryIndexDescription$IndexSizeBytes": "<p>The total size of the specified index, in bytes. DynamoDB updates this value approximately every six hours. Recent changes might not be reflected in this value.</p>",
@@ -1639,6 +1663,7 @@
       "base": null,
       "refs": {
         "AutoScalingSettingsDescription$AutoScalingRoleArn": "<p>Role ARN used for configuring autoScaling policy.</p>",
+        "Endpoint$Address": null,
         "GlobalSecondaryIndexDescription$IndexArn": "<p>The Amazon Resource Name (ARN) that uniquely identifies the index.</p>",
         "LocalSecondaryIndexDescription$IndexArn": "<p>The Amazon Resource Name (ARN) that uniquely identifies the index.</p>",
         "TableDescription$TableArn": "<p>The Amazon Resource Name (ARN) that uniquely identifies the table.</p>",

@@ -558,6 +558,22 @@
         "Metadata":{"shape":"Metadata"}
       }
     },
+    "ApplicationSettings":{
+      "type":"structure",
+      "required":["Enabled"],
+      "members":{
+        "Enabled":{"shape":"Boolean"},
+        "SettingsGroup":{"shape":"SettingsGroup"}
+      }
+    },
+    "ApplicationSettingsResponse":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Boolean"},
+        "SettingsGroup":{"shape":"SettingsGroup"},
+        "S3BucketName":{"shape":"String"}
+      }
+    },
     "Applications":{
       "type":"list",
       "member":{"shape":"Application"}
@@ -753,7 +769,8 @@
         "StorageConnectors":{"shape":"StorageConnectorList"},
         "RedirectURL":{"shape":"RedirectURL"},
         "FeedbackURL":{"shape":"FeedbackURL"},
-        "UserSettings":{"shape":"UserSettingList"}
+        "UserSettings":{"shape":"UserSettingList"},
+        "ApplicationSettings":{"shape":"ApplicationSettings"}
       }
     },
     "CreateStackResult":{
@@ -1501,6 +1518,10 @@
         "EXPIRED"
       ]
     },
+    "SettingsGroup":{
+      "type":"string",
+      "max":100
+    },
     "SharedImagePermissions":{
       "type":"structure",
       "required":[
@@ -1529,7 +1550,8 @@
         "RedirectURL":{"shape":"RedirectURL"},
         "FeedbackURL":{"shape":"FeedbackURL"},
         "StackErrors":{"shape":"StackErrors"},
-        "UserSettings":{"shape":"UserSettingList"}
+        "UserSettings":{"shape":"UserSettingList"},
+        "ApplicationSettings":{"shape":"ApplicationSettingsResponse"}
       }
     },
     "StackAttribute":{
@@ -1795,7 +1817,8 @@
         "RedirectURL":{"shape":"RedirectURL"},
         "FeedbackURL":{"shape":"FeedbackURL"},
         "AttributesToDelete":{"shape":"StackAttributes"},
-        "UserSettings":{"shape":"UserSettingList"}
+        "UserSettings":{"shape":"UserSettingList"},
+        "ApplicationSettings":{"shape":"ApplicationSettings"}
       }
     },
     "UpdateStackResult":{
