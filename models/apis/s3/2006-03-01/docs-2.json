@@ -2319,6 +2319,12 @@
         "AccessControlTranslation$Owner": "<p>The override value for the owner of the replica object.</p>"
       }
     },
+    "ParquetInput": {
+      "base": null,
+      "refs": {
+        "InputSerialization$Parquet": "<p>Specifies Parquet as object's input serialization format.</p>"
+      }
+    },
     "Part": {
       "base": null,
       "refs": {

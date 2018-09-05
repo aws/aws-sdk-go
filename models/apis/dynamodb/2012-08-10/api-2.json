@@ -25,7 +25,9 @@
         {"shape":"ProvisionedThroughputExceededException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "BatchWriteItem":{
       "name":"BatchWriteItem",
@@ -40,7 +42,9 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ItemCollectionSizeLimitExceededException"},
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "CreateBackup":{
       "name":"CreateBackup",
@@ -57,7 +61,9 @@
         {"shape":"BackupInUseException"},
         {"shape":"LimitExceededException"},
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "CreateGlobalTable":{
       "name":"CreateGlobalTable",
@@ -72,7 +78,9 @@
         {"shape":"InternalServerError"},
         {"shape":"GlobalTableAlreadyExistsException"},
         {"shape":"TableNotFoundException"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "CreateTable":{
       "name":"CreateTable",
@@ -86,7 +94,9 @@
         {"shape":"ResourceInUseException"},
         {"shape":"LimitExceededException"},
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "DeleteBackup":{
       "name":"DeleteBackup",
@@ -101,7 +111,9 @@
         {"shape":"BackupInUseException"},
         {"shape":"LimitExceededException"},
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "DeleteItem":{
       "name":"DeleteItem",
@@ -117,7 +129,9 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ItemCollectionSizeLimitExceededException"},
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "DeleteTable":{
       "name":"DeleteTable",
@@ -132,7 +146,9 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"LimitExceededException"},
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "DescribeBackup":{
       "name":"DescribeBackup",
@@ -145,7 +161,9 @@
       "errors":[
         {"shape":"BackupNotFoundException"},
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "DescribeContinuousBackups":{
       "name":"DescribeContinuousBackups",
@@ -158,7 +176,19 @@
       "errors":[
         {"shape":"TableNotFoundException"},
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
+    },
+    "DescribeEndpoints":{
+      "name":"DescribeEndpoints",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeEndpointsRequest"},
+      "output":{"shape":"DescribeEndpointsResponse"},
+      "endpointoperation":true
     },
     "DescribeGlobalTable":{
       "name":"DescribeGlobalTable",
@@ -171,7 +201,9 @@
       "errors":[
         {"shape":"InternalServerError"},
         {"shape":"GlobalTableNotFoundException"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "DescribeGlobalTableSettings":{
       "name":"DescribeGlobalTableSettings",
@@ -184,7 +216,9 @@
       "errors":[
         {"shape":"GlobalTableNotFoundException"},
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "DescribeLimits":{
       "name":"DescribeLimits",
@@ -196,7 +230,9 @@
       "output":{"shape":"DescribeLimitsOutput"},
       "errors":[
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "DescribeTable":{
       "name":"DescribeTable",
@@ -209,7 +245,9 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "DescribeTimeToLive":{
       "name":"DescribeTimeToLive",
@@ -222,7 +260,9 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "GetItem":{
       "name":"GetItem",
@@ -236,7 +276,9 @@
         {"shape":"ProvisionedThroughputExceededException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "ListBackups":{
       "name":"ListBackups",
@@ -248,7 +290,9 @@
       "output":{"shape":"ListBackupsOutput"},
       "errors":[
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "ListGlobalTables":{
       "name":"ListGlobalTables",
@@ -260,7 +304,9 @@
       "output":{"shape":"ListGlobalTablesOutput"},
       "errors":[
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "ListTables":{
       "name":"ListTables",
@@ -272,7 +318,9 @@
       "output":{"shape":"ListTablesOutput"},
       "errors":[
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "ListTagsOfResource":{
       "name":"ListTagsOfResource",
@@ -285,7 +333,9 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "PutItem":{
       "name":"PutItem",
@@ -301,7 +351,9 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ItemCollectionSizeLimitExceededException"},
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "Query":{
       "name":"Query",
@@ -315,7 +367,9 @@
         {"shape":"ProvisionedThroughputExceededException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "RestoreTableFromBackup":{
       "name":"RestoreTableFromBackup",
@@ -332,7 +386,9 @@
         {"shape":"BackupInUseException"},
         {"shape":"LimitExceededException"},
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "RestoreTableToPointInTime":{
       "name":"RestoreTableToPointInTime",
@@ -350,7 +406,9 @@
         {"shape":"InvalidRestoreTimeException"},
         {"shape":"PointInTimeRecoveryUnavailableException"},
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "Scan":{
       "name":"Scan",
@@ -364,7 +422,9 @@
         {"shape":"ProvisionedThroughputExceededException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "TagResource":{
       "name":"TagResource",
@@ -378,7 +438,9 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerError"},
         {"shape":"ResourceInUseException"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "UntagResource":{
       "name":"UntagResource",
@@ -392,7 +454,9 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerError"},
         {"shape":"ResourceInUseException"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "UpdateContinuousBackups":{
       "name":"UpdateContinuousBackups",
@@ -406,7 +470,9 @@
         {"shape":"TableNotFoundException"},
         {"shape":"ContinuousBackupsUnavailableException"},
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "UpdateGlobalTable":{
       "name":"UpdateGlobalTable",
@@ -422,7 +488,9 @@
         {"shape":"ReplicaAlreadyExistsException"},
         {"shape":"ReplicaNotFoundException"},
         {"shape":"TableNotFoundException"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "UpdateGlobalTableSettings":{
       "name":"UpdateGlobalTableSettings",
@@ -439,7 +507,9 @@
         {"shape":"LimitExceededException"},
         {"shape":"ResourceInUseException"},
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "UpdateItem":{
       "name":"UpdateItem",
@@ -455,7 +525,9 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ItemCollectionSizeLimitExceededException"},
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "UpdateTable":{
       "name":"UpdateTable",
@@ -470,7 +542,9 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"LimitExceededException"},
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     },
     "UpdateTimeToLive":{
       "name":"UpdateTimeToLive",
@@ -485,7 +559,9 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"LimitExceededException"},
         {"shape":"InternalServerError"}
-      ]
+      ],
+      "endpointdiscovery":{
+      }
     }
   },
   "shapes":{
@@ -1059,6 +1135,18 @@
         "ContinuousBackupsDescription":{"shape":"ContinuousBackupsDescription"}
       }
     },
+    "DescribeEndpointsRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DescribeEndpointsResponse":{
+      "type":"structure",
+      "required":["Endpoints"],
+      "members":{
+        "Endpoints":{"shape":"Endpoints"}
+      }
+    },
     "DescribeGlobalTableInput":{
       "type":"structure",
       "required":["GlobalTableName"],
@@ -1127,6 +1215,21 @@
       }
     },
     "Double":{"type":"double"},
+    "Endpoint":{
+      "type":"structure",
+      "required":[
+        "Address",
+        "CachePeriodInMinutes"
+      ],
+      "members":{
+        "Address":{"shape":"String"},
+        "CachePeriodInMinutes":{"shape":"Long"}
+      }
+    },
+    "Endpoints":{
+      "type":"list",
+      "member":{"shape":"Endpoint"}
+    },
     "ErrorMessage":{"type":"string"},
     "ExpectedAttributeMap":{
       "type":"map",

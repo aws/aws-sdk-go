@@ -19,8 +19,8 @@
     "DescribeDirectoryConfigs": "<p>Retrieves a list that describes one or more specified Directory Config objects for AppStream 2.0, if the names for these objects are provided. Otherwise, all Directory Config objects in the account are described. These objects include the information required to join streaming instances to an Active Directory domain. </p> <p>Although the response syntax in this topic includes the account password, this password is not returned in the actual response.</p>",
     "DescribeFleets": "<p>Retrieves a list that describes one or more specified fleets, if the fleet names are provided. Otherwise, all fleets in the account are described.</p>",
     "DescribeImageBuilders": "<p>Retrieves a list that describes one or more specified image builders, if the image builder names are provided. Otherwise, all image builders in the account are described.</p>",
-    "DescribeImagePermissions": "<p>Retrieves a list that describes the permissions for a private image that you own. </p>",
-    "DescribeImages": "<p>Retrieves a list that describes one or more specified images, if the image names are provided. Otherwise, all images in the account are described.</p>",
+    "DescribeImagePermissions": "<p>Retrieves a list that describes the permissions for shared AWS account IDs on a private image that you own. </p>",
+    "DescribeImages": "<p>Retrieves a list that describes one or more specified images, if the image names or image ARNs are provided. Otherwise, all images in the account are described.</p>",
     "DescribeSessions": "<p>Retrieves a list that describes the streaming sessions for a specified stack and fleet. If a user ID is provided for the stack and fleet, only streaming sessions for that user are described. If an authentication type is not provided, the default is to authenticate users using a streaming URL.</p>",
     "DescribeStacks": "<p>Retrieves a list that describes one or more specified stacks, if the stack names are provided. Otherwise, all stacks in the account are described.</p>",
     "DisassociateFleet": "<p>Disassociates the specified fleet from the specified stack.</p>",
@@ -62,6 +62,19 @@
       "base": "<p>Describes an application in the application catalog.</p>",
       "refs": {
         "Applications$member": null
+      }
+    },
+    "ApplicationSettings": {
+      "base": "<p>The persistent application settings for users of a stack.</p>",
+      "refs": {
+        "CreateStackRequest$ApplicationSettings": "<p>The persistent application settings for users of a stack. When these settings are enabled, changes that users make to applications and Windows settings are automatically saved after each session and applied to the next session.</p>",
+        "UpdateStackRequest$ApplicationSettings": "<p>The persistent application settings for users of a stack. When these settings are enabled, changes that users make to applications and Windows settings are automatically saved after each session and applied to the next session.</p>"
+      }
+    },
+    "ApplicationSettingsResponse": {
+      "base": "<p>Describes the persistent application settings for users of a stack.</p>",
+      "refs": {
+        "Stack$ApplicationSettings": "<p>The persistent application settings for users of the stack.</p>"
       }
     },
     "Applications": {
@@ -140,6 +153,8 @@
       "base": null,
       "refs": {
         "Application$Enabled": "<p>If there is a problem, the application can be disabled after image creation.</p>",
+        "ApplicationSettings$Enabled": "<p>Enables or disables persistent application settings for users during their streaming sessions. </p>",
+        "ApplicationSettingsResponse$Enabled": "<p>Specifies whether persistent application settings are enabled for users during their streaming sessions.</p>",
         "Image$ImageBuilderSupported": "<p>Indicates whether an image builder can be launched from this image.</p>",
         "UpdateFleetRequest$DeleteVpcConfig": "<p>Deletes the VPC association for the specified fleet.</p>",
         "UpdateStackRequest$DeleteStorageConnectors": "<p>Deletes the storage connectors currently enabled for the stack.</p>"
@@ -863,6 +878,13 @@
         "Session$State": "<p>The current state of the streaming session.</p>"
       }
     },
+    "SettingsGroup": {
+      "base": null,
+      "refs": {
+        "ApplicationSettings$SettingsGroup": "<p>The path prefix for the S3 bucket where users’ persistent application settings are stored. You can allow the same persistent application settings to be used across multiple stacks by specifying the same settings group for each stack. </p>",
+        "ApplicationSettingsResponse$SettingsGroup": "<p>The path prefix for the S3 bucket where users’ persistent application settings are stored.</p>"
+      }
+    },
     "SharedImagePermissions": {
       "base": "<p>Describes the permissions that are available to the specified AWS account for a shared image.</p>",
       "refs": {
@@ -993,6 +1015,7 @@
         "Application$IconURL": "<p>The URL for the application icon. This URL might be time-limited.</p>",
         "Application$LaunchPath": "<p>The path to the application executable in the instance.</p>",
         "Application$LaunchParameters": "<p>The arguments that are passed to the application at launch.</p>",
+        "ApplicationSettingsResponse$S3BucketName": "<p>The S3 bucket where users’ persistent application settings are stored. When persistent application settings are enabled for the first time for an account in an AWS Region, an S3 bucket is created. The bucket is unique to the AWS account and the Region. </p>",
         "AssociateFleetRequest$FleetName": "<p>The name of the fleet. </p>",
         "AssociateFleetRequest$StackName": "<p>The name of the stack.</p>",
         "CreateFleetRequest$ImageName": "<p>The name of the image used to create the fleet.</p>",
@@ -1078,7 +1101,7 @@
       "refs": {
         "DescribeFleetsRequest$Names": "<p>The names of the fleets to describe.</p>",
         "DescribeImageBuildersRequest$Names": "<p>The names of the image builders to describe.</p>",
-        "DescribeImagesRequest$Names": "<p>The names of the images to describe.</p>",
+        "DescribeImagesRequest$Names": "<p>The names of the public or private images to describe.</p>",
         "DescribeStacksRequest$Names": "<p>The names of the stacks to describe.</p>",
         "ListAssociatedFleetsResult$Names": "<p>The name of the fleet.</p>",
         "ListAssociatedStacksResult$Names": "<p>The name of the stack.</p>"

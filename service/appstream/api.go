@@ -1592,8 +1592,8 @@ func (c *AppStream) DescribeImagePermissionsRequest(input *DescribeImagePermissi
 
 // DescribeImagePermissions API operation for Amazon AppStream.
 //
-// Retrieves a list that describes the permissions for a private image that
-// you own.
+// Retrieves a list that describes the permissions for shared AWS account IDs
+// on a private image that you own.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1729,7 +1729,8 @@ func (c *AppStream) DescribeImagesRequest(input *DescribeImagesInput) (req *requ
 // DescribeImages API operation for Amazon AppStream.
 //
 // Retrieves a list that describes one or more specified images, if the image
-// names are provided. Otherwise, all images in the account are described.
+// names or image ARNs are provided. Otherwise, all images in the account are
+// described.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3364,6 +3365,105 @@ func (s *Application) SetName(v string) *Application {
 	return s
 }
 
+// The persistent application settings for users of a stack.
+type ApplicationSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Enables or disables persistent application settings for users during their
+	// streaming sessions.
+	//
+	// Enabled is a required field
+	Enabled *bool `type:"boolean" required:"true"`
+
+	// The path prefix for the S3 bucket where users’ persistent application settings
+	// are stored. You can allow the same persistent application settings to be
+	// used across multiple stacks by specifying the same settings group for each
+	// stack.
+	SettingsGroup *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ApplicationSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ApplicationSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ApplicationSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ApplicationSettings"}
+	if s.Enabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enabled"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *ApplicationSettings) SetEnabled(v bool) *ApplicationSettings {
+	s.Enabled = &v
+	return s
+}
+
+// SetSettingsGroup sets the SettingsGroup field's value.
+func (s *ApplicationSettings) SetSettingsGroup(v string) *ApplicationSettings {
+	s.SettingsGroup = &v
+	return s
+}
+
+// Describes the persistent application settings for users of a stack.
+type ApplicationSettingsResponse struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether persistent application settings are enabled for users during
+	// their streaming sessions.
+	Enabled *bool `type:"boolean"`
+
+	// The S3 bucket where users’ persistent application settings are stored. When
+	// persistent application settings are enabled for the first time for an account
+	// in an AWS Region, an S3 bucket is created. The bucket is unique to the AWS
+	// account and the Region.
+	S3BucketName *string `min:"1" type:"string"`
+
+	// The path prefix for the S3 bucket where users’ persistent application settings
+	// are stored.
+	SettingsGroup *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ApplicationSettingsResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ApplicationSettingsResponse) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *ApplicationSettingsResponse) SetEnabled(v bool) *ApplicationSettingsResponse {
+	s.Enabled = &v
+	return s
+}
+
+// SetS3BucketName sets the S3BucketName field's value.
+func (s *ApplicationSettingsResponse) SetS3BucketName(v string) *ApplicationSettingsResponse {
+	s.S3BucketName = &v
+	return s
+}
+
+// SetSettingsGroup sets the SettingsGroup field's value.
+func (s *ApplicationSettingsResponse) SetSettingsGroup(v string) *ApplicationSettingsResponse {
+	s.SettingsGroup = &v
+	return s
+}
+
 type AssociateFleetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4211,6 +4311,11 @@ func (s *CreateImageBuilderStreamingURLOutput) SetStreamingURL(v string) *Create
 type CreateStackInput struct {
 	_ struct{} `type:"structure"`
 
+	// The persistent application settings for users of a stack. When these settings
+	// are enabled, changes that users make to applications and Windows settings
+	// are automatically saved after each session and applied to the next session.
+	ApplicationSettings *ApplicationSettings `type:"structure"`
+
 	// The description for display.
 	Description *string `type:"string"`
 
@@ -4256,6 +4361,11 @@ func (s *CreateStackInput) Validate() error {
 	if s.UserSettings != nil && len(s.UserSettings) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("UserSettings", 1))
 	}
+	if s.ApplicationSettings != nil {
+		if err := s.ApplicationSettings.Validate(); err != nil {
+			invalidParams.AddNested("ApplicationSettings", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.StorageConnectors != nil {
 		for i, v := range s.StorageConnectors {
 			if v == nil {
@@ -4281,6 +4391,12 @@ func (s *CreateStackInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetApplicationSettings sets the ApplicationSettings field's value.
+func (s *CreateStackInput) SetApplicationSettings(v *ApplicationSettings) *CreateStackInput {
+	s.ApplicationSettings = v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -5222,7 +5338,7 @@ type DescribeImagesInput struct {
 	// The maximum size of each page of results.
 	MaxResults *int64 `type:"integer"`
 
-	// The names of the images to describe.
+	// The names of the public or private images to describe.
 	Names []*string `type:"list"`
 
 	// The pagination token to use to retrieve the next page of results. If this
@@ -6887,6 +7003,9 @@ func (s *SharedImagePermissions) SetSharedAccountId(v string) *SharedImagePermis
 type Stack struct {
 	_ struct{} `type:"structure"`
 
+	// The persistent application settings for users of the stack.
+	ApplicationSettings *ApplicationSettingsResponse `type:"structure"`
+
 	// The ARN of the stack.
 	Arn *string `type:"string"`
 
@@ -6930,6 +7049,12 @@ func (s Stack) String() string {
 // GoString returns the string representation
 func (s Stack) GoString() string {
 	return s.String()
+}
+
+// SetApplicationSettings sets the ApplicationSettings field's value.
+func (s *Stack) SetApplicationSettings(v *ApplicationSettingsResponse) *Stack {
+	s.ApplicationSettings = v
+	return s
 }
 
 // SetArn sets the Arn field's value.
@@ -7880,6 +8005,11 @@ func (s UpdateImagePermissionsOutput) GoString() string {
 type UpdateStackInput struct {
 	_ struct{} `type:"structure"`
 
+	// The persistent application settings for users of a stack. When these settings
+	// are enabled, changes that users make to applications and Windows settings
+	// are automatically saved after each session and applied to the next session.
+	ApplicationSettings *ApplicationSettings `type:"structure"`
+
 	// The stack attributes to delete.
 	AttributesToDelete []*string `type:"list"`
 
@@ -7936,6 +8066,11 @@ func (s *UpdateStackInput) Validate() error {
 	if s.UserSettings != nil && len(s.UserSettings) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("UserSettings", 1))
 	}
+	if s.ApplicationSettings != nil {
+		if err := s.ApplicationSettings.Validate(); err != nil {
+			invalidParams.AddNested("ApplicationSettings", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.StorageConnectors != nil {
 		for i, v := range s.StorageConnectors {
 			if v == nil {
@@ -7961,6 +8096,12 @@ func (s *UpdateStackInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetApplicationSettings sets the ApplicationSettings field's value.
+func (s *UpdateStackInput) SetApplicationSettings(v *ApplicationSettings) *UpdateStackInput {
+	s.ApplicationSettings = v
+	return s
 }
 
 // SetAttributesToDelete sets the AttributesToDelete field's value.

@@ -3200,7 +3200,8 @@
       "members":{
         "CSV":{"shape":"CSVInput"},
         "CompressionType":{"shape":"CompressionType"},
-        "JSON":{"shape":"JSONInput"}
+        "JSON":{"shape":"JSONInput"},
+        "Parquet":{"shape":"ParquetInput"}
       }
     },
     "InventoryConfiguration":{
@@ -4146,6 +4147,11 @@
     "OwnerOverride":{
       "type":"string",
       "enum":["Destination"]
+    },
+    "ParquetInput":{
+      "type":"structure",
+      "members":{
+      }
     },
     "Part":{
       "type":"structure",
