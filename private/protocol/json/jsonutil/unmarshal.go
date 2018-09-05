@@ -16,10 +16,10 @@ import (
 func UnmarshalJSON(v interface{}, stream io.Reader) error {
 	var out interface{}
 
-	if err := json.NewDecoder(stream).Decode(&out); err != nil {
-		if err == io.EOF {
-			return nil
-		}
+	err := json.NewDecoder(stream).Decode(&out)
+	if err == io.EOF {
+		return nil
+	} else if err != nil {
 		return err
 	}
 
