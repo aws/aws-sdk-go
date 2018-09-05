@@ -30,7 +30,7 @@ func Unmarshal(r *request.Request) {
 			r.Error = awserr.NewRequestFailure(
 				awserr.New("SerializationError", "failed decoding EC2 Query response", err),
 				r.HTTPResponse.StatusCode,
-				"",
+				r.RequestID,
 			)
 			return
 		}
@@ -59,7 +59,7 @@ func UnmarshalError(r *request.Request) {
 		r.Error = awserr.NewRequestFailure(
 			awserr.New("SerializationError", "failed decoding EC2 Query error response", err),
 			r.HTTPResponse.StatusCode,
-			"",
+			r.RequestID,
 		)
 	} else {
 		r.Error = awserr.NewRequestFailure(

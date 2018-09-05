@@ -26,7 +26,7 @@ func Unmarshal(r *request.Request) {
 			r.Error = awserr.NewRequestFailure(
 				awserr.New("SerializationError", "failed decoding Query response", err),
 				r.HTTPResponse.StatusCode,
-				"",
+				r.RequestID,
 			)
 			return
 		}

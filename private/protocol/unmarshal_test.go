@@ -46,11 +46,12 @@ func TestUnmarshalDrainBodyNoBody(t *testing.T) {
 	assert.NoError(t, r.Error)
 }
 
-type testOutput struct {
-	_ struct{}
-}
-
 func TestUnmarshalSeriaizationError(t *testing.T) {
+
+	type testOutput struct {
+		_ struct{}
+	}
+
 	cases := []struct {
 		name          string
 		r             request.Request

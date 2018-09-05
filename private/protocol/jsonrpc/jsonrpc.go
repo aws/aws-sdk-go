@@ -67,7 +67,7 @@ func Unmarshal(req *request.Request) {
 			req.Error = awserr.NewRequestFailure(
 				awserr.New("SerializationError", "failed decoding JSON RPC response", err),
 				req.HTTPResponse.StatusCode,
-				"",
+				req.RequestID,
 			)
 		}
 	}
@@ -87,7 +87,7 @@ func UnmarshalError(req *request.Request) {
 		req.Error = awserr.NewRequestFailure(
 			awserr.New("SerializationError", "failed reading JSON RPC error response", err),
 			req.HTTPResponse.StatusCode,
-			"",
+			req.RequestID,
 		)
 		return
 	}
@@ -95,7 +95,7 @@ func UnmarshalError(req *request.Request) {
 		req.Error = awserr.NewRequestFailure(
 			awserr.New("SerializationError", req.HTTPResponse.Status, nil),
 			req.HTTPResponse.StatusCode,
-			"",
+			req.RequestID,
 		)
 		return
 	}
@@ -104,7 +104,7 @@ func UnmarshalError(req *request.Request) {
 		req.Error = awserr.NewRequestFailure(
 			awserr.New("SerializationError", "failed decoding JSON RPC error response", err),
 			req.HTTPResponse.StatusCode,
-			"",
+			req.RequestID,
 		)
 		return
 	}

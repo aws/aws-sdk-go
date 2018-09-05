@@ -39,7 +39,7 @@ func Build(r *request.Request) {
 			r.Error = awserr.NewRequestFailure(
 				awserr.New("SerializationError", "failed to encode rest XML request", err),
 				r.HTTPResponse.StatusCode,
-				"",
+				r.RequestID,
 			)
 			return
 		}
@@ -57,7 +57,7 @@ func Unmarshal(r *request.Request) {
 			r.Error = awserr.NewRequestFailure(
 				awserr.New("SerializationError", "failed to decode REST XML response", err),
 				r.HTTPResponse.StatusCode,
-				"",
+				r.RequestID,
 			)
 			return
 		}
