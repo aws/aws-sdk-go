@@ -13058,6 +13058,9 @@ type InputSerialization struct {
 
 	// Specifies JSON as object's input serialization format.
 	JSON *JSONInput `type:"structure"`
+
+	// Specifies Parquet as object's input serialization format.
+	Parquet *ParquetInput `type:"structure"`
 }
 
 // String returns the string representation
@@ -13085,6 +13088,12 @@ func (s *InputSerialization) SetCompressionType(v string) *InputSerialization {
 // SetJSON sets the JSON field's value.
 func (s *InputSerialization) SetJSON(v *JSONInput) *InputSerialization {
 	s.JSON = v
+	return s
+}
+
+// SetParquet sets the Parquet field's value.
+func (s *InputSerialization) SetParquet(v *ParquetInput) *InputSerialization {
+	s.Parquet = v
 	return s
 }
 
@@ -16513,6 +16522,20 @@ func (s *Owner) SetDisplayName(v string) *Owner {
 func (s *Owner) SetID(v string) *Owner {
 	s.ID = &v
 	return s
+}
+
+type ParquetInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s ParquetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ParquetInput) GoString() string {
+	return s.String()
 }
 
 type Part struct {

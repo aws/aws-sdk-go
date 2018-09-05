@@ -739,8 +739,8 @@ func (c *RDS) CopyDBClusterSnapshotRequest(input *CopyDBClusterSnapshotInput) (r
 // Region to another, see  Copying a Snapshot (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_CopySnapshot.html)
 // in the Amazon Aurora User Guide.
 //
-// For more information on Amazon Aurora, see the Amazon Aurora User Guide.
-// (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// For more information on Amazon Aurora, see  What Is Amazon Aurora? (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// in the Amazon Aurora User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1111,8 +1111,8 @@ func (c *RDS) CreateDBClusterRequest(input *CreateDBClusterInput) (req *request.
 // For cross-region replication where the DB cluster identified by ReplicationSourceIdentifier
 // is encrypted, you must also specify the PreSignedUrl parameter.
 //
-// For more information on Amazon Aurora, see the Amazon Aurora User Guide.
-// (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// For more information on Amazon Aurora, see  What Is Amazon Aurora? (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// in the Amazon Aurora User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1267,7 +1267,8 @@ func (c *RDS) CreateDBClusterParameterGroupRequest(input *CreateDBClusterParamet
 // command to verify that your DB cluster parameter group has been created or
 // modified.
 //
-// For more information on Amazon Aurora, see the Amazon Aurora User Guide (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html).
+// For more information on Amazon Aurora, see  What Is Amazon Aurora? (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// in the Amazon Aurora User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1351,7 +1352,8 @@ func (c *RDS) CreateDBClusterSnapshotRequest(input *CreateDBClusterSnapshotInput
 // CreateDBClusterSnapshot API operation for Amazon Relational Database Service.
 //
 // Creates a snapshot of a DB cluster. For more information on Amazon Aurora,
-// see the Amazon Aurora User Guide (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html).
+// see  What Is Amazon Aurora? (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// in the Amazon Aurora User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2312,7 +2314,7 @@ func (c *RDS) DeleteDBClusterRequest(input *DeleteDBClusterInput) (req *request.
 // and can't be recovered. Manual DB cluster snapshots of the specified DB cluster
 // are not deleted.
 //
-// For more information on Amazon Aurora, see the Amazon Aurora User Guide (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// For more information on Amazon Aurora, see  What Is Amazon Aurora? (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)in the Amazon Aurora User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2408,7 +2410,8 @@ func (c *RDS) DeleteDBClusterParameterGroupRequest(input *DeleteDBClusterParamet
 // Deletes a specified DB cluster parameter group. The DB cluster parameter
 // group to be deleted can't be associated with any DB clusters.
 //
-// For more information on Amazon Aurora, see the Amazon Aurora User Guide (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html).
+// For more information on Amazon Aurora, see  What Is Amazon Aurora? (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// in the Amazon Aurora User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2497,7 +2500,8 @@ func (c *RDS) DeleteDBClusterSnapshotRequest(input *DeleteDBClusterSnapshotInput
 //
 // The DB cluster snapshot must be in the available state to be deleted.
 //
-// For more information on Amazon Aurora, see the Amazon Aurora User Guide (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html).
+// For more information on Amazon Aurora, see  What Is Amazon Aurora? (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// in the Amazon Aurora User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3368,7 +3372,8 @@ func (c *RDS) DescribeDBClusterBacktracksRequest(input *DescribeDBClusterBacktra
 //
 // Returns information about backtracks for a DB cluster.
 //
-// For more information on Amazon Aurora, see the Amazon Aurora User Guide (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html).
+// For more information on Amazon Aurora, see  What Is Amazon Aurora? (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// in the Amazon Aurora User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3454,7 +3459,8 @@ func (c *RDS) DescribeDBClusterParameterGroupsRequest(input *DescribeDBClusterPa
 // parameter is specified, the list will contain only the description of the
 // specified DB cluster parameter group.
 //
-// For more information on Amazon Aurora, see the Amazon Aurora User Guide (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html).
+// For more information on Amazon Aurora, see  What Is Amazon Aurora? (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// in the Amazon Aurora User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3536,7 +3542,8 @@ func (c *RDS) DescribeDBClusterParametersRequest(input *DescribeDBClusterParamet
 // Returns the detailed parameter list for a particular DB cluster parameter
 // group.
 //
-// For more information on Amazon Aurora, see the Amazon Aurora User Guide (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html).
+// For more information on Amazon Aurora, see  What Is Amazon Aurora? (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// in the Amazon Aurora User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3708,7 +3715,8 @@ func (c *RDS) DescribeDBClusterSnapshotsRequest(input *DescribeDBClusterSnapshot
 // Returns information about DB cluster snapshots. This API action supports
 // pagination.
 //
-// For more information on Amazon Aurora, see the Amazon Aurora User Guide (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html).
+// For more information on Amazon Aurora, see  What Is Amazon Aurora? (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// in the Amazon Aurora User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3796,7 +3804,8 @@ func (c *RDS) DescribeDBClustersRequest(input *DescribeDBClustersInput) (req *re
 // Returns information about provisioned Aurora DB clusters. This API supports
 // pagination.
 //
-// For more information on Amazon Aurora, see the Amazon Aurora User Guide (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html).
+// For more information on Amazon Aurora, see  What Is Amazon Aurora? (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// in the Amazon Aurora User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5100,7 +5109,8 @@ func (c *RDS) DescribeEngineDefaultClusterParametersRequest(input *DescribeEngin
 // Returns the default engine and system parameter information for the cluster
 // database engine.
 //
-// For more information on Amazon Aurora, see the Amazon Aurora User Guide (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html).
+// For more information on Amazon Aurora, see  What Is Amazon Aurora? (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// in the Amazon Aurora User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6711,7 +6721,8 @@ func (c *RDS) FailoverDBClusterRequest(input *FailoverDBClusterInput) (req *requ
 // re-establish any existing connections that use those endpoint addresses when
 // the failover is complete.
 //
-// For more information on Amazon Aurora, see the Amazon Aurora User Guide (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html).
+// For more information on Amazon Aurora, see  What Is Amazon Aurora? (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// in the Amazon Aurora User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6992,8 +7003,9 @@ func (c *RDS) ModifyDBClusterRequest(input *ModifyDBClusterInput) (req *request.
 //
 // Modify a setting for an Amazon Aurora DB cluster. You can change one or more
 // database configuration parameters by specifying these parameters and the
-// new values in the request. For more information on Amazon Aurora, see the
-// Amazon Aurora User Guide (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html).
+// new values in the request. For more information on Amazon Aurora, see  What
+// Is Amazon Aurora? (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// in the Amazon Aurora User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7110,7 +7122,8 @@ func (c *RDS) ModifyDBClusterParameterGroupRequest(input *ModifyDBClusterParamet
 // one parameter, submit a list of the following: ParameterName, ParameterValue,
 // and ApplyMethod. A maximum of 20 parameters can be modified in a single request.
 //
-// For more information on Amazon Aurora, see the Amazon Aurora User Guide (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html).
+// For more information on Amazon Aurora, see  What Is Amazon Aurora? (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// in the Amazon Aurora User Guide.
 //
 // Changes to dynamic parameters are applied immediately. Changes to static
 // parameters require a reboot without failover to the DB cluster associated
@@ -8637,7 +8650,8 @@ func (c *RDS) ResetDBClusterParameterGroupRequest(input *ResetDBClusterParameter
 // for every DB instance in your DB cluster that you want the updated static
 // parameter to apply to.
 //
-// For more information on Amazon Aurora, see the Amazon Aurora User Guide (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html).
+// For more information on Amazon Aurora, see  What Is Amazon Aurora? (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// in the Amazon Aurora User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8949,7 +8963,8 @@ func (c *RDS) RestoreDBClusterFromSnapshotRequest(input *RestoreDBClusterFromSna
 // source DB cluster, except that the new DB cluster is created with the default
 // security group.
 //
-// For more information on Amazon Aurora, see the Amazon Aurora User Guide (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html).
+// For more information on Amazon Aurora, see  What Is Amazon Aurora? (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// in the Amazon Aurora User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9100,7 +9115,8 @@ func (c *RDS) RestoreDBClusterToPointInTimeRequest(input *RestoreDBClusterToPoin
 // RestoreDBClusterToPointInTime action has completed and the DB cluster is
 // available.
 //
-// For more information on Amazon Aurora, see the Amazon Aurora User Guide (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html).
+// For more information on Amazon Aurora, see  What Is Amazon Aurora? (http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// in the Amazon Aurora User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
