@@ -20,8 +20,8 @@
     "ListPresets": "Retrieve a JSON array of up to twenty of your presets. This will return the presets themselves, not just a list of them. To retrieve the next twenty presets, use the nextToken string returned with the array.",
     "ListQueues": "Retrieve a JSON array of up to twenty of your queues. This will return the queues themselves, not just a list of them. To retrieve the next twenty queues, use the nextToken string returned with the array.",
     "ListTagsForResource": "Retrieve the tags for a MediaConvert resource.",
-    "TagResource": "Tag a MediaConvert queue, preset, or job template. For information about these resource types, see the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html",
-    "UntagResource": "Untag a MediaConvert queue, preset, or job template. For information about these resource types, see the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html",
+    "TagResource": "Add tags to a MediaConvert queue, preset, or job template. For information about tagging, see the User Guide at https://docs.aws.amazon.com/mediaconvert/latest/ug/tagging-resources.html",
+    "UntagResource": "Remove tags from a MediaConvert queue, preset, or job template. For information about tagging, see the User Guide at https://docs.aws.amazon.com/mediaconvert/latest/ug/tagging-resources.html",
     "UpdateJobTemplate": "Modify one of your existing job templates.",
     "UpdatePreset": "Modify one of your existing presets.",
     "UpdateQueue": "Modify one of your existing queues."
@@ -229,6 +229,13 @@
     "BadRequestException": {
       "base": null,
       "refs": {
+      }
+    },
+    "BillingTagsSource": {
+      "base": "Optional. Choose a tag type that AWS Billing and Cost Management will use to sort your AWS Elemental MediaConvert costs on any billing report that you set up. Any transcoding outputs that don't have an associated tag will appear in your billing report unsorted. If you don't choose a valid value for this field, your job outputs will appear on the billing report unsorted.",
+      "refs": {
+        "CreateJobRequest$BillingTagsSource": null,
+        "Job$BillingTagsSource": null
       }
     },
     "BurninDestinationSettings": {
@@ -582,6 +589,12 @@
       "refs": {
       }
     },
+    "DescribeEndpointsMode": {
+      "base": "Optional field, defaults to DEFAULT. Specify DEFAULT for this operation to return your endpoints if any exist, or to create an endpoint for you and return it if one doesn't already exist. Specify GET_ONLY to return your endpoints if any exist, or an empty list if none exist.",
+      "refs": {
+        "DescribeEndpointsRequest$Mode": null
+      }
+    },
     "DescribeEndpointsRequest": {
       "base": "Send an request with an empty body to the regional API endpoint to get your account API endpoint.",
       "refs": {
@@ -767,7 +780,7 @@
       }
     },
     "Endpoint": {
-      "base": "Describes account specific API endpoint",
+      "base": "Describes an account-specific API endpoint.",
       "refs": {
         "__listOfEndpoint$member": null
       }
@@ -1435,7 +1448,7 @@
       }
     },
     "ListJobTemplatesResponse": {
-      "base": "Successful list job templates requests return a JSON array of job templates. If you do not specify how they are ordered, you will receive them in alphabetical order by name.",
+      "base": "Successful list job templates requests return a JSON array of job templates. If you don't specify how they are ordered, you will receive them in alphabetical order by name.",
       "refs": {
       }
     },
@@ -1445,7 +1458,7 @@
       }
     },
     "ListJobsResponse": {
-      "base": "Successful list jobs requests return a JSON array of jobs. If you do not specify how they are ordered, you will receive the most recently created first.",
+      "base": "Successful list jobs requests return a JSON array of jobs. If you don't specify how they are ordered, you will receive the most recently created first.",
       "refs": {
       }
     },
@@ -1455,7 +1468,7 @@
       }
     },
     "ListPresetsResponse": {
-      "base": "Successful list presets requests return a JSON array of presets. If you do not specify how they are ordered, you will receive them alphabetically by name.",
+      "base": "Successful list presets requests return a JSON array of presets. If you don't specify how they are ordered, you will receive them alphabetically by name.",
       "refs": {
       }
     },
@@ -1465,7 +1478,7 @@
       }
     },
     "ListQueuesResponse": {
-      "base": "Successful list queues return a JSON array of queues. If you do not specify how they are ordered, you will receive them alphabetically by name.",
+      "base": "Successful list queues return a JSON array of queues. If you don't specify how they are ordered, you will receive them alphabetically by name.",
       "refs": {
       }
     },
@@ -1965,7 +1978,7 @@
       }
     },
     "QueueStatus": {
-      "base": "Queues can be ACTIVE or PAUSED. If you pause a queue, jobs in that queue will not begin. Jobs running when a queue is paused continue to run until they finish or error out.",
+      "base": "Queues can be ACTIVE or PAUSED. If you pause a queue, jobs in that queue won't begin. Jobs running when a queue is paused continue to run until they finish or error out.",
       "refs": {
         "Queue$Status": null,
         "UpdateQueueRequest$Status": null
@@ -2031,12 +2044,12 @@
       }
     },
     "TagResourceRequest": {
-      "base": "To tag a queue, preset, or job template, send a request with the tags and the Amazon Resource Name (ARN) of the resource that you want to tag.",
+      "base": "To add tags to a queue, preset, or job template, send a request with the Amazon Resource Name (ARN) of the resource and the tags that you want to add.",
       "refs": {
       }
     },
     "TagResourceResponse": {
-      "base": "Successful tag resource requests return an OK message.",
+      "base": "A successful request to add tags to a resource returns an OK message.",
       "refs": {
       }
     },
@@ -2127,7 +2140,7 @@
       }
     },
     "UntagResourceResponse": {
-      "base": "A successful request to remove a tag from a resource returns an OK message.",
+      "base": "A successful request to remove tags from a resource returns an OK message.",
       "refs": {
       }
     },
