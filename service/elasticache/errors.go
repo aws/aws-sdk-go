@@ -186,12 +186,6 @@ const (
 	// The VPC network is in an invalid state.
 	ErrCodeInvalidVPCNetworkStateFault = "InvalidVPCNetworkStateFault"
 
-	// ErrCodeNoOperationFault for service response error code
-	// "NoOperationFault".
-	//
-	// The operation was not performed because no changes were required.
-	ErrCodeNoOperationFault = "NoOperationFault"
-
 	// ErrCodeNodeGroupNotFoundFault for service response error code
 	// "NodeGroupNotFoundFault".
 	//
@@ -259,12 +253,6 @@ const (
 	// The requested cache node offering does not exist.
 	ErrCodeReservedCacheNodesOfferingNotFoundFault = "ReservedCacheNodesOfferingNotFound"
 
-	// ErrCodeServiceLinkedRoleNotFoundFault for service response error code
-	// "ServiceLinkedRoleNotFoundFault".
-	//
-	// The specified service linked role (SLR) was not found.
-	ErrCodeServiceLinkedRoleNotFoundFault = "ServiceLinkedRoleNotFoundFault"
-
 	// ErrCodeSnapshotAlreadyExistsFault for service response error code
 	// "SnapshotAlreadyExistsFault".
 	//
@@ -320,7 +308,5 @@ const (
 
 	// ErrCodeTestFailoverNotAvailableFault for service response error code
 	// "TestFailoverNotAvailableFault".
-	//
-	// The TestFailover action is not available.
 	ErrCodeTestFailoverNotAvailableFault = "TestFailoverNotAvailableFault"
 )
