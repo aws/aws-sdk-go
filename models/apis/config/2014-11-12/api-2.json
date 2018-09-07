@@ -867,7 +867,8 @@
         "Source":{"shape":"Source"},
         "InputParameters":{"shape":"StringWithCharLimit1024"},
         "MaximumExecutionFrequency":{"shape":"MaximumExecutionFrequency"},
-        "ConfigRuleState":{"shape":"ConfigRuleState"}
+        "ConfigRuleState":{"shape":"ConfigRuleState"},
+        "CreatedBy":{"shape":"StringWithCharLimit256"}
       }
     },
     "ConfigRuleComplianceFilters":{
