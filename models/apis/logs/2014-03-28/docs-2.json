@@ -399,7 +399,7 @@
     "FilterPattern": {
       "base": "<p>A symbolic description of how CloudWatch Logs should interpret the data in each log event. For example, a log event may contain time stamps, IP addresses, strings, and so on. You use the filter pattern to specify what to look for in the log event message.</p>",
       "refs": {
-        "FilterLogEventsRequest$filterPattern": "<p>The filter pattern to use. If not provided, all the events are matched.</p>",
+        "FilterLogEventsRequest$filterPattern": "<p>The filter pattern to use. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html\">Filter and Pattern Syntax</a>.</p> <p>If not provided, all the events are matched.</p>",
         "MetricFilter$filterPattern": null,
         "PutMetricFilterRequest$filterPattern": "<p>A filter pattern for extracting metric data out of ingested log events.</p>",
         "PutSubscriptionFilterRequest$filterPattern": "<p>A filter pattern for subscribing to a filtered stream of log events.</p>",
@@ -444,7 +444,7 @@
     "InputLogStreamNames": {
       "base": null,
       "refs": {
-        "FilterLogEventsRequest$logStreamNames": "<p>Optional list of log stream names.</p>"
+        "FilterLogEventsRequest$logStreamNames": "<p>Filters the results to only logs from the log streams in this list.</p> <p>If you specify a value for both <code>logStreamNamePrefix</code> and <code>logStreamNames</code>, but the value for <code>logStreamNamePrefix</code> does not match any log stream names specified in <code>logStreamNames</code>, the action returns an <code>InvalidParameterException</code> error.</p>"
       }
     },
     "Interleaved": {
@@ -523,7 +523,7 @@
         "DescribeSubscriptionFiltersRequest$logGroupName": "<p>The name of the log group.</p>",
         "DisassociateKmsKeyRequest$logGroupName": "<p>The name of the log group.</p>",
         "ExportTask$logGroupName": "<p>The name of the log group from which logs data was exported.</p>",
-        "FilterLogEventsRequest$logGroupName": "<p>The name of the log group.</p>",
+        "FilterLogEventsRequest$logGroupName": "<p>The name of the log group to search.</p>",
         "GetLogEventsRequest$logGroupName": "<p>The name of the log group.</p>",
         "ListTagsLogGroupRequest$logGroupName": "<p>The name of the log group.</p>",
         "LogGroup$logGroupName": "<p>The name of the log group.</p>",
@@ -556,6 +556,7 @@
         "CreateLogStreamRequest$logStreamName": "<p>The name of the log stream.</p>",
         "DeleteLogStreamRequest$logStreamName": "<p>The name of the log stream.</p>",
         "DescribeLogStreamsRequest$logStreamNamePrefix": "<p>The prefix to match.</p> <p>If <code>orderBy</code> is <code>LastEventTime</code>,you cannot specify this parameter.</p>",
+        "FilterLogEventsRequest$logStreamNamePrefix": "<p>Filters the results to include only events from log streams that have names starting with this prefix.</p> <p>If you specify a value for both <code>logStreamNamePrefix</code> and <code>logStreamNames</code>, but the value for <code>logStreamNamePrefix</code> does not match any log stream names specified in <code>logStreamNames</code>, the action returns an <code>InvalidParameterException</code> error.</p>",
         "FilteredLogEvent$logStreamName": "<p>The name of the log stream this event belongs to.</p>",
         "GetLogEventsRequest$logStreamName": "<p>The name of the log stream.</p>",
         "InputLogStreamNames$member": null,

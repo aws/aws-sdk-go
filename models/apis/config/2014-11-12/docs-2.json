@@ -1065,7 +1065,7 @@
       }
     },
     "LimitExceededException": {
-      "base": "<p>This exception is thrown if an evaluation is in progress or if you call the <a>StartConfigRulesEvaluation</a> API more than once per minute.</p>",
+      "base": "<p>For <code>StartConfigRulesEvaluation</code> API, this exception is thrown if an evaluation is in progress or if you call the <a>StartConfigRulesEvaluation</a> API more than once per minute.</p> <p>For <code>PutConfigurationAggregator</code> API, this exception is thrown if the number of accounts and aggregators exceeds the limit.</p>",
       "refs": {
       }
     },
@@ -1620,6 +1620,7 @@
         "ComplianceByResource$ResourceType": "<p>The type of the AWS resource that was evaluated.</p>",
         "ComplianceResourceTypes$member": null,
         "ComplianceSummaryByResourceType$ResourceType": "<p>The type of AWS resource.</p>",
+        "ConfigRule$CreatedBy": "<p>Service principal name of the service that created the rule.</p> <note> <p>The field is populated only if the service linked rule is created by a service. The field is empty if you create your own rule.</p> </note>",
         "DescribeComplianceByResourceRequest$ResourceType": "<p>The types of AWS resources for which you want compliance information (for example, <code>AWS::EC2::Instance</code>). For this action, you can specify that the resource type is an AWS account by specifying <code>AWS::::Account</code>.</p>",
         "Evaluation$ComplianceResourceType": "<p>The type of AWS resource that was evaluated.</p>",
         "Evaluation$Annotation": "<p>Supplementary information about how the evaluation determined the compliance.</p>",

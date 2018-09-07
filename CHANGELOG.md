@@ -1,3 +1,16 @@
+Release v1.15.31 (2018-09-07)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API and documentation
+* `service/logs`: Updates service API and documentation
+  * * Adding a log prefix parameter for filter log events API and minor updates to the documentation
+
+### SDK Enhancements
+* `private/protocol/json/jsonutil`: Use json.Decoder to decrease memory allocation ([#2115](https://github.com/aws/aws-sdk-go/pull/2115))
+  * Updates the SDK's JSON protocol marshaler to use `json.Decoder` instead of `ioutil.ReadAll`. This reduces the memory unmarshaling JSON payloads by about 50%.
+  * Fix [#2114](https://github.com/aws/aws-sdk-go/pull/2114)
+
 Release v1.15.29 (2018-09-06)
 ===
 
