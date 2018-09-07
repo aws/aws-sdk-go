@@ -850,6 +850,7 @@
       "members":{
         "logGroupName":{"shape":"LogGroupName"},
         "logStreamNames":{"shape":"InputLogStreamNames"},
+        "logStreamNamePrefix":{"shape":"LogStreamName"},
         "startTime":{"shape":"Timestamp"},
         "endTime":{"shape":"Timestamp"},
         "filterPattern":{"shape":"FilterPattern"},
