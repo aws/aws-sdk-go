@@ -66,7 +66,7 @@ func UnmarshalError(r *request.Request) {
 		return
 	} else if err != nil {
 		r.Error = awserr.NewRequestFailure(
-			awserr.New("SerializationError", "failed reading REST JSON error response", err),
+			awserr.New("SerializationError", "failed decoding REST JSON error response", err),
 			r.HTTPResponse.StatusCode,
 			r.RequestID,
 		)
