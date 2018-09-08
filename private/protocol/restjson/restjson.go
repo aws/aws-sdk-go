@@ -7,7 +7,7 @@ package restjson
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"strings"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
@@ -54,9 +54,17 @@ func UnmarshalMeta(r *request.Request) {
 // UnmarshalError unmarshals a response error for the REST JSON protocol.
 func UnmarshalError(r *request.Request) {
 	defer r.HTTPResponse.Body.Close()
-	code := r.HTTPResponse.Header.Get("X-Amzn-Errortype")
-	bodyBytes, err := ioutil.ReadAll(r.HTTPResponse.Body)
-	if err != nil {
+
+	var jsonErr jsonErrorResponse
+	err := json.NewDecoder(r.HTTPResponse.Body).Decode(&jsonErr)
+	if err == io.EOF {
+		r.Error = awserr.NewRequestFailure(
+			awserr.New("SerializationError", r.HTTPResponse.Status, nil),
+			r.HTTPResponse.StatusCode,
+			r.RequestID,
+		)
+		return
+	} else if err != nil {
 		r.Error = awserr.NewRequestFailure(
 			awserr.New("SerializationError", "failed reading REST JSON error response", err),
 			r.HTTPResponse.StatusCode,
@@ -64,24 +72,8 @@ func UnmarshalError(r *request.Request) {
 		)
 		return
 	}
-	if len(bodyBytes) == 0 {
-		r.Error = awserr.NewRequestFailure(
-			awserr.New("SerializationError", r.HTTPResponse.Status, nil),
-			r.HTTPResponse.StatusCode,
-			r.RequestID,
-		)
-		return
-	}
-	var jsonErr jsonErrorResponse
-	if err := json.Unmarshal(bodyBytes, &jsonErr); err != nil {
-		r.Error = awserr.NewRequestFailure(
-			awserr.New("SerializationError", "failed decoding REST JSON error response", err),
-			r.HTTPResponse.StatusCode,
-			r.RequestID,
-		)
-		return
-	}
 
+	code := r.HTTPResponse.Header.Get("X-Amzn-Errortype")
 	if code == "" {
 		code = jsonErr.Code
 	}
