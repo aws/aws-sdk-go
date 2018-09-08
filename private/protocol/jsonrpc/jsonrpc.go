@@ -94,7 +94,7 @@ func UnmarshalError(req *request.Request) {
 		return
 	} else if err != nil {
 		req.Error = awserr.NewRequestFailure(
-			awserr.New("SerializationError", "failed reading JSON RPC error response", err),
+			awserr.New("SerializationError", "failed decoding JSON RPC error response", err),
 			req.HTTPResponse.StatusCode,
 			req.RequestID,
 		)
