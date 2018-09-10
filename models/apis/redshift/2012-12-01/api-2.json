@@ -3137,7 +3137,9 @@
         "PubliclyAccessible":{"shape":"BooleanOptional"},
         "ElasticIp":{"shape":"String"},
         "EnhancedVpcRouting":{"shape":"BooleanOptional"},
-        "MaintenanceTrackName":{"shape":"String"}
+        "MaintenanceTrackName":{"shape":"String"},
+        "Encrypted":{"shape":"BooleanOptional"},
+        "KmsKeyId":{"shape":"String"}
       }
     },
     "ModifyClusterParameterGroupMessage":{
@@ -3308,7 +3310,8 @@
         "ClusterIdentifier":{"shape":"String"},
         "PubliclyAccessible":{"shape":"BooleanOptional"},
         "EnhancedVpcRouting":{"shape":"BooleanOptional"},
-        "MaintenanceTrackName":{"shape":"String"}
+        "MaintenanceTrackName":{"shape":"String"},
+        "EncryptionType":{"shape":"String"}
       }
     },
     "PurchaseReservedNodeOfferingMessage":{
@@ -3533,7 +3536,8 @@
         "ElapsedTimeInSeconds":{"shape":"LongOptional"},
         "EstimatedTimeToCompletionInSeconds":{"shape":"LongOptional"},
         "ResizeType":{"shape":"String"},
-        "Message":{"shape":"String"}
+        "Message":{"shape":"String"},
+        "TargetEncryptionType":{"shape":"String"}
       }
     },
     "ResourceNotFoundFault":{
