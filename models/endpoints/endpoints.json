@@ -849,6 +849,7 @@
         "endpoints" : {
           "ap-northeast-1" : { },
           "ap-northeast-2" : { },
+          "ap-southeast-1" : { },
           "ap-southeast-2" : { },
           "eu-central-1" : { },
           "eu-west-1" : { },
@@ -1036,6 +1037,7 @@
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },
+          "sa-east-1" : { },
           "us-east-1" : { },
           "us-east-2" : { },
           "us-west-1" : { },
@@ -1719,6 +1721,7 @@
           "eu-central-1" : { },
           "eu-west-1" : { },
           "eu-west-2" : { },
+          "eu-west-3" : { },
           "sa-east-1" : { },
           "us-east-1" : { },
           "us-east-1-fips" : {
@@ -1820,7 +1823,12 @@
       },
       "servicediscovery" : {
         "endpoints" : {
+          "ap-northeast-1" : { },
+          "ap-southeast-1" : { },
+          "ap-southeast-2" : { },
+          "eu-central-1" : { },
           "eu-west-1" : { },
+          "eu-west-2" : { },
           "us-east-1" : { },
           "us-east-2" : { },
           "us-west-1" : { },
@@ -2138,8 +2146,26 @@
         "endpoints" : {
           "eu-west-1" : { },
           "us-east-1" : { },
+          "us-east-1-fips" : {
+            "credentialScope" : {
+              "region" : "us-east-1"
+            },
+            "hostname" : "translate-fips.us-east-1.amazonaws.com"
+          },
           "us-east-2" : { },
-          "us-west-2" : { }
+          "us-east-2-fips" : {
+            "credentialScope" : {
+              "region" : "us-east-2"
+            },
+            "hostname" : "translate-fips.us-east-2.amazonaws.com"
+          },
+          "us-west-2" : { },
+          "us-west-2-fips" : {
+            "credentialScope" : {
+              "region" : "us-west-2"
+            },
+            "hostname" : "translate-fips.us-west-2.amazonaws.com"
+          }
         }
       },
       "waf" : {
@@ -2568,6 +2594,11 @@
           "us-gov-west-1" : { }
         }
       },
+      "application-autoscaling" : {
+        "endpoints" : {
+          "us-gov-west-1" : { }
+        }
+      },
       "autoscaling" : {
         "endpoints" : {
           "us-gov-west-1" : {
@@ -2879,7 +2910,13 @@
           "protocols" : [ "https" ]
         },
         "endpoints" : {
-          "us-gov-west-1" : { }
+          "us-gov-west-1" : { },
+          "us-gov-west-1-fips" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "translate-fips.us-gov-west-1.amazonaws.com"
+          }
         }
       }
     }
