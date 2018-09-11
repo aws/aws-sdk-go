@@ -51,8 +51,10 @@
     "DescribePatchBaselines": "<p>Lists the patch baselines in your AWS account.</p>",
     "DescribePatchGroupState": "<p>Returns high-level aggregated patch compliance state for a patch group.</p>",
     "DescribePatchGroups": "<p>Lists all patch groups that have been registered with patch baselines.</p>",
+    "DescribeSessions": "<p>Retrieves a list of all active sessions (both connected and disconnected) or terminated sessions from the past 30 days.</p>",
     "GetAutomationExecution": "<p>Get detailed information about a particular Automation execution.</p>",
     "GetCommandInvocation": "<p>Returns detailed information about command execution for an invocation or plugin. </p>",
+    "GetConnectionStatus": "<p>Retrieves the Session Manager connection status for an instance to determine whether it is connected and ready to receive Session Manager connections.</p>",
     "GetDefaultPatchBaseline": "<p>Retrieves the default patch baseline. Note that Systems Manager supports creating multiple default patch baselines. For example, you can create a default patch baseline for each operating system.</p> <p>If you do not specify an operating system value, the default patch baseline for Windows is returned.</p>",
     "GetDeployablePatchSnapshotForInstance": "<p>Retrieves the current snapshot for the patch baseline the instance uses. This API is primarily used by the AWS-RunPatchBaseline Systems Manager document. </p>",
     "GetDocument": "<p>Gets the contents of the specified Systems Manager document.</p>",
@@ -91,11 +93,14 @@
     "RegisterTargetWithMaintenanceWindow": "<p>Registers a target with a Maintenance Window.</p>",
     "RegisterTaskWithMaintenanceWindow": "<p>Adds a new task to a Maintenance Window.</p>",
     "RemoveTagsFromResource": "<p>Removes all tags from the specified resource.</p>",
+    "ResumeSession": "<p>Reconnects a session to an instance after it has been disconnected. Connections can be resumed for disconnected sessions, but not terminated sessions.</p> <note> <p>This command is primarily for use by client machines to automatically reconnect during intermittent network issues. It is not intended for any other use.</p> </note>",
     "SendAutomationSignal": "<p>Sends a signal to an Automation execution to change the current behavior or status of the execution. </p>",
     "SendCommand": "<p>Executes commands on one or more managed instances.</p>",
     "StartAssociationsOnce": "<p>Use this API action to execute an association immediately and only one time. This action can be helpful when troubleshooting associations.</p>",
     "StartAutomationExecution": "<p>Initiates execution of an Automation document.</p>",
+    "StartSession": "<p>Initiates a connection to a target (for example, an instance) for a Session Manager session. Returns a URL and token that can be used to open a WebSocket connection for sending input and receiving outputs.</p> <note> <p>AWS CLI usage: <code>start-session</code> is an interactive command that requires the Session Manager plugin to be installed on the client machine making the call. For information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html\"> Install the Session Manager Plugin for the AWS CLI</a> in the <i>AWS Systems Manager User Guide</i>.</p> </note>",
     "StopAutomationExecution": "<p>Stop an Automation that is currently executing.</p>",
+    "TerminateSession": "<p>Permanently ends a session and closes the data connection between the Session Manager client and SSM Agent on the instance. A terminated session cannot be resumed.</p>",
     "UpdateAssociation": "<p>Updates an association. You can update the association name and version, the document version, schedule, parameters, and Amazon S3 output.</p>",
     "UpdateAssociationStatus": "<p>Updates the status of the Systems Manager document associated with the specified instance.</p>",
     "UpdateDocument": "<p>The document you want to update.</p>",
@@ -766,7 +771,7 @@
     "CommandFilterValue": {
       "base": null,
       "refs": {
-        "CommandFilter$value": "<p>The filter value. </p>"
+        "CommandFilter$value": "<p>The filter value. Valid values for each filter key are as follows:</p> <ul> <li> <p>InvokedAfter: A timestamp to limit your results. For example, specify <code>2018-07-07T00:00:00Z</code> to see results occurring July 7, 2018, and later.</p> </li> <li> <p>InvokedBefore: A timestamp to limit your results. For example, specify <code>2018-07-07T00:00:00Z</code> to see results before July 7, 2018.</p> </li> <li> <p>Status: Specify a valid command status to see a list of all command executions with that status. Status values you can specify include:</p> <ul> <li> <p>Pending</p> </li> <li> <p>InProgress</p> </li> <li> <p>Success</p> </li> <li> <p>Cancelled</p> </li> <li> <p>Failed</p> </li> <li> <p>TimedOut</p> </li> <li> <p>Cancelling </p> </li> </ul> </li> <li> <p>DocumentName: The name of the SSM document for which you want to see command results.</p> <p>For example, specify <code>AWS-RunPatchBaseline</code> to see command executions that used this SSM document to perform security patching operations on instances. </p> </li> <li> <p>ExecutionStage: An enum whose value can be either <code>Executing</code> or <code>Complete</code>.</p> <ul> <li> <p>Specify <code>Executing</code> to see a list of command executions that are currently still running.</p> </li> <li> <p>Specify <code>Complete</code> to see a list of command exeuctions that have already completed.</p> </li> </ul> </li> </ul>"
       }
     },
     "CommandId": {
@@ -1074,6 +1079,12 @@
         "InstanceInformation$ComputerName": "<p>The fully qualified host name of the managed instance.</p>"
       }
     },
+    "ConnectionStatus": {
+      "base": null,
+      "refs": {
+        "GetConnectionStatusResponse$Status": "<p>The status of the connection to the instance. For example, 'Connected' or 'Not Connected'.</p>"
+      }
+    },
     "CreateActivationRequest": {
       "base": null,
       "refs": {
@@ -1222,6 +1233,8 @@
         "Patch$ReleaseDate": "<p>The date the patch was released.</p>",
         "PatchComplianceData$InstalledTime": "<p>The date/time the patch was installed on the instance. Note that not all operating systems provide this level of information.</p>",
         "PatchStatus$ApprovalDate": "<p>The date the patch was approved (or will be approved if the status is PENDING_APPROVAL).</p>",
+        "Session$StartDate": "<p>The date and time, in ISO-8601 Extended format, when the session began.</p>",
+        "Session$EndDate": "<p>The date and time, in ISO-8601 Extended format, when the session was terminated.</p>",
         "StepExecution$ExecutionStartTime": "<p>If a step has begun execution, this contains the time the step started. If the step is in Pending status, this field is not populated.</p>",
         "StepExecution$ExecutionEndTime": "<p>If a step has finished execution, this contains the time the execution ended. If the step has not yet concluded, this field is not populated.</p>",
         "UpdatePatchBaselineResult$CreatedDate": "<p>The date when the patch baseline was created.</p>",
@@ -1665,6 +1678,16 @@
       "refs": {
       }
     },
+    "DescribeSessionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeSessionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescriptionInDocument": {
       "base": null,
       "refs": {
@@ -1680,7 +1703,8 @@
         "GetDocumentRequest$Name": "<p>The name of the Systems Manager document.</p>",
         "GetDocumentResult$Name": "<p>The name of the Systems Manager document.</p>",
         "SendCommandRequest$DocumentName": "<p>Required. The name of the Systems Manager document to execute. This can be a public document or a custom document.</p>",
-        "StartAutomationExecutionRequest$DocumentName": "<p>The name of the Automation document to use for this execution.</p>"
+        "StartAutomationExecutionRequest$DocumentName": "<p>The name of the Automation document to use for this execution.</p>",
+        "StartSessionRequest$DocumentName": "<p>The name of the SSM document to define the parameters and plugin settings for the session. For example, <code>SSM-SessionManagerRunShell</code>. If no document name is provided, a shell to the instance is launched by default.</p>"
       }
     },
     "DocumentAlreadyExists": {
@@ -1833,6 +1857,7 @@
         "InstanceAssociationStatusInfo$Name": "<p>The name of the association.</p>",
         "ListDocumentVersionsRequest$Name": "<p>The name of the document about which you want version information.</p>",
         "ModifyDocumentPermissionRequest$Name": "<p>The name of the document that you want to share.</p>",
+        "Session$DocumentName": "<p>The name of the Session Manager SSM document used to define the parameters and plugin settings for the session. For example, <code>SSM-SessionManagerRunShell</code>.</p>",
         "UpdateAssociationRequest$Name": "<p>The name of the association document.</p>",
         "UpdateAssociationStatusRequest$Name": "<p>The name of the Systems Manager document.</p>",
         "UpdateDocumentDefaultVersionRequest$Name": "<p>The name of a custom document that you want to set as the default version.</p>",
@@ -2080,6 +2105,16 @@
       }
     },
     "GetCommandInvocationResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetConnectionStatusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetConnectionStatusResponse": {
       "base": null,
       "refs": {
       }
@@ -2403,7 +2438,7 @@
       }
     },
     "InstanceInformationFilter": {
-      "base": "<p>Describes a filter for a specific list of instances. </p>",
+      "base": "<p>Describes a filter for a specific list of instances. You can filter instances information by using tags. You specify tags by using a key-value mapping.</p> <p>Use this action instead of the <a>DescribeInstanceInformationRequest$InstanceInformationFilterList</a> method. The <code>InstanceInformationFilterList</code> method is a legacy method and does not support tags. </p>",
       "refs": {
         "InstanceInformationFilterList$member": null
       }
@@ -2417,7 +2452,7 @@
     "InstanceInformationFilterList": {
       "base": null,
       "refs": {
-        "DescribeInstanceInformationRequest$InstanceInformationFilterList": "<p>One or more filters. Use a filter to return a more specific list of instances.</p>"
+        "DescribeInstanceInformationRequest$InstanceInformationFilterList": "<p>This is a legacy method. We recommend that you don't use this method. Instead, use the <a>InstanceInformationFilter</a> action. The <code>InstanceInformationFilter</code> action enables you to return instance information by using tags that are specified as a key-value mapping. </p> <p>If you do use this method, then you can't use the <code>InstanceInformationFilter</code> action. Using this method and the <code>InstanceInformationFilter</code> action causes an exception error. </p>"
       }
     },
     "InstanceInformationFilterValue": {
@@ -3884,6 +3919,8 @@
         "DescribePatchBaselinesResult$NextToken": "<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>",
         "DescribePatchGroupsRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
         "DescribePatchGroupsResult$NextToken": "<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>",
+        "DescribeSessionsRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
+        "DescribeSessionsResponse$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
         "GetInventoryRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
         "GetInventoryResult$NextToken": "<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>",
         "GetInventorySchemaRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
@@ -4946,6 +4983,16 @@
         "GetInventoryRequest$ResultAttributes": "<p>The list of inventory item types to return.</p>"
       }
     },
+    "ResumeSessionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ResumeSessionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "S3BucketName": {
       "base": null,
       "refs": {
@@ -5036,6 +5083,134 @@
         "UpdateMaintenanceWindowTaskResult$ServiceRoleArn": "<p>The updated service role ARN value.</p>"
       }
     },
+    "Session": {
+      "base": "<p>Information about a Session Manager connection to an instance.</p>",
+      "refs": {
+        "SessionList$member": null
+      }
+    },
+    "SessionDetails": {
+      "base": null,
+      "refs": {
+        "Session$Details": "<p>Reserved for future use.</p>"
+      }
+    },
+    "SessionFilter": {
+      "base": "<p>Describes a filter for Session Manager information.</p>",
+      "refs": {
+        "SessionFilterList$member": null
+      }
+    },
+    "SessionFilterKey": {
+      "base": null,
+      "refs": {
+        "SessionFilter$key": "<p>The name of the filter.</p>"
+      }
+    },
+    "SessionFilterList": {
+      "base": null,
+      "refs": {
+        "DescribeSessionsRequest$Filters": "<p>One or more filters to limit the type of sessions returned by the request.</p>"
+      }
+    },
+    "SessionFilterValue": {
+      "base": null,
+      "refs": {
+        "SessionFilter$value": "<p>The filter value. Valid values for each filter key are as follows:</p> <ul> <li> <p>InvokedAfter: Specify a timestamp to limit your results. For example, specify 2018-08-29T00:00:00Z to see sessions that started August 29, 2018, and later.</p> </li> <li> <p>InvokedBefore: Specify a timestamp to limit your results. For example, specify 2018-08-29T00:00:00Z to see sessions that started before August 29, 2018.</p> </li> <li> <p>Target: Specify an instance to which session connections have been made.</p> </li> <li> <p>Owner: Specify an AWS user account to see a list of sessions started by that user.</p> </li> <li> <p>Status: Specify a valid session status to see a list of all sessions with that status. Status values you can specify include:</p> <ul> <li> <p>Connected</p> </li> <li> <p>Connecting</p> </li> <li> <p>Disconnected</p> </li> <li> <p>Terminated</p> </li> <li> <p>Terminating</p> </li> <li> <p>Failed</p> </li> </ul> </li> </ul>"
+      }
+    },
+    "SessionId": {
+      "base": null,
+      "refs": {
+        "ResumeSessionRequest$SessionId": "<p>The ID of the disconnected session to resume.</p>",
+        "ResumeSessionResponse$SessionId": "<p>The ID of the session.</p>",
+        "Session$SessionId": "<p>The ID of the session.</p>",
+        "StartSessionResponse$SessionId": "<p>The ID of the session.</p>",
+        "TerminateSessionRequest$SessionId": "<p>The ID of the session to terminate.</p>",
+        "TerminateSessionResponse$SessionId": "<p>The ID of the session that has been terminated.</p>"
+      }
+    },
+    "SessionList": {
+      "base": null,
+      "refs": {
+        "DescribeSessionsResponse$Sessions": "<p>A list of sessions meeting the request parameters.</p>"
+      }
+    },
+    "SessionManagerCloudWatchOutputUrl": {
+      "base": null,
+      "refs": {
+        "SessionManagerOutputUrl$CloudWatchOutputUrl": "<p>Reserved for future use.</p>"
+      }
+    },
+    "SessionManagerOutputUrl": {
+      "base": "<p>Reserved for future use.</p>",
+      "refs": {
+        "Session$OutputUrl": "<p>Reserved for future use.</p>"
+      }
+    },
+    "SessionManagerParameterName": {
+      "base": null,
+      "refs": {
+        "SessionManagerParameters$key": null
+      }
+    },
+    "SessionManagerParameterValue": {
+      "base": null,
+      "refs": {
+        "SessionManagerParameterValueList$member": null
+      }
+    },
+    "SessionManagerParameterValueList": {
+      "base": null,
+      "refs": {
+        "SessionManagerParameters$value": null
+      }
+    },
+    "SessionManagerParameters": {
+      "base": null,
+      "refs": {
+        "StartSessionRequest$Parameters": "<p>Reserved for future use.</p>"
+      }
+    },
+    "SessionManagerS3OutputUrl": {
+      "base": null,
+      "refs": {
+        "SessionManagerOutputUrl$S3OutputUrl": "<p>Reserved for future use.</p>"
+      }
+    },
+    "SessionMaxResults": {
+      "base": null,
+      "refs": {
+        "DescribeSessionsRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>"
+      }
+    },
+    "SessionOwner": {
+      "base": null,
+      "refs": {
+        "Session$Owner": "<p>The ID of the AWS user account that started the session.</p>"
+      }
+    },
+    "SessionState": {
+      "base": null,
+      "refs": {
+        "DescribeSessionsRequest$State": "<p>The session status to retrieve a list of sessions for. For example, \"active\".</p>"
+      }
+    },
+    "SessionStatus": {
+      "base": null,
+      "refs": {
+        "Session$Status": "<p>The status of the session. For example, \"Connected\" or \"Terminated\".</p>"
+      }
+    },
+    "SessionTarget": {
+      "base": null,
+      "refs": {
+        "GetConnectionStatusRequest$Target": "<p>The ID of the instance.</p>",
+        "GetConnectionStatusResponse$Target": "<p>The ID of the instance to check connection status. </p>",
+        "Session$Target": "<p>The instance that the Session Manager session connected to.</p>",
+        "StartSessionRequest$Target": "<p>The instance to connect to for the session.</p>"
+      }
+    },
     "SeveritySummary": {
       "base": "<p>The number of managed instances found for each patch severity level defined in the request filter.</p>",
       "refs": {
@@ -5091,6 +5266,16 @@
       }
     },
     "StartAutomationExecutionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartSessionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartSessionResponse": {
       "base": null,
       "refs": {
       }
@@ -5195,6 +5380,13 @@
       "base": null,
       "refs": {
         "StopAutomationExecutionRequest$Type": "<p>The stop request type. Valid types include the following: Cancel and Complete. The default type is Cancel.</p>"
+      }
+    },
+    "StreamUrl": {
+      "base": null,
+      "refs": {
+        "ResumeSessionResponse$StreamUrl": "<p>A URL back to SSM Agent on the instance that the Session Manager client uses to send commands and receive output from the instance. Format: <code>wss://ssm-messages.<b>region</b>.amazonaws.com/v1/data-channel/<b>session-id</b>?stream=(input|output)</code>.</p> <p> <b>region</b> represents the Region identifier for an AWS Region supported by AWS Systems Manager, such as <code>us-east-2</code> for the US East (Ohio) Region. For a list of supported <b>region</b> values, see the <b>Region</b> column in the <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html#ssm_region\">AWS Systems Manager table of regions and endpoints</a> in the <i>AWS General Reference</i>.</p> <p> <b>session-id</b> represents the ID of a Session Manager session, such as <code>1a2b3c4dEXAMPLE</code>.</p>",
+        "StartSessionResponse$StreamUrl": "<p>A URL back to SSM Agent on the instance that the Session Manager client uses to send commands and receive output from the instance. Format: <code>wss://ssm-messages.<b>region</b>.amazonaws.com/v1/data-channel/<b>session-id</b>?stream=(input|output)</code> </p> <p> <b>region</b> represents the Region identifier for an AWS Region supported by AWS Systems Manager, such as <code>us-east-2</code> for the US East (Ohio) Region. For a list of supported <b>region</b> values, see the <b>Region</b> column in the <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html#ssm_region\">AWS Systems Manager table of regions and endpoints</a> in the <i>AWS General Reference</i>.</p> <p> <b>session-id</b> represents the ID of a Session Manager session, such as <code>1a2b3c4dEXAMPLE</code>.</p>"
       }
     },
     "String": {
@@ -5305,6 +5497,7 @@
         "StringList$member": null,
         "SubTypeCountLimitExceededException$Message": null,
         "TargetInUseException$Message": null,
+        "TargetNotConnected$Message": null,
         "TooManyUpdates$Message": null,
         "TotalSizeLimitExceededException$Message": null,
         "UnsupportedInventoryItemContextException$Message": null,
@@ -5416,6 +5609,11 @@
         "StartAutomationExecutionRequest$TargetMaps": "<p>A key-value mapping of document parameters to target resources. Both Targets and TargetMaps cannot be specified together.</p>"
       }
     },
+    "TargetNotConnected": {
+      "base": "<p>The specified target instance for the session is not fully configured for use with Session Manager. For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-getting-started.html\">Getting Started with Session Manager</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
+      "refs": {
+      }
+    },
     "TargetParameterList": {
       "base": null,
       "refs": {
@@ -5468,11 +5666,28 @@
         "UpdateMaintenanceWindowTaskResult$Targets": "<p>The updated target values.</p>"
       }
     },
+    "TerminateSessionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TerminateSessionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "TimeoutSeconds": {
       "base": null,
       "refs": {
         "MaintenanceWindowRunCommandParameters$TimeoutSeconds": "<p>If this time is reached and the command has not already started executing, it doesn not execute.</p>",
         "SendCommandRequest$TimeoutSeconds": "<p>If this time is reached and the command has not already started executing, it will not run.</p>"
+      }
+    },
+    "TokenValue": {
+      "base": null,
+      "refs": {
+        "ResumeSessionResponse$TokenValue": "<p>An encrypted token value containing session and caller information. Used to authenticate the connection to the instance.</p>",
+        "StartSessionResponse$TokenValue": "<p>An encrypted token value containing session and caller information. Used to authenticate the connection to the instance.</p>"
       }
     },
     "TooManyTagsError": {
