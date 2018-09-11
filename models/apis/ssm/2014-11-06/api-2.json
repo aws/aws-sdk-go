@@ -712,6 +712,20 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "DescribeSessions":{
+      "name":"DescribeSessions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeSessionsRequest"},
+      "output":{"shape":"DescribeSessionsResponse"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"InvalidFilterKey"},
+        {"shape":"InvalidNextToken"}
+      ]
+    },
     "GetAutomationExecution":{
       "name":"GetAutomationExecution",
       "http":{
@@ -739,6 +753,18 @@
         {"shape":"InvalidInstanceId"},
         {"shape":"InvalidPluginName"},
         {"shape":"InvocationDoesNotExist"}
+      ]
+    },
+    "GetConnectionStatus":{
+      "name":"GetConnectionStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetConnectionStatusRequest"},
+      "output":{"shape":"GetConnectionStatusResponse"},
+      "errors":[
+        {"shape":"InternalServerError"}
       ]
     },
     "GetDefaultPatchBaseline":{
@@ -1308,6 +1334,19 @@
         {"shape":"TooManyUpdates"}
       ]
     },
+    "ResumeSession":{
+      "name":"ResumeSession",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ResumeSessionRequest"},
+      "output":{"shape":"ResumeSessionResponse"},
+      "errors":[
+        {"shape":"DoesNotExistException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "SendAutomationSignal":{
       "name":"SendAutomationSignal",
       "http":{
@@ -1376,6 +1415,20 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "StartSession":{
+      "name":"StartSession",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartSessionRequest"},
+      "output":{"shape":"StartSessionResponse"},
+      "errors":[
+        {"shape":"InvalidDocument"},
+        {"shape":"TargetNotConnected"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "StopAutomationExecution":{
       "name":"StopAutomationExecution",
       "http":{
@@ -1387,6 +1440,19 @@
       "errors":[
         {"shape":"AutomationExecutionNotFoundException"},
         {"shape":"InvalidAutomationStatusUpdateException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
+    "TerminateSession":{
+      "name":"TerminateSession",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TerminateSessionRequest"},
+      "output":{"shape":"TerminateSessionResponse"},
+      "errors":[
+        {"shape":"DoesNotExistException"},
         {"shape":"InternalServerError"}
       ]
     },
@@ -2506,6 +2572,13 @@
       "max":255,
       "min":1
     },
+    "ConnectionStatus":{
+      "type":"string",
+      "enum":[
+        "Connected",
+        "NotConnected"
+      ]
+    },
     "CreateActivationRequest":{
       "type":"structure",
       "required":["IamRole"],
@@ -3417,6 +3490,26 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "DescribeSessionsRequest":{
+      "type":"structure",
+      "required":["State"],
+      "members":{
+        "State":{"shape":"SessionState"},
+        "MaxResults":{
+          "shape":"SessionMaxResults",
+          "box":true
+        },
+        "NextToken":{"shape":"NextToken"},
+        "Filters":{"shape":"SessionFilterList"}
+      }
+    },
+    "DescribeSessionsResponse":{
+      "type":"structure",
+      "members":{
+        "Sessions":{"shape":"SessionList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "DescriptionInDocument":{"type":"string"},
     "DocumentARN":{
       "type":"string",
@@ -3620,7 +3713,8 @@
       "enum":[
         "Command",
         "Policy",
-        "Automation"
+        "Automation",
+        "Session"
       ]
     },
     "DocumentVersion":{
@@ -3779,6 +3873,20 @@
         "StandardErrorContent":{"shape":"StandardErrorContent"},
         "StandardErrorUrl":{"shape":"Url"},
         "CloudWatchOutputConfig":{"shape":"CloudWatchOutputConfig"}
+      }
+    },
+    "GetConnectionStatusRequest":{
+      "type":"structure",
+      "required":["Target"],
+      "members":{
+        "Target":{"shape":"SessionTarget"}
+      }
+    },
+    "GetConnectionStatusResponse":{
+      "type":"structure",
+      "members":{
+        "Target":{"shape":"SessionTarget"},
+        "Status":{"shape":"ConnectionStatus"}
       }
     },
     "GetDefaultPatchBaselineRequest":{
@@ -6737,6 +6845,21 @@
       "max":1,
       "min":1
     },
+    "ResumeSessionRequest":{
+      "type":"structure",
+      "required":["SessionId"],
+      "members":{
+        "SessionId":{"shape":"SessionId"}
+      }
+    },
+    "ResumeSessionResponse":{
+      "type":"structure",
+      "members":{
+        "SessionId":{"shape":"SessionId"},
+        "TokenValue":{"shape":"TokenValue"},
+        "StreamUrl":{"shape":"StreamUrl"}
+      }
+    },
     "S3BucketName":{
       "type":"string",
       "max":63,
@@ -6820,6 +6943,135 @@
       }
     },
     "ServiceRole":{"type":"string"},
+    "Session":{
+      "type":"structure",
+      "members":{
+        "SessionId":{"shape":"SessionId"},
+        "Target":{"shape":"SessionTarget"},
+        "Status":{"shape":"SessionStatus"},
+        "StartDate":{"shape":"DateTime"},
+        "EndDate":{"shape":"DateTime"},
+        "DocumentName":{"shape":"DocumentName"},
+        "Owner":{"shape":"SessionOwner"},
+        "Details":{"shape":"SessionDetails"},
+        "OutputUrl":{"shape":"SessionManagerOutputUrl"}
+      }
+    },
+    "SessionDetails":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
+    "SessionFilter":{
+      "type":"structure",
+      "required":[
+        "key",
+        "value"
+      ],
+      "members":{
+        "key":{"shape":"SessionFilterKey"},
+        "value":{"shape":"SessionFilterValue"}
+      }
+    },
+    "SessionFilterKey":{
+      "type":"string",
+      "enum":[
+        "InvokedAfter",
+        "InvokedBefore",
+        "Target",
+        "Owner",
+        "Status"
+      ]
+    },
+    "SessionFilterList":{
+      "type":"list",
+      "member":{"shape":"SessionFilter"},
+      "max":5,
+      "min":1
+    },
+    "SessionFilterValue":{
+      "type":"string",
+      "max":200,
+      "min":1
+    },
+    "SessionId":{
+      "type":"string",
+      "max":96,
+      "min":1
+    },
+    "SessionList":{
+      "type":"list",
+      "member":{"shape":"Session"}
+    },
+    "SessionManagerCloudWatchOutputUrl":{
+      "type":"string",
+      "max":2083,
+      "min":1
+    },
+    "SessionManagerOutputUrl":{
+      "type":"structure",
+      "members":{
+        "S3OutputUrl":{"shape":"SessionManagerS3OutputUrl"},
+        "CloudWatchOutputUrl":{"shape":"SessionManagerCloudWatchOutputUrl"}
+      }
+    },
+    "SessionManagerParameterName":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "SessionManagerParameterValue":{
+      "type":"string",
+      "max":65535,
+      "min":1
+    },
+    "SessionManagerParameterValueList":{
+      "type":"list",
+      "member":{"shape":"SessionManagerParameterValue"}
+    },
+    "SessionManagerParameters":{
+      "type":"map",
+      "key":{"shape":"SessionManagerParameterName"},
+      "value":{"shape":"SessionManagerParameterValueList"}
+    },
+    "SessionManagerS3OutputUrl":{
+      "type":"string",
+      "max":2083,
+      "min":1
+    },
+    "SessionMaxResults":{
+      "type":"integer",
+      "max":200,
+      "min":1
+    },
+    "SessionOwner":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "SessionState":{
+      "type":"string",
+      "enum":[
+        "Active",
+        "History"
+      ]
+    },
+    "SessionStatus":{
+      "type":"string",
+      "enum":[
+        "Connected",
+        "Connecting",
+        "Disconnected",
+        "Terminated",
+        "Terminating",
+        "Failed"
+      ]
+    },
+    "SessionTarget":{
+      "type":"string",
+      "max":50,
+      "min":1
+    },
     "SeveritySummary":{
       "type":"structure",
       "members":{
@@ -6891,6 +7143,23 @@
       "type":"structure",
       "members":{
         "AutomationExecutionId":{"shape":"AutomationExecutionId"}
+      }
+    },
+    "StartSessionRequest":{
+      "type":"structure",
+      "required":["Target"],
+      "members":{
+        "Target":{"shape":"SessionTarget"},
+        "DocumentName":{"shape":"DocumentARN"},
+        "Parameters":{"shape":"SessionManagerParameters"}
+      }
+    },
+    "StartSessionResponse":{
+      "type":"structure",
+      "members":{
+        "SessionId":{"shape":"SessionId"},
+        "TokenValue":{"shape":"TokenValue"},
+        "StreamUrl":{"shape":"StreamUrl"}
       }
     },
     "StatusAdditionalInfo":{
@@ -7017,6 +7286,7 @@
         "Cancel"
       ]
     },
+    "StreamUrl":{"type":"string"},
     "String":{"type":"string"},
     "StringDateTime":{
       "type":"string",
@@ -7110,6 +7380,13 @@
       "max":300,
       "min":0
     },
+    "TargetNotConnected":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
     "TargetParameterList":{
       "type":"list",
       "member":{"shape":"ParameterValue"}
@@ -7132,10 +7409,28 @@
       "max":5,
       "min":0
     },
+    "TerminateSessionRequest":{
+      "type":"structure",
+      "required":["SessionId"],
+      "members":{
+        "SessionId":{"shape":"SessionId"}
+      }
+    },
+    "TerminateSessionResponse":{
+      "type":"structure",
+      "members":{
+        "SessionId":{"shape":"SessionId"}
+      }
+    },
     "TimeoutSeconds":{
       "type":"integer",
       "max":2592000,
       "min":30
+    },
+    "TokenValue":{
+      "type":"string",
+      "max":300,
+      "min":0
     },
     "TooManyTagsError":{
       "type":"structure",

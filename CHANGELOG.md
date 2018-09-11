@@ -1,3 +1,12 @@
+Release v1.15.33 (2018-09-11)
+===
+
+### Service Client Updates
+* `service/opsworkscm`: Updates service documentation
+  * Documentation updates for opsworkscm
+* `service/ssm`: Updates service API and documentation
+  * Session Manager is a fully managed AWS Systems Manager capability that provides interactive one-click access to Amazon EC2 Linux and Windows instances.
+
 Release v1.15.32 (2018-09-10)
 ===
 
