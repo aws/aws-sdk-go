@@ -171,14 +171,17 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 			EndpointCache: c.endpointCache,
 			Params: map[string]string{
 				"op": req.Operation.Name,
-				{{ range $key, $value := .EndpointDiscovery -}}
-				{{ if (ne $key "required") -}}
-				"{{ $key }}": "{{ $value }}",
-				{{- end }}
-				{{- end }}
 			},
 			Client: c,
 		}
+
+		{{ range $key, $value := .EndpointDiscovery -}}
+			{{ if (ne $key "required") -}}
+				if input.{{ $key }} != nil {
+					de.Params["{{ $key }}"] = *input.{{ $key }}
+				}
+			{{- end }}
+		{{- end }}
 
 		req.Handlers.Build.PushFront(de.Handler)
 	{{ end -}}
@@ -317,7 +320,9 @@ type discoverer{{ .ExportedName }} struct {
 }
 
 func (d *discoverer{{ .ExportedName }}) Discover() (crr.Endpoint, error) {
-	input := &{{ .API.EndpointDiscoveryOp.InputRef.ShapeName }}{}
+	input := &{{ .API.EndpointDiscoveryOp.InputRef.ShapeName }}{
+		// TODO: inject params here
+	}
 	resp, err := d.Client.{{ .API.EndpointDiscoveryOp.Name }}(input)
 	if err != nil {
 		return crr.Endpoint{}, err
