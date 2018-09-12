@@ -1,3 +1,14 @@
+Release v1.15.34 (2018-09-12)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API and documentation
+* `service/ec2`: Updates service API, documentation, and paginators
+  * Pagination Support for DescribeNetworkInterfaces API
+* `service/email`: Updates service documentation
+  * Documentation updates for Amazon Simple Email Service
+* `service/fms`: Updates service API and documentation
+
 Release v1.15.33 (2018-09-11)
 ===
 

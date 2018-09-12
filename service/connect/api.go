@@ -73,7 +73,7 @@ func (c *Connect) CreateUserRequest(input *CreateUserInput) (req *request.Reques
 //   One or more of the parameters provided to the operation are not valid.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   The limit exceeded the maximum allowed active calls in a queue.
+//   The allowed limit for the resource has been reached.
 //
 //   * ErrCodeDuplicateResourceException "DuplicateResourceException"
 //   A resource with that name already exisits.
@@ -1014,7 +1014,7 @@ func (c *Connect) StartOutboundVoiceContactRequest(input *StartOutboundVoiceCont
 //   Request processing failed due to an error or failure with the service.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   The limit exceeded the maximum allowed active calls in a queue.
+//   The allowed limit for the resource has been reached.
 //
 //   * ErrCodeDestinationNotAllowedException "DestinationNotAllowedException"
 //   Outbound calls to the destination number are not allowed.
@@ -1133,6 +1133,106 @@ func (c *Connect) StopContact(input *StopContactInput) (*StopContactOutput, erro
 // for more information on using Contexts.
 func (c *Connect) StopContactWithContext(ctx aws.Context, input *StopContactInput, opts ...request.Option) (*StopContactOutput, error) {
 	req, out := c.StopContactRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateContactAttributes = "UpdateContactAttributes"
+
+// UpdateContactAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateContactAttributes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateContactAttributes for more information on using the UpdateContactAttributes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateContactAttributesRequest method.
+//    req, resp := client.UpdateContactAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactAttributes
+func (c *Connect) UpdateContactAttributesRequest(input *UpdateContactAttributesInput) (req *request.Request, output *UpdateContactAttributesOutput) {
+	op := &request.Operation{
+		Name:       opUpdateContactAttributes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact/attributes",
+	}
+
+	if input == nil {
+		input = &UpdateContactAttributesInput{}
+	}
+
+	output = &UpdateContactAttributesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateContactAttributes API operation for Amazon Connect Service.
+//
+// The UpdateContactAttributes operation lets you programmatically create new
+// or update existing contact attributes associated with a contact. You can
+// use the operation to add or update attributes for both ongoing and completed
+// contacts. For example, you can update the customer's name or the reason the
+// customer called while the call is active, or add notes about steps that the
+// agent took during the call that are displayed to the next agent that takes
+// the call. You can also use the UpdateContactAttributes operation to update
+// attributes for a contact using data from your CRM application and save the
+// data with the contact in Amazon Connect. You could also flag calls for additional
+// analysis, or flag abusive callers.
+//
+// Contact attributes are available in Amazon Connect for 24 months, and are
+// then deleted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateContactAttributes for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is not valid.
+//
+//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   One or more of the parameters provided to the operation are not valid.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource was not found.
+//
+//   * ErrCodeInternalServiceException "InternalServiceException"
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactAttributes
+func (c *Connect) UpdateContactAttributes(input *UpdateContactAttributesInput) (*UpdateContactAttributesOutput, error) {
+	req, out := c.UpdateContactAttributesRequest(input)
+	return out, req.Send()
+}
+
+// UpdateContactAttributesWithContext is the same as UpdateContactAttributes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateContactAttributes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateContactAttributesWithContext(ctx aws.Context, input *UpdateContactAttributesInput, opts ...request.Option) (*UpdateContactAttributesOutput, error) {
+	req, out := c.UpdateContactAttributesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3231,6 +3331,98 @@ func (s StopContactOutput) String() string {
 
 // GoString returns the string representation
 func (s StopContactOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateContactAttributesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The key-value pairs for the attribute to update.
+	//
+	// Attributes is a required field
+	Attributes map[string]*string `type:"map" required:"true"`
+
+	// The unique identifier of the contact for which to update attributes. This
+	// is the identifier for the contact associated with the first interaction with
+	// the contact center.
+	//
+	// InitialContactId is a required field
+	InitialContactId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier for your Amazon Connect instance. To find the ID of your Amazon
+	// Connect instance, open the AWS console and select Amazon Connect. Select
+	// the instance alias of the instance. The instance ID is displayed in the Overview
+	// section of your instance settings. For example, the instance ID is the set
+	// of characters at the end of the instance ARN, after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateContactAttributesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateContactAttributesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateContactAttributesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateContactAttributesInput"}
+	if s.Attributes == nil {
+		invalidParams.Add(request.NewErrParamRequired("Attributes"))
+	}
+	if s.InitialContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InitialContactId"))
+	}
+	if s.InitialContactId != nil && len(*s.InitialContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InitialContactId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *UpdateContactAttributesInput) SetAttributes(v map[string]*string) *UpdateContactAttributesInput {
+	s.Attributes = v
+	return s
+}
+
+// SetInitialContactId sets the InitialContactId field's value.
+func (s *UpdateContactAttributesInput) SetInitialContactId(v string) *UpdateContactAttributesInput {
+	s.InitialContactId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateContactAttributesInput) SetInstanceId(v string) *UpdateContactAttributesInput {
+	s.InstanceId = &v
+	return s
+}
+
+type UpdateContactAttributesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateContactAttributesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateContactAttributesOutput) GoString() string {
 	return s.String()
 }
 

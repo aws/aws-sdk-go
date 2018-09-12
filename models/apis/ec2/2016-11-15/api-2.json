@@ -6968,7 +6968,9 @@
         "NetworkInterfaceIds":{
           "shape":"NetworkInterfaceIdList",
           "locationName":"NetworkInterfaceId"
-        }
+        },
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"Integer"}
       }
     },
     "DescribeNetworkInterfacesResult":{
@@ -6977,6 +6979,10 @@
         "NetworkInterfaces":{
           "shape":"NetworkInterfaceList",
           "locationName":"networkInterfaceSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
@@ -8663,10 +8669,6 @@
     "EbsBlockDevice":{
       "type":"structure",
       "members":{
-        "Encrypted":{
-          "shape":"Boolean",
-          "locationName":"encrypted"
-        },
         "DeleteOnTermination":{
           "shape":"Boolean",
           "locationName":"deleteOnTermination"
@@ -8675,7 +8677,6 @@
           "shape":"Integer",
           "locationName":"iops"
         },
-        "KmsKeyId":{"shape":"String"},
         "SnapshotId":{
           "shape":"String",
           "locationName":"snapshotId"
@@ -8687,7 +8688,12 @@
         "VolumeType":{
           "shape":"VolumeType",
           "locationName":"volumeType"
-        }
+        },
+        "Encrypted":{
+          "shape":"Boolean",
+          "locationName":"encrypted"
+        },
+        "KmsKeyId":{"shape":"String"}
       }
     },
     "EbsInstanceBlockDevice":{
