@@ -14,6 +14,7 @@
     "ListUsers": "<p>Returns a <code>UserSummaryList</code>, which is an array of <code>UserSummary</code> objects.</p>",
     "StartOutboundVoiceContact": "<p>The <code>StartOutboundVoiceContact</code> operation initiates a contact flow to place an outbound call to a customer.</p> <p>There is a throttling limit placed on usage of the API that includes a RateLimit of 2 per second, and a BurstLimit of 5 per second.</p> <p>If you are using an IAM account, it must have permission to the <code>connect:StartOutboundVoiceContact</code> action.</p>",
     "StopContact": "<p>Ends the contact initiated by the <code>StartOutboundVoiceContact</code> operation.</p> <p>If you are using an IAM account, it must have permission to the <code>connect:StopContact</code> action.</p>",
+    "UpdateContactAttributes": "<p>The <code>UpdateContactAttributes</code> operation lets you programmatically create new or update existing contact attributes associated with a contact. You can use the operation to add or update attributes for both ongoing and completed contacts. For example, you can update the customer's name or the reason the customer called while the call is active, or add notes about steps that the agent took during the call that are displayed to the next agent that takes the call. You can also use the <code>UpdateContactAttributes</code> operation to update attributes for a contact using data from your CRM application and save the data with the contact in Amazon Connect. You could also flag calls for additional analysis, or flag abusive callers.</p> <p>Contact attributes are available in Amazon Connect for 24 months, and are then deleted.</p>",
     "UpdateUserHierarchy": "<p>Assigns the specified hierarchy group to the user.</p>",
     "UpdateUserIdentityInfo": "<p>Updates the identity information for the specified user in a <code>UserIdentityInfo</code> object, including email, first name, and last name.</p>",
     "UpdateUserPhoneConfig": "<p>Updates the phone configuration settings in the <code>UserPhoneConfig</code> object for the specified user.</p>",
@@ -75,7 +76,8 @@
     "Attributes": {
       "base": "Additional attributes can be provided in the request using this field. This will be passed to the contact flow execution. Client can make use of this additional info in their contact flow.",
       "refs": {
-        "StartOutboundVoiceContactRequest$Attributes": "<p>Specify a custom key-value pair using an attribute map. The attributes are standard Amazon Connect attributes, and can be accessed in contact flows just like any other contact attributes.</p> <p>There can be up to 32,768 UTF-8 bytes across all key-value pairs. Attribute keys can include only alphanumeric, dash, and underscore characters.</p> <p>For example, if you want play a greeting when the customer answers the call, you can pass the customer name in attributes similar to the following:</p>"
+        "StartOutboundVoiceContactRequest$Attributes": "<p>Specify a custom key-value pair using an attribute map. The attributes are standard Amazon Connect attributes, and can be accessed in contact flows just like any other contact attributes.</p> <p>There can be up to 32,768 UTF-8 bytes across all key-value pairs. Attribute keys can include only alphanumeric, dash, and underscore characters.</p> <p>For example, if you want play a greeting when the customer answers the call, you can pass the customer name in attributes similar to the following:</p>",
+        "UpdateContactAttributesRequest$Attributes": "<p>The key-value pairs for the attribute to update.</p>"
       }
     },
     "AutoAccept": {
@@ -100,7 +102,8 @@
       "base": "Amazon Connect contact identifier. An unique ContactId will be generated for each contact request.",
       "refs": {
         "StartOutboundVoiceContactResponse$ContactId": "<p>The unique identifier of this contact within your Amazon Connect instance.</p>",
-        "StopContactRequest$ContactId": "<p>The unique identifier of the contact to end.</p>"
+        "StopContactRequest$ContactId": "<p>The unique identifier of the contact to end.</p>",
+        "UpdateContactAttributesRequest$InitialContactId": "<p>The unique identifier of the contact for which to update attributes. This is the identifier for the contact associated with the first interaction with the contact center.</p>"
       }
     },
     "ContactNotFoundException": {
@@ -283,6 +286,7 @@
         "ListUsersRequest$InstanceId": "<p>The identifier for your Amazon Connect instance. To find the ID of your instance, open the AWS console and select Amazon Connect. Select the alias of the instance in the Instance alias column. The instance ID is displayed in the Overview section of your instance settings. For example, the instance ID is the set of characters at the end of the instance ARN, after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.</p>",
         "StartOutboundVoiceContactRequest$InstanceId": "<p>The identifier for your Amazon Connect instance. To find the ID of your instance, open the AWS console and select Amazon Connect. Select the alias of the instance in the Instance alias column. The instance ID is displayed in the Overview section of your instance settings. For example, the instance ID is the set of characters at the end of the instance ARN, after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.</p>",
         "StopContactRequest$InstanceId": "<p>The identifier for your Amazon Connect instance. To find the ID of your instance, open the AWS console and select Amazon Connect. Select the alias of the instance in the Instance alias column. The instance ID is displayed in the Overview section of your instance settings. For example, the instance ID is the set of characters at the end of the instance ARN, after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.</p>",
+        "UpdateContactAttributesRequest$InstanceId": "<p>The identifier for your Amazon Connect instance. To find the ID of your Amazon Connect instance, open the AWS console and select Amazon Connect. Select the instance alias of the instance. The instance ID is displayed in the Overview section of your instance settings. For example, the instance ID is the set of characters at the end of the instance ARN, after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.</p>",
         "UpdateUserHierarchyRequest$InstanceId": "<p>The identifier for your Amazon Connect instance. To find the ID of your instance, open the AWS console and select Amazon Connect. Select the alias of the instance in the Instance alias column. The instance ID is displayed in the Overview section of your instance settings. For example, the instance ID is the set of characters at the end of the instance ARN, after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.</p>",
         "UpdateUserIdentityInfoRequest$InstanceId": "<p>The identifier for your Amazon Connect instance. To find the ID of your instance, open the AWS console and select Amazon Connect. Select the alias of the instance in the Instance alias column. The instance ID is displayed in the Overview section of your instance settings. For example, the instance ID is the set of characters at the end of the instance ARN, after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.</p>",
         "UpdateUserPhoneConfigRequest$InstanceId": "<p>The identifier for your Amazon Connect instance. To find the ID of your instance, open the AWS console and select Amazon Connect. Select the alias of the instance in the Instance alias column. The instance ID is displayed in the Overview section of your instance settings. For example, the instance ID is the set of characters at the end of the instance ARN, after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.</p>",
@@ -306,7 +310,7 @@
       }
     },
     "LimitExceededException": {
-      "base": "<p>The limit exceeded the maximum allowed active calls in a queue.</p>",
+      "base": "<p>The allowed limit for the resource has been reached.</p>",
       "refs": {
       }
     },
@@ -513,6 +517,16 @@
     },
     "ThrottlingException": {
       "base": "<p>The throttling limit has been exceeded.</p>",
+      "refs": {
+      }
+    },
+    "UpdateContactAttributesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateContactAttributesResponse": {
+      "base": null,
       "refs": {
       }
     },
