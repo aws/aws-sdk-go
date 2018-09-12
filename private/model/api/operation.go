@@ -183,7 +183,10 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 			{{- end }}
 		{{- end }}
 
-		req.Handlers.Build.PushFront(de.Handler)
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn: de.Handler,
+		})
 	{{ end -}}
 	return
 }

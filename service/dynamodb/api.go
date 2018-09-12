@@ -68,7 +68,10 @@ func (c *DynamoDB) BatchGetItemRequest(input *BatchGetItemInput) (req *request.R
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -267,7 +270,10 @@ func (c *DynamoDB) BatchWriteItemRequest(input *BatchWriteItemInput) (req *reque
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -443,7 +449,10 @@ func (c *DynamoDB) CreateBackupRequest(input *CreateBackupInput) (req *request.R
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -588,7 +597,10 @@ func (c *DynamoDB) CreateGlobalTableRequest(input *CreateGlobalTableInput) (req 
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -729,7 +741,10 @@ func (c *DynamoDB) CreateTableRequest(input *CreateTableInput) (req *request.Req
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -850,7 +865,10 @@ func (c *DynamoDB) DeleteBackupRequest(input *DeleteBackupInput) (req *request.R
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -961,7 +979,10 @@ func (c *DynamoDB) DeleteItemRequest(input *DeleteItemInput) (req *request.Reque
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -1082,7 +1103,10 @@ func (c *DynamoDB) DeleteTableRequest(input *DeleteTableInput) (req *request.Req
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -1210,7 +1234,10 @@ func (c *DynamoDB) DescribeBackupRequest(input *DescribeBackupInput) (req *reque
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -1304,7 +1331,10 @@ func (c *DynamoDB) DescribeContinuousBackupsRequest(input *DescribeContinuousBac
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -1539,7 +1569,10 @@ func (c *DynamoDB) DescribeGlobalTableRequest(input *DescribeGlobalTableInput) (
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -1631,7 +1664,10 @@ func (c *DynamoDB) DescribeGlobalTableSettingsRequest(input *DescribeGlobalTable
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -1723,7 +1759,10 @@ func (c *DynamoDB) DescribeLimitsRequest(input *DescribeLimitsInput) (req *reque
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -1868,7 +1907,10 @@ func (c *DynamoDB) DescribeTableRequest(input *DescribeTableInput) (req *request
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -1969,7 +2011,10 @@ func (c *DynamoDB) DescribeTimeToLiveRequest(input *DescribeTimeToLiveInput) (re
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -2062,7 +2107,10 @@ func (c *DynamoDB) GetItemRequest(input *GetItemInput) (req *request.Request, ou
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -2170,7 +2218,10 @@ func (c *DynamoDB) ListBackupsRequest(input *ListBackupsInput) (req *request.Req
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -2267,7 +2318,10 @@ func (c *DynamoDB) ListGlobalTablesRequest(input *ListGlobalTablesInput) (req *r
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -2362,7 +2416,10 @@ func (c *DynamoDB) ListTablesRequest(input *ListTablesInput) (req *request.Reque
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -2503,7 +2560,10 @@ func (c *DynamoDB) ListTagsOfResourceRequest(input *ListTagsOfResourceInput) (re
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -2600,7 +2660,10 @@ func (c *DynamoDB) PutItemRequest(input *PutItemInput) (req *request.Request, ou
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -2757,7 +2820,10 @@ func (c *DynamoDB) QueryRequest(input *QueryInput) (req *request.Request, output
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -2955,7 +3021,10 @@ func (c *DynamoDB) RestoreTableFromBackupRequest(input *RestoreTableFromBackupIn
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -3087,7 +3156,10 @@ func (c *DynamoDB) RestoreTableToPointInTimeRequest(input *RestoreTableToPointIn
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -3249,7 +3321,10 @@ func (c *DynamoDB) ScanRequest(input *ScanInput) (req *request.Request, output *
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -3429,7 +3504,10 @@ func (c *DynamoDB) TagResourceRequest(input *TagResourceInput) (req *request.Req
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -3548,7 +3626,10 @@ func (c *DynamoDB) UntagResourceRequest(input *UntagResourceInput) (req *request
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -3663,7 +3744,10 @@ func (c *DynamoDB) UpdateContinuousBackupsRequest(input *UpdateContinuousBackups
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -3769,7 +3853,10 @@ func (c *DynamoDB) UpdateGlobalTableRequest(input *UpdateGlobalTableInput) (req 
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -3890,7 +3977,10 @@ func (c *DynamoDB) UpdateGlobalTableSettingsRequest(input *UpdateGlobalTableSett
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -4006,7 +4096,10 @@ func (c *DynamoDB) UpdateItemRequest(input *UpdateItemInput) (req *request.Reque
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -4121,7 +4214,10 @@ func (c *DynamoDB) UpdateTableRequest(input *UpdateTableInput) (req *request.Req
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -4249,7 +4345,10 @@ func (c *DynamoDB) UpdateTimeToLiveRequest(input *UpdateTimeToLiveInput) (req *r
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 

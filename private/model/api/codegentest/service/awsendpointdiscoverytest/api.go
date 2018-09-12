@@ -182,7 +182,10 @@ func (c *AwsEndpointDiscoveryTest) TestDiscoveryIdentifiersRequiredRequest(input
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -261,7 +264,10 @@ func (c *AwsEndpointDiscoveryTest) TestDiscoveryOptionalRequest(input *TestDisco
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -340,7 +346,10 @@ func (c *AwsEndpointDiscoveryTest) TestDiscoveryRequiredRequest(input *TestDisco
 		Client: c,
 	}
 
-	req.Handlers.Build.PushFront(de.Handler)
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
