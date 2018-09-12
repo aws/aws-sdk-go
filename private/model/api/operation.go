@@ -28,6 +28,28 @@ type Operation struct {
 	imports       map[string]bool
 
 	EventStreamAPI *EventStreamAPI
+
+	// TODO: This will trigger creation of the Discoverer
+	IsEndpointDiscoveryOp bool               `json:"endpointoperation"`
+	EndpointDiscovery     *EndpointDiscovery `json:"endpointdiscovery"`
+}
+
+// EndpointDiscovery represents a map of key values pairs that represents
+// metadata about how a given API will make a call to the discovery endpoint.
+type EndpointDiscovery map[string]string
+
+func (m EndpointDiscovery) Required() bool {
+	const (
+		requiredKey = "required"
+		trueStr     = "true"
+	)
+
+	v, ok := m[requiredKey]
+	if !ok {
+		return false
+	}
+
+	return v == trueStr
 }
 
 // A HTTPInfo defines the method of HTTP request for the Operation.
@@ -142,6 +164,23 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 		{{ if eq .API.Metadata.Protocol "json" -}}
 			req.Handlers.Unmarshal.PushBack(output.unmarshalInitialResponse)
 		{{ end -}}
+	{{ end -}}
+	{{ if .EndpointDiscovery -}}
+		de := discoverer{{ .API.EndpointDiscoveryOp.Name }}{
+			Required: {{ .EndpointDiscovery.Required }},
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+				{{ range $key, $value := .EndpointDiscovery -}}
+				{{ if (ne $key "required") -}}
+				"{{ $key }}": "{{ $value }}",
+				{{- end }}
+				{{- end }}
+			},
+			Client: c,
+		}
+
+		req.Handlers.Build.PushFront(de.Handler)
 	{{ end -}}
 	return
 }
@@ -267,6 +306,64 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}PagesWithContext(` +
 	return p.Err()
 }
 {{ end }}
+
+{{ if .IsEndpointDiscoveryOp -}}
+type discoverer{{ .ExportedName }} struct {
+	Client *{{ .API.StructName }}
+	Required bool
+	EndpointCache *crr.EndpointCache
+	Params map[string]string
+	Key string
+}
+
+func (d *discoverer{{ .ExportedName }}) Discover() (crr.Endpoint, error) {
+	input := &{{ .API.EndpointDiscoveryOp.InputRef.ShapeName }}{}
+	resp, err := d.Client.{{ .API.EndpointDiscoveryOp.Name }}(input)
+	if err != nil {
+		return crr.Endpoint{}, err
+	}
+
+	endpoint := crr.Endpoint{
+		Key: d.Key,
+	}
+
+	for _, e := range resp.Endpoints {
+		if e.Address == nil {
+			continue
+		}
+
+		addr := crr.WeightedAddress{
+			Address: *e.Address,
+		}
+		endpoint.Add(addr)
+	}
+
+	d.EndpointCache.Add(endpoint)
+
+	return endpoint, nil
+}
+
+func (d *discoverer{{ .ExportedName }}) Handler(r *request.Request) {
+	// TODO: Add iteration for members that need to be added
+	endpointKey := crr.BuildEndpointKey(d.Params)
+	d.Key = endpointKey
+
+	endpoint, err := d.EndpointCache.Get(d, endpointKey, d.Required)
+	if err != nil {
+		r.Error = err
+		return
+	}
+
+	addr, ok := endpoint.Addresses.GetAddress()
+	if !ok {
+		return
+	}
+
+	if len(addr) > 0 {
+		r.HTTPRequest.URL.Host = addr
+	}
+}
+{{ end -}}
 `))
 
 // GoCode returns a string of rendered GoCode for this Operation
@@ -278,6 +375,10 @@ func (o *Operation) GoCode() string {
 		o.API.imports["github.com/aws/aws-sdk-go/private/protocol"] = true
 		o.API.imports["github.com/aws/aws-sdk-go/private/protocol/rest"] = true
 		o.API.imports["github.com/aws/aws-sdk-go/private/protocol/"+o.API.ProtocolPackage()] = true
+	}
+
+	if o.API.EndpointDiscoveryOp != nil {
+		o.API.imports["github.com/aws/aws-sdk-go/internal/crr"] = true
 	}
 
 	err := tplOperation.Execute(&buf, o)

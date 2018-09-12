@@ -16,46 +16,86 @@ func TestCacheAdd(t *testing.T) {
 			limit: 5,
 			endpoints: []Endpoint{
 				{
-					Key:     "foo",
-					Address: "0",
+					Key: "foo",
+					Addresses: []WeightedAddress{
+						{
+							Address: "0",
+						},
+					},
 				},
 				{
-					Key:     "bar",
-					Address: "1",
+					Key: "bar",
+					Addresses: []WeightedAddress{
+						{
+							Address: "1",
+						},
+					},
 				},
 				{
-					Key:     "baz",
-					Address: "2",
+					Key: "baz",
+					Addresses: []WeightedAddress{
+						{
+							Address: "2",
+						},
+					},
 				},
 				{
-					Key:     "qux",
-					Address: "3",
+					Key: "qux",
+					Addresses: []WeightedAddress{
+						{
+							Address: "3",
+						},
+					},
 				},
 				{
-					Key:     "moo",
-					Address: "4",
+					Key: "moo",
+					Addresses: []WeightedAddress{
+						{
+							Address: "4",
+						},
+					},
 				},
 			},
 			validKeys: map[string]Endpoint{
 				"foo": Endpoint{
-					Key:     "foo",
-					Address: "0",
+					Key: "foo",
+					Addresses: []WeightedAddress{
+						{
+							Address: "0",
+						},
+					},
 				},
 				"bar": Endpoint{
-					Key:     "bar",
-					Address: "1",
+					Key: "bar",
+					Addresses: []WeightedAddress{
+						{
+							Address: "1",
+						},
+					},
 				},
 				"baz": Endpoint{
-					Key:     "baz",
-					Address: "2",
+					Key: "baz",
+					Addresses: []WeightedAddress{
+						{
+							Address: "2",
+						},
+					},
 				},
 				"qux": Endpoint{
-					Key:     "qux",
-					Address: "3",
+					Key: "qux",
+					Addresses: []WeightedAddress{
+						{
+							Address: "3",
+						},
+					},
 				},
 				"moo": Endpoint{
-					Key:     "moo",
-					Address: "4",
+					Key: "moo",
+					Addresses: []WeightedAddress{
+						{
+							Address: "4",
+						},
+					},
 				},
 			},
 			expectedSize: 5,
@@ -64,46 +104,86 @@ func TestCacheAdd(t *testing.T) {
 			limit: 2,
 			endpoints: []Endpoint{
 				{
-					Key:     "bar",
-					Address: "1",
+					Key: "bar",
+					Addresses: []WeightedAddress{
+						{
+							Address: "1",
+						},
+					},
 				},
 				{
-					Key:     "foo",
-					Address: "0",
+					Key: "foo",
+					Addresses: []WeightedAddress{
+						{
+							Address: "0",
+						},
+					},
 				},
 				{
-					Key:     "baz",
-					Address: "2",
+					Key: "baz",
+					Addresses: []WeightedAddress{
+						{
+							Address: "2",
+						},
+					},
 				},
 				{
-					Key:     "qux",
-					Address: "3",
+					Key: "qux",
+					Addresses: []WeightedAddress{
+						{
+							Address: "3",
+						},
+					},
 				},
 				{
-					Key:     "moo",
-					Address: "4",
+					Key: "moo",
+					Addresses: []WeightedAddress{
+						{
+							Address: "4",
+						},
+					},
 				},
 			},
 			validKeys: map[string]Endpoint{
 				"foo": Endpoint{
-					Key:     "foo",
-					Address: "0",
+					Key: "foo",
+					Addresses: []WeightedAddress{
+						{
+							Address: "0",
+						},
+					},
 				},
 				"bar": Endpoint{
-					Key:     "bar",
-					Address: "1",
+					Key: "bar",
+					Addresses: []WeightedAddress{
+						{
+							Address: "1",
+						},
+					},
 				},
 				"baz": Endpoint{
-					Key:     "baz",
-					Address: "2",
+					Key: "baz",
+					Addresses: []WeightedAddress{
+						{
+							Address: "2",
+						},
+					},
 				},
 				"qux": Endpoint{
-					Key:     "qux",
-					Address: "3",
+					Key: "qux",
+					Addresses: []WeightedAddress{
+						{
+							Address: "3",
+						},
+					},
 				},
 				"moo": Endpoint{
-					Key:     "moo",
-					Address: "4",
+					Key: "moo",
+					Addresses: []WeightedAddress{
+						{
+							Address: "4",
+						},
+					},
 				},
 			},
 			expectedSize: 2,
@@ -156,46 +236,86 @@ func TestCacheGet(t *testing.T) {
 			limit: 5,
 			addEndpoints: []Endpoint{
 				{
-					Key:     "foo",
-					Address: "0",
+					Key: "foo",
+					Addresses: []WeightedAddress{
+						{
+							Address: "0",
+						},
+					},
 				},
 				{
-					Key:     "bar",
-					Address: "1",
+					Key: "bar",
+					Addresses: []WeightedAddress{
+						{
+							Address: "1",
+						},
+					},
 				},
 				{
-					Key:     "baz",
-					Address: "2",
+					Key: "baz",
+					Addresses: []WeightedAddress{
+						{
+							Address: "2",
+						},
+					},
 				},
 				{
-					Key:     "qux",
-					Address: "3",
+					Key: "qux",
+					Addresses: []WeightedAddress{
+						{
+							Address: "3",
+						},
+					},
 				},
 				{
-					Key:     "moo",
-					Address: "4",
+					Key: "moo",
+					Addresses: []WeightedAddress{
+						{
+							Address: "4",
+						},
+					},
 				},
 			},
 			validKeys: map[string]Endpoint{
 				"foo": Endpoint{
-					Key:     "foo",
-					Address: "0",
+					Key: "foo",
+					Addresses: []WeightedAddress{
+						{
+							Address: "0",
+						},
+					},
 				},
 				"bar": Endpoint{
-					Key:     "bar",
-					Address: "1",
+					Key: "bar",
+					Addresses: []WeightedAddress{
+						{
+							Address: "1",
+						},
+					},
 				},
 				"baz": Endpoint{
-					Key:     "baz",
-					Address: "2",
+					Key: "baz",
+					Addresses: []WeightedAddress{
+						{
+							Address: "2",
+						},
+					},
 				},
 				"qux": Endpoint{
-					Key:     "qux",
-					Address: "3",
+					Key: "qux",
+					Addresses: []WeightedAddress{
+						{
+							Address: "3",
+						},
+					},
 				},
 				"moo": Endpoint{
-					Key:     "moo",
-					Address: "4",
+					Key: "moo",
+					Addresses: []WeightedAddress{
+						{
+							Address: "4",
+						},
+					},
 				},
 			},
 		},
@@ -203,46 +323,86 @@ func TestCacheGet(t *testing.T) {
 			limit: 2,
 			addEndpoints: []Endpoint{
 				{
-					Key:     "bar",
-					Address: "1",
+					Key: "bar",
+					Addresses: []WeightedAddress{
+						{
+							Address: "1",
+						},
+					},
 				},
 				{
-					Key:     "foo",
-					Address: "0",
+					Key: "foo",
+					Addresses: []WeightedAddress{
+						{
+							Address: "0",
+						},
+					},
 				},
 				{
-					Key:     "baz",
-					Address: "2",
+					Key: "baz",
+					Addresses: []WeightedAddress{
+						{
+							Address: "2",
+						},
+					},
 				},
 				{
-					Key:     "qux",
-					Address: "3",
+					Key: "qux",
+					Addresses: []WeightedAddress{
+						{
+							Address: "3",
+						},
+					},
 				},
 				{
-					Key:     "moo",
-					Address: "4",
+					Key: "moo",
+					Addresses: []WeightedAddress{
+						{
+							Address: "4",
+						},
+					},
 				},
 			},
 			validKeys: map[string]Endpoint{
 				"foo": Endpoint{
-					Key:     "foo",
-					Address: "0",
+					Key: "foo",
+					Addresses: []WeightedAddress{
+						{
+							Address: "0",
+						},
+					},
 				},
 				"bar": Endpoint{
-					Key:     "bar",
-					Address: "1",
+					Key: "bar",
+					Addresses: []WeightedAddress{
+						{
+							Address: "1",
+						},
+					},
 				},
 				"baz": Endpoint{
-					Key:     "baz",
-					Address: "2",
+					Key: "baz",
+					Addresses: []WeightedAddress{
+						{
+							Address: "2",
+						},
+					},
 				},
 				"qux": Endpoint{
-					Key:     "qux",
-					Address: "3",
+					Key: "qux",
+					Addresses: []WeightedAddress{
+						{
+							Address: "3",
+						},
+					},
 				},
 				"moo": Endpoint{
-					Key:     "moo",
-					Address: "4",
+					Key: "moo",
+					Addresses: []WeightedAddress{
+						{
+							Address: "4",
+						},
+					},
 				},
 			},
 		},

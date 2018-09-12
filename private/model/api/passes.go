@@ -392,3 +392,12 @@ func (a *API) suppressHTTP2EventStreams() {
 		a.removeOperation(name)
 	}
 }
+
+func (a *API) findEndpointDiscoveryOp() {
+	for _, op := range a.Operations {
+		if op.IsEndpointDiscoveryOp {
+			a.EndpointDiscoveryOp = op
+			return
+		}
+	}
+}

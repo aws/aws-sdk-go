@@ -57,6 +57,8 @@ type API struct {
 	BaseCrosslinkURL string
 
 	HasEventStream bool `json:"-"`
+
+	EndpointDiscoveryOp *Operation
 }
 
 // A Metadata is the metadata about an API's definition.
@@ -493,6 +495,9 @@ var tplService = template.Must(template.New("service").Funcs(template.FuncMap{
 // modify mutate any of the struct's properties though.
 type {{ .StructName }} struct {
 	*client.Client
+	{{- if .EndpointDiscoveryOp }}
+	endpointCache *crr.EndpointCache
+	{{ end -}}
 }
 
 {{ if .UseInitMethods }}// Used for custom client initialization logic
@@ -565,6 +570,10 @@ func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
     	),
     }
 
+	{{- if .EndpointDiscoveryOp }}
+	svc.endpointCache = crr.NewEndpointCache(10)
+	{{- end }}
+
 	// Handlers
 	svc.Handlers.Sign.PushBackNamed({{if eq .Metadata.SignatureVersion "v2"}}v2{{else}}v4{{end}}.SignRequestHandler)
 	{{- if eq .Metadata.SignatureVersion "v2" }}
@@ -629,6 +638,9 @@ func (a *API) ServiceGoCode() string {
 		a.imports["github.com/aws/aws-sdk-go/aws/signer/v4"] = true
 	}
 	a.imports["github.com/aws/aws-sdk-go/private/protocol/"+a.ProtocolPackage()] = true
+	if a.EndpointDiscoveryOp != nil {
+		a.imports["github.com/aws/aws-sdk-go/internal/crr"] = true
+	}
 
 	var buf bytes.Buffer
 	err := tplService.Execute(&buf, a)

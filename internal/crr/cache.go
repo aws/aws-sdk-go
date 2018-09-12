@@ -43,11 +43,12 @@ func (c *EndpointCache) get(endpointKey string) (Endpoint, bool) {
 // the Discoverer object that was passed in will attempt to discover a new endpoint
 // and add that to the cache.
 func (c *EndpointCache) Get(d Discoverer, endpointKey string, required bool) (Endpoint, error) {
+	var err error
 	endpoint, ok := c.get(endpointKey)
 	shouldGet := !ok || endpoint.HasExpired()
 
 	if required && shouldGet {
-		if err := c.discover(d, endpointKey); err != nil {
+		if endpoint, err = c.discover(d, endpointKey); err != nil {
 			return Endpoint{}, err
 		}
 	} else if shouldGet {
@@ -93,14 +94,14 @@ func (c *EndpointCache) deleteRandomKey() bool {
 }
 
 // discover will get and store and endpoint using the Discoverer.
-func (c *EndpointCache) discover(d Discoverer, endpointKey string) error {
+func (c *EndpointCache) discover(d Discoverer, endpointKey string) (Endpoint, error) {
 	endpoint, err := d.Discover()
 	if err != nil {
-		return err
+		return Endpoint{}, err
 	}
 
 	endpoint.Key = endpointKey
 	c.Add(endpoint)
 
-	return nil
+	return endpoint, nil
 }
