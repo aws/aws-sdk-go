@@ -209,6 +209,21 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "UpdateContactAttributes":{
+      "name":"UpdateContactAttributes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/contact/attributes"
+      },
+      "input":{"shape":"UpdateContactAttributesRequest"},
+      "output":{"shape":"UpdateContactAttributesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "UpdateUserHierarchy":{
       "name":"UpdateUserHierarchy",
       "http":{
@@ -840,6 +855,24 @@
       },
       "error":{"httpStatusCode":429},
       "exception":true
+    },
+    "UpdateContactAttributesRequest":{
+      "type":"structure",
+      "required":[
+        "InitialContactId",
+        "InstanceId",
+        "Attributes"
+      ],
+      "members":{
+        "InitialContactId":{"shape":"ContactId"},
+        "InstanceId":{"shape":"InstanceId"},
+        "Attributes":{"shape":"Attributes"}
+      }
+    },
+    "UpdateContactAttributesResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateUserHierarchyRequest":{
       "type":"structure",

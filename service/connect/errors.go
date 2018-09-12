@@ -43,7 +43,7 @@ const (
 	// ErrCodeLimitExceededException for service response error code
 	// "LimitExceededException".
 	//
-	// The limit exceeded the maximum allowed active calls in a queue.
+	// The allowed limit for the resource has been reached.
 	ErrCodeLimitExceededException = "LimitExceededException"
 
 	// ErrCodeOutboundContactNotPermittedException for service response error code
