@@ -29,7 +29,6 @@ type Operation struct {
 
 	EventStreamAPI *EventStreamAPI
 
-	// TODO: This will trigger creation of the Discoverer
 	IsEndpointDiscoveryOp bool               `json:"endpointoperation"`
 	EndpointDiscovery     *EndpointDiscovery `json:"endpointdiscovery"`
 }
@@ -171,8 +170,16 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 			EndpointCache: c.endpointCache,
 			Params: map[string]string{
 				"op": req.Operation.Name,
+				{{ range $key, $value := .EndpointDiscovery -}}
+				{{ if (ne $key "required") -}}
+				"{{ $key }}": input.{{ $key }},
+				{{- end }}
+				{{- end }}
 			},
 			Client: c,
+		}
+		de.ParamProvider = paramProvider{{ .ExportedName}} {
+			Params: de.Params, 
 		}
 
 		{{ range $key, $value := .EndpointDiscovery -}}
@@ -314,18 +321,23 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}PagesWithContext(` +
 {{ end }}
 
 {{ if .IsEndpointDiscoveryOp -}}
+type paramProvider interface {
+	SetParams({{ .InputRef.GoType }})
+}
+
 type discoverer{{ .ExportedName }} struct {
 	Client *{{ .API.StructName }}
 	Required bool
 	EndpointCache *crr.EndpointCache
 	Params map[string]string
 	Key string
+	ParamProvider paramProvider
 }
 
 func (d *discoverer{{ .ExportedName }}) Discover() (crr.Endpoint, error) {
-	input := &{{ .API.EndpointDiscoveryOp.InputRef.ShapeName }}{
-		// TODO: inject params here
-	}
+	input := &{{ .API.EndpointDiscoveryOp.InputRef.ShapeName }}{}
+	d.ParamProvider.SetParams(input)
+
 	resp, err := d.Client.{{ .API.EndpointDiscoveryOp.Name }}(input)
 	if err != nil {
 		return crr.Endpoint{}, err
@@ -352,7 +364,6 @@ func (d *discoverer{{ .ExportedName }}) Discover() (crr.Endpoint, error) {
 }
 
 func (d *discoverer{{ .ExportedName }}) Handler(r *request.Request) {
-	// TODO: Add iteration for members that need to be added
 	endpointKey := crr.BuildEndpointKey(d.Params)
 	d.Key = endpointKey
 
@@ -371,7 +382,26 @@ func (d *discoverer{{ .ExportedName }}) Handler(r *request.Request) {
 		r.HTTPRequest.URL.Host = addr
 	}
 }
+{{- else }}
+{{ if .EndpointDiscovery -}}
+type paramProvider{{ .ExportedName }} struct {
+	Params map[string]string
+}
+
+func (a paramProvider{{ .ExportedName }}) SetParams(input {{ .API.EndpointDiscoveryOp.InputRef.GoType }}) {
+	// TODO: Can remove if check required when C2J is updated
+	{{ range $key, $value := .EndpointDiscovery -}}
+	{{ if (ne $key "required") }}
+
+	if v, ok := a.Params["{{ $key }}"]; ok {
+		input.{{ $key }} = v
+	}
+	{{- end }}
+	{{- end -}}
+}
+{{- end }}
 {{ end -}}
+
 `))
 
 // GoCode returns a string of rendered GoCode for this Operation

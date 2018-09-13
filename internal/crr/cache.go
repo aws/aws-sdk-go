@@ -71,8 +71,8 @@ func (c *EndpointCache) Add(endpoint Endpoint) {
 	}
 	c.endpoints.Store(endpoint.Key, endpoint)
 
-	atomic.AddInt64(&c.size, 1)
-	if c.size > 0 && c.size > c.endpointLimit {
+	size := atomic.AddInt64(&c.size, 1)
+	if size > 0 && size > c.endpointLimit {
 		c.deleteRandomKey()
 	}
 }
