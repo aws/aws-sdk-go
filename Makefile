@@ -39,7 +39,10 @@ help:
 
 generate: cleanup-models gen-test gen-endpoints gen-services
 
-gen-test: gen-protocol-test gen-codegen-test
+gen-test: gen-protocol-test gen-codegen-test gen-paginator-test
+
+gen-paginator-test:
+	go generate ./aws/request/paginatortest/service
 
 gen-codegen-test:
 	go generate ./private/model/api/codegentest/service
