@@ -1,3 +1,10 @@
+Release v1.15.35 (2018-09-13)
+===
+
+### Service Client Updates
+* `service/polly`: Updates service API and documentation
+  * Amazon Polly adds Mandarin Chinese language support with new female voice - "Zhiyu"
+
 Release v1.15.34 (2018-09-12)
 ===
 

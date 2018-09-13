@@ -1948,6 +1948,9 @@ type SynthesizeSpeechInput struct {
 	// The format in which the returned output will be encoded. For audio stream,
 	// this will be mp3, ogg_vorbis, or pcm. For speech marks, this will be json.
 	//
+	// When pcm is used, the content returned is audio/pcm in a signed 16-bit, 1
+	// channel (mono), little-endian format.
+	//
 	// OutputFormat is a required field
 	OutputFormat *string `type:"string" required:"true" enum:"OutputFormat"`
 
@@ -2197,6 +2200,9 @@ const (
 )
 
 const (
+	// LanguageCodeCmnCn is a LanguageCode enum value
+	LanguageCodeCmnCn = "cmn-CN"
+
 	// LanguageCodeCyGb is a LanguageCode enum value
 	LanguageCodeCyGb = "cy-GB"
 
@@ -2485,4 +2491,7 @@ const (
 
 	// VoiceIdAditi is a VoiceId enum value
 	VoiceIdAditi = "Aditi"
+
+	// VoiceIdZhiyu is a VoiceId enum value
+	VoiceIdZhiyu = "Zhiyu"
 )
