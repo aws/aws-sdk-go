@@ -177,22 +177,24 @@ func (c *AwsEndpointDiscoveryTest) TestDiscoveryIdentifiersRequiredRequest(input
 
 	output = &TestDiscoveryIdentifiersRequiredOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      true,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
-	de.ParamProvider = paramProviderTestDiscoveryIdentifiersRequired{
-		Params: de.Params,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      true,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderTestDiscoveryIdentifiersRequired{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -270,22 +272,24 @@ func (c *AwsEndpointDiscoveryTest) TestDiscoveryOptionalRequest(input *TestDisco
 
 	output = &TestDiscoveryOptionalOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
-	de.ParamProvider = paramProviderTestDiscoveryOptional{
-		Params: de.Params,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderTestDiscoveryOptional{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -363,22 +367,24 @@ func (c *AwsEndpointDiscoveryTest) TestDiscoveryRequiredRequest(input *TestDisco
 
 	output = &TestDiscoveryRequiredOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
-	de.ParamProvider = paramProviderTestDiscoveryRequired{
-		Params: de.Params,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderTestDiscoveryRequired{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 

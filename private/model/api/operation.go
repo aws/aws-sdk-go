@@ -165,35 +165,37 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 		{{ end -}}
 	{{ end -}}
 	{{ if .EndpointDiscovery -}}
-		de := discoverer{{ .API.EndpointDiscoveryOp.Name }}{
-			Required: {{ .EndpointDiscovery.Required }},
-			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
-				{{ range $key, $value := .EndpointDiscovery -}}
+		if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+			de := discoverer{{ .API.EndpointDiscoveryOp.Name }}{
+				Required: {{ .EndpointDiscovery.Required }},
+				EndpointCache: c.endpointCache,
+				Params: map[string]string{
+					"op": req.Operation.Name,
+					{{ range $key, $value := .EndpointDiscovery -}}
+					{{ if (ne $key "required") -}}
+					"{{ $key }}": input.{{ $key }},
+					{{- end }}
+					{{- end }}
+				},
+				Client: c,
+			}
+			de.ParamProvider = paramProvider{{ .ExportedName}} {
+				Params: de.Params, 
+			}
+
+			{{ range $key, $value := .EndpointDiscovery -}}
 				{{ if (ne $key "required") -}}
-				"{{ $key }}": input.{{ $key }},
+					if input.{{ $key }} != nil {
+						de.Params["{{ $key }}"] = *input.{{ $key }}
+					}
 				{{- end }}
-				{{- end }}
-			},
-			Client: c,
-		}
-		de.ParamProvider = paramProvider{{ .ExportedName}} {
-			Params: de.Params, 
-		}
-
-		{{ range $key, $value := .EndpointDiscovery -}}
-			{{ if (ne $key "required") -}}
-				if input.{{ $key }} != nil {
-					de.Params["{{ $key }}"] = *input.{{ $key }}
-				}
 			{{- end }}
-		{{- end }}
 
-		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-			Name: "crr.endpointdiscovery",
-			Fn: de.Handler,
-		})
+			req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+				Name: "crr.endpointdiscovery",
+				Fn: de.Handler,
+			})
+		}
 	{{ end -}}
 	return
 }

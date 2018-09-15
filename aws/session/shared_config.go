@@ -25,6 +25,9 @@ const (
 	// Additional Config fields
 	regionKey = `region`
 
+	// endpoint discovery group
+	enableEndpointDiscoveryKey = `endpoint_discovery_enabled` // optional
+
 	// DefaultSharedConfigProfile is the default profile to be used when
 	// loading configuration from the config files if another profile name
 	// is not provided.
@@ -60,6 +63,12 @@ type sharedConfig struct {
 	//
 	//	region
 	Region string
+
+	// EnableEndpointDiscovery can be enabled in the shared config by setting
+	//endpoint_discovery_enabled to true
+	//
+	//	endpoint_discovery_enabled = true
+	EnableEndpointDiscovery *bool
 }
 
 type sharedConfigFile struct {
@@ -208,6 +217,11 @@ func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile) e
 	// Region
 	if v := section.Key(regionKey).String(); len(v) > 0 {
 		cfg.Region = v
+	}
+
+	// Endpoint discovery
+	if v, err := section.Key(enableEndpointDiscoveryKey).Bool(); err == nil && v {
+		cfg.EnableEndpointDiscovery = &v
 	}
 
 	return nil

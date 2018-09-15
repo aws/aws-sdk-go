@@ -11,7 +11,11 @@ import (
 )
 
 func TestEndpointDiscovery(t *testing.T) {
-	cfg := (&aws.Config{}).WithCredentials(credentials.NewStaticCredentials("AKID", "SECRET", "SESSION")).WithRegion("mock-region")
+	cfg := &aws.Config{
+		Region:                  aws.String("mock-region"),
+		Credentials:             credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
+		EnableEndpointDiscovery: aws.Bool(true),
+	}
 	sess := session.New(cfg)
 	sess.Handlers = removeHandlers(sess.Handlers, true)
 
@@ -50,7 +54,11 @@ func TestEndpointDiscovery(t *testing.T) {
 }
 
 func TestAsyncEndpointDiscovery(t *testing.T) {
-	cfg := (&aws.Config{}).WithCredentials(credentials.NewStaticCredentials("AKID", "SECRET", "SESSION")).WithRegion("mock-region")
+	cfg := &aws.Config{
+		Region:                  aws.String("mock-region"),
+		Credentials:             credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
+		EnableEndpointDiscovery: aws.Bool(true),
+	}
 	sess := session.New(cfg)
 	sess.Handlers = removeHandlers(sess.Handlers, true)
 
