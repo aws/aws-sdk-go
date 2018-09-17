@@ -155,6 +155,13 @@
         "ProjectCache$type": "<p>The type of cache used by the build project. Valid values include:</p> <ul> <li> <p> <code>NO_CACHE</code>: The build project will not use any cache.</p> </li> <li> <p> <code>S3</code>: The build project will read and write from/to S3.</p> </li> </ul>"
       }
     },
+    "CloudWatchLogsConfig": {
+      "base": "<p> Information about Amazon CloudWatch Logs for a build project. </p>",
+      "refs": {
+        "LogsConfig$cloudWatchLogs": "<p> Information about Amazon CloudWatch Logs for a build project. Amazon CloudWatch Logs are enabled by default. </p>",
+        "LogsLocation$cloudWatchLogs": "<p> Information about Amazon CloudWatch Logs for a build project. </p>"
+      }
+    },
     "ComputeType": {
       "base": null,
       "refs": {
@@ -342,6 +349,22 @@
     "ListProjectsOutput": {
       "base": null,
       "refs": {
+      }
+    },
+    "LogsConfig": {
+      "base": "<p> Information about logs for a build project. Logs can be Amazon CloudWatch Logs, built in a specified S3 bucket, or both. </p>",
+      "refs": {
+        "CreateProjectInput$logsConfig": "<p> Information about logs for the build project. Logs can be Amazon CloudWatch Logs, uploaded to a specified S3 bucket, or both. </p>",
+        "Project$logsConfig": "<p> Information about logs for the build project. A project can create Amazon CloudWatch Logs, logs in an S3 bucket, or both. </p>",
+        "StartBuildInput$logsConfigOverride": "<p> Log settings for this build that override the log settings defined in the build project. </p>",
+        "UpdateProjectInput$logsConfig": "<p> Information about logs for the build project. A project can create Amazon CloudWatch Logs, logs in an S3 bucket, or both. </p>"
+      }
+    },
+    "LogsConfigStatusType": {
+      "base": null,
+      "refs": {
+        "CloudWatchLogsConfig$status": "<p>The current status of the Amazon CloudWatch Logs for a build project. Valid values are:</p> <ul> <li> <p> <code>ENABLED</code>: Amazon CloudWatch Logs are enabled for this build project.</p> </li> <li> <p> <code>DISABLED</code>: Amazon CloudWatch Logs are not enabled for this build project.</p> </li> </ul>",
+        "S3LogsConfig$status": "<p>The current status of the S3 build logs. Valid values are:</p> <ul> <li> <p> <code>ENABLED</code>: S3 build logs are enabled for this build project.</p> </li> <li> <p> <code>DISABLED</code>: S3 build logs are not enabled for this build project.</p> </li> </ul>"
       }
     },
     "LogsLocation": {
@@ -551,6 +574,13 @@
       "refs": {
       }
     },
+    "S3LogsConfig": {
+      "base": "<p> Information about S3 logs for a build project. </p>",
+      "refs": {
+        "LogsConfig$s3Logs": "<p> Information about logs built to an S3 bucket for a build project. S3 logs are not enabled by default. </p>",
+        "LogsLocation$s3Logs": "<p> Information about S3 logs for a build project. </p>"
+      }
+    },
     "SecurityGroupIds": {
       "base": null,
       "refs": {
@@ -581,8 +611,8 @@
     "SourceType": {
       "base": null,
       "refs": {
-        "ProjectSource$type": "<p>The type of repository that contains the source code to be built. Valid values include:</p> <ul> <li> <p> <code>BITBUCKET</code>: The source code is in a Bitbucket repository.</p> </li> <li> <p> <code>CODECOMMIT</code>: The source code is in an AWS CodeCommit repository.</p> </li> <li> <p> <code>CODEPIPELINE</code>: The source code settings are specified in the source action of a pipeline in AWS CodePipeline.</p> </li> <li> <p> <code>GITHUB</code>: The source code is in a GitHub repository.</p> </li> <li> <p> <code>S3</code>: The source code is in an Amazon Simple Storage Service (Amazon S3) input bucket.</p> </li> </ul>",
-        "StartBuildInput$sourceTypeOverride": "<p>A source input type for this build that overrides the source input defined in the build project</p>"
+        "ProjectSource$type": "<p>The type of repository that contains the source code to be built. Valid values include:</p> <ul> <li> <p> <code>BITBUCKET</code>: The source code is in a Bitbucket repository.</p> </li> <li> <p> <code>CODECOMMIT</code>: The source code is in an AWS CodeCommit repository.</p> </li> <li> <p> <code>CODEPIPELINE</code>: The source code settings are specified in the source action of a pipeline in AWS CodePipeline.</p> </li> <li> <p> <code>GITHUB</code>: The source code is in a GitHub repository.</p> </li> <li> <p> <code>NO_SOURCE</code>: The project does not have input source code.</p> </li> <li> <p> <code>S3</code>: The source code is in an Amazon Simple Storage Service (Amazon S3) input bucket.</p> </li> </ul>",
+        "StartBuildInput$sourceTypeOverride": "<p>A source input type for this build that overrides the source input defined in the build project.</p>"
       }
     },
     "StartBuildInput": {
@@ -622,6 +652,8 @@
         "BuildArtifacts$md5sum": "<p>The MD5 hash of the build artifact.</p> <p>You can use this hash along with a checksum tool to confirm both file integrity and authenticity.</p> <note> <p>This value is available only if the build project's <code>packaging</code> value is set to <code>ZIP</code>.</p> </note>",
         "BuildArtifacts$artifactIdentifier": "<p> An identifier for this artifact definition. </p>",
         "BuildNotDeleted$statusCode": "<p>Additional information about the build that could not be successfully deleted.</p>",
+        "CloudWatchLogsConfig$groupName": "<p> The group name of the Amazon CloudWatch Logs. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html\">Working with Log Groups and Log Streams</a> </p>",
+        "CloudWatchLogsConfig$streamName": "<p> The prefix of the stream name of the Amazon CloudWatch Logs. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html\">Working with Log Groups and Log Streams</a> </p>",
         "CreateWebhookInput$branchFilter": "<p>A regular expression used to determine which branches in a repository are built when a webhook is triggered. If the name of a branch matches the regular expression, then it is built. If it doesn't match, then it is not. If branchFilter is empty, then all branches are built.</p>",
         "EnvironmentImage$name": "<p>The name of the Docker image.</p>",
         "EnvironmentImage$description": "<p>The description of the Docker image.</p>",
@@ -635,6 +667,7 @@
         "LogsLocation$groupName": "<p>The name of the Amazon CloudWatch Logs group for the build logs.</p>",
         "LogsLocation$streamName": "<p>The name of the Amazon CloudWatch Logs stream for the build logs.</p>",
         "LogsLocation$deepLink": "<p>The URL to an individual build log in Amazon CloudWatch Logs.</p>",
+        "LogsLocation$s3DeepLink": "<p> The URL to an individual build log in an S3 bucket. </p>",
         "PhaseContext$statusCode": "<p>The status code for the context of the build phase.</p>",
         "PhaseContext$message": "<p>An explanation of the build phase's context. This explanation might include a command ID and an exit code.</p>",
         "Project$arn": "<p>The Amazon Resource Name (ARN) of the build project.</p>",
@@ -650,6 +683,7 @@
         "ProjectSource$sourceIdentifier": "<p> An identifier for this project source. </p>",
         "ProjectSourceVersion$sourceIdentifier": "<p>An identifier for a source in the build project.</p>",
         "ProjectSourceVersion$sourceVersion": "<p>The source version for the corresponding source identifier. If specified, must be one of:</p> <ul> <li> <p>For AWS CodeCommit: the commit ID to use.</p> </li> <li> <p>For GitHub: the commit ID, pull request ID, branch name, or tag name that corresponds to the version of the source code you want to build. If a pull request ID is specified, it must use the format <code>pr/pull-request-ID</code> (for example <code>pr/25</code>). If a branch name is specified, the branch's HEAD commit ID will be used. If not specified, the default branch's HEAD commit ID will be used.</p> </li> <li> <p>For Bitbucket: the commit ID, branch name, or tag name that corresponds to the version of the source code you want to build. If a branch name is specified, the branch's HEAD commit ID will be used. If not specified, the default branch's HEAD commit ID will be used.</p> </li> <li> <p>For Amazon Simple Storage Service (Amazon S3): the version ID of the object representing the build input ZIP file to use.</p> </li> </ul>",
+        "S3LogsConfig$location": "<p> The ARN of an S3 bucket and the path prefix for S3 logs. If your Amazon S3 bucket name is <code>my-bucket</code>, and your path prefix is <code>build-log</code>, then acceptable formats are <code>my-bucket/build-log</code> or <code>aws:s3:::my-bucket/build-log</code>. </p>",
         "SourceAuth$resource": "<p>The resource value that applies to the specified authorization type.</p>",
         "StartBuildInput$sourceVersion": "<p>A version of the build input to be built, for this build only. If not specified, the latest version will be used. If specified, must be one of:</p> <ul> <li> <p>For AWS CodeCommit: the commit ID to use.</p> </li> <li> <p>For GitHub: the commit ID, pull request ID, branch name, or tag name that corresponds to the version of the source code you want to build. If a pull request ID is specified, it must use the format <code>pr/pull-request-ID</code> (for example <code>pr/25</code>). If a branch name is specified, the branch's HEAD commit ID will be used. If not specified, the default branch's HEAD commit ID will be used.</p> </li> <li> <p>For Bitbucket: the commit ID, branch name, or tag name that corresponds to the version of the source code you want to build. If a branch name is specified, the branch's HEAD commit ID will be used. If not specified, the default branch's HEAD commit ID will be used.</p> </li> <li> <p>For Amazon Simple Storage Service (Amazon S3): the version ID of the object representing the build input ZIP file to use.</p> </li> </ul>",
         "StartBuildInput$sourceLocationOverride": "<p>A location that overrides for this build the source location for the one defined in the build project.</p>",

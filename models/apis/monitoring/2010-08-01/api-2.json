@@ -6,6 +6,7 @@
     "protocol":"query",
     "serviceAbbreviation":"CloudWatch",
     "serviceFullName":"Amazon CloudWatch",
+    "serviceId":"CloudWatch",
     "signatureVersion":"v4",
     "uid":"monitoring-2010-08-01",
     "xmlNamespace":"http://monitoring.amazonaws.com/doc/2010-08-01/"
@@ -288,6 +289,10 @@
         "LessThanThreshold",
         "LessThanOrEqualToThreshold"
       ]
+    },
+    "Counts":{
+      "type":"list",
+      "member":{"shape":"DatapointValue"}
     },
     "DashboardArn":{"type":"string"},
     "DashboardBody":{"type":"string"},
@@ -679,7 +684,8 @@
         "httpStatusCode":400,
         "senderFault":true
       },
-      "exception":true
+      "exception":true,
+      "synthetic":true
     },
     "InvalidParameterValueException":{
       "type":"structure",
@@ -691,7 +697,8 @@
         "httpStatusCode":400,
         "senderFault":true
       },
-      "exception":true
+      "exception":true,
+      "synthetic":true
     },
     "LastModified":{"type":"timestamp"},
     "LimitExceededFault":{
@@ -876,6 +883,8 @@
         "Timestamp":{"shape":"Timestamp"},
         "Value":{"shape":"DatapointValue"},
         "StatisticValues":{"shape":"StatisticSet"},
+        "Values":{"shape":"Values"},
+        "Counts":{"shape":"Counts"},
         "Unit":{"shape":"StandardUnit"},
         "StorageResolution":{"shape":"StorageResolution"}
       }
@@ -924,7 +933,8 @@
         "httpStatusCode":400,
         "senderFault":true
       },
-      "exception":true
+      "exception":true,
+      "synthetic":true
     },
     "Namespace":{
       "type":"string",
@@ -1151,6 +1161,10 @@
       "type":"string",
       "max":255,
       "min":1
+    },
+    "Values":{
+      "type":"list",
+      "member":{"shape":"DatapointValue"}
     }
   }
 }

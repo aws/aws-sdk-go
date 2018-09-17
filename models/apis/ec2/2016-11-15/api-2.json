@@ -2686,6 +2686,10 @@
         "Quantity":{
           "shape":"Integer",
           "locationName":"quantity"
+        },
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
         }
       }
     },
@@ -15839,6 +15843,7 @@
       "type":"string",
       "enum":[
         "customer-gateway",
+        "dedicated-host",
         "dhcp-options",
         "image",
         "instance",

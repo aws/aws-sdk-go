@@ -702,10 +702,13 @@
         "dnsSearchDomains":{"shape":"StringList"},
         "extraHosts":{"shape":"HostEntryList"},
         "dockerSecurityOptions":{"shape":"StringList"},
+        "interactive":{"shape":"BoxedBoolean"},
+        "pseudoTerminal":{"shape":"BoxedBoolean"},
         "dockerLabels":{"shape":"DockerLabelsMap"},
         "ulimits":{"shape":"UlimitList"},
         "logConfiguration":{"shape":"LogConfiguration"},
-        "healthCheck":{"shape":"HealthCheck"}
+        "healthCheck":{"shape":"HealthCheck"},
+        "systemControls":{"shape":"SystemControls"}
       }
     },
     "ContainerDefinitions":{
@@ -1721,6 +1724,17 @@
       "members":{
         "acknowledgment":{"shape":"String"}
       }
+    },
+    "SystemControl":{
+      "type":"structure",
+      "members":{
+        "namespace":{"shape":"String"},
+        "value":{"shape":"String"}
+      }
+    },
+    "SystemControls":{
+      "type":"list",
+      "member":{"shape":"SystemControl"}
     },
     "TargetNotFoundException":{
       "type":"structure",

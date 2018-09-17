@@ -23588,6 +23588,9 @@ type AllocateHostsInput struct {
 	//
 	// Quantity is a required field
 	Quantity *int64 `locationName:"quantity" type:"integer" required:"true"`
+
+	// The tags to apply to the Dedicated Host during creation.
+	TagSpecifications []*TagSpecification `locationName:"TagSpecification" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation
@@ -23649,6 +23652,13 @@ func (s *AllocateHostsInput) SetQuantity(v int64) *AllocateHostsInput {
 	return s
 }
 
+// SetTagSpecifications sets the TagSpecifications field's value.
+func (s *AllocateHostsInput) SetTagSpecifications(v []*TagSpecification) *AllocateHostsInput {
+	s.TagSpecifications = v
+	return s
+}
+
+// Contains the output of AllocateHosts.
 type AllocateHostsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -41799,11 +41809,11 @@ type DescribeTagsInput struct {
 	//
 	//    * resource-id - The ID of the resource.
 	//
-	//    * resource-type - The resource type (customer-gateway | dhcp-options |
-	//    elastic-ip | fleet | fpga-image | image | instance | internet-gateway
-	//    | launch-template | natgateway | network-acl | network-interface | reserved-instances
-	//    | route-table | security-group | snapshot | spot-instances-request | subnet
-	//    | volume | vpc | vpc-peering-connection | vpn-connection | vpn-gateway).
+	//    * resource-type - The resource type (customer-gateway | dedicated-host
+	//    | dhcp-options | elastic-ip | fleet | fpga-image | image | instance |
+	//    internet-gateway | launch-template | natgateway | network-acl | network-interface
+	//    | reserved-instances | route-table | security-group | snapshot | spot-instances-request
+	//    | subnet | volume | vpc | vpc-peering-connection | vpn-connection | vpn-gateway).
 	//
 	//    * tag:<key> - The key/value combination of the tag. For example, specify
 	//    "tag:Owner" for the filter name and "TeamA" for the filter value to find
@@ -67096,8 +67106,8 @@ type TagSpecification struct {
 	_ struct{} `type:"structure"`
 
 	// The type of resource to tag. Currently, the resource types that support tagging
-	// on creation are fleet, instance, snapshot, and volume. To tag a resource
-	// after it has been created, see CreateTags.
+	// on creation are fleet, dedicated-host, instance, snapshot, and volume. To
+	// tag a resource after it has been created, see CreateTags.
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
 
 	// The tags to apply to the resource.
@@ -71484,6 +71494,9 @@ const (
 const (
 	// ResourceTypeCustomerGateway is a ResourceType enum value
 	ResourceTypeCustomerGateway = "customer-gateway"
+
+	// ResourceTypeDedicatedHost is a ResourceType enum value
+	ResourceTypeDedicatedHost = "dedicated-host"
 
 	// ResourceTypeDhcpOptions is a ResourceType enum value
 	ResourceTypeDhcpOptions = "dhcp-options"
