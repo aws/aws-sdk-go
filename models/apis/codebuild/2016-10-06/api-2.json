@@ -393,6 +393,15 @@
         "S3"
       ]
     },
+    "CloudWatchLogsConfig":{
+      "type":"structure",
+      "required":["status"],
+      "members":{
+        "status":{"shape":"LogsConfigStatusType"},
+        "groupName":{"shape":"String"},
+        "streamName":{"shape":"String"}
+      }
+    },
     "ComputeType":{
       "type":"string",
       "enum":[
@@ -424,7 +433,8 @@
         "encryptionKey":{"shape":"NonEmptyString"},
         "tags":{"shape":"TagList"},
         "vpcConfig":{"shape":"VpcConfig"},
-        "badgeEnabled":{"shape":"WrapperBoolean"}
+        "badgeEnabled":{"shape":"WrapperBoolean"},
+        "logsConfig":{"shape":"LogsConfig"}
       }
     },
     "CreateProjectOutput":{
@@ -637,12 +647,29 @@
         "projects":{"shape":"ProjectNames"}
       }
     },
+    "LogsConfig":{
+      "type":"structure",
+      "members":{
+        "cloudWatchLogs":{"shape":"CloudWatchLogsConfig"},
+        "s3Logs":{"shape":"S3LogsConfig"}
+      }
+    },
+    "LogsConfigStatusType":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "LogsLocation":{
       "type":"structure",
       "members":{
         "groupName":{"shape":"String"},
         "streamName":{"shape":"String"},
-        "deepLink":{"shape":"String"}
+        "deepLink":{"shape":"String"},
+        "s3DeepLink":{"shape":"String"},
+        "cloudWatchLogs":{"shape":"CloudWatchLogsConfig"},
+        "s3Logs":{"shape":"S3LogsConfig"}
       }
     },
     "NetworkInterface":{
@@ -702,7 +729,8 @@
         "lastModified":{"shape":"Timestamp"},
         "webhook":{"shape":"Webhook"},
         "vpcConfig":{"shape":"VpcConfig"},
-        "badge":{"shape":"ProjectBadge"}
+        "badge":{"shape":"ProjectBadge"},
+        "logsConfig":{"shape":"LogsConfig"}
       }
     },
     "ProjectArtifacts":{
@@ -835,6 +863,14 @@
       },
       "exception":true
     },
+    "S3LogsConfig":{
+      "type":"structure",
+      "required":["status"],
+      "members":{
+        "status":{"shape":"LogsConfigStatusType"},
+        "location":{"shape":"String"}
+      }
+    },
     "SecurityGroupIds":{
       "type":"list",
       "member":{"shape":"NonEmptyString"},
@@ -897,7 +933,8 @@
         "serviceRoleOverride":{"shape":"NonEmptyString"},
         "privilegedModeOverride":{"shape":"WrapperBoolean"},
         "timeoutInMinutesOverride":{"shape":"TimeOut"},
-        "idempotencyToken":{"shape":"String"}
+        "idempotencyToken":{"shape":"String"},
+        "logsConfigOverride":{"shape":"LogsConfig"}
       }
     },
     "StartBuildOutput":{
@@ -972,7 +1009,8 @@
         "encryptionKey":{"shape":"NonEmptyString"},
         "tags":{"shape":"TagList"},
         "vpcConfig":{"shape":"VpcConfig"},
-        "badgeEnabled":{"shape":"WrapperBoolean"}
+        "badgeEnabled":{"shape":"WrapperBoolean"},
+        "logsConfig":{"shape":"LogsConfig"}
       }
     },
     "UpdateProjectOutput":{
