@@ -1,3 +1,12 @@
+Release v1.15.37 (2018-09-18)
+===
+
+### Service Client Updates
+* `service/es`: Updates service API and documentation
+  * Amazon Elasticsearch Service adds support for node-to-node encryption for new domains running Elasticsearch version 6.0 and above
+* `service/rekognition`: Updates service API and documentation
+  * This release updates the Amazon Rekognition IndexFaces API operation. It introduces a QualityFilter parameter that allows you to automatically filter out detected faces that are deemed to be of low quality by Amazon Rekognition. The quality bar is based on a variety of common use cases.  You can filter low-quality detected faces by setting QualityFilter to AUTO, which is also the default setting. To index all detected faces regardless of quality, you can specify NONE.  This release also provides a MaxFaces parameter that is useful when you want to only index the most prominent and largest faces in an image and don't want to index other faces detected in the image, such as smaller faces belonging to people standing in the background.
+
 Release v1.15.36 (2018-09-17)
 ===
 

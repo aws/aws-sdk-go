@@ -90,6 +90,7 @@
         "ElasticsearchDomainStatus$UpgradeProcessing": "<p>The status of an Elasticsearch domain version upgrade. <code>True</code> if Amazon Elasticsearch Service is undergoing a version upgrade. <code>False</code> if the configuration is active.</p>",
         "EncryptionAtRestOptions$Enabled": "<p>Specifies the option to enable Encryption At Rest.</p>",
         "LogPublishingOption$Enabled": "<p> Specifies whether given log publishing option is enabled or not.</p>",
+        "NodeToNodeEncryptionOptions$Enabled": "<p>Specify true to enable node-to-node encryption.</p>",
         "OptionStatus$PendingDeletion": "<p>Indicates whether the Elasticsearch domain is being deleted.</p>",
         "UpgradeElasticsearchDomainRequest$PerformCheckOnly": "<p> This flag, when set to True, indicates that an Upgrade Eligibility Check needs to be performed. This will not actually perform the Upgrade. </p>",
         "UpgradeElasticsearchDomainResponse$PerformCheckOnly": "<p> This flag, when set to True, indicates that an Upgrade Eligibility Check needs to be performed. This will not actually perform the Upgrade. </p>"
@@ -641,6 +642,20 @@
         "ListElasticsearchVersionsResponse$NextToken": null
       }
     },
+    "NodeToNodeEncryptionOptions": {
+      "base": "<p>Specifies the node-to-node encryption options.</p>",
+      "refs": {
+        "CreateElasticsearchDomainRequest$NodeToNodeEncryptionOptions": "<p>Specifies the NodeToNodeEncryptionOptions.</p>",
+        "ElasticsearchDomainStatus$NodeToNodeEncryptionOptions": "<p>Specifies the status of the <code>NodeToNodeEncryptionOptions</code>.</p>",
+        "NodeToNodeEncryptionOptionsStatus$Options": "<p>Specifies the node-to-node encryption options for the specified Elasticsearch domain.</p>"
+      }
+    },
+    "NodeToNodeEncryptionOptionsStatus": {
+      "base": "<p>Status of the node-to-node encryption options for the specified Elasticsearch domain.</p>",
+      "refs": {
+        "ElasticsearchDomainConfig$NodeToNodeEncryptionOptions": "<p>Specifies the <code>NodeToNodeEncryptionOptions</code> for the Elasticsearch domain.</p>"
+      }
+    },
     "OptionState": {
       "base": "<p>The state of a requested change. One of the following:</p> <ul> <li>Processing: The request change is still in-process.</li> <li>Active: The request change is processed and deployed to the Elasticsearch domain.</li> </ul>",
       "refs": {
@@ -658,6 +673,7 @@
         "ElasticsearchVersionStatus$Status": "<p> Specifies the status of the Elasticsearch version options for the specified Elasticsearch domain.</p>",
         "EncryptionAtRestOptionsStatus$Status": "<p> Specifies the status of the Encryption At Rest options for the specified Elasticsearch domain.</p>",
         "LogPublishingOptionsStatus$Status": "<p>The status of the log publishing options for the Elasticsearch domain. See <code>OptionStatus</code> for the status information that's included. </p>",
+        "NodeToNodeEncryptionOptionsStatus$Status": "<p>Specifies the status of the node-to-node encryption options for the specified Elasticsearch domain.</p>",
         "SnapshotOptionsStatus$Status": "<p>Specifies the status of a daily automated snapshot.</p>",
         "VPCDerivedInfoStatus$Status": "<p> Specifies the status of the VPC options for the specified Elasticsearch domain.</p>"
       }
