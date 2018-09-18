@@ -2652,16 +2652,48 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 // this external image ID to create a client-side index to associate the faces
 // with each image. You can then use the index to find all faces in an image.
 //
+// You can specify the maximum number of faces to index with the MaxFaces input
+// parameter. This is useful when you want to index the largest faces in an
+// image, and you don't want to index other faces detected in the image.
+//
+// The QualityFilter input parameter allows you to filter out detected faces
+// that don’t meet the required quality bar chosen by Amazon Rekognition. The
+// quality bar is based on a variety of common use cases.
+//
 // In response, the operation returns an array of metadata for all detected
-// faces. This includes, the bounding box of the detected face, confidence value
-// (indicating the bounding box contains a face), a face ID assigned by the
-// service for each face that is detected and stored, and an image ID assigned
-// by the service for the input image. If you request all facial attributes
-// (using the detectionAttributes parameter, Amazon Rekognition returns detailed
-// facial attributes such as facial landmarks (for example, location of eye
-// and mouth) and other facial attributes such gender. If you provide the same
-// image, specify the same collection, and use the same external ID in the IndexFaces
-// operation, Amazon Rekognition doesn't save duplicate face metadata.
+// faces, FaceRecords. This includes:
+//
+//    * The bounding box, BoundingBox, of the detected face.
+//
+//    * A confidence value, Confidence, indicating the confidence that the bounding
+//    box contains a face.
+//
+//    * A face ID, faceId, assigned by the service for each face that is detected
+//    and stored.
+//
+//    * An image ID, ImageId, assigned by the service for the input image.
+//
+// If you request all facial attributes (using the detectionAttributes parameter),
+// Amazon Rekognition returns detailed facial attributes such as facial landmarks
+// (for example, location of eye and mouth) and other facial attributes such
+// gender. If you provide the same image, specify the same collection, and use
+// the same external ID in the IndexFaces operation, Amazon Rekognition doesn't
+// save duplicate face metadata.
+//
+// Information about faces detected in an image, but not indexed, is returned
+// in an array of objects, UnindexedFaces. Faces are not indexed for reasons
+// such as:
+//
+//    * The face is too blurry.
+//
+//    * The image is too dark.
+//
+//    * The face has an extreme pose.
+//
+//    * The face is too small.
+//
+//    * The number of faces detected exceeds the value of the MaxFaces request
+//    parameter.
 //
 // For more information, see Adding Faces to a Collection in the Amazon Rekognition
 // Developer Guide.
@@ -2672,7 +2704,6 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 // be either a PNG or JPEG formatted file.
 //
 // This operation requires permissions to perform the rekognition:IndexFaces
-// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7801,6 +7832,31 @@ type IndexFacesInput struct {
 	//
 	// Image is a required field
 	Image *Image `type:"structure" required:"true"`
+
+	// The maximum number of faces to index. The value of MaxFaces must be greater
+	// than or equal to 1. IndexFaces returns no more that 100 detected faces in
+	// an image, even if you specify a larger value for MaxFaces.
+	//
+	// If IndexFaces detects more faces than the value of MaxFaces, the faces with
+	// the lowest quality are filtered out first. If there are still more faces
+	// than the value of MaxFaces, the faces with the smallest bounding boxes are
+	// filtered out (up to the number needed to satisfy the value of MaxFaces).
+	// Information about the unindexed faces is available in the UnindexedFaces
+	// array.
+	//
+	// The faces returned by IndexFaces are sorted, in descending order, by the
+	// largest face bounding box size, to the smallest.
+	MaxFaces *int64 `min:"1" type:"integer"`
+
+	// Specifies how much filtering is done to identify faces detected with low
+	// quality. Filtered faces are not indexed. If you specify AUTO, filtering prioritizes
+	// the identification of faces that don’t meet the required quality bar chosen
+	// by Amazon Rekognition. The quality bar is based on a variety of common use
+	// cases. Low quality detections can arise for a number of reasons. For example,
+	// an object misidentified as a face, a face that is too blurry, or a face with
+	// a pose that is too extreme to use. If you specify NONE, no filtering is performed.
+	// The default value is NONE.
+	QualityFilter *string `type:"string" enum:"QualityFilter"`
 }
 
 // String returns the string representation
@@ -7827,6 +7883,9 @@ func (s *IndexFacesInput) Validate() error {
 	}
 	if s.Image == nil {
 		invalidParams.Add(request.NewErrParamRequired("Image"))
+	}
+	if s.MaxFaces != nil && *s.MaxFaces < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxFaces", 1))
 	}
 	if s.Image != nil {
 		if err := s.Image.Validate(); err != nil {
@@ -7864,6 +7923,18 @@ func (s *IndexFacesInput) SetImage(v *Image) *IndexFacesInput {
 	return s
 }
 
+// SetMaxFaces sets the MaxFaces field's value.
+func (s *IndexFacesInput) SetMaxFaces(v int64) *IndexFacesInput {
+	s.MaxFaces = &v
+	return s
+}
+
+// SetQualityFilter sets the QualityFilter field's value.
+func (s *IndexFacesInput) SetQualityFilter(v string) *IndexFacesInput {
+	s.QualityFilter = &v
+	return s
+}
+
 type IndexFacesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7886,6 +7957,12 @@ type IndexFacesOutput struct {
 	// in FaceRecords represent face locations after Exif metadata is used to correct
 	// the image orientation. Images in .png format don't contain Exif metadata.
 	OrientationCorrection *string `type:"string" enum:"OrientationCorrection"`
+
+	// An array of faces that detected in the image but not indexed either because
+	// the quality filter deemed them to be of low-quality or the MaxFaces request
+	// parameter filtered them out. To use the quality filter, you specify the QualityFilter
+	// request parameter.
+	UnindexedFaces []*UnindexedFace `type:"list"`
 }
 
 // String returns the string representation
@@ -7913,6 +7990,12 @@ func (s *IndexFacesOutput) SetFaceRecords(v []*FaceRecord) *IndexFacesOutput {
 // SetOrientationCorrection sets the OrientationCorrection field's value.
 func (s *IndexFacesOutput) SetOrientationCorrection(v string) *IndexFacesOutput {
 	s.OrientationCorrection = &v
+	return s
+}
+
+// SetUnindexedFaces sets the UnindexedFaces field's value.
+func (s *IndexFacesOutput) SetUnindexedFaces(v []*UnindexedFace) *IndexFacesOutput {
+	s.UnindexedFaces = v
 	return s
 }
 
@@ -10290,6 +10373,55 @@ func (s *TextDetection) SetType(v string) *TextDetection {
 	return s
 }
 
+// A face detected by but not indexed. Use the Reasons response attribute to
+// determine why a face is not indexed.
+type UnindexedFace struct {
+	_ struct{} `type:"structure"`
+
+	// Structure containing attributes of a face that was detected, but not indexed,
+	// by IndexFaces.
+	FaceDetail *FaceDetail `type:"structure"`
+
+	// An array of reasons specifying why a face was not indexed.
+	//
+	//    * EXTREME_POSE - The face is at a pose that can't be detected. For example,
+	//    the head is turned too far away from the camera.
+	//
+	//    * EXCEEDS_MAX_FACES - The number of faces detected is already higher than
+	//    that specified by the MaxFaces input parameter for IndexFaces.
+	//
+	//    * LOW_BRIGHTNESS - The image is too dark.
+	//
+	//    * LOW_SHARPNESS - The image is too blurry.
+	//
+	//    * LOW_CONFIDENCE - The face was detected with a low confidence.
+	//
+	//    * SMALL_BOUNDING_BOX - The bounding box around the face is too small.
+	Reasons []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s UnindexedFace) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UnindexedFace) GoString() string {
+	return s.String()
+}
+
+// SetFaceDetail sets the FaceDetail field's value.
+func (s *UnindexedFace) SetFaceDetail(v *FaceDetail) *UnindexedFace {
+	s.FaceDetail = v
+	return s
+}
+
+// SetReasons sets the Reasons field's value.
+func (s *UnindexedFace) SetReasons(v []*string) *UnindexedFace {
+	s.Reasons = v
+	return s
+}
+
 // Video file stored in an Amazon S3 bucket. Amazon Rekognition video start
 // operations such as use Video to specify a video for analysis. The supported
 // file formats are .mp4, .mov and .avi.
@@ -10581,6 +10713,34 @@ const (
 
 	// PersonTrackingSortByTimestamp is a PersonTrackingSortBy enum value
 	PersonTrackingSortByTimestamp = "TIMESTAMP"
+)
+
+const (
+	// QualityFilterNone is a QualityFilter enum value
+	QualityFilterNone = "NONE"
+
+	// QualityFilterAuto is a QualityFilter enum value
+	QualityFilterAuto = "AUTO"
+)
+
+const (
+	// ReasonExceedsMaxFaces is a Reason enum value
+	ReasonExceedsMaxFaces = "EXCEEDS_MAX_FACES"
+
+	// ReasonExtremePose is a Reason enum value
+	ReasonExtremePose = "EXTREME_POSE"
+
+	// ReasonLowBrightness is a Reason enum value
+	ReasonLowBrightness = "LOW_BRIGHTNESS"
+
+	// ReasonLowSharpness is a Reason enum value
+	ReasonLowSharpness = "LOW_SHARPNESS"
+
+	// ReasonLowConfidence is a Reason enum value
+	ReasonLowConfidence = "LOW_CONFIDENCE"
+
+	// ReasonSmallBoundingBox is a Reason enum value
+	ReasonSmallBoundingBox = "SMALL_BOUNDING_BOX"
 )
 
 const (
