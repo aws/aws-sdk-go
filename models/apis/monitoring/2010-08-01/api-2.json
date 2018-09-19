@@ -148,6 +148,18 @@
         {"shape":"InternalServiceFault"}
       ]
     },
+    "GetMetricWidgetImage":{
+      "name":"GetMetricWidgetImage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetMetricWidgetImageInput"},
+      "output":{
+        "shape":"GetMetricWidgetImageOutput",
+        "resultWrapper":"GetMetricWidgetImageResult"
+      }
+    },
     "ListDashboards":{
       "name":"ListDashboards",
       "http":{
@@ -620,6 +632,20 @@
         "Datapoints":{"shape":"Datapoints"}
       }
     },
+    "GetMetricWidgetImageInput":{
+      "type":"structure",
+      "required":["MetricWidget"],
+      "members":{
+        "MetricWidget":{"shape":"MetricWidget"},
+        "OutputFormat":{"shape":"OutputFormat"}
+      }
+    },
+    "GetMetricWidgetImageOutput":{
+      "type":"structure",
+      "members":{
+        "MetricWidgetImage":{"shape":"MetricWidgetImage"}
+      }
+    },
     "HistoryData":{
       "type":"string",
       "max":4095,
@@ -919,6 +945,8 @@
         "Unit":{"shape":"StandardUnit"}
       }
     },
+    "MetricWidget":{"type":"string"},
+    "MetricWidgetImage":{"type":"blob"},
     "Metrics":{
       "type":"list",
       "member":{"shape":"Metric"}
@@ -947,6 +975,7 @@
       "max":1024,
       "min":0
     },
+    "OutputFormat":{"type":"string"},
     "Period":{
       "type":"integer",
       "min":1
