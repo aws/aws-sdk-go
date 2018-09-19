@@ -1,3 +1,14 @@
+Release v1.15.38 (2018-09-19)
+===
+
+### Service Client Updates
+* `service/monitoring`: Updates service API and documentation
+  * Amazon CloudWatch adds the ability to request png image snapshots of metric widgets using the GetMetricWidgetImage API.
+* `service/organizations`: Updates service API and documentation
+  * Introducing a new exception - AccountOwnerNotVerifiedException which will be returned for InviteAccountToOrganization call for unverified accounts.
+* `service/s3`: Updates service API and documentation
+  * S3 Cross Region Replication now allows customers to use S3 object tags to filter the scope of replication. By using S3 object tags, customers can identify individual objects for replication across AWS Regions for compliance and data protection. Cross Region Replication for S3 enables automatic and asynchronous replication of objects to another AWS Region, and with this release customers can replicate at a bucket level, prefix level or by using object tags.
+
 Release v1.15.37 (2018-09-18)
 ===
 

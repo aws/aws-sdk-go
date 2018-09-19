@@ -1027,6 +1027,94 @@ func (c *CloudWatch) GetMetricStatisticsWithContext(ctx aws.Context, input *GetM
 	return out, req.Send()
 }
 
+const opGetMetricWidgetImage = "GetMetricWidgetImage"
+
+// GetMetricWidgetImageRequest generates a "aws/request.Request" representing the
+// client's request for the GetMetricWidgetImage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMetricWidgetImage for more information on using the GetMetricWidgetImage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetMetricWidgetImageRequest method.
+//    req, resp := client.GetMetricWidgetImageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/monitoring-2010-08-01/GetMetricWidgetImage
+func (c *CloudWatch) GetMetricWidgetImageRequest(input *GetMetricWidgetImageInput) (req *request.Request, output *GetMetricWidgetImageOutput) {
+	op := &request.Operation{
+		Name:       opGetMetricWidgetImage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetMetricWidgetImageInput{}
+	}
+
+	output = &GetMetricWidgetImageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMetricWidgetImage API operation for Amazon CloudWatch.
+//
+// You can use the GetMetricWidgetImage API to retrieve a snapshot graph of
+// one or more Amazon CloudWatch metrics as a bitmap image. You can then embed
+// this image into your services and products, such as wiki pages, reports,
+// and documents. You could also retrieve images regularly, such as every minute,
+// and create your own custom live dashboard.
+//
+// The graph you retrieve can include all CloudWatch metric graph features,
+// including metric math and horizontal and vertical annotations.
+//
+// There is a limit of 20 transactions per second for this API. Each GetMetricWidgetImage
+// action has the following limits:
+//
+//    * As many as 100 metrics in the graph.
+//
+//    * Up to 100 KB uncompressed payload.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch's
+// API operation GetMetricWidgetImage for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/monitoring-2010-08-01/GetMetricWidgetImage
+func (c *CloudWatch) GetMetricWidgetImage(input *GetMetricWidgetImageInput) (*GetMetricWidgetImageOutput, error) {
+	req, out := c.GetMetricWidgetImageRequest(input)
+	return out, req.Send()
+}
+
+// GetMetricWidgetImageWithContext is the same as GetMetricWidgetImage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMetricWidgetImage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatch) GetMetricWidgetImageWithContext(ctx aws.Context, input *GetMetricWidgetImageInput, opts ...request.Option) (*GetMetricWidgetImageOutput, error) {
+	req, out := c.GetMetricWidgetImageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListDashboards = "ListDashboards"
 
 // ListDashboardsRequest generates a "aws/request.Request" representing the
@@ -3120,6 +3208,115 @@ func (s *GetMetricStatisticsOutput) SetDatapoints(v []*Datapoint) *GetMetricStat
 // SetLabel sets the Label field's value.
 func (s *GetMetricStatisticsOutput) SetLabel(v string) *GetMetricStatisticsOutput {
 	s.Label = &v
+	return s
+}
+
+type GetMetricWidgetImageInput struct {
+	_ struct{} `type:"structure"`
+
+	// A JSON string that defines the bitmap graph to be retrieved. The string includes
+	// the metrics to include in the graph, statistics, annotations, title, axis
+	// limits, and so on. You can include only one MetricWidget parameter in each
+	// GetMetricWidgetImage call.
+	//
+	// For more information about the syntax of MetricWidget see CloudWatch-Metric-Widget-Structure.
+	//
+	// If any metric on the graph could not load all the requested data points,
+	// an orange triangle with an exclamation point appears next to the graph legend.
+	//
+	// MetricWidget is a required field
+	MetricWidget *string `type:"string" required:"true"`
+
+	// The format of the resulting image. Only PNG images are supported.
+	//
+	// The default is png. If you specify png, the API returns an HTTP response
+	// with the content-type set to text/xml. The image data is in a MetricWidgetImage
+	// field. For example:
+	//
+	// <GetMetricWidgetImageResponse xmlns="http://monitoring.amazonaws.com/doc/2010-08-01/">
+	//
+	// <GetMetricWidgetImageResult>
+	//
+	// <MetricWidgetImage>
+	//
+	// iVBORw0KGgoAAAANSUhEUgAAAlgAAAGQEAYAAAAip...
+	//
+	// </MetricWidgetImage>
+	//
+	// </GetMetricWidgetImageResult>
+	//
+	// <ResponseMetadata>
+	//
+	// <RequestId>6f0d4192-4d42-11e8-82c1-f539a07e0e3b</RequestId>
+	//
+	// </ResponseMetadata>
+	//
+	// </GetMetricWidgetImageResponse>
+	//
+	// The image/png setting is intended only for custom HTTP requests. For most
+	// use cases, and all actions using an AWS SDK, you should use png. If you specify
+	// image/png, the HTTP response has a content-type set to image/png, and the
+	// body of the response is a PNG image.
+	OutputFormat *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GetMetricWidgetImageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMetricWidgetImageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMetricWidgetImageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMetricWidgetImageInput"}
+	if s.MetricWidget == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricWidget"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMetricWidget sets the MetricWidget field's value.
+func (s *GetMetricWidgetImageInput) SetMetricWidget(v string) *GetMetricWidgetImageInput {
+	s.MetricWidget = &v
+	return s
+}
+
+// SetOutputFormat sets the OutputFormat field's value.
+func (s *GetMetricWidgetImageInput) SetOutputFormat(v string) *GetMetricWidgetImageInput {
+	s.OutputFormat = &v
+	return s
+}
+
+type GetMetricWidgetImageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The image of the graph, in the output format specified.
+	//
+	// MetricWidgetImage is automatically base64 encoded/decoded by the SDK.
+	MetricWidgetImage []byte `type:"blob"`
+}
+
+// String returns the string representation
+func (s GetMetricWidgetImageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMetricWidgetImageOutput) GoString() string {
+	return s.String()
+}
+
+// SetMetricWidgetImage sets the MetricWidgetImage field's value.
+func (s *GetMetricWidgetImageOutput) SetMetricWidgetImage(v []byte) *GetMetricWidgetImageOutput {
+	s.MetricWidgetImage = v
 	return s
 }
 
