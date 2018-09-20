@@ -144,6 +144,23 @@
         {"shape":"ServiceException"}
       ]
     },
+    "CreateLogSubscription":{
+      "name":"CreateLogSubscription",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateLogSubscriptionRequest"},
+      "output":{"shape":"CreateLogSubscriptionResult"},
+      "errors":[
+        {"shape":"EntityAlreadyExistsException"},
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"InsufficientPermissionsException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
     "CreateMicrosoftAD":{
       "name":"CreateMicrosoftAD",
       "http":{
@@ -220,6 +237,21 @@
       "output":{"shape":"DeleteDirectoryResult"},
       "errors":[
         {"shape":"EntityDoesNotExistException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
+    "DeleteLogSubscription":{
+      "name":"DeleteLogSubscription",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteLogSubscriptionRequest"},
+      "output":{"shape":"DeleteLogSubscriptionResult"},
+      "errors":[
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"UnsupportedOperationException"},
         {"shape":"ClientException"},
         {"shape":"ServiceException"}
       ]
@@ -470,6 +502,21 @@
         {"shape":"EntityDoesNotExistException"},
         {"shape":"InvalidNextTokenException"},
         {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
+    "ListLogSubscriptions":{
+      "name":"ListLogSubscriptions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListLogSubscriptionsRequest"},
+      "output":{"shape":"ListLogSubscriptionsResult"},
+      "errors":[
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"InvalidNextTokenException"},
         {"shape":"ClientException"},
         {"shape":"ServiceException"}
       ]
@@ -917,6 +964,22 @@
         "DirectoryId":{"shape":"DirectoryId"}
       }
     },
+    "CreateLogSubscriptionRequest":{
+      "type":"structure",
+      "required":[
+        "DirectoryId",
+        "LogGroupName"
+      ],
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "LogGroupName":{"shape":"LogGroupName"}
+      }
+    },
+    "CreateLogSubscriptionResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "CreateMicrosoftADRequest":{
       "type":"structure",
       "required":[
@@ -1012,6 +1075,18 @@
       "type":"structure",
       "members":{
         "DirectoryId":{"shape":"DirectoryId"}
+      }
+    },
+    "DeleteLogSubscriptionRequest":{
+      "type":"structure",
+      "required":["DirectoryId"],
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"}
+      }
+    },
+    "DeleteLogSubscriptionResult":{
+      "type":"structure",
+      "members":{
       }
     },
     "DeleteSnapshotRequest":{
@@ -1594,6 +1669,21 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListLogSubscriptionsRequest":{
+      "type":"structure",
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "NextToken":{"shape":"NextToken"},
+        "Limit":{"shape":"Limit"}
+      }
+    },
+    "ListLogSubscriptionsResult":{
+      "type":"structure",
+      "members":{
+        "LogSubscriptions":{"shape":"LogSubscriptions"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListSchemaExtensionsRequest":{
       "type":"structure",
       "required":["DirectoryId"],
@@ -1625,6 +1715,24 @@
         "Tags":{"shape":"Tags"},
         "NextToken":{"shape":"NextToken"}
       }
+    },
+    "LogGroupName":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"[-._/#A-Za-z0-9]+"
+    },
+    "LogSubscription":{
+      "type":"structure",
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "LogGroupName":{"shape":"LogGroupName"},
+        "SubscriptionCreatedDateTime":{"shape":"SubscriptionCreatedDateTime"}
+      }
+    },
+    "LogSubscriptions":{
+      "type":"list",
+      "member":{"shape":"LogSubscription"}
     },
     "ManualSnapshotsLimitReached":{"type":"boolean"},
     "NextToken":{"type":"string"},
@@ -1949,6 +2057,7 @@
       "type":"list",
       "member":{"shape":"SubnetId"}
     },
+    "SubscriptionCreatedDateTime":{"type":"timestamp"},
     "Tag":{
       "type":"structure",
       "required":[

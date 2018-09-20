@@ -113,6 +113,10 @@ func ExampleRDS_ApplyPendingMaintenanceAction_shared00() {
 			switch aerr.Code() {
 			case rds.ErrCodeResourceNotFoundFault:
 				fmt.Println(rds.ErrCodeResourceNotFoundFault, aerr.Error())
+			case rds.ErrCodeInvalidDBClusterStateFault:
+				fmt.Println(rds.ErrCodeInvalidDBClusterStateFault, aerr.Error())
+			case rds.ErrCodeInvalidDBInstanceStateFault:
+				fmt.Println(rds.ErrCodeInvalidDBInstanceStateFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
