@@ -94,8 +94,10 @@
     "RestoreDBInstanceFromS3": "<p>Amazon Relational Database Service (Amazon RDS) supports importing MySQL databases by using backup files. You can create a backup of your on-premises database, store it on Amazon Simple Storage Service (Amazon S3), and then restore the backup file onto a new Amazon RDS DB instance running MySQL. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Procedural.Importing.html\">Importing Data into an Amazon RDS MySQL DB Instance</a> in the <i>Amazon RDS User Guide.</i> </p>",
     "RestoreDBInstanceToPointInTime": "<p>Restores a DB instance to an arbitrary point in time. You can restore to any point in time before the time identified by the LatestRestorableTime property. You can restore to a point up to the number of days specified by the BackupRetentionPeriod property.</p> <p>The target database is created with most of the original configuration, but in a system-selected Availability Zone, with the default security group, the default subnet group, and the default DB parameter group. By default, the new DB instance is created as a single-AZ deployment except when the instance is a SQL Server instance that has an option group that is associated with mirroring; in this case, the instance becomes a mirrored deployment and not a single-AZ deployment.</p> <note> <p>This command doesn't apply to Aurora MySQL and Aurora PostgreSQL. For Aurora, use <a>RestoreDBClusterToPointInTime</a>.</p> </note>",
     "RevokeDBSecurityGroupIngress": "<p>Revokes ingress from a DBSecurityGroup for previously authorized IP ranges or EC2 or VPC Security Groups. Required parameters for this API are one of CIDRIP, EC2SecurityGroupId for VPC, or (EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId).</p>",
-    "StartDBInstance": "<p> Starts a DB instance that was stopped using the AWS console, the stop-db-instance AWS CLI command, or the StopDBInstance action. For more information, see Stopping and Starting a DB instance in the AWS RDS user guide. </p> <note> <p>This command doesn't apply to Aurora MySQL and Aurora PostgreSQL.</p> </note>",
-    "StopDBInstance": "<p> Stops a DB instance. When you stop a DB instance, Amazon RDS retains the DB instance's metadata, including its endpoint, DB parameter group, and option group membership. Amazon RDS also retains the transaction logs so you can do a point-in-time restore if necessary. For more information, see Stopping and Starting a DB instance in the AWS RDS user guide. </p> <note> <p>This command doesn't apply to Aurora MySQL and Aurora PostgreSQL.</p> </note>"
+    "StartDBCluster": "<p>Starts an Amazon Aurora DB cluster that was stopped using the AWS console, the stop-db-cluster AWS CLI command, or the StopDBCluster action.</p>",
+    "StartDBInstance": "<p> Starts an Amazon RDS DB instance that was stopped using the AWS console, the stop-db-instance AWS CLI command, or the StopDBInstance action. </p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_StartInstance.html\"> Starting an Amazon RDS DB Instance That Was Previously Stopped</a> in the <i>Amazon RDS User Guide.</i> </p> <note> <p> This command doesn't apply to Aurora MySQL and Aurora PostgreSQL. For Aurora DB clusters, use <a>StartDBCluster</a> instead. </p> </note>",
+    "StopDBCluster": "<p> Stops an Amazon Aurora DB cluster. When you stop a DB cluster, Aurora retains the DB cluster's metadata, including its endpoints and DB parameter groups. Aurora also retains the transaction logs so you can do a point-in-time restore if necessary. </p>",
+    "StopDBInstance": "<p> Stops an Amazon RDS DB instance. When you stop a DB instance, Amazon RDS retains the DB instance's metadata, including its endpoint, DB parameter group, and option group membership. Amazon RDS also retains the transaction logs so you can do a point-in-time restore if necessary. </p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_StopInstance.html\"> Stopping an Amazon RDS DB Instance Temporarily</a> in the <i>Amazon RDS User Guide.</i> </p> <note> <p> This command doesn't apply to Aurora MySQL and Aurora PostgreSQL. For Aurora clusters, use <a>StopDBCluster</a> instead. </p> </note>"
   },
   "shapes": {
     "AccountAttributesMessage": {
@@ -564,7 +566,7 @@
       }
     },
     "DBCluster": {
-      "base": "<p>Contains the details of an Amazon RDS DB cluster. </p> <p>This data type is used as a response element in the <a>DescribeDBClusters</a> action. </p>",
+      "base": "<p>Contains the details of an Amazon Aurora DB cluster. </p> <p>This data type is used as a response element in the <a>DescribeDBClusters</a>, <a>StopDBCluster</a>, and <a>StartDBCluster</a> actions. </p>",
       "refs": {
         "CreateDBClusterResult$DBCluster": null,
         "DBClusterList$member": null,
@@ -574,7 +576,9 @@
         "PromoteReadReplicaDBClusterResult$DBCluster": null,
         "RestoreDBClusterFromS3Result$DBCluster": null,
         "RestoreDBClusterFromSnapshotResult$DBCluster": null,
-        "RestoreDBClusterToPointInTimeResult$DBCluster": null
+        "RestoreDBClusterToPointInTimeResult$DBCluster": null,
+        "StartDBClusterResult$DBCluster": null,
+        "StopDBClusterResult$DBCluster": null
       }
     },
     "DBClusterAlreadyExistsFault": {
@@ -1714,7 +1718,7 @@
       }
     },
     "InvalidDBInstanceStateFault": {
-      "base": "<p> The specified DB instance isn't in the <i>available</i> state. </p>",
+      "base": "<p>The DB instance isn't in a valid state.</p>",
       "refs": {
       }
     },
@@ -2508,12 +2512,32 @@
         "Event$SourceType": "<p>Specifies the source type for this event.</p>"
       }
     },
+    "StartDBClusterMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartDBClusterResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StartDBInstanceMessage": {
       "base": null,
       "refs": {
       }
     },
     "StartDBInstanceResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopDBClusterMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopDBClusterResult": {
       "base": null,
       "refs": {
       }
@@ -2602,7 +2626,7 @@
         "CreateDBClusterMessage$ReplicationSourceIdentifier": "<p>The Amazon Resource Name (ARN) of the source DB instance or DB cluster if this DB cluster is created as a Read Replica.</p>",
         "CreateDBClusterMessage$KmsKeyId": "<p>The AWS KMS key identifier for an encrypted DB cluster.</p> <p>The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption key. If you are creating a DB cluster with the same AWS account that owns the KMS encryption key used to encrypt the new DB cluster, then you can use the KMS key alias instead of the ARN for the KMS encryption key.</p> <p>If an encryption key is not specified in <code>KmsKeyId</code>:</p> <ul> <li> <p>If <code>ReplicationSourceIdentifier</code> identifies an encrypted source, then Amazon RDS will use the encryption key used to encrypt the source. Otherwise, Amazon RDS will use your default encryption key. </p> </li> <li> <p>If the <code>StorageEncrypted</code> parameter is true and <code>ReplicationSourceIdentifier</code> is not specified, then Amazon RDS will use your default encryption key.</p> </li> </ul> <p>AWS KMS creates the default encryption key for your AWS account. Your AWS account has a different default encryption key for each AWS Region.</p> <p>If you create a Read Replica of an encrypted DB cluster in another AWS Region, you must set <code>KmsKeyId</code> to a KMS key ID that is valid in the destination AWS Region. This key is used to encrypt the Read Replica in that AWS Region.</p>",
         "CreateDBClusterMessage$PreSignedUrl": "<p>A URL that contains a Signature Version 4 signed request for the <code>CreateDBCluster</code> action to be called in the source AWS Region where the DB cluster is replicated from. You only need to specify <code>PreSignedUrl</code> when you are performing cross-region replication from an encrypted DB cluster.</p> <p>The pre-signed URL must be a valid request for the <code>CreateDBCluster</code> API action that can be executed in the source AWS Region that contains the encrypted DB cluster to be copied.</p> <p>The pre-signed URL request must contain the following parameter values:</p> <ul> <li> <p> <code>KmsKeyId</code> - The AWS KMS key identifier for the key to use to encrypt the copy of the DB cluster in the destination AWS Region. This should refer to the same KMS key for both the <code>CreateDBCluster</code> action that is called in the destination AWS Region, and the action contained in the pre-signed URL.</p> </li> <li> <p> <code>DestinationRegion</code> - The name of the AWS Region that Aurora Read Replica will be created in.</p> </li> <li> <p> <code>ReplicationSourceIdentifier</code> - The DB cluster identifier for the encrypted DB cluster to be copied. This identifier must be in the Amazon Resource Name (ARN) format for the source AWS Region. For example, if you are copying an encrypted DB cluster from the us-west-2 AWS Region, then your <code>ReplicationSourceIdentifier</code> would look like Example: <code>arn:aws:rds:us-west-2:123456789012:cluster:aurora-cluster1</code>.</p> </li> </ul> <p>To learn how to generate a Signature Version 4 signed request, see <a href=\"http://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html\"> Authenticating Requests: Using Query Parameters (AWS Signature Version 4)</a> and <a href=\"http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\"> Signature Version 4 Signing Process</a>.</p>",
-        "CreateDBClusterMessage$EngineMode": "<p>The DB engine mode of the DB cluster, either <code>provisioned</code> or <code>serverless</code>.</p>",
+        "CreateDBClusterMessage$EngineMode": "<p>The DB engine mode of the DB cluster, either <code>provisioned</code>, <code>serverless</code>, or <code>parallelquery</code>.</p>",
         "CreateDBClusterParameterGroupMessage$DBClusterParameterGroupName": "<p>The name of the DB cluster parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Must match the name of an existing DBClusterParameterGroup.</p> </li> </ul> <note> <p>This value is stored as a lowercase string.</p> </note>",
         "CreateDBClusterParameterGroupMessage$DBParameterGroupFamily": "<p>The DB cluster parameter group family name. A DB cluster parameter group can be associated with one and only one DB cluster parameter group family, and can be applied only to a DB cluster running a database engine and engine version compatible with that DB cluster parameter group family.</p> <p> <b>Aurora MySQL</b> </p> <p>Example: <code>aurora5.6</code>, <code>aurora-mysql5.7</code> </p> <p> <b>Aurora PostgreSQL</b> </p> <p>Example: <code>aurora-postgresql9.6</code> </p>",
         "CreateDBClusterParameterGroupMessage$Description": "<p>The description for the DB cluster parameter group.</p>",
@@ -2680,7 +2704,7 @@
         "DBCluster$DbClusterResourceId": "<p>The AWS Region-unique, immutable identifier for the DB cluster. This identifier is found in AWS CloudTrail log entries whenever the AWS KMS key for the DB cluster is accessed.</p>",
         "DBCluster$DBClusterArn": "<p>The Amazon Resource Name (ARN) for the DB cluster.</p>",
         "DBCluster$CloneGroupId": "<p>Identifies the clone group to which the DB cluster is associated.</p>",
-        "DBCluster$EngineMode": "<p>The DB engine mode of the DB cluster, either <code>provisioned</code> or <code>serverless</code>.</p>",
+        "DBCluster$EngineMode": "<p>The DB engine mode of the DB cluster, either <code>provisioned</code>, <code>serverless</code>, or <code>parallelquery</code>.</p>",
         "DBClusterBacktrack$DBClusterIdentifier": "<p>Contains a user-supplied DB cluster identifier. This identifier is the unique key that identifies a DB cluster.</p>",
         "DBClusterBacktrack$BacktrackIdentifier": "<p>Contains the backtrack identifier.</p>",
         "DBClusterBacktrack$Status": "<p>The status of the backtrack. This property returns one of the following values:</p> <ul> <li> <p> <code>applying</code> - The backtrack is currently being applied to or rolled back from the DB cluster.</p> </li> <li> <p> <code>completed</code> - The backtrack has successfully been applied to or rolled back from the DB cluster.</p> </li> <li> <p> <code>failed</code> - An error occurred while the backtrack was applied to or rolled back from the DB cluster.</p> </li> <li> <p> <code>pending</code> - The backtrack is currently pending application to or rollback from the DB cluster.</p> </li> </ul>",
@@ -3098,7 +3122,7 @@
         "RestoreDBClusterFromSnapshotMessage$DatabaseName": "<p>The database name for the restored DB cluster.</p>",
         "RestoreDBClusterFromSnapshotMessage$OptionGroupName": "<p>The name of the option group to use for the restored DB cluster.</p>",
         "RestoreDBClusterFromSnapshotMessage$KmsKeyId": "<p>The AWS KMS key identifier to use when restoring an encrypted DB cluster from a DB snapshot or DB cluster snapshot.</p> <p>The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption key. If you are restoring a DB cluster with the same AWS account that owns the KMS encryption key used to encrypt the new DB cluster, then you can use the KMS key alias instead of the ARN for the KMS encryption key.</p> <p>If you do not specify a value for the <code>KmsKeyId</code> parameter, then the following will occur:</p> <ul> <li> <p>If the DB snapshot or DB cluster snapshot in <code>SnapshotIdentifier</code> is encrypted, then the restored DB cluster is encrypted using the KMS key that was used to encrypt the DB snapshot or DB cluster snapshot.</p> </li> <li> <p>If the DB snapshot or DB cluster snapshot in <code>SnapshotIdentifier</code> is not encrypted, then the restored DB cluster is not encrypted.</p> </li> </ul>",
-        "RestoreDBClusterFromSnapshotMessage$EngineMode": "<p>The DB engine mode of the DB cluster, either <code>provisioned</code> or <code>serverless</code>.</p>",
+        "RestoreDBClusterFromSnapshotMessage$EngineMode": "<p>The DB engine mode of the DB cluster, either <code>provisioned</code>, <code>serverless</code>, or <code>parallelquery</code>.</p>",
         "RestoreDBClusterToPointInTimeMessage$DBClusterIdentifier": "<p>The name of the new DB cluster to be created.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 letters, numbers, or hyphens</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> </ul>",
         "RestoreDBClusterToPointInTimeMessage$RestoreType": "<p>The type of restore to be performed. You can specify one of the following values:</p> <ul> <li> <p> <code>full-copy</code> - The new DB cluster is restored as a full copy of the source DB cluster.</p> </li> <li> <p> <code>copy-on-write</code> - The new DB cluster is restored as a clone of the source DB cluster.</p> </li> </ul> <p>Constraints: You can't specify <code>copy-on-write</code> if the engine version of the source DB cluster is earlier than 1.11.</p> <p>If you don't specify a <code>RestoreType</code> value, then the new DB cluster is restored as a full copy of the source DB cluster.</p>",
         "RestoreDBClusterToPointInTimeMessage$SourceDBClusterIdentifier": "<p>The identifier of the source DB cluster from which to restore.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing DBCluster.</p> </li> </ul>",
@@ -3166,7 +3190,9 @@
         "SourceRegion$Endpoint": "<p>The endpoint for the source AWS Region endpoint.</p>",
         "SourceRegion$Status": "<p>The status of the source AWS Region.</p>",
         "SourceRegionMessage$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
+        "StartDBClusterMessage$DBClusterIdentifier": "<p>The DB cluster identifier of the Amazon Aurora DB cluster to be started. This parameter is stored as a lowercase string.</p>",
         "StartDBInstanceMessage$DBInstanceIdentifier": "<p> The user-supplied instance identifier. </p>",
+        "StopDBClusterMessage$DBClusterIdentifier": "<p>The DB cluster identifier of the Amazon Aurora DB cluster to be stopped. This parameter is stored as a lowercase string.</p>",
         "StopDBInstanceMessage$DBInstanceIdentifier": "<p> The user-supplied instance identifier. </p>",
         "StopDBInstanceMessage$DBSnapshotIdentifier": "<p> The user-supplied instance identifier of the DB Snapshot created immediately before the DB instance is stopped. </p>",
         "Subnet$SubnetIdentifier": "<p>Specifies the identifier of the subnet.</p>",

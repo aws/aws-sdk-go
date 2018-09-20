@@ -92,6 +92,10 @@ type DirectoryServiceAPI interface {
 	CreateDirectoryWithContext(aws.Context, *directoryservice.CreateDirectoryInput, ...request.Option) (*directoryservice.CreateDirectoryOutput, error)
 	CreateDirectoryRequest(*directoryservice.CreateDirectoryInput) (*request.Request, *directoryservice.CreateDirectoryOutput)
 
+	CreateLogSubscription(*directoryservice.CreateLogSubscriptionInput) (*directoryservice.CreateLogSubscriptionOutput, error)
+	CreateLogSubscriptionWithContext(aws.Context, *directoryservice.CreateLogSubscriptionInput, ...request.Option) (*directoryservice.CreateLogSubscriptionOutput, error)
+	CreateLogSubscriptionRequest(*directoryservice.CreateLogSubscriptionInput) (*request.Request, *directoryservice.CreateLogSubscriptionOutput)
+
 	CreateMicrosoftAD(*directoryservice.CreateMicrosoftADInput) (*directoryservice.CreateMicrosoftADOutput, error)
 	CreateMicrosoftADWithContext(aws.Context, *directoryservice.CreateMicrosoftADInput, ...request.Option) (*directoryservice.CreateMicrosoftADOutput, error)
 	CreateMicrosoftADRequest(*directoryservice.CreateMicrosoftADInput) (*request.Request, *directoryservice.CreateMicrosoftADOutput)
@@ -111,6 +115,10 @@ type DirectoryServiceAPI interface {
 	DeleteDirectory(*directoryservice.DeleteDirectoryInput) (*directoryservice.DeleteDirectoryOutput, error)
 	DeleteDirectoryWithContext(aws.Context, *directoryservice.DeleteDirectoryInput, ...request.Option) (*directoryservice.DeleteDirectoryOutput, error)
 	DeleteDirectoryRequest(*directoryservice.DeleteDirectoryInput) (*request.Request, *directoryservice.DeleteDirectoryOutput)
+
+	DeleteLogSubscription(*directoryservice.DeleteLogSubscriptionInput) (*directoryservice.DeleteLogSubscriptionOutput, error)
+	DeleteLogSubscriptionWithContext(aws.Context, *directoryservice.DeleteLogSubscriptionInput, ...request.Option) (*directoryservice.DeleteLogSubscriptionOutput, error)
+	DeleteLogSubscriptionRequest(*directoryservice.DeleteLogSubscriptionInput) (*request.Request, *directoryservice.DeleteLogSubscriptionOutput)
 
 	DeleteSnapshot(*directoryservice.DeleteSnapshotInput) (*directoryservice.DeleteSnapshotOutput, error)
 	DeleteSnapshotWithContext(aws.Context, *directoryservice.DeleteSnapshotInput, ...request.Option) (*directoryservice.DeleteSnapshotOutput, error)
@@ -178,6 +186,10 @@ type DirectoryServiceAPI interface {
 	ListIpRoutes(*directoryservice.ListIpRoutesInput) (*directoryservice.ListIpRoutesOutput, error)
 	ListIpRoutesWithContext(aws.Context, *directoryservice.ListIpRoutesInput, ...request.Option) (*directoryservice.ListIpRoutesOutput, error)
 	ListIpRoutesRequest(*directoryservice.ListIpRoutesInput) (*request.Request, *directoryservice.ListIpRoutesOutput)
+
+	ListLogSubscriptions(*directoryservice.ListLogSubscriptionsInput) (*directoryservice.ListLogSubscriptionsOutput, error)
+	ListLogSubscriptionsWithContext(aws.Context, *directoryservice.ListLogSubscriptionsInput, ...request.Option) (*directoryservice.ListLogSubscriptionsOutput, error)
+	ListLogSubscriptionsRequest(*directoryservice.ListLogSubscriptionsInput) (*request.Request, *directoryservice.ListLogSubscriptionsOutput)
 
 	ListSchemaExtensions(*directoryservice.ListSchemaExtensionsInput) (*directoryservice.ListSchemaExtensionsOutput, error)
 	ListSchemaExtensionsWithContext(aws.Context, *directoryservice.ListSchemaExtensionsInput, ...request.Option) (*directoryservice.ListSchemaExtensionsOutput, error)

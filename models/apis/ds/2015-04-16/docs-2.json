@@ -10,11 +10,13 @@
     "CreateComputer": "<p>Creates a computer account in the specified directory, and joins the computer to the directory.</p>",
     "CreateConditionalForwarder": "<p>Creates a conditional forwarder associated with your AWS directory. Conditional forwarders are required in order to set up a trust relationship with another domain. The conditional forwarder points to the trusted domain.</p>",
     "CreateDirectory": "<p>Creates a Simple AD directory.</p> <p>Before you call <i>CreateDirectory</i>, ensure that all of the required permissions have been explicitly granted through a policy. For details about what permissions are required to run the <i>CreateDirectory</i> operation, see <a href=\"http://docs.aws.amazon.com/directoryservice/latest/admin-guide/UsingWithDS_IAM_ResourcePermissions.html\">AWS Directory Service API Permissions: Actions, Resources, and Conditions Reference</a>.</p>",
+    "CreateLogSubscription": "<p>Creates a subscription to forward real time Directory Service domain controller security logs to the specified CloudWatch log group in your AWS account.</p>",
     "CreateMicrosoftAD": "<p>Creates a Microsoft AD in the AWS cloud.</p> <p>Before you call <i>CreateMicrosoftAD</i>, ensure that all of the required permissions have been explicitly granted through a policy. For details about what permissions are required to run the <i>CreateMicrosoftAD</i> operation, see <a href=\"http://docs.aws.amazon.com/directoryservice/latest/admin-guide/UsingWithDS_IAM_ResourcePermissions.html\">AWS Directory Service API Permissions: Actions, Resources, and Conditions Reference</a>.</p>",
     "CreateSnapshot": "<p>Creates a snapshot of a Simple AD or Microsoft AD directory in the AWS cloud.</p> <note> <p>You cannot take snapshots of AD Connector directories.</p> </note>",
     "CreateTrust": "<p>AWS Directory Service for Microsoft Active Directory allows you to configure trust relationships. For example, you can establish a trust between your Microsoft AD in the AWS cloud, and your existing on-premises Microsoft Active Directory. This would allow you to provide users and groups access to resources in either domain, with a single set of credentials.</p> <p>This action initiates the creation of the AWS side of a trust relationship between a Microsoft AD in the AWS cloud and an external domain.</p>",
     "DeleteConditionalForwarder": "<p>Deletes a conditional forwarder that has been set up for your AWS directory.</p>",
     "DeleteDirectory": "<p>Deletes an AWS Directory Service directory.</p> <p>Before you call <i>DeleteDirectory</i>, ensure that all of the required permissions have been explicitly granted through a policy. For details about what permissions are required to run the <i>DeleteDirectory</i> operation, see <a href=\"http://docs.aws.amazon.com/directoryservice/latest/admin-guide/UsingWithDS_IAM_ResourcePermissions.html\">AWS Directory Service API Permissions: Actions, Resources, and Conditions Reference</a>.</p>",
+    "DeleteLogSubscription": "<p>Deletes the specified log subscription.</p>",
     "DeleteSnapshot": "<p>Deletes a directory snapshot.</p>",
     "DeleteTrust": "<p>Deletes an existing trust relationship between your Microsoft AD in the AWS cloud and an external domain.</p>",
     "DeregisterEventTopic": "<p>Removes the specified directory as a publisher to the specified SNS topic.</p>",
@@ -31,6 +33,7 @@
     "GetDirectoryLimits": "<p>Obtains directory limit information for the current region.</p>",
     "GetSnapshotLimits": "<p>Obtains the manual snapshot limits for a directory.</p>",
     "ListIpRoutes": "<p>Lists the address blocks that you have added to a directory.</p>",
+    "ListLogSubscriptions": "<p>Lists the active log subscriptions for the AWS account.</p>",
     "ListSchemaExtensions": "<p>Lists all schema extensions applied to a Microsoft AD Directory.</p>",
     "ListTagsForResource": "<p>Lists all tags on a directory.</p>",
     "RegisterEventTopic": "<p>Associates a directory with an SNS topic. This establishes the directory as a publisher to the specified SNS topic. You can then receive email or text (SMS) messages when the status of your directory changes. You get notified if your directory goes from an Active status to an Impaired or Inoperable status. You also receive a notification when the directory returns to an Active status.</p>",
@@ -260,6 +263,16 @@
       "refs": {
       }
     },
+    "CreateLogSubscriptionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateLogSubscriptionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateMicrosoftADRequest": {
       "base": "<p>Creates a Microsoft AD in the AWS cloud.</p>",
       "refs": {
@@ -332,6 +345,16 @@
     },
     "DeleteDirectoryResult": {
       "base": "<p>Contains the results of the <a>DeleteDirectory</a> operation.</p>",
+      "refs": {
+      }
+    },
+    "DeleteLogSubscriptionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteLogSubscriptionResult": {
+      "base": null,
       "refs": {
       }
     },
@@ -487,12 +510,14 @@
         "CreateComputerRequest$DirectoryId": "<p>The identifier of the directory in which to create the computer account.</p>",
         "CreateConditionalForwarderRequest$DirectoryId": "<p>The directory ID of the AWS directory for which you are creating the conditional forwarder.</p>",
         "CreateDirectoryResult$DirectoryId": "<p>The identifier of the directory that was created.</p>",
+        "CreateLogSubscriptionRequest$DirectoryId": "<p>Identifier (ID) of the directory to which you want to subscribe and receive real-time logs to your specified CloudWatch log group.</p>",
         "CreateMicrosoftADResult$DirectoryId": "<p>The identifier of the directory that was created.</p>",
         "CreateSnapshotRequest$DirectoryId": "<p>The identifier of the directory of which to take a snapshot.</p>",
         "CreateTrustRequest$DirectoryId": "<p>The Directory ID of the Microsoft AD in the AWS cloud for which to establish the trust relationship.</p>",
         "DeleteConditionalForwarderRequest$DirectoryId": "<p>The directory ID for which you are deleting the conditional forwarder.</p>",
         "DeleteDirectoryRequest$DirectoryId": "<p>The identifier of the directory to delete.</p>",
         "DeleteDirectoryResult$DirectoryId": "<p>The directory identifier.</p>",
+        "DeleteLogSubscriptionRequest$DirectoryId": "<p>Identifier (ID) of the directory whose log subscription you want to delete.</p>",
         "DeregisterEventTopicRequest$DirectoryId": "<p>The Directory ID to remove as a publisher. This directory will no longer send messages to the specified SNS topic.</p>",
         "DescribeConditionalForwardersRequest$DirectoryId": "<p>The directory ID for which to get the list of associated conditional forwarders.</p>",
         "DescribeDomainControllersRequest$DirectoryId": "<p>Identifier of the directory for which to retrieve the domain controller information.</p>",
@@ -510,7 +535,9 @@
         "GetSnapshotLimitsRequest$DirectoryId": "<p>Contains the identifier of the directory to obtain the limits for.</p>",
         "IpRouteInfo$DirectoryId": "<p>Identifier (ID) of the directory associated with the IP addresses.</p>",
         "ListIpRoutesRequest$DirectoryId": "<p>Identifier (ID) of the directory for which you want to retrieve the IP addresses.</p>",
+        "ListLogSubscriptionsRequest$DirectoryId": "<p>If a <i>DirectoryID</i> is provided, lists only the log subscription associated with that directory. If no <i>DirectoryId</i> is provided, lists all log subscriptions associated with your AWS account. If there are no log subscriptions for the AWS account or the directory, an empty list will be returned.</p>",
         "ListSchemaExtensionsRequest$DirectoryId": "<p>The identifier of the directory from which to retrieve the schema extension information.</p>",
+        "LogSubscription$DirectoryId": "<p>Identifier (ID) of the directory that you want to associate with the log subscription.</p>",
         "RegisterEventTopicRequest$DirectoryId": "<p>The Directory ID that will publish status messages to the SNS topic.</p>",
         "RemoveIpRoutesRequest$DirectoryId": "<p>Identifier (ID) of the directory from which you want to remove the IP addresses.</p>",
         "ResetUserPasswordRequest$DirectoryId": "<p>Identifier of the AWS Managed Microsoft AD or Simple AD directory in which the user resides.</p>",
@@ -869,6 +896,7 @@
         "DirectoryLimits$ConnectedDirectoriesLimit": "<p>The maximum number of connected directories allowed in the region.</p>",
         "DirectoryLimits$ConnectedDirectoriesCurrentCount": "<p>The current number of connected directories in the region.</p>",
         "ListIpRoutesRequest$Limit": "<p>Maximum number of items to return. If this value is zero, the maximum number of items is specified by the limitations of the operation.</p>",
+        "ListLogSubscriptionsRequest$Limit": "<p>The maximum number of items returned.</p>",
         "ListSchemaExtensionsRequest$Limit": "<p>The maximum number of items to return.</p>",
         "ListTagsForResourceRequest$Limit": "<p>Reserved for future use.</p>",
         "SnapshotLimits$ManualSnapshotsLimit": "<p>The maximum number of manual snapshots allowed.</p>",
@@ -881,6 +909,16 @@
       }
     },
     "ListIpRoutesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListLogSubscriptionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListLogSubscriptionsResult": {
       "base": null,
       "refs": {
       }
@@ -905,6 +943,25 @@
       "refs": {
       }
     },
+    "LogGroupName": {
+      "base": null,
+      "refs": {
+        "CreateLogSubscriptionRequest$LogGroupName": "<p>The name of the CloudWatch log group where the real-time domain controller logs are forwarded.</p>",
+        "LogSubscription$LogGroupName": "<p>The name of the log group.</p>"
+      }
+    },
+    "LogSubscription": {
+      "base": "<p>Represents a log subscription, which tracks real-time data from a chosen log group to a specified destination.</p>",
+      "refs": {
+        "LogSubscriptions$member": null
+      }
+    },
+    "LogSubscriptions": {
+      "base": null,
+      "refs": {
+        "ListLogSubscriptionsResult$LogSubscriptions": "<p>A list of active <a>LogSubscription</a> objects for calling the AWS account.</p>"
+      }
+    },
     "ManualSnapshotsLimitReached": {
       "base": null,
       "refs": {
@@ -924,6 +981,8 @@
         "DescribeTrustsResult$NextToken": "<p>If not null, more results are available. Pass this value for the <i>NextToken</i> parameter in a subsequent call to <a>DescribeTrusts</a> to retrieve the next set of items.</p>",
         "ListIpRoutesRequest$NextToken": "<p>The <i>ListIpRoutes.NextToken</i> value from a previous call to <a>ListIpRoutes</a>. Pass null if this is the first call.</p>",
         "ListIpRoutesResult$NextToken": "<p>If not null, more results are available. Pass this value for the <i>NextToken</i> parameter in a subsequent call to <a>ListIpRoutes</a> to retrieve the next set of items.</p>",
+        "ListLogSubscriptionsRequest$NextToken": "<p>The token for the next set of items to return.</p>",
+        "ListLogSubscriptionsResult$NextToken": "<p>The token for the next set of items to return.</p>",
         "ListSchemaExtensionsRequest$NextToken": "<p>The <code>ListSchemaExtensions.NextToken</code> value from a previous call to <code>ListSchemaExtensions</code>. Pass null if this is the first call.</p>",
         "ListSchemaExtensionsResult$NextToken": "<p>If not null, more results are available. Pass this value for the <code>NextToken</code> parameter in a subsequent call to <code>ListSchemaExtensions</code> to retrieve the next set of items.</p>",
         "ListTagsForResourceRequest$NextToken": "<p>Reserved for future use.</p>",
@@ -1272,6 +1331,12 @@
         "DirectoryConnectSettingsDescription$SubnetIds": "<p>A list of subnet identifiers in the VPC that the AD connector is in.</p>",
         "DirectoryVpcSettings$SubnetIds": "<p>The identifiers of the subnets for the directory servers. The two subnets must be in different Availability Zones. AWS Directory Service creates a directory server and a DNS server in each of these subnets.</p>",
         "DirectoryVpcSettingsDescription$SubnetIds": "<p>The identifiers of the subnets for the directory servers.</p>"
+      }
+    },
+    "SubscriptionCreatedDateTime": {
+      "base": null,
+      "refs": {
+        "LogSubscription$SubscriptionCreatedDateTime": "<p>The date and time that the log subscription was created.</p>"
       }
     },
     "Tag": {
