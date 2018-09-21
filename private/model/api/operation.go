@@ -13,19 +13,21 @@ import (
 
 // An Operation defines a specific API Operation.
 type Operation struct {
-	API           *API `json:"-"`
-	ExportedName  string
-	Name          string
-	Documentation string
-	HTTP          HTTPInfo
-	InputRef      ShapeRef   `json:"input"`
-	OutputRef     ShapeRef   `json:"output"`
-	ErrorRefs     []ShapeRef `json:"errors"`
-	Paginator     *Paginator
-	Deprecated    bool   `json:"deprecated"`
-	DeprecatedMsg string `json:"deprecatedMessage"`
-	AuthType      string `json:"authtype"`
-	imports       map[string]bool
+	API                 *API `json:"-"`
+	ExportedName        string
+	Name                string
+	Documentation       string
+	HTTP                HTTPInfo
+	Host                string     `json:"host"`
+	InputRef            ShapeRef   `json:"input"`
+	OutputRef           ShapeRef   `json:"output"`
+	ErrorRefs           []ShapeRef `json:"errors"`
+	Paginator           *Paginator
+	Deprecated          bool   `json:"deprecated"`
+	DeprecatedMsg       string `json:"deprecatedMessage"`
+	AuthType            string `json:"authtype"`
+	imports             map[string]bool
+	CustomBuildHandlers []string
 
 	EventStreamAPI *EventStreamAPI
 
@@ -219,6 +221,8 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	{{if not .EndpointDiscovery.Required -}}
 		}
 	{{ end -}}
+	{{- range $_, $handler := $.CustomBuildHandlers -}}
+		req.Handlers.Build.PushBackNamed({{ $handler }})
 	{{ end -}}
 	return
 }
