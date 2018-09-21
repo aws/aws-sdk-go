@@ -447,6 +447,13 @@
         "VideoSelector$ColorSpaceUsage": null
       }
     },
+    "Commitment": {
+      "base": "The length of time that you commit to when you set up a pricing plan contract for a reserved queue.",
+      "refs": {
+        "ReservationPlan$Commitment": "The length of time that you commit to when you set up a pricing plan contract for a reserved queue.",
+        "ReservationPlanSettings$Commitment": "The length of time that you commit to when you set up a pricing plan contract for a reserved queue."
+      }
+    },
     "ConflictException": {
       "base": null,
       "refs": {
@@ -501,7 +508,7 @@
       }
     },
     "CreateQueueResponse": {
-      "base": "Successful create queue requests will return the name of the queue you just created and information about it.",
+      "base": "Successful create queue requests return the name of the queue that you just created and information about it.",
       "refs": {
       }
     },
@@ -580,12 +587,12 @@
       }
     },
     "DeleteQueueRequest": {
-      "base": "Delete a queue by sending a request with the queue name",
+      "base": "Delete a queue by sending a request with the queue name.",
       "refs": {
       }
     },
     "DeleteQueueResponse": {
-      "base": "Delete queue requests will return an OK message or error message with an empty body.",
+      "base": "Delete queue requests return an OK message or error message with an empty body.",
       "refs": {
       }
     },
@@ -862,12 +869,12 @@
       }
     },
     "GetQueueRequest": {
-      "base": "Query a queue by sending a request with the queue name.",
+      "base": "Get information about a queue by sending a request with the queue name.",
       "refs": {
       }
     },
     "GetQueueResponse": {
-      "base": "Successful get queue requests will return an OK message and the queue JSON.",
+      "base": "Successful get queue requests return an OK message and information about the queue in JSON.",
       "refs": {
       }
     },
@@ -1914,6 +1921,13 @@
         "UpdatePresetRequest$Settings": null
       }
     },
+    "PricingPlan": {
+      "base": "Specifies whether the pricing plan for the queue is On-demand or Reserved. The pricing plan for the queue determines whether you pay On-demand or Reserved pricing for the transcoding jobs that you run through the queue. For Reserved queue pricing, you must set up a contract. You can create a Reserved queue contract through the AWS Elemental MediaConvert console.",
+      "refs": {
+        "CreateQueueRequest$PricingPlan": "Optional; default is on-demand. Specifies whether the pricing plan for the queue is on-demand or reserved. The pricing plan for the queue determines whether you pay on-demand or reserved pricing for the transcoding jobs you run through the queue. For reserved queue pricing, you must set up a contract. You can create a reserved queue contract through the AWS Elemental MediaConvert console.",
+        "Queue$PricingPlan": "Specifies whether the pricing plan for the queue is On-demand or Reserved. The pricing plan for the queue determines whether you pay On-demand or Reserved pricing for the transcoding jobs that you run through the queue. For Reserved queue pricing, you must set up a contract. You can create a Reserved queue contract through the AWS Elemental MediaConvert console."
+      }
+    },
     "ProresCodecProfile": {
       "base": "Use Profile (ProResCodecProfile) to specifiy the type of Apple ProRes codec to use for this output.",
       "refs": {
@@ -1963,7 +1977,7 @@
       }
     },
     "Queue": {
-      "base": "MediaConvert jobs are submitted to a queue. Unless specified otherwise jobs are submitted to a built-in default queue. User can create additional queues to separate the jobs of different categories or priority.",
+      "base": "You can use queues to manage the resources that are available to your AWS account for running multiple transcoding jobs at the same time. If you don't specify a queue, the service sends all jobs through the default queue. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/about-resource-allocation-and-job-prioritization.html.",
       "refs": {
         "CreateQueueResponse$Queue": null,
         "GetQueueResponse$Queue": null,
@@ -1978,10 +1992,10 @@
       }
     },
     "QueueStatus": {
-      "base": "Queues can be ACTIVE or PAUSED. If you pause a queue, jobs in that queue won't begin. Jobs running when a queue is paused continue to run until they finish or error out.",
+      "base": "Queues can be ACTIVE or PAUSED. If you pause a queue, jobs in that queue won't begin. Jobs that are running when you pause a queue continue to run until they finish or result in an error.",
       "refs": {
-        "Queue$Status": null,
-        "UpdateQueueRequest$Status": null
+        "Queue$Status": "Queues can be ACTIVE or PAUSED. If you pause a queue, the service won't begin processing jobs in that queue. Jobs that are running when you pause the queue continue to run until they finish or result in an error.",
+        "UpdateQueueRequest$Status": "Pause or activate a queue by changing its status between ACTIVE and PAUSED. If you pause a queue, jobs in that queue won't begin. Jobs that are running when you pause the queue continue to run until they finish or result in an error."
       }
     },
     "Rectangle": {
@@ -1996,6 +2010,32 @@
       "refs": {
         "AudioDescription$RemixSettings": "Advanced audio remixing settings.",
         "AudioSelector$RemixSettings": "Use these settings to reorder the audio channels of one input to match those of another input. This allows you to combine the two files into a single output, one after the other."
+      }
+    },
+    "RenewalType": {
+      "base": "Specifies whether the pricing plan contract for your reserved queue automatically renews (AUTO_RENEW) or expires (EXPIRE) at the end of the contract period.",
+      "refs": {
+        "ReservationPlan$RenewalType": "Specifies whether the pricing plan contract for your reserved queue automatically renews (AUTO_RENEW) or expires (EXPIRE) at the end of the contract period.",
+        "ReservationPlanSettings$RenewalType": "Specifies whether the pricing plan contract for your reserved queue automatically renews (AUTO_RENEW) or expires (EXPIRE) at the end of the contract period."
+      }
+    },
+    "ReservationPlan": {
+      "base": "Details about the pricing plan for your reserved queue. Required for reserved queues and not applicable to on-demand queues.",
+      "refs": {
+        "Queue$ReservationPlan": "Details about the pricing plan for your reserved queue. Required for reserved queues and not applicable to on-demand queues."
+      }
+    },
+    "ReservationPlanSettings": {
+      "base": "Details about the pricing plan for your reserved queue. Required for reserved queues and not applicable to on-demand queues.",
+      "refs": {
+        "CreateQueueRequest$ReservationPlanSettings": "Details about the pricing plan for your reserved queue. Required for reserved queues and not applicable to on-demand queues.",
+        "UpdateQueueRequest$ReservationPlanSettings": "Details about the pricing plan for your reserved queue. Required for reserved queues and not applicable to on-demand queues."
+      }
+    },
+    "ReservationPlanStatus": {
+      "base": "Specifies whether the pricing plan for your reserved queue is ACTIVE or EXPIRED.",
+      "refs": {
+        "ReservationPlan$Status": "Specifies whether the pricing plan for your reserved queue is ACTIVE or EXPIRED."
       }
     },
     "ResourceTags": {
@@ -2131,7 +2171,7 @@
       "refs": {
         "JobTemplate$Type": "A job template can be of two types: system or custom. System or built-in job templates can't be modified or deleted by the user.",
         "Preset$Type": "A preset can be of two types: system or custom. System or built-in preset can't be modified or deleted by the user.",
-        "Queue$Type": "A queue can be of two types: system or custom. System or built-in queues can't be modified or deleted by the user."
+        "Queue$Type": "Specifies whether this queue is system or custom. System queues are built in. You can't modify or delete system queues. You can create and modify custom queues."
       }
     },
     "UntagResourceRequest": {
@@ -2165,12 +2205,12 @@
       }
     },
     "UpdateQueueRequest": {
-      "base": "Modify a queue by sending a request with the queue name and any of the following that you wish to change - description, status. You pause or activate a queue by changing its status between ACTIVE and PAUSED.",
+      "base": "Modify a queue by sending a request with the queue name and any changes to the queue.",
       "refs": {
       }
     },
     "UpdateQueueResponse": {
-      "base": "Successful update queue requests will return the new queue JSON.",
+      "base": "Successful update queue requests return the new queue information in JSON.",
       "refs": {
       }
     },
@@ -2274,8 +2314,10 @@
         "DescribeEndpointsRequest$MaxResults": "Optional. Max number of endpoints, up to twenty, that will be returned at one time.",
         "Job$ErrorCode": "Error code for the job",
         "OutputDetail$DurationInMs": "Duration in milliseconds",
-        "Queue$ProgressingJobsCount": "Estimated number of jobs in PROGRESSING status.",
-        "Queue$SubmittedJobsCount": "Estimated number of jobs in SUBMITTED status.",
+        "Queue$ProgressingJobsCount": "The estimated number of jobs with a PROGRESSING status.",
+        "Queue$SubmittedJobsCount": "The estimated number of jobs with a SUBMITTED status.",
+        "ReservationPlan$ReservedSlots": "Specifies the number of reserved transcode slots (RTSs) for this queue. The number of RTS determines how many jobs the queue can process in parallel; each RTS can process one job at a time. To increase this number, create a replacement contract through the AWS Elemental MediaConvert console.",
+        "ReservationPlanSettings$ReservedSlots": "Specifies the number of reserved transcode slots (RTSs) for this queue. The number of RTS determines how many jobs the queue can process in parallel; each RTS can process one job at a time. To increase this number, create a replacement contract through the AWS Elemental MediaConvert console.",
         "VideoDetail$HeightInPx": "Height in pixels for the output",
         "VideoDetail$WidthInPx": "Width in pixels for the output"
       }
@@ -2927,7 +2969,7 @@
     "__listOfQueue": {
       "base": null,
       "refs": {
-        "ListQueuesResponse$Queues": "List of queues"
+        "ListQueuesResponse$Queues": "List of queues."
       }
     },
     "__listOf__integerMin1Max2147483647": {
@@ -3007,7 +3049,6 @@
       "refs": {
         "AudioDescription$AudioSourceName": "Specifies which audio data to use from each input. In the simplest case, specify an \"Audio Selector\":#inputs-audio_selector by name based on its order within each input. For example if you specify \"Audio Selector 3\", then the third audio selector will be used from each input. If an input does not have an \"Audio Selector 3\", then the audio selector marked as \"default\" in that input will be used. If there is no audio selector marked as \"default\", silence will be inserted for the duration of that input. Alternatively, an \"Audio Selector Group\":#inputs-audio_selector_group name may be specified, with similar default/silence behavior. If no audio_source_name is specified, then \"Audio Selector 1\" will be chosen automatically.",
         "CancelJobRequest$Id": "The Job ID of the job to be cancelled.",
-        "CaptionDescription$LanguageDescription": "Human readable information to indicate captions available for players (eg. English, or Spanish). Alphanumeric characters, spaces, and underscore are legal.",
         "CaptionDescriptionPreset$LanguageDescription": "Human readable information to indicate captions available for players (eg. English, or Spanish). Alphanumeric characters, spaces, and underscore are legal.",
         "CmafGroupSettings$BaseUrl": "A partial URI prefix that will be put in the manifest file at the top level BaseURL element. Can be used if streams are delivered from a different URL than the manifest file.",
         "CreateJobRequest$ClientRequestToken": "Idempotency token for CreateJob operation.",
@@ -3021,8 +3062,8 @@
         "CreatePresetRequest$Category": "Optional. A category for the preset you are creating.",
         "CreatePresetRequest$Description": "Optional. A description of the preset you are creating.",
         "CreatePresetRequest$Name": "The name of the preset you are creating.",
-        "CreateQueueRequest$Description": "Optional. A description of the queue you are creating.",
-        "CreateQueueRequest$Name": "The name of the queue you are creating.",
+        "CreateQueueRequest$Description": "Optional. A description of the queue that you are creating.",
+        "CreateQueueRequest$Name": "The name of the queue that you are creating.",
         "DashIsoGroupSettings$BaseUrl": "A partial URI prefix that will be put in the manifest (.mpd) file at the top level BaseURL element. Can be used if streams are delivered from a different URL than the manifest file.",
         "DeleteJobTemplateRequest$Name": "The name of the job template to be deleted.",
         "DeletePresetRequest$Name": "The name of the preset to be deleted.",
@@ -3034,7 +3075,7 @@
         "GetJobRequest$Id": "the job ID of the job.",
         "GetJobTemplateRequest$Name": "The name of the job template.",
         "GetPresetRequest$Name": "The name of the preset.",
-        "GetQueueRequest$Name": "The name of the queue.",
+        "GetQueueRequest$Name": "The name of the queue that you want information about.",
         "HlsCaptionLanguageMapping$LanguageDescription": "Caption language description.",
         "HlsGroupSettings$BaseUrl": "A partial URI prefix that will be prepended to each output in the media .m3u8 file. Can be used if base manifest is delivered from a different URL than the main .m3u8 file.",
         "HlsSettings$AudioGroupId": "Specifies the group to which the audio Rendition belongs.",
@@ -3073,8 +3114,8 @@
         "Preset$Description": "An optional description you create for each preset.",
         "Preset$Name": "A name you create for each preset. Each name must be unique within your account.",
         "Queue$Arn": "An identifier for this resource that is unique within all of AWS.",
-        "Queue$Description": "An optional description you create for each queue.",
-        "Queue$Name": "A name you create for each queue. Each name must be unique within your account.",
+        "Queue$Description": "An optional description that you create for each queue.",
+        "Queue$Name": "A name that you create for each queue. Each name must be unique within your account.",
         "ResourceTags$Arn": "The Amazon Resource Name (ARN) of the resource.",
         "SpekeKeyProvider$ResourceId": "The SPEKE-compliant server uses Resource ID (ResourceId) to identify content.",
         "StaticKeyProvider$Url": "Relates to DRM implementation. The location of the license server used for protecting content.",
@@ -3088,7 +3129,7 @@
         "UpdatePresetRequest$Description": "The new description for the preset, if you are changing it.",
         "UpdatePresetRequest$Name": "The name of the preset you are modifying.",
         "UpdateQueueRequest$Description": "The new description for the queue, if you are changing it.",
-        "UpdateQueueRequest$Name": "The name of the queue you are modifying.",
+        "UpdateQueueRequest$Name": "The name of the queue that you are modifying.",
         "__listOf__string$member": null,
         "__mapOf__string$member": null
       }
@@ -3258,8 +3299,10 @@
         "JobTemplate$LastUpdated": "The timestamp in epoch seconds when the Job template was last updated.",
         "Preset$CreatedAt": "The timestamp in epoch seconds for preset creation.",
         "Preset$LastUpdated": "The timestamp in epoch seconds when the preset was last updated.",
-        "Queue$CreatedAt": "The timestamp in epoch seconds for queue creation.",
-        "Queue$LastUpdated": "The timestamp in epoch seconds when the queue was last updated.",
+        "Queue$CreatedAt": "The time stamp in epoch seconds for queue creation.",
+        "Queue$LastUpdated": "The time stamp in epoch seconds when the queue was last updated.",
+        "ReservationPlan$ExpiresAt": "The time stamp, in epoch seconds, for when the pricing plan for this reserved queue expires.",
+        "ReservationPlan$PurchasedAt": "The time stamp in epoch seconds when the reserved queue's reservation plan was created.",
         "Timing$FinishTime": "The time, in Unix epoch format, that the transcoding job finished",
         "Timing$StartTime": "The time, in Unix epoch format, that transcoding for the job began.",
         "Timing$SubmitTime": "The time, in Unix epoch format, that you submitted the job."
