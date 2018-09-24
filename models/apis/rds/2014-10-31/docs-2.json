@@ -277,6 +277,7 @@
         "OptionGroupOption$RequiresAutoMinorEngineVersionUpgrade": "<p>If true, you must enable the Auto Minor Version Upgrade setting for your DB instance before you can use this option. You can enable Auto Minor Version Upgrade when you first create your DB instance, or by modifying your DB instance later. </p>",
         "OptionGroupOption$VpcOnly": "<p>If true, you can only use this option with a DB instance that is in a VPC. </p>",
         "OptionGroupOptionSetting$IsModifiable": "<p>Boolean value where true indicates that this option group option can be changed from the default value.</p>",
+        "OptionGroupOptionSetting$IsRequired": "<p>Boolean value where true indicates that a value must be specified for this option setting of the option group option.</p>",
         "OptionSetting$IsModifiable": "<p>A Boolean value that, when true, indicates the option setting can be modified from the default.</p>",
         "OptionSetting$IsCollection": "<p>Indicates if the option setting is part of a collection.</p>",
         "OptionVersion$IsDefault": "<p>True if the version is the default version of the option, and otherwise false.</p>",
@@ -1842,6 +1843,18 @@
         "RestoreDBClusterToPointInTimeMessage$BacktrackWindow": "<p>The target backtrack window, in seconds. To disable backtracking, set this value to 0.</p> <p>Default: 0</p> <p>Constraints:</p> <ul> <li> <p>If specified, this value must be set to a number from 0 to 259,200 (72 hours).</p> </li> </ul>"
       }
     },
+    "MinimumEngineVersionPerAllowedValue": {
+      "base": "<p>The minimum DB engine version required for each corresponding allowed value for an option setting.</p>",
+      "refs": {
+        "MinimumEngineVersionPerAllowedValueList$member": null
+      }
+    },
+    "MinimumEngineVersionPerAllowedValueList": {
+      "base": null,
+      "refs": {
+        "OptionGroupOptionSetting$MinimumEngineVersionPerAllowedValue": "<p>The minimum DB engine version required for the corresponding allowed value for this option setting.</p>"
+      }
+    },
     "ModifyCurrentDBClusterCapacityMessage": {
       "base": null,
       "refs": {
@@ -2955,6 +2968,8 @@
         "KeyList$member": null,
         "ListTagsForResourceMessage$ResourceName": "<p>The Amazon RDS resource with tags to be listed. This value is an Amazon Resource Name (ARN). For information about creating an ARN, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing\"> Constructing an ARN for Amazon RDS</a> in the <i>Amazon RDS User Guide</i>.</p>",
         "LogTypeList$member": null,
+        "MinimumEngineVersionPerAllowedValue$AllowedValue": "<p>The allowed value for an option setting.</p>",
+        "MinimumEngineVersionPerAllowedValue$MinimumEngineVersion": "<p>The minimum DB engine version required for the allowed value.</p>",
         "ModifyCurrentDBClusterCapacityMessage$DBClusterIdentifier": "<p>The DB cluster identifier for the cluster being modified. This parameter is not case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing DB cluster.</p> </li> </ul>",
         "ModifyCurrentDBClusterCapacityMessage$TimeoutAction": "<p>The action to take when the timeout is reached, either <code>ForceApplyCapacityChange</code> or <code>RollbackCapacityChange</code>.</p> <p> <code>ForceApplyCapacityChange</code>, the default, sets the capacity to the specified value as soon as possible.</p> <p> <code>RollbackCapacityChange</code> ignores the capacity change if a scaling point is not found in the timeout period.</p>",
         "ModifyDBClusterMessage$DBClusterIdentifier": "<p>The DB cluster identifier for the cluster being modified. This parameter is not case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing DBCluster.</p> </li> </ul>",

@@ -1,3 +1,11 @@
+Release v1.15.41 (2018-09-24)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/rds`: Updates service API and documentation
+  * Adds DB engine version requirements for option group option settings, and specifies if an option setting requires a value.
+
 Release v1.15.40 (2018-09-21)
 ===
 
