@@ -169,10 +169,13 @@ func NewCannedPolicy(resource string, expires time.Time) *Policy {
 
 // encodePolicy encodes the Policy as JSON and also base 64 encodes it.
 func encodePolicy(p *Policy) (b64Policy, jsonPolicy []byte, err error) {
-	jsonPolicy, err = json.Marshal(p)
-	if err != nil {
+	buffer := &bytes.Buffer{}
+	encoder := json.NewEncoder(buffer)
+	encoder.SetEscapeHTML(false)
+	if err := encoder.Encode(p); err != nil {
 		return nil, nil, fmt.Errorf("failed to encode policy, %s", err.Error())
 	}
+	jsonPolicy = buffer.Bytes()
 
 	// Remove leading and trailing white space, JSON encoding will note include
 	// whitespace within the encoding.
