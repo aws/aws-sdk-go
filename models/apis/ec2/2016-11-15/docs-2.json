@@ -722,7 +722,7 @@
     "BlockDeviceMappingRequestList": {
       "base": null,
       "refs": {
-        "CreateImageRequest$BlockDeviceMappings": "<p>Information about one or more block device mappings.</p>",
+        "CreateImageRequest$BlockDeviceMappings": "<p>Information about one or more block device mappings. This parameter cannot be used to modify the encryption status of existing volumes or snapshots. To create an AMI with encrypted snapshots, use the <a>CopyImage</a> action.</p>",
         "RegisterImageRequest$BlockDeviceMappings": "<p>One or more block device mapping entries.</p>",
         "RunInstancesRequest$BlockDeviceMappings": "<p>One or more block device mapping entries. You can't specify both a snapshot ID and an encryption value. This is because only blank volumes can be encrypted on creation. If a snapshot is the basis for a volume, it is not blank and its encryption status is used for the volume encryption status.</p>"
       }
@@ -932,7 +932,7 @@
         "DisassociateAddressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisassociateRouteTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "EbsBlockDevice$DeleteOnTermination": "<p>Indicates whether the EBS volume is deleted on instance termination.</p>",
-        "EbsBlockDevice$Encrypted": "<p>Indicates whether the EBS volume is encrypted. Encrypted volumes can only be attached to instances that support Amazon EBS encryption. If you are creating a volume from a snapshot, you can't specify an encryption value. This is because only blank volumes can be encrypted on creation.</p>",
+        "EbsBlockDevice$Encrypted": "<p>Indicates whether the EBS volume is encrypted. Encrypted volumes can only be attached to instances that support Amazon EBS encryption. </p> <p>If you are creating a volume from a snapshot, you cannot specify an encryption value. This is because only blank volumes can be encrypted on creation. If you are creating a snapshot from an existing EBS volume, you cannot specify an encryption value that differs from that of the EBS volume. We recommend that you omit the encryption value from the block device mappings when creating an image from an instance.</p>",
         "EbsInstanceBlockDevice$DeleteOnTermination": "<p>Indicates whether the volume is deleted on instance termination.</p>",
         "EbsInstanceBlockDeviceSpecification$DeleteOnTermination": "<p>Indicates whether the volume is deleted on instance termination.</p>",
         "EnableVolumeIORequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2720,7 +2720,7 @@
       }
     },
     "DescribeRouteTablesResult": {
-      "base": null,
+      "base": "<p>Contains the output of DescribeRouteTables.</p>",
       "refs": {
       }
     },
@@ -4615,6 +4615,7 @@
         "DescribePrincipalIdFormatRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned NextToken value. </p>",
         "DescribeReservedInstancesOfferingsRequest$MaxInstanceCount": "<p>The maximum number of instances to filter when searching for offerings.</p> <p>Default: 20</p>",
         "DescribeReservedInstancesOfferingsRequest$MaxResults": "<p>The maximum number of results to return for the request in a single page. The remaining results of the initial request can be seen by sending another request with the returned <code>NextToken</code> value. The maximum is 100.</p> <p>Default: 100</p>",
+        "DescribeRouteTablesRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <b>NextToken</b> value. This value can be between 5 and 100.</p>",
         "DescribeScheduledInstanceAvailabilityRequest$MaxResults": "<p>The maximum number of results to return in a single call. This value can be between 5 and 300. The default value is 300. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>",
         "DescribeScheduledInstanceAvailabilityRequest$MaxSlotDurationInHours": "<p>The maximum available duration, in hours. This value must be greater than <code>MinSlotDurationInHours</code> and less than 1,720.</p>",
         "DescribeScheduledInstanceAvailabilityRequest$MinSlotDurationInHours": "<p>The minimum available duration, in hours. The minimum required duration is 1,200 hours per year. For example, the minimum daily schedule is 4 hours, the minimum weekly schedule is 24 hours, and the minimum monthly schedule is 100 hours.</p>",
@@ -7356,7 +7357,7 @@
         "CreateFlowLogsRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
         "CreateFlowLogsRequest$DeliverLogsPermissionArn": "<p>The ARN for the IAM role that's used to post flow logs to a log group.</p>",
         "CreateFlowLogsRequest$LogGroupName": "<p>The name of the log group.</p>",
-        "CreateFlowLogsRequest$LogDestination": "<p>Specifies the destination to which the flow log data is to be published. Flow log data can be published to an CloudWatch Logs log group or an Amazon S3 bucket. The value specified for this parameter depends on the value specified for LogDestinationType.</p> <p>If LogDestinationType is not specified or <code>cloud-watch-logs</code>, specify the Amazon Resource Name (ARN) of the CloudWatch Logs log group.</p> <p>If LogDestinationType is <code>s3</code>, specify the ARN of the Amazon S3 bucket. You can also specify a subfolder in the bucket. To specify a subfolder in the bucket, use the following ARN format: <code>bucket_ARN/subfolder_name/</code>. For example, to specify a subfolder named <code>my-logs</code> in a bucket named <code>my-bucket</code>, use the following ARN: <code>arn:aws:s3:::my-bucket/my-logs/</code>.</p>",
+        "CreateFlowLogsRequest$LogDestination": "<p>Specifies the destination to which the flow log data is to be published. Flow log data can be published to an CloudWatch Logs log group or an Amazon S3 bucket. The value specified for this parameter depends on the value specified for LogDestinationType.</p> <p>If LogDestinationType is not specified or <code>cloud-watch-logs</code>, specify the Amazon Resource Name (ARN) of the CloudWatch Logs log group.</p> <p>If LogDestinationType is <code>s3</code>, specify the ARN of the Amazon S3 bucket. You can also specify a subfolder in the bucket. To specify a subfolder in the bucket, use the following ARN format: <code>bucket_ARN/subfolder_name/</code>. For example, to specify a subfolder named <code>my-logs</code> in a bucket named <code>my-bucket</code>, use the following ARN: <code>arn:aws:s3:::my-bucket/my-logs/</code>. You cannot use <code>AWSLogs</code> as a subfolder name. This is a reserved term.</p>",
         "CreateFlowLogsResult$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "CreateFpgaImageRequest$Description": "<p>A description for the AFI.</p>",
         "CreateFpgaImageRequest$Name": "<p>A name for the AFI.</p>",
@@ -7549,6 +7550,8 @@
         "DescribeReservedInstancesOfferingsRequest$AvailabilityZone": "<p>The Availability Zone in which the Reserved Instance can be used.</p>",
         "DescribeReservedInstancesOfferingsRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
         "DescribeReservedInstancesOfferingsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "DescribeRouteTablesRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
+        "DescribeRouteTablesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeScheduledInstanceAvailabilityRequest$NextToken": "<p>The token for the next set of results.</p>",
         "DescribeScheduledInstanceAvailabilityResult$NextToken": "<p>The token required to retrieve the next set of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeScheduledInstancesRequest$NextToken": "<p>The token for the next set of results.</p>",

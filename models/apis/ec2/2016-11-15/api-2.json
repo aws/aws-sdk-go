@@ -7251,7 +7251,9 @@
         "RouteTableIds":{
           "shape":"ValueStringList",
           "locationName":"RouteTableId"
-        }
+        },
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"Integer"}
       }
     },
     "DescribeRouteTablesResult":{
@@ -7260,6 +7262,10 @@
         "RouteTables":{
           "shape":"RouteTableList",
           "locationName":"routeTableSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
