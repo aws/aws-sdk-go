@@ -1,3 +1,14 @@
+Release v1.15.42 (2018-09-25)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Updates service documentation
+  * Documentation updates for cloudfront
+* `service/ds`: Updates service API and documentation
+  * API changes related to launch of cross account for Directory Service.
+* `service/ec2`: Updates service API and documentation
+  * Add pagination support for ec2.describe-route-tables API.
+
 Release v1.15.41 (2018-09-24)
 ===
 
