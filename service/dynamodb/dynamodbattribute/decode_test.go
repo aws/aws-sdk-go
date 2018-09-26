@@ -235,7 +235,7 @@ func TestUnmarshalEmpties(t *testing.T) {
 	}
 
 	for i, c := range cases {
-		err := Unmarshal(c.in, c.actual)
+		err := UnmarshalWithEmpties(c.in, c.actual)
 		assertConvertTest(t, i, c.actual, c.expected, err, c.err)
 	}
 }

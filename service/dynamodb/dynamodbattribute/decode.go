@@ -76,7 +76,18 @@ type Unmarshaler interface {
 //
 // The output value provided must be a non-nil pointer
 func Unmarshal(av *dynamodb.AttributeValue, out interface{}) error {
-	return NewDecoder().Decode(av, out)
+	return NewDecoderWithOptions(false).Decode(av, out)
+}
+
+// UnmarshalWithEmpties is an alias for Unmarshal which unmarshals from
+// a map of AttributeValues, but leaves empty lists and maps as is, not turning
+// them to nils as UnmarshalMap does.
+//
+// Useful when need to conserve same structure when unmarshal and then marshal back to dynamodb.
+//
+// The output value provided must be a non-nil pointer
+func UnmarshalWithEmpties(av *dynamodb.AttributeValue, out interface{}) error {
+	return NewDecoderWithOptions(true).Decode(av, out)
 }
 
 // UnmarshalMap is an alias for Unmarshal which unmarshals from
@@ -84,7 +95,18 @@ func Unmarshal(av *dynamodb.AttributeValue, out interface{}) error {
 //
 // The output value provided must be a non-nil pointer
 func UnmarshalMap(m map[string]*dynamodb.AttributeValue, out interface{}) error {
-	return NewDecoder().Decode(&dynamodb.AttributeValue{M: m}, out)
+	return NewDecoderWithOptions(false).Decode(&dynamodb.AttributeValue{M: m}, out)
+}
+
+// UnmarshalMapWithEmpties is an alias for UnmarshalMap which unmarshals from
+// a map of AttributeValues, but leaves empty lists and maps as is, not turning
+// them to nils as UnmarshalMap does.
+//
+// Useful when need to conserve same structure when unmarshal and then marshal back to dynamodb.
+//
+// The output value provided must be a non-nil pointer
+func UnmarshalMapWithEmpties(m map[string]*dynamodb.AttributeValue, out interface{}) error {
+	return NewDecoderWithOptions(true).Decode(&dynamodb.AttributeValue{M: m}, out)
 }
 
 // UnmarshalList is an alias for Unmarshal func which unmarshals
@@ -92,7 +114,18 @@ func UnmarshalMap(m map[string]*dynamodb.AttributeValue, out interface{}) error 
 //
 // The output value provided must be a non-nil pointer
 func UnmarshalList(l []*dynamodb.AttributeValue, out interface{}) error {
-	return NewDecoder().Decode(&dynamodb.AttributeValue{L: l}, out)
+	return NewDecoderWithOptions(false).Decode(&dynamodb.AttributeValue{L: l}, out)
+}
+
+// UnmarshalListWithEmpties is an alias for UnmarshalList func which unmarshals
+// a slice of AttributeValues, but leaves empty lists and maps as is, not turning
+// them to nils as UnmarshalList does.
+//
+// Useful when need to conserve same structure when unmarshal and then marshal back to dynamodb.
+//
+// The output value provided must be a non-nil pointer
+func UnmarshalListWithEmpties(l []*dynamodb.AttributeValue, out interface{}) error {
+	return NewDecoderWithOptions(true).Decode(&dynamodb.AttributeValue{L: l}, out)
 }
 
 // UnmarshalListOfMaps is an alias for Unmarshal func which unmarshals a
@@ -111,6 +144,22 @@ func UnmarshalListOfMaps(l []map[string]*dynamodb.AttributeValue, out interface{
 	return UnmarshalList(items, out)
 }
 
+// UnmarshalListOfMapsWithEmpties is an alias for UnmarshalListOfMaps func which unmarshals a
+// slice of maps of attribute values, but leaves empty lists and maps as is, not turning
+// them to nils as UnmarshalListOfMaps does.
+//
+// Useful when need to conserve same structure when unmarshal and then marshal back to dynamodb.
+//
+// The output value provided must be a non-nil pointer
+func UnmarshalListOfMapsWithEmpties(l []map[string]*dynamodb.AttributeValue, out interface{}) error {
+	items := make([]*dynamodb.AttributeValue, len(l))
+	for i, m := range l {
+		items[i] = &dynamodb.AttributeValue{M: m}
+	}
+
+	return UnmarshalListWithEmpties(items, out)
+}
+
 // A Decoder provides unmarshaling AttributeValues to Go value types.
 type Decoder struct {
 	MarshalOptions
@@ -119,6 +168,10 @@ type Decoder struct {
 	// Number type instead of float64 when the destination type
 	// is interface{}. Similar to encoding/json.Number
 	UseNumber bool
+
+	// Empty lists and maps are decoded as nil by default.
+	// Be able to turn them into empty lists and maps instead.
+	EmptySequencesAsEmpty bool
 }
 
 // NewDecoder creates a new Decoder with default configuration. Use
@@ -134,6 +187,15 @@ func NewDecoder(opts ...func(*Decoder)) *Decoder {
 	}
 
 	return d
+}
+
+// NewDecoderWithOptions creates a new Decoder with non-default configuration.
+// This decoder will decode empty lists and maps as is, and not as nils,
+// as it is by default.
+func NewDecoderWithOptions(emptySequencesAsEmpty bool) *Decoder {
+	return NewDecoder(func(d *Decoder) {
+		d.EmptySequencesAsEmpty = emptySequencesAsEmpty
+	})
 }
 
 // Decode will unmarshal an AttributeValue into a Go value type. An error
@@ -428,6 +490,11 @@ func (d *Decoder) decodeNumberSet(ns []*string, v reflect.Value) error {
 }
 
 func (d *Decoder) decodeList(avList []*dynamodb.AttributeValue, v reflect.Value) error {
+
+	if !d.EmptySequencesAsEmpty && len(avList) == 0 {
+		return nil
+	}
+
 	isArray := false
 
 	switch v.Kind() {
@@ -468,6 +535,11 @@ func (d *Decoder) decodeList(avList []*dynamodb.AttributeValue, v reflect.Value)
 }
 
 func (d *Decoder) decodeMap(avMap map[string]*dynamodb.AttributeValue, v reflect.Value) error {
+
+	if !d.EmptySequencesAsEmpty && len(avMap) == 0 {
+		return nil
+	}
+
 	switch v.Kind() {
 	case reflect.Map:
 		t := v.Type()
