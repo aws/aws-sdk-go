@@ -599,6 +599,20 @@
         {"shape":"OperationTimeoutException"}
       ]
     },
+    "GetDataCatalogEncryptionSettings":{
+      "name":"GetDataCatalogEncryptionSettings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetDataCatalogEncryptionSettingsRequest"},
+      "output":{"shape":"GetDataCatalogEncryptionSettingsResponse"},
+      "errors":[
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationTimeoutException"}
+      ]
+    },
     "GetDatabase":{
       "name":"GetDatabase",
       "http":{
@@ -2594,6 +2608,18 @@
       "members":{
         "Crawlers":{"shape":"CrawlerList"},
         "NextToken":{"shape":"Token"}
+      }
+    },
+    "GetDataCatalogEncryptionSettingsRequest":{
+      "type":"structure",
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"}
+      }
+    },
+    "GetDataCatalogEncryptionSettingsResponse":{
+      "type":"structure",
+      "members":{
+        "DataCatalogEncryptionSettings":{"shape":"DataCatalogEncryptionSettings"}
       }
     },
     "GetDatabaseRequest":{
