@@ -41,6 +41,7 @@
     "GetCrawler": "<p>Retrieves metadata for a specified crawler.</p>",
     "GetCrawlerMetrics": "<p>Retrieves metrics about specified crawlers.</p>",
     "GetCrawlers": "<p>Retrieves metadata for all crawlers defined in the customer account.</p>",
+    "GetDataCatalogEncryptionSettings": "<p>Retrieves the security configuration for a specified catalog.</p>",
     "GetDatabase": "<p>Retrieves the definition of a specified database.</p>",
     "GetDatabases": "<p>Retrieves all Databases defined in a given Data Catalog.</p>",
     "GetDataflowGraph": "<p>Transforms a Python script into a directed acyclic graph (DAG). </p>",
@@ -316,6 +317,7 @@
         "GetCatalogImportStatusRequest$CatalogId": "<p>The ID of the catalog to migrate. Currently, this should be the AWS account ID.</p>",
         "GetConnectionRequest$CatalogId": "<p>The ID of the Data Catalog in which the connection resides. If none is supplied, the AWS account ID is used by default.</p>",
         "GetConnectionsRequest$CatalogId": "<p>The ID of the Data Catalog in which the connections reside. If none is supplied, the AWS account ID is used by default.</p>",
+        "GetDataCatalogEncryptionSettingsRequest$CatalogId": "<p>The ID of the Data Catalog for which to retrieve the security configuration. If none is supplied, the AWS account ID is used by default.</p>",
         "GetDatabaseRequest$CatalogId": "<p>The ID of the Data Catalog in which the database resides. If none is supplied, the AWS account ID is used by default.</p>",
         "GetDatabasesRequest$CatalogId": "<p>The ID of the Data Catalog from which to retrieve <code>Databases</code>. If none is supplied, the AWS account ID is used by default.</p>",
         "GetPartitionRequest$CatalogId": "<p>The ID of the Data Catalog where the partition in question resides. If none is supplied, the AWS account ID is used by default.</p>",
@@ -804,6 +806,7 @@
     "DataCatalogEncryptionSettings": {
       "base": "<p>Contains configuration information for maintaining Data Catalog security.</p>",
       "refs": {
+        "GetDataCatalogEncryptionSettingsResponse$DataCatalogEncryptionSettings": "<p>The requested security configuration.</p>",
         "PutDataCatalogEncryptionSettingsRequest$DataCatalogEncryptionSettings": "<p>The security configuration to set.</p>"
       }
     },
@@ -1249,6 +1252,16 @@
       }
     },
     "GetCrawlersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDataCatalogEncryptionSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDataCatalogEncryptionSettingsResponse": {
       "base": null,
       "refs": {
       }
