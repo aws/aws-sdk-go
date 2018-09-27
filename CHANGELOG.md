@@ -1,3 +1,14 @@
+Release v1.15.44 (2018-09-27)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service documentation
+  * Adding support for OpenAPI 3.0 import and export.
+* `service/codecommit`: Updates service API and documentation
+  * This release adds API support for getting the contents of a file, getting the contents of a folder, and for deleting a file in an AWS CodeCommit repository.
+* `service/mq`: Updates service API and documentation
+  * Amazon MQ supports ActiveMQ 5.15.6, in addition to 5.15.0. Automatic minor version upgrades can be toggled. Updated the documentation.
+
 Release v1.15.43 (2018-09-26)
 ===
 
