@@ -27,6 +27,19 @@ var mergeServices = map[string]service{
 	},
 }
 
+var serviceAliaseNames = map[string]string{
+	"costandusagereportservice": "CostandUsageReportService",
+	"elasticloadbalancing":      "ELB",
+	"elasticloadbalancingv2":    "ELBV2",
+	"config":                    "ConfigService",
+}
+
+func (a *API) setServiceAliaseName() {
+	if newName, ok := serviceAliaseNames[a.PackageName()]; ok {
+		a.name = newName
+	}
+}
+
 // customizationPasses Executes customization logic for the API by package name.
 func (a *API) customizationPasses() {
 	var svcCustomizations = map[string]func(*API){

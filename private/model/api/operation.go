@@ -30,11 +30,43 @@ type Operation struct {
 	EventStreamAPI *EventStreamAPI
 }
 
+// OperationForMethod returns the API operation name that corrisponds to the
+// client method name provided.
+func (a *API) OperationForMethod(name string) *Operation {
+	for _, op := range a.Operations {
+		for _, m := range op.Methods() {
+			if m == name {
+				return op
+			}
+		}
+	}
+
+	return nil
+}
+
 // A HTTPInfo defines the method of HTTP request for the Operation.
 type HTTPInfo struct {
 	Method       string
 	RequestURI   string
 	ResponseCode uint
+}
+
+// Methods Returns a list of method names that will be generated.
+func (o *Operation) Methods() []string {
+	methods := []string{
+		o.ExportedName,
+		o.ExportedName + "Request",
+		o.ExportedName + "WithContext",
+	}
+
+	if o.Paginator != nil {
+		methods = append(methods, []string{
+			o.ExportedName + "Pages",
+			o.ExportedName + "PagesWithContext",
+		}...)
+	}
+
+	return methods
 }
 
 // HasInput returns if the Operation accepts an input paramater
