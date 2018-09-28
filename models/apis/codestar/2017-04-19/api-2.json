@@ -7,6 +7,7 @@
     "protocol":"json",
     "serviceAbbreviation":"CodeStar",
     "serviceFullName":"AWS CodeStar",
+    "serviceId":"CodeStar",
     "signatureVersion":"v4",
     "targetPrefix":"CodeStar_20170419",
     "uid":"codestar-2017-04-19"
@@ -321,7 +322,8 @@
         "name":{"shape":"ProjectName"},
         "id":{"shape":"ProjectId"},
         "description":{"shape":"ProjectDescription"},
-        "clientRequestToken":{"shape":"ClientRequestToken"}
+        "clientRequestToken":{"shape":"ClientRequestToken"},
+        "tags":{"shape":"Tags"}
       }
     },
     "CreateProjectResult":{
@@ -412,7 +414,8 @@
         "clientRequestToken":{"shape":"ClientRequestToken"},
         "createdTimeStamp":{"shape":"CreatedTimestamp"},
         "stackId":{"shape":"StackId"},
-        "projectTemplateId":{"shape":"ProjectTemplateId"}
+        "projectTemplateId":{"shape":"ProjectTemplateId"},
+        "status":{"shape":"ProjectStatus"}
       }
     },
     "DescribeUserProfileRequest":{
@@ -632,6 +635,14 @@
       },
       "exception":true
     },
+    "ProjectStatus":{
+      "type":"structure",
+      "required":["state"],
+      "members":{
+        "state":{"shape":"State"},
+        "reason":{"shape":"Reason"}
+      }
+    },
     "ProjectSummary":{
       "type":"structure",
       "members":{
@@ -642,11 +653,16 @@
     "ProjectTemplateId":{
       "type":"string",
       "min":1,
-      "pattern":"^arn:aws[^:\\s]{0,5}:codestar:[^:\\s]+::project-template\\/[a-z0-9-]+$"
+      "pattern":"^arn:aws[^:\\s]{0,5}:codestar:[^:\\s]+::project-template(\\/(github|codecommit))?\\/[a-z0-9-]+$"
     },
     "ProjectsList":{
       "type":"list",
       "member":{"shape":"ProjectSummary"}
+    },
+    "Reason":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^$|^\\S(.*\\S)?$"
     },
     "RemoteAccessAllowed":{"type":"boolean"},
     "Resource":{
@@ -677,6 +693,10 @@
     "StackId":{
       "type":"string",
       "pattern":"^arn:aws[^:\\s]*:cloudformation:[^:\\s]+:[0-9]{12}:stack\\/[^:\\s]+\\/[^:\\s]+$"
+    },
+    "State":{
+      "type":"string",
+      "pattern":"^(CreateInProgress|CreateComplete|CreateFailed|DeleteComplete|DeleteFailed|DeleteInProgress|UpdateComplete|UpdateInProgress|UpdateFailed|Unknown)$"
     },
     "TagKey":{
       "type":"string",
@@ -841,7 +861,8 @@
       "type":"string",
       "max":64,
       "min":1,
-      "pattern":"^\\S(.*\\S)?$"
+      "pattern":"^\\S(.*\\S)?$",
+      "sensitive":true
     },
     "UserProfileNotFoundException":{
       "type":"structure",
