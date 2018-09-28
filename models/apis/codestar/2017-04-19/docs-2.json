@@ -307,6 +307,12 @@
       "refs": {
       }
     },
+    "ProjectStatus": {
+      "base": "<p>An indication of whether a project creation or deletion is failed or successful.</p>",
+      "refs": {
+        "DescribeProjectResult$status": "<p>The project creation or deletion status.</p>"
+      }
+    },
     "ProjectSummary": {
       "base": "<p>Information about the metadata for a project.</p>",
       "refs": {
@@ -324,6 +330,12 @@
       "base": null,
       "refs": {
         "ListProjectsResult$projects": "<p>A list of projects.</p>"
+      }
+    },
+    "Reason": {
+      "base": null,
+      "refs": {
+        "ProjectStatus$reason": "<p>In the case of a project creation or deletion failure, a reason for the failure.</p>"
       }
     },
     "RemoteAccessAllowed": {
@@ -380,6 +392,12 @@
         "DescribeProjectResult$stackId": "<p>The ID of the primary stack in AWS CloudFormation used to generate resources for the project.</p>"
       }
     },
+    "State": {
+      "base": null,
+      "refs": {
+        "ProjectStatus$state": "<p>The phase of completion for a project creation or deletion.</p>"
+      }
+    },
     "TagKey": {
       "base": null,
       "refs": {
@@ -412,6 +430,7 @@
     "Tags": {
       "base": null,
       "refs": {
+        "CreateProjectRequest$tags": "<p>The tags created for the project.</p>",
         "ListTagsForProjectResult$tags": "<p>The tags for the project.</p>",
         "TagProjectRequest$tags": "<p>The tags you want to add to the project.</p>",
         "TagProjectResult$tags": "<p>The tags for the project.</p>"
