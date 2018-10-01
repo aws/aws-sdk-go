@@ -1,3 +1,12 @@
+Release v1.15.46 (2018-10-01)
+===
+
+### Service Client Updates
+* `service/guardduty`: Updates service API and documentation
+  * Support optional FindingPublishingFrequency parameter in CreateDetector and UpdateDetector operations, and ClientToken on Create* operations
+* `service/rekognition`: Updates service documentation
+  * Documentation updates for Amazon Rekognition
+
 Release v1.15.45 (2018-09-28)
 ===
 
