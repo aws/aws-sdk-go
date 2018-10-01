@@ -59,9 +59,9 @@ func (c *Rekognition) CompareFacesRequest(input *CompareFacesInput) (req *reques
 // face and compares it with each face detected in the target image.
 //
 // You pass the input and target images either as base64-encoded image bytes
-// or as a references to images in an Amazon S3 bucket. If you use the Amazon
-// CLI to call Amazon Rekognition operations, passing image bytes is not supported.
-// The image must be either a PNG or JPEG formatted file.
+// or as references to images in an Amazon S3 bucket. If you use the AWS CLI
+// to call Amazon Rekognition operations, passing image bytes isn't supported.
+// The image must be formatted as a PNG or JPEG file.
 //
 // In response, the operation returns an array of face matches ordered by similarity
 // score in descending order. For each face match, the response provides a bounding
@@ -908,17 +908,17 @@ func (c *Rekognition) DetectFacesRequest(input *DetectFacesInput) (req *request.
 // Detects faces within an image that is provided as input.
 //
 // DetectFaces detects the 100 largest faces in the image. For each face detected,
-// the operation returns face details including a bounding box of the face,
-// a confidence value (that the bounding box contains a face), and a fixed set
-// of attributes such as facial landmarks (for example, coordinates of eye and
-// mouth), gender, presence of beard, sunglasses, etc.
+// the operation returns face details. These details include a bounding box
+// of the face, a confidence value (that the bounding box contains a face),
+// and a fixed set of attributes such as facial landmarks (for example, coordinates
+// of eye and mouth), gender, presence of beard, sunglasses, and so on.
 //
 // The face-detection algorithm is most effective on frontal faces. For non-frontal
-// or obscured faces, the algorithm may not detect the faces or might detect
+// or obscured faces, the algorithm might not detect the faces or might detect
 // faces with lower confidence.
 //
 // You pass the input image either as base64-encoded image bytes or as a reference
-// to an image in an Amazon S3 bucket. If you use the Amazon CLI to call Amazon
+// to an image in an Amazon S3 bucket. If you use the AWS CLI to call Amazon
 // Rekognition operations, passing image bytes is not supported. The image must
 // be either a PNG or JPEG formatted file.
 //
@@ -1040,15 +1040,15 @@ func (c *Rekognition) DetectLabelsRequest(input *DetectLabelsInput) (req *reques
 // see StartLabelDetection in the Amazon Rekognition Developer Guide.
 //
 // You pass the input image as base64-encoded image bytes or as a reference
-// to an image in an Amazon S3 bucket. If you use the Amazon CLI to call Amazon
+// to an image in an Amazon S3 bucket. If you use the AWS CLI to call Amazon
 // Rekognition operations, passing image bytes is not supported. The image must
 // be either a PNG or JPEG formatted file.
 //
 // For each object, scene, and concept the API returns one or more labels. Each
 // label provides the object name, and the level of confidence that the image
 // contains the object. For example, suppose the input image has a lighthouse,
-// the sea, and a rock. The response will include all three labels, one for
-// each object.
+// the sea, and a rock. The response includes all three labels, one for each
+// object.
 //
 // {Name: lighthouse, Confidence: 98.4629}
 //
@@ -1196,7 +1196,7 @@ func (c *Rekognition) DetectModerationLabelsRequest(input *DetectModerationLabel
 // the Amazon Rekognition Developer Guide.
 //
 // You pass the input image either as base64-encoded image bytes or as a reference
-// to an image in an Amazon S3 bucket. If you use the Amazon CLI to call Amazon
+// to an image in an Amazon S3 bucket. If you use the AWS CLI to call Amazon
 // Rekognition operations, passing image bytes is not supported. The image must
 // be either a PNG or JPEG formatted file.
 //
@@ -1432,9 +1432,9 @@ func (c *Rekognition) GetCelebrityInfoRequest(input *GetCelebrityInfoInput) (req
 // GetCelebrityInfo API operation for Amazon Rekognition.
 //
 // Gets the name and additional information about a celebrity based on his or
-// her Rekognition ID. The additional information is returned as an array of
-// URLs. If there is no additional information about the celebrity, this list
-// is empty.
+// her Amazon Rekognition ID. The additional information is returned as an array
+// of URLs. If there is no additional information about the celebrity, this
+// list is empty.
 //
 // For more information, see Recognizing Celebrities in an Image in the Amazon
 // Rekognition Developer Guide.
@@ -2628,20 +2628,23 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 //
 // Detects faces in the input image and adds them to the specified collection.
 //
-// Amazon Rekognition does not save the actual faces detected. Instead, the
-// underlying detection algorithm first detects the faces in the input image,
-// and for each face extracts facial features into a feature vector, and stores
-// it in the back-end database. Amazon Rekognition uses feature vectors when
-// performing face match and search operations using the and operations.
+// Amazon Rekognition doesn't save the actual faces that are detected. Instead,
+// the underlying detection algorithm first detects the faces in the input image.
+// For each face, the algorithm extracts facial features into a feature vector,
+// and stores it in the backend database. Amazon Rekognition uses feature vectors
+// when it performs face match and search operations using the and operations.
+//
+// For more information, see Adding Faces to a Collection in the Amazon Rekognition
+// Developer Guide.
 //
 // To get the number of faces in a collection, call .
 //
-// If you are using version 1.0 of the face detection model, IndexFaces indexes
+// If you're using version 1.0 of the face detection model, IndexFaces indexes
 // the 15 largest faces in the input image. Later versions of the face detection
 // model index the 100 largest faces in the input image. To determine which
-// version of the model you are using, call and supply the collection ID. You
-// also get the model version from the value of FaceModelVersion in the response
-// from IndexFaces.
+// version of the model you're using, call and supply the collection ID. You
+// can also get the model version from the value of FaceModelVersion in the
+// response from IndexFaces.
 //
 // For more information, see Model Versioning in the Amazon Rekognition Developer
 // Guide.
@@ -2654,35 +2657,28 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 //
 // You can specify the maximum number of faces to index with the MaxFaces input
 // parameter. This is useful when you want to index the largest faces in an
-// image, and you don't want to index other faces detected in the image.
+// image and don't want to index smaller faces, such as those belonging to people
+// standing in the background.
 //
 // The QualityFilter input parameter allows you to filter out detected faces
 // that don’t meet the required quality bar chosen by Amazon Rekognition. The
-// quality bar is based on a variety of common use cases.
+// quality bar is based on a variety of common use cases. By default, IndexFaces
+// filters detected faces. You can also explicitly filter detected faces by
+// specifying AUTO for the value of QualityFilter. If you do not want to filter
+// detected faces, specify NONE.
 //
-// In response, the operation returns an array of metadata for all detected
-// faces, FaceRecords. This includes:
-//
-//    * The bounding box, BoundingBox, of the detected face.
-//
-//    * A confidence value, Confidence, indicating the confidence that the bounding
-//    box contains a face.
-//
-//    * A face ID, faceId, assigned by the service for each face that is detected
-//    and stored.
-//
-//    * An image ID, ImageId, assigned by the service for the input image.
-//
-// If you request all facial attributes (using the detectionAttributes parameter),
-// Amazon Rekognition returns detailed facial attributes such as facial landmarks
-// (for example, location of eye and mouth) and other facial attributes such
-// gender. If you provide the same image, specify the same collection, and use
-// the same external ID in the IndexFaces operation, Amazon Rekognition doesn't
-// save duplicate face metadata.
+// To use quality filtering, you need a collection associated with version 3
+// of the face model. To get the version of the face model associated with a
+// collection, call .
 //
 // Information about faces detected in an image, but not indexed, is returned
-// in an array of objects, UnindexedFaces. Faces are not indexed for reasons
+// in an array of objects, UnindexedFaces. Faces aren't indexed for reasons
 // such as:
+//
+//    * The number of faces detected exceeds the value of the MaxFaces request
+//    parameter.
+//
+//    * The face is too small compared to the image dimensions.
 //
 //    * The face is too blurry.
 //
@@ -2690,18 +2686,30 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 //
 //    * The face has an extreme pose.
 //
-//    * The face is too small.
+// In response, the IndexFaces operation returns an array of metadata for all
+// detected faces, FaceRecords. This includes:
 //
-//    * The number of faces detected exceeds the value of the MaxFaces request
-//    parameter.
+//    * The bounding box, BoundingBox, of the detected face.
 //
-// For more information, see Adding Faces to a Collection in the Amazon Rekognition
-// Developer Guide.
+//    * A confidence value, Confidence, which indicates the confidence that
+//    the bounding box contains a face.
 //
-// The input image is passed either as base64-encoded image bytes or as a reference
-// to an image in an Amazon S3 bucket. If you use the Amazon CLI to call Amazon
-// Rekognition operations, passing image bytes is not supported. The image must
-// be either a PNG or JPEG formatted file.
+//    * A face ID, faceId, assigned by the service for each face that's detected
+//    and stored.
+//
+//    * An image ID, ImageId, assigned by the service for the input image.
+//
+// If you request all facial attributes (by using the detectionAttributes parameter),
+// Amazon Rekognition returns detailed facial attributes, such as facial landmarks
+// (for example, location of eye and mouth) and other facial attributes like
+// gender. If you provide the same image, specify the same collection, and use
+// the same external ID in the IndexFaces operation, Amazon Rekognition doesn't
+// save duplicate face metadata.
+//
+// The input image is passed either as base64-encoded image bytes, or as a reference
+// to an image in an Amazon S3 bucket. If you use the AWS CLI to call Amazon
+// Rekognition operations, passing image bytes isn't supported. The image must
+// be formatted as a PNG or JPEG file.
 //
 // This operation requires permissions to perform the rekognition:IndexFaces
 //
@@ -3283,22 +3291,22 @@ func (c *Rekognition) RecognizeCelebritiesRequest(input *RecognizeCelebritiesInp
 // RecognizeCelebrities returns the 100 largest faces in the image. It lists
 // recognized celebrities in the CelebrityFaces array and unrecognized faces
 // in the UnrecognizedFaces array. RecognizeCelebrities doesn't return celebrities
-// whose faces are not amongst the largest 100 faces in the image.
+// whose faces aren't among the largest 100 faces in the image.
 //
-// For each celebrity recognized, the RecognizeCelebrities returns a Celebrity
-// object. The Celebrity object contains the celebrity name, ID, URL links to
-// additional information, match confidence, and a ComparedFace object that
-// you can use to locate the celebrity's face on the image.
+// For each celebrity recognized, RecognizeCelebrities returns a Celebrity object.
+// The Celebrity object contains the celebrity name, ID, URL links to additional
+// information, match confidence, and a ComparedFace object that you can use
+// to locate the celebrity's face on the image.
 //
-// Rekognition does not retain information about which images a celebrity has
-// been recognized in. Your application must store this information and use
-// the Celebrity ID property as a unique identifier for the celebrity. If you
-// don't store the celebrity name or additional information URLs returned by
-// RecognizeCelebrities, you will need the ID to identify the celebrity in a
-// call to the operation.
+// Amazon Rekognition doesn't retain information about which images a celebrity
+// has been recognized in. Your application must store this information and
+// use the Celebrity ID property as a unique identifier for the celebrity. If
+// you don't store the celebrity name or additional information URLs returned
+// by RecognizeCelebrities, you will need the ID to identify the celebrity in
+// a call to the operation.
 //
-// You pass the imput image either as base64-encoded image bytes or as a reference
-// to an image in an Amazon S3 bucket. If you use the Amazon CLI to call Amazon
+// You pass the input image either as base64-encoded image bytes or as a reference
+// to an image in an Amazon S3 bucket. If you use the AWS CLI to call Amazon
 // Rekognition operations, passing image bytes is not supported. The image must
 // be either a PNG or JPEG formatted file.
 //
@@ -3534,7 +3542,7 @@ func (c *Rekognition) SearchFacesByImageRequest(input *SearchFacesByImageInput) 
 // operation.
 //
 // You pass the input image either as base64-encoded image bytes or as a reference
-// to an image in an Amazon S3 bucket. If you use the Amazon CLI to call Amazon
+// to an image in an Amazon S3 bucket. If you use the AWS CLI to call Amazon
 // Rekognition operations, passing image bytes is not supported. The image must
 // be either a PNG or JPEG formatted file.
 //
@@ -4551,10 +4559,10 @@ func (c *Rekognition) StopStreamProcessorWithContext(ctx aws.Context, input *Sto
 
 // Structure containing the estimated age range, in years, for a face.
 //
-// Rekognition estimates an age-range for faces detected in the input image.
-// Estimated age ranges can overlap; a face of a 5 year old may have an estimated
-// range of 4-6 whilst the face of a 6 year old may have an estimated range
-// of 4-8.
+// Amazon Rekognition estimates an age range for faces detected in the input
+// image. Estimated age ranges can overlap. A face of a 5-year-old might have
+// an estimated range of 4-6, while the face of a 6-year-old might have an estimated
+// range of 4-8.
 type AgeRange struct {
 	_ struct{} `type:"structure"`
 
@@ -4702,8 +4710,8 @@ type Celebrity struct {
 	// A unique identifier for the celebrity.
 	Id *string `type:"string"`
 
-	// The confidence, in percentage, that Rekognition has that the recognized face
-	// is the celebrity.
+	// The confidence, in percentage, that Amazon Rekognition has that the recognized
+	// face is the celebrity.
 	MatchConfidence *float64 `type:"float"`
 
 	// The name of the celebrity.
@@ -4937,7 +4945,7 @@ func (s *CompareFacesInput) SetTargetImage(v *Image) *CompareFacesInput {
 }
 
 // Provides information about a face in a target image that matches the source
-// image face analysed by CompareFaces. The Face property contains the bounding
+// image face analyzed by CompareFaces. The Face property contains the bounding
 // box of the face in the target image. The Similarity property is the confidence
 // that the source image face matches the face in the bounding box.
 type CompareFacesMatch struct {
@@ -4993,7 +5001,7 @@ type CompareFacesOutput struct {
 	// If the source image is in .jpeg format, it might contain exchangeable image
 	// (Exif) metadata that includes the image's orientation. If the Exif metadata
 	// for the source image populates the orientation field, the value of OrientationCorrection
-	// is null and the SourceImageFace bounding box coordinates represent the location
+	// is null. The SourceImageFace bounding box coordinates represent the location
 	// of the face after Exif metadata is used to correct the orientation. Images
 	// in .png format don't contain Exif metadata.
 	SourceImageOrientationCorrection *string `type:"string" enum:"OrientationCorrection"`
@@ -5007,9 +5015,9 @@ type CompareFacesOutput struct {
 	// If the target image is in .jpg format, it might contain Exif metadata that
 	// includes the orientation of the image. If the Exif metadata for the target
 	// image populates the orientation field, the value of OrientationCorrection
-	// is null and the bounding box coordinates in FaceMatches and UnmatchedFaces
-	// represent the location of the face after Exif metadata is used to correct
-	// the orientation. Images in .png format don't contain Exif metadata.
+	// is null. The bounding box coordinates in FaceMatches and UnmatchedFaces represent
+	// the location of the face after Exif metadata is used to correct the orientation.
+	// Images in .png format don't contain Exif metadata.
 	TargetImageOrientationCorrection *string `type:"string" enum:"OrientationCorrection"`
 
 	// An array of faces in the target image that did not match the source image
@@ -5057,7 +5065,7 @@ func (s *CompareFacesOutput) SetUnmatchedFaces(v []*ComparedFace) *CompareFacesO
 	return s
 }
 
-// Provides face metadata for target image faces that are analysed by CompareFaces
+// Provides face metadata for target image faces that are analyzed by CompareFaces
 // and RecognizeCelebrities.
 type ComparedFace struct {
 	_ struct{} `type:"structure"`
@@ -5854,9 +5862,9 @@ type DetectFacesInput struct {
 	// An array of facial attributes you want to be returned. This can be the default
 	// list of attributes or all attributes. If you don't specify a value for Attributes
 	// or if you specify ["DEFAULT"], the API returns the following subset of facial
-	// attributes: BoundingBox, Confidence, Pose, Quality and Landmarks. If you
-	// provide ["ALL"], all facial attributes are returned but the operation will
-	// take longer to complete.
+	// attributes: BoundingBox, Confidence, Pose, Quality, and Landmarks. If you
+	// provide ["ALL"], all facial attributes are returned, but the operation takes
+	// longer to complete.
 	//
 	// If you provide both, ["ALL", "DEFAULT"], the service uses a logical AND operator
 	// to determine which attributes to return (in this case, all attributes).
@@ -5924,9 +5932,9 @@ type DetectFacesOutput struct {
 	// If the input image is in .jpeg format, it might contain exchangeable image
 	// (Exif) metadata that includes the image's orientation. If so, and the Exif
 	// metadata for the input image populates the orientation field, the value of
-	// OrientationCorrection is null and the FaceDetails bounding box coordinates
-	// represent face locations after Exif metadata is used to correct the image
-	// orientation. Images in .png format don't contain Exif metadata.
+	// OrientationCorrection is null. The FaceDetails bounding box coordinates represent
+	// face locations after Exif metadata is used to correct the image orientation.
+	// Images in .png format don't contain Exif metadata.
 	OrientationCorrection *string `type:"string" enum:"OrientationCorrection"`
 }
 
@@ -6623,7 +6631,7 @@ func (s *FaceMatch) SetSimilarity(v float64) *FaceMatch {
 	return s
 }
 
-// Object containing both the face metadata (stored in the back-end database)
+// Object containing both the face metadata (stored in the backend database),
 // and facial attributes that are detected but aren't stored in the database.
 type FaceRecord struct {
 	_ struct{} `type:"structure"`
@@ -7692,25 +7700,25 @@ func (s *GetPersonTrackingOutput) SetVideoMetadata(v *VideoMetadata) *GetPersonT
 
 // Provides the input image either as bytes or an S3 object.
 //
-// You pass image bytes to a Rekognition API operation by using the Bytes property.
-// For example, you would use the Bytes property to pass an image loaded from
-// a local file system. Image bytes passed by using the Bytes property must
-// be base64-encoded. Your code may not need to encode image bytes if you are
-// using an AWS SDK to call Rekognition API operations.
+// You pass image bytes to an Amazon Rekognition API operation by using the
+// Bytes property. For example, you would use the Bytes property to pass an
+// image loaded from a local file system. Image bytes passed by using the Bytes
+// property must be base64-encoded. Your code may not need to encode image bytes
+// if you are using an AWS SDK to call Amazon Rekognition API operations.
 //
 // For more information, see Analyzing an Image Loaded from a Local File System
 // in the Amazon Rekognition Developer Guide.
 //
-// You pass images stored in an S3 bucket to a Rekognition API operation by
-// using the S3Object property. Images stored in an S3 bucket do not need to
-// be base64-encoded.
+// You pass images stored in an S3 bucket to an Amazon Rekognition API operation
+// by using the S3Object property. Images stored in an S3 bucket do not need
+// to be base64-encoded.
 //
 // The region for the S3 bucket containing the S3 object must match the region
 // you use for Amazon Rekognition operations.
 //
-// If you use the Amazon CLI to call Amazon Rekognition operations, passing
-// image bytes using the Bytes property is not supported. You must first upload
-// the image to an Amazon S3 bucket and then call the operation using the S3Object
+// If you use the AWS CLI to call Amazon Rekognition operations, passing image
+// bytes using the Bytes property is not supported. You must first upload the
+// image to an Amazon S3 bucket and then call the operation using the S3Object
 // property.
 //
 // For Amazon Rekognition to process an S3 object, the user must have permission
@@ -7815,47 +7823,54 @@ type IndexFacesInput struct {
 	// An array of facial attributes that you want to be returned. This can be the
 	// default list of attributes or all attributes. If you don't specify a value
 	// for Attributes or if you specify ["DEFAULT"], the API returns the following
-	// subset of facial attributes: BoundingBox, Confidence, Pose, Quality and Landmarks.
-	// If you provide ["ALL"], all facial attributes are returned but the operation
-	// will take longer to complete.
+	// subset of facial attributes: BoundingBox, Confidence, Pose, Quality, and
+	// Landmarks. If you provide ["ALL"], all facial attributes are returned, but
+	// the operation takes longer to complete.
 	//
 	// If you provide both, ["ALL", "DEFAULT"], the service uses a logical AND operator
 	// to determine which attributes to return (in this case, all attributes).
 	DetectionAttributes []*string `type:"list"`
 
-	// ID you want to assign to all the faces detected in the image.
+	// The ID you want to assign to all the faces detected in the image.
 	ExternalImageId *string `min:"1" type:"string"`
 
 	// The input image as base64-encoded bytes or an S3 object. If you use the AWS
 	// CLI to call Amazon Rekognition operations, passing base64-encoded image bytes
-	// is not supported.
+	// isn't supported.
 	//
 	// Image is a required field
 	Image *Image `type:"structure" required:"true"`
 
 	// The maximum number of faces to index. The value of MaxFaces must be greater
-	// than or equal to 1. IndexFaces returns no more that 100 detected faces in
+	// than or equal to 1. IndexFaces returns no more than 100 detected faces in
 	// an image, even if you specify a larger value for MaxFaces.
 	//
 	// If IndexFaces detects more faces than the value of MaxFaces, the faces with
 	// the lowest quality are filtered out first. If there are still more faces
 	// than the value of MaxFaces, the faces with the smallest bounding boxes are
-	// filtered out (up to the number needed to satisfy the value of MaxFaces).
+	// filtered out (up to the number that's needed to satisfy the value of MaxFaces).
 	// Information about the unindexed faces is available in the UnindexedFaces
 	// array.
 	//
-	// The faces returned by IndexFaces are sorted, in descending order, by the
-	// largest face bounding box size, to the smallest.
+	// The faces that are returned by IndexFaces are sorted by the largest face
+	// bounding box size to the smallest size, in descending order.
+	//
+	// MaxFaces can be used with a collection associated with any version of the
+	// face model.
 	MaxFaces *int64 `min:"1" type:"integer"`
 
-	// Specifies how much filtering is done to identify faces detected with low
-	// quality. Filtered faces are not indexed. If you specify AUTO, filtering prioritizes
-	// the identification of faces that don’t meet the required quality bar chosen
-	// by Amazon Rekognition. The quality bar is based on a variety of common use
-	// cases. Low quality detections can arise for a number of reasons. For example,
-	// an object misidentified as a face, a face that is too blurry, or a face with
-	// a pose that is too extreme to use. If you specify NONE, no filtering is performed.
-	// The default value is NONE.
+	// A filter that specifies how much filtering is done to identify faces that
+	// are detected with low quality. Filtered faces aren't indexed. If you specify
+	// AUTO, filtering prioritizes the identification of faces that don’t meet the
+	// required quality bar chosen by Amazon Rekognition. The quality bar is based
+	// on a variety of common use cases. Low-quality detections can occur for a
+	// number of reasons. Some examples are an object that's misidentified as a
+	// face, a face that's too blurry, or a face with a pose that's too extreme
+	// to use. If you specify NONE, no filtering is performed. The default value
+	// is AUTO.
+	//
+	// To use quality filtering, the collection you are using must be associated
+	// with version 3 of the face model.
 	QualityFilter *string `type:"string" enum:"QualityFilter"`
 }
 
@@ -7938,8 +7953,8 @@ func (s *IndexFacesInput) SetQualityFilter(v string) *IndexFacesInput {
 type IndexFacesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Version number of the face detection model associated with the input collection
-	// (CollectionId).
+	// The version number of the face detection model that's associated with the
+	// input collection (CollectionId).
 	FaceModelVersion *string `type:"string"`
 
 	// An array of faces detected and added to the collection. For more information,
@@ -7953,15 +7968,15 @@ type IndexFacesOutput struct {
 	//
 	// If the input image is in jpeg format, it might contain exchangeable image
 	// (Exif) metadata. If so, and the Exif metadata populates the orientation field,
-	// the value of OrientationCorrection is null and the bounding box coordinates
+	// the value of OrientationCorrection is null. The bounding box coordinates
 	// in FaceRecords represent face locations after Exif metadata is used to correct
 	// the image orientation. Images in .png format don't contain Exif metadata.
 	OrientationCorrection *string `type:"string" enum:"OrientationCorrection"`
 
-	// An array of faces that detected in the image but not indexed either because
-	// the quality filter deemed them to be of low-quality or the MaxFaces request
-	// parameter filtered them out. To use the quality filter, you specify the QualityFilter
-	// request parameter.
+	// An array of faces that were detected in the image but weren't indexed. They
+	// weren't indexed because the quality filter identified them as low quality,
+	// or the MaxFaces request parameter filtered them out. To use the quality filter,
+	// you specify the QualityFilter request parameter.
 	UnindexedFaces []*UnindexedFace `type:"list"`
 }
 
@@ -8123,17 +8138,17 @@ func (s *LabelDetection) SetTimestamp(v int64) *LabelDetection {
 type Landmark struct {
 	_ struct{} `type:"structure"`
 
-	// Type of the landmark.
+	// Type of landmark.
 	Type *string `type:"string" enum:"LandmarkType"`
 
-	// x-coordinate from the top left of the landmark expressed as the ratio of
-	// the width of the image. For example, if the images is 700x200 and the x-coordinate
-	// of the landmark is at 350 pixels, this value is 0.5.
+	// The x-coordinate from the top left of the landmark expressed as the ratio
+	// of the width of the image. For example, if the image is 700 x 200 and the
+	// x-coordinate of the landmark is at 350 pixels, this value is 0.5.
 	X *float64 `type:"float"`
 
-	// y-coordinate from the top left of the landmark expressed as the ratio of
-	// the height of the image. For example, if the images is 700x200 and the y-coordinate
-	// of the landmark is at 100 pixels, this value is 0.5.
+	// The y-coordinate from the top left of the landmark expressed as the ratio
+	// of the height of the image. For example, if the image is 700 x 200 and the
+	// y-coordinate of the landmark is at 100 pixels, this value is 0.5.
 	Y *float64 `type:"float"`
 }
 
@@ -8447,7 +8462,7 @@ type ModerationLabel struct {
 	// The label name for the type of content detected in the image.
 	Name *string `type:"string"`
 
-	// The name for the parent label. Labels at the top-level of the hierarchy have
+	// The name for the parent label. Labels at the top level of the hierarchy have
 	// the parent label "".
 	ParentName *string `type:"string"`
 }
@@ -8689,11 +8704,11 @@ func (s *PersonDetection) SetTimestamp(v int64) *PersonDetection {
 	return s
 }
 
-// Information about a person whose face matches a face(s) in a Amazon Rekognition
+// Information about a person whose face matches a face(s) in an Amazon Rekognition
 // collection. Includes information about the faces in the Amazon Rekognition
-// collection (), information about the person (PersonDetail) and the timestamp
-// for when the person was detected in a video. An array of PersonMatch objects
-// is returned by .
+// collection (), information about the person (PersonDetail), and the time
+// stamp for when the person was detected in a video. An array of PersonMatch
+// objects is returned by .
 type PersonMatch struct {
 	_ struct{} `type:"structure"`
 
@@ -8879,10 +8894,9 @@ type RecognizeCelebritiesOutput struct {
 	// If the input image is in .jpeg format, it might contain exchangeable image
 	// (Exif) metadata that includes the image's orientation. If so, and the Exif
 	// metadata for the input image populates the orientation field, the value of
-	// OrientationCorrection is null and the CelebrityFaces and UnrecognizedFaces
-	// bounding box coordinates represent face locations after Exif metadata is
-	// used to correct the image orientation. Images in .png format don't contain
-	// Exif metadata.
+	// OrientationCorrection is null. The CelebrityFaces and UnrecognizedFaces bounding
+	// box coordinates represent face locations after Exif metadata is used to correct
+	// the image orientation. Images in .png format don't contain Exif metadata.
 	OrientationCorrection *string `type:"string" enum:"OrientationCorrection"`
 
 	// Details about each unrecognized face in the image.
@@ -8923,7 +8937,7 @@ func (s *RecognizeCelebritiesOutput) SetUnrecognizedFaces(v []*ComparedFace) *Re
 // you use for Amazon Rekognition operations.
 //
 // For Amazon Rekognition to process an S3 object, the user must have permission
-// to access the S3 object. For more information, see Resource Based Policies
+// to access the S3 object. For more information, see Resource-Based Policies
 // in the Amazon Rekognition Developer Guide.
 type S3Object struct {
 	_ struct{} `type:"structure"`
@@ -10373,16 +10387,16 @@ func (s *TextDetection) SetType(v string) *TextDetection {
 	return s
 }
 
-// A face detected by but not indexed. Use the Reasons response attribute to
-// determine why a face is not indexed.
+// A face that detected, but didn't index. Use the Reasons response attribute
+// to determine why a face wasn't indexed.
 type UnindexedFace struct {
 	_ struct{} `type:"structure"`
 
-	// Structure containing attributes of a face that was detected, but not indexed,
-	// by IndexFaces.
+	// The structure that contains attributes of a face that IndexFacesdetected,
+	// but didn't index.
 	FaceDetail *FaceDetail `type:"structure"`
 
-	// An array of reasons specifying why a face was not indexed.
+	// An array of reasons that specify why a face wasn't indexed.
 	//
 	//    * EXTREME_POSE - The face is at a pose that can't be detected. For example,
 	//    the head is turned too far away from the camera.
