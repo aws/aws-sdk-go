@@ -16,7 +16,7 @@ const opAssociateDRTLogBucket = "AssociateDRTLogBucket"
 // AssociateDRTLogBucketRequest generates a "aws/request.Request" representing the
 // client's request for the AssociateDRTLogBucket operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -132,7 +132,7 @@ const opAssociateDRTRole = "AssociateDRTRole"
 // AssociateDRTRoleRequest generates a "aws/request.Request" representing the
 // client's request for the AssociateDRTRole operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -259,7 +259,7 @@ const opCreateProtection = "CreateProtection"
 // CreateProtectionRequest generates a "aws/request.Request" representing the
 // client's request for the CreateProtection operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -372,7 +372,7 @@ const opCreateSubscription = "CreateSubscription"
 // CreateSubscriptionRequest generates a "aws/request.Request" representing the
 // client's request for the CreateSubscription operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -464,7 +464,7 @@ const opDeleteProtection = "DeleteProtection"
 // DeleteProtectionRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteProtection operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -551,7 +551,7 @@ const opDeleteSubscription = "DeleteSubscription"
 // DeleteSubscriptionRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteSubscription operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -651,7 +651,7 @@ const opDescribeAttack = "DescribeAttack"
 // DescribeAttackRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeAttack operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -734,7 +734,7 @@ const opDescribeDRTAccess = "DescribeDRTAccess"
 // DescribeDRTAccessRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeDRTAccess operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -819,7 +819,7 @@ const opDescribeEmergencyContactSettings = "DescribeEmergencyContactSettings"
 // DescribeEmergencyContactSettingsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeEmergencyContactSettings operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -903,7 +903,7 @@ const opDescribeProtection = "DescribeProtection"
 // DescribeProtectionRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeProtection operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -986,7 +986,7 @@ const opDescribeSubscription = "DescribeSubscription"
 // DescribeSubscriptionRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeSubscription operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1069,7 +1069,7 @@ const opDisassociateDRTLogBucket = "DisassociateDRTLogBucket"
 // DisassociateDRTLogBucketRequest generates a "aws/request.Request" representing the
 // client's request for the DisassociateDRTLogBucket operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1177,7 +1177,7 @@ const opDisassociateDRTRole = "DisassociateDRTRole"
 // DisassociateDRTRoleRequest generates a "aws/request.Request" representing the
 // client's request for the DisassociateDRTRole operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1275,7 +1275,7 @@ const opGetSubscriptionState = "GetSubscriptionState"
 // GetSubscriptionStateRequest generates a "aws/request.Request" representing the
 // client's request for the GetSubscriptionState operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1355,7 +1355,7 @@ const opListAttacks = "ListAttacks"
 // ListAttacksRequest generates a "aws/request.Request" representing the
 // client's request for the ListAttacks operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1443,7 +1443,7 @@ const opListProtections = "ListProtections"
 // ListProtectionsRequest generates a "aws/request.Request" representing the
 // client's request for the ListProtections operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1530,7 +1530,7 @@ const opUpdateEmergencyContactSettings = "UpdateEmergencyContactSettings"
 // UpdateEmergencyContactSettingsRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateEmergencyContactSettings operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1621,7 +1621,7 @@ const opUpdateSubscription = "UpdateSubscription"
 // UpdateSubscriptionRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateSubscription operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.

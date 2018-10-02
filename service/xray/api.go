@@ -16,7 +16,7 @@ const opBatchGetTraces = "BatchGetTraces"
 // BatchGetTracesRequest generates a "aws/request.Request" representing the
 // client's request for the BatchGetTraces operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -156,7 +156,7 @@ const opCreateSamplingRule = "CreateSamplingRule"
 // CreateSamplingRuleRequest generates a "aws/request.Request" representing the
 // client's request for the CreateSamplingRule operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -247,7 +247,7 @@ const opDeleteSamplingRule = "DeleteSamplingRule"
 // DeleteSamplingRuleRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteSamplingRule operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -329,7 +329,7 @@ const opGetEncryptionConfig = "GetEncryptionConfig"
 // GetEncryptionConfigRequest generates a "aws/request.Request" representing the
 // client's request for the GetEncryptionConfig operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -411,7 +411,7 @@ const opGetSamplingRules = "GetSamplingRules"
 // GetSamplingRulesRequest generates a "aws/request.Request" representing the
 // client's request for the GetSamplingRules operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -493,7 +493,7 @@ const opGetSamplingStatisticSummaries = "GetSamplingStatisticSummaries"
 // GetSamplingStatisticSummariesRequest generates a "aws/request.Request" representing the
 // client's request for the GetSamplingStatisticSummaries operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -575,7 +575,7 @@ const opGetSamplingTargets = "GetSamplingTargets"
 // GetSamplingTargetsRequest generates a "aws/request.Request" representing the
 // client's request for the GetSamplingTargets operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -657,7 +657,7 @@ const opGetServiceGraph = "GetServiceGraph"
 // GetServiceGraphRequest generates a "aws/request.Request" representing the
 // client's request for the GetServiceGraph operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -799,7 +799,7 @@ const opGetTraceGraph = "GetTraceGraph"
 // GetTraceGraphRequest generates a "aws/request.Request" representing the
 // client's request for the GetTraceGraph operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -937,7 +937,7 @@ const opGetTraceSummaries = "GetTraceSummaries"
 // GetTraceSummariesRequest generates a "aws/request.Request" representing the
 // client's request for the GetTraceSummaries operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1091,7 +1091,7 @@ const opPutEncryptionConfig = "PutEncryptionConfig"
 // PutEncryptionConfigRequest generates a "aws/request.Request" representing the
 // client's request for the PutEncryptionConfig operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1173,7 +1173,7 @@ const opPutTelemetryRecords = "PutTelemetryRecords"
 // PutTelemetryRecordsRequest generates a "aws/request.Request" representing the
 // client's request for the PutTelemetryRecords operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1255,7 +1255,7 @@ const opPutTraceSegments = "PutTraceSegments"
 // PutTraceSegmentsRequest generates a "aws/request.Request" representing the
 // client's request for the PutTraceSegments operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1382,7 +1382,7 @@ const opUpdateSamplingRule = "UpdateSamplingRule"
 // UpdateSamplingRuleRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateSamplingRule operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.

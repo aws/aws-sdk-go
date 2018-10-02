@@ -15,7 +15,7 @@ const opBatchDetectDominantLanguage = "BatchDetectDominantLanguage"
 // BatchDetectDominantLanguageRequest generates a "aws/request.Request" representing the
 // client's request for the BatchDetectDominantLanguage operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -106,7 +106,7 @@ const opBatchDetectEntities = "BatchDetectEntities"
 // BatchDetectEntitiesRequest generates a "aws/request.Request" representing the
 // client's request for the BatchDetectEntities operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -202,7 +202,7 @@ const opBatchDetectKeyPhrases = "BatchDetectKeyPhrases"
 // BatchDetectKeyPhrasesRequest generates a "aws/request.Request" representing the
 // client's request for the BatchDetectKeyPhrases operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -297,7 +297,7 @@ const opBatchDetectSentiment = "BatchDetectSentiment"
 // BatchDetectSentimentRequest generates a "aws/request.Request" representing the
 // client's request for the BatchDetectSentiment operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -393,7 +393,7 @@ const opBatchDetectSyntax = "BatchDetectSyntax"
 // BatchDetectSyntaxRequest generates a "aws/request.Request" representing the
 // client's request for the BatchDetectSyntax operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -490,7 +490,7 @@ const opDescribeDominantLanguageDetectionJob = "DescribeDominantLanguageDetectio
 // DescribeDominantLanguageDetectionJobRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeDominantLanguageDetectionJob operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -579,7 +579,7 @@ const opDescribeEntitiesDetectionJob = "DescribeEntitiesDetectionJob"
 // DescribeEntitiesDetectionJobRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeEntitiesDetectionJob operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -668,7 +668,7 @@ const opDescribeKeyPhrasesDetectionJob = "DescribeKeyPhrasesDetectionJob"
 // DescribeKeyPhrasesDetectionJobRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeKeyPhrasesDetectionJob operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -757,7 +757,7 @@ const opDescribeSentimentDetectionJob = "DescribeSentimentDetectionJob"
 // DescribeSentimentDetectionJobRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeSentimentDetectionJob operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -846,7 +846,7 @@ const opDescribeTopicsDetectionJob = "DescribeTopicsDetectionJob"
 // DescribeTopicsDetectionJobRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeTopicsDetectionJob operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -935,7 +935,7 @@ const opDetectDominantLanguage = "DetectDominantLanguage"
 // DetectDominantLanguageRequest generates a "aws/request.Request" representing the
 // client's request for the DetectDominantLanguage operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1022,7 +1022,7 @@ const opDetectEntities = "DetectEntities"
 // DetectEntitiesRequest generates a "aws/request.Request" representing the
 // client's request for the DetectEntities operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1114,7 +1114,7 @@ const opDetectKeyPhrases = "DetectKeyPhrases"
 // DetectKeyPhrasesRequest generates a "aws/request.Request" representing the
 // client's request for the DetectKeyPhrases operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1205,7 +1205,7 @@ const opDetectSentiment = "DetectSentiment"
 // DetectSentimentRequest generates a "aws/request.Request" representing the
 // client's request for the DetectSentiment operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1297,7 +1297,7 @@ const opDetectSyntax = "DetectSyntax"
 // DetectSyntaxRequest generates a "aws/request.Request" representing the
 // client's request for the DetectSyntax operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1389,7 +1389,7 @@ const opListDominantLanguageDetectionJobs = "ListDominantLanguageDetectionJobs"
 // ListDominantLanguageDetectionJobsRequest generates a "aws/request.Request" representing the
 // client's request for the ListDominantLanguageDetectionJobs operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1534,7 +1534,7 @@ const opListEntitiesDetectionJobs = "ListEntitiesDetectionJobs"
 // ListEntitiesDetectionJobsRequest generates a "aws/request.Request" representing the
 // client's request for the ListEntitiesDetectionJobs operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1679,7 +1679,7 @@ const opListKeyPhrasesDetectionJobs = "ListKeyPhrasesDetectionJobs"
 // ListKeyPhrasesDetectionJobsRequest generates a "aws/request.Request" representing the
 // client's request for the ListKeyPhrasesDetectionJobs operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1824,7 +1824,7 @@ const opListSentimentDetectionJobs = "ListSentimentDetectionJobs"
 // ListSentimentDetectionJobsRequest generates a "aws/request.Request" representing the
 // client's request for the ListSentimentDetectionJobs operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1969,7 +1969,7 @@ const opListTopicsDetectionJobs = "ListTopicsDetectionJobs"
 // ListTopicsDetectionJobsRequest generates a "aws/request.Request" representing the
 // client's request for the ListTopicsDetectionJobs operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2114,7 +2114,7 @@ const opStartDominantLanguageDetectionJob = "StartDominantLanguageDetectionJob"
 // StartDominantLanguageDetectionJobRequest generates a "aws/request.Request" representing the
 // client's request for the StartDominantLanguageDetectionJob operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2200,7 +2200,7 @@ const opStartEntitiesDetectionJob = "StartEntitiesDetectionJob"
 // StartEntitiesDetectionJobRequest generates a "aws/request.Request" representing the
 // client's request for the StartEntitiesDetectionJob operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2286,7 +2286,7 @@ const opStartKeyPhrasesDetectionJob = "StartKeyPhrasesDetectionJob"
 // StartKeyPhrasesDetectionJobRequest generates a "aws/request.Request" representing the
 // client's request for the StartKeyPhrasesDetectionJob operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2372,7 +2372,7 @@ const opStartSentimentDetectionJob = "StartSentimentDetectionJob"
 // StartSentimentDetectionJobRequest generates a "aws/request.Request" representing the
 // client's request for the StartSentimentDetectionJob operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2458,7 +2458,7 @@ const opStartTopicsDetectionJob = "StartTopicsDetectionJob"
 // StartTopicsDetectionJobRequest generates a "aws/request.Request" representing the
 // client's request for the StartTopicsDetectionJob operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2544,7 +2544,7 @@ const opStopDominantLanguageDetectionJob = "StopDominantLanguageDetectionJob"
 // StopDominantLanguageDetectionJobRequest generates a "aws/request.Request" representing the
 // client's request for the StopDominantLanguageDetectionJob operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2640,7 +2640,7 @@ const opStopEntitiesDetectionJob = "StopEntitiesDetectionJob"
 // StopEntitiesDetectionJobRequest generates a "aws/request.Request" representing the
 // client's request for the StopEntitiesDetectionJob operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2736,7 +2736,7 @@ const opStopKeyPhrasesDetectionJob = "StopKeyPhrasesDetectionJob"
 // StopKeyPhrasesDetectionJobRequest generates a "aws/request.Request" representing the
 // client's request for the StopKeyPhrasesDetectionJob operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2832,7 +2832,7 @@ const opStopSentimentDetectionJob = "StopSentimentDetectionJob"
 // StopSentimentDetectionJobRequest generates a "aws/request.Request" representing the
 // client's request for the StopSentimentDetectionJob operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.

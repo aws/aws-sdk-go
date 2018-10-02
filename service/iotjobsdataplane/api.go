@@ -13,7 +13,7 @@ const opDescribeJobExecution = "DescribeJobExecution"
 // DescribeJobExecutionRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeJobExecution operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -109,7 +109,7 @@ const opGetPendingJobExecutions = "GetPendingJobExecutions"
 // GetPendingJobExecutionsRequest generates a "aws/request.Request" representing the
 // client's request for the GetPendingJobExecutions operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -202,7 +202,7 @@ const opStartNextPendingJobExecution = "StartNextPendingJobExecution"
 // StartNextPendingJobExecutionRequest generates a "aws/request.Request" representing the
 // client's request for the StartNextPendingJobExecution operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -296,7 +296,7 @@ const opUpdateJobExecution = "UpdateJobExecution"
 // UpdateJobExecutionRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateJobExecution operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
