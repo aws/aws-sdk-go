@@ -279,6 +279,9 @@ type SageMakerAPI interface {
 
 	WaitUntilTrainingJobCompletedOrStopped(*sagemaker.DescribeTrainingJobInput) error
 	WaitUntilTrainingJobCompletedOrStoppedWithContext(aws.Context, *sagemaker.DescribeTrainingJobInput, ...request.WaiterOption) error
+
+	WaitUntilTransformJobCompletedOrStopped(*sagemaker.DescribeTransformJobInput) error
+	WaitUntilTransformJobCompletedOrStoppedWithContext(aws.Context, *sagemaker.DescribeTransformJobInput, ...request.WaiterOption) error
 }
 
 var _ SageMakerAPI = (*sagemaker.SageMaker)(nil)
