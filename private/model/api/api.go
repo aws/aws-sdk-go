@@ -566,7 +566,17 @@ func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
     }
 
 	// Handlers
-	svc.Handlers.Sign.PushBackNamed({{if eq .Metadata.SignatureVersion "v2"}}v2{{else}}v4{{end}}.SignRequestHandler)
+	svc.Handlers.Sign.PushBackNamed(
+		{{- if eq .Metadata.SignatureVersion "v2" -}}
+			v2.SignRequestHandler
+		{{- else if or (eq .Metadata.SignatureVersion "s3") (eq .Metadata.SignatureVersion "s3v4") -}}
+			v4.BuildNamedHandler(v4.SignRequestHandler.Name, func(s *v4.Signer) {
+				s.DisableURIPathEscaping = true
+			})
+		{{- else -}}
+			v4.SignRequestHandler
+		{{- end -}}
+	)
 	{{- if eq .Metadata.SignatureVersion "v2" }}
 		svc.Handlers.Sign.PushBackNamed(corehandlers.BuildContentLengthHandler)
 	{{- end }}
