@@ -299,6 +299,7 @@
         "currentPhase":{"shape":"String"},
         "buildStatus":{"shape":"StatusType"},
         "sourceVersion":{"shape":"NonEmptyString"},
+        "resolvedSourceVersion":{"shape":"NonEmptyString"},
         "projectName":{"shape":"NonEmptyString"},
         "phases":{"shape":"BuildPhases"},
         "source":{"shape":"ProjectSource"},
