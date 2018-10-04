@@ -2327,6 +2327,12 @@
       "refs": {
       }
     },
+    "InstallOverrideList": {
+      "base": null,
+      "refs": {
+        "InstancePatchState$InstallOverrideList": "<p>An https URL or an Amazon S3 path-style URL to a list of patches to be installed. This patch installation list, which you maintain in an Amazon S3 bucket in YAML format and specify in the SSM document <code>AWS-RunPatchBaseline</code>, overrides the patches specified by the default patch baseline.</p> <p>For more information about the <code>InstallOverrideList</code> parameter, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-about-aws-runpatchbaseline.html\">About the SSM Document AWS-RunPatchBaseline</a> in the <i>AWS Systems Manager User Guide</i>.</p>"
+      }
+    },
     "InstanceAggregatedAssociationOverview": {
       "base": "<p>Status information about the aggregated associations.</p>",
       "refs": {
@@ -2551,6 +2557,12 @@
       "base": null,
       "refs": {
         "CommandInvocation$InstanceName": "<p>The name of the invocation target. For Amazon EC2 instances this is the value for the aws:Name tag. For on-premises instances, this is the name of the instance.</p>"
+      }
+    },
+    "InstancesCount": {
+      "base": null,
+      "refs": {
+        "DescribePatchGroupStateResult$InstancesWithInstalledRejectedPatches": "<p>The number of instances with patches installed that are specified in a RejectedPatches list. Patches with a status of <i>InstalledRejected</i> were typically installed before they were added to a RejectedPatches list.</p> <note> <p>If ALLOW_AS_DEPENDENCY is the specified option for RejectedPatchesAction, the value of InstancesWithInstalledRejectedPatches will always be 0 (zero).</p> </note>"
       }
     },
     "Integer": {
@@ -4309,6 +4321,15 @@
         "PatchList$member": null
       }
     },
+    "PatchAction": {
+      "base": null,
+      "refs": {
+        "CreatePatchBaselineRequest$RejectedPatchesAction": "<p>The action for Patch Manager to take on patches included in the RejectedPackages list.</p> <ul> <li> <p> <b>ALLOW_AS_DEPENDENCY</b>: A package in the Rejected patches list is installed only if it is a dependency of another package. It is considered compliant with the patch baseline, and its status is reported as <i>InstalledOther</i>. This is the default action if no option is specified.</p> </li> <li> <p> <b>BLOCK</b>: Packages in the RejectedPatches list, and packages that include them as dependencies, are not installed under any circumstances. If a package was installed before it was added to the Rejected patches list, it is considered non-compliant with the patch baseline, and its status is reported as <i>InstalledRejected</i>.</p> </li> </ul>",
+        "GetPatchBaselineResult$RejectedPatchesAction": "<p>The action specified to take on patches included in the RejectedPatches list. A patch can be allowed only if it is a dependency of another package, or blocked entirely along with packages that include it as a dependency.</p>",
+        "UpdatePatchBaselineRequest$RejectedPatchesAction": "<p>The action for Patch Manager to take on patches included in the RejectedPackages list.</p> <ul> <li> <p> <b>ALLOW_AS_DEPENDENCY</b>: A package in the Rejected patches list is installed only if it is a dependency of another package. It is considered compliant with the patch baseline, and its status is reported as <i>InstalledOther</i>. This is the default action if no option is specified.</p> </li> <li> <p> <b>BLOCK</b>: Packages in the RejectedPatches list, and packages that include them as dependencies, are not installed under any circumstances. If a package was installed before it was added to the Rejected patches list, it is considered non-compliant with the patch baseline, and its status is reported as <i>InstalledRejected</i>.</p> </li> </ul>",
+        "UpdatePatchBaselineResult$RejectedPatchesAction": "<p>The action specified to take on patches included in the RejectedPatches list. A patch can be allowed only if it is a dependency of another package, or blocked entirely along with packages that include it as a dependency.</p>"
+      }
+    },
     "PatchBaselineIdentity": {
       "base": "<p>Defines the basic information about a patch baseline.</p>",
       "refs": {
@@ -4503,6 +4524,12 @@
       "base": null,
       "refs": {
         "InstancePatchState$InstalledOtherCount": "<p>The number of patches not specified in the patch baseline that are installed on the instance.</p>"
+      }
+    },
+    "PatchInstalledRejectedCount": {
+      "base": null,
+      "refs": {
+        "InstancePatchState$InstalledRejectedCount": "<p>The number of instances with patches installed that are specified in a RejectedPatches list. Patches with a status of <i>InstalledRejected</i> were typically installed before they were added to a RejectedPatches list.</p> <note> <p>If ALLOW_AS_DEPENDENCY is the specified option for RejectedPatchesAction, the value of InstalledRejectedCount will always be 0 (zero).</p> </note>"
       }
     },
     "PatchKbNumber": {
@@ -5193,7 +5220,7 @@
     "SessionState": {
       "base": null,
       "refs": {
-        "DescribeSessionsRequest$State": "<p>The session status to retrieve a list of sessions for. For example, \"active\".</p>"
+        "DescribeSessionsRequest$State": "<p>The session status to retrieve a list of sessions for. For example, \"Active\".</p>"
       }
     },
     "SessionStatus": {
