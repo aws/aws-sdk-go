@@ -4,6 +4,7 @@ package lambda_test
 
 import (
 	"fmt"
+	"io/ioutil"
 	"strings"
 	"time"
 
@@ -76,11 +77,18 @@ func ExampleLambda_AddPermission_shared00() {
 // This example creates a Lambda function.
 func ExampleLambda_CreateFunction_shared00() {
 	svc := lambda.New(session.New())
+	fileContent, err := ioutil.ReadFile("index.js.zip")
+	if err != nil {
+		fmt.Println(err)
+	}
+	functionCode := &lambda.FunctionCode{
+		ZipFile: fileContent,
+	}
 	input := &lambda.CreateFunctionInput{
-		Code:         &lambda.FunctionCode{},
+		Code:         functionCode,
 		Description:  aws.String(""),
 		FunctionName: aws.String("MyFunction"),
-		Handler:      aws.String("souce_file.handler_name"),
+		Handler:      aws.String("index.handler"),
 		MemorySize:   aws.Int64(128),
 		Publish:      aws.Bool(true),
 		Role:         aws.String("arn:aws:iam::123456789012:role/service-role/role-name"),
