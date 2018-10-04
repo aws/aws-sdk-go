@@ -2716,6 +2716,7 @@
           "box":true
         },
         "RejectedPatches":{"shape":"PatchIdList"},
+        "RejectedPatchesAction":{"shape":"PatchAction"},
         "Description":{"shape":"BaselineDescription"},
         "Sources":{"shape":"PatchSourceList"},
         "ClientToken":{
@@ -3467,6 +3468,10 @@
         "Instances":{"shape":"Integer"},
         "InstancesWithInstalledPatches":{"shape":"Integer"},
         "InstancesWithInstalledOtherPatches":{"shape":"Integer"},
+        "InstancesWithInstalledRejectedPatches":{
+          "shape":"InstancesCount",
+          "box":true
+        },
         "InstancesWithMissingPatches":{"shape":"Integer"},
         "InstancesWithFailedPatches":{"shape":"Integer"},
         "InstancesWithNotApplicablePatches":{"shape":"Integer"}
@@ -4247,6 +4252,7 @@
           "box":true
         },
         "RejectedPatches":{"shape":"PatchIdList"},
+        "RejectedPatchesAction":{"shape":"PatchAction"},
         "PatchGroups":{"shape":"PatchGroupList"},
         "CreatedDate":{"shape":"DateTime"},
         "ModifiedDate":{"shape":"DateTime"},
@@ -4289,6 +4295,12 @@
         "Message":{"shape":"String"}
       },
       "exception":true
+    },
+    "InstallOverrideList":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^https://.+$|^s3://([^/]+)/(.*?([^/]+))$"
     },
     "InstanceAggregatedAssociationOverview":{
       "type":"structure",
@@ -4475,9 +4487,14 @@
         "PatchGroup":{"shape":"PatchGroup"},
         "BaselineId":{"shape":"BaselineId"},
         "SnapshotId":{"shape":"SnapshotId"},
+        "InstallOverrideList":{"shape":"InstallOverrideList"},
         "OwnerInformation":{"shape":"OwnerInformation"},
         "InstalledCount":{"shape":"PatchInstalledCount"},
         "InstalledOtherCount":{"shape":"PatchInstalledOtherCount"},
+        "InstalledRejectedCount":{
+          "shape":"PatchInstalledRejectedCount",
+          "box":true
+        },
         "MissingCount":{"shape":"PatchMissingCount"},
         "FailedCount":{"shape":"PatchFailedCount"},
         "NotApplicableCount":{"shape":"PatchNotApplicableCount"},
@@ -4540,6 +4557,7 @@
       "type":"string",
       "max":255
     },
+    "InstancesCount":{"type":"integer"},
     "Integer":{"type":"integer"},
     "InternalServerError":{
       "type":"structure",
@@ -6179,6 +6197,13 @@
         "Language":{"shape":"PatchLanguage"}
       }
     },
+    "PatchAction":{
+      "type":"string",
+      "enum":[
+        "ALLOW_AS_DEPENDENCY",
+        "BLOCK"
+      ]
+    },
     "PatchBaselineIdentity":{
       "type":"structure",
       "members":{
@@ -6227,6 +6252,7 @@
       "enum":[
         "INSTALLED",
         "INSTALLED_OTHER",
+        "INSTALLED_REJECTED",
         "MISSING",
         "NOT_APPLICABLE",
         "FAILED"
@@ -6341,6 +6367,7 @@
     },
     "PatchInstalledCount":{"type":"integer"},
     "PatchInstalledOtherCount":{"type":"integer"},
+    "PatchInstalledRejectedCount":{"type":"integer"},
     "PatchKbNumber":{"type":"string"},
     "PatchLanguage":{"type":"string"},
     "PatchList":{
@@ -7717,6 +7744,7 @@
           "box":true
         },
         "RejectedPatches":{"shape":"PatchIdList"},
+        "RejectedPatchesAction":{"shape":"PatchAction"},
         "Description":{"shape":"BaselineDescription"},
         "Sources":{"shape":"PatchSourceList"},
         "Replace":{
@@ -7740,6 +7768,7 @@
           "box":true
         },
         "RejectedPatches":{"shape":"PatchIdList"},
+        "RejectedPatchesAction":{"shape":"PatchAction"},
         "CreatedDate":{"shape":"DateTime"},
         "ModifiedDate":{"shape":"DateTime"},
         "Description":{"shape":"BaselineDescription"},

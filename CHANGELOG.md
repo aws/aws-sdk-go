@@ -1,3 +1,16 @@
+Release v1.15.48 (2018-10-04)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API and documentation
+  * Adding support for multi-value parameters in TestInvokeMethod and TestInvokeAuthorizer.
+* `service/codebuild`: Updates service API and documentation
+  * Add resolved source version field in build output
+* `service/ssm`: Updates service API and documentation
+  * Adds RejectedPatchesAction to baseline to enable stricted validation of the rejected Patches List ; Add InstalledRejected and InstallOverrideList to compliance reporting
+* `service/storagegateway`: Updates service API and documentation
+  * AWS Storage Gateway now enables you to specify folders and subfolders when you update your file gateway's view of your S3 objects using the Refresh Cache API.
+
 Release v1.15.47 (2018-10-02)
 ===
 
