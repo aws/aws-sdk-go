@@ -12,14 +12,14 @@
     "CreateConditionalForwarder": "<p>Creates a conditional forwarder associated with your AWS directory. Conditional forwarders are required in order to set up a trust relationship with another domain. The conditional forwarder points to the trusted domain.</p>",
     "CreateDirectory": "<p>Creates a Simple AD directory.</p> <p>Before you call <code>CreateDirectory</code>, ensure that all of the required permissions have been explicitly granted through a policy. For details about what permissions are required to run the <code>CreateDirectory</code> operation, see <a href=\"http://docs.aws.amazon.com/directoryservice/latest/admin-guide/UsingWithDS_IAM_ResourcePermissions.html\">AWS Directory Service API Permissions: Actions, Resources, and Conditions Reference</a>.</p>",
     "CreateLogSubscription": "<p>Creates a subscription to forward real time Directory Service domain controller security logs to the specified CloudWatch log group in your AWS account.</p>",
-    "CreateMicrosoftAD": "<p>Creates a Microsoft AD in the AWS cloud.</p> <p>Before you call <i>CreateMicrosoftAD</i>, ensure that all of the required permissions have been explicitly granted through a policy. For details about what permissions are required to run the <i>CreateMicrosoftAD</i> operation, see <a href=\"http://docs.aws.amazon.com/directoryservice/latest/admin-guide/UsingWithDS_IAM_ResourcePermissions.html\">AWS Directory Service API Permissions: Actions, Resources, and Conditions Reference</a>.</p>",
+    "CreateMicrosoftAD": "<p>Creates an AWS Managed Microsoft AD directory.</p> <p>Before you call <i>CreateMicrosoftAD</i>, ensure that all of the required permissions have been explicitly granted through a policy. For details about what permissions are required to run the <i>CreateMicrosoftAD</i> operation, see <a href=\"http://docs.aws.amazon.com/directoryservice/latest/admin-guide/UsingWithDS_IAM_ResourcePermissions.html\">AWS Directory Service API Permissions: Actions, Resources, and Conditions Reference</a>.</p>",
     "CreateSnapshot": "<p>Creates a snapshot of a Simple AD or Microsoft AD directory in the AWS cloud.</p> <note> <p>You cannot take snapshots of AD Connector directories.</p> </note>",
-    "CreateTrust": "<p>AWS Directory Service for Microsoft Active Directory allows you to configure trust relationships. For example, you can establish a trust between your Microsoft AD in the AWS cloud, and your existing on-premises Microsoft Active Directory. This would allow you to provide users and groups access to resources in either domain, with a single set of credentials.</p> <p>This action initiates the creation of the AWS side of a trust relationship between a Microsoft AD in the AWS cloud and an external domain.</p>",
+    "CreateTrust": "<p>AWS Directory Service for Microsoft Active Directory allows you to configure trust relationships. For example, you can establish a trust between your AWS Managed Microsoft AD directory, and your existing on-premises Microsoft Active Directory. This would allow you to provide users and groups access to resources in either domain, with a single set of credentials.</p> <p>This action initiates the creation of the AWS side of a trust relationship between an AWS Managed Microsoft AD directory and an external domain. You can create either a forest trust or an external trust.</p>",
     "DeleteConditionalForwarder": "<p>Deletes a conditional forwarder that has been set up for your AWS directory.</p>",
     "DeleteDirectory": "<p>Deletes an AWS Directory Service directory.</p> <p>Before you call <code>DeleteDirectory</code>, ensure that all of the required permissions have been explicitly granted through a policy. For details about what permissions are required to run the <code>DeleteDirectory</code> operation, see <a href=\"http://docs.aws.amazon.com/directoryservice/latest/admin-guide/UsingWithDS_IAM_ResourcePermissions.html\">AWS Directory Service API Permissions: Actions, Resources, and Conditions Reference</a>.</p>",
     "DeleteLogSubscription": "<p>Deletes the specified log subscription.</p>",
     "DeleteSnapshot": "<p>Deletes a directory snapshot.</p>",
-    "DeleteTrust": "<p>Deletes an existing trust relationship between your Microsoft AD in the AWS cloud and an external domain.</p>",
+    "DeleteTrust": "<p>Deletes an existing trust relationship between your AWS Managed Microsoft AD directory and an external domain.</p>",
     "DeregisterEventTopic": "<p>Removes the specified directory as a publisher to the specified SNS topic.</p>",
     "DescribeConditionalForwarders": "<p>Obtains information about the conditional forwarders for this account.</p> <p>If no input parameters are provided for RemoteDomainNames, this request describes all conditional forwarders for the specified directory ID.</p>",
     "DescribeDirectories": "<p>Obtains information about the directories that belong to this account.</p> <p>You can retrieve information about specific directories by passing the directory identifiers in the <code>DirectoryIds</code> parameter. Otherwise, all directories that belong to the current account are returned.</p> <p>This operation supports pagination with the use of the <code>NextToken</code> request and response parameters. If more results are available, the <code>DescribeDirectoriesResult.NextToken</code> member contains a token that you pass in the next call to <a>DescribeDirectories</a> to retrieve the next set of items.</p> <p>You can also specify a maximum number of return results with the <code>Limit</code> parameter.</p>",
@@ -50,7 +50,8 @@
     "UpdateConditionalForwarder": "<p>Updates a conditional forwarder that has been set up for your AWS directory.</p>",
     "UpdateNumberOfDomainControllers": "<p>Adds or removes domain controllers to or from the directory. Based on the difference between current value and new value (provided through this API call), domain controllers will be added or removed. It may take up to 45 minutes for any new domain controllers to become fully active once the requested number of domain controllers is updated. During this time, you cannot make another update request.</p>",
     "UpdateRadius": "<p>Updates the Remote Authentication Dial In User Service (RADIUS) server information for an AD Connector or Microsoft AD directory.</p>",
-    "VerifyTrust": "<p>AWS Directory Service for Microsoft Active Directory allows you to configure and verify trust relationships.</p> <p>This action verifies a trust relationship between your Microsoft AD in the AWS cloud and an external domain.</p>"
+    "UpdateTrust": "<p>Updates the trust that has been set up between your AWS Managed Microsoft AD directory and an on-premises Active Directory.</p>",
+    "VerifyTrust": "<p>AWS Directory Service for Microsoft Active Directory allows you to configure and verify trust relationships.</p> <p>This action verifies a trust relationship between your AWS Managed Microsoft AD directory and an external domain.</p>"
   },
   "shapes": {
     "AcceptSharedDirectoryRequest": {
@@ -185,7 +186,7 @@
       "base": null,
       "refs": {
         "DirectoryLimits$CloudOnlyDirectoriesLimitReached": "<p>Indicates if the cloud directory limit has been reached.</p>",
-        "DirectoryLimits$CloudOnlyMicrosoftADLimitReached": "<p>Indicates if the Microsoft AD directory limit has been reached.</p>"
+        "DirectoryLimits$CloudOnlyMicrosoftADLimitReached": "<p>Indicates if the AWS Managed Microsoft AD directory limit has been reached.</p>"
       }
     },
     "Computer": {
@@ -294,7 +295,7 @@
       }
     },
     "CreateMicrosoftADRequest": {
-      "base": "<p>Creates a Microsoft AD in the AWS cloud.</p>",
+      "base": "<p>Creates an AWS Managed Microsoft AD directory.</p>",
       "refs": {
       }
     },
@@ -320,7 +321,7 @@
       }
     },
     "CreateTrustRequest": {
-      "base": "<p>AWS Directory Service for Microsoft Active Directory allows you to configure trust relationships. For example, you can establish a trust between your Microsoft AD in the AWS cloud, and your existing on-premises Microsoft Active Directory. This would allow you to provide users and groups access to resources in either domain, with a single set of credentials.</p> <p>This action initiates the creation of the AWS side of a trust relationship between a Microsoft AD in the AWS cloud and an external domain.</p>",
+      "base": "<p>AWS Directory Service for Microsoft Active Directory allows you to configure trust relationships. For example, you can establish a trust between your AWS Managed Microsoft AD directory, and your existing on-premises Microsoft Active Directory. This would allow you to provide users and groups access to resources in either domain, with a single set of credentials.</p> <p>This action initiates the creation of the AWS side of a trust relationship between an AWS Managed Microsoft AD directory and an external domain.</p>",
       "refs": {
       }
     },
@@ -398,7 +399,7 @@
       }
     },
     "DeleteTrustRequest": {
-      "base": "<p>Deletes the local side of an existing trust relationship between the Microsoft AD in the AWS cloud and the external domain.</p>",
+      "base": "<p>Deletes the local side of an existing trust relationship between the AWS Managed Microsoft AD directory and the external domain.</p>",
       "refs": {
       }
     },
@@ -478,7 +479,7 @@
       }
     },
     "DescribeTrustsRequest": {
-      "base": "<p>Describes the trust relationships for a particular Microsoft AD in the AWS cloud. If no input parameters are are provided, such as directory ID or trust ID, this request describes all the trust relationships.</p>",
+      "base": "<p>Describes the trust relationships for a particular AWS Managed Microsoft AD directory. If no input parameters are are provided, such as directory ID or trust ID, this request describes all the trust relationships.</p>",
       "refs": {
       }
     },
@@ -539,7 +540,7 @@
     "DirectoryEdition": {
       "base": null,
       "refs": {
-        "CreateMicrosoftADRequest$Edition": "<p>AWS Microsoft AD is available in two editions: Standard and Enterprise. Enterprise is the default.</p>",
+        "CreateMicrosoftADRequest$Edition": "<p>AWS Managed Microsoft AD is available in two editions: Standard and Enterprise. Enterprise is the default.</p>",
         "DirectoryDescription$Edition": "<p>The edition associated with this directory.</p>"
       }
     },
@@ -558,7 +559,7 @@
         "CreateLogSubscriptionRequest$DirectoryId": "<p>Identifier (ID) of the directory to which you want to subscribe and receive real-time logs to your specified CloudWatch log group.</p>",
         "CreateMicrosoftADResult$DirectoryId": "<p>The identifier of the directory that was created.</p>",
         "CreateSnapshotRequest$DirectoryId": "<p>The identifier of the directory of which to take a snapshot.</p>",
-        "CreateTrustRequest$DirectoryId": "<p>The Directory ID of the Microsoft AD in the AWS cloud for which to establish the trust relationship.</p>",
+        "CreateTrustRequest$DirectoryId": "<p>The Directory ID of the AWS Managed Microsoft AD directory for which to establish the trust relationship.</p>",
         "DeleteConditionalForwarderRequest$DirectoryId": "<p>The directory ID for which you are deleting the conditional forwarder.</p>",
         "DeleteDirectoryRequest$DirectoryId": "<p>The identifier of the directory to delete.</p>",
         "DeleteDirectoryResult$DirectoryId": "<p>The directory identifier.</p>",
@@ -967,8 +968,8 @@
         "DescribeTrustsRequest$Limit": "<p>The maximum number of objects to return.</p>",
         "DirectoryLimits$CloudOnlyDirectoriesLimit": "<p>The maximum number of cloud directories allowed in the region.</p>",
         "DirectoryLimits$CloudOnlyDirectoriesCurrentCount": "<p>The current number of cloud directories in the region.</p>",
-        "DirectoryLimits$CloudOnlyMicrosoftADLimit": "<p>The maximum number of Microsoft AD directories allowed in the region.</p>",
-        "DirectoryLimits$CloudOnlyMicrosoftADCurrentCount": "<p>The current number of Microsoft AD directories in the region.</p>",
+        "DirectoryLimits$CloudOnlyMicrosoftADLimit": "<p>The maximum number of AWS Managed Microsoft AD directories allowed in the region.</p>",
+        "DirectoryLimits$CloudOnlyMicrosoftADCurrentCount": "<p>The current number of AWS Managed Microsoft AD directories in the region.</p>",
         "DirectoryLimits$ConnectedDirectoriesLimit": "<p>The maximum number of connected directories allowed in the region.</p>",
         "DirectoryLimits$ConnectedDirectoriesCurrentCount": "<p>The current number of connected directories in the region.</p>",
         "ListIpRoutesRequest$Limit": "<p>Maximum number of items to return. If this value is zero, the maximum number of items is specified by the limitations of the operation.</p>",
@@ -1240,6 +1241,7 @@
         "SnapshotLimitExceededException$RequestId": null,
         "TagLimitExceededException$RequestId": null,
         "UnsupportedOperationException$RequestId": null,
+        "UpdateTrustResult$RequestId": null,
         "UserDoesNotExistException$RequestId": null
       }
     },
@@ -1314,6 +1316,14 @@
       "refs": {
         "DirectoryConnectSettingsDescription$SecurityGroupId": "<p>The security group identifier for the AD Connector directory.</p>",
         "DirectoryVpcSettingsDescription$SecurityGroupId": "<p>The domain controller security group identifier for the directory.</p>"
+      }
+    },
+    "SelectiveAuth": {
+      "base": null,
+      "refs": {
+        "CreateTrustRequest$SelectiveAuth": "<p>Optional parameter to enable selective authentication for the trust.</p>",
+        "Trust$SelectiveAuth": "<p>Current state of selective authentication for the trust.</p>",
+        "UpdateTrustRequest$SelectiveAuth": "<p>Updates selective authentication for the trust.</p>"
       }
     },
     "Server": {
@@ -1582,7 +1592,7 @@
       }
     },
     "Trust": {
-      "base": "<p>Describes a trust relationship between an Microsoft AD in the AWS cloud and an external domain.</p>",
+      "base": "<p>Describes a trust relationship between an AWS Managed Microsoft AD directory and an external domain.</p>",
       "refs": {
         "Trusts$member": null
       }
@@ -1602,6 +1612,8 @@
         "DeleteTrustResult$TrustId": "<p>The Trust ID of the trust relationship that was deleted.</p>",
         "Trust$TrustId": "<p>The unique ID of the trust relationship.</p>",
         "TrustIds$member": null,
+        "UpdateTrustRequest$TrustId": "<p>Identifier of the trust relationship.</p>",
+        "UpdateTrustResult$TrustId": "<p>Identifier of the trust relationship.</p>",
         "VerifyTrustRequest$TrustId": "<p>The unique Trust ID of the trust relationship to verify.</p>",
         "VerifyTrustResult$TrustId": "<p>The unique Trust ID of the trust relationship that was verified.</p>"
       }
@@ -1633,8 +1645,8 @@
     "TrustType": {
       "base": null,
       "refs": {
-        "CreateTrustRequest$TrustType": "<p>The trust relationship type.</p>",
-        "Trust$TrustType": "<p>The trust relationship type.</p>"
+        "CreateTrustRequest$TrustType": "<p>The trust relationship type. <code>Forest</code> is the default.</p>",
+        "Trust$TrustType": "<p>The trust relationship type. <code>Forest</code> is the default.</p>"
       }
     },
     "Trusts": {
@@ -1700,6 +1712,16 @@
         "AddIpRoutesRequest$UpdateSecurityGroupForDirectoryControllers": "<p>If set to true, updates the inbound and outbound rules of the security group that has the description: \"AWS created security group for <i>directory ID</i> directory controllers.\" Following are the new rules: </p> <p>Inbound:</p> <ul> <li> <p>Type: Custom UDP Rule, Protocol: UDP, Range: 88, Source: 0.0.0.0/0</p> </li> <li> <p>Type: Custom UDP Rule, Protocol: UDP, Range: 123, Source: 0.0.0.0/0</p> </li> <li> <p>Type: Custom UDP Rule, Protocol: UDP, Range: 138, Source: 0.0.0.0/0</p> </li> <li> <p>Type: Custom UDP Rule, Protocol: UDP, Range: 389, Source: 0.0.0.0/0</p> </li> <li> <p>Type: Custom UDP Rule, Protocol: UDP, Range: 464, Source: 0.0.0.0/0</p> </li> <li> <p>Type: Custom UDP Rule, Protocol: UDP, Range: 445, Source: 0.0.0.0/0</p> </li> <li> <p>Type: Custom TCP Rule, Protocol: TCP, Range: 88, Source: 0.0.0.0/0</p> </li> <li> <p>Type: Custom TCP Rule, Protocol: TCP, Range: 135, Source: 0.0.0.0/0</p> </li> <li> <p>Type: Custom TCP Rule, Protocol: TCP, Range: 445, Source: 0.0.0.0/0</p> </li> <li> <p>Type: Custom TCP Rule, Protocol: TCP, Range: 464, Source: 0.0.0.0/0</p> </li> <li> <p>Type: Custom TCP Rule, Protocol: TCP, Range: 636, Source: 0.0.0.0/0</p> </li> <li> <p>Type: Custom TCP Rule, Protocol: TCP, Range: 1024-65535, Source: 0.0.0.0/0</p> </li> <li> <p>Type: Custom TCP Rule, Protocol: TCP, Range: 3268-33269, Source: 0.0.0.0/0</p> </li> <li> <p>Type: DNS (UDP), Protocol: UDP, Range: 53, Source: 0.0.0.0/0</p> </li> <li> <p>Type: DNS (TCP), Protocol: TCP, Range: 53, Source: 0.0.0.0/0</p> </li> <li> <p>Type: LDAP, Protocol: TCP, Range: 389, Source: 0.0.0.0/0</p> </li> <li> <p>Type: All ICMP, Protocol: All, Range: N/A, Source: 0.0.0.0/0</p> </li> </ul> <p/> <p>Outbound:</p> <ul> <li> <p>Type: All traffic, Protocol: All, Range: All, Destination: 0.0.0.0/0</p> </li> </ul> <p>These security rules impact an internal network interface that is not exposed publicly.</p>"
       }
     },
+    "UpdateTrustRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateTrustResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UseSameUsername": {
       "base": null,
       "refs": {
@@ -1727,7 +1749,7 @@
       }
     },
     "VerifyTrustRequest": {
-      "base": "<p>Initiates the verification of an existing trust relationship between a Microsoft AD in the AWS cloud and an external domain.</p>",
+      "base": "<p>Initiates the verification of an existing trust relationship between an AWS Managed Microsoft AD directory and an external domain.</p>",
       "refs": {
       }
     },

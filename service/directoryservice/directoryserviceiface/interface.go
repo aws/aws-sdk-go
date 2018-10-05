@@ -255,6 +255,10 @@ type DirectoryServiceAPI interface {
 	UpdateRadiusWithContext(aws.Context, *directoryservice.UpdateRadiusInput, ...request.Option) (*directoryservice.UpdateRadiusOutput, error)
 	UpdateRadiusRequest(*directoryservice.UpdateRadiusInput) (*request.Request, *directoryservice.UpdateRadiusOutput)
 
+	UpdateTrust(*directoryservice.UpdateTrustInput) (*directoryservice.UpdateTrustOutput, error)
+	UpdateTrustWithContext(aws.Context, *directoryservice.UpdateTrustInput, ...request.Option) (*directoryservice.UpdateTrustOutput, error)
+	UpdateTrustRequest(*directoryservice.UpdateTrustInput) (*request.Request, *directoryservice.UpdateTrustOutput)
+
 	VerifyTrust(*directoryservice.VerifyTrustInput) (*directoryservice.VerifyTrustOutput, error)
 	VerifyTrustWithContext(aws.Context, *directoryservice.VerifyTrustInput, ...request.Option) (*directoryservice.VerifyTrustOutput, error)
 	VerifyTrustRequest(*directoryservice.VerifyTrustInput) (*request.Request, *directoryservice.VerifyTrustOutput)

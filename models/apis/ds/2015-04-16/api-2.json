@@ -784,6 +784,21 @@
         {"shape":"ServiceException"}
       ]
     },
+    "UpdateTrust":{
+      "name":"UpdateTrust",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateTrustRequest"},
+      "output":{"shape":"UpdateTrustResult"},
+      "errors":[
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
     "VerifyTrust":{
       "name":"VerifyTrust",
       "http":{
@@ -1138,7 +1153,8 @@
         "TrustPassword":{"shape":"TrustPassword"},
         "TrustDirection":{"shape":"TrustDirection"},
         "TrustType":{"shape":"TrustType"},
-        "ConditionalForwarderIpAddrs":{"shape":"DnsIpAddrs"}
+        "ConditionalForwarderIpAddrs":{"shape":"DnsIpAddrs"},
+        "SelectiveAuth":{"shape":"SelectiveAuth"}
       }
     },
     "CreateTrustResult":{
@@ -2139,6 +2155,13 @@
       "type":"string",
       "pattern":"^(sg-[0-9a-f]{8}|sg-[0-9a-f]{17})$"
     },
+    "SelectiveAuth":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
+    },
     "Server":{
       "type":"string",
       "max":256,
@@ -2410,7 +2433,8 @@
         "CreatedDateTime":{"shape":"CreatedDateTime"},
         "LastUpdatedDateTime":{"shape":"LastUpdatedDateTime"},
         "StateLastUpdatedDateTime":{"shape":"StateLastUpdatedDateTime"},
-        "TrustStateReason":{"shape":"TrustStateReason"}
+        "TrustStateReason":{"shape":"TrustStateReason"},
+        "SelectiveAuth":{"shape":"SelectiveAuth"}
       }
     },
     "TrustDirection":{
@@ -2433,6 +2457,7 @@
       "type":"string",
       "max":128,
       "min":1,
+      "pattern":"(.|\\s)*\\S(.|\\s)*",
       "sensitive":true
     },
     "TrustState":{
@@ -2443,6 +2468,9 @@
         "Verifying",
         "VerifyFailed",
         "Verified",
+        "Updating",
+        "UpdateFailed",
+        "Updated",
         "Deleting",
         "Deleted",
         "Failed"
@@ -2451,7 +2479,10 @@
     "TrustStateReason":{"type":"string"},
     "TrustType":{
       "type":"string",
-      "enum":["Forest"]
+      "enum":[
+        "Forest",
+        "External"
+      ]
     },
     "Trusts":{
       "type":"list",
@@ -2544,6 +2575,21 @@
       }
     },
     "UpdateSecurityGroupForDirectoryControllers":{"type":"boolean"},
+    "UpdateTrustRequest":{
+      "type":"structure",
+      "required":["TrustId"],
+      "members":{
+        "TrustId":{"shape":"TrustId"},
+        "SelectiveAuth":{"shape":"SelectiveAuth"}
+      }
+    },
+    "UpdateTrustResult":{
+      "type":"structure",
+      "members":{
+        "RequestId":{"shape":"RequestId"},
+        "TrustId":{"shape":"TrustId"}
+      }
+    },
     "UseSameUsername":{"type":"boolean"},
     "UserDoesNotExistException":{
       "type":"structure",
