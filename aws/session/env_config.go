@@ -104,11 +104,27 @@ type envConfig struct {
 	CSMClientID string
 	CSMHost     string
 
-	enableEndpointDiscovery string
 	// Enables endpoint discovery via environment variables.
 	//
 	//	AWS_ENABLE_ENDPOINT_DISCOVERY=true
 	EnableEndpointDiscovery *bool
+	enableEndpointDiscovery string
+
+	// Specifies the WebIdentity token the SDK should use to assume a role
+	// with.
+	//
+	//  AWS_WEB_IDENTITY_TOKEN_FILE=file_path
+	WebIdentityTokenFilePath string
+
+	// Specifies the IAM role arn to use when assuming an role.
+	//
+	//  AWS_ROLE_ARN=role_arn
+	IAMRoleARN string
+
+	// Specifies the IAM role session name to use when assuming a role.
+	//
+	//  AWS_ROLE_SESSION_NAME=session_name
+	IAMRoleSessionName string
 }
 
 var (
@@ -154,6 +170,15 @@ var (
 	sharedConfigFileEnvKey = []string{
 		"AWS_CONFIG_FILE",
 	}
+	webIdentityTokenFilePathEnvKey = []string{
+		"AWS_WEB_IDENTITY_TOKEN_FILE",
+	}
+	roleARNEnvKey = []string{
+		"AWS_ROLE_ARN",
+	}
+	roleSessionNameEnvKey = []string{
+		"AWS_ROLE_SESSION_NAME",
+	}
 )
 
 // loadEnvConfig retrieves the SDK's environment configuration.
@@ -185,6 +210,7 @@ func envConfigLoad(enableSharedConfig bool) envConfig {
 	setFromEnvVal(&cfg.Creds.AccessKeyID, credAccessEnvKey)
 	setFromEnvVal(&cfg.Creds.SecretAccessKey, credSecretEnvKey)
 	setFromEnvVal(&cfg.Creds.SessionToken, credSessionEnvKey)
+	setFromEnvVal(&cfg.IAMRoleSessionName, roleSessionNameEnvKey)
 
 	// CSM environment variables
 	setFromEnvVal(&cfg.csmEnabled, csmEnabledEnvKey)
@@ -192,6 +218,10 @@ func envConfigLoad(enableSharedConfig bool) envConfig {
 	setFromEnvVal(&cfg.CSMPort, csmPortEnvKey)
 	setFromEnvVal(&cfg.CSMClientID, csmClientIDEnvKey)
 	cfg.CSMEnabled = len(cfg.csmEnabled) > 0
+
+	// Web identity environment variables
+	setFromEnvVal(&cfg.IAMRoleARN, roleARNEnvKey)
+	setFromEnvVal(&cfg.WebIdentityTokenFilePath, webIdentityTokenFilePathEnvKey)
 
 	// Require logical grouping of credentials
 	if len(cfg.Creds.AccessKeyID) == 0 || len(cfg.Creds.SecretAccessKey) == 0 {

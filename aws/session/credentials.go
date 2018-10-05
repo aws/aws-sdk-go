@@ -34,6 +34,19 @@ func resolveCredentials(cfg *aws.Config,
 	// Credentials from environment variables
 	if len(envCfg.Creds.AccessKeyID) > 0 {
 		return credentials.NewStaticCredentialsFromCreds(envCfg.Creds), nil
+
+	} else if len(envCfg.WebIdentityTokenFilePath) > 0 {
+		// handles assume role via OIDC token. This should happen before any other
+		// assume role call.
+		sessionName := envCfg.IAMRoleSessionName
+		if len(sessionName) == 0 {
+			sessionName = sharedCfg.AssumeRole.RoleSessionName
+		}
+
+		cfg.Credentials = stscreds.NewWebIdentityCredentials(&Session{
+			Config:   cfg,
+			Handlers: handlers.Copy(),
+		}, envCfg.IAMRoleARN, sessionName, envCfg.WebIdentityTokenFilePath)
 	}
 
 	// Fallback to the "default" credential resolution chain.
