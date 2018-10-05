@@ -101,6 +101,10 @@ type envConfig struct {
 	CSMEnabled  bool
 	CSMPort     string
 	CSMClientID string
+
+	WebIdentityRoleARN       string
+	IAMRoleSessionName       string
+	WebIdentityTokenFilePath string
 }
 
 var (
@@ -139,6 +143,15 @@ var (
 	sharedConfigFileEnvKey = []string{
 		"AWS_CONFIG_FILE",
 	}
+	webIdentityRoleARNEnvKey = []string{
+		"AWS_IAM_ROLE_ARN",
+	}
+	webIdentityTokenFilePathEnvKey = []string{
+		"AWS_WEB_IDENTITY_TOKEN_FILE",
+	}
+	roleSessionNameEnvKey = []string{
+		"AWS_IAM_ROLE_SESSION_NAME",
+	}
 )
 
 // loadEnvConfig retrieves the SDK's environment configuration.
@@ -170,12 +183,17 @@ func envConfigLoad(enableSharedConfig bool) envConfig {
 	setFromEnvVal(&cfg.Creds.AccessKeyID, credAccessEnvKey)
 	setFromEnvVal(&cfg.Creds.SecretAccessKey, credSecretEnvKey)
 	setFromEnvVal(&cfg.Creds.SessionToken, credSessionEnvKey)
+	setFromEnvVal(&cfg.IAMRoleSessionName, roleSessionNameEnvKey)
 
 	// CSM environment variables
 	setFromEnvVal(&cfg.csmEnabled, csmEnabledEnvKey)
 	setFromEnvVal(&cfg.CSMPort, csmPortEnvKey)
 	setFromEnvVal(&cfg.CSMClientID, csmClientIDEnvKey)
 	cfg.CSMEnabled = len(cfg.csmEnabled) > 0
+
+	// Web identity environment variables
+	setFromEnvVal(&cfg.WebIdentityRoleARN, webIdentityRoleARNEnvKey)
+	setFromEnvVal(&cfg.WebIdentityTokenFilePath, webIdentityTokenFilePathEnvKey)
 
 	// Require logical grouping of credentials
 	if len(cfg.Creds.AccessKeyID) == 0 || len(cfg.Creds.SecretAccessKey) == 0 {

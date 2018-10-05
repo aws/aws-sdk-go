@@ -440,6 +440,19 @@ func mergeConfigSrcs(cfg, userCfg *aws.Config, envCfg envConfig, sharedCfg share
 			cfg.Credentials = credentials.NewStaticCredentialsFromCreds(
 				envCfg.Creds,
 			)
+
+		} else if len(envCfg.WebIdentityTokenFilePath) > 0 {
+			// handles assume role via OIDC token. This should happen before any other
+			// assume role call.
+			sessionName := envCfg.IAMRoleSessionName
+			if len(sessionName) == 0 {
+				sessionName = sharedCfg.AssumeRole.RoleSessionName
+			}
+
+			cfg.Credentials = stscreds.NewWebIdentityCredentials(&Session{
+				Config:   cfg,
+				Handlers: handlers.Copy(),
+			}, envCfg.WebIdentityRoleARN, sessionName, envCfg.WebIdentityTokenFilePath)
 		} else if envCfg.EnableSharedConfig && len(sharedCfg.AssumeRole.RoleARN) > 0 && sharedCfg.AssumeRoleSource != nil {
 			cfgCp := *cfg
 			cfgCp.Credentials = credentials.NewStaticCredentialsFromCreds(
