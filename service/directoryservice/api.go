@@ -1016,7 +1016,7 @@ func (c *DirectoryService) CreateMicrosoftADRequest(input *CreateMicrosoftADInpu
 
 // CreateMicrosoftAD API operation for AWS Directory Service.
 //
-// Creates a Microsoft AD in the AWS cloud.
+// Creates an AWS Managed Microsoft AD directory.
 //
 // Before you call CreateMicrosoftAD, ensure that all of the required permissions
 // have been explicitly granted through a policy. For details about what permissions
@@ -1211,12 +1211,13 @@ func (c *DirectoryService) CreateTrustRequest(input *CreateTrustInput) (req *req
 //
 // AWS Directory Service for Microsoft Active Directory allows you to configure
 // trust relationships. For example, you can establish a trust between your
-// Microsoft AD in the AWS cloud, and your existing on-premises Microsoft Active
-// Directory. This would allow you to provide users and groups access to resources
-// in either domain, with a single set of credentials.
+// AWS Managed Microsoft AD directory, and your existing on-premises Microsoft
+// Active Directory. This would allow you to provide users and groups access
+// to resources in either domain, with a single set of credentials.
 //
 // This action initiates the creation of the AWS side of a trust relationship
-// between a Microsoft AD in the AWS cloud and an external domain.
+// between an AWS Managed Microsoft AD directory and an external domain. You
+// can create either a forest trust or an external trust.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1670,8 +1671,8 @@ func (c *DirectoryService) DeleteTrustRequest(input *DeleteTrustInput) (req *req
 
 // DeleteTrust API operation for AWS Directory Service.
 //
-// Deletes an existing trust relationship between your Microsoft AD in the AWS
-// cloud and an external domain.
+// Deletes an existing trust relationship between your AWS Managed Microsoft
+// AD directory and an external domain.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4582,6 +4583,95 @@ func (c *DirectoryService) UpdateRadiusWithContext(ctx aws.Context, input *Updat
 	return out, req.Send()
 }
 
+const opUpdateTrust = "UpdateTrust"
+
+// UpdateTrustRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateTrust operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfuly.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateTrust for more information on using the UpdateTrust
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateTrustRequest method.
+//    req, resp := client.UpdateTrustRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/UpdateTrust
+func (c *DirectoryService) UpdateTrustRequest(input *UpdateTrustInput) (req *request.Request, output *UpdateTrustOutput) {
+	op := &request.Operation{
+		Name:       opUpdateTrust,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateTrustInput{}
+	}
+
+	output = &UpdateTrustOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateTrust API operation for AWS Directory Service.
+//
+// Updates the trust that has been set up between your AWS Managed Microsoft
+// AD directory and an on-premises Active Directory.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Directory Service's
+// API operation UpdateTrust for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeEntityDoesNotExistException "EntityDoesNotExistException"
+//   The specified entity could not be found.
+//
+//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   One or more parameters are not valid.
+//
+//   * ErrCodeClientException "ClientException"
+//   A client exception has occurred.
+//
+//   * ErrCodeServiceException "ServiceException"
+//   An exception has occurred in AWS Directory Service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/UpdateTrust
+func (c *DirectoryService) UpdateTrust(input *UpdateTrustInput) (*UpdateTrustOutput, error) {
+	req, out := c.UpdateTrustRequest(input)
+	return out, req.Send()
+}
+
+// UpdateTrustWithContext is the same as UpdateTrust with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateTrust for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DirectoryService) UpdateTrustWithContext(ctx aws.Context, input *UpdateTrustInput, opts ...request.Option) (*UpdateTrustOutput, error) {
+	req, out := c.UpdateTrustRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opVerifyTrust = "VerifyTrust"
 
 // VerifyTrustRequest generates a "aws/request.Request" representing the
@@ -4629,8 +4719,8 @@ func (c *DirectoryService) VerifyTrustRequest(input *VerifyTrustInput) (req *req
 // AWS Directory Service for Microsoft Active Directory allows you to configure
 // and verify trust relationships.
 //
-// This action verifies a trust relationship between your Microsoft AD in the
-// AWS cloud and an external domain.
+// This action verifies a trust relationship between your AWS Managed Microsoft
+// AD directory and an external domain.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5775,7 +5865,7 @@ func (s CreateLogSubscriptionOutput) GoString() string {
 	return s.String()
 }
 
-// Creates a Microsoft AD in the AWS cloud.
+// Creates an AWS Managed Microsoft AD directory.
 type CreateMicrosoftADInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5783,8 +5873,8 @@ type CreateMicrosoftADInput struct {
 	// console Directory Details page after the directory is created.
 	Description *string `type:"string"`
 
-	// AWS Microsoft AD is available in two editions: Standard and Enterprise. Enterprise
-	// is the default.
+	// AWS Managed Microsoft AD is available in two editions: Standard and Enterprise.
+	// Enterprise is the default.
 	Edition *string `type:"string" enum:"DirectoryEdition"`
 
 	// The fully qualified domain name for the directory, such as corp.example.com.
@@ -5978,19 +6068,19 @@ func (s *CreateSnapshotOutput) SetSnapshotId(v string) *CreateSnapshotOutput {
 
 // AWS Directory Service for Microsoft Active Directory allows you to configure
 // trust relationships. For example, you can establish a trust between your
-// Microsoft AD in the AWS cloud, and your existing on-premises Microsoft Active
-// Directory. This would allow you to provide users and groups access to resources
-// in either domain, with a single set of credentials.
+// AWS Managed Microsoft AD directory, and your existing on-premises Microsoft
+// Active Directory. This would allow you to provide users and groups access
+// to resources in either domain, with a single set of credentials.
 //
 // This action initiates the creation of the AWS side of a trust relationship
-// between a Microsoft AD in the AWS cloud and an external domain.
+// between an AWS Managed Microsoft AD directory and an external domain.
 type CreateTrustInput struct {
 	_ struct{} `type:"structure"`
 
 	// The IP addresses of the remote DNS server associated with RemoteDomainName.
 	ConditionalForwarderIpAddrs []*string `type:"list"`
 
-	// The Directory ID of the Microsoft AD in the AWS cloud for which to establish
+	// The Directory ID of the AWS Managed Microsoft AD directory for which to establish
 	// the trust relationship.
 	//
 	// DirectoryId is a required field
@@ -6001,6 +6091,9 @@ type CreateTrustInput struct {
 	//
 	// RemoteDomainName is a required field
 	RemoteDomainName *string `type:"string" required:"true"`
+
+	// Optional parameter to enable selective authentication for the trust.
+	SelectiveAuth *string `type:"string" enum:"SelectiveAuth"`
 
 	// The direction of the trust relationship.
 	//
@@ -6013,7 +6106,7 @@ type CreateTrustInput struct {
 	// TrustPassword is a required field
 	TrustPassword *string `min:"1" type:"string" required:"true"`
 
-	// The trust relationship type.
+	// The trust relationship type. Forest is the default.
 	TrustType *string `type:"string" enum:"TrustType"`
 }
 
@@ -6067,6 +6160,12 @@ func (s *CreateTrustInput) SetDirectoryId(v string) *CreateTrustInput {
 // SetRemoteDomainName sets the RemoteDomainName field's value.
 func (s *CreateTrustInput) SetRemoteDomainName(v string) *CreateTrustInput {
 	s.RemoteDomainName = &v
+	return s
+}
+
+// SetSelectiveAuth sets the SelectiveAuth field's value.
+func (s *CreateTrustInput) SetSelectiveAuth(v string) *CreateTrustInput {
+	s.SelectiveAuth = &v
 	return s
 }
 
@@ -6359,8 +6458,8 @@ func (s *DeleteSnapshotOutput) SetSnapshotId(v string) *DeleteSnapshotOutput {
 	return s
 }
 
-// Deletes the local side of an existing trust relationship between the Microsoft
-// AD in the AWS cloud and the external domain.
+// Deletes the local side of an existing trust relationship between the AWS
+// Managed Microsoft AD directory and the external domain.
 type DeleteTrustInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7022,9 +7121,9 @@ func (s *DescribeSnapshotsOutput) SetSnapshots(v []*Snapshot) *DescribeSnapshots
 	return s
 }
 
-// Describes the trust relationships for a particular Microsoft AD in the AWS
-// cloud. If no input parameters are are provided, such as directory ID or trust
-// ID, this request describes all the trust relationships.
+// Describes the trust relationships for a particular AWS Managed Microsoft
+// AD directory. If no input parameters are are provided, such as directory
+// ID or trust ID, this request describes all the trust relationships.
 type DescribeTrustsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7545,13 +7644,14 @@ type DirectoryLimits struct {
 	// Indicates if the cloud directory limit has been reached.
 	CloudOnlyDirectoriesLimitReached *bool `type:"boolean"`
 
-	// The current number of Microsoft AD directories in the region.
+	// The current number of AWS Managed Microsoft AD directories in the region.
 	CloudOnlyMicrosoftADCurrentCount *int64 `type:"integer"`
 
-	// The maximum number of Microsoft AD directories allowed in the region.
+	// The maximum number of AWS Managed Microsoft AD directories allowed in the
+	// region.
 	CloudOnlyMicrosoftADLimit *int64 `type:"integer"`
 
-	// Indicates if the Microsoft AD directory limit has been reached.
+	// Indicates if the AWS Managed Microsoft AD directory limit has been reached.
 	CloudOnlyMicrosoftADLimitReached *bool `type:"boolean"`
 
 	// The current number of connected directories in the region.
@@ -10026,8 +10126,8 @@ func (s *Tag) SetValue(v string) *Tag {
 	return s
 }
 
-// Describes a trust relationship between an Microsoft AD in the AWS cloud and
-// an external domain.
+// Describes a trust relationship between an AWS Managed Microsoft AD directory
+// and an external domain.
 type Trust struct {
 	_ struct{} `type:"structure"`
 
@@ -10044,6 +10144,9 @@ type Trust struct {
 	// the trust relationship.
 	RemoteDomainName *string `type:"string"`
 
+	// Current state of selective authentication for the trust.
+	SelectiveAuth *string `type:"string" enum:"SelectiveAuth"`
+
 	// The date and time that the TrustState was last updated.
 	StateLastUpdatedDateTime *time.Time `type:"timestamp"`
 
@@ -10059,7 +10162,7 @@ type Trust struct {
 	// The reason for the TrustState.
 	TrustStateReason *string `type:"string"`
 
-	// The trust relationship type.
+	// The trust relationship type. Forest is the default.
 	TrustType *string `type:"string" enum:"TrustType"`
 }
 
@@ -10094,6 +10197,12 @@ func (s *Trust) SetLastUpdatedDateTime(v time.Time) *Trust {
 // SetRemoteDomainName sets the RemoteDomainName field's value.
 func (s *Trust) SetRemoteDomainName(v string) *Trust {
 	s.RemoteDomainName = &v
+	return s
+}
+
+// SetSelectiveAuth sets the SelectiveAuth field's value.
+func (s *Trust) SetSelectiveAuth(v string) *Trust {
+	s.SelectiveAuth = &v
 	return s
 }
 
@@ -10501,8 +10610,87 @@ func (s UpdateRadiusOutput) GoString() string {
 	return s.String()
 }
 
-// Initiates the verification of an existing trust relationship between a Microsoft
-// AD in the AWS cloud and an external domain.
+type UpdateTrustInput struct {
+	_ struct{} `type:"structure"`
+
+	// Updates selective authentication for the trust.
+	SelectiveAuth *string `type:"string" enum:"SelectiveAuth"`
+
+	// Identifier of the trust relationship.
+	//
+	// TrustId is a required field
+	TrustId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateTrustInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateTrustInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateTrustInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateTrustInput"}
+	if s.TrustId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TrustId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSelectiveAuth sets the SelectiveAuth field's value.
+func (s *UpdateTrustInput) SetSelectiveAuth(v string) *UpdateTrustInput {
+	s.SelectiveAuth = &v
+	return s
+}
+
+// SetTrustId sets the TrustId field's value.
+func (s *UpdateTrustInput) SetTrustId(v string) *UpdateTrustInput {
+	s.TrustId = &v
+	return s
+}
+
+type UpdateTrustOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS request identifier.
+	RequestId *string `type:"string"`
+
+	// Identifier of the trust relationship.
+	TrustId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateTrustOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateTrustOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *UpdateTrustOutput) SetRequestId(v string) *UpdateTrustOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetTrustId sets the TrustId field's value.
+func (s *UpdateTrustOutput) SetTrustId(v string) *UpdateTrustOutput {
+	s.TrustId = &v
+	return s
+}
+
+// Initiates the verification of an existing trust relationship between an AWS
+// Managed Microsoft AD directory and an external domain.
 type VerifyTrustInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10733,6 +10921,14 @@ const (
 )
 
 const (
+	// SelectiveAuthEnabled is a SelectiveAuth enum value
+	SelectiveAuthEnabled = "Enabled"
+
+	// SelectiveAuthDisabled is a SelectiveAuth enum value
+	SelectiveAuthDisabled = "Disabled"
+)
+
+const (
 	// ShareMethodOrganizations is a ShareMethod enum value
 	ShareMethodOrganizations = "ORGANIZATIONS"
 
@@ -10834,6 +11030,15 @@ const (
 	// TrustStateVerified is a TrustState enum value
 	TrustStateVerified = "Verified"
 
+	// TrustStateUpdating is a TrustState enum value
+	TrustStateUpdating = "Updating"
+
+	// TrustStateUpdateFailed is a TrustState enum value
+	TrustStateUpdateFailed = "UpdateFailed"
+
+	// TrustStateUpdated is a TrustState enum value
+	TrustStateUpdated = "Updated"
+
 	// TrustStateDeleting is a TrustState enum value
 	TrustStateDeleting = "Deleting"
 
@@ -10847,4 +11052,7 @@ const (
 const (
 	// TrustTypeForest is a TrustType enum value
 	TrustTypeForest = "Forest"
+
+	// TrustTypeExternal is a TrustType enum value
+	TrustTypeExternal = "External"
 )
