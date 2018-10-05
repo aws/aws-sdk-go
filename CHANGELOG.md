@@ -1,3 +1,10 @@
+Release v1.15.49 (2018-10-05)
+===
+
+### Service Client Updates
+* `service/ds`: Updates service API and documentation
+  * SDK changes to create a new type of trust for active directory
+
 Release v1.15.48 (2018-10-04)
 ===
 
