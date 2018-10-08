@@ -2558,6 +2558,7 @@
         "policies":{"shape":"Policies"}
       }
     },
+    "ApproximateSecondsBeforeTimedOut":{"type":"long"},
     "AscendingOrder":{"type":"boolean"},
     "AssociateTargetsWithJobRequest":{
       "type":"structure",
@@ -3345,7 +3346,8 @@
         "description":{"shape":"JobDescription"},
         "presignedUrlConfig":{"shape":"PresignedUrlConfig"},
         "targetSelection":{"shape":"TargetSelection"},
-        "jobExecutionsRolloutConfig":{"shape":"JobExecutionsRolloutConfig"}
+        "jobExecutionsRolloutConfig":{"shape":"JobExecutionsRolloutConfig"},
+        "timeoutConfig":{"shape":"TimeoutConfig"}
       }
     },
     "CreateJobResponse":{
@@ -4897,6 +4899,7 @@
     },
     "InProgressChecksCount":{"type":"integer"},
     "InProgressThings":{"type":"integer"},
+    "InProgressTimeoutInMinutes":{"type":"long"},
     "IndexName":{
       "type":"string",
       "max":128,
@@ -5002,7 +5005,8 @@
         "createdAt":{"shape":"DateType"},
         "lastUpdatedAt":{"shape":"DateType"},
         "completedAt":{"shape":"DateType"},
-        "jobProcessDetails":{"shape":"JobProcessDetails"}
+        "jobProcessDetails":{"shape":"JobProcessDetails"},
+        "timeoutConfig":{"shape":"TimeoutConfig"}
       }
     },
     "JobArn":{"type":"string"},
@@ -5032,7 +5036,8 @@
         "startedAt":{"shape":"DateType"},
         "lastUpdatedAt":{"shape":"DateType"},
         "executionNumber":{"shape":"ExecutionNumber"},
-        "versionNumber":{"shape":"VersionNumber"}
+        "versionNumber":{"shape":"VersionNumber"},
+        "approximateSecondsBeforeTimedOut":{"shape":"ApproximateSecondsBeforeTimedOut"}
       }
     },
     "JobExecutionStatus":{
@@ -5042,6 +5047,7 @@
         "IN_PROGRESS",
         "SUCCEEDED",
         "FAILED",
+        "TIMED_OUT",
         "REJECTED",
         "REMOVED",
         "CANCELED"
@@ -5107,7 +5113,8 @@
         "numberOfRejectedThings":{"shape":"RejectedThings"},
         "numberOfQueuedThings":{"shape":"QueuedThings"},
         "numberOfInProgressThings":{"shape":"InProgressThings"},
-        "numberOfRemovedThings":{"shape":"RemovedThings"}
+        "numberOfRemovedThings":{"shape":"RemovedThings"},
+        "numberOfTimedOutThings":{"shape":"TimedOutThings"}
       }
     },
     "JobStatus":{
@@ -7625,6 +7632,13 @@
       },
       "error":{"httpStatusCode":429},
       "exception":true
+    },
+    "TimedOutThings":{"type":"integer"},
+    "TimeoutConfig":{
+      "type":"structure",
+      "members":{
+        "inProgressTimeoutInMinutes":{"shape":"InProgressTimeoutInMinutes"}
+      }
     },
     "Timestamp":{"type":"timestamp"},
     "Token":{

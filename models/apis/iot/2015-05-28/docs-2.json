@@ -255,6 +255,12 @@
         "AuthResult$allowed": "<p>The policies and statements that allowed the specified action.</p>"
       }
     },
+    "ApproximateSecondsBeforeTimedOut": {
+      "base": null,
+      "refs": {
+        "JobExecution$approximateSecondsBeforeTimedOut": "<p>The estimated number of seconds that remain before the job execution status will be changed to <code>TIMED_OUT</code>.</p>"
+      }
+    },
     "AscendingOrder": {
       "base": null,
       "refs": {
@@ -1821,7 +1827,7 @@
     "EndpointType": {
       "base": null,
       "refs": {
-        "DescribeEndpointRequest$endpointType": "<p>The endpoint type (such as <code>iot:Data</code>, <code>iot:CredentialProvider</code> and <code>iot:Jobs</code>). </p>"
+        "DescribeEndpointRequest$endpointType": "<p>The endpoint type. Valid endpoint types include:</p> <ul> <li> <p> <code>iot:Data</code> - Returns a VeriSign signed data endpoint.</p> </li> </ul> <ul> <li> <p> <code>iot:Data-ATS</code> - Returns an ATS signed data endpoint.</p> </li> </ul> <ul> <li> <p> <code>iot:CredentialProvider</code> - Returns an AWS IoT credentials provider API endpoint.</p> </li> </ul> <ul> <li> <p> <code>iot:Jobs</code> - Returns an AWS IoT device management Jobs API endpoint.</p> </li> </ul>"
       }
     },
     "ErrorCode": {
@@ -2130,6 +2136,12 @@
         "JobProcessDetails$numberOfInProgressThings": "<p>The number of things currently executing the job.</p>"
       }
     },
+    "InProgressTimeoutInMinutes": {
+      "base": null,
+      "refs": {
+        "TimeoutConfig$inProgressTimeoutInMinutes": "<p>Specifies the amount of time, in minutes, this device has to finish execution of this job. A timer is started, or restarted, whenever this job's execution status is specified as <code>IN_PROGRESS</code> with this field populated. If the job execution status is not set to a terminal state before the timer expires, or before another job execution status update is sent with this field populated, the status will be automatically set to <code>TIMED_OUT</code>. Note that setting/resetting this timer has no effect on the job execution timeout timer which may have been specified when the job was created (<code>CreateJobExecution</code> using the field <code>timeoutConfig</code>).</p>"
+      }
+    },
     "IndexName": {
       "base": null,
       "refs": {
@@ -2276,7 +2288,7 @@
     "JobExecutionStatus": {
       "base": null,
       "refs": {
-        "JobExecution$status": "<p>The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCESS, CANCELED, or REJECTED).</p>",
+        "JobExecution$status": "<p>The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCEEDED, TIMED_OUT, CANCELED, or REJECTED).</p>",
         "JobExecutionSummary$status": "<p>The status of the job execution.</p>",
         "ListJobExecutionsForJobRequest$status": "<p>The status of the job.</p>",
         "ListJobExecutionsForThingRequest$status": "<p>An optional filter that lets you search for jobs that have the specified status.</p>"
@@ -2357,7 +2369,7 @@
     "JobStatus": {
       "base": null,
       "refs": {
-        "Job$status": "<p>The status of the job, one of <code>IN_PROGRESS</code>, <code>CANCELED</code>, or <code>COMPLETED</code>. </p>",
+        "Job$status": "<p>The status of the job, one of <code>IN_PROGRESS</code>, <code>CANCELED</code>, <code>DELETION_IN_PROGRESS</code> or <code>COMPLETED</code>. </p>",
         "JobSummary$status": "<p>The job summary status.</p>",
         "ListJobsRequest$status": "<p>An optional filter that lets you search for jobs that have the specified status.</p>"
       }
@@ -4637,6 +4649,19 @@
     "ThrottlingException": {
       "base": "<p>The rate exceeds the limit.</p>",
       "refs": {
+      }
+    },
+    "TimedOutThings": {
+      "base": null,
+      "refs": {
+        "JobProcessDetails$numberOfTimedOutThings": "<p>The number of things whose job execution status is <code>TIMED_OUT</code>.</p>"
+      }
+    },
+    "TimeoutConfig": {
+      "base": "<p>Specifies the amount of time each device has to finish its execution of the job. A timer is started when the job execution status is set to <code>IN_PROGRESS</code>. If the job execution status is not set to another terminal state before the timer expires, it will be automatically set to <code>TIMED_OUT</code>.</p>",
+      "refs": {
+        "CreateJobRequest$timeoutConfig": "<p>Specifies the amount of time each device has to finish its execution of the job. The timer is started when the job execution status is set to <code>IN_PROGRESS</code>. If the job execution status is not set to another terminal state before the time expires, it will be automatically set to <code>TIMED_OUT</code>.</p>",
+        "Job$timeoutConfig": "<p>Specifies the amount of time each device has to finish its execution of the job. A timer is started when the job execution status is set to <code>IN_PROGRESS</code>. If the job execution status is not set to another terminal state before the timer expires, it will be automatically set to <code>TIMED_OUT</code>.</p>"
       }
     },
     "Timestamp": {

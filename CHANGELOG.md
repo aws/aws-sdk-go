@@ -1,3 +1,11 @@
+Release v1.15.50 (2018-10-08)
+===
+
+### Service Client Updates
+* `service/iot`: Updates service API and documentation
+  * We are releasing job execution timeout functionalities to customers. Customer now can set job execution timeout on the job level when creating a job.
+* `service/iot-jobs-data`: Updates service API and documentation
+
 Release v1.15.49 (2018-10-05)
 ===
 
