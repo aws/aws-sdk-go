@@ -17,7 +17,7 @@ const opCreateVocabulary = "CreateVocabulary"
 // CreateVocabularyRequest generates a "aws/request.Request" representing the
 // client's request for the CreateVocabulary operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -116,7 +116,7 @@ const opDeleteVocabulary = "DeleteVocabulary"
 // DeleteVocabularyRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteVocabulary operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -212,7 +212,7 @@ const opGetTranscriptionJob = "GetTranscriptionJob"
 // GetTranscriptionJobRequest generates a "aws/request.Request" representing the
 // client's request for the GetTranscriptionJob operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -309,7 +309,7 @@ const opGetVocabulary = "GetVocabulary"
 // GetVocabularyRequest generates a "aws/request.Request" representing the
 // client's request for the GetVocabulary operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -403,7 +403,7 @@ const opListTranscriptionJobs = "ListTranscriptionJobs"
 // ListTranscriptionJobsRequest generates a "aws/request.Request" representing the
 // client's request for the ListTranscriptionJobs operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -549,7 +549,7 @@ const opListVocabularies = "ListVocabularies"
 // ListVocabulariesRequest generates a "aws/request.Request" representing the
 // client's request for the ListVocabularies operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -696,7 +696,7 @@ const opStartTranscriptionJob = "StartTranscriptionJob"
 // StartTranscriptionJobRequest generates a "aws/request.Request" representing the
 // client's request for the StartTranscriptionJob operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -794,7 +794,7 @@ const opUpdateVocabulary = "UpdateVocabulary"
 // UpdateVocabularyRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateVocabulary operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
