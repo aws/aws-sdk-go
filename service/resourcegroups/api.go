@@ -15,7 +15,7 @@ const opCreateGroup = "CreateGroup"
 // CreateGroupRequest generates a "aws/request.Request" representing the
 // client's request for the CreateGroup operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -107,7 +107,7 @@ const opDeleteGroup = "DeleteGroup"
 // DeleteGroupRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteGroup operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -203,7 +203,7 @@ const opGetGroup = "GetGroup"
 // GetGroupRequest generates a "aws/request.Request" representing the
 // client's request for the GetGroup operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -298,7 +298,7 @@ const opGetGroupQuery = "GetGroupQuery"
 // GetGroupQueryRequest generates a "aws/request.Request" representing the
 // client's request for the GetGroupQuery operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -393,7 +393,7 @@ const opGetTags = "GetTags"
 // GetTagsRequest generates a "aws/request.Request" representing the
 // client's request for the GetTags operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -489,7 +489,7 @@ const opListGroupResources = "ListGroupResources"
 // ListGroupResourcesRequest generates a "aws/request.Request" representing the
 // client's request for the ListGroupResources operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -645,7 +645,7 @@ const opListGroups = "ListGroups"
 // ListGroupsRequest generates a "aws/request.Request" representing the
 // client's request for the ListGroups operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -793,7 +793,7 @@ const opSearchResources = "SearchResources"
 // SearchResourcesRequest generates a "aws/request.Request" representing the
 // client's request for the SearchResources operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -947,7 +947,7 @@ const opTag = "Tag"
 // TagRequest generates a "aws/request.Request" representing the
 // client's request for the Tag operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1043,7 +1043,7 @@ const opUntag = "Untag"
 // UntagRequest generates a "aws/request.Request" representing the
 // client's request for the Untag operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1138,7 +1138,7 @@ const opUpdateGroup = "UpdateGroup"
 // UpdateGroupRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateGroup operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1234,7 +1234,7 @@ const opUpdateGroupQuery = "UpdateGroupQuery"
 // UpdateGroupQueryRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateGroupQuery operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.

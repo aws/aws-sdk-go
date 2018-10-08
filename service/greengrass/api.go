@@ -13,7 +13,7 @@ const opAssociateRoleToGroup = "AssociateRoleToGroup"
 // AssociateRoleToGroupRequest generates a "aws/request.Request" representing the
 // client's request for the AssociateRoleToGroup operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -97,7 +97,7 @@ const opAssociateServiceRoleToAccount = "AssociateServiceRoleToAccount"
 // AssociateServiceRoleToAccountRequest generates a "aws/request.Request" representing the
 // client's request for the AssociateServiceRoleToAccount operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -182,7 +182,7 @@ const opCreateCoreDefinition = "CreateCoreDefinition"
 // CreateCoreDefinitionRequest generates a "aws/request.Request" representing the
 // client's request for the CreateCoreDefinition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -263,7 +263,7 @@ const opCreateCoreDefinitionVersion = "CreateCoreDefinitionVersion"
 // CreateCoreDefinitionVersionRequest generates a "aws/request.Request" representing the
 // client's request for the CreateCoreDefinitionVersion operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -343,7 +343,7 @@ const opCreateDeployment = "CreateDeployment"
 // CreateDeploymentRequest generates a "aws/request.Request" representing the
 // client's request for the CreateDeployment operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -422,7 +422,7 @@ const opCreateDeviceDefinition = "CreateDeviceDefinition"
 // CreateDeviceDefinitionRequest generates a "aws/request.Request" representing the
 // client's request for the CreateDeviceDefinition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -502,7 +502,7 @@ const opCreateDeviceDefinitionVersion = "CreateDeviceDefinitionVersion"
 // CreateDeviceDefinitionVersionRequest generates a "aws/request.Request" representing the
 // client's request for the CreateDeviceDefinitionVersion operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -581,7 +581,7 @@ const opCreateFunctionDefinition = "CreateFunctionDefinition"
 // CreateFunctionDefinitionRequest generates a "aws/request.Request" representing the
 // client's request for the CreateFunctionDefinition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -663,7 +663,7 @@ const opCreateFunctionDefinitionVersion = "CreateFunctionDefinitionVersion"
 // CreateFunctionDefinitionVersionRequest generates a "aws/request.Request" representing the
 // client's request for the CreateFunctionDefinitionVersion operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -742,7 +742,7 @@ const opCreateGroup = "CreateGroup"
 // CreateGroupRequest generates a "aws/request.Request" representing the
 // client's request for the CreateGroup operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -822,7 +822,7 @@ const opCreateGroupCertificateAuthority = "CreateGroupCertificateAuthority"
 // CreateGroupCertificateAuthorityRequest generates a "aws/request.Request" representing the
 // client's request for the CreateGroupCertificateAuthority operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -905,7 +905,7 @@ const opCreateGroupVersion = "CreateGroupVersion"
 // CreateGroupVersionRequest generates a "aws/request.Request" representing the
 // client's request for the CreateGroupVersion operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -984,7 +984,7 @@ const opCreateLoggerDefinition = "CreateLoggerDefinition"
 // CreateLoggerDefinitionRequest generates a "aws/request.Request" representing the
 // client's request for the CreateLoggerDefinition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1064,7 +1064,7 @@ const opCreateLoggerDefinitionVersion = "CreateLoggerDefinitionVersion"
 // CreateLoggerDefinitionVersionRequest generates a "aws/request.Request" representing the
 // client's request for the CreateLoggerDefinitionVersion operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1143,7 +1143,7 @@ const opCreateResourceDefinition = "CreateResourceDefinition"
 // CreateResourceDefinitionRequest generates a "aws/request.Request" representing the
 // client's request for the CreateResourceDefinition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1224,7 +1224,7 @@ const opCreateResourceDefinitionVersion = "CreateResourceDefinitionVersion"
 // CreateResourceDefinitionVersionRequest generates a "aws/request.Request" representing the
 // client's request for the CreateResourceDefinitionVersion operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1303,7 +1303,7 @@ const opCreateSoftwareUpdateJob = "CreateSoftwareUpdateJob"
 // CreateSoftwareUpdateJobRequest generates a "aws/request.Request" representing the
 // client's request for the CreateSoftwareUpdateJob operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1388,7 +1388,7 @@ const opCreateSubscriptionDefinition = "CreateSubscriptionDefinition"
 // CreateSubscriptionDefinitionRequest generates a "aws/request.Request" representing the
 // client's request for the CreateSubscriptionDefinition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1469,7 +1469,7 @@ const opCreateSubscriptionDefinitionVersion = "CreateSubscriptionDefinitionVersi
 // CreateSubscriptionDefinitionVersionRequest generates a "aws/request.Request" representing the
 // client's request for the CreateSubscriptionDefinitionVersion operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1548,7 +1548,7 @@ const opDeleteCoreDefinition = "DeleteCoreDefinition"
 // DeleteCoreDefinitionRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteCoreDefinition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1627,7 +1627,7 @@ const opDeleteDeviceDefinition = "DeleteDeviceDefinition"
 // DeleteDeviceDefinitionRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteDeviceDefinition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1706,7 +1706,7 @@ const opDeleteFunctionDefinition = "DeleteFunctionDefinition"
 // DeleteFunctionDefinitionRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteFunctionDefinition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1785,7 +1785,7 @@ const opDeleteGroup = "DeleteGroup"
 // DeleteGroupRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteGroup operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1864,7 +1864,7 @@ const opDeleteLoggerDefinition = "DeleteLoggerDefinition"
 // DeleteLoggerDefinitionRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteLoggerDefinition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1943,7 +1943,7 @@ const opDeleteResourceDefinition = "DeleteResourceDefinition"
 // DeleteResourceDefinitionRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteResourceDefinition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2022,7 +2022,7 @@ const opDeleteSubscriptionDefinition = "DeleteSubscriptionDefinition"
 // DeleteSubscriptionDefinitionRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteSubscriptionDefinition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2101,7 +2101,7 @@ const opDisassociateRoleFromGroup = "DisassociateRoleFromGroup"
 // DisassociateRoleFromGroupRequest generates a "aws/request.Request" representing the
 // client's request for the DisassociateRoleFromGroup operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2183,7 +2183,7 @@ const opDisassociateServiceRoleFromAccount = "DisassociateServiceRoleFromAccount
 // DisassociateServiceRoleFromAccountRequest generates a "aws/request.Request" representing the
 // client's request for the DisassociateServiceRoleFromAccount operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2263,7 +2263,7 @@ const opGetAssociatedRole = "GetAssociatedRole"
 // GetAssociatedRoleRequest generates a "aws/request.Request" representing the
 // client's request for the GetAssociatedRole operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2345,7 +2345,7 @@ const opGetConnectivityInfo = "GetConnectivityInfo"
 // GetConnectivityInfoRequest generates a "aws/request.Request" representing the
 // client's request for the GetConnectivityInfo operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2427,7 +2427,7 @@ const opGetCoreDefinition = "GetCoreDefinition"
 // GetCoreDefinitionRequest generates a "aws/request.Request" representing the
 // client's request for the GetCoreDefinition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2506,7 +2506,7 @@ const opGetCoreDefinitionVersion = "GetCoreDefinitionVersion"
 // GetCoreDefinitionVersionRequest generates a "aws/request.Request" representing the
 // client's request for the GetCoreDefinitionVersion operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2585,7 +2585,7 @@ const opGetDeploymentStatus = "GetDeploymentStatus"
 // GetDeploymentStatusRequest generates a "aws/request.Request" representing the
 // client's request for the GetDeploymentStatus operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2664,7 +2664,7 @@ const opGetDeviceDefinition = "GetDeviceDefinition"
 // GetDeviceDefinitionRequest generates a "aws/request.Request" representing the
 // client's request for the GetDeviceDefinition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2743,7 +2743,7 @@ const opGetDeviceDefinitionVersion = "GetDeviceDefinitionVersion"
 // GetDeviceDefinitionVersionRequest generates a "aws/request.Request" representing the
 // client's request for the GetDeviceDefinitionVersion operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2822,7 +2822,7 @@ const opGetFunctionDefinition = "GetFunctionDefinition"
 // GetFunctionDefinitionRequest generates a "aws/request.Request" representing the
 // client's request for the GetFunctionDefinition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2902,7 +2902,7 @@ const opGetFunctionDefinitionVersion = "GetFunctionDefinitionVersion"
 // GetFunctionDefinitionVersionRequest generates a "aws/request.Request" representing the
 // client's request for the GetFunctionDefinitionVersion operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2982,7 +2982,7 @@ const opGetGroup = "GetGroup"
 // GetGroupRequest generates a "aws/request.Request" representing the
 // client's request for the GetGroup operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3061,7 +3061,7 @@ const opGetGroupCertificateAuthority = "GetGroupCertificateAuthority"
 // GetGroupCertificateAuthorityRequest generates a "aws/request.Request" representing the
 // client's request for the GetGroupCertificateAuthority operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3143,7 +3143,7 @@ const opGetGroupCertificateConfiguration = "GetGroupCertificateConfiguration"
 // GetGroupCertificateConfigurationRequest generates a "aws/request.Request" representing the
 // client's request for the GetGroupCertificateConfiguration operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3225,7 +3225,7 @@ const opGetGroupVersion = "GetGroupVersion"
 // GetGroupVersionRequest generates a "aws/request.Request" representing the
 // client's request for the GetGroupVersion operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3304,7 +3304,7 @@ const opGetLoggerDefinition = "GetLoggerDefinition"
 // GetLoggerDefinitionRequest generates a "aws/request.Request" representing the
 // client's request for the GetLoggerDefinition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3383,7 +3383,7 @@ const opGetLoggerDefinitionVersion = "GetLoggerDefinitionVersion"
 // GetLoggerDefinitionVersionRequest generates a "aws/request.Request" representing the
 // client's request for the GetLoggerDefinitionVersion operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3462,7 +3462,7 @@ const opGetResourceDefinition = "GetResourceDefinition"
 // GetResourceDefinitionRequest generates a "aws/request.Request" representing the
 // client's request for the GetResourceDefinition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3542,7 +3542,7 @@ const opGetResourceDefinitionVersion = "GetResourceDefinitionVersion"
 // GetResourceDefinitionVersionRequest generates a "aws/request.Request" representing the
 // client's request for the GetResourceDefinitionVersion operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3622,7 +3622,7 @@ const opGetServiceRoleForAccount = "GetServiceRoleForAccount"
 // GetServiceRoleForAccountRequest generates a "aws/request.Request" representing the
 // client's request for the GetServiceRoleForAccount operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3701,7 +3701,7 @@ const opGetSubscriptionDefinition = "GetSubscriptionDefinition"
 // GetSubscriptionDefinitionRequest generates a "aws/request.Request" representing the
 // client's request for the GetSubscriptionDefinition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3780,7 +3780,7 @@ const opGetSubscriptionDefinitionVersion = "GetSubscriptionDefinitionVersion"
 // GetSubscriptionDefinitionVersionRequest generates a "aws/request.Request" representing the
 // client's request for the GetSubscriptionDefinitionVersion operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3859,7 +3859,7 @@ const opListCoreDefinitionVersions = "ListCoreDefinitionVersions"
 // ListCoreDefinitionVersionsRequest generates a "aws/request.Request" representing the
 // client's request for the ListCoreDefinitionVersions operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3938,7 +3938,7 @@ const opListCoreDefinitions = "ListCoreDefinitions"
 // ListCoreDefinitionsRequest generates a "aws/request.Request" representing the
 // client's request for the ListCoreDefinitions operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -4012,7 +4012,7 @@ const opListDeployments = "ListDeployments"
 // ListDeploymentsRequest generates a "aws/request.Request" representing the
 // client's request for the ListDeployments operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -4091,7 +4091,7 @@ const opListDeviceDefinitionVersions = "ListDeviceDefinitionVersions"
 // ListDeviceDefinitionVersionsRequest generates a "aws/request.Request" representing the
 // client's request for the ListDeviceDefinitionVersions operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -4170,7 +4170,7 @@ const opListDeviceDefinitions = "ListDeviceDefinitions"
 // ListDeviceDefinitionsRequest generates a "aws/request.Request" representing the
 // client's request for the ListDeviceDefinitions operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -4244,7 +4244,7 @@ const opListFunctionDefinitionVersions = "ListFunctionDefinitionVersions"
 // ListFunctionDefinitionVersionsRequest generates a "aws/request.Request" representing the
 // client's request for the ListFunctionDefinitionVersions operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -4323,7 +4323,7 @@ const opListFunctionDefinitions = "ListFunctionDefinitions"
 // ListFunctionDefinitionsRequest generates a "aws/request.Request" representing the
 // client's request for the ListFunctionDefinitions operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -4397,7 +4397,7 @@ const opListGroupCertificateAuthorities = "ListGroupCertificateAuthorities"
 // ListGroupCertificateAuthoritiesRequest generates a "aws/request.Request" representing the
 // client's request for the ListGroupCertificateAuthorities operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -4479,7 +4479,7 @@ const opListGroupVersions = "ListGroupVersions"
 // ListGroupVersionsRequest generates a "aws/request.Request" representing the
 // client's request for the ListGroupVersions operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -4558,7 +4558,7 @@ const opListGroups = "ListGroups"
 // ListGroupsRequest generates a "aws/request.Request" representing the
 // client's request for the ListGroups operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -4632,7 +4632,7 @@ const opListLoggerDefinitionVersions = "ListLoggerDefinitionVersions"
 // ListLoggerDefinitionVersionsRequest generates a "aws/request.Request" representing the
 // client's request for the ListLoggerDefinitionVersions operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -4711,7 +4711,7 @@ const opListLoggerDefinitions = "ListLoggerDefinitions"
 // ListLoggerDefinitionsRequest generates a "aws/request.Request" representing the
 // client's request for the ListLoggerDefinitions operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -4785,7 +4785,7 @@ const opListResourceDefinitionVersions = "ListResourceDefinitionVersions"
 // ListResourceDefinitionVersionsRequest generates a "aws/request.Request" representing the
 // client's request for the ListResourceDefinitionVersions operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -4864,7 +4864,7 @@ const opListResourceDefinitions = "ListResourceDefinitions"
 // ListResourceDefinitionsRequest generates a "aws/request.Request" representing the
 // client's request for the ListResourceDefinitions operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -4938,7 +4938,7 @@ const opListSubscriptionDefinitionVersions = "ListSubscriptionDefinitionVersions
 // ListSubscriptionDefinitionVersionsRequest generates a "aws/request.Request" representing the
 // client's request for the ListSubscriptionDefinitionVersions operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -5017,7 +5017,7 @@ const opListSubscriptionDefinitions = "ListSubscriptionDefinitions"
 // ListSubscriptionDefinitionsRequest generates a "aws/request.Request" representing the
 // client's request for the ListSubscriptionDefinitions operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -5091,7 +5091,7 @@ const opResetDeployments = "ResetDeployments"
 // ResetDeploymentsRequest generates a "aws/request.Request" representing the
 // client's request for the ResetDeployments operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -5170,7 +5170,7 @@ const opUpdateConnectivityInfo = "UpdateConnectivityInfo"
 // UpdateConnectivityInfoRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateConnectivityInfo operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -5254,7 +5254,7 @@ const opUpdateCoreDefinition = "UpdateCoreDefinition"
 // UpdateCoreDefinitionRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateCoreDefinition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -5333,7 +5333,7 @@ const opUpdateDeviceDefinition = "UpdateDeviceDefinition"
 // UpdateDeviceDefinitionRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateDeviceDefinition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -5412,7 +5412,7 @@ const opUpdateFunctionDefinition = "UpdateFunctionDefinition"
 // UpdateFunctionDefinitionRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateFunctionDefinition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -5491,7 +5491,7 @@ const opUpdateGroup = "UpdateGroup"
 // UpdateGroupRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateGroup operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -5570,7 +5570,7 @@ const opUpdateGroupCertificateConfiguration = "UpdateGroupCertificateConfigurati
 // UpdateGroupCertificateConfigurationRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateGroupCertificateConfiguration operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -5652,7 +5652,7 @@ const opUpdateLoggerDefinition = "UpdateLoggerDefinition"
 // UpdateLoggerDefinitionRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateLoggerDefinition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -5731,7 +5731,7 @@ const opUpdateResourceDefinition = "UpdateResourceDefinition"
 // UpdateResourceDefinitionRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateResourceDefinition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -5810,7 +5810,7 @@ const opUpdateSubscriptionDefinition = "UpdateSubscriptionDefinition"
 // UpdateSubscriptionDefinitionRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateSubscriptionDefinition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.

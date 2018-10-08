@@ -15,7 +15,7 @@ const opCompareFaces = "CompareFaces"
 // CompareFacesRequest generates a "aws/request.Request" representing the
 // client's request for the CompareFaces operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -158,7 +158,7 @@ const opCreateCollection = "CreateCollection"
 // CreateCollectionRequest generates a "aws/request.Request" representing the
 // client's request for the CreateCollection operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -263,7 +263,7 @@ const opCreateStreamProcessor = "CreateStreamProcessor"
 // CreateStreamProcessorRequest generates a "aws/request.Request" representing the
 // client's request for the CreateStreamProcessor operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -378,7 +378,7 @@ const opDeleteCollection = "DeleteCollection"
 // DeleteCollectionRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteCollection operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -476,7 +476,7 @@ const opDeleteFaces = "DeleteFaces"
 // DeleteFacesRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteFaces operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -574,7 +574,7 @@ const opDeleteStreamProcessor = "DeleteStreamProcessor"
 // DeleteStreamProcessorRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteStreamProcessor operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -673,7 +673,7 @@ const opDescribeCollection = "DescribeCollection"
 // DescribeCollectionRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeCollection operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -772,7 +772,7 @@ const opDescribeStreamProcessor = "DescribeStreamProcessor"
 // DescribeStreamProcessorRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeStreamProcessor operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -868,7 +868,7 @@ const opDetectFaces = "DetectFaces"
 // DetectFacesRequest generates a "aws/request.Request" representing the
 // client's request for the DetectFaces operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -990,7 +990,7 @@ const opDetectLabels = "DetectLabels"
 // DetectLabelsRequest generates a "aws/request.Request" representing the
 // client's request for the DetectLabels operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1147,7 +1147,7 @@ const opDetectModerationLabels = "DetectModerationLabels"
 // DetectModerationLabelsRequest generates a "aws/request.Request" representing the
 // client's request for the DetectModerationLabels operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1262,7 +1262,7 @@ const opDetectText = "DetectText"
 // DetectTextRequest generates a "aws/request.Request" representing the
 // client's request for the DetectText operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1394,7 +1394,7 @@ const opGetCelebrityInfo = "GetCelebrityInfo"
 // GetCelebrityInfoRequest generates a "aws/request.Request" representing the
 // client's request for the GetCelebrityInfo operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1497,7 +1497,7 @@ const opGetCelebrityRecognition = "GetCelebrityRecognition"
 // GetCelebrityRecognitionRequest generates a "aws/request.Request" representing the
 // client's request for the GetCelebrityRecognition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1690,7 +1690,7 @@ const opGetContentModeration = "GetContentModeration"
 // GetContentModerationRequest generates a "aws/request.Request" representing the
 // client's request for the GetContentModeration operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1874,7 +1874,7 @@ const opGetFaceDetection = "GetFaceDetection"
 // GetFaceDetectionRequest generates a "aws/request.Request" representing the
 // client's request for the GetFaceDetection operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2047,7 +2047,7 @@ const opGetFaceSearch = "GetFaceSearch"
 // GetFaceSearchRequest generates a "aws/request.Request" representing the
 // client's request for the GetFaceSearch operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2228,7 +2228,7 @@ const opGetLabelDetection = "GetLabelDetection"
 // GetLabelDetectionRequest generates a "aws/request.Request" representing the
 // client's request for the GetLabelDetection operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2405,7 +2405,7 @@ const opGetPersonTracking = "GetPersonTracking"
 // GetPersonTrackingRequest generates a "aws/request.Request" representing the
 // client's request for the GetPersonTracking operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2589,7 +2589,7 @@ const opIndexFaces = "IndexFaces"
 // IndexFacesRequest generates a "aws/request.Request" representing the
 // client's request for the IndexFaces operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2778,7 +2778,7 @@ const opListCollections = "ListCollections"
 // ListCollectionsRequest generates a "aws/request.Request" representing the
 // client's request for the ListCollections operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2939,7 +2939,7 @@ const opListFaces = "ListFaces"
 // ListFacesRequest generates a "aws/request.Request" representing the
 // client's request for the ListFaces operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3098,7 +3098,7 @@ const opListStreamProcessors = "ListStreamProcessors"
 // ListStreamProcessorsRequest generates a "aws/request.Request" representing the
 // client's request for the ListStreamProcessors operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3248,7 +3248,7 @@ const opRecognizeCelebrities = "RecognizeCelebrities"
 // RecognizeCelebritiesRequest generates a "aws/request.Request" representing the
 // client's request for the RecognizeCelebrities operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3381,7 +3381,7 @@ const opSearchFaces = "SearchFaces"
 // SearchFacesRequest generates a "aws/request.Request" representing the
 // client's request for the SearchFaces operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3493,7 +3493,7 @@ const opSearchFacesByImage = "SearchFacesByImage"
 // SearchFacesByImageRequest generates a "aws/request.Request" representing the
 // client's request for the SearchFacesByImage operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3625,7 +3625,7 @@ const opStartCelebrityRecognition = "StartCelebrityRecognition"
 // StartCelebrityRecognitionRequest generates a "aws/request.Request" representing the
 // client's request for the StartCelebrityRecognition operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3748,7 +3748,7 @@ const opStartContentModeration = "StartContentModeration"
 // StartContentModerationRequest generates a "aws/request.Request" representing the
 // client's request for the StartContentModeration operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3873,7 +3873,7 @@ const opStartFaceDetection = "StartFaceDetection"
 // StartFaceDetectionRequest generates a "aws/request.Request" representing the
 // client's request for the StartFaceDetection operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3996,7 +3996,7 @@ const opStartFaceSearch = "StartFaceSearch"
 // StartFaceSearchRequest generates a "aws/request.Request" representing the
 // client's request for the StartFaceSearch operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -4120,7 +4120,7 @@ const opStartLabelDetection = "StartLabelDetection"
 // StartLabelDetectionRequest generates a "aws/request.Request" representing the
 // client's request for the StartLabelDetection operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -4247,7 +4247,7 @@ const opStartPersonTracking = "StartPersonTracking"
 // StartPersonTrackingRequest generates a "aws/request.Request" representing the
 // client's request for the StartPersonTracking operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -4368,7 +4368,7 @@ const opStartStreamProcessor = "StartStreamProcessor"
 // StartStreamProcessorRequest generates a "aws/request.Request" representing the
 // client's request for the StartStreamProcessor operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -4466,7 +4466,7 @@ const opStopStreamProcessor = "StopStreamProcessor"
 // StopStreamProcessorRequest generates a "aws/request.Request" representing the
 // client's request for the StopStreamProcessor operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.

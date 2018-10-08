@@ -15,7 +15,7 @@ const opBatchGetNamedQuery = "BatchGetNamedQuery"
 // BatchGetNamedQueryRequest generates a "aws/request.Request" representing the
 // client's request for the BatchGetNamedQuery operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -105,7 +105,7 @@ const opBatchGetQueryExecution = "BatchGetQueryExecution"
 // BatchGetQueryExecutionRequest generates a "aws/request.Request" representing the
 // client's request for the BatchGetQueryExecution operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -193,7 +193,7 @@ const opCreateNamedQuery = "CreateNamedQuery"
 // CreateNamedQueryRequest generates a "aws/request.Request" representing the
 // client's request for the CreateNamedQuery operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -281,7 +281,7 @@ const opDeleteNamedQuery = "DeleteNamedQuery"
 // DeleteNamedQueryRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteNamedQuery operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -369,7 +369,7 @@ const opGetNamedQuery = "GetNamedQuery"
 // GetNamedQueryRequest generates a "aws/request.Request" representing the
 // client's request for the GetNamedQuery operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -453,7 +453,7 @@ const opGetQueryExecution = "GetQueryExecution"
 // GetQueryExecutionRequest generates a "aws/request.Request" representing the
 // client's request for the GetQueryExecution operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -538,7 +538,7 @@ const opGetQueryResults = "GetQueryResults"
 // GetQueryResultsRequest generates a "aws/request.Request" representing the
 // client's request for the GetQueryResults operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -680,7 +680,7 @@ const opListNamedQueries = "ListNamedQueries"
 // ListNamedQueriesRequest generates a "aws/request.Request" representing the
 // client's request for the ListNamedQueries operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -824,7 +824,7 @@ const opListQueryExecutions = "ListQueryExecutions"
 // ListQueryExecutionsRequest generates a "aws/request.Request" representing the
 // client's request for the ListQueryExecutions operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -968,7 +968,7 @@ const opStartQueryExecution = "StartQueryExecution"
 // StartQueryExecutionRequest generates a "aws/request.Request" representing the
 // client's request for the StartQueryExecution operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1059,7 +1059,7 @@ const opStopQueryExecution = "StopQueryExecution"
 // StopQueryExecutionRequest generates a "aws/request.Request" representing the
 // client's request for the StopQueryExecution operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.

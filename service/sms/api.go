@@ -15,7 +15,7 @@ const opCreateReplicationJob = "CreateReplicationJob"
 // CreateReplicationJobRequest generates a "aws/request.Request" representing the
 // client's request for the CreateReplicationJob operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -123,7 +123,7 @@ const opDeleteReplicationJob = "DeleteReplicationJob"
 // DeleteReplicationJobRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteReplicationJob operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -221,7 +221,7 @@ const opDeleteServerCatalog = "DeleteServerCatalog"
 // DeleteServerCatalogRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteServerCatalog operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -315,7 +315,7 @@ const opDisassociateConnector = "DisassociateConnector"
 // DisassociateConnectorRequest generates a "aws/request.Request" representing the
 // client's request for the DisassociateConnector operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -408,7 +408,7 @@ const opGetConnectors = "GetConnectors"
 // GetConnectorsRequest generates a "aws/request.Request" representing the
 // client's request for the GetConnectors operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -544,7 +544,7 @@ const opGetReplicationJobs = "GetReplicationJobs"
 // GetReplicationJobsRequest generates a "aws/request.Request" representing the
 // client's request for the GetReplicationJobs operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -689,7 +689,7 @@ const opGetReplicationRuns = "GetReplicationRuns"
 // GetReplicationRunsRequest generates a "aws/request.Request" representing the
 // client's request for the GetReplicationRuns operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -834,7 +834,7 @@ const opGetServers = "GetServers"
 // GetServersRequest generates a "aws/request.Request" representing the
 // client's request for the GetServers operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -970,7 +970,7 @@ const opImportServerCatalog = "ImportServerCatalog"
 // ImportServerCatalogRequest generates a "aws/request.Request" representing the
 // client's request for the ImportServerCatalog operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1069,7 +1069,7 @@ const opStartOnDemandReplicationRun = "StartOnDemandReplicationRun"
 // StartOnDemandReplicationRunRequest generates a "aws/request.Request" representing the
 // client's request for the StartOnDemandReplicationRun operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1168,7 +1168,7 @@ const opUpdateReplicationJob = "UpdateReplicationJob"
 // UpdateReplicationJobRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateReplicationJob operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.

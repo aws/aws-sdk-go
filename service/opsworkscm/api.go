@@ -15,7 +15,7 @@ const opAssociateNode = "AssociateNode"
 // AssociateNodeRequest generates a "aws/request.Request" representing the
 // client's request for the AssociateNode operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -121,7 +121,7 @@ const opCreateBackup = "CreateBackup"
 // CreateBackupRequest generates a "aws/request.Request" representing the
 // client's request for the CreateBackup operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -223,7 +223,7 @@ const opCreateServer = "CreateServer"
 // CreateServerRequest generates a "aws/request.Request" representing the
 // client's request for the CreateServer operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -337,7 +337,7 @@ const opDeleteBackup = "DeleteBackup"
 // DeleteBackupRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteBackup operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -428,7 +428,7 @@ const opDeleteServer = "DeleteServer"
 // DeleteServerRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteServer operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -524,7 +524,7 @@ const opDescribeAccountAttributes = "DescribeAccountAttributes"
 // DescribeAccountAttributesRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeAccountAttributes operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -601,7 +601,7 @@ const opDescribeBackups = "DescribeBackups"
 // DescribeBackupsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeBackups operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -692,7 +692,7 @@ const opDescribeEvents = "DescribeEvents"
 // DescribeEventsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeEvents operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -783,7 +783,7 @@ const opDescribeNodeAssociationStatus = "DescribeNodeAssociationStatus"
 // DescribeNodeAssociationStatusRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeNodeAssociationStatus operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -869,7 +869,7 @@ const opDescribeServers = "DescribeServers"
 // DescribeServersRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeServers operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -961,7 +961,7 @@ const opDisassociateNode = "DisassociateNode"
 // DisassociateNodeRequest generates a "aws/request.Request" representing the
 // client's request for the DisassociateNode operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1055,7 +1055,7 @@ const opExportServerEngineAttribute = "ExportServerEngineAttribute"
 // ExportServerEngineAttributeRequest generates a "aws/request.Request" representing the
 // client's request for the ExportServerEngineAttribute operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1150,7 +1150,7 @@ const opRestoreServer = "RestoreServer"
 // RestoreServerRequest generates a "aws/request.Request" representing the
 // client's request for the RestoreServer operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1246,7 +1246,7 @@ const opStartMaintenance = "StartMaintenance"
 // StartMaintenanceRequest generates a "aws/request.Request" representing the
 // client's request for the StartMaintenance operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1340,7 +1340,7 @@ const opUpdateServer = "UpdateServer"
 // UpdateServerRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateServer operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1428,7 +1428,7 @@ const opUpdateServerEngineAttributes = "UpdateServerEngineAttributes"
 // UpdateServerEngineAttributesRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateServerEngineAttributes operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
