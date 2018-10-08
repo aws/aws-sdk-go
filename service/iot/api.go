@@ -16675,6 +16675,12 @@ type CreateJobInput struct {
 	//
 	// Targets is a required field
 	Targets []*string `locationName:"targets" min:"1" type:"list" required:"true"`
+
+	// Specifies the amount of time each device has to finish its execution of the
+	// job. The timer is started when the job execution status is set to IN_PROGRESS.
+	// If the job execution status is not set to another terminal state before the
+	// time expires, it will be automatically set to TIMED_OUT.
+	TimeoutConfig *TimeoutConfig `locationName:"timeoutConfig" type:"structure"`
 }
 
 // String returns the string representation
@@ -16767,6 +16773,12 @@ func (s *CreateJobInput) SetTargetSelection(v string) *CreateJobInput {
 // SetTargets sets the Targets field's value.
 func (s *CreateJobInput) SetTargets(v []*string) *CreateJobInput {
 	s.Targets = v
+	return s
+}
+
+// SetTimeoutConfig sets the TimeoutConfig field's value.
+func (s *CreateJobInput) SetTimeoutConfig(v *TimeoutConfig) *CreateJobInput {
+	s.TimeoutConfig = v
 	return s
 }
 
@@ -19937,7 +19949,16 @@ func (s *DescribeDefaultAuthorizerOutput) SetAuthorizerDescription(v *Authorizer
 type DescribeEndpointInput struct {
 	_ struct{} `type:"structure"`
 
-	// The endpoint type (such as iot:Data, iot:CredentialProvider and iot:Jobs).
+	// The endpoint type. Valid endpoint types include:
+	//
+	//    * iot:Data - Returns a VeriSign signed data endpoint.
+	//
+	//    * iot:Data-ATS - Returns an ATS signed data endpoint.
+	//
+	//    * iot:CredentialProvider - Returns an AWS IoT credentials provider API
+	//    endpoint.
+	//
+	//    * iot:Jobs - Returns an AWS IoT device management Jobs API endpoint.
 	EndpointType *string `location:"querystring" locationName:"endpointType" type:"string"`
 }
 
@@ -22988,7 +23009,8 @@ type Job struct {
 	// Configuration for pre-signed S3 URLs.
 	PresignedUrlConfig *PresignedUrlConfig `locationName:"presignedUrlConfig" type:"structure"`
 
-	// The status of the job, one of IN_PROGRESS, CANCELED, or COMPLETED.
+	// The status of the job, one of IN_PROGRESS, CANCELED, DELETION_IN_PROGRESS
+	// or COMPLETED.
 	Status *string `locationName:"status" type:"string" enum:"JobStatus"`
 
 	// Specifies whether the job will continue to run (CONTINUOUS), or will be complete
@@ -23001,6 +23023,12 @@ type Job struct {
 
 	// A list of IoT things and thing groups to which the job should be sent.
 	Targets []*string `locationName:"targets" min:"1" type:"list"`
+
+	// Specifies the amount of time each device has to finish its execution of the
+	// job. A timer is started when the job execution status is set to IN_PROGRESS.
+	// If the job execution status is not set to another terminal state before the
+	// timer expires, it will be automatically set to TIMED_OUT.
+	TimeoutConfig *TimeoutConfig `locationName:"timeoutConfig" type:"structure"`
 }
 
 // String returns the string representation
@@ -23097,10 +23125,20 @@ func (s *Job) SetTargets(v []*string) *Job {
 	return s
 }
 
+// SetTimeoutConfig sets the TimeoutConfig field's value.
+func (s *Job) SetTimeoutConfig(v *TimeoutConfig) *Job {
+	s.TimeoutConfig = v
+	return s
+}
+
 // The job execution object represents the execution of a job on a particular
 // device.
 type JobExecution struct {
 	_ struct{} `type:"structure"`
+
+	// The estimated number of seconds that remain before the job execution status
+	// will be changed to TIMED_OUT.
+	ApproximateSecondsBeforeTimedOut *int64 `locationName:"approximateSecondsBeforeTimedOut" type:"long"`
 
 	// A string (consisting of the digits "0" through "9") which identifies this
 	// particular job execution on this particular device. It can be used in commands
@@ -23124,8 +23162,8 @@ type JobExecution struct {
 	// The time, in milliseconds since the epoch, when the job execution started.
 	StartedAt *time.Time `locationName:"startedAt" type:"timestamp"`
 
-	// The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCESS, CANCELED,
-	// or REJECTED).
+	// The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCEEDED,
+	// TIMED_OUT, CANCELED, or REJECTED).
 	Status *string `locationName:"status" type:"string" enum:"JobExecutionStatus"`
 
 	// A collection of name/value pairs that describe the status of the job execution.
@@ -23147,6 +23185,12 @@ func (s JobExecution) String() string {
 // GoString returns the string representation
 func (s JobExecution) GoString() string {
 	return s.String()
+}
+
+// SetApproximateSecondsBeforeTimedOut sets the ApproximateSecondsBeforeTimedOut field's value.
+func (s *JobExecution) SetApproximateSecondsBeforeTimedOut(v int64) *JobExecution {
+	s.ApproximateSecondsBeforeTimedOut = &v
+	return s
 }
 
 // SetExecutionNumber sets the ExecutionNumber field's value.
@@ -23427,6 +23471,9 @@ type JobProcessDetails struct {
 	// The number of things which successfully completed the job.
 	NumberOfSucceededThings *int64 `locationName:"numberOfSucceededThings" type:"integer"`
 
+	// The number of things whose job execution status is TIMED_OUT.
+	NumberOfTimedOutThings *int64 `locationName:"numberOfTimedOutThings" type:"integer"`
+
 	// The target devices to which the job execution is being rolled out. This value
 	// will be null after the job execution has finished rolling out to all the
 	// target devices.
@@ -23482,6 +23529,12 @@ func (s *JobProcessDetails) SetNumberOfRemovedThings(v int64) *JobProcessDetails
 // SetNumberOfSucceededThings sets the NumberOfSucceededThings field's value.
 func (s *JobProcessDetails) SetNumberOfSucceededThings(v int64) *JobProcessDetails {
 	s.NumberOfSucceededThings = &v
+	return s
+}
+
+// SetNumberOfTimedOutThings sets the NumberOfTimedOutThings field's value.
+func (s *JobProcessDetails) SetNumberOfTimedOutThings(v int64) *JobProcessDetails {
+	s.NumberOfTimedOutThings = &v
 	return s
 }
 
@@ -31357,6 +31410,41 @@ func (s *ThingTypeProperties) SetThingTypeDescription(v string) *ThingTypeProper
 	return s
 }
 
+// Specifies the amount of time each device has to finish its execution of the
+// job. A timer is started when the job execution status is set to IN_PROGRESS.
+// If the job execution status is not set to another terminal state before the
+// timer expires, it will be automatically set to TIMED_OUT.
+type TimeoutConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the amount of time, in minutes, this device has to finish execution
+	// of this job. A timer is started, or restarted, whenever this job's execution
+	// status is specified as IN_PROGRESS with this field populated. If the job
+	// execution status is not set to a terminal state before the timer expires,
+	// or before another job execution status update is sent with this field populated,
+	// the status will be automatically set to TIMED_OUT. Note that setting/resetting
+	// this timer has no effect on the job execution timeout timer which may have
+	// been specified when the job was created (CreateJobExecution using the field
+	// timeoutConfig).
+	InProgressTimeoutInMinutes *int64 `locationName:"inProgressTimeoutInMinutes" type:"long"`
+}
+
+// String returns the string representation
+func (s TimeoutConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TimeoutConfig) GoString() string {
+	return s.String()
+}
+
+// SetInProgressTimeoutInMinutes sets the InProgressTimeoutInMinutes field's value.
+func (s *TimeoutConfig) SetInProgressTimeoutInMinutes(v int64) *TimeoutConfig {
+	s.InProgressTimeoutInMinutes = &v
+	return s
+}
+
 // Describes a rule.
 type TopicRule struct {
 	_ struct{} `type:"structure"`
@@ -33513,6 +33601,9 @@ const (
 
 	// JobExecutionStatusFailed is a JobExecutionStatus enum value
 	JobExecutionStatusFailed = "FAILED"
+
+	// JobExecutionStatusTimedOut is a JobExecutionStatus enum value
+	JobExecutionStatusTimedOut = "TIMED_OUT"
 
 	// JobExecutionStatusRejected is a JobExecutionStatus enum value
 	JobExecutionStatusRejected = "REJECTED"
