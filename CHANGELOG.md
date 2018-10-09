@@ -1,3 +1,10 @@
+Release v1.15.51 (2018-10-09)
+===
+
+### Service Client Updates
+* `service/ssm`: Updates service API and documentation
+  * Adds StartDate, EndDate, and ScheduleTimezone to CreateMaintenanceWindow and UpdateMaintenanceWindow; Adds NextExecutionTime to GetMaintenanceWindow and DescribeMaintenanceWindows; Adds CancelMaintenanceWindowExecution, DescribeMaintenanceWindowSchedule and DescribeMaintenanceWindowsForTarget APIs.
+
 Release v1.15.50 (2018-10-08)
 ===
 
