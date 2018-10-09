@@ -1,3 +1,5 @@
+// +build go1.7
+
 package stscreds
 
 import (
@@ -39,34 +41,6 @@ func TestWebIdentityProviderRetrieve(t *testing.T) {
 		expectedCredValue credentials.Value
 	}{
 		{
-			name:          "no role arn",
-			tokenFilepath: "foo/bar",
-			mockSTS: &mockSTS{
-				AssumeRoleWithWebIdentityFn: func(input *sts.AssumeRoleWithWebIdentityInput) (*sts.AssumeRoleWithWebIdentityOutput, error) {
-					if e, a := fmt.Sprintf("%d", now().UnixNano()), *input.RoleSessionName; !reflect.DeepEqual(e, a) {
-						t.Errorf("expected %v, but received %v", e, a)
-					}
-
-					return &sts.AssumeRoleWithWebIdentityOutput{}, nil
-				},
-			},
-			expectedError: emptyRoleARNErr,
-		},
-		{
-			name:    "no token file path",
-			roleARN: "arn",
-			mockSTS: &mockSTS{
-				AssumeRoleWithWebIdentityFn: func(input *sts.AssumeRoleWithWebIdentityInput) (*sts.AssumeRoleWithWebIdentityOutput, error) {
-					if e, a := fmt.Sprintf("%d", now().UnixNano()), *input.RoleSessionName; !reflect.DeepEqual(e, a) {
-						t.Errorf("expected %v, but received %v", e, a)
-					}
-
-					return &sts.AssumeRoleWithWebIdentityOutput{}, nil
-				},
-			},
-			expectedError: emptyTokenFilePathErr,
-		},
-		{
 			name:          "session name case",
 			roleARN:       "arn",
 			tokenFilepath: "testdata/token.jwt",
@@ -82,6 +56,7 @@ func TestWebIdentityProviderRetrieve(t *testing.T) {
 							Expiration:      aws.Time(time.Now()),
 							AccessKeyId:     aws.String("access-key-id"),
 							SecretAccessKey: aws.String("secret-access-key"),
+							SessionToken:    aws.String("session-token"),
 						},
 					}, nil
 				},
@@ -89,6 +64,8 @@ func TestWebIdentityProviderRetrieve(t *testing.T) {
 			expectedCredValue: credentials.Value{
 				AccessKeyID:     "access-key-id",
 				SecretAccessKey: "secret-access-key",
+				SessionToken:    "session-token",
+				ProviderName:    WebIdentityProviderName,
 			},
 		},
 		{
@@ -106,6 +83,7 @@ func TestWebIdentityProviderRetrieve(t *testing.T) {
 							Expiration:      aws.Time(time.Now()),
 							AccessKeyId:     aws.String("access-key-id"),
 							SecretAccessKey: aws.String("secret-access-key"),
+							SessionToken:    aws.String("session-token"),
 						},
 					}, nil
 				},
@@ -113,6 +91,8 @@ func TestWebIdentityProviderRetrieve(t *testing.T) {
 			expectedCredValue: credentials.Value{
 				AccessKeyID:     "access-key-id",
 				SecretAccessKey: "secret-access-key",
+				SessionToken:    "session-token",
+				ProviderName:    WebIdentityProviderName,
 			},
 		},
 	}

@@ -284,6 +284,14 @@ func Must(sess *Session, err error) *Session {
 	return sess
 }
 
+// WebIdentityEmptyRoleARNErr will occur if 'AWS_WEB_IDENTITY_TOKEN_FILE' was set but
+// 'AWS_IAM_ROLE_ARN' was not set.
+var WebIdentityEmptyRoleARNErr = awserr.New(stscreds.ErrCodeWebIdentity, "role ARN is not set", nil)
+
+// WebIdentityEmptyTokenFilePathErr will occur if 'AWS_IAM_ROLE_ARN' was set but
+// 'AWS_WEB_IDENTITY_TOKEN_FILE' was not set.
+var WebIdentityEmptyTokenFilePathErr = awserr.New(stscreds.ErrCodeWebIdentity, "token file path is not set", nil)
+
 func deprecatedNewSession(cfgs ...*aws.Config) *Session {
 	cfg := defaults.Config()
 	handlers := defaults.Handlers()
@@ -441,9 +449,17 @@ func mergeConfigSrcs(cfg, userCfg *aws.Config, envCfg envConfig, sharedCfg share
 				envCfg.Creds,
 			)
 
-		} else if len(envCfg.WebIdentityTokenFilePath) > 0 {
+		} else if len(envCfg.WebIdentityTokenFilePath) > 0 || len(envCfg.WebIdentityRoleARN) > 0 {
 			// handles assume role via OIDC token. This should happen before any other
 			// assume role call.
+			if len(envCfg.WebIdentityTokenFilePath) == 0 {
+				return WebIdentityEmptyTokenFilePathErr
+			}
+
+			if len(envCfg.WebIdentityRoleARN) == 0 {
+				return WebIdentityEmptyRoleARNErr
+			}
+
 			sessionName := envCfg.IAMRoleSessionName
 			if len(sessionName) == 0 {
 				sessionName = sharedCfg.AssumeRole.RoleSessionName
