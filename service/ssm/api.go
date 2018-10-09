@@ -225,6 +225,94 @@ func (c *SSM) CancelCommandWithContext(ctx aws.Context, input *CancelCommandInpu
 	return out, req.Send()
 }
 
+const opCancelMaintenanceWindowExecution = "CancelMaintenanceWindowExecution"
+
+// CancelMaintenanceWindowExecutionRequest generates a "aws/request.Request" representing the
+// client's request for the CancelMaintenanceWindowExecution operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CancelMaintenanceWindowExecution for more information on using the CancelMaintenanceWindowExecution
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CancelMaintenanceWindowExecutionRequest method.
+//    req, resp := client.CancelMaintenanceWindowExecutionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/CancelMaintenanceWindowExecution
+func (c *SSM) CancelMaintenanceWindowExecutionRequest(input *CancelMaintenanceWindowExecutionInput) (req *request.Request, output *CancelMaintenanceWindowExecutionOutput) {
+	op := &request.Operation{
+		Name:       opCancelMaintenanceWindowExecution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CancelMaintenanceWindowExecutionInput{}
+	}
+
+	output = &CancelMaintenanceWindowExecutionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CancelMaintenanceWindowExecution API operation for Amazon Simple Systems Manager (SSM).
+//
+// Stops a Maintenance Window execution that is already in progress and cancels
+// any tasks in the window that have not already starting running. (Tasks already
+// in progress will continue to completion.)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Systems Manager (SSM)'s
+// API operation CancelMaintenanceWindowExecution for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInternalServerError "InternalServerError"
+//   An error occurred on the server side.
+//
+//   * ErrCodeDoesNotExistException "DoesNotExistException"
+//   Error returned when the ID specified for a resource, such as a Maintenance
+//   Window or Patch baseline, doesn't exist.
+//
+//   For information about resource limits in Systems Manager, see AWS Systems
+//   Manager Limits (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_ssm).
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/CancelMaintenanceWindowExecution
+func (c *SSM) CancelMaintenanceWindowExecution(input *CancelMaintenanceWindowExecutionInput) (*CancelMaintenanceWindowExecutionOutput, error) {
+	req, out := c.CancelMaintenanceWindowExecutionRequest(input)
+	return out, req.Send()
+}
+
+// CancelMaintenanceWindowExecutionWithContext is the same as CancelMaintenanceWindowExecution with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelMaintenanceWindowExecution for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SSM) CancelMaintenanceWindowExecutionWithContext(ctx aws.Context, input *CancelMaintenanceWindowExecutionInput, opts ...request.Option) (*CancelMaintenanceWindowExecutionOutput, error) {
+	req, out := c.CancelMaintenanceWindowExecutionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateActivation = "CreateActivation"
 
 // CreateActivationRequest generates a "aws/request.Request" representing the
@@ -4038,6 +4126,92 @@ func (c *SSM) DescribeMaintenanceWindowExecutionsWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opDescribeMaintenanceWindowSchedule = "DescribeMaintenanceWindowSchedule"
+
+// DescribeMaintenanceWindowScheduleRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeMaintenanceWindowSchedule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeMaintenanceWindowSchedule for more information on using the DescribeMaintenanceWindowSchedule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeMaintenanceWindowScheduleRequest method.
+//    req, resp := client.DescribeMaintenanceWindowScheduleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeMaintenanceWindowSchedule
+func (c *SSM) DescribeMaintenanceWindowScheduleRequest(input *DescribeMaintenanceWindowScheduleInput) (req *request.Request, output *DescribeMaintenanceWindowScheduleOutput) {
+	op := &request.Operation{
+		Name:       opDescribeMaintenanceWindowSchedule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeMaintenanceWindowScheduleInput{}
+	}
+
+	output = &DescribeMaintenanceWindowScheduleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeMaintenanceWindowSchedule API operation for Amazon Simple Systems Manager (SSM).
+//
+// Retrieves information about upcoming executions of a Maintenance Window.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Systems Manager (SSM)'s
+// API operation DescribeMaintenanceWindowSchedule for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInternalServerError "InternalServerError"
+//   An error occurred on the server side.
+//
+//   * ErrCodeDoesNotExistException "DoesNotExistException"
+//   Error returned when the ID specified for a resource, such as a Maintenance
+//   Window or Patch baseline, doesn't exist.
+//
+//   For information about resource limits in Systems Manager, see AWS Systems
+//   Manager Limits (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_ssm).
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeMaintenanceWindowSchedule
+func (c *SSM) DescribeMaintenanceWindowSchedule(input *DescribeMaintenanceWindowScheduleInput) (*DescribeMaintenanceWindowScheduleOutput, error) {
+	req, out := c.DescribeMaintenanceWindowScheduleRequest(input)
+	return out, req.Send()
+}
+
+// DescribeMaintenanceWindowScheduleWithContext is the same as DescribeMaintenanceWindowSchedule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeMaintenanceWindowSchedule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SSM) DescribeMaintenanceWindowScheduleWithContext(ctx aws.Context, input *DescribeMaintenanceWindowScheduleInput, opts ...request.Option) (*DescribeMaintenanceWindowScheduleOutput, error) {
+	req, out := c.DescribeMaintenanceWindowScheduleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeMaintenanceWindowTargets = "DescribeMaintenanceWindowTargets"
 
 // DescribeMaintenanceWindowTargetsRequest generates a "aws/request.Request" representing the
@@ -4284,6 +4458,86 @@ func (c *SSM) DescribeMaintenanceWindows(input *DescribeMaintenanceWindowsInput)
 // for more information on using Contexts.
 func (c *SSM) DescribeMaintenanceWindowsWithContext(ctx aws.Context, input *DescribeMaintenanceWindowsInput, opts ...request.Option) (*DescribeMaintenanceWindowsOutput, error) {
 	req, out := c.DescribeMaintenanceWindowsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeMaintenanceWindowsForTarget = "DescribeMaintenanceWindowsForTarget"
+
+// DescribeMaintenanceWindowsForTargetRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeMaintenanceWindowsForTarget operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeMaintenanceWindowsForTarget for more information on using the DescribeMaintenanceWindowsForTarget
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeMaintenanceWindowsForTargetRequest method.
+//    req, resp := client.DescribeMaintenanceWindowsForTargetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeMaintenanceWindowsForTarget
+func (c *SSM) DescribeMaintenanceWindowsForTargetRequest(input *DescribeMaintenanceWindowsForTargetInput) (req *request.Request, output *DescribeMaintenanceWindowsForTargetOutput) {
+	op := &request.Operation{
+		Name:       opDescribeMaintenanceWindowsForTarget,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeMaintenanceWindowsForTargetInput{}
+	}
+
+	output = &DescribeMaintenanceWindowsForTargetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeMaintenanceWindowsForTarget API operation for Amazon Simple Systems Manager (SSM).
+//
+// Retrieves information about the Maintenance Windows targets or tasks that
+// an instance is associated with.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Systems Manager (SSM)'s
+// API operation DescribeMaintenanceWindowsForTarget for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInternalServerError "InternalServerError"
+//   An error occurred on the server side.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeMaintenanceWindowsForTarget
+func (c *SSM) DescribeMaintenanceWindowsForTarget(input *DescribeMaintenanceWindowsForTargetInput) (*DescribeMaintenanceWindowsForTargetOutput, error) {
+	req, out := c.DescribeMaintenanceWindowsForTargetRequest(input)
+	return out, req.Send()
+}
+
+// DescribeMaintenanceWindowsForTargetWithContext is the same as DescribeMaintenanceWindowsForTarget with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeMaintenanceWindowsForTarget for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SSM) DescribeMaintenanceWindowsForTargetWithContext(ctx aws.Context, input *DescribeMaintenanceWindowsForTargetInput, opts ...request.Option) (*DescribeMaintenanceWindowsForTargetOutput, error) {
+	req, out := c.DescribeMaintenanceWindowsForTargetRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -12272,6 +12526,70 @@ func (s CancelCommandOutput) GoString() string {
 	return s.String()
 }
 
+type CancelMaintenanceWindowExecutionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Maintenance Window execution to stop.
+	//
+	// WindowExecutionId is a required field
+	WindowExecutionId *string `min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CancelMaintenanceWindowExecutionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CancelMaintenanceWindowExecutionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelMaintenanceWindowExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelMaintenanceWindowExecutionInput"}
+	if s.WindowExecutionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WindowExecutionId"))
+	}
+	if s.WindowExecutionId != nil && len(*s.WindowExecutionId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("WindowExecutionId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetWindowExecutionId sets the WindowExecutionId field's value.
+func (s *CancelMaintenanceWindowExecutionInput) SetWindowExecutionId(v string) *CancelMaintenanceWindowExecutionInput {
+	s.WindowExecutionId = &v
+	return s
+}
+
+type CancelMaintenanceWindowExecutionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Maintenance Window execution that has been stopped.
+	WindowExecutionId *string `min:"36" type:"string"`
+}
+
+// String returns the string representation
+func (s CancelMaintenanceWindowExecutionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CancelMaintenanceWindowExecutionOutput) GoString() string {
+	return s.String()
+}
+
+// SetWindowExecutionId sets the WindowExecutionId field's value.
+func (s *CancelMaintenanceWindowExecutionOutput) SetWindowExecutionId(v string) *CancelMaintenanceWindowExecutionOutput {
+	s.WindowExecutionId = &v
+	return s
+}
+
 // Configuration options for sending command output to CloudWatch Logs.
 type CloudWatchOutputConfig struct {
 	_ struct{} `type:"structure"`
@@ -14114,6 +14432,11 @@ type CreateMaintenanceWindowInput struct {
 	// Duration is a required field
 	Duration *int64 `min:"1" type:"integer" required:"true"`
 
+	// The date and time, in ISO-8601 Extended format, for when you want the Maintenance
+	// Window to become inactive. EndDate allows you to set a date and time in the
+	// future when the Maintenance Window will no longer run.
+	EndDate *string `type:"string"`
+
 	// The name of the Maintenance Window.
 	//
 	// Name is a required field
@@ -14123,6 +14446,17 @@ type CreateMaintenanceWindowInput struct {
 	//
 	// Schedule is a required field
 	Schedule *string `min:"1" type:"string" required:"true"`
+
+	// The time zone that the scheduled Maintenance Window executions are based
+	// on, in Internet Assigned Numbers Authority (IANA) format. For example: "America/Los_Angeles",
+	// "etc/UTC", or "Asia/Seoul". For more information, see the Time Zone Database
+	// (https://www.iana.org/time-zones) on the IANA website.
+	ScheduleTimezone *string `type:"string"`
+
+	// The date and time, in ISO-8601 Extended format, for when you want the Maintenance
+	// Window to become active. StartDate allows you to delay activation of the
+	// Maintenance Window until the specified future date.
+	StartDate *string `type:"string"`
 }
 
 // String returns the string representation
@@ -14205,6 +14539,12 @@ func (s *CreateMaintenanceWindowInput) SetDuration(v int64) *CreateMaintenanceWi
 	return s
 }
 
+// SetEndDate sets the EndDate field's value.
+func (s *CreateMaintenanceWindowInput) SetEndDate(v string) *CreateMaintenanceWindowInput {
+	s.EndDate = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *CreateMaintenanceWindowInput) SetName(v string) *CreateMaintenanceWindowInput {
 	s.Name = &v
@@ -14214,6 +14554,18 @@ func (s *CreateMaintenanceWindowInput) SetName(v string) *CreateMaintenanceWindo
 // SetSchedule sets the Schedule field's value.
 func (s *CreateMaintenanceWindowInput) SetSchedule(v string) *CreateMaintenanceWindowInput {
 	s.Schedule = &v
+	return s
+}
+
+// SetScheduleTimezone sets the ScheduleTimezone field's value.
+func (s *CreateMaintenanceWindowInput) SetScheduleTimezone(v string) *CreateMaintenanceWindowInput {
+	s.ScheduleTimezone = &v
+	return s
+}
+
+// SetStartDate sets the StartDate field's value.
+func (s *CreateMaintenanceWindowInput) SetStartDate(v string) *CreateMaintenanceWindowInput {
+	s.StartDate = &v
 	return s
 }
 
@@ -17635,6 +17987,150 @@ func (s *DescribeMaintenanceWindowExecutionsOutput) SetWindowExecutions(v []*Mai
 	return s
 }
 
+type DescribeMaintenanceWindowScheduleInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters used to limit the range of results. For example, you can limit Maintenance
+	// Window executions to only those scheduled before or after a certain date
+	// and time.
+	Filters []*PatchOrchestratorFilter `type:"list"`
+
+	// The maximum number of items to return for this call. The call also returns
+	// a token that you can specify in a subsequent call to get the next set of
+	// results.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of items to return. (You received this token from
+	// a previous call.)
+	NextToken *string `type:"string"`
+
+	// The type of resource you want to retrieve information about. For example,
+	// "INSTANCE".
+	ResourceType *string `type:"string" enum:"MaintenanceWindowResourceType"`
+
+	// The instance ID or key/value pair to retrieve information about.
+	Targets []*Target `type:"list"`
+
+	// The ID of the Maintenance Window to retrieve information about.
+	WindowId *string `min:"20" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeMaintenanceWindowScheduleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeMaintenanceWindowScheduleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeMaintenanceWindowScheduleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeMaintenanceWindowScheduleInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.WindowId != nil && len(*s.WindowId) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("WindowId", 20))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Targets != nil {
+		for i, v := range s.Targets {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Targets", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeMaintenanceWindowScheduleInput) SetFilters(v []*PatchOrchestratorFilter) *DescribeMaintenanceWindowScheduleInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeMaintenanceWindowScheduleInput) SetMaxResults(v int64) *DescribeMaintenanceWindowScheduleInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeMaintenanceWindowScheduleInput) SetNextToken(v string) *DescribeMaintenanceWindowScheduleInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *DescribeMaintenanceWindowScheduleInput) SetResourceType(v string) *DescribeMaintenanceWindowScheduleInput {
+	s.ResourceType = &v
+	return s
+}
+
+// SetTargets sets the Targets field's value.
+func (s *DescribeMaintenanceWindowScheduleInput) SetTargets(v []*Target) *DescribeMaintenanceWindowScheduleInput {
+	s.Targets = v
+	return s
+}
+
+// SetWindowId sets the WindowId field's value.
+func (s *DescribeMaintenanceWindowScheduleInput) SetWindowId(v string) *DescribeMaintenanceWindowScheduleInput {
+	s.WindowId = &v
+	return s
+}
+
+type DescribeMaintenanceWindowScheduleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token for the next set of items to return. (You use this token in the
+	// next call.)
+	NextToken *string `type:"string"`
+
+	// Information about Maintenance Window executions scheduled for the specified
+	// time range.
+	ScheduledWindowExecutions []*ScheduledWindowExecution `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeMaintenanceWindowScheduleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeMaintenanceWindowScheduleOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeMaintenanceWindowScheduleOutput) SetNextToken(v string) *DescribeMaintenanceWindowScheduleOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetScheduledWindowExecutions sets the ScheduledWindowExecutions field's value.
+func (s *DescribeMaintenanceWindowScheduleOutput) SetScheduledWindowExecutions(v []*ScheduledWindowExecution) *DescribeMaintenanceWindowScheduleOutput {
+	s.ScheduledWindowExecutions = v
+	return s
+}
+
 type DescribeMaintenanceWindowTargetsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17868,6 +18364,127 @@ func (s *DescribeMaintenanceWindowTasksOutput) SetNextToken(v string) *DescribeM
 // SetTasks sets the Tasks field's value.
 func (s *DescribeMaintenanceWindowTasksOutput) SetTasks(v []*MaintenanceWindowTask) *DescribeMaintenanceWindowTasksOutput {
 	s.Tasks = v
+	return s
+}
+
+type DescribeMaintenanceWindowsForTargetInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of items to return for this call. The call also returns
+	// a token that you can specify in a subsequent call to get the next set of
+	// results.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of items to return. (You received this token from
+	// a previous call.)
+	NextToken *string `type:"string"`
+
+	// The type of resource you want to retrieve information about. For example,
+	// "INSTANCE".
+	//
+	// ResourceType is a required field
+	ResourceType *string `type:"string" required:"true" enum:"MaintenanceWindowResourceType"`
+
+	// The instance ID or key/value pair to retrieve information about.
+	//
+	// Targets is a required field
+	Targets []*Target `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeMaintenanceWindowsForTargetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeMaintenanceWindowsForTargetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeMaintenanceWindowsForTargetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeMaintenanceWindowsForTargetInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+	if s.Targets == nil {
+		invalidParams.Add(request.NewErrParamRequired("Targets"))
+	}
+	if s.Targets != nil {
+		for i, v := range s.Targets {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Targets", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeMaintenanceWindowsForTargetInput) SetMaxResults(v int64) *DescribeMaintenanceWindowsForTargetInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeMaintenanceWindowsForTargetInput) SetNextToken(v string) *DescribeMaintenanceWindowsForTargetInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *DescribeMaintenanceWindowsForTargetInput) SetResourceType(v string) *DescribeMaintenanceWindowsForTargetInput {
+	s.ResourceType = &v
+	return s
+}
+
+// SetTargets sets the Targets field's value.
+func (s *DescribeMaintenanceWindowsForTargetInput) SetTargets(v []*Target) *DescribeMaintenanceWindowsForTargetInput {
+	s.Targets = v
+	return s
+}
+
+type DescribeMaintenanceWindowsForTargetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token for the next set of items to return. (You use this token in the
+	// next call.)
+	NextToken *string `type:"string"`
+
+	// Information about the Maintenance Window targets and tasks an instance is
+	// associated with.
+	WindowIdentities []*MaintenanceWindowIdentityForTarget `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeMaintenanceWindowsForTargetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeMaintenanceWindowsForTargetOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeMaintenanceWindowsForTargetOutput) SetNextToken(v string) *DescribeMaintenanceWindowsForTargetOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetWindowIdentities sets the WindowIdentities field's value.
+func (s *DescribeMaintenanceWindowsForTargetOutput) SetWindowIdentities(v []*MaintenanceWindowIdentityForTarget) *DescribeMaintenanceWindowsForTargetOutput {
+	s.WindowIdentities = v
 	return s
 }
 
@@ -20782,14 +21399,34 @@ type GetMaintenanceWindowOutput struct {
 	// Whether the Maintenance Windows is enabled.
 	Enabled *bool `type:"boolean"`
 
+	// The date and time, in ISO-8601 Extended format, for when the Maintenance
+	// Window is scheduled to become inactive. The Maintenance Window will not run
+	// after this specified time.
+	EndDate *string `type:"string"`
+
 	// The date the Maintenance Window was last modified.
 	ModifiedDate *time.Time `type:"timestamp"`
 
 	// The name of the Maintenance Window.
 	Name *string `min:"3" type:"string"`
 
+	// The next time the Maintenance Window will actually run, taking into account
+	// any specified times for the Maintenance Window to become active or inactive.
+	NextExecutionTime *string `type:"string"`
+
 	// The schedule of the Maintenance Window in the form of a cron or rate expression.
 	Schedule *string `min:"1" type:"string"`
+
+	// The time zone that the scheduled Maintenance Window executions are based
+	// on, in Internet Assigned Numbers Authority (IANA) format. For example: "America/Los_Angeles",
+	// "etc/UTC", or "Asia/Seoul". For more information, see the Time Zone Database
+	// (https://www.iana.org/time-zones) on the IANA website.
+	ScheduleTimezone *string `type:"string"`
+
+	// The date and time, in ISO-8601 Extended format, for when the Maintenance
+	// Window is scheduled to become active. The Maintenance Window will not run
+	// before this specified time.
+	StartDate *string `type:"string"`
 
 	// The ID of the created Maintenance Window.
 	WindowId *string `min:"20" type:"string"`
@@ -20841,6 +21478,12 @@ func (s *GetMaintenanceWindowOutput) SetEnabled(v bool) *GetMaintenanceWindowOut
 	return s
 }
 
+// SetEndDate sets the EndDate field's value.
+func (s *GetMaintenanceWindowOutput) SetEndDate(v string) *GetMaintenanceWindowOutput {
+	s.EndDate = &v
+	return s
+}
+
 // SetModifiedDate sets the ModifiedDate field's value.
 func (s *GetMaintenanceWindowOutput) SetModifiedDate(v time.Time) *GetMaintenanceWindowOutput {
 	s.ModifiedDate = &v
@@ -20853,9 +21496,27 @@ func (s *GetMaintenanceWindowOutput) SetName(v string) *GetMaintenanceWindowOutp
 	return s
 }
 
+// SetNextExecutionTime sets the NextExecutionTime field's value.
+func (s *GetMaintenanceWindowOutput) SetNextExecutionTime(v string) *GetMaintenanceWindowOutput {
+	s.NextExecutionTime = &v
+	return s
+}
+
 // SetSchedule sets the Schedule field's value.
 func (s *GetMaintenanceWindowOutput) SetSchedule(v string) *GetMaintenanceWindowOutput {
 	s.Schedule = &v
+	return s
+}
+
+// SetScheduleTimezone sets the ScheduleTimezone field's value.
+func (s *GetMaintenanceWindowOutput) SetScheduleTimezone(v string) *GetMaintenanceWindowOutput {
+	s.ScheduleTimezone = &v
+	return s
+}
+
+// SetStartDate sets the StartDate field's value.
+func (s *GetMaintenanceWindowOutput) SetStartDate(v string) *GetMaintenanceWindowOutput {
+	s.StartDate = &v
 	return s
 }
 
@@ -25169,7 +25830,7 @@ func (s *MaintenanceWindowExecutionTaskInvocationIdentity) SetWindowTargetId(v s
 	return s
 }
 
-// Filter used in the request.
+// Filter used in the request. Supported filter keys are Name and Enabled.
 type MaintenanceWindowFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -25232,8 +25893,27 @@ type MaintenanceWindowIdentity struct {
 	// Whether the Maintenance Window is enabled.
 	Enabled *bool `type:"boolean"`
 
+	// The date and time, in ISO-8601 Extended format, for when the Maintenance
+	// Window is scheduled to become inactive.
+	EndDate *string `type:"string"`
+
 	// The name of the Maintenance Window.
 	Name *string `min:"3" type:"string"`
+
+	// The next time the Maintenance Window will actually run, taking into account
+	// any specified times for the Maintenance Window to become active or inactive.
+	NextExecutionTime *string `type:"string"`
+
+	// The schedule of the Maintenance Window in the form of a cron or rate expression.
+	Schedule *string `min:"1" type:"string"`
+
+	// The time zone that the scheduled Maintenance Window executions are based
+	// on, in Internet Assigned Numbers Authority (IANA) format.
+	ScheduleTimezone *string `type:"string"`
+
+	// The date and time, in ISO-8601 Extended format, for when the Maintenance
+	// Window is scheduled to become active.
+	StartDate *string `type:"string"`
 
 	// The ID of the Maintenance Window.
 	WindowId *string `min:"20" type:"string"`
@@ -25273,14 +25953,77 @@ func (s *MaintenanceWindowIdentity) SetEnabled(v bool) *MaintenanceWindowIdentit
 	return s
 }
 
+// SetEndDate sets the EndDate field's value.
+func (s *MaintenanceWindowIdentity) SetEndDate(v string) *MaintenanceWindowIdentity {
+	s.EndDate = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *MaintenanceWindowIdentity) SetName(v string) *MaintenanceWindowIdentity {
 	s.Name = &v
 	return s
 }
 
+// SetNextExecutionTime sets the NextExecutionTime field's value.
+func (s *MaintenanceWindowIdentity) SetNextExecutionTime(v string) *MaintenanceWindowIdentity {
+	s.NextExecutionTime = &v
+	return s
+}
+
+// SetSchedule sets the Schedule field's value.
+func (s *MaintenanceWindowIdentity) SetSchedule(v string) *MaintenanceWindowIdentity {
+	s.Schedule = &v
+	return s
+}
+
+// SetScheduleTimezone sets the ScheduleTimezone field's value.
+func (s *MaintenanceWindowIdentity) SetScheduleTimezone(v string) *MaintenanceWindowIdentity {
+	s.ScheduleTimezone = &v
+	return s
+}
+
+// SetStartDate sets the StartDate field's value.
+func (s *MaintenanceWindowIdentity) SetStartDate(v string) *MaintenanceWindowIdentity {
+	s.StartDate = &v
+	return s
+}
+
 // SetWindowId sets the WindowId field's value.
 func (s *MaintenanceWindowIdentity) SetWindowId(v string) *MaintenanceWindowIdentity {
+	s.WindowId = &v
+	return s
+}
+
+// The Maintenance Window to which the specified target belongs.
+type MaintenanceWindowIdentityForTarget struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Maintenance Window.
+	Name *string `min:"3" type:"string"`
+
+	// The ID of the Maintenance Window.
+	WindowId *string `min:"20" type:"string"`
+}
+
+// String returns the string representation
+func (s MaintenanceWindowIdentityForTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MaintenanceWindowIdentityForTarget) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *MaintenanceWindowIdentityForTarget) SetName(v string) *MaintenanceWindowIdentityForTarget {
+	s.Name = &v
+	return s
+}
+
+// SetWindowId sets the WindowId field's value.
+func (s *MaintenanceWindowIdentityForTarget) SetWindowId(v string) *MaintenanceWindowIdentityForTarget {
 	s.WindowId = &v
 	return s
 }
@@ -29292,6 +30035,49 @@ func (s *S3OutputUrl) SetOutputUrl(v string) *S3OutputUrl {
 	return s
 }
 
+// Information about a scheduled execution for a Maintenance Window.
+type ScheduledWindowExecution struct {
+	_ struct{} `type:"structure"`
+
+	// The time, in ISO-8601 Extended format, that the Maintenance Window is scheduled
+	// to be run.
+	ExecutionTime *string `type:"string"`
+
+	// The name of the Maintenance Window to be run.
+	Name *string `min:"3" type:"string"`
+
+	// The ID of the Maintenance Window to be run.
+	WindowId *string `min:"20" type:"string"`
+}
+
+// String returns the string representation
+func (s ScheduledWindowExecution) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ScheduledWindowExecution) GoString() string {
+	return s.String()
+}
+
+// SetExecutionTime sets the ExecutionTime field's value.
+func (s *ScheduledWindowExecution) SetExecutionTime(v string) *ScheduledWindowExecution {
+	s.ExecutionTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ScheduledWindowExecution) SetName(v string) *ScheduledWindowExecution {
+	s.Name = &v
+	return s
+}
+
+// SetWindowId sets the WindowId field's value.
+func (s *ScheduledWindowExecution) SetWindowId(v string) *ScheduledWindowExecution {
+	s.WindowId = &v
+	return s
+}
+
 type SendAutomationSignalInput struct {
 	_ struct{} `type:"structure"`
 
@@ -29418,7 +30204,7 @@ type SendCommandInput struct {
 	// The instance IDs where the command should execute. You can specify a maximum
 	// of 50 IDs. If you prefer not to list individual instance IDs, you can instead
 	// send commands to a fleet of instances using the Targets parameter, which
-	// accepts EC2 tags. For more information about how to use Targets, see Sending
+	// accepts EC2 tags. For more information about how to use targets, see Sending
 	// Commands to a Fleet (http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html)
 	// in the AWS Systems Manager User Guide.
 	InstanceIds []*string `type:"list"`
@@ -29461,7 +30247,7 @@ type SendCommandInput struct {
 
 	// (Optional) An array of search criteria that targets instances using a Key,Value
 	// combination that you specify. Targets is required if you don't provide one
-	// or more instance IDs in the call. For more information about how to use Targets,
+	// or more instance IDs in the call. For more information about how to use targets,
 	// see Sending Commands to a Fleet (http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html)
 	// in the AWS Systems Manager User Guide.
 	Targets []*Target `type:"list"`
@@ -30050,7 +30836,7 @@ type StartAutomationExecutionInput struct {
 	TargetMaps []map[string][]*string `type:"list"`
 
 	// The name of the parameter used as the target resource for the rate-controlled
-	// execution. Required if you specify Targets.
+	// execution. Required if you specify targets.
 	TargetParameterName *string `min:"1" type:"string"`
 
 	// A key-value mapping to target resources. Required if you specify TargetParameterName.
@@ -31263,6 +32049,11 @@ type UpdateMaintenanceWindowInput struct {
 	// Whether the Maintenance Window is enabled.
 	Enabled *bool `type:"boolean"`
 
+	// The date and time, in ISO-8601 Extended format, for when you want the Maintenance
+	// Window to become inactive. EndDate allows you to set a date and time in the
+	// future when the Maintenance Window will no longer run.
+	EndDate *string `type:"string"`
+
 	// The name of the Maintenance Window.
 	Name *string `min:"3" type:"string"`
 
@@ -31273,6 +32064,18 @@ type UpdateMaintenanceWindowInput struct {
 
 	// The schedule of the Maintenance Window in the form of a cron or rate expression.
 	Schedule *string `min:"1" type:"string"`
+
+	// The time zone that the scheduled Maintenance Window executions are based
+	// on, in Internet Assigned Numbers Authority (IANA) format. For example: "America/Los_Angeles",
+	// "etc/UTC", or "Asia/Seoul". For more information, see the Time Zone Database
+	// (https://www.iana.org/time-zones) on the IANA website.
+	ScheduleTimezone *string `type:"string"`
+
+	// The time zone that the scheduled Maintenance Window executions are based
+	// on, in Internet Assigned Numbers Authority (IANA) format. For example: "America/Los_Angeles",
+	// "etc/UTC", or "Asia/Seoul". For more information, see the Time Zone Database
+	// (https://www.iana.org/time-zones) on the IANA website.
+	StartDate *string `type:"string"`
 
 	// The ID of the Maintenance Window to update.
 	//
@@ -31348,6 +32151,12 @@ func (s *UpdateMaintenanceWindowInput) SetEnabled(v bool) *UpdateMaintenanceWind
 	return s
 }
 
+// SetEndDate sets the EndDate field's value.
+func (s *UpdateMaintenanceWindowInput) SetEndDate(v string) *UpdateMaintenanceWindowInput {
+	s.EndDate = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *UpdateMaintenanceWindowInput) SetName(v string) *UpdateMaintenanceWindowInput {
 	s.Name = &v
@@ -31363,6 +32172,18 @@ func (s *UpdateMaintenanceWindowInput) SetReplace(v bool) *UpdateMaintenanceWind
 // SetSchedule sets the Schedule field's value.
 func (s *UpdateMaintenanceWindowInput) SetSchedule(v string) *UpdateMaintenanceWindowInput {
 	s.Schedule = &v
+	return s
+}
+
+// SetScheduleTimezone sets the ScheduleTimezone field's value.
+func (s *UpdateMaintenanceWindowInput) SetScheduleTimezone(v string) *UpdateMaintenanceWindowInput {
+	s.ScheduleTimezone = &v
+	return s
+}
+
+// SetStartDate sets the StartDate field's value.
+func (s *UpdateMaintenanceWindowInput) SetStartDate(v string) *UpdateMaintenanceWindowInput {
+	s.StartDate = &v
 	return s
 }
 
@@ -31392,11 +32213,27 @@ type UpdateMaintenanceWindowOutput struct {
 	// Whether the Maintenance Window is enabled.
 	Enabled *bool `type:"boolean"`
 
+	// The date and time, in ISO-8601 Extended format, for when the Maintenance
+	// Window is scheduled to become inactive. The Maintenance Window will not run
+	// after this specified time.
+	EndDate *string `type:"string"`
+
 	// The name of the Maintenance Window.
 	Name *string `min:"3" type:"string"`
 
 	// The schedule of the Maintenance Window in the form of a cron or rate expression.
 	Schedule *string `min:"1" type:"string"`
+
+	// The time zone that the scheduled Maintenance Window executions are based
+	// on, in Internet Assigned Numbers Authority (IANA) format. For example: "America/Los_Angeles",
+	// "etc/UTC", or "Asia/Seoul". For more information, see the Time Zone Database
+	// (https://www.iana.org/time-zones) on the IANA website.
+	ScheduleTimezone *string `type:"string"`
+
+	// The date and time, in ISO-8601 Extended format, for when the Maintenance
+	// Window is scheduled to become active. The Maintenance Window will not run
+	// before this specified time.
+	StartDate *string `type:"string"`
 
 	// The ID of the created Maintenance Window.
 	WindowId *string `min:"20" type:"string"`
@@ -31442,6 +32279,12 @@ func (s *UpdateMaintenanceWindowOutput) SetEnabled(v bool) *UpdateMaintenanceWin
 	return s
 }
 
+// SetEndDate sets the EndDate field's value.
+func (s *UpdateMaintenanceWindowOutput) SetEndDate(v string) *UpdateMaintenanceWindowOutput {
+	s.EndDate = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *UpdateMaintenanceWindowOutput) SetName(v string) *UpdateMaintenanceWindowOutput {
 	s.Name = &v
@@ -31451,6 +32294,18 @@ func (s *UpdateMaintenanceWindowOutput) SetName(v string) *UpdateMaintenanceWind
 // SetSchedule sets the Schedule field's value.
 func (s *UpdateMaintenanceWindowOutput) SetSchedule(v string) *UpdateMaintenanceWindowOutput {
 	s.Schedule = &v
+	return s
+}
+
+// SetScheduleTimezone sets the ScheduleTimezone field's value.
+func (s *UpdateMaintenanceWindowOutput) SetScheduleTimezone(v string) *UpdateMaintenanceWindowOutput {
+	s.ScheduleTimezone = &v
+	return s
+}
+
+// SetStartDate sets the StartDate field's value.
+func (s *UpdateMaintenanceWindowOutput) SetStartDate(v string) *UpdateMaintenanceWindowOutput {
+	s.StartDate = &v
 	return s
 }
 
