@@ -318,7 +318,7 @@ func TestSessionAssumeRole(t *testing.T) {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 	if e, a := "AssumeRoleProvider", creds.ProviderName; !strings.Contains(a, e) {
-		t.Errorf("expect %v, to contain %v", e, a)
+		t.Errorf("expect %v, to be in %v", e, a)
 	}
 }
 
@@ -384,7 +384,7 @@ func TestSessionAssumeRole_WithMFA(t *testing.T) {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 	if e, a := "AssumeRoleProvider", creds.ProviderName; !strings.Contains(a, e) {
-		t.Errorf("expect %v, to contain %v", e, a)
+		t.Errorf("expect %v, to be in %v", e, a)
 	}
 }
 
@@ -432,7 +432,7 @@ func TestSessionAssumeRole_DisableSharedConfig(t *testing.T) {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 	if e, a := "SharedConfigCredentials", creds.ProviderName; !strings.Contains(a, e) {
-		t.Errorf("expect %v, to contain %v", e, a)
+		t.Errorf("expect %v, to be in %v", e, a)
 	}
 }
 
@@ -448,10 +448,11 @@ func TestSessionAssumeRole_InvalidSourceProfile(t *testing.T) {
 
 	s, err := NewSession()
 	if err == nil {
-		t.Errorf("expect error")
+		t.Fatalf("expect error, got none")
 	}
-	if e, a := "SharedConfigAssumeRoleError: failed to load assume role", err.Error(); !strings.Contains(a, e) {
-		t.Errorf("expect %v, to contain %v", e, a)
+	expectMsg := "SharedConfigAssumeRoleError: failed to load assume role"
+	if e, a := expectMsg, err.Error(); !strings.Contains(a, e) {
+		t.Errorf("expect %v, to be in %v", e, a)
 	}
 	if s != nil {
 		t.Errorf("expect nil, %v", err)
@@ -501,7 +502,7 @@ func TestSessionAssumeRole_ExtendedDuration(t *testing.T) {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 	if e, a := "AssumeRoleProvider", creds.ProviderName; !strings.Contains(a, e) {
-		t.Errorf("expect %v, to contain %v", e, a)
+		t.Errorf("expect %v, to be in %v", e, a)
 	}
 }
 
@@ -568,6 +569,6 @@ func TestSessionAssumeRole_WithMFA_ExtendedDuration(t *testing.T) {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 	if e, a := "AssumeRoleProvider", creds.ProviderName; !strings.Contains(a, e) {
-		t.Errorf("expect %v, to contain %v", e, a)
+		t.Errorf("expect %v, to be in %v", e, a)
 	}
 }

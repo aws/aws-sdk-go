@@ -119,12 +119,12 @@ type envConfig struct {
 	// Specifies the IAM role arn to use when assuming an role.
 	//
 	//  AWS_ROLE_ARN=role_arn
-	IAMRoleARN string
+	RoleARN string
 
 	// Specifies the IAM role session name to use when assuming a role.
 	//
 	//  AWS_ROLE_SESSION_NAME=session_name
-	IAMRoleSessionName string
+	RoleSessionName string
 }
 
 var (
@@ -207,10 +207,17 @@ func envConfigLoad(enableSharedConfig bool) envConfig {
 
 	cfg.EnableSharedConfig = enableSharedConfig
 
+	// Static environment credentials
 	setFromEnvVal(&cfg.Creds.AccessKeyID, credAccessEnvKey)
 	setFromEnvVal(&cfg.Creds.SecretAccessKey, credSecretEnvKey)
 	setFromEnvVal(&cfg.Creds.SessionToken, credSessionEnvKey)
-	setFromEnvVal(&cfg.IAMRoleSessionName, roleSessionNameEnvKey)
+
+	// Role Metadata
+	setFromEnvVal(&cfg.RoleARN, roleARNEnvKey)
+	setFromEnvVal(&cfg.RoleSessionName, roleSessionNameEnvKey)
+
+	// Web identity environment variables
+	setFromEnvVal(&cfg.WebIdentityTokenFilePath, webIdentityTokenFilePathEnvKey)
 
 	// CSM environment variables
 	setFromEnvVal(&cfg.csmEnabled, csmEnabledEnvKey)
@@ -218,10 +225,6 @@ func envConfigLoad(enableSharedConfig bool) envConfig {
 	setFromEnvVal(&cfg.CSMPort, csmPortEnvKey)
 	setFromEnvVal(&cfg.CSMClientID, csmClientIDEnvKey)
 	cfg.CSMEnabled = len(cfg.csmEnabled) > 0
-
-	// Web identity environment variables
-	setFromEnvVal(&cfg.IAMRoleARN, roleARNEnvKey)
-	setFromEnvVal(&cfg.WebIdentityTokenFilePath, webIdentityTokenFilePathEnvKey)
 
 	// Require logical grouping of credentials
 	if len(cfg.Creds.AccessKeyID) == 0 || len(cfg.Creds.SecretAccessKey) == 0 {

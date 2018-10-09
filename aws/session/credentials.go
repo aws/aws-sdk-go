@@ -19,6 +19,7 @@ const (
 	credSourceEc2Metadata  = "Ec2InstanceMetadata"
 	credSourceEnvironment  = "Environment"
 	credSourceECSContainer = "EcsContainer"
+	credSourceWebIdentity  = "WebIdentity"
 )
 
 func resolveCredentials(cfg *aws.Config,
@@ -27,7 +28,8 @@ func resolveCredentials(cfg *aws.Config,
 	sessOpts Options,
 ) (*credentials.Credentials, error) {
 	// Credentials from Assume Role with specific credentials source.
-	if envCfg.EnableSharedConfig && len(sharedCfg.AssumeRole.CredentialSource) > 0 {
+	// TODO this should only trigger if customer specified a profile.
+	if envCfg.EnableSharedConfig && len(sharedCfg.CredentialSource) > 0 {
 		return resolveCredsFromSource(cfg, envCfg, sharedCfg, handlers, sessOpts)
 	}
 
@@ -35,22 +37,43 @@ func resolveCredentials(cfg *aws.Config,
 	if len(envCfg.Creds.AccessKeyID) > 0 {
 		return credentials.NewStaticCredentialsFromCreds(envCfg.Creds), nil
 
-	} else if len(envCfg.WebIdentityTokenFilePath) > 0 {
+	} else if len(envCfg.WebIdentityTokenFilePath) > 0 && len(envCfg.RoleARN) > 0 {
 		// handles assume role via OIDC token. This should happen before any other
 		// assume role call.
-		sessionName := envCfg.IAMRoleSessionName
-		if len(sessionName) == 0 {
-			sessionName = sharedCfg.AssumeRole.RoleSessionName
-		}
-
-		cfg.Credentials = stscreds.NewWebIdentityCredentials(&Session{
-			Config:   cfg,
-			Handlers: handlers.Copy(),
-		}, envCfg.IAMRoleARN, sessionName, envCfg.WebIdentityTokenFilePath)
+		return assumeWebIdentity(cfg, handlers,
+			envCfg.WebIdentityTokenFilePath,
+			envCfg.RoleARN,
+			envCfg.RoleSessionName,
+		)
 	}
 
 	// Fallback to the "default" credential resolution chain.
 	return resolveCredsFromProfile(cfg, envCfg, sharedCfg, handlers, sessOpts)
+}
+
+func assumeWebIdentity(cfg *aws.Config, handlers request.Handlers,
+	filepath string,
+	roleARN, sessionName string,
+) (*credentials.Credentials, error) {
+	if len(filepath) == 0 {
+		return nil, WebIdentityEmptyTokenFilePathErr
+	}
+
+	if len(roleARN) == 0 {
+		return nil, WebIdentityEmptyRoleARNErr
+	}
+
+	creds := stscreds.NewWebIdentityCredentials(
+		&Session{
+			Config:   cfg,
+			Handlers: handlers.Copy(),
+		},
+		roleARN,
+		sessionName,
+		filepath,
+	)
+
+	return creds, nil
 }
 
 func resolveCredsFromProfile(cfg *aws.Config,
@@ -59,9 +82,9 @@ func resolveCredsFromProfile(cfg *aws.Config,
 	sessOpts Options,
 ) (*credentials.Credentials, error) {
 
-	if envCfg.EnableSharedConfig && len(sharedCfg.AssumeRole.RoleARN) > 0 && sharedCfg.AssumeRoleSource != nil {
+	if envCfg.EnableSharedConfig && len(sharedCfg.RoleARN) > 0 && sharedCfg.SourceProfile != nil {
 		// Assume IAM role with credentials source from a different profile.
-		cred, err := resolveCredsFromProfile(cfg, envCfg, *sharedCfg.AssumeRoleSource, handlers, sessOpts)
+		cred, err := resolveCredsFromProfile(cfg, envCfg, *sharedCfg.SourceProfile, handlers, sessOpts)
 		if err != nil {
 			return nil, err
 		}
@@ -79,14 +102,17 @@ func resolveCredsFromProfile(cfg *aws.Config,
 	} else if len(sharedCfg.CredentialProcess) > 0 {
 		// Get credentials from CredentialProcess
 		cred := processcreds.NewCredentials(sharedCfg.CredentialProcess)
-		// if RoleARN is provided, so the obtained cred from the Credential Process to assume the role using RoleARN
-		if len(sharedCfg.AssumeRole.RoleARN) > 0 {
+
+		// if RoleARN is provided, so the obtained cred from the Credential
+		// Process to assume the role using RoleARN
+		if len(sharedCfg.RoleARN) > 0 {
 			cfgCp := *cfg
 			cfgCp.Credentials = cred
 			return credsFromAssumeRole(cfgCp, handlers, sharedCfg, sessOpts)
 		}
 		return cred, nil
-	} else if envCfg.EnableSharedConfig && len(sharedCfg.AssumeRole.CredentialSource) > 0 {
+
+	} else if envCfg.EnableSharedConfig && len(sharedCfg.CredentialSource) > 0 {
 		// Assume IAM Role with specific credential source.
 		return resolveCredsFromSource(cfg, envCfg, sharedCfg, handlers, sessOpts)
 	}
@@ -118,12 +144,12 @@ func resolveCredsFromSource(cfg *aws.Config,
 	// if both credential_source and source_profile have been set, return an
 	// error as this is undefined behavior. Only one can be used at a time
 	// within a profile.
-	if len(sharedCfg.AssumeRole.SourceProfile) > 0 {
+	if sharedCfg.SourceProfile != nil {
 		return nil, ErrSharedConfigSourceCollision
 	}
 
 	cfgCp := *cfg
-	switch sharedCfg.AssumeRole.CredentialSource {
+	switch sharedCfg.CredentialSource {
 	case credSourceEc2Metadata:
 		p := defaults.RemoteCredProvider(cfgCp, handlers)
 		cfgCp.Credentials = credentials.NewCredentials(p)
@@ -151,7 +177,7 @@ func credsFromAssumeRole(cfg aws.Config,
 	sharedCfg sharedConfig,
 	sessOpts Options,
 ) (*credentials.Credentials, error) {
-	if len(sharedCfg.AssumeRole.MFASerial) > 0 && sessOpts.AssumeRoleTokenProvider == nil {
+	if len(sharedCfg.MFASerial) > 0 && sessOpts.AssumeRoleTokenProvider == nil {
 		// AssumeRole Token provider is required if doing Assume Role
 		// with MFA.
 		return nil, AssumeRoleTokenProviderNotSetError{}
@@ -162,19 +188,19 @@ func credsFromAssumeRole(cfg aws.Config,
 			Config:   &cfg,
 			Handlers: handlers.Copy(),
 		},
-		sharedCfg.AssumeRole.RoleARN,
+		sharedCfg.RoleARN,
 		func(opt *stscreds.AssumeRoleProvider) {
-			opt.RoleSessionName = sharedCfg.AssumeRole.RoleSessionName
+			opt.RoleSessionName = sharedCfg.RoleSessionName
 			opt.Duration = sessOpts.AssumeRoleDuration
 
 			// Assume role with external ID
-			if len(sharedCfg.AssumeRole.ExternalID) > 0 {
-				opt.ExternalID = aws.String(sharedCfg.AssumeRole.ExternalID)
+			if len(sharedCfg.ExternalID) > 0 {
+				opt.ExternalID = aws.String(sharedCfg.ExternalID)
 			}
 
 			// Assume role with MFA
-			if len(sharedCfg.AssumeRole.MFASerial) > 0 {
-				opt.SerialNumber = aws.String(sharedCfg.AssumeRole.MFASerial)
+			if len(sharedCfg.MFASerial) > 0 {
+				opt.SerialNumber = aws.String(sharedCfg.MFASerial)
 				opt.TokenProvider = sessOpts.AssumeRoleTokenProvider
 			}
 		},

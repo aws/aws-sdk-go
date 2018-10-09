@@ -15,9 +15,12 @@ import (
 )
 
 const (
-	// ErrCodeWebIdentityRetrievalErr will be used as an error code when constructing
-	// a new error to be returned during Retrieve.
-	ErrCodeWebIdentityRetrievalErr = "WebIdentityRetrievalErr"
+	// ErrCodeWebIdentity will be used as an error code when constructing
+	// a new error to be returned during session creation or retrieval.
+	ErrCodeWebIdentity = "WebIdentityErr"
+
+	// WebIdentityProviderName is the web identity provider name
+	WebIdentityProviderName = "WebIdentityCredentials"
 )
 
 // now is used to return a time.Time object representing
@@ -59,25 +62,14 @@ func NewWebIdentityRoleProvider(svc stsiface.STSAPI, roleARN, roleSessionName, p
 	}
 }
 
-var emptyTokenFilePathErr = awserr.New(ErrCodeWebIdentityRetrievalErr, "token file path is not set", nil)
-var emptyRoleARNErr = awserr.New(ErrCodeWebIdentityRetrievalErr, "role ARN is not set", nil)
-
 // Retrieve will attempt to assume a role from a token which is located at
 // 'WebIdentityTokenFilePath' specified destination and if that is empty an
 // error will be returned.
 func (p *WebIdentityRoleProvider) Retrieve() (credentials.Value, error) {
-	if len(p.tokenFilePath) == 0 {
-		return credentials.Value{}, emptyTokenFilePathErr
-	}
-
-	if len(p.roleARN) == 0 {
-		return credentials.Value{}, emptyRoleARNErr
-	}
-
 	b, err := ioutil.ReadFile(p.tokenFilePath)
 	if err != nil {
 		errMsg := fmt.Sprintf("unabled to read file at %s", p.tokenFilePath)
-		return credentials.Value{}, awserr.New(ErrCodeWebIdentityRetrievalErr, errMsg, err)
+		return credentials.Value{}, awserr.New(ErrCodeWebIdentity, errMsg, err)
 	}
 
 	sessionName := p.roleSessionName
@@ -92,7 +84,7 @@ func (p *WebIdentityRoleProvider) Retrieve() (credentials.Value, error) {
 		WebIdentityToken: aws.String(string(b)),
 	})
 	if err != nil {
-		return credentials.Value{}, awserr.New(ErrCodeWebIdentityRetrievalErr, "failed to retrieve credentials", err)
+		return credentials.Value{}, awserr.New(ErrCodeWebIdentity, "failed to retrieve credentials", err)
 	}
 
 	p.SetExpiration(aws.TimeValue(resp.Credentials.Expiration), p.ExpiryWindow)
@@ -101,6 +93,7 @@ func (p *WebIdentityRoleProvider) Retrieve() (credentials.Value, error) {
 		AccessKeyID:     aws.StringValue(resp.Credentials.AccessKeyId),
 		SecretAccessKey: aws.StringValue(resp.Credentials.SecretAccessKey),
 		SessionToken:    aws.StringValue(resp.Credentials.SessionToken),
+		ProviderName:    WebIdentityProviderName,
 	}
 	return value, nil
 }

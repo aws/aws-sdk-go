@@ -80,12 +80,15 @@ func TestNew_WithSessionLoadError(t *testing.T) {
 		t.Errorf("expect not nil")
 	}
 	if e, a := "ERROR: failed to create session with AWS_SDK_LOAD_CONFIG enabled", logger.String(); !strings.Contains(a, e) {
-		t.Errorf("expect %v, to contain %v", e, a)
+		t.Errorf("expect %v, to be in %v", e, a)
 	}
-	if e, a := (SharedConfigAssumeRoleError{
-		RoleARN: "assume_role_invalid_source_profile_role_arn",
-	}).Error(), err.Error(); !strings.Contains(a, e) {
-		t.Errorf("expect %v, to contain %v", e, a)
+
+	expectErr := SharedConfigAssumeRoleError{
+		RoleARN:       "assume_role_invalid_source_profile_role_arn",
+		SourceProfile: "profile_not_exists",
+	}
+	if e, a := expectErr.Error(), err.Error(); !strings.Contains(a, e) {
+		t.Errorf("expect %v, to be in %v", e, a)
 	}
 }
 
@@ -196,7 +199,7 @@ func TestNewSessionWithOptions_OverrideProfile(t *testing.T) {
 		t.Errorf("expect empty, got %v", v)
 	}
 	if e, a := "SharedConfigCredentials", creds.ProviderName; !strings.Contains(a, e) {
-		t.Errorf("expect %v, to contain %v", e, a)
+		t.Errorf("expect %v, to be in %v", e, a)
 	}
 }
 
@@ -233,7 +236,7 @@ func TestNewSessionWithOptions_OverrideSharedConfigEnable(t *testing.T) {
 		t.Errorf("expect empty, got %v", v)
 	}
 	if e, a := "SharedConfigCredentials", creds.ProviderName; !strings.Contains(a, e) {
-		t.Errorf("expect %v, to contain %v", e, a)
+		t.Errorf("expect %v, to be in %v", e, a)
 	}
 }
 
@@ -270,7 +273,7 @@ func TestNewSessionWithOptions_OverrideSharedConfigDisable(t *testing.T) {
 		t.Errorf("expect empty, got %v", v)
 	}
 	if e, a := "SharedConfigCredentials", creds.ProviderName; !strings.Contains(a, e) {
-		t.Errorf("expect %v, to contain %v", e, a)
+		t.Errorf("expect %v, to be in %v", e, a)
 	}
 }
 
@@ -307,7 +310,7 @@ func TestNewSessionWithOptions_OverrideSharedConfigFiles(t *testing.T) {
 		t.Errorf("expect empty, got %v", v)
 	}
 	if e, a := "SharedConfigCredentials", creds.ProviderName; !strings.Contains(a, e) {
-		t.Errorf("expect %v, to contain %v", e, a)
+		t.Errorf("expect %v, to be in %v", e, a)
 	}
 }
 
@@ -400,7 +403,7 @@ func TestNewSessionWithOptions_Overrides(t *testing.T) {
 				t.Errorf("expect %v, got %v", e, a)
 			}
 			if e, a := c.OutCreds.ProviderName, creds.ProviderName; !strings.Contains(a, e) {
-				t.Errorf("expect %v, to contain %v", e, a)
+				t.Errorf("expect %v, to be in %v", e, a)
 			}
 		})
 	}

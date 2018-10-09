@@ -27,23 +27,18 @@ const (
 
 	// endpoint discovery group
 	enableEndpointDiscoveryKey = `endpoint_discovery_enabled` // optional
+
 	// External Credential Process
-	credentialProcessKey = `credential_process`
+	credentialProcessKey = `credential_process` // optional
+
+	// Web Identity Token File
+	webIdentityTokenFileKey = `web_identity_token_file` // optional
 
 	// DefaultSharedConfigProfile is the default profile to be used when
 	// loading configuration from the config files if another profile name
 	// is not provided.
 	DefaultSharedConfigProfile = `default`
 )
-
-type assumeRoleConfig struct {
-	RoleARN          string
-	SourceProfile    string
-	CredentialSource string
-	ExternalID       string
-	MFASerial        string
-	RoleSessionName  string
-}
 
 // sharedConfig represents the configuration fields of the SDK config files.
 type sharedConfig struct {
@@ -58,11 +53,17 @@ type sharedConfig struct {
 	//	aws_session_token
 	Creds credentials.Value
 
-	AssumeRole       assumeRoleConfig
-	AssumeRoleSource *sharedConfig
+	CredentialSource     string
+	CredentialProcess    string
+	WebIdentityTokenFile string
 
-	// An external process to request credentials
-	CredentialProcess string
+	RoleARN         string
+	RoleSessionName string
+	ExternalID      string
+	MFASerial       string
+
+	SourceProfileName string
+	SourceProfile     *sharedConfig
 
 	// Region is the region the SDK should use for looking up AWS service endpoints
 	// and signing requests.
@@ -103,14 +104,9 @@ func loadSharedConfig(profile string, filenames []string) (sharedConfig, error) 
 	}
 
 	cfg := sharedConfig{}
-	if err = cfg.setFromIniFiles(profile, files); err != nil {
+	profiles := map[string]struct{}{}
+	if err = cfg.setFromIniFiles(profiles, profile, files); err != nil {
 		return sharedConfig{}, err
-	}
-
-	if len(cfg.AssumeRole.SourceProfile) > 0 {
-		if err := cfg.setAssumeRoleSource(profile, files); err != nil {
-			return sharedConfig{}, err
-		}
 	}
 
 	return cfg, nil
@@ -136,57 +132,59 @@ func loadSharedConfigIniFiles(filenames []string) ([]sharedConfigFile, error) {
 	return files, nil
 }
 
-func (cfg *sharedConfig) setAssumeRoleSource(origProfile string, files []sharedConfigFile) error {
-	var assumeRoleSrc sharedConfig
-
-	if len(cfg.AssumeRole.CredentialSource) > 0 {
-		// setAssumeRoleSource is only called when source_profile is found.
-		// If both source_profile and credential_source are set, then
-		// ErrSharedConfigSourceCollision will be returned
-		return ErrSharedConfigSourceCollision
-	}
-
-	// Multiple level assume role chains are not support
-	if cfg.AssumeRole.SourceProfile == origProfile {
-		assumeRoleSrc = *cfg
-		assumeRoleSrc.AssumeRole = assumeRoleConfig{}
-	} else {
-		err := assumeRoleSrc.setFromIniFiles(cfg.AssumeRole.SourceProfile, files)
-		if err != nil {
-			return err
-		}
-
-		// Chain if profile depends of other profiles
-		if len(assumeRoleSrc.AssumeRole.SourceProfile) > 0 {
-			err := assumeRoleSrc.setAssumeRoleSource(cfg.AssumeRole.SourceProfile, files)
-			if err != nil {
-				return err
-			}
-		}
-	}
-
-	if cfg.AssumeRole.SourceProfile == origProfile || len(assumeRoleSrc.AssumeRole.SourceProfile) == 0 {
-		//Check if at least either Credential Source, static creds, or credential process is set to retain credentials.
-		if len(assumeRoleSrc.AssumeRole.CredentialSource) == 0 && len(assumeRoleSrc.Creds.AccessKeyID) == 0 && len(assumeRoleSrc.CredentialProcess) == 0 {
-			return SharedConfigAssumeRoleError{RoleARN: cfg.AssumeRole.RoleARN}
-		}
-	}
-
-	cfg.AssumeRoleSource = &assumeRoleSrc
-
-	return nil
-}
-
-func (cfg *sharedConfig) setFromIniFiles(profile string, files []sharedConfigFile) error {
+func (cfg *sharedConfig) setFromIniFiles(profiles map[string]struct{}, profile string, files []sharedConfigFile) error {
 	// Trim files from the list that don't exist.
+	var skippedFiles int
+	var profileNotFoundErr error
 	for _, f := range files {
 		if err := cfg.setFromIniFile(profile, f); err != nil {
 			if _, ok := err.(SharedConfigProfileNotExistsError); ok {
-				// Ignore proviles missings
+				// Ignore proviles not defined in individual files.
+				profileNotFoundErr = err
+				skippedFiles++
 				continue
 			}
 			return err
 		}
+	}
+	if skippedFiles == len(files) {
+		// If all files were skipped because the profile is not found, return
+		// the orignal profile not found error.
+		return profileNotFoundErr
+	}
+
+	srcProfile := cfg.SourceProfileName
+
+	// Allow a profile to reference a profile that is already visited once, but
+	// that reference will ignore the source_profile, and terminate the chain.
+	if _, ok := profiles[srcProfile]; ok {
+		srcProfile = ""
+		cfg.SourceProfileName = ""
+	}
+	profiles[profile] = struct{}{}
+
+	// Link source profiles for assume roles
+	if len(srcProfile) != 0 {
+		srcCfg := &sharedConfig{}
+		if err := srcCfg.setFromIniFiles(profiles, srcProfile, files); err != nil {
+			// SourceProfile that doesn't exist is an error in configuration.
+			if _, ok := err.(SharedConfigProfileNotExistsError); ok {
+				err = SharedConfigAssumeRoleError{
+					RoleARN:       cfg.RoleARN,
+					SourceProfile: srcProfile,
+				}
+			}
+			return err
+		}
+
+		if len(srcCfg.CredentialSource) == 0 && len(srcCfg.Creds.AccessKeyID) == 0 {
+			return SharedConfigAssumeRoleError{
+				RoleARN:       cfg.RoleARN,
+				SourceProfile: srcProfile,
+			}
+		}
+
+		cfg.SourceProfile = srcCfg
 	}
 
 	return nil
@@ -222,33 +220,18 @@ func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile) e
 		}
 	}
 
-	// Assume Role
-	roleArn := section.String(roleArnKey)
-	srcProfile := section.String(sourceProfileKey)
-	credentialSource := section.String(credentialSourceKey)
-	credentialProcess := section.String(credentialProcessKey)
-	//Has source to make sure the Assume Role has at least either srcProfile, credential Source, or credential Process.
-	hasSource := len(srcProfile) > 0 || len(credentialSource) > 0 || len(credentialProcess) > 0
-	if len(roleArn) > 0 && hasSource {
-		cfg.AssumeRole = assumeRoleConfig{
-			RoleARN:          roleArn,
-			SourceProfile:    srcProfile,
-			CredentialSource: credentialSource,
-			ExternalID:       section.String(externalIDKey),
-			MFASerial:        section.String(mfaSerialKey),
-			RoleSessionName:  section.String(roleSessionNameKey),
-		}
-	}
+	updateString(&cfg.CredentialSource, section, credentialSourceKey)
+	updateString(&cfg.CredentialProcess, section, credentialProcessKey)
+	updateString(&cfg.WebIdentityTokenFile, section, webIdentityTokenFileKey)
 
-	// `credential_process`
-	if credProc := section.String(credentialProcessKey); len(credProc) > 0 {
-		cfg.CredentialProcess = credProc
-	}
+	updateString(&cfg.RoleARN, section, roleArnKey)
+	updateString(&cfg.ExternalID, section, externalIDKey)
+	updateString(&cfg.MFASerial, section, mfaSerialKey)
+	updateString(&cfg.RoleSessionName, section, roleSessionNameKey)
+	updateString(&cfg.SourceProfileName, section, sourceProfileKey)
 
 	// Region
-	if v := section.String(regionKey); len(v) > 0 {
-		cfg.Region = v
-	}
+	updateString(&cfg.Region, section, regionKey)
 
 	// Endpoint discovery
 	if section.Has(enableEndpointDiscoveryKey) {
@@ -257,6 +240,15 @@ func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile) e
 	}
 
 	return nil
+}
+
+// updateString will only update the dst with the value in the section key, key
+// is present in the section.
+func updateString(dst *string, section ini.Section, key string) {
+	if !section.Has(key) {
+		return
+	}
+	*dst = section.String(key)
 }
 
 // SharedConfigLoadError is an error for the shared config file failed to load.
@@ -316,7 +308,8 @@ func (e SharedConfigProfileNotExistsError) Error() string {
 // profile contains assume role information, but that information is invalid
 // or not complete.
 type SharedConfigAssumeRoleError struct {
-	RoleARN string
+	RoleARN       string
+	SourceProfile string
 }
 
 // Code is the short id of the error.
@@ -326,8 +319,10 @@ func (e SharedConfigAssumeRoleError) Code() string {
 
 // Message is the description of the error
 func (e SharedConfigAssumeRoleError) Message() string {
-	return fmt.Sprintf("failed to load assume role for %s, source profile has no shared credentials",
-		e.RoleARN)
+	return fmt.Sprintf(
+		"failed to load assume role for %s, source profile %s has no shared credentials",
+		e.RoleARN, e.SourceProfile,
+	)
 }
 
 // OrigErr is the underlying error that caused the failure.
