@@ -1,3 +1,12 @@
+Release v1.15.52 (2018-10-10)
+===
+
+### Service Client Updates
+* `service/comprehend`: Updates service API
+* `service/es`: Updates service API and documentation
+  * Amazon Elasticsearch Service now supports customer-scheduled service software updates. When new service software becomes available, you can request an update to your domain and benefit from new features more quickly. If you take no action, we update the service software automatically after a certain time frame.
+* `service/transcribe`: Updates service API and documentation
+
 Release v1.15.51 (2018-10-09)
 ===
 

@@ -8,9 +8,8 @@ const (
 	// "BadRequestException".
 	//
 	// Your request didn't pass one or more validation tests. For example, a name
-	// already exists when creating a resource or a name may not exist when getting
-	// a transcription job or custom vocabulary. See the exception Message field
-	// for more information.
+	// may not exist when getting a transcription job or custom vocabulary. See
+	// the exception Message field for more information.
 	ErrCodeBadRequestException = "BadRequestException"
 
 	// ErrCodeConflictException for service response error code
