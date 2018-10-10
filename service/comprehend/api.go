@@ -7286,6 +7286,18 @@ const (
 
 	// LanguageCodeEs is a LanguageCode enum value
 	LanguageCodeEs = "es"
+
+	// LanguageCodeFr is a LanguageCode enum value
+	LanguageCodeFr = "fr"
+
+	// LanguageCodeDe is a LanguageCode enum value
+	LanguageCodeDe = "de"
+
+	// LanguageCodeIt is a LanguageCode enum value
+	LanguageCodeIt = "it"
+
+	// LanguageCodePt is a LanguageCode enum value
+	LanguageCodePt = "pt"
 )
 
 const (
@@ -7358,4 +7370,19 @@ const (
 const (
 	// SyntaxLanguageCodeEn is a SyntaxLanguageCode enum value
 	SyntaxLanguageCodeEn = "en"
+
+	// SyntaxLanguageCodeEs is a SyntaxLanguageCode enum value
+	SyntaxLanguageCodeEs = "es"
+
+	// SyntaxLanguageCodeFr is a SyntaxLanguageCode enum value
+	SyntaxLanguageCodeFr = "fr"
+
+	// SyntaxLanguageCodeDe is a SyntaxLanguageCode enum value
+	SyntaxLanguageCodeDe = "de"
+
+	// SyntaxLanguageCodeIt is a SyntaxLanguageCode enum value
+	SyntaxLanguageCodeIt = "it"
+
+	// SyntaxLanguageCodePt is a SyntaxLanguageCode enum value
+	SyntaxLanguageCodePt = "pt"
 )

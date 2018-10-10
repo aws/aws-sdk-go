@@ -3,6 +3,7 @@
   "service": "<p>Operations and objects for transcribing speech to text.</p>",
   "operations": {
     "CreateVocabulary": "<p>Creates a new custom vocabulary that you can use to change the way Amazon Transcribe handles transcription of an audio file.</p>",
+    "DeleteTranscriptionJob": "<p>Deletes a previously submitted transcription job as wella s any other generated results such as the transcription, models, and so on.</p>",
     "DeleteVocabulary": "<p>Deletes a vocabulary from Amazon Transcribe. </p>",
     "GetTranscriptionJob": "<p>Returns information about a transcription job. To see the status of the job, check the <code>TranscriptionJobStatus</code> field. If the status is <code>COMPLETED</code>, the job is finished and you can find the results at the location specified in the <code>TranscriptionFileUri</code> field.</p>",
     "GetVocabulary": "<p>Gets information about a vocabulary.</p>",
@@ -13,7 +14,7 @@
   },
   "shapes": {
     "BadRequestException": {
-      "base": "<p>Your request didn't pass one or more validation tests. For example, a name already exists when creating a resource or a name may not exist when getting a transcription job or custom vocabulary. See the exception <code>Message</code> field for more information.</p>",
+      "base": "<p>Your request didn't pass one or more validation tests. For example, a name may not exist when getting a transcription job or custom vocabulary. See the exception <code>Message</code> field for more information.</p>",
       "refs": {
       }
     },
@@ -50,6 +51,11 @@
         "TranscriptionJobSummary$CompletionTime": "<p>A timestamp that shows when the job was completed.</p>",
         "UpdateVocabularyResponse$LastModifiedTime": "<p>The date and time that the vocabulary was updated.</p>",
         "VocabularyInfo$LastModifiedTime": "<p>The date and time that the vocabulary was last modified.</p>"
+      }
+    },
+    "DeleteTranscriptionJobRequest": {
+      "base": null,
+      "refs": {
       }
     },
     "DeleteVocabularyRequest": {
@@ -246,6 +252,7 @@
     "TranscriptionJobName": {
       "base": null,
       "refs": {
+        "DeleteTranscriptionJobRequest$TranscriptionJobName": "<p>The name of the transcription job to be deleted.</p>",
         "GetTranscriptionJobRequest$TranscriptionJobName": "<p>The name of the job.</p>",
         "ListTranscriptionJobsRequest$JobNameContains": "<p>When specified, the jobs returned in the list are limited to jobs whose name contains the specified string.</p>",
         "StartTranscriptionJobRequest$TranscriptionJobName": "<p>The name of the job. You can't use the strings \".\" or \"..\" in the job name. The name must be unique within an AWS account.</p>",
