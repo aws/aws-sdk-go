@@ -134,18 +134,25 @@ sandbox-test-go18: sandbox-build-go18
 	docker run -t aws-sdk-go-1.8
 
 sandbox-build-go19:
-	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.8 -t "aws-sdk-go-1.9" .
+	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.9 -t "aws-sdk-go-1.9" .
 sandbox-go19: sandbox-build-go19
 	docker run -i -t aws-sdk-go-1.9 bash
 sandbox-test-go19: sandbox-build-go19
 	docker run -t aws-sdk-go-1.9
 
 sandbox-build-go110:
-	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.8 -t "aws-sdk-go-1.10" .
+	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.10 -t "aws-sdk-go-1.10" .
 sandbox-go110: sandbox-build-go110
 	docker run -i -t aws-sdk-go-1.10 bash
 sandbox-test-go110: sandbox-build-go110
 	docker run -t aws-sdk-go-1.10
+
+sandbox-build-go111:
+	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.11 -t "aws-sdk-go-1.11" .
+sandbox-go111: sandbox-build-go111
+	docker run -i -t aws-sdk-go-1.11 bash
+sandbox-test-go111: sandbox-build-go111
+	docker run -t aws-sdk-go-1.11
 
 sandbox-build-gotip:
 	@echo "Run make update-aws-golang-tip, if this test fails because missing aws-golang:tip container"
