@@ -57,7 +57,10 @@ func (c *TranscribeService) CreateVocabularyRequest(input *CreateVocabularyInput
 // CreateVocabulary API operation for Amazon Transcribe Service.
 //
 // Creates a new custom vocabulary that you can use to change the way Amazon
-// Transcribe handles transcription of an audio file.
+// Transcribe handles transcription of an audio file. Note that vocabularies
+// for en-AU, en-UK, and fr-CA languages that are in preview are not available.
+// In the console, the vocabulary section will be greyed-out and SDK will return
+// error message.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -68,9 +71,10 @@ func (c *TranscribeService) CreateVocabularyRequest(input *CreateVocabularyInput
 //
 // Returned Error Codes:
 //   * ErrCodeBadRequestException "BadRequestException"
-//   Your request didn't pass one or more validation tests. For example, a name
-//   may not exist when getting a transcription job or custom vocabulary. See
-//   the exception Message field for more information.
+//   Your request didn't pass one or more validation tests. For example, if the
+//   transcription you're trying to delete doesn't exist of if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
 //   Either you have sent too many requests or your input file is too long. Wait
@@ -156,7 +160,7 @@ func (c *TranscribeService) DeleteTranscriptionJobRequest(input *DeleteTranscrip
 
 // DeleteTranscriptionJob API operation for Amazon Transcribe Service.
 //
-// Deletes a previously submitted transcription job as wella s any other generated
+// Deletes a previously submitted transcription job as well as any other generated
 // results such as the transcription, models, and so on.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -172,9 +176,10 @@ func (c *TranscribeService) DeleteTranscriptionJobRequest(input *DeleteTranscrip
 //   before you resend your request, or use a smaller file and resend the request.
 //
 //   * ErrCodeBadRequestException "BadRequestException"
-//   Your request didn't pass one or more validation tests. For example, a name
-//   may not exist when getting a transcription job or custom vocabulary. See
-//   the exception Message field for more information.
+//   Your request didn't pass one or more validation tests. For example, if the
+//   transcription you're trying to delete doesn't exist of if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
 //
 //   * ErrCodeInternalFailureException "InternalFailureException"
 //   There was an internal error. Check the error message and try your request
@@ -267,9 +272,10 @@ func (c *TranscribeService) DeleteVocabularyRequest(input *DeleteVocabularyInput
 //   before you resend your request, or use a smaller file and resend the request.
 //
 //   * ErrCodeBadRequestException "BadRequestException"
-//   Your request didn't pass one or more validation tests. For example, a name
-//   may not exist when getting a transcription job or custom vocabulary. See
-//   the exception Message field for more information.
+//   Your request didn't pass one or more validation tests. For example, if the
+//   transcription you're trying to delete doesn't exist of if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
 //
 //   * ErrCodeInternalFailureException "InternalFailureException"
 //   There was an internal error. Check the error message and try your request
@@ -355,9 +361,10 @@ func (c *TranscribeService) GetTranscriptionJobRequest(input *GetTranscriptionJo
 //
 // Returned Error Codes:
 //   * ErrCodeBadRequestException "BadRequestException"
-//   Your request didn't pass one or more validation tests. For example, a name
-//   may not exist when getting a transcription job or custom vocabulary. See
-//   the exception Message field for more information.
+//   Your request didn't pass one or more validation tests. For example, if the
+//   transcription you're trying to delete doesn't exist of if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
 //   Either you have sent too many requests or your input file is too long. Wait
@@ -437,7 +444,9 @@ func (c *TranscribeService) GetVocabularyRequest(input *GetVocabularyInput) (req
 
 // GetVocabulary API operation for Amazon Transcribe Service.
 //
-// Gets information about a vocabulary.
+// Gets information about a vocabulary. Note that vocabularies for en-AU, en-UK,
+// and fr-CA languages that are in preview are not available. In the console,
+// the vocabulary section will be greyed-out and SDK will return error message.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -460,9 +469,10 @@ func (c *TranscribeService) GetVocabularyRequest(input *GetVocabularyInput) (req
 //   again.
 //
 //   * ErrCodeBadRequestException "BadRequestException"
-//   Your request didn't pass one or more validation tests. For example, a name
-//   may not exist when getting a transcription job or custom vocabulary. See
-//   the exception Message field for more information.
+//   Your request didn't pass one or more validation tests. For example, if the
+//   transcription you're trying to delete doesn't exist of if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/GetVocabulary
 func (c *TranscribeService) GetVocabulary(input *GetVocabularyInput) (*GetVocabularyOutput, error) {
@@ -547,9 +557,10 @@ func (c *TranscribeService) ListTranscriptionJobsRequest(input *ListTranscriptio
 //
 // Returned Error Codes:
 //   * ErrCodeBadRequestException "BadRequestException"
-//   Your request didn't pass one or more validation tests. For example, a name
-//   may not exist when getting a transcription job or custom vocabulary. See
-//   the exception Message field for more information.
+//   Your request didn't pass one or more validation tests. For example, if the
+//   transcription you're trying to delete doesn't exist of if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
 //   Either you have sent too many requests or your input file is too long. Wait
@@ -693,9 +704,10 @@ func (c *TranscribeService) ListVocabulariesRequest(input *ListVocabulariesInput
 //
 // Returned Error Codes:
 //   * ErrCodeBadRequestException "BadRequestException"
-//   Your request didn't pass one or more validation tests. For example, a name
-//   may not exist when getting a transcription job or custom vocabulary. See
-//   the exception Message field for more information.
+//   Your request didn't pass one or more validation tests. For example, if the
+//   transcription you're trying to delete doesn't exist of if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
 //   Either you have sent too many requests or your input file is too long. Wait
@@ -821,7 +833,9 @@ func (c *TranscribeService) StartTranscriptionJobRequest(input *StartTranscripti
 
 // StartTranscriptionJob API operation for Amazon Transcribe Service.
 //
-// Starts an asynchronous job to transcribe speech to text.
+// Starts an asynchronous job to transcribe speech to text. Note that en-AU,
+// en-UK, and fr-CA languages are in preview and are only available to whitelisted
+// customers.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -832,9 +846,10 @@ func (c *TranscribeService) StartTranscriptionJobRequest(input *StartTranscripti
 //
 // Returned Error Codes:
 //   * ErrCodeBadRequestException "BadRequestException"
-//   Your request didn't pass one or more validation tests. For example, a name
-//   may not exist when getting a transcription job or custom vocabulary. See
-//   the exception Message field for more information.
+//   Your request didn't pass one or more validation tests. For example, if the
+//   transcription you're trying to delete doesn't exist of if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
 //   Either you have sent too many requests or your input file is too long. Wait
@@ -920,7 +935,9 @@ func (c *TranscribeService) UpdateVocabularyRequest(input *UpdateVocabularyInput
 //
 // Updates an existing vocabulary with new values. The UpdateVocabulary operation
 // overwrites all of the existing information with the values that you provide
-// in the request.
+// in the request. Note that vocabularies for en-AU, en-UK, and fr-CA languages
+// that are in preview are not available. In the console, the vocabulary section
+// will be greyed-out and SDK will return error message.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -931,9 +948,10 @@ func (c *TranscribeService) UpdateVocabularyRequest(input *UpdateVocabularyInput
 //
 // Returned Error Codes:
 //   * ErrCodeBadRequestException "BadRequestException"
-//   Your request didn't pass one or more validation tests. For example, a name
-//   may not exist when getting a transcription job or custom vocabulary. See
-//   the exception Message field for more information.
+//   Your request didn't pass one or more validation tests. For example, if the
+//   transcription you're trying to delete doesn't exist of if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
 //   Either you have sent too many requests or your input file is too long. Wait
@@ -1947,7 +1965,8 @@ func (s *Transcript) SetTranscriptFileUri(v string) *Transcript {
 }
 
 // Describes an asynchronous transcription job that was created with the StartTranscriptionJob
-// operation.
+// operation. Note that en-AU, en-UK, and fr-CA languages are in preview and
+// are only available to whitelisted customers.
 type TranscriptionJob struct {
 	_ struct{} `type:"structure"`
 
@@ -2065,7 +2084,9 @@ func (s *TranscriptionJob) SetTranscriptionJobStatus(v string) *TranscriptionJob
 	return s
 }
 
-// Provides a summary of information about a transcription job.
+// Provides a summary of information about a transcription job. Note that en-AU,
+// en-UK, and fr-CA languages are in preview and are only available to whitelisted
+// customers.
 type TranscriptionJobSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -2272,7 +2293,10 @@ func (s *UpdateVocabularyOutput) SetVocabularyState(v string) *UpdateVocabularyO
 	return s
 }
 
-// Provides information about a custom vocabulary.
+// Provides information about a custom vocabulary. Note that vocabularies for
+// en-AU, en-UK, and fr-CA languages that are in preview are not available.
+// In the console, the vocabulary section will be greyed-out and SDK will return
+// error message.
 type VocabularyInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -2330,6 +2354,15 @@ const (
 
 	// LanguageCodeEsUs is a LanguageCode enum value
 	LanguageCodeEsUs = "es-US"
+
+	// LanguageCodeEnAu is a LanguageCode enum value
+	LanguageCodeEnAu = "en-AU"
+
+	// LanguageCodeFrCa is a LanguageCode enum value
+	LanguageCodeFrCa = "fr-CA"
+
+	// LanguageCodeEnUk is a LanguageCode enum value
+	LanguageCodeEnUk = "en-UK"
 )
 
 const (

@@ -1,3 +1,17 @@
+Release v1.15.53 (2018-10-11)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API and documentation
+  * 1. GetQueryExecution API changes to return statementType of a submitted Athena query.  2. GetQueryResults API changes to return the number of rows added to a table when a CTAS query is executed.
+* `service/directconnect`: Updates service API and documentation
+  * This release adds support for Jumbo Frames over AWS Direct Connect. You can now set MTU value when creating new virtual interfaces. This release also includes a new API to modify MTU value of existing virtual interfaces.
+* `service/ec2`: Updates service API
+  * You can now launch the smaller-sized G3 instance called g3s.xlarge. G3s.xlarge provides 4 vCPU, 30.5 GB RAM and a NVIDIA Tesla M60 GPU. It is ideal for remote workstations, engineering and architectural applications, and 3D visualizations and rendering for visual effects.
+* `service/mediaconvert`: Updates service paginators
+  * Added Paginators for all the MediaConvert list operations
+* `service/transcribe`: Updates service API and documentation
+
 Release v1.15.52 (2018-10-10)
 ===
 
