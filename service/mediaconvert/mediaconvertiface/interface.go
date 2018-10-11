@@ -96,6 +96,9 @@ type MediaConvertAPI interface {
 	DescribeEndpointsWithContext(aws.Context, *mediaconvert.DescribeEndpointsInput, ...request.Option) (*mediaconvert.DescribeEndpointsOutput, error)
 	DescribeEndpointsRequest(*mediaconvert.DescribeEndpointsInput) (*request.Request, *mediaconvert.DescribeEndpointsOutput)
 
+	DescribeEndpointsPages(*mediaconvert.DescribeEndpointsInput, func(*mediaconvert.DescribeEndpointsOutput, bool) bool) error
+	DescribeEndpointsPagesWithContext(aws.Context, *mediaconvert.DescribeEndpointsInput, func(*mediaconvert.DescribeEndpointsOutput, bool) bool, ...request.Option) error
+
 	GetJob(*mediaconvert.GetJobInput) (*mediaconvert.GetJobOutput, error)
 	GetJobWithContext(aws.Context, *mediaconvert.GetJobInput, ...request.Option) (*mediaconvert.GetJobOutput, error)
 	GetJobRequest(*mediaconvert.GetJobInput) (*request.Request, *mediaconvert.GetJobOutput)
@@ -116,17 +119,29 @@ type MediaConvertAPI interface {
 	ListJobTemplatesWithContext(aws.Context, *mediaconvert.ListJobTemplatesInput, ...request.Option) (*mediaconvert.ListJobTemplatesOutput, error)
 	ListJobTemplatesRequest(*mediaconvert.ListJobTemplatesInput) (*request.Request, *mediaconvert.ListJobTemplatesOutput)
 
+	ListJobTemplatesPages(*mediaconvert.ListJobTemplatesInput, func(*mediaconvert.ListJobTemplatesOutput, bool) bool) error
+	ListJobTemplatesPagesWithContext(aws.Context, *mediaconvert.ListJobTemplatesInput, func(*mediaconvert.ListJobTemplatesOutput, bool) bool, ...request.Option) error
+
 	ListJobs(*mediaconvert.ListJobsInput) (*mediaconvert.ListJobsOutput, error)
 	ListJobsWithContext(aws.Context, *mediaconvert.ListJobsInput, ...request.Option) (*mediaconvert.ListJobsOutput, error)
 	ListJobsRequest(*mediaconvert.ListJobsInput) (*request.Request, *mediaconvert.ListJobsOutput)
+
+	ListJobsPages(*mediaconvert.ListJobsInput, func(*mediaconvert.ListJobsOutput, bool) bool) error
+	ListJobsPagesWithContext(aws.Context, *mediaconvert.ListJobsInput, func(*mediaconvert.ListJobsOutput, bool) bool, ...request.Option) error
 
 	ListPresets(*mediaconvert.ListPresetsInput) (*mediaconvert.ListPresetsOutput, error)
 	ListPresetsWithContext(aws.Context, *mediaconvert.ListPresetsInput, ...request.Option) (*mediaconvert.ListPresetsOutput, error)
 	ListPresetsRequest(*mediaconvert.ListPresetsInput) (*request.Request, *mediaconvert.ListPresetsOutput)
 
+	ListPresetsPages(*mediaconvert.ListPresetsInput, func(*mediaconvert.ListPresetsOutput, bool) bool) error
+	ListPresetsPagesWithContext(aws.Context, *mediaconvert.ListPresetsInput, func(*mediaconvert.ListPresetsOutput, bool) bool, ...request.Option) error
+
 	ListQueues(*mediaconvert.ListQueuesInput) (*mediaconvert.ListQueuesOutput, error)
 	ListQueuesWithContext(aws.Context, *mediaconvert.ListQueuesInput, ...request.Option) (*mediaconvert.ListQueuesOutput, error)
 	ListQueuesRequest(*mediaconvert.ListQueuesInput) (*request.Request, *mediaconvert.ListQueuesOutput)
+
+	ListQueuesPages(*mediaconvert.ListQueuesInput, func(*mediaconvert.ListQueuesOutput, bool) bool) error
+	ListQueuesPagesWithContext(aws.Context, *mediaconvert.ListQueuesInput, func(*mediaconvert.ListQueuesOutput, bool) bool, ...request.Option) error
 
 	ListTagsForResource(*mediaconvert.ListTagsForResourceInput) (*mediaconvert.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *mediaconvert.ListTagsForResourceInput, ...request.Option) (*mediaconvert.ListTagsForResourceOutput, error)

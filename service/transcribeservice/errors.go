@@ -7,9 +7,10 @@ const (
 	// ErrCodeBadRequestException for service response error code
 	// "BadRequestException".
 	//
-	// Your request didn't pass one or more validation tests. For example, a name
-	// may not exist when getting a transcription job or custom vocabulary. See
-	// the exception Message field for more information.
+	// Your request didn't pass one or more validation tests. For example, if the
+	// transcription you're trying to delete doesn't exist of if it is in a non-terminal
+	// state (for example, it's "in progress"). See the exception Message field
+	// for more information.
 	ErrCodeBadRequestException = "BadRequestException"
 
 	// ErrCodeConflictException for service response error code

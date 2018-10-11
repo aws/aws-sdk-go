@@ -11780,6 +11780,7 @@
         "g3.4xlarge",
         "g3.8xlarge",
         "g3.16xlarge",
+        "g3s.xlarge",
         "cg1.4xlarge",
         "p2.xlarge",
         "p2.8xlarge",
