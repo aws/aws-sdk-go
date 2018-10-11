@@ -193,7 +193,7 @@ get-deps-tests:
 
 get-deps-verify:
 	@echo "go get SDK verification utilities"
-	@if [ \( -z "${SDK_GO_1_4}" \) -a \( -z "${SDK_GO_1_5}" \) ]; then  go get github.com/golang/lint/golint; else echo "skipped getting golint"; fi
+	@if [ \( -z "${SDK_GO_1_4}" \) -a \( -z "${SDK_GO_1_5}" \) ]; then  go get golang.org/x/lint/golint; else echo "skipped getting golint"; fi
 
 bench:
 	@echo "go bench SDK packages"
