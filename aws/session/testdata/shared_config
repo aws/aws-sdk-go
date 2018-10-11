@@ -1,5 +1,5 @@
 [default]
-s3 = 
+s3 =
   unsupported_key=123
   other_unsupported=abc
 
@@ -63,3 +63,7 @@ aws_secret_access_key = assume_role_w_creds_secret
 [assume_role_wo_creds]
 role_arn = assume_role_wo_creds_role_arn
 source_profile = assume_role_wo_creds
+
+[assume_role_ec2_instance_metadata]
+role_arn = assume_role_ec2_instance_metadata_role_arn
+credential_source = Ec2InstanceMetadata
