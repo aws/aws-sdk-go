@@ -19,6 +19,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/defaults"
 	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/internal/shareddefaults"
 )
 
 const (
@@ -488,7 +489,7 @@ func mergeConfigSrcs(cfg, userCfg *aws.Config, envCfg envConfig, sharedCfg share
 					envCfg.Creds,
 				)
 			case credSourceECSContainer:
-				if len(os.Getenv(defaults.EcsCredsProviderEnvVar)) == 0 {
+				if len(os.Getenv(shareddefaults.ECSCredsProviderEnvVar)) == 0 {
 					return ErrSharedConfigECSContainerEnvVarEmpty
 				}
 

@@ -94,7 +94,7 @@ func loadSharedConfig(profile string, filenames []string) (sharedConfig, error) 
 		return sharedConfig{}, err
 	}
 
-	if len(cfg.AssumeRole.SourceProfile) > 0 || len(cfg.AssumeRole.CredentialSource) > 0 {
+	if len(cfg.AssumeRole.SourceProfile) > 0 {
 		if err := cfg.setAssumeRoleSource(profile, files); err != nil {
 			return sharedConfig{}, err
 		}
@@ -130,8 +130,10 @@ func (cfg *sharedConfig) setAssumeRoleSource(origProfile string, files []sharedC
 	var assumeRoleSrc sharedConfig
 
 	if len(cfg.AssumeRole.CredentialSource) > 0 {
-		cfg.AssumeRoleSource = &sharedConfig{}
-		return nil
+		// setAssumeRoleSource is only called when source_profile is found.
+		// If both source_profile and credential_source are set, then
+		// ErrSharedConfigSourceCollision will be returned
+		return ErrSharedConfigSourceCollision
 	}
 
 	// Multiple level assume role chains are not support

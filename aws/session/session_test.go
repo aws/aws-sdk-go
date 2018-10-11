@@ -16,7 +16,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/defaults"
 	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"github.com/aws/aws-sdk-go/awstesting"
-	"github.com/aws/aws-sdk-go/internal/container"
+	"github.com/aws/aws-sdk-go/internal/shareddefaults"
 	"github.com/aws/aws-sdk-go/service/s3"
 )
 
@@ -592,7 +592,7 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 					}
 				}))
 
-				container.URI = ecsMetadataServer.URL
+				shareddefaults.ECSContainerCredentialsURI = ecsMetadataServer.URL
 
 				stsServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 					w.Write([]byte(fmt.Sprintf(assumeRoleRespMsg, time.Now().Add(15*time.Minute).Format("2006-01-02T15:04:05Z"))))
