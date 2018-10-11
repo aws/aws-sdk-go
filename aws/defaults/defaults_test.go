@@ -90,7 +90,7 @@ func TestHTTPCredProvider(t *testing.T) {
 
 func TestECSCredProvider(t *testing.T) {
 	defer os.Clearenv()
-	os.Setenv(ecsCredsProviderEnvVar, "/abc/123")
+	os.Setenv(EcsCredsProviderEnvVar, "/abc/123")
 
 	provider := RemoteCredProvider(aws.Config{}, request.Handlers{})
 	if provider == nil {

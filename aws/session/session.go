@@ -21,6 +21,23 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 )
 
+const (
+	// ErrCodeSharedConfig represents an error that occurs in the shared
+	// configuration logic
+	ErrCodeSharedConfig = "SharedConfigErr"
+)
+
+// ErrSharedConfigSourceCollision will be returned if a section contains both
+// source_profile and credential_source
+var ErrSharedConfigSourceCollision = awserr.New(ErrCodeSharedConfig, "only source profile or credential source can be specified, not both", nil)
+
+// ErrSharedConfigECSContainerEnvVarEmpty will be returned if the environment
+// variables are empty and Environment was set as the credential source
+var ErrSharedConfigECSContainerEnvVarEmpty = awserr.New(ErrCodeSharedConfig, "EcsContainer was specified as the credential_source, but 'AWS_CONTAINER_CREDENTIALS_RELATIVE_URI' was not set", nil)
+
+// ErrSharedConfigInvalidCredSource will be returned if an invalid credential source was provided
+var ErrSharedConfigInvalidCredSource = awserr.New(ErrCodeSharedConfig, "credential source values must be EcsContainer, Ec2InstanceMetadata, or Environment", nil)
+
 // A Session provides a central location to create service clients from and
 // store configurations and request handlers for those services.
 //
@@ -436,46 +453,74 @@ func mergeConfigSrcs(cfg, userCfg *aws.Config, envCfg envConfig, sharedCfg share
 
 	// Configure credentials if not already set
 	if cfg.Credentials == credentials.AnonymousCredentials && userCfg.Credentials == nil {
+
+		// inspect the profile to see if a credential source has been specified.
+		if envCfg.EnableSharedConfig && len(sharedCfg.AssumeRole.CredentialSource) > 0 {
+
+			// if both credential_source and source_profile have been set, return an error
+			// as this is undefined behavior.
+			if len(sharedCfg.AssumeRole.SourceProfile) > 0 {
+				return ErrSharedConfigSourceCollision
+			}
+
+			// valid credential source values
+			const (
+				credSourceEc2Metadata  = "Ec2InstanceMetadata"
+				credSourceEnvironment  = "Environment"
+				credSourceECSContainer = "EcsContainer"
+			)
+
+			switch sharedCfg.AssumeRole.CredentialSource {
+			case credSourceEc2Metadata:
+				cfgCp := *cfg
+				p := defaults.RemoteCredProvider(cfgCp, handlers)
+				cfgCp.Credentials = credentials.NewCredentials(p)
+
+				if len(sharedCfg.AssumeRole.MFASerial) > 0 && sessOpts.AssumeRoleTokenProvider == nil {
+					// AssumeRole Token provider is required if doing Assume Role
+					// with MFA.
+					return AssumeRoleTokenProviderNotSetError{}
+				}
+
+				cfg.Credentials = assumeRoleCredentials(cfgCp, handlers, sharedCfg, sessOpts)
+			case credSourceEnvironment:
+				cfg.Credentials = credentials.NewStaticCredentialsFromCreds(
+					envCfg.Creds,
+				)
+			case credSourceECSContainer:
+				if len(os.Getenv(defaults.EcsCredsProviderEnvVar)) == 0 {
+					return ErrSharedConfigECSContainerEnvVarEmpty
+				}
+
+				cfgCp := *cfg
+				p := defaults.RemoteCredProvider(cfgCp, handlers)
+				creds := credentials.NewCredentials(p)
+
+				cfg.Credentials = creds
+			default:
+				return ErrSharedConfigInvalidCredSource
+			}
+
+			return nil
+		}
+
 		if len(envCfg.Creds.AccessKeyID) > 0 {
 			cfg.Credentials = credentials.NewStaticCredentialsFromCreds(
 				envCfg.Creds,
 			)
 		} else if envCfg.EnableSharedConfig && len(sharedCfg.AssumeRole.RoleARN) > 0 && sharedCfg.AssumeRoleSource != nil {
 			cfgCp := *cfg
-			if sharedCfg.AssumeRole.CredentialSource == "Ec2InstanceMetadata" {
-				p := defaults.RemoteCredProvider(cfgCp, handlers)
-				cfgCp.Credentials = credentials.NewCredentials(p)
-			} else if len(sharedCfg.AssumeRole.SourceProfile) > 0 {
-				cfgCp.Credentials = credentials.NewStaticCredentialsFromCreds(
-					sharedCfg.AssumeRoleSource.Creds,
-				)
-			}
+			cfgCp.Credentials = credentials.NewStaticCredentialsFromCreds(
+				sharedCfg.AssumeRoleSource.Creds,
+			)
+
 			if len(sharedCfg.AssumeRole.MFASerial) > 0 && sessOpts.AssumeRoleTokenProvider == nil {
 				// AssumeRole Token provider is required if doing Assume Role
 				// with MFA.
 				return AssumeRoleTokenProviderNotSetError{}
 			}
-			cfg.Credentials = stscreds.NewCredentials(
-				&Session{
-					Config:   &cfgCp,
-					Handlers: handlers.Copy(),
-				},
-				sharedCfg.AssumeRole.RoleARN,
-				func(opt *stscreds.AssumeRoleProvider) {
-					opt.RoleSessionName = sharedCfg.AssumeRole.RoleSessionName
 
-					// Assume role with external ID
-					if len(sharedCfg.AssumeRole.ExternalID) > 0 {
-						opt.ExternalID = aws.String(sharedCfg.AssumeRole.ExternalID)
-					}
-
-					// Assume role with MFA
-					if len(sharedCfg.AssumeRole.MFASerial) > 0 {
-						opt.SerialNumber = aws.String(sharedCfg.AssumeRole.MFASerial)
-						opt.TokenProvider = sessOpts.AssumeRoleTokenProvider
-					}
-				},
-			)
+			cfg.Credentials = assumeRoleCredentials(cfgCp, handlers, sharedCfg, sessOpts)
 		} else if len(sharedCfg.Creds.AccessKeyID) > 0 {
 			cfg.Credentials = credentials.NewStaticCredentialsFromCreds(
 				sharedCfg.Creds,
@@ -496,6 +541,30 @@ func mergeConfigSrcs(cfg, userCfg *aws.Config, envCfg envConfig, sharedCfg share
 	}
 
 	return nil
+}
+
+func assumeRoleCredentials(cfg aws.Config, handlers request.Handlers, sharedCfg sharedConfig, sessOpts Options) *credentials.Credentials {
+	return stscreds.NewCredentials(
+		&Session{
+			Config:   &cfg,
+			Handlers: handlers.Copy(),
+		},
+		sharedCfg.AssumeRole.RoleARN,
+		func(opt *stscreds.AssumeRoleProvider) {
+			opt.RoleSessionName = sharedCfg.AssumeRole.RoleSessionName
+
+			// Assume role with external ID
+			if len(sharedCfg.AssumeRole.ExternalID) > 0 {
+				opt.ExternalID = aws.String(sharedCfg.AssumeRole.ExternalID)
+			}
+
+			// Assume role with MFA
+			if len(sharedCfg.AssumeRole.MFASerial) > 0 {
+				opt.SerialNumber = aws.String(sharedCfg.AssumeRole.MFASerial)
+				opt.TokenProvider = sessOpts.AssumeRoleTokenProvider
+			}
+		},
+	)
 }
 
 // AssumeRoleTokenProviderNotSetError is an error returned when creating a session when the
