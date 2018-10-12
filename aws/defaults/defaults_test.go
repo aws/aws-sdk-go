@@ -10,6 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/credentials/ec2rolecreds"
 	"github.com/aws/aws-sdk-go/aws/credentials/endpointcreds"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/internal/shareddefaults"
 )
 
 func TestHTTPCredProvider(t *testing.T) {
@@ -90,7 +91,7 @@ func TestHTTPCredProvider(t *testing.T) {
 
 func TestECSCredProvider(t *testing.T) {
 	defer os.Clearenv()
-	os.Setenv(ecsCredsProviderEnvVar, "/abc/123")
+	os.Setenv(shareddefaults.ECSCredsProviderEnvVar, "/abc/123")
 
 	provider := RemoteCredProvider(aws.Config{}, request.Handlers{})
 	if provider == nil {
