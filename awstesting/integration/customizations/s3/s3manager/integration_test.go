@@ -7,13 +7,10 @@ import (
 	"bytes"
 	"crypto/md5"
 	"fmt"
-	"io"
-	"os"
 	"regexp"
 	"strings"
 	"testing"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/awstesting/integration"
@@ -23,120 +20,6 @@ import (
 
 var integBuf12MB = make([]byte, 1024*1024*12)
 var integMD512MB = fmt.Sprintf("%x", md5.Sum(integBuf12MB))
-var bucketName *string
-
-func TestMain(m *testing.M) {
-	if err := setup(); err != nil {
-		panic(fmt.Sprintf("failed to setup integration test, %v", err))
-	}
-
-	var result int
-
-	defer func() {
-		if err := teardown(); err != nil {
-			fmt.Fprintf(os.Stderr, "teardown failed, %v", err)
-		}
-		if r := recover(); r != nil {
-			fmt.Println("S3Manager integration test hit a panic,", r)
-			result = 1
-		}
-		os.Exit(result)
-	}()
-
-	result = m.Run()
-}
-
-func setup() error {
-	svc := s3.New(integration.Session)
-
-	// Create a bucket for testing
-	bucketName = aws.String(
-		fmt.Sprintf("aws-sdk-go-integration-%s", integration.UniqueID()))
-
-	_, err := svc.CreateBucket(&s3.CreateBucketInput{Bucket: bucketName})
-	if err != nil {
-		return fmt.Errorf("failed to create bucket %q, %v", *bucketName, err)
-	}
-
-	err = svc.WaitUntilBucketExists(&s3.HeadBucketInput{Bucket: bucketName})
-	if err != nil {
-		return fmt.Errorf("failed to wait for bucket %q to exist, %v", *bucketName, err)
-	}
-
-	return nil
-}
-
-// Delete the bucket
-func teardown() error {
-	svc := s3.New(integration.Session)
-
-	objs, err := svc.ListObjects(&s3.ListObjectsInput{Bucket: bucketName})
-	if err != nil {
-		return fmt.Errorf("failed to list bucket %q objects, %v", *bucketName, err)
-	}
-
-	for _, o := range objs.Contents {
-		svc.DeleteObject(&s3.DeleteObjectInput{Bucket: bucketName, Key: o.Key})
-	}
-
-	uploads, err := svc.ListMultipartUploads(&s3.ListMultipartUploadsInput{Bucket: bucketName})
-	if err != nil {
-		return fmt.Errorf("failed to list bucket %q multipart objects, %v", *bucketName, err)
-	}
-
-	for _, u := range uploads.Uploads {
-		svc.AbortMultipartUpload(&s3.AbortMultipartUploadInput{
-			Bucket:   bucketName,
-			Key:      u.Key,
-			UploadId: u.UploadId,
-		})
-	}
-
-	_, err = svc.DeleteBucket(&s3.DeleteBucketInput{Bucket: bucketName})
-	if err != nil {
-		return fmt.Errorf("failed to delete bucket %q, %v", *bucketName, err)
-	}
-
-	return nil
-}
-
-type dlwriter struct {
-	buf []byte
-}
-
-func newDLWriter(size int) *dlwriter {
-	return &dlwriter{buf: make([]byte, size)}
-}
-
-func (d dlwriter) WriteAt(p []byte, pos int64) (n int, err error) {
-	if pos > int64(len(d.buf)) {
-		return 0, io.EOF
-	}
-
-	written := 0
-	for i, b := range p {
-		if i >= len(d.buf) {
-			break
-		}
-		d.buf[pos+int64(i)] = b
-		written++
-	}
-	return written, nil
-}
-
-func validate(t *testing.T, key string, md5value string) {
-	mgr := s3manager.NewDownloader(integration.Session)
-	params := &s3.GetObjectInput{Bucket: bucketName, Key: &key}
-
-	w := newDLWriter(1024 * 1024 * 20)
-	n, err := mgr.Download(w, params)
-	if err != nil {
-		t.Fatalf("expect no error, got %v", err)
-	}
-	if e, a := md5value, fmt.Sprintf("%x", md5.Sum(w.buf[0:n])); e != a {
-		t.Errorf("expect %s md5 value, got %s", e, a)
-	}
-}
 
 func TestUploadConcurrently(t *testing.T) {
 	key := "12mb-1"
