@@ -7,6 +7,7 @@
     "protocol":"json",
     "serviceAbbreviation":"CloudTrail",
     "serviceFullName":"AWS CloudTrail",
+    "serviceId":"CloudTrail",
     "signatureVersion":"v4",
     "targetPrefix":"com.amazonaws.cloudtrail.v20131101.CloudTrail_20131101",
     "uid":"cloudtrail-2013-11-01"
@@ -389,6 +390,8 @@
       "members":{
         "EventId":{"shape":"String"},
         "EventName":{"shape":"String"},
+        "ReadOnly":{"shape":"String"},
+        "AccessKeyId":{"shape":"String"},
         "EventTime":{"shape":"Date"},
         "EventSource":{"shape":"String"},
         "Username":{"shape":"String"},
@@ -634,10 +637,12 @@
       "enum":[
         "EventId",
         "EventName",
+        "ReadOnly",
         "Username",
         "ResourceType",
         "ResourceName",
-        "EventSource"
+        "EventSource",
+        "AccessKeyId"
       ]
     },
     "LookupAttributesList":{

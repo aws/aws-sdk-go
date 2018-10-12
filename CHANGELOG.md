@@ -1,3 +1,14 @@
+Release v1.15.54 (2018-10-12)
+===
+
+### Service Client Updates
+* `service/cloudtrail`: Updates service API and documentation
+  * The LookupEvents API now supports two new attribute keys: ReadOnly and AccessKeyId
+
+### SDK Enhancements
+* `aws/session`: Add support for credential source(#2201)
+  * Allows for shared config file to contain `credential_source` with any of the given values `EcsContainer`, `Environment` or `Ec2InstanceMetadata`
+
 Release v1.15.53 (2018-10-11)
 ===
 
