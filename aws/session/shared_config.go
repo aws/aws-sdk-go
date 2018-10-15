@@ -16,11 +16,12 @@ const (
 	sessionTokenKey = `aws_session_token`     // optional
 
 	// Assume Role Credentials group
-	roleArnKey         = `role_arn`          // group required
-	sourceProfileKey   = `source_profile`    // group required
-	externalIDKey      = `external_id`       // optional
-	mfaSerialKey       = `mfa_serial`        // optional
-	roleSessionNameKey = `role_session_name` // optional
+	roleArnKey          = `role_arn`          // group required
+	sourceProfileKey    = `source_profile`    // group required (or credential_source)
+	credentialSourceKey = `credential_source` // group required (or source_profile)
+	externalIDKey       = `external_id`       // optional
+	mfaSerialKey        = `mfa_serial`        // optional
+	roleSessionNameKey  = `role_session_name` // optional
 
 	// Additional Config fields
 	regionKey = `region`
@@ -32,11 +33,12 @@ const (
 )
 
 type assumeRoleConfig struct {
-	RoleARN         string
-	SourceProfile   string
-	ExternalID      string
-	MFASerial       string
-	RoleSessionName string
+	RoleARN          string
+	SourceProfile    string
+	CredentialSource string
+	ExternalID       string
+	MFASerial        string
+	RoleSessionName  string
 }
 
 // sharedConfig represents the configuration fields of the SDK config files.
@@ -124,6 +126,13 @@ func loadSharedConfigIniFiles(filenames []string) ([]sharedConfigFile, error) {
 func (cfg *sharedConfig) setAssumeRoleSource(origProfile string, files []sharedConfigFile) error {
 	var assumeRoleSrc sharedConfig
 
+	if len(cfg.AssumeRole.CredentialSource) > 0 {
+		// setAssumeRoleSource is only called when source_profile is found.
+		// If both source_profile and credential_source are set, then
+		// ErrSharedConfigSourceCollision will be returned
+		return ErrSharedConfigSourceCollision
+	}
+
 	// Multiple level assume role chains are not support
 	if cfg.AssumeRole.SourceProfile == origProfile {
 		assumeRoleSrc = *cfg
@@ -192,13 +201,16 @@ func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile) e
 	// Assume Role
 	roleArn := section.String(roleArnKey)
 	srcProfile := section.String(sourceProfileKey)
-	if len(roleArn) > 0 && len(srcProfile) > 0 {
+	credentialSource := section.String(credentialSourceKey)
+	hasSource := len(srcProfile) > 0 || len(credentialSource) > 0
+	if len(roleArn) > 0 && hasSource {
 		cfg.AssumeRole = assumeRoleConfig{
-			RoleARN:         roleArn,
-			SourceProfile:   srcProfile,
-			ExternalID:      section.String(externalIDKey),
-			MFASerial:       section.String(mfaSerialKey),
-			RoleSessionName: section.String(roleSessionNameKey),
+			RoleARN:          roleArn,
+			SourceProfile:    srcProfile,
+			CredentialSource: credentialSource,
+			ExternalID:       section.String(externalIDKey),
+			MFASerial:        section.String(mfaSerialKey),
+			RoleSessionName:  section.String(roleSessionNameKey),
 		}
 	}
 

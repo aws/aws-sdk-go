@@ -5182,6 +5182,7 @@
         "EnableCloudwatchLogsExports":{"shape":"LogTypeList"},
         "EngineMode":{"shape":"String"},
         "ScalingConfiguration":{"shape":"ScalingConfiguration"},
+        "DBClusterParameterGroupName":{"shape":"String"},
         "DeletionProtection":{"shape":"BooleanOptional"}
       }
     },
@@ -5212,6 +5213,7 @@
         "EnableIAMDatabaseAuthentication":{"shape":"BooleanOptional"},
         "BacktrackWindow":{"shape":"LongOptional"},
         "EnableCloudwatchLogsExports":{"shape":"LogTypeList"},
+        "DBClusterParameterGroupName":{"shape":"String"},
         "DeletionProtection":{"shape":"BooleanOptional"}
       }
     },
@@ -5253,6 +5255,7 @@
         "EnableCloudwatchLogsExports":{"shape":"LogTypeList"},
         "ProcessorFeatures":{"shape":"ProcessorFeatureList"},
         "UseDefaultProcessorFeatures":{"shape":"BooleanOptional"},
+        "DBParameterGroupName":{"shape":"String"},
         "DeletionProtection":{"shape":"BooleanOptional"}
       }
     },
@@ -5359,6 +5362,7 @@
         "EnableCloudwatchLogsExports":{"shape":"LogTypeList"},
         "ProcessorFeatures":{"shape":"ProcessorFeatureList"},
         "UseDefaultProcessorFeatures":{"shape":"BooleanOptional"},
+        "DBParameterGroupName":{"shape":"String"},
         "DeletionProtection":{"shape":"BooleanOptional"}
       }
     },

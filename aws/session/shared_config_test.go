@@ -144,7 +144,6 @@ func TestLoadSharedConfigFromFile(t *testing.T) {
 	if err != nil {
 		t.Fatalf("failed to load test config file, %s, %v", filename, err)
 	}
-
 	iniFile := sharedConfigFile{IniData: f, Filename: filename}
 
 	cases := []struct {
