@@ -1,3 +1,14 @@
+Release v1.15.55 (2018-10-15)
+===
+
+### Service Client Updates
+* `service/lambda`: Updates service API and documentation
+  * Documentation updates for lambda
+* `service/rds`: Updates service API and documentation
+  * This release adds a new parameter to specify the DB instance or cluster parameter group for restore from DB snapshot and restore to point int time operations. For more information, see Amazon RDS Documentation.
+* `service/servicecatalog`: Updates service API, documentation, and paginators
+  * AWS Service Catalog enables you to reduce administrative maintenance and end-user training while adhering to compliance and security measures. With service actions, you as the administrator can enable end users to perform operational tasks, troubleshoot issues, run approved commands, or request permissions within Service Catalog. Service actions are defined using AWS Systems Manager documents, where you have access to pre-defined actions that implement AWS best practices, such asEC2 stop and reboot, as well as the ability to define custom actions.
+
 Release v1.15.54 (2018-10-12)
 ===
 
