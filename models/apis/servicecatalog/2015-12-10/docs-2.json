@@ -5,7 +5,10 @@
     "AcceptPortfolioShare": "<p>Accepts an offer to share the specified portfolio.</p>",
     "AssociatePrincipalWithPortfolio": "<p>Associates the specified principal ARN with the specified portfolio.</p>",
     "AssociateProductWithPortfolio": "<p>Associates the specified product with the specified portfolio.</p>",
+    "AssociateServiceActionWithProvisioningArtifact": "<p>Associates a self-service action with a provisioning artifact.</p>",
     "AssociateTagOptionWithResource": "<p>Associate the specified TagOption with the specified portfolio or product.</p>",
+    "BatchAssociateServiceActionWithProvisioningArtifact": "<p>Associates multiple self-service actions with provisioning artifacts.</p>",
+    "BatchDisassociateServiceActionFromProvisioningArtifact": "<p>Disassociates a batch of self-service actions from the specified provisioning artifact.</p>",
     "CopyProduct": "<p>Copies the specified source product to the specified target product or a new product.</p> <p>You can copy a product to the same account or another account. You can copy a product to the same region or another region.</p> <p>This operation is performed asynchronously. To track the progress of the operation, use <a>DescribeCopyProductStatus</a>.</p>",
     "CreateConstraint": "<p>Creates a constraint.</p>",
     "CreatePortfolio": "<p>Creates a portfolio.</p>",
@@ -13,6 +16,7 @@
     "CreateProduct": "<p>Creates a product.</p>",
     "CreateProvisionedProductPlan": "<p>Creates a plan. A plan includes the list of resources to be created (when provisioning a new product) or modified (when updating a provisioned product) when the plan is executed.</p> <p>You can create one plan per provisioned product. To create a plan for an existing provisioned product, the product status must be AVAILBLE or TAINTED.</p> <p>To view the resource changes in the change set, use <a>DescribeProvisionedProductPlan</a>. To create or modify the provisioned product, use <a>ExecuteProvisionedProductPlan</a>.</p>",
     "CreateProvisioningArtifact": "<p>Creates a provisioning artifact (also known as a version) for the specified product.</p> <p>You cannot create a provisioning artifact for a product that was shared with you.</p>",
+    "CreateServiceAction": "<p>Creates a self-service action.</p>",
     "CreateTagOption": "<p>Creates a TagOption.</p>",
     "DeleteConstraint": "<p>Deletes the specified constraint.</p>",
     "DeletePortfolio": "<p>Deletes the specified portfolio.</p> <p>You cannot delete a portfolio if it was shared with you or if it has associated products, users, constraints, or shared accounts.</p>",
@@ -20,6 +24,7 @@
     "DeleteProduct": "<p>Deletes the specified product.</p> <p>You cannot delete a product if it was shared with you or is associated with a portfolio.</p>",
     "DeleteProvisionedProductPlan": "<p>Deletes the specified plan.</p>",
     "DeleteProvisioningArtifact": "<p>Deletes the specified provisioning artifact (also known as a version) for the specified product.</p> <p>You cannot delete a provisioning artifact associated with a product that was shared with you. You cannot delete the last provisioning artifact for a product, because a product must have at least one provisioning artifact.</p>",
+    "DeleteServiceAction": "<p>Deletes a self-service action.</p>",
     "DeleteTagOption": "<p>Deletes the specified TagOption.</p> <p>You cannot delete a TagOption if it is associated with a product or portfolio.</p>",
     "DescribeConstraint": "<p>Gets information about the specified constraint.</p>",
     "DescribeCopyProductStatus": "<p>Gets the status of the specified copy product operation.</p>",
@@ -32,11 +37,14 @@
     "DescribeProvisioningArtifact": "<p>Gets information about the specified provisioning artifact (also known as a version) for the specified product.</p>",
     "DescribeProvisioningParameters": "<p>Gets information about the configuration required to provision the specified product using the specified provisioning artifact.</p> <p>If the output contains a TagOption key with an empty list of values, there is a TagOption conflict for that key. The end user cannot take action to fix the conflict, and launch is not blocked. In subsequent calls to <a>ProvisionProduct</a>, do not include conflicted TagOption keys as tags, or this causes the error \"Parameter validation failed: Missing required parameter in Tags[<i>N</i>]:<i>Value</i>\". Tag the provisioned product with the value <code>sc-tagoption-conflict-portfolioId-productId</code>.</p>",
     "DescribeRecord": "<p>Gets information about the specified request operation.</p> <p>Use this operation after calling a request operation (for example, <a>ProvisionProduct</a>, <a>TerminateProvisionedProduct</a>, or <a>UpdateProvisionedProduct</a>). </p>",
+    "DescribeServiceAction": "<p>Describes a self-service action.</p>",
     "DescribeTagOption": "<p>Gets information about the specified TagOption.</p>",
     "DisassociatePrincipalFromPortfolio": "<p>Disassociates a previously associated principal ARN from a specified portfolio.</p>",
     "DisassociateProductFromPortfolio": "<p>Disassociates the specified product from the specified portfolio. </p>",
+    "DisassociateServiceActionFromProvisioningArtifact": "<p>Disassociates the specified self-service action association from the specified provisioning artifact.</p>",
     "DisassociateTagOptionFromResource": "<p>Disassociates the specified TagOption from the specified resource.</p>",
     "ExecuteProvisionedProductPlan": "<p>Provisions or modifies a product based on the resource changes for the specified plan.</p>",
+    "ExecuteProvisionedProductServiceAction": "<p>Executes a self-service action against a provisioned product.</p>",
     "ListAcceptedPortfolioShares": "<p>Lists all portfolios for which sharing was accepted by this account.</p>",
     "ListConstraintsForPortfolio": "<p>Lists the constraints for the specified portfolio and product.</p>",
     "ListLaunchPaths": "<p>Lists the paths to the specified product. A path is how the user has access to a specified product, and is necessary when provisioning a product. A path also determines the constraints put on the product.</p>",
@@ -46,8 +54,11 @@
     "ListPrincipalsForPortfolio": "<p>Lists all principal ARNs associated with the specified portfolio.</p>",
     "ListProvisionedProductPlans": "<p>Lists the plans for the specified provisioned product or all plans to which the user has access.</p>",
     "ListProvisioningArtifacts": "<p>Lists all provisioning artifacts (also known as versions) for the specified product.</p>",
+    "ListProvisioningArtifactsForServiceAction": "<p>Lists all provisioning artifacts (also known as versions) for the specified self-service action.</p>",
     "ListRecordHistory": "<p>Lists the specified requests or all performed requests.</p>",
     "ListResourcesForTagOption": "<p>Lists the resources associated with the specified TagOption.</p>",
+    "ListServiceActions": "<p>Lists all self-service actions.</p>",
+    "ListServiceActionsForProvisioningArtifact": "<p>Returns a paginated list of self-service actions associated with the specified Product ID and Provisioning Artifact ID.</p>",
     "ListTagOptions": "<p>Lists the specified TagOptions or all TagOptions.</p>",
     "ProvisionProduct": "<p>Provisions the specified product.</p> <p>A provisioned product is a resourced instance of a product. For example, provisioning a product based on a CloudFormation template launches a CloudFormation stack and its underlying resources. You can check the status of this request using <a>DescribeRecord</a>.</p> <p>If the request contains a tag key with an empty list of values, there is a tag conflict for that key. Do not include conflicted keys as tags, or this causes the error \"Parameter validation failed: Missing required parameter in Tags[<i>N</i>]:<i>Value</i>\".</p>",
     "RejectPortfolioShare": "<p>Rejects an offer to share the specified portfolio.</p>",
@@ -61,6 +72,7 @@
     "UpdateProduct": "<p>Updates the specified product.</p>",
     "UpdateProvisionedProduct": "<p>Requests updates to the configuration of the specified provisioned product.</p> <p>If there are tags associated with the object, they cannot be updated or added. Depending on the specific updates requested, this operation can update with no interruption, with some interruption, or replace the provisioned product entirely.</p> <p>You can check the status of this request using <a>DescribeRecord</a>.</p>",
     "UpdateProvisioningArtifact": "<p>Updates the specified provisioning artifact (also known as a version) for the specified product.</p> <p>You cannot update a provisioning artifact for a product that was shared with you.</p>",
+    "UpdateServiceAction": "<p>Updates a self-service action.</p>",
     "UpdateTagOption": "<p>Updates the specified TagOption.</p>"
   },
   "shapes": {
@@ -70,6 +82,9 @@
         "AcceptPortfolioShareInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "AssociatePrincipalWithPortfolioInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "AssociateProductWithPortfolioInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
+        "AssociateServiceActionWithProvisioningArtifactInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
+        "BatchAssociateServiceActionWithProvisioningArtifactInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
+        "BatchDisassociateServiceActionFromProvisioningArtifactInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "CopyProductInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "CreateConstraintInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "CreatePortfolioInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
@@ -77,12 +92,14 @@
         "CreateProductInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "CreateProvisionedProductPlanInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "CreateProvisioningArtifactInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
+        "CreateServiceActionInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "DeleteConstraintInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "DeletePortfolioInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "DeletePortfolioShareInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "DeleteProductInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "DeleteProvisionedProductPlanInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "DeleteProvisioningArtifactInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
+        "DeleteServiceActionInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "DescribeConstraintInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "DescribeCopyProductStatusInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "DescribePortfolioInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
@@ -94,9 +111,12 @@
         "DescribeProvisioningArtifactInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "DescribeProvisioningParametersInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "DescribeRecordInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
+        "DescribeServiceActionInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "DisassociatePrincipalFromPortfolioInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "DisassociateProductFromPortfolioInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
+        "DisassociateServiceActionFromProvisioningArtifactInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "ExecuteProvisionedProductPlanInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
+        "ExecuteProvisionedProductServiceActionInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "ListAcceptedPortfolioSharesInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "ListConstraintsForPortfolioInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "ListLaunchPathsInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
@@ -105,8 +125,11 @@
         "ListPortfoliosInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "ListPrincipalsForPortfolioInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "ListProvisionedProductPlansInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
+        "ListProvisioningArtifactsForServiceActionInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "ListProvisioningArtifactsInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "ListRecordHistoryInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
+        "ListServiceActionsForProvisioningArtifactInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
+        "ListServiceActionsInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "ProvisionProductInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "RejectPortfolioShareInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "ScanProvisionedProductsInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
@@ -118,7 +141,8 @@
         "UpdatePortfolioInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "UpdateProductInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "UpdateProvisionedProductInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
-        "UpdateProvisioningArtifactInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>"
+        "UpdateProvisioningArtifactInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
+        "UpdateServiceActionInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>"
       }
     },
     "AcceptPortfolioShareInput": {
@@ -214,6 +238,16 @@
       "refs": {
       }
     },
+    "AssociateServiceActionWithProvisioningArtifactInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateServiceActionWithProvisioningArtifactOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "AssociateTagOptionWithResourceInput": {
       "base": null,
       "refs": {
@@ -228,6 +262,26 @@
       "base": null,
       "refs": {
         "ProductViewAggregationValue$Value": "<p>The value of the product view aggregation.</p>"
+      }
+    },
+    "BatchAssociateServiceActionWithProvisioningArtifactInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchAssociateServiceActionWithProvisioningArtifactOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDisassociateServiceActionFromProvisioningArtifactInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDisassociateServiceActionFromProvisioningArtifactOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "CausingEntity": {
@@ -402,6 +456,16 @@
       "refs": {
       }
     },
+    "CreateServiceActionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateServiceActionOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateTagOptionInput": {
       "base": null,
       "refs": {
@@ -491,6 +555,16 @@
       }
     },
     "DeleteProvisioningArtifactOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteServiceActionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteServiceActionOutput": {
       "base": null,
       "refs": {
       }
@@ -615,6 +689,16 @@
       "refs": {
       }
     },
+    "DescribeServiceActionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeServiceActionOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeTagOptionInput": {
       "base": null,
       "refs": {
@@ -648,6 +732,16 @@
       }
     },
     "DisassociateProductFromPortfolioOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateServiceActionFromProvisioningArtifactInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateServiceActionFromProvisioningArtifactOutput": {
       "base": null,
       "refs": {
       }
@@ -695,6 +789,29 @@
       "refs": {
       }
     },
+    "ExecuteProvisionedProductServiceActionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ExecuteProvisionedProductServiceActionOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "FailedServiceActionAssociation": {
+      "base": "<p>An object containing information about the error, along with identifying information about the self-service action and its associations.</p>",
+      "refs": {
+        "FailedServiceActionAssociations$member": null
+      }
+    },
+    "FailedServiceActionAssociations": {
+      "base": null,
+      "refs": {
+        "BatchAssociateServiceActionWithProvisioningArtifactOutput$FailedServiceActionAssociations": "<p>An object that contains a list of errors, along with information to help you identify the self-service action.</p>",
+        "BatchDisassociateServiceActionFromProvisioningArtifactOutput$FailedServiceActionAssociations": "<p>An object that contains a list of errors, along with information to help you identify the self-service action.</p>"
+      }
+    },
     "HasDefaultPath": {
       "base": null,
       "refs": {
@@ -709,6 +826,9 @@
         "AssociateProductWithPortfolioInput$ProductId": "<p>The product identifier.</p>",
         "AssociateProductWithPortfolioInput$PortfolioId": "<p>The portfolio identifier.</p>",
         "AssociateProductWithPortfolioInput$SourcePortfolioId": "<p>The identifier of the source portfolio.</p>",
+        "AssociateServiceActionWithProvisioningArtifactInput$ProductId": "<p>The product identifier. For example, <code>prod-abcdzk7xy33qa</code>.</p>",
+        "AssociateServiceActionWithProvisioningArtifactInput$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact. For example, <code>pa-4abcdjnxjj6ne</code>.</p>",
+        "AssociateServiceActionWithProvisioningArtifactInput$ServiceActionId": "<p>The self-service action identifier. For example, <code>act-fs7abcd89wxyz</code>.</p>",
         "ConstraintDetail$ConstraintId": "<p>The identifier of the constraint.</p>",
         "CopyProductInput$TargetProductId": "<p>The identifier of the target product. By default, a new product is created.</p>",
         "CopyProductOutput$CopyProductToken": "<p>The token to use to track the progress of the operation.</p>",
@@ -729,6 +849,7 @@
         "DeleteProvisionedProductPlanInput$PlanId": "<p>The plan identifier.</p>",
         "DeleteProvisioningArtifactInput$ProductId": "<p>The product identifier.</p>",
         "DeleteProvisioningArtifactInput$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact.</p>",
+        "DeleteServiceActionInput$Id": "<p>The self-service action identifier. For example, <code>act-fs7abcd89wxyz</code>.</p>",
         "DescribeConstraintInput$Id": "<p>The identifier of the constraint.</p>",
         "DescribeCopyProductStatusInput$CopyProductToken": "<p>The token for the copy product operation. This token is returned by <a>CopyProduct</a>.</p>",
         "DescribeCopyProductStatusOutput$TargetProductId": "<p>The identifier of the copied product.</p>",
@@ -744,10 +865,19 @@
         "DescribeProvisioningParametersInput$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact.</p>",
         "DescribeProvisioningParametersInput$PathId": "<p>The path identifier of the product. This value is optional if the product has a default path, and required if the product has more than one path. To list the paths for a product, use <a>ListLaunchPaths</a>.</p>",
         "DescribeRecordInput$Id": "<p>The record identifier of the provisioned product. This identifier is returned by the request operation.</p>",
+        "DescribeServiceActionInput$Id": "<p>The self-service action identifier.</p>",
         "DisassociatePrincipalFromPortfolioInput$PortfolioId": "<p>The portfolio identifier.</p>",
         "DisassociateProductFromPortfolioInput$ProductId": "<p>The product identifier.</p>",
         "DisassociateProductFromPortfolioInput$PortfolioId": "<p>The portfolio identifier.</p>",
+        "DisassociateServiceActionFromProvisioningArtifactInput$ProductId": "<p>The product identifier. For example, <code>prod-abcdzk7xy33qa</code>.</p>",
+        "DisassociateServiceActionFromProvisioningArtifactInput$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact. For example, <code>pa-4abcdjnxjj6ne</code>.</p>",
+        "DisassociateServiceActionFromProvisioningArtifactInput$ServiceActionId": "<p>The self-service action identifier. For example, <code>act-fs7abcd89wxyz</code>.</p>",
         "ExecuteProvisionedProductPlanInput$PlanId": "<p>The plan identifier.</p>",
+        "ExecuteProvisionedProductServiceActionInput$ProvisionedProductId": "<p>The identifier of the provisioned product.</p>",
+        "ExecuteProvisionedProductServiceActionInput$ServiceActionId": "<p>The self-service action identifier. For example, <code>act-fs7abcd89wxyz</code>.</p>",
+        "FailedServiceActionAssociation$ServiceActionId": "<p>The self-service action identifier. For example, <code>act-fs7abcd89wxyz</code>.</p>",
+        "FailedServiceActionAssociation$ProductId": "<p>The product identifier. For example, <code>prod-abcdzk7xy33qa</code>.</p>",
+        "FailedServiceActionAssociation$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact. For example, <code>pa-4abcdjnxjj6ne</code>.</p>",
         "LaunchPathSummary$Id": "<p>The identifier of the product path.</p>",
         "ListConstraintsForPortfolioInput$PortfolioId": "<p>The portfolio identifier.</p>",
         "ListConstraintsForPortfolioInput$ProductId": "<p>The product identifier.</p>",
@@ -756,7 +886,10 @@
         "ListPortfoliosForProductInput$ProductId": "<p>The product identifier.</p>",
         "ListPrincipalsForPortfolioInput$PortfolioId": "<p>The portfolio identifier.</p>",
         "ListProvisionedProductPlansInput$ProvisionProductId": "<p>The product identifier.</p>",
+        "ListProvisioningArtifactsForServiceActionInput$ServiceActionId": "<p>The self-service action identifier. For example, <code>act-fs7abcd89wxyz</code>.</p>",
         "ListProvisioningArtifactsInput$ProductId": "<p>The product identifier.</p>",
+        "ListServiceActionsForProvisioningArtifactInput$ProductId": "<p>The product identifier. For example, <code>prod-abcdzk7xy33qa</code>.</p>",
+        "ListServiceActionsForProvisioningArtifactInput$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact. For example, <code>pa-4abcdjnxjj6ne</code>.</p>",
         "PortfolioDetail$Id": "<p>The portfolio identifier.</p>",
         "ProductViewSummary$Id": "<p>The product view identifier.</p>",
         "ProductViewSummary$ProductId": "<p>The product identifier.</p>",
@@ -767,6 +900,8 @@
         "ProvisionedProductAttribute$LastRecordId": "<p>The record identifier of the last request performed on this provisioned product.</p>",
         "ProvisionedProductAttribute$ProductId": "<p>The product identifier.</p>",
         "ProvisionedProductAttribute$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact.</p>",
+        "ProvisionedProductDetail$ProductId": "<p>The product identifier. For example, <code>prod-abcdzk7xy33qa</code>.</p>",
+        "ProvisionedProductDetail$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact. For example, <code>pa-4abcdjnxjj6ne</code>.</p>",
         "ProvisionedProductPlanDetails$PathId": "<p>The path identifier of the product. This value is optional if the product has a default path, and required if the product has more than one path. To list the paths for a product, use <a>ListLaunchPaths</a>.</p>",
         "ProvisionedProductPlanDetails$ProductId": "<p>The product identifier.</p>",
         "ProvisionedProductPlanDetails$PlanId": "<p>The plan identifier.</p>",
@@ -785,6 +920,10 @@
         "RecordDetail$PathId": "<p>The path identifier.</p>",
         "RejectPortfolioShareInput$PortfolioId": "<p>The portfolio identifier.</p>",
         "SearchProductsAsAdminInput$PortfolioId": "<p>The portfolio identifier.</p>",
+        "ServiceActionAssociation$ServiceActionId": "<p>The self-service action identifier. For example, <code>act-fs7abcd89wxyz</code>.</p>",
+        "ServiceActionAssociation$ProductId": "<p>The product identifier. For example, <code>prod-abcdzk7xy33qa</code>.</p>",
+        "ServiceActionAssociation$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact. For example, <code>pa-4abcdjnxjj6ne</code>.</p>",
+        "ServiceActionSummary$Id": "<p>The self-service action identifier.</p>",
         "TerminateProvisionedProductInput$ProvisionedProductId": "<p>The identifier of the provisioned product. You cannot specify both <code>ProvisionedProductName</code> and <code>ProvisionedProductId</code>.</p>",
         "UpdateConstraintInput$Id": "<p>The identifier of the constraint.</p>",
         "UpdatePortfolioInput$Id": "<p>The portfolio identifier.</p>",
@@ -794,7 +933,8 @@
         "UpdateProvisionedProductInput$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact.</p>",
         "UpdateProvisionedProductInput$PathId": "<p>The new path identifier. This value is optional if the product has a default path, and required if the product has more than one path.</p>",
         "UpdateProvisioningArtifactInput$ProductId": "<p>The product identifier.</p>",
-        "UpdateProvisioningArtifactInput$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact.</p>"
+        "UpdateProvisioningArtifactInput$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact.</p>",
+        "UpdateServiceActionInput$Id": "<p>The self-service action identifier.</p>"
       }
     },
     "IdempotencyToken": {
@@ -806,7 +946,9 @@
         "CreateProductInput$IdempotencyToken": "<p>A unique identifier that you provide to ensure idempotency. If multiple requests differ only by the idempotency token, the same response is returned for each repeated request.</p>",
         "CreateProvisionedProductPlanInput$IdempotencyToken": "<p>A unique identifier that you provide to ensure idempotency. If multiple requests differ only by the idempotency token, the same response is returned for each repeated request.</p>",
         "CreateProvisioningArtifactInput$IdempotencyToken": "<p>A unique identifier that you provide to ensure idempotency. If multiple requests differ only by the idempotency token, the same response is returned for each repeated request.</p>",
+        "CreateServiceActionInput$IdempotencyToken": "<p>A unique identifier that you provide to ensure idempotency. If multiple requests differ only by the idempotency token, the same response is returned for each repeated request.</p>",
         "ExecuteProvisionedProductPlanInput$IdempotencyToken": "<p>A unique identifier that you provide to ensure idempotency. If multiple requests differ only by the idempotency token, the same response is returned for each repeated request.</p>",
+        "ExecuteProvisionedProductServiceActionInput$ExecuteToken": "<p>An idempotency token that uniquely identifies the execute request.</p>",
         "ProvisionProductInput$ProvisionToken": "<p>An idempotency token that uniquely identifies the provisioning request.</p>",
         "ProvisionedProductAttribute$IdempotencyToken": "<p>A unique identifier that you provide to ensure idempotency. If multiple requests differ only by the idempotency token, the same response is returned for each repeated request.</p>",
         "ProvisionedProductDetail$IdempotencyToken": "<p>A unique identifier that you provide to ensure idempotency. If multiple requests differ only by the idempotency token, the same response is returned for each repeated request.</p>",
@@ -946,6 +1088,16 @@
       "refs": {
       }
     },
+    "ListProvisioningArtifactsForServiceActionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListProvisioningArtifactsForServiceActionOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListProvisioningArtifactsInput": {
       "base": null,
       "refs": {
@@ -978,6 +1130,26 @@
       }
     },
     "ListResourcesForTagOptionOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListServiceActionsForProvisioningArtifactInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListServiceActionsForProvisioningArtifactOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListServiceActionsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListServiceActionsOutput": {
       "base": null,
       "refs": {
       }
@@ -1048,8 +1220,11 @@
         "ListPortfoliosInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ListPrincipalsForPortfolioInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ListProvisionedProductPlansInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
+        "ListProvisioningArtifactsForServiceActionInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ListRecordHistoryInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ListResourcesForTagOptionInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
+        "ListServiceActionsForProvisioningArtifactInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
+        "ListServiceActionsInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ListTagOptionsInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ScanProvisionedProductsInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "SearchProductsAsAdminInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
@@ -1078,11 +1253,17 @@
         "ListPrincipalsForPortfolioOutput$NextPageToken": "<p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>",
         "ListProvisionedProductPlansInput$PageToken": "<p>The page token for the next set of results. To retrieve the first set of results, use null.</p>",
         "ListProvisionedProductPlansOutput$NextPageToken": "<p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>",
+        "ListProvisioningArtifactsForServiceActionInput$PageToken": "<p>The page token for the next set of results. To retrieve the first set of results, use null.</p>",
+        "ListProvisioningArtifactsForServiceActionOutput$NextPageToken": "<p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>",
         "ListProvisioningArtifactsOutput$NextPageToken": "<p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>",
         "ListRecordHistoryInput$PageToken": "<p>The page token for the next set of results. To retrieve the first set of results, use null.</p>",
         "ListRecordHistoryOutput$NextPageToken": "<p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>",
         "ListResourcesForTagOptionInput$PageToken": "<p>The page token for the next set of results. To retrieve the first set of results, use null.</p>",
         "ListResourcesForTagOptionOutput$PageToken": "<p>The page token for the next set of results. To retrieve the first set of results, use null.</p>",
+        "ListServiceActionsForProvisioningArtifactInput$PageToken": "<p>The page token for the next set of results. To retrieve the first set of results, use null.</p>",
+        "ListServiceActionsForProvisioningArtifactOutput$NextPageToken": "<p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>",
+        "ListServiceActionsInput$PageToken": "<p>The page token for the next set of results. To retrieve the first set of results, use null.</p>",
+        "ListServiceActionsOutput$NextPageToken": "<p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>",
         "ListTagOptionsInput$PageToken": "<p>The page token for the next set of results. To retrieve the first set of results, use null.</p>",
         "ListTagOptionsOutput$PageToken": "<p>The page token for the next set of results. To retrieve the first set of results, use null.</p>",
         "ScanProvisionedProductsInput$PageToken": "<p>The page token for the next set of results. To retrieve the first set of results, use null.</p>",
@@ -1347,7 +1528,8 @@
         "DescribeProductOutput$ProductViewSummary": "<p>Summary information about the product view.</p>",
         "DescribeProductViewOutput$ProductViewSummary": "<p>Summary information about the product.</p>",
         "ProductViewDetail$ProductViewSummary": "<p>Summary information about the product view.</p>",
-        "ProductViewSummaries$member": null
+        "ProductViewSummaries$member": null,
+        "ProvisioningArtifactView$ProductViewSummary": "<p>Summary information about a product view.</p>"
       }
     },
     "PropertyName": {
@@ -1517,6 +1699,7 @@
     "ProvisioningArtifact": {
       "base": "<p>Information about a provisioning artifact. A provisioning artifact is also known as a product version.</p>",
       "refs": {
+        "ProvisioningArtifactView$ProvisioningArtifact": "<p>Information about a provisioning artifact. A provisioning artifact is also known as a product version.</p>",
         "ProvisioningArtifacts$member": null
       }
     },
@@ -1642,6 +1825,18 @@
         "ProvisioningArtifactProperties$Type": "<p>The type of provisioning artifact.</p> <ul> <li> <p> <code>CLOUD_FORMATION_TEMPLATE</code> - AWS CloudFormation template</p> </li> <li> <p> <code>MARKETPLACE_AMI</code> - AWS Marketplace AMI</p> </li> <li> <p> <code>MARKETPLACE_CAR</code> - AWS Marketplace Clusters and AWS Resources</p> </li> </ul>"
       }
     },
+    "ProvisioningArtifactView": {
+      "base": "<p>An object that contains summary information about a product view and a provisioning artifact.</p>",
+      "refs": {
+        "ProvisioningArtifactViews$member": null
+      }
+    },
+    "ProvisioningArtifactViews": {
+      "base": null,
+      "refs": {
+        "ListProvisioningArtifactsForServiceActionOutput$ProvisioningArtifactViews": "<p>An array of objects with information about product views and provisioning artifacts.</p>"
+      }
+    },
     "ProvisioningArtifacts": {
       "base": null,
       "refs": {
@@ -1666,6 +1861,7 @@
       "refs": {
         "DescribeRecordOutput$RecordDetail": "<p>Information about the product.</p>",
         "ExecuteProvisionedProductPlanOutput$RecordDetail": "<p>Information about the result of provisioning the product.</p>",
+        "ExecuteProvisionedProductServiceActionOutput$RecordDetail": "<p>An object containing detailed information about the result of provisioning the product.</p>",
         "ProvisionProductOutput$RecordDetail": "<p>Information about the result of provisioning the product.</p>",
         "RecordDetails$member": null,
         "TerminateProvisionedProductOutput$RecordDetail": "<p>Information about the result of this request.</p>",
@@ -1931,6 +2127,96 @@
       "base": null,
       "refs": {
         "SearchProvisionedProductsInput$PageSize": "<p>The maximum number of items to return with this call.</p>"
+      }
+    },
+    "ServiceActionAssociation": {
+      "base": "<p>A self-service action association consisting of the Action ID, the Product ID, and the Provisioning Artifact ID.</p>",
+      "refs": {
+        "ServiceActionAssociations$member": null
+      }
+    },
+    "ServiceActionAssociationErrorCode": {
+      "base": null,
+      "refs": {
+        "FailedServiceActionAssociation$ErrorCode": "<p>The error code. Valid values are listed below.</p>"
+      }
+    },
+    "ServiceActionAssociationErrorMessage": {
+      "base": null,
+      "refs": {
+        "FailedServiceActionAssociation$ErrorMessage": "<p>A text description of the error.</p>"
+      }
+    },
+    "ServiceActionAssociations": {
+      "base": null,
+      "refs": {
+        "BatchAssociateServiceActionWithProvisioningArtifactInput$ServiceActionAssociations": "<p>One or more associations, each consisting of the Action ID, the Product ID, and the Provisioning Artifact ID.</p>",
+        "BatchDisassociateServiceActionFromProvisioningArtifactInput$ServiceActionAssociations": "<p>One or more associations, each consisting of the Action ID, the Product ID, and the Provisioning Artifact ID.</p>"
+      }
+    },
+    "ServiceActionDefinitionKey": {
+      "base": null,
+      "refs": {
+        "ServiceActionDefinitionMap$key": null
+      }
+    },
+    "ServiceActionDefinitionMap": {
+      "base": null,
+      "refs": {
+        "CreateServiceActionInput$Definition": "<p>The self-service action definition. Can be one of the following:</p> <dl> <dt>Name</dt> <dd> <p>The name of the AWS Systems Manager Document. For example, <code>AWS-RestartEC2Instance</code>.</p> </dd> <dt>Version</dt> <dd> <p>The AWS Systems Manager automation document version. For example, <code>\"Version\": \"1\"</code> </p> </dd> <dt>AssumeRole</dt> <dd> <p>The Amazon Resource Name (ARN) of the role that performs the self-service actions on your behalf. For example, <code>\"AssumeRole\": \"arn:aws:iam::12345678910:role/ActionRole\"</code>.</p> <p>To reuse the provisioned product launch role, set to <code>\"AssumeRole\": \"LAUNCH_ROLE\"</code>.</p> </dd> <dt>Parameters</dt> <dd> <p>The list of parameters in JSON format.</p> <p>For example: <code>[{\\\"Name\\\":\\\"InstanceId\\\",\\\"Type\\\":\\\"TARGET\\\"}]</code>.</p> </dd> </dl>",
+        "ServiceActionDetail$Definition": "<p>A map that defines the self-service action.</p>",
+        "UpdateServiceActionInput$Definition": "<p>A map that defines the self-service action.</p>"
+      }
+    },
+    "ServiceActionDefinitionType": {
+      "base": null,
+      "refs": {
+        "CreateServiceActionInput$DefinitionType": "<p>The service action definition type. For example, <code>SSM_AUTOMATION</code>.</p>",
+        "ServiceActionSummary$DefinitionType": "<p>The self-service action definition type. For example, <code>SSM_AUTOMATION</code>.</p>"
+      }
+    },
+    "ServiceActionDefinitionValue": {
+      "base": null,
+      "refs": {
+        "ServiceActionDefinitionMap$value": null
+      }
+    },
+    "ServiceActionDescription": {
+      "base": null,
+      "refs": {
+        "CreateServiceActionInput$Description": "<p>The self-service action description.</p>",
+        "ServiceActionSummary$Description": "<p>The self-service action description.</p>",
+        "UpdateServiceActionInput$Description": "<p>The self-service action description.</p>"
+      }
+    },
+    "ServiceActionDetail": {
+      "base": "<p>An object containing detailed information about the self-service action.</p>",
+      "refs": {
+        "CreateServiceActionOutput$ServiceActionDetail": "<p>An object containing information about the self-service action.</p>",
+        "DescribeServiceActionOutput$ServiceActionDetail": "<p>Detailed information about the self-service action.</p>",
+        "UpdateServiceActionOutput$ServiceActionDetail": "<p>Detailed information about the self-service action.</p>"
+      }
+    },
+    "ServiceActionName": {
+      "base": null,
+      "refs": {
+        "CreateServiceActionInput$Name": "<p>The self-service action name.</p>",
+        "ServiceActionSummary$Name": "<p>The self-service action name.</p>",
+        "UpdateServiceActionInput$Name": "<p>The self-service action name.</p>"
+      }
+    },
+    "ServiceActionSummaries": {
+      "base": null,
+      "refs": {
+        "ListServiceActionsForProvisioningArtifactOutput$ServiceActionSummaries": "<p>An object containing information about the self-service actions associated with the provisioning artifact.</p>",
+        "ListServiceActionsOutput$ServiceActionSummaries": "<p>An object containing information about the service actions associated with the provisioning artifact.</p>"
+      }
+    },
+    "ServiceActionSummary": {
+      "base": "<p>Detailed information about the self-service action.</p>",
+      "refs": {
+        "ServiceActionDetail$ServiceActionSummary": "<p>Summary information about the self-service action.</p>",
+        "ServiceActionSummaries$member": null
       }
     },
     "SortField": {
@@ -2207,6 +2493,16 @@
         "CreateProvisionedProductPlanInput$ProvisioningParameters": "<p>Parameters specified by the administrator that are required for provisioning the product.</p>",
         "ProvisionedProductPlanDetails$ProvisioningParameters": "<p>Parameters specified by the administrator that are required for provisioning the product.</p>",
         "UpdateProvisionedProductInput$ProvisioningParameters": "<p>The new parameters.</p>"
+      }
+    },
+    "UpdateServiceActionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateServiceActionOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateTagOptionInput": {
