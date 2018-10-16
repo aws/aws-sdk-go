@@ -104,6 +104,7 @@
         "GetTagsInput$Arn": "<p>The ARN of the resource for which you want a list of tags. The resource must exist within the account you are using.</p>",
         "GetTagsOutput$Arn": "<p>The ARN of the tagged resource.</p>",
         "Group$GroupArn": "<p>The ARN of a resource group.</p>",
+        "GroupIdentifier$GroupArn": "<p>The ARN of a resource group.</p>",
         "TagInput$Arn": "<p>The ARN of the resource to which to add tags.</p>",
         "TagOutput$Arn": "<p>The ARN of the tagged resource.</p>",
         "UntagInput$Arn": "<p>The ARN of the resource from which to remove tags.</p>",
@@ -116,6 +117,48 @@
         "CreateGroupInput$Description": "<p>The description of the resource group. Descriptions can have a maximum of 511 characters, including letters, numbers, hyphens, underscores, punctuation, and spaces.</p>",
         "Group$Description": "<p>The description of the resource group.</p>",
         "UpdateGroupInput$Description": "<p>The description of the resource group. Descriptions can have a maximum of 511 characters, including letters, numbers, hyphens, underscores, punctuation, and spaces.</p>"
+      }
+    },
+    "GroupFilter": {
+      "base": "<p>A filter name and value pair that is used to obtain more specific results from a list of groups.</p>",
+      "refs": {
+        "GroupFilterList$member": null
+      }
+    },
+    "GroupFilterList": {
+      "base": null,
+      "refs": {
+        "ListGroupsInput$Filters": "<p>Filters, formatted as GroupFilter objects, that you want to apply to a ListGroups operation.</p> <ul> <li> <p> <code>group-type</code> - Filter groups by resource type. Specify up to five group types in the format AWS::ServiceCode::ResourceType. For example, AWS::EC2::Instance, or AWS::S3::Bucket.</p> </li> </ul>"
+      }
+    },
+    "GroupFilterName": {
+      "base": null,
+      "refs": {
+        "GroupFilter$Name": "<p>The name of the filter. Filter names are case-sensitive.</p>"
+      }
+    },
+    "GroupFilterValue": {
+      "base": null,
+      "refs": {
+        "GroupFilterValues$member": null
+      }
+    },
+    "GroupFilterValues": {
+      "base": null,
+      "refs": {
+        "GroupFilter$Values": "<p>One or more filter values. Allowed filter values vary by group filter name, and are case-sensitive.</p>"
+      }
+    },
+    "GroupIdentifier": {
+      "base": "<p>The ARN and group name of a group.</p>",
+      "refs": {
+        "GroupIdentifierList$member": null
+      }
+    },
+    "GroupIdentifierList": {
+      "base": null,
+      "refs": {
+        "ListGroupsOutput$GroupIdentifiers": "<p>A list of GroupIdentifier objects. Each identifier is an object that contains both the GroupName and the GroupArn.</p>"
       }
     },
     "GroupList": {
@@ -132,6 +175,7 @@
         "GetGroupInput$GroupName": "<p>The name of the resource group.</p>",
         "GetGroupQueryInput$GroupName": "<p>The name of the resource group.</p>",
         "Group$Name": "<p>The name of a resource group.</p>",
+        "GroupIdentifier$GroupName": "<p>The name of a resource group.</p>",
         "GroupQuery$GroupName": "<p>The name of a resource group that is associated with a specific resource query.</p>",
         "ListGroupResourcesInput$GroupName": "<p>The name of the resource group.</p>",
         "UpdateGroupInput$GroupName": "<p>The name of the resource group for which you want to update its description.</p>",

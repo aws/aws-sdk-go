@@ -1,3 +1,13 @@
+Release v1.15.56 (2018-10-16)
+===
+
+### Service Client Updates
+* `service/glue`: Updates service API and documentation
+  * New Glue APIs for creating, updating, reading and deleting Data Catalog resource-based policies.
+* `service/lightsail`: Updates service API and documentation
+  * Adds support for Lightsail managed databases.
+* `service/resource-groups`: Updates service API and documentation
+
 Release v1.15.55 (2018-10-15)
 ===
 
