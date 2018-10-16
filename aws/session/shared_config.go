@@ -228,9 +228,9 @@ func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile) e
 		}
 	}
 
-	credentialProcess := section.Key(credentialProcessKey).String()
-	if len(credentialProcess) > 0 {
-		cfg.CredentialProcess = credentialProcess
+	// `credential_process`
+	if credProc := section.String(credentialProcessKey); len(credProc) > 0 {
+		cfg.CredentialProcess = credProc
 	}
 
 	// Region
