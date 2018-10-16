@@ -1,7 +1,6 @@
 package ini
 
 import (
-	oldini "github.com/go-ini/ini"
 	"testing"
 )
 
@@ -23,12 +22,6 @@ region = us-west-2
 func BenchmarkINIParser(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		ParseBytes([]byte(section))
-	}
-}
-
-func BenchmarkGoINIParser(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		oldini.Load([]byte(section))
 	}
 }
 
