@@ -270,6 +270,19 @@
       },
       "exception":true
     },
+    "Condition":{
+      "type":"structure",
+      "required":[
+        "Type",
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Type":{"shape":"String"},
+        "Key":{"shape":"String"},
+        "Value":{"shape":"String"}
+      }
+    },
     "DeleteRuleRequest":{
       "type":"structure",
       "required":["Name"],
@@ -525,7 +538,8 @@
       "members":{
         "Action":{"shape":"Action"},
         "Principal":{"shape":"Principal"},
-        "StatementId":{"shape":"StatementId"}
+        "StatementId":{"shape":"StatementId"},
+        "Condition":{"shape":"Condition"}
       }
     },
     "PutRuleRequest":{
