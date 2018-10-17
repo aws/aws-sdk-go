@@ -1,3 +1,12 @@
+Release v1.15.57 (2018-10-17)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service documentation
+  * Documentation updates for API Gateway
+* `service/events`: Updates service API and documentation
+  * AWS Events - AWS Organizations Support in Event-Bus Policies. This release introduces a new parameter in the PutPermission API named Condition. Using the Condition parameter, customers can allow one or more AWS Organizations to access their CloudWatch Events Event-Bus resource.
+
 Release v1.15.56 (2018-10-16)
 ===
 
