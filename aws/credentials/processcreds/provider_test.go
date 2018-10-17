@@ -1,143 +1,530 @@
-package processcreds
+package processcreds_test
 
 import (
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
 	"os"
-	"path/filepath"
+	"runtime"
+	"strings"
 	"testing"
+	"time"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/credentials/processcreds"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/awstesting"
 )
 
-func TestProcessProvider(t *testing.T) {
-	os.Clearenv()
+func TestProcessProviderFromSessionCfg(t *testing.T) {
+	oldEnv := preserveImportantStashEnv()
+	defer awstesting.PopEnv(oldEnv)
 
-	p := ProcessProvider{Filename: "example.ini", Profile: "process", executionFunc: executeCredentialProcess}
-	creds, err := p.Retrieve()
-	assert.Nil(t, err, "Expect no error")
+	os.Setenv("AWS_SDK_LOAD_CONFIG", "1")
+	if runtime.GOOS == "windows" {
+		os.Setenv("AWS_CONFIG_FILE", "testdata\\shconfig_win.ini")
+	} else {
+		os.Setenv("AWS_CONFIG_FILE", "testdata/shconfig.ini")
+	}
 
-	assert.Equal(t, "accessKey", creds.AccessKeyID, "Expect access key ID to match")
-	assert.Equal(t, "secret", creds.SecretAccessKey, "Expect secret access key to match")
-	assert.Equal(t, "tokenProcess", creds.SessionToken, "Expect session token to match")
+	sess, err := session.NewSession(&aws.Config{
+		Region: aws.String("region")},
+	)
+
+	if err != nil {
+		t.Errorf("error getting session: %v", err)
+	}
+
+	creds, err := sess.Config.Credentials.Get()
+	if err != nil {
+		t.Errorf("error getting credentials: %v", err)
+	}
+
+	if e, a := "accessKey", creds.AccessKeyID; e != a {
+		t.Errorf("expected %v, got %v", e, a)
+	}
+
+	if e, a := "secret", creds.SecretAccessKey; e != a {
+		t.Errorf("expected %v, got %v", e, a)
+	}
+
+	if e, a := "tokenDefault", creds.SessionToken; e != a {
+		t.Errorf("expected %v, got %v", e, a)
+	}
+
 }
 
-func fakeExectuteCredsExpired(process string) ([]byte, error) {
-	return []byte(`{"Version": 1, "AccessKeyId": "accessKey", "SecretAccessKey": "secret", "SessionToken": "tokenDefault", "Expiration": "2000-01-01T00:00:00-00:00"}`), nil
+func TestProcessProviderFromSessionWithProfileCfg(t *testing.T) {
+	oldEnv := preserveImportantStashEnv()
+	defer awstesting.PopEnv(oldEnv)
+
+	os.Setenv("AWS_SDK_LOAD_CONFIG", "1")
+	os.Setenv("AWS_PROFILE", "non_expire")
+	if runtime.GOOS == "windows" {
+		os.Setenv("AWS_CONFIG_FILE", "testdata\\shconfig_win.ini")
+	} else {
+		os.Setenv("AWS_CONFIG_FILE", "testdata/shconfig.ini")
+	}
+
+	sess, err := session.NewSession(&aws.Config{
+		Region: aws.String("region")},
+	)
+
+	if err != nil {
+		t.Errorf("error getting session: %v", err)
+	}
+
+	creds, err := sess.Config.Credentials.Get()
+	if err != nil {
+		t.Errorf("error getting credentials: %v", err)
+	}
+
+	if e, a := "nonDefaultToken", creds.SessionToken; e != a {
+		t.Errorf("expected %v, got %v", e, a)
+	}
+
 }
 
-func TestProcessProviderIsExpired(t *testing.T) {
-	os.Clearenv()
+func TestProcessProviderNotFromCredProcCfg(t *testing.T) {
+	oldEnv := preserveImportantStashEnv()
+	defer awstesting.PopEnv(oldEnv)
 
-	p := ProcessProvider{Filename: "example.ini", Profile: "process", executionFunc: fakeExectuteCredsExpired}
+	os.Setenv("AWS_SDK_LOAD_CONFIG", "1")
+	os.Setenv("AWS_PROFILE", "not_alone")
+	if runtime.GOOS == "windows" {
+		os.Setenv("AWS_CONFIG_FILE", "testdata\\shconfig_win.ini")
+	} else {
+		os.Setenv("AWS_CONFIG_FILE", "testdata/shconfig.ini")
+	}
 
-	assert.True(t, p.IsExpired(), "Expect creds to be expired before retrieve")
+	sess, err := session.NewSession(&aws.Config{
+		Region: aws.String("region")},
+	)
+
+	if err != nil {
+		t.Errorf("error getting session: %v", err)
+	}
+
+	creds, err := sess.Config.Credentials.Get()
+	if err != nil {
+		t.Errorf("error getting credentials: %v", err)
+	}
+
+	if e, a := "notFromCredProcAccess", creds.AccessKeyID; e != a {
+		t.Errorf("expected %v, got %v", e, a)
+	}
+
+	if e, a := "notFromCredProcSecret", creds.SecretAccessKey; e != a {
+		t.Errorf("expected %v, got %v", e, a)
+	}
+
 }
 
-func TestProcessProviderWithAWS_CONFIG_FILE(t *testing.T) {
-	os.Clearenv()
-	os.Setenv("AWS_CONFIG_FILE", "example.ini")
-	os.Setenv("AWS_DEFAULT_PROFILE", "process")
-	p := ProcessProvider{Filename: "", Profile: "", executionFunc: executeCredentialProcess}
-	creds, err := p.Retrieve()
+func TestProcessProviderFromSessionCrd(t *testing.T) {
+	oldEnv := preserveImportantStashEnv()
+	defer awstesting.PopEnv(oldEnv)
 
-	assert.Nil(t, err, "Expect no error")
+	if runtime.GOOS == "windows" {
+		os.Setenv("AWS_SHARED_CREDENTIALS_FILE", "testdata\\shcred_win.ini")
+	} else {
+		os.Setenv("AWS_SHARED_CREDENTIALS_FILE", "testdata/shcred.ini")
+	}
 
-	assert.Equal(t, "accessKey", creds.AccessKeyID, "Expect access key ID to match")
-	assert.Equal(t, "secret", creds.SecretAccessKey, "Expect secret access key to match")
-	assert.Equal(t, "tokenProcess", creds.SessionToken, "Expect session token to match")
+	sess, err := session.NewSession(&aws.Config{
+		Region: aws.String("region")},
+	)
+
+	if err != nil {
+		t.Errorf("error getting session: %v", err)
+	}
+
+	creds, err := sess.Config.Credentials.Get()
+	if err != nil {
+		t.Errorf("error getting credentials: %v", err)
+	}
+
+	if e, a := "accessKey", creds.AccessKeyID; e != a {
+		t.Errorf("expected %v, got %v", e, a)
+	}
+
+	if e, a := "secret", creds.SecretAccessKey; e != a {
+		t.Errorf("expected %v, got %v", e, a)
+	}
+
+	if e, a := "tokenDefault", creds.SessionToken; e != a {
+		t.Errorf("expected %v, got %v", e, a)
+	}
+
 }
 
-func TestProcessProviderWithAWS_CONFIG_FILEAbsPath(t *testing.T) {
-	os.Clearenv()
-	wd, err := os.Getwd()
-	assert.NoError(t, err)
-	os.Setenv("AWS_CONFIG_FILE", filepath.Join(wd, "example.ini"))
-	p := ProcessProvider{executionFunc: executeCredentialProcess}
-	creds, err := p.Retrieve()
-	assert.Nil(t, err, "Expect no error")
+func TestProcessProviderFromSessionWithProfileCrd(t *testing.T) {
+	oldEnv := preserveImportantStashEnv()
+	defer awstesting.PopEnv(oldEnv)
 
-	assert.Equal(t, "accessKey", creds.AccessKeyID, "Expect access key ID to match")
-	assert.Equal(t, "secret", creds.SecretAccessKey, "Expect secret access key to match")
-	assert.Equal(t, "tokenDefault", creds.SessionToken, "Expect session token to match")
+	os.Setenv("AWS_PROFILE", "non_expire")
+	if runtime.GOOS == "windows" {
+		os.Setenv("AWS_SHARED_CREDENTIALS_FILE", "testdata\\shcred_win.ini")
+	} else {
+		os.Setenv("AWS_SHARED_CREDENTIALS_FILE", "testdata/shcred.ini")
+	}
+
+	sess, err := session.NewSession(&aws.Config{
+		Region: aws.String("region")},
+	)
+
+	if err != nil {
+		t.Errorf("error getting session: %v", err)
+	}
+
+	creds, err := sess.Config.Credentials.Get()
+	if err != nil {
+		t.Errorf("error getting credentials: %v", err)
+	}
+
+	if e, a := "nonDefaultToken", creds.SessionToken; e != a {
+		t.Errorf("expected %v, got %v", e, a)
+	}
+
 }
 
-func fakeExectuteCredsSuccess(process string) ([]byte, error) {
-	return []byte(`{"Version": 1, "AccessKeyId": "accessKey", "SecretAccessKey": "secret", "SessionToken": "tokenFake", "Expiration": "2000-01-01T00:00:00-00:00"}`), nil
+func TestProcessProviderNotFromCredProcCrd(t *testing.T) {
+	oldEnv := preserveImportantStashEnv()
+	defer awstesting.PopEnv(oldEnv)
+
+	os.Setenv("AWS_PROFILE", "not_alone")
+	if runtime.GOOS == "windows" {
+		os.Setenv("AWS_SHARED_CREDENTIALS_FILE", "testdata\\shcred_win.ini")
+	} else {
+		os.Setenv("AWS_SHARED_CREDENTIALS_FILE", "testdata/shcred.ini")
+	}
+
+	sess, err := session.NewSession(&aws.Config{
+		Region: aws.String("region")},
+	)
+
+	if err != nil {
+		t.Errorf("error getting session: %v", err)
+	}
+
+	creds, err := sess.Config.Credentials.Get()
+	if err != nil {
+		t.Errorf("error getting credentials: %v", err)
+	}
+
+	if e, a := "notFromCredProcAccess", creds.AccessKeyID; e != a {
+		t.Errorf("expected %v, got %v", e, a)
+	}
+
+	if e, a := "notFromCredProcSecret", creds.SecretAccessKey; e != a {
+		t.Errorf("expected %v, got %v", e, a)
+	}
+
 }
 
-func TestProcessProviderWithAWS_PROFILE(t *testing.T) {
-	os.Clearenv()
-	os.Setenv("AWS_PROFILE", "process")
+func TestProcessProviderBadCommand(t *testing.T) {
+	oldEnv := preserveImportantStashEnv()
+	defer awstesting.PopEnv(oldEnv)
 
-	p := ProcessProvider{Filename: "example.ini", Profile: "", executionFunc: fakeExectuteCredsSuccess}
-	creds, err := p.Retrieve()
-	assert.Nil(t, err, "Expect no error")
-
-	assert.Equal(t, "accessKey", creds.AccessKeyID, "Expect access key ID to match")
-	assert.Equal(t, "secret", creds.SecretAccessKey, "Expect secret access key to match")
-	assert.Equal(t, "tokenFake", creds.SessionToken, "Expect token to match")
+	creds := processcreds.NewCredentials("/bad/process")
+	_, err := creds.Get()
+	if err.(awserr.Error).Code() != processcreds.ErrCodeProcessProviderExecution {
+		t.Errorf("expected %v, got %v", processcreds.ErrCodeProcessProviderExecution, err)
+	}
 }
 
-func fakeExectuteCredsFailMalformed(process string) ([]byte, error) {
-	return []byte(`{"Version": 1, "AccessKeyId": "accessKey", "SecretAccessKey": "secret", "SessionToken": "tokenDefault", "Expiration": `), nil
+func TestProcessProviderMoreEmptyCommands(t *testing.T) {
+	oldEnv := preserveImportantStashEnv()
+	defer awstesting.PopEnv(oldEnv)
+
+	creds := processcreds.NewCredentials("")
+	_, err := creds.Get()
+	if err.(awserr.Error).Code() != processcreds.ErrCodeProcessProviderExecution {
+		t.Errorf("expected %v, got %v", processcreds.ErrCodeProcessProviderExecution, err)
+	}
+
 }
 
-func TestProcessProviderMalformed(t *testing.T) {
-	os.Clearenv()
-	os.Setenv("AWS_PROFILE", "process")
+func TestProcessProviderExpectErrors(t *testing.T) {
+	oldEnv := preserveImportantStashEnv()
+	defer awstesting.PopEnv(oldEnv)
 
-	p := ProcessProvider{Filename: "example.ini", Profile: "", executionFunc: fakeExectuteCredsFailMalformed}
-	_, err := p.Retrieve()
-	assert.NotNil(t, err, "Expect an error")
+	creds := processcreds.NewCredentials(
+		fmt.Sprintf(
+			"%s %s",
+			getOSCat(),
+			strings.Join(
+				[]string{"testdata", "malformed.json"},
+				string(os.PathSeparator))))
+	_, err := creds.Get()
+	if err.(awserr.Error).Code() != processcreds.ErrCodeProcessProviderParse {
+		t.Errorf("expected %v, got %v", processcreds.ErrCodeProcessProviderParse, err)
+	}
+
+	creds = processcreds.NewCredentials(
+		fmt.Sprintf("%s %s",
+			getOSCat(),
+			strings.Join(
+				[]string{"testdata", "wrongversion.json"},
+				string(os.PathSeparator))))
+	_, err = creds.Get()
+	if err.(awserr.Error).Code() != processcreds.ErrCodeProcessProviderVersion {
+		t.Errorf("expected %v, got %v", processcreds.ErrCodeProcessProviderVersion, err)
+	}
+
+	creds = processcreds.NewCredentials(
+		fmt.Sprintf(
+			"%s %s",
+			getOSCat(),
+			strings.Join(
+				[]string{"testdata", "missingkey.json"},
+				string(os.PathSeparator))))
+	_, err = creds.Get()
+	if err.(awserr.Error).Code() != processcreds.ErrCodeProcessProviderRequired {
+		t.Errorf("expected %v, got %v", processcreds.ErrCodeProcessProviderRequired, err)
+	}
+
+	creds = processcreds.NewCredentials(
+		fmt.Sprintf(
+			"%s %s",
+			getOSCat(),
+			strings.Join(
+				[]string{"testdata", "missingsecret.json"},
+				string(os.PathSeparator))))
+	_, err = creds.Get()
+	if err.(awserr.Error).Code() != processcreds.ErrCodeProcessProviderRequired {
+		t.Errorf("expected %v, got %v", processcreds.ErrCodeProcessProviderRequired, err)
+	}
+
 }
 
-func fakeExectuteCredsNoToken(process string) ([]byte, error) {
-	return []byte(`{"Version": 1, "AccessKeyId": "accessKey", "SecretAccessKey": "secret"}`), nil
+func TestProcessProviderTimeout(t *testing.T) {
+	oldEnv := preserveImportantStashEnv()
+	defer awstesting.PopEnv(oldEnv)
+
+	command := "/bin/sleep 2"
+	if runtime.GOOS == "windows" {
+		// "timeout" command does not work due to pipe redirection
+		command = "C:\\Windows\\system32\\ping -n 2 127.0.0.1>nul"
+	}
+
+	creds := processcreds.NewCredentialsTimeout(
+		command,
+		time.Duration(1)*time.Second)
+	if _, err := creds.Get(); err == nil || err.(awserr.Error).Code() != processcreds.ErrCodeProcessProviderExecution || err.(awserr.Error).Message() != processcreds.ErrMsgProcessProviderTimeout {
+		t.Errorf("expected %v, got %v", processcreds.ErrCodeProcessProviderExecution, err)
+	}
+
 }
 
-func TestProcessProviderNoToken(t *testing.T) {
-	os.Clearenv()
-
-	p := ProcessProvider{Filename: "example.ini", Profile: "process", executionFunc: fakeExectuteCredsNoToken}
-	creds, err := p.Retrieve()
-	assert.Nil(t, err, "Expect no error")
-	assert.Empty(t, creds.SessionToken, "Expect no token")
+type credentialTest struct {
+	Version         int
+	AccessKeyID     string `json:"AccessKeyId"`
+	SecretAccessKey string
+	Expiration      string
 }
 
-func fakeExectuteCredsFailVersion(process string) ([]byte, error) {
-	return []byte(`{"Version": 2, "AccessKeyId": "accessKey", "SecretAccessKey": "secret", "SessionToken": "tokenDefault"}`), nil
+func TestProcessProviderStatic(t *testing.T) {
+	oldEnv := preserveImportantStashEnv()
+	defer awstesting.PopEnv(oldEnv)
+
+	// static
+	creds := processcreds.NewCredentials(
+		fmt.Sprintf(
+			"%s %s",
+			getOSCat(),
+			strings.Join(
+				[]string{"testdata", "static.json"},
+				string(os.PathSeparator))))
+	_, err := creds.Get()
+	if err != nil {
+		t.Errorf("expected %v, got %v", "no error", err)
+	}
+	if creds.IsExpired() {
+		t.Errorf("expected %v, got %v", "static credentials/not expired", "expired")
+	}
+
 }
 
-func TestProcessProviderWrongVersion(t *testing.T) {
-	os.Clearenv()
-	p := ProcessProvider{Filename: "example.ini", Profile: "process", executionFunc: fakeExectuteCredsFailVersion}
-	_, err := p.Retrieve()
-	assert.NotNil(t, err, "Expect an error")
+func TestProcessProviderNotExpired(t *testing.T) {
+	oldEnv := preserveImportantStashEnv()
+	defer awstesting.PopEnv(oldEnv)
+
+	// non-static, not expired
+	exp := &credentialTest{}
+	exp.Version = 1
+	exp.AccessKeyID = "accesskey"
+	exp.SecretAccessKey = "secretkey"
+	exp.Expiration = time.Now().Add(1 * time.Hour).UTC().Format(time.RFC3339)
+	b, err := json.Marshal(exp)
+	if err != nil {
+		t.Errorf("expected %v, got %v", "no error", err)
+	}
+
+	tmpFile := strings.Join(
+		[]string{"testdata", "tmp_expiring.json"},
+		string(os.PathSeparator))
+	if err = ioutil.WriteFile(tmpFile, b, 0644); err != nil {
+		t.Errorf("expected %v, got %v", "no error", err)
+	}
+	defer func() {
+		if err = os.Remove(tmpFile); err != nil {
+			t.Errorf("expected %v, got %v", "no error", err)
+		}
+	}()
+	creds := processcreds.NewCredentials(
+		fmt.Sprintf("%s %s", getOSCat(), tmpFile))
+	_, err = creds.Get()
+	if err != nil {
+		t.Errorf("expected %v, got %v", "no error", err)
+	}
+	if creds.IsExpired() {
+		t.Errorf("expected %v, got %v", "not expired", "expired")
+	}
 }
 
-func fakeExectuteCredsFailExpiration(process string) ([]byte, error) {
-	return []byte(`{"Version": 1, "AccessKeyId": "accessKey", "SecretAccessKey": "secret", "SessionToken": "tokenDefault", "Expiration": "20222"}`), nil
+func TestProcessProviderExpired(t *testing.T) {
+	oldEnv := preserveImportantStashEnv()
+	defer awstesting.PopEnv(oldEnv)
+
+	// non-static, expired
+	exp := &credentialTest{}
+	exp.Version = 1
+	exp.AccessKeyID = "accesskey"
+	exp.SecretAccessKey = "secretkey"
+	exp.Expiration = time.Now().Add(-1 * time.Hour).UTC().Format(time.RFC3339)
+	b, err := json.Marshal(exp)
+	if err != nil {
+		t.Errorf("expected %v, got %v", "no error", err)
+	}
+
+	tmpFile := strings.Join(
+		[]string{"testdata", "tmp_expired.json"},
+		string(os.PathSeparator))
+	if err = ioutil.WriteFile(tmpFile, b, 0644); err != nil {
+		t.Errorf("expected %v, got %v", "no error", err)
+	}
+	defer func() {
+		if err = os.Remove(tmpFile); err != nil {
+			t.Errorf("expected %v, got %v", "no error", err)
+		}
+	}()
+	creds := processcreds.NewCredentials(
+		fmt.Sprintf("%s %s", getOSCat(), tmpFile))
+	_, err = creds.Get()
+	if err != nil {
+		t.Errorf("expected %v, got %v", "no error", err)
+	}
+	if !creds.IsExpired() {
+		t.Errorf("expected %v, got %v", "expired", "not expired")
+	}
 }
-func TestProcessProviderBadExpiry(t *testing.T) {
-	os.Clearenv()
-	p := ProcessProvider{Filename: "example.ini", Profile: "process", executionFunc: fakeExectuteCredsFailExpiration}
-	_, err := p.Retrieve()
-	assert.NotNil(t, err, "Expect an error")
+
+func TestProcessProviderForceExpire(t *testing.T) {
+	oldEnv := preserveImportantStashEnv()
+	defer awstesting.PopEnv(oldEnv)
+
+	// non-static, not expired
+
+	// setup test credentials file
+	exp := &credentialTest{}
+	exp.Version = 1
+	exp.AccessKeyID = "accesskey"
+	exp.SecretAccessKey = "secretkey"
+	exp.Expiration = time.Now().Add(1 * time.Hour).UTC().Format(time.RFC3339)
+	b, err := json.Marshal(exp)
+	if err != nil {
+		t.Errorf("expected %v, got %v", "no error", err)
+	}
+	tmpFile := strings.Join(
+		[]string{"testdata", "tmp_force_expire.json"},
+		string(os.PathSeparator))
+	if err = ioutil.WriteFile(tmpFile, b, 0644); err != nil {
+		t.Errorf("expected %v, got %v", "no error", err)
+	}
+	defer func() {
+		if err = os.Remove(tmpFile); err != nil {
+			t.Errorf("expected %v, got %v", "no error", err)
+		}
+	}()
+
+	// get credentials from file
+	creds := processcreds.NewCredentials(
+		fmt.Sprintf("%s %s", getOSCat(), tmpFile))
+	if _, err = creds.Get(); err != nil {
+		t.Errorf("expected %v, got %v", "no error", err)
+	}
+	if creds.IsExpired() {
+		t.Errorf("expected %v, got %v", "not expired", "expired")
+	}
+
+	// force expire creds
+	creds.Expire()
+	if !creds.IsExpired() {
+		t.Errorf("expected %v, got %v", "expired", "not expired")
+	}
+
+	// renew creds
+	if _, err = creds.Get(); err != nil {
+		t.Errorf("expected %v, got %v", "no error", err)
+	}
+	if creds.IsExpired() {
+		t.Errorf("expected %v, got %v", "not expired", "expired")
+	}
+
 }
 
 func BenchmarkProcessProvider(b *testing.B) {
-	os.Clearenv()
+	oldEnv := preserveImportantStashEnv()
+	defer awstesting.PopEnv(oldEnv)
 
-	p := ProcessProvider{Filename: "example.ini", Profile: "process", executionFunc: executeCredentialProcess}
-	_, err := p.Retrieve()
+	creds := processcreds.NewCredentials(
+		fmt.Sprintf(
+			"%s %s",
+			getOSCat(),
+			strings.Join(
+				[]string{"testdata", "static.json"},
+				string(os.PathSeparator))))
+	_, err := creds.Get()
 	if err != nil {
 		b.Fatal(err)
 	}
 
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		_, err := p.Retrieve()
+		_, err := creds.Get()
 		if err != nil {
 			b.Fatal(err)
 		}
 	}
+}
+
+func preserveImportantStashEnv() []string {
+	extraEnv := make(map[string]string)
+	if runtime.GOOS == "windows" {
+		key := "ComSpec"
+		if val, ok := os.LookupEnv(key); ok && len(val) > 0 {
+			extraEnv[key] = val
+		}
+	}
+
+	key := "PATH"
+	if val, ok := os.LookupEnv(key); ok && len(val) > 0 {
+		extraEnv[key] = val
+	}
+
+	oldEnv := awstesting.StashEnv() //clear env
+
+	for key, val := range extraEnv {
+		os.Setenv(key, val)
+	}
+
+	return oldEnv
+}
+
+func getOSCat() string {
+	if runtime.GOOS == "windows" {
+		return "type"
+	}
+	return "cat"
 }
