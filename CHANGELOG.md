@@ -1,3 +1,16 @@
+Release v1.15.59 (2018-10-19)
+===
+
+### Service Client Updates
+* `service/ssm`: Updates service API and documentation
+  * Rate Control feature release for State Manager. Users now have the ability to apply rate control parameters similar to run command to their association in state manager console or CLI.
+* `service/workspaces`: Updates service API
+  * Added support for PowerPro and GraphicsPro WorkSpaces bundles.
+
+### SDK Enhancements
+* `aws/request`: Add private ini package (#2210)
+  * Get rids of go-ini dependency in favor of `internal/ini` package.
+
 Release v1.15.58 (2018-10-18)
 ===
 

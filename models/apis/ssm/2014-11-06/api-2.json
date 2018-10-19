@@ -1761,7 +1761,9 @@
         "OutputLocation":{"shape":"InstanceAssociationOutputLocation"},
         "LastExecutionDate":{"shape":"DateTime"},
         "LastSuccessfulExecutionDate":{"shape":"DateTime"},
-        "AssociationName":{"shape":"AssociationName"}
+        "AssociationName":{"shape":"AssociationName"},
+        "MaxErrors":{"shape":"MaxErrors"},
+        "MaxConcurrency":{"shape":"MaxConcurrency"}
       }
     },
     "AssociationDescriptionList":{
@@ -2004,7 +2006,9 @@
         "Targets":{"shape":"Targets"},
         "ScheduleExpression":{"shape":"ScheduleExpression"},
         "OutputLocation":{"shape":"InstanceAssociationOutputLocation"},
-        "AssociationName":{"shape":"AssociationName"}
+        "AssociationName":{"shape":"AssociationName"},
+        "MaxErrors":{"shape":"MaxErrors"},
+        "MaxConcurrency":{"shape":"MaxConcurrency"}
       }
     },
     "AssociationVersionLimitExceeded":{
@@ -2674,7 +2678,9 @@
         "Targets":{"shape":"Targets"},
         "ScheduleExpression":{"shape":"ScheduleExpression"},
         "OutputLocation":{"shape":"InstanceAssociationOutputLocation"},
-        "AssociationName":{"shape":"AssociationName"}
+        "AssociationName":{"shape":"AssociationName"},
+        "MaxErrors":{"shape":"MaxErrors"},
+        "MaxConcurrency":{"shape":"MaxConcurrency"}
       }
     },
     "CreateAssociationBatchResult":{
@@ -2695,7 +2701,9 @@
         "Targets":{"shape":"Targets"},
         "ScheduleExpression":{"shape":"ScheduleExpression"},
         "OutputLocation":{"shape":"InstanceAssociationOutputLocation"},
-        "AssociationName":{"shape":"AssociationName"}
+        "AssociationName":{"shape":"AssociationName"},
+        "MaxErrors":{"shape":"MaxErrors"},
+        "MaxConcurrency":{"shape":"MaxConcurrency"}
       }
     },
     "CreateAssociationResult":{
@@ -7664,7 +7672,9 @@
         "Name":{"shape":"DocumentName"},
         "Targets":{"shape":"Targets"},
         "AssociationName":{"shape":"AssociationName"},
-        "AssociationVersion":{"shape":"AssociationVersion"}
+        "AssociationVersion":{"shape":"AssociationVersion"},
+        "MaxErrors":{"shape":"MaxErrors"},
+        "MaxConcurrency":{"shape":"MaxConcurrency"}
       }
     },
     "UpdateAssociationResult":{
