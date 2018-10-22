@@ -1,3 +1,13 @@
+Release v1.15.60 (2018-10-22)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/inspector`: Updates service API and documentation
+  * Finding will be decorated with ec2 related metadata
+* `service/shield`: Updates service API and documentation
+  * AWS Shield Advanced API introduced a new service-specific AccessDeniedException which will be thrown when accessing individual attack information without sufficient permission.
+
 Release v1.15.59 (2018-10-19)
 ===
 
