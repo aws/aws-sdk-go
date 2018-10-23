@@ -39,6 +39,15 @@
       "input":{"shape":"AcceptVpcPeeringConnectionRequest"},
       "output":{"shape":"AcceptVpcPeeringConnectionResult"}
     },
+    "AdvertiseByoipCidr":{
+      "name":"AdvertiseByoipCidr",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AdvertiseByoipCidrRequest"},
+      "output":{"shape":"AdvertiseByoipCidrResult"}
+    },
     "AllocateAddress":{
       "name":"AllocateAddress",
       "http":{
@@ -890,6 +899,15 @@
       },
       "input":{"shape":"DeleteVpnGatewayRequest"}
     },
+    "DeprovisionByoipCidr":{
+      "name":"DeprovisionByoipCidr",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeprovisionByoipCidrRequest"},
+      "output":{"shape":"DeprovisionByoipCidrResult"}
+    },
     "DeregisterImage":{
       "name":"DeregisterImage",
       "http":{
@@ -942,6 +960,15 @@
       },
       "input":{"shape":"DescribeBundleTasksRequest"},
       "output":{"shape":"DescribeBundleTasksResult"}
+    },
+    "DescribeByoipCidrs":{
+      "name":"DescribeByoipCidrs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeByoipCidrsRequest"},
+      "output":{"shape":"DescribeByoipCidrsResult"}
     },
     "DescribeClassicLinkInstances":{
       "name":"DescribeClassicLinkInstances",
@@ -1302,6 +1329,15 @@
       },
       "input":{"shape":"DescribePrincipalIdFormatRequest"},
       "output":{"shape":"DescribePrincipalIdFormatResult"}
+    },
+    "DescribePublicIpv4Pools":{
+      "name":"DescribePublicIpv4Pools",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribePublicIpv4PoolsRequest"},
+      "output":{"shape":"DescribePublicIpv4PoolsResult"}
     },
     "DescribeRegions":{
       "name":"DescribeRegions",
@@ -2114,6 +2150,15 @@
       "input":{"shape":"MoveAddressToVpcRequest"},
       "output":{"shape":"MoveAddressToVpcResult"}
     },
+    "ProvisionByoipCidr":{
+      "name":"ProvisionByoipCidr",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ProvisionByoipCidrRequest"},
+      "output":{"shape":"ProvisionByoipCidrResult"}
+    },
     "PurchaseHostReservation":{
       "name":"PurchaseHostReservation",
       "http":{
@@ -2416,6 +2461,15 @@
       },
       "input":{"shape":"UpdateSecurityGroupRuleDescriptionsIngressRequest"},
       "output":{"shape":"UpdateSecurityGroupRuleDescriptionsIngressResult"}
+    },
+    "WithdrawByoipCidr":{
+      "name":"WithdrawByoipCidr",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"WithdrawByoipCidrRequest"},
+      "output":{"shape":"WithdrawByoipCidrResult"}
     }
   },
   "shapes":{
@@ -2614,6 +2668,10 @@
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
+        },
+        "PublicIpv4Pool":{
+          "shape":"String",
+          "locationName":"publicIpv4Pool"
         }
       }
     },
@@ -2622,6 +2680,23 @@
       "member":{
         "shape":"Address",
         "locationName":"item"
+      }
+    },
+    "AdvertiseByoipCidrRequest":{
+      "type":"structure",
+      "required":["Cidr"],
+      "members":{
+        "Cidr":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "AdvertiseByoipCidrResult":{
+      "type":"structure",
+      "members":{
+        "ByoipCidr":{
+          "shape":"ByoipCidr",
+          "locationName":"byoipCidr"
+        }
       }
     },
     "Affinity":{
@@ -2636,6 +2711,7 @@
       "members":{
         "Domain":{"shape":"DomainType"},
         "Address":{"shape":"String"},
+        "PublicIpv4Pool":{"shape":"String"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -2652,6 +2728,10 @@
         "AllocationId":{
           "shape":"String",
           "locationName":"allocationId"
+        },
+        "PublicIpv4Pool":{
+          "shape":"String",
+          "locationName":"publicIpv4Pool"
         },
         "Domain":{
           "shape":"DomainType",
@@ -3437,6 +3517,46 @@
         "failed"
       ]
     },
+    "ByoipCidr":{
+      "type":"structure",
+      "members":{
+        "Cidr":{
+          "shape":"String",
+          "locationName":"cidr"
+        },
+        "Description":{
+          "shape":"String",
+          "locationName":"description"
+        },
+        "StatusMessage":{
+          "shape":"String",
+          "locationName":"statusMessage"
+        },
+        "State":{
+          "shape":"ByoipCidrState",
+          "locationName":"state"
+        }
+      }
+    },
+    "ByoipCidrSet":{
+      "type":"list",
+      "member":{
+        "shape":"ByoipCidr",
+        "locationName":"item"
+      }
+    },
+    "ByoipCidrState":{
+      "type":"string",
+      "enum":[
+        "advertised",
+        "deprovisioned",
+        "failed-deprovision",
+        "failed-provision",
+        "pending-deprovision",
+        "pending-provision",
+        "provisioned"
+      ]
+    },
     "CancelBatchErrorCode":{
       "type":"string",
       "enum":[
@@ -3693,6 +3813,17 @@
       "member":{
         "shape":"CancelledSpotInstanceRequest",
         "locationName":"item"
+      }
+    },
+    "CidrAuthorizationContext":{
+      "type":"structure",
+      "required":[
+        "Message",
+        "Signature"
+      ],
+      "members":{
+        "Message":{"shape":"String"},
+        "Signature":{"shape":"String"}
       }
     },
     "CidrBlock":{
@@ -5800,6 +5931,23 @@
         }
       }
     },
+    "DeprovisionByoipCidrRequest":{
+      "type":"structure",
+      "required":["Cidr"],
+      "members":{
+        "Cidr":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DeprovisionByoipCidrResult":{
+      "type":"structure",
+      "members":{
+        "ByoipCidr":{
+          "shape":"ByoipCidr",
+          "locationName":"byoipCidr"
+        }
+      }
+    },
     "DeregisterImageRequest":{
       "type":"structure",
       "required":["ImageId"],
@@ -5931,6 +6079,28 @@
         "BundleTasks":{
           "shape":"BundleTaskList",
           "locationName":"bundleInstanceTasksSet"
+        }
+      }
+    },
+    "DescribeByoipCidrsRequest":{
+      "type":"structure",
+      "required":["MaxResults"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeByoipCidrsResult":{
+      "type":"structure",
+      "members":{
+        "ByoipCidrs":{
+          "shape":"ByoipCidrSet",
+          "locationName":"byoipCidrSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
@@ -7063,6 +7233,30 @@
         "Principals":{
           "shape":"PrincipalIdFormatList",
           "locationName":"principalSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribePublicIpv4PoolsRequest":{
+      "type":"structure",
+      "members":{
+        "PoolIds":{
+          "shape":"ValueStringList",
+          "locationName":"PoolId"
+        },
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"PoolMaxResults"}
+      }
+    },
+    "DescribePublicIpv4PoolsResult":{
+      "type":"structure",
+      "members":{
+        "PublicIpv4Pools":{
+          "shape":"PublicIpv4PoolSet",
+          "locationName":"publicIpv4PoolSet"
         },
         "NextToken":{
           "shape":"String",
@@ -14177,6 +14371,11 @@
       "type":"string",
       "enum":["Windows"]
     },
+    "PoolMaxResults":{
+      "type":"integer",
+      "max":10,
+      "min":1
+    },
     "PortRange":{
       "type":"structure",
       "members":{
@@ -14432,6 +14631,25 @@
         "locationName":"item"
       }
     },
+    "ProvisionByoipCidrRequest":{
+      "type":"structure",
+      "required":["Cidr"],
+      "members":{
+        "Cidr":{"shape":"String"},
+        "CidrAuthorizationContext":{"shape":"CidrAuthorizationContext"},
+        "Description":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "ProvisionByoipCidrResult":{
+      "type":"structure",
+      "members":{
+        "ByoipCidr":{
+          "shape":"ByoipCidr",
+          "locationName":"byoipCidr"
+        }
+      }
+    },
     "ProvisionedBandwidth":{
       "type":"structure",
       "members":{
@@ -14462,6 +14680,66 @@
       "member":{
         "shape":"String",
         "locationName":"PublicIp"
+      }
+    },
+    "PublicIpv4Pool":{
+      "type":"structure",
+      "members":{
+        "PoolId":{
+          "shape":"String",
+          "locationName":"poolId"
+        },
+        "Description":{
+          "shape":"String",
+          "locationName":"description"
+        },
+        "PoolAddressRanges":{
+          "shape":"PublicIpv4PoolRangeSet",
+          "locationName":"poolAddressRangeSet"
+        },
+        "TotalAddressCount":{
+          "shape":"Integer",
+          "locationName":"totalAddressCount"
+        },
+        "TotalAvailableAddressCount":{
+          "shape":"Integer",
+          "locationName":"totalAvailableAddressCount"
+        }
+      }
+    },
+    "PublicIpv4PoolRange":{
+      "type":"structure",
+      "members":{
+        "FirstAddress":{
+          "shape":"String",
+          "locationName":"firstAddress"
+        },
+        "LastAddress":{
+          "shape":"String",
+          "locationName":"lastAddress"
+        },
+        "AddressCount":{
+          "shape":"Integer",
+          "locationName":"addressCount"
+        },
+        "AvailableAddressCount":{
+          "shape":"Integer",
+          "locationName":"availableAddressCount"
+        }
+      }
+    },
+    "PublicIpv4PoolRangeSet":{
+      "type":"list",
+      "member":{
+        "shape":"PublicIpv4PoolRange",
+        "locationName":"item"
+      }
+    },
+    "PublicIpv4PoolSet":{
+      "type":"list",
+      "member":{
+        "shape":"PublicIpv4Pool",
+        "locationName":"item"
       }
     },
     "Purchase":{
@@ -19469,6 +19747,23 @@
       "members":{
         "TunnelInsideCidr":{"shape":"String"},
         "PreSharedKey":{"shape":"String"}
+      }
+    },
+    "WithdrawByoipCidrRequest":{
+      "type":"structure",
+      "required":["Cidr"],
+      "members":{
+        "Cidr":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "WithdrawByoipCidrResult":{
+      "type":"structure",
+      "members":{
+        "ByoipCidr":{
+          "shape":"ByoipCidr",
+          "locationName":"byoipCidr"
+        }
       }
     },
     "ZoneNameStringList":{
