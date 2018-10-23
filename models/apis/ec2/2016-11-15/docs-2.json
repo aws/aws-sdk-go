@@ -5,10 +5,11 @@
     "AcceptReservedInstancesExchangeQuote": "<p>Accepts the Convertible Reserved Instance exchange quote described in the <a>GetReservedInstancesExchangeQuote</a> call.</p>",
     "AcceptVpcEndpointConnections": "<p>Accepts one or more interface VPC endpoint connection requests to your VPC endpoint service.</p>",
     "AcceptVpcPeeringConnection": "<p>Accept a VPC peering connection request. To accept a request, the VPC peering connection must be in the <code>pending-acceptance</code> state, and you must be the owner of the peer VPC. Use <a>DescribeVpcPeeringConnections</a> to view your outstanding VPC peering connection requests.</p> <p>For an inter-region VPC peering connection request, you must accept the VPC peering connection in the region of the accepter VPC.</p>",
-    "AllocateAddress": "<p>Allocates an Elastic IP address to your AWS account. After you allocate the Elastic IP address you can associate it with an instance or network interface. After you release an Elastic IP address, it is released to the IP address pool and can be allocated to a different AWS account.</p> <p>[EC2-VPC] If you release an Elastic IP address, you might be able to recover it. You cannot recover an Elastic IP address that you released after it is allocated to another AWS account. You cannot recover an Elastic IP address for EC2-Classic. To attempt to recover an Elastic IP address that you released, specify it in this operation.</p> <p>An Elastic IP address is for use either in the EC2-Classic platform or in a VPC. By default, you can allocate 5 Elastic IP addresses for EC2-Classic per region and 5 Elastic IP addresses for EC2-VPC per region.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "AdvertiseByoipCidr": "<p>Advertises an IPv4 address range that is provisioned for use with your AWS resources through bring your own IP addresses (BYOIP).</p> <p>You can perform this operation at most once every 10 seconds, even if you specify different address ranges each time.</p> <p>We recommend that you stop advertising the BYOIP CIDR from other locations when you advertise it from AWS. To minimize down time, you can configure your AWS resources to use an address from a BYOIP CIDR before it is advertised, and then simultaneously stop advertising it from the current location and start advertising it through AWS.</p> <p>It can take a few minutes before traffic to the specified addresses starts routing to AWS because of BGP propagation delays.</p> <p>To stop advertising the BYOIP CIDR, use <a>WithdrawByoipCidr</a>.</p>",
+    "AllocateAddress": "<p>Allocates an Elastic IP address to your AWS account. After you allocate the Elastic IP address you can associate it with an instance or network interface. After you release an Elastic IP address, it is released to the IP address pool and can be allocated to a different AWS account.</p> <p>You can allocate an Elastic IP address from an address pool owned by AWS or from an address pool created from a public IPv4 address range that you have brought to AWS for use with your AWS resources using bring your own IP addresses (BYOIP). For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html\">Bring Your Own IP Addresses (BYOIP)</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>[EC2-VPC] If you release an Elastic IP address, you might be able to recover it. You cannot recover an Elastic IP address that you released after it is allocated to another AWS account. You cannot recover an Elastic IP address for EC2-Classic. To attempt to recover an Elastic IP address that you released, specify it in this operation.</p> <p>An Elastic IP address is for use either in the EC2-Classic platform or in a VPC. By default, you can allocate 5 Elastic IP addresses for EC2-Classic per region and 5 Elastic IP addresses for EC2-VPC per region.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "AllocateHosts": "<p>Allocates a Dedicated Host to your account. At a minimum, specify the instance size type, Availability Zone, and quantity of hosts to allocate.</p>",
     "AssignIpv6Addresses": "<p>Assigns one or more IPv6 addresses to the specified network interface. You can specify one or more specific IPv6 addresses, or you can specify the number of IPv6 addresses to be automatically assigned from within the subnet's IPv6 CIDR block range. You can assign as many IPv6 addresses to a network interface as you can assign private IPv4 addresses, and the limit varies per instance type. For information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI\">IP Addresses Per Network Interface Per Instance Type</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
-    "AssignPrivateIpAddresses": "<p>Assigns one or more secondary private IP addresses to the specified network interface. You can specify one or more specific secondary IP addresses, or you can specify the number of secondary IP addresses to be automatically assigned within the subnet's CIDR block range. The number of secondary IP addresses that you can assign to an instance varies by instance type. For information about instance types, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. For more information about Elastic IP addresses, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>AssignPrivateIpAddresses is available only in EC2-VPC.</p>",
+    "AssignPrivateIpAddresses": "<p>Assigns one or more secondary private IP addresses to the specified network interface.</p> <p>You can specify one or more specific secondary IP addresses, or you can specify the number of secondary IP addresses to be automatically assigned within the subnet's CIDR block range. The number of secondary IP addresses that you can assign to an instance varies by instance type. For information about instance types, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. For more information about Elastic IP addresses, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>When you move a secondary private IP address to another network interface, any Elastic IP address that is associated with the IP address is also moved.</p> <p>Remapping an IP address is an asynchronous operation. When you move an IP address from one network interface to another, check <code>network/interfaces/macs/mac/local-ipv4s</code> in the instance metadata to confirm that the remapping is complete.</p>",
     "AssociateAddress": "<p>Associates an Elastic IP address with an instance or a network interface. Before you can use an Elastic IP address, you must allocate it to your account.</p> <p>An Elastic IP address is for use in either the EC2-Classic platform or in a VPC. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>[EC2-Classic, VPC in an EC2-VPC-only account] If the Elastic IP address is already associated with a different instance, it is disassociated from that instance and associated with the specified instance. If you associate an Elastic IP address with an instance that has an existing Elastic IP address, the existing address is disassociated from the instance, but remains allocated to your account.</p> <p>[VPC in an EC2-Classic account] If you don't specify a private IP address, the Elastic IP address is associated with the primary IP address. If the Elastic IP address is already associated with a different instance or a network interface, you get an error unless you allow reassociation. You cannot associate an Elastic IP address with an instance or network interface that has an existing Elastic IP address.</p> <important> <p>This is an idempotent operation. If you perform the operation more than once, Amazon EC2 doesn't return an error, and you may be charged for each time the Elastic IP address is remapped to the same instance. For more information, see the <i>Elastic IP Addresses</i> section of <a href=\"http://aws.amazon.com/ec2/pricing/\">Amazon EC2 Pricing</a>.</p> </important>",
     "AssociateDhcpOptions": "<p>Associates a set of DHCP options (that you've previously created) with the specified VPC, or associates no DHCP options with the VPC.</p> <p>After you associate the options with the VPC, any existing instances and all new instances that you launch in that VPC use the options. You don't need to restart or relaunch the instances. They automatically pick up the changes within a few hours, depending on how frequently the instance renews its DHCP lease. You can explicitly renew the lease using the operating system on the instance.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html\">DHCP Options Sets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "AssociateIamInstanceProfile": "<p>Associates an IAM instance profile with a running or stopped instance. You cannot associate more than one IAM instance profile with an instance.</p>",
@@ -103,12 +104,14 @@
     "DeleteVpnConnection": "<p>Deletes the specified VPN connection.</p> <p>If you're deleting the VPC and its associated components, we recommend that you detach the virtual private gateway from the VPC and delete the VPC before deleting the VPN connection. If you believe that the tunnel credentials for your VPN connection have been compromised, you can delete the VPN connection and create a new one that has new keys, without needing to delete the VPC or virtual private gateway. If you create a new VPN connection, you must reconfigure the customer gateway using the new configuration information returned with the new VPN connection ID.</p>",
     "DeleteVpnConnectionRoute": "<p>Deletes the specified static route associated with a VPN connection between an existing virtual private gateway and a VPN customer gateway. The static route allows traffic to be routed from the virtual private gateway to the VPN customer gateway.</p>",
     "DeleteVpnGateway": "<p>Deletes the specified virtual private gateway. We recommend that before you delete a virtual private gateway, you detach it from the VPC and delete the VPN connection. Note that you don't need to delete the virtual private gateway if you plan to delete and recreate the VPN connection between your VPC and your network.</p>",
+    "DeprovisionByoipCidr": "<p>Releases the specified address range that you provisioned for use with your AWS resources through bring your own IP addresses (BYOIP) and deletes the corresponding address pool.</p> <p>Before you can release an address range, you must stop advertising it using <a>WithdrawByoipCidr</a> and you must not have any IP addresses allocated from its address range.</p>",
     "DeregisterImage": "<p>Deregisters the specified AMI. After you deregister an AMI, it can't be used to launch new instances; however, it doesn't affect any instances that you've already launched from the AMI. You'll continue to incur usage costs for those instances until you terminate them.</p> <p>When you deregister an Amazon EBS-backed AMI, it doesn't affect the snapshot that was created for the root volume of the instance during the AMI creation process. When you deregister an instance store-backed AMI, it doesn't affect the files that you uploaded to Amazon S3 when you created the AMI.</p>",
     "DescribeAccountAttributes": "<p>Describes attributes of your AWS account. The following are the supported account attributes:</p> <ul> <li> <p> <code>supported-platforms</code>: Indicates whether your account can launch instances into EC2-Classic and EC2-VPC, or only into EC2-VPC.</p> </li> <li> <p> <code>default-vpc</code>: The ID of the default VPC for your account, or <code>none</code>.</p> </li> <li> <p> <code>max-instances</code>: The maximum number of On-Demand Instances that you can run.</p> </li> <li> <p> <code>vpc-max-security-groups-per-interface</code>: The maximum number of security groups that you can assign to a network interface.</p> </li> <li> <p> <code>max-elastic-ips</code>: The maximum number of Elastic IP addresses that you can allocate for use with EC2-Classic. </p> </li> <li> <p> <code>vpc-max-elastic-ips</code>: The maximum number of Elastic IP addresses that you can allocate for use with EC2-VPC.</p> </li> </ul>",
     "DescribeAddresses": "<p>Describes one or more of your Elastic IP addresses.</p> <p>An Elastic IP address is for use in either the EC2-Classic platform or in a VPC. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "DescribeAggregateIdFormat": "<p>Describes the longer ID format settings for all resource types in a specific region. This request is useful for performing a quick audit to determine whether a specific region is fully opted in for longer IDs (17-character IDs).</p> <p>This request only returns information about resource types that support longer IDs.</p> <p>The following resource types support longer IDs: <code>bundle</code> | <code>conversion-task</code> | <code>customer-gateway</code> | <code>dhcp-options</code> | <code>elastic-ip-allocation</code> | <code>elastic-ip-association</code> | <code>export-task</code> | <code>flow-log</code> | <code>image</code> | <code>import-task</code> | <code>instance</code> | <code>internet-gateway</code> | <code>network-acl</code> | <code>network-acl-association</code> | <code>network-interface</code> | <code>network-interface-attachment</code> | <code>prefix-list</code> | <code>reservation</code> | <code>route-table</code> | <code>route-table-association</code> | <code>security-group</code> | <code>snapshot</code> | <code>subnet</code> | <code>subnet-cidr-block-association</code> | <code>volume</code> | <code>vpc</code> | <code>vpc-cidr-block-association</code> | <code>vpc-endpoint</code> | <code>vpc-peering-connection</code> | <code>vpn-connection</code> | <code>vpn-gateway</code>.</p>",
     "DescribeAvailabilityZones": "<p>Describes one or more of the Availability Zones that are available to you. The results include zones only for the region you're currently using. If there is an event impacting an Availability Zone, you can use this request to view the state and any provided message for that Availability Zone.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html\">Regions and Availability Zones</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "DescribeBundleTasks": "<p>Describes one or more of your bundling tasks.</p> <note> <p>Completed bundle tasks are listed for only a limited time. If your bundle task is no longer in the list, you can still register an AMI from it. Just use <code>RegisterImage</code> with the Amazon S3 bucket name and image manifest name you provided to the bundle task.</p> </note>",
+    "DescribeByoipCidrs": "<p>Describes the IP address ranges that were specified in calls to <a>ProvisionByoipCidr</a>.</p> <p>To describe the address pools that were created when you provisioned the address ranges, use <a>DescribePublicIpv4Pools</a>.</p>",
     "DescribeClassicLinkInstances": "<p>Describes one or more of your linked EC2-Classic instances. This request only returns information about EC2-Classic instances linked to a VPC through ClassicLink. You cannot use this request to return information about other instances.</p>",
     "DescribeConversionTasks": "<p>Describes one or more of your conversion tasks. For more information, see the <a href=\"http://docs.aws.amazon.com/vm-import/latest/userguide/\">VM Import/Export User Guide</a>.</p> <p>For information about the import manifest referenced by this API action, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html\">VM Import Manifest</a>.</p>",
     "DescribeCustomerGateways": "<p>Describes one or more of your VPN customer gateways.</p> <p>For more information about VPN customer gateways, see <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html\">AWS Managed VPN Connections</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
@@ -149,6 +152,7 @@
     "DescribePlacementGroups": "<p>Describes one or more of your placement groups. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html\">Placement Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "DescribePrefixLists": "<p>Describes available AWS services in a prefix list format, which includes the prefix list name and prefix list ID of the service and the IP address range for the service. A prefix list ID is required for creating an outbound security group rule that allows traffic from a VPC to access an AWS service through a gateway VPC endpoint. Currently, the services that support this action are Amazon S3 and Amazon DynamoDB.</p>",
     "DescribePrincipalIdFormat": "<p>Describes the ID format settings for the root user and all IAM roles and IAM users that have explicitly specified a longer ID (17-character ID) preference. </p> <p>By default, all IAM roles and IAM users default to the same ID settings as the root user, unless they explicitly override the settings. This request is useful for identifying those IAM users and IAM roles that have overridden the default ID settings.</p> <p>The following resource types support longer IDs: <code>bundle</code> | <code>conversion-task</code> | <code>customer-gateway</code> | <code>dhcp-options</code> | <code>elastic-ip-allocation</code> | <code>elastic-ip-association</code> | <code>export-task</code> | <code>flow-log</code> | <code>image</code> | <code>import-task</code> | <code>instance</code> | <code>internet-gateway</code> | <code>network-acl</code> | <code>network-acl-association</code> | <code>network-interface</code> | <code>network-interface-attachment</code> | <code>prefix-list</code> | <code>reservation</code> | <code>route-table</code> | <code>route-table-association</code> | <code>security-group</code> | <code>snapshot</code> | <code>subnet</code> | <code>subnet-cidr-block-association</code> | <code>volume</code> | <code>vpc</code> | <code>vpc-cidr-block-association</code> | <code>vpc-endpoint</code> | <code>vpc-peering-connection</code> | <code>vpn-connection</code> | <code>vpn-gateway</code>. </p>",
+    "DescribePublicIpv4Pools": "<p>Describes the specified IPv4 address pools.</p>",
     "DescribeRegions": "<p>Describes one or more regions that are currently available to you.</p> <p>For a list of the regions supported by Amazon EC2, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region\">Regions and Endpoints</a>.</p>",
     "DescribeReservedInstances": "<p>Describes one or more of the Reserved Instances that you purchased.</p> <p>For more information about Reserved Instances, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts-on-demand-reserved-instances.html\">Reserved Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "DescribeReservedInstancesListings": "<p>Describes your account's Reserved Instance listings in the Reserved Instance Marketplace.</p> <p>The Reserved Instance Marketplace matches sellers who want to resell Reserved Instance capacity that they no longer need with buyers who want to purchase additional capacity. Reserved Instances bought and sold through the Reserved Instance Marketplace work like any other Reserved Instances.</p> <p>As a seller, you choose to list some or all of your Reserved Instances, and you specify the upfront price to receive for them. Your Reserved Instances are then listed in the Reserved Instance Marketplace and are available for purchase.</p> <p>As a buyer, you specify the configuration of the Reserved Instance to purchase, and the Marketplace matches what you're searching for with what's available. The Marketplace first sells the lowest priced Reserved Instances to you, and continues to sell available Reserved Instance listings to you until your demand is met. You are charged based on the total price of all of the listings that you purchase.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html\">Reserved Instance Marketplace</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
@@ -163,7 +167,7 @@
     "DescribeSnapshots": "<p>Describes one or more of the EBS snapshots available to you. Available snapshots include public snapshots available for any AWS account to launch, private snapshots that you own, and private snapshots owned by another AWS account but for which you've been given explicit create volume permissions.</p> <p>The create volume permissions fall into the following categories:</p> <ul> <li> <p> <i>public</i>: The owner of the snapshot granted create volume permissions for the snapshot to the <code>all</code> group. All AWS accounts have create volume permissions for these snapshots.</p> </li> <li> <p> <i>explicit</i>: The owner of the snapshot granted create volume permissions to a specific AWS account.</p> </li> <li> <p> <i>implicit</i>: An AWS account has implicit create volume permissions for all snapshots it owns.</p> </li> </ul> <p>The list of snapshots returned can be modified by specifying snapshot IDs, snapshot owners, or AWS accounts with create volume permissions. If no options are specified, Amazon EC2 returns all snapshots for which you have create volume permissions.</p> <p>If you specify one or more snapshot IDs, only snapshots that have the specified IDs are returned. If you specify an invalid snapshot ID, an error is returned. If you specify a snapshot ID for which you do not have access, it is not included in the returned results.</p> <p>If you specify one or more snapshot owners using the <code>OwnerIds</code> option, only snapshots from the specified owners and for which you have access are returned. The results can include the AWS account IDs of the specified owners, <code>amazon</code> for snapshots owned by Amazon, or <code>self</code> for snapshots that you own.</p> <p>If you specify a list of restorable users, only snapshots with create snapshot permissions for those users are returned. You can specify AWS account IDs (if you own the snapshots), <code>self</code> for snapshots for which you own or have explicit permissions, or <code>all</code> for public snapshots.</p> <p>If you are describing a long list of snapshots, you can paginate the output to make the list more manageable. The <code>MaxResults</code> parameter sets the maximum number of results returned in a single page. If the list of results exceeds your <code>MaxResults</code> value, then that number of results is returned along with a <code>NextToken</code> value that can be passed to a subsequent <code>DescribeSnapshots</code> request to retrieve the remaining results.</p> <p>For more information about EBS snapshots, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html\">Amazon EBS Snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "DescribeSpotDatafeedSubscription": "<p>Describes the data feed for Spot Instances. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html\">Spot Instance Data Feed</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p>",
     "DescribeSpotFleetInstances": "<p>Describes the running instances for the specified Spot Fleet.</p>",
-    "DescribeSpotFleetRequestHistory": "<p>Describes the events for the specified Spot Fleet request during the specified time.</p> <p>Spot Fleet events are delayed by up to 30 seconds before they can be described. This ensures that you can query by the last evaluated time and not miss a recorded event.</p>",
+    "DescribeSpotFleetRequestHistory": "<p>Describes the events for the specified Spot Fleet request during the specified time.</p> <p>Spot Fleet events are delayed by up to 30 seconds before they can be described. This ensures that you can query by the last evaluated time and not miss a recorded event. Spot Fleet events are available for 48 hours.</p>",
     "DescribeSpotFleetRequests": "<p>Describes your Spot Fleet requests.</p> <p>Spot Fleet requests are deleted 48 hours after they are canceled and their instances are terminated.</p>",
     "DescribeSpotInstanceRequests": "<p>Describes the specified Spot Instance requests.</p> <p>You can use <code>DescribeSpotInstanceRequests</code> to find a running Spot Instance by examining the response. If the status of the Spot Instance is <code>fulfilled</code>, the instance ID appears in the response and contains the identifier of the instance. Alternatively, you can use <a>DescribeInstances</a> with a filter to look for instances where the instance lifecycle is <code>spot</code>.</p> <p>Spot Instance requests are deleted four hours after they are canceled and their instances are terminated.</p>",
     "DescribeSpotPriceHistory": "<p>Describes the Spot price history. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances-history.html\">Spot Instance Pricing History</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p> <p>When you specify a start and end time, this operation returns the prices of the instance types within the time range that you specified and the time when the price changed. The price is valid within the time period that you specified; the response merely indicates the last time that the price changed.</p>",
@@ -241,6 +245,7 @@
     "ModifyVpcTenancy": "<p>Modifies the instance tenancy attribute of the specified VPC. You can change the instance tenancy attribute of a VPC to <code>default</code> only. You cannot change the instance tenancy attribute to <code>dedicated</code>.</p> <p>After you modify the tenancy of the VPC, any new instances that you launch into the VPC have a tenancy of <code>default</code>, unless you specify otherwise during launch. The tenancy of any existing instances in the VPC is not affected.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-instance.html\">Dedicated Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "MonitorInstances": "<p>Enables detailed monitoring for a running instance. Otherwise, basic monitoring is enabled. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html\">Monitoring Your Instances and Volumes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>To disable detailed monitoring, see .</p>",
     "MoveAddressToVpc": "<p>Moves an Elastic IP address from the EC2-Classic platform to the EC2-VPC platform. The Elastic IP address must be allocated to your account for more than 24 hours, and it must not be associated with an instance. After the Elastic IP address is moved, it is no longer available for use in the EC2-Classic platform, unless you move it back using the <a>RestoreAddressToClassic</a> request. You cannot move an Elastic IP address that was originally allocated for use in the EC2-VPC platform to the EC2-Classic platform. </p>",
+    "ProvisionByoipCidr": "<p>Provisions an address range for use with your AWS resources through bring your own IP addresses (BYOIP) and creates a corresponding address pool. After the address range is provisioned, it is ready to be advertised using <a>AdvertiseByoipCidr</a>.</p> <p>AWS verifies that you own the address range and are authorized to advertise it. You must ensure that the address range is registered to you and that you created an RPKI ROA to authorize Amazon ASNs 16509 and 14618 to advertise the address range. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html\">Bring Your Own IP Addresses (BYOIP)</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Provisioning an address range is an asynchronous operation, so the call returns immediately, but the address range is not ready to use until its status changes from <code>pending-provision</code> to <code>provisioned</code>. To monitor the status of an address range, use <a>DescribeByoipCidrs</a>. To allocate an Elastic IP address from your address pool, use <a>AllocateAddress</a> with either the specific address from the address pool or the ID of the address pool.</p>",
     "PurchaseHostReservation": "<p>Purchase a reservation with configurations that match those of your Dedicated Host. You must have active Dedicated Hosts in your account before you purchase a reservation. This action results in the specified reservation being purchased and charged to your account.</p>",
     "PurchaseReservedInstancesOffering": "<p>Purchases a Reserved Instance for use with your account. With Reserved Instances, you pay a lower hourly rate compared to On-Demand instance pricing.</p> <p>Use <a>DescribeReservedInstancesOfferings</a> to get a list of Reserved Instance offerings that match your specifications. After you've purchased a Reserved Instance, you can check for your new Reserved Instance with <a>DescribeReservedInstances</a>.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts-on-demand-reserved-instances.html\">Reserved Instances</a> and <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html\">Reserved Instance Marketplace</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "PurchaseScheduledInstances": "<p>Purchases one or more Scheduled Instances with the specified schedule.</p> <p>Scheduled Instances enable you to purchase Amazon EC2 compute capacity by the hour for a one-year term. Before you can purchase a Scheduled Instance, you must call <a>DescribeScheduledInstanceAvailability</a> to check for available schedules and obtain a purchase token. After you purchase a Scheduled Instance, you must call <a>RunScheduledInstances</a> during each scheduled time period.</p> <p>After you purchase a Scheduled Instance, you can't cancel, modify, or resell your purchase.</p>",
@@ -275,7 +280,8 @@
     "UnassignPrivateIpAddresses": "<p>Unassigns one or more secondary private IP addresses from a network interface.</p>",
     "UnmonitorInstances": "<p>Disables detailed monitoring for a running instance. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html\">Monitoring Your Instances and Volumes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "UpdateSecurityGroupRuleDescriptionsEgress": "<p>[EC2-VPC only] Updates the description of an egress (outbound) security group rule. You can replace an existing description, or add a description to a rule that did not have one previously.</p> <p>You specify the description as part of the IP permissions structure. You can remove a description for a security group rule by omitting the description parameter in the request.</p>",
-    "UpdateSecurityGroupRuleDescriptionsIngress": "<p>Updates the description of an ingress (inbound) security group rule. You can replace an existing description, or add a description to a rule that did not have one previously.</p> <p>You specify the description as part of the IP permissions structure. You can remove a description for a security group rule by omitting the description parameter in the request.</p>"
+    "UpdateSecurityGroupRuleDescriptionsIngress": "<p>Updates the description of an ingress (inbound) security group rule. You can replace an existing description, or add a description to a rule that did not have one previously.</p> <p>You specify the description as part of the IP permissions structure. You can remove a description for a security group rule by omitting the description parameter in the request.</p>",
+    "WithdrawByoipCidr": "<p>Stops advertising an IPv4 address range that is provisioned as an address pool.</p> <p>You can perform this operation at most once every 10 seconds, even if you specify different address ranges each time.</p> <p>It can take a few minutes before traffic to the specified addresses stops routing to AWS because of BGP propagation delays.</p>"
   },
   "shapes": {
     "AcceptReservedInstancesExchangeQuoteRequest": {
@@ -375,6 +381,16 @@
         "DescribeAddressesResult$Addresses": "<p>Information about one or more Elastic IP addresses.</p>"
       }
     },
+    "AdvertiseByoipCidrRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AdvertiseByoipCidrResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Affinity": {
       "base": null,
       "refs": {
@@ -382,12 +398,12 @@
       }
     },
     "AllocateAddressRequest": {
-      "base": "<p>Contains the parameters for AllocateAddress.</p>",
+      "base": null,
       "refs": {
       }
     },
     "AllocateAddressResult": {
-      "base": "<p>Contains the output of AllocateAddress.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -456,12 +472,12 @@
       }
     },
     "AssociateAddressRequest": {
-      "base": "<p>Contains the parameters for AssociateAddress.</p>",
+      "base": null,
       "refs": {
       }
     },
     "AssociateAddressResult": {
-      "base": "<p>Contains the output of AssociateAddress.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -733,6 +749,7 @@
         "AcceptReservedInstancesExchangeQuoteRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AcceptVpcEndpointConnectionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AcceptVpcPeeringConnectionRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "AdvertiseByoipCidrRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AllocateAddressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssignPrivateIpAddressesRequest$AllowReassignment": "<p>Indicates whether to allow an IP address that is already assigned to another network interface or instance to be reassigned to the specified network interface.</p>",
         "AssociateAddressRequest$AllowReassociation": "<p>[EC2-VPC] For a VPC in an EC2-Classic account, specify true to allow an Elastic IP address that is already associated with an instance or network interface to be reassociated with the specified instance or network interface. Otherwise, the operation fails. In a VPC in an EC2-VPC-only account, reassociation is automatic, therefore you can specify false to ensure the operation fails if the Elastic IP address is already associated with another resource.</p>",
@@ -843,6 +860,7 @@
         "DeleteVpcRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteVpnConnectionRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteVpnGatewayRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DeprovisionByoipCidrRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeregisterImageRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeAccountAttributesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeAddressesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -850,6 +868,7 @@
         "DescribeAggregateIdFormatResult$UseLongIdsAggregated": "<p>Indicates whether all resource types in the region are configured to use longer IDs. This value is only <code>true</code> if all users are configured to use longer IDs for all resources types in the region.</p>",
         "DescribeAvailabilityZonesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeBundleTasksRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DescribeByoipCidrsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeClassicLinkInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeConversionTasksRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeCustomerGatewaysRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1025,6 +1044,7 @@
         "PeeringConnectionOptionsRequest$AllowEgressFromLocalVpcToRemoteClassicLink": "<p>If true, enables outbound communication from instances in a local VPC to an EC2-Classic instance that's linked to a peer VPC using ClassicLink.</p>",
         "PriceSchedule$Active": "<p>The current price schedule, as determined by the term remaining for the Reserved Instance in the listing.</p> <p>A specific price schedule is always in effect, but only one price schedule can be active at any time. Take, for example, a Reserved Instance listing that has five months remaining in its term. When you specify price schedules for five months and two months, this means that schedule 1, covering the first three months of the remaining term, will be active during months 5, 4, and 3. Then schedule 2, covering the last two months of the term, will be active for months 2 and 1.</p>",
         "PrivateIpAddressSpecification$Primary": "<p>Indicates whether the private IPv4 address is the primary private IPv4 address. Only one IPv4 address can be designated as primary.</p>",
+        "ProvisionByoipCidrRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "PurchaseReservedInstancesOfferingRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "PurchaseScheduledInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "RebootInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1101,7 +1121,8 @@
         "VpcPeeringConnectionOptionsDescription$AllowEgressFromLocalClassicLinkToRemoteVpc": "<p>Indicates whether a local ClassicLink connection can communicate with the peer VPC over the VPC peering connection.</p>",
         "VpcPeeringConnectionOptionsDescription$AllowEgressFromLocalVpcToRemoteClassicLink": "<p>Indicates whether a local VPC can communicate with a ClassicLink connection in the peer VPC over the VPC peering connection.</p>",
         "VpnConnectionOptions$StaticRoutesOnly": "<p>Indicates whether the VPN connection uses static routes only. Static routes must be used for devices that don't support BGP.</p>",
-        "VpnConnectionOptionsSpecification$StaticRoutesOnly": "<p>Indicate whether the VPN connection uses static routes only. If you are creating a VPN connection for a device that does not support BGP, you must specify <code>true</code>. Use <a>CreateVpnConnectionRoute</a> to create a static route.</p> <p>Default: <code>false</code> </p>"
+        "VpnConnectionOptionsSpecification$StaticRoutesOnly": "<p>Indicate whether the VPN connection uses static routes only. If you are creating a VPN connection for a device that does not support BGP, you must specify <code>true</code>. Use <a>CreateVpnConnectionRoute</a> to create a static route.</p> <p>Default: <code>false</code> </p>",
+        "WithdrawByoipCidrRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>"
       }
     },
     "BundleIdStringList": {
@@ -1144,6 +1165,28 @@
       "base": null,
       "refs": {
         "BundleTask$State": "<p>The state of the task.</p>"
+      }
+    },
+    "ByoipCidr": {
+      "base": "<p>Information about an address range that is provisioned for use with your AWS resources through bring your own IP addresses (BYOIP).</p>",
+      "refs": {
+        "AdvertiseByoipCidrResult$ByoipCidr": "<p>Information about the address range.</p>",
+        "ByoipCidrSet$member": null,
+        "DeprovisionByoipCidrResult$ByoipCidr": "<p>Information about the address range.</p>",
+        "ProvisionByoipCidrResult$ByoipCidr": "<p>Information about the address pool.</p>",
+        "WithdrawByoipCidrResult$ByoipCidr": "<p>Information about the address pool.</p>"
+      }
+    },
+    "ByoipCidrSet": {
+      "base": null,
+      "refs": {
+        "DescribeByoipCidrsResult$ByoipCidrs": "<p>Information about your address ranges.</p>"
+      }
+    },
+    "ByoipCidrState": {
+      "base": null,
+      "refs": {
+        "ByoipCidr$State": "<p>The state of the address pool.</p>"
       }
     },
     "CancelBatchErrorCode": {
@@ -1258,6 +1301,12 @@
       "base": null,
       "refs": {
         "CancelSpotInstanceRequestsResult$CancelledSpotInstanceRequests": "<p>One or more Spot Instance requests.</p>"
+      }
+    },
+    "CidrAuthorizationContext": {
+      "base": "<p>Provides authorization for Amazon to bring a specific IP address range to a specific AWS account using bring your own IP addresses (BYOIP).</p>",
+      "refs": {
+        "ProvisionByoipCidrRequest$CidrAuthorizationContext": "<p>A signed document that proves that you are authorized to bring the specified IP address range to Amazon using BYOIP.</p>"
       }
     },
     "CidrBlock": {
@@ -2213,6 +2262,16 @@
       "refs": {
       }
     },
+    "DeprovisionByoipCidrRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeprovisionByoipCidrResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeregisterImageRequest": {
       "base": "<p>Contains the parameters for DeregisterImage.</p>",
       "refs": {
@@ -2229,12 +2288,12 @@
       }
     },
     "DescribeAddressesRequest": {
-      "base": "<p>Contains the parameters for DescribeAddresses.</p>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeAddressesResult": {
-      "base": "<p>Contains the output of DescribeAddresses.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -2265,6 +2324,16 @@
     },
     "DescribeBundleTasksResult": {
       "base": "<p>Contains the output of DescribeBundleTasks.</p>",
+      "refs": {
+      }
+    },
+    "DescribeByoipCidrsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeByoipCidrsResult": {
+      "base": null,
       "refs": {
       }
     },
@@ -2575,12 +2644,12 @@
       }
     },
     "DescribeMovingAddressesRequest": {
-      "base": "<p>Contains the parameters for DescribeMovingAddresses.</p>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeMovingAddressesResult": {
-      "base": "<p>Contains the output of DescribeMovingAddresses.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -2660,6 +2729,16 @@
       }
     },
     "DescribePrincipalIdFormatResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribePublicIpv4PoolsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribePublicIpv4PoolsResult": {
       "base": null,
       "refs": {
       }
@@ -3144,7 +3223,7 @@
       }
     },
     "DisassociateAddressRequest": {
-      "base": "<p>Contains the parameters for DisassociateAddress.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -3265,7 +3344,7 @@
         "SnapshotDetail$DiskImageSize": "<p>The size of the disk in the snapshot, in GiB.</p>",
         "SnapshotTaskDetail$DiskImageSize": "<p>The size of the disk in the snapshot, in GiB.</p>",
         "SpotFleetLaunchSpecification$WeightedCapacity": "<p>The number of units provided by the specified instance type. These are the same units that you chose to set the target capacity in terms (instances or a performance characteristic such as vCPUs, memory, or I/O).</p> <p>If the target capacity divided by this value is not a whole number, we round the number of instances to the next whole number. If this value is not specified, the default is 1.</p>",
-        "SpotFleetRequestConfigData$FulfilledCapacity": "<p>The number of units fulfilled by this request compared to the set target capacity.</p>",
+        "SpotFleetRequestConfigData$FulfilledCapacity": "<p>The number of units fulfilled by this request compared to the set target capacity. You cannot set this value.</p>",
         "SpotFleetRequestConfigData$OnDemandFulfilledCapacity": "<p>The number of On-Demand units fulfilled by this request compared to the set target On-Demand capacity.</p>"
       }
     },
@@ -4037,9 +4116,9 @@
     "IcmpTypeCode": {
       "base": "<p>Describes the ICMP type and code.</p>",
       "refs": {
-        "CreateNetworkAclEntryRequest$IcmpTypeCode": "<p>ICMP protocol: The ICMP or ICMPv6 type and code. Required if specifying the ICMP protocol, or protocol 58 (ICMPv6) with an IPv6 CIDR block.</p>",
+        "CreateNetworkAclEntryRequest$IcmpTypeCode": "<p>ICMP protocol: The ICMP or ICMPv6 type and code. Required if specifying protocol 1 (ICMP) or protocol 58 (ICMPv6) with an IPv6 CIDR block.</p>",
         "NetworkAclEntry$IcmpTypeCode": "<p>ICMP protocol: The ICMP type and code.</p>",
-        "ReplaceNetworkAclEntryRequest$IcmpTypeCode": "<p>ICMP protocol: The ICMP or ICMPv6 type and code. Required if specifying the ICMP (1) protocol, or protocol 58 (ICMPv6) with an IPv6 CIDR block.</p>"
+        "ReplaceNetworkAclEntryRequest$IcmpTypeCode": "<p>ICMP protocol: The ICMP or ICMPv6 type and code. Required if specifying protocol 1 (ICMP) or protocol 58 (ICMPv6) with an IPv6 CIDR block.</p>"
       }
     },
     "IdFormat": {
@@ -4683,6 +4762,10 @@
         "PortRange$From": "<p>The first port in the range.</p>",
         "PortRange$To": "<p>The last port in the range.</p>",
         "PricingDetail$Count": "<p>The number of reservations available for the price.</p>",
+        "PublicIpv4Pool$TotalAddressCount": "<p>The total number of addresses.</p>",
+        "PublicIpv4Pool$TotalAvailableAddressCount": "<p>The total number of available addresses.</p>",
+        "PublicIpv4PoolRange$AddressCount": "<p>The number of addresses in the range.</p>",
+        "PublicIpv4PoolRange$AvailableAddressCount": "<p>The number of available addresses in the range.</p>",
         "Purchase$Duration": "<p>The duration of the reservation's term in seconds.</p>",
         "PurchaseRequest$InstanceCount": "<p>The number of instances.</p>",
         "PurchaseReservedInstancesOfferingRequest$InstanceCount": "<p>The number of Reserved Instances to purchase.</p>",
@@ -5240,6 +5323,7 @@
     "MaxResults": {
       "base": null,
       "refs": {
+        "DescribeByoipCidrsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
         "DescribeFpgaImagesRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
         "DescribeIamInstanceProfileAssociationsRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>",
         "DescribeStaleSecurityGroupsRequest$MaxResults": "<p>The maximum number of items to return for this request. The request returns a token that you can specify in a subsequent call to get the next set of results.</p>",
@@ -5465,12 +5549,12 @@
       }
     },
     "MoveAddressToVpcRequest": {
-      "base": "<p>Contains the parameters for MoveAddressToVpc.</p>",
+      "base": null,
       "refs": {
       }
     },
     "MoveAddressToVpcResult": {
-      "base": "<p>Contains the output of MoveAddressToVpc.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -5688,10 +5772,12 @@
     "NextToken": {
       "base": null,
       "refs": {
+        "DescribeByoipCidrsRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribeFpgaImagesRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
         "DescribeFpgaImagesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeIamInstanceProfileAssociationsRequest$NextToken": "<p>The token to request the next page of results.</p>",
         "DescribeIamInstanceProfileAssociationsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "DescribePublicIpv4PoolsRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribeStaleSecurityGroupsRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a prior call.)</p>",
         "DescribeVpcClassicLinkDnsSupportRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a prior call.)</p>",
         "DescribeVpcClassicLinkDnsSupportResult$NextToken": "<p>The token to use when requesting the next set of items.</p>"
@@ -5846,12 +5932,18 @@
         "Instance$Platform": "<p>The value is <code>Windows</code> for Windows instances; otherwise blank.</p>"
       }
     },
+    "PoolMaxResults": {
+      "base": null,
+      "refs": {
+        "DescribePublicIpv4PoolsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"
+      }
+    },
     "PortRange": {
       "base": "<p>Describes a range of ports.</p>",
       "refs": {
-        "CreateNetworkAclEntryRequest$PortRange": "<p>TCP or UDP protocols: The range of ports the rule applies to.</p>",
+        "CreateNetworkAclEntryRequest$PortRange": "<p>TCP or UDP protocols: The range of ports the rule applies to. Required if specifying protocol 6 (TCP) or 17 (UDP).</p>",
         "NetworkAclEntry$PortRange": "<p>TCP or UDP protocols: The range of ports the rule applies to.</p>",
-        "ReplaceNetworkAclEntryRequest$PortRange": "<p>TCP or UDP protocols: The range of ports the rule applies to. Required if specifying TCP (6) or UDP (17) for the protocol.</p>"
+        "ReplaceNetworkAclEntryRequest$PortRange": "<p>TCP or UDP protocols: The range of ports the rule applies to. Required if specifying protocol 6 (TCP) or 17 (UDP).</p>"
       }
     },
     "PrefixList": {
@@ -6016,6 +6108,16 @@
         "RouteTable$PropagatingVgws": "<p>Any virtual private gateway (VGW) propagating routes.</p>"
       }
     },
+    "ProvisionByoipCidrRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ProvisionByoipCidrResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ProvisionedBandwidth": {
       "base": "<p>Reserved. If you need to sustain traffic greater than the <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html\">documented limits</a>, contact us through the <a href=\"https://console.aws.amazon.com/support/home?\">Support Center</a>.</p>",
       "refs": {
@@ -6026,6 +6128,30 @@
       "base": null,
       "refs": {
         "DescribeAddressesRequest$PublicIps": "<p>[EC2-Classic] One or more Elastic IP addresses.</p> <p>Default: Describes all your Elastic IP addresses.</p>"
+      }
+    },
+    "PublicIpv4Pool": {
+      "base": "<p>Describes an address pool.</p>",
+      "refs": {
+        "PublicIpv4PoolSet$member": null
+      }
+    },
+    "PublicIpv4PoolRange": {
+      "base": "<p>Describes an address range of an IPv4 address pool.</p>",
+      "refs": {
+        "PublicIpv4PoolRangeSet$member": null
+      }
+    },
+    "PublicIpv4PoolRangeSet": {
+      "base": null,
+      "refs": {
+        "PublicIpv4Pool$PoolAddressRanges": "<p>The address ranges.</p>"
+      }
+    },
+    "PublicIpv4PoolSet": {
+      "base": null,
+      "refs": {
+        "DescribePublicIpv4PoolsResult$PublicIpv4Pools": "<p>Information about the address pools.</p>"
       }
     },
     "Purchase": {
@@ -6178,7 +6304,7 @@
       }
     },
     "ReleaseAddressRequest": {
-      "base": "<p>Contains the parameters for ReleaseAddress.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -6506,8 +6632,8 @@
     "ResourceIdList": {
       "base": null,
       "refs": {
-        "CreateTagsRequest$Resources": "<p>The IDs of one or more resources to tag. For example, ami-1a2b3c4d.</p>",
-        "DeleteTagsRequest$Resources": "<p>The IDs of one or more resources.</p>"
+        "CreateTagsRequest$Resources": "<p>The IDs of one or more resources, separated by spaces.</p>",
+        "DeleteTagsRequest$Resources": "<p>The IDs of one or more resources, separated by spaces.</p>"
       }
     },
     "ResourceList": {
@@ -6561,12 +6687,12 @@
       }
     },
     "RestoreAddressToClassicRequest": {
-      "base": "<p>Contains the parameters for RestoreAddressToClassic.</p>",
+      "base": null,
       "refs": {
       }
     },
     "RestoreAddressToClassicResult": {
-      "base": "<p>Contains the output of RestoreAddressToClassic.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -7229,9 +7355,13 @@
         "Address$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "Address$NetworkInterfaceOwnerId": "<p>The ID of the AWS account that owns the network interface.</p>",
         "Address$PrivateIpAddress": "<p>The private IP address associated with the Elastic IP address.</p>",
-        "AllocateAddressRequest$Address": "<p>[EC2-VPC] The Elastic IP address to recover.</p>",
+        "Address$PublicIpv4Pool": "<p>The ID of an address pool.</p>",
+        "AdvertiseByoipCidrRequest$Cidr": "<p>The IPv4 address range, in CIDR notation.</p>",
+        "AllocateAddressRequest$Address": "<p>[EC2-VPC] The Elastic IP address to recover or an IPv4 address from an address pool.</p>",
+        "AllocateAddressRequest$PublicIpv4Pool": "<p>The ID of an address pool that you own. Use this parameter to let Amazon EC2 select an address from the address pool. To specify a specific address from the address pool, use the <code>Address</code> parameter instead.</p>",
         "AllocateAddressResult$PublicIp": "<p>The Elastic IP address.</p>",
         "AllocateAddressResult$AllocationId": "<p>[EC2-VPC] The ID that AWS assigns to represent the allocation of the Elastic IP address for use with instances in a VPC.</p>",
+        "AllocateAddressResult$PublicIpv4Pool": "<p>The ID of an address pool.</p>",
         "AllocateHostsRequest$AvailabilityZone": "<p>The Availability Zone for the Dedicated Hosts.</p>",
         "AllocateHostsRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. </p>",
         "AllocateHostsRequest$InstanceType": "<p>Specify the instance type for which to configure your Dedicated Hosts. When you specify the instance type, that is the only instance type that you can launch onto that host.</p>",
@@ -7297,6 +7427,9 @@
         "BundleTask$Progress": "<p>The level of task completion, as a percent (for example, 20%).</p>",
         "BundleTaskError$Code": "<p>The error code.</p>",
         "BundleTaskError$Message": "<p>The error message.</p>",
+        "ByoipCidr$Cidr": "<p>The public IPv4 address range, in CIDR notation.</p>",
+        "ByoipCidr$Description": "<p>The description of the address range.</p>",
+        "ByoipCidr$StatusMessage": "<p>Upon success, contains the ID of the address pool. Otherwise, contains an error message.</p>",
         "CancelBundleTaskRequest$BundleId": "<p>The ID of the bundle task.</p>",
         "CancelConversionRequest$ConversionTaskId": "<p>The ID of the conversion task.</p>",
         "CancelConversionRequest$ReasonMessage": "<p>The reason for canceling the conversion task.</p>",
@@ -7311,6 +7444,8 @@
         "CancelSpotFleetRequestsErrorItem$SpotFleetRequestId": "<p>The ID of the Spot Fleet request.</p>",
         "CancelSpotFleetRequestsSuccessItem$SpotFleetRequestId": "<p>The ID of the Spot Fleet request.</p>",
         "CancelledSpotInstanceRequest$SpotInstanceRequestId": "<p>The ID of the Spot Instance request.</p>",
+        "CidrAuthorizationContext$Message": "<p>The plain-text authorization message for the prefix and account.</p>",
+        "CidrAuthorizationContext$Signature": "<p>The signed authorization message for the prefix and account.</p>",
         "CidrBlock$CidrBlock": "<p>The IPv4 CIDR block.</p>",
         "ClassicLinkDnsSupport$VpcId": "<p>The ID of the VPC.</p>",
         "ClassicLinkInstance$InstanceId": "<p>The ID of the instance.</p>",
@@ -7382,7 +7517,7 @@
         "CreateNetworkAclEntryRequest$CidrBlock": "<p>The IPv4 network range to allow or deny, in CIDR notation (for example <code>172.16.0.0/24</code>).</p>",
         "CreateNetworkAclEntryRequest$Ipv6CidrBlock": "<p>The IPv6 network range to allow or deny, in CIDR notation (for example <code>2001:db8:1234:1a00::/64</code>).</p>",
         "CreateNetworkAclEntryRequest$NetworkAclId": "<p>The ID of the network ACL.</p>",
-        "CreateNetworkAclEntryRequest$Protocol": "<p>The protocol. A value of <code>-1</code> or <code>all</code> means all protocols. If you specify <code>all</code>, <code>-1</code>, or a protocol number other than <code>6</code> (tcp), <code>17</code> (udp), or <code>1</code> (icmp), traffic on all ports is allowed, regardless of any ports or ICMP types or codes that you specify. If you specify protocol <code>58</code> (ICMPv6) and specify an IPv4 CIDR block, traffic for all ICMP types and codes allowed, regardless of any that you specify. If you specify protocol <code>58</code> (ICMPv6) and specify an IPv6 CIDR block, you must specify an ICMP type and code.</p>",
+        "CreateNetworkAclEntryRequest$Protocol": "<p>The protocol number. A value of \"-1\" means all protocols. If you specify \"-1\" or a protocol number other than \"6\" (TCP), \"17\" (UDP), or \"1\" (ICMP), traffic on all ports is allowed, regardless of any ports or ICMP types or codes that you specify. If you specify protocol \"58\" (ICMPv6) and specify an IPv4 CIDR block, traffic for all ICMP types and codes allowed, regardless of any that you specify. If you specify protocol \"58\" (ICMPv6) and specify an IPv6 CIDR block, you must specify an ICMP type and code.</p>",
         "CreateNetworkAclRequest$VpcId": "<p>The ID of the VPC.</p>",
         "CreateNetworkInterfacePermissionRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "CreateNetworkInterfacePermissionRequest$AwsAccountId": "<p>The AWS account ID.</p>",
@@ -7484,7 +7619,9 @@
         "DeleteVpnConnectionRouteRequest$DestinationCidrBlock": "<p>The CIDR block associated with the local subnet of the customer network.</p>",
         "DeleteVpnConnectionRouteRequest$VpnConnectionId": "<p>The ID of the VPN connection.</p>",
         "DeleteVpnGatewayRequest$VpnGatewayId": "<p>The ID of the virtual private gateway.</p>",
+        "DeprovisionByoipCidrRequest$Cidr": "<p>The public IPv4 address range, in CIDR notation. The prefix must be the same prefix that you specified when you provisioned the address range.</p>",
         "DeregisterImageRequest$ImageId": "<p>The ID of the AMI.</p>",
+        "DescribeByoipCidrsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeClassicLinkInstancesRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
         "DescribeClassicLinkInstancesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeEgressOnlyInternetGatewaysRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
@@ -7529,7 +7666,7 @@
         "DescribeLaunchTemplateVersionsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeLaunchTemplatesRequest$NextToken": "<p>The token to request the next page of results.</p>",
         "DescribeLaunchTemplatesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
-        "DescribeMovingAddressesRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
+        "DescribeMovingAddressesRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribeMovingAddressesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeNatGatewaysRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
         "DescribeNatGatewaysResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
@@ -7543,6 +7680,7 @@
         "DescribePrefixListsResult$NextToken": "<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>",
         "DescribePrincipalIdFormatRequest$NextToken": "<p>The token to request the next page of results.</p>",
         "DescribePrincipalIdFormatResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return.</p>",
+        "DescribePublicIpv4PoolsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeReservedInstancesListingsRequest$ReservedInstancesId": "<p>One or more Reserved Instance IDs.</p>",
         "DescribeReservedInstancesListingsRequest$ReservedInstancesListingId": "<p>One or more Reserved Instance listing IDs.</p>",
         "DescribeReservedInstancesModificationsRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
@@ -7992,7 +8130,7 @@
         "NetworkAclAssociation$SubnetId": "<p>The ID of the subnet.</p>",
         "NetworkAclEntry$CidrBlock": "<p>The IPv4 network range to allow or deny, in CIDR notation.</p>",
         "NetworkAclEntry$Ipv6CidrBlock": "<p>The IPv6 network range to allow or deny, in CIDR notation.</p>",
-        "NetworkAclEntry$Protocol": "<p>The protocol. A value of <code>-1</code> means all protocols.</p>",
+        "NetworkAclEntry$Protocol": "<p>The protocol number. A value of \"-1\" means all protocols.</p>",
         "NetworkInterface$AvailabilityZone": "<p>The Availability Zone.</p>",
         "NetworkInterface$Description": "<p>A description.</p>",
         "NetworkInterface$MacAddress": "<p>The MAC address.</p>",
@@ -8047,10 +8185,16 @@
         "ProductCodeStringList$member": null,
         "ProductDescriptionList$member": null,
         "PropagatingVgw$GatewayId": "<p>The ID of the virtual private gateway.</p>",
+        "ProvisionByoipCidrRequest$Cidr": "<p>The public IPv4 address range, in CIDR notation. The most specific prefix that you can specify is /24. The address range cannot overlap with another address range that you've brought to this or another region.</p>",
+        "ProvisionByoipCidrRequest$Description": "<p>A description for the address range and the address pool.</p>",
         "ProvisionedBandwidth$Provisioned": "<p>Reserved. If you need to sustain traffic greater than the <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html\">documented limits</a>, contact us through the <a href=\"https://console.aws.amazon.com/support/home?\">Support Center</a>.</p>",
         "ProvisionedBandwidth$Requested": "<p>Reserved. If you need to sustain traffic greater than the <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html\">documented limits</a>, contact us through the <a href=\"https://console.aws.amazon.com/support/home?\">Support Center</a>.</p>",
         "ProvisionedBandwidth$Status": "<p>Reserved. If you need to sustain traffic greater than the <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html\">documented limits</a>, contact us through the <a href=\"https://console.aws.amazon.com/support/home?\">Support Center</a>.</p>",
         "PublicIpStringList$member": null,
+        "PublicIpv4Pool$PoolId": "<p>The ID of the IPv4 address pool.</p>",
+        "PublicIpv4Pool$Description": "<p>A description of the address pool.</p>",
+        "PublicIpv4PoolRange$FirstAddress": "<p>The first IP address in the range.</p>",
+        "PublicIpv4PoolRange$LastAddress": "<p>The last IP address in the range.</p>",
         "Purchase$HostReservationId": "<p>The ID of the reservation.</p>",
         "Purchase$HourlyPrice": "<p>The hourly price of the reservation per hour.</p>",
         "Purchase$InstanceFamily": "<p>The instance family on the Dedicated Host that the reservation can be associated with.</p>",
@@ -8088,7 +8232,7 @@
         "ReplaceNetworkAclEntryRequest$CidrBlock": "<p>The IPv4 network range to allow or deny, in CIDR notation (for example <code>172.16.0.0/24</code>).</p>",
         "ReplaceNetworkAclEntryRequest$Ipv6CidrBlock": "<p>The IPv6 network range to allow or deny, in CIDR notation (for example <code>2001:bd8:1234:1a00::/64</code>).</p>",
         "ReplaceNetworkAclEntryRequest$NetworkAclId": "<p>The ID of the ACL.</p>",
-        "ReplaceNetworkAclEntryRequest$Protocol": "<p>The IP protocol. You can specify <code>all</code> or <code>-1</code> to mean all protocols. If you specify <code>all</code>, <code>-1</code>, or a protocol number other than <code>tcp</code>, <code>udp</code>, or <code>icmp</code>, traffic on all ports is allowed, regardless of any ports or ICMP types or codes you that specify. If you specify protocol <code>58</code> (ICMPv6) and specify an IPv4 CIDR block, traffic for all ICMP types and codes allowed, regardless of any that you specify. If you specify protocol <code>58</code> (ICMPv6) and specify an IPv6 CIDR block, you must specify an ICMP type and code.</p>",
+        "ReplaceNetworkAclEntryRequest$Protocol": "<p>The protocol number. A value of \"-1\" means all protocols. If you specify \"-1\" or a protocol number other than \"6\" (TCP), \"17\" (UDP), or \"1\" (ICMP), traffic on all ports is allowed, regardless of any ports or ICMP types or codes that you specify. If you specify protocol \"58\" (ICMPv6) and specify an IPv4 CIDR block, traffic for all ICMP types and codes allowed, regardless of any that you specify. If you specify protocol \"58\" (ICMPv6) and specify an IPv6 CIDR block, you must specify an ICMP type and code.</p>",
         "ReplaceRouteRequest$DestinationCidrBlock": "<p>The IPv4 CIDR address block used for the destination match. The value that you provide must match the CIDR of an existing route in the table.</p>",
         "ReplaceRouteRequest$DestinationIpv6CidrBlock": "<p>The IPv6 CIDR address block used for the destination match. The value that you provide must match the CIDR of an existing route in the table.</p>",
         "ReplaceRouteRequest$EgressOnlyInternetGatewayId": "<p>[IPv6 traffic only] The ID of an egress-only internet gateway.</p>",
@@ -8347,7 +8491,7 @@
         "Tag$Key": "<p>The key of the tag.</p> <p>Constraints: Tag keys are case-sensitive and accept a maximum of 127 Unicode characters. May not begin with <code>aws:</code>.</p>",
         "Tag$Value": "<p>The value of the tag.</p> <p>Constraints: Tag values are case-sensitive and accept a maximum of 255 Unicode characters.</p>",
         "TagDescription$Key": "<p>The tag key.</p>",
-        "TagDescription$ResourceId": "<p>The ID of the resource. For example, <code>ami-1a2b3c4d</code>.</p>",
+        "TagDescription$ResourceId": "<p>The ID of the resource.</p>",
         "TagDescription$Value": "<p>The tag value.</p>",
         "TargetConfiguration$OfferingId": "<p>The ID of the Convertible Reserved Instance offering.</p>",
         "TargetConfigurationRequest$OfferingId": "<p>The Convertible Reserved Instance offering ID.</p>",
@@ -8439,6 +8583,7 @@
         "VpnStaticRoute$DestinationCidrBlock": "<p>The CIDR block associated with the local subnet of the customer data center.</p>",
         "VpnTunnelOptionsSpecification$TunnelInsideCidr": "<p>The range of inside IP addresses for the tunnel. Any specified CIDR blocks must be unique across all VPN connections that use the same virtual private gateway. </p> <p>Constraints: A size /30 CIDR block from the <code>169.254.0.0/16</code> range. The following CIDR blocks are reserved and cannot be used:</p> <ul> <li> <p> <code>169.254.0.0/30</code> </p> </li> <li> <p> <code>169.254.1.0/30</code> </p> </li> <li> <p> <code>169.254.2.0/30</code> </p> </li> <li> <p> <code>169.254.3.0/30</code> </p> </li> <li> <p> <code>169.254.4.0/30</code> </p> </li> <li> <p> <code>169.254.5.0/30</code> </p> </li> <li> <p> <code>169.254.169.252/30</code> </p> </li> </ul>",
         "VpnTunnelOptionsSpecification$PreSharedKey": "<p>The pre-shared key (PSK) to establish initial authentication between the virtual private gateway and customer gateway.</p> <p>Constraints: Allowed characters are alphanumeric characters and ._. Must be between 8 and 64 characters in length and cannot start with zero (0).</p>",
+        "WithdrawByoipCidrRequest$Cidr": "<p>The public IPv4 address range, in CIDR notation.</p>",
         "ZoneNameStringList$member": null
       }
     },
@@ -8869,6 +9014,7 @@
         "DescribeNatGatewaysRequest$NatGatewayIds": "<p>One or more NAT gateway IDs.</p>",
         "DescribeNetworkAclsRequest$NetworkAclIds": "<p>One or more network ACL IDs.</p> <p>Default: Describes all your network ACLs.</p>",
         "DescribePrefixListsRequest$PrefixListIds": "<p>One or more prefix list IDs.</p>",
+        "DescribePublicIpv4PoolsRequest$PoolIds": "<p>The IDs of the address pools.</p>",
         "DescribeRouteTablesRequest$RouteTableIds": "<p>One or more route table IDs.</p> <p>Default: Describes all your route tables.</p>",
         "DescribeSpotFleetRequestsRequest$SpotFleetRequestIds": "<p>The IDs of the Spot Fleet requests.</p>",
         "DescribeVpcEndpointServiceConfigurationsRequest$ServiceIds": "<p>The IDs of one or more services.</p>",
@@ -9356,6 +9502,16 @@
       "base": "<p>The tunnel options for a VPN connection.</p>",
       "refs": {
         "TunnelOptionsList$member": null
+      }
+    },
+    "WithdrawByoipCidrRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "WithdrawByoipCidrResult": {
+      "base": null,
+      "refs": {
       }
     },
     "ZoneNameStringList": {
