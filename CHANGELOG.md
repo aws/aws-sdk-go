@@ -1,3 +1,11 @@
+Release v1.15.62 (2018-10-24)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API, documentation, and paginators
+* `service/codestar`: Updates service API and documentation
+  * This release lets you create projects from source code and a toolchain definition that you provide.
+
 Release v1.15.61 (2018-10-23)
 ===
 
