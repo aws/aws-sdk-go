@@ -9,7 +9,10 @@
 // voice skills using the Alexa Skills Kit and the Alexa for Business API operations.
 // You can make also these available as private skills for your organization.
 // Alexa for Business makes it easy to voice-enable your products and services,
-// providing context-aware voice experiences for your customers.
+// providing context-aware voice experiences for your customers. In addition,
+// Alexa for Business enables Alexa Voice Services (AVS) device manufacturers
+// to centrally deploy and manage their devices in Alexa for Business as shared
+// devices as a part of their existing management flow.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09 for more information on this service.
 //

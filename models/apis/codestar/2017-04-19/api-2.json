@@ -300,11 +300,49 @@
         "clientRequestToken":{"shape":"ClientRequestToken"}
       }
     },
+    "BucketKey":{"type":"string"},
+    "BucketName":{
+      "type":"string",
+      "max":63,
+      "min":3
+    },
     "ClientRequestToken":{
       "type":"string",
       "max":256,
       "min":1,
       "pattern":"^[\\w:/-]+$"
+    },
+    "Code":{
+      "type":"structure",
+      "required":[
+        "source",
+        "destination"
+      ],
+      "members":{
+        "source":{"shape":"CodeSource"},
+        "destination":{"shape":"CodeDestination"}
+      }
+    },
+    "CodeCommitCodeDestination":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"RepositoryName"}
+      }
+    },
+    "CodeDestination":{
+      "type":"structure",
+      "members":{
+        "codeCommit":{"shape":"CodeCommitCodeDestination"},
+        "gitHub":{"shape":"GitHubCodeDestination"}
+      }
+    },
+    "CodeSource":{
+      "type":"structure",
+      "required":["s3"],
+      "members":{
+        "s3":{"shape":"S3Location"}
+      }
     },
     "ConcurrentModificationException":{
       "type":"structure",
@@ -323,6 +361,8 @@
         "id":{"shape":"ProjectId"},
         "description":{"shape":"ProjectDescription"},
         "clientRequestToken":{"shape":"ClientRequestToken"},
+        "sourceCode":{"shape":"SourceCode"},
+        "toolchain":{"shape":"Toolchain"},
         "tags":{"shape":"Tags"}
       }
     },
@@ -462,6 +502,31 @@
       "max":128,
       "min":3,
       "pattern":"^[\\w-.+]+@[\\w-.+]+$",
+      "sensitive":true
+    },
+    "GitHubCodeDestination":{
+      "type":"structure",
+      "required":[
+        "name",
+        "type",
+        "owner",
+        "privateRepository",
+        "issuesEnabled",
+        "token"
+      ],
+      "members":{
+        "name":{"shape":"RepositoryName"},
+        "description":{"shape":"RepositoryDescription"},
+        "type":{"shape":"RepositoryType"},
+        "owner":{"shape":"RepositoryOwner"},
+        "privateRepository":{"shape":"RepositoryIsPrivate"},
+        "issuesEnabled":{"shape":"RepositoryEnableIssues"},
+        "token":{"shape":"GitHubPersonalToken"}
+      }
+    },
+    "GitHubPersonalToken":{
+      "type":"string",
+      "min":1,
       "sensitive":true
     },
     "InvalidNextTokenException":{
@@ -665,6 +730,30 @@
       "pattern":"^$|^\\S(.*\\S)?$"
     },
     "RemoteAccessAllowed":{"type":"boolean"},
+    "RepositoryDescription":{
+      "type":"string",
+      "max":1000,
+      "min":1,
+      "pattern":"^\\S(.*\\S)?$"
+    },
+    "RepositoryEnableIssues":{"type":"boolean"},
+    "RepositoryIsPrivate":{"type":"boolean"},
+    "RepositoryName":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^\\S[\\w.-]*$"
+    },
+    "RepositoryOwner":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^\\S(.*\\S)?$"
+    },
+    "RepositoryType":{
+      "type":"string",
+      "pattern":"^(user|organization|User|Organization)$"
+    },
     "Resource":{
       "type":"structure",
       "required":["id"],
@@ -684,6 +773,22 @@
     "Role":{
       "type":"string",
       "pattern":"^(Owner|Viewer|Contributor)$"
+    },
+    "RoleArn":{
+      "type":"string",
+      "max":1224,
+      "min":1
+    },
+    "S3Location":{
+      "type":"structure",
+      "members":{
+        "bucketName":{"shape":"BucketName"},
+        "bucketKey":{"shape":"BucketKey"}
+      }
+    },
+    "SourceCode":{
+      "type":"list",
+      "member":{"shape":"Code"}
     },
     "SshPublicKey":{
       "type":"string",
@@ -765,6 +870,41 @@
     "TeamMemberResult":{
       "type":"list",
       "member":{"shape":"TeamMember"}
+    },
+    "TemplateParameterKey":{
+      "type":"string",
+      "max":30,
+      "min":1,
+      "pattern":"^\\S(.*\\S)?$"
+    },
+    "TemplateParameterMap":{
+      "type":"map",
+      "key":{"shape":"TemplateParameterKey"},
+      "value":{"shape":"TemplateParameterValue"},
+      "max":25
+    },
+    "TemplateParameterValue":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^\\S(.*\\S)?$",
+      "sensitive":true
+    },
+    "Toolchain":{
+      "type":"structure",
+      "required":["source"],
+      "members":{
+        "source":{"shape":"ToolchainSource"},
+        "roleArn":{"shape":"RoleArn"},
+        "stackParameters":{"shape":"TemplateParameterMap"}
+      }
+    },
+    "ToolchainSource":{
+      "type":"structure",
+      "required":["s3"],
+      "members":{
+        "s3":{"shape":"S3Location"}
+      }
     },
     "UntagProjectRequest":{
       "type":"structure",
