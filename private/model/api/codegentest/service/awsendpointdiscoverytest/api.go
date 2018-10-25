@@ -3,10 +3,13 @@
 package awsendpointdiscoverytest
 
 import (
+	"net/url"
+	"time"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/crr"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/internal/crr"
 )
 
 const opDescribeEndpoints = "DescribeEndpoints"
@@ -92,7 +95,9 @@ type discovererDescribeEndpoints struct {
 }
 
 func (d *discovererDescribeEndpoints) Discover() (crr.Endpoint, error) {
-	input := &DescribeEndpointsInput{}
+	input := &DescribeEndpointsInput{
+		Operation: aws.String(d.Params["op"]),
+	}
 	d.ParamProvider.SetParams(input)
 
 	resp, err := d.Client.DescribeEndpoints(input)
@@ -109,9 +114,17 @@ func (d *discovererDescribeEndpoints) Discover() (crr.Endpoint, error) {
 			continue
 		}
 
-		addr := crr.WeightedAddress{
-			Address: *e.Address,
+		cachedInMinutes := aws.Int64Value(e.CachePeriodInMinutes)
+		u, err := url.Parse(*e.Address)
+		if err != nil {
+			continue
 		}
+
+		addr := crr.WeightedAddress{
+			URL:     u,
+			Expired: time.Now().Add(time.Duration(cachedInMinutes) * time.Minute),
+		}
+
 		endpoint.Add(addr)
 	}
 
@@ -130,13 +143,8 @@ func (d *discovererDescribeEndpoints) Handler(r *request.Request) {
 		return
 	}
 
-	addr, ok := endpoint.Addresses.GetAddress()
-	if !ok {
-		return
-	}
-
-	if len(addr) > 0 {
-		r.HTTPRequest.URL.Host = addr
+	if endpoint.URL != nil && len(endpoint.URL.String()) > 0 {
+		r.HTTPRequest.URL = endpoint.URL
 	}
 }
 
@@ -427,6 +435,8 @@ func (a paramProviderTestDiscoveryRequired) SetParams(input *DescribeEndpointsIn
 
 type DescribeEndpointsInput struct {
 	_ struct{} `type:"structure"`
+
+	Operation *string `type:"string"`
 }
 
 // String returns the string representation
@@ -437,6 +447,12 @@ func (s DescribeEndpointsInput) String() string {
 // GoString returns the string representation
 func (s DescribeEndpointsInput) GoString() string {
 	return s.String()
+}
+
+// SetOperation sets the Operation field's value.
+func (s *DescribeEndpointsInput) SetOperation(v string) *DescribeEndpointsInput {
+	s.Operation = &v
+	return s
 }
 
 type DescribeEndpointsOutput struct {

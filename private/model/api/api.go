@@ -639,7 +639,7 @@ func (a *API) ServiceGoCode() string {
 	}
 	a.imports["github.com/aws/aws-sdk-go/private/protocol/"+a.ProtocolPackage()] = true
 	if a.EndpointDiscoveryOp != nil {
-		a.imports["github.com/aws/aws-sdk-go/internal/crr"] = true
+		a.imports["github.com/aws/aws-sdk-go/aws/crr"] = true
 	}
 
 	var buf bytes.Buffer

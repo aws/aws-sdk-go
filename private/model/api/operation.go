@@ -337,7 +337,11 @@ type discoverer{{ .ExportedName }} struct {
 }
 
 func (d *discoverer{{ .ExportedName }}) Discover() (crr.Endpoint, error) {
-	input := &{{ .API.EndpointDiscoveryOp.InputRef.ShapeName }}{}
+	input := &{{ .API.EndpointDiscoveryOp.InputRef.ShapeName }}{
+		{{ if .API.EndpointDiscoveryOp.InputRef.Shape.HasMember "Operation" -}}
+		Operation: aws.String(d.Params["op"]),
+		{{ end -}}
+	}
 	d.ParamProvider.SetParams(input)
 
 	resp, err := d.Client.{{ .API.EndpointDiscoveryOp.Name }}(input)
@@ -354,9 +358,17 @@ func (d *discoverer{{ .ExportedName }}) Discover() (crr.Endpoint, error) {
 			continue
 		}
 
-		addr := crr.WeightedAddress{
-			Address: *e.Address,
+		cachedInMinutes := aws.Int64Value(e.CachePeriodInMinutes)
+		u, err := url.Parse(*e.Address)
+		if err != nil {
+			continue
 		}
+
+		addr := crr.WeightedAddress{
+			URL: u,
+			Expired:  time.Now().Add(time.Duration(cachedInMinutes) * time.Minute),
+		}
+
 		endpoint.Add(addr)
 	}
 
@@ -375,13 +387,8 @@ func (d *discoverer{{ .ExportedName }}) Handler(r *request.Request) {
 		return
 	}
 
-	addr, ok := endpoint.Addresses.GetAddress()
-	if !ok {
-		return
-	}
-
-	if len(addr) > 0 {
-		r.HTTPRequest.URL.Host = addr
+	if endpoint.URL != nil && len(endpoint.URL.String()) > 0 {
+		r.HTTPRequest.URL = endpoint.URL
 	}
 }
 {{- else }}
@@ -418,7 +425,9 @@ func (o *Operation) GoCode() string {
 	}
 
 	if o.API.EndpointDiscoveryOp != nil {
-		o.API.imports["github.com/aws/aws-sdk-go/internal/crr"] = true
+		o.API.imports["github.com/aws/aws-sdk-go/aws/crr"] = true
+		o.API.imports["time"] = true
+		o.API.imports["net/url"] = true
 	}
 
 	err := tplOperation.Execute(&buf, o)

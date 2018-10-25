@@ -60,6 +60,7 @@
     "DescribeEndpointsRequest":{
       "type":"structure",
       "members":{
+        "Operation": {"shape":"String"}
       }
     },
     "DescribeEndpointsResponse":{

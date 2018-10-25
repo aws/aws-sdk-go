@@ -184,6 +184,13 @@ func (s *Shape) MemberNames() []string {
 	return names
 }
 
+// HasMember will return whether or not the shape has a given
+// member by name.
+func (s *Shape) HasMember(name string) bool {
+	_, ok := s.MemberRefs[name]
+	return ok
+}
+
 // GoTypeWithPkgName returns a shape's type as a string with the package name in
 // <packageName>.<type> format. Package naming only applies to structures.
 func (s *Shape) GoTypeWithPkgName() string {

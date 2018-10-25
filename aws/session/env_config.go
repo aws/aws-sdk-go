@@ -132,7 +132,7 @@ var (
 		"AWS_SESSION_TOKEN",
 	}
 
-	enableEndpointDiscovery = []string{
+	enableEndpointDiscoveryEnvKey = []string{
 		"AWS_ENABLE_ENDPOINT_DISCOVERY",
 	}
 
@@ -206,7 +206,7 @@ func envConfigLoad(enableSharedConfig bool) envConfig {
 	setFromEnvVal(&cfg.Profile, profileKeys)
 
 	// endpoint discovery is in reference to it being enabled.
-	setFromEnvVal(&cfg.enableEndpointDiscovery, enableEndpointDiscovery)
+	setFromEnvVal(&cfg.enableEndpointDiscovery, enableEndpointDiscoveryEnvKey)
 	if len(cfg.enableEndpointDiscovery) > 0 {
 		cfg.EnableEndpointDiscovery = aws.Bool(cfg.enableEndpointDiscovery != "false")
 	}

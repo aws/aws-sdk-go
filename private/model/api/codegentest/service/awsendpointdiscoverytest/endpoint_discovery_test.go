@@ -1,8 +1,8 @@
 package awsendpointdiscoverytest
 
 import (
+	"sync"
 	"testing"
-	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
@@ -27,7 +27,8 @@ func TestEndpointDiscovery(t *testing.T) {
 
 		out.Endpoints = []*Endpoint{
 			{
-				Address: aws.String("foo"),
+				Address:              aws.String("http://foo"),
+				CachePeriodInMinutes: aws.Int64(5),
 			},
 		}
 		r.Data = out
@@ -43,7 +44,7 @@ func TestEndpointDiscovery(t *testing.T) {
 	req.Handlers = removeHandlers(req.Handlers, false)
 
 	req.Handlers.Send.PushBack(func(r *request.Request) {
-		if e, a := "foo", r.HTTPRequest.URL.Host; e != a {
+		if e, a := "http://foo", r.HTTPRequest.URL.String(); e != a {
 			t.Errorf("expected %q, but received %q", e, a)
 		}
 	})
@@ -70,7 +71,8 @@ func TestAsyncEndpointDiscovery(t *testing.T) {
 
 		out.Endpoints = []*Endpoint{
 			{
-				Address: aws.String("foo"),
+				Address:              aws.String("http://foo"),
+				CachePeriodInMinutes: aws.Int64(5),
 			},
 		}
 		r.Data = out
@@ -78,6 +80,14 @@ func TestAsyncEndpointDiscovery(t *testing.T) {
 
 	svc := New(sess)
 	svc.Handlers = removeHandlers(svc.Handlers, false)
+
+	var wg sync.WaitGroup
+	wg.Add(1)
+	svc.Handlers.Complete.PushBack(func(r *request.Request) {
+		if r.Operation.Name == "DescribeEndpoints" {
+			wg.Done()
+		}
+	})
 
 	req, _ := svc.TestDiscoveryOptionalRequest(&TestDiscoveryOptionalInput{
 		Sdk: aws.String("sdk"),
@@ -96,17 +106,14 @@ func TestAsyncEndpointDiscovery(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	// prompt the go scheduler to run the goroutine to
-	// discover the new endpoint
-	time.Sleep(1 * time.Millisecond)
-
+	wg.Wait()
 	req, _ = svc.TestDiscoveryOptionalRequest(&TestDiscoveryOptionalInput{
 		Sdk: aws.String("sdk"),
 	})
 
 	req.Handlers = removeHandlers(req.Handlers, false)
 	req.Handlers.Send.PushBack(func(r *request.Request) {
-		if e, a := "foo", r.HTTPRequest.URL.Host; e != a {
+		if e, a := "http://foo", r.HTTPRequest.URL.String(); e != a {
 			t.Errorf("expected %q, but received %q", e, a)
 		}
 	})

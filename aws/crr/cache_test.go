@@ -1,9 +1,15 @@
 package crr
 
 import (
+	"net/url"
 	"reflect"
 	"testing"
 )
+
+func urlParse(uri string) *url.URL {
+	u, _ := url.Parse(uri)
+	return u
+}
 
 func TestCacheAdd(t *testing.T) {
 	cases := []struct {
@@ -19,7 +25,7 @@ func TestCacheAdd(t *testing.T) {
 					Key: "foo",
 					Addresses: []WeightedAddress{
 						{
-							Address: "0",
+							URL: urlParse("http://0"),
 						},
 					},
 				},
@@ -27,7 +33,7 @@ func TestCacheAdd(t *testing.T) {
 					Key: "bar",
 					Addresses: []WeightedAddress{
 						{
-							Address: "1",
+							URL: urlParse("http://1"),
 						},
 					},
 				},
@@ -35,7 +41,7 @@ func TestCacheAdd(t *testing.T) {
 					Key: "baz",
 					Addresses: []WeightedAddress{
 						{
-							Address: "2",
+							URL: urlParse("http://2"),
 						},
 					},
 				},
@@ -43,7 +49,7 @@ func TestCacheAdd(t *testing.T) {
 					Key: "qux",
 					Addresses: []WeightedAddress{
 						{
-							Address: "3",
+							URL: urlParse("http://3"),
 						},
 					},
 				},
@@ -51,7 +57,7 @@ func TestCacheAdd(t *testing.T) {
 					Key: "moo",
 					Addresses: []WeightedAddress{
 						{
-							Address: "4",
+							URL: urlParse("http://4"),
 						},
 					},
 				},
@@ -61,7 +67,7 @@ func TestCacheAdd(t *testing.T) {
 					Key: "foo",
 					Addresses: []WeightedAddress{
 						{
-							Address: "0",
+							URL: urlParse("http://0"),
 						},
 					},
 				},
@@ -69,7 +75,7 @@ func TestCacheAdd(t *testing.T) {
 					Key: "bar",
 					Addresses: []WeightedAddress{
 						{
-							Address: "1",
+							URL: urlParse("http://1"),
 						},
 					},
 				},
@@ -77,7 +83,7 @@ func TestCacheAdd(t *testing.T) {
 					Key: "baz",
 					Addresses: []WeightedAddress{
 						{
-							Address: "2",
+							URL: urlParse("http://2"),
 						},
 					},
 				},
@@ -85,7 +91,7 @@ func TestCacheAdd(t *testing.T) {
 					Key: "qux",
 					Addresses: []WeightedAddress{
 						{
-							Address: "3",
+							URL: urlParse("http://3"),
 						},
 					},
 				},
@@ -93,7 +99,7 @@ func TestCacheAdd(t *testing.T) {
 					Key: "moo",
 					Addresses: []WeightedAddress{
 						{
-							Address: "4",
+							URL: urlParse("http://4"),
 						},
 					},
 				},
@@ -107,7 +113,7 @@ func TestCacheAdd(t *testing.T) {
 					Key: "bar",
 					Addresses: []WeightedAddress{
 						{
-							Address: "1",
+							URL: urlParse("http://1"),
 						},
 					},
 				},
@@ -115,7 +121,7 @@ func TestCacheAdd(t *testing.T) {
 					Key: "foo",
 					Addresses: []WeightedAddress{
 						{
-							Address: "0",
+							URL: urlParse("http://0"),
 						},
 					},
 				},
@@ -123,7 +129,7 @@ func TestCacheAdd(t *testing.T) {
 					Key: "baz",
 					Addresses: []WeightedAddress{
 						{
-							Address: "2",
+							URL: urlParse("http://2"),
 						},
 					},
 				},
@@ -131,7 +137,7 @@ func TestCacheAdd(t *testing.T) {
 					Key: "qux",
 					Addresses: []WeightedAddress{
 						{
-							Address: "3",
+							URL: urlParse("http://3"),
 						},
 					},
 				},
@@ -139,7 +145,7 @@ func TestCacheAdd(t *testing.T) {
 					Key: "moo",
 					Addresses: []WeightedAddress{
 						{
-							Address: "4",
+							URL: urlParse("http://4"),
 						},
 					},
 				},
@@ -149,7 +155,7 @@ func TestCacheAdd(t *testing.T) {
 					Key: "foo",
 					Addresses: []WeightedAddress{
 						{
-							Address: "0",
+							URL: urlParse("http://0"),
 						},
 					},
 				},
@@ -157,7 +163,7 @@ func TestCacheAdd(t *testing.T) {
 					Key: "bar",
 					Addresses: []WeightedAddress{
 						{
-							Address: "1",
+							URL: urlParse("http://1"),
 						},
 					},
 				},
@@ -165,7 +171,7 @@ func TestCacheAdd(t *testing.T) {
 					Key: "baz",
 					Addresses: []WeightedAddress{
 						{
-							Address: "2",
+							URL: urlParse("http://2"),
 						},
 					},
 				},
@@ -173,7 +179,7 @@ func TestCacheAdd(t *testing.T) {
 					Key: "qux",
 					Addresses: []WeightedAddress{
 						{
-							Address: "3",
+							URL: urlParse("http://3"),
 						},
 					},
 				},
@@ -181,7 +187,7 @@ func TestCacheAdd(t *testing.T) {
 					Key: "moo",
 					Addresses: []WeightedAddress{
 						{
-							Address: "4",
+							URL: urlParse("http://4"),
 						},
 					},
 				},
@@ -239,7 +245,7 @@ func TestCacheGet(t *testing.T) {
 					Key: "foo",
 					Addresses: []WeightedAddress{
 						{
-							Address: "0",
+							URL: urlParse("http://0"),
 						},
 					},
 				},
@@ -247,7 +253,7 @@ func TestCacheGet(t *testing.T) {
 					Key: "bar",
 					Addresses: []WeightedAddress{
 						{
-							Address: "1",
+							URL: urlParse("http://1"),
 						},
 					},
 				},
@@ -255,7 +261,7 @@ func TestCacheGet(t *testing.T) {
 					Key: "baz",
 					Addresses: []WeightedAddress{
 						{
-							Address: "2",
+							URL: urlParse("http://2"),
 						},
 					},
 				},
@@ -263,7 +269,7 @@ func TestCacheGet(t *testing.T) {
 					Key: "qux",
 					Addresses: []WeightedAddress{
 						{
-							Address: "3",
+							URL: urlParse("http://3"),
 						},
 					},
 				},
@@ -271,7 +277,7 @@ func TestCacheGet(t *testing.T) {
 					Key: "moo",
 					Addresses: []WeightedAddress{
 						{
-							Address: "4",
+							URL: urlParse("http://4"),
 						},
 					},
 				},
@@ -281,7 +287,7 @@ func TestCacheGet(t *testing.T) {
 					Key: "foo",
 					Addresses: []WeightedAddress{
 						{
-							Address: "0",
+							URL: urlParse("http://0"),
 						},
 					},
 				},
@@ -289,7 +295,7 @@ func TestCacheGet(t *testing.T) {
 					Key: "bar",
 					Addresses: []WeightedAddress{
 						{
-							Address: "1",
+							URL: urlParse("http://1"),
 						},
 					},
 				},
@@ -297,7 +303,7 @@ func TestCacheGet(t *testing.T) {
 					Key: "baz",
 					Addresses: []WeightedAddress{
 						{
-							Address: "2",
+							URL: urlParse("http://2"),
 						},
 					},
 				},
@@ -305,7 +311,7 @@ func TestCacheGet(t *testing.T) {
 					Key: "qux",
 					Addresses: []WeightedAddress{
 						{
-							Address: "3",
+							URL: urlParse("http://3"),
 						},
 					},
 				},
@@ -313,7 +319,7 @@ func TestCacheGet(t *testing.T) {
 					Key: "moo",
 					Addresses: []WeightedAddress{
 						{
-							Address: "4",
+							URL: urlParse("http://4"),
 						},
 					},
 				},
@@ -326,7 +332,7 @@ func TestCacheGet(t *testing.T) {
 					Key: "bar",
 					Addresses: []WeightedAddress{
 						{
-							Address: "1",
+							URL: urlParse("http://1"),
 						},
 					},
 				},
@@ -334,7 +340,7 @@ func TestCacheGet(t *testing.T) {
 					Key: "foo",
 					Addresses: []WeightedAddress{
 						{
-							Address: "0",
+							URL: urlParse("http://0"),
 						},
 					},
 				},
@@ -342,7 +348,7 @@ func TestCacheGet(t *testing.T) {
 					Key: "baz",
 					Addresses: []WeightedAddress{
 						{
-							Address: "2",
+							URL: urlParse("http://2"),
 						},
 					},
 				},
@@ -350,7 +356,7 @@ func TestCacheGet(t *testing.T) {
 					Key: "qux",
 					Addresses: []WeightedAddress{
 						{
-							Address: "3",
+							URL: urlParse("http://3"),
 						},
 					},
 				},
@@ -358,7 +364,7 @@ func TestCacheGet(t *testing.T) {
 					Key: "moo",
 					Addresses: []WeightedAddress{
 						{
-							Address: "4",
+							URL: urlParse("http://4"),
 						},
 					},
 				},
@@ -368,7 +374,7 @@ func TestCacheGet(t *testing.T) {
 					Key: "foo",
 					Addresses: []WeightedAddress{
 						{
-							Address: "0",
+							URL: urlParse("http://0"),
 						},
 					},
 				},
@@ -376,7 +382,7 @@ func TestCacheGet(t *testing.T) {
 					Key: "bar",
 					Addresses: []WeightedAddress{
 						{
-							Address: "1",
+							URL: urlParse("http://1"),
 						},
 					},
 				},
@@ -384,7 +390,7 @@ func TestCacheGet(t *testing.T) {
 					Key: "baz",
 					Addresses: []WeightedAddress{
 						{
-							Address: "2",
+							URL: urlParse("http://2"),
 						},
 					},
 				},
@@ -392,7 +398,7 @@ func TestCacheGet(t *testing.T) {
 					Key: "qux",
 					Addresses: []WeightedAddress{
 						{
-							Address: "3",
+							URL: urlParse("http://3"),
 						},
 					},
 				},
@@ -400,7 +406,7 @@ func TestCacheGet(t *testing.T) {
 					Key: "moo",
 					Addresses: []WeightedAddress{
 						{
-							Address: "4",
+							URL: urlParse("http://4"),
 						},
 					},
 				},

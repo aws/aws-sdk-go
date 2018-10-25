@@ -4,12 +4,13 @@ package dynamodb
 
 import (
 	"fmt"
+	"net/url"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/crr"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/internal/crr"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
@@ -59,19 +60,24 @@ func (c *DynamoDB) BatchGetItemRequest(input *BatchGetItemInput) (req *request.R
 
 	output = &BatchGetItemOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderBatchGetItem{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -222,6 +228,14 @@ func (c *DynamoDB) BatchGetItemPagesWithContext(ctx aws.Context, input *BatchGet
 	return p.Err()
 }
 
+type paramProviderBatchGetItem struct {
+	Params map[string]string
+}
+
+func (a paramProviderBatchGetItem) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opBatchWriteItem = "BatchWriteItem"
 
 // BatchWriteItemRequest generates a "aws/request.Request" representing the
@@ -261,19 +275,24 @@ func (c *DynamoDB) BatchWriteItemRequest(input *BatchWriteItemInput) (req *reque
 
 	output = &BatchWriteItemOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderBatchWriteItem{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -401,6 +420,14 @@ func (c *DynamoDB) BatchWriteItemWithContext(ctx aws.Context, input *BatchWriteI
 	return out, req.Send()
 }
 
+type paramProviderBatchWriteItem struct {
+	Params map[string]string
+}
+
+func (a paramProviderBatchWriteItem) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opCreateBackup = "CreateBackup"
 
 // CreateBackupRequest generates a "aws/request.Request" representing the
@@ -440,19 +467,24 @@ func (c *DynamoDB) CreateBackupRequest(input *CreateBackupInput) (req *request.R
 
 	output = &CreateBackupOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderCreateBackup{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -549,6 +581,14 @@ func (c *DynamoDB) CreateBackupWithContext(ctx aws.Context, input *CreateBackupI
 	return out, req.Send()
 }
 
+type paramProviderCreateBackup struct {
+	Params map[string]string
+}
+
+func (a paramProviderCreateBackup) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opCreateGlobalTable = "CreateGlobalTable"
 
 // CreateGlobalTableRequest generates a "aws/request.Request" representing the
@@ -588,19 +628,24 @@ func (c *DynamoDB) CreateGlobalTableRequest(input *CreateGlobalTableInput) (req 
 
 	output = &CreateGlobalTableOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderCreateGlobalTable{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -693,6 +738,14 @@ func (c *DynamoDB) CreateGlobalTableWithContext(ctx aws.Context, input *CreateGl
 	return out, req.Send()
 }
 
+type paramProviderCreateGlobalTable struct {
+	Params map[string]string
+}
+
+func (a paramProviderCreateGlobalTable) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opCreateTable = "CreateTable"
 
 // CreateTableRequest generates a "aws/request.Request" representing the
@@ -732,19 +785,24 @@ func (c *DynamoDB) CreateTableRequest(input *CreateTableInput) (req *request.Req
 
 	output = &CreateTableOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderCreateTable{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -817,6 +875,14 @@ func (c *DynamoDB) CreateTableWithContext(ctx aws.Context, input *CreateTableInp
 	return out, req.Send()
 }
 
+type paramProviderCreateTable struct {
+	Params map[string]string
+}
+
+func (a paramProviderCreateTable) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opDeleteBackup = "DeleteBackup"
 
 // DeleteBackupRequest generates a "aws/request.Request" representing the
@@ -856,19 +922,24 @@ func (c *DynamoDB) DeleteBackupRequest(input *DeleteBackupInput) (req *request.R
 
 	output = &DeleteBackupOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderDeleteBackup{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -931,6 +1002,14 @@ func (c *DynamoDB) DeleteBackupWithContext(ctx aws.Context, input *DeleteBackupI
 	return out, req.Send()
 }
 
+type paramProviderDeleteBackup struct {
+	Params map[string]string
+}
+
+func (a paramProviderDeleteBackup) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opDeleteItem = "DeleteItem"
 
 // DeleteItemRequest generates a "aws/request.Request" representing the
@@ -970,19 +1049,24 @@ func (c *DynamoDB) DeleteItemRequest(input *DeleteItemInput) (req *request.Reque
 
 	output = &DeleteItemOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderDeleteItem{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -1055,6 +1139,14 @@ func (c *DynamoDB) DeleteItemWithContext(ctx aws.Context, input *DeleteItemInput
 	return out, req.Send()
 }
 
+type paramProviderDeleteItem struct {
+	Params map[string]string
+}
+
+func (a paramProviderDeleteItem) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opDeleteTable = "DeleteTable"
 
 // DeleteTableRequest generates a "aws/request.Request" representing the
@@ -1094,19 +1186,24 @@ func (c *DynamoDB) DeleteTableRequest(input *DeleteTableInput) (req *request.Req
 
 	output = &DeleteTableOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderDeleteTable{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -1186,6 +1283,14 @@ func (c *DynamoDB) DeleteTableWithContext(ctx aws.Context, input *DeleteTableInp
 	return out, req.Send()
 }
 
+type paramProviderDeleteTable struct {
+	Params map[string]string
+}
+
+func (a paramProviderDeleteTable) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opDescribeBackup = "DescribeBackup"
 
 // DescribeBackupRequest generates a "aws/request.Request" representing the
@@ -1225,19 +1330,24 @@ func (c *DynamoDB) DescribeBackupRequest(input *DescribeBackupInput) (req *reque
 
 	output = &DescribeBackupOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderDescribeBackup{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -1283,6 +1393,14 @@ func (c *DynamoDB) DescribeBackupWithContext(ctx aws.Context, input *DescribeBac
 	return out, req.Send()
 }
 
+type paramProviderDescribeBackup struct {
+	Params map[string]string
+}
+
+func (a paramProviderDescribeBackup) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opDescribeContinuousBackups = "DescribeContinuousBackups"
 
 // DescribeContinuousBackupsRequest generates a "aws/request.Request" representing the
@@ -1322,19 +1440,24 @@ func (c *DynamoDB) DescribeContinuousBackupsRequest(input *DescribeContinuousBac
 
 	output = &DescribeContinuousBackupsOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderDescribeContinuousBackups{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -1389,6 +1512,14 @@ func (c *DynamoDB) DescribeContinuousBackupsWithContext(ctx aws.Context, input *
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+type paramProviderDescribeContinuousBackups struct {
+	Params map[string]string
+}
+
+func (a paramProviderDescribeContinuousBackups) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
 }
 
 const opDescribeEndpoints = "DescribeEndpoints"
@@ -1463,18 +1594,23 @@ func (c *DynamoDB) DescribeEndpointsWithContext(ctx aws.Context, input *Describe
 	return out, req.Send()
 }
 
+type paramProvider interface {
+	SetParams(*DescribeEndpointsInput)
+}
+
 type discovererDescribeEndpoints struct {
 	Client        *DynamoDB
 	Required      bool
 	EndpointCache *crr.EndpointCache
 	Params        map[string]string
 	Key           string
+	ParamProvider paramProvider
 }
 
 func (d *discovererDescribeEndpoints) Discover() (crr.Endpoint, error) {
-	input := &DescribeEndpointsInput{
-		// TODO: inject params here
-	}
+	input := &DescribeEndpointsInput{}
+	d.ParamProvider.SetParams(input)
+
 	resp, err := d.Client.DescribeEndpoints(input)
 	if err != nil {
 		return crr.Endpoint{}, err
@@ -1489,9 +1625,17 @@ func (d *discovererDescribeEndpoints) Discover() (crr.Endpoint, error) {
 			continue
 		}
 
-		addr := crr.WeightedAddress{
-			Address: *e.Address,
+		cachedInMinutes := aws.Int64Value(e.CachePeriodInMinutes)
+		u, err := url.Parse(*e.Address)
+		if err != nil {
+			continue
 		}
+
+		addr := crr.WeightedAddress{
+			URL:     u,
+			Expired: time.Now().Add(time.Duration(cachedInMinutes) * time.Minute),
+		}
+
 		endpoint.Add(addr)
 	}
 
@@ -1501,7 +1645,6 @@ func (d *discovererDescribeEndpoints) Discover() (crr.Endpoint, error) {
 }
 
 func (d *discovererDescribeEndpoints) Handler(r *request.Request) {
-	// TODO: Add iteration for members that need to be added
 	endpointKey := crr.BuildEndpointKey(d.Params)
 	d.Key = endpointKey
 
@@ -1511,13 +1654,8 @@ func (d *discovererDescribeEndpoints) Handler(r *request.Request) {
 		return
 	}
 
-	addr, ok := endpoint.Addresses.GetAddress()
-	if !ok {
-		return
-	}
-
-	if len(addr) > 0 {
-		r.HTTPRequest.URL.Host = addr
+	if endpoint.URL != nil && len(endpoint.URL.String()) > 0 {
+		r.HTTPRequest.URL = endpoint.URL
 	}
 }
 
@@ -1560,19 +1698,24 @@ func (c *DynamoDB) DescribeGlobalTableRequest(input *DescribeGlobalTableInput) (
 
 	output = &DescribeGlobalTableOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderDescribeGlobalTable{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -1616,6 +1759,14 @@ func (c *DynamoDB) DescribeGlobalTableWithContext(ctx aws.Context, input *Descri
 	return out, req.Send()
 }
 
+type paramProviderDescribeGlobalTable struct {
+	Params map[string]string
+}
+
+func (a paramProviderDescribeGlobalTable) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opDescribeGlobalTableSettings = "DescribeGlobalTableSettings"
 
 // DescribeGlobalTableSettingsRequest generates a "aws/request.Request" representing the
@@ -1655,19 +1806,24 @@ func (c *DynamoDB) DescribeGlobalTableSettingsRequest(input *DescribeGlobalTable
 
 	output = &DescribeGlobalTableSettingsOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderDescribeGlobalTableSettings{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -1711,6 +1867,14 @@ func (c *DynamoDB) DescribeGlobalTableSettingsWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+type paramProviderDescribeGlobalTableSettings struct {
+	Params map[string]string
+}
+
+func (a paramProviderDescribeGlobalTableSettings) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opDescribeLimits = "DescribeLimits"
 
 // DescribeLimitsRequest generates a "aws/request.Request" representing the
@@ -1750,19 +1914,24 @@ func (c *DynamoDB) DescribeLimitsRequest(input *DescribeLimitsInput) (req *reque
 
 	output = &DescribeLimitsOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderDescribeLimits{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -1859,6 +2028,14 @@ func (c *DynamoDB) DescribeLimitsWithContext(ctx aws.Context, input *DescribeLim
 	return out, req.Send()
 }
 
+type paramProviderDescribeLimits struct {
+	Params map[string]string
+}
+
+func (a paramProviderDescribeLimits) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opDescribeTable = "DescribeTable"
 
 // DescribeTableRequest generates a "aws/request.Request" representing the
@@ -1898,19 +2075,24 @@ func (c *DynamoDB) DescribeTableRequest(input *DescribeTableInput) (req *request
 
 	output = &DescribeTableOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderDescribeTable{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -1963,6 +2145,14 @@ func (c *DynamoDB) DescribeTableWithContext(ctx aws.Context, input *DescribeTabl
 	return out, req.Send()
 }
 
+type paramProviderDescribeTable struct {
+	Params map[string]string
+}
+
+func (a paramProviderDescribeTable) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opDescribeTimeToLive = "DescribeTimeToLive"
 
 // DescribeTimeToLiveRequest generates a "aws/request.Request" representing the
@@ -2002,19 +2192,24 @@ func (c *DynamoDB) DescribeTimeToLiveRequest(input *DescribeTimeToLiveInput) (re
 
 	output = &DescribeTimeToLiveOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderDescribeTimeToLive{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -2059,6 +2254,14 @@ func (c *DynamoDB) DescribeTimeToLiveWithContext(ctx aws.Context, input *Describ
 	return out, req.Send()
 }
 
+type paramProviderDescribeTimeToLive struct {
+	Params map[string]string
+}
+
+func (a paramProviderDescribeTimeToLive) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opGetItem = "GetItem"
 
 // GetItemRequest generates a "aws/request.Request" representing the
@@ -2098,19 +2301,24 @@ func (c *DynamoDB) GetItemRequest(input *GetItemInput) (req *request.Request, ou
 
 	output = &GetItemOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderGetItem{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -2170,6 +2378,14 @@ func (c *DynamoDB) GetItemWithContext(ctx aws.Context, input *GetItemInput, opts
 	return out, req.Send()
 }
 
+type paramProviderGetItem struct {
+	Params map[string]string
+}
+
+func (a paramProviderGetItem) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opListBackups = "ListBackups"
 
 // ListBackupsRequest generates a "aws/request.Request" representing the
@@ -2209,19 +2425,24 @@ func (c *DynamoDB) ListBackupsRequest(input *ListBackupsInput) (req *request.Req
 
 	output = &ListBackupsOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderListBackups{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -2270,6 +2491,14 @@ func (c *DynamoDB) ListBackupsWithContext(ctx aws.Context, input *ListBackupsInp
 	return out, req.Send()
 }
 
+type paramProviderListBackups struct {
+	Params map[string]string
+}
+
+func (a paramProviderListBackups) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opListGlobalTables = "ListGlobalTables"
 
 // ListGlobalTablesRequest generates a "aws/request.Request" representing the
@@ -2309,19 +2538,24 @@ func (c *DynamoDB) ListGlobalTablesRequest(input *ListGlobalTablesInput) (req *r
 
 	output = &ListGlobalTablesOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderListGlobalTables{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -2360,6 +2594,14 @@ func (c *DynamoDB) ListGlobalTablesWithContext(ctx aws.Context, input *ListGloba
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+type paramProviderListGlobalTables struct {
+	Params map[string]string
+}
+
+func (a paramProviderListGlobalTables) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
 }
 
 const opListTables = "ListTables"
@@ -2407,19 +2649,24 @@ func (c *DynamoDB) ListTablesRequest(input *ListTablesInput) (req *request.Reque
 
 	output = &ListTablesOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderListTables{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -2512,6 +2759,14 @@ func (c *DynamoDB) ListTablesPagesWithContext(ctx aws.Context, input *ListTables
 	return p.Err()
 }
 
+type paramProviderListTables struct {
+	Params map[string]string
+}
+
+func (a paramProviderListTables) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opListTagsOfResource = "ListTagsOfResource"
 
 // ListTagsOfResourceRequest generates a "aws/request.Request" representing the
@@ -2551,19 +2806,24 @@ func (c *DynamoDB) ListTagsOfResourceRequest(input *ListTagsOfResourceInput) (re
 
 	output = &ListTagsOfResourceOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderListTagsOfResource{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -2612,6 +2872,14 @@ func (c *DynamoDB) ListTagsOfResourceWithContext(ctx aws.Context, input *ListTag
 	return out, req.Send()
 }
 
+type paramProviderListTagsOfResource struct {
+	Params map[string]string
+}
+
+func (a paramProviderListTagsOfResource) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opPutItem = "PutItem"
 
 // PutItemRequest generates a "aws/request.Request" representing the
@@ -2651,19 +2919,24 @@ func (c *DynamoDB) PutItemRequest(input *PutItemInput) (req *request.Request, ou
 
 	output = &PutItemOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderPutItem{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -2766,6 +3039,14 @@ func (c *DynamoDB) PutItemWithContext(ctx aws.Context, input *PutItemInput, opts
 	return out, req.Send()
 }
 
+type paramProviderPutItem struct {
+	Params map[string]string
+}
+
+func (a paramProviderPutItem) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opQuery = "Query"
 
 // QueryRequest generates a "aws/request.Request" representing the
@@ -2811,19 +3092,24 @@ func (c *DynamoDB) QueryRequest(input *QueryInput) (req *request.Request, output
 
 	output = &QueryOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderQuery{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -2973,6 +3259,14 @@ func (c *DynamoDB) QueryPagesWithContext(ctx aws.Context, input *QueryInput, fn 
 	return p.Err()
 }
 
+type paramProviderQuery struct {
+	Params map[string]string
+}
+
+func (a paramProviderQuery) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opRestoreTableFromBackup = "RestoreTableFromBackup"
 
 // RestoreTableFromBackupRequest generates a "aws/request.Request" representing the
@@ -3012,19 +3306,24 @@ func (c *DynamoDB) RestoreTableFromBackupRequest(input *RestoreTableFromBackupIn
 
 	output = &RestoreTableFromBackupOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderRestoreTableFromBackup{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -3108,6 +3407,14 @@ func (c *DynamoDB) RestoreTableFromBackupWithContext(ctx aws.Context, input *Res
 	return out, req.Send()
 }
 
+type paramProviderRestoreTableFromBackup struct {
+	Params map[string]string
+}
+
+func (a paramProviderRestoreTableFromBackup) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opRestoreTableToPointInTime = "RestoreTableToPointInTime"
 
 // RestoreTableToPointInTimeRequest generates a "aws/request.Request" representing the
@@ -3147,19 +3454,24 @@ func (c *DynamoDB) RestoreTableToPointInTimeRequest(input *RestoreTableToPointIn
 
 	output = &RestoreTableToPointInTimeOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderRestoreTableToPointInTime{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -3267,6 +3579,14 @@ func (c *DynamoDB) RestoreTableToPointInTimeWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+type paramProviderRestoreTableToPointInTime struct {
+	Params map[string]string
+}
+
+func (a paramProviderRestoreTableToPointInTime) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opScan = "Scan"
 
 // ScanRequest generates a "aws/request.Request" representing the
@@ -3312,19 +3632,24 @@ func (c *DynamoDB) ScanRequest(input *ScanInput) (req *request.Request, output *
 
 	output = &ScanOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderScan{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -3454,6 +3779,14 @@ func (c *DynamoDB) ScanPagesWithContext(ctx aws.Context, input *ScanInput, fn fu
 	return p.Err()
 }
 
+type paramProviderScan struct {
+	Params map[string]string
+}
+
+func (a paramProviderScan) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -3495,19 +3828,24 @@ func (c *DynamoDB) TagResourceRequest(input *TagResourceInput) (req *request.Req
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(jsonrpc.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderTagResource{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -3576,6 +3914,14 @@ func (c *DynamoDB) TagResourceWithContext(ctx aws.Context, input *TagResourceInp
 	return out, req.Send()
 }
 
+type paramProviderTagResource struct {
+	Params map[string]string
+}
+
+func (a paramProviderTagResource) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opUntagResource = "UntagResource"
 
 // UntagResourceRequest generates a "aws/request.Request" representing the
@@ -3617,19 +3963,24 @@ func (c *DynamoDB) UntagResourceRequest(input *UntagResourceInput) (req *request
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(jsonrpc.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderUntagResource{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -3696,6 +4047,14 @@ func (c *DynamoDB) UntagResourceWithContext(ctx aws.Context, input *UntagResourc
 	return out, req.Send()
 }
 
+type paramProviderUntagResource struct {
+	Params map[string]string
+}
+
+func (a paramProviderUntagResource) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opUpdateContinuousBackups = "UpdateContinuousBackups"
 
 // UpdateContinuousBackupsRequest generates a "aws/request.Request" representing the
@@ -3735,19 +4094,24 @@ func (c *DynamoDB) UpdateContinuousBackupsRequest(input *UpdateContinuousBackups
 
 	output = &UpdateContinuousBackupsOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderUpdateContinuousBackups{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -3805,6 +4169,14 @@ func (c *DynamoDB) UpdateContinuousBackupsWithContext(ctx aws.Context, input *Up
 	return out, req.Send()
 }
 
+type paramProviderUpdateContinuousBackups struct {
+	Params map[string]string
+}
+
+func (a paramProviderUpdateContinuousBackups) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opUpdateGlobalTable = "UpdateGlobalTable"
 
 // UpdateGlobalTableRequest generates a "aws/request.Request" representing the
@@ -3844,19 +4216,24 @@ func (c *DynamoDB) UpdateGlobalTableRequest(input *UpdateGlobalTableInput) (req 
 
 	output = &UpdateGlobalTableOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderUpdateGlobalTable{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -3929,6 +4306,14 @@ func (c *DynamoDB) UpdateGlobalTableWithContext(ctx aws.Context, input *UpdateGl
 	return out, req.Send()
 }
 
+type paramProviderUpdateGlobalTable struct {
+	Params map[string]string
+}
+
+func (a paramProviderUpdateGlobalTable) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opUpdateGlobalTableSettings = "UpdateGlobalTableSettings"
 
 // UpdateGlobalTableSettingsRequest generates a "aws/request.Request" representing the
@@ -3968,19 +4353,24 @@ func (c *DynamoDB) UpdateGlobalTableSettingsRequest(input *UpdateGlobalTableSett
 
 	output = &UpdateGlobalTableSettingsOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderUpdateGlobalTableSettings{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -4048,6 +4438,14 @@ func (c *DynamoDB) UpdateGlobalTableSettingsWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+type paramProviderUpdateGlobalTableSettings struct {
+	Params map[string]string
+}
+
+func (a paramProviderUpdateGlobalTableSettings) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opUpdateItem = "UpdateItem"
 
 // UpdateItemRequest generates a "aws/request.Request" representing the
@@ -4087,19 +4485,24 @@ func (c *DynamoDB) UpdateItemRequest(input *UpdateItemInput) (req *request.Reque
 
 	output = &UpdateItemOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderUpdateItem{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -4166,6 +4569,14 @@ func (c *DynamoDB) UpdateItemWithContext(ctx aws.Context, input *UpdateItemInput
 	return out, req.Send()
 }
 
+type paramProviderUpdateItem struct {
+	Params map[string]string
+}
+
+func (a paramProviderUpdateItem) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opUpdateTable = "UpdateTable"
 
 // UpdateTableRequest generates a "aws/request.Request" representing the
@@ -4205,19 +4616,24 @@ func (c *DynamoDB) UpdateTableRequest(input *UpdateTableInput) (req *request.Req
 
 	output = &UpdateTableOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderUpdateTable{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -4297,6 +4713,14 @@ func (c *DynamoDB) UpdateTableWithContext(ctx aws.Context, input *UpdateTableInp
 	return out, req.Send()
 }
 
+type paramProviderUpdateTable struct {
+	Params map[string]string
+}
+
+func (a paramProviderUpdateTable) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
+}
+
 const opUpdateTimeToLive = "UpdateTimeToLive"
 
 // UpdateTimeToLiveRequest generates a "aws/request.Request" representing the
@@ -4336,19 +4760,24 @@ func (c *DynamoDB) UpdateTimeToLiveRequest(input *UpdateTimeToLiveInput) (req *r
 
 	output = &UpdateTimeToLiveOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      false,
-		EndpointCache: c.endpointCache,
-		Params: map[string]string{
-			"op": req.Operation.Name,
-		},
-		Client: c,
-	}
+	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		de := discovererDescribeEndpoints{
+			Required:      false,
+			EndpointCache: c.endpointCache,
+			Params: map[string]string{
+				"op": req.Operation.Name,
+			},
+			Client: c,
+		}
+		de.ParamProvider = paramProviderUpdateTimeToLive{
+			Params: de.Params,
+		}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -4436,6 +4865,14 @@ func (c *DynamoDB) UpdateTimeToLiveWithContext(ctx aws.Context, input *UpdateTim
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+type paramProviderUpdateTimeToLive struct {
+	Params map[string]string
+}
+
+func (a paramProviderUpdateTimeToLive) SetParams(input *DescribeEndpointsInput) {
+	// TODO: Can remove if check required when C2J is updated
 }
 
 // Represents an attribute for describing the key schema for the table and indexes.

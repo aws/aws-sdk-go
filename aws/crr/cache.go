@@ -38,24 +38,27 @@ func (c *EndpointCache) get(endpointKey string) (Endpoint, bool) {
 	return endpoint.(Endpoint), true
 }
 
-// Get will retrieve an endpoint based off of the endpoint key. If an endpoint
+// Get will retrieve a weighted address  based off of the endpoint key. If an endpoint
 // should be retrieved, due to not existing or the current endpoint has expired
 // the Discoverer object that was passed in will attempt to discover a new endpoint
 // and add that to the cache.
-func (c *EndpointCache) Get(d Discoverer, endpointKey string, required bool) (Endpoint, error) {
+func (c *EndpointCache) Get(d Discoverer, endpointKey string, required bool) (WeightedAddress, error) {
 	var err error
 	endpoint, ok := c.get(endpointKey)
-	shouldGet := !ok || endpoint.HasExpired()
+	weighted, found := endpoint.GetValidAddress()
+	shouldGet := !ok || !found
 
 	if required && shouldGet {
 		if endpoint, err = c.discover(d, endpointKey); err != nil {
-			return Endpoint{}, err
+			return WeightedAddress{}, err
 		}
+
+		weighted, _ = endpoint.GetValidAddress()
 	} else if shouldGet {
 		go c.discover(d, endpointKey)
 	}
 
-	return endpoint, nil
+	return weighted, nil
 }
 
 // Add is a concurrent safe operation that will allow new endpoints to be added
@@ -65,7 +68,7 @@ func (c *EndpointCache) Add(endpoint Endpoint) {
 	// de-dups multiple adds of an endpoint with a pre-existing key
 	if iface, ok := c.endpoints.Load(endpoint.Key); ok {
 		e := iface.(Endpoint)
-		if !e.HasExpired() {
+		if e.Len() > 0 {
 			return
 		}
 	}
