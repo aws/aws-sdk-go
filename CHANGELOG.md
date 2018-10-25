@@ -1,3 +1,10 @@
+Release v1.15.63 (2018-10-25)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * As part of this release we are introducing EC2 On-Demand Capacity Reservations. With On-Demand Capacity Reservations, customers can reserve the exact EC2 capacity they need, and can keep it only for as long as they need it.
+
 Release v1.15.62 (2018-10-24)
 ===
 
