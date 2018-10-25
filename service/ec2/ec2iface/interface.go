@@ -152,6 +152,10 @@ type EC2API interface {
 	CancelBundleTaskWithContext(aws.Context, *ec2.CancelBundleTaskInput, ...request.Option) (*ec2.CancelBundleTaskOutput, error)
 	CancelBundleTaskRequest(*ec2.CancelBundleTaskInput) (*request.Request, *ec2.CancelBundleTaskOutput)
 
+	CancelCapacityReservation(*ec2.CancelCapacityReservationInput) (*ec2.CancelCapacityReservationOutput, error)
+	CancelCapacityReservationWithContext(aws.Context, *ec2.CancelCapacityReservationInput, ...request.Option) (*ec2.CancelCapacityReservationOutput, error)
+	CancelCapacityReservationRequest(*ec2.CancelCapacityReservationInput) (*request.Request, *ec2.CancelCapacityReservationOutput)
+
 	CancelConversionTask(*ec2.CancelConversionTaskInput) (*ec2.CancelConversionTaskOutput, error)
 	CancelConversionTaskWithContext(aws.Context, *ec2.CancelConversionTaskInput, ...request.Option) (*ec2.CancelConversionTaskOutput, error)
 	CancelConversionTaskRequest(*ec2.CancelConversionTaskInput) (*request.Request, *ec2.CancelConversionTaskOutput)
@@ -191,6 +195,10 @@ type EC2API interface {
 	CopySnapshot(*ec2.CopySnapshotInput) (*ec2.CopySnapshotOutput, error)
 	CopySnapshotWithContext(aws.Context, *ec2.CopySnapshotInput, ...request.Option) (*ec2.CopySnapshotOutput, error)
 	CopySnapshotRequest(*ec2.CopySnapshotInput) (*request.Request, *ec2.CopySnapshotOutput)
+
+	CreateCapacityReservation(*ec2.CreateCapacityReservationInput) (*ec2.CreateCapacityReservationOutput, error)
+	CreateCapacityReservationWithContext(aws.Context, *ec2.CreateCapacityReservationInput, ...request.Option) (*ec2.CreateCapacityReservationOutput, error)
+	CreateCapacityReservationRequest(*ec2.CreateCapacityReservationInput) (*request.Request, *ec2.CreateCapacityReservationOutput)
 
 	CreateCustomerGateway(*ec2.CreateCustomerGatewayInput) (*ec2.CreateCustomerGatewayOutput, error)
 	CreateCustomerGatewayWithContext(aws.Context, *ec2.CreateCustomerGatewayInput, ...request.Option) (*ec2.CreateCustomerGatewayOutput, error)
@@ -499,6 +507,10 @@ type EC2API interface {
 	DescribeByoipCidrs(*ec2.DescribeByoipCidrsInput) (*ec2.DescribeByoipCidrsOutput, error)
 	DescribeByoipCidrsWithContext(aws.Context, *ec2.DescribeByoipCidrsInput, ...request.Option) (*ec2.DescribeByoipCidrsOutput, error)
 	DescribeByoipCidrsRequest(*ec2.DescribeByoipCidrsInput) (*request.Request, *ec2.DescribeByoipCidrsOutput)
+
+	DescribeCapacityReservations(*ec2.DescribeCapacityReservationsInput) (*ec2.DescribeCapacityReservationsOutput, error)
+	DescribeCapacityReservationsWithContext(aws.Context, *ec2.DescribeCapacityReservationsInput, ...request.Option) (*ec2.DescribeCapacityReservationsOutput, error)
+	DescribeCapacityReservationsRequest(*ec2.DescribeCapacityReservationsInput) (*request.Request, *ec2.DescribeCapacityReservationsOutput)
 
 	DescribeClassicLinkInstances(*ec2.DescribeClassicLinkInstancesInput) (*ec2.DescribeClassicLinkInstancesOutput, error)
 	DescribeClassicLinkInstancesWithContext(aws.Context, *ec2.DescribeClassicLinkInstancesInput, ...request.Option) (*ec2.DescribeClassicLinkInstancesOutput, error)
@@ -964,6 +976,10 @@ type EC2API interface {
 	ImportVolumeWithContext(aws.Context, *ec2.ImportVolumeInput, ...request.Option) (*ec2.ImportVolumeOutput, error)
 	ImportVolumeRequest(*ec2.ImportVolumeInput) (*request.Request, *ec2.ImportVolumeOutput)
 
+	ModifyCapacityReservation(*ec2.ModifyCapacityReservationInput) (*ec2.ModifyCapacityReservationOutput, error)
+	ModifyCapacityReservationWithContext(aws.Context, *ec2.ModifyCapacityReservationInput, ...request.Option) (*ec2.ModifyCapacityReservationOutput, error)
+	ModifyCapacityReservationRequest(*ec2.ModifyCapacityReservationInput) (*request.Request, *ec2.ModifyCapacityReservationOutput)
+
 	ModifyFleet(*ec2.ModifyFleetInput) (*ec2.ModifyFleetOutput, error)
 	ModifyFleetWithContext(aws.Context, *ec2.ModifyFleetInput, ...request.Option) (*ec2.ModifyFleetOutput, error)
 	ModifyFleetRequest(*ec2.ModifyFleetInput) (*request.Request, *ec2.ModifyFleetOutput)
@@ -991,6 +1007,10 @@ type EC2API interface {
 	ModifyInstanceAttribute(*ec2.ModifyInstanceAttributeInput) (*ec2.ModifyInstanceAttributeOutput, error)
 	ModifyInstanceAttributeWithContext(aws.Context, *ec2.ModifyInstanceAttributeInput, ...request.Option) (*ec2.ModifyInstanceAttributeOutput, error)
 	ModifyInstanceAttributeRequest(*ec2.ModifyInstanceAttributeInput) (*request.Request, *ec2.ModifyInstanceAttributeOutput)
+
+	ModifyInstanceCapacityReservationAttributes(*ec2.ModifyInstanceCapacityReservationAttributesInput) (*ec2.ModifyInstanceCapacityReservationAttributesOutput, error)
+	ModifyInstanceCapacityReservationAttributesWithContext(aws.Context, *ec2.ModifyInstanceCapacityReservationAttributesInput, ...request.Option) (*ec2.ModifyInstanceCapacityReservationAttributesOutput, error)
+	ModifyInstanceCapacityReservationAttributesRequest(*ec2.ModifyInstanceCapacityReservationAttributesInput) (*request.Request, *ec2.ModifyInstanceCapacityReservationAttributesOutput)
 
 	ModifyInstanceCreditSpecification(*ec2.ModifyInstanceCreditSpecificationInput) (*ec2.ModifyInstanceCreditSpecificationOutput, error)
 	ModifyInstanceCreditSpecificationWithContext(aws.Context, *ec2.ModifyInstanceCreditSpecificationInput, ...request.Option) (*ec2.ModifyInstanceCreditSpecificationOutput, error)

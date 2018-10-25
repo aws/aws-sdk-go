@@ -214,6 +214,15 @@
       "input":{"shape":"CancelBundleTaskRequest"},
       "output":{"shape":"CancelBundleTaskResult"}
     },
+    "CancelCapacityReservation":{
+      "name":"CancelCapacityReservation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CancelCapacityReservationRequest"},
+      "output":{"shape":"CancelCapacityReservationResult"}
+    },
     "CancelConversionTask":{
       "name":"CancelConversionTask",
       "http":{
@@ -301,6 +310,15 @@
       },
       "input":{"shape":"CopySnapshotRequest"},
       "output":{"shape":"CopySnapshotResult"}
+    },
+    "CreateCapacityReservation":{
+      "name":"CreateCapacityReservation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateCapacityReservationRequest"},
+      "output":{"shape":"CreateCapacityReservationResult"}
     },
     "CreateCustomerGateway":{
       "name":"CreateCustomerGateway",
@@ -969,6 +987,15 @@
       },
       "input":{"shape":"DescribeByoipCidrsRequest"},
       "output":{"shape":"DescribeByoipCidrsResult"}
+    },
+    "DescribeCapacityReservations":{
+      "name":"DescribeCapacityReservations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeCapacityReservationsRequest"},
+      "output":{"shape":"DescribeCapacityReservationsResult"}
     },
     "DescribeClassicLinkInstances":{
       "name":"DescribeClassicLinkInstances",
@@ -1925,6 +1952,15 @@
       "input":{"shape":"ImportVolumeRequest"},
       "output":{"shape":"ImportVolumeResult"}
     },
+    "ModifyCapacityReservation":{
+      "name":"ModifyCapacityReservation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyCapacityReservationRequest"},
+      "output":{"shape":"ModifyCapacityReservationResult"}
+    },
     "ModifyFleet":{
       "name":"ModifyFleet",
       "http":{
@@ -1983,6 +2019,15 @@
         "requestUri":"/"
       },
       "input":{"shape":"ModifyInstanceAttributeRequest"}
+    },
+    "ModifyInstanceCapacityReservationAttributes":{
+      "name":"ModifyInstanceCapacityReservationAttributes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyInstanceCapacityReservationAttributesRequest"},
+      "output":{"shape":"ModifyInstanceCapacityReservationAttributesResult"}
     },
     "ModifyInstanceCreditSpecification":{
       "name":"ModifyInstanceCreditSpecification",
@@ -3586,6 +3631,23 @@
         }
       }
     },
+    "CancelCapacityReservationRequest":{
+      "type":"structure",
+      "required":["CapacityReservationId"],
+      "members":{
+        "CapacityReservationId":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "CancelCapacityReservationResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
+        }
+      }
+    },
     "CancelConversionRequest":{
       "type":"structure",
       "required":["ConversionTaskId"],
@@ -3814,6 +3876,157 @@
         "shape":"CancelledSpotInstanceRequest",
         "locationName":"item"
       }
+    },
+    "CapacityReservation":{
+      "type":"structure",
+      "members":{
+        "CapacityReservationId":{
+          "shape":"String",
+          "locationName":"capacityReservationId"
+        },
+        "InstanceType":{
+          "shape":"String",
+          "locationName":"instanceType"
+        },
+        "InstancePlatform":{
+          "shape":"CapacityReservationInstancePlatform",
+          "locationName":"instancePlatform"
+        },
+        "AvailabilityZone":{
+          "shape":"String",
+          "locationName":"availabilityZone"
+        },
+        "Tenancy":{
+          "shape":"CapacityReservationTenancy",
+          "locationName":"tenancy"
+        },
+        "TotalInstanceCount":{
+          "shape":"Integer",
+          "locationName":"totalInstanceCount"
+        },
+        "AvailableInstanceCount":{
+          "shape":"Integer",
+          "locationName":"availableInstanceCount"
+        },
+        "EbsOptimized":{
+          "shape":"Boolean",
+          "locationName":"ebsOptimized"
+        },
+        "EphemeralStorage":{
+          "shape":"Boolean",
+          "locationName":"ephemeralStorage"
+        },
+        "State":{
+          "shape":"CapacityReservationState",
+          "locationName":"state"
+        },
+        "EndDate":{
+          "shape":"DateTime",
+          "locationName":"endDate"
+        },
+        "EndDateType":{
+          "shape":"EndDateType",
+          "locationName":"endDateType"
+        },
+        "InstanceMatchCriteria":{
+          "shape":"InstanceMatchCriteria",
+          "locationName":"instanceMatchCriteria"
+        },
+        "CreateDate":{
+          "shape":"DateTime",
+          "locationName":"createDate"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        }
+      }
+    },
+    "CapacityReservationIdSet":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"item"
+      }
+    },
+    "CapacityReservationInstancePlatform":{
+      "type":"string",
+      "enum":[
+        "Linux/UNIX",
+        "Red Hat Enterprise Linux",
+        "SUSE Linux",
+        "Windows",
+        "Windows with SQL Server",
+        "Windows with SQL Server Enterprise",
+        "Windows with SQL Server Standard",
+        "Windows with SQL Server Web"
+      ]
+    },
+    "CapacityReservationPreference":{
+      "type":"string",
+      "enum":[
+        "open",
+        "none"
+      ]
+    },
+    "CapacityReservationSet":{
+      "type":"list",
+      "member":{
+        "shape":"CapacityReservation",
+        "locationName":"item"
+      }
+    },
+    "CapacityReservationSpecification":{
+      "type":"structure",
+      "members":{
+        "CapacityReservationPreference":{"shape":"CapacityReservationPreference"},
+        "CapacityReservationTarget":{"shape":"CapacityReservationTarget"}
+      }
+    },
+    "CapacityReservationSpecificationResponse":{
+      "type":"structure",
+      "members":{
+        "CapacityReservationPreference":{
+          "shape":"CapacityReservationPreference",
+          "locationName":"capacityReservationPreference"
+        },
+        "CapacityReservationTarget":{
+          "shape":"CapacityReservationTargetResponse",
+          "locationName":"capacityReservationTarget"
+        }
+      }
+    },
+    "CapacityReservationState":{
+      "type":"string",
+      "enum":[
+        "active",
+        "expired",
+        "cancelled",
+        "pending",
+        "failed"
+      ]
+    },
+    "CapacityReservationTarget":{
+      "type":"structure",
+      "members":{
+        "CapacityReservationId":{"shape":"String"}
+      }
+    },
+    "CapacityReservationTargetResponse":{
+      "type":"structure",
+      "members":{
+        "CapacityReservationId":{
+          "shape":"String",
+          "locationName":"capacityReservationId"
+        }
+      }
+    },
+    "CapacityReservationTenancy":{
+      "type":"string",
+      "enum":[
+        "default",
+        "dedicated"
+      ]
     },
     "CidrAuthorizationContext":{
       "type":"structure",
@@ -4179,6 +4392,39 @@
       "members":{
         "CoreCount":{"shape":"Integer"},
         "ThreadsPerCore":{"shape":"Integer"}
+      }
+    },
+    "CreateCapacityReservationRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceType",
+        "InstancePlatform",
+        "AvailabilityZone",
+        "InstanceCount"
+      ],
+      "members":{
+        "ClientToken":{"shape":"String"},
+        "InstanceType":{"shape":"String"},
+        "InstancePlatform":{"shape":"CapacityReservationInstancePlatform"},
+        "AvailabilityZone":{"shape":"String"},
+        "Tenancy":{"shape":"CapacityReservationTenancy"},
+        "InstanceCount":{"shape":"Integer"},
+        "EbsOptimized":{"shape":"Boolean"},
+        "EphemeralStorage":{"shape":"Boolean"},
+        "EndDate":{"shape":"DateTime"},
+        "EndDateType":{"shape":"EndDateType"},
+        "InstanceMatchCriteria":{"shape":"InstanceMatchCriteria"},
+        "TagSpecifications":{"shape":"TagSpecificationList"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "CreateCapacityReservationResult":{
+      "type":"structure",
+      "members":{
+        "CapacityReservation":{
+          "shape":"CapacityReservation",
+          "locationName":"capacityReservation"
+        }
       }
     },
     "CreateCustomerGatewayRequest":{
@@ -6101,6 +6347,35 @@
         "NextToken":{
           "shape":"String",
           "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeCapacityReservationsRequest":{
+      "type":"structure",
+      "members":{
+        "CapacityReservationIds":{
+          "shape":"CapacityReservationIdSet",
+          "locationName":"CapacityReservationId"
+        },
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"Integer"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DescribeCapacityReservationsResult":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        },
+        "CapacityReservations":{
+          "shape":"CapacityReservationSet",
+          "locationName":"capacityReservationSet"
         }
       }
     },
@@ -9153,6 +9428,13 @@
         }
       }
     },
+    "EndDateType":{
+      "type":"string",
+      "enum":[
+        "unlimited",
+        "limited"
+      ]
+    },
     "EventCode":{
       "type":"string",
       "enum":[
@@ -11186,6 +11468,14 @@
         "CpuOptions":{
           "shape":"CpuOptions",
           "locationName":"cpuOptions"
+        },
+        "CapacityReservationId":{
+          "shape":"String",
+          "locationName":"capacityReservationId"
+        },
+        "CapacityReservationSpecification":{
+          "shape":"CapacityReservationSpecificationResponse",
+          "locationName":"capacityReservationSpecification"
         }
       }
     },
@@ -11483,6 +11773,13 @@
         "MarketType":{"shape":"MarketType"},
         "SpotOptions":{"shape":"SpotMarketOptions"}
       }
+    },
+    "InstanceMatchCriteria":{
+      "type":"string",
+      "enum":[
+        "open",
+        "targeted"
+      ]
     },
     "InstanceMonitoring":{
       "type":"structure",
@@ -12403,6 +12700,26 @@
         "locationName":"BlockDeviceMapping"
       }
     },
+    "LaunchTemplateCapacityReservationSpecificationRequest":{
+      "type":"structure",
+      "members":{
+        "CapacityReservationPreference":{"shape":"CapacityReservationPreference"},
+        "CapacityReservationTarget":{"shape":"CapacityReservationTarget"}
+      }
+    },
+    "LaunchTemplateCapacityReservationSpecificationResponse":{
+      "type":"structure",
+      "members":{
+        "CapacityReservationPreference":{
+          "shape":"CapacityReservationPreference",
+          "locationName":"capacityReservationPreference"
+        },
+        "CapacityReservationTarget":{
+          "shape":"CapacityReservationTargetResponse",
+          "locationName":"capacityReservationTarget"
+        }
+      }
+    },
     "LaunchTemplateConfig":{
       "type":"structure",
       "members":{
@@ -12950,6 +13267,26 @@
       "max":255,
       "min":5
     },
+    "ModifyCapacityReservationRequest":{
+      "type":"structure",
+      "required":["CapacityReservationId"],
+      "members":{
+        "CapacityReservationId":{"shape":"String"},
+        "InstanceCount":{"shape":"Integer"},
+        "EndDate":{"shape":"DateTime"},
+        "EndDateType":{"shape":"EndDateType"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "ModifyCapacityReservationResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
+        }
+      }
+    },
     "ModifyFleetRequest":{
       "type":"structure",
       "required":[
@@ -13161,6 +13498,27 @@
         "Value":{
           "shape":"String",
           "locationName":"value"
+        }
+      }
+    },
+    "ModifyInstanceCapacityReservationAttributesRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "CapacityReservationSpecification"
+      ],
+      "members":{
+        "InstanceId":{"shape":"String"},
+        "CapacityReservationSpecification":{"shape":"CapacityReservationSpecification"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "ModifyInstanceCapacityReservationAttributesResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
         }
       }
     },
@@ -15421,7 +15779,8 @@
         },
         "InstanceMarketOptions":{"shape":"LaunchTemplateInstanceMarketOptionsRequest"},
         "CreditSpecification":{"shape":"CreditSpecificationRequest"},
-        "CpuOptions":{"shape":"LaunchTemplateCpuOptionsRequest"}
+        "CpuOptions":{"shape":"LaunchTemplateCpuOptionsRequest"},
+        "CapacityReservationSpecification":{"shape":"LaunchTemplateCapacityReservationSpecificationRequest"}
       }
     },
     "RequestSpotFleetRequest":{
@@ -16264,6 +16623,10 @@
         "CpuOptions":{
           "shape":"LaunchTemplateCpuOptions",
           "locationName":"cpuOptions"
+        },
+        "CapacityReservationSpecification":{
+          "shape":"LaunchTemplateCapacityReservationSpecificationResponse",
+          "locationName":"capacityReservationSpecification"
         }
       }
     },
@@ -16593,7 +16956,8 @@
         "LaunchTemplate":{"shape":"LaunchTemplateSpecification"},
         "InstanceMarketOptions":{"shape":"InstanceMarketOptionsRequest"},
         "CreditSpecification":{"shape":"CreditSpecificationRequest"},
-        "CpuOptions":{"shape":"CpuOptionsRequest"}
+        "CpuOptions":{"shape":"CpuOptionsRequest"},
+        "CapacityReservationSpecification":{"shape":"CapacityReservationSpecification"}
       }
     },
     "RunScheduledInstancesRequest":{
