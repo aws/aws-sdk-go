@@ -173,6 +173,10 @@ func (a *API) renameExportable() {
 		}
 
 		for mName, member := range s.MemberRefs {
+			ref := s.MemberRefs[mName]
+			ref.OrigShapeName = mName
+			s.MemberRefs[mName] = ref
+
 			newName := a.ExportableName(mName)
 			if newName != mName {
 				delete(s.MemberRefs, mName)

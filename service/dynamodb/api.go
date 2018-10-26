@@ -64,11 +64,18 @@ func (c *DynamoDB) BatchGetItemRequest(input *BatchGetItemInput) (req *request.R
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderBatchGetItem{
 			Params: de.Params,
 		}
@@ -229,7 +236,7 @@ func (c *DynamoDB) BatchGetItemPagesWithContext(ctx aws.Context, input *BatchGet
 }
 
 type paramProviderBatchGetItem struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderBatchGetItem) SetParams(input *DescribeEndpointsInput) {
@@ -279,11 +286,18 @@ func (c *DynamoDB) BatchWriteItemRequest(input *BatchWriteItemInput) (req *reque
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderBatchWriteItem{
 			Params: de.Params,
 		}
@@ -421,7 +435,7 @@ func (c *DynamoDB) BatchWriteItemWithContext(ctx aws.Context, input *BatchWriteI
 }
 
 type paramProviderBatchWriteItem struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderBatchWriteItem) SetParams(input *DescribeEndpointsInput) {
@@ -471,11 +485,18 @@ func (c *DynamoDB) CreateBackupRequest(input *CreateBackupInput) (req *request.R
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderCreateBackup{
 			Params: de.Params,
 		}
@@ -582,7 +603,7 @@ func (c *DynamoDB) CreateBackupWithContext(ctx aws.Context, input *CreateBackupI
 }
 
 type paramProviderCreateBackup struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderCreateBackup) SetParams(input *DescribeEndpointsInput) {
@@ -632,11 +653,18 @@ func (c *DynamoDB) CreateGlobalTableRequest(input *CreateGlobalTableInput) (req 
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderCreateGlobalTable{
 			Params: de.Params,
 		}
@@ -739,7 +767,7 @@ func (c *DynamoDB) CreateGlobalTableWithContext(ctx aws.Context, input *CreateGl
 }
 
 type paramProviderCreateGlobalTable struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderCreateGlobalTable) SetParams(input *DescribeEndpointsInput) {
@@ -789,11 +817,18 @@ func (c *DynamoDB) CreateTableRequest(input *CreateTableInput) (req *request.Req
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderCreateTable{
 			Params: de.Params,
 		}
@@ -876,7 +911,7 @@ func (c *DynamoDB) CreateTableWithContext(ctx aws.Context, input *CreateTableInp
 }
 
 type paramProviderCreateTable struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderCreateTable) SetParams(input *DescribeEndpointsInput) {
@@ -926,11 +961,18 @@ func (c *DynamoDB) DeleteBackupRequest(input *DeleteBackupInput) (req *request.R
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderDeleteBackup{
 			Params: de.Params,
 		}
@@ -1003,7 +1045,7 @@ func (c *DynamoDB) DeleteBackupWithContext(ctx aws.Context, input *DeleteBackupI
 }
 
 type paramProviderDeleteBackup struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderDeleteBackup) SetParams(input *DescribeEndpointsInput) {
@@ -1053,11 +1095,18 @@ func (c *DynamoDB) DeleteItemRequest(input *DeleteItemInput) (req *request.Reque
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderDeleteItem{
 			Params: de.Params,
 		}
@@ -1140,7 +1189,7 @@ func (c *DynamoDB) DeleteItemWithContext(ctx aws.Context, input *DeleteItemInput
 }
 
 type paramProviderDeleteItem struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderDeleteItem) SetParams(input *DescribeEndpointsInput) {
@@ -1190,11 +1239,18 @@ func (c *DynamoDB) DeleteTableRequest(input *DeleteTableInput) (req *request.Req
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderDeleteTable{
 			Params: de.Params,
 		}
@@ -1284,7 +1340,7 @@ func (c *DynamoDB) DeleteTableWithContext(ctx aws.Context, input *DeleteTableInp
 }
 
 type paramProviderDeleteTable struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderDeleteTable) SetParams(input *DescribeEndpointsInput) {
@@ -1334,11 +1390,18 @@ func (c *DynamoDB) DescribeBackupRequest(input *DescribeBackupInput) (req *reque
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderDescribeBackup{
 			Params: de.Params,
 		}
@@ -1394,7 +1457,7 @@ func (c *DynamoDB) DescribeBackupWithContext(ctx aws.Context, input *DescribeBac
 }
 
 type paramProviderDescribeBackup struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderDescribeBackup) SetParams(input *DescribeEndpointsInput) {
@@ -1444,11 +1507,18 @@ func (c *DynamoDB) DescribeContinuousBackupsRequest(input *DescribeContinuousBac
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderDescribeContinuousBackups{
 			Params: de.Params,
 		}
@@ -1515,7 +1585,7 @@ func (c *DynamoDB) DescribeContinuousBackupsWithContext(ctx aws.Context, input *
 }
 
 type paramProviderDescribeContinuousBackups struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderDescribeContinuousBackups) SetParams(input *DescribeEndpointsInput) {
@@ -1602,7 +1672,7 @@ type discovererDescribeEndpoints struct {
 	Client        *DynamoDB
 	Required      bool
 	EndpointCache *crr.EndpointCache
-	Params        map[string]string
+	Params        map[string]*string
 	Key           string
 	ParamProvider paramProvider
 }
@@ -1702,11 +1772,18 @@ func (c *DynamoDB) DescribeGlobalTableRequest(input *DescribeGlobalTableInput) (
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderDescribeGlobalTable{
 			Params: de.Params,
 		}
@@ -1760,7 +1837,7 @@ func (c *DynamoDB) DescribeGlobalTableWithContext(ctx aws.Context, input *Descri
 }
 
 type paramProviderDescribeGlobalTable struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderDescribeGlobalTable) SetParams(input *DescribeEndpointsInput) {
@@ -1810,11 +1887,18 @@ func (c *DynamoDB) DescribeGlobalTableSettingsRequest(input *DescribeGlobalTable
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderDescribeGlobalTableSettings{
 			Params: de.Params,
 		}
@@ -1868,7 +1952,7 @@ func (c *DynamoDB) DescribeGlobalTableSettingsWithContext(ctx aws.Context, input
 }
 
 type paramProviderDescribeGlobalTableSettings struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderDescribeGlobalTableSettings) SetParams(input *DescribeEndpointsInput) {
@@ -1918,11 +2002,18 @@ func (c *DynamoDB) DescribeLimitsRequest(input *DescribeLimitsInput) (req *reque
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderDescribeLimits{
 			Params: de.Params,
 		}
@@ -2029,7 +2120,7 @@ func (c *DynamoDB) DescribeLimitsWithContext(ctx aws.Context, input *DescribeLim
 }
 
 type paramProviderDescribeLimits struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderDescribeLimits) SetParams(input *DescribeEndpointsInput) {
@@ -2079,11 +2170,18 @@ func (c *DynamoDB) DescribeTableRequest(input *DescribeTableInput) (req *request
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderDescribeTable{
 			Params: de.Params,
 		}
@@ -2146,7 +2244,7 @@ func (c *DynamoDB) DescribeTableWithContext(ctx aws.Context, input *DescribeTabl
 }
 
 type paramProviderDescribeTable struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderDescribeTable) SetParams(input *DescribeEndpointsInput) {
@@ -2196,11 +2294,18 @@ func (c *DynamoDB) DescribeTimeToLiveRequest(input *DescribeTimeToLiveInput) (re
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderDescribeTimeToLive{
 			Params: de.Params,
 		}
@@ -2255,7 +2360,7 @@ func (c *DynamoDB) DescribeTimeToLiveWithContext(ctx aws.Context, input *Describ
 }
 
 type paramProviderDescribeTimeToLive struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderDescribeTimeToLive) SetParams(input *DescribeEndpointsInput) {
@@ -2305,11 +2410,18 @@ func (c *DynamoDB) GetItemRequest(input *GetItemInput) (req *request.Request, ou
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderGetItem{
 			Params: de.Params,
 		}
@@ -2379,7 +2491,7 @@ func (c *DynamoDB) GetItemWithContext(ctx aws.Context, input *GetItemInput, opts
 }
 
 type paramProviderGetItem struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderGetItem) SetParams(input *DescribeEndpointsInput) {
@@ -2429,11 +2541,18 @@ func (c *DynamoDB) ListBackupsRequest(input *ListBackupsInput) (req *request.Req
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderListBackups{
 			Params: de.Params,
 		}
@@ -2492,7 +2611,7 @@ func (c *DynamoDB) ListBackupsWithContext(ctx aws.Context, input *ListBackupsInp
 }
 
 type paramProviderListBackups struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderListBackups) SetParams(input *DescribeEndpointsInput) {
@@ -2542,11 +2661,18 @@ func (c *DynamoDB) ListGlobalTablesRequest(input *ListGlobalTablesInput) (req *r
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderListGlobalTables{
 			Params: de.Params,
 		}
@@ -2597,7 +2723,7 @@ func (c *DynamoDB) ListGlobalTablesWithContext(ctx aws.Context, input *ListGloba
 }
 
 type paramProviderListGlobalTables struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderListGlobalTables) SetParams(input *DescribeEndpointsInput) {
@@ -2653,11 +2779,18 @@ func (c *DynamoDB) ListTablesRequest(input *ListTablesInput) (req *request.Reque
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderListTables{
 			Params: de.Params,
 		}
@@ -2760,7 +2893,7 @@ func (c *DynamoDB) ListTablesPagesWithContext(ctx aws.Context, input *ListTables
 }
 
 type paramProviderListTables struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderListTables) SetParams(input *DescribeEndpointsInput) {
@@ -2810,11 +2943,18 @@ func (c *DynamoDB) ListTagsOfResourceRequest(input *ListTagsOfResourceInput) (re
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderListTagsOfResource{
 			Params: de.Params,
 		}
@@ -2873,7 +3013,7 @@ func (c *DynamoDB) ListTagsOfResourceWithContext(ctx aws.Context, input *ListTag
 }
 
 type paramProviderListTagsOfResource struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderListTagsOfResource) SetParams(input *DescribeEndpointsInput) {
@@ -2923,11 +3063,18 @@ func (c *DynamoDB) PutItemRequest(input *PutItemInput) (req *request.Request, ou
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderPutItem{
 			Params: de.Params,
 		}
@@ -3040,7 +3187,7 @@ func (c *DynamoDB) PutItemWithContext(ctx aws.Context, input *PutItemInput, opts
 }
 
 type paramProviderPutItem struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderPutItem) SetParams(input *DescribeEndpointsInput) {
@@ -3096,11 +3243,18 @@ func (c *DynamoDB) QueryRequest(input *QueryInput) (req *request.Request, output
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderQuery{
 			Params: de.Params,
 		}
@@ -3260,7 +3414,7 @@ func (c *DynamoDB) QueryPagesWithContext(ctx aws.Context, input *QueryInput, fn 
 }
 
 type paramProviderQuery struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderQuery) SetParams(input *DescribeEndpointsInput) {
@@ -3310,11 +3464,18 @@ func (c *DynamoDB) RestoreTableFromBackupRequest(input *RestoreTableFromBackupIn
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderRestoreTableFromBackup{
 			Params: de.Params,
 		}
@@ -3408,7 +3569,7 @@ func (c *DynamoDB) RestoreTableFromBackupWithContext(ctx aws.Context, input *Res
 }
 
 type paramProviderRestoreTableFromBackup struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderRestoreTableFromBackup) SetParams(input *DescribeEndpointsInput) {
@@ -3458,11 +3619,18 @@ func (c *DynamoDB) RestoreTableToPointInTimeRequest(input *RestoreTableToPointIn
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderRestoreTableToPointInTime{
 			Params: de.Params,
 		}
@@ -3580,7 +3748,7 @@ func (c *DynamoDB) RestoreTableToPointInTimeWithContext(ctx aws.Context, input *
 }
 
 type paramProviderRestoreTableToPointInTime struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderRestoreTableToPointInTime) SetParams(input *DescribeEndpointsInput) {
@@ -3636,11 +3804,18 @@ func (c *DynamoDB) ScanRequest(input *ScanInput) (req *request.Request, output *
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderScan{
 			Params: de.Params,
 		}
@@ -3780,7 +3955,7 @@ func (c *DynamoDB) ScanPagesWithContext(ctx aws.Context, input *ScanInput, fn fu
 }
 
 type paramProviderScan struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderScan) SetParams(input *DescribeEndpointsInput) {
@@ -3832,11 +4007,18 @@ func (c *DynamoDB) TagResourceRequest(input *TagResourceInput) (req *request.Req
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderTagResource{
 			Params: de.Params,
 		}
@@ -3915,7 +4097,7 @@ func (c *DynamoDB) TagResourceWithContext(ctx aws.Context, input *TagResourceInp
 }
 
 type paramProviderTagResource struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderTagResource) SetParams(input *DescribeEndpointsInput) {
@@ -3967,11 +4149,18 @@ func (c *DynamoDB) UntagResourceRequest(input *UntagResourceInput) (req *request
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderUntagResource{
 			Params: de.Params,
 		}
@@ -4048,7 +4237,7 @@ func (c *DynamoDB) UntagResourceWithContext(ctx aws.Context, input *UntagResourc
 }
 
 type paramProviderUntagResource struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderUntagResource) SetParams(input *DescribeEndpointsInput) {
@@ -4098,11 +4287,18 @@ func (c *DynamoDB) UpdateContinuousBackupsRequest(input *UpdateContinuousBackups
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderUpdateContinuousBackups{
 			Params: de.Params,
 		}
@@ -4170,7 +4366,7 @@ func (c *DynamoDB) UpdateContinuousBackupsWithContext(ctx aws.Context, input *Up
 }
 
 type paramProviderUpdateContinuousBackups struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderUpdateContinuousBackups) SetParams(input *DescribeEndpointsInput) {
@@ -4220,11 +4416,18 @@ func (c *DynamoDB) UpdateGlobalTableRequest(input *UpdateGlobalTableInput) (req 
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderUpdateGlobalTable{
 			Params: de.Params,
 		}
@@ -4307,7 +4510,7 @@ func (c *DynamoDB) UpdateGlobalTableWithContext(ctx aws.Context, input *UpdateGl
 }
 
 type paramProviderUpdateGlobalTable struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderUpdateGlobalTable) SetParams(input *DescribeEndpointsInput) {
@@ -4357,11 +4560,18 @@ func (c *DynamoDB) UpdateGlobalTableSettingsRequest(input *UpdateGlobalTableSett
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderUpdateGlobalTableSettings{
 			Params: de.Params,
 		}
@@ -4439,7 +4649,7 @@ func (c *DynamoDB) UpdateGlobalTableSettingsWithContext(ctx aws.Context, input *
 }
 
 type paramProviderUpdateGlobalTableSettings struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderUpdateGlobalTableSettings) SetParams(input *DescribeEndpointsInput) {
@@ -4489,11 +4699,18 @@ func (c *DynamoDB) UpdateItemRequest(input *UpdateItemInput) (req *request.Reque
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderUpdateItem{
 			Params: de.Params,
 		}
@@ -4570,7 +4787,7 @@ func (c *DynamoDB) UpdateItemWithContext(ctx aws.Context, input *UpdateItemInput
 }
 
 type paramProviderUpdateItem struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderUpdateItem) SetParams(input *DescribeEndpointsInput) {
@@ -4620,11 +4837,18 @@ func (c *DynamoDB) UpdateTableRequest(input *UpdateTableInput) (req *request.Req
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderUpdateTable{
 			Params: de.Params,
 		}
@@ -4714,7 +4938,7 @@ func (c *DynamoDB) UpdateTableWithContext(ctx aws.Context, input *UpdateTableInp
 }
 
 type paramProviderUpdateTable struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderUpdateTable) SetParams(input *DescribeEndpointsInput) {
@@ -4764,11 +4988,18 @@ func (c *DynamoDB) UpdateTimeToLiveRequest(input *UpdateTimeToLiveInput) (req *r
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderUpdateTimeToLive{
 			Params: de.Params,
 		}
@@ -4868,7 +5099,7 @@ func (c *DynamoDB) UpdateTimeToLiveWithContext(ctx aws.Context, input *UpdateTim
 }
 
 type paramProviderUpdateTimeToLive struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderUpdateTimeToLive) SetParams(input *DescribeEndpointsInput) {

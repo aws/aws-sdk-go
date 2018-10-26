@@ -165,20 +165,30 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 		{{ end -}}
 	{{ end -}}
 	{{ if .EndpointDiscovery -}}
+
+	{{if not .EndpointDiscovery.Required -}}
 		if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+	{{end -}}
 			de := discoverer{{ .API.EndpointDiscoveryOp.Name }}{
 				Required: {{ .EndpointDiscovery.Required }},
 				EndpointCache: c.endpointCache,
-				Params: map[string]string{
-					"op": req.Operation.Name,
-					{{ range $key, $value := .EndpointDiscovery -}}
-					{{ if (ne $key "required") -}}
-					"{{ $key }}": input.{{ $key }},
-					{{- end }}
+				Params: map[string]*string{
+					"op": aws.String(req.Operation.Name),
+					{{ range $key, $ref := .InputRef.Shape.MemberRefs -}}
+					{{ if $ref.EndpointDiscoveryID -}}
+					"{{ $ref.OrigShapeName }}": input.{{ $key }},
+					{{ end -}}
 					{{- end }}
 				},
 				Client: c,
 			}
+
+			for k, v := range de.Params {
+				if v == nil {
+					delete(de.Params, k)
+				}
+			}
+
 			de.ParamProvider = paramProvider{{ .ExportedName}} {
 				Params: de.Params, 
 			}
@@ -195,7 +205,9 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 				Name: "crr.endpointdiscovery",
 				Fn: de.Handler,
 			})
+	{{if not .EndpointDiscovery.Required -}}
 		}
+	{{ end -}}
 	{{ end -}}
 	return
 }
@@ -331,7 +343,7 @@ type discoverer{{ .ExportedName }} struct {
 	Client *{{ .API.StructName }}
 	Required bool
 	EndpointCache *crr.EndpointCache
-	Params map[string]string
+	Params map[string]*string
 	Key string
 	ParamProvider paramProvider
 }
@@ -339,7 +351,10 @@ type discoverer{{ .ExportedName }} struct {
 func (d *discoverer{{ .ExportedName }}) Discover() (crr.Endpoint, error) {
 	input := &{{ .API.EndpointDiscoveryOp.InputRef.ShapeName }}{
 		{{ if .API.EndpointDiscoveryOp.InputRef.Shape.HasMember "Operation" -}}
-		Operation: aws.String(d.Params["op"]),
+		Operation: d.Params["op"],
+		{{ end -}}
+		{{ if .API.EndpointDiscoveryOp.InputRef.Shape.HasMember "Identifiers" -}}
+		Identifiers: d.Params,
 		{{ end -}}
 	}
 	d.ParamProvider.SetParams(input)
@@ -394,7 +409,7 @@ func (d *discoverer{{ .ExportedName }}) Handler(r *request.Request) {
 {{- else }}
 {{ if .EndpointDiscovery -}}
 type paramProvider{{ .ExportedName }} struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProvider{{ .ExportedName }}) SetParams(input {{ .API.EndpointDiscoveryOp.InputRef.GoType }}) {

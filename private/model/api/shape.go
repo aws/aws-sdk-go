@@ -40,14 +40,15 @@ type ShapeRef struct {
 	Streaming     bool
 	XMLAttribute  bool
 	// Ignore, if set, will not be sent over the wire
-	Ignore           bool
-	XMLNamespace     XMLInfo
-	Payload          string
-	IdempotencyToken bool   `json:"idempotencyToken"`
-	TimestampFormat  string `json:"timestampFormat"`
-	JSONValue        bool   `json:"jsonvalue"`
-	Deprecated       bool   `json:"deprecated"`
-	DeprecatedMsg    string `json:"deprecatedMessage"`
+	Ignore              bool
+	XMLNamespace        XMLInfo
+	Payload             string
+	IdempotencyToken    bool   `json:"idempotencyToken"`
+	TimestampFormat     string `json:"timestampFormat"`
+	JSONValue           bool   `json:"jsonvalue"`
+	Deprecated          bool   `json:"deprecated"`
+	DeprecatedMsg       string `json:"deprecatedMessage"`
+	EndpointDiscoveryID bool   `json:"endpointdiscoveryid"`
 
 	OrigShapeName string `json:"-"`
 

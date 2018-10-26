@@ -89,14 +89,14 @@ type discovererDescribeEndpoints struct {
 	Client        *AwsEndpointDiscoveryTest
 	Required      bool
 	EndpointCache *crr.EndpointCache
-	Params        map[string]string
+	Params        map[string]*string
 	Key           string
 	ParamProvider paramProvider
 }
 
 func (d *discovererDescribeEndpoints) Discover() (crr.Endpoint, error) {
 	input := &DescribeEndpointsInput{
-		Operation: aws.String(d.Params["op"]),
+		Operation: d.Params["op"],
 	}
 	d.ParamProvider.SetParams(input)
 
@@ -185,24 +185,30 @@ func (c *AwsEndpointDiscoveryTest) TestDiscoveryIdentifiersRequiredRequest(input
 
 	output = &TestDiscoveryIdentifiersRequiredOutput{}
 	req = c.newRequest(op, input, output)
-	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
-		de := discovererDescribeEndpoints{
-			Required:      true,
-			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
-			},
-			Client: c,
-		}
-		de.ParamProvider = paramProviderTestDiscoveryIdentifiersRequired{
-			Params: de.Params,
-		}
-
-		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-			Name: "crr.endpointdiscovery",
-			Fn:   de.Handler,
-		})
+	de := discovererDescribeEndpoints{
+		Required:      true,
+		EndpointCache: c.endpointCache,
+		Params: map[string]*string{
+			"op":  aws.String(req.Operation.Name),
+			"Sdk": input.Sdk,
+		},
+		Client: c,
 	}
+
+	for k, v := range de.Params {
+		if v == nil {
+			delete(de.Params, k)
+		}
+	}
+
+	de.ParamProvider = paramProviderTestDiscoveryIdentifiersRequired{
+		Params: de.Params,
+	}
+
+	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+		Name: "crr.endpointdiscovery",
+		Fn:   de.Handler,
+	})
 	return
 }
 
@@ -236,7 +242,7 @@ func (c *AwsEndpointDiscoveryTest) TestDiscoveryIdentifiersRequiredWithContext(c
 }
 
 type paramProviderTestDiscoveryIdentifiersRequired struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderTestDiscoveryIdentifiersRequired) SetParams(input *DescribeEndpointsInput) {
@@ -284,11 +290,18 @@ func (c *AwsEndpointDiscoveryTest) TestDiscoveryOptionalRequest(input *TestDisco
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderTestDiscoveryOptional{
 			Params: de.Params,
 		}
@@ -331,7 +344,7 @@ func (c *AwsEndpointDiscoveryTest) TestDiscoveryOptionalWithContext(ctx aws.Cont
 }
 
 type paramProviderTestDiscoveryOptional struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderTestDiscoveryOptional) SetParams(input *DescribeEndpointsInput) {
@@ -379,11 +392,18 @@ func (c *AwsEndpointDiscoveryTest) TestDiscoveryRequiredRequest(input *TestDisco
 		de := discovererDescribeEndpoints{
 			Required:      false,
 			EndpointCache: c.endpointCache,
-			Params: map[string]string{
-				"op": req.Operation.Name,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
 			},
 			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
 		de.ParamProvider = paramProviderTestDiscoveryRequired{
 			Params: de.Params,
 		}
@@ -426,7 +446,7 @@ func (c *AwsEndpointDiscoveryTest) TestDiscoveryRequiredWithContext(ctx aws.Cont
 }
 
 type paramProviderTestDiscoveryRequired struct {
-	Params map[string]string
+	Params map[string]*string
 }
 
 func (a paramProviderTestDiscoveryRequired) SetParams(input *DescribeEndpointsInput) {

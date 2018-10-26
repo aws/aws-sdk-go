@@ -5,6 +5,8 @@ import (
 	"sort"
 	"strings"
 	"time"
+
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 // Endpoint represents an endpoint used in endpoint discovery.
@@ -75,7 +77,7 @@ type Discoverer interface {
 // BuildEndpointKey will sort the keys in alphabetical order and then retrieve
 // the values in that order. Those values are then concatenated together to form
 // the endpoint key.
-func BuildEndpointKey(params map[string]string) string {
+func BuildEndpointKey(params map[string]*string) string {
 	keys := make([]string, len(params))
 	i := 0
 
@@ -87,7 +89,11 @@ func BuildEndpointKey(params map[string]string) string {
 
 	values := make([]string, len(params))
 	for i, k := range keys {
-		values[i] = params[k]
+		if params[k] == nil {
+			continue
+		}
+
+		values[i] = aws.StringValue(params[k])
 	}
 
 	return strings.Join(values, ".")
