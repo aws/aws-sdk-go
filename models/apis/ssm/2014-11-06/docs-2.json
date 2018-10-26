@@ -220,6 +220,16 @@
       "refs": {
       }
     },
+    "AssociationComplianceSeverity": {
+      "base": null,
+      "refs": {
+        "AssociationDescription$ComplianceSeverity": "<p>The severity level that is assigned to the association.</p>",
+        "AssociationVersionInfo$ComplianceSeverity": "<p>The severity level that is assigned to the association.</p>",
+        "CreateAssociationBatchRequestEntry$ComplianceSeverity": "<p>The severity level to assign to the association.</p>",
+        "CreateAssociationRequest$ComplianceSeverity": "<p>The severity level to assign to the association.</p>",
+        "UpdateAssociationRequest$ComplianceSeverity": "<p>The severity level to assign to the association.</p>"
+      }
+    },
     "AssociationDescription": {
       "base": "<p>Describes the parameters for a document.</p>",
       "refs": {

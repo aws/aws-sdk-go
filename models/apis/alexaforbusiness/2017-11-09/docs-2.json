@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>Alexa for Business makes it easy for you to use Alexa in your organization. Alexa for Business gives you the tools you need for managing Alexa devices, enroll your users, and assign skills, at scale. You can build your own context-aware voice skills using the Alexa Skills Kit and the Alexa for Business API operations. You can make also these available as private skills for your organization. Alexa for Business makes it easy to voice-enable your products and services, providing context-aware voice experiences for your customers. In addition, Alexa for Business enables Alexa Voice Services (AVS) device manufacturers to centrally deploy and manage their devices in Alexa for Business as shared devices as a part of their existing management flow. </p>",
+  "service": "<p>Alexa for Business helps you use Alexa in your organization. Alexa for Business provides the tools you to manage Alexa devices, enroll your users, and assign skills, at scale. You can build your own context-aware voice skills using the Alexa Skills Kit and the Alexa for Business API operations. You can also make these available as private skills for your organization. Alexa for Business makes it efficient to voice-enable your products and services, thus providing context-aware voice experiences for your customers. In addition, Alexa for Business enables Alexa Voice Services (AVS) device manufacturers to centrally deploy and manage their devices in Alexa for Business as shared devices as a part of their existing management flow. </p>",
   "operations": {
     "ApproveSkill": "<p>Associates a skill with the organization under the customer's AWS account. If a skill is private, the user implicitly accepts access to this skill during enablement.</p>",
     "AssociateContactWithAddressBook": "<p>Associates a contact with a given address book.</p>",
@@ -47,7 +47,7 @@
     "ListTags": "<p>Lists all tags for the specified resource.</p>",
     "PutConferencePreference": "<p>Sets the conference preferences on a specific conference provider at the account level.</p>",
     "PutRoomSkillParameter": "<p>Updates room skill parameter details by room, skill, and parameter key ID. Not all skills have a room skill parameter.</p>",
-    "PutSkillAuthorization": "<p>Links a user's account to a third-party skill provider. If this API is called by an assumed IAM role, the skill being linked must be a private skill, and the skill must be owned by the AWS account that assumed the IAM role.</p>",
+    "PutSkillAuthorization": "<p>Links a user's account to a third-party skill provider. If this API operation is called by an assumed IAM role, the skill being linked must be a private skill. Also, the skill must be owned by the AWS account that assumed the IAM role.</p>",
     "RegisterAVSDevice": "<p>Registers an Alexa-enabled device built by an Original Equipment Manufacturer (OEM) using Alexa Voice Service (AVS).</p>",
     "RejectSkill": "<p>Disassociates a skill from the organization under a user's AWS account. If the skill is a private skill, it moves to an AcceptStatus of PENDING. Any private or public skill that is rejected can be added later by calling the ApproveSkill API. </p>",
     "ResolveRoom": "<p>Determines the details for the room from which a skill request was invoked. This operation is used by skill developers.</p>",
@@ -168,13 +168,13 @@
         "AssociateDeviceWithRoomRequest$RoomArn": "<p>The ARN of the room with which to associate the device. Required.</p>",
         "AssociateSkillGroupWithRoomRequest$SkillGroupArn": "<p>The ARN of the skill group to associate with a room. Required.</p>",
         "AssociateSkillGroupWithRoomRequest$RoomArn": "<p>The ARN of the room with which to associate the skill group. Required.</p>",
-        "AssociateSkillWithSkillGroupRequest$SkillGroupArn": "<p>The ARN of the skill group to associate the skill to.</p>",
+        "AssociateSkillWithSkillGroupRequest$SkillGroupArn": "<p>The ARN of the skill group to associate the skill to. Required.</p>",
         "ConferencePreference$DefaultConferenceProviderArn": "<p>The ARN of the default conference provider.</p>",
         "ConferenceProvider$Arn": "<p>The ARN of the newly created conference provider.</p>",
         "Contact$ContactArn": "<p>The ARN of the contact.</p>",
         "ContactData$ContactArn": "<p>The ARN of the contact.</p>",
         "CreateAddressBookResponse$AddressBookArn": "<p>The ARN of the newly created address book.</p>",
-        "CreateConferenceProviderResponse$ConferenceProviderArn": "<p>The ARN of the newly created conference provider.</p>",
+        "CreateConferenceProviderResponse$ConferenceProviderArn": "<p>The ARN of the newly-created conference provider.</p>",
         "CreateContactResponse$ContactArn": "<p>The ARN of the newly created address book.</p>",
         "CreateProfileResponse$ProfileArn": "<p>The ARN of the newly created room profile in the response.</p>",
         "CreateRoomRequest$ProfileArn": "<p>The profile ARN for the room.</p>",
@@ -198,7 +198,7 @@
         "DisassociateContactFromAddressBookRequest$ContactArn": "<p>The ARN of the contact to disassociate from an address book.</p>",
         "DisassociateContactFromAddressBookRequest$AddressBookArn": "<p>The ARN of the address from which to disassociate the contact.</p>",
         "DisassociateDeviceFromRoomRequest$DeviceArn": "<p>The ARN of the device to disassociate from a room. Required.</p>",
-        "DisassociateSkillFromSkillGroupRequest$SkillGroupArn": "<p>The unique identifier of a skill.</p>",
+        "DisassociateSkillFromSkillGroupRequest$SkillGroupArn": "<p>The unique identifier of a skill. Required.</p>",
         "DisassociateSkillGroupFromRoomRequest$SkillGroupArn": "<p>The ARN of the skill group to disassociate from a room. Required.</p>",
         "DisassociateSkillGroupFromRoomRequest$RoomArn": "<p>The ARN of the room from which the skill group is to be disassociated. Required.</p>",
         "ForgetSmartHomeAppliancesRequest$RoomArn": "<p>The room that the appliances are associated with.</p>",
@@ -398,7 +398,7 @@
       "base": null,
       "refs": {
         "ConferenceProvider$Type": "<p>The type of conference providers.</p>",
-        "CreateConferenceProviderRequest$ConferenceProviderType": "<p>A string that represents a type within a list of predefined types.</p>",
+        "CreateConferenceProviderRequest$ConferenceProviderType": "<p>Represents a type within a list of predefined types.</p>",
         "UpdateConferenceProviderRequest$ConferenceProviderType": "<p>The type of the conference provider.</p>"
       }
     },
@@ -1151,10 +1151,10 @@
     "MaxResults": {
       "base": null,
       "refs": {
-        "ListConferenceProvidersRequest$MaxResults": "<p>The maximum number of conference providers to be return per paginated calls.</p>",
+        "ListConferenceProvidersRequest$MaxResults": "<p>The maximum number of conference providers to be returned, per paginated calls.</p>",
         "ListDeviceEventsRequest$MaxResults": "<p>The maximum number of results to include in the response. The default value is 50. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved. </p>",
-        "ListSkillsStoreCategoriesRequest$MaxResults": "<p>The maximum number of categories returned per paginated calls.</p>",
-        "ListSmartHomeAppliancesRequest$MaxResults": "<p>The maximum number of appliances to be return per paginated calls.</p>",
+        "ListSkillsStoreCategoriesRequest$MaxResults": "<p>The maximum number of categories returned, per paginated calls.</p>",
+        "ListSmartHomeAppliancesRequest$MaxResults": "<p>The maximum number of appliances to be returned, per paginated calls.</p>",
         "ListTagsRequest$MaxResults": "<p>The maximum number of results to include in the response. If more results exist than the specified <code>MaxResults</code> value, a token is included in the response so that the remaining results can be retrieved.</p>",
         "SearchAddressBooksRequest$MaxResults": "<p>The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.</p>",
         "SearchContactsRequest$MaxResults": "<p>The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.</p>",
