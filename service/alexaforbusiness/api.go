@@ -4066,9 +4066,10 @@ func (c *AlexaForBusiness) PutSkillAuthorizationRequest(input *PutSkillAuthoriza
 
 // PutSkillAuthorization API operation for Alexa For Business.
 //
-// Links a user's account to a third-party skill provider. If this API is called
-// by an assumed IAM role, the skill being linked must be a private skill, and
-// the skill must be owned by the AWS account that assumed the IAM role.
+// Links a user's account to a third-party skill provider. If this API operation
+// is called by an assumed IAM role, the skill being linked must be a private
+// skill. Also, the skill must be owned by the AWS account that assumed the
+// IAM role.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6638,7 +6639,7 @@ func (s AssociateSkillGroupWithRoomOutput) GoString() string {
 type AssociateSkillWithSkillGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the skill group to associate the skill to.
+	// The ARN of the skill group to associate the skill to. Required.
 	SkillGroupArn *string `type:"string"`
 
 	// The unique identifier of the skill.
@@ -7046,7 +7047,7 @@ type CreateConferenceProviderInput struct {
 	// ConferenceProviderName is a required field
 	ConferenceProviderName *string `min:"1" type:"string" required:"true"`
 
-	// A string that represents a type within a list of predefined types.
+	// Represents a type within a list of predefined types.
 	//
 	// ConferenceProviderType is a required field
 	ConferenceProviderType *string `type:"string" required:"true" enum:"ConferenceProviderType"`
@@ -7152,7 +7153,7 @@ func (s *CreateConferenceProviderInput) SetPSTNDialIn(v *PSTNDialIn) *CreateConf
 type CreateConferenceProviderOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the newly created conference provider.
+	// The ARN of the newly-created conference provider.
 	ConferenceProviderArn *string `type:"string"`
 }
 
@@ -8780,7 +8781,7 @@ func (s DisassociateDeviceFromRoomOutput) GoString() string {
 type DisassociateSkillFromSkillGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier of a skill.
+	// The unique identifier of a skill. Required.
 	SkillGroupArn *string `type:"string"`
 
 	// The ARN of a skill group to associate to a skill.
@@ -9544,7 +9545,8 @@ func (s *IPDialIn) SetEndpoint(v string) *IPDialIn {
 type ListConferenceProvidersInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of conference providers to be return per paginated calls.
+	// The maximum number of conference providers to be returned, per paginated
+	// calls.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// The tokens used for pagination.
@@ -9848,7 +9850,7 @@ func (s *ListSkillsOutput) SetSkillSummaries(v []*SkillSummary) *ListSkillsOutpu
 type ListSkillsStoreCategoriesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of categories returned per paginated calls.
+	// The maximum number of categories returned, per paginated calls.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// The tokens used for pagination.
@@ -10025,7 +10027,7 @@ func (s *ListSkillsStoreSkillsByCategoryOutput) SetSkillsStoreSkills(v []*Skills
 type ListSmartHomeAppliancesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of appliances to be return per paginated calls.
+	// The maximum number of appliances to be returned, per paginated calls.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// The tokens used for pagination.

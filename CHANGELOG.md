@@ -1,3 +1,13 @@
+Release v1.15.64 (2018-10-26)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service documentation
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker notebook instances can now have a volume size configured.
+* `service/ssm`: Updates service API and documentation
+  * Compliance Severity feature release for State Manager. Users now have the ability to select compliance severity to their association in state manager console or CLI.
+
 Release v1.15.63 (2018-10-25)
 ===
 

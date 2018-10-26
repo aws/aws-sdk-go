@@ -534,7 +534,8 @@
         "DataSource":{"shape":"DataSource"},
         "ContentType":{"shape":"ContentType"},
         "CompressionType":{"shape":"CompressionType"},
-        "RecordWrapperType":{"shape":"RecordWrapper"}
+        "RecordWrapperType":{"shape":"RecordWrapper"},
+        "InputMode":{"shape":"TrainingInputMode"}
       }
     },
     "ChannelName":{
@@ -686,7 +687,8 @@
         "KmsKeyId":{"shape":"KmsKeyId"},
         "Tags":{"shape":"TagList"},
         "LifecycleConfigName":{"shape":"NotebookInstanceLifecycleConfigName"},
-        "DirectInternetAccess":{"shape":"DirectInternetAccess"}
+        "DirectInternetAccess":{"shape":"DirectInternetAccess"},
+        "VolumeSizeInGB":{"shape":"NotebookInstanceVolumeSizeInGB"}
       }
     },
     "CreateNotebookInstanceLifecycleConfigInput":{
@@ -730,7 +732,6 @@
         "TrainingJobName",
         "AlgorithmSpecification",
         "RoleArn",
-        "InputDataConfig",
         "OutputDataConfig",
         "ResourceConfig",
         "StoppingCondition"
@@ -1007,7 +1008,8 @@
         "LastModifiedTime":{"shape":"LastModifiedTime"},
         "CreationTime":{"shape":"CreationTime"},
         "NotebookInstanceLifecycleConfigName":{"shape":"NotebookInstanceLifecycleConfigName"},
-        "DirectInternetAccess":{"shape":"DirectInternetAccess"}
+        "DirectInternetAccess":{"shape":"DirectInternetAccess"},
+        "VolumeSizeInGB":{"shape":"NotebookInstanceVolumeSizeInGB"}
       }
     },
     "DescribeTrainingJobRequest":{
@@ -1026,7 +1028,6 @@
         "TrainingJobStatus",
         "SecondaryStatus",
         "AlgorithmSpecification",
-        "InputDataConfig",
         "ResourceConfig",
         "StoppingCondition",
         "CreationTime"
@@ -1908,6 +1909,11 @@
       "member":{"shape":"NotebookInstanceSummary"}
     },
     "NotebookInstanceUrl":{"type":"string"},
+    "NotebookInstanceVolumeSizeInGB":{
+      "type":"integer",
+      "max":16384,
+      "min":5
+    },
     "ObjectiveStatus":{
       "type":"string",
       "enum":[
@@ -2595,7 +2601,8 @@
         "InstanceType":{"shape":"InstanceType"},
         "RoleArn":{"shape":"RoleArn"},
         "LifecycleConfigName":{"shape":"NotebookInstanceLifecycleConfigName"},
-        "DisassociateLifecycleConfig":{"shape":"DisassociateNotebookInstanceLifecycleConfig"}
+        "DisassociateLifecycleConfig":{"shape":"DisassociateNotebookInstanceLifecycleConfig"},
+        "VolumeSizeInGB":{"shape":"NotebookInstanceVolumeSizeInGB"}
       }
     },
     "UpdateNotebookInstanceLifecycleConfigInput":{

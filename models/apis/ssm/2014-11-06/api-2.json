@@ -1743,6 +1743,16 @@
       },
       "exception":true
     },
+    "AssociationComplianceSeverity":{
+      "type":"string",
+      "enum":[
+        "CRITICAL",
+        "HIGH",
+        "MEDIUM",
+        "LOW",
+        "UNSPECIFIED"
+      ]
+    },
     "AssociationDescription":{
       "type":"structure",
       "members":{
@@ -1763,7 +1773,8 @@
         "LastSuccessfulExecutionDate":{"shape":"DateTime"},
         "AssociationName":{"shape":"AssociationName"},
         "MaxErrors":{"shape":"MaxErrors"},
-        "MaxConcurrency":{"shape":"MaxConcurrency"}
+        "MaxConcurrency":{"shape":"MaxConcurrency"},
+        "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"}
       }
     },
     "AssociationDescriptionList":{
@@ -2008,7 +2019,8 @@
         "OutputLocation":{"shape":"InstanceAssociationOutputLocation"},
         "AssociationName":{"shape":"AssociationName"},
         "MaxErrors":{"shape":"MaxErrors"},
-        "MaxConcurrency":{"shape":"MaxConcurrency"}
+        "MaxConcurrency":{"shape":"MaxConcurrency"},
+        "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"}
       }
     },
     "AssociationVersionLimitExceeded":{
@@ -2680,7 +2692,8 @@
         "OutputLocation":{"shape":"InstanceAssociationOutputLocation"},
         "AssociationName":{"shape":"AssociationName"},
         "MaxErrors":{"shape":"MaxErrors"},
-        "MaxConcurrency":{"shape":"MaxConcurrency"}
+        "MaxConcurrency":{"shape":"MaxConcurrency"},
+        "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"}
       }
     },
     "CreateAssociationBatchResult":{
@@ -2703,7 +2716,8 @@
         "OutputLocation":{"shape":"InstanceAssociationOutputLocation"},
         "AssociationName":{"shape":"AssociationName"},
         "MaxErrors":{"shape":"MaxErrors"},
-        "MaxConcurrency":{"shape":"MaxConcurrency"}
+        "MaxConcurrency":{"shape":"MaxConcurrency"},
+        "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"}
       }
     },
     "CreateAssociationResult":{
@@ -7674,7 +7688,8 @@
         "AssociationName":{"shape":"AssociationName"},
         "AssociationVersion":{"shape":"AssociationVersion"},
         "MaxErrors":{"shape":"MaxErrors"},
-        "MaxConcurrency":{"shape":"MaxConcurrency"}
+        "MaxConcurrency":{"shape":"MaxConcurrency"},
+        "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"}
       }
     },
     "UpdateAssociationResult":{
