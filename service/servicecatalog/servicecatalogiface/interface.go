@@ -72,9 +72,21 @@ type ServiceCatalogAPI interface {
 	AssociateProductWithPortfolioWithContext(aws.Context, *servicecatalog.AssociateProductWithPortfolioInput, ...request.Option) (*servicecatalog.AssociateProductWithPortfolioOutput, error)
 	AssociateProductWithPortfolioRequest(*servicecatalog.AssociateProductWithPortfolioInput) (*request.Request, *servicecatalog.AssociateProductWithPortfolioOutput)
 
+	AssociateServiceActionWithProvisioningArtifact(*servicecatalog.AssociateServiceActionWithProvisioningArtifactInput) (*servicecatalog.AssociateServiceActionWithProvisioningArtifactOutput, error)
+	AssociateServiceActionWithProvisioningArtifactWithContext(aws.Context, *servicecatalog.AssociateServiceActionWithProvisioningArtifactInput, ...request.Option) (*servicecatalog.AssociateServiceActionWithProvisioningArtifactOutput, error)
+	AssociateServiceActionWithProvisioningArtifactRequest(*servicecatalog.AssociateServiceActionWithProvisioningArtifactInput) (*request.Request, *servicecatalog.AssociateServiceActionWithProvisioningArtifactOutput)
+
 	AssociateTagOptionWithResource(*servicecatalog.AssociateTagOptionWithResourceInput) (*servicecatalog.AssociateTagOptionWithResourceOutput, error)
 	AssociateTagOptionWithResourceWithContext(aws.Context, *servicecatalog.AssociateTagOptionWithResourceInput, ...request.Option) (*servicecatalog.AssociateTagOptionWithResourceOutput, error)
 	AssociateTagOptionWithResourceRequest(*servicecatalog.AssociateTagOptionWithResourceInput) (*request.Request, *servicecatalog.AssociateTagOptionWithResourceOutput)
+
+	BatchAssociateServiceActionWithProvisioningArtifact(*servicecatalog.BatchAssociateServiceActionWithProvisioningArtifactInput) (*servicecatalog.BatchAssociateServiceActionWithProvisioningArtifactOutput, error)
+	BatchAssociateServiceActionWithProvisioningArtifactWithContext(aws.Context, *servicecatalog.BatchAssociateServiceActionWithProvisioningArtifactInput, ...request.Option) (*servicecatalog.BatchAssociateServiceActionWithProvisioningArtifactOutput, error)
+	BatchAssociateServiceActionWithProvisioningArtifactRequest(*servicecatalog.BatchAssociateServiceActionWithProvisioningArtifactInput) (*request.Request, *servicecatalog.BatchAssociateServiceActionWithProvisioningArtifactOutput)
+
+	BatchDisassociateServiceActionFromProvisioningArtifact(*servicecatalog.BatchDisassociateServiceActionFromProvisioningArtifactInput) (*servicecatalog.BatchDisassociateServiceActionFromProvisioningArtifactOutput, error)
+	BatchDisassociateServiceActionFromProvisioningArtifactWithContext(aws.Context, *servicecatalog.BatchDisassociateServiceActionFromProvisioningArtifactInput, ...request.Option) (*servicecatalog.BatchDisassociateServiceActionFromProvisioningArtifactOutput, error)
+	BatchDisassociateServiceActionFromProvisioningArtifactRequest(*servicecatalog.BatchDisassociateServiceActionFromProvisioningArtifactInput) (*request.Request, *servicecatalog.BatchDisassociateServiceActionFromProvisioningArtifactOutput)
 
 	CopyProduct(*servicecatalog.CopyProductInput) (*servicecatalog.CopyProductOutput, error)
 	CopyProductWithContext(aws.Context, *servicecatalog.CopyProductInput, ...request.Option) (*servicecatalog.CopyProductOutput, error)
@@ -104,6 +116,10 @@ type ServiceCatalogAPI interface {
 	CreateProvisioningArtifactWithContext(aws.Context, *servicecatalog.CreateProvisioningArtifactInput, ...request.Option) (*servicecatalog.CreateProvisioningArtifactOutput, error)
 	CreateProvisioningArtifactRequest(*servicecatalog.CreateProvisioningArtifactInput) (*request.Request, *servicecatalog.CreateProvisioningArtifactOutput)
 
+	CreateServiceAction(*servicecatalog.CreateServiceActionInput) (*servicecatalog.CreateServiceActionOutput, error)
+	CreateServiceActionWithContext(aws.Context, *servicecatalog.CreateServiceActionInput, ...request.Option) (*servicecatalog.CreateServiceActionOutput, error)
+	CreateServiceActionRequest(*servicecatalog.CreateServiceActionInput) (*request.Request, *servicecatalog.CreateServiceActionOutput)
+
 	CreateTagOption(*servicecatalog.CreateTagOptionInput) (*servicecatalog.CreateTagOptionOutput, error)
 	CreateTagOptionWithContext(aws.Context, *servicecatalog.CreateTagOptionInput, ...request.Option) (*servicecatalog.CreateTagOptionOutput, error)
 	CreateTagOptionRequest(*servicecatalog.CreateTagOptionInput) (*request.Request, *servicecatalog.CreateTagOptionOutput)
@@ -131,6 +147,10 @@ type ServiceCatalogAPI interface {
 	DeleteProvisioningArtifact(*servicecatalog.DeleteProvisioningArtifactInput) (*servicecatalog.DeleteProvisioningArtifactOutput, error)
 	DeleteProvisioningArtifactWithContext(aws.Context, *servicecatalog.DeleteProvisioningArtifactInput, ...request.Option) (*servicecatalog.DeleteProvisioningArtifactOutput, error)
 	DeleteProvisioningArtifactRequest(*servicecatalog.DeleteProvisioningArtifactInput) (*request.Request, *servicecatalog.DeleteProvisioningArtifactOutput)
+
+	DeleteServiceAction(*servicecatalog.DeleteServiceActionInput) (*servicecatalog.DeleteServiceActionOutput, error)
+	DeleteServiceActionWithContext(aws.Context, *servicecatalog.DeleteServiceActionInput, ...request.Option) (*servicecatalog.DeleteServiceActionOutput, error)
+	DeleteServiceActionRequest(*servicecatalog.DeleteServiceActionInput) (*request.Request, *servicecatalog.DeleteServiceActionOutput)
 
 	DeleteTagOption(*servicecatalog.DeleteTagOptionInput) (*servicecatalog.DeleteTagOptionOutput, error)
 	DeleteTagOptionWithContext(aws.Context, *servicecatalog.DeleteTagOptionInput, ...request.Option) (*servicecatalog.DeleteTagOptionOutput, error)
@@ -180,6 +200,10 @@ type ServiceCatalogAPI interface {
 	DescribeRecordWithContext(aws.Context, *servicecatalog.DescribeRecordInput, ...request.Option) (*servicecatalog.DescribeRecordOutput, error)
 	DescribeRecordRequest(*servicecatalog.DescribeRecordInput) (*request.Request, *servicecatalog.DescribeRecordOutput)
 
+	DescribeServiceAction(*servicecatalog.DescribeServiceActionInput) (*servicecatalog.DescribeServiceActionOutput, error)
+	DescribeServiceActionWithContext(aws.Context, *servicecatalog.DescribeServiceActionInput, ...request.Option) (*servicecatalog.DescribeServiceActionOutput, error)
+	DescribeServiceActionRequest(*servicecatalog.DescribeServiceActionInput) (*request.Request, *servicecatalog.DescribeServiceActionOutput)
+
 	DescribeTagOption(*servicecatalog.DescribeTagOptionInput) (*servicecatalog.DescribeTagOptionOutput, error)
 	DescribeTagOptionWithContext(aws.Context, *servicecatalog.DescribeTagOptionInput, ...request.Option) (*servicecatalog.DescribeTagOptionOutput, error)
 	DescribeTagOptionRequest(*servicecatalog.DescribeTagOptionInput) (*request.Request, *servicecatalog.DescribeTagOptionOutput)
@@ -192,6 +216,10 @@ type ServiceCatalogAPI interface {
 	DisassociateProductFromPortfolioWithContext(aws.Context, *servicecatalog.DisassociateProductFromPortfolioInput, ...request.Option) (*servicecatalog.DisassociateProductFromPortfolioOutput, error)
 	DisassociateProductFromPortfolioRequest(*servicecatalog.DisassociateProductFromPortfolioInput) (*request.Request, *servicecatalog.DisassociateProductFromPortfolioOutput)
 
+	DisassociateServiceActionFromProvisioningArtifact(*servicecatalog.DisassociateServiceActionFromProvisioningArtifactInput) (*servicecatalog.DisassociateServiceActionFromProvisioningArtifactOutput, error)
+	DisassociateServiceActionFromProvisioningArtifactWithContext(aws.Context, *servicecatalog.DisassociateServiceActionFromProvisioningArtifactInput, ...request.Option) (*servicecatalog.DisassociateServiceActionFromProvisioningArtifactOutput, error)
+	DisassociateServiceActionFromProvisioningArtifactRequest(*servicecatalog.DisassociateServiceActionFromProvisioningArtifactInput) (*request.Request, *servicecatalog.DisassociateServiceActionFromProvisioningArtifactOutput)
+
 	DisassociateTagOptionFromResource(*servicecatalog.DisassociateTagOptionFromResourceInput) (*servicecatalog.DisassociateTagOptionFromResourceOutput, error)
 	DisassociateTagOptionFromResourceWithContext(aws.Context, *servicecatalog.DisassociateTagOptionFromResourceInput, ...request.Option) (*servicecatalog.DisassociateTagOptionFromResourceOutput, error)
 	DisassociateTagOptionFromResourceRequest(*servicecatalog.DisassociateTagOptionFromResourceInput) (*request.Request, *servicecatalog.DisassociateTagOptionFromResourceOutput)
@@ -199,6 +227,10 @@ type ServiceCatalogAPI interface {
 	ExecuteProvisionedProductPlan(*servicecatalog.ExecuteProvisionedProductPlanInput) (*servicecatalog.ExecuteProvisionedProductPlanOutput, error)
 	ExecuteProvisionedProductPlanWithContext(aws.Context, *servicecatalog.ExecuteProvisionedProductPlanInput, ...request.Option) (*servicecatalog.ExecuteProvisionedProductPlanOutput, error)
 	ExecuteProvisionedProductPlanRequest(*servicecatalog.ExecuteProvisionedProductPlanInput) (*request.Request, *servicecatalog.ExecuteProvisionedProductPlanOutput)
+
+	ExecuteProvisionedProductServiceAction(*servicecatalog.ExecuteProvisionedProductServiceActionInput) (*servicecatalog.ExecuteProvisionedProductServiceActionOutput, error)
+	ExecuteProvisionedProductServiceActionWithContext(aws.Context, *servicecatalog.ExecuteProvisionedProductServiceActionInput, ...request.Option) (*servicecatalog.ExecuteProvisionedProductServiceActionOutput, error)
+	ExecuteProvisionedProductServiceActionRequest(*servicecatalog.ExecuteProvisionedProductServiceActionInput) (*request.Request, *servicecatalog.ExecuteProvisionedProductServiceActionOutput)
 
 	ListAcceptedPortfolioShares(*servicecatalog.ListAcceptedPortfolioSharesInput) (*servicecatalog.ListAcceptedPortfolioSharesOutput, error)
 	ListAcceptedPortfolioSharesWithContext(aws.Context, *servicecatalog.ListAcceptedPortfolioSharesInput, ...request.Option) (*servicecatalog.ListAcceptedPortfolioSharesOutput, error)
@@ -254,6 +286,13 @@ type ServiceCatalogAPI interface {
 	ListProvisioningArtifactsWithContext(aws.Context, *servicecatalog.ListProvisioningArtifactsInput, ...request.Option) (*servicecatalog.ListProvisioningArtifactsOutput, error)
 	ListProvisioningArtifactsRequest(*servicecatalog.ListProvisioningArtifactsInput) (*request.Request, *servicecatalog.ListProvisioningArtifactsOutput)
 
+	ListProvisioningArtifactsForServiceAction(*servicecatalog.ListProvisioningArtifactsForServiceActionInput) (*servicecatalog.ListProvisioningArtifactsForServiceActionOutput, error)
+	ListProvisioningArtifactsForServiceActionWithContext(aws.Context, *servicecatalog.ListProvisioningArtifactsForServiceActionInput, ...request.Option) (*servicecatalog.ListProvisioningArtifactsForServiceActionOutput, error)
+	ListProvisioningArtifactsForServiceActionRequest(*servicecatalog.ListProvisioningArtifactsForServiceActionInput) (*request.Request, *servicecatalog.ListProvisioningArtifactsForServiceActionOutput)
+
+	ListProvisioningArtifactsForServiceActionPages(*servicecatalog.ListProvisioningArtifactsForServiceActionInput, func(*servicecatalog.ListProvisioningArtifactsForServiceActionOutput, bool) bool) error
+	ListProvisioningArtifactsForServiceActionPagesWithContext(aws.Context, *servicecatalog.ListProvisioningArtifactsForServiceActionInput, func(*servicecatalog.ListProvisioningArtifactsForServiceActionOutput, bool) bool, ...request.Option) error
+
 	ListRecordHistory(*servicecatalog.ListRecordHistoryInput) (*servicecatalog.ListRecordHistoryOutput, error)
 	ListRecordHistoryWithContext(aws.Context, *servicecatalog.ListRecordHistoryInput, ...request.Option) (*servicecatalog.ListRecordHistoryOutput, error)
 	ListRecordHistoryRequest(*servicecatalog.ListRecordHistoryInput) (*request.Request, *servicecatalog.ListRecordHistoryOutput)
@@ -264,6 +303,20 @@ type ServiceCatalogAPI interface {
 
 	ListResourcesForTagOptionPages(*servicecatalog.ListResourcesForTagOptionInput, func(*servicecatalog.ListResourcesForTagOptionOutput, bool) bool) error
 	ListResourcesForTagOptionPagesWithContext(aws.Context, *servicecatalog.ListResourcesForTagOptionInput, func(*servicecatalog.ListResourcesForTagOptionOutput, bool) bool, ...request.Option) error
+
+	ListServiceActions(*servicecatalog.ListServiceActionsInput) (*servicecatalog.ListServiceActionsOutput, error)
+	ListServiceActionsWithContext(aws.Context, *servicecatalog.ListServiceActionsInput, ...request.Option) (*servicecatalog.ListServiceActionsOutput, error)
+	ListServiceActionsRequest(*servicecatalog.ListServiceActionsInput) (*request.Request, *servicecatalog.ListServiceActionsOutput)
+
+	ListServiceActionsPages(*servicecatalog.ListServiceActionsInput, func(*servicecatalog.ListServiceActionsOutput, bool) bool) error
+	ListServiceActionsPagesWithContext(aws.Context, *servicecatalog.ListServiceActionsInput, func(*servicecatalog.ListServiceActionsOutput, bool) bool, ...request.Option) error
+
+	ListServiceActionsForProvisioningArtifact(*servicecatalog.ListServiceActionsForProvisioningArtifactInput) (*servicecatalog.ListServiceActionsForProvisioningArtifactOutput, error)
+	ListServiceActionsForProvisioningArtifactWithContext(aws.Context, *servicecatalog.ListServiceActionsForProvisioningArtifactInput, ...request.Option) (*servicecatalog.ListServiceActionsForProvisioningArtifactOutput, error)
+	ListServiceActionsForProvisioningArtifactRequest(*servicecatalog.ListServiceActionsForProvisioningArtifactInput) (*request.Request, *servicecatalog.ListServiceActionsForProvisioningArtifactOutput)
+
+	ListServiceActionsForProvisioningArtifactPages(*servicecatalog.ListServiceActionsForProvisioningArtifactInput, func(*servicecatalog.ListServiceActionsForProvisioningArtifactOutput, bool) bool) error
+	ListServiceActionsForProvisioningArtifactPagesWithContext(aws.Context, *servicecatalog.ListServiceActionsForProvisioningArtifactInput, func(*servicecatalog.ListServiceActionsForProvisioningArtifactOutput, bool) bool, ...request.Option) error
 
 	ListTagOptions(*servicecatalog.ListTagOptionsInput) (*servicecatalog.ListTagOptionsOutput, error)
 	ListTagOptionsWithContext(aws.Context, *servicecatalog.ListTagOptionsInput, ...request.Option) (*servicecatalog.ListTagOptionsOutput, error)
@@ -328,6 +381,10 @@ type ServiceCatalogAPI interface {
 	UpdateProvisioningArtifact(*servicecatalog.UpdateProvisioningArtifactInput) (*servicecatalog.UpdateProvisioningArtifactOutput, error)
 	UpdateProvisioningArtifactWithContext(aws.Context, *servicecatalog.UpdateProvisioningArtifactInput, ...request.Option) (*servicecatalog.UpdateProvisioningArtifactOutput, error)
 	UpdateProvisioningArtifactRequest(*servicecatalog.UpdateProvisioningArtifactInput) (*request.Request, *servicecatalog.UpdateProvisioningArtifactOutput)
+
+	UpdateServiceAction(*servicecatalog.UpdateServiceActionInput) (*servicecatalog.UpdateServiceActionOutput, error)
+	UpdateServiceActionWithContext(aws.Context, *servicecatalog.UpdateServiceActionInput, ...request.Option) (*servicecatalog.UpdateServiceActionOutput, error)
+	UpdateServiceActionRequest(*servicecatalog.UpdateServiceActionInput) (*request.Request, *servicecatalog.UpdateServiceActionOutput)
 
 	UpdateTagOption(*servicecatalog.UpdateTagOptionInput) (*servicecatalog.UpdateTagOptionOutput, error)
 	UpdateTagOptionWithContext(aws.Context, *servicecatalog.UpdateTagOptionInput, ...request.Option) (*servicecatalog.UpdateTagOptionOutput, error)

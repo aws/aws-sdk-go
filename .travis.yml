@@ -28,6 +28,9 @@ matrix:
           go: 1.10.x
         - os: linux
           sudo: required
+          go: 1.11.x
+        - os: linux
+          sudo: required
           go: tip
         - os: osx
           go: 1.7.x
@@ -37,6 +40,8 @@ matrix:
           go: 1.9.x
         - os: osx
           go: 1.10.x
+        - os: osx
+          go: 1.11.x
         - os: osx
           go: tip
 

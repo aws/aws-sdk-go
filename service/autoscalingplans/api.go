@@ -16,7 +16,7 @@ const opCreateScalingPlan = "CreateScalingPlan"
 // CreateScalingPlanRequest generates a "aws/request.Request" representing the
 // client's request for the CreateScalingPlan operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -111,7 +111,7 @@ const opDeleteScalingPlan = "DeleteScalingPlan"
 // DeleteScalingPlanRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteScalingPlan operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -200,7 +200,7 @@ const opDescribeScalingPlanResources = "DescribeScalingPlanResources"
 // DescribeScalingPlanResourcesRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeScalingPlanResources operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -289,7 +289,7 @@ const opDescribeScalingPlans = "DescribeScalingPlans"
 // DescribeScalingPlansRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeScalingPlans operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -378,7 +378,7 @@ const opUpdateScalingPlan = "UpdateScalingPlan"
 // UpdateScalingPlanRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateScalingPlan operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.

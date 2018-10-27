@@ -80,9 +80,23 @@ type ConnectAPI interface {
 	DescribeUserHierarchyStructureWithContext(aws.Context, *connect.DescribeUserHierarchyStructureInput, ...request.Option) (*connect.DescribeUserHierarchyStructureOutput, error)
 	DescribeUserHierarchyStructureRequest(*connect.DescribeUserHierarchyStructureInput) (*request.Request, *connect.DescribeUserHierarchyStructureOutput)
 
+	GetCurrentMetricData(*connect.GetCurrentMetricDataInput) (*connect.GetCurrentMetricDataOutput, error)
+	GetCurrentMetricDataWithContext(aws.Context, *connect.GetCurrentMetricDataInput, ...request.Option) (*connect.GetCurrentMetricDataOutput, error)
+	GetCurrentMetricDataRequest(*connect.GetCurrentMetricDataInput) (*request.Request, *connect.GetCurrentMetricDataOutput)
+
+	GetCurrentMetricDataPages(*connect.GetCurrentMetricDataInput, func(*connect.GetCurrentMetricDataOutput, bool) bool) error
+	GetCurrentMetricDataPagesWithContext(aws.Context, *connect.GetCurrentMetricDataInput, func(*connect.GetCurrentMetricDataOutput, bool) bool, ...request.Option) error
+
 	GetFederationToken(*connect.GetFederationTokenInput) (*connect.GetFederationTokenOutput, error)
 	GetFederationTokenWithContext(aws.Context, *connect.GetFederationTokenInput, ...request.Option) (*connect.GetFederationTokenOutput, error)
 	GetFederationTokenRequest(*connect.GetFederationTokenInput) (*request.Request, *connect.GetFederationTokenOutput)
+
+	GetMetricData(*connect.GetMetricDataInput) (*connect.GetMetricDataOutput, error)
+	GetMetricDataWithContext(aws.Context, *connect.GetMetricDataInput, ...request.Option) (*connect.GetMetricDataOutput, error)
+	GetMetricDataRequest(*connect.GetMetricDataInput) (*request.Request, *connect.GetMetricDataOutput)
+
+	GetMetricDataPages(*connect.GetMetricDataInput, func(*connect.GetMetricDataOutput, bool) bool) error
+	GetMetricDataPagesWithContext(aws.Context, *connect.GetMetricDataInput, func(*connect.GetMetricDataOutput, bool) bool, ...request.Option) error
 
 	ListRoutingProfiles(*connect.ListRoutingProfilesInput) (*connect.ListRoutingProfilesOutput, error)
 	ListRoutingProfilesWithContext(aws.Context, *connect.ListRoutingProfilesInput, ...request.Option) (*connect.ListRoutingProfilesOutput, error)
@@ -107,6 +121,10 @@ type ConnectAPI interface {
 	StopContact(*connect.StopContactInput) (*connect.StopContactOutput, error)
 	StopContactWithContext(aws.Context, *connect.StopContactInput, ...request.Option) (*connect.StopContactOutput, error)
 	StopContactRequest(*connect.StopContactInput) (*request.Request, *connect.StopContactOutput)
+
+	UpdateContactAttributes(*connect.UpdateContactAttributesInput) (*connect.UpdateContactAttributesOutput, error)
+	UpdateContactAttributesWithContext(aws.Context, *connect.UpdateContactAttributesInput, ...request.Option) (*connect.UpdateContactAttributesOutput, error)
+	UpdateContactAttributesRequest(*connect.UpdateContactAttributesInput) (*request.Request, *connect.UpdateContactAttributesOutput)
 
 	UpdateUserHierarchy(*connect.UpdateUserHierarchyInput) (*connect.UpdateUserHierarchyOutput, error)
 	UpdateUserHierarchyWithContext(aws.Context, *connect.UpdateUserHierarchyInput, ...request.Option) (*connect.UpdateUserHierarchyOutput, error)

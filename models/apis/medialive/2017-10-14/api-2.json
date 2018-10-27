@@ -1386,7 +1386,7 @@
       "type": "structure",
       "members": {
         "Name": {
-          "shape": "__string",
+          "shape": "__stringMin1",
           "locationName": "name"
         },
         "SelectorSettings": {
@@ -1867,7 +1867,7 @@
           "locationName": "languageCode"
         },
         "Name": {
-          "shape": "__string",
+          "shape": "__stringMin1",
           "locationName": "name"
         },
         "SelectorSettings": {
@@ -3336,7 +3336,10 @@
           "shape": "__string",
           "locationName": "time"
         }
-      }
+      },
+      "required": [
+        "Time"
+      ]
     },
     "ForbiddenException": {
       "type": "structure",
@@ -3515,6 +3518,7 @@
       "type": "string",
       "enum": [
         "CBR",
+        "QVBR",
         "VBR"
       ]
     },
@@ -3638,6 +3642,10 @@
         "Profile": {
           "shape": "H264Profile",
           "locationName": "profile"
+        },
+        "QvbrQualityLevel": {
+          "shape": "__integerMin1Max10",
+          "locationName": "qvbrQualityLevel"
         },
         "RateControlMode": {
           "shape": "H264RateControlMode",
@@ -5697,8 +5705,15 @@
           "shape": "__string",
           "locationName": "requestId",
           "idempotencyToken": true
+        },
+        "Start": {
+          "shape": "__string",
+          "locationName": "start"
         }
-      }
+      },
+      "required": [
+        "Count"
+      ]
     },
     "PurchaseOfferingRequest": {
       "type": "structure",
@@ -5720,10 +5735,15 @@
           "shape": "__string",
           "locationName": "requestId",
           "idempotencyToken": true
+        },
+        "Start": {
+          "shape": "__string",
+          "locationName": "start"
         }
       },
       "required": [
-        "OfferingId"
+        "OfferingId",
+        "Count"
       ]
     },
     "PurchaseOfferingResponse": {
@@ -6600,7 +6620,6 @@
         }
       },
       "required": [
-        "KeyProviderServer",
         "StaticKeyValue"
       ]
     },
@@ -7279,6 +7298,11 @@
       "min": 1000,
       "max": 30000
     },
+    "__integerMin1Max10": {
+      "type": "integer",
+      "min": 1,
+      "max": 10
+    },
     "__integerMin1Max1000000": {
       "type": "integer",
       "min": 1,
@@ -7590,6 +7614,14 @@
       "type": "string",
       "min": 6,
       "max": 6
+    },
+    "__timestampIso8601": {
+      "type": "timestamp",
+      "timestampFormat": "iso8601"
+    },
+    "__timestampUnix": {
+      "type": "timestamp",
+      "timestampFormat": "unixTimestamp"
     }
   }
 }

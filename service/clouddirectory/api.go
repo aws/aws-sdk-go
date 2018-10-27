@@ -18,7 +18,7 @@ const opAddFacetToObject = "AddFacetToObject"
 // AddFacetToObjectRequest generates a "aws/request.Request" representing the
 // client's request for the AddFacetToObject operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -133,7 +133,7 @@ const opApplySchema = "ApplySchema"
 // ApplySchemaRequest generates a "aws/request.Request" representing the
 // client's request for the ApplySchema operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -250,7 +250,7 @@ const opAttachObject = "AttachObject"
 // AttachObjectRequest generates a "aws/request.Request" representing the
 // client's request for the AttachObject operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -382,7 +382,7 @@ const opAttachPolicy = "AttachPolicy"
 // AttachPolicyRequest generates a "aws/request.Request" representing the
 // client's request for the AttachPolicy operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -496,7 +496,7 @@ const opAttachToIndex = "AttachToIndex"
 // AttachToIndexRequest generates a "aws/request.Request" representing the
 // client's request for the AttachToIndex operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -622,7 +622,7 @@ const opAttachTypedLink = "AttachTypedLink"
 // AttachTypedLinkRequest generates a "aws/request.Request" representing the
 // client's request for the AttachTypedLink operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -746,7 +746,7 @@ const opBatchRead = "BatchRead"
 // BatchReadRequest generates a "aws/request.Request" representing the
 // client's request for the BatchRead operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -853,7 +853,7 @@ const opBatchWrite = "BatchWrite"
 // BatchWriteRequest generates a "aws/request.Request" representing the
 // client's request for the BatchWrite operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -964,7 +964,7 @@ const opCreateDirectory = "CreateDirectory"
 // CreateDirectoryRequest generates a "aws/request.Request" representing the
 // client's request for the CreateDirectory operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1076,7 +1076,7 @@ const opCreateFacet = "CreateFacet"
 // CreateFacetRequest generates a "aws/request.Request" representing the
 // client's request for the CreateFacet operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1194,7 +1194,7 @@ const opCreateIndex = "CreateIndex"
 // CreateIndexRequest generates a "aws/request.Request" representing the
 // client's request for the CreateIndex operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1316,7 +1316,7 @@ const opCreateObject = "CreateObject"
 // CreateObjectRequest generates a "aws/request.Request" representing the
 // client's request for the CreateObject operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1440,7 +1440,7 @@ const opCreateSchema = "CreateSchema"
 // CreateSchemaRequest generates a "aws/request.Request" representing the
 // client's request for the CreateSchema operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1563,7 +1563,7 @@ const opCreateTypedLinkFacet = "CreateTypedLinkFacet"
 // CreateTypedLinkFacetRequest generates a "aws/request.Request" representing the
 // client's request for the CreateTypedLinkFacet operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1680,7 +1680,7 @@ const opDeleteDirectory = "DeleteDirectory"
 // DeleteDirectoryRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteDirectory operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1795,7 +1795,7 @@ const opDeleteFacet = "DeleteFacet"
 // DeleteFacetRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteFacet operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1910,7 +1910,7 @@ const opDeleteObject = "DeleteObject"
 // DeleteObjectRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteObject operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2025,7 +2025,7 @@ const opDeleteSchema = "DeleteSchema"
 // DeleteSchemaRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteSchema operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2137,7 +2137,7 @@ const opDeleteTypedLinkFacet = "DeleteTypedLinkFacet"
 // DeleteTypedLinkFacetRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteTypedLinkFacet operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2247,7 +2247,7 @@ const opDetachFromIndex = "DetachFromIndex"
 // DetachFromIndexRequest generates a "aws/request.Request" representing the
 // client's request for the DetachFromIndex operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2363,7 +2363,7 @@ const opDetachObject = "DetachObject"
 // DetachObjectRequest generates a "aws/request.Request" representing the
 // client's request for the DetachObject operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2478,7 +2478,7 @@ const opDetachPolicy = "DetachPolicy"
 // DetachPolicyRequest generates a "aws/request.Request" representing the
 // client's request for the DetachPolicy operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2591,7 +2591,7 @@ const opDetachTypedLink = "DetachTypedLink"
 // DetachTypedLinkRequest generates a "aws/request.Request" representing the
 // client's request for the DetachTypedLink operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2708,7 +2708,7 @@ const opDisableDirectory = "DisableDirectory"
 // DisableDirectoryRequest generates a "aws/request.Request" representing the
 // client's request for the DisableDirectory operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2821,7 +2821,7 @@ const opEnableDirectory = "EnableDirectory"
 // EnableDirectoryRequest generates a "aws/request.Request" representing the
 // client's request for the EnableDirectory operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2933,7 +2933,7 @@ const opGetAppliedSchemaVersion = "GetAppliedSchemaVersion"
 // GetAppliedSchemaVersionRequest generates a "aws/request.Request" representing the
 // client's request for the GetAppliedSchemaVersion operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3041,7 +3041,7 @@ const opGetDirectory = "GetDirectory"
 // GetDirectoryRequest generates a "aws/request.Request" representing the
 // client's request for the GetDirectory operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3145,7 +3145,7 @@ const opGetFacet = "GetFacet"
 // GetFacetRequest generates a "aws/request.Request" representing the
 // client's request for the GetFacet operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3257,7 +3257,7 @@ const opGetLinkAttributes = "GetLinkAttributes"
 // GetLinkAttributesRequest generates a "aws/request.Request" representing the
 // client's request for the GetLinkAttributes operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3371,7 +3371,7 @@ const opGetObjectAttributes = "GetObjectAttributes"
 // GetObjectAttributesRequest generates a "aws/request.Request" representing the
 // client's request for the GetObjectAttributes operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3485,7 +3485,7 @@ const opGetObjectInformation = "GetObjectInformation"
 // GetObjectInformationRequest generates a "aws/request.Request" representing the
 // client's request for the GetObjectInformation operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3595,7 +3595,7 @@ const opGetSchemaAsJson = "GetSchemaAsJson"
 // GetSchemaAsJsonRequest generates a "aws/request.Request" representing the
 // client's request for the GetSchemaAsJson operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3707,7 +3707,7 @@ const opGetTypedLinkFacetInformation = "GetTypedLinkFacetInformation"
 // GetTypedLinkFacetInformationRequest generates a "aws/request.Request" representing the
 // client's request for the GetTypedLinkFacetInformation operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3821,7 +3821,7 @@ const opListAppliedSchemaArns = "ListAppliedSchemaArns"
 // ListAppliedSchemaArnsRequest generates a "aws/request.Request" representing the
 // client's request for the ListAppliedSchemaArns operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3988,7 +3988,7 @@ const opListAttachedIndices = "ListAttachedIndices"
 // ListAttachedIndicesRequest generates a "aws/request.Request" representing the
 // client's request for the ListAttachedIndices operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -4154,7 +4154,7 @@ const opListDevelopmentSchemaArns = "ListDevelopmentSchemaArns"
 // ListDevelopmentSchemaArnsRequest generates a "aws/request.Request" representing the
 // client's request for the ListDevelopmentSchemaArns operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -4320,7 +4320,7 @@ const opListDirectories = "ListDirectories"
 // ListDirectoriesRequest generates a "aws/request.Request" representing the
 // client's request for the ListDirectories operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -4483,7 +4483,7 @@ const opListFacetAttributes = "ListFacetAttributes"
 // ListFacetAttributesRequest generates a "aws/request.Request" representing the
 // client's request for the ListFacetAttributes operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -4652,7 +4652,7 @@ const opListFacetNames = "ListFacetNames"
 // ListFacetNamesRequest generates a "aws/request.Request" representing the
 // client's request for the ListFacetNames operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -4818,7 +4818,7 @@ const opListIncomingTypedLinks = "ListIncomingTypedLinks"
 // ListIncomingTypedLinksRequest generates a "aws/request.Request" representing the
 // client's request for the ListIncomingTypedLinks operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -4937,7 +4937,7 @@ const opListIndex = "ListIndex"
 // ListIndexRequest generates a "aws/request.Request" representing the
 // client's request for the ListIndex operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -5113,7 +5113,7 @@ const opListManagedSchemaArns = "ListManagedSchemaArns"
 // ListManagedSchemaArnsRequest generates a "aws/request.Request" representing the
 // client's request for the ListManagedSchemaArns operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -5269,7 +5269,7 @@ const opListObjectAttributes = "ListObjectAttributes"
 // ListObjectAttributesRequest generates a "aws/request.Request" representing the
 // client's request for the ListObjectAttributes operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -5442,7 +5442,7 @@ const opListObjectChildren = "ListObjectChildren"
 // ListObjectChildrenRequest generates a "aws/request.Request" representing the
 // client's request for the ListObjectChildren operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -5616,7 +5616,7 @@ const opListObjectParentPaths = "ListObjectParentPaths"
 // ListObjectParentPathsRequest generates a "aws/request.Request" representing the
 // client's request for the ListObjectParentPaths operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -5795,7 +5795,7 @@ const opListObjectParents = "ListObjectParents"
 // ListObjectParentsRequest generates a "aws/request.Request" representing the
 // client's request for the ListObjectParents operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -5968,7 +5968,7 @@ const opListObjectPolicies = "ListObjectPolicies"
 // ListObjectPoliciesRequest generates a "aws/request.Request" representing the
 // client's request for the ListObjectPolicies operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -6137,7 +6137,7 @@ const opListOutgoingTypedLinks = "ListOutgoingTypedLinks"
 // ListOutgoingTypedLinksRequest generates a "aws/request.Request" representing the
 // client's request for the ListOutgoingTypedLinks operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -6256,7 +6256,7 @@ const opListPolicyAttachments = "ListPolicyAttachments"
 // ListPolicyAttachmentsRequest generates a "aws/request.Request" representing the
 // client's request for the ListPolicyAttachments operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -6428,7 +6428,7 @@ const opListPublishedSchemaArns = "ListPublishedSchemaArns"
 // ListPublishedSchemaArnsRequest generates a "aws/request.Request" representing the
 // client's request for the ListPublishedSchemaArns operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -6596,7 +6596,7 @@ const opListTagsForResource = "ListTagsForResource"
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
 // client's request for the ListTagsForResource operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -6766,7 +6766,7 @@ const opListTypedLinkFacetAttributes = "ListTypedLinkFacetAttributes"
 // ListTypedLinkFacetAttributesRequest generates a "aws/request.Request" representing the
 // client's request for the ListTypedLinkFacetAttributes operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -6936,7 +6936,7 @@ const opListTypedLinkFacetNames = "ListTypedLinkFacetNames"
 // ListTypedLinkFacetNamesRequest generates a "aws/request.Request" representing the
 // client's request for the ListTypedLinkFacetNames operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -7103,7 +7103,7 @@ const opLookupPolicy = "LookupPolicy"
 // LookupPolicyRequest generates a "aws/request.Request" representing the
 // client's request for the LookupPolicy operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -7278,7 +7278,7 @@ const opPublishSchema = "PublishSchema"
 // PublishSchemaRequest generates a "aws/request.Request" representing the
 // client's request for the PublishSchema operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -7389,7 +7389,7 @@ const opPutSchemaFromJson = "PutSchemaFromJson"
 // PutSchemaFromJsonRequest generates a "aws/request.Request" representing the
 // client's request for the PutSchemaFromJson operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -7501,7 +7501,7 @@ const opRemoveFacetFromObject = "RemoveFacetFromObject"
 // RemoveFacetFromObjectRequest generates a "aws/request.Request" representing the
 // client's request for the RemoveFacetFromObject operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -7615,7 +7615,7 @@ const opTagResource = "TagResource"
 // TagResourceRequest generates a "aws/request.Request" representing the
 // client's request for the TagResource operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -7727,7 +7727,7 @@ const opUntagResource = "UntagResource"
 // UntagResourceRequest generates a "aws/request.Request" representing the
 // client's request for the UntagResource operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -7839,7 +7839,7 @@ const opUpdateFacet = "UpdateFacet"
 // UpdateFacetRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateFacet operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -7965,7 +7965,7 @@ const opUpdateLinkAttributes = "UpdateLinkAttributes"
 // UpdateLinkAttributesRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateLinkAttributes operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -8080,7 +8080,7 @@ const opUpdateObjectAttributes = "UpdateObjectAttributes"
 // UpdateObjectAttributesRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateObjectAttributes operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -8198,7 +8198,7 @@ const opUpdateSchema = "UpdateSchema"
 // UpdateSchemaRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateSchema operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -8306,7 +8306,7 @@ const opUpdateTypedLinkFacet = "UpdateTypedLinkFacet"
 // UpdateTypedLinkFacetRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateTypedLinkFacet operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -8426,7 +8426,7 @@ const opUpgradeAppliedSchema = "UpgradeAppliedSchema"
 // UpgradeAppliedSchemaRequest generates a "aws/request.Request" representing the
 // client's request for the UpgradeAppliedSchema operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -8548,7 +8548,7 @@ const opUpgradePublishedSchema = "UpgradePublishedSchema"
 // UpgradePublishedSchemaRequest generates a "aws/request.Request" representing the
 // client's request for the UpgradePublishedSchema operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.

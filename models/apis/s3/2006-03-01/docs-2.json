@@ -68,7 +68,7 @@
     "PutBucketNotification": "<p>Deprecated, see the PutBucketNotificationConfiguraiton operation.</p>",
     "PutBucketNotificationConfiguration": "<p>Enables notifications of specified events for a bucket.</p>",
     "PutBucketPolicy": "<p>Replaces a policy on a bucket. If the bucket already has a policy, the one in this request completely replaces it.</p>",
-    "PutBucketReplication": "<p>Creates a new replication configuration (or replaces an existing one, if present).</p>",
+    "PutBucketReplication": "<p> Creates a new replication configuration (or replaces an existing one, if present). For more information, see <a href=\" https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html\">Cross-Region Replication (CRR)</a> in the Amazon S3 Developer Guide. </p>",
     "PutBucketRequestPayment": "<p>Sets the request payment configuration for a bucket. By default, the bucket owner pays for downloads from the bucket. This configuration parameter enables the bucket owner (only) to specify that the person requesting the download will be charged for the download. Documentation on requester pays buckets can be found at http://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html</p>",
     "PutBucketTagging": "<p>Sets the tags for a bucket.</p>",
     "PutBucketVersioning": "<p>Sets the versioning state of an existing bucket. To set the versioning state, you must be the bucket owner.</p>",
@@ -136,14 +136,14 @@
     "AccessControlTranslation": {
       "base": "<p>Container for information regarding the access control for replicas.</p>",
       "refs": {
-        "Destination$AccessControlTranslation": "<p>Container for information regarding the access control for replicas.</p>"
+        "Destination$AccessControlTranslation": "<p> Container for information regarding the access control for replicas. </p> <p> Use only in a cross-account scenario, where source and destination bucket owners are not the same, when you want to change replica ownership to the AWS account that owns the destination bucket. If you don't add this element to the replication configuration, the replicas are owned by same AWS account that owns the source object. </p>"
       }
     },
     "AccountId": {
       "base": null,
       "refs": {
         "AnalyticsS3BucketDestination$BucketAccountId": "<p>The account ID that owns the destination bucket. If no account ID is provided, the owner will not be validated prior to exporting data.</p>",
-        "Destination$Account": "<p>Account ID of the destination bucket. Currently this is only being verified if Access Control Translation is enabled</p>",
+        "Destination$Account": "<p> Account ID of the destination bucket. Currently Amazon S3 verifies this value only if Access Control Translation is enabled. </p> <p> In a cross-account scenario, if you tell Amazon S3 to change replica ownership to the AWS account that owns the destination bucket by adding the <code>AccessControlTranslation</code> element, this is the account ID of the destination bucket owner. </p>",
         "InventoryS3BucketDestination$AccountId": "<p>The ID of the account that owns the destination bucket.</p>"
       }
     },
@@ -326,14 +326,14 @@
         "DeleteBucketLifecycleRequest$Bucket": null,
         "DeleteBucketMetricsConfigurationRequest$Bucket": "<p>The name of the bucket containing the metrics configuration to delete.</p>",
         "DeleteBucketPolicyRequest$Bucket": null,
-        "DeleteBucketReplicationRequest$Bucket": null,
+        "DeleteBucketReplicationRequest$Bucket": "<p>Deletes the replication subresource associated with the specified bucket.</p> <note> <p>There is usually some time lag before replication configuration deletion is fully propagated to all the Amazon S3 systems.</p> </note> <p> For more information, see <a href=\" https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html\">Cross-Region Replication (CRR)</a> in the Amazon S3 Developer Guide. </p>",
         "DeleteBucketRequest$Bucket": null,
         "DeleteBucketTaggingRequest$Bucket": null,
         "DeleteBucketWebsiteRequest$Bucket": null,
         "DeleteObjectRequest$Bucket": null,
         "DeleteObjectTaggingRequest$Bucket": null,
         "DeleteObjectsRequest$Bucket": null,
-        "Destination$Bucket": "<p>Amazon resource name (ARN) of the bucket where you want Amazon S3 to store replicas of the object identified by the rule.</p>",
+        "Destination$Bucket": "<p> Amazon resource name (ARN) of the bucket where you want Amazon S3 to store replicas of the object identified by the rule. </p> <p> If you have multiple rules in your replication configuration, all rules must specify the same bucket as the destination. A replication configuration can replicate objects only to one destination bucket. </p>",
         "GetBucketAccelerateConfigurationRequest$Bucket": "<p>Name of the bucket for which the accelerate configuration is retrieved.</p>",
         "GetBucketAclRequest$Bucket": null,
         "GetBucketAnalyticsConfigurationRequest$Bucket": "<p>The name of the bucket from which an analytics configuration is retrieved.</p>",
@@ -870,6 +870,18 @@
         "DeleteMarkers$member": null
       }
     },
+    "DeleteMarkerReplication": {
+      "base": "<p>Specifies whether Amazon S3 should replicate delete makers.</p>",
+      "refs": {
+        "ReplicationRule$DeleteMarkerReplication": null
+      }
+    },
+    "DeleteMarkerReplicationStatus": {
+      "base": null,
+      "refs": {
+        "DeleteMarkerReplication$Status": "<p>The status of the delete marker replication.</p> <note> <p> In the current implementation, Amazon S3 does not replicate the delete markers. Therefore, the status must be <code>Disabled</code>. </p> </note>"
+      }
+    },
     "DeleteMarkerVersionId": {
       "base": null,
       "refs": {
@@ -1007,7 +1019,7 @@
     "EncryptionConfiguration": {
       "base": "<p>Container for information regarding encryption based configuration for replicas.</p>",
       "refs": {
-        "Destination$EncryptionConfiguration": "<p>Container for information regarding encryption based configuration for replicas.</p>"
+        "Destination$EncryptionConfiguration": "<p> Container that provides encryption-related information. You must specify this element if the <code>SourceSelectionCriteria</code> is specified. </p>"
       }
     },
     "EndEvent": {
@@ -2404,8 +2416,16 @@
         "ListObjectsV2Request$Prefix": "<p>Limits the response to keys that begin with the specified prefix.</p>",
         "MetricsAndOperator$Prefix": "<p>The prefix used when evaluating an AND predicate.</p>",
         "MetricsFilter$Prefix": "<p>The prefix used when evaluating a metrics filter.</p>",
-        "ReplicationRule$Prefix": "<p>Object keyname prefix identifying one or more objects to which the rule applies. Maximum prefix length can be up to 1,024 characters. Overlapping prefixes are not supported.</p>",
+        "ReplicationRule$Prefix": "<p>Object keyname prefix identifying one or more objects to which the rule applies. Maximum prefix length can be up to 1,024 characters. </p>",
+        "ReplicationRuleAndOperator$Prefix": null,
+        "ReplicationRuleFilter$Prefix": "<p>Object keyname prefix that identifies subset of objects to which the rule applies.</p>",
         "Rule$Prefix": "<p>Prefix identifying one or more objects to which the rule applies.</p>"
+      }
+    },
+    "Priority": {
+      "base": null,
+      "refs": {
+        "ReplicationRule$Priority": "<p>The priority associated with the rule. If you specify multiple rules in a replication configuration, then Amazon S3 applies rule priority in the event there are conflicts (two or more rules identify the same object based on filter specified). The rule with higher priority takes precedence. For example,</p> <ul> <li> <p>Same object quality prefix based filter criteria If prefixes you specified in multiple rules overlap. </p> </li> <li> <p>Same object qualify tag based filter criteria specified in multiple rules</p> </li> </ul> <p>For more information, see <a href=\" https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html\">Cross-Region Replication (CRR)</a> in the Amazon S3 Developer Guide.</p>"
       }
     },
     "Progress": {
@@ -2647,7 +2667,7 @@
     "ReplicaKmsKeyID": {
       "base": null,
       "refs": {
-        "EncryptionConfiguration$ReplicaKmsKeyID": "<p>The id of the KMS key used to encrypt the replica object.</p>"
+        "EncryptionConfiguration$ReplicaKmsKeyID": "<p> The ID of the AWS KMS key for the region where the destination bucket resides. Amazon S3 uses this key to encrypt the replica object. </p>"
       }
     },
     "ReplicationConfiguration": {
@@ -2663,6 +2683,18 @@
         "ReplicationRules$member": null
       }
     },
+    "ReplicationRuleAndOperator": {
+      "base": null,
+      "refs": {
+        "ReplicationRuleFilter$And": "<p>Container for specifying rule filters. These filters determine the subset of objects to which the rule applies. The element is required only if you specify more than one filter. For example: </p> <ul> <li> <p>You specify both a <code>Prefix</code> and a <code>Tag</code> filters. Then you wrap these in an <code>And</code> tag.</p> </li> <li> <p>You specify filter based on multiple tags. Then you wrap the <code>Tag</code> elements in an <code>And</code> tag.</p> </li> </ul>"
+      }
+    },
+    "ReplicationRuleFilter": {
+      "base": "<p>Filter that identifies subset of objects to which the replication rule applies. A <code>Filter</code> must specify exactly one <code>Prefix</code>, <code>Tag</code>, or an <code>And</code> child element.</p>",
+      "refs": {
+        "ReplicationRule$Filter": null
+      }
+    },
     "ReplicationRuleStatus": {
       "base": null,
       "refs": {
@@ -2672,7 +2704,7 @@
     "ReplicationRules": {
       "base": null,
       "refs": {
-        "ReplicationConfiguration$Rules": "<p>Container for information about a particular replication rule. Replication configuration must have at least one rule and can contain up to 1,000 rules.</p>"
+        "ReplicationConfiguration$Rules": "<p>Container for one or more replication rules. Replication configuration must have at least one rule and can contain up to 1,000 rules. </p>"
       }
     },
     "ReplicationStatus": {
@@ -3013,13 +3045,13 @@
     "SourceSelectionCriteria": {
       "base": "<p>Container for filters that define which source objects should be replicated.</p>",
       "refs": {
-        "ReplicationRule$SourceSelectionCriteria": "<p>Container for filters that define which source objects should be replicated.</p>"
+        "ReplicationRule$SourceSelectionCriteria": "<p> Container that describes additional filters in identifying source objects that you want to replicate. Currently, Amazon S3 supports only the filter that you can specify for objects created with server-side encryption using an AWS KMS-managed key. You can choose to enable or disable replication of these objects. </p> <p> if you want Amazon S3 to replicate objects created with server-side encryption using AWS KMS-managed keys. </p>"
       }
     },
     "SseKmsEncryptedObjects": {
       "base": "<p>Container for filter information of selection of KMS Encrypted S3 objects.</p>",
       "refs": {
-        "SourceSelectionCriteria$SseKmsEncryptedObjects": "<p>Container for filter information of selection of KMS Encrypted S3 objects.</p>"
+        "SourceSelectionCriteria$SseKmsEncryptedObjects": "<p> Container for filter information of selection of KMS Encrypted S3 objects. The element is required if you include <code>SourceSelectionCriteria</code> in the replication configuration. </p>"
       }
     },
     "SseKmsEncryptedObjectsStatus": {
@@ -3091,6 +3123,7 @@
         "AnalyticsFilter$Tag": "<p>The tag to use when evaluating an analytics filter.</p>",
         "LifecycleRuleFilter$Tag": "<p>This tag must exist in the object's tag set in order for the rule to apply.</p>",
         "MetricsFilter$Tag": "<p>The tag used when evaluating a metrics filter.</p>",
+        "ReplicationRuleFilter$Tag": "<p>Container for specifying a tag key and value. </p> <p>The rule applies only to objects having the tag in its tagset.</p>",
         "TagSet$member": null
       }
     },
@@ -3108,6 +3141,7 @@
         "GetObjectTaggingOutput$TagSet": null,
         "LifecycleRuleAndOperator$Tags": "<p>All of these tags must exist in the object's tag set in order for the rule to apply.</p>",
         "MetricsAndOperator$Tags": "<p>The list of tags used when evaluating an AND predicate.</p>",
+        "ReplicationRuleAndOperator$Tags": null,
         "Tagging$TagSet": null
       }
     },

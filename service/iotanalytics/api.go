@@ -18,7 +18,7 @@ const opBatchPutMessage = "BatchPutMessage"
 // BatchPutMessageRequest generates a "aws/request.Request" representing the
 // client's request for the BatchPutMessage operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -109,7 +109,7 @@ const opCancelPipelineReprocessing = "CancelPipelineReprocessing"
 // CancelPipelineReprocessingRequest generates a "aws/request.Request" representing the
 // client's request for the CancelPipelineReprocessing operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -200,7 +200,7 @@ const opCreateChannel = "CreateChannel"
 // CreateChannelRequest generates a "aws/request.Request" representing the
 // client's request for the CreateChannel operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -295,7 +295,7 @@ const opCreateDataset = "CreateDataset"
 // CreateDatasetRequest generates a "aws/request.Request" representing the
 // client's request for the CreateDataset operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -393,7 +393,7 @@ const opCreateDatasetContent = "CreateDatasetContent"
 // CreateDatasetContentRequest generates a "aws/request.Request" representing the
 // client's request for the CreateDatasetContent operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -484,7 +484,7 @@ const opCreateDatastore = "CreateDatastore"
 // CreateDatastoreRequest generates a "aws/request.Request" representing the
 // client's request for the CreateDatastore operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -578,7 +578,7 @@ const opCreatePipeline = "CreatePipeline"
 // CreatePipelineRequest generates a "aws/request.Request" representing the
 // client's request for the CreatePipeline operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -673,7 +673,7 @@ const opDeleteChannel = "DeleteChannel"
 // DeleteChannelRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteChannel operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -766,7 +766,7 @@ const opDeleteDataset = "DeleteDataset"
 // DeleteDatasetRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteDataset operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -862,7 +862,7 @@ const opDeleteDatasetContent = "DeleteDatasetContent"
 // DeleteDatasetContentRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteDatasetContent operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -955,7 +955,7 @@ const opDeleteDatastore = "DeleteDatastore"
 // DeleteDatastoreRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteDatastore operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1048,7 +1048,7 @@ const opDeletePipeline = "DeletePipeline"
 // DeletePipelineRequest generates a "aws/request.Request" representing the
 // client's request for the DeletePipeline operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1141,7 +1141,7 @@ const opDescribeChannel = "DescribeChannel"
 // DescribeChannelRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeChannel operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1232,7 +1232,7 @@ const opDescribeDataset = "DescribeDataset"
 // DescribeDatasetRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeDataset operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1323,7 +1323,7 @@ const opDescribeDatastore = "DescribeDatastore"
 // DescribeDatastoreRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeDatastore operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1414,7 +1414,7 @@ const opDescribeLoggingOptions = "DescribeLoggingOptions"
 // DescribeLoggingOptionsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeLoggingOptions operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1505,7 +1505,7 @@ const opDescribePipeline = "DescribePipeline"
 // DescribePipelineRequest generates a "aws/request.Request" representing the
 // client's request for the DescribePipeline operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1596,7 +1596,7 @@ const opGetDatasetContent = "GetDatasetContent"
 // GetDatasetContentRequest generates a "aws/request.Request" representing the
 // client's request for the GetDatasetContent operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1687,7 +1687,7 @@ const opListChannels = "ListChannels"
 // ListChannelsRequest generates a "aws/request.Request" representing the
 // client's request for the ListChannels operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1831,7 +1831,7 @@ const opListDatasetContents = "ListDatasetContents"
 // ListDatasetContentsRequest generates a "aws/request.Request" representing the
 // client's request for the ListDatasetContents operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1978,7 +1978,7 @@ const opListDatasets = "ListDatasets"
 // ListDatasetsRequest generates a "aws/request.Request" representing the
 // client's request for the ListDatasets operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2122,7 +2122,7 @@ const opListDatastores = "ListDatastores"
 // ListDatastoresRequest generates a "aws/request.Request" representing the
 // client's request for the ListDatastores operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2266,7 +2266,7 @@ const opListPipelines = "ListPipelines"
 // ListPipelinesRequest generates a "aws/request.Request" representing the
 // client's request for the ListPipelines operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2410,7 +2410,7 @@ const opListTagsForResource = "ListTagsForResource"
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
 // client's request for the ListTagsForResource operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2504,7 +2504,7 @@ const opPutLoggingOptions = "PutLoggingOptions"
 // PutLoggingOptionsRequest generates a "aws/request.Request" representing the
 // client's request for the PutLoggingOptions operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2600,7 +2600,7 @@ const opRunPipelineActivity = "RunPipelineActivity"
 // RunPipelineActivityRequest generates a "aws/request.Request" representing the
 // client's request for the RunPipelineActivity operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2688,7 +2688,7 @@ const opSampleChannelData = "SampleChannelData"
 // SampleChannelDataRequest generates a "aws/request.Request" representing the
 // client's request for the SampleChannelData operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2780,7 +2780,7 @@ const opStartPipelineReprocessing = "StartPipelineReprocessing"
 // StartPipelineReprocessingRequest generates a "aws/request.Request" representing the
 // client's request for the StartPipelineReprocessing operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2874,7 +2874,7 @@ const opTagResource = "TagResource"
 // TagResourceRequest generates a "aws/request.Request" representing the
 // client's request for the TagResource operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -2969,7 +2969,7 @@ const opUntagResource = "UntagResource"
 // UntagResourceRequest generates a "aws/request.Request" representing the
 // client's request for the UntagResource operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3063,7 +3063,7 @@ const opUpdateChannel = "UpdateChannel"
 // UpdateChannelRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateChannel operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3156,7 +3156,7 @@ const opUpdateDataset = "UpdateDataset"
 // UpdateDatasetRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateDataset operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3249,7 +3249,7 @@ const opUpdateDatastore = "UpdateDatastore"
 // UpdateDatastoreRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateDatastore operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -3342,7 +3342,7 @@ const opUpdatePipeline = "UpdatePipeline"
 // UpdatePipelineRequest generates a "aws/request.Request" representing the
 // client's request for the UpdatePipeline operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
