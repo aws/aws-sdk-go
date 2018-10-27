@@ -58,7 +58,7 @@ func (a *API) resolveReferences() {
 		// Resolve references for errors also
 		for i := range o.ErrorRefs {
 			resolver.resolveReference(&o.ErrorRefs[i])
-			o.ErrorRefs[i].Shape.IsError = true
+			o.ErrorRefs[i].Shape.Exception = true
 			o.ErrorRefs[i].Shape.ErrorInfo.Type = o.ErrorRefs[i].Shape.ShapeName
 		}
 	}

@@ -104,7 +104,6 @@ type Shape struct {
 	Validations ShapeValidations
 
 	// Error information that is set if the shape is an error shape.
-	IsError   bool
 	ErrorInfo ErrorInfo `json:"error"`
 
 	// Flags that the shape cannot be rename. Prevents the shape from being
@@ -144,6 +143,13 @@ func (s *Shape) ErrorName() string {
 		if len(s.ErrorInfo.Code) > 0 {
 			name = s.ErrorInfo.Code
 		}
+	}
+
+	if len(name) == 0 {
+		name = s.OrigShapeName
+	}
+	if len(name) == 0 {
+		name = s.ShapeName
 	}
 
 	return name
