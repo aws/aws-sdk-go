@@ -229,7 +229,8 @@ func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile) e
 	}
 
 	// Endpoint discovery
-	if v, err := section.Key(enableEndpointDiscoveryKey).Bool(); err == nil && v {
+	if section.Has(enableEndpointDiscoveryKey) {
+		v := section.Bool(enableEndpointDiscoveryKey)
 		cfg.EnableEndpointDiscovery = &v
 	}
 

@@ -17,7 +17,7 @@ const opDescribeEndpoints = "DescribeEndpoints"
 // DescribeEndpointsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeEndpoints operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -153,7 +153,7 @@ const opTestDiscoveryIdentifiersRequired = "TestDiscoveryIdentifiersRequired"
 // TestDiscoveryIdentifiersRequiredRequest generates a "aws/request.Request" representing the
 // client's request for the TestDiscoveryIdentifiersRequired operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -254,7 +254,7 @@ const opTestDiscoveryOptional = "TestDiscoveryOptional"
 // TestDiscoveryOptionalRequest generates a "aws/request.Request" representing the
 // client's request for the TestDiscoveryOptional operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -356,7 +356,7 @@ const opTestDiscoveryRequired = "TestDiscoveryRequired"
 // TestDiscoveryRequiredRequest generates a "aws/request.Request" representing the
 // client's request for the TestDiscoveryRequired operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
