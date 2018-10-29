@@ -76,10 +76,6 @@ func (c *DynamoDB) BatchGetItemRequest(input *BatchGetItemInput) (req *request.R
 			}
 		}
 
-		de.ParamProvider = paramProviderBatchGetItem{
-			Params: de.Params,
-		}
-
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
 			Name: "crr.endpointdiscovery",
 			Fn:   de.Handler,
@@ -235,14 +231,6 @@ func (c *DynamoDB) BatchGetItemPagesWithContext(ctx aws.Context, input *BatchGet
 	return p.Err()
 }
 
-type paramProviderBatchGetItem struct {
-	Params map[string]*string
-}
-
-func (a paramProviderBatchGetItem) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
-}
-
 const opBatchWriteItem = "BatchWriteItem"
 
 // BatchWriteItemRequest generates a "aws/request.Request" representing the
@@ -296,10 +284,6 @@ func (c *DynamoDB) BatchWriteItemRequest(input *BatchWriteItemInput) (req *reque
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderBatchWriteItem{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -434,14 +418,6 @@ func (c *DynamoDB) BatchWriteItemWithContext(ctx aws.Context, input *BatchWriteI
 	return out, req.Send()
 }
 
-type paramProviderBatchWriteItem struct {
-	Params map[string]*string
-}
-
-func (a paramProviderBatchWriteItem) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
-}
-
 const opCreateBackup = "CreateBackup"
 
 // CreateBackupRequest generates a "aws/request.Request" representing the
@@ -495,10 +471,6 @@ func (c *DynamoDB) CreateBackupRequest(input *CreateBackupInput) (req *request.R
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderCreateBackup{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -602,14 +574,6 @@ func (c *DynamoDB) CreateBackupWithContext(ctx aws.Context, input *CreateBackupI
 	return out, req.Send()
 }
 
-type paramProviderCreateBackup struct {
-	Params map[string]*string
-}
-
-func (a paramProviderCreateBackup) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
-}
-
 const opCreateGlobalTable = "CreateGlobalTable"
 
 // CreateGlobalTableRequest generates a "aws/request.Request" representing the
@@ -663,10 +627,6 @@ func (c *DynamoDB) CreateGlobalTableRequest(input *CreateGlobalTableInput) (req 
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderCreateGlobalTable{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -766,14 +726,6 @@ func (c *DynamoDB) CreateGlobalTableWithContext(ctx aws.Context, input *CreateGl
 	return out, req.Send()
 }
 
-type paramProviderCreateGlobalTable struct {
-	Params map[string]*string
-}
-
-func (a paramProviderCreateGlobalTable) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
-}
-
 const opCreateTable = "CreateTable"
 
 // CreateTableRequest generates a "aws/request.Request" representing the
@@ -827,10 +779,6 @@ func (c *DynamoDB) CreateTableRequest(input *CreateTableInput) (req *request.Req
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderCreateTable{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -910,14 +858,6 @@ func (c *DynamoDB) CreateTableWithContext(ctx aws.Context, input *CreateTableInp
 	return out, req.Send()
 }
 
-type paramProviderCreateTable struct {
-	Params map[string]*string
-}
-
-func (a paramProviderCreateTable) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
-}
-
 const opDeleteBackup = "DeleteBackup"
 
 // DeleteBackupRequest generates a "aws/request.Request" representing the
@@ -971,10 +911,6 @@ func (c *DynamoDB) DeleteBackupRequest(input *DeleteBackupInput) (req *request.R
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderDeleteBackup{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -1044,14 +980,6 @@ func (c *DynamoDB) DeleteBackupWithContext(ctx aws.Context, input *DeleteBackupI
 	return out, req.Send()
 }
 
-type paramProviderDeleteBackup struct {
-	Params map[string]*string
-}
-
-func (a paramProviderDeleteBackup) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
-}
-
 const opDeleteItem = "DeleteItem"
 
 // DeleteItemRequest generates a "aws/request.Request" representing the
@@ -1105,10 +1033,6 @@ func (c *DynamoDB) DeleteItemRequest(input *DeleteItemInput) (req *request.Reque
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderDeleteItem{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -1188,14 +1112,6 @@ func (c *DynamoDB) DeleteItemWithContext(ctx aws.Context, input *DeleteItemInput
 	return out, req.Send()
 }
 
-type paramProviderDeleteItem struct {
-	Params map[string]*string
-}
-
-func (a paramProviderDeleteItem) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
-}
-
 const opDeleteTable = "DeleteTable"
 
 // DeleteTableRequest generates a "aws/request.Request" representing the
@@ -1249,10 +1165,6 @@ func (c *DynamoDB) DeleteTableRequest(input *DeleteTableInput) (req *request.Req
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderDeleteTable{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -1339,14 +1251,6 @@ func (c *DynamoDB) DeleteTableWithContext(ctx aws.Context, input *DeleteTableInp
 	return out, req.Send()
 }
 
-type paramProviderDeleteTable struct {
-	Params map[string]*string
-}
-
-func (a paramProviderDeleteTable) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
-}
-
 const opDescribeBackup = "DescribeBackup"
 
 // DescribeBackupRequest generates a "aws/request.Request" representing the
@@ -1402,10 +1306,6 @@ func (c *DynamoDB) DescribeBackupRequest(input *DescribeBackupInput) (req *reque
 			}
 		}
 
-		de.ParamProvider = paramProviderDescribeBackup{
-			Params: de.Params,
-		}
-
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
 			Name: "crr.endpointdiscovery",
 			Fn:   de.Handler,
@@ -1454,14 +1354,6 @@ func (c *DynamoDB) DescribeBackupWithContext(ctx aws.Context, input *DescribeBac
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-type paramProviderDescribeBackup struct {
-	Params map[string]*string
-}
-
-func (a paramProviderDescribeBackup) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
 }
 
 const opDescribeContinuousBackups = "DescribeContinuousBackups"
@@ -1517,10 +1409,6 @@ func (c *DynamoDB) DescribeContinuousBackupsRequest(input *DescribeContinuousBac
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderDescribeContinuousBackups{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -1582,14 +1470,6 @@ func (c *DynamoDB) DescribeContinuousBackupsWithContext(ctx aws.Context, input *
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-type paramProviderDescribeContinuousBackups struct {
-	Params map[string]*string
-}
-
-func (a paramProviderDescribeContinuousBackups) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
 }
 
 const opDescribeEndpoints = "DescribeEndpoints"
@@ -1664,22 +1544,16 @@ func (c *DynamoDB) DescribeEndpointsWithContext(ctx aws.Context, input *Describe
 	return out, req.Send()
 }
 
-type paramProvider interface {
-	SetParams(*DescribeEndpointsInput)
-}
-
 type discovererDescribeEndpoints struct {
 	Client        *DynamoDB
 	Required      bool
 	EndpointCache *crr.EndpointCache
 	Params        map[string]*string
 	Key           string
-	ParamProvider paramProvider
 }
 
 func (d *discovererDescribeEndpoints) Discover() (crr.Endpoint, error) {
 	input := &DescribeEndpointsInput{}
-	d.ParamProvider.SetParams(input)
 
 	resp, err := d.Client.DescribeEndpoints(input)
 	if err != nil {
@@ -1784,10 +1658,6 @@ func (c *DynamoDB) DescribeGlobalTableRequest(input *DescribeGlobalTableInput) (
 			}
 		}
 
-		de.ParamProvider = paramProviderDescribeGlobalTable{
-			Params: de.Params,
-		}
-
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
 			Name: "crr.endpointdiscovery",
 			Fn:   de.Handler,
@@ -1834,14 +1704,6 @@ func (c *DynamoDB) DescribeGlobalTableWithContext(ctx aws.Context, input *Descri
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-type paramProviderDescribeGlobalTable struct {
-	Params map[string]*string
-}
-
-func (a paramProviderDescribeGlobalTable) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
 }
 
 const opDescribeGlobalTableSettings = "DescribeGlobalTableSettings"
@@ -1899,10 +1761,6 @@ func (c *DynamoDB) DescribeGlobalTableSettingsRequest(input *DescribeGlobalTable
 			}
 		}
 
-		de.ParamProvider = paramProviderDescribeGlobalTableSettings{
-			Params: de.Params,
-		}
-
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
 			Name: "crr.endpointdiscovery",
 			Fn:   de.Handler,
@@ -1949,14 +1807,6 @@ func (c *DynamoDB) DescribeGlobalTableSettingsWithContext(ctx aws.Context, input
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-type paramProviderDescribeGlobalTableSettings struct {
-	Params map[string]*string
-}
-
-func (a paramProviderDescribeGlobalTableSettings) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
 }
 
 const opDescribeLimits = "DescribeLimits"
@@ -2012,10 +1862,6 @@ func (c *DynamoDB) DescribeLimitsRequest(input *DescribeLimitsInput) (req *reque
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderDescribeLimits{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -2119,14 +1965,6 @@ func (c *DynamoDB) DescribeLimitsWithContext(ctx aws.Context, input *DescribeLim
 	return out, req.Send()
 }
 
-type paramProviderDescribeLimits struct {
-	Params map[string]*string
-}
-
-func (a paramProviderDescribeLimits) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
-}
-
 const opDescribeTable = "DescribeTable"
 
 // DescribeTableRequest generates a "aws/request.Request" representing the
@@ -2180,10 +2018,6 @@ func (c *DynamoDB) DescribeTableRequest(input *DescribeTableInput) (req *request
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderDescribeTable{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -2243,14 +2077,6 @@ func (c *DynamoDB) DescribeTableWithContext(ctx aws.Context, input *DescribeTabl
 	return out, req.Send()
 }
 
-type paramProviderDescribeTable struct {
-	Params map[string]*string
-}
-
-func (a paramProviderDescribeTable) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
-}
-
 const opDescribeTimeToLive = "DescribeTimeToLive"
 
 // DescribeTimeToLiveRequest generates a "aws/request.Request" representing the
@@ -2306,10 +2132,6 @@ func (c *DynamoDB) DescribeTimeToLiveRequest(input *DescribeTimeToLiveInput) (re
 			}
 		}
 
-		de.ParamProvider = paramProviderDescribeTimeToLive{
-			Params: de.Params,
-		}
-
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
 			Name: "crr.endpointdiscovery",
 			Fn:   de.Handler,
@@ -2357,14 +2179,6 @@ func (c *DynamoDB) DescribeTimeToLiveWithContext(ctx aws.Context, input *Describ
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-type paramProviderDescribeTimeToLive struct {
-	Params map[string]*string
-}
-
-func (a paramProviderDescribeTimeToLive) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
 }
 
 const opGetItem = "GetItem"
@@ -2420,10 +2234,6 @@ func (c *DynamoDB) GetItemRequest(input *GetItemInput) (req *request.Request, ou
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderGetItem{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -2490,14 +2300,6 @@ func (c *DynamoDB) GetItemWithContext(ctx aws.Context, input *GetItemInput, opts
 	return out, req.Send()
 }
 
-type paramProviderGetItem struct {
-	Params map[string]*string
-}
-
-func (a paramProviderGetItem) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
-}
-
 const opListBackups = "ListBackups"
 
 // ListBackupsRequest generates a "aws/request.Request" representing the
@@ -2553,10 +2355,6 @@ func (c *DynamoDB) ListBackupsRequest(input *ListBackupsInput) (req *request.Req
 			}
 		}
 
-		de.ParamProvider = paramProviderListBackups{
-			Params: de.Params,
-		}
-
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
 			Name: "crr.endpointdiscovery",
 			Fn:   de.Handler,
@@ -2608,14 +2406,6 @@ func (c *DynamoDB) ListBackupsWithContext(ctx aws.Context, input *ListBackupsInp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-type paramProviderListBackups struct {
-	Params map[string]*string
-}
-
-func (a paramProviderListBackups) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
 }
 
 const opListGlobalTables = "ListGlobalTables"
@@ -2673,10 +2463,6 @@ func (c *DynamoDB) ListGlobalTablesRequest(input *ListGlobalTablesInput) (req *r
 			}
 		}
 
-		de.ParamProvider = paramProviderListGlobalTables{
-			Params: de.Params,
-		}
-
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
 			Name: "crr.endpointdiscovery",
 			Fn:   de.Handler,
@@ -2720,14 +2506,6 @@ func (c *DynamoDB) ListGlobalTablesWithContext(ctx aws.Context, input *ListGloba
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-type paramProviderListGlobalTables struct {
-	Params map[string]*string
-}
-
-func (a paramProviderListGlobalTables) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
 }
 
 const opListTables = "ListTables"
@@ -2789,10 +2567,6 @@ func (c *DynamoDB) ListTablesRequest(input *ListTablesInput) (req *request.Reque
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderListTables{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -2892,14 +2666,6 @@ func (c *DynamoDB) ListTablesPagesWithContext(ctx aws.Context, input *ListTables
 	return p.Err()
 }
 
-type paramProviderListTables struct {
-	Params map[string]*string
-}
-
-func (a paramProviderListTables) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
-}
-
 const opListTagsOfResource = "ListTagsOfResource"
 
 // ListTagsOfResourceRequest generates a "aws/request.Request" representing the
@@ -2955,10 +2721,6 @@ func (c *DynamoDB) ListTagsOfResourceRequest(input *ListTagsOfResourceInput) (re
 			}
 		}
 
-		de.ParamProvider = paramProviderListTagsOfResource{
-			Params: de.Params,
-		}
-
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
 			Name: "crr.endpointdiscovery",
 			Fn:   de.Handler,
@@ -3010,14 +2772,6 @@ func (c *DynamoDB) ListTagsOfResourceWithContext(ctx aws.Context, input *ListTag
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-type paramProviderListTagsOfResource struct {
-	Params map[string]*string
-}
-
-func (a paramProviderListTagsOfResource) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
 }
 
 const opPutItem = "PutItem"
@@ -3073,10 +2827,6 @@ func (c *DynamoDB) PutItemRequest(input *PutItemInput) (req *request.Request, ou
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderPutItem{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -3186,14 +2936,6 @@ func (c *DynamoDB) PutItemWithContext(ctx aws.Context, input *PutItemInput, opts
 	return out, req.Send()
 }
 
-type paramProviderPutItem struct {
-	Params map[string]*string
-}
-
-func (a paramProviderPutItem) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
-}
-
 const opQuery = "Query"
 
 // QueryRequest generates a "aws/request.Request" representing the
@@ -3253,10 +2995,6 @@ func (c *DynamoDB) QueryRequest(input *QueryInput) (req *request.Request, output
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderQuery{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -3413,14 +3151,6 @@ func (c *DynamoDB) QueryPagesWithContext(ctx aws.Context, input *QueryInput, fn 
 	return p.Err()
 }
 
-type paramProviderQuery struct {
-	Params map[string]*string
-}
-
-func (a paramProviderQuery) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
-}
-
 const opRestoreTableFromBackup = "RestoreTableFromBackup"
 
 // RestoreTableFromBackupRequest generates a "aws/request.Request" representing the
@@ -3474,10 +3204,6 @@ func (c *DynamoDB) RestoreTableFromBackupRequest(input *RestoreTableFromBackupIn
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderRestoreTableFromBackup{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -3568,14 +3294,6 @@ func (c *DynamoDB) RestoreTableFromBackupWithContext(ctx aws.Context, input *Res
 	return out, req.Send()
 }
 
-type paramProviderRestoreTableFromBackup struct {
-	Params map[string]*string
-}
-
-func (a paramProviderRestoreTableFromBackup) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
-}
-
 const opRestoreTableToPointInTime = "RestoreTableToPointInTime"
 
 // RestoreTableToPointInTimeRequest generates a "aws/request.Request" representing the
@@ -3629,10 +3347,6 @@ func (c *DynamoDB) RestoreTableToPointInTimeRequest(input *RestoreTableToPointIn
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderRestoreTableToPointInTime{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -3747,14 +3461,6 @@ func (c *DynamoDB) RestoreTableToPointInTimeWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
-type paramProviderRestoreTableToPointInTime struct {
-	Params map[string]*string
-}
-
-func (a paramProviderRestoreTableToPointInTime) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
-}
-
 const opScan = "Scan"
 
 // ScanRequest generates a "aws/request.Request" representing the
@@ -3814,10 +3520,6 @@ func (c *DynamoDB) ScanRequest(input *ScanInput) (req *request.Request, output *
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderScan{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -3954,14 +3656,6 @@ func (c *DynamoDB) ScanPagesWithContext(ctx aws.Context, input *ScanInput, fn fu
 	return p.Err()
 }
 
-type paramProviderScan struct {
-	Params map[string]*string
-}
-
-func (a paramProviderScan) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
-}
-
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -4017,10 +3711,6 @@ func (c *DynamoDB) TagResourceRequest(input *TagResourceInput) (req *request.Req
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderTagResource{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -4096,14 +3786,6 @@ func (c *DynamoDB) TagResourceWithContext(ctx aws.Context, input *TagResourceInp
 	return out, req.Send()
 }
 
-type paramProviderTagResource struct {
-	Params map[string]*string
-}
-
-func (a paramProviderTagResource) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
-}
-
 const opUntagResource = "UntagResource"
 
 // UntagResourceRequest generates a "aws/request.Request" representing the
@@ -4159,10 +3841,6 @@ func (c *DynamoDB) UntagResourceRequest(input *UntagResourceInput) (req *request
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderUntagResource{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -4236,14 +3914,6 @@ func (c *DynamoDB) UntagResourceWithContext(ctx aws.Context, input *UntagResourc
 	return out, req.Send()
 }
 
-type paramProviderUntagResource struct {
-	Params map[string]*string
-}
-
-func (a paramProviderUntagResource) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
-}
-
 const opUpdateContinuousBackups = "UpdateContinuousBackups"
 
 // UpdateContinuousBackupsRequest generates a "aws/request.Request" representing the
@@ -4297,10 +3967,6 @@ func (c *DynamoDB) UpdateContinuousBackupsRequest(input *UpdateContinuousBackups
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderUpdateContinuousBackups{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -4365,14 +4031,6 @@ func (c *DynamoDB) UpdateContinuousBackupsWithContext(ctx aws.Context, input *Up
 	return out, req.Send()
 }
 
-type paramProviderUpdateContinuousBackups struct {
-	Params map[string]*string
-}
-
-func (a paramProviderUpdateContinuousBackups) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
-}
-
 const opUpdateGlobalTable = "UpdateGlobalTable"
 
 // UpdateGlobalTableRequest generates a "aws/request.Request" representing the
@@ -4426,10 +4084,6 @@ func (c *DynamoDB) UpdateGlobalTableRequest(input *UpdateGlobalTableInput) (req 
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderUpdateGlobalTable{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -4509,14 +4163,6 @@ func (c *DynamoDB) UpdateGlobalTableWithContext(ctx aws.Context, input *UpdateGl
 	return out, req.Send()
 }
 
-type paramProviderUpdateGlobalTable struct {
-	Params map[string]*string
-}
-
-func (a paramProviderUpdateGlobalTable) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
-}
-
 const opUpdateGlobalTableSettings = "UpdateGlobalTableSettings"
 
 // UpdateGlobalTableSettingsRequest generates a "aws/request.Request" representing the
@@ -4570,10 +4216,6 @@ func (c *DynamoDB) UpdateGlobalTableSettingsRequest(input *UpdateGlobalTableSett
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderUpdateGlobalTableSettings{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -4648,14 +4290,6 @@ func (c *DynamoDB) UpdateGlobalTableSettingsWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
-type paramProviderUpdateGlobalTableSettings struct {
-	Params map[string]*string
-}
-
-func (a paramProviderUpdateGlobalTableSettings) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
-}
-
 const opUpdateItem = "UpdateItem"
 
 // UpdateItemRequest generates a "aws/request.Request" representing the
@@ -4709,10 +4343,6 @@ func (c *DynamoDB) UpdateItemRequest(input *UpdateItemInput) (req *request.Reque
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderUpdateItem{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -4786,14 +4416,6 @@ func (c *DynamoDB) UpdateItemWithContext(ctx aws.Context, input *UpdateItemInput
 	return out, req.Send()
 }
 
-type paramProviderUpdateItem struct {
-	Params map[string]*string
-}
-
-func (a paramProviderUpdateItem) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
-}
-
 const opUpdateTable = "UpdateTable"
 
 // UpdateTableRequest generates a "aws/request.Request" representing the
@@ -4847,10 +4469,6 @@ func (c *DynamoDB) UpdateTableRequest(input *UpdateTableInput) (req *request.Req
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderUpdateTable{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -4937,14 +4555,6 @@ func (c *DynamoDB) UpdateTableWithContext(ctx aws.Context, input *UpdateTableInp
 	return out, req.Send()
 }
 
-type paramProviderUpdateTable struct {
-	Params map[string]*string
-}
-
-func (a paramProviderUpdateTable) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
-}
-
 const opUpdateTimeToLive = "UpdateTimeToLive"
 
 // UpdateTimeToLiveRequest generates a "aws/request.Request" representing the
@@ -4998,10 +4608,6 @@ func (c *DynamoDB) UpdateTimeToLiveRequest(input *UpdateTimeToLiveInput) (req *r
 			if v == nil {
 				delete(de.Params, k)
 			}
-		}
-
-		de.ParamProvider = paramProviderUpdateTimeToLive{
-			Params: de.Params,
 		}
 
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
@@ -5096,14 +4702,6 @@ func (c *DynamoDB) UpdateTimeToLiveWithContext(ctx aws.Context, input *UpdateTim
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-type paramProviderUpdateTimeToLive struct {
-	Params map[string]*string
-}
-
-func (a paramProviderUpdateTimeToLive) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
 }
 
 // Represents an attribute for describing the key schema for the table and indexes.

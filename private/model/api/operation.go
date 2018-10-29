@@ -35,20 +35,11 @@ type Operation struct {
 
 // EndpointDiscovery represents a map of key values pairs that represents
 // metadata about how a given API will make a call to the discovery endpoint.
-type EndpointDiscovery map[string]string
-
-func (m EndpointDiscovery) Required() bool {
-	const (
-		requiredKey = "required"
-		trueStr     = "true"
-	)
-
-	v, ok := m[requiredKey]
-	if !ok {
-		return false
-	}
-
-	return v == trueStr
+type EndpointDiscovery struct {
+	// Required indicates that for a given operation that endpoint is required.
+	// Any required endpoint discovery operation cannot have endpoint discovery
+	// turned off.
+	Required bool `json:"required"`
 }
 
 // A HTTPInfo defines the method of HTTP request for the Operation.
@@ -189,18 +180,6 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 				}
 			}
 
-			de.ParamProvider = paramProvider{{ .ExportedName}} {
-				Params: de.Params, 
-			}
-
-			{{ range $key, $value := .EndpointDiscovery -}}
-				{{ if (ne $key "required") -}}
-					if input.{{ $key }} != nil {
-						de.Params["{{ $key }}"] = *input.{{ $key }}
-					}
-				{{- end }}
-			{{- end }}
-
 			req.Handlers.Build.PushFrontNamed(request.NamedHandler{
 				Name: "crr.endpointdiscovery",
 				Fn: de.Handler,
@@ -335,9 +314,6 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}PagesWithContext(` +
 {{ end }}
 
 {{ if .IsEndpointDiscoveryOp -}}
-type paramProvider interface {
-	SetParams({{ .InputRef.GoType }})
-}
 
 type discoverer{{ .ExportedName }} struct {
 	Client *{{ .API.StructName }}
@@ -345,7 +321,6 @@ type discoverer{{ .ExportedName }} struct {
 	EndpointCache *crr.EndpointCache
 	Params map[string]*string
 	Key string
-	ParamProvider paramProvider
 }
 
 func (d *discoverer{{ .ExportedName }}) Discover() (crr.Endpoint, error) {
@@ -357,7 +332,6 @@ func (d *discoverer{{ .ExportedName }}) Discover() (crr.Endpoint, error) {
 		Identifiers: d.Params,
 		{{ end -}}
 	}
-	d.ParamProvider.SetParams(input)
 
 	resp, err := d.Client.{{ .API.EndpointDiscoveryOp.Name }}(input)
 	if err != nil {
@@ -406,24 +380,6 @@ func (d *discoverer{{ .ExportedName }}) Handler(r *request.Request) {
 		r.HTTPRequest.URL = endpoint.URL
 	}
 }
-{{- else }}
-{{ if .EndpointDiscovery -}}
-type paramProvider{{ .ExportedName }} struct {
-	Params map[string]*string
-}
-
-func (a paramProvider{{ .ExportedName }}) SetParams(input {{ .API.EndpointDiscoveryOp.InputRef.GoType }}) {
-	// TODO: Can remove if check required when C2J is updated
-	{{ range $key, $value := .EndpointDiscovery -}}
-	{{ if (ne $key "required") }}
-
-	if v, ok := a.Params["{{ $key }}"]; ok {
-		input.{{ $key }} = v
-	}
-	{{- end }}
-	{{- end -}}
-}
-{{- end }}
 {{ end -}}
 
 `))

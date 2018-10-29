@@ -30,7 +30,7 @@
       },
       "input":{"shape":"TestDiscoveryIdentifiersRequiredRequest"},
       "output":{"shape":"TestDiscoveryIdentifiersRequiredResponse"},
-      "endpointdiscovery":{"required":"true"}
+      "endpointdiscovery":{"required":true}
     },
     "TestDiscoveryOptional":{
       "name":"TestDiscoveryOptional",

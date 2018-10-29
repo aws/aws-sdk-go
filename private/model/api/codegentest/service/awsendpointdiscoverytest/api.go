@@ -81,24 +81,18 @@ func (c *AwsEndpointDiscoveryTest) DescribeEndpointsWithContext(ctx aws.Context,
 	return out, req.Send()
 }
 
-type paramProvider interface {
-	SetParams(*DescribeEndpointsInput)
-}
-
 type discovererDescribeEndpoints struct {
 	Client        *AwsEndpointDiscoveryTest
 	Required      bool
 	EndpointCache *crr.EndpointCache
 	Params        map[string]*string
 	Key           string
-	ParamProvider paramProvider
 }
 
 func (d *discovererDescribeEndpoints) Discover() (crr.Endpoint, error) {
 	input := &DescribeEndpointsInput{
 		Operation: d.Params["op"],
 	}
-	d.ParamProvider.SetParams(input)
 
 	resp, err := d.Client.DescribeEndpoints(input)
 	if err != nil {
@@ -201,10 +195,6 @@ func (c *AwsEndpointDiscoveryTest) TestDiscoveryIdentifiersRequiredRequest(input
 		}
 	}
 
-	de.ParamProvider = paramProviderTestDiscoveryIdentifiersRequired{
-		Params: de.Params,
-	}
-
 	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
 		Name: "crr.endpointdiscovery",
 		Fn:   de.Handler,
@@ -239,14 +229,6 @@ func (c *AwsEndpointDiscoveryTest) TestDiscoveryIdentifiersRequiredWithContext(c
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-type paramProviderTestDiscoveryIdentifiersRequired struct {
-	Params map[string]*string
-}
-
-func (a paramProviderTestDiscoveryIdentifiersRequired) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
 }
 
 const opTestDiscoveryOptional = "TestDiscoveryOptional"
@@ -302,10 +284,6 @@ func (c *AwsEndpointDiscoveryTest) TestDiscoveryOptionalRequest(input *TestDisco
 			}
 		}
 
-		de.ParamProvider = paramProviderTestDiscoveryOptional{
-			Params: de.Params,
-		}
-
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
 			Name: "crr.endpointdiscovery",
 			Fn:   de.Handler,
@@ -341,14 +319,6 @@ func (c *AwsEndpointDiscoveryTest) TestDiscoveryOptionalWithContext(ctx aws.Cont
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-type paramProviderTestDiscoveryOptional struct {
-	Params map[string]*string
-}
-
-func (a paramProviderTestDiscoveryOptional) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
 }
 
 const opTestDiscoveryRequired = "TestDiscoveryRequired"
@@ -404,10 +374,6 @@ func (c *AwsEndpointDiscoveryTest) TestDiscoveryRequiredRequest(input *TestDisco
 			}
 		}
 
-		de.ParamProvider = paramProviderTestDiscoveryRequired{
-			Params: de.Params,
-		}
-
 		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
 			Name: "crr.endpointdiscovery",
 			Fn:   de.Handler,
@@ -443,14 +409,6 @@ func (c *AwsEndpointDiscoveryTest) TestDiscoveryRequiredWithContext(ctx aws.Cont
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-type paramProviderTestDiscoveryRequired struct {
-	Params map[string]*string
-}
-
-func (a paramProviderTestDiscoveryRequired) SetParams(input *DescribeEndpointsInput) {
-	// TODO: Can remove if check required when C2J is updated
 }
 
 type DescribeEndpointsInput struct {
