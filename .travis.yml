@@ -46,7 +46,12 @@ matrix:
           go: tip
 
 script:
-  - make ci-test
+  - if [ $TRAVIS_GO_VERSION == "1.7.x" ] ||
+    [ $TRAVIS_GO_VERSION == "1.8.x" ]; then
+    make ci-test-no-verify;
+    else
+    make ci-test;
+    fi
 
 branches:
   only:

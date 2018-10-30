@@ -69,6 +69,12 @@ unit-with-race-cover: get-deps-tests build verify
 	@echo "go test SDK and vendor packages"
 	@go test -tags ${UNIT_TEST_TAGS} -race -cpu=1,2,4 $(SDK_UNIT_TEST_ONLY_PKGS)
 
+unit-with-race-cover-no-verify: get-deps-tests build
+	@echo "go test SDK and vendor packages"
+	@go test -tags ${UNIT_TEST_TAGS} -race -cpu=1,2,4 $(SDK_UNIT_TEST_ONLY_PKGS)
+
+ci-test-no-verify: unit-with-race-cover-no-verify
+
 ci-test: ci-test-generate unit-with-race-cover ci-test-generate-validate
 
 ci-test-generate: get-deps
