@@ -12,9 +12,6 @@ UNIT_TEST_TAGS="example codegen awsinclude"
 SDK_WITH_VENDOR_PKGS=$(shell go list -tags ${UNIT_TEST_TAGS} ./... | grep -v "/vendor/src")
 SDK_ONLY_PKGS=$(shell go list ./... | grep -v "/vendor/")
 SDK_UNIT_TEST_ONLY_PKGS=$(shell go list -tags ${UNIT_TEST_TAGS} ./... | grep -v "/vendor/")
-SDK_GO_1_4=$(shell go version | grep "go1.4")
-SDK_GO_1_5=$(shell go version | grep "go1.5")
-SDK_GO_1_6=$(shell go version | grep "go1.6")
 SDK_GO_VERSION=$(shell go version | awk '''{print $$3}''' | tr -d '''\n''')
 
 all: get-deps generate unit
@@ -69,16 +66,22 @@ unit-with-race-cover: get-deps-tests build verify
 	@echo "go test SDK and vendor packages"
 	@go test -tags ${UNIT_TEST_TAGS} -race -cpu=1,2,4 $(SDK_UNIT_TEST_ONLY_PKGS)
 
+unit-test-sdk-packages: get-deps-tests build
+	@echo "go test SDK only packages"
+	@go test -race -cpu=1,2,4 $(SDK_ONLY_PKGS)
+
+ci-test-no-verify: unit-test-sdk-packages
+
 ci-test: ci-test-generate unit-with-race-cover ci-test-generate-validate
 
 ci-test-generate: get-deps
 	@echo "CI test generated code"
-	@if [ \( -z "${SDK_GO_1_6}" \) -a \( -z "${SDK_GO_1_5}" \) ]; then  make generate; else echo "skipping generate"; fi
+	make generate
 
 ci-test-generate-validate:
 	@echo "CI test validate no generated code changes"
 	@git add . -A
-	@gitstatus=`if [ \( -z "${SDK_GO_1_6}" \) -a \( -z "${SDK_GO_1_5}" \) ]; then  git diff --cached --ignore-space-change; else echo "skipping validation"; fi`; \
+	@gitstatus=`git diff --cached --ignore-space-change`; \
 	echo "$$gitstatus"; \
 	if [ "$$gitstatus" != "" ] && [ "$$gitstatus" != "skipping validation" ]; then echo "$$gitstatus"; exit 1; fi
 
@@ -169,19 +172,13 @@ verify: get-deps-verify lint vet
 
 lint:
 	@echo "go lint SDK and vendor packages"
-	@lint=`if [ \( -z "${SDK_GO_1_4}" \) -a \( -z "${SDK_GO_1_5}" \) ]; then  golint ./...; else echo "skipping golint"; fi`; \
+	@lint=`golint ./...`; \
 	lint=`echo "$$lint" | grep -E -v -e ${LINTIGNOREDOT} -e ${LINTIGNOREDOC} -e ${LINTIGNORECONST} -e ${LINTIGNORESTUTTER} -e ${LINTIGNOREINFLECT} -e ${LINTIGNOREDEPS} -e ${LINTIGNOREINFLECTS3UPLOAD} -e ${LINTIGNOREPKGCOMMENT} -e ${LINTIGNOREENDPOINTS}`; \
 	echo "$$lint"; \
-	if [ "$$lint" != "" ] && [ "$$lint" != "skipping golint" ]; then exit 1; fi
+	if [ "$$lint" != "" ]; then exit 1; fi
 
 SDK_BASE_FOLDERS=$(shell ls -d */ | grep -v vendor | grep -v awsmigrate)
-ifneq (,$(findstring go1.4, ${SDK_GO_VERSION}))
-	GO_VET_CMD=echo skipping go vet, ${SDK_GO_VERSION}
-else ifneq (,$(findstring go1.6, ${SDK_GO_VERSION}))
-	GO_VET_CMD=go tool vet --all -shadow -example=false
-else
-	GO_VET_CMD=go tool vet --all -shadow
-endif
+GO_VET_CMD=go tool vet --all -shadow
 
 vet:
 	${GO_VET_CMD} ${SDK_BASE_FOLDERS}
@@ -200,7 +197,7 @@ get-deps-tests:
 
 get-deps-verify:
 	@echo "go get SDK verification utilities"
-	@if [ \( -z "${SDK_GO_1_4}" \) -a \( -z "${SDK_GO_1_5}" \) ]; then  go get golang.org/x/lint/golint; else echo "skipped getting golint"; fi
+	go get golang.org/x/lint/golint
 
 bench:
 	@echo "go bench SDK packages"
