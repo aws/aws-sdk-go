@@ -2793,7 +2793,8 @@
         "PerformanceInsightsRetentionPeriod":{"shape":"IntegerOptional"},
         "EnabledCloudwatchLogsExports":{"shape":"LogTypeList"},
         "ProcessorFeatures":{"shape":"ProcessorFeatureList"},
-        "DeletionProtection":{"shape":"Boolean"}
+        "DeletionProtection":{"shape":"Boolean"},
+        "ListenerEndpoint":{"shape":"Endpoint"}
       },
       "wrapper":true
     },
