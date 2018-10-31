@@ -382,7 +382,8 @@ func (c *Greengrass) CreateDeploymentRequest(input *CreateDeploymentInput) (req 
 
 // CreateDeployment API operation for AWS Greengrass.
 //
-// Creates a deployment.
+// Creates a deployment. ''CreateDeployment'' requests are idempotent with respect
+// to the ''X-Amzn-Client-Token'' token and the request parameters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2340,6 +2341,85 @@ func (c *Greengrass) GetAssociatedRoleWithContext(ctx aws.Context, input *GetAss
 	return out, req.Send()
 }
 
+const opGetBulkDeploymentStatus = "GetBulkDeploymentStatus"
+
+// GetBulkDeploymentStatusRequest generates a "aws/request.Request" representing the
+// client's request for the GetBulkDeploymentStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetBulkDeploymentStatus for more information on using the GetBulkDeploymentStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetBulkDeploymentStatusRequest method.
+//    req, resp := client.GetBulkDeploymentStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetBulkDeploymentStatus
+func (c *Greengrass) GetBulkDeploymentStatusRequest(input *GetBulkDeploymentStatusInput) (req *request.Request, output *GetBulkDeploymentStatusOutput) {
+	op := &request.Operation{
+		Name:       opGetBulkDeploymentStatus,
+		HTTPMethod: "GET",
+		HTTPPath:   "/greengrass/bulk/deployments/{BulkDeploymentId}/status",
+	}
+
+	if input == nil {
+		input = &GetBulkDeploymentStatusInput{}
+	}
+
+	output = &GetBulkDeploymentStatusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetBulkDeploymentStatus API operation for AWS Greengrass.
+//
+// Returns the status of a bulk deployment.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Greengrass's
+// API operation GetBulkDeploymentStatus for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   General error information.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetBulkDeploymentStatus
+func (c *Greengrass) GetBulkDeploymentStatus(input *GetBulkDeploymentStatusInput) (*GetBulkDeploymentStatusOutput, error) {
+	req, out := c.GetBulkDeploymentStatusRequest(input)
+	return out, req.Send()
+}
+
+// GetBulkDeploymentStatusWithContext is the same as GetBulkDeploymentStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetBulkDeploymentStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Greengrass) GetBulkDeploymentStatusWithContext(ctx aws.Context, input *GetBulkDeploymentStatusInput, opts ...request.Option) (*GetBulkDeploymentStatusOutput, error) {
+	req, out := c.GetBulkDeploymentStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetConnectivityInfo = "GetConnectivityInfo"
 
 // GetConnectivityInfoRequest generates a "aws/request.Request" representing the
@@ -3854,6 +3934,165 @@ func (c *Greengrass) GetSubscriptionDefinitionVersionWithContext(ctx aws.Context
 	return out, req.Send()
 }
 
+const opListBulkDeploymentDetailedReports = "ListBulkDeploymentDetailedReports"
+
+// ListBulkDeploymentDetailedReportsRequest generates a "aws/request.Request" representing the
+// client's request for the ListBulkDeploymentDetailedReports operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListBulkDeploymentDetailedReports for more information on using the ListBulkDeploymentDetailedReports
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListBulkDeploymentDetailedReportsRequest method.
+//    req, resp := client.ListBulkDeploymentDetailedReportsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListBulkDeploymentDetailedReports
+func (c *Greengrass) ListBulkDeploymentDetailedReportsRequest(input *ListBulkDeploymentDetailedReportsInput) (req *request.Request, output *ListBulkDeploymentDetailedReportsOutput) {
+	op := &request.Operation{
+		Name:       opListBulkDeploymentDetailedReports,
+		HTTPMethod: "GET",
+		HTTPPath:   "/greengrass/bulk/deployments/{BulkDeploymentId}/detailed-reports",
+	}
+
+	if input == nil {
+		input = &ListBulkDeploymentDetailedReportsInput{}
+	}
+
+	output = &ListBulkDeploymentDetailedReportsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListBulkDeploymentDetailedReports API operation for AWS Greengrass.
+//
+// Gets a paginated list of the deployments that have been started in a bulk
+// deployment operation, and their current deployment status.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Greengrass's
+// API operation ListBulkDeploymentDetailedReports for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   General error information.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListBulkDeploymentDetailedReports
+func (c *Greengrass) ListBulkDeploymentDetailedReports(input *ListBulkDeploymentDetailedReportsInput) (*ListBulkDeploymentDetailedReportsOutput, error) {
+	req, out := c.ListBulkDeploymentDetailedReportsRequest(input)
+	return out, req.Send()
+}
+
+// ListBulkDeploymentDetailedReportsWithContext is the same as ListBulkDeploymentDetailedReports with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListBulkDeploymentDetailedReports for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Greengrass) ListBulkDeploymentDetailedReportsWithContext(ctx aws.Context, input *ListBulkDeploymentDetailedReportsInput, opts ...request.Option) (*ListBulkDeploymentDetailedReportsOutput, error) {
+	req, out := c.ListBulkDeploymentDetailedReportsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListBulkDeployments = "ListBulkDeployments"
+
+// ListBulkDeploymentsRequest generates a "aws/request.Request" representing the
+// client's request for the ListBulkDeployments operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListBulkDeployments for more information on using the ListBulkDeployments
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListBulkDeploymentsRequest method.
+//    req, resp := client.ListBulkDeploymentsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListBulkDeployments
+func (c *Greengrass) ListBulkDeploymentsRequest(input *ListBulkDeploymentsInput) (req *request.Request, output *ListBulkDeploymentsOutput) {
+	op := &request.Operation{
+		Name:       opListBulkDeployments,
+		HTTPMethod: "GET",
+		HTTPPath:   "/greengrass/bulk/deployments",
+	}
+
+	if input == nil {
+		input = &ListBulkDeploymentsInput{}
+	}
+
+	output = &ListBulkDeploymentsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListBulkDeployments API operation for AWS Greengrass.
+//
+// Returns a list of bulk deployments.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Greengrass's
+// API operation ListBulkDeployments for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   General error information.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListBulkDeployments
+func (c *Greengrass) ListBulkDeployments(input *ListBulkDeploymentsInput) (*ListBulkDeploymentsOutput, error) {
+	req, out := c.ListBulkDeploymentsRequest(input)
+	return out, req.Send()
+}
+
+// ListBulkDeploymentsWithContext is the same as ListBulkDeployments with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListBulkDeployments for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Greengrass) ListBulkDeploymentsWithContext(ctx aws.Context, input *ListBulkDeploymentsInput, opts ...request.Option) (*ListBulkDeploymentsOutput, error) {
+	req, out := c.ListBulkDeploymentsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListCoreDefinitionVersions = "ListCoreDefinitionVersions"
 
 // ListCoreDefinitionVersionsRequest generates a "aws/request.Request" representing the
@@ -5165,6 +5404,172 @@ func (c *Greengrass) ResetDeploymentsWithContext(ctx aws.Context, input *ResetDe
 	return out, req.Send()
 }
 
+const opStartBulkDeployment = "StartBulkDeployment"
+
+// StartBulkDeploymentRequest generates a "aws/request.Request" representing the
+// client's request for the StartBulkDeployment operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartBulkDeployment for more information on using the StartBulkDeployment
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartBulkDeploymentRequest method.
+//    req, resp := client.StartBulkDeploymentRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/StartBulkDeployment
+func (c *Greengrass) StartBulkDeploymentRequest(input *StartBulkDeploymentInput) (req *request.Request, output *StartBulkDeploymentOutput) {
+	op := &request.Operation{
+		Name:       opStartBulkDeployment,
+		HTTPMethod: "POST",
+		HTTPPath:   "/greengrass/bulk/deployments",
+	}
+
+	if input == nil {
+		input = &StartBulkDeploymentInput{}
+	}
+
+	output = &StartBulkDeploymentOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartBulkDeployment API operation for AWS Greengrass.
+//
+// Deploys multiple groups in one operation. This action starts the bulk deployment
+// of a specified set of group versions. Each group version deployment will
+// be triggered with an adaptive rate that has a fixed upper limit. We recommend
+// that you include an ''X-Amzn-Client-Token'' token in every ''StartBulkDeployment''
+// request. These requests are idempotent with respect to the token and the
+// request parameters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Greengrass's
+// API operation StartBulkDeployment for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   General error information.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/StartBulkDeployment
+func (c *Greengrass) StartBulkDeployment(input *StartBulkDeploymentInput) (*StartBulkDeploymentOutput, error) {
+	req, out := c.StartBulkDeploymentRequest(input)
+	return out, req.Send()
+}
+
+// StartBulkDeploymentWithContext is the same as StartBulkDeployment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartBulkDeployment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Greengrass) StartBulkDeploymentWithContext(ctx aws.Context, input *StartBulkDeploymentInput, opts ...request.Option) (*StartBulkDeploymentOutput, error) {
+	req, out := c.StartBulkDeploymentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopBulkDeployment = "StopBulkDeployment"
+
+// StopBulkDeploymentRequest generates a "aws/request.Request" representing the
+// client's request for the StopBulkDeployment operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopBulkDeployment for more information on using the StopBulkDeployment
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StopBulkDeploymentRequest method.
+//    req, resp := client.StopBulkDeploymentRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/StopBulkDeployment
+func (c *Greengrass) StopBulkDeploymentRequest(input *StopBulkDeploymentInput) (req *request.Request, output *StopBulkDeploymentOutput) {
+	op := &request.Operation{
+		Name:       opStopBulkDeployment,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/greengrass/bulk/deployments/{BulkDeploymentId}/$stop",
+	}
+
+	if input == nil {
+		input = &StopBulkDeploymentInput{}
+	}
+
+	output = &StopBulkDeploymentOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StopBulkDeployment API operation for AWS Greengrass.
+//
+// Stops the execution of a bulk deployment. This action returns a status of
+// ''Stopping'' until the deployment is stopped. You cannot start a new bulk
+// deployment while a previous deployment is in the ''Stopping'' state. This
+// action doesn't rollback completed deployments or cancel pending deployments.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Greengrass's
+// API operation StopBulkDeployment for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   General error information.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/StopBulkDeployment
+func (c *Greengrass) StopBulkDeployment(input *StopBulkDeploymentInput) (*StopBulkDeploymentOutput, error) {
+	req, out := c.StopBulkDeploymentRequest(input)
+	return out, req.Send()
+}
+
+// StopBulkDeploymentWithContext is the same as StopBulkDeployment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopBulkDeployment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Greengrass) StopBulkDeploymentWithContext(ctx aws.Context, input *StopBulkDeploymentInput, opts ...request.Option) (*StopBulkDeploymentOutput, error) {
+	req, out := c.StopBulkDeploymentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateConnectivityInfo = "UpdateConnectivityInfo"
 
 // UpdateConnectivityInfoRequest generates a "aws/request.Request" representing the
@@ -5999,6 +6404,182 @@ func (s *AssociateServiceRoleToAccountOutput) SetAssociatedAt(v string) *Associa
 	return s
 }
 
+// Information about a bulk deployment.
+type BulkDeployment struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the bulk deployment.
+	BulkDeploymentArn *string `type:"string"`
+
+	// The ID of the bulk deployment.
+	BulkDeploymentId *string `type:"string"`
+
+	// The time, in ISO format, when the deployment was created.
+	CreatedAt *string `type:"string"`
+}
+
+// String returns the string representation
+func (s BulkDeployment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BulkDeployment) GoString() string {
+	return s.String()
+}
+
+// SetBulkDeploymentArn sets the BulkDeploymentArn field's value.
+func (s *BulkDeployment) SetBulkDeploymentArn(v string) *BulkDeployment {
+	s.BulkDeploymentArn = &v
+	return s
+}
+
+// SetBulkDeploymentId sets the BulkDeploymentId field's value.
+func (s *BulkDeployment) SetBulkDeploymentId(v string) *BulkDeployment {
+	s.BulkDeploymentId = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *BulkDeployment) SetCreatedAt(v string) *BulkDeployment {
+	s.CreatedAt = &v
+	return s
+}
+
+// Relevant metrics on input records processed during bulk deployment.
+type BulkDeploymentMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// The total number of records that returned a non-retryable error. For example,
+	// this can occur if a group record from the input file uses an invalid format
+	// or specifies a nonexistent group version, or if the execution role doesn't
+	// grant permission to deploy a group or group version.
+	InvalidInputRecords *int64 `type:"integer"`
+
+	// The total number of group records from the input file that have been processed
+	// so far, or attempted.
+	RecordsProcessed *int64 `type:"integer"`
+
+	// The total number of retry attempts during the bulk deployment.
+	RetryAttempts *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s BulkDeploymentMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BulkDeploymentMetrics) GoString() string {
+	return s.String()
+}
+
+// SetInvalidInputRecords sets the InvalidInputRecords field's value.
+func (s *BulkDeploymentMetrics) SetInvalidInputRecords(v int64) *BulkDeploymentMetrics {
+	s.InvalidInputRecords = &v
+	return s
+}
+
+// SetRecordsProcessed sets the RecordsProcessed field's value.
+func (s *BulkDeploymentMetrics) SetRecordsProcessed(v int64) *BulkDeploymentMetrics {
+	s.RecordsProcessed = &v
+	return s
+}
+
+// SetRetryAttempts sets the RetryAttempts field's value.
+func (s *BulkDeploymentMetrics) SetRetryAttempts(v int64) *BulkDeploymentMetrics {
+	s.RetryAttempts = &v
+	return s
+}
+
+// Information about an individual group deployment in a bulk deployment operation.
+type BulkDeploymentResult struct {
+	_ struct{} `type:"structure"`
+
+	// The time, in ISO format, when the deployment was created.
+	CreatedAt *string `type:"string"`
+
+	// The ARN of the group deployment.
+	DeploymentArn *string `type:"string"`
+
+	// The ID of the group deployment.
+	DeploymentId *string `type:"string"`
+
+	// The current status of the group deployment: ''Pending'', ''InProgress'',
+	// ''Success'', or ''Failure''.
+	DeploymentStatus *string `type:"string"`
+
+	// The type of the deployment.
+	DeploymentType *string `type:"string" enum:"DeploymentType"`
+
+	// Details about the error.
+	ErrorDetails []*ErrorDetail `type:"list"`
+
+	// The error message for a failed deployment
+	ErrorMessage *string `type:"string"`
+
+	// The ARN of the Greengrass group.
+	GroupArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s BulkDeploymentResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BulkDeploymentResult) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *BulkDeploymentResult) SetCreatedAt(v string) *BulkDeploymentResult {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDeploymentArn sets the DeploymentArn field's value.
+func (s *BulkDeploymentResult) SetDeploymentArn(v string) *BulkDeploymentResult {
+	s.DeploymentArn = &v
+	return s
+}
+
+// SetDeploymentId sets the DeploymentId field's value.
+func (s *BulkDeploymentResult) SetDeploymentId(v string) *BulkDeploymentResult {
+	s.DeploymentId = &v
+	return s
+}
+
+// SetDeploymentStatus sets the DeploymentStatus field's value.
+func (s *BulkDeploymentResult) SetDeploymentStatus(v string) *BulkDeploymentResult {
+	s.DeploymentStatus = &v
+	return s
+}
+
+// SetDeploymentType sets the DeploymentType field's value.
+func (s *BulkDeploymentResult) SetDeploymentType(v string) *BulkDeploymentResult {
+	s.DeploymentType = &v
+	return s
+}
+
+// SetErrorDetails sets the ErrorDetails field's value.
+func (s *BulkDeploymentResult) SetErrorDetails(v []*ErrorDetail) *BulkDeploymentResult {
+	s.ErrorDetails = v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *BulkDeploymentResult) SetErrorMessage(v string) *BulkDeploymentResult {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetGroupArn sets the GroupArn field's value.
+func (s *BulkDeploymentResult) SetGroupArn(v string) *BulkDeploymentResult {
+	s.GroupArn = &v
+	return s
+}
+
 // Information about a Greengrass core's connectivity.
 type ConnectivityInfo struct {
 	_ struct{} `type:"structure"`
@@ -6057,7 +6638,8 @@ type Core struct {
 	// The ARN of the certificate associated with the core.
 	CertificateArn *string `type:"string"`
 
-	// The ID of the core.
+	// A descriptive or arbitrary ID for the core. This value must be unique within
+	// the core definition version. Max length is 128 characters with pattern ''[a‑zA‑Z0‑9:_‑]+''.
 	Id *string `type:"string"`
 
 	// If true, the core's local shadow is automatically synced with the cloud.
@@ -8393,7 +8975,9 @@ type Device struct {
 	// The ARN of the certificate associated with the device.
 	CertificateArn *string `type:"string"`
 
-	// The ID of the device.
+	// A descriptive or arbitrary ID for the device. This value must be unique within
+	// the device definition version. Max length is 128 characters with pattern
+	// ''[a‑zA‑Z0‑9:_‑]+''.
 	Id *string `type:"string"`
 
 	// If true, the device's local shadow will be automatically synced with the
@@ -8602,7 +9186,9 @@ type Function struct {
 	// The configuration of the Lambda function.
 	FunctionConfiguration *FunctionConfiguration `type:"structure"`
 
-	// The ID of the Lambda function.
+	// A descriptive or arbitrary ID for the function. This value must be unique
+	// within the function definition version. Max length is 128 characters with
+	// pattern ''[a‑zA‑Z0‑9:_‑]+''.
 	Id *string `type:"string"`
 }
 
@@ -8851,6 +9437,102 @@ func (s *GetAssociatedRoleOutput) SetRoleArn(v string) *GetAssociatedRoleOutput 
 	return s
 }
 
+type GetBulkDeploymentStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// BulkDeploymentId is a required field
+	BulkDeploymentId *string `location:"uri" locationName:"BulkDeploymentId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetBulkDeploymentStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBulkDeploymentStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetBulkDeploymentStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetBulkDeploymentStatusInput"}
+	if s.BulkDeploymentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BulkDeploymentId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBulkDeploymentId sets the BulkDeploymentId field's value.
+func (s *GetBulkDeploymentStatusInput) SetBulkDeploymentId(v string) *GetBulkDeploymentStatusInput {
+	s.BulkDeploymentId = &v
+	return s
+}
+
+// Information about the status of a bulk deployment at the time of the request.
+type GetBulkDeploymentStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Relevant metrics on input records processed during bulk deployment.
+	BulkDeploymentMetrics *BulkDeploymentMetrics `type:"structure"`
+
+	// The status of the bulk deployment.
+	BulkDeploymentStatus *string `type:"string" enum:"BulkDeploymentStatus"`
+
+	// The time, in ISO format, when the deployment was created.
+	CreatedAt *string `type:"string"`
+
+	// Error details
+	ErrorDetails []*ErrorDetail `type:"list"`
+
+	// Error message
+	ErrorMessage *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GetBulkDeploymentStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBulkDeploymentStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetBulkDeploymentMetrics sets the BulkDeploymentMetrics field's value.
+func (s *GetBulkDeploymentStatusOutput) SetBulkDeploymentMetrics(v *BulkDeploymentMetrics) *GetBulkDeploymentStatusOutput {
+	s.BulkDeploymentMetrics = v
+	return s
+}
+
+// SetBulkDeploymentStatus sets the BulkDeploymentStatus field's value.
+func (s *GetBulkDeploymentStatusOutput) SetBulkDeploymentStatus(v string) *GetBulkDeploymentStatusOutput {
+	s.BulkDeploymentStatus = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetBulkDeploymentStatusOutput) SetCreatedAt(v string) *GetBulkDeploymentStatusOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetErrorDetails sets the ErrorDetails field's value.
+func (s *GetBulkDeploymentStatusOutput) SetErrorDetails(v []*ErrorDetail) *GetBulkDeploymentStatusOutput {
+	s.ErrorDetails = v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *GetBulkDeploymentStatusOutput) SetErrorMessage(v string) *GetBulkDeploymentStatusOutput {
+	s.ErrorMessage = &v
+	return s
+}
+
 type GetConnectivityInfoInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9090,6 +9772,10 @@ type GetCoreDefinitionVersionOutput struct {
 	// The ID of the core definition version.
 	Id *string `type:"string"`
 
+	// The token for the next set of results, or ''null'' if there are no additional
+	// results.
+	NextToken *string `type:"string"`
+
 	// The version of the core definition version.
 	Version *string `type:"string"`
 }
@@ -9125,6 +9811,12 @@ func (s *GetCoreDefinitionVersionOutput) SetDefinition(v *CoreDefinitionVersion)
 // SetId sets the Id field's value.
 func (s *GetCoreDefinitionVersionOutput) SetId(v string) *GetCoreDefinitionVersionOutput {
 	s.Id = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetCoreDefinitionVersionOutput) SetNextToken(v string) *GetCoreDefinitionVersionOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -9186,7 +9878,8 @@ func (s *GetDeploymentStatusInput) SetGroupId(v string) *GetDeploymentStatusInpu
 type GetDeploymentStatusOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The status of the deployment.
+	// The status of the deployment: ''Pending'', ''InProgress'', ''Success'', or
+	// ''Failure''.
 	DeploymentStatus *string `type:"string"`
 
 	// The type of the deployment.
@@ -9357,6 +10050,8 @@ type GetDeviceDefinitionVersionInput struct {
 
 	// DeviceDefinitionVersionId is a required field
 	DeviceDefinitionVersionId *string `location:"uri" locationName:"DeviceDefinitionVersionId" type:"string" required:"true"`
+
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
 // String returns the string representation
@@ -9397,6 +10092,12 @@ func (s *GetDeviceDefinitionVersionInput) SetDeviceDefinitionVersionId(v string)
 	return s
 }
 
+// SetNextToken sets the NextToken field's value.
+func (s *GetDeviceDefinitionVersionInput) SetNextToken(v string) *GetDeviceDefinitionVersionInput {
+	s.NextToken = &v
+	return s
+}
+
 type GetDeviceDefinitionVersionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9412,6 +10113,10 @@ type GetDeviceDefinitionVersionOutput struct {
 
 	// The ID of the device definition version.
 	Id *string `type:"string"`
+
+	// The token for the next set of results, or ''null'' if there are no additional
+	// results.
+	NextToken *string `type:"string"`
 
 	// The version of the device definition version.
 	Version *string `type:"string"`
@@ -9448,6 +10153,12 @@ func (s *GetDeviceDefinitionVersionOutput) SetDefinition(v *DeviceDefinitionVers
 // SetId sets the Id field's value.
 func (s *GetDeviceDefinitionVersionOutput) SetId(v string) *GetDeviceDefinitionVersionOutput {
 	s.Id = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetDeviceDefinitionVersionOutput) SetNextToken(v string) *GetDeviceDefinitionVersionOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -9571,6 +10282,8 @@ type GetFunctionDefinitionVersionInput struct {
 
 	// FunctionDefinitionVersionId is a required field
 	FunctionDefinitionVersionId *string `location:"uri" locationName:"FunctionDefinitionVersionId" type:"string" required:"true"`
+
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
 // String returns the string representation
@@ -9611,6 +10324,12 @@ func (s *GetFunctionDefinitionVersionInput) SetFunctionDefinitionVersionId(v str
 	return s
 }
 
+// SetNextToken sets the NextToken field's value.
+func (s *GetFunctionDefinitionVersionInput) SetNextToken(v string) *GetFunctionDefinitionVersionInput {
+	s.NextToken = &v
+	return s
+}
+
 // Information about a function definition version.
 type GetFunctionDefinitionVersionOutput struct {
 	_ struct{} `type:"structure"`
@@ -9627,6 +10346,10 @@ type GetFunctionDefinitionVersionOutput struct {
 
 	// The ID of the function definition version.
 	Id *string `type:"string"`
+
+	// The token for the next set of results, or ''null'' if there are no additional
+	// results.
+	NextToken *string `type:"string"`
 
 	// The version of the function definition version.
 	Version *string `type:"string"`
@@ -9663,6 +10386,12 @@ func (s *GetFunctionDefinitionVersionOutput) SetDefinition(v *FunctionDefinition
 // SetId sets the Id field's value.
 func (s *GetFunctionDefinitionVersionOutput) SetId(v string) *GetFunctionDefinitionVersionOutput {
 	s.Id = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetFunctionDefinitionVersionOutput) SetNextToken(v string) *GetFunctionDefinitionVersionOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -10164,6 +10893,8 @@ type GetLoggerDefinitionVersionInput struct {
 
 	// LoggerDefinitionVersionId is a required field
 	LoggerDefinitionVersionId *string `location:"uri" locationName:"LoggerDefinitionVersionId" type:"string" required:"true"`
+
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
 // String returns the string representation
@@ -10201,6 +10932,12 @@ func (s *GetLoggerDefinitionVersionInput) SetLoggerDefinitionId(v string) *GetLo
 // SetLoggerDefinitionVersionId sets the LoggerDefinitionVersionId field's value.
 func (s *GetLoggerDefinitionVersionInput) SetLoggerDefinitionVersionId(v string) *GetLoggerDefinitionVersionInput {
 	s.LoggerDefinitionVersionId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetLoggerDefinitionVersionInput) SetNextToken(v string) *GetLoggerDefinitionVersionInput {
+	s.NextToken = &v
 	return s
 }
 
@@ -10635,6 +11372,8 @@ func (s *GetSubscriptionDefinitionOutput) SetName(v string) *GetSubscriptionDefi
 type GetSubscriptionDefinitionVersionInput struct {
 	_ struct{} `type:"structure"`
 
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+
 	// SubscriptionDefinitionId is a required field
 	SubscriptionDefinitionId *string `location:"uri" locationName:"SubscriptionDefinitionId" type:"string" required:"true"`
 
@@ -10668,6 +11407,12 @@ func (s *GetSubscriptionDefinitionVersionInput) Validate() error {
 	return nil
 }
 
+// SetNextToken sets the NextToken field's value.
+func (s *GetSubscriptionDefinitionVersionInput) SetNextToken(v string) *GetSubscriptionDefinitionVersionInput {
+	s.NextToken = &v
+	return s
+}
+
 // SetSubscriptionDefinitionId sets the SubscriptionDefinitionId field's value.
 func (s *GetSubscriptionDefinitionVersionInput) SetSubscriptionDefinitionId(v string) *GetSubscriptionDefinitionVersionInput {
 	s.SubscriptionDefinitionId = &v
@@ -10696,6 +11441,10 @@ type GetSubscriptionDefinitionVersionOutput struct {
 
 	// The ID of the subscription definition version.
 	Id *string `type:"string"`
+
+	// The token for the next set of results, or ''null'' if there are no additional
+	// results.
+	NextToken *string `type:"string"`
 
 	// The version of the subscription definition version.
 	Version *string `type:"string"`
@@ -10732,6 +11481,12 @@ func (s *GetSubscriptionDefinitionVersionOutput) SetDefinition(v *SubscriptionDe
 // SetId sets the Id field's value.
 func (s *GetSubscriptionDefinitionVersionOutput) SetId(v string) *GetSubscriptionDefinitionVersionOutput {
 	s.Id = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetSubscriptionDefinitionVersionOutput) SetNextToken(v string) *GetSubscriptionDefinitionVersionOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -10954,6 +11709,154 @@ func (s *GroupVersion) SetResourceDefinitionVersionArn(v string) *GroupVersion {
 // SetSubscriptionDefinitionVersionArn sets the SubscriptionDefinitionVersionArn field's value.
 func (s *GroupVersion) SetSubscriptionDefinitionVersionArn(v string) *GroupVersion {
 	s.SubscriptionDefinitionVersionArn = &v
+	return s
+}
+
+type ListBulkDeploymentDetailedReportsInput struct {
+	_ struct{} `type:"structure"`
+
+	// BulkDeploymentId is a required field
+	BulkDeploymentId *string `location:"uri" locationName:"BulkDeploymentId" type:"string" required:"true"`
+
+	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
+
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListBulkDeploymentDetailedReportsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListBulkDeploymentDetailedReportsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListBulkDeploymentDetailedReportsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListBulkDeploymentDetailedReportsInput"}
+	if s.BulkDeploymentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BulkDeploymentId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBulkDeploymentId sets the BulkDeploymentId field's value.
+func (s *ListBulkDeploymentDetailedReportsInput) SetBulkDeploymentId(v string) *ListBulkDeploymentDetailedReportsInput {
+	s.BulkDeploymentId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListBulkDeploymentDetailedReportsInput) SetMaxResults(v string) *ListBulkDeploymentDetailedReportsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListBulkDeploymentDetailedReportsInput) SetNextToken(v string) *ListBulkDeploymentDetailedReportsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListBulkDeploymentDetailedReportsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the individual group deployments in the bulk deployment operation.
+	Deployments []*BulkDeploymentResult `type:"list"`
+
+	// The token for the next set of results, or ''null'' if there are no additional
+	// results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListBulkDeploymentDetailedReportsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListBulkDeploymentDetailedReportsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDeployments sets the Deployments field's value.
+func (s *ListBulkDeploymentDetailedReportsOutput) SetDeployments(v []*BulkDeploymentResult) *ListBulkDeploymentDetailedReportsOutput {
+	s.Deployments = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListBulkDeploymentDetailedReportsOutput) SetNextToken(v string) *ListBulkDeploymentDetailedReportsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListBulkDeploymentsInput struct {
+	_ struct{} `type:"structure"`
+
+	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
+
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListBulkDeploymentsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListBulkDeploymentsInput) GoString() string {
+	return s.String()
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListBulkDeploymentsInput) SetMaxResults(v string) *ListBulkDeploymentsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListBulkDeploymentsInput) SetNextToken(v string) *ListBulkDeploymentsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListBulkDeploymentsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of bulk deployments.
+	BulkDeployments []*BulkDeployment `type:"list"`
+
+	// The token for the next set of results, or ''null'' if there are no additional
+	// results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListBulkDeploymentsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListBulkDeploymentsOutput) GoString() string {
+	return s.String()
+}
+
+// SetBulkDeployments sets the BulkDeployments field's value.
+func (s *ListBulkDeploymentsOutput) SetBulkDeployments(v []*BulkDeployment) *ListBulkDeploymentsOutput {
+	s.BulkDeployments = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListBulkDeploymentsOutput) SetNextToken(v string) *ListBulkDeploymentsOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -12144,7 +13047,7 @@ type LocalVolumeResourceData struct {
 	GroupOwnerSetting *GroupOwnerSetting `type:"structure"`
 
 	// The local absolute path of the volume resource on the host. The source path
-	// for a volume resource type cannot start with ''/sys''.
+	// for a volume resource type cannot start with ''/proc'' or ''/sys''.
 	SourcePath *string `type:"string"`
 }
 
@@ -12183,7 +13086,9 @@ type Logger struct {
 	// The component that will be subject to logging.
 	Component *string `type:"string" enum:"LoggerComponent"`
 
-	// The id of the logger.
+	// A descriptive or arbitrary ID for the logger. This value must be unique within
+	// the logger definition version. Max length is 128 characters with pattern
+	// ''[a‑zA‑Z0‑9:_‑]+''.
 	Id *string `type:"string"`
 
 	// The level of the logs.
@@ -12572,11 +13477,145 @@ func (s *SageMakerMachineLearningModelResourceData) SetSageMakerJobArn(v string)
 	return s
 }
 
+// Information about a bulk deployment. You cannot start a new bulk deployment
+// while another one is still running or in a non-terminal state.
+type StartBulkDeploymentInput struct {
+	_ struct{} `type:"structure"`
+
+	AmznClientToken *string `location:"header" locationName:"X-Amzn-Client-Token" type:"string"`
+
+	// The ARN of the execution role to associate with the bulk deployment operation.
+	// This IAM role must allow the ''greengrass:CreateDeployment'' action for all
+	// group versions that are listed in the input file. This IAM role must have
+	// access to the S3 bucket containing the input file.
+	ExecutionRoleArn *string `type:"string"`
+
+	// The URI of the input file contained in the S3 bucket. The execution role
+	// must have ''getObject'' permissions on this bucket to access the input file.
+	// The input file is a JSON-serialized, line delimited file with UTF-8 encoding
+	// that provides a list of group and version IDs and the deployment type. This
+	// file must be less than 100MB. Currently, Greengrass; supports only ''NewDeployment''
+	// deployment types.
+	InputFileUri *string `type:"string"`
+}
+
+// String returns the string representation
+func (s StartBulkDeploymentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartBulkDeploymentInput) GoString() string {
+	return s.String()
+}
+
+// SetAmznClientToken sets the AmznClientToken field's value.
+func (s *StartBulkDeploymentInput) SetAmznClientToken(v string) *StartBulkDeploymentInput {
+	s.AmznClientToken = &v
+	return s
+}
+
+// SetExecutionRoleArn sets the ExecutionRoleArn field's value.
+func (s *StartBulkDeploymentInput) SetExecutionRoleArn(v string) *StartBulkDeploymentInput {
+	s.ExecutionRoleArn = &v
+	return s
+}
+
+// SetInputFileUri sets the InputFileUri field's value.
+func (s *StartBulkDeploymentInput) SetInputFileUri(v string) *StartBulkDeploymentInput {
+	s.InputFileUri = &v
+	return s
+}
+
+type StartBulkDeploymentOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the bulk deployment.
+	BulkDeploymentArn *string `type:"string"`
+
+	// The ID of the bulk deployment.
+	BulkDeploymentId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s StartBulkDeploymentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartBulkDeploymentOutput) GoString() string {
+	return s.String()
+}
+
+// SetBulkDeploymentArn sets the BulkDeploymentArn field's value.
+func (s *StartBulkDeploymentOutput) SetBulkDeploymentArn(v string) *StartBulkDeploymentOutput {
+	s.BulkDeploymentArn = &v
+	return s
+}
+
+// SetBulkDeploymentId sets the BulkDeploymentId field's value.
+func (s *StartBulkDeploymentOutput) SetBulkDeploymentId(v string) *StartBulkDeploymentOutput {
+	s.BulkDeploymentId = &v
+	return s
+}
+
+type StopBulkDeploymentInput struct {
+	_ struct{} `type:"structure"`
+
+	// BulkDeploymentId is a required field
+	BulkDeploymentId *string `location:"uri" locationName:"BulkDeploymentId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StopBulkDeploymentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopBulkDeploymentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopBulkDeploymentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopBulkDeploymentInput"}
+	if s.BulkDeploymentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BulkDeploymentId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBulkDeploymentId sets the BulkDeploymentId field's value.
+func (s *StopBulkDeploymentInput) SetBulkDeploymentId(v string) *StopBulkDeploymentInput {
+	s.BulkDeploymentId = &v
+	return s
+}
+
+type StopBulkDeploymentOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s StopBulkDeploymentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopBulkDeploymentOutput) GoString() string {
+	return s.String()
+}
+
 // Information about a subscription.
 type Subscription struct {
 	_ struct{} `type:"structure"`
 
-	// The id of the subscription.
+	// A descriptive or arbitrary ID for the subscription. This value must be unique
+	// within the subscription definition version. Max length is 128 characters
+	// with pattern ''[a‑zA‑Z0‑9:_‑]+''.
 	Id *string `type:"string"`
 
 	// The source of the subscription. Can be a thing ARN, a Lambda function ARN,
@@ -13267,6 +14306,28 @@ func (s *VersionInformation) SetVersion(v string) *VersionInformation {
 	return s
 }
 
+// The current status of the bulk deployment.
+const (
+	// BulkDeploymentStatusInitializing is a BulkDeploymentStatus enum value
+	BulkDeploymentStatusInitializing = "Initializing"
+
+	// BulkDeploymentStatusRunning is a BulkDeploymentStatus enum value
+	BulkDeploymentStatusRunning = "Running"
+
+	// BulkDeploymentStatusCompleted is a BulkDeploymentStatus enum value
+	BulkDeploymentStatusCompleted = "Completed"
+
+	// BulkDeploymentStatusStopping is a BulkDeploymentStatus enum value
+	BulkDeploymentStatusStopping = "Stopping"
+
+	// BulkDeploymentStatusStopped is a BulkDeploymentStatus enum value
+	BulkDeploymentStatusStopped = "Stopped"
+
+	// BulkDeploymentStatusFailed is a BulkDeploymentStatus enum value
+	BulkDeploymentStatusFailed = "Failed"
+)
+
+// The type of deployment.
 const (
 	// DeploymentTypeNewDeployment is a DeploymentType enum value
 	DeploymentTypeNewDeployment = "NewDeployment"

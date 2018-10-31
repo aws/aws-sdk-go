@@ -1,3 +1,14 @@
+Release v1.15.66 (2018-10-31)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API
+* `service/greengrass`: Updates service API and documentation
+  * Greengrass APIs now support bulk deployment operations, and APIs that list definition versions now support pagination.
+* `service/mediastore-data`: Updates service API and documentation
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for AWS Secrets Manager.
+
 Release v1.15.65 (2018-10-30)
 ===
 
