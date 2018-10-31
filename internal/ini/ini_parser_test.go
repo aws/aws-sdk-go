@@ -13,6 +13,7 @@ import (
 func TestParser(t *testing.T) {
 	xID, _, _ := newLitToken([]rune("x = 1234"))
 	s3ID, _, _ := newLitToken([]rune("s3 = 1234"))
+	fooSlashes, _, _ := newLitToken([]rune("//foo"))
 
 	regionID, _, _ := newLitToken([]rune("region"))
 	regionLit, _, _ := newLitToken([]rune(`"us-west-2"`))
@@ -32,6 +33,8 @@ func TestParser(t *testing.T) {
 
 	defaultProfileStmt := newSectionStatement(defaultID)
 	assumeProfileStmt := newSectionStatement(assumeID)
+
+	fooSlashesExpr := newExpression(fooSlashes)
 
 	xEQ1234 := newEqualExpr(newExpression(xID), equalOp)
 	xEQ1234.AppendChild(newExpression(numLit))
@@ -101,22 +104,30 @@ func TestParser(t *testing.T) {
 			},
 		},
 		{
-			name: "// comment",
-			r:    bytes.NewBuffer([]byte(`// foo`)),
+			name: "// not a comment",
+			r:    bytes.NewBuffer([]byte(`//foo`)),
 			expectedStack: []AST{
-				newCommentStatement(newToken(TokenComment, []rune("// foo"), NoneType)),
+				fooSlashesExpr,
 			},
 		},
 		{
 			name: "multiple comments",
 			r: bytes.NewBuffer([]byte(`;foo
-			//bar
 					# baz
 					`)),
 			expectedStack: []AST{
 				newCommentStatement(newToken(TokenComment, []rune(";foo"), NoneType)),
-				newCommentStatement(newToken(TokenComment, []rune("//bar"), NoneType)),
 				newCommentStatement(newToken(TokenComment, []rune("# baz"), NoneType)),
+			},
+		},
+		{
+			name: "comment followed by skip state",
+			r: bytes.NewBuffer([]byte(`;foo
+			//foo
+					# baz
+					`)),
+			expectedStack: []AST{
+				newCommentStatement(newToken(TokenComment, []rune(";foo"), NoneType)),
 			},
 		},
 		{
