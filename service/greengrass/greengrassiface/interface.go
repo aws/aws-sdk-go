@@ -176,6 +176,10 @@ type GreengrassAPI interface {
 	GetAssociatedRoleWithContext(aws.Context, *greengrass.GetAssociatedRoleInput, ...request.Option) (*greengrass.GetAssociatedRoleOutput, error)
 	GetAssociatedRoleRequest(*greengrass.GetAssociatedRoleInput) (*request.Request, *greengrass.GetAssociatedRoleOutput)
 
+	GetBulkDeploymentStatus(*greengrass.GetBulkDeploymentStatusInput) (*greengrass.GetBulkDeploymentStatusOutput, error)
+	GetBulkDeploymentStatusWithContext(aws.Context, *greengrass.GetBulkDeploymentStatusInput, ...request.Option) (*greengrass.GetBulkDeploymentStatusOutput, error)
+	GetBulkDeploymentStatusRequest(*greengrass.GetBulkDeploymentStatusInput) (*request.Request, *greengrass.GetBulkDeploymentStatusOutput)
+
 	GetConnectivityInfo(*greengrass.GetConnectivityInfoInput) (*greengrass.GetConnectivityInfoOutput, error)
 	GetConnectivityInfoWithContext(aws.Context, *greengrass.GetConnectivityInfoInput, ...request.Option) (*greengrass.GetConnectivityInfoOutput, error)
 	GetConnectivityInfoRequest(*greengrass.GetConnectivityInfoInput) (*request.Request, *greengrass.GetConnectivityInfoOutput)
@@ -252,6 +256,14 @@ type GreengrassAPI interface {
 	GetSubscriptionDefinitionVersionWithContext(aws.Context, *greengrass.GetSubscriptionDefinitionVersionInput, ...request.Option) (*greengrass.GetSubscriptionDefinitionVersionOutput, error)
 	GetSubscriptionDefinitionVersionRequest(*greengrass.GetSubscriptionDefinitionVersionInput) (*request.Request, *greengrass.GetSubscriptionDefinitionVersionOutput)
 
+	ListBulkDeploymentDetailedReports(*greengrass.ListBulkDeploymentDetailedReportsInput) (*greengrass.ListBulkDeploymentDetailedReportsOutput, error)
+	ListBulkDeploymentDetailedReportsWithContext(aws.Context, *greengrass.ListBulkDeploymentDetailedReportsInput, ...request.Option) (*greengrass.ListBulkDeploymentDetailedReportsOutput, error)
+	ListBulkDeploymentDetailedReportsRequest(*greengrass.ListBulkDeploymentDetailedReportsInput) (*request.Request, *greengrass.ListBulkDeploymentDetailedReportsOutput)
+
+	ListBulkDeployments(*greengrass.ListBulkDeploymentsInput) (*greengrass.ListBulkDeploymentsOutput, error)
+	ListBulkDeploymentsWithContext(aws.Context, *greengrass.ListBulkDeploymentsInput, ...request.Option) (*greengrass.ListBulkDeploymentsOutput, error)
+	ListBulkDeploymentsRequest(*greengrass.ListBulkDeploymentsInput) (*request.Request, *greengrass.ListBulkDeploymentsOutput)
+
 	ListCoreDefinitionVersions(*greengrass.ListCoreDefinitionVersionsInput) (*greengrass.ListCoreDefinitionVersionsOutput, error)
 	ListCoreDefinitionVersionsWithContext(aws.Context, *greengrass.ListCoreDefinitionVersionsInput, ...request.Option) (*greengrass.ListCoreDefinitionVersionsOutput, error)
 	ListCoreDefinitionVersionsRequest(*greengrass.ListCoreDefinitionVersionsInput) (*request.Request, *greengrass.ListCoreDefinitionVersionsOutput)
@@ -319,6 +331,14 @@ type GreengrassAPI interface {
 	ResetDeployments(*greengrass.ResetDeploymentsInput) (*greengrass.ResetDeploymentsOutput, error)
 	ResetDeploymentsWithContext(aws.Context, *greengrass.ResetDeploymentsInput, ...request.Option) (*greengrass.ResetDeploymentsOutput, error)
 	ResetDeploymentsRequest(*greengrass.ResetDeploymentsInput) (*request.Request, *greengrass.ResetDeploymentsOutput)
+
+	StartBulkDeployment(*greengrass.StartBulkDeploymentInput) (*greengrass.StartBulkDeploymentOutput, error)
+	StartBulkDeploymentWithContext(aws.Context, *greengrass.StartBulkDeploymentInput, ...request.Option) (*greengrass.StartBulkDeploymentOutput, error)
+	StartBulkDeploymentRequest(*greengrass.StartBulkDeploymentInput) (*request.Request, *greengrass.StartBulkDeploymentOutput)
+
+	StopBulkDeployment(*greengrass.StopBulkDeploymentInput) (*greengrass.StopBulkDeploymentOutput, error)
+	StopBulkDeploymentWithContext(aws.Context, *greengrass.StopBulkDeploymentInput, ...request.Option) (*greengrass.StopBulkDeploymentOutput, error)
+	StopBulkDeploymentRequest(*greengrass.StopBulkDeploymentInput) (*request.Request, *greengrass.StopBulkDeploymentOutput)
 
 	UpdateConnectivityInfo(*greengrass.UpdateConnectivityInfoInput) (*greengrass.UpdateConnectivityInfoOutput, error)
 	UpdateConnectivityInfoWithContext(aws.Context, *greengrass.UpdateConnectivityInfoInput, ...request.Option) (*greengrass.UpdateConnectivityInfoOutput, error)

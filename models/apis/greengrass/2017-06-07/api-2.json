@@ -4,6 +4,7 @@
     "endpointPrefix" : "greengrass",
     "signingName" : "greengrass",
     "serviceFullName" : "AWS Greengrass",
+    "serviceId" : "Greengrass",
     "protocol" : "rest-json",
     "jsonVersion" : "1.1",
     "uid" : "greengrass-2017-06-07",
@@ -515,6 +516,23 @@
         "shape" : "InternalServerErrorException"
       } ]
     },
+    "GetBulkDeploymentStatus" : {
+      "name" : "GetBulkDeploymentStatus",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/greengrass/bulk/deployments/{BulkDeploymentId}/status",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "GetBulkDeploymentStatusRequest"
+      },
+      "output" : {
+        "shape" : "GetBulkDeploymentStatusResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      } ]
+    },
     "GetConnectivityInfo" : {
       "name" : "GetConnectivityInfo",
       "http" : {
@@ -844,6 +862,40 @@
         "shape" : "BadRequestException"
       } ]
     },
+    "ListBulkDeploymentDetailedReports" : {
+      "name" : "ListBulkDeploymentDetailedReports",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/greengrass/bulk/deployments/{BulkDeploymentId}/detailed-reports",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "ListBulkDeploymentDetailedReportsRequest"
+      },
+      "output" : {
+        "shape" : "ListBulkDeploymentDetailedReportsResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      } ]
+    },
+    "ListBulkDeployments" : {
+      "name" : "ListBulkDeployments",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/greengrass/bulk/deployments",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "ListBulkDeploymentsRequest"
+      },
+      "output" : {
+        "shape" : "ListBulkDeploymentsResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      } ]
+    },
     "ListCoreDefinitionVersions" : {
       "name" : "ListCoreDefinitionVersions",
       "http" : {
@@ -1121,6 +1173,40 @@
         "shape" : "BadRequestException"
       } ]
     },
+    "StartBulkDeployment" : {
+      "name" : "StartBulkDeployment",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/greengrass/bulk/deployments",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "StartBulkDeploymentRequest"
+      },
+      "output" : {
+        "shape" : "StartBulkDeploymentResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      } ]
+    },
+    "StopBulkDeployment" : {
+      "name" : "StopBulkDeployment",
+      "http" : {
+        "method" : "PUT",
+        "requestUri" : "/greengrass/bulk/deployments/{BulkDeploymentId}/$stop",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "StopBulkDeploymentRequest"
+      },
+      "output" : {
+        "shape" : "StopBulkDeploymentResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      } ]
+    },
     "UpdateConnectivityInfo" : {
       "name" : "UpdateConnectivityInfo",
       "http" : {
@@ -1331,6 +1417,79 @@
       "exception" : true,
       "error" : {
         "httpStatusCode" : 400
+      }
+    },
+    "BulkDeployment" : {
+      "type" : "structure",
+      "members" : {
+        "BulkDeploymentArn" : {
+          "shape" : "__string"
+        },
+        "BulkDeploymentId" : {
+          "shape" : "__string"
+        },
+        "CreatedAt" : {
+          "shape" : "__string"
+        }
+      }
+    },
+    "BulkDeploymentMetrics" : {
+      "type" : "structure",
+      "members" : {
+        "InvalidInputRecords" : {
+          "shape" : "__integer"
+        },
+        "RecordsProcessed" : {
+          "shape" : "__integer"
+        },
+        "RetryAttempts" : {
+          "shape" : "__integer"
+        }
+      }
+    },
+    "BulkDeploymentResult" : {
+      "type" : "structure",
+      "members" : {
+        "CreatedAt" : {
+          "shape" : "__string"
+        },
+        "DeploymentArn" : {
+          "shape" : "__string"
+        },
+        "DeploymentId" : {
+          "shape" : "__string"
+        },
+        "DeploymentStatus" : {
+          "shape" : "__string"
+        },
+        "DeploymentType" : {
+          "shape" : "DeploymentType"
+        },
+        "ErrorDetails" : {
+          "shape" : "ErrorDetails"
+        },
+        "ErrorMessage" : {
+          "shape" : "__string"
+        },
+        "GroupArn" : {
+          "shape" : "__string"
+        }
+      }
+    },
+    "BulkDeploymentResults" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "BulkDeploymentResult"
+      }
+    },
+    "BulkDeploymentStatus" : {
+      "type" : "string",
+      "enum" : [ "Initializing", "Running", "Completed", "Stopping", "Stopped", "Failed" ]
+    },
+    "BulkDeployments" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "BulkDeployment"
       }
     },
     "ConnectivityInfo" : {
@@ -2375,6 +2534,37 @@
         }
       }
     },
+    "GetBulkDeploymentStatusRequest" : {
+      "type" : "structure",
+      "members" : {
+        "BulkDeploymentId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "BulkDeploymentId"
+        }
+      },
+      "required" : [ "BulkDeploymentId" ]
+    },
+    "GetBulkDeploymentStatusResponse" : {
+      "type" : "structure",
+      "members" : {
+        "BulkDeploymentMetrics" : {
+          "shape" : "BulkDeploymentMetrics"
+        },
+        "BulkDeploymentStatus" : {
+          "shape" : "BulkDeploymentStatus"
+        },
+        "CreatedAt" : {
+          "shape" : "__string"
+        },
+        "ErrorDetails" : {
+          "shape" : "ErrorDetails"
+        },
+        "ErrorMessage" : {
+          "shape" : "__string"
+        }
+      }
+    },
     "GetConnectivityInfoRequest" : {
       "type" : "structure",
       "members" : {
@@ -2464,6 +2654,9 @@
           "shape" : "CoreDefinitionVersion"
         },
         "Id" : {
+          "shape" : "__string"
+        },
+        "NextToken" : {
           "shape" : "__string"
         },
         "Version" : {
@@ -2556,6 +2749,11 @@
           "shape" : "__string",
           "location" : "uri",
           "locationName" : "DeviceDefinitionVersionId"
+        },
+        "NextToken" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "NextToken"
         }
       },
       "required" : [ "DeviceDefinitionVersionId", "DeviceDefinitionId" ]
@@ -2573,6 +2771,9 @@
           "shape" : "DeviceDefinitionVersion"
         },
         "Id" : {
+          "shape" : "__string"
+        },
+        "NextToken" : {
           "shape" : "__string"
         },
         "Version" : {
@@ -2629,6 +2830,11 @@
           "shape" : "__string",
           "location" : "uri",
           "locationName" : "FunctionDefinitionVersionId"
+        },
+        "NextToken" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "NextToken"
         }
       },
       "required" : [ "FunctionDefinitionId", "FunctionDefinitionVersionId" ]
@@ -2646,6 +2852,9 @@
           "shape" : "FunctionDefinitionVersion"
         },
         "Id" : {
+          "shape" : "__string"
+        },
+        "NextToken" : {
           "shape" : "__string"
         },
         "Version" : {
@@ -2830,6 +3039,11 @@
           "shape" : "__string",
           "location" : "uri",
           "locationName" : "LoggerDefinitionVersionId"
+        },
+        "NextToken" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "NextToken"
         }
       },
       "required" : [ "LoggerDefinitionVersionId", "LoggerDefinitionId" ]
@@ -2982,6 +3196,11 @@
     "GetSubscriptionDefinitionVersionRequest" : {
       "type" : "structure",
       "members" : {
+        "NextToken" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "NextToken"
+        },
         "SubscriptionDefinitionId" : {
           "shape" : "__string",
           "location" : "uri",
@@ -3008,6 +3227,9 @@
           "shape" : "SubscriptionDefinitionVersion"
         },
         "Id" : {
+          "shape" : "__string"
+        },
+        "NextToken" : {
           "shape" : "__string"
         },
         "Version" : {
@@ -3113,6 +3335,64 @@
       "exception" : true,
       "error" : {
         "httpStatusCode" : 500
+      }
+    },
+    "ListBulkDeploymentDetailedReportsRequest" : {
+      "type" : "structure",
+      "members" : {
+        "BulkDeploymentId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "BulkDeploymentId"
+        },
+        "MaxResults" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "MaxResults"
+        },
+        "NextToken" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "NextToken"
+        }
+      },
+      "required" : [ "BulkDeploymentId" ]
+    },
+    "ListBulkDeploymentDetailedReportsResponse" : {
+      "type" : "structure",
+      "members" : {
+        "Deployments" : {
+          "shape" : "BulkDeploymentResults"
+        },
+        "NextToken" : {
+          "shape" : "__string"
+        }
+      }
+    },
+    "ListBulkDeploymentsRequest" : {
+      "type" : "structure",
+      "members" : {
+        "MaxResults" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "MaxResults"
+        },
+        "NextToken" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "NextToken"
+        }
+      }
+    },
+    "ListBulkDeploymentsResponse" : {
+      "type" : "structure",
+      "members" : {
+        "BulkDeployments" : {
+          "shape" : "BulkDeployments"
+        },
+        "NextToken" : {
+          "shape" : "__string"
+        }
       }
     },
     "ListCoreDefinitionVersionsRequest" : {
@@ -3775,6 +4055,48 @@
       "type" : "string",
       "enum" : [ "core", "ota_agent" ]
     },
+    "StartBulkDeploymentRequest" : {
+      "type" : "structure",
+      "members" : {
+        "AmznClientToken" : {
+          "shape" : "__string",
+          "location" : "header",
+          "locationName" : "X-Amzn-Client-Token"
+        },
+        "ExecutionRoleArn" : {
+          "shape" : "__string"
+        },
+        "InputFileUri" : {
+          "shape" : "__string"
+        }
+      }
+    },
+    "StartBulkDeploymentResponse" : {
+      "type" : "structure",
+      "members" : {
+        "BulkDeploymentArn" : {
+          "shape" : "__string"
+        },
+        "BulkDeploymentId" : {
+          "shape" : "__string"
+        }
+      }
+    },
+    "StopBulkDeploymentRequest" : {
+      "type" : "structure",
+      "members" : {
+        "BulkDeploymentId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "BulkDeploymentId"
+        }
+      },
+      "required" : [ "BulkDeploymentId" ]
+    },
+    "StopBulkDeploymentResponse" : {
+      "type" : "structure",
+      "members" : { }
+    },
     "Subscription" : {
       "type" : "structure",
       "members" : {
@@ -4112,8 +4434,13 @@
     "__string" : {
       "type" : "string"
     },
-    "__timestamp" : {
-      "type" : "timestamp"
+    "__timestampIso8601" : {
+      "type" : "timestamp",
+      "timestampFormat" : "iso8601"
+    },
+    "__timestampUnix" : {
+      "type" : "timestamp",
+      "timestampFormat" : "unixTimestamp"
     }
   }
 }
