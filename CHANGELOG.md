@@ -1,3 +1,13 @@
+Release v1.15.67 (2018-11-01)
+===
+
+### Service Client Updates
+* `service/servicecatalog`: Updates service API, documentation, and paginators
+  * Service Catalog integration with AWS Organizations, enables customers to more easily create and manage a portfolio of IT services across an organization. Administrators can now take advantage of the AWS account structure and account groupings configured in AWS Organizations to share Service Catalog Portfolios increasing agility and reducing risk. With this integration the admin user will leverage the trust relationship that exists within the accounts of the Organization to share portfolios to the entire Organization, a specific Organizational Unit or a specific Account.
+
+### SDK Bugs
+* `internal/ini`: removing // comments (#2240)
+  * removes // comments since that was never supported previously.
 Release v1.15.66 (2018-10-31)
 ===
 
