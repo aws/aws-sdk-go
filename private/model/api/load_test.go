@@ -35,8 +35,9 @@ func TestResolvedReferences(t *testing.T) {
 
 func TestTrimModelServiceVersions(t *testing.T) {
 	cases := []struct {
-		Paths  []string
-		Expect []string
+		Paths   []string
+		Include []string
+		Exclude []string
 	}{
 		{
 			Paths: []string{
@@ -47,18 +48,27 @@ func TestTrimModelServiceVersions(t *testing.T) {
 				"foo/bar/2013-04-02",
 				"foo/bar/2019-01-03",
 			},
-			Expect: []string{
+			Include: []string{
 				"foo/bar/2019-01-03",
 				"foo/baz/2019-01-02",
+			},
+			Exclude: []string{
+				"foo/bar/2019-01-02",
+				"foo/bar/2013-04-02",
+				"foo/baz/2018-01-02",
+				"foo/baz/2017-01-02",
 			},
 		},
 	}
 
 	for i, c := range cases {
 		t.Run(strconv.Itoa(i), func(t *testing.T) {
-			result := trimModelServiceVersions(c.Paths)
-			if e, a := c.Expect, result; !reflect.DeepEqual(e, a) {
-				t.Errorf("expect %v, got %v", e, a)
+			include, exclude := TrimModelServiceVersions(c.Paths)
+			if e, a := c.Include, exclude; !reflect.DeepEqual(e, a) {
+				t.Errorf("expect include %v, got %v", e, a)
+			}
+			if e, a := c.Exclude, exclude; !reflect.DeepEqual(e, a) {
+				t.Errorf("expect exclude %v, got %v", e, a)
 			}
 		})
 	}

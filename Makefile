@@ -51,7 +51,7 @@ gen-endpoints: get-deps-codegen
 
 cleanup-models:
 	@echo "Cleaning up stale model versions"
-	@./cleanup_models.sh
+	go run -tags codegen ./private/model/cli/cleanup-models "./models/apis/*/*/api-2.json"
 
 unit: get-deps verify
 	@echo "go test SDK and vendor packages"
