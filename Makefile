@@ -14,13 +14,12 @@ SDK_ONLY_PKGS=$(shell go list ./... | grep -v "/vendor/")
 SDK_UNIT_TEST_ONLY_PKGS=$(shell go list -tags ${UNIT_TEST_TAGS} ./... | grep -v "/vendor/")
 SDK_GO_VERSION=$(shell go version | awk '''{print $$3}''' | tr -d '''\n''')
 
-all: get-deps generate unit
+all: generate unit
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  api_info                to print a list of services and versions"
 	@echo "  docs                    to build SDK documentation"
-	@echo "  build                   to go build the SDK"
 	@echo "  unit                    to run unit tests"
 	@echo "  integration             to run integration tests"
 	@echo "  performance             to run performance tests"
@@ -38,45 +37,35 @@ generate: cleanup-models gen-test gen-endpoints gen-services
 
 gen-test: gen-protocol-test gen-codegen-test
 
-gen-codegen-test:
+gen-codegen-test: get-deps-codegen
 	go generate ./private/model/api/codegentest/service
 
-gen-services:
+gen-services: get-deps-codegen
 	go generate ./service
 
-gen-protocol-test:
+gen-protocol-test: get-deps-codegen
 	go generate ./private/protocol/...
 
-gen-endpoints:
+gen-endpoints: get-deps-codegen
 	go generate ./models/endpoints/
 
 cleanup-models:
 	@echo "Cleaning up stale model versions"
 	@./cleanup_models.sh
 
-build:
-	@echo "go build SDK and vendor packages"
-	@go build ${SDK_ONLY_PKGS}
-
-unit: get-deps-tests build verify
+unit: get-deps verify
 	@echo "go test SDK and vendor packages"
 	@go test -tags ${UNIT_TEST_TAGS} $(SDK_UNIT_TEST_ONLY_PKGS)
 
-unit-with-race-cover: get-deps-tests build verify
+unit-with-race-cover: get-deps verify
 	@echo "go test SDK and vendor packages"
 	@go test -tags ${UNIT_TEST_TAGS} -race -cpu=1,2,4 $(SDK_UNIT_TEST_ONLY_PKGS)
 
-unit-test-sdk-packages: get-deps-tests build
-	@echo "go test SDK only packages"
+unit-old-go-race-cover: get-deps-tests
+	@echo "go test SDK only packages for old Go versions"
 	@go test -race -cpu=1,2,4 $(SDK_ONLY_PKGS)
 
-ci-test-no-verify: unit-test-sdk-packages
-
-ci-test: ci-test-generate unit-with-race-cover ci-test-generate-validate
-
-ci-test-generate: get-deps
-	@echo "CI test generated code"
-	make generate
+ci-test: generate unit-with-race-cover ci-test-generate-validate
 
 ci-test-generate-validate:
 	@echo "CI test validate no generated code changes"
@@ -85,18 +74,18 @@ ci-test-generate-validate:
 	echo "$$gitstatus"; \
 	if [ "$$gitstatus" != "" ] && [ "$$gitstatus" != "skipping validation" ]; then echo "$$gitstatus"; exit 1; fi
 
-integration: get-deps-tests integ-custom smoke-tests performance
+integration: integ-custom smoke-tests performance
 
-integ-custom:
+integ-custom: get-deps-integ
 	go test -tags "integration" -v ./awstesting/integration/customizations/...
 
-cleanup-integ:
+cleanup-integ-buckets:
 	go run -tags "integration" ./awstesting/cmd/bucket_cleanup/main.go "aws-sdk-go-integration"
 
-smoke-tests: get-deps-tests
+smoke-tests: get-deps-integ
 	gucumber -go-tags "integration" ./awstesting/integration/smoke
 
-performance: get-deps-tests
+performance: get-deps-integ
 	AWS_TESTING_LOG_RESULTS=${log-detailed} AWS_TESTING_REGION=$(region) AWS_TESTING_DB_TABLE=$(table) gucumber -go-tags "integration" ./awstesting/performance
 
 sandbox-tests: sandbox-test-go15 sandbox-test-go15-novendorexp sandbox-test-go16 sandbox-test-go17 sandbox-test-go18 sandbox-test-go19 sandbox-test-gotip
@@ -183,17 +172,23 @@ GO_VET_CMD=go tool vet --all -shadow
 vet:
 	${GO_VET_CMD} ${SDK_BASE_FOLDERS}
 
-get-deps: get-deps-tests get-deps-verify
-	@echo "go get SDK dependencies"
-	@go get -v $(SDK_ONLY_PKGS)
+get-deps: get-deps-tests get-deps-x-tests get-deps-codegen get-deps-verify
 
 get-deps-tests:
 	@echo "go get SDK testing dependencies"
-	go get github.com/gucumber/gucumber/cmd/gucumber
 	go get github.com/stretchr/testify
-	go get github.com/smartystreets/goconvey
-	go get golang.org/x/net/html
+
+get-deps-x-tests:
+	@echo "go get SDK testing golang.org/x dependencies"
 	go get golang.org/x/net/http2
+
+get-deps-integ: get-deps-tests
+	@echo "go get SDK integ testing dependencies"
+	go get github.com/gucumber/gucumber/cmd/gucumber
+
+get-deps-codegen:
+	@echo "go get SDK codegen dependencies"
+	go get golang.org/x/net/html
 
 get-deps-verify:
 	@echo "go get SDK verification utilities"
