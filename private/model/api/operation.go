@@ -30,7 +30,7 @@ type Operation struct {
 	EventStreamAPI *EventStreamAPI
 }
 
-// OperationForMethod returns the API operation name that corrisponds to the
+// OperationForMethod returns the API operation name that corresponds to the
 // client method name provided.
 func (a *API) OperationForMethod(name string) *Operation {
 	for _, op := range a.Operations {

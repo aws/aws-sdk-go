@@ -101,7 +101,6 @@ func main() {
 
 		// Create the output path for the model.
 		pkgDir := filepath.Join(svcPath, a.PackageName())
-		os.MkdirAll(pkgDir, 0775)
 		os.MkdirAll(filepath.Join(pkgDir, a.InterfacePackageName()), 0775)
 
 		if _, ok := servicePaths[pkgDir]; ok {
