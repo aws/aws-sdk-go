@@ -1,0 +1,11 @@
+{
+  "pagination": {
+    "Mock": {
+      "input_token": "Token",
+      "limit_key": "Limit",
+      "output_token": "NextToken",
+      "more_results": "IsTruncated",
+      "result_key": "List"
+    }
+  }
+}
