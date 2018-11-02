@@ -29,10 +29,6 @@ matrix:
           go: 1.5.x
           # Use Go 1.5's vendoring experiment for 1.5 tests.
           env: GO15VENDOREXPERIMENT=1
-        - os: osx
-          go: 1.5.x
-          # Use Go 1.5's vendoring experiment for 1.5 tests.
-          env: GO15VENDOREXPERIMENT=1
         - os: windows
           go: 1.5.x
           # Use Go 1.5's vendoring experiment for 1.5 tests.
