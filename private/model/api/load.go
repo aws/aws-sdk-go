@@ -117,10 +117,10 @@ func TrimModelServiceVersions(modelPaths []string) (include, exclude []string) {
 
 		if _, ok := m[svc]; ok {
 			// Removed unused service version
-			include = append(include, modelPaths[i])
 			exclude = append(exclude, modelPaths[i])
 			continue
 		}
+		include = append(include, modelPaths[i])
 		m[svc] = struct{}{}
 	}
 

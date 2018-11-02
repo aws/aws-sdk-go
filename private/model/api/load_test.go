@@ -3,6 +3,7 @@
 package api
 
 import (
+	"path/filepath"
 	"reflect"
 	"strconv"
 	"testing"
@@ -41,22 +42,22 @@ func TestTrimModelServiceVersions(t *testing.T) {
 	}{
 		{
 			Paths: []string{
-				"foo/baz/2018-01-02",
-				"foo/baz/2019-01-02",
-				"foo/baz/2017-01-02",
-				"foo/bar/2019-01-02",
-				"foo/bar/2013-04-02",
-				"foo/bar/2019-01-03",
+				filepath.Join("foo", "baz", "2018-01-02"),
+				filepath.Join("foo", "baz", "2019-01-02"),
+				filepath.Join("foo", "baz", "2017-01-02"),
+				filepath.Join("foo", "bar", "2019-01-02"),
+				filepath.Join("foo", "bar", "2013-04-02"),
+				filepath.Join("foo", "bar", "2019-01-03"),
 			},
 			Include: []string{
-				"foo/bar/2019-01-03",
-				"foo/baz/2019-01-02",
+				filepath.Join("foo", "baz", "2019-01-02"),
+				filepath.Join("foo", "bar", "2019-01-03"),
 			},
 			Exclude: []string{
-				"foo/bar/2019-01-02",
-				"foo/bar/2013-04-02",
-				"foo/baz/2018-01-02",
-				"foo/baz/2017-01-02",
+				filepath.Join("foo", "baz", "2018-01-02"),
+				filepath.Join("foo", "baz", "2017-01-02"),
+				filepath.Join("foo", "bar", "2019-01-02"),
+				filepath.Join("foo", "bar", "2013-04-02"),
 			},
 		},
 	}
@@ -64,7 +65,7 @@ func TestTrimModelServiceVersions(t *testing.T) {
 	for i, c := range cases {
 		t.Run(strconv.Itoa(i), func(t *testing.T) {
 			include, exclude := TrimModelServiceVersions(c.Paths)
-			if e, a := c.Include, exclude; !reflect.DeepEqual(e, a) {
+			if e, a := c.Include, include; !reflect.DeepEqual(e, a) {
 				t.Errorf("expect include %v, got %v", e, a)
 			}
 			if e, a := c.Exclude, exclude; !reflect.DeepEqual(e, a) {
