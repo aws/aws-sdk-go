@@ -976,7 +976,8 @@
       "type":"structure",
       "members":{
         "Labels":{"shape":"Labels"},
-        "OrientationCorrection":{"shape":"OrientationCorrection"}
+        "OrientationCorrection":{"shape":"OrientationCorrection"},
+        "LabelModelVersion":{"shape":"String"}
       }
     },
     "DetectModerationLabelsRequest":{
@@ -1370,6 +1371,17 @@
         "UnindexedFaces":{"shape":"UnindexedFaces"}
       }
     },
+    "Instance":{
+      "type":"structure",
+      "members":{
+        "BoundingBox":{"shape":"BoundingBox"},
+        "Confidence":{"shape":"Percent"}
+      }
+    },
+    "Instances":{
+      "type":"list",
+      "member":{"shape":"Instance"}
+    },
     "InternalServerError":{
       "type":"structure",
       "members":{
@@ -1437,7 +1449,9 @@
       "type":"structure",
       "members":{
         "Name":{"shape":"String"},
-        "Confidence":{"shape":"Percent"}
+        "Confidence":{"shape":"Percent"},
+        "Instances":{"shape":"Instances"},
+        "Parents":{"shape":"Parents"}
       }
     },
     "LabelDetection":{
@@ -1623,6 +1637,16 @@
     "PaginationToken":{
       "type":"string",
       "max":255
+    },
+    "Parent":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"String"}
+      }
+    },
+    "Parents":{
+      "type":"list",
+      "member":{"shape":"Parent"}
     },
     "Percent":{
       "type":"float",

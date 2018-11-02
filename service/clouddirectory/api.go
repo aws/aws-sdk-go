@@ -90,7 +90,7 @@ func (c *CloudDirectory) AddFacetToObjectRequest(input *AddFacetToObjectInput) (
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -205,7 +205,7 @@ func (c *CloudDirectory) ApplySchemaRequest(input *ApplySchemaInput) (req *reque
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -219,9 +219,9 @@ func (c *CloudDirectory) ApplySchemaRequest(input *ApplySchemaInput) (req *reque
 //   The specified resource could not be found.
 //
 //   * ErrCodeInvalidAttachmentException "InvalidAttachmentException"
-//   Indicates that an attempt to attach an object with the same link name or
-//   to apply a schema with the same name has occurred. Rename the link or the
-//   schema and then try again.
+//   Indicates that an attempt to make an attachment was invalid. For example,
+//   attaching two nodes with a link type that is not applicable to the nodes
+//   or attempting to apply a schema to a directory a second time.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2017-01-11/ApplySchema
 func (c *CloudDirectory) ApplySchema(input *ApplySchemaInput) (*ApplySchemaOutput, error) {
@@ -326,7 +326,7 @@ func (c *CloudDirectory) AttachObjectRequest(input *AttachObjectInput) (req *req
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -343,9 +343,9 @@ func (c *CloudDirectory) AttachObjectRequest(input *AttachObjectInput) (req *req
 //   a different name and then try again.
 //
 //   * ErrCodeInvalidAttachmentException "InvalidAttachmentException"
-//   Indicates that an attempt to attach an object with the same link name or
-//   to apply a schema with the same name has occurred. Rename the link or the
-//   schema and then try again.
+//   Indicates that an attempt to make an attachment was invalid. For example,
+//   attaching two nodes with a link type that is not applicable to the nodes
+//   or attempting to apply a schema to a directory a second time.
 //
 //   * ErrCodeValidationException "ValidationException"
 //   Indicates that your request is malformed in some manner. See the exception
@@ -454,7 +454,7 @@ func (c *CloudDirectory) AttachPolicyRequest(input *AttachPolicyInput) (req *req
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -567,7 +567,7 @@ func (c *CloudDirectory) AttachToIndexRequest(input *AttachToIndexInput) (req *r
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -577,9 +577,9 @@ func (c *CloudDirectory) AttachToIndexRequest(input *AttachToIndexInput) (req *r
 //   Operations are only permitted on enabled directories.
 //
 //   * ErrCodeInvalidAttachmentException "InvalidAttachmentException"
-//   Indicates that an attempt to attach an object with the same link name or
-//   to apply a schema with the same name has occurred. Rename the link or the
-//   schema and then try again.
+//   Indicates that an attempt to make an attachment was invalid. For example,
+//   attaching two nodes with a link type that is not applicable to the nodes
+//   or attempting to apply a schema to a directory a second time.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified resource could not be found.
@@ -662,7 +662,7 @@ func (c *CloudDirectory) AttachTypedLinkRequest(input *AttachTypedLinkInput) (re
 // AttachTypedLink API operation for Amazon CloudDirectory.
 //
 // Attaches a typed link to a specified source and target object. For more information,
-// see Typed link (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink).
+// see Typed Links (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_links.html#directory_objects_links_typedlink).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -694,7 +694,7 @@ func (c *CloudDirectory) AttachTypedLinkRequest(input *AttachTypedLinkInput) (re
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -707,9 +707,9 @@ func (c *CloudDirectory) AttachTypedLinkRequest(input *AttachTypedLinkInput) (re
 //   The specified resource could not be found.
 //
 //   * ErrCodeInvalidAttachmentException "InvalidAttachmentException"
-//   Indicates that an attempt to attach an object with the same link name or
-//   to apply a schema with the same name has occurred. Rename the link or the
-//   schema and then try again.
+//   Indicates that an attempt to make an attachment was invalid. For example,
+//   attaching two nodes with a link type that is not applicable to the nodes
+//   or attempting to apply a schema to a directory a second time.
 //
 //   * ErrCodeValidationException "ValidationException"
 //   Indicates that your request is malformed in some manner. See the exception
@@ -817,7 +817,7 @@ func (c *CloudDirectory) BatchReadRequest(input *BatchReadInput) (req *request.R
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -925,7 +925,7 @@ func (c *CloudDirectory) BatchWriteRequest(input *BatchWriteInput) (req *request
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -1006,6 +1006,10 @@ func (c *CloudDirectory) CreateDirectoryRequest(input *CreateDirectoryInput) (re
 // Creates a Directory by copying the published schema into the directory. A
 // directory cannot be created without a schema.
 //
+// You can also quickly create a directory using a managed schema, called the
+// QuickStartSchema. For more information, see Managed Schema (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/schemas_managed.html)
+// in the Amazon Cloud Directory Developer Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1036,7 +1040,7 @@ func (c *CloudDirectory) CreateDirectoryRequest(input *CreateDirectoryInput) (re
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -1148,7 +1152,7 @@ func (c *CloudDirectory) CreateFacetRequest(input *CreateFacetInput) (req *reque
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -1233,7 +1237,7 @@ func (c *CloudDirectory) CreateIndexRequest(input *CreateIndexInput) (req *reque
 
 // CreateIndex API operation for Amazon CloudDirectory.
 //
-// Creates an index object. See Indexing (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_indexing.html)
+// Creates an index object. See Indexing and search (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/indexing_search.html)
 // for more information.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1266,7 +1270,7 @@ func (c *CloudDirectory) CreateIndexRequest(input *CreateIndexInput) (req *reque
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -1390,7 +1394,7 @@ func (c *CloudDirectory) CreateObjectRequest(input *CreateObjectInput) (req *req
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -1523,7 +1527,7 @@ func (c *CloudDirectory) CreateSchemaRequest(input *CreateSchemaInput) (req *req
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -1602,7 +1606,7 @@ func (c *CloudDirectory) CreateTypedLinkFacetRequest(input *CreateTypedLinkFacet
 
 // CreateTypedLinkFacet API operation for Amazon CloudDirectory.
 //
-// Creates a TypedLinkFacet. For more information, see Typed link (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink).
+// Creates a TypedLinkFacet. For more information, see Typed Links (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_links.html#directory_objects_links_typedlink).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1634,7 +1638,7 @@ func (c *CloudDirectory) CreateTypedLinkFacetRequest(input *CreateTypedLinkFacet
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -1747,7 +1751,7 @@ func (c *CloudDirectory) DeleteDirectoryRequest(input *DeleteDirectoryInput) (re
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -1867,7 +1871,7 @@ func (c *CloudDirectory) DeleteFacetRequest(input *DeleteFacetInput) (req *reque
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -1950,7 +1954,9 @@ func (c *CloudDirectory) DeleteObjectRequest(input *DeleteObjectInput) (req *req
 // DeleteObject API operation for Amazon CloudDirectory.
 //
 // Deletes an object and its associated attributes. Only objects with no children
-// and no parents can be deleted.
+// and no parents can be deleted. The maximum number of attributes that can
+// be deleted during an object deletion is 30. For more information, see Amazon
+// Cloud Directory Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1982,7 +1988,7 @@ func (c *CloudDirectory) DeleteObjectRequest(input *DeleteObjectInput) (req *req
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -2097,7 +2103,7 @@ func (c *CloudDirectory) DeleteSchemaRequest(input *DeleteSchemaInput) (req *req
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -2176,7 +2182,7 @@ func (c *CloudDirectory) DeleteTypedLinkFacetRequest(input *DeleteTypedLinkFacet
 
 // DeleteTypedLinkFacet API operation for Amazon CloudDirectory.
 //
-// Deletes a TypedLinkFacet. For more information, see Typed link (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink).
+// Deletes a TypedLinkFacet. For more information, see Typed Links (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_links.html#directory_objects_links_typedlink).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2208,7 +2214,7 @@ func (c *CloudDirectory) DeleteTypedLinkFacetRequest(input *DeleteTypedLinkFacet
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -2318,7 +2324,7 @@ func (c *CloudDirectory) DetachFromIndexRequest(input *DetachFromIndexInput) (re
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -2435,7 +2441,7 @@ func (c *CloudDirectory) DetachObjectRequest(input *DetachObjectInput) (req *req
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -2549,7 +2555,7 @@ func (c *CloudDirectory) DetachPolicyRequest(input *DetachPolicyInput) (req *req
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -2633,7 +2639,7 @@ func (c *CloudDirectory) DetachTypedLinkRequest(input *DetachTypedLinkInput) (re
 // DetachTypedLink API operation for Amazon CloudDirectory.
 //
 // Detaches a typed link from a specified source and target object. For more
-// information, see Typed link (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink).
+// information, see Typed Links (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_links.html#directory_objects_links_typedlink).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2665,7 +2671,7 @@ func (c *CloudDirectory) DetachTypedLinkRequest(input *DetachTypedLinkInput) (re
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -2777,7 +2783,7 @@ func (c *CloudDirectory) DisableDirectoryRequest(input *DisableDirectoryInput) (
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -2889,7 +2895,7 @@ func (c *CloudDirectory) EnableDirectoryRequest(input *EnableDirectoryInput) (re
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -3005,7 +3011,7 @@ func (c *CloudDirectory) GetAppliedSchemaVersionRequest(input *GetAppliedSchemaV
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -3112,7 +3118,7 @@ func (c *CloudDirectory) GetDirectoryRequest(input *GetDirectoryInput) (req *req
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -3218,7 +3224,7 @@ func (c *CloudDirectory) GetFacetRequest(input *GetFacetInput) (req *request.Req
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -3328,7 +3334,7 @@ func (c *CloudDirectory) GetLinkAttributesRequest(input *GetLinkAttributesInput)
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -3442,7 +3448,7 @@ func (c *CloudDirectory) GetObjectAttributesRequest(input *GetObjectAttributesIn
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -3556,7 +3562,7 @@ func (c *CloudDirectory) GetObjectInformationRequest(input *GetObjectInformation
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -3634,7 +3640,7 @@ func (c *CloudDirectory) GetSchemaAsJsonRequest(input *GetSchemaAsJsonInput) (re
 
 // GetSchemaAsJson API operation for Amazon CloudDirectory.
 //
-// Retrieves a JSON representation of the schema. See JSON Schema Format (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_schemas.html#jsonformat)
+// Retrieves a JSON representation of the schema. See JSON Schema Format (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/schemas_jsonformat.html#schemas_json)
 // for more information.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3667,7 +3673,7 @@ func (c *CloudDirectory) GetSchemaAsJsonRequest(input *GetSchemaAsJsonInput) (re
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -3747,7 +3753,7 @@ func (c *CloudDirectory) GetTypedLinkFacetInformationRequest(input *GetTypedLink
 // GetTypedLinkFacetInformation API operation for Amazon CloudDirectory.
 //
 // Returns the identity attribute order for a specific TypedLinkFacet. For more
-// information, see Typed link (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink).
+// information, see Typed Links (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_links.html#directory_objects_links_typedlink).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3779,7 +3785,7 @@ func (c *CloudDirectory) GetTypedLinkFacetInformationRequest(input *GetTypedLink
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -3899,7 +3905,7 @@ func (c *CloudDirectory) ListAppliedSchemaArnsRequest(input *ListAppliedSchemaAr
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -4065,7 +4071,7 @@ func (c *CloudDirectory) ListAttachedIndicesRequest(input *ListAttachedIndicesIn
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -4231,7 +4237,7 @@ func (c *CloudDirectory) ListDevelopmentSchemaArnsRequest(input *ListDevelopment
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -4397,7 +4403,7 @@ func (c *CloudDirectory) ListDirectoriesRequest(input *ListDirectoriesInput) (re
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -4560,7 +4566,7 @@ func (c *CloudDirectory) ListFacetAttributesRequest(input *ListFacetAttributesIn
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -4729,7 +4735,7 @@ func (c *CloudDirectory) ListFacetNamesRequest(input *ListFacetNamesInput) (req 
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -4859,7 +4865,7 @@ func (c *CloudDirectory) ListIncomingTypedLinksRequest(input *ListIncomingTypedL
 //
 // Returns a paginated list of all the incoming TypedLinkSpecifier information
 // for an object. It also supports filtering by typed link facet and identity
-// attributes. For more information, see Typed link (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink).
+// attributes. For more information, see Typed Links (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_links.html#directory_objects_links_typedlink).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4891,7 +4897,7 @@ func (c *CloudDirectory) ListIncomingTypedLinksRequest(input *ListIncomingTypedL
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -5018,7 +5024,7 @@ func (c *CloudDirectory) ListIndexRequest(input *ListIndexInput) (req *request.R
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -5346,7 +5352,7 @@ func (c *CloudDirectory) ListObjectAttributesRequest(input *ListObjectAttributes
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -5520,7 +5526,7 @@ func (c *CloudDirectory) ListObjectChildrenRequest(input *ListObjectChildrenInpu
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -5663,7 +5669,7 @@ func (c *CloudDirectory) ListObjectParentPathsRequest(input *ListObjectParentPat
 //
 // Retrieves all available parent paths for any object type such as node, leaf
 // node, policy node, and index node objects. For more information about objects,
-// see Directory Structure (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_key_concepts.html#dirstructure).
+// see Directory Structure (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/key_concepts_directorystructure.html).
 //
 // Use this API to evaluate all parents for an object. The call returns all
 // objects from the root of the directory up to the requested object. The API
@@ -5703,7 +5709,7 @@ func (c *CloudDirectory) ListObjectParentPathsRequest(input *ListObjectParentPat
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -5873,7 +5879,7 @@ func (c *CloudDirectory) ListObjectParentsRequest(input *ListObjectParentsInput)
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -6045,7 +6051,7 @@ func (c *CloudDirectory) ListObjectPoliciesRequest(input *ListObjectPoliciesInpu
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -6178,7 +6184,7 @@ func (c *CloudDirectory) ListOutgoingTypedLinksRequest(input *ListOutgoingTypedL
 //
 // Returns a paginated list of all the outgoing TypedLinkSpecifier information
 // for an object. It also supports filtering by typed link facet and identity
-// attributes. For more information, see Typed link (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink).
+// attributes. For more information, see Typed Links (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_links.html#directory_objects_links_typedlink).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6210,7 +6216,7 @@ func (c *CloudDirectory) ListOutgoingTypedLinksRequest(input *ListOutgoingTypedL
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -6333,7 +6339,7 @@ func (c *CloudDirectory) ListPolicyAttachmentsRequest(input *ListPolicyAttachmen
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -6507,7 +6513,7 @@ func (c *CloudDirectory) ListPublishedSchemaArnsRequest(input *ListPublishedSche
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -6675,7 +6681,7 @@ func (c *CloudDirectory) ListTagsForResourceRequest(input *ListTagsForResourceIn
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -6812,7 +6818,7 @@ func (c *CloudDirectory) ListTypedLinkFacetAttributesRequest(input *ListTypedLin
 // ListTypedLinkFacetAttributes API operation for Amazon CloudDirectory.
 //
 // Returns a paginated list of all attribute definitions for a particular TypedLinkFacet.
-// For more information, see Typed link (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink).
+// For more information, see Typed Links (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_links.html#directory_objects_links_typedlink).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6844,7 +6850,7 @@ func (c *CloudDirectory) ListTypedLinkFacetAttributesRequest(input *ListTypedLin
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -6982,7 +6988,7 @@ func (c *CloudDirectory) ListTypedLinkFacetNamesRequest(input *ListTypedLinkFace
 // ListTypedLinkFacetNames API operation for Amazon CloudDirectory.
 //
 // Returns a paginated list of TypedLink facet names for a particular schema.
-// For more information, see Typed link (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink).
+// For more information, see Typed Links (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_links.html#directory_objects_links_typedlink).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7014,7 +7020,7 @@ func (c *CloudDirectory) ListTypedLinkFacetNamesRequest(input *ListTypedLinkFace
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -7154,7 +7160,7 @@ func (c *CloudDirectory) LookupPolicyRequest(input *LookupPolicyInput) (req *req
 // the ObjectIdentifier for such objects. If policies are present, it returns
 // ObjectIdentifier, policyId, and policyType. Paths that don't lead to the
 // root from the target object are ignored. For more information, see Policies
-// (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_key_concepts.html#policies).
+// (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/key_concepts_directory.html#key_concepts_policies).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7186,7 +7192,7 @@ func (c *CloudDirectory) LookupPolicyRequest(input *LookupPolicyInput) (req *req
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -7350,7 +7356,7 @@ func (c *CloudDirectory) PublishSchemaRequest(input *PublishSchemaInput) (req *r
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -7429,7 +7435,7 @@ func (c *CloudDirectory) PutSchemaFromJsonRequest(input *PutSchemaFromJsonInput)
 // PutSchemaFromJson API operation for Amazon CloudDirectory.
 //
 // Allows a schema to be updated using JSON upload. Only available for development
-// schemas. See JSON Schema Format (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_schemas.html#jsonformat)
+// schemas. See JSON Schema Format (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/schemas_jsonformat.html#schemas_json)
 // for more information.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -7462,7 +7468,7 @@ func (c *CloudDirectory) PutSchemaFromJsonRequest(input *PutSchemaFromJsonInput)
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -7572,7 +7578,7 @@ func (c *CloudDirectory) RemoveFacetFromObjectRequest(input *RemoveFacetFromObje
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -7686,7 +7692,7 @@ func (c *CloudDirectory) TagResourceRequest(input *TagResourceInput) (req *reque
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -7798,7 +7804,7 @@ func (c *CloudDirectory) UntagResourceRequest(input *UntagResourceInput) (req *r
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -7916,7 +7922,7 @@ func (c *CloudDirectory) UpdateFacetRequest(input *UpdateFacetInput) (req *reque
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -8037,7 +8043,7 @@ func (c *CloudDirectory) UpdateLinkAttributesRequest(input *UpdateLinkAttributes
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -8151,7 +8157,7 @@ func (c *CloudDirectory) UpdateObjectAttributesRequest(input *UpdateObjectAttrib
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -8270,7 +8276,7 @@ func (c *CloudDirectory) UpdateSchemaRequest(input *UpdateSchemaInput) (req *req
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -8345,7 +8351,7 @@ func (c *CloudDirectory) UpdateTypedLinkFacetRequest(input *UpdateTypedLinkFacet
 
 // UpdateTypedLinkFacet API operation for Amazon CloudDirectory.
 //
-// Updates a TypedLinkFacet. For more information, see Typed link (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink).
+// Updates a TypedLinkFacet. For more information, see Typed Links (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_links.html#directory_objects_links_typedlink).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8377,7 +8383,7 @@ func (c *CloudDirectory) UpdateTypedLinkFacetRequest(input *UpdateTypedLinkFacet
 //   message.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
@@ -8513,9 +8519,9 @@ func (c *CloudDirectory) UpgradeAppliedSchemaRequest(input *UpgradeAppliedSchema
 //   The specified resource could not be found.
 //
 //   * ErrCodeInvalidAttachmentException "InvalidAttachmentException"
-//   Indicates that an attempt to attach an object with the same link name or
-//   to apply a schema with the same name has occurred. Rename the link or the
-//   schema and then try again.
+//   Indicates that an attempt to make an attachment was invalid. For example,
+//   attaching two nodes with a link type that is not applicable to the nodes
+//   or attempting to apply a schema to a directory a second time.
 //
 //   * ErrCodeSchemaAlreadyExistsException "SchemaAlreadyExistsException"
 //   Indicates that a schema could not be created due to a naming conflict. Please
@@ -8631,12 +8637,12 @@ func (c *CloudDirectory) UpgradePublishedSchemaRequest(input *UpgradePublishedSc
 //   The specified resource could not be found.
 //
 //   * ErrCodeInvalidAttachmentException "InvalidAttachmentException"
-//   Indicates that an attempt to attach an object with the same link name or
-//   to apply a schema with the same name has occurred. Rename the link or the
-//   schema and then try again.
+//   Indicates that an attempt to make an attachment was invalid. For example,
+//   attaching two nodes with a link type that is not applicable to the nodes
+//   or attempting to apply a schema to a directory a second time.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
-//   Indicates that limits are exceeded. See Limits (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html)
+//   Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 //   for more information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2017-01-11/UpgradePublishedSchema
@@ -9919,7 +9925,7 @@ func (s *BatchAttachTypedLinkResponse) SetTypedLinkSpecifier(v *TypedLinkSpecifi
 type BatchCreateIndex struct {
 	_ struct{} `type:"structure"`
 
-	// The batch reference name. See Batches (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_advanced.html#batches)
+	// The batch reference name. See Transaction Support (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/transaction_support.html)
 	// for more information.
 	BatchReferenceName *string `type:"string"`
 
@@ -10039,7 +10045,7 @@ func (s *BatchCreateIndexResponse) SetObjectIdentifier(v string) *BatchCreateInd
 type BatchCreateObject struct {
 	_ struct{} `type:"structure"`
 
-	// The batch reference name. See Batches (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_advanced.html#batches)
+	// The batch reference name. See Transaction Support (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/transaction_support.html)
 	// for more information.
 	BatchReferenceName *string `type:"string"`
 
@@ -10301,7 +10307,7 @@ func (s *BatchDetachFromIndexResponse) SetDetachedObjectIdentifier(v string) *Ba
 type BatchDetachObject struct {
 	_ struct{} `type:"structure"`
 
-	// The batch reference name. See Batches (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_advanced.html#batches)
+	// The batch reference name. See Transaction Support (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/transaction_support.html)
 	// for more information.
 	BatchReferenceName *string `type:"string"`
 
@@ -11410,6 +11416,93 @@ func (s *BatchListObjectParentPathsResponse) SetPathToObjectIdentifiersList(v []
 	return s
 }
 
+type BatchListObjectParents struct {
+	_ struct{} `type:"structure"`
+
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	NextToken *string `type:"string"`
+
+	// The reference that identifies an object.
+	//
+	// ObjectReference is a required field
+	ObjectReference *ObjectReference `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s BatchListObjectParents) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchListObjectParents) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchListObjectParents) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchListObjectParents"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.ObjectReference == nil {
+		invalidParams.Add(request.NewErrParamRequired("ObjectReference"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *BatchListObjectParents) SetMaxResults(v int64) *BatchListObjectParents {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *BatchListObjectParents) SetNextToken(v string) *BatchListObjectParents {
+	s.NextToken = &v
+	return s
+}
+
+// SetObjectReference sets the ObjectReference field's value.
+func (s *BatchListObjectParents) SetObjectReference(v *ObjectReference) *BatchListObjectParents {
+	s.ObjectReference = v
+	return s
+}
+
+type BatchListObjectParentsResponse struct {
+	_ struct{} `type:"structure"`
+
+	NextToken *string `type:"string"`
+
+	ParentLinks []*ObjectIdentifierAndLinkNameTuple `type:"list"`
+}
+
+// String returns the string representation
+func (s BatchListObjectParentsResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchListObjectParentsResponse) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *BatchListObjectParentsResponse) SetNextToken(v string) *BatchListObjectParentsResponse {
+	s.NextToken = &v
+	return s
+}
+
+// SetParentLinks sets the ParentLinks field's value.
+func (s *BatchListObjectParentsResponse) SetParentLinks(v []*ObjectIdentifierAndLinkNameTuple) *BatchListObjectParentsResponse {
+	s.ParentLinks = v
+	return s
+}
+
 // Returns policies attached to an object in pagination fashion inside a BatchRead
 // operation. For more information, see ListObjectPolicies and BatchReadRequest$Operations.
 type BatchListObjectPolicies struct {
@@ -11801,7 +11894,7 @@ type BatchLookupPolicyResponse struct {
 	NextToken *string `type:"string"`
 
 	// Provides list of path to policies. Policies contain PolicyId, ObjectIdentifier,
-	// and PolicyType. For more information, see Policies (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_key_concepts.html#policies).
+	// and PolicyType. For more information, see Policies (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/key_concepts_directory.html#key_concepts_policies).
 	PolicyToPathList []*PolicyToPath `type:"list"`
 }
 
@@ -11952,7 +12045,7 @@ type BatchReadOperation struct {
 
 	// Returns a paginated list of all the incoming TypedLinkSpecifier information
 	// for an object. It also supports filtering by typed link facet and identity
-	// attributes. For more information, see Typed link (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink).
+	// attributes. For more information, see Typed Links (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_links.html#directory_objects_links_typedlink).
 	ListIncomingTypedLinks *BatchListIncomingTypedLinks `type:"structure"`
 
 	// Lists objects attached to the specified index.
@@ -11967,15 +12060,17 @@ type BatchReadOperation struct {
 
 	// Retrieves all available parent paths for any object type such as node, leaf
 	// node, policy node, and index node objects. For more information about objects,
-	// see Directory Structure (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_key_concepts.html#dirstructure).
+	// see Directory Structure (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/key_concepts_directorystructure.html).
 	ListObjectParentPaths *BatchListObjectParentPaths `type:"structure"`
+
+	ListObjectParents *BatchListObjectParents `type:"structure"`
 
 	// Returns policies attached to an object in pagination fashion.
 	ListObjectPolicies *BatchListObjectPolicies `type:"structure"`
 
 	// Returns a paginated list of all the outgoing TypedLinkSpecifier information
 	// for an object. It also supports filtering by typed link facet and identity
-	// attributes. For more information, see Typed link (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink).
+	// attributes. For more information, see Typed Links (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_links.html#directory_objects_links_typedlink).
 	ListOutgoingTypedLinks *BatchListOutgoingTypedLinks `type:"structure"`
 
 	// Returns all of the ObjectIdentifiers to which a given policy is attached.
@@ -11987,7 +12082,7 @@ type BatchReadOperation struct {
 	// the ObjectIdentifier for such objects. If policies are present, it returns
 	// ObjectIdentifier, policyId, and policyType. Paths that don't lead to the
 	// root from the target object are ignored. For more information, see Policies
-	// (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_key_concepts.html#policies).
+	// (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/key_concepts_directory.html#key_concepts_policies).
 	LookupPolicy *BatchLookupPolicy `type:"structure"`
 }
 
@@ -12047,6 +12142,11 @@ func (s *BatchReadOperation) Validate() error {
 	if s.ListObjectParentPaths != nil {
 		if err := s.ListObjectParentPaths.Validate(); err != nil {
 			invalidParams.AddNested("ListObjectParentPaths", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ListObjectParents != nil {
+		if err := s.ListObjectParents.Validate(); err != nil {
+			invalidParams.AddNested("ListObjectParents", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.ListObjectPolicies != nil {
@@ -12127,6 +12227,12 @@ func (s *BatchReadOperation) SetListObjectChildren(v *BatchListObjectChildren) *
 // SetListObjectParentPaths sets the ListObjectParentPaths field's value.
 func (s *BatchReadOperation) SetListObjectParentPaths(v *BatchListObjectParentPaths) *BatchReadOperation {
 	s.ListObjectParentPaths = v
+	return s
+}
+
+// SetListObjectParents sets the ListObjectParents field's value.
+func (s *BatchReadOperation) SetListObjectParents(v *BatchListObjectParents) *BatchReadOperation {
+	s.ListObjectParents = v
 	return s
 }
 
@@ -12228,7 +12334,7 @@ type BatchReadSuccessfulResponse struct {
 
 	// Returns a paginated list of all the incoming TypedLinkSpecifier information
 	// for an object. It also supports filtering by typed link facet and identity
-	// attributes. For more information, see Typed link (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink).
+	// attributes. For more information, see Typed Links (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_links.html#directory_objects_links_typedlink).
 	ListIncomingTypedLinks *BatchListIncomingTypedLinksResponse `type:"structure"`
 
 	// Lists objects attached to the specified index.
@@ -12243,15 +12349,17 @@ type BatchReadSuccessfulResponse struct {
 
 	// Retrieves all available parent paths for any object type such as node, leaf
 	// node, policy node, and index node objects. For more information about objects,
-	// see Directory Structure (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_key_concepts.html#dirstructure).
+	// see Directory Structure (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/key_concepts_directorystructure.html).
 	ListObjectParentPaths *BatchListObjectParentPathsResponse `type:"structure"`
+
+	ListObjectParents *BatchListObjectParentsResponse `type:"structure"`
 
 	// Returns policies attached to an object in pagination fashion.
 	ListObjectPolicies *BatchListObjectPoliciesResponse `type:"structure"`
 
 	// Returns a paginated list of all the outgoing TypedLinkSpecifier information
 	// for an object. It also supports filtering by typed link facet and identity
-	// attributes. For more information, see Typed link (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink).
+	// attributes. For more information, see Typed Links (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_links.html#directory_objects_links_typedlink).
 	ListOutgoingTypedLinks *BatchListOutgoingTypedLinksResponse `type:"structure"`
 
 	// Returns all of the ObjectIdentifiers to which a given policy is attached.
@@ -12263,7 +12371,7 @@ type BatchReadSuccessfulResponse struct {
 	// the ObjectIdentifier for such objects. If policies are present, it returns
 	// ObjectIdentifier, policyId, and policyType. Paths that don't lead to the
 	// root from the target object are ignored. For more information, see Policies
-	// (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_key_concepts.html#policies).
+	// (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/key_concepts_directory.html#key_concepts_policies).
 	LookupPolicy *BatchLookupPolicyResponse `type:"structure"`
 }
 
@@ -12328,6 +12436,12 @@ func (s *BatchReadSuccessfulResponse) SetListObjectChildren(v *BatchListObjectCh
 // SetListObjectParentPaths sets the ListObjectParentPaths field's value.
 func (s *BatchReadSuccessfulResponse) SetListObjectParentPaths(v *BatchListObjectParentPathsResponse) *BatchReadSuccessfulResponse {
 	s.ListObjectParentPaths = v
+	return s
+}
+
+// SetListObjectParents sets the ListObjectParents field's value.
+func (s *BatchReadSuccessfulResponse) SetListObjectParents(v *BatchListObjectParentsResponse) *BatchReadSuccessfulResponse {
+	s.ListObjectParents = v
 	return s
 }
 
@@ -12682,10 +12796,10 @@ type BatchWriteOperation struct {
 	AttachToIndex *BatchAttachToIndex `type:"structure"`
 
 	// Attaches a typed link to a specified source and target object. For more information,
-	// see Typed link (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink).
+	// see Typed Links (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_links.html#directory_objects_links_typedlink).
 	AttachTypedLink *BatchAttachTypedLink `type:"structure"`
 
-	// Creates an index object. See Indexing (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_indexing.html)
+	// Creates an index object. See Indexing and search (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/indexing_search.htm)
 	// for more information.
 	CreateIndex *BatchCreateIndex `type:"structure"`
 
@@ -12705,7 +12819,7 @@ type BatchWriteOperation struct {
 	DetachPolicy *BatchDetachPolicy `type:"structure"`
 
 	// Detaches a typed link from a specified source and target object. For more
-	// information, see Typed link (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink).
+	// information, see Typed Links (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_links.html#directory_objects_links_typedlink).
 	DetachTypedLink *BatchDetachTypedLink `type:"structure"`
 
 	// A batch operation that removes a facet from an object.
@@ -12921,10 +13035,10 @@ type BatchWriteOperationResponse struct {
 	AttachToIndex *BatchAttachToIndexResponse `type:"structure"`
 
 	// Attaches a typed link to a specified source and target object. For more information,
-	// see Typed link (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink).
+	// see Typed Links (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_links.html#directory_objects_links_typedlink).
 	AttachTypedLink *BatchAttachTypedLinkResponse `type:"structure"`
 
-	// Creates an index object. See Indexing (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_indexing.html)
+	// Creates an index object. See Indexing and search (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/indexing_search.htm)
 	// for more information.
 	CreateIndex *BatchCreateIndexResponse `type:"structure"`
 
@@ -12944,7 +13058,7 @@ type BatchWriteOperationResponse struct {
 	DetachPolicy *BatchDetachPolicyResponse `type:"structure"`
 
 	// Detaches a typed link from a specified source and target object. For more
-	// information, see Typed link (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink).
+	// information, see Typed Links (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_links.html#directory_objects_links_typedlink).
 	DetachTypedLink *BatchDetachTypedLinkResponse `type:"structure"`
 
 	// The result of a batch remove facet from object operation.
@@ -13221,7 +13335,7 @@ type CreateFacetInput struct {
 	//    * Leaf node: Cannot have children but can have multiple parents.
 	//
 	//    * Policy: Allows you to store a policy document and policy type. For more
-	//    information, see Policies (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_key_concepts.html#policies).
+	//    information, see Policies (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/key_concepts_directory.html#key_concepts_policies).
 	//
 	//    * Index: Can be created with the Index API.
 	ObjectType *string `type:"string" enum:"ObjectType"`
@@ -14550,7 +14664,7 @@ func (s *EnableDirectoryOutput) SetDirectoryArn(v string) *EnableDirectoryOutput
 }
 
 // A structure that contains Name, ARN, Attributes, Rules, and ObjectTypes.
-// See Facets (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/whatarefacets.html)
+// See Facets (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/schemas_whatarefacets.html)
 // for more information.
 type Facet struct {
 	_ struct{} `type:"structure"`
@@ -14601,12 +14715,12 @@ type FacetAttribute struct {
 	_ struct{} `type:"structure"`
 
 	// A facet attribute consists of either a definition or a reference. This structure
-	// contains the attribute definition. See Attribute References (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_advanced.html#attributereferences)
+	// contains the attribute definition. See Attribute References (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/schemas_attributereferences.html)
 	// for more information.
 	AttributeDefinition *FacetAttributeDefinition `type:"structure"`
 
 	// An attribute reference that is associated with the attribute. See Attribute
-	// References (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_advanced.html#attributereferences)
+	// References (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/schemas_attributereferences.html)
 	// for more information.
 	AttributeReference *FacetAttributeReference `type:"structure"`
 
@@ -14679,7 +14793,7 @@ func (s *FacetAttribute) SetRequiredBehavior(v string) *FacetAttribute {
 	return s
 }
 
-// A facet attribute definition. See Attribute References (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_advanced.html#attributereferences)
+// A facet attribute definition. See Attribute References (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/schemas_attributereferences.html)
 // for more information.
 type FacetAttributeDefinition struct {
 	_ struct{} `type:"structure"`
@@ -14752,14 +14866,14 @@ type FacetAttributeReference struct {
 	_ struct{} `type:"structure"`
 
 	// The target attribute name that is associated with the facet reference. See
-	// Attribute References (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_advanced.html#attributereferences)
+	// Attribute References (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/schemas_attributereferences.html)
 	// for more information.
 	//
 	// TargetAttributeName is a required field
 	TargetAttributeName *string `min:"1" type:"string" required:"true"`
 
 	// The target facet name that is associated with the facet reference. See Attribute
-	// References (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_advanced.html#attributereferences)
+	// References (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/schemas_attributereferences.html)
 	// for more information.
 	//
 	// TargetFacetName is a required field
@@ -15074,7 +15188,7 @@ type GetLinkAttributesInput struct {
 	ConsistencyLevel *string `type:"string" enum:"ConsistencyLevel"`
 
 	// The Amazon Resource Name (ARN) that is associated with the Directory where
-	// the typed link resides. For more information, see arns or Typed link (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink).
+	// the typed link resides. For more information, see arns or Typed Links (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_links.html#directory_objects_links_typedlink).
 	//
 	// DirectoryArn is a required field
 	DirectoryArn *string `location:"header" locationName:"x-amz-data-partition" type:"string" required:"true"`
@@ -15513,7 +15627,7 @@ type GetTypedLinkFacetInformationOutput struct {
 	// Any attributes that do not have a range specified are presumed to match the
 	// entire range. Filters are interpreted in the order of the attributes on the
 	// typed link facet, not the order in which they are supplied to any API calls.
-	// For more information about identity attributes, see Typed link (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink).
+	// For more information about identity attributes, see Typed Links (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_links.html#directory_objects_links_typedlink).
 	IdentityAttributeOrder []*string `type:"list"`
 }
 
@@ -16401,8 +16515,8 @@ type ListIndexInput struct {
 	IndexReference *ObjectReference `type:"structure" required:"true"`
 
 	// The maximum number of objects in a single page to retrieve from the index
-	// during a request. For more information, see AWS Directory Service Limits
-	// (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/limits.html#limits_cd).
+	// during a request. For more information, see Amazon Cloud Directory Limits
+	// (http://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html).
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// The pagination token.
@@ -16977,6 +17091,10 @@ type ListObjectParentsInput struct {
 	// DirectoryArn is a required field
 	DirectoryArn *string `location:"header" locationName:"x-amz-data-partition" type:"string" required:"true"`
 
+	// When set to True, returns all ListObjectParentsResponse$ParentLinks. There
+	// could be multiple links between a parent-child pair.
+	IncludeAllLinksToEachParent *bool `type:"boolean"`
+
 	// The maximum number of items to be retrieved in a single call. This is an
 	// approximate number.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -17032,6 +17150,12 @@ func (s *ListObjectParentsInput) SetDirectoryArn(v string) *ListObjectParentsInp
 	return s
 }
 
+// SetIncludeAllLinksToEachParent sets the IncludeAllLinksToEachParent field's value.
+func (s *ListObjectParentsInput) SetIncludeAllLinksToEachParent(v bool) *ListObjectParentsInput {
+	s.IncludeAllLinksToEachParent = &v
+	return s
+}
+
 // SetMaxResults sets the MaxResults field's value.
 func (s *ListObjectParentsInput) SetMaxResults(v int64) *ListObjectParentsInput {
 	s.MaxResults = &v
@@ -17056,6 +17180,9 @@ type ListObjectParentsOutput struct {
 	// The pagination token.
 	NextToken *string `type:"string"`
 
+	// Returns a list of parent reference and LinkName Tuples.
+	ParentLinks []*ObjectIdentifierAndLinkNameTuple `type:"list"`
+
 	// The parent structure, which is a map with key as the ObjectIdentifier and
 	// LinkName as the value.
 	Parents map[string]*string `type:"map"`
@@ -17074,6 +17201,12 @@ func (s ListObjectParentsOutput) GoString() string {
 // SetNextToken sets the NextToken field's value.
 func (s *ListObjectParentsOutput) SetNextToken(v string) *ListObjectParentsOutput {
 	s.NextToken = &v
+	return s
+}
+
+// SetParentLinks sets the ParentLinks field's value.
+func (s *ListObjectParentsOutput) SetParentLinks(v []*ObjectIdentifierAndLinkNameTuple) *ListObjectParentsOutput {
+	s.ParentLinks = v
 	return s
 }
 
@@ -17931,7 +18064,7 @@ type LookupPolicyOutput struct {
 	NextToken *string `type:"string"`
 
 	// Provides list of path to policies. Policies contain PolicyId, ObjectIdentifier,
-	// and PolicyType. For more information, see Policies (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_key_concepts.html#policies).
+	// and PolicyType. For more information, see Policies (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/key_concepts_directory.html#key_concepts_policies).
 	PolicyToPathList []*PolicyToPath `type:"list"`
 }
 
@@ -18091,6 +18224,39 @@ func (s *ObjectAttributeUpdate) SetObjectAttributeKey(v *AttributeKey) *ObjectAt
 	return s
 }
 
+// A pair of ObjectIdentifier and LinkName.
+type ObjectIdentifierAndLinkNameTuple struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the link between the parent and the child object.
+	LinkName *string `min:"1" type:"string"`
+
+	// The ID that is associated with the object.
+	ObjectIdentifier *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ObjectIdentifierAndLinkNameTuple) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ObjectIdentifierAndLinkNameTuple) GoString() string {
+	return s.String()
+}
+
+// SetLinkName sets the LinkName field's value.
+func (s *ObjectIdentifierAndLinkNameTuple) SetLinkName(v string) *ObjectIdentifierAndLinkNameTuple {
+	s.LinkName = &v
+	return s
+}
+
+// SetObjectIdentifier sets the ObjectIdentifier field's value.
+func (s *ObjectIdentifierAndLinkNameTuple) SetObjectIdentifier(v string) *ObjectIdentifierAndLinkNameTuple {
+	s.ObjectIdentifier = &v
+	return s
+}
+
 // The reference that identifies an object.
 type ObjectReference struct {
 	_ struct{} `type:"structure"`
@@ -18099,7 +18265,7 @@ type ObjectReference struct {
 	// links leading to it from the directory root. Use the link names from each
 	// parent/child link to construct the path. Path selectors start with a slash
 	// (/) and link names are separated by slashes. For more information about paths,
-	// see Accessing Objects (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#accessingobjects).
+	// see Access Objects (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_access_objects.html).
 	// You can identify an object in one of the following ways:
 	//
 	//    * $ObjectIdentifier - An object identifier is an opaque string provided
@@ -18164,7 +18330,7 @@ func (s *PathToObjectIdentifiers) SetPath(v string) *PathToObjectIdentifiers {
 }
 
 // Contains the PolicyType, PolicyId, and the ObjectIdentifier to which it is
-// attached. For more information, see Policies (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_key_concepts.html#policies).
+// attached. For more information, see Policies (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/key_concepts_directory.html#key_concepts_policies).
 type PolicyAttachment struct {
 	_ struct{} `type:"structure"`
 
@@ -18551,7 +18717,7 @@ type SchemaFacet struct {
 	FacetName *string `min:"1" type:"string"`
 
 	// The ARN of the schema that contains the facet with no minor component. See
-	// arns and In-Place Schema Upgrade (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/inplaceschemaupgrade.html)
+	// arns and In-Place Schema Upgrade (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/schemas_inplaceschemaupgrade.html)
 	// for a description of when to provide minor versions.
 	SchemaArn *string `type:"string"`
 }
@@ -18755,7 +18921,7 @@ func (s *TypedAttributeValue) SetStringValue(v string) *TypedAttributeValue {
 	return s
 }
 
-// A range of attribute values. For more information, see Range Filters (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#rangefilters).
+// A range of attribute values. For more information, see Range Filters (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_range_filters.html).
 type TypedAttributeValueRange struct {
 	_ struct{} `type:"structure"`
 
@@ -19454,8 +19620,8 @@ type UpdateLinkAttributesInput struct {
 	AttributeUpdates []*LinkAttributeUpdate `type:"list" required:"true"`
 
 	// The Amazon Resource Name (ARN) that is associated with the Directory where
-	// the updated typed link resides. For more information, see arns or Typed link
-	// (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink).
+	// the updated typed link resides. For more information, see arns or Typed Links
+	// (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_links.html#directory_objects_links_typedlink).
 	//
 	// DirectoryArn is a required field
 	DirectoryArn *string `location:"header" locationName:"x-amz-data-partition" type:"string" required:"true"`
@@ -19737,7 +19903,7 @@ type UpdateTypedLinkFacetInput struct {
 	// Any attributes that do not have a range specified are presumed to match the
 	// entire range. Filters are interpreted in the order of the attributes on the
 	// typed link facet, not the order in which they are supplied to any API calls.
-	// For more information about identity attributes, see Typed link (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/objectsandlinks.html#typedlink).
+	// For more information about identity attributes, see Typed Links (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_links.html#directory_objects_links_typedlink).
 	//
 	// IdentityAttributeOrder is a required field
 	IdentityAttributeOrder []*string `type:"list" required:"true"`

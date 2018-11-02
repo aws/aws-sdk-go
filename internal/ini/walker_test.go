@@ -25,6 +25,9 @@ func TestDataFiles(t *testing.T) {
 			path: "./testdata/valid/simple_profile",
 		},
 		{
+			path: "./testdata/valid/arn_profile",
+		},
+		{
 			path: "./testdata/valid/commented_profile",
 		},
 		{

@@ -1,3 +1,25 @@
+Release v1.15.68 (2018-11-02)
+===
+
+### Service Client Updates
+* `service/clouddirectory`: Updates service API and documentation
+  * ListObjectParents API now supports a bool parameter IncludeAllLinksToEachParent, which if set to true, will return a ParentLinks list instead of a Parents map; BatchRead API now supports ListObjectParents operation.
+* `service/rekognition`: Updates service API and documentation
+  * This release updates the DetectLabels operation. Bounding boxes are now returned for certain objects, a hierarchical taxonomy is now available for labels, and you can now get the version of the detection model used for detection.
+
+### SDK Bugs
+* `internal/ini`: profile names did not allow for ':' character (#2247)
+  * Fixes an issue where profile names would return an error if the name contained a ':'
+Release v1.15.67 (2018-11-01)
+===
+
+### Service Client Updates
+* `service/servicecatalog`: Updates service API, documentation, and paginators
+  * Service Catalog integration with AWS Organizations, enables customers to more easily create and manage a portfolio of IT services across an organization. Administrators can now take advantage of the AWS account structure and account groupings configured in AWS Organizations to share Service Catalog Portfolios increasing agility and reducing risk. With this integration the admin user will leverage the trust relationship that exists within the accounts of the Organization to share portfolios to the entire Organization, a specific Organizational Unit or a specific Account.
+
+### SDK Bugs
+* `internal/ini`: removing // comments (#2240)
+  * removes // comments since that was never supported previously.
 Release v1.15.66 (2018-10-31)
 ===
 
