@@ -2105,7 +2105,13 @@
         "AWS::ElasticBeanstalk::ApplicationVersion",
         "AWS::ElasticBeanstalk::Environment",
         "AWS::ElasticLoadBalancing::LoadBalancer",
-        "AWS::XRay::EncryptionConfig"
+        "AWS::XRay::EncryptionConfig",
+        "AWS::SSM::AssociationCompliance",
+        "AWS::SSM::PatchCompliance",
+        "AWS::Shield::Protection",
+        "AWS::ShieldRegional::Protection",
+        "AWS::Config::ResourceCompliance",
+        "AWS::CodePipeline::Pipeline"
       ]
     },
     "ResourceTypeList":{

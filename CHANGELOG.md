@@ -1,3 +1,48 @@
+Release v1.15.68 (2018-11-02)
+===
+
+### Service Client Updates
+* `service/clouddirectory`: Updates service API and documentation
+  * ListObjectParents API now supports a bool parameter IncludeAllLinksToEachParent, which if set to true, will return a ParentLinks list instead of a Parents map; BatchRead API now supports ListObjectParents operation.
+* `service/rekognition`: Updates service API and documentation
+  * This release updates the DetectLabels operation. Bounding boxes are now returned for certain objects, a hierarchical taxonomy is now available for labels, and you can now get the version of the detection model used for detection.
+
+### SDK Bugs
+* `internal/ini`: profile names did not allow for ':' character (#2247)
+  * Fixes an issue where profile names would return an error if the name contained a ':'
+Release v1.15.67 (2018-11-01)
+===
+
+### Service Client Updates
+* `service/servicecatalog`: Updates service API, documentation, and paginators
+  * Service Catalog integration with AWS Organizations, enables customers to more easily create and manage a portfolio of IT services across an organization. Administrators can now take advantage of the AWS account structure and account groupings configured in AWS Organizations to share Service Catalog Portfolios increasing agility and reducing risk. With this integration the admin user will leverage the trust relationship that exists within the accounts of the Organization to share portfolios to the entire Organization, a specific Organizational Unit or a specific Account.
+
+### SDK Bugs
+* `internal/ini`: removing // comments (#2240)
+  * removes // comments since that was never supported previously.
+Release v1.15.66 (2018-10-31)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API
+* `service/greengrass`: Updates service API and documentation
+  * Greengrass APIs now support bulk deployment operations, and APIs that list definition versions now support pagination.
+* `service/mediastore-data`: Updates service API and documentation
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for AWS Secrets Manager.
+
+Release v1.15.65 (2018-10-30)
+===
+
+### Service Client Updates
+* `service/chime`: Adds new service
+  * This is the initial release for the Amazon Chime AWS SDK. In this release, Amazon Chime adds support for administrative actions on users and accounts. API Documentation is also updated on https://docs.aws.amazon.com/chime/index.html
+* `service/dms`: Updates service waiters
+  * Add waiters for TestConnectionSucceeds, EndpointDeleted, ReplicationInstanceAvailable, ReplicationInstanceDeleted, ReplicationTaskReady, ReplicationTaskStopped, ReplicationTaskRunning and ReplicationTaskDeleted.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/rds`: Updates service API and documentation
+  * This release adds the listener connection endpoint for SQL Server Always On to the list of fields returned when performing a describe-db-instances operation.
+
 Release v1.15.64 (2018-10-26)
 ===
 

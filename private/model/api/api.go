@@ -5,11 +5,8 @@ package api
 
 import (
 	"bytes"
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"path"
-	"path/filepath"
 	"regexp"
 	"sort"
 	"strings"
@@ -47,7 +44,7 @@ type API struct {
 	// Set to true to not generate struct field accessors
 	NoGenStructFieldAccessors bool
 
-	SvcClientImportPath string
+	BaseImportPath string
 
 	initialized bool
 	imports     map[string]bool
@@ -86,21 +83,14 @@ type ProtocolSettings struct {
 	HTTP2 string `json:"h2,omitempty"`
 }
 
-var serviceAliases map[string]string
-
-// Bootstrap loads SDK model customizations prior to the API model is parsed.
-func Bootstrap() error {
-	b, err := ioutil.ReadFile(filepath.Join("..", "models", "customizations", "service-aliases.json"))
-	if err != nil {
-		return err
-	}
-
-	return json.Unmarshal(b, &serviceAliases)
-}
-
 // PackageName name of the API package
 func (a *API) PackageName() string {
 	return strings.ToLower(a.StructName())
+}
+
+// ImportPath returns the client's full import path
+func (a *API) ImportPath() string {
+	return path.Join(a.BaseImportPath, a.PackageName())
 }
 
 // InterfacePackageName returns the package name for the interface.
@@ -148,11 +138,6 @@ func (a *API) StructName() string {
 
 	// Strip out spaces.
 	name = strings.Replace(name, " ", "", -1)
-
-	// Swap out for alias name if one is defined.
-	if alias, ok := serviceAliases[strings.ToLower(name)]; ok {
-		name = alias
-	}
 
 	a.name = name
 	return a.name
@@ -680,7 +665,7 @@ func (a *API) ExampleGoCode() string {
 		"time",
 		"github.com/aws/aws-sdk-go/aws",
 		"github.com/aws/aws-sdk-go/aws/session",
-		path.Join(a.SvcClientImportPath, a.PackageName()),
+		a.ImportPath(),
 	)
 	for k := range imports {
 		code += fmt.Sprintf("%q\n", k)
@@ -756,9 +741,9 @@ var _ {{ .StructName }}API = (*{{ .PackageName }}.{{ .StructName }})(nil)
 func (a *API) InterfaceGoCode() string {
 	a.resetImports()
 	a.imports = map[string]bool{
-		"github.com/aws/aws-sdk-go/aws":                   true,
-		"github.com/aws/aws-sdk-go/aws/request":           true,
-		path.Join(a.SvcClientImportPath, a.PackageName()): true,
+		"github.com/aws/aws-sdk-go/aws":         true,
+		"github.com/aws/aws-sdk-go/aws/request": true,
+		a.ImportPath():                          true,
 	}
 
 	var buf bytes.Buffer

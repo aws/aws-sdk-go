@@ -3,8 +3,6 @@ language: go
 matrix:
     allow_failures:
         - go: tip
-        - go: 1.6.x
-          os: linux
     include:
         - os: linux
           sudo: required
@@ -46,7 +44,13 @@ matrix:
           go: tip
 
 script:
-  - make ci-test
+  - if [ $TRAVIS_GO_VERSION == "tip" ] ||
+    [ $TRAVIS_GO_VERSION == "1.11.x" ] || 
+    [ $TRAVIS_GO_VERSION == "1.10.x" ]; then
+    make ci-test;
+    else
+    make unit-old-go-race-cover;
+    fi
 
 branches:
   only:

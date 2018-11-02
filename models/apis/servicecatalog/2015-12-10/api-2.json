@@ -162,7 +162,8 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"LimitExceededException"},
-        {"shape":"InvalidParametersException"}
+        {"shape":"InvalidParametersException"},
+        {"shape":"OperationNotSupportedException"}
       ]
     },
     "CreateProduct":{
@@ -271,7 +272,9 @@
       "input":{"shape":"DeletePortfolioShareInput"},
       "output":{"shape":"DeletePortfolioShareOutput"},
       "errors":[
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParametersException"},
+        {"shape":"OperationNotSupportedException"}
       ]
     },
     "DeleteProduct":{
@@ -377,6 +380,20 @@
       "output":{"shape":"DescribePortfolioOutput"},
       "errors":[
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DescribePortfolioShareStatus":{
+      "name":"DescribePortfolioShareStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribePortfolioShareStatusInput"},
+      "output":{"shape":"DescribePortfolioShareStatusOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParametersException"},
+        {"shape":"OperationNotSupportedException"}
       ]
     },
     "DescribeProduct":{
@@ -504,6 +521,20 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DisableAWSOrganizationsAccess":{
+      "name":"DisableAWSOrganizationsAccess",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisableAWSOrganizationsAccessInput"},
+      "output":{"shape":"DisableAWSOrganizationsAccessOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidStateException"},
+        {"shape":"OperationNotSupportedException"}
+      ]
+    },
     "DisassociatePrincipalFromPortfolio":{
       "name":"DisassociatePrincipalFromPortfolio",
       "http":{
@@ -556,6 +587,20 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "EnableAWSOrganizationsAccess":{
+      "name":"EnableAWSOrganizationsAccess",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EnableAWSOrganizationsAccessInput"},
+      "output":{"shape":"EnableAWSOrganizationsAccessOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidStateException"},
+        {"shape":"OperationNotSupportedException"}
+      ]
+    },
     "ExecuteProvisionedProductPlan":{
       "name":"ExecuteProvisionedProductPlan",
       "http":{
@@ -584,6 +629,19 @@
         {"shape":"InvalidStateException"}
       ]
     },
+    "GetAWSOrganizationsAccessStatus":{
+      "name":"GetAWSOrganizationsAccessStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetAWSOrganizationsAccessStatusInput"},
+      "output":{"shape":"GetAWSOrganizationsAccessStatusOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"OperationNotSupportedException"}
+      ]
+    },
     "ListAcceptedPortfolioShares":{
       "name":"ListAcceptedPortfolioShares",
       "http":{
@@ -593,7 +651,8 @@
       "input":{"shape":"ListAcceptedPortfolioSharesInput"},
       "output":{"shape":"ListAcceptedPortfolioSharesOutput"},
       "errors":[
-        {"shape":"InvalidParametersException"}
+        {"shape":"InvalidParametersException"},
+        {"shape":"OperationNotSupportedException"}
       ]
     },
     "ListConstraintsForPortfolio":{
@@ -620,6 +679,20 @@
       "errors":[
         {"shape":"InvalidParametersException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "ListOrganizationPortfolioAccess":{
+      "name":"ListOrganizationPortfolioAccess",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListOrganizationPortfolioAccessInput"},
+      "output":{"shape":"ListOrganizationPortfolioAccessOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParametersException"},
+        {"shape":"OperationNotSupportedException"}
       ]
     },
     "ListPortfolioAccess":{
@@ -969,7 +1042,8 @@
       "required":["PortfolioId"],
       "members":{
         "AcceptLanguage":{"shape":"AcceptLanguage"},
-        "PortfolioId":{"shape":"Id"}
+        "PortfolioId":{"shape":"Id"},
+        "PortfolioShareType":{"shape":"PortfolioShareType"}
       }
     },
     "AcceptPortfolioShareOutput":{
@@ -993,6 +1067,14 @@
       ]
     },
     "AccessLevelFilterValue":{"type":"string"},
+    "AccessStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "UNDER_CHANGE",
+        "DISABLED"
+      ]
+    },
     "AccountId":{
       "type":"string",
       "pattern":"^[0-9]{12}$"
@@ -1266,19 +1348,18 @@
     },
     "CreatePortfolioShareInput":{
       "type":"structure",
-      "required":[
-        "PortfolioId",
-        "AccountId"
-      ],
+      "required":["PortfolioId"],
       "members":{
         "AcceptLanguage":{"shape":"AcceptLanguage"},
         "PortfolioId":{"shape":"Id"},
-        "AccountId":{"shape":"AccountId"}
+        "AccountId":{"shape":"AccountId"},
+        "OrganizationNode":{"shape":"OrganizationNode"}
       }
     },
     "CreatePortfolioShareOutput":{
       "type":"structure",
       "members":{
+        "PortfolioShareToken":{"shape":"PortfolioShareToken"}
       }
     },
     "CreateProductInput":{
@@ -1452,19 +1533,18 @@
     },
     "DeletePortfolioShareInput":{
       "type":"structure",
-      "required":[
-        "PortfolioId",
-        "AccountId"
-      ],
+      "required":["PortfolioId"],
       "members":{
         "AcceptLanguage":{"shape":"AcceptLanguage"},
         "PortfolioId":{"shape":"Id"},
-        "AccountId":{"shape":"AccountId"}
+        "AccountId":{"shape":"AccountId"},
+        "OrganizationNode":{"shape":"OrganizationNode"}
       }
     },
     "DeletePortfolioShareOutput":{
       "type":"structure",
       "members":{
+        "PortfolioShareToken":{"shape":"PortfolioShareToken"}
       }
     },
     "DeleteProductInput":{
@@ -1582,6 +1662,23 @@
         "PortfolioDetail":{"shape":"PortfolioDetail"},
         "Tags":{"shape":"Tags"},
         "TagOptions":{"shape":"TagOptionDetails"}
+      }
+    },
+    "DescribePortfolioShareStatusInput":{
+      "type":"structure",
+      "required":["PortfolioShareToken"],
+      "members":{
+        "PortfolioShareToken":{"shape":"PortfolioShareToken"}
+      }
+    },
+    "DescribePortfolioShareStatusOutput":{
+      "type":"structure",
+      "members":{
+        "PortfolioShareToken":{"shape":"PortfolioShareToken"},
+        "PortfolioId":{"shape":"Id"},
+        "OrganizationNodeValue":{"shape":"OrganizationNodeValue"},
+        "Status":{"shape":"ShareStatus"},
+        "ShareDetails":{"shape":"ShareDetails"}
       }
     },
     "DescribeProductAsAdminInput":{
@@ -1753,6 +1850,16 @@
       }
     },
     "Description":{"type":"string"},
+    "DisableAWSOrganizationsAccessInput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DisableAWSOrganizationsAccessOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DisassociatePrincipalFromPortfolioInput":{
       "type":"structure",
       "required":[
@@ -1828,6 +1935,17 @@
       },
       "exception":true
     },
+    "EnableAWSOrganizationsAccessInput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "EnableAWSOrganizationsAccessOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "Error":{"type":"string"},
     "ErrorCode":{"type":"string"},
     "ErrorDescription":{"type":"string"},
     "EvaluationType":{
@@ -1895,6 +2013,17 @@
       "type":"list",
       "member":{"shape":"FailedServiceActionAssociation"},
       "max":50
+    },
+    "GetAWSOrganizationsAccessStatusInput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "GetAWSOrganizationsAccessStatusOutput":{
+      "type":"structure",
+      "members":{
+        "AccessStatus":{"shape":"AccessStatus"}
+      }
     },
     "HasDefaultPath":{"type":"boolean"},
     "Id":{
@@ -1992,6 +2121,27 @@
       "type":"structure",
       "members":{
         "LaunchPathSummaries":{"shape":"LaunchPathSummaries"},
+        "NextPageToken":{"shape":"PageToken"}
+      }
+    },
+    "ListOrganizationPortfolioAccessInput":{
+      "type":"structure",
+      "required":[
+        "PortfolioId",
+        "OrganizationNodeType"
+      ],
+      "members":{
+        "AcceptLanguage":{"shape":"AcceptLanguage"},
+        "PortfolioId":{"shape":"Id"},
+        "OrganizationNodeType":{"shape":"OrganizationNodeType"},
+        "PageToken":{"shape":"PageToken"},
+        "PageSize":{"shape":"PageSize"}
+      }
+    },
+    "ListOrganizationPortfolioAccessOutput":{
+      "type":"structure",
+      "members":{
+        "OrganizationNodes":{"shape":"OrganizationNodes"},
         "NextPageToken":{"shape":"PageToken"}
       }
     },
@@ -2209,6 +2359,11 @@
       }
     },
     "LogicalResourceId":{"type":"string"},
+    "Message":{"type":"string"},
+    "Namespaces":{
+      "type":"list",
+      "member":{"shape":"AccountId"}
+    },
     "NoEcho":{"type":"boolean"},
     "NotificationArn":{
       "type":"string",
@@ -2220,6 +2375,35 @@
       "type":"list",
       "member":{"shape":"NotificationArn"},
       "max":5
+    },
+    "OperationNotSupportedException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "OrganizationNode":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"OrganizationNodeType"},
+        "Value":{"shape":"OrganizationNodeValue"}
+      }
+    },
+    "OrganizationNodeType":{
+      "type":"string",
+      "enum":[
+        "ORGANIZATION",
+        "ORGANIZATIONAL_UNIT",
+        "ACCOUNT"
+      ]
+    },
+    "OrganizationNodeValue":{
+      "type":"string",
+      "pattern":"(^[0-9]{12}$)|(^arn:aws:organizations::\\d{12}:organization\\/o-[a-z0-9]{10,32})|(^o-[a-z0-9]{10,32}$)|(^arn:aws:organizations::\\d{12}:ou\\/o-[a-z0-9]{10,32}\\/ou-[0-9a-z]{4,32}-[0-9a-z]{8,32}$)|(^ou-[0-9a-z]{4,32}-[a-z0-9]{8,32}$)"
+    },
+    "OrganizationNodes":{
+      "type":"list",
+      "member":{"shape":"OrganizationNode"}
     },
     "OutputKey":{"type":"string"},
     "OutputValue":{"type":"string"},
@@ -2281,11 +2465,13 @@
       "min":1
     },
     "PortfolioName":{"type":"string"},
+    "PortfolioShareToken":{"type":"string"},
     "PortfolioShareType":{
       "type":"string",
       "enum":[
         "IMPORTED",
-        "AWS_SERVICECATALOG"
+        "AWS_SERVICECATALOG",
+        "AWS_ORGANIZATIONS"
       ]
     },
     "Principal":{
@@ -2785,7 +2971,8 @@
       "required":["PortfolioId"],
       "members":{
         "AcceptLanguage":{"shape":"AcceptLanguage"},
-        "PortfolioId":{"shape":"Id"}
+        "PortfolioId":{"shape":"Id"},
+        "PortfolioShareType":{"shape":"PortfolioShareType"}
       }
     },
     "RejectPortfolioShareOutput":{
@@ -3069,6 +3256,35 @@
         "DefinitionType":{"shape":"ServiceActionDefinitionType"}
       }
     },
+    "ShareDetails":{
+      "type":"structure",
+      "members":{
+        "SuccessfulShares":{"shape":"SuccessfulShares"},
+        "ShareErrors":{"shape":"ShareErrors"}
+      }
+    },
+    "ShareError":{
+      "type":"structure",
+      "members":{
+        "Accounts":{"shape":"Namespaces"},
+        "Message":{"shape":"Message"},
+        "Error":{"shape":"Error"}
+      }
+    },
+    "ShareErrors":{
+      "type":"list",
+      "member":{"shape":"ShareError"}
+    },
+    "ShareStatus":{
+      "type":"string",
+      "enum":[
+        "NOT_STARTED",
+        "IN_PROGRESS",
+        "COMPLETED",
+        "COMPLETED_WITH_ERRORS",
+        "ERROR"
+      ]
+    },
     "SortField":{"type":"string"},
     "SortOrder":{
       "type":"string",
@@ -3098,6 +3314,10 @@
     "StatusMessage":{
       "type":"string",
       "pattern":"[\\u0009\\u000a\\u000d\\u0020-\\uD7FF\\uE000-\\uFFFD]*"
+    },
+    "SuccessfulShares":{
+      "type":"list",
+      "member":{"shape":"AccountId"}
     },
     "SupportDescription":{
       "type":"string",

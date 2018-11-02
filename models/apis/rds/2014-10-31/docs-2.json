@@ -1417,7 +1417,8 @@
     "Endpoint": {
       "base": "<p>This data type is used as a response element in the following actions:</p> <ul> <li> <p> <a>CreateDBInstance</a> </p> </li> <li> <p> <a>DescribeDBInstances</a> </p> </li> <li> <p> <a>DeleteDBInstance</a> </p> </li> </ul>",
       "refs": {
-        "DBInstance$Endpoint": "<p>Specifies the connection endpoint.</p>"
+        "DBInstance$Endpoint": "<p>Specifies the connection endpoint.</p>",
+        "DBInstance$ListenerEndpoint": "<p>Specifies the listener connection endpoint for SQL Server Always On.</p>"
       }
     },
     "EngineDefaults": {
