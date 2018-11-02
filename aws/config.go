@@ -393,7 +393,7 @@ func (c *Config) WithSleepDelay(fn func(time.Duration)) *Config {
 	return c
 }
 
-// WithEndpointDiscovery ...
+// WithEndpointDiscovery will set whether or not to use endpoint discovery.
 func (c *Config) WithEndpointDiscovery(t bool) *Config {
 	c.EnableEndpointDiscovery = &t
 	return c
