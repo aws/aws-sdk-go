@@ -67,7 +67,7 @@ type sharedConfig struct {
 	Region string
 
 	// EnableEndpointDiscovery can be enabled in the shared config by setting
-	//endpoint_discovery_enabled to true
+	// endpoint_discovery_enabled to true
 	//
 	//	endpoint_discovery_enabled = true
 	EnableEndpointDiscovery *bool

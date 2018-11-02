@@ -236,7 +236,7 @@ type Config struct {
 	//    svc := s3.New(sess)
 	//    out, err := svc.GetObject(&s3.GetObjectInput {
 	//    	Bucket: aws.String("bucketname"),
-	//    	Key: aws.String("//foo//bar//moo"),
+	//    	Key: aws.String("/foo/bar/moo"),
 	//    })
 	EnableEndpointDiscovery *bool
 }

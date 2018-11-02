@@ -19,7 +19,6 @@ type Endpoint struct {
 type WeightedAddresses []WeightedAddress
 
 // WeightedAddress represents an address with a given weight.
-// Currently the weight of addresses is set to 1.0.
 type WeightedAddress struct {
 	URL     *url.URL
 	Expired time.Time
