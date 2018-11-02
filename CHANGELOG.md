@@ -1,3 +1,15 @@
+Release v1.15.68 (2018-11-02)
+===
+
+### Service Client Updates
+* `service/clouddirectory`: Updates service API and documentation
+  * ListObjectParents API now supports a bool parameter IncludeAllLinksToEachParent, which if set to true, will return a ParentLinks list instead of a Parents map; BatchRead API now supports ListObjectParents operation.
+* `service/rekognition`: Updates service API and documentation
+  * This release updates the DetectLabels operation. Bounding boxes are now returned for certain objects, a hierarchical taxonomy is now available for labels, and you can now get the version of the detection model used for detection.
+
+### SDK Bugs
+* `internal/ini`: profile names did not allow for ':' character (#2247)
+  * Fixes an issue where profile names would return an error if the name contained a ':'
 Release v1.15.67 (2018-11-01)
 ===
 
