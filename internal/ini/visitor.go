@@ -55,7 +55,7 @@ func (v *DefaultVisitor) VisitExpr(expr AST) error {
 			}
 
 			key := EqualExprKey(opExpr)
-			v, err := newValue(rhs.Root.ValueType, rhs.Root.base, rhs.Root.Raw())
+			v, err := newValueKeyCase(rhs, key)
 			if err != nil {
 				return err
 			}
@@ -70,6 +70,19 @@ func (v *DefaultVisitor) VisitExpr(expr AST) error {
 
 	v.Sections.container[v.scope] = t
 	return nil
+}
+
+func newValueKeyCase(rhs AST, key string) (Value, error) {
+	const (
+		awsSecretAccessKey = "aws_secret_access_key"
+	)
+
+	switch key {
+	case awsSecretAccessKey:
+		return newValue(StringType, rhs.Root.base, rhs.Root.Raw())
+	default:
+		return newValue(rhs.Root.ValueType, rhs.Root.base, rhs.Root.Raw())
+	}
 }
 
 // VisitStatement visits statements...
