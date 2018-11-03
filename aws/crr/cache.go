@@ -1,7 +1,6 @@
 package crr
 
 import (
-	"sync"
 	"sync/atomic"
 )
 
@@ -9,7 +8,7 @@ import (
 // based on some key. The datastructure makes use of a read write
 // mutex to enable asynchronous use.
 type EndpointCache struct {
-	endpoints     sync.Map
+	endpoints     syncMap
 	endpointLimit int64
 	// size is used to count the number elements in the cache.
 	// The atomic package is used to ensure this size is accurate when
@@ -22,6 +21,7 @@ type EndpointCache struct {
 func NewEndpointCache(endpointLimit int64) *EndpointCache {
 	return &EndpointCache{
 		endpointLimit: endpointLimit,
+		endpoints:     newSyncMap(),
 	}
 }
 
