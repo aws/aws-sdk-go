@@ -1,3 +1,10 @@
+Release v1.15.69 (2018-11-05)
+===
+
+### Service Client Updates
+* `service/eks`: Updates service waiters
+* `service/serverlessrepo`: Updates service API and documentation
+
 Release v1.15.68 (2018-11-02)
 ===
 
