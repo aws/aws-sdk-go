@@ -72,6 +72,10 @@ type ServerlessApplicationRepositoryAPI interface {
 	CreateCloudFormationChangeSetWithContext(aws.Context, *serverlessapplicationrepository.CreateCloudFormationChangeSetRequest, ...request.Option) (*serverlessapplicationrepository.CreateCloudFormationChangeSetOutput, error)
 	CreateCloudFormationChangeSetRequest(*serverlessapplicationrepository.CreateCloudFormationChangeSetRequest) (*request.Request, *serverlessapplicationrepository.CreateCloudFormationChangeSetOutput)
 
+	CreateCloudFormationTemplate(*serverlessapplicationrepository.CreateCloudFormationTemplateInput) (*serverlessapplicationrepository.CreateCloudFormationTemplateOutput, error)
+	CreateCloudFormationTemplateWithContext(aws.Context, *serverlessapplicationrepository.CreateCloudFormationTemplateInput, ...request.Option) (*serverlessapplicationrepository.CreateCloudFormationTemplateOutput, error)
+	CreateCloudFormationTemplateRequest(*serverlessapplicationrepository.CreateCloudFormationTemplateInput) (*request.Request, *serverlessapplicationrepository.CreateCloudFormationTemplateOutput)
+
 	DeleteApplication(*serverlessapplicationrepository.DeleteApplicationInput) (*serverlessapplicationrepository.DeleteApplicationOutput, error)
 	DeleteApplicationWithContext(aws.Context, *serverlessapplicationrepository.DeleteApplicationInput, ...request.Option) (*serverlessapplicationrepository.DeleteApplicationOutput, error)
 	DeleteApplicationRequest(*serverlessapplicationrepository.DeleteApplicationInput) (*request.Request, *serverlessapplicationrepository.DeleteApplicationOutput)
@@ -83,6 +87,10 @@ type ServerlessApplicationRepositoryAPI interface {
 	GetApplicationPolicy(*serverlessapplicationrepository.GetApplicationPolicyInput) (*serverlessapplicationrepository.GetApplicationPolicyOutput, error)
 	GetApplicationPolicyWithContext(aws.Context, *serverlessapplicationrepository.GetApplicationPolicyInput, ...request.Option) (*serverlessapplicationrepository.GetApplicationPolicyOutput, error)
 	GetApplicationPolicyRequest(*serverlessapplicationrepository.GetApplicationPolicyInput) (*request.Request, *serverlessapplicationrepository.GetApplicationPolicyOutput)
+
+	GetCloudFormationTemplate(*serverlessapplicationrepository.GetCloudFormationTemplateInput) (*serverlessapplicationrepository.GetCloudFormationTemplateOutput, error)
+	GetCloudFormationTemplateWithContext(aws.Context, *serverlessapplicationrepository.GetCloudFormationTemplateInput, ...request.Option) (*serverlessapplicationrepository.GetCloudFormationTemplateOutput, error)
+	GetCloudFormationTemplateRequest(*serverlessapplicationrepository.GetCloudFormationTemplateInput) (*request.Request, *serverlessapplicationrepository.GetCloudFormationTemplateOutput)
 
 	ListApplicationVersions(*serverlessapplicationrepository.ListApplicationVersionsInput) (*serverlessapplicationrepository.ListApplicationVersionsOutput, error)
 	ListApplicationVersionsWithContext(aws.Context, *serverlessapplicationrepository.ListApplicationVersionsInput, ...request.Option) (*serverlessapplicationrepository.ListApplicationVersionsOutput, error)
