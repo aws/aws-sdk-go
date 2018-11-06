@@ -13305,6 +13305,12 @@ func (c *EC2) DescribeRouteTablesRequest(input *DescribeRouteTablesInput) (req *
 		Name:       opDescribeRouteTables,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -13354,6 +13360,56 @@ func (c *EC2) DescribeRouteTablesWithContext(ctx aws.Context, input *DescribeRou
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeRouteTablesPages iterates over the pages of a DescribeRouteTables operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeRouteTables method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeRouteTables operation.
+//    pageNum := 0
+//    err := client.DescribeRouteTablesPages(params,
+//        func(page *DescribeRouteTablesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *EC2) DescribeRouteTablesPages(input *DescribeRouteTablesInput, fn func(*DescribeRouteTablesOutput, bool) bool) error {
+	return c.DescribeRouteTablesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeRouteTablesPagesWithContext same as DescribeRouteTablesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EC2) DescribeRouteTablesPagesWithContext(ctx aws.Context, input *DescribeRouteTablesInput, fn func(*DescribeRouteTablesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeRouteTablesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeRouteTablesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*DescribeRouteTablesOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opDescribeScheduledInstanceAvailability = "DescribeScheduledInstanceAvailability"
@@ -13618,6 +13674,12 @@ func (c *EC2) DescribeSecurityGroupsRequest(input *DescribeSecurityGroupsInput) 
 		Name:       opDescribeSecurityGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -13666,6 +13728,56 @@ func (c *EC2) DescribeSecurityGroupsWithContext(ctx aws.Context, input *Describe
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeSecurityGroupsPages iterates over the pages of a DescribeSecurityGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeSecurityGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeSecurityGroups operation.
+//    pageNum := 0
+//    err := client.DescribeSecurityGroupsPages(params,
+//        func(page *DescribeSecurityGroupsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *EC2) DescribeSecurityGroupsPages(input *DescribeSecurityGroupsInput, fn func(*DescribeSecurityGroupsOutput, bool) bool) error {
+	return c.DescribeSecurityGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeSecurityGroupsPagesWithContext same as DescribeSecurityGroupsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EC2) DescribeSecurityGroupsPagesWithContext(ctx aws.Context, input *DescribeSecurityGroupsInput, fn func(*DescribeSecurityGroupsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeSecurityGroupsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeSecurityGroupsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*DescribeSecurityGroupsOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opDescribeSnapshotAttribute = "DescribeSnapshotAttribute"
@@ -51459,35 +51571,25 @@ type ImportInstanceVolumeDetailItem struct {
 	_ struct{} `type:"structure"`
 
 	// The Availability Zone where the resulting instance will reside.
-	//
-	// AvailabilityZone is a required field
-	AvailabilityZone *string `locationName:"availabilityZone" type:"string" required:"true"`
+	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
 
 	// The number of bytes converted so far.
-	//
-	// BytesConverted is a required field
-	BytesConverted *int64 `locationName:"bytesConverted" type:"long" required:"true"`
+	BytesConverted *int64 `locationName:"bytesConverted" type:"long"`
 
 	// A description of the task.
 	Description *string `locationName:"description" type:"string"`
 
 	// The image.
-	//
-	// Image is a required field
-	Image *DiskImageDescription `locationName:"image" type:"structure" required:"true"`
+	Image *DiskImageDescription `locationName:"image" type:"structure"`
 
 	// The status of the import of this particular disk image.
-	//
-	// Status is a required field
-	Status *string `locationName:"status" type:"string" required:"true"`
+	Status *string `locationName:"status" type:"string"`
 
 	// The status information or errors related to the disk image.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
 	// The volume.
-	//
-	// Volume is a required field
-	Volume *DiskImageVolumeDescription `locationName:"volume" type:"structure" required:"true"`
+	Volume *DiskImageVolumeDescription `locationName:"volume" type:"structure"`
 }
 
 // String returns the string representation
@@ -67096,14 +67198,10 @@ type SecurityGroupReference struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of your security group.
-	//
-	// GroupId is a required field
-	GroupId *string `locationName:"groupId" type:"string" required:"true"`
+	GroupId *string `locationName:"groupId" type:"string"`
 
 	// The ID of the VPC with the referencing security group.
-	//
-	// ReferencingVpcId is a required field
-	ReferencingVpcId *string `locationName:"referencingVpcId" type:"string" required:"true"`
+	ReferencingVpcId *string `locationName:"referencingVpcId" type:"string"`
 
 	// The ID of the VPC peering connection.
 	VpcPeeringConnectionId *string `locationName:"vpcPeeringConnectionId" type:"string"`
@@ -69137,9 +69235,7 @@ type StaleSecurityGroup struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The ID of the security group.
-	//
-	// GroupId is a required field
-	GroupId *string `locationName:"groupId" type:"string" required:"true"`
+	GroupId *string `locationName:"groupId" type:"string"`
 
 	// The name of the security group.
 	GroupName *string `locationName:"groupName" type:"string"`
@@ -73708,6 +73804,24 @@ const (
 	// InstanceTypeR5Metal is a InstanceType enum value
 	InstanceTypeR5Metal = "r5.metal"
 
+	// InstanceTypeR5aLarge is a InstanceType enum value
+	InstanceTypeR5aLarge = "r5a.large"
+
+	// InstanceTypeR5aXlarge is a InstanceType enum value
+	InstanceTypeR5aXlarge = "r5a.xlarge"
+
+	// InstanceTypeR5a2xlarge is a InstanceType enum value
+	InstanceTypeR5a2xlarge = "r5a.2xlarge"
+
+	// InstanceTypeR5a4xlarge is a InstanceType enum value
+	InstanceTypeR5a4xlarge = "r5a.4xlarge"
+
+	// InstanceTypeR5a12xlarge is a InstanceType enum value
+	InstanceTypeR5a12xlarge = "r5a.12xlarge"
+
+	// InstanceTypeR5a24xlarge is a InstanceType enum value
+	InstanceTypeR5a24xlarge = "r5a.24xlarge"
+
 	// InstanceTypeR5dLarge is a InstanceType enum value
 	InstanceTypeR5dLarge = "r5d.large"
 
@@ -73953,6 +74067,24 @@ const (
 
 	// InstanceTypeM524xlarge is a InstanceType enum value
 	InstanceTypeM524xlarge = "m5.24xlarge"
+
+	// InstanceTypeM5aLarge is a InstanceType enum value
+	InstanceTypeM5aLarge = "m5a.large"
+
+	// InstanceTypeM5aXlarge is a InstanceType enum value
+	InstanceTypeM5aXlarge = "m5a.xlarge"
+
+	// InstanceTypeM5a2xlarge is a InstanceType enum value
+	InstanceTypeM5a2xlarge = "m5a.2xlarge"
+
+	// InstanceTypeM5a4xlarge is a InstanceType enum value
+	InstanceTypeM5a4xlarge = "m5a.4xlarge"
+
+	// InstanceTypeM5a12xlarge is a InstanceType enum value
+	InstanceTypeM5a12xlarge = "m5a.12xlarge"
+
+	// InstanceTypeM5a24xlarge is a InstanceType enum value
+	InstanceTypeM5a24xlarge = "m5a.24xlarge"
 
 	// InstanceTypeM5dLarge is a InstanceType enum value
 	InstanceTypeM5dLarge = "m5d.large"

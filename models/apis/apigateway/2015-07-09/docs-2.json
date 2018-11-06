@@ -1820,6 +1820,7 @@
         "Stage$stageName": "<p>The name of the stage is the first path segment in the Uniform Resource Identifier (URI) of a call to API Gateway.</p>",
         "Stage$description": "<p>The stage's description.</p>",
         "Stage$documentationVersion": "<p>The version of the associated API documentation.</p>",
+        "Stage$webAclArn": "<p>The ARN of the WebAcl associated with the <a>Stage</a>.</p>",
         "StageKey$restApiId": "<p>The string identifier of the associated <a>RestApi</a>.</p>",
         "StageKey$stageName": "<p>The stage name associated with the stage key.</p>",
         "TagResourceRequest$resourceArn": "<p>[Required] The ARN of a resource that can be tagged. The resource ARN must be URL-encoded. At present, <a>Stage</a> is the only taggable resource.</p>",

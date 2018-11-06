@@ -3378,6 +3378,9 @@
         "DefaultPushNotificationMessage" : {
           "shape" : "DefaultPushNotificationMessage"
         },
+        "EmailMessage" : {
+          "shape" : "EmailMessage"
+        },
         "GCMMessage" : {
           "shape" : "GCMMessage"
         },
@@ -3394,6 +3397,9 @@
     "EmailChannelRequest" : {
       "type" : "structure",
       "members" : {
+        "ConfigurationSet" : {
+          "shape" : "__string"
+        },
         "Enabled" : {
           "shape" : "__boolean"
         },
@@ -3413,6 +3419,9 @@
       "type" : "structure",
       "members" : {
         "ApplicationId" : {
+          "shape" : "__string"
+        },
+        "ConfigurationSet" : {
           "shape" : "__string"
         },
         "CreationDate" : {
@@ -3456,6 +3465,32 @@
         }
       },
       "required" : [ ]
+    },
+    "EmailMessage" : {
+      "type" : "structure",
+      "members" : {
+        "Body" : {
+          "shape" : "__string"
+        },
+        "FeedbackForwardingAddress" : {
+          "shape" : "__string"
+        },
+        "FromAddress" : {
+          "shape" : "__string"
+        },
+        "RawEmail" : {
+          "shape" : "RawEmail"
+        },
+        "ReplyToAddresses" : {
+          "shape" : "ListOf__string"
+        },
+        "SimpleEmail" : {
+          "shape" : "SimpleEmail"
+        },
+        "Substitutions" : {
+          "shape" : "MapOfListOf__string"
+        }
+      }
     },
     "EndpointBatchItem" : {
       "type" : "structure",
@@ -5195,7 +5230,8 @@
         "Value" : {
           "shape" : "__double"
         }
-      }
+      },
+      "required" : [ ]
     },
     "Mode" : {
       "type" : "string",
@@ -5390,6 +5426,14 @@
         },
         "Start" : {
           "shape" : "__string"
+        }
+      }
+    },
+    "RawEmail" : {
+      "type" : "structure",
+      "members" : {
+        "Data" : {
+          "shape" : "__blob"
         }
       }
     },
@@ -5677,7 +5721,8 @@
         "Version" : {
           "shape" : "__integer"
         }
-      }
+      },
+      "required" : [ ]
     },
     "SegmentResponse" : {
       "type" : "structure",
@@ -5843,6 +5888,31 @@
         }
       },
       "required" : [ ]
+    },
+    "SimpleEmail" : {
+      "type" : "structure",
+      "members" : {
+        "HtmlPart" : {
+          "shape" : "SimpleEmailPart"
+        },
+        "Subject" : {
+          "shape" : "SimpleEmailPart"
+        },
+        "TextPart" : {
+          "shape" : "SimpleEmailPart"
+        }
+      }
+    },
+    "SimpleEmailPart" : {
+      "type" : "structure",
+      "members" : {
+        "Charset" : {
+          "shape" : "__string"
+        },
+        "Data" : {
+          "shape" : "__string"
+        }
+      }
     },
     "SourceType" : {
       "type" : "string",
@@ -6375,6 +6445,9 @@
         }
       },
       "required" : [ ]
+    },
+    "__blob" : {
+      "type" : "blob"
     },
     "__boolean" : {
       "type" : "boolean"

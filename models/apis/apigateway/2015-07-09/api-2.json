@@ -4663,6 +4663,7 @@
         "accessLogSettings":{"shape":"AccessLogSettings"},
         "canarySettings":{"shape":"CanarySettings"},
         "tracingEnabled":{"shape":"Boolean"},
+        "webAclArn":{"shape":"String"},
         "tags":{"shape":"MapOfStringToString"},
         "createdDate":{"shape":"Timestamp"},
         "lastUpdatedDate":{"shape":"Timestamp"}
