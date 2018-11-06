@@ -1,3 +1,19 @@
+Release v1.15.70 (2018-11-06)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API and documentation
+  * AWS WAF integration with APIGW. Changes for adding webAclArn as a part of  Stage output. When the user calls a get-stage or get-stages, webAclArn will also be returned as a part of the output.
+* `service/codebuild`: Updates service documentation
+  * Documentation updates for codebuild
+* `service/ec2`: Updates service API and paginators
+  * You can now launch the new Amazon EC2 memory optimized R5a and general purpose M5a instances families that feature AMD EPYC processors.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/pinpoint`: Updates service API and documentation
+  * This update adds the ability to send transactional email by using the SendMessage API. Transactional emails are emails that you send directly to specific email addresses. Unlike campaign-based email that you send from Amazon Pinpoint, you don't have to create segments and campaigns in order to send transactional email.
+* `service/pinpoint-email`: Adds new service
+* `service/waf-regional`: Updates service API and documentation
+
 Release v1.15.69 (2018-11-05)
 ===
 

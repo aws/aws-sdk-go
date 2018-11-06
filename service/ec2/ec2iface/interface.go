@@ -718,6 +718,9 @@ type EC2API interface {
 	DescribeRouteTablesWithContext(aws.Context, *ec2.DescribeRouteTablesInput, ...request.Option) (*ec2.DescribeRouteTablesOutput, error)
 	DescribeRouteTablesRequest(*ec2.DescribeRouteTablesInput) (*request.Request, *ec2.DescribeRouteTablesOutput)
 
+	DescribeRouteTablesPages(*ec2.DescribeRouteTablesInput, func(*ec2.DescribeRouteTablesOutput, bool) bool) error
+	DescribeRouteTablesPagesWithContext(aws.Context, *ec2.DescribeRouteTablesInput, func(*ec2.DescribeRouteTablesOutput, bool) bool, ...request.Option) error
+
 	DescribeScheduledInstanceAvailability(*ec2.DescribeScheduledInstanceAvailabilityInput) (*ec2.DescribeScheduledInstanceAvailabilityOutput, error)
 	DescribeScheduledInstanceAvailabilityWithContext(aws.Context, *ec2.DescribeScheduledInstanceAvailabilityInput, ...request.Option) (*ec2.DescribeScheduledInstanceAvailabilityOutput, error)
 	DescribeScheduledInstanceAvailabilityRequest(*ec2.DescribeScheduledInstanceAvailabilityInput) (*request.Request, *ec2.DescribeScheduledInstanceAvailabilityOutput)
@@ -733,6 +736,9 @@ type EC2API interface {
 	DescribeSecurityGroups(*ec2.DescribeSecurityGroupsInput) (*ec2.DescribeSecurityGroupsOutput, error)
 	DescribeSecurityGroupsWithContext(aws.Context, *ec2.DescribeSecurityGroupsInput, ...request.Option) (*ec2.DescribeSecurityGroupsOutput, error)
 	DescribeSecurityGroupsRequest(*ec2.DescribeSecurityGroupsInput) (*request.Request, *ec2.DescribeSecurityGroupsOutput)
+
+	DescribeSecurityGroupsPages(*ec2.DescribeSecurityGroupsInput, func(*ec2.DescribeSecurityGroupsOutput, bool) bool) error
+	DescribeSecurityGroupsPagesWithContext(aws.Context, *ec2.DescribeSecurityGroupsInput, func(*ec2.DescribeSecurityGroupsOutput, bool) bool, ...request.Option) error
 
 	DescribeSnapshotAttribute(*ec2.DescribeSnapshotAttributeInput) (*ec2.DescribeSnapshotAttributeOutput, error)
 	DescribeSnapshotAttributeWithContext(aws.Context, *ec2.DescribeSnapshotAttributeInput, ...request.Option) (*ec2.DescribeSnapshotAttributeOutput, error)
