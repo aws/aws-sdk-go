@@ -40,14 +40,15 @@ type ShapeRef struct {
 	Streaming     bool
 	XMLAttribute  bool
 	// Ignore, if set, will not be sent over the wire
-	Ignore           bool
-	XMLNamespace     XMLInfo
-	Payload          string
-	IdempotencyToken bool   `json:"idempotencyToken"`
-	TimestampFormat  string `json:"timestampFormat"`
-	JSONValue        bool   `json:"jsonvalue"`
-	Deprecated       bool   `json:"deprecated"`
-	DeprecatedMsg    string `json:"deprecatedMessage"`
+	Ignore              bool
+	XMLNamespace        XMLInfo
+	Payload             string
+	IdempotencyToken    bool   `json:"idempotencyToken"`
+	TimestampFormat     string `json:"timestampFormat"`
+	JSONValue           bool   `json:"jsonvalue"`
+	Deprecated          bool   `json:"deprecated"`
+	DeprecatedMsg       string `json:"deprecatedMessage"`
+	EndpointDiscoveryID bool   `json:"endpointdiscoveryid"`
 
 	OrigShapeName string `json:"-"`
 
@@ -182,6 +183,13 @@ func (s *Shape) MemberNames() []string {
 	}
 	sort.Strings(names)
 	return names
+}
+
+// HasMember will return whether or not the shape has a given
+// member by name.
+func (s *Shape) HasMember(name string) bool {
+	_, ok := s.MemberRefs[name]
+	return ok
 }
 
 // GoTypeWithPkgName returns a shape's type as a string with the package name in

@@ -28,6 +28,18 @@ type Operation struct {
 	imports       map[string]bool
 
 	EventStreamAPI *EventStreamAPI
+
+	IsEndpointDiscoveryOp bool               `json:"endpointoperation"`
+	EndpointDiscovery     *EndpointDiscovery `json:"endpointdiscovery"`
+}
+
+// EndpointDiscovery represents a map of key values pairs that represents
+// metadata about how a given API will make a call to the discovery endpoint.
+type EndpointDiscovery struct {
+	// Required indicates that for a given operation that endpoint is required.
+	// Any required endpoint discovery operation cannot have endpoint discovery
+	// turned off.
+	Required bool `json:"required"`
 }
 
 // OperationForMethod returns the API operation name that corresponds to the
@@ -175,6 +187,39 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 			req.Handlers.Unmarshal.PushBack(output.unmarshalInitialResponse)
 		{{ end -}}
 	{{ end -}}
+	{{ if .EndpointDiscovery -}}
+
+	{{if not .EndpointDiscovery.Required -}}
+		if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+	{{end -}}
+			de := discoverer{{ .API.EndpointDiscoveryOp.Name }}{
+				Required: {{ .EndpointDiscovery.Required }},
+				EndpointCache: c.endpointCache,
+				Params: map[string]*string{
+					"op": aws.String(req.Operation.Name),
+					{{ range $key, $ref := .InputRef.Shape.MemberRefs -}}
+					{{ if $ref.EndpointDiscoveryID -}}
+					"{{ $ref.OrigShapeName }}": input.{{ $key }},
+					{{ end -}}
+					{{- end }}
+				},
+				Client: c,
+			}
+
+			for k, v := range de.Params {
+				if v == nil {
+					delete(de.Params, k)
+				}
+			}
+
+			req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+				Name: "crr.endpointdiscovery",
+				Fn: de.Handler,
+			})
+	{{if not .EndpointDiscovery.Required -}}
+		}
+	{{ end -}}
+	{{ end -}}
 	return
 }
 
@@ -299,6 +344,76 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}PagesWithContext(` +
 	return p.Err()
 }
 {{ end }}
+
+{{ if .IsEndpointDiscoveryOp -}}
+
+type discoverer{{ .ExportedName }} struct {
+	Client *{{ .API.StructName }}
+	Required bool
+	EndpointCache *crr.EndpointCache
+	Params map[string]*string
+	Key string
+}
+
+func (d *discoverer{{ .ExportedName }}) Discover() (crr.Endpoint, error) {
+	input := &{{ .API.EndpointDiscoveryOp.InputRef.ShapeName }}{
+		{{ if .API.EndpointDiscoveryOp.InputRef.Shape.HasMember "Operation" -}}
+		Operation: d.Params["op"],
+		{{ end -}}
+		{{ if .API.EndpointDiscoveryOp.InputRef.Shape.HasMember "Identifiers" -}}
+		Identifiers: d.Params,
+		{{ end -}}
+	}
+
+	resp, err := d.Client.{{ .API.EndpointDiscoveryOp.Name }}(input)
+	if err != nil {
+		return crr.Endpoint{}, err
+	}
+
+	endpoint := crr.Endpoint{
+		Key: d.Key,
+	}
+
+	for _, e := range resp.Endpoints {
+		if e.Address == nil {
+			continue
+		}
+
+		cachedInMinutes := aws.Int64Value(e.CachePeriodInMinutes)
+		u, err := url.Parse(*e.Address)
+		if err != nil {
+			continue
+		}
+
+		addr := crr.WeightedAddress{
+			URL: u,
+			Expired:  time.Now().Add(time.Duration(cachedInMinutes) * time.Minute),
+		}
+
+		endpoint.Add(addr)
+	}
+
+	d.EndpointCache.Add(endpoint)
+
+	return endpoint, nil
+}
+
+func (d *discoverer{{ .ExportedName }}) Handler(r *request.Request) {
+	endpointKey := crr.BuildEndpointKey(d.Params)
+	d.Key = endpointKey
+
+	endpoint, err := d.EndpointCache.Get(d, endpointKey, d.Required)
+	if err != nil {
+		r.Error = err
+		return
+	}
+
+	if endpoint.URL != nil && len(endpoint.URL.String()) > 0 {
+		r.HTTPRequest.URL = endpoint.URL
+	}
+}
+{{ end -}}
+
 `))
 
 // GoCode returns a string of rendered GoCode for this Operation
@@ -310,6 +425,12 @@ func (o *Operation) GoCode() string {
 		o.API.imports["github.com/aws/aws-sdk-go/private/protocol"] = true
 		o.API.imports["github.com/aws/aws-sdk-go/private/protocol/rest"] = true
 		o.API.imports["github.com/aws/aws-sdk-go/private/protocol/"+o.API.ProtocolPackage()] = true
+	}
+
+	if o.API.EndpointDiscoveryOp != nil {
+		o.API.imports["github.com/aws/aws-sdk-go/aws/crr"] = true
+		o.API.imports["time"] = true
+		o.API.imports["net/url"] = true
 	}
 
 	err := tplOperation.Execute(&buf, o)
