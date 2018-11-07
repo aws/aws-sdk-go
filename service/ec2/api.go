@@ -50960,10 +50960,45 @@ type ImportImageInput struct {
 	// it is UnauthorizedOperation.
 	DryRun *bool `type:"boolean"`
 
+	// Specifies whether the destination AMI of the imported image should be encrypted.
+	// The default CMK for EBS is used unless you specify a non-default AWS Key
+	// Management Service (AWS KMS) CMK using KmsKeyId. For more information, see
+	// Amazon EBS Encryption (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	Encrypted *bool `type:"boolean"`
+
 	// The target hypervisor platform.
 	//
 	// Valid values: xen
 	Hypervisor *string `type:"string"`
+
+	// An identifier for the AWS Key Management Service (AWS KMS) customer master
+	// key (CMK) to use when creating the encrypted AMI. This parameter is only
+	// required if you want to use a non-default CMK; if this parameter is not specified,
+	// the default CMK for EBS is used. If a KmsKeyId is specified, the Encrypted
+	// flag must also be set.
+	//
+	// The CMK identifier may be provided in any of the following formats:
+	//
+	//    * Key ID
+	//
+	//    * Key alias, in the form alias/ExampleAlias
+	//
+	//    * ARN using key ID. The ID ARN contains the arn:aws:kms namespace, followed
+	//    by the region of the CMK, the AWS account ID of the CMK owner, the key
+	//    namespace, and then the CMK ID. For example, arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.
+	//
+	//    * ARN using key alias. The alias ARN contains the arn:aws:kms namespace,
+	//    followed by the region of the CMK, the AWS account ID of the CMK owner,
+	//    the alias namespace, and then the CMK alias. For example, arn:aws:kms:us-east-1:012345678910:alias/ExampleAlias.
+	//
+	//
+	// AWS parses KmsKeyId asynchronously, meaning that the action you call may
+	// appear to complete even though you provided an invalid identifier. This action
+	// will eventually report failure.
+	//
+	// The specified CMK must exist in the region that the AMI is being copied to.
+	KmsKeyId *string `type:"string"`
 
 	// The license type to be used for the Amazon Machine Image (AMI) after importing.
 	//
@@ -51030,9 +51065,21 @@ func (s *ImportImageInput) SetDryRun(v bool) *ImportImageInput {
 	return s
 }
 
+// SetEncrypted sets the Encrypted field's value.
+func (s *ImportImageInput) SetEncrypted(v bool) *ImportImageInput {
+	s.Encrypted = &v
+	return s
+}
+
 // SetHypervisor sets the Hypervisor field's value.
 func (s *ImportImageInput) SetHypervisor(v string) *ImportImageInput {
 	s.Hypervisor = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *ImportImageInput) SetKmsKeyId(v string) *ImportImageInput {
+	s.KmsKeyId = &v
 	return s
 }
 
@@ -51064,6 +51111,9 @@ type ImportImageOutput struct {
 	// A description of the import task.
 	Description *string `locationName:"description" type:"string"`
 
+	// Indicates whether the AMI is encypted.
+	Encrypted *bool `locationName:"encrypted" type:"boolean"`
+
 	// The target hypervisor of the import task.
 	Hypervisor *string `locationName:"hypervisor" type:"string"`
 
@@ -51072,6 +51122,10 @@ type ImportImageOutput struct {
 
 	// The task ID of the import image task.
 	ImportTaskId *string `locationName:"importTaskId" type:"string"`
+
+	// The identifier for the AWS Key Management Service (AWS KMS) customer master
+	// key (CMK) that was used to create the encrypted AMI.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
 
 	// The license type of the virtual machine.
 	LicenseType *string `locationName:"licenseType" type:"string"`
@@ -51114,6 +51168,12 @@ func (s *ImportImageOutput) SetDescription(v string) *ImportImageOutput {
 	return s
 }
 
+// SetEncrypted sets the Encrypted field's value.
+func (s *ImportImageOutput) SetEncrypted(v bool) *ImportImageOutput {
+	s.Encrypted = &v
+	return s
+}
+
 // SetHypervisor sets the Hypervisor field's value.
 func (s *ImportImageOutput) SetHypervisor(v string) *ImportImageOutput {
 	s.Hypervisor = &v
@@ -51129,6 +51189,12 @@ func (s *ImportImageOutput) SetImageId(v string) *ImportImageOutput {
 // SetImportTaskId sets the ImportTaskId field's value.
 func (s *ImportImageOutput) SetImportTaskId(v string) *ImportImageOutput {
 	s.ImportTaskId = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *ImportImageOutput) SetKmsKeyId(v string) *ImportImageOutput {
+	s.KmsKeyId = &v
 	return s
 }
 
@@ -51180,6 +51246,9 @@ type ImportImageTask struct {
 	// A description of the import task.
 	Description *string `locationName:"description" type:"string"`
 
+	// Indicates whether the image is encrypted.
+	Encrypted *bool `locationName:"encrypted" type:"boolean"`
+
 	// The target hypervisor for the import task.
 	//
 	// Valid values: xen
@@ -51190,6 +51259,10 @@ type ImportImageTask struct {
 
 	// The ID of the import image task.
 	ImportTaskId *string `locationName:"importTaskId" type:"string"`
+
+	// The identifier for the AWS Key Management Service (AWS KMS) customer master
+	// key (CMK) that was used to create the encrypted image.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
 
 	// The license type of the virtual machine.
 	LicenseType *string `locationName:"licenseType" type:"string"`
@@ -51232,6 +51305,12 @@ func (s *ImportImageTask) SetDescription(v string) *ImportImageTask {
 	return s
 }
 
+// SetEncrypted sets the Encrypted field's value.
+func (s *ImportImageTask) SetEncrypted(v bool) *ImportImageTask {
+	s.Encrypted = &v
+	return s
+}
+
 // SetHypervisor sets the Hypervisor field's value.
 func (s *ImportImageTask) SetHypervisor(v string) *ImportImageTask {
 	s.Hypervisor = &v
@@ -51247,6 +51326,12 @@ func (s *ImportImageTask) SetImageId(v string) *ImportImageTask {
 // SetImportTaskId sets the ImportTaskId field's value.
 func (s *ImportImageTask) SetImportTaskId(v string) *ImportImageTask {
 	s.ImportTaskId = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *ImportImageTask) SetKmsKeyId(v string) *ImportImageTask {
+	s.KmsKeyId = &v
 	return s
 }
 
@@ -51765,6 +51850,42 @@ type ImportSnapshotInput struct {
 	// it is UnauthorizedOperation.
 	DryRun *bool `type:"boolean"`
 
+	// Specifies whether the destination snapshot of the imported image should be
+	// encrypted. The default CMK for EBS is used unless you specify a non-default
+	// AWS Key Management Service (AWS KMS) CMK using KmsKeyId. For more information,
+	// see Amazon EBS Encryption (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	Encrypted *bool `type:"boolean"`
+
+	// An identifier for the AWS Key Management Service (AWS KMS) customer master
+	// key (CMK) to use when creating the encrypted snapshot. This parameter is
+	// only required if you want to use a non-default CMK; if this parameter is
+	// not specified, the default CMK for EBS is used. If a KmsKeyId is specified,
+	// the Encrypted flag must also be set.
+	//
+	// The CMK identifier may be provided in any of the following formats:
+	//
+	//    * Key ID
+	//
+	//    * Key alias, in the form alias/ExampleAlias
+	//
+	//    * ARN using key ID. The ID ARN contains the arn:aws:kms namespace, followed
+	//    by the region of the CMK, the AWS account ID of the CMK owner, the key
+	//    namespace, and then the CMK ID. For example, arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.
+	//
+	//    * ARN using key alias. The alias ARN contains the arn:aws:kms namespace,
+	//    followed by the region of the CMK, the AWS account ID of the CMK owner,
+	//    the alias namespace, and then the CMK alias. For example, arn:aws:kms:us-east-1:012345678910:alias/ExampleAlias.
+	//
+	//
+	// AWS parses KmsKeyId asynchronously, meaning that the action you call may
+	// appear to complete even though you provided an invalid identifier. This action
+	// will eventually report failure.
+	//
+	// The specified CMK must exist in the region that the snapshot is being copied
+	// to.
+	KmsKeyId *string `type:"string"`
+
 	// The name of the role to use when not using the default role, 'vmimport'.
 	RoleName *string `type:"string"`
 }
@@ -51806,6 +51927,18 @@ func (s *ImportSnapshotInput) SetDiskContainer(v *SnapshotDiskContainer) *Import
 // SetDryRun sets the DryRun field's value.
 func (s *ImportSnapshotInput) SetDryRun(v bool) *ImportSnapshotInput {
 	s.DryRun = &v
+	return s
+}
+
+// SetEncrypted sets the Encrypted field's value.
+func (s *ImportSnapshotInput) SetEncrypted(v bool) *ImportSnapshotInput {
+	s.Encrypted = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *ImportSnapshotInput) SetKmsKeyId(v string) *ImportSnapshotInput {
+	s.KmsKeyId = &v
 	return s
 }
 
@@ -67859,8 +67992,15 @@ type SnapshotTaskDetail struct {
 	// The size of the disk in the snapshot, in GiB.
 	DiskImageSize *float64 `locationName:"diskImageSize" type:"double"`
 
+	// Indicates whether the snapshot is encrypted.
+	Encrypted *bool `locationName:"encrypted" type:"boolean"`
+
 	// The format of the disk image from which the snapshot is created.
 	Format *string `locationName:"format" type:"string"`
+
+	// The identifier for the AWS Key Management Service (AWS KMS) customer master
+	// key (CMK) that was used to create the encrypted snapshot.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
 
 	// The percentage of completion for the import snapshot task.
 	Progress *string `locationName:"progress" type:"string"`
@@ -67903,9 +68043,21 @@ func (s *SnapshotTaskDetail) SetDiskImageSize(v float64) *SnapshotTaskDetail {
 	return s
 }
 
+// SetEncrypted sets the Encrypted field's value.
+func (s *SnapshotTaskDetail) SetEncrypted(v bool) *SnapshotTaskDetail {
+	s.Encrypted = &v
+	return s
+}
+
 // SetFormat sets the Format field's value.
 func (s *SnapshotTaskDetail) SetFormat(v string) *SnapshotTaskDetail {
 	s.Format = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *SnapshotTaskDetail) SetKmsKeyId(v string) *SnapshotTaskDetail {
+	s.KmsKeyId = &v
 	return s
 }
 

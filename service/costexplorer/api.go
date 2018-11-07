@@ -783,6 +783,10 @@ type DimensionValues struct {
 
 	// The metadata values that you can use to filter and group your results. You
 	// can use GetDimensionValues to find specific values.
+	//
+	// Valid values for the SERVICE dimension are Amazon Elastic Compute Cloud -
+	// Compute, Amazon Elasticsearch Service, Amazon ElastiCache, Amazon Redshift,
+	// and Amazon Relational Database Service.
 	Values []*string `type:"list"`
 }
 
@@ -1201,7 +1205,8 @@ type GetCostAndUsageInput struct {
 	// and unblended rates, see Why does the "blended" annotation appear on some
 	// line items in my bill? (https://aws.amazon.com/premiumsupport/knowledge-center/blended-rates-intro/).
 	//
-	// Valid values are AmortizedCost, BlendedCost, UnblendedCost, and UsageQuantity.
+	// Valid values are AmortizedCost, BlendedCost, NetAmortizedCost, NetUnblendedCost,
+	// NormalizedUsageAmount, UnblendedCost, and UsageQuantity.
 	//
 	// If you return the UsageQuantity metric, the service aggregates all usage
 	// numbers without taking into account the units. For example, if you aggregate
@@ -2808,6 +2813,8 @@ func (s *ReservationPurchaseRecommendation) SetTermInYears(v string) *Reservatio
 type ReservationPurchaseRecommendationDetail struct {
 	_ struct{} `type:"structure"`
 
+	AccountId *string `type:"string"`
+
 	// The average number of normalized units that you used in an hour during the
 	// historical period. AWS uses this to calculate your recommended reservation
 	// purchases.
@@ -2884,6 +2891,12 @@ func (s ReservationPurchaseRecommendationDetail) String() string {
 // GoString returns the string representation
 func (s ReservationPurchaseRecommendationDetail) GoString() string {
 	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ReservationPurchaseRecommendationDetail) SetAccountId(v string) *ReservationPurchaseRecommendationDetail {
+	s.AccountId = &v
+	return s
 }
 
 // SetAverageNormalizedUnitsUsedPerHour sets the AverageNormalizedUnitsUsedPerHour field's value.
@@ -3352,6 +3365,12 @@ const (
 
 	// DimensionInstanceTypeFamily is a Dimension enum value
 	DimensionInstanceTypeFamily = "INSTANCE_TYPE_FAMILY"
+
+	// DimensionBillingEntity is a Dimension enum value
+	DimensionBillingEntity = "BILLING_ENTITY"
+
+	// DimensionReservationId is a Dimension enum value
+	DimensionReservationId = "RESERVATION_ID"
 )
 
 const (
@@ -3360,6 +3379,9 @@ const (
 
 	// GranularityMonthly is a Granularity enum value
 	GranularityMonthly = "MONTHLY"
+
+	// GranularityHourly is a Granularity enum value
+	GranularityHourly = "HOURLY"
 )
 
 const (
