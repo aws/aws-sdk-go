@@ -10886,7 +10886,9 @@
           "locationName":"DiskContainer"
         },
         "DryRun":{"shape":"Boolean"},
+        "Encrypted":{"shape":"Boolean"},
         "Hypervisor":{"shape":"String"},
+        "KmsKeyId":{"shape":"String"},
         "LicenseType":{"shape":"String"},
         "Platform":{"shape":"String"},
         "RoleName":{"shape":"String"}
@@ -10903,6 +10905,10 @@
           "shape":"String",
           "locationName":"description"
         },
+        "Encrypted":{
+          "shape":"Boolean",
+          "locationName":"encrypted"
+        },
         "Hypervisor":{
           "shape":"String",
           "locationName":"hypervisor"
@@ -10914,6 +10920,10 @@
         "ImportTaskId":{
           "shape":"String",
           "locationName":"importTaskId"
+        },
+        "KmsKeyId":{
+          "shape":"String",
+          "locationName":"kmsKeyId"
         },
         "LicenseType":{
           "shape":"String",
@@ -10952,6 +10962,10 @@
           "shape":"String",
           "locationName":"description"
         },
+        "Encrypted":{
+          "shape":"Boolean",
+          "locationName":"encrypted"
+        },
         "Hypervisor":{
           "shape":"String",
           "locationName":"hypervisor"
@@ -10963,6 +10977,10 @@
         "ImportTaskId":{
           "shape":"String",
           "locationName":"importTaskId"
+        },
+        "KmsKeyId":{
+          "shape":"String",
+          "locationName":"kmsKeyId"
         },
         "LicenseType":{
           "shape":"String",
@@ -11184,6 +11202,8 @@
         "Description":{"shape":"String"},
         "DiskContainer":{"shape":"SnapshotDiskContainer"},
         "DryRun":{"shape":"Boolean"},
+        "Encrypted":{"shape":"Boolean"},
+        "KmsKeyId":{"shape":"String"},
         "RoleName":{"shape":"String"}
       }
     },
@@ -17737,9 +17757,17 @@
           "shape":"Double",
           "locationName":"diskImageSize"
         },
+        "Encrypted":{
+          "shape":"Boolean",
+          "locationName":"encrypted"
+        },
         "Format":{
           "shape":"String",
           "locationName":"format"
+        },
+        "KmsKeyId":{
+          "shape":"String",
+          "locationName":"kmsKeyId"
         },
         "Progress":{
           "shape":"String",

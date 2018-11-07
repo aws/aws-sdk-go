@@ -1,3 +1,14 @@
+Release v1.15.71 (2018-11-07)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/dms`: Updates service waiters
+  * Update the DMS TestConnectionSucceeds waiter.
+* `service/ec2`: Updates service API and documentation
+  * VM Import/Export now supports generating encrypted EBS snapshots, as well as AMIs backed by encrypted EBS snapshots during the import process.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.15.70 (2018-11-06)
 ===
 

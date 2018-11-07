@@ -241,6 +241,7 @@
         "RedshiftInstanceDetails$Family": "<p>The instance family of the recommended reservation.</p>",
         "RedshiftInstanceDetails$NodeType": "<p>The type of node that AWS recommends.</p>",
         "RedshiftInstanceDetails$Region": "<p>The AWS Region of the recommended reservation.</p>",
+        "ReservationPurchaseRecommendationDetail$AccountId": null,
         "ReservationPurchaseRecommendationDetail$RecommendedNumberOfInstancesToPurchase": "<p>The number of instances that AWS recommends that you purchase.</p>",
         "ReservationPurchaseRecommendationDetail$RecommendedNormalizedUnitsToPurchase": "<p>The number of normalized units that AWS recommends that you purchase.</p>",
         "ReservationPurchaseRecommendationDetail$MinimumNumberOfInstancesUsedPerHour": "<p>The minimum number of instances that you used in an hour during the historical period. AWS uses this to calculate your recommended reservation purchases.</p>",
@@ -423,7 +424,7 @@
     "MetricNames": {
       "base": null,
       "refs": {
-        "GetCostAndUsageRequest$Metrics": "<p>Which metrics are returned in the query. For more information about blended and unblended rates, see <a href=\"https://aws.amazon.com/premiumsupport/knowledge-center/blended-rates-intro/\">Why does the \"blended\" annotation appear on some line items in my bill?</a>. </p> <p>Valid values are <code>AmortizedCost</code>, <code>BlendedCost</code>, <code>UnblendedCost</code>, and <code>UsageQuantity</code>.</p> <note> <p>If you return the <code>UsageQuantity</code> metric, the service aggregates all usage numbers without taking into account the units. For example, if you aggregate <code>usageQuantity</code> across all of EC2, the results aren't meaningful because EC2 compute hours and data transfer are measured in different units (for example, hours vs. GB). To get more meaningful <code>UsageQuantity</code> metrics, filter by <code>UsageType</code> or <code>UsageTypeGroups</code>. </p> </note> <p> <code>Metrics</code> is required for <code>GetCostAndUsage</code> requests.</p>"
+        "GetCostAndUsageRequest$Metrics": "<p>Which metrics are returned in the query. For more information about blended and unblended rates, see <a href=\"https://aws.amazon.com/premiumsupport/knowledge-center/blended-rates-intro/\">Why does the \"blended\" annotation appear on some line items in my bill?</a>. </p> <p>Valid values are <code>AmortizedCost</code>, <code>BlendedCost</code>, <code>NetAmortizedCost</code>, <code>NetUnblendedCost</code>, <code>NormalizedUsageAmount</code>, <code>UnblendedCost</code>, and <code>UsageQuantity</code>. </p> <note> <p>If you return the <code>UsageQuantity</code> metric, the service aggregates all usage numbers without taking into account the units. For example, if you aggregate <code>usageQuantity</code> across all of EC2, the results aren't meaningful because EC2 compute hours and data transfer are measured in different units (for example, hours vs. GB). To get more meaningful <code>UsageQuantity</code> metrics, filter by <code>UsageType</code> or <code>UsageTypeGroups</code>. </p> </note> <p> <code>Metrics</code> is required for <code>GetCostAndUsage</code> requests.</p>"
       }
     },
     "MetricUnit": {
@@ -727,7 +728,7 @@
     "Values": {
       "base": null,
       "refs": {
-        "DimensionValues$Values": "<p>The metadata values that you can use to filter and group your results. You can use <code>GetDimensionValues</code> to find specific values.</p>",
+        "DimensionValues$Values": "<p>The metadata values that you can use to filter and group your results. You can use <code>GetDimensionValues</code> to find specific values.</p> <p>Valid values for the <code>SERVICE</code> dimension are <code>Amazon Elastic Compute Cloud - Compute</code>, <code>Amazon Elasticsearch Service</code>, <code>Amazon ElastiCache</code>, <code>Amazon Redshift</code>, and <code>Amazon Relational Database Service</code>.</p>",
         "TagValues$Values": "<p>The specific value of a tag.</p>"
       }
     },
