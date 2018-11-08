@@ -54,6 +54,7 @@ const (
 	ApigatewayServiceID                   = "apigateway"                   // Apigateway.
 	ApplicationAutoscalingServiceID       = "application-autoscaling"      // ApplicationAutoscaling.
 	Appstream2ServiceID                   = "appstream2"                   // Appstream2.
+	AppsyncServiceID                      = "appsync"                      // Appsync.
 	AthenaServiceID                       = "athena"                       // Athena.
 	AutoscalingServiceID                  = "autoscaling"                  // Autoscaling.
 	AutoscalingPlansServiceID             = "autoscaling-plans"            // AutoscalingPlans.
@@ -408,6 +409,21 @@ var awsPartition = partition{
 				"ap-northeast-1": endpoint{},
 				"eu-west-1":      endpoint{},
 				"us-east-1":      endpoint{},
+				"us-west-2":      endpoint{},
+			},
+		},
+		"appsync": service{
+
+			Endpoints: endpoints{
+				"ap-northeast-1": endpoint{},
+				"ap-northeast-2": endpoint{},
+				"ap-south-1":     endpoint{},
+				"ap-southeast-1": endpoint{},
+				"ap-southeast-2": endpoint{},
+				"eu-central-1":   endpoint{},
+				"eu-west-1":      endpoint{},
+				"us-east-1":      endpoint{},
+				"us-east-2":      endpoint{},
 				"us-west-2":      endpoint{},
 			},
 		},
@@ -1648,6 +1664,7 @@ var awsPartition = partition{
 			Endpoints: endpoints{
 				"ap-northeast-1": endpoint{},
 				"ap-northeast-2": endpoint{},
+				"ap-south-1":     endpoint{},
 				"ap-southeast-1": endpoint{},
 				"ap-southeast-2": endpoint{},
 				"eu-central-1":   endpoint{},
@@ -1754,6 +1771,12 @@ var awsPartition = partition{
 		"neptune": service{
 
 			Endpoints: endpoints{
+				"eu-central-1": endpoint{
+					Hostname: "rds.eu-central-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "eu-central-1",
+					},
+				},
 				"eu-west-1": endpoint{
 					Hostname: "rds.eu-west-1.amazonaws.com",
 					CredentialScope: credentialScope{

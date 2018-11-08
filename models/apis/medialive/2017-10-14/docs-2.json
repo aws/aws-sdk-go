@@ -692,12 +692,6 @@
         "UdpOutputSettings$FecOutputSettings": "Settings for enabling and adjusting Forward Error Correction on UDP outputs."
       }
     },
-    "FileInputSettings": {
-      "base": "A file input source.",
-      "refs": {
-        "InputSettings$FileInputSettings": "File input settings"
-      }
-    },
     "FixedAfd": {
       "base": null,
       "refs": {
@@ -708,6 +702,18 @@
       "base": "Start time for the action.",
       "refs": {
         "ScheduleActionStartSettings$FixedModeScheduleActionStartSettings": "Holds the start time for the action."
+      }
+    },
+    "FollowModeScheduleActionStartSettings": {
+      "base": "Settings to specify if an action follows another.",
+      "refs": {
+        "ScheduleActionStartSettings$FollowModeScheduleActionStartSettings": "Specifies an action to follow for scheduling this action."
+      }
+    },
+    "FollowPoint": {
+      "base": "Follow reference point.",
+      "refs": {
+        "FollowModeScheduleActionStartSettings$FollowPoint": "Identifies whether this action starts relative to the start or relative to the end of the reference action."
       }
     },
     "ForbiddenException": {
@@ -729,7 +735,7 @@
     "GlobalConfigurationInputEndAction": {
       "base": null,
       "refs": {
-        "GlobalConfiguration$InputEndAction": "Indicates the action to take when the input completes (e.g. end-of-file). Options include looping on the input (via \"switchAndLoopInputs\") or transcoding black / color / slate images per the \"Input Loss Behavior\" configuration (via \"none\")."
+        "GlobalConfiguration$InputEndAction": "Indicates the action to take when the current input completes (e.g. end-of-file). When switchAndLoopInputs is configured the encoder will restart at the beginning of the first input.  When \"none\" is configured the encoder will transcode either black, a solid color, or a user specified slate images per the \"Input Loss Behavior\" configuration until the next input switch occurs (which is controlled through the Channel Schedule API)."
       }
     },
     "GlobalConfigurationLowFramerateInputs": {
@@ -1200,6 +1206,12 @@
       "base": null,
       "refs": {
         "Input$State": null
+      }
+    },
+    "InputSwitchScheduleActionSettings": {
+      "base": "Settings for the action to switch an input.",
+      "refs": {
+        "ScheduleActionSettings$InputSwitchSettings": "Settings to switch an input"
       }
     },
     "InputType": {
@@ -2192,7 +2204,7 @@
       "refs": {
         "M2tsSettings$EbpLookaheadMs": "When set, enforces that Encoder Boundary Points do not come within the specified time interval of each other by looking ahead at input video. If another EBP is going to come in within the specified time interval, the current EBP is not emitted, and the segment is \"stretched\" to the next marker.  The lookahead value does not add latency to the system. The Live Event must be configured elsewhere to create sufficient latency to make the lookahead accurate.",
         "MsSmoothGroupSettings$SendDelayMs": "Number of milliseconds to delay the output from the second pipeline.",
-        "UdpOutputSettings$BufferMsec": "UDP output buffering in milliseconds. Larger values increase latency through the transcoder but simultaneously assist the transcoder in maintaining a constant, low-jitter UDP/RTP output while accommodating clock recovery, input disruptions, picture reordering, etc."
+        "UdpOutputSettings$BufferMsec": "UDP output buffering in milliseconds. Larger values increase latency through the transcoder but simultaneously assist the transcoder in maintaining a constant, low-jitter UDP/RTP output while accommodating clock recovery, input switching, input disruptions, picture reordering, etc."
       }
     },
     "__integerMin0Max1000000": {
@@ -2712,6 +2724,7 @@
         "Input$Arn": "The Unique ARN of the input (generated, immutable).",
         "Input$Id": "The generated ID of the input (unique for user account, immutable).",
         "Input$Name": "The user-assigned name (This is a mutable value).",
+        "InputAttachment$InputAttachmentName": "User-specified name for the attachment. This is required if the user wants to use this input in an input switch action.",
         "InputAttachment$InputId": "The ID of the input",
         "InputDestination$Ip": "The system-generated static IP address of endpoint.\nIt remains fixed for the lifetime of the input.\n",
         "InputDestination$Port": "The port number for the input.",
@@ -2728,6 +2741,7 @@
         "InputSourceRequest$PasswordParam": "The key used to extract the password from EC2 Parameter store.",
         "InputSourceRequest$Url": "This represents the customer's source URL where stream is\npulled from.\n",
         "InputSourceRequest$Username": "The username for the input source.",
+        "InputSwitchScheduleActionSettings$InputAttachmentNameReference": "The name of the input attachment that should be switched to by this action.",
         "InputWhitelistRule$Cidr": "The IPv4 CIDR that's whitelisted.",
         "InputWhitelistRuleCidr$Cidr": "The IPv4 CIDR to whitelist.",
         "InternalServiceError$Message": null,

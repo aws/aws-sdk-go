@@ -194,6 +194,20 @@
           "us-west-2" : { }
         }
       },
+      "appsync" : {
+        "endpoints" : {
+          "ap-northeast-1" : { },
+          "ap-northeast-2" : { },
+          "ap-south-1" : { },
+          "ap-southeast-1" : { },
+          "ap-southeast-2" : { },
+          "eu-central-1" : { },
+          "eu-west-1" : { },
+          "us-east-1" : { },
+          "us-east-2" : { },
+          "us-west-2" : { }
+        }
+      },
       "athena" : {
         "endpoints" : {
           "ap-northeast-1" : { },
@@ -1384,6 +1398,7 @@
         "endpoints" : {
           "ap-northeast-1" : { },
           "ap-northeast-2" : { },
+          "ap-south-1" : { },
           "ap-southeast-1" : { },
           "ap-southeast-2" : { },
           "eu-central-1" : { },
@@ -1485,6 +1500,12 @@
       },
       "neptune" : {
         "endpoints" : {
+          "eu-central-1" : {
+            "credentialScope" : {
+              "region" : "eu-central-1"
+            },
+            "hostname" : "rds.eu-central-1.amazonaws.com"
+          },
           "eu-west-1" : {
             "credentialScope" : {
               "region" : "eu-west-1"
