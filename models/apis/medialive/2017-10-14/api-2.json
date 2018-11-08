@@ -3341,6 +3341,30 @@
         "Time"
       ]
     },
+    "FollowModeScheduleActionStartSettings": {
+      "type": "structure",
+      "members": {
+        "FollowPoint": {
+          "shape": "FollowPoint",
+          "locationName": "followPoint"
+        },
+        "ReferenceActionName": {
+          "shape": "__string",
+          "locationName": "referenceActionName"
+        }
+      },
+      "required": [
+        "ReferenceActionName",
+        "FollowPoint"
+      ]
+    },
+    "FollowPoint": {
+      "type": "string",
+      "enum": [
+        "END",
+        "START"
+      ]
+    },
     "ForbiddenException": {
       "type": "structure",
       "members": {
@@ -4226,6 +4250,10 @@
     "InputAttachment": {
       "type": "structure",
       "members": {
+        "InputAttachmentName": {
+          "shape": "__string",
+          "locationName": "inputAttachmentName"
+        },
         "InputId": {
           "shape": "__string",
           "locationName": "inputId"
@@ -4551,6 +4579,18 @@
         "DELETED"
       ]
     },
+    "InputSwitchScheduleActionSettings": {
+      "type": "structure",
+      "members": {
+        "InputAttachmentNameReference": {
+          "shape": "__string",
+          "locationName": "inputAttachmentNameReference"
+        }
+      },
+      "required": [
+        "InputAttachmentNameReference"
+      ]
+    },
     "InputType": {
       "type": "string",
       "enum": [
@@ -4558,7 +4598,8 @@
         "RTP_PUSH",
         "RTMP_PUSH",
         "RTMP_PULL",
-        "URL_PULL"
+        "URL_PULL",
+        "MP4_FILE"
       ]
     },
     "InputWhitelistRule": {
@@ -6073,6 +6114,10 @@
     "ScheduleActionSettings": {
       "type": "structure",
       "members": {
+        "InputSwitchSettings": {
+          "shape": "InputSwitchScheduleActionSettings",
+          "locationName": "inputSwitchSettings"
+        },
         "Scte35ReturnToNetworkSettings": {
           "shape": "Scte35ReturnToNetworkScheduleActionSettings",
           "locationName": "scte35ReturnToNetworkSettings"
@@ -6101,6 +6146,10 @@
         "FixedModeScheduleActionStartSettings": {
           "shape": "FixedModeScheduleActionStartSettings",
           "locationName": "fixedModeScheduleActionStartSettings"
+        },
+        "FollowModeScheduleActionStartSettings": {
+          "shape": "FollowModeScheduleActionStartSettings",
+          "locationName": "followModeScheduleActionStartSettings"
         }
       }
     },

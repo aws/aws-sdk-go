@@ -1,3 +1,14 @@
+Release v1.15.72 (2018-11-08)
+===
+
+### Service Client Updates
+* `service/dlm`: Updates service API and documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/events`: Updates service documentation
+  * Documentation updates for events
+* `service/medialive`: Updates service API and documentation
+  * You can now switch a live channel between preconfigured inputs. This means assigned inputs for a running channel can be changed according to a defined schedule. You can also use MP4 files as inputs.
+
 Release v1.15.71 (2018-11-07)
 ===
 
