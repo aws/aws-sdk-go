@@ -2745,6 +2745,11 @@
           }
         }
       },
+      "clouddirectory" : {
+        "endpoints" : {
+          "us-gov-west-1" : { }
+        }
+      },
       "cloudformation" : {
         "endpoints" : {
           "us-gov-west-1" : { }
