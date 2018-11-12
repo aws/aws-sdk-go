@@ -2230,6 +2230,9 @@ const (
 	// LanguageCodeEsEs is a LanguageCode enum value
 	LanguageCodeEsEs = "es-ES"
 
+	// LanguageCodeEsMx is a LanguageCode enum value
+	LanguageCodeEsMx = "es-MX"
+
 	// LanguageCodeEsUs is a LanguageCode enum value
 	LanguageCodeEsUs = "es-US"
 
@@ -2494,4 +2497,13 @@ const (
 
 	// VoiceIdZhiyu is a VoiceId enum value
 	VoiceIdZhiyu = "Zhiyu"
+
+	// VoiceIdBianca is a VoiceId enum value
+	VoiceIdBianca = "Bianca"
+
+	// VoiceIdLucia is a VoiceId enum value
+	VoiceIdLucia = "Lucia"
+
+	// VoiceIdMia is a VoiceId enum value
+	VoiceIdMia = "Mia"
 )

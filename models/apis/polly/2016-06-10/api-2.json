@@ -330,6 +330,7 @@
         "en-IN",
         "en-US",
         "es-ES",
+        "es-MX",
         "es-US",
         "fr-CA",
         "fr-FR",
@@ -779,7 +780,10 @@
         "Takumi",
         "Seoyeon",
         "Aditi",
-        "Zhiyu"
+        "Zhiyu",
+        "Bianca",
+        "Lucia",
+        "Mia"
       ]
     },
     "VoiceList":{

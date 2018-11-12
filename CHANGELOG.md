@@ -1,3 +1,25 @@
+Release v1.15.74 (2018-11-12)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API and documentation
+  * Adding EC2 Launch Template support in AWS Batch Compute Environments.
+* `service/budgets`: Updates service API and documentation
+  * 1. Added budget performance history, enabling you to see how well your budgets matched your actual costs and usage.                                                                                             2. Added budget performance history, notification state, and last updated time, enabling you to see how well your budgets matched your actual costs and usage, how often your budget alerts triggered, and when your budget was last updated.
+* `service/cloudformation`: Updates service API, documentation, and paginators
+  * The Drift Detection feature enables customers to detect whether a stack's actual configuration differs, or has drifted, from its expected configuration as defined within AWS CloudFormation.
+* `service/codepipeline`: Updates service API and documentation
+  * Add support for cross-region pipeline with accompanying definitions as needed in the AWS CodePipeline API Guide.
+* `service/firehose`: Updates service API and documentation
+  * With this release, Amazon Kinesis Data Firehose allows you to enable/disable server-side encryption(SSE) for your delivery streams ensuring encryption of data at rest. For technical documentation, look at https://docs.aws.amazon.com/firehose/latest/dev/encryption.html
+* `service/polly`: Updates service API
+  * Amazon Polly adds new female voices: Italian - Bianca, Castilian Spanish - Lucia and new language: Mexican Spanish with new female voice - Mia.
+* `service/rds`: Updates service API and documentation
+  * API Update for RDS: this update enables Custom Endpoints, a new feature compatible with Aurora Mysql, Aurora PostgreSQL and Neptune that allows users to configure a customizable endpoint that will provide access to their instances in a cluster.
+
+### SDK Bugs
+* `internal/ini`: allowing LHS of equal expression to contain spaces (#2265)
+  * Fixes a backward compatibility issue where LHS of equal expr could contain spaces
 Release v1.15.73 (2018-11-09)
 ===
 
