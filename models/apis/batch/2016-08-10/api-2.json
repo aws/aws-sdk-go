@@ -381,7 +381,6 @@
         "maxvCpus",
         "instanceTypes",
         "subnets",
-        "securityGroupIds",
         "instanceRole"
       ],
       "members":{
@@ -397,7 +396,8 @@
         "instanceRole":{"shape":"String"},
         "tags":{"shape":"TagsMap"},
         "bidPercentage":{"shape":"Integer"},
-        "spotIamFleetRole":{"shape":"String"}
+        "spotIamFleetRole":{"shape":"String"},
+        "launchTemplate":{"shape":"LaunchTemplateSpecification"}
       }
     },
     "ComputeResourceUpdate":{
@@ -780,6 +780,14 @@
       "members":{
         "name":{"shape":"String"},
         "value":{"shape":"String"}
+      }
+    },
+    "LaunchTemplateSpecification":{
+      "type":"structure",
+      "members":{
+        "launchTemplateId":{"shape":"String"},
+        "launchTemplateName":{"shape":"String"},
+        "version":{"shape":"String"}
       }
     },
     "ListJobsRequest":{
