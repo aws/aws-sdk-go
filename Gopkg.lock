@@ -4,11 +4,11 @@
 [[projects]]
   name = "github.com/jmespath/go-jmespath"
   packages = ["."]
-  revision = "0b12d6b5"
+  revision = "d6516e1c"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "51a86a867df617990082dec6b868e4efe2fdb2ed0e02a3daa93cd30f962b5085"
+  inputs-digest = "7eef251e392636a938c8848d17eec0b01c7aa8d9423e7f4b51113d057eeb5c5e"
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -39,5 +39,5 @@ ignored = [
 
 [[constraint]]
   name = "github.com/jmespath/go-jmespath"
-  revision = "0b12d6b5"
+  revision = "d6516e1c"
   #version = "0.2.2"
