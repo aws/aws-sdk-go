@@ -70,6 +70,24 @@
         {"shape":"LimitExceededFault"}
       ]
     },
+    "CancelResize":{
+      "name":"CancelResize",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CancelResizeMessage"},
+      "output":{
+        "shape":"ResizeProgressMessage",
+        "resultWrapper":"CancelResizeResult"
+      },
+      "errors":[
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"ResizeNotFoundFault"},
+        {"shape":"InvalidClusterStateFault"},
+        {"shape":"UnsupportedOperationFault"}
+      ]
+    },
     "CopyClusterSnapshot":{
       "name":"CopyClusterSnapshot",
       "http":{
@@ -425,6 +443,18 @@
         {"shape":"InvalidTagFault"}
       ]
     },
+    "DescribeAccountAttributes":{
+      "name":"DescribeAccountAttributes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeAccountAttributesMessage"},
+      "output":{
+        "shape":"AccountAttributeList",
+        "resultWrapper":"DescribeAccountAttributesResult"
+      }
+    },
     "DescribeClusterDbRevisions":{
       "name":"DescribeClusterDbRevisions",
       "http":{
@@ -437,7 +467,8 @@
         "resultWrapper":"DescribeClusterDbRevisionsResult"
       },
       "errors":[
-        {"shape":"ClusterNotFoundFault"}
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"InvalidClusterStateFault"}
       ]
     },
     "DescribeClusterParameterGroups":{
@@ -949,6 +980,21 @@
         {"shape":"ClusterNotFoundFault"}
       ]
     },
+    "ModifyClusterMaintenance":{
+      "name":"ModifyClusterMaintenance",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyClusterMaintenanceMessage"},
+      "output":{
+        "shape":"ModifyClusterMaintenanceResult",
+        "resultWrapper":"ModifyClusterMaintenanceResult"
+      },
+      "errors":[
+        {"shape":"ClusterNotFoundFault"}
+      ]
+    },
     "ModifyClusterParameterGroup":{
       "name":"ModifyClusterParameterGroup",
       "http":{
@@ -1237,6 +1283,19 @@
       },
       "exception":true
     },
+    "AccountAttribute":{
+      "type":"structure",
+      "members":{
+        "AttributeName":{"shape":"String"},
+        "AttributeValues":{"shape":"AttributeValueList"}
+      }
+    },
+    "AccountAttributeList":{
+      "type":"structure",
+      "members":{
+        "AccountAttributes":{"shape":"AttributeList"}
+      }
+    },
     "AccountWithRestoreAccess":{
       "type":"structure",
       "members":{
@@ -1249,6 +1308,33 @@
       "member":{
         "shape":"AccountWithRestoreAccess",
         "locationName":"AccountWithRestoreAccess"
+      }
+    },
+    "AttributeList":{
+      "type":"list",
+      "member":{
+        "shape":"AccountAttribute",
+        "locationName":"AccountAttribute"
+      }
+    },
+    "AttributeNameList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"AttributeName"
+      }
+    },
+    "AttributeValueList":{
+      "type":"list",
+      "member":{
+        "shape":"AttributeValueTarget",
+        "locationName":"AttributeValueTarget"
+      }
+    },
+    "AttributeValueTarget":{
+      "type":"structure",
+      "members":{
+        "AttributeValue":{"shape":"String"}
       }
     },
     "AuthorizationAlreadyExistsFault":{
@@ -1346,6 +1432,13 @@
       },
       "exception":true
     },
+    "CancelResizeMessage":{
+      "type":"structure",
+      "required":["ClusterIdentifier"],
+      "members":{
+        "ClusterIdentifier":{"shape":"String"}
+      }
+    },
     "Cluster":{
       "type":"structure",
       "members":{
@@ -1372,6 +1465,7 @@
         "PubliclyAccessible":{"shape":"Boolean"},
         "Encrypted":{"shape":"Boolean"},
         "RestoreStatus":{"shape":"RestoreStatus"},
+        "DataTransferProgress":{"shape":"DataTransferProgress"},
         "HsmStatus":{"shape":"HsmStatus"},
         "ClusterSnapshotCopyStatus":{"shape":"ClusterSnapshotCopyStatus"},
         "ClusterPublicKey":{"shape":"String"},
@@ -1384,7 +1478,9 @@
         "IamRoles":{"shape":"ClusterIamRoleList"},
         "PendingActions":{"shape":"PendingActionsList"},
         "MaintenanceTrackName":{"shape":"String"},
-        "ElasticResizeNumberOfNodeOptions":{"shape":"String"}
+        "ElasticResizeNumberOfNodeOptions":{"shape":"String"},
+        "DeferredMaintenanceWindows":{"shape":"DeferredMaintenanceWindowsList"},
+        "ResizeInfo":{"shape":"ResizeInfo"}
       },
       "wrapper":true
     },
@@ -2045,6 +2141,17 @@
         "Tags":{"shape":"TagList"}
       }
     },
+    "DataTransferProgress":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"String"},
+        "CurrentRateInMegaBytesPerSecond":{"shape":"DoubleOptional"},
+        "TotalDataInMegaBytes":{"shape":"Long"},
+        "DataTransferredInMegaBytes":{"shape":"Long"},
+        "EstimatedTimeToCompletionInSeconds":{"shape":"LongOptional"},
+        "ElapsedTimeInSeconds":{"shape":"LongOptional"}
+      }
+    },
     "DbGroupList":{
       "type":"list",
       "member":{
@@ -2060,6 +2167,21 @@
         "Parameters":{"shape":"ParametersList"}
       },
       "wrapper":true
+    },
+    "DeferredMaintenanceWindow":{
+      "type":"structure",
+      "members":{
+        "DeferMaintenanceIdentifier":{"shape":"String"},
+        "DeferMaintenanceStartTime":{"shape":"TStamp"},
+        "DeferMaintenanceEndTime":{"shape":"TStamp"}
+      }
+    },
+    "DeferredMaintenanceWindowsList":{
+      "type":"list",
+      "member":{
+        "shape":"DeferredMaintenanceWindow",
+        "locationName":"DeferredMaintenanceWindow"
+      }
     },
     "DeleteClusterMessage":{
       "type":"structure",
@@ -2171,6 +2293,12 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "DescribeAccountAttributesMessage":{
+      "type":"structure",
+      "members":{
+        "AttributeNames":{"shape":"AttributeNameList"}
+      }
     },
     "DescribeClusterDbRevisionsMessage":{
       "type":"structure",
@@ -3115,6 +3243,24 @@
         "Cluster":{"shape":"Cluster"}
       }
     },
+    "ModifyClusterMaintenanceMessage":{
+      "type":"structure",
+      "required":["ClusterIdentifier"],
+      "members":{
+        "ClusterIdentifier":{"shape":"String"},
+        "DeferMaintenance":{"shape":"BooleanOptional"},
+        "DeferMaintenanceIdentifier":{"shape":"String"},
+        "DeferMaintenanceStartTime":{"shape":"TStamp"},
+        "DeferMaintenanceEndTime":{"shape":"TStamp"},
+        "DeferMaintenanceDuration":{"shape":"IntegerOptional"}
+      }
+    },
+    "ModifyClusterMaintenanceResult":{
+      "type":"structure",
+      "members":{
+        "Cluster":{"shape":"Cluster"}
+      }
+    },
     "ModifyClusterMessage":{
       "type":"structure",
       "required":["ClusterIdentifier"],
@@ -3507,6 +3653,13 @@
       "type":"structure",
       "members":{
         "Cluster":{"shape":"Cluster"}
+      }
+    },
+    "ResizeInfo":{
+      "type":"structure",
+      "members":{
+        "ResizeType":{"shape":"String"},
+        "AllowCancelResize":{"shape":"Boolean"}
       }
     },
     "ResizeNotFoundFault":{
@@ -3987,6 +4140,19 @@
       },
       "exception":true
     },
+    "SupportedOperation":{
+      "type":"structure",
+      "members":{
+        "OperationName":{"shape":"String"}
+      }
+    },
+    "SupportedOperationList":{
+      "type":"list",
+      "member":{
+        "shape":"SupportedOperation",
+        "locationName":"SupportedOperation"
+      }
+    },
     "SupportedPlatform":{
       "type":"structure",
       "members":{
@@ -4191,7 +4357,8 @@
       "type":"structure",
       "members":{
         "MaintenanceTrackName":{"shape":"String"},
-        "DatabaseVersion":{"shape":"String"}
+        "DatabaseVersion":{"shape":"String"},
+        "SupportedOperations":{"shape":"SupportedOperationList"}
       }
     },
     "VpcSecurityGroupIdList":{

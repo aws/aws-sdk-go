@@ -2713,6 +2713,9 @@
     "partitionName" : "AWS GovCloud (US)",
     "regionRegex" : "^us\\-gov\\-\\w+\\-\\d+$",
     "regions" : {
+      "us-gov-east-1" : {
+        "description" : "AWS GovCloud (US-East)"
+      },
       "us-gov-west-1" : {
         "description" : "AWS GovCloud (US)"
       }
@@ -2720,6 +2723,7 @@
     "services" : {
       "acm" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
@@ -2730,16 +2734,19 @@
       },
       "apigateway" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
       "application-autoscaling" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
       "autoscaling" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : {
             "protocols" : [ "http", "https" ]
           }
@@ -2752,6 +2759,7 @@
       },
       "cloudformation" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
@@ -2772,11 +2780,13 @@
       },
       "cloudtrail" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
       "codedeploy" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { },
           "us-gov-west-1-fips" : {
             "credentialScope" : {
@@ -2788,6 +2798,7 @@
       },
       "config" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
@@ -2809,11 +2820,13 @@
       },
       "dms" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
       "dynamodb" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { },
           "us-gov-west-1-fips" : {
             "credentialScope" : {
@@ -2825,16 +2838,19 @@
       },
       "ec2" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
       "ecr" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
       "ecs" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
@@ -2846,16 +2862,19 @@
             },
             "hostname" : "elasticache-fips.us-gov-west-1.amazonaws.com"
           },
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
       "elasticbeanstalk" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
       "elasticloadbalancing" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : {
             "protocols" : [ "http", "https" ]
           }
@@ -2863,6 +2882,7 @@
       },
       "elasticmapreduce" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : {
             "protocols" : [ "https" ]
           }
@@ -2875,11 +2895,13 @@
       },
       "events" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
       "glacier" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : {
             "protocols" : [ "http", "https" ]
           }
@@ -2908,6 +2930,7 @@
       },
       "inspector" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
@@ -2923,21 +2946,25 @@
       },
       "kinesis" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
       "kms" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
       "lambda" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
       "logs" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
@@ -2953,6 +2980,7 @@
       },
       "monitoring" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
@@ -2963,11 +2991,13 @@
       },
       "rds" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
       "redshift" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
@@ -2992,6 +3022,10 @@
             },
             "hostname" : "s3-fips-us-gov-west-1.amazonaws.com"
           },
+          "us-gov-east-1" : {
+            "hostname" : "s3.us-gov-east-1.amazonaws.com",
+            "protocols" : [ "http", "https" ]
+          },
           "us-gov-west-1" : {
             "hostname" : "s3.us-gov-west-1.amazonaws.com",
             "protocols" : [ "http", "https" ]
@@ -3000,6 +3034,7 @@
       },
       "sms" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
@@ -3010,6 +3045,7 @@
       },
       "sns" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : {
             "protocols" : [ "http", "https" ]
           }
@@ -3017,6 +3053,7 @@
       },
       "sqs" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : {
             "protocols" : [ "http", "https" ],
             "sslCommonName" : "{region}.queue.{dnsSuffix}"
@@ -3025,11 +3062,13 @@
       },
       "ssm" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
       "states" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
@@ -3045,6 +3084,7 @@
           }
         },
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { },
           "us-gov-west-1-fips" : {
             "credentialScope" : {
@@ -3056,16 +3096,19 @@
       },
       "sts" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
       "swf" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
       "tagging" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },

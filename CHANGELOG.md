@@ -1,3 +1,15 @@
+Release v1.15.75 (2018-11-13)
+===
+
+### Service Client Updates
+* `service/budgets`: Updates service documentation
+  * Doc Update: 1. Available monthly-budgets maximal history data points from 12 to 13.  2. Added 'Amazon Elasticsearch' costfilters support.
+* `service/chime`: Updates service API and documentation
+  * This release adds support in ListUsers API to filter the list by an email address.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/redshift`: Updates service API and documentation
+  * Amazon Redshift provides the option to defer non-mandatory maintenance updates to a later date.
+
 Release v1.15.74 (2018-11-12)
 ===
 

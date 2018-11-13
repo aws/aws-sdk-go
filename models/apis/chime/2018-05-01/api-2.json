@@ -146,7 +146,8 @@
       "name":"GetUser",
       "http":{
         "method":"GET",
-        "requestUri":"/console/accounts/{accountId}/users/{userId}"
+        "requestUri":"/console/accounts/{accountId}/users/{userId}",
+        "responseCode":200
       },
       "input":{"shape":"GetUserRequest"},
       "output":{"shape":"GetUserResponse"},
@@ -201,7 +202,8 @@
       "name":"ListUsers",
       "http":{
         "method":"GET",
-        "requestUri":"/console/accounts/{accountId}/users"
+        "requestUri":"/console/accounts/{accountId}/users",
+        "responseCode":200
       },
       "input":{"shape":"ListUsersRequest"},
       "output":{"shape":"ListUsersResponse"},
@@ -662,6 +664,11 @@
           "shape":"NonEmptyString",
           "location":"uri",
           "locationName":"accountId"
+        },
+        "UserEmail":{
+          "shape":"EmailAddress",
+          "location":"querystring",
+          "locationName":"user-email"
         },
         "MaxResults":{
           "shape":"ProfileServiceMaxResults",
