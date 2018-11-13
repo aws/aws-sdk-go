@@ -790,6 +790,9 @@ func (c *Chime) GetUserRequest(input *GetUserInput) (req *request.Request, outpu
 // Retrieves details for the specified user ID, such as primary email address,
 // license type, and personal meeting PIN.
 //
+// To retrieve user details with an email address instead of a user ID, use
+// the ListUsers action, and then filter by email address.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1149,7 +1152,9 @@ func (c *Chime) ListUsersRequest(input *ListUsersInput) (req *request.Request, o
 
 // ListUsers API operation for Amazon Chime.
 //
-// Lists the users that belong to the specified Amazon Chime account.
+// Lists the users that belong to the specified Amazon Chime account. You can
+// specify an email address to list only the user that the email address belongs
+// to.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2672,6 +2677,9 @@ type ListUsersInput struct {
 
 	// The token to use to retrieve the next page of results.
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+
+	// Optional. The user email address used to filter results. Maximum 1.
+	UserEmail *string `location:"querystring" locationName:"user-email" type:"string"`
 }
 
 // String returns the string representation
@@ -2715,6 +2723,12 @@ func (s *ListUsersInput) SetMaxResults(v int64) *ListUsersInput {
 // SetNextToken sets the NextToken field's value.
 func (s *ListUsersInput) SetNextToken(v string) *ListUsersInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetUserEmail sets the UserEmail field's value.
+func (s *ListUsersInput) SetUserEmail(v string) *ListUsersInput {
+	s.UserEmail = &v
 	return s
 }
 

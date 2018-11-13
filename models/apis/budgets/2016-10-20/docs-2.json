@@ -67,7 +67,7 @@
     "BudgetPerformanceHistory": {
       "base": "<p>A history of the state of a budget at the end of the budget's specified time period.</p>",
       "refs": {
-        "DescribeBudgetPerformanceHistoryResponse$BudgetPerformanceHistory": "<p>The history of how often the budget has gone into an <code>ALARM</code> state.</p> <p>For <code>DAILY</code> budgets, the history saves the state of the budget for the last 60 days. For <code>MONTHLY</code> budgets, the history saves the state of the budget for the last 12 months. For <code>QUARTERLY</code> budgets, the history saves the state of the budget for the last four quarters.</p>"
+        "DescribeBudgetPerformanceHistoryResponse$BudgetPerformanceHistory": "<p>The history of how often the budget has gone into an <code>ALARM</code> state.</p> <p>For <code>DAILY</code> budgets, the history saves the state of the budget for the last 60 days. For <code>MONTHLY</code> budgets, the history saves the state of the budget for the current month plus the last 12 months. For <code>QUARTERLY</code> budgets, the history saves the state of the budget for the last four quarters.</p>"
       }
     },
     "BudgetType": {
@@ -110,7 +110,7 @@
     "CostFilters": {
       "base": "<p> A map that represents the cost filters that are applied to the budget.</p>",
       "refs": {
-        "Budget$CostFilters": "<p>The cost filters, such as service or region, that are applied to a budget.</p>",
+        "Budget$CostFilters": "<p>The cost filters, such as service or region, that are applied to a budget.</p> <p>AWS Budgets supports the following services as a filter for RI budgets:</p> <ul> <li> <p>Amazon Elastic Compute Cloud - Compute</p> </li> <li> <p>Amazon Redshift</p> </li> <li> <p>Amazon Relational Database Service</p> </li> <li> <p>Amazon ElastiCache</p> </li> <li> <p>Amazon Elasticsearch Service</p> </li> </ul>",
         "BudgetPerformanceHistory$CostFilters": "<p>The history of the cost filters for a budget during the specified time period.</p>"
       }
     },

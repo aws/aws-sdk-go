@@ -72,6 +72,10 @@ type RedshiftAPI interface {
 	AuthorizeSnapshotAccessWithContext(aws.Context, *redshift.AuthorizeSnapshotAccessInput, ...request.Option) (*redshift.AuthorizeSnapshotAccessOutput, error)
 	AuthorizeSnapshotAccessRequest(*redshift.AuthorizeSnapshotAccessInput) (*request.Request, *redshift.AuthorizeSnapshotAccessOutput)
 
+	CancelResize(*redshift.CancelResizeInput) (*redshift.CancelResizeOutput, error)
+	CancelResizeWithContext(aws.Context, *redshift.CancelResizeInput, ...request.Option) (*redshift.CancelResizeOutput, error)
+	CancelResizeRequest(*redshift.CancelResizeInput) (*request.Request, *redshift.CancelResizeOutput)
+
 	CopyClusterSnapshot(*redshift.CopyClusterSnapshotInput) (*redshift.CopyClusterSnapshotOutput, error)
 	CopyClusterSnapshotWithContext(aws.Context, *redshift.CopyClusterSnapshotInput, ...request.Option) (*redshift.CopyClusterSnapshotOutput, error)
 	CopyClusterSnapshotRequest(*redshift.CopyClusterSnapshotInput) (*request.Request, *redshift.CopyClusterSnapshotOutput)
@@ -155,6 +159,10 @@ type RedshiftAPI interface {
 	DeleteTags(*redshift.DeleteTagsInput) (*redshift.DeleteTagsOutput, error)
 	DeleteTagsWithContext(aws.Context, *redshift.DeleteTagsInput, ...request.Option) (*redshift.DeleteTagsOutput, error)
 	DeleteTagsRequest(*redshift.DeleteTagsInput) (*request.Request, *redshift.DeleteTagsOutput)
+
+	DescribeAccountAttributes(*redshift.DescribeAccountAttributesInput) (*redshift.DescribeAccountAttributesOutput, error)
+	DescribeAccountAttributesWithContext(aws.Context, *redshift.DescribeAccountAttributesInput, ...request.Option) (*redshift.DescribeAccountAttributesOutput, error)
+	DescribeAccountAttributesRequest(*redshift.DescribeAccountAttributesInput) (*request.Request, *redshift.DescribeAccountAttributesOutput)
 
 	DescribeClusterDbRevisions(*redshift.DescribeClusterDbRevisionsInput) (*redshift.DescribeClusterDbRevisionsOutput, error)
 	DescribeClusterDbRevisionsWithContext(aws.Context, *redshift.DescribeClusterDbRevisionsInput, ...request.Option) (*redshift.DescribeClusterDbRevisionsOutput, error)
@@ -328,6 +336,10 @@ type RedshiftAPI interface {
 	ModifyClusterIamRoles(*redshift.ModifyClusterIamRolesInput) (*redshift.ModifyClusterIamRolesOutput, error)
 	ModifyClusterIamRolesWithContext(aws.Context, *redshift.ModifyClusterIamRolesInput, ...request.Option) (*redshift.ModifyClusterIamRolesOutput, error)
 	ModifyClusterIamRolesRequest(*redshift.ModifyClusterIamRolesInput) (*request.Request, *redshift.ModifyClusterIamRolesOutput)
+
+	ModifyClusterMaintenance(*redshift.ModifyClusterMaintenanceInput) (*redshift.ModifyClusterMaintenanceOutput, error)
+	ModifyClusterMaintenanceWithContext(aws.Context, *redshift.ModifyClusterMaintenanceInput, ...request.Option) (*redshift.ModifyClusterMaintenanceOutput, error)
+	ModifyClusterMaintenanceRequest(*redshift.ModifyClusterMaintenanceInput) (*request.Request, *redshift.ModifyClusterMaintenanceOutput)
 
 	ModifyClusterParameterGroup(*redshift.ModifyClusterParameterGroupInput) (*redshift.ClusterParameterGroupNameMessage, error)
 	ModifyClusterParameterGroupWithContext(aws.Context, *redshift.ModifyClusterParameterGroupInput, ...request.Option) (*redshift.ClusterParameterGroupNameMessage, error)
