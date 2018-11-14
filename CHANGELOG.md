@@ -1,3 +1,21 @@
+Release v1.15.76 (2018-11-14)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * EC2 Auto Scaling now allows users to provision and automatically scale instances across purchase options (Spot, On-Demand, and RIs) and instance types in a single Auto Scaling group (ASG).
+* `service/ec2`: Updates service API and documentation
+  * Amazon EC2 Fleet now supports a new request type "Instant" that you can use to provision capacity synchronously across instance types & purchase models and CreateFleet will return the instances launched in the API response.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/mediatailor`: Updates service API and documentation
+* `service/resource-groups`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker now makes the final set of metrics published from training jobs available in the DescribeTrainingJob results.  Automatic Model Tuning now supports warm start of hyperparameter tuning jobs.  Notebook instances now support a larger number of instance types to include instances from the ml.t3, ml.m5, ml.c4, ml.c5 families.
+* `service/servicecatalog`: Updates service API and documentation
+  * Adds support for Cloudformation StackSets in Service Catalog
+* `service/sns`: Updates service API and documentation
+  * Added an optional request parameter, named Attributes, to the Amazon SNS CreateTopic API action. For more information, see the Amazon SNS API Reference (https://docs.aws.amazon.com/sns/latest/api/API_CreateTopic.html).
+
 Release v1.15.75 (2018-11-13)
 ===
 
