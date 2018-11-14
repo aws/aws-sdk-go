@@ -64,6 +64,7 @@ func updateEndpointForHostStyle(r *request.Request) {
 	}
 
 	moveBucketToHost(r.HTTPRequest.URL, bucket)
+	r.HTTPRequest.Host = r.HTTPRequest.URL.Host
 }
 
 var (
@@ -107,6 +108,7 @@ func updateEndpointForAccelerate(r *request.Request) {
 	r.HTTPRequest.URL.Host = strings.Join(parts, ".")
 
 	moveBucketToHost(r.HTTPRequest.URL, bucket)
+	r.HTTPRequest.Host = r.HTTPRequest.URL.Host
 }
 
 // Attempts to retrieve the bucket name from the request input parameters.
