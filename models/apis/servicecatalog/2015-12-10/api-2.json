@@ -1801,7 +1801,8 @@
         "ProvisioningArtifactParameters":{"shape":"ProvisioningArtifactParameters"},
         "ConstraintSummaries":{"shape":"ConstraintSummaries"},
         "UsageInstructions":{"shape":"UsageInstructions"},
-        "TagOptions":{"shape":"TagOptionSummaries"}
+        "TagOptions":{"shape":"TagOptionSummaries"},
+        "ProvisioningArtifactPreferences":{"shape":"ProvisioningArtifactPreferences"}
       }
     },
     "DescribeRecordInput":{
@@ -2623,6 +2624,7 @@
         "PathId":{"shape":"Id"},
         "ProvisionedProductName":{"shape":"ProvisionedProductName"},
         "ProvisioningParameters":{"shape":"ProvisioningParameters"},
+        "ProvisioningPreferences":{"shape":"ProvisioningPreferences"},
         "Tags":{"shape":"Tags"},
         "NotificationArns":{"shape":"NotificationArns"},
         "ProvisionToken":{
@@ -2823,6 +2825,13 @@
       "type":"list",
       "member":{"shape":"ProvisioningArtifactParameter"}
     },
+    "ProvisioningArtifactPreferences":{
+      "type":"structure",
+      "members":{
+        "StackSetAccounts":{"shape":"StackSetAccounts"},
+        "StackSetRegions":{"shape":"StackSetRegions"}
+      }
+    },
     "ProvisioningArtifactProperties":{
       "type":"structure",
       "required":["Info"],
@@ -2885,6 +2894,17 @@
     "ProvisioningParameters":{
       "type":"list",
       "member":{"shape":"ProvisioningParameter"}
+    },
+    "ProvisioningPreferences":{
+      "type":"structure",
+      "members":{
+        "StackSetAccounts":{"shape":"StackSetAccounts"},
+        "StackSetRegions":{"shape":"StackSetRegions"},
+        "StackSetFailureToleranceCount":{"shape":"StackSetFailureToleranceCount"},
+        "StackSetFailureTolerancePercentage":{"shape":"StackSetFailureTolerancePercentage"},
+        "StackSetMaxConcurrencyCount":{"shape":"StackSetMaxConcurrencyCount"},
+        "StackSetMaxConcurrencyPercentage":{"shape":"StackSetMaxConcurrencyPercentage"}
+      }
     },
     "RecordDetail":{
       "type":"structure",
@@ -2966,6 +2986,7 @@
       "max":50
     },
     "RecordType":{"type":"string"},
+    "Region":{"type":"string"},
     "RejectPortfolioShareInput":{
       "type":"structure",
       "required":["PortfolioId"],
@@ -3302,6 +3323,40 @@
       "key":{"shape":"ProvisioningArtifactPropertyName"},
       "value":{"shape":"ProvisioningArtifactPropertyValue"}
     },
+    "StackSetAccounts":{
+      "type":"list",
+      "member":{"shape":"AccountId"}
+    },
+    "StackSetFailureToleranceCount":{
+      "type":"integer",
+      "min":0
+    },
+    "StackSetFailureTolerancePercentage":{
+      "type":"integer",
+      "max":100,
+      "min":0
+    },
+    "StackSetMaxConcurrencyCount":{
+      "type":"integer",
+      "min":1
+    },
+    "StackSetMaxConcurrencyPercentage":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
+    "StackSetOperationType":{
+      "type":"string",
+      "enum":[
+        "CREATE",
+        "UPDATE",
+        "DELETE"
+      ]
+    },
+    "StackSetRegions":{
+      "type":"list",
+      "member":{"shape":"Region"}
+    },
     "Status":{
       "type":"string",
       "enum":[
@@ -3508,6 +3563,7 @@
         "ProvisioningArtifactId":{"shape":"Id"},
         "PathId":{"shape":"Id"},
         "ProvisioningParameters":{"shape":"UpdateProvisioningParameters"},
+        "ProvisioningPreferences":{"shape":"UpdateProvisioningPreferences"},
         "UpdateToken":{
           "shape":"IdempotencyToken",
           "idempotencyToken":true
@@ -3554,6 +3610,18 @@
     "UpdateProvisioningParameters":{
       "type":"list",
       "member":{"shape":"UpdateProvisioningParameter"}
+    },
+    "UpdateProvisioningPreferences":{
+      "type":"structure",
+      "members":{
+        "StackSetAccounts":{"shape":"StackSetAccounts"},
+        "StackSetRegions":{"shape":"StackSetRegions"},
+        "StackSetFailureToleranceCount":{"shape":"StackSetFailureToleranceCount"},
+        "StackSetFailureTolerancePercentage":{"shape":"StackSetFailureTolerancePercentage"},
+        "StackSetMaxConcurrencyCount":{"shape":"StackSetMaxConcurrencyCount"},
+        "StackSetMaxConcurrencyPercentage":{"shape":"StackSetMaxConcurrencyPercentage"},
+        "StackSetOperationType":{"shape":"StackSetOperationType"}
+      }
     },
     "UpdateServiceActionInput":{
       "type":"structure",

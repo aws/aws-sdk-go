@@ -124,7 +124,7 @@
     "DescribeExportTasks": "<p>Describes one or more of your export tasks.</p>",
     "DescribeFleetHistory": "<p>Describes the events for the specified EC2 Fleet during the specified time.</p>",
     "DescribeFleetInstances": "<p>Describes the running instances for the specified EC2 Fleet.</p>",
-    "DescribeFleets": "<p>Describes one or more of your EC2 Fleet.</p>",
+    "DescribeFleets": "<p>Describes one or more of your EC2 Fleets.</p>",
     "DescribeFlowLogs": "<p>Describes one or more flow logs. To view the information in your flow logs (the log streams for the network interfaces), you must use the CloudWatch Logs console or the CloudWatch Logs API.</p>",
     "DescribeFpgaImageAttribute": "<p>Describes the specified attribute of the specified Amazon FPGA Image (AFI).</p>",
     "DescribeFpgaImages": "<p>Describes one or more available Amazon FPGA Images (AFIs). These include public AFIs, private AFIs that you own, and AFIs owned by other AWS accounts for which you have load permissions.</p>",
@@ -1057,6 +1057,8 @@
         "NetworkInterfaceAttachment$DeleteOnTermination": "<p>Indicates whether the network interface is deleted when the instance is terminated.</p>",
         "NetworkInterfaceAttachmentChanges$DeleteOnTermination": "<p>Indicates whether the network interface is deleted when the instance is terminated.</p>",
         "NetworkInterfacePrivateIpAddress$Primary": "<p>Indicates whether this IPv4 address is the primary private IPv4 address of the network interface.</p>",
+        "OnDemandOptions$SingleInstanceType": "<p>Indicates that the fleet uses a single instance type to launch all On-Demand Instances in the fleet.</p>",
+        "OnDemandOptionsRequest$SingleInstanceType": "<p>Indicates that the fleet uses a single instance type to launch all On-Demand Instances in the fleet.</p>",
         "PeeringConnectionOptions$AllowDnsResolutionFromRemoteVpc": "<p>If true, the public DNS hostnames of instances in the specified VPC resolve to private IP addresses when queried from instances in the peer VPC.</p>",
         "PeeringConnectionOptions$AllowEgressFromLocalClassicLinkToRemoteVpc": "<p>If true, enables outbound communication from an EC2-Classic instance that's linked to a local VPC using ClassicLink to instances in a peer VPC.</p>",
         "PeeringConnectionOptions$AllowEgressFromLocalVpcToRemoteClassicLink": "<p>If true, enables outbound communication from instances in a local VPC to an EC2-Classic instance that's linked to a peer VPC using ClassicLink.</p>",
@@ -1122,6 +1124,8 @@
         "SpotFleetMonitoring$Enabled": "<p>Enables monitoring for the instance.</p> <p>Default: <code>false</code> </p>",
         "SpotFleetRequestConfigData$TerminateInstancesWithExpiration": "<p>Indicates whether running Spot Instances should be terminated when the Spot Fleet request expires.</p>",
         "SpotFleetRequestConfigData$ReplaceUnhealthyInstances": "<p>Indicates whether Spot Fleet should replace unhealthy instances.</p>",
+        "SpotOptions$SingleInstanceType": "<p>Indicates that the fleet uses a single instance type to launch all Spot Instances in the fleet.</p>",
+        "SpotOptionsRequest$SingleInstanceType": "<p>Indicates that the fleet uses a single instance type to launch all Spot Instances in the fleet.</p>",
         "StartInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "StopInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "StopInstancesRequest$Force": "<p>Forces the instances to stop. The instances do not have an opportunity to flush file system caches or file system metadata. If you use this option, you must perform file system check and repair procedures. This option is not recommended for Windows instances.</p> <p>Default: <code>false</code> </p>",
@@ -1639,6 +1643,30 @@
     "CreateEgressOnlyInternetGatewayResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "CreateFleetError": {
+      "base": "<p>Describes the instances that could not be launched by the fleet.</p>",
+      "refs": {
+        "CreateFleetErrorsSet$member": null
+      }
+    },
+    "CreateFleetErrorsSet": {
+      "base": null,
+      "refs": {
+        "CreateFleetResult$Errors": "<p>Information about the instances that could not be launched by the fleet. Valid only when <b>Type</b> is set to <code>instant</code>.</p>"
+      }
+    },
+    "CreateFleetInstance": {
+      "base": "<p>Describes the instances that were launched by the fleet.</p>",
+      "refs": {
+        "CreateFleetInstancesSet$member": null
+      }
+    },
+    "CreateFleetInstancesSet": {
+      "base": null,
+      "refs": {
+        "CreateFleetResult$Instances": "<p>Information about the instances that were launched by the fleet. Valid only when <b>Type</b> is set to <code>instant</code>.</p>"
       }
     },
     "CreateFleetRequest": {
@@ -2544,6 +2572,12 @@
       "refs": {
       }
     },
+    "DescribeFleetError": {
+      "base": "<p>Describes the instances that could not be launched by the fleet.</p>",
+      "refs": {
+        "DescribeFleetsErrorSet$member": null
+      }
+    },
     "DescribeFleetHistoryRequest": {
       "base": null,
       "refs": {
@@ -2562,6 +2596,24 @@
     "DescribeFleetInstancesResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "DescribeFleetsErrorSet": {
+      "base": null,
+      "refs": {
+        "FleetData$Errors": "<p>Information about the instances that could not be launched by the fleet. Valid only when <b>Type</b> is set to <code>instant</code>.</p>"
+      }
+    },
+    "DescribeFleetsInstances": {
+      "base": "<p>Describes the instances that were launched by the fleet.</p>",
+      "refs": {
+        "DescribeFleetsInstancesSet$member": null
+      }
+    },
+    "DescribeFleetsInstancesSet": {
+      "base": null,
+      "refs": {
+        "FleetData$Instances": "<p>Information about the instances that were launched by the fleet. Valid only when <b>Type</b> is set to <code>instant</code>.</p>"
       }
     },
     "DescribeFleetsRequest": {
@@ -3736,7 +3788,7 @@
         "DescribeDhcpOptionsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>dhcp-options-id</code> - The ID of a set of DHCP options.</p> </li> <li> <p> <code>key</code> - The key for one of the options (for example, <code>domain-name</code>).</p> </li> <li> <p> <code>value</code> - The value for one of the options.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
         "DescribeElasticGpusRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>availability-zone</code> - The Availability Zone in which the Elastic GPU resides.</p> </li> <li> <p> <code>elastic-gpu-health</code> - The status of the Elastic GPU (<code>OK</code> | <code>IMPAIRED</code>).</p> </li> <li> <p> <code>elastic-gpu-state</code> - The state of the Elastic GPU (<code>ATTACHED</code>).</p> </li> <li> <p> <code>elastic-gpu-type</code> - The type of Elastic GPU; for example, <code>eg1.medium</code>.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance to which the Elastic GPU is associated.</p> </li> </ul>",
         "DescribeFleetInstancesRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>instance-type</code> - The instance type.</p> </li> </ul>",
-        "DescribeFleetsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>activity-status</code> - The progress of the EC2 Fleet ( <code>error</code> | <code>pending-fulfillment</code> | <code>pending-termination</code> | <code>fulfilled</code>).</p> </li> <li> <p> <code>excess-capacity-termination-policy</code> - Indicates whether to terminate running instances if the target capacity is decreased below the current EC2 Fleet size (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>fleet-state</code> - The state of the EC2 Fleet (<code>submitted</code> | <code>active</code> | <code>deleted</code> | <code>failed</code> | <code>deleted-running</code> | <code>deleted-terminating</code> | <code>modifying</code>).</p> </li> <li> <p> <code>replace-unhealthy-instances</code> - Indicates whether EC2 Fleet should replace unhealthy instances (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>type</code> - The type of request (<code>request</code> | <code>maintain</code>).</p> </li> </ul>",
+        "DescribeFleetsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>activity-status</code> - The progress of the EC2 Fleet ( <code>error</code> | <code>pending-fulfillment</code> | <code>pending-termination</code> | <code>fulfilled</code>).</p> </li> <li> <p> <code>excess-capacity-termination-policy</code> - Indicates whether to terminate running instances if the target capacity is decreased below the current EC2 Fleet size (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>fleet-state</code> - The state of the EC2 Fleet (<code>submitted</code> | <code>active</code> | <code>deleted</code> | <code>failed</code> | <code>deleted-running</code> | <code>deleted-terminating</code> | <code>modifying</code>).</p> </li> <li> <p> <code>replace-unhealthy-instances</code> - Indicates whether EC2 Fleet should replace unhealthy instances (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>type</code> - The type of request (<code>instant</code> | <code>request</code> | <code>maintain</code>).</p> </li> </ul>",
         "DescribeFlowLogsRequest$Filter": "<p>One or more filters.</p> <ul> <li> <p> <code>deliver-log-status</code> - The status of the logs delivery (<code>SUCCESS</code> | <code>FAILED</code>).</p> </li> <li> <p> <code>log-destination-type</code> - The type of destination to which the flow log publishes data. Possible destination types include <code>cloud-watch-logs</code> and <code>S3</code>.</p> </li> <li> <p> <code>flow-log-id</code> - The ID of the flow log.</p> </li> <li> <p> <code>log-group-name</code> - The name of the log group.</p> </li> <li> <p> <code>resource-id</code> - The ID of the VPC, subnet, or network interface.</p> </li> <li> <p> <code>traffic-type</code> - The type of traffic (<code>ACCEPT</code> | <code>REJECT</code> | <code>ALL</code>).</p> </li> </ul>",
         "DescribeFpgaImagesRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>create-time</code> - The creation time of the AFI.</p> </li> <li> <p> <code>fpga-image-id</code> - The FPGA image identifier (AFI ID).</p> </li> <li> <p> <code>fpga-image-global-id</code> - The global FPGA image identifier (AGFI ID).</p> </li> <li> <p> <code>name</code> - The name of the AFI.</p> </li> <li> <p> <code>owner-id</code> - The AWS account ID of the AFI owner.</p> </li> <li> <p> <code>product-code</code> - The product code.</p> </li> <li> <p> <code>shell-version</code> - The version of the AWS Shell that was used to create the bitstream.</p> </li> <li> <p> <code>state</code> - The state of the AFI (<code>pending</code> | <code>failed</code> | <code>available</code> | <code>unavailable</code>).</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>update-time</code> - The time of the most recent update.</p> </li> </ul>",
         "DescribeHostReservationOfferingsRequest$Filter": "<p>One or more filters.</p> <ul> <li> <p> <code>instance-family</code> - The instance family of the offering (for example, <code>m4</code>).</p> </li> <li> <p> <code>payment-option</code> - The payment option (<code>NoUpfront</code> | <code>PartialUpfront</code> | <code>AllUpfront</code>).</p> </li> </ul>",
@@ -3866,7 +3918,8 @@
     "FleetLaunchTemplateOverrides": {
       "base": "<p>Describes overrides for a launch template.</p>",
       "refs": {
-        "FleetLaunchTemplateOverridesList$member": null
+        "FleetLaunchTemplateOverridesList$member": null,
+        "LaunchTemplateAndOverridesResponse$Overrides": "<p>Any parameters that you specify override the same parameters in the launch template.</p>"
       }
     },
     "FleetLaunchTemplateOverridesList": {
@@ -3891,6 +3944,7 @@
       "base": "<p>Describes a launch template.</p>",
       "refs": {
         "FleetLaunchTemplateConfig$LaunchTemplateSpecification": "<p>The launch template.</p>",
+        "LaunchTemplateAndOverridesResponse$LaunchTemplateSpecification": "<p>The launch template.</p>",
         "LaunchTemplateConfig$LaunchTemplateSpecification": "<p>The launch template.</p>"
       }
     },
@@ -3924,7 +3978,7 @@
     "FleetType": {
       "base": null,
       "refs": {
-        "CreateFleetRequest$Type": "<p>The type of request. Indicates whether the EC2 Fleet only <code>requests</code> the target capacity, or also attempts to <code>maintain</code> it. If you request a certain target capacity, EC2 Fleet only places the required requests. It does not attempt to replenish instances if capacity is diminished, and does not submit requests in alternative capacity pools if capacity is unavailable. To maintain a certain target capacity, EC2 Fleet places the required requests to meet this target capacity. It also automatically replenishes any interrupted Spot Instances. Default: <code>maintain</code>.</p>",
+        "CreateFleetRequest$Type": "<p>The type of request. <code>instant</code> indicates whether the EC2 Fleet submits a one-time request for your desired capacity. <code>request</code> indicates whether the EC2 Fleet submits ongoing requests until your desired capacity is fulfilled, but does not attempt to submit requests in alternative capacity pools if capacity is unavailable or maintain the capacity. <code>maintain</code> indicates whether the EC2 Fleet submits ongoing requests until your desired capacity is fulfilled, and continues to maintain your desired capacity by replenishing interrupted Spot Instances. Default: <code>maintain</code>.</p>",
         "FleetData$Type": "<p>The type of request. Indicates whether the EC2 Fleet only <code>requests</code> the target capacity, or also attempts to <code>maintain</code> it. If you request a certain target capacity, EC2 Fleet only places the required requests; it does not attempt to replenish instances if capacity is diminished, and does not submit requests in alternative capacity pools if capacity is unavailable. To maintain a certain target capacity, EC2 Fleet places the required requests to meet this target capacity. It also automatically replenishes any interrupted Spot Instances. Default: <code>maintain</code>.</p>",
         "SpotFleetRequestConfigData$Type": "<p>The type of request. Indicates whether the Spot Fleet only requests the target capacity or also attempts to maintain it. When this value is <code>request</code>, the Spot Fleet only places the required requests. It does not attempt to replenish Spot Instances if capacity is diminished, nor does it submit requests in alternative Spot pools if capacity is not available. To maintain a certain target capacity, the Spot Fleet places the required requests to meet capacity and automatically replenishes any interrupted instances. Default: <code>maintain</code>.</p>"
       }
@@ -4538,6 +4592,12 @@
         "ActiveInstance$InstanceHealth": "<p>The health status of the instance. If the status of either the instance status check or the system status check is <code>impaired</code>, the health status of the instance is <code>unhealthy</code>. Otherwise, the health status is <code>healthy</code>.</p>"
       }
     },
+    "InstanceId": {
+      "base": null,
+      "refs": {
+        "InstanceIdsSet$member": null
+      }
+    },
     "InstanceIdSet": {
       "base": null,
       "refs": {
@@ -4558,6 +4618,13 @@
         "StopInstancesRequest$InstanceIds": "<p>One or more instance IDs.</p>",
         "TerminateInstancesRequest$InstanceIds": "<p>One or more instance IDs.</p> <p>Constraints: Up to 1000 instance IDs. We recommend breaking up this request into smaller batches.</p>",
         "UnmonitorInstancesRequest$InstanceIds": "<p>One or more instance IDs.</p>"
+      }
+    },
+    "InstanceIdsSet": {
+      "base": null,
+      "refs": {
+        "CreateFleetInstance$InstanceIds": "<p>The IDs of the instances.</p>",
+        "DescribeFleetsInstances$InstanceIds": "<p>The IDs of the instances.</p>"
       }
     },
     "InstanceInterruptionBehavior": {
@@ -4597,6 +4664,15 @@
       "base": "<p>Describes an IPv6 address.</p>",
       "refs": {
         "InstanceIpv6AddressListRequest$member": null
+      }
+    },
+    "InstanceLifecycle": {
+      "base": null,
+      "refs": {
+        "CreateFleetError$Lifecycle": "<p>Indicates if the instance that could not be launched was a Spot Instance or On-Demand Instance.</p>",
+        "CreateFleetInstance$Lifecycle": "<p>Indicates if the instance that was launched is a Spot Instance or On-Demand Instance.</p>",
+        "DescribeFleetError$Lifecycle": "<p>Indicates if the instance that could not be launched was a Spot Instance or On-Demand Instance.</p>",
+        "DescribeFleetsInstances$Lifecycle": "<p>Indicates if the instance that was launched is a Spot Instance or On-Demand Instance.</p>"
       }
     },
     "InstanceLifecycleType": {
@@ -4764,6 +4840,8 @@
     "InstanceType": {
       "base": null,
       "refs": {
+        "CreateFleetInstance$InstanceType": "<p>The instance type.</p>",
+        "DescribeFleetsInstances$InstanceType": "<p>The instance type.</p>",
         "DescribeReservedInstancesOfferingsRequest$InstanceType": "<p>The instance type that the reservation will cover (for example, <code>m1.small</code>). For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
         "FleetLaunchTemplateOverrides$InstanceType": "<p>The instance type.</p>",
         "FleetLaunchTemplateOverridesRequest$InstanceType": "<p>The instance type.</p>",
@@ -4836,7 +4914,7 @@
         "DescribeInstanceStatusRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value. This value can be between 5 and 1000. You cannot specify this parameter and the instance IDs parameter in the same call.</p>",
         "DescribeInstancesRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value. This value can be between 5 and 1000. You cannot specify this parameter and the instance IDs parameter in the same call.</p>",
         "DescribeLaunchTemplateVersionsRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value. This value can be between 1 and 200.</p>",
-        "DescribeLaunchTemplatesRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value. This value can be between 5 and 1000.</p>",
+        "DescribeLaunchTemplatesRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value. This value can be between 1 and 200.</p>",
         "DescribeMovingAddressesRequest$MaxResults": "<p>The maximum number of results to return for the request in a single page. The remaining results of the initial request can be seen by sending another request with the returned <code>NextToken</code> value. This value can be between 5 and 1000; if <code>MaxResults</code> is given a value outside of this range, an error is returned.</p> <p>Default: If no value is provided, the default is 1000.</p>",
         "DescribeNatGatewaysRequest$MaxResults": "<p>The maximum number of items to return for this request. The request returns a token that you can specify in a subsequent call to get the next set of results.</p> <p>Constraint: If the value specified is greater than 1000, we return only 1000 items.</p>",
         "DescribeNetworkInterfacePermissionsRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value. If this parameter is not specified, up to 50 results are returned by default.</p>",
@@ -4911,6 +4989,8 @@
         "NetworkInterfaceAttachment$DeviceIndex": "<p>The device index of the network interface attachment on the instance.</p>",
         "OccurrenceDayRequestSet$member": null,
         "OccurrenceDaySet$member": null,
+        "OnDemandOptions$MinTargetCapacity": "<p>The minimum target capacity for On-Demand Instances in the fleet. If the minimum target capacity is not reached, the fleet launches no instances.</p>",
+        "OnDemandOptionsRequest$MinTargetCapacity": "<p>The minimum target capacity for On-Demand Instances in the fleet. If the minimum target capacity is not reached, the fleet launches no instances.</p>",
         "PortRange$From": "<p>The first port in the range.</p>",
         "PortRange$To": "<p>The last port in the range.</p>",
         "PricingDetail$Count": "<p>The number of reservations available for the price.</p>",
@@ -4956,7 +5036,9 @@
         "SpotInstanceRequest$BlockDurationMinutes": "<p>The duration for the Spot Instance, in minutes.</p>",
         "SpotMarketOptions$BlockDurationMinutes": "<p>The required duration for the Spot Instances (also known as Spot blocks), in minutes. This value must be a multiple of 60 (60, 120, 180, 240, 300, or 360).</p>",
         "SpotOptions$InstancePoolsToUseCount": "<p>The number of Spot pools across which to allocate your target Spot capacity. Valid only when <b>AllocationStrategy</b> is set to <code>lowestPrice</code>. EC2 Fleet selects the cheapest Spot pools and evenly allocates your target Spot capacity across the number of Spot pools that you specify.</p>",
+        "SpotOptions$MinTargetCapacity": "<p>The minimum target capacity for Spot Instances in the fleet. If the minimum target capacity is not reached, the fleet launches no instances.</p>",
         "SpotOptionsRequest$InstancePoolsToUseCount": "<p>The number of Spot pools across which to allocate your target Spot capacity. Valid only when Spot <b>AllocationStrategy</b> is set to <code>lowest-price</code>. EC2 Fleet selects the cheapest Spot pools and evenly allocates your target Spot capacity across the number of Spot pools that you specify.</p>",
+        "SpotOptionsRequest$MinTargetCapacity": "<p>The minimum target capacity for Spot Instances in the fleet. If the minimum target capacity is not reached, the fleet launches no instances.</p>",
         "StaleIpPermission$FromPort": "<p>The start of the port range for the TCP and UDP protocols, or an ICMP type number. A value of <code>-1</code> indicates all ICMP types. </p>",
         "StaleIpPermission$ToPort": "<p>The end of the port range for the TCP and UDP protocols, or an ICMP type number. A value of <code>-1</code> indicates all ICMP types. </p>",
         "Subnet$AvailableIpAddressCount": "<p>The number of unused private IPv4 addresses in the subnet. The IPv4 addresses for any stopped instances are considered unavailable.</p>",
@@ -5148,6 +5230,15 @@
         "DeleteLaunchTemplateResult$LaunchTemplate": "<p>Information about the launch template.</p>",
         "LaunchTemplateSet$member": null,
         "ModifyLaunchTemplateResult$LaunchTemplate": "<p>Information about the launch template.</p>"
+      }
+    },
+    "LaunchTemplateAndOverridesResponse": {
+      "base": "<p>Describes a launch template and overrides.</p>",
+      "refs": {
+        "CreateFleetError$LaunchTemplateAndOverrides": "<p>The launch templates and overrides that were used for launching the instances. Any parameters that you specify in the Overrides override the same parameters in the launch template.</p>",
+        "CreateFleetInstance$LaunchTemplateAndOverrides": "<p>The launch templates and overrides that were used for launching the instances. Any parameters that you specify in the Overrides override the same parameters in the launch template.</p>",
+        "DescribeFleetError$LaunchTemplateAndOverrides": "<p>The launch templates and overrides that were used for launching the instances. Any parameters that you specify in the Overrides override the same parameters in the launch template.</p>",
+        "DescribeFleetsInstances$LaunchTemplateAndOverrides": "<p>The launch templates and overrides that were used for launching the instances. Any parameters that you specify in the Overrides override the same parameters in the launch template.</p>"
       }
     },
     "LaunchTemplateBlockDeviceMapping": {
@@ -6071,6 +6162,7 @@
     "Placement": {
       "base": "<p>Describes the placement of an instance.</p>",
       "refs": {
+        "FleetLaunchTemplateOverridesRequest$Placement": "<p>The location where the instance launched, if applicable.</p>",
         "ImportInstanceLaunchSpecification$Placement": "<p>The placement information for the instance.</p>",
         "Instance$Placement": "<p>The location where the instance launched, if applicable.</p>",
         "RunInstancesRequest$Placement": "<p>The placement for the instance.</p>"
@@ -6100,6 +6192,12 @@
         "DescribePlacementGroupsRequest$GroupNames": "<p>One or more placement group names.</p> <p>Default: Describes all your placement groups, or only those otherwise specified.</p>"
       }
     },
+    "PlacementResponse": {
+      "base": "<p>Describes the placement of an instance.</p>",
+      "refs": {
+        "FleetLaunchTemplateOverrides$Placement": "<p>The location where the instance launched, if applicable.</p>"
+      }
+    },
     "PlacementStrategy": {
       "base": null,
       "refs": {
@@ -6110,6 +6208,8 @@
     "PlatformValues": {
       "base": null,
       "refs": {
+        "CreateFleetInstance$Platform": "<p>The value is <code>Windows</code> for Windows instances; otherwise blank.</p>",
+        "DescribeFleetsInstances$Platform": "<p>The value is <code>Windows</code> for Windows instances; otherwise blank.</p>",
         "Image$Platform": "<p>The value is <code>Windows</code> for Windows AMIs; otherwise blank.</p>",
         "ImportInstanceRequest$Platform": "<p>The instance operating system.</p>",
         "ImportInstanceTaskDetails$Platform": "<p>The instance operating system.</p>",
@@ -7682,6 +7782,8 @@
         "CreateEgressOnlyInternetGatewayRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
         "CreateEgressOnlyInternetGatewayRequest$VpcId": "<p>The ID of the VPC for which to create the egress-only internet gateway.</p>",
         "CreateEgressOnlyInternetGatewayResult$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
+        "CreateFleetError$ErrorCode": "<p>The error code that indicates why the instance could not be launched. For more information about error codes, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/APIReference/errors-overview.html.html\">Error Codes</a>.</p>",
+        "CreateFleetError$ErrorMessage": "<p>The error message that describes why the instance could not be launched. For more information about error messages, see ee <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/APIReference/errors-overview.html.html\">Error Codes</a>.</p>",
         "CreateFleetRequest$ClientToken": "<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
         "CreateFlowLogsRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
         "CreateFlowLogsRequest$DeliverLogsPermissionArn": "<p>The ARN for the IAM role that's used to post flow logs to a log group.</p>",
@@ -7824,6 +7926,8 @@
         "DescribeEgressOnlyInternetGatewaysResult$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "DescribeElasticGpusRequest$NextToken": "<p>The token to request the next page of results.</p>",
         "DescribeElasticGpusResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "DescribeFleetError$ErrorCode": "<p>The error code that indicates why the instance could not be launched. For more information about error codes, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/APIReference/errors-overview.html.html\">Error Codes</a>.</p>",
+        "DescribeFleetError$ErrorMessage": "<p>The error message that describes why the instance could not be launched. For more information about error messages, see ee <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/APIReference/errors-overview.html.html\">Error Codes</a>.</p>",
         "DescribeFleetHistoryRequest$NextToken": "<p>The token for the next set of results.</p>",
         "DescribeFleetHistoryResult$NextToken": "<p>The token for the next set of results.</p>",
         "DescribeFleetInstancesRequest$NextToken": "<p>The token for the next set of results.</p>",
@@ -8376,6 +8480,7 @@
         "Placement$SpreadDomain": "<p>Reserved for future use.</p>",
         "PlacementGroup$GroupName": "<p>The name of the placement group.</p>",
         "PlacementGroupStringList$member": null,
+        "PlacementResponse$GroupName": "<p>The name of the placement group the instance is in.</p>",
         "PrefixList$PrefixListId": "<p>The ID of the prefix.</p>",
         "PrefixList$PrefixListName": "<p>The name of the prefix.</p>",
         "PrefixListId$Description": "<p>A description for the security group rule that references this prefix list ID.</p> <p>Constraints: Up to 255 characters in length. Allowed characters are a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=;{}!$*</p>",

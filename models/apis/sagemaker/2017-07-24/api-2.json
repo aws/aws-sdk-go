@@ -483,13 +483,11 @@
     },
     "AlgorithmSpecification":{
       "type":"structure",
-      "required":[
-        "TrainingImage",
-        "TrainingInputMode"
-      ],
+      "required":["TrainingInputMode"],
       "members":{
         "TrainingImage":{"shape":"AlgorithmImage"},
-        "TrainingInputMode":{"shape":"TrainingInputMode"}
+        "TrainingInputMode":{"shape":"TrainingInputMode"},
+        "MetricDefinitions":{"shape":"MetricDefinitionList"}
       }
     },
     "AssemblyType":{
@@ -639,6 +637,7 @@
         "HyperParameterTuningJobName":{"shape":"HyperParameterTuningJobName"},
         "HyperParameterTuningJobConfig":{"shape":"HyperParameterTuningJobConfig"},
         "TrainingJobDefinition":{"shape":"HyperParameterTrainingJobDefinition"},
+        "WarmStartConfig":{"shape":"HyperParameterTuningJobWarmStartConfig"},
         "Tags":{"shape":"TagList"}
       }
     },
@@ -938,6 +937,8 @@
         "TrainingJobStatusCounters":{"shape":"TrainingJobStatusCounters"},
         "ObjectiveStatusCounters":{"shape":"ObjectiveStatusCounters"},
         "BestTrainingJob":{"shape":"HyperParameterTrainingJobSummary"},
+        "OverallBestTrainingJob":{"shape":"HyperParameterTrainingJobSummary"},
+        "WarmStartConfig":{"shape":"HyperParameterTuningJobWarmStartConfig"},
         "FailureReason":{"shape":"FailureReason"}
       }
     },
@@ -1052,7 +1053,8 @@
         "TrainingStartTime":{"shape":"Timestamp"},
         "TrainingEndTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
-        "SecondaryStatusTransitions":{"shape":"SecondaryStatusTransitions"}
+        "SecondaryStatusTransitions":{"shape":"SecondaryStatusTransitions"},
+        "FinalMetricDataList":{"shape":"FinalMetricDataList"}
       }
     },
     "DescribeTransformJobRequest":{
@@ -1130,6 +1132,7 @@
     },
     "EndpointConfigNameContains":{
       "type":"string",
+      "max":63,
       "pattern":"[a-zA-Z0-9-]+"
     },
     "EndpointConfigSortKey":{
@@ -1163,6 +1166,7 @@
     },
     "EndpointNameContains":{
       "type":"string",
+      "max":63,
       "pattern":"[a-zA-Z0-9-]+"
     },
     "EndpointSortKey":{
@@ -1238,12 +1242,16 @@
         "Value":{"shape":"MetricValue"}
       }
     },
+    "FinalMetricDataList":{
+      "type":"list",
+      "member":{"shape":"MetricData"},
+      "max":20,
+      "min":0
+    },
+    "Float":{"type":"float"},
     "HyperParameterAlgorithmSpecification":{
       "type":"structure",
-      "required":[
-        "TrainingImage",
-        "TrainingInputMode"
-      ],
+      "required":["TrainingInputMode"],
       "members":{
         "TrainingImage":{"shape":"AlgorithmImage"},
         "TrainingInputMode":{"shape":"TrainingInputMode"},
@@ -1255,7 +1263,6 @@
       "required":[
         "AlgorithmSpecification",
         "RoleArn",
-        "InputDataConfig",
         "OutputDataConfig",
         "ResourceConfig",
         "StoppingCondition"
@@ -1287,6 +1294,7 @@
       "members":{
         "TrainingJobName":{"shape":"TrainingJobName"},
         "TrainingJobArn":{"shape":"TrainingJobArn"},
+        "TuningJobName":{"shape":"HyperParameterTuningJobName"},
         "CreationTime":{"shape":"Timestamp"},
         "TrainingStartTime":{"shape":"Timestamp"},
         "TrainingEndTime":{"shape":"Timestamp"},
@@ -1391,6 +1399,24 @@
         "ResourceLimits":{"shape":"ResourceLimits"}
       }
     },
+    "HyperParameterTuningJobWarmStartConfig":{
+      "type":"structure",
+      "required":[
+        "ParentHyperParameterTuningJobs",
+        "WarmStartType"
+      ],
+      "members":{
+        "ParentHyperParameterTuningJobs":{"shape":"ParentHyperParameterTuningJobs"},
+        "WarmStartType":{"shape":"HyperParameterTuningJobWarmStartType"}
+      }
+    },
+    "HyperParameterTuningJobWarmStartType":{
+      "type":"string",
+      "enum":[
+        "IdenticalDataAndAlgorithm",
+        "TransferLearning"
+      ]
+    },
     "HyperParameters":{
       "type":"map",
       "key":{"shape":"ParameterKey"},
@@ -1416,11 +1442,34 @@
         "ml.t2.large",
         "ml.t2.xlarge",
         "ml.t2.2xlarge",
+        "ml.t3.medium",
+        "ml.t3.large",
+        "ml.t3.xlarge",
+        "ml.t3.2xlarge",
         "ml.m4.xlarge",
         "ml.m4.2xlarge",
         "ml.m4.4xlarge",
         "ml.m4.10xlarge",
         "ml.m4.16xlarge",
+        "ml.m5.xlarge",
+        "ml.m5.2xlarge",
+        "ml.m5.4xlarge",
+        "ml.m5.12xlarge",
+        "ml.m5.24xlarge",
+        "ml.c4.xlarge",
+        "ml.c4.2xlarge",
+        "ml.c4.4xlarge",
+        "ml.c4.8xlarge",
+        "ml.c5.xlarge",
+        "ml.c5.2xlarge",
+        "ml.c5.4xlarge",
+        "ml.c5.9xlarge",
+        "ml.c5.18xlarge",
+        "ml.c5d.xlarge",
+        "ml.c5d.2xlarge",
+        "ml.c5d.4xlarge",
+        "ml.c5d.9xlarge",
+        "ml.c5d.18xlarge",
         "ml.p2.xlarge",
         "ml.p2.8xlarge",
         "ml.p2.16xlarge",
@@ -1703,6 +1752,14 @@
       "type":"integer",
       "min":1
     },
+    "MetricData":{
+      "type":"structure",
+      "members":{
+        "MetricName":{"shape":"MetricName"},
+        "Value":{"shape":"Float"},
+        "Timestamp":{"shape":"Timestamp"}
+      }
+    },
     "MetricDefinition":{
       "type":"structure",
       "required":[
@@ -1750,6 +1807,7 @@
     },
     "ModelNameContains":{
       "type":"string",
+      "max":63,
       "pattern":"[a-zA-Z0-9-]+"
     },
     "ModelSortKey":{
@@ -1811,6 +1869,7 @@
     },
     "NotebookInstanceLifecycleConfigNameContains":{
       "type":"string",
+      "max":63,
       "pattern":"[a-zA-Z0-9-]+"
     },
     "NotebookInstanceLifecycleConfigSortKey":{
@@ -1858,6 +1917,7 @@
     },
     "NotebookInstanceNameContains":{
       "type":"string",
+      "max":63,
       "pattern":"[a-zA-Z0-9-]+"
     },
     "NotebookInstanceSortKey":{
@@ -1973,6 +2033,18 @@
       "type":"list",
       "member":{"shape":"ParameterValue"},
       "max":20,
+      "min":1
+    },
+    "ParentHyperParameterTuningJob":{
+      "type":"structure",
+      "members":{
+        "HyperParameterTuningJobName":{"shape":"HyperParameterTuningJobName"}
+      }
+    },
+    "ParentHyperParameterTuningJobs":{
+      "type":"list",
+      "member":{"shape":"ParentHyperParameterTuningJob"},
+      "max":5,
       "min":1
     },
     "ProductionVariant":{

@@ -4533,6 +4533,66 @@
         }
       }
     },
+    "CreateFleetError":{
+      "type":"structure",
+      "members":{
+        "LaunchTemplateAndOverrides":{
+          "shape":"LaunchTemplateAndOverridesResponse",
+          "locationName":"launchTemplateAndOverrides"
+        },
+        "Lifecycle":{
+          "shape":"InstanceLifecycle",
+          "locationName":"lifecycle"
+        },
+        "ErrorCode":{
+          "shape":"String",
+          "locationName":"errorCode"
+        },
+        "ErrorMessage":{
+          "shape":"String",
+          "locationName":"errorMessage"
+        }
+      }
+    },
+    "CreateFleetErrorsSet":{
+      "type":"list",
+      "member":{
+        "shape":"CreateFleetError",
+        "locationName":"item"
+      }
+    },
+    "CreateFleetInstance":{
+      "type":"structure",
+      "members":{
+        "LaunchTemplateAndOverrides":{
+          "shape":"LaunchTemplateAndOverridesResponse",
+          "locationName":"launchTemplateAndOverrides"
+        },
+        "Lifecycle":{
+          "shape":"InstanceLifecycle",
+          "locationName":"lifecycle"
+        },
+        "InstanceIds":{
+          "shape":"InstanceIdsSet",
+          "locationName":"instanceIds"
+        },
+        "InstanceType":{
+          "shape":"InstanceType",
+          "locationName":"instanceType"
+        },
+        "Platform":{
+          "shape":"PlatformValues",
+          "locationName":"platform"
+        }
+      }
+    },
+    "CreateFleetInstancesSet":{
+      "type":"list",
+      "member":{
+        "shape":"CreateFleetInstance",
+        "locationName":"item"
+      }
+    },
     "CreateFleetRequest":{
       "type":"structure",
       "required":[
@@ -4564,6 +4624,14 @@
         "FleetId":{
           "shape":"FleetIdentifier",
           "locationName":"fleetId"
+        },
+        "Errors":{
+          "shape":"CreateFleetErrorsSet",
+          "locationName":"errorSet"
+        },
+        "Instances":{
+          "shape":"CreateFleetInstancesSet",
+          "locationName":"fleetInstanceSet"
         }
       }
     },
@@ -6574,6 +6642,27 @@
         }
       }
     },
+    "DescribeFleetError":{
+      "type":"structure",
+      "members":{
+        "LaunchTemplateAndOverrides":{
+          "shape":"LaunchTemplateAndOverridesResponse",
+          "locationName":"launchTemplateAndOverrides"
+        },
+        "Lifecycle":{
+          "shape":"InstanceLifecycle",
+          "locationName":"lifecycle"
+        },
+        "ErrorCode":{
+          "shape":"String",
+          "locationName":"errorCode"
+        },
+        "ErrorMessage":{
+          "shape":"String",
+          "locationName":"errorMessage"
+        }
+      }
+    },
     "DescribeFleetHistoryRequest":{
       "type":"structure",
       "required":[
@@ -6643,6 +6732,45 @@
           "shape":"FleetIdentifier",
           "locationName":"fleetId"
         }
+      }
+    },
+    "DescribeFleetsErrorSet":{
+      "type":"list",
+      "member":{
+        "shape":"DescribeFleetError",
+        "locationName":"item"
+      }
+    },
+    "DescribeFleetsInstances":{
+      "type":"structure",
+      "members":{
+        "LaunchTemplateAndOverrides":{
+          "shape":"LaunchTemplateAndOverridesResponse",
+          "locationName":"launchTemplateAndOverrides"
+        },
+        "Lifecycle":{
+          "shape":"InstanceLifecycle",
+          "locationName":"lifecycle"
+        },
+        "InstanceIds":{
+          "shape":"InstanceIdsSet",
+          "locationName":"instanceIds"
+        },
+        "InstanceType":{
+          "shape":"InstanceType",
+          "locationName":"instanceType"
+        },
+        "Platform":{
+          "shape":"PlatformValues",
+          "locationName":"platform"
+        }
+      }
+    },
+    "DescribeFleetsInstancesSet":{
+      "type":"list",
+      "member":{
+        "shape":"DescribeFleetsInstances",
+        "locationName":"item"
       }
     },
     "DescribeFleetsRequest":{
@@ -9686,6 +9814,14 @@
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
+        },
+        "Errors":{
+          "shape":"DescribeFleetsErrorSet",
+          "locationName":"errorSet"
+        },
+        "Instances":{
+          "shape":"DescribeFleetsInstancesSet",
+          "locationName":"fleetInstanceSet"
         }
       }
     },
@@ -9770,6 +9906,10 @@
         "Priority":{
           "shape":"Double",
           "locationName":"priority"
+        },
+        "Placement":{
+          "shape":"PlacementResponse",
+          "locationName":"placement"
         }
       }
     },
@@ -9796,7 +9936,8 @@
         "SubnetId":{"shape":"String"},
         "AvailabilityZone":{"shape":"String"},
         "WeightedCapacity":{"shape":"Double"},
-        "Priority":{"shape":"Double"}
+        "Priority":{"shape":"Double"},
+        "Placement":{"shape":"Placement"}
       }
     },
     "FleetLaunchTemplateSpecification":{
@@ -9854,7 +9995,8 @@
       "type":"string",
       "enum":[
         "request",
-        "maintain"
+        "maintain",
+        "instant"
       ]
     },
     "Float":{"type":"float"},
@@ -11715,6 +11857,7 @@
         "unhealthy"
       ]
     },
+    "InstanceId":{"type":"string"},
     "InstanceIdSet":{
       "type":"list",
       "member":{
@@ -11727,6 +11870,13 @@
       "member":{
         "shape":"String",
         "locationName":"InstanceId"
+      }
+    },
+    "InstanceIdsSet":{
+      "type":"list",
+      "member":{
+        "shape":"InstanceId",
+        "locationName":"item"
       }
     },
     "InstanceInterruptionBehavior":{
@@ -11765,6 +11915,13 @@
       "members":{
         "Ipv6Address":{"shape":"String"}
       }
+    },
+    "InstanceLifecycle":{
+      "type":"string",
+      "enum":[
+        "spot",
+        "on-demand"
+      ]
     },
     "InstanceLifecycleType":{
       "type":"string",
@@ -12678,6 +12835,19 @@
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
+        }
+      }
+    },
+    "LaunchTemplateAndOverridesResponse":{
+      "type":"structure",
+      "members":{
+        "LaunchTemplateSpecification":{
+          "shape":"FleetLaunchTemplateSpecification",
+          "locationName":"launchTemplateSpecification"
+        },
+        "Overrides":{
+          "shape":"FleetLaunchTemplateOverrides",
+          "locationName":"overrides"
         }
       }
     },
@@ -14608,13 +14778,23 @@
         "AllocationStrategy":{
           "shape":"FleetOnDemandAllocationStrategy",
           "locationName":"allocationStrategy"
+        },
+        "SingleInstanceType":{
+          "shape":"Boolean",
+          "locationName":"singleInstanceType"
+        },
+        "MinTargetCapacity":{
+          "shape":"Integer",
+          "locationName":"minTargetCapacity"
         }
       }
     },
     "OnDemandOptionsRequest":{
       "type":"structure",
       "members":{
-        "AllocationStrategy":{"shape":"FleetOnDemandAllocationStrategy"}
+        "AllocationStrategy":{"shape":"FleetOnDemandAllocationStrategy"},
+        "SingleInstanceType":{"shape":"Boolean"},
+        "MinTargetCapacity":{"shape":"Integer"}
       }
     },
     "OperationType":{
@@ -14742,6 +14922,15 @@
     "PlacementGroupStringList":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "PlacementResponse":{
+      "type":"structure",
+      "members":{
+        "GroupName":{
+          "shape":"String",
+          "locationName":"groupName"
+        }
+      }
     },
     "PlacementStrategy":{
       "type":"string",
@@ -18234,6 +18423,14 @@
         "InstancePoolsToUseCount":{
           "shape":"Integer",
           "locationName":"instancePoolsToUseCount"
+        },
+        "SingleInstanceType":{
+          "shape":"Boolean",
+          "locationName":"singleInstanceType"
+        },
+        "MinTargetCapacity":{
+          "shape":"Integer",
+          "locationName":"minTargetCapacity"
         }
       }
     },
@@ -18242,7 +18439,9 @@
       "members":{
         "AllocationStrategy":{"shape":"SpotAllocationStrategy"},
         "InstanceInterruptionBehavior":{"shape":"SpotInstanceInterruptionBehavior"},
-        "InstancePoolsToUseCount":{"shape":"Integer"}
+        "InstancePoolsToUseCount":{"shape":"Integer"},
+        "SingleInstanceType":{"shape":"Boolean"},
+        "MinTargetCapacity":{"shape":"Integer"}
       }
     },
     "SpotPlacement":{
