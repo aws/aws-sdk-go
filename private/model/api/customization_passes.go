@@ -44,6 +44,7 @@ func (a *API) setServiceAliaseName() {
 func (a *API) customizationPasses() {
 	var svcCustomizations = map[string]func(*API){
 		"s3":         s3Customizations,
+		"s3control":  s3ControlCustomizations,
 		"cloudfront": cloudfrontCustomizations,
 		"rds":        rdsCustomizations,
 
@@ -121,6 +122,20 @@ func s3CustRemoveHeadObjectModeledErrors(a *API) {
 // See http://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#RESTErrorResponses
 // for more information on returned errors.`
 	op.ErrorRefs = []ShapeRef{}
+}
+
+// S3 service operations with an AccountId need accessors to be generated for
+// them so the fields can be dynamically accessed without reflection.
+func s3ControlCustomizations(a *API) {
+	for _, op := range a.Operations {
+		// Add moving AccountId into the hostname instead of header.
+		if _, ok := op.InputRef.Shape.MemberRefs["AccountId"]; ok {
+			op.CustomBuildHandlers = append(op.CustomBuildHandlers,
+				`buildPrefixHostHandler("AccountID", aws.StringValue(input.AccountId))`,
+				`buildRemoveHeaderHandler("X-Amz-Account-Id")`,
+			)
+		}
+	}
 }
 
 // cloudfrontCustomizations customized the API generation to replace values
