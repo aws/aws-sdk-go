@@ -50,6 +50,7 @@ Release v1.15.74 (2018-11-12)
 ### SDK Bugs
 * `internal/ini`: allowing LHS of equal expression to contain spaces (#2265)
   * Fixes a backward compatibility issue where LHS of equal expr could contain spaces
+
 Release v1.15.73 (2018-11-09)
 ===
 
@@ -333,6 +334,7 @@ Release v1.15.47 (2018-10-02)
 * `service/cloudfront/sign`: Do not Escape HTML when encode the cloudfront sign policy (#2164)
   * Fixes the signer escaping HTML elements `<`, `>`, and `&` in the signature policy incorrectly. Allows use of multiple query parameters in the URL to be signed.
   * Fixes #2163
+
 Release v1.15.46 (2018-10-01)
 ===
 
@@ -3689,6 +3691,7 @@ Release v1.8.16 (2017-04-21)
 * `private/protocol/xml/xmlutil`: Fix unmarshaling dropping errors (#1219)
   * The XML unmarshaler would drop any serialization or body read error that occurred on the floor effectively hiding any errors that would occur.
   * Fixes #1205
+
 Release v1.8.15 (2017-04-20)
 ===
 
