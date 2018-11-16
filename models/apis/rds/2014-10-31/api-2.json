@@ -532,7 +532,24 @@
         {"shape":"InvalidDBInstanceStateFault"},
         {"shape":"DBSnapshotAlreadyExistsFault"},
         {"shape":"SnapshotQuotaExceededFault"},
-        {"shape":"InvalidDBClusterStateFault"}
+        {"shape":"InvalidDBClusterStateFault"},
+        {"shape":"DBInstanceAutomatedBackupQuotaExceededFault"}
+      ]
+    },
+    "DeleteDBInstanceAutomatedBackup":{
+      "name":"DeleteDBInstanceAutomatedBackup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteDBInstanceAutomatedBackupMessage"},
+      "output":{
+        "shape":"DeleteDBInstanceAutomatedBackupResult",
+        "resultWrapper":"DeleteDBInstanceAutomatedBackupResult"
+      },
+      "errors":[
+        {"shape":"InvalidDBInstanceAutomatedBackupStateFault"},
+        {"shape":"DBInstanceAutomatedBackupNotFoundFault"}
       ]
     },
     "DeleteDBParameterGroup":{
@@ -760,6 +777,21 @@
         "shape":"DBEngineVersionMessage",
         "resultWrapper":"DescribeDBEngineVersionsResult"
       }
+    },
+    "DescribeDBInstanceAutomatedBackups":{
+      "name":"DescribeDBInstanceAutomatedBackups",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDBInstanceAutomatedBackupsMessage"},
+      "output":{
+        "shape":"DBInstanceAutomatedBackupMessage",
+        "resultWrapper":"DescribeDBInstanceAutomatedBackupsResult"
+      },
+      "errors":[
+        {"shape":"DBInstanceAutomatedBackupNotFoundFault"}
+      ]
     },
     "DescribeDBInstances":{
       "name":"DescribeDBInstances",
@@ -1659,8 +1691,9 @@
         {"shape":"KMSKeyNotAccessibleFault"},
         {"shape":"DBSecurityGroupNotFoundFault"},
         {"shape":"DomainNotFoundFault"},
+        {"shape":"BackupPolicyNotFoundFault"},
         {"shape":"DBParameterGroupNotFoundFault"},
-        {"shape":"BackupPolicyNotFoundFault"}
+        {"shape":"DBInstanceAutomatedBackupNotFoundFault"}
       ]
     },
     "RevokeDBSecurityGroupIngress":{
@@ -1957,6 +1990,8 @@
       "type":"structure",
       "members":{
       },
+      "deprecated":true,
+      "deprecatedMessage":"Please avoid using this fault",
       "error":{
         "code":"BackupPolicyNotFoundFault",
         "httpStatusCode":404,
@@ -2958,6 +2993,71 @@
       },
       "exception":true
     },
+    "DBInstanceAutomatedBackup":{
+      "type":"structure",
+      "members":{
+        "DBInstanceArn":{"shape":"String"},
+        "DbiResourceId":{"shape":"String"},
+        "Region":{"shape":"String"},
+        "DBInstanceIdentifier":{"shape":"String"},
+        "RestoreWindow":{"shape":"RestoreWindow"},
+        "AllocatedStorage":{"shape":"Integer"},
+        "Status":{"shape":"String"},
+        "Port":{"shape":"Integer"},
+        "AvailabilityZone":{"shape":"String"},
+        "VpcId":{"shape":"String"},
+        "InstanceCreateTime":{"shape":"TStamp"},
+        "MasterUsername":{"shape":"String"},
+        "Engine":{"shape":"String"},
+        "EngineVersion":{"shape":"String"},
+        "LicenseModel":{"shape":"String"},
+        "Iops":{"shape":"IntegerOptional"},
+        "OptionGroupName":{"shape":"String"},
+        "TdeCredentialArn":{"shape":"String"},
+        "Encrypted":{"shape":"Boolean"},
+        "StorageType":{"shape":"String"},
+        "KmsKeyId":{"shape":"String"},
+        "Timezone":{"shape":"String"},
+        "IAMDatabaseAuthenticationEnabled":{"shape":"Boolean"}
+      },
+      "wrapper":true
+    },
+    "DBInstanceAutomatedBackupList":{
+      "type":"list",
+      "member":{
+        "shape":"DBInstanceAutomatedBackup",
+        "locationName":"DBInstanceAutomatedBackup"
+      }
+    },
+    "DBInstanceAutomatedBackupMessage":{
+      "type":"structure",
+      "members":{
+        "Marker":{"shape":"String"},
+        "DBInstanceAutomatedBackups":{"shape":"DBInstanceAutomatedBackupList"}
+      }
+    },
+    "DBInstanceAutomatedBackupNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBInstanceAutomatedBackupNotFound",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DBInstanceAutomatedBackupQuotaExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBInstanceAutomatedBackupQuotaExceeded",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "DBInstanceList":{
       "type":"list",
       "member":{
@@ -3215,7 +3315,8 @@
         "DBSnapshotArn":{"shape":"String"},
         "Timezone":{"shape":"String"},
         "IAMDatabaseAuthenticationEnabled":{"shape":"Boolean"},
-        "ProcessorFeatures":{"shape":"ProcessorFeatureList"}
+        "ProcessorFeatures":{"shape":"ProcessorFeatureList"},
+        "DbiResourceId":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -3423,13 +3524,27 @@
         "DBClusterSnapshot":{"shape":"DBClusterSnapshot"}
       }
     },
+    "DeleteDBInstanceAutomatedBackupMessage":{
+      "type":"structure",
+      "required":["DbiResourceId"],
+      "members":{
+        "DbiResourceId":{"shape":"String"}
+      }
+    },
+    "DeleteDBInstanceAutomatedBackupResult":{
+      "type":"structure",
+      "members":{
+        "DBInstanceAutomatedBackup":{"shape":"DBInstanceAutomatedBackup"}
+      }
+    },
     "DeleteDBInstanceMessage":{
       "type":"structure",
       "required":["DBInstanceIdentifier"],
       "members":{
         "DBInstanceIdentifier":{"shape":"String"},
         "SkipFinalSnapshot":{"shape":"Boolean"},
-        "FinalDBSnapshotIdentifier":{"shape":"String"}
+        "FinalDBSnapshotIdentifier":{"shape":"String"},
+        "DeleteAutomatedBackups":{"shape":"BooleanOptional"}
       }
     },
     "DeleteDBInstanceResult":{
@@ -3596,6 +3711,16 @@
         "ListSupportedTimezones":{"shape":"BooleanOptional"}
       }
     },
+    "DescribeDBInstanceAutomatedBackupsMessage":{
+      "type":"structure",
+      "members":{
+        "DbiResourceId":{"shape":"String"},
+        "DBInstanceIdentifier":{"shape":"String"},
+        "Filters":{"shape":"FilterList"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
+      }
+    },
     "DescribeDBInstancesMessage":{
       "type":"structure",
       "members":{
@@ -3692,7 +3817,8 @@
         "MaxRecords":{"shape":"IntegerOptional"},
         "Marker":{"shape":"String"},
         "IncludeShared":{"shape":"Boolean"},
-        "IncludePublic":{"shape":"Boolean"}
+        "IncludePublic":{"shape":"Boolean"},
+        "DbiResourceId":{"shape":"String"}
       }
     },
     "DescribeDBSubnetGroupsMessage":{
@@ -4194,6 +4320,17 @@
       },
       "error":{
         "code":"InvalidDBClusterStateFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "InvalidDBInstanceAutomatedBackupStateFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidDBInstanceAutomatedBackupState",
         "httpStatusCode":400,
         "senderFault":true
       },
@@ -5518,10 +5655,7 @@
     },
     "RestoreDBInstanceToPointInTimeMessage":{
       "type":"structure",
-      "required":[
-        "SourceDBInstanceIdentifier",
-        "TargetDBInstanceIdentifier"
-      ],
+      "required":["TargetDBInstanceIdentifier"],
       "members":{
         "SourceDBInstanceIdentifier":{"shape":"String"},
         "TargetDBInstanceIdentifier":{"shape":"String"},
@@ -5551,13 +5685,21 @@
         "ProcessorFeatures":{"shape":"ProcessorFeatureList"},
         "UseDefaultProcessorFeatures":{"shape":"BooleanOptional"},
         "DBParameterGroupName":{"shape":"String"},
-        "DeletionProtection":{"shape":"BooleanOptional"}
+        "DeletionProtection":{"shape":"BooleanOptional"},
+        "SourceDbiResourceId":{"shape":"String"}
       }
     },
     "RestoreDBInstanceToPointInTimeResult":{
       "type":"structure",
       "members":{
         "DBInstance":{"shape":"DBInstance"}
+      }
+    },
+    "RestoreWindow":{
+      "type":"structure",
+      "members":{
+        "EarliestTime":{"shape":"TStamp"},
+        "LatestTime":{"shape":"TStamp"}
       }
     },
     "RevokeDBSecurityGroupIngressMessage":{

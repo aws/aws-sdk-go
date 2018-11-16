@@ -172,6 +172,10 @@ type RDSAPI interface {
 	DeleteDBInstanceWithContext(aws.Context, *rds.DeleteDBInstanceInput, ...request.Option) (*rds.DeleteDBInstanceOutput, error)
 	DeleteDBInstanceRequest(*rds.DeleteDBInstanceInput) (*request.Request, *rds.DeleteDBInstanceOutput)
 
+	DeleteDBInstanceAutomatedBackup(*rds.DeleteDBInstanceAutomatedBackupInput) (*rds.DeleteDBInstanceAutomatedBackupOutput, error)
+	DeleteDBInstanceAutomatedBackupWithContext(aws.Context, *rds.DeleteDBInstanceAutomatedBackupInput, ...request.Option) (*rds.DeleteDBInstanceAutomatedBackupOutput, error)
+	DeleteDBInstanceAutomatedBackupRequest(*rds.DeleteDBInstanceAutomatedBackupInput) (*request.Request, *rds.DeleteDBInstanceAutomatedBackupOutput)
+
 	DeleteDBParameterGroup(*rds.DeleteDBParameterGroupInput) (*rds.DeleteDBParameterGroupOutput, error)
 	DeleteDBParameterGroupWithContext(aws.Context, *rds.DeleteDBParameterGroupInput, ...request.Option) (*rds.DeleteDBParameterGroupOutput, error)
 	DeleteDBParameterGroupRequest(*rds.DeleteDBParameterGroupInput) (*request.Request, *rds.DeleteDBParameterGroupOutput)
@@ -241,6 +245,13 @@ type RDSAPI interface {
 
 	DescribeDBEngineVersionsPages(*rds.DescribeDBEngineVersionsInput, func(*rds.DescribeDBEngineVersionsOutput, bool) bool) error
 	DescribeDBEngineVersionsPagesWithContext(aws.Context, *rds.DescribeDBEngineVersionsInput, func(*rds.DescribeDBEngineVersionsOutput, bool) bool, ...request.Option) error
+
+	DescribeDBInstanceAutomatedBackups(*rds.DescribeDBInstanceAutomatedBackupsInput) (*rds.DescribeDBInstanceAutomatedBackupsOutput, error)
+	DescribeDBInstanceAutomatedBackupsWithContext(aws.Context, *rds.DescribeDBInstanceAutomatedBackupsInput, ...request.Option) (*rds.DescribeDBInstanceAutomatedBackupsOutput, error)
+	DescribeDBInstanceAutomatedBackupsRequest(*rds.DescribeDBInstanceAutomatedBackupsInput) (*request.Request, *rds.DescribeDBInstanceAutomatedBackupsOutput)
+
+	DescribeDBInstanceAutomatedBackupsPages(*rds.DescribeDBInstanceAutomatedBackupsInput, func(*rds.DescribeDBInstanceAutomatedBackupsOutput, bool) bool) error
+	DescribeDBInstanceAutomatedBackupsPagesWithContext(aws.Context, *rds.DescribeDBInstanceAutomatedBackupsInput, func(*rds.DescribeDBInstanceAutomatedBackupsOutput, bool) bool, ...request.Option) error
 
 	DescribeDBInstances(*rds.DescribeDBInstancesInput) (*rds.DescribeDBInstancesOutput, error)
 	DescribeDBInstancesWithContext(aws.Context, *rds.DescribeDBInstancesInput, ...request.Option) (*rds.DescribeDBInstancesOutput, error)

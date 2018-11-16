@@ -1,3 +1,34 @@
+Release v1.15.77 (2018-11-16)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * Adding queue phase and configurable queue timeout to CodeBuild.
+* `service/comprehend`: Updates service API and documentation
+* `service/directconnect`: Updates service API and documentation
+  * This release enables DirectConnect customers to have logical redundancy on virtual interfaces within supported DirectConnect locations.
+* `service/dms`: Updates service API, documentation, and waiters
+  * Settings structures have been added to our DMS endpoint APIs to support Kinesis and Elasticsearch as targets. We are introducing the ability to configure custom DNS name servers on a replication instance as a beta feature.
+* `service/ecs`: Updates service API, documentation, and examples
+  * In this release, Amazon ECS introduces multiple features. First, ECS now supports integration with Systems Manager Parameter Store for injecting runtime secrets. Second, ECS introduces support for resources tagging. Finally, ECS introduces a new ARN and ID Format for its resources, and provides new APIs for opt-in to the new formats.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/iam`: Updates service API, documentation, and examples
+  * We are making it easier for you to manage your AWS Identity and Access Management (IAM) resources by enabling you to add tags to your IAM principals (users and roles). Adding tags on IAM principals will enable you to write fewer policies for permissions management and make policies easier to comprehend.  Additionally, tags will also make it easier for you to grant access to AWS resources.
+* `service/pinpoint`: Updates service API and documentation
+  * 1. With Amazon Pinpoint Voice, you can use text-to-speech technology to deliver personalized voice messages to your customers. Amazon Pinpoint Voice is a great way to deliver transactional messages -- such as one-time passwords and identity confirmations -- to customers. 2. Adding support for Campaign Event Triggers. With Campaign Event Triggers you can now schedule campaigns to execute based on incoming event data and target just the source of the event.
+* `service/ram`: Adds new service
+* `service/rds`: Updates service API, documentation, and paginators
+  * Introduces DB Instance Automated Backups for the MySQL, MariaDB, PostgreSQL, Oracle and Microsoft SQL Server database engines. You can now retain Amazon RDS automated backups (system snapshots and transaction logs) when you delete a database instance. This allows you to restore a deleted database instance to a specified point in time within the backup retention period even after it has been deleted, protecting you against accidental deletion of data. For more information, see Amazon RDS Documentation.
+* `service/redshift`: Updates service API and documentation
+  * With this release, Redshift is providing API's for better snapshot management by supporting user defined automated snapshot schedules, retention periods for manual snapshots, and aggregate snapshot actions including batch deleting user snapshots, viewing account level snapshot storage metrics, and better filtering and sorting on the describe-cluster-snapshots API. Automated snapshots can be scheduled to be taken at a custom interval and the schedule created can be reused across clusters. Manual snapshot retention periods can be set at the cluster, snapshot, and cross-region-copy level. The retention period set on a manual snapshot indicates how many days the snapshot will be retained before being automatically deleted.
+* `service/route53resolver`: Adds new service
+* `service/s3`: Updates service API, documentation, and examples
+  * Add support for new S3 Block Public Access bucket-level APIs. The new Block Public Access settings allow bucket owners to prevent public access to S3 data via bucket/object ACLs or bucket policies.
+* `service/s3control`: Adds new service
+  * Add support for new S3 Block Public Access account-level APIs. The Block Public Access settings allow account owners to prevent public access to S3 data via bucket/object ACLs or bucket policies.
+* `service/sms-voice`: Adds new service
+* `service/transcribe`: Updates service API and documentation
+
 Release v1.15.76 (2018-11-14)
 ===
 

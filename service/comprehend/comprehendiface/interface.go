@@ -80,6 +80,22 @@ type ComprehendAPI interface {
 	BatchDetectSyntaxWithContext(aws.Context, *comprehend.BatchDetectSyntaxInput, ...request.Option) (*comprehend.BatchDetectSyntaxOutput, error)
 	BatchDetectSyntaxRequest(*comprehend.BatchDetectSyntaxInput) (*request.Request, *comprehend.BatchDetectSyntaxOutput)
 
+	CreateDocumentClassifier(*comprehend.CreateDocumentClassifierInput) (*comprehend.CreateDocumentClassifierOutput, error)
+	CreateDocumentClassifierWithContext(aws.Context, *comprehend.CreateDocumentClassifierInput, ...request.Option) (*comprehend.CreateDocumentClassifierOutput, error)
+	CreateDocumentClassifierRequest(*comprehend.CreateDocumentClassifierInput) (*request.Request, *comprehend.CreateDocumentClassifierOutput)
+
+	DeleteDocumentClassifier(*comprehend.DeleteDocumentClassifierInput) (*comprehend.DeleteDocumentClassifierOutput, error)
+	DeleteDocumentClassifierWithContext(aws.Context, *comprehend.DeleteDocumentClassifierInput, ...request.Option) (*comprehend.DeleteDocumentClassifierOutput, error)
+	DeleteDocumentClassifierRequest(*comprehend.DeleteDocumentClassifierInput) (*request.Request, *comprehend.DeleteDocumentClassifierOutput)
+
+	DescribeDocumentClassificationJob(*comprehend.DescribeDocumentClassificationJobInput) (*comprehend.DescribeDocumentClassificationJobOutput, error)
+	DescribeDocumentClassificationJobWithContext(aws.Context, *comprehend.DescribeDocumentClassificationJobInput, ...request.Option) (*comprehend.DescribeDocumentClassificationJobOutput, error)
+	DescribeDocumentClassificationJobRequest(*comprehend.DescribeDocumentClassificationJobInput) (*request.Request, *comprehend.DescribeDocumentClassificationJobOutput)
+
+	DescribeDocumentClassifier(*comprehend.DescribeDocumentClassifierInput) (*comprehend.DescribeDocumentClassifierOutput, error)
+	DescribeDocumentClassifierWithContext(aws.Context, *comprehend.DescribeDocumentClassifierInput, ...request.Option) (*comprehend.DescribeDocumentClassifierOutput, error)
+	DescribeDocumentClassifierRequest(*comprehend.DescribeDocumentClassifierInput) (*request.Request, *comprehend.DescribeDocumentClassifierOutput)
+
 	DescribeDominantLanguageDetectionJob(*comprehend.DescribeDominantLanguageDetectionJobInput) (*comprehend.DescribeDominantLanguageDetectionJobOutput, error)
 	DescribeDominantLanguageDetectionJobWithContext(aws.Context, *comprehend.DescribeDominantLanguageDetectionJobInput, ...request.Option) (*comprehend.DescribeDominantLanguageDetectionJobOutput, error)
 	DescribeDominantLanguageDetectionJobRequest(*comprehend.DescribeDominantLanguageDetectionJobInput) (*request.Request, *comprehend.DescribeDominantLanguageDetectionJobOutput)
@@ -120,6 +136,14 @@ type ComprehendAPI interface {
 	DetectSyntaxWithContext(aws.Context, *comprehend.DetectSyntaxInput, ...request.Option) (*comprehend.DetectSyntaxOutput, error)
 	DetectSyntaxRequest(*comprehend.DetectSyntaxInput) (*request.Request, *comprehend.DetectSyntaxOutput)
 
+	ListDocumentClassificationJobs(*comprehend.ListDocumentClassificationJobsInput) (*comprehend.ListDocumentClassificationJobsOutput, error)
+	ListDocumentClassificationJobsWithContext(aws.Context, *comprehend.ListDocumentClassificationJobsInput, ...request.Option) (*comprehend.ListDocumentClassificationJobsOutput, error)
+	ListDocumentClassificationJobsRequest(*comprehend.ListDocumentClassificationJobsInput) (*request.Request, *comprehend.ListDocumentClassificationJobsOutput)
+
+	ListDocumentClassifiers(*comprehend.ListDocumentClassifiersInput) (*comprehend.ListDocumentClassifiersOutput, error)
+	ListDocumentClassifiersWithContext(aws.Context, *comprehend.ListDocumentClassifiersInput, ...request.Option) (*comprehend.ListDocumentClassifiersOutput, error)
+	ListDocumentClassifiersRequest(*comprehend.ListDocumentClassifiersInput) (*request.Request, *comprehend.ListDocumentClassifiersOutput)
+
 	ListDominantLanguageDetectionJobs(*comprehend.ListDominantLanguageDetectionJobsInput) (*comprehend.ListDominantLanguageDetectionJobsOutput, error)
 	ListDominantLanguageDetectionJobsWithContext(aws.Context, *comprehend.ListDominantLanguageDetectionJobsInput, ...request.Option) (*comprehend.ListDominantLanguageDetectionJobsOutput, error)
 	ListDominantLanguageDetectionJobsRequest(*comprehend.ListDominantLanguageDetectionJobsInput) (*request.Request, *comprehend.ListDominantLanguageDetectionJobsOutput)
@@ -154,6 +178,10 @@ type ComprehendAPI interface {
 
 	ListTopicsDetectionJobsPages(*comprehend.ListTopicsDetectionJobsInput, func(*comprehend.ListTopicsDetectionJobsOutput, bool) bool) error
 	ListTopicsDetectionJobsPagesWithContext(aws.Context, *comprehend.ListTopicsDetectionJobsInput, func(*comprehend.ListTopicsDetectionJobsOutput, bool) bool, ...request.Option) error
+
+	StartDocumentClassificationJob(*comprehend.StartDocumentClassificationJobInput) (*comprehend.StartDocumentClassificationJobOutput, error)
+	StartDocumentClassificationJobWithContext(aws.Context, *comprehend.StartDocumentClassificationJobInput, ...request.Option) (*comprehend.StartDocumentClassificationJobOutput, error)
+	StartDocumentClassificationJobRequest(*comprehend.StartDocumentClassificationJobInput) (*request.Request, *comprehend.StartDocumentClassificationJobOutput)
 
 	StartDominantLanguageDetectionJob(*comprehend.StartDominantLanguageDetectionJobInput) (*comprehend.StartDominantLanguageDetectionJobOutput, error)
 	StartDominantLanguageDetectionJobWithContext(aws.Context, *comprehend.StartDominantLanguageDetectionJobInput, ...request.Option) (*comprehend.StartDominantLanguageDetectionJobOutput, error)

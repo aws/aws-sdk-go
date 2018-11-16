@@ -246,7 +246,10 @@
         "es-US",
         "en-AU",
         "fr-CA",
-        "en-UK"
+        "en-GB",
+        "de-DE",
+        "pt-BR",
+        "fr-FR"
       ]
     },
     "LimitExceededException":{

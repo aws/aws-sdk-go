@@ -8,7 +8,7 @@ const (
 	// "BadRequestException".
 	//
 	// Your request didn't pass one or more validation tests. For example, if the
-	// transcription you're trying to delete doesn't exist of if it is in a non-terminal
+	// transcription you're trying to delete doesn't exist or if it is in a non-terminal
 	// state (for example, it's "in progress"). See the exception Message field
 	// for more information.
 	ErrCodeBadRequestException = "BadRequestException"
