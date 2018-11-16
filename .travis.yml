@@ -5,7 +5,6 @@ sudo: required
 os:
     - linux
     - osx
-    - windows
 go:
     - 1.6.x
     - 1.7.x
@@ -18,7 +17,6 @@ go:
 matrix:
     allow_failures:
         - go: tip
-        - os: windows
     exclude:
           # OSX 1.6.4 is not present in travis.
           # https://github.com/travis-ci/travis-ci/issues/10309
@@ -29,20 +27,12 @@ matrix:
           go: 1.5.x
           # Use Go 1.5's vendoring experiment for 1.5 tests.
           env: GO15VENDOREXPERIMENT=1
-        - os: windows
-          go: 1.5.x
-          # Use Go 1.5's vendoring experiment for 1.5 tests.
-          env: GO15VENDOREXPERIMENT=1
 
 script:
   - if [ $TRAVIS_GO_VERSION == "tip" ] ||
     [ $TRAVIS_GO_VERSION == "1.11.x" ] || 
     [ $TRAVIS_GO_VERSION == "1.10.x" ]; then
-        if [ $TRAVIS_OS_NAME == "windows" ]; then
-            make get-deps unit-old-go-race-cover;
-        else
-            make ci-test;
-        fi
+        make ci-test;
     else
         make unit-old-go-race-cover;
     fi
