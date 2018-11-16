@@ -3,6 +3,7 @@
 package comprehend
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -530,9 +531,9 @@ func (c *Comprehend) CreateDocumentClassifierRequest(input *CreateDocumentClassi
 // CreateDocumentClassifier API operation for Amazon Comprehend.
 //
 // Creates a new document classifier that you can use to categorize documents.
-// To create a classifier you provide a set of training documents that are labeled
+// To create a classifier you provide a set of training documents that labeled
 // with the categories that you want to use. After the classifier is trained
-// you can use it to categorize a set of unlabeled documents into those categories.
+// you can use it to categorize a set of labeled documents into the categories.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -582,6 +583,106 @@ func (c *Comprehend) CreateDocumentClassifier(input *CreateDocumentClassifierInp
 // for more information on using Contexts.
 func (c *Comprehend) CreateDocumentClassifierWithContext(ctx aws.Context, input *CreateDocumentClassifierInput, opts ...request.Option) (*CreateDocumentClassifierOutput, error) {
 	req, out := c.CreateDocumentClassifierRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateEntityRecognizer = "CreateEntityRecognizer"
+
+// CreateEntityRecognizerRequest generates a "aws/request.Request" representing the
+// client's request for the CreateEntityRecognizer operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateEntityRecognizer for more information on using the CreateEntityRecognizer
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateEntityRecognizerRequest method.
+//    req, resp := client.CreateEntityRecognizerRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/CreateEntityRecognizer
+func (c *Comprehend) CreateEntityRecognizerRequest(input *CreateEntityRecognizerInput) (req *request.Request, output *CreateEntityRecognizerOutput) {
+	op := &request.Operation{
+		Name:       opCreateEntityRecognizer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateEntityRecognizerInput{}
+	}
+
+	output = &CreateEntityRecognizerOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateEntityRecognizer API operation for Amazon Comprehend.
+//
+// Creates an entity recognizer using submitted files. After your CreateEntityRecognizer
+// request is submitted, you can check job status using the API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation CreateEntityRecognizer for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is invalid.
+//
+//   * ErrCodeResourceInUseException "ResourceInUseException"
+//   The specified name is already in use. Use a different name and try your request
+//   again.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
+//   The maximum number of recognizers per account has been exceeded. Review the
+//   recognizers, perform cleanup, and then try your request again.
+//
+//   * ErrCodeUnsupportedLanguageException "UnsupportedLanguageException"
+//   Amazon Comprehend can't process the language of the input text. For all custom
+//   entity recognition APIs (such as CreateEntityRecognizer), only English is
+//   accepted. For most other APIs, Amazon Comprehend accepts only English or
+//   Spanish text.
+//
+//   * ErrCodeInternalServerException "InternalServerException"
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/CreateEntityRecognizer
+func (c *Comprehend) CreateEntityRecognizer(input *CreateEntityRecognizerInput) (*CreateEntityRecognizerOutput, error) {
+	req, out := c.CreateEntityRecognizerRequest(input)
+	return out, req.Send()
+}
+
+// CreateEntityRecognizerWithContext is the same as CreateEntityRecognizer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateEntityRecognizer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) CreateEntityRecognizerWithContext(ctx aws.Context, input *CreateEntityRecognizerInput, opts ...request.Option) (*CreateEntityRecognizerOutput, error) {
+	req, out := c.CreateEntityRecognizerRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -687,6 +788,111 @@ func (c *Comprehend) DeleteDocumentClassifier(input *DeleteDocumentClassifierInp
 // for more information on using Contexts.
 func (c *Comprehend) DeleteDocumentClassifierWithContext(ctx aws.Context, input *DeleteDocumentClassifierInput, opts ...request.Option) (*DeleteDocumentClassifierOutput, error) {
 	req, out := c.DeleteDocumentClassifierRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteEntityRecognizer = "DeleteEntityRecognizer"
+
+// DeleteEntityRecognizerRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEntityRecognizer operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteEntityRecognizer for more information on using the DeleteEntityRecognizer
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteEntityRecognizerRequest method.
+//    req, resp := client.DeleteEntityRecognizerRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DeleteEntityRecognizer
+func (c *Comprehend) DeleteEntityRecognizerRequest(input *DeleteEntityRecognizerInput) (req *request.Request, output *DeleteEntityRecognizerOutput) {
+	op := &request.Operation{
+		Name:       opDeleteEntityRecognizer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteEntityRecognizerInput{}
+	}
+
+	output = &DeleteEntityRecognizerOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteEntityRecognizer API operation for Amazon Comprehend.
+//
+// Deletes an entity recognizer.
+//
+// Only those recognizers that are in terminated states (IN_ERROR, TRAINED)
+// will be deleted. If an active inference job is using the model, a ResourceInUseException
+// will be returned.
+//
+// This is an asynchronous action that puts the recognizer into a DELETING state,
+// and it is then removed by a background job. Once removed, the recognizer
+// disappears from your account and is no longer available for use.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation DeleteEntityRecognizer for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is invalid.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource ARN was not found. Check the ARN and try your request
+//   again.
+//
+//   * ErrCodeResourceUnavailableException "ResourceUnavailableException"
+//   The specified resource is not available. Check to see if the resource is
+//   in the TRAINED state and try your request again.
+//
+//   * ErrCodeResourceInUseException "ResourceInUseException"
+//   The specified name is already in use. Use a different name and try your request
+//   again.
+//
+//   * ErrCodeInternalServerException "InternalServerException"
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DeleteEntityRecognizer
+func (c *Comprehend) DeleteEntityRecognizer(input *DeleteEntityRecognizerInput) (*DeleteEntityRecognizerOutput, error) {
+	req, out := c.DeleteEntityRecognizerRequest(input)
+	return out, req.Send()
+}
+
+// DeleteEntityRecognizerWithContext is the same as DeleteEntityRecognizer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteEntityRecognizer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) DeleteEntityRecognizerWithContext(ctx aws.Context, input *DeleteEntityRecognizerInput, opts ...request.Option) (*DeleteEntityRecognizerOutput, error) {
+	req, out := c.DeleteEntityRecognizerRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1043,6 +1249,96 @@ func (c *Comprehend) DescribeEntitiesDetectionJob(input *DescribeEntitiesDetecti
 // for more information on using Contexts.
 func (c *Comprehend) DescribeEntitiesDetectionJobWithContext(ctx aws.Context, input *DescribeEntitiesDetectionJobInput, opts ...request.Option) (*DescribeEntitiesDetectionJobOutput, error) {
 	req, out := c.DescribeEntitiesDetectionJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeEntityRecognizer = "DescribeEntityRecognizer"
+
+// DescribeEntityRecognizerRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEntityRecognizer operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeEntityRecognizer for more information on using the DescribeEntityRecognizer
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeEntityRecognizerRequest method.
+//    req, resp := client.DescribeEntityRecognizerRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DescribeEntityRecognizer
+func (c *Comprehend) DescribeEntityRecognizerRequest(input *DescribeEntityRecognizerInput) (req *request.Request, output *DescribeEntityRecognizerOutput) {
+	op := &request.Operation{
+		Name:       opDescribeEntityRecognizer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeEntityRecognizerInput{}
+	}
+
+	output = &DescribeEntityRecognizerOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeEntityRecognizer API operation for Amazon Comprehend.
+//
+// Provides details about an entity recognizer including status, S3 buckets
+// containing training data, recognizer metadata, metrics, and so on.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation DescribeEntityRecognizer for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is invalid.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource ARN was not found. Check the ARN and try your request
+//   again.
+//
+//   * ErrCodeInternalServerException "InternalServerException"
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DescribeEntityRecognizer
+func (c *Comprehend) DescribeEntityRecognizer(input *DescribeEntityRecognizerInput) (*DescribeEntityRecognizerOutput, error) {
+	req, out := c.DescribeEntityRecognizerRequest(input)
+	return out, req.Send()
+}
+
+// DescribeEntityRecognizerWithContext is the same as DescribeEntityRecognizer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeEntityRecognizer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) DescribeEntityRecognizerWithContext(ctx aws.Context, input *DescribeEntityRecognizerInput, opts ...request.Option) (*DescribeEntityRecognizerOutput, error) {
+	req, out := c.DescribeEntityRecognizerRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2237,6 +2533,102 @@ func (c *Comprehend) ListEntitiesDetectionJobsPagesWithContext(ctx aws.Context, 
 	return p.Err()
 }
 
+const opListEntityRecognizers = "ListEntityRecognizers"
+
+// ListEntityRecognizersRequest generates a "aws/request.Request" representing the
+// client's request for the ListEntityRecognizers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListEntityRecognizers for more information on using the ListEntityRecognizers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListEntityRecognizersRequest method.
+//    req, resp := client.ListEntityRecognizersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ListEntityRecognizers
+func (c *Comprehend) ListEntityRecognizersRequest(input *ListEntityRecognizersInput) (req *request.Request, output *ListEntityRecognizersOutput) {
+	op := &request.Operation{
+		Name:       opListEntityRecognizers,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListEntityRecognizersInput{}
+	}
+
+	output = &ListEntityRecognizersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListEntityRecognizers API operation for Amazon Comprehend.
+//
+// Gets a list of the properties of all entity recognizers that you created,
+// including recognizers currently in training. Allows you to filter the list
+// of recognizers based on criteria such as status and submission time. This
+// call returns up to 500 entity recognizers in the list, with a default number
+// of 100 recognizers in the list.
+//
+// The results of this list are not in any particular order. Please get the
+// list and sort locally if needed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation ListEntityRecognizers for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is invalid.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * ErrCodeInvalidFilterException "InvalidFilterException"
+//   The filter specified for the ListDocumentClassificationJobs operation is
+//   invalid. Specify a different filter.
+//
+//   * ErrCodeInternalServerException "InternalServerException"
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ListEntityRecognizers
+func (c *Comprehend) ListEntityRecognizers(input *ListEntityRecognizersInput) (*ListEntityRecognizersOutput, error) {
+	req, out := c.ListEntityRecognizersRequest(input)
+	return out, req.Send()
+}
+
+// ListEntityRecognizersWithContext is the same as ListEntityRecognizers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListEntityRecognizers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) ListEntityRecognizersWithContext(ctx aws.Context, input *ListEntityRecognizersInput, opts ...request.Option) (*ListEntityRecognizersOutput, error) {
+	req, out := c.ListEntityRecognizersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListKeyPhrasesDetectionJobs = "ListKeyPhrasesDetectionJobs"
 
 // ListKeyPhrasesDetectionJobsRequest generates a "aws/request.Request" representing the
@@ -2899,6 +3291,11 @@ func (c *Comprehend) StartEntitiesDetectionJobRequest(input *StartEntitiesDetect
 // Starts an asynchronous entity detection job for a collection of documents.
 // Use the operation to track the status of a job.
 //
+// This API can be used for either standard entity detection or custom entity
+// recognition. In order to be used for custom entity recognition, the optional
+// EntityRecognizerArn must be used in order to provide access to the recognizer
+// being used to detect the custom entity.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2912,6 +3309,14 @@ func (c *Comprehend) StartEntitiesDetectionJobRequest(input *StartEntitiesDetect
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource ARN was not found. Check the ARN and try your request
+//   again.
+//
+//   * ErrCodeResourceUnavailableException "ResourceUnavailableException"
+//   The specified resource is not available. Check to see if the resource is
+//   in the TRAINED state and try your request again.
 //
 //   * ErrCodeInternalServerException "InternalServerException"
 //   An internal server error occurred. Retry your request.
@@ -4412,9 +4817,8 @@ type CreateDocumentClassifierInput struct {
 	// InputDataConfig is a required field
 	InputDataConfig *DocumentClassifierInputDataConfig `type:"structure" required:"true"`
 
-	// The language of the input documents. You can create a document classifier
-	// in any of the languages supported by Amazon Comprehend. However, all documents
-	// must be in the same language.
+	// The language of the input documents. You can specify English ("en") or Spanish
+	// ("es"). All documents must be in the same language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -4516,6 +4920,136 @@ func (s *CreateDocumentClassifierOutput) SetDocumentClassifierArn(v string) *Cre
 	return s
 }
 
+type CreateEntityRecognizerInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the request. If you don't set the client request
+	// token, Amazon Comprehend generates one.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role
+	// that grants Amazon Comprehend read access to your input data.
+	//
+	// DataAccessRoleArn is a required field
+	DataAccessRoleArn *string `min:"20" type:"string" required:"true"`
+
+	// Specifies the format and location of the input data. The S3 bucket containing
+	// the input data must be located in the same region as the entity recognizer
+	// being created.
+	//
+	// InputDataConfig is a required field
+	InputDataConfig *EntityRecognizerInputDataConfig `type:"structure" required:"true"`
+
+	// The language of the input documents. All documents must be in the same language.
+	// Only English ("en") is currently supported.
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
+
+	// The name given to the newly created recognizer. Recognizer names can be a
+	// maximum of 256 characters. Alphanumeric characters, hyphens (-) and underscores
+	// (_) are allowed. The name must be unique in the account/region.
+	//
+	// RecognizerName is a required field
+	RecognizerName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateEntityRecognizerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateEntityRecognizerInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateEntityRecognizerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateEntityRecognizerInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.DataAccessRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataAccessRoleArn"))
+	}
+	if s.DataAccessRoleArn != nil && len(*s.DataAccessRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DataAccessRoleArn", 20))
+	}
+	if s.InputDataConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputDataConfig"))
+	}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.RecognizerName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecognizerName"))
+	}
+	if s.InputDataConfig != nil {
+		if err := s.InputDataConfig.Validate(); err != nil {
+			invalidParams.AddNested("InputDataConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateEntityRecognizerInput) SetClientRequestToken(v string) *CreateEntityRecognizerInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *CreateEntityRecognizerInput) SetDataAccessRoleArn(v string) *CreateEntityRecognizerInput {
+	s.DataAccessRoleArn = &v
+	return s
+}
+
+// SetInputDataConfig sets the InputDataConfig field's value.
+func (s *CreateEntityRecognizerInput) SetInputDataConfig(v *EntityRecognizerInputDataConfig) *CreateEntityRecognizerInput {
+	s.InputDataConfig = v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *CreateEntityRecognizerInput) SetLanguageCode(v string) *CreateEntityRecognizerInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetRecognizerName sets the RecognizerName field's value.
+func (s *CreateEntityRecognizerInput) SetRecognizerName(v string) *CreateEntityRecognizerInput {
+	s.RecognizerName = &v
+	return s
+}
+
+type CreateEntityRecognizerOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) that identifies the entity recognizer.
+	EntityRecognizerArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateEntityRecognizerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateEntityRecognizerOutput) GoString() string {
+	return s.String()
+}
+
+// SetEntityRecognizerArn sets the EntityRecognizerArn field's value.
+func (s *CreateEntityRecognizerOutput) SetEntityRecognizerArn(v string) *CreateEntityRecognizerOutput {
+	s.EntityRecognizerArn = &v
+	return s
+}
+
 type DeleteDocumentClassifierInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4565,6 +5099,58 @@ func (s DeleteDocumentClassifierOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteDocumentClassifierOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteEntityRecognizerInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) that identifies the entity recognizer.
+	//
+	// EntityRecognizerArn is a required field
+	EntityRecognizerArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteEntityRecognizerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteEntityRecognizerInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEntityRecognizerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEntityRecognizerInput"}
+	if s.EntityRecognizerArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityRecognizerArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntityRecognizerArn sets the EntityRecognizerArn field's value.
+func (s *DeleteEntityRecognizerInput) SetEntityRecognizerArn(v string) *DeleteEntityRecognizerInput {
+	s.EntityRecognizerArn = &v
+	return s
+}
+
+type DeleteEntityRecognizerOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteEntityRecognizerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteEntityRecognizerOutput) GoString() string {
 	return s.String()
 }
 
@@ -4825,6 +5411,67 @@ func (s DescribeEntitiesDetectionJobOutput) GoString() string {
 // SetEntitiesDetectionJobProperties sets the EntitiesDetectionJobProperties field's value.
 func (s *DescribeEntitiesDetectionJobOutput) SetEntitiesDetectionJobProperties(v *EntitiesDetectionJobProperties) *DescribeEntitiesDetectionJobOutput {
 	s.EntitiesDetectionJobProperties = v
+	return s
+}
+
+type DescribeEntityRecognizerInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) that identifies the entity recognizer.
+	//
+	// EntityRecognizerArn is a required field
+	EntityRecognizerArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeEntityRecognizerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEntityRecognizerInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeEntityRecognizerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeEntityRecognizerInput"}
+	if s.EntityRecognizerArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityRecognizerArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntityRecognizerArn sets the EntityRecognizerArn field's value.
+func (s *DescribeEntityRecognizerInput) SetEntityRecognizerArn(v string) *DescribeEntityRecognizerInput {
+	s.EntityRecognizerArn = &v
+	return s
+}
+
+type DescribeEntityRecognizerOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes information associated with an entity recognizer.
+	EntityRecognizerProperties *EntityRecognizerProperties `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeEntityRecognizerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEntityRecognizerOutput) GoString() string {
+	return s.String()
+}
+
+// SetEntityRecognizerProperties sets the EntityRecognizerProperties field's value.
+func (s *DescribeEntityRecognizerOutput) SetEntityRecognizerProperties(v *EntityRecognizerProperties) *DescribeEntityRecognizerOutput {
+	s.EntityRecognizerProperties = v
 	return s
 }
 
@@ -6119,6 +6766,9 @@ type EntitiesDetectionJobProperties struct {
 	// The time that the entities detection job completed
 	EndTime *time.Time `type:"timestamp"`
 
+	// The Amazon Resource Name (ARN) that identifies the entity recognizer.
+	EntityRecognizerArn *string `type:"string"`
+
 	// The input data configuration that you supplied when you created the entities
 	// detection job.
 	InputDataConfig *InputDataConfig `type:"structure"`
@@ -6166,6 +6816,12 @@ func (s *EntitiesDetectionJobProperties) SetDataAccessRoleArn(v string) *Entitie
 // SetEndTime sets the EndTime field's value.
 func (s *EntitiesDetectionJobProperties) SetEndTime(v time.Time) *EntitiesDetectionJobProperties {
 	s.EndTime = &v
+	return s
+}
+
+// SetEntityRecognizerArn sets the EntityRecognizerArn field's value.
+func (s *EntitiesDetectionJobProperties) SetEntityRecognizerArn(v string) *EntitiesDetectionJobProperties {
+	s.EntityRecognizerArn = &v
 	return s
 }
 
@@ -6281,6 +6937,554 @@ func (s *Entity) SetText(v string) *Entity {
 
 // SetType sets the Type field's value.
 func (s *Entity) SetType(v string) *Entity {
+	s.Type = &v
+	return s
+}
+
+// Describes the annotations associated with a entity recognizer.
+type EntityRecognizerAnnotations struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Amazon S3 location where the annotations for an entity recognizer
+	// are located. The URI must be in the same region as the API endpoint that
+	// you are calling.
+	//
+	// S3Uri is a required field
+	S3Uri *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s EntityRecognizerAnnotations) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EntityRecognizerAnnotations) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EntityRecognizerAnnotations) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EntityRecognizerAnnotations"}
+	if s.S3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *EntityRecognizerAnnotations) SetS3Uri(v string) *EntityRecognizerAnnotations {
+	s.S3Uri = &v
+	return s
+}
+
+// Describes the training documents submitted with an entity recognizer.
+type EntityRecognizerDocuments struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Amazon S3 location where the training documents for an entity
+	// recognizer are located. The URI must be in the same region as the API endpoint
+	// that you are calling.
+	//
+	// S3Uri is a required field
+	S3Uri *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s EntityRecognizerDocuments) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EntityRecognizerDocuments) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EntityRecognizerDocuments) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EntityRecognizerDocuments"}
+	if s.S3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *EntityRecognizerDocuments) SetS3Uri(v string) *EntityRecognizerDocuments {
+	s.S3Uri = &v
+	return s
+}
+
+// Describes the entity recognizer submitted with an entity recognizer.
+type EntityRecognizerEntityList struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Amazon S3 location where the entity list is located. The URI
+	// must be in the same region as the API endpoint that you are calling.
+	//
+	// S3Uri is a required field
+	S3Uri *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s EntityRecognizerEntityList) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EntityRecognizerEntityList) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EntityRecognizerEntityList) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EntityRecognizerEntityList"}
+	if s.S3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *EntityRecognizerEntityList) SetS3Uri(v string) *EntityRecognizerEntityList {
+	s.S3Uri = &v
+	return s
+}
+
+// Detailed information about the accuracy of an entity recognizer.
+type EntityRecognizerEvaluationMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// A measure of how accurate the recognizer results are for the test data. It
+	// is derived from the Precision and Recall values. The F1Score is the harmonic
+	// average of the two scores. The highest score is 1, and the worst score is
+	// 0.
+	F1Score *float64 `type:"double"`
+
+	// A measure of the usefulness of the recognizer results in the test data. High
+	// precision means that the recognizer returned substantially more relevant
+	// results than irrelevant ones.
+	Precision *float64 `type:"double"`
+
+	// A measure of how complete the recognizer results are for the test data. High
+	// recall means that the recognizer returned most of the relevant results.
+	Recall *float64 `type:"double"`
+}
+
+// String returns the string representation
+func (s EntityRecognizerEvaluationMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EntityRecognizerEvaluationMetrics) GoString() string {
+	return s.String()
+}
+
+// SetF1Score sets the F1Score field's value.
+func (s *EntityRecognizerEvaluationMetrics) SetF1Score(v float64) *EntityRecognizerEvaluationMetrics {
+	s.F1Score = &v
+	return s
+}
+
+// SetPrecision sets the Precision field's value.
+func (s *EntityRecognizerEvaluationMetrics) SetPrecision(v float64) *EntityRecognizerEvaluationMetrics {
+	s.Precision = &v
+	return s
+}
+
+// SetRecall sets the Recall field's value.
+func (s *EntityRecognizerEvaluationMetrics) SetRecall(v float64) *EntityRecognizerEvaluationMetrics {
+	s.Recall = &v
+	return s
+}
+
+// Provides information for filtering a list of entity recognizers. You can
+// only specify one filtering parameter in a request. For more information,
+// see the operation./>
+type EntityRecognizerFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The status of an entity recognizer.
+	Status *string `type:"string" enum:"ModelStatus"`
+
+	// Filters the list of entities based on the time that the list was submitted
+	// for processing. Returns only jobs submitted after the specified time. Jobs
+	// are returned in ascending order, oldest to newest.
+	SubmitTimeAfter *time.Time `type:"timestamp"`
+
+	// Filters the list of entities based on the time that the list was submitted
+	// for processing. Returns only jobs submitted before the specified time. Jobs
+	// are returned in descending order, newest to oldest.
+	SubmitTimeBefore *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s EntityRecognizerFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EntityRecognizerFilter) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *EntityRecognizerFilter) SetStatus(v string) *EntityRecognizerFilter {
+	s.Status = &v
+	return s
+}
+
+// SetSubmitTimeAfter sets the SubmitTimeAfter field's value.
+func (s *EntityRecognizerFilter) SetSubmitTimeAfter(v time.Time) *EntityRecognizerFilter {
+	s.SubmitTimeAfter = &v
+	return s
+}
+
+// SetSubmitTimeBefore sets the SubmitTimeBefore field's value.
+func (s *EntityRecognizerFilter) SetSubmitTimeBefore(v time.Time) *EntityRecognizerFilter {
+	s.SubmitTimeBefore = &v
+	return s
+}
+
+// Specifies the format and location of the input data.
+type EntityRecognizerInputDataConfig struct {
+	_ struct{} `type:"structure"`
+
+	// S3 location of the annotations file for an entity recognizer.
+	Annotations *EntityRecognizerAnnotations `type:"structure"`
+
+	// S3 location of the documents folder for an entity recognizer
+	//
+	// Documents is a required field
+	Documents *EntityRecognizerDocuments `type:"structure" required:"true"`
+
+	// S3 location of the entity list for an entity recognizer.
+	EntityList *EntityRecognizerEntityList `type:"structure"`
+
+	// The entity types in the input data for an entity recognizer.
+	//
+	// EntityTypes is a required field
+	EntityTypes []*EntityTypesListItem `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s EntityRecognizerInputDataConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EntityRecognizerInputDataConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EntityRecognizerInputDataConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EntityRecognizerInputDataConfig"}
+	if s.Documents == nil {
+		invalidParams.Add(request.NewErrParamRequired("Documents"))
+	}
+	if s.EntityTypes == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityTypes"))
+	}
+	if s.Annotations != nil {
+		if err := s.Annotations.Validate(); err != nil {
+			invalidParams.AddNested("Annotations", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Documents != nil {
+		if err := s.Documents.Validate(); err != nil {
+			invalidParams.AddNested("Documents", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.EntityList != nil {
+		if err := s.EntityList.Validate(); err != nil {
+			invalidParams.AddNested("EntityList", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.EntityTypes != nil {
+		for i, v := range s.EntityTypes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "EntityTypes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnnotations sets the Annotations field's value.
+func (s *EntityRecognizerInputDataConfig) SetAnnotations(v *EntityRecognizerAnnotations) *EntityRecognizerInputDataConfig {
+	s.Annotations = v
+	return s
+}
+
+// SetDocuments sets the Documents field's value.
+func (s *EntityRecognizerInputDataConfig) SetDocuments(v *EntityRecognizerDocuments) *EntityRecognizerInputDataConfig {
+	s.Documents = v
+	return s
+}
+
+// SetEntityList sets the EntityList field's value.
+func (s *EntityRecognizerInputDataConfig) SetEntityList(v *EntityRecognizerEntityList) *EntityRecognizerInputDataConfig {
+	s.EntityList = v
+	return s
+}
+
+// SetEntityTypes sets the EntityTypes field's value.
+func (s *EntityRecognizerInputDataConfig) SetEntityTypes(v []*EntityTypesListItem) *EntityRecognizerInputDataConfig {
+	s.EntityTypes = v
+	return s
+}
+
+// Detailed information about an entity recognizer.
+type EntityRecognizerMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// Entity types from the metadata of an entity recognizer.
+	EntityTypes []*EntityRecognizerMetadataEntityTypesListItem `type:"list"`
+
+	// Detailed information about the accuracy of an entity recognizer.
+	EvaluationMetrics *EntityRecognizerEvaluationMetrics `type:"structure"`
+
+	// The number of documents in the input data that were used to test the entity
+	// recognizer. Typically this is 10 to 20 percent of the input documents.
+	NumberOfTestDocuments *int64 `type:"integer"`
+
+	// The number of documents in the input data that were used to train the entity
+	// recognizer. Typically this is 80 to 90 percent of the input documents.
+	NumberOfTrainedDocuments *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s EntityRecognizerMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EntityRecognizerMetadata) GoString() string {
+	return s.String()
+}
+
+// SetEntityTypes sets the EntityTypes field's value.
+func (s *EntityRecognizerMetadata) SetEntityTypes(v []*EntityRecognizerMetadataEntityTypesListItem) *EntityRecognizerMetadata {
+	s.EntityTypes = v
+	return s
+}
+
+// SetEvaluationMetrics sets the EvaluationMetrics field's value.
+func (s *EntityRecognizerMetadata) SetEvaluationMetrics(v *EntityRecognizerEvaluationMetrics) *EntityRecognizerMetadata {
+	s.EvaluationMetrics = v
+	return s
+}
+
+// SetNumberOfTestDocuments sets the NumberOfTestDocuments field's value.
+func (s *EntityRecognizerMetadata) SetNumberOfTestDocuments(v int64) *EntityRecognizerMetadata {
+	s.NumberOfTestDocuments = &v
+	return s
+}
+
+// SetNumberOfTrainedDocuments sets the NumberOfTrainedDocuments field's value.
+func (s *EntityRecognizerMetadata) SetNumberOfTrainedDocuments(v int64) *EntityRecognizerMetadata {
+	s.NumberOfTrainedDocuments = &v
+	return s
+}
+
+// Individual item from the list of entity types in the metadata of an entity
+// recognizer.
+type EntityRecognizerMetadataEntityTypesListItem struct {
+	_ struct{} `type:"structure"`
+
+	// Type of entity from the list of entity types in the metadata of an entity
+	// recognizer.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s EntityRecognizerMetadataEntityTypesListItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EntityRecognizerMetadataEntityTypesListItem) GoString() string {
+	return s.String()
+}
+
+// SetType sets the Type field's value.
+func (s *EntityRecognizerMetadataEntityTypesListItem) SetType(v string) *EntityRecognizerMetadataEntityTypesListItem {
+	s.Type = &v
+	return s
+}
+
+// Describes information about an entity recognizer.
+type EntityRecognizerProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role
+	// that grants Amazon Comprehend read access to your input data.
+	DataAccessRoleArn *string `min:"20" type:"string"`
+
+	// The time that the recognizer creation completed.
+	EndTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) that identifies the entity recognizer.
+	EntityRecognizerArn *string `type:"string"`
+
+	// The input data properties of an entity recognizer.
+	InputDataConfig *EntityRecognizerInputDataConfig `type:"structure"`
+
+	// The language of the input documents. All documents must be in the same language.
+	// Only English ("en") is currently supported.
+	LanguageCode *string `type:"string" enum:"LanguageCode"`
+
+	// A description of the status of the recognizer.
+	Message *string `type:"string"`
+
+	// Provides information about an entity recognizer.
+	RecognizerMetadata *EntityRecognizerMetadata `type:"structure"`
+
+	// Provides the status of the entity recognizer.
+	Status *string `type:"string" enum:"ModelStatus"`
+
+	// The time that the recognizer was submitted for processing.
+	SubmitTime *time.Time `type:"timestamp"`
+
+	// The time that training of the entity recognizer was completed.
+	TrainingEndTime *time.Time `type:"timestamp"`
+
+	// The time that training of the entity recognizer started.
+	TrainingStartTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s EntityRecognizerProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EntityRecognizerProperties) GoString() string {
+	return s.String()
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *EntityRecognizerProperties) SetDataAccessRoleArn(v string) *EntityRecognizerProperties {
+	s.DataAccessRoleArn = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *EntityRecognizerProperties) SetEndTime(v time.Time) *EntityRecognizerProperties {
+	s.EndTime = &v
+	return s
+}
+
+// SetEntityRecognizerArn sets the EntityRecognizerArn field's value.
+func (s *EntityRecognizerProperties) SetEntityRecognizerArn(v string) *EntityRecognizerProperties {
+	s.EntityRecognizerArn = &v
+	return s
+}
+
+// SetInputDataConfig sets the InputDataConfig field's value.
+func (s *EntityRecognizerProperties) SetInputDataConfig(v *EntityRecognizerInputDataConfig) *EntityRecognizerProperties {
+	s.InputDataConfig = v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *EntityRecognizerProperties) SetLanguageCode(v string) *EntityRecognizerProperties {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *EntityRecognizerProperties) SetMessage(v string) *EntityRecognizerProperties {
+	s.Message = &v
+	return s
+}
+
+// SetRecognizerMetadata sets the RecognizerMetadata field's value.
+func (s *EntityRecognizerProperties) SetRecognizerMetadata(v *EntityRecognizerMetadata) *EntityRecognizerProperties {
+	s.RecognizerMetadata = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *EntityRecognizerProperties) SetStatus(v string) *EntityRecognizerProperties {
+	s.Status = &v
+	return s
+}
+
+// SetSubmitTime sets the SubmitTime field's value.
+func (s *EntityRecognizerProperties) SetSubmitTime(v time.Time) *EntityRecognizerProperties {
+	s.SubmitTime = &v
+	return s
+}
+
+// SetTrainingEndTime sets the TrainingEndTime field's value.
+func (s *EntityRecognizerProperties) SetTrainingEndTime(v time.Time) *EntityRecognizerProperties {
+	s.TrainingEndTime = &v
+	return s
+}
+
+// SetTrainingStartTime sets the TrainingStartTime field's value.
+func (s *EntityRecognizerProperties) SetTrainingStartTime(v time.Time) *EntityRecognizerProperties {
+	s.TrainingStartTime = &v
+	return s
+}
+
+// Information about an individual item on a list of entity types.
+type EntityTypesListItem struct {
+	_ struct{} `type:"structure"`
+
+	// Entity type of an item on an entity type list.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s EntityTypesListItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EntityTypesListItem) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EntityTypesListItem) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EntityTypesListItem"}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetType sets the Type field's value.
+func (s *EntityTypesListItem) SetType(v string) *EntityTypesListItem {
 	s.Type = &v
 	return s
 }
@@ -6960,6 +8164,96 @@ func (s *ListEntitiesDetectionJobsOutput) SetEntitiesDetectionJobPropertiesList(
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListEntitiesDetectionJobsOutput) SetNextToken(v string) *ListEntitiesDetectionJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEntityRecognizersInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters the list of entities returned. You can filter on Status, SubmitTimeBefore,
+	// or SubmitTimeAfter. You can only set one filter at a time.
+	Filter *EntityRecognizerFilter `type:"structure"`
+
+	// The maximum number of results to return on each page. The default is 100.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Identifies the next page of results to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListEntityRecognizersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListEntityRecognizersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListEntityRecognizersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListEntityRecognizersInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ListEntityRecognizersInput) SetFilter(v *EntityRecognizerFilter) *ListEntityRecognizersInput {
+	s.Filter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListEntityRecognizersInput) SetMaxResults(v int64) *ListEntityRecognizersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEntityRecognizersInput) SetNextToken(v string) *ListEntityRecognizersInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEntityRecognizersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of properties of an entity recognizer.
+	EntityRecognizerPropertiesList []*EntityRecognizerProperties `type:"list"`
+
+	// Identifies the next page of results to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListEntityRecognizersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListEntityRecognizersOutput) GoString() string {
+	return s.String()
+}
+
+// SetEntityRecognizerPropertiesList sets the EntityRecognizerPropertiesList field's value.
+func (s *ListEntityRecognizersOutput) SetEntityRecognizerPropertiesList(v []*EntityRecognizerProperties) *ListEntityRecognizersOutput {
+	s.EntityRecognizerPropertiesList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEntityRecognizersOutput) SetNextToken(v string) *ListEntityRecognizersOutput {
 	s.NextToken = &v
 	return s
 }
@@ -7901,6 +9195,11 @@ type StartEntitiesDetectionJobInput struct {
 	// DataAccessRoleArn is a required field
 	DataAccessRoleArn *string `min:"20" type:"string" required:"true"`
 
+	// The Amazon Resource Name (ARN) that identifies the specific entity recognizer
+	// to be used by the StartEntitiesDetectionJob. This ARN is optional and is
+	// only used for a custom entity recognition job.
+	EntityRecognizerArn *string `type:"string"`
+
 	// Specifies the format and location of the input data for the job.
 	//
 	// InputDataConfig is a required field
@@ -7984,6 +9283,12 @@ func (s *StartEntitiesDetectionJobInput) SetClientRequestToken(v string) *StartE
 // SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
 func (s *StartEntitiesDetectionJobInput) SetDataAccessRoleArn(v string) *StartEntitiesDetectionJobInput {
 	s.DataAccessRoleArn = &v
+	return s
+}
+
+// SetEntityRecognizerArn sets the EntityRecognizerArn field's value.
+func (s *StartEntitiesDetectionJobInput) SetEntityRecognizerArn(v string) *StartEntitiesDetectionJobInput {
+	s.EntityRecognizerArn = &v
 	return s
 }
 

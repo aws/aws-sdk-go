@@ -1635,6 +1635,7 @@
     }
   },
   "shapes":{
+    "Account":{"type":"string"},
     "AccountId":{
       "type":"string",
       "pattern":"(?i)all|[0-9]{12}"
@@ -1643,6 +1644,12 @@
       "type":"list",
       "member":{"shape":"AccountId"},
       "max":20
+    },
+    "Accounts":{
+      "type":"list",
+      "member":{"shape":"Account"},
+      "max":50,
+      "min":1
     },
     "Activation":{
       "type":"structure",
@@ -2088,7 +2095,12 @@
         "ResolvedTargets":{"shape":"ResolvedTargets"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
         "MaxErrors":{"shape":"MaxErrors"},
-        "Target":{"shape":"String"}
+        "Target":{"shape":"String"},
+        "TargetLocations":{
+          "shape":"TargetLocations",
+          "box":true
+        },
+        "ProgressCounters":{"shape":"ProgressCounters"}
       }
     },
     "AutomationExecutionFilter":{
@@ -2111,7 +2123,8 @@
         "ParentExecutionId",
         "CurrentAction",
         "StartTimeBefore",
-        "StartTimeAfter"
+        "StartTimeAfter",
+        "AutomationType"
       ]
     },
     "AutomationExecutionFilterList":{
@@ -2166,7 +2179,8 @@
         "ResolvedTargets":{"shape":"ResolvedTargets"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
         "MaxErrors":{"shape":"MaxErrors"},
-        "Target":{"shape":"String"}
+        "Target":{"shape":"String"},
+        "AutomationType":{"shape":"AutomationType"}
       }
     },
     "AutomationExecutionMetadataList":{
@@ -2222,6 +2236,13 @@
         "Message":{"shape":"String"}
       },
       "exception":true
+    },
+    "AutomationType":{
+      "type":"string",
+      "enum":[
+        "CrossAccount",
+        "Local"
+      ]
     },
     "BaselineDescription":{
       "type":"string",
@@ -3916,6 +3937,11 @@
         "Auto",
         "Interactive"
       ]
+    },
+    "ExecutionRoleName":{
+      "type":"string",
+      "max":64,
+      "min":1
     },
     "ExpirationDate":{"type":"timestamp"},
     "FailedCreateAssociation":{
@@ -6663,6 +6689,16 @@
       "member":{"shape":"PlatformType"}
     },
     "Product":{"type":"string"},
+    "ProgressCounters":{
+      "type":"structure",
+      "members":{
+        "TotalSteps":{"shape":"Integer"},
+        "SuccessSteps":{"shape":"Integer"},
+        "FailedSteps":{"shape":"Integer"},
+        "CancelledSteps":{"shape":"Integer"},
+        "TimedOutSteps":{"shape":"Integer"}
+      }
+    },
     "PutComplianceItemsRequest":{
       "type":"structure",
       "required":[
@@ -6729,6 +6765,13 @@
       "members":{
         "Version":{"shape":"PSParameterVersion"}
       }
+    },
+    "Region":{"type":"string"},
+    "Regions":{
+      "type":"list",
+      "member":{"shape":"Region"},
+      "max":50,
+      "min":1
     },
     "RegisterDefaultPatchBaselineRequest":{
       "type":"structure",
@@ -7321,7 +7364,11 @@
         "Targets":{"shape":"Targets"},
         "TargetMaps":{"shape":"TargetMaps"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
-        "MaxErrors":{"shape":"MaxErrors"}
+        "MaxErrors":{"shape":"MaxErrors"},
+        "TargetLocations":{
+          "shape":"TargetLocations",
+          "box":true
+        }
       }
     },
     "StartAutomationExecutionResult":{
@@ -7405,7 +7452,15 @@
           "shape":"Boolean",
           "box":true
         },
-        "ValidNextSteps":{"shape":"ValidNextStepList"}
+        "ValidNextSteps":{"shape":"ValidNextStepList"},
+        "Targets":{
+          "shape":"Targets",
+          "box":true
+        },
+        "TargetLocation":{
+          "shape":"TargetLocation",
+          "box":true
+        }
       }
     },
     "StepExecutionFilter":{
@@ -7535,6 +7590,31 @@
       "max":128,
       "min":1,
       "pattern":"^[\\p{L}\\p{Z}\\p{N}_.:/=\\-@]*$"
+    },
+    "TargetLocation":{
+      "type":"structure",
+      "members":{
+        "Accounts":{"shape":"Accounts"},
+        "Regions":{"shape":"Regions"},
+        "TargetLocationMaxConcurrency":{
+          "shape":"MaxConcurrency",
+          "box":true
+        },
+        "TargetLocationMaxErrors":{
+          "shape":"MaxErrors",
+          "box":true
+        },
+        "ExecutionRoleName":{
+          "shape":"ExecutionRoleName",
+          "box":true
+        }
+      }
+    },
+    "TargetLocations":{
+      "type":"list",
+      "member":{"shape":"TargetLocation"},
+      "max":100,
+      "min":1
     },
     "TargetMap":{
       "type":"map",

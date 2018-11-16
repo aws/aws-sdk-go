@@ -1,3 +1,16 @@
+Release v1.15.78 (2018-11-16)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/comprehend`: Updates service API and documentation
+* `service/ecs`: Updates service API and documentation
+  * This release of Amazon Elastic Container Service (Amazon ECS) introduces support for additional Docker flags as Task Definition parameters. Customers can now configure their ECS Tasks to use pidMode (pid) and ipcMode (ipc) Docker flags.
+* `service/ssm`: Updates service API and documentation
+  * AWS Systems Manager Automation now allows you to execute and manage Automation workflows across multiple accounts and regions.
+* `service/workspaces`: Updates service API and documentation
+  * Added new Bring Your Own License (BYOL) automation APIs. With the new APIs, you can list available management CIDR ranges for dedicated tenancy, enable your account for BYOL, describe BYOL status of your account, and import BYOL images. Added new APIs to also describe and delete WorkSpaces images.
+
 Release v1.15.77 (2018-11-16)
 ===
 
